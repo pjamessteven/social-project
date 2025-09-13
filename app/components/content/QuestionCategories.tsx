@@ -1,0 +1,424 @@
+"use server";
+
+import { slugify } from "@/app/lib/utils";
+import { ExternalLink } from "lucide-react";
+import Link from "next/link";
+
+export async function QuestionCategories({
+  mode,
+}: {
+  mode: "affirm" | "detrans";
+}) {
+  const isDev = process.env.NODE_ENV === "development";
+
+  const questionCategories = [
+    {
+      title: "Top Picks",
+      description: "Some questions to take you down the rabbit hole...",
+      questions: [
+        "Is trans real?",
+        "What is the difference between sex and gender?",
+        "Can humans change sex?",
+        "What's an egg?",
+        "What is a belief system?",
+        "How is cancel culture harmful?",
+        "Is gender a social construct?",
+        "What is gender conformity?",
+        "Does transition ever end?",
+        "Is the health system failing people?",
+        "How do online echo chambers cause psychosis?",
+        "Why do detrans voices get silenced?",
+        "What is an identity trap?",
+        "How do you get out of an identity trap?",
+        "What are the main reasons that women adpot trans identity?",
+        "What are the main reasons that men adopt trans identity?",
+        "How do non-binary identities still re-inforce sexist stereotypes and roles?",
+        "Why do people identify vaguely as queer now?",
+        "How does LGB differ from the T?",
+        "What's the link between autism and transgender identity?",
+        "Is gender-affirming care based on science?",
+        "Is teaching gender ideology to kids progressive?",
+        "Is gender ideology fuelling a culture war?",
+        "Why is gender ideology referred to as a mind virus?",
+        "Why are the rates of people who identify as trans increasing?",
+        "Is the trans suicide rate mis-represented?",
+        "Why do some trans people say 'death before detransition'?",
+        "Why is gender dysphoria no longer treated as a mental health issue?",
+        "Is academic research on trans and gender topics biased?",
+        "Why are there so many ladyboys in Thailand?",
+        "Why is Iran a global hub for transgender surgeries?",
+      ],
+    },
+    {
+      title: "General Terms",
+      description: "Understanding the fundamental concepts",
+      questions: [
+        "What is a man?",
+        "What is a woman?",
+        "What is gender?",
+        "What's an egg?",
+        "What are pronouns?",
+        "What is cancel culture?",
+        "What is dysphoria?",
+        "What causes dysphoria?",
+        "What is the gender dysphoria bible?",
+        "How can I overcome dysphoria?",
+        "What is transgender identity?",
+        "What is non-binary identity?",
+        "What is queer identity?",
+        "What is a personality?",
+        "What is gender non-conformity (GNC)?",
+        "What is detransitioning?",
+        "What is desisting?",
+        "Are intersex people trans?",
+        "What is gender fluidity?",
+        "What does AFAB/AMAB mean?",
+        "What is a TERF?",
+        "What is deadnaming?",
+        "What is misgendering?",
+        "What is a cisgender person?",
+        "What is biological sex?",
+        "What is social transition vs medical transition?",
+      ],
+    },
+    {
+      title: "The Medical Reality",
+      description: "Health, procedures, and biological truths",
+      questions: [
+        "What are the health risks of hormones?",
+        "Should I get off hormones?",
+        "What is vaginoplasty?",
+        "What is phalloplasty?",
+        "Can I undo phalloplasty?",
+        "Can I undo vaginoplasty?",
+        "I had a double masectomy, should I get breast implants?",
+        "Should I get facial reconstruction surgery?",
+        "Why are hormones prescribed before a single therapy session in a lot of places?",
+        "What is the science behind gender affirming care?",
+        "Does unrestricted access to hormones and surgeries provide good outcomes?",
+        "What are puberty blockers and are they reversible?",
+        "What are the long-term effects of cross-sex hormones?",
+        "What are the WPATH Standards of Care?",
+        "Are the WPATH Standards of Care based on science?",
+        "What is the Dutch Protocol?",
+        "What is rapid-onset gender dysphoria (ROGD)?",
+        "What are the regret rates for gender surgeries?",
+        "What is gender exploratory therapy?",
+      ],
+    },
+    {
+      title: "Society & Culture",
+      description: "How gender ideology affects us all",
+      questions: [
+        "What are the transition rates for men vs women?",
+        "Why is the trans suicide rate so high?",
+        "Is the trans suicide rate mis-represented?",
+        "Do suicides based on regret get blamed on social acceptance?",
+        "How do mantras relate to trans suicide?",
+        "Does the trans community encourage suicide?",
+        "Does society believe that gender is a social construct?",
+        "Does gender ideology affect society?",
+        "What's the difference between being a tomboy and transgender?",
+        "Are there male brains and female brains?",
+        "Where did the term gender come from?",
+        "Why are autistic people overrepresented in the trans community?",
+        "How does gender ideology attempt to erase homosexual identity?",
+        "How does gender ideology attempt to erase heterosexual identity?",
+        "Did gender activists hijack the gay rights movement?",
+        "How is gender ideology at odds with the goals of feminism?",
+        "Is it beneficial to teach the idea that you can change sex to children?",
+        "Do children ever grow up to regret transitioning at such a young age?",
+        "What are the effects the transgender movement has on our wider society?",
+        "Is gender ideology fuelling a culture war?",
+        "Does transgender ideology contradict itself?",
+        "Why are so many people identifying as trans or non-binary now? Is it a trend?",
+        "Is it common for friends of trans people to become trans too?",
+        "What is the bathroom debate about?",
+        "What are trans rights vs women's rights conflicts?",
+        "What is the sports participation controversy?",
+        "What is the medicalization of gender non-conforming children?",
+        "What is the history of trans activism?",
+        "What are drag queen story hours?",
+        "What is the difference between gender and sex?",
+        "Why are there so many ladyboys in Thailand?",
+        "Why is Iran a global hub for transgender surgeries?",
+      ],
+    },
+    {
+      title: "Psychology & Identity",
+      description: "Understanding the mental and emotional aspects",
+      questions: [
+        "Why do some women hate their breasts?",
+        "What is internalised misogyny?",
+        "What is internalised misandry?",
+        "What is internalised homophobia?",
+        "What is autogynephilia?",
+        "What is gender euphoria?",
+        "What is a belief system?",
+        "What is an identity trap?",
+        "What is the neurochemical cycle of validation?",
+        "What is the mechanism that causes gender non-conforming people to adopt trans identity?",
+        "How do I know if I have internalised a victim mentality?",
+        "Why do some people think that trans identity is a choice?",
+        "I'm sure I didn't choose to be trans.",
+        "Does transition ever end?",
+        "Can you be a woman if you're not 'feminine'?",
+        "Can you be a man if you're not 'masculine'?",
+        "Is trans real?",
+        "What are the four choices of dealing with dysphoria?",
+        "What are the stages that lead to an obsession with 'passing'?",
+        "What are the Jungian perspectives on transgender identity?",
+        "What role do the anima and animus play in transgender identity?",
+        "What is body dysmorphia vs gender dysphoria?",
+        "What is social contagion?",
+        "What is the role of social media in trans identification?",
+        "What is the impact of pornography on gender identity?",
+        "What is the impact of trauma on gender identity?",
+      ],
+    },
+    {
+      title: "The Detransition Journey",
+      description: "Healing, support, and finding your way back",
+      questions: [
+        "Am I a failure if I detransition?",
+        "I want to detransition, where do I start?",
+        "How did I fall into an identity trap in the first place?",
+        "How can I get out of an identity trap?",
+        "What is gender exploratory therapy?",
+        "What is CBT therapy?",
+        "What is DBT therapy?",
+        "How can I make peace with the changes I have made to my body?",
+        "How can I learn to love myself and my unique personality, and find my inner peace?",
+        "Why do trans people encourage other trans people not to read detransition stories?",
+        "Why do detrans people get silenced from trans communities and wider society?",
+        "Why do trans people tell detransitioners that they have internalised transphobia?",
+        "How can I help others question the validity of their transgender identity?",
+        "I think my friends will 'cancel' me for detransitioning!",
+        "How do I find a therapist who supports detransition?",
+        "How do I find a gender exploratory therapist?",
+        "How do I tell my family I'm detransitioning?",
+        "What support groups exist for detransitioners?",
+        "How do I deal with shame about detransitioning?",
+        "How do I rebuild my life after detransition?",
+        "What are the stages of grief in detransition?",
+      ],
+    },
+    {
+      title: "Academic & Research Bias",
+      description: "Questioning the narrative in institutions",
+      questions: [
+        "Is academic research on trans and gender topics biased?",
+        "Why is it so hard to find a gender critical therapist?",
+        "Why was gender dysphoria removed from list of mental health disorders?",
+        "Do some homosexual people transition to get access to heterosexual people?",
+        "What is the Cass Review?",
+        "What happened to Lisa Littman's research?",
+        "Why are detransition studies so controversial?",
+        "What is the Tavistock scandal?",
+        "Why are researchers afraid to study detransition?",
+      ],
+    },
+    {
+      title: "The Controversial Truth",
+      description: "Perspectives gender activists don't want you to hear",
+      questions: [
+        "Why do some people call the trans movement a cult?",
+        "Why do some people call the trans movement a mind virus?",
+        "Are gender ideology beliefs similar to religious beliefs?",
+        "What is the connection between trans activism and pharmaceutical companies?",
+        "Is there a financial incentive to promote transition?",
+        "Why are detransitioners silenced in mainstream media?",
+        "What is the role of schools in promoting gender ideology?",
+        "Are parents being replaced by the state in gender decisions?",
+      ],
+    },
+  ];
+
+  const affirmingQuestionCategories = [
+    {
+      title: "Am I valid?",
+      description: "Quick reassurance when you are doubting",
+      questions: [
+        "What's an egg?",
+        "What causes dysphoria?",
+        "What does it mean to be a woman?",
+        "What does it mean to be a man?",
+        "What does it mean to be a non-binary?",
+        "Was I born in the wrong body?",
+        "Are there male brains and female brains?",
+        "How long will it take before I pass?",
+        "Will I be happy once I pass?",
+        "Am I trans enough if I do not have dysphoria every day?",
+        "Can my identity shift over time?",
+        "Do I need to prove anything to anyone?",
+        "Are trans tomboys valid?",
+        "Are trans femboys valid?",
+        "Are trans women biological females?",
+        "Are trans men biological males?",
+        "What if I only feel dysphoric in certain situations?",
+        "Is it okay to explore labels privately before telling anyone?",
+        "What are the transition rates for trans men vs trans women?",
+        "How can I overcome dysphoria?",
+        "How do I know if I'm transgender and not just gender non-conforming?",
+      ],
+    },
+    {
+      title: "Names, pronouns and everyday life",
+      description: "Practical tools for getting through the week",
+      questions: [
+        "How do I pick a name that still feels like me?",
+        "What is the safest way to test pronouns online first?",
+        "How do I correct people misgendering me without ruining the mood?",
+        "How can I practice my voice without triggering dysphoria?",
+        "What apps help me track gender euphoria moments?",
+      ],
+    },
+    {
+      title: "Dysphoria and mental health hacks",
+      description: "Coping with feeling uncomfortable in your body",
+      questions: [
+        "I've always been a feminine man, am I trans?",
+        "What are five minute grounding exercises for body dysphoria?",
+        "How do I tell the difference between dysphoria and ordinary body image bad days?",
+        "Can hormones or surgery be one tool but not the whole toolbox?",
+        "What do I do if my dysphoria spikes after starting HRT?",
+        "How can meditation help dysphoria?",
+        "Where can I find free, trans competent crisis lines?",
+      ],
+    },
+    {
+      title: "Medical roadmap, no pressure",
+      description: "Consider your options before making big decisions.",
+      questions: [
+        "What are the health effects and risks of HRT?",
+        "At what age should I start HRT?",
+        "What is the usual order of steps if I want hormones in my country?",
+        "What are the reversible versus irreversible changes of HRT with a timeline chart?",
+        "How do I check whether my insurance covers blockers or HRT?",
+        "What questions should I ask the endocrinologist at the first consult?",
+        "What is the actual regret rate cited by major studies with citations?",
+        "Can I bank sperm or eggs on a tight budget?",
+        "Should I get phaloplasty?",
+        "How do I find a good surgeon for phalloplasty?",
+        "Should I get vaginoplasty?",
+        "What are the different types of vaginoplasty?",
+        "How do I find a good surgeon for vaginoplasty?",
+        "When will my vagina be a vagina?",
+        "What are the least invasive ways to deal with facial hair?",
+        "What is the real scoop on puberty blocker reversibility in 2024?",
+      ],
+    },
+    {
+      title: "Family, dating and coming out",
+      description: "Scripts and safety plans",
+      questions: [
+        "How do I come out to a partner who says they are super straight?",
+        "How do I protect my privacy if I am not ready to tell my parents?",
+        "What are red flags that a therapist is not gender affirming?",
+        "How can I find local trans meet ups that are not Facebook based?",
+        "What are my rights at school or work in my state or country?",
+      ],
+    },
+    {
+      title: "Trans Sex Life & Intimacy Guide",
+      description:
+        "Safer sex, dysphoria hacks and pleasure tips for trans, non-binary and post-op bodies",
+      questions: [
+        "What are safe sex toys for trans women with bottom dysphoria?",
+        "What is the best dilator schedule after trans vaginoplasty surgery?",
+        "How can I ask my partner for trans affirming dirty talk?",
+        "What are the contraception options available for trans men on testosterone?",
+        "Why are my top surgery scars are sensitive during sex?",
+        "What erection aids are there for trans women on HRT?",
+        "Is it normal for your orgasm to change after starting testosterone?",
+        "How to navigate hookup apps safely as a trans person?",
+        "Why am I so horny after starting testosterone?",
+        "How can I disclose my trans identity to a casual partner?",
+        "Dealing with bottom dysphoria during sex trans tips",
+        "What lube ingredients should I avoid post vaginoplasty as a trans woman",
+        "Which sex positions minimise hip dysphoria for trans women?",
+        "How to maintain anal health after phalloplasty?",
+        "How to find trans friendly STI testing clinics?",
+        "How to find low cost viagra or cialis for trans women MTF?",
+      ],
+    },
+  ];
+  const affirmingDetransQuestions = [
+    {
+      title: "De-transitioning and Re-transitioning",
+      description:
+        "Explore the sensitive topics of de-transition and re-transition from a detrans perspective to make sure you're informed.",
+      questions: [
+        "Why do some people de-transition?",
+        "How many people de-transition?",
+        "Why do some people re-transition after de-transitioning?",
+      ],
+    },
+  ];
+
+  const questions =
+    mode === "detrans" ? questionCategories : affirmingQuestionCategories;
+
+  return (
+    <>
+      {questions.map((category, categoryIndex) => (
+        <div key={categoryIndex} className="mb-12">
+          <h3 className="text-primary mb-2 text-2xl font-bold">
+            {category.title}
+          </h3>
+          <p className="text-muted-foreground mb-6 text-base">
+            {category.description}
+          </p>
+          <div className="grid gap-1">
+            {category.questions.map(
+              (question: string, questionIndex: number) => (
+                <Link
+                  href={
+                    mode === "detrans"
+                      ? "/chat/" + slugify(question)
+                      : "/affirm/chat/" + slugify(question)
+                  }
+                  key={questionIndex}
+                >
+                  <p className="text-muted-foreground hover:text-primary cursor-pointer text-lg italic opacity-90">
+                    {"->"} {question}
+                  </p>
+                </Link>
+              ),
+            )}
+          </div>
+        </div>
+      ))}
+      {mode === "affirm" &&
+        affirmingDetransQuestions.map((category, categoryIndex) => (
+          <div key={categoryIndex} className="mb-12">
+            <h3 className="text-primary mb-4 text-2xl font-bold">
+              {category.title}
+            </h3>
+            <p className="text-muted-foreground mb-6 text-base">
+              {category.description}
+            </p>
+            <div className="grid gap-1">
+              {category.questions.map(
+                (question: string, questionIndex: number) => (
+                  <div className="flex items-center" key={questionIndex}>
+                    <Link
+                      href={
+                        (isDev ? "/chat/" : "https://detrans.ai/chat/") +
+                        slugify(question)
+                      }
+                    >
+                      <p className="text-muted-foreground hover:text-primary cursor-pointer text-lg italic opacity-90">
+                        {"->"} {question}
+                      </p>
+                    </Link>
+                    <ExternalLink className="ml-2 h-4" />
+                  </div>
+                ),
+              )}
+            </div>
+          </div>
+        ))}
+    </>
+  );
+}
