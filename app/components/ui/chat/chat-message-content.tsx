@@ -20,7 +20,7 @@ function SuggestedQuestionsAnnotations() {
   );
   if (suggestedQuestionsData.length === 0) return null;
 
-  const questions: string[] = suggestedQuestionsData[0];
+  const questions = suggestedQuestionsData[0] as string[];
 
   return (
     <div className="mt-3 flex flex-wrap gap-2">
