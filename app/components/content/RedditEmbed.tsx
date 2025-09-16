@@ -2,7 +2,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useInView } from "react-intersection-observer";
 import { Card } from "../ui/card";
 
 type Props = {
@@ -19,12 +18,23 @@ type Props = {
 };
 
 export default function RedditEmbed(props: Props) {
-  const { ref, inView } = useInView({ triggerOnce: true, rootMargin: "200px" });
+  const ref = useRef<HTMLDivElement | null>(null);
   const [showIframe, setShowIframe] = useState(!props.lazy);
 
   useEffect(() => {
-    if (props.lazy && inView) setShowIframe(true);
-  }, [inView, props.lazy]);
+    if (!props.lazy) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowIframe(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [props.lazy]);
 
   return (
     <Card
