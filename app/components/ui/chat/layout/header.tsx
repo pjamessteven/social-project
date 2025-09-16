@@ -19,7 +19,7 @@ function NavLink({ href, label }: { href: string; label: string }) {
         variant="ghost"
         className={cn(
           "rounded-full px-4 transition-all",
-          isActive && "bg-secondary",
+          isActive && "bg-black/5",
         )}
       >
         {label}
@@ -37,7 +37,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
     <div
       className={cn(
         "border-bottom fixed top-0 right-0 left-0 z-50 flex items-center justify-between p-2 px-4",
-        mode === "affirm" ? "bg-transparent" : "bg-white dark:bg-black",
+        mode === "affirm" || true ? "bg-transparent" : "bg-white dark:bg-black",
       )}
     >
       <Link

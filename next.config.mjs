@@ -1,8 +1,10 @@
 // @ts-check
 
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
-  output: 'standalone',
+  output: "standalone",
   async rewrites() {
     return [
       {
@@ -64,4 +66,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;

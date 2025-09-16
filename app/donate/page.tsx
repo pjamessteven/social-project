@@ -27,7 +27,17 @@ export default async function DonationPage() {
             Please consider a monthly donation. You can donate using paypal
             below, directly to my New Zealand bank account or with BTC.
           </p>
-          <div className="mt-4 mb-4 flex max-w-md items-center space-x-1 rounded-xl bg-gray-100 px-4 shadow-md dark:bg-gray-800">
+          <div className="mt-4 flex max-w-md items-center space-x-1 rounded-xl bg-white shadow-md dark:bg-gray-800">
+            <div className="flex-1">
+              <p className="px-4 text-sm font-medium opacity-70">
+                Paypal Donation
+              </p>
+              <div className="flex items-center justify-center pb-2">
+                <DonationBox />
+              </div>
+            </div>
+          </div>
+          <div className="mt-4 mb-4 flex max-w-md items-center space-x-1 rounded-xl bg-white px-4 shadow-md dark:bg-gray-800">
             <div className="mb-4 flex-1 font-mono break-all">
               <p className="text-sm font-medium opacity-70">
                 New Zealand Bank Account
@@ -37,22 +47,12 @@ export default async function DonationPage() {
               <br /> SWIFT/BIC code: KIWINZ22
             </div>
           </div>
-          <div className="flex max-w-md items-center space-x-1 rounded-xl bg-gray-100 px-4 shadow-md dark:bg-gray-800">
+          <div className="flex max-w-md items-center space-x-1 rounded-xl bg-white px-4 shadow-md dark:bg-gray-800">
             <div className="flex-1">
               <p className="text-sm font-medium opacity-70">Bitcoin Address</p>
               <p id="btc-address" className="font-mono break-all">
                 bc1qtag945t26vspn7gnh9vaczqpgpkgqwf0j2l4ys
               </p>
-            </div>
-          </div>
-          <div className="mt-4 flex max-w-md items-center space-x-1 rounded-xl bg-gray-100 shadow-md dark:bg-gray-800">
-            <div className="flex-1">
-              <p className="px-4 text-sm font-medium opacity-70">
-                Paypal Donation
-              </p>
-              <div className="flex items-center justify-center">
-                <DonationBox />
-              </div>
             </div>
           </div>
         </div>

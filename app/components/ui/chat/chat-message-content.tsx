@@ -1,12 +1,17 @@
 "use client";
 
-import { ChatMessage } from "@llamaindex/chat-ui";
+import { slugify } from "@/app/lib/utils";
+import {
+  ChatMessage,
+  getAnnotationData,
+  MessageAnnotationType,
+  useChatMessage,
+  useChatUI,
+} from "@llamaindex/chat-ui";
+import Link from "next/link";
 import { DynamicEvents } from "./custom/events/dynamic-events";
 import { ComponentDef } from "./custom/events/types";
 import { ToolAnnotations } from "./tools/chat-tools";
-import { getAnnotationData, MessageAnnotationType } from "@llamaindex/chat-ui";
-import { useChatMessage, useChatUI } from "@llamaindex/chat-ui";
-import Link from "next/link";
 
 function SuggestedQuestionsAnnotations() {
   const { append, requestData } = useChatUI();
@@ -16,21 +21,21 @@ function SuggestedQuestionsAnnotations() {
 
   const suggestedQuestionsData = getAnnotationData(
     message,
-    MessageAnnotationType.SUGGESTED_QUESTIONS
+    MessageAnnotationType.SUGGESTED_QUESTIONS,
   );
   if (suggestedQuestionsData.length === 0) return null;
 
   const questions = suggestedQuestionsData[0] as string[];
 
   return (
-    <div className="mt-3 flex flex-wrap gap-2">
-      {questions.map((q, idx) => (
+    <div className="mt-2 flex flex-col gap-2">
+      {questions.map((question, index) => (
         <Link
-          key={idx}
-          href={`/search?q=${encodeURIComponent(q)}`} // <-- change to whatever route / query you need
-          className="inline-flex items-center rounded-full border px-3 py-1 text-sm hover:bg-accent"
+          key={index}
+          href={"/chat/" + slugify(question)}
+          className="cursor-pointer font-medium italic underline hover:underline"
         >
-          {q}
+          {`-> ${question}`}
         </Link>
       ))}
     </div>

@@ -25,16 +25,8 @@ export class RedisCache implements Cache {
     await this.client.set(this.makeRootKey(key), value);
   }
 
-  async incrementPageView(path: string) {
-    const key = `path:${path}`;
-    const views = await client.hIncrBy(key, "pageviews", 1); // atomic hash increment
-    await client.hSet(key, "lastViewedAt", Date.now().toString());
-    return views;
-  }
-
-  async getPageStats(path: string) {
-    const key = `path:${path}`;
-    return await client.hGetAll(key);
+  async increment(key: string) {
+    await this.client.incr(this.makeRootKey(key));
   }
 }
 

@@ -39,8 +39,10 @@ export function CustomChatInput({ placeholder, mode }: CustomChatInputProps) {
   return (
     <div
       className={cn(
-        "fixed bottom-0 left-0 w-full p-4 backdrop-blur",
-        "supports-[backdrop-filter]:bg-transparent/60 dark:supports-[backdrop-filter]:bg-transparent",
+        "fixed bottom-0 left-0 w-full p-4 shadow-sm backdrop-blur-md",
+        "supports-[backdrop-filter]:bg-black/5 dark:supports-[backdrop-filter]:bg-gray-900/80",
+        mode === "affirm" &&
+          "bg-gradient-to-r from-[#5BCEFA]/20 via-[#FFFFFF]/20 to-[#F5A9B8]/20 dark:bg-gradient-to-r dark:from-[#5BCEFA]/20 dark:via-[#2D2D2D]/20 dark:to-[#F5A9B8]/20",
       )}
     >
       <div className="flex items-center justify-center">
@@ -48,7 +50,7 @@ export function CustomChatInput({ placeholder, mode }: CustomChatInputProps) {
           <div className="relative flex-1 grow">
             <Input
               size="lg"
-              className="flex grow rounded-full bg-white/80 pr-12 dark:bg-gray-700/80"
+              className="!placeholder-opacity-100 flex grow rounded-full bg-white pr-12 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
               value={value}
               onChange={(event) => setValue(event.target.value)}
               onKeyDown={handleKeyDown}

@@ -25,16 +25,26 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: deps   # <--- stop at deps stage, so we have node_modules but not the build
     container_name: nextjs
     ports:
       - "3000:3000"
+    volumes:
+      - .:/app
+      - next_node_modules:/app/node_modules  # container-managed node_modules
+      - next_cache:/app/.next         # container-managed build cache
+    command: npm run dev
     env_file:
       - .env
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
       - REDIS_URL=redis://redis:6379
       - QDRANT_URL=http://qdrant:6333
     depends_on:
       - redis
       - qdrant
-    restart: unless-stopped
+    restart: no
+
+volumes:
+  next_node_modules:
+  next_cache:

@@ -75,7 +75,7 @@ export async function StartPage({
                 subreddit.{" "}
               </span>
               This produces helpful and insightful responses that help users
-              understand why people adopt, inhabit, or move away from gender
+              understand how and why people adopt, inhabit, and let go of gender
               identities, and how these experiences shape one’s relationship
               with self, body and the world.
             </h2>
@@ -107,7 +107,7 @@ export async function StartPage({
               Support, life advice and knowledge from over 50,000
               detransitioners and desisters.
             </h2>
-            <details className="mt-4 rounded-md border p-4 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+            <details className="mt-4 rounded-md bg-white p-4 shadow dark:border dark:border-gray-800 dark:bg-gray-900">
               <summary className="cursor-pointer font-semibold text-gray-700 dark:text-gray-300">
                 How does it work?
               </summary>
@@ -185,7 +185,7 @@ export async function StartPage({
               people.
             </h2>
 
-            <details className="mt-4 rounded-md bg-gray-100 p-4 dark:bg-gray-800">
+            <details className="mt-4 rounded-md border p-4 shadow-sm dark:border-gray-800 dark:bg-gray-900">
               <summary className="cursor-pointer font-semibold text-gray-700 dark:text-gray-300">
                 How does it work?
               </summary>
@@ -255,9 +255,7 @@ export async function StartPage({
             <p className="mt-1">And each thought is a seed.</p>
             <p className="mt-1">We reap what we sow,</p>
             <p className="mt-1">But through this we can grow.</p>
-            <p className="mt-16">
-              Nobody in the real world is afraid of getting cancelled!
-            </p>
+
             <p className="mt-16">
               Built by{" "}
               <a
@@ -289,6 +287,9 @@ export async function StartPage({
               </div>
               <div className="mt-2 flex items-center">
                 European language translations coming soon...
+              </div>
+              <div className="mt-2 flex items-center">
+                Nobody in the real world is afraid of getting cancelled!
               </div>
             </p>
             <div className="font-base mt-16 text-lg not-italic">

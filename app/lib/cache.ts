@@ -12,3 +12,15 @@ export async function getCached(
   }
   return cached || undefined;
 }
+
+export async function incrementPageViews(
+  prefix: string,
+  key: string,
+): Promise<string | undefined> {
+  const redis = await connectRedis();
+  let cached;
+  if (redis) {
+    cached = await redis.incr(`${prefix}:${key}:pageviews`);
+  }
+  return cached || undefined;
+}

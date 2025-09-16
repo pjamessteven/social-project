@@ -315,6 +315,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         const answer = await answerQuestion(
           contextStr(state.contextNodes),
           question,
+          originalQuestion,
         );
         state.researchResults.push({ questionId, question, answer });
 
@@ -376,12 +377,12 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
 
       let response = "";
       let stream;
-      const cachedAnswer = await cache.get("answer:" + originalQuestion);
+      const cachedAnswer = await cache.get(originalQuestion + ":answer");
 
       if (cachedAnswer) {
         stream = replayCached(cachedAnswer);
       } else {
-        stream = await llm.chat({ messages, stream: true });
+        stream = await llm.chat({ originalQuestion, messages, stream: true });
       }
 
       for await (const chunk of stream) {
@@ -397,7 +398,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       }
 
       if (!cachedAnswer) {
-        await cache.set("answer:" + originalQuestion, response);
+        await cache.set(originalQuestion + ":answer", response);
       }
 
       return stopAgentEvent.with({
@@ -429,7 +430,6 @@ const createResearchPlan = async (
     enhanced_prompt: enhancedPrompt,
     user_request: extractText(userRequest),
   });
-  console.log("propmt", prompt);
 
   const responseFormat = z.object({
     decision: z.enum(["research", "write", "cancel"]),
@@ -438,6 +438,7 @@ const createResearchPlan = async (
   });
 
   const result = await llm.complete({
+    originalQuestion: extractText(userRequest),
     prompt,
     responseFormat,
     rateLimit: { userIp, mode: "affirm" },
@@ -477,11 +478,15 @@ const enhancedPrompt = (totalQuestions: number) => {
   return "";
 };
 
-const answerQuestion = async (contextStr: string, question: string) => {
+const answerQuestion = async (
+  contextStr: string,
+  question: string,
+  originalQuestion: string,
+) => {
   const prompt = researchPrompt.format({
     context_str: contextStr,
     question,
   });
-  const result = await llm.complete({ prompt });
+  const result = await llm.complete({ originalQuestion, prompt });
   return result.text;
 };

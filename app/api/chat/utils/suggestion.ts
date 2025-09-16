@@ -1,7 +1,8 @@
 import { connectRedis } from "@/app/lib/redis";
 import { getEnv } from "@llamaindex/env";
+import { OpenAI } from "@llamaindex/openai";
 import type { DataStreamWriter } from "ai";
-import { type ChatMessage, Settings } from "llamaindex";
+import { type ChatMessage } from "llamaindex";
 import { RedisCache } from "../../shared/cache";
 import { NEXT_QUESTION_PROMPT } from "../affirm/prompts";
 
@@ -13,7 +14,7 @@ export const sendSuggestedQuestionsEvent = async (
 ) => {
   const cache = new RedisCache(await connectRedis(), mode);
   const cachedNextQuestions = await cache.get(
-    "suggested_questions:" + originalQuestion,
+    originalQuestion + ":suggested_questions",
   );
   let questions;
   if (cachedNextQuestions) {
@@ -22,7 +23,7 @@ export const sendSuggestedQuestionsEvent = async (
     questions = await generateNextQuestions(chatHistory);
 
     await cache.set(
-      "suggested_questions:" + originalQuestion,
+      originalQuestion + ":suggested_questions",
       JSON.stringify(questions),
     );
   }
@@ -36,6 +37,11 @@ export const sendSuggestedQuestionsEvent = async (
 };
 
 export async function generateNextQuestions(conversation: ChatMessage[]) {
+  const kimi = new OpenAI({
+    apiKey: process.env.OPENROUTER_KEY,
+    baseURL: "https://openrouter.ai/api/v1",
+    model: "moonshotai/kimi-k2",
+  });
   const conversationText = conversation
     .map((message) => `${message.role}: ${message.content}`)
     .join("\n");
@@ -43,7 +49,7 @@ export async function generateNextQuestions(conversation: ChatMessage[]) {
   const message = promptTemplate.replace("{conversation}", conversationText);
 
   try {
-    const response = await Settings.llm.complete({ prompt: message });
+    const response = await kimi.complete({ prompt: message });
     const questions = extractQuestions(response.text);
     return questions;
   } catch (error) {

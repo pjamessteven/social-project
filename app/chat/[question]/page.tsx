@@ -1,6 +1,6 @@
 import ChatPage from "@/app/components/content/ChatPage";
 import SeoChatPage from "@/app/components/content/SeoChatPage";
-import { getCached } from "@/app/lib/cache";
+import { getCached, incrementPageViews } from "@/app/lib/cache";
 import { isBot } from "@/app/lib/isBot";
 import {
   capitaliseWords,
@@ -19,7 +19,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { question } = await params;
   const q = deslugify(question);
-  const answer = await getCached("detrans", "answer:" + q);
+  const answer = await getCached("detrans", q + ":answer");
   return {
     title: capitaliseWords(q) + " | detrans.ai",
     description: markdownToPlainText(answer?.slice(0, 300)),
@@ -36,9 +36,11 @@ export default async function DetransChatPage({
   const { question } = await params;
   const starterQuestion = deslugify(question);
 
+  await incrementPageViews("detrans", starterQuestion);
+
   if (bot) {
     // Return SSR cached final answers to question
-    const answer = await getCached("detrans", "answer:" + starterQuestion); // server-rendered, no JS
+    const answer = await getCached("detrans", starterQuestion + ":answer"); // server-rendered, no JS
     return (
       <SeoChatPage
         mode={"detrans"}

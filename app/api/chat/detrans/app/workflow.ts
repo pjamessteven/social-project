@@ -1,4 +1,7 @@
 import { CachedLLM, RedisCache } from "@/app/api/shared/cache";
+import { connectRedis } from "@/app/lib/redis";
+import { replayCached } from "@/app/lib/replayCached";
+import { OpenAI } from "@llamaindex/openai";
 import {
   AgentInputData,
   agentStreamEvent,
@@ -30,10 +33,6 @@ import {
   writeReportPrompt,
 } from "../prompts";
 import { getIndex } from "./data";
-
-import { connectRedis } from "@/app/lib/redis";
-import { replayCached } from "@/app/lib/replayCached";
-import { OpenAI } from "@llamaindex/openai";
 
 const kimi = new OpenAI({
   apiKey: process.env.OPENROUTER_KEY,
@@ -144,12 +143,12 @@ export function getWorkflow(
 
       let nodes: NodeWithScore<Metadata>[];
 
-      const cachedNodes = await cache.get("nodes:" + userInput);
+      const cachedNodes = await cache.get(originalQuestion + ":nodes");
       if (cachedNodes) {
         nodes = JSON.parse(cachedNodes);
       } else {
-        nodes = await retriever.retrieve({ query: userInput });
-        await cache.set("nodes:" + userInput, JSON.stringify(nodes));
+        nodes = await retriever.retrieve({ query: originalQuestion });
+        await cache.set(originalQuestion + ":nodes", JSON.stringify(nodes));
       }
 
       // experiment with ranking nodes by reddit score
@@ -318,6 +317,7 @@ export function getWorkflow(
         const answer = await answerQuestion(
           contextStr(state.contextNodes),
           question,
+          originalQuestion,
         );
         state.researchResults.set(questionId, { questionId, question, answer });
 
@@ -373,19 +373,19 @@ export function getWorkflow(
         {
           role: "user",
           content:
-            "Write a summary addressing the user request based on the research provided in the context",
+            "Write a summary addressing the user request. Use ONLY the research provided in the context",
         },
       ]);
 
       let response = "";
       let stream;
 
-      const cachedAnswer = await cache.get("answer:" + originalQuestion);
+      const cachedAnswer = await cache.get(originalQuestion + ":answer");
 
       if (cachedAnswer) {
         stream = replayCached(cachedAnswer);
       } else {
-        stream = await llm.chat({ messages, stream: true });
+        stream = await llm.chat({ messages, originalQuestion, stream: true });
       }
 
       for await (const chunk of stream) {
@@ -401,7 +401,7 @@ export function getWorkflow(
       }
 
       if (!cachedAnswer) {
-        await cache.set("answer:" + originalQuestion, response);
+        await cache.set(originalQuestion + ":answer", response);
       }
 
       return stopAgentEvent.with({
@@ -441,6 +441,7 @@ const createResearchPlan = async (
   });
 
   const result = await llm.complete({
+    originalQuestion: extractText(userRequest),
     prompt,
     responseFormat,
     rateLimit: { userIp, mode: "detrans" },
@@ -480,11 +481,15 @@ const enhancedPrompt = (totalQuestions: number) => {
   return "";
 };
 
-const answerQuestion = async (contextStr: string, question: string) => {
+const answerQuestion = async (
+  contextStr: string,
+  question: string,
+  originalQuestion: string,
+) => {
   const prompt = researchPrompt.format({
     context_str: contextStr,
     question,
   });
-  const result = await llm.complete({ prompt });
+  const result = await llm.complete({ prompt, originalQuestion });
   return result.text;
 };
