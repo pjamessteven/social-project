@@ -24,6 +24,18 @@ export class RedisCache implements Cache {
   async set(key: string, value: string) {
     await this.client.set(this.makeRootKey(key), value);
   }
+
+  async incrementPageView(path: string) {
+    const key = `path:${path}`;
+    const views = await client.hIncrBy(key, "pageviews", 1); // atomic hash increment
+    await client.hSet(key, "lastViewedAt", Date.now().toString());
+    return views;
+  }
+
+  async getPageStats(path: string) {
+    const key = `path:${path}`;
+    return await client.hGetAll(key);
+  }
 }
 
 export interface Cache {
@@ -31,8 +43,19 @@ export interface Cache {
   set(key: string, value: string): Promise<void>;
 }
 
-function makeLlmCacheKey(prompt: string, options: any): string {
-  return "llm:" + JSON.stringify({ prompt, ...options });
+function makeLlmCacheKey(
+  question: string,
+  prompt: string,
+  options: any,
+): string {
+  return question + ":llm:" + JSON.stringify({ prompt, ...options });
+}
+interface ChatParamsNonStreaming extends LLMChatParamsNonStreaming {
+  originalQuestion: string;
+}
+
+interface ChatParamsStreaming extends LLMChatParamsStreaming {
+  originalQuestion: string;
 }
 
 export class CachedLLM {
@@ -43,16 +66,20 @@ export class CachedLLM {
 
   /* ---------- chat ---------- */
   async chat(
-    params: LLMChatParamsStreaming,
+    params: ChatParamsStreaming,
   ): Promise<AsyncGenerator<ChatResponseChunk>>;
-  async chat(params: LLMChatParamsNonStreaming): Promise<ChatResponse>;
+  async chat(params: ChatParamsNonStreaming): Promise<ChatResponse>;
   async chat(
-    params: LLMChatParamsStreaming | LLMChatParamsNonStreaming,
+    params: ChatParamsStreaming | ChatParamsNonStreaming,
   ): Promise<ChatResponse | AsyncGenerator<ChatResponseChunk>> {
-    const { messages, stream, ...options } = params;
+    const { originalQuestion, messages, stream, ...options } = params;
     const lastMessage = messages[messages.length - 1];
     // coerce content to string for the cache key
-    const key = makeLlmCacheKey(String(lastMessage.content), options);
+    const key = makeLlmCacheKey(
+      originalQuestion,
+      String(lastMessage.content),
+      options,
+    );
 
     /* --- Streaming mode --- */
     if (stream) {
@@ -85,6 +112,7 @@ export class CachedLLM {
 
   /* ---------- complete ---------- */
   async complete(params: {
+    originalQuestion: string;
     prompt: string;
     responseFormat?: object; // <- allow object/ZodType or omit
     stream?: false;
@@ -95,6 +123,7 @@ export class CachedLLM {
     [key: string]: any;
   }): Promise<{ text: string }>;
   async complete(params: {
+    originalQuestion: string;
     prompt: string;
     responseFormat?: object; // <- allow object/ZodType or omit
     stream: true;
@@ -105,6 +134,8 @@ export class CachedLLM {
     [key: string]: any;
   }): Promise<AsyncGenerator<{ delta: string }>>;
   async complete(params: {
+    originalQuestion: string;
+
     prompt: string;
     responseFormat?: object; // <- allow object/ZodType or omit
     stream?: boolean;
@@ -114,8 +145,15 @@ export class CachedLLM {
     };
     [key: string]: any;
   }): Promise<{ text: string } | AsyncGenerator<{ delta: string }>> {
-    const { prompt, responseFormat, stream, rateLimit, ...options } = params;
-    const key = makeLlmCacheKey(prompt, options);
+    const {
+      prompt,
+      originalQuestion,
+      responseFormat,
+      stream,
+      rateLimit,
+      ...options
+    } = params;
+    const key = makeLlmCacheKey(originalQuestion, prompt, options);
 
     /* --- Streaming mode --- */
     if (stream) {
