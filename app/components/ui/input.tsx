@@ -21,6 +21,7 @@ function Input({ className, type, size = "base", ...props }: InputProps) {
         size === "lg" && "h-14 px-4 py-2 text-lg file:h-9 file:text-base",
         "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
         "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+        "dark:placeholder:text-white",
         className,
       )}
       {...props}
