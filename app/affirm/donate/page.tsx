@@ -1,6 +1,6 @@
 "use server";
 
-import DonationBox from "../components/content/DonationBox";
+import DonationBox from "./../../components/content/DonationBox";
 
 export default async function DonationPage() {
   return (
