@@ -15,12 +15,11 @@ export function CustomChatInput({ placeholder, mode }: CustomChatInputProps) {
   const pathname = usePathname();
   const showChatInput = pathname == "/" || pathname.includes("/chat");
 
+  const [value, setValue] = useState("");
+
   if (!showChatInput) {
     return <></>;
   }
-
-  const [value, setValue] = useState("");
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (value.trim()) {
