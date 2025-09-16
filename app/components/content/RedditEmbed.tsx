@@ -2,7 +2,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useInView } from "react-intersection-observer";
 import { Card } from "../ui/card";
 
 type Props = {
@@ -31,20 +30,30 @@ export default function RedditEmbed({
   depth = 1,
 }: Props) {
   const placeholderRef = useRef<HTMLQuoteElement | HTMLDivElement | null>(null);
-  const { ref: inViewRef, inView } = useInView({
-    triggerOnce: true,
-    rootMargin: "200px",
-  });
   const [upgraded, setUpgraded] = useState(!lazy); // instantly upgrade when lazy=false
 
-  // Merge refs so the same DOM node is observed and also used for upgrade
-  const setRefs = (node: HTMLQuoteElement | HTMLDivElement) => {
-    placeholderRef.current = node;
-    (inViewRef as any)(node);
-  };
+  useEffect(() => {
+    if (!lazy || upgraded) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setUpgraded(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    if (placeholderRef.current) {
+      observer.observe(placeholderRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [lazy, upgraded]);
 
   useEffect(() => {
-    if (!lazy || !inView || upgraded) return;
+    if (!lazy || !upgraded) return;
 
     // 1. Build the official reddit embed link
     const a = document.createElement("a");
@@ -64,10 +73,8 @@ export default function RedditEmbed({
     s.async = true;
     document.body.appendChild(s);
 
-    setUpgraded(true);
-
     return () => s.remove();
-  }, [lazy, inView, upgraded, url, theme, showMedia, depth]);
+  }, [lazy, upgraded, url, theme, showMedia, depth]);
 
   /* ------------------------------------------------------------------ */
   /*  Static placeholder (what you already had)                         */
@@ -78,7 +85,7 @@ export default function RedditEmbed({
         className="reddit-embed-bq"
         data-embed-height="600"
         data-embed-parent="true"
-        ref={setRefs}
+        ref={placeholderRef}
       >
         <div className="m-4 mb-2 text-lg leading-snug font-semibold md:text-xl">
           <a
