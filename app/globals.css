@@ -94,6 +94,21 @@ div.bg-background.border:has(> img[alt="Llama Logo"]) {
  margin: unset;
 }
 
+html, body, #__next {
+  min-height: 100%;
+  margin: 0;
+  background-color: white; /* light mode default */
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  html, body, #__next {
+    background-color: black;
+    color: white;
+  }
+}
+
+
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still

@@ -67,7 +67,7 @@ export default function CustomChatMessages({
                           target="_blank"
                           className="cursor-pointer font-medium italic underline hover:underline"
                         >
-                          {"-> What are detrans perspectives on this topic?"}
+                          {"-> See detrans perspectives on this topic"}
                         </Link>
                       ) : (
                         <Link
@@ -81,7 +81,7 @@ export default function CustomChatMessages({
                           target="_blank"
                           className="cursor-pointer font-medium italic underline hover:underline"
                         >
-                          {"-> What are trans perspectives on this topic?"}
+                          {"-> See trans perspectives on this topic"}
                         </Link>
                       )}
                       <ExternalLink className="ml-2 h-4" />

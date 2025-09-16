@@ -8,7 +8,9 @@ import "@llamaindex/chat-ui/styles/markdown.css";
 import "@llamaindex/chat-ui/styles/pdf.css";
 import { clsx } from "clsx";
 import { ThemeProvider } from "next-themes";
+import Head from "next/head";
 import { headers } from "next/headers";
+import { CustomChatInput } from "./components/ui/chat/custom-chat-input";
 import Header from "./components/ui/chat/layout/header";
 import "./globals.css";
 
@@ -29,6 +31,12 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <Head>
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
+      </Head>
       <Script
         strategy="afterInteractive" // Change strategy
         src="https://cloud.umami.is/script.js"
@@ -47,13 +55,22 @@ export default async function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Header mode={mode} />
-          <div className="h-screen pt-14">
-            <main className="flex h-full justify-center overflow-auto">
-              <div className="w-full overflow-x-hidden p-4 sm:overflow-x-visible md:w-3xl">
+          <div className="relative flex h-[100dvh] flex-col">
+            <Header mode={mode} />
+
+            <main className="flex h-full min-h-0 flex-1 flex-row justify-center overflow-y-auto">
+              <div className="h-full w-full overflow-visible overflow-x-hidden p-4 sm:overflow-x-visible md:w-3xl">
                 {children}
               </div>
             </main>
+            <CustomChatInput
+              mode={mode}
+              placeholder={
+                mode === "detrans"
+                  ? "Ask 50,000+ detransitioners..."
+                  : "Ask 600,000+ trans people"
+              }
+            />
           </div>
         </ThemeProvider>
       </body>

@@ -1,7 +1,7 @@
 "use client";
 import { slugify } from "@/app/lib/utils";
 import { Send } from "lucide-react";
-import { redirect } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { useState } from "react";
 import { Button } from "../button";
 import { Input } from "../input";
@@ -12,6 +12,13 @@ interface CustomChatInputProps {
 }
 
 export function CustomChatInput({ placeholder, mode }: CustomChatInputProps) {
+  const pathname = usePathname();
+  const showChatInput = pathname == "/" || pathname.includes("/chat");
+
+  if (!showChatInput) {
+    return <></>;
+  }
+
   const [value, setValue] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -39,7 +46,7 @@ export function CustomChatInput({ placeholder, mode }: CustomChatInputProps) {
   return (
     <div
       className={cn(
-        "fixed bottom-0 left-0 w-full p-4 shadow-sm backdrop-blur-md",
+        "sticky bottom-0 z-50 w-full p-4 shadow-sm backdrop-blur-md",
         "supports-[backdrop-filter]:bg-black/5 dark:supports-[backdrop-filter]:bg-gray-900/80",
         mode === "affirm" &&
           "bg-gradient-to-r from-[#5BCEFA]/20 via-[#FFFFFF]/20 to-[#F5A9B8]/20 dark:bg-gradient-to-r dark:from-[#5BCEFA]/20 dark:via-[#2D2D2D]/20 dark:to-[#F5A9B8]/20",
@@ -50,7 +57,7 @@ export function CustomChatInput({ placeholder, mode }: CustomChatInputProps) {
           <div className="relative flex-1 grow">
             <Input
               size="lg"
-              className="!placeholder-opacity-100 flex grow rounded-full bg-white pr-12 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
+              className="!placeholder-opacity-100 flex grow rounded-full bg-white pr-2 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
               value={value}
               onChange={(event) => setValue(event.target.value)}
               onKeyDown={handleKeyDown}

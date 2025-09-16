@@ -21,10 +21,10 @@ export async function QuestionCategories({
         "I didn't choose to be trans!",
         "What is a belief system?",
         "What is an identity trap?",
-        "How do you get out of an identity trap?",
+        "How can I get out of an identity trap?",
+        "How can I help someone else get out of an identity trap?",
         "What is the difference between sex and gender?",
         "How is cancel culture harmful?",
-        "What are trans rights?",
         "Does transition ever end?",
         "Why do some women hate their breasts?",
         "How do online echo chambers cause psychosis?",
@@ -60,6 +60,7 @@ export async function QuestionCategories({
         "What is gender?",
         "What's an egg?",
         "What are pronouns?",
+        "What are trans rights?",
         "What is cancel culture?",
         "What is dysphoria?",
         "What causes dysphoria?",
@@ -95,6 +96,7 @@ export async function QuestionCategories({
         "What is phalloplasty?",
         "Can I undo phalloplasty?",
         "Can I undo vaginoplasty?",
+        "Should everyone else have to pay for transgender surgeries?",
         "I had a double masectomy, should I get breast implants?",
         "Should I get facial reconstruction surgery?",
         "Why are hormones often prescribed before a single therapy session?",
@@ -145,7 +147,7 @@ export async function QuestionCategories({
         "What is the sports participation controversy?",
         "What is the medicalization of gender non-conforming children?",
         "What is the history of trans activism?",
-        "What are drag queen story hours?",
+        "What do detrans people think about drag queen story hours?",
         "What is the difference between gender and sex?",
         "Why are there so many ladyboys in Thailand?",
         "Why is Iran a global hub for transgender surgeries?",
@@ -193,6 +195,7 @@ export async function QuestionCategories({
         "I want to detransition, where do I start?",
         "How did I fall into an identity trap in the first place?",
         "How can I get out of an identity trap?",
+        "How can understanding the struggles of the other sex help me heal?",
         "What is gender exploratory therapy?",
         "What is CBT therapy?",
         "What is DBT therapy?",
@@ -221,6 +224,7 @@ export async function QuestionCategories({
         "Why was gender dysphoria removed from list of mental health disorders?",
         "What is the Cass Review?",
         "What happened to Lisa Littman's research?",
+        "What are the methodological flaws in the 2015 detransition survey?",
         "Why are detransition studies so controversial?",
         "What is the Tavistock scandal?",
         "Why are researchers afraid to study detransition?",
@@ -389,10 +393,12 @@ export async function QuestionCategories({
                   }
                   key={questionIndex}
                 >
-                  <p className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-lg italic opacity-90">
-                    <div className="mr-2 whitespace-nowrap">{"->"}</div>
-                    <div>{question}</div>
-                  </p>
+                  <div className="flex flex-row items-center border-b pt-1 pb-2">
+                    <p className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-lg italic opacity-90">
+                      <div className="mr-2 whitespace-nowrap">{"->"}</div>
+                      <div>{question}</div>
+                    </p>
+                  </div>
                 </Link>
               ),
             )}

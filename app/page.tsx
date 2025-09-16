@@ -1,5 +1,4 @@
 import { StartPage } from "./components/content/StartPage";
-import { CustomChatInput } from "./components/ui/chat/custom-chat-input";
 
 import type { Metadata } from "next";
 
@@ -21,13 +20,9 @@ export const metadata: Metadata = {
 export default async function Home() {
   return (
     <>
-      <div className="pb-32">
+      <div className="pb-16">
         <StartPage mode="detrans" />
       </div>
-      <CustomChatInput
-        mode="detrans"
-        placeholder="Ask 50,000 detransitioners a question..."
-      />
     </>
   );
 }

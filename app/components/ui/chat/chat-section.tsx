@@ -50,7 +50,7 @@ export default function ChatSection({
   return (
     <>
       <ChatLayout>
-        <div className="-ml-4 -mr-16 sm:mx-0">
+        <div className="-mr-16 -ml-4 sm:mx-0">
           <ChatUI
             handler={useChatHandler}
             className="relative flex min-h-0 flex-1 flex-row justify-center gap-4 !bg-transparent !p-0"

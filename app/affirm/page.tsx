@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default async function Home() {
   return (
     <>
-      <div className="pb-32">
+      <div className="pb-16">
         <StartPage mode="affirm" />
       </div>
       <CustomChatInput

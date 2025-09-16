@@ -4,7 +4,6 @@ import useRequestCounter from "@/app/lib/useRequestCounter";
 import { Loader2 } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { CustomChatInput } from "../ui/chat/custom-chat-input";
 
 interface ChatPageProps {
   mode: "detrans" | "affirm";
@@ -21,11 +20,7 @@ const ChatSection = dynamic(() => import("../ui/chat/chat-section"), {
   ),
 });
 
-export default function ChatPage({
-  mode,
-  starterQuestion,
-  hideChatInput,
-}: ChatPageProps) {
+export default function ChatPage({ mode, starterQuestion }: ChatPageProps) {
   const [chatKey, setChatKey] = useState(0);
   const [hasIncremented, setHasIncremented] = useState(false);
   const { count, increment } = useRequestCounter();
@@ -58,16 +53,6 @@ export default function ChatPage({
         key={chatKey} // forces ChatUI + handler to reset
         showDonationMessage={showDonationMessage}
       />
-      {!hideChatInput && (
-        <CustomChatInput
-          mode={mode}
-          placeholder={
-            mode == "detrans"
-              ? "Ask 50,000 detransitioners a question..."
-              : "Ask 600,000+ trans people"
-          }
-        />
-      )}
     </>
   );
 }

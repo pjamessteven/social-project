@@ -4,10 +4,9 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
-    extend: {
-      colors: {
-        gray: colors.neutral, // replaces Tailwind’s default gray with neutral
-      },
+    colors: {
+      ...colors, // include all Tailwind colors
+      gray: colors.neutral, // override gray
     },
   },
   plugins: [],

@@ -96,11 +96,43 @@ const DETRANS_EMBEDS = [
     subUrl: "https://www.reddit.com/r/detrans/",
   },
   {
+    title: "3 years on T vs 3 months off",
+    url: "https://www.reddit.com/r/detrans/comments/e0m0ty/3_years_on_t_vs_3_months_off/",
+    user: "u/ali-pal",
+    userUrl: "https://www.reddit.com/user/ali-pal/",
+    sub: "detrans",
+    subUrl: "https://www.reddit.com/r/detrans/",
+  },
+  {
+    title: "Wow. My face is still changing, patience is key!",
+    url: "https://www.reddit.com/r/detrans/comments/1gglhu7/wow_my_face_is_still_changing_patience_is_key/",
+    user: "u/Euphoric-Slice-6266",
+    userUrl: "https://www.reddit.com/user/Euphoric-Slice-6266/",
+    sub: "detrans",
+    subUrl: "https://www.reddit.com/r/detrans/",
+  },
+  {
     title:
-      "Visual reminder than you don't have to identify as a trans woman or nonbinary if you are gender nonconforming",
-    url: "https://www.reddit.com/r/detrans/comments/171y9hk/visual_reminder_than_you_dont_have_to_identify_as/",
-    user: "u/keycoinandcandle",
-    userUrl: "https://www.reddit.com/user/keycoinandcandle/",
+      "Saw the pic on the left in my Snapchat memories and realized I was wearing the same sweater. One year difference.",
+    url: "https://www.reddit.com/r/detrans/comments/eftbxa/saw_the_pic_on_the_left_in_my_snapchat_memories/",
+    user: "u/ali-pal",
+    userUrl: "https://www.reddit.com/user/ali-pal/",
+    sub: "detrans",
+    subUrl: "https://www.reddit.com/r/detrans/",
+  },
+  {
+    title: "Lil update! 1.6 year after stopping T (after 7 years on it)",
+    url: "https://www.reddit.com/r/detrans/comments/y30cd9/lil_update_16_year_after_stopping_t_after_7_years/",
+    user: "u/manouxoxo",
+    userUrl: "https://www.reddit.com/user/manouxoxo/",
+    sub: "detrans",
+    subUrl: "https://www.reddit.com/r/detrans/",
+  },
+  {
+    title: "I was trans and miserable for 7 years. I had many...",
+    url: "https://www.reddit.com/r/detrans/comments/11ldt9r/i_was_trans_and_miserable_for_7_years_i_had_many/",
+    user: "unknown",
+    userUrl: "",
     sub: "detrans",
     subUrl: "https://www.reddit.com/r/detrans/",
   },
@@ -131,15 +163,7 @@ const DETRANS_EMBEDS = [
     sub: "detrans",
     subUrl: "https://www.reddit.com/r/detrans/",
   },
-  {
-    title:
-      "FtMtF detrans. Just came out as detrans on Facebook. So far, it's been nothing but love and support. What a relief.",
-    url: "https://www.reddit.com/r/detrans/comments/oic2qz/ftmtf_detrans_just_came_out_as_detrans_on/",
-    user: "u/enby93",
-    userUrl: "https://www.reddit.com/user/enby93/",
-    sub: "detrans",
-    subUrl: "https://www.reddit.com/r/detrans/",
-  },
+
   {
     title:
       "Came out as a detrans butch to friends and family and it went well, 3.5 months off t and feeling hopeful :)",
@@ -158,15 +182,7 @@ const DETRANS_EMBEDS = [
     sub: "detrans",
     subUrl: "https://www.reddit.com/r/detrans/",
   },
-  {
-    title:
-      "Visual reminder that you don't have to identify as a trans man or nonbinary if you are gender nonconforming",
-    url: "https://www.reddit.com/r/detrans/comments/171yccv/visual_reminder_that_you_dont_have_to_identify_as/",
-    user: "u/keycoinandcandle",
-    userUrl: "https://www.reddit.com/user/keycoinandcandle/",
-    sub: "detrans",
-    subUrl: "https://www.reddit.com/r/detrans/",
-  },
+
   {
     title:
       "What realisations made you choose to detransition? Mines was that makeup is not gendered and males too can wear mascara 😁",
@@ -176,15 +192,7 @@ const DETRANS_EMBEDS = [
     sub: "detrans",
     subUrl: "https://www.reddit.com/r/detrans/",
   },
-  {
-    title:
-      "3ish years on T vs a year or so off. Very thankful I was able to start working through my trauma and came to terms with being a lesbian, I feel a lot more at home with myself now.",
-    url: "https://www.reddit.com/r/detrans/comments/gxzobc/3ish_years_on_t_vs_a_year_or_so_off_very_thankful/",
-    user: "u/marigoldsandacid",
-    userUrl: "https://www.reddit.com/user/marigoldsandacid/",
-    sub: "detrans",
-    subUrl: "https://www.reddit.com/r/detrans/",
-  },
+
   {
     title: "just visited r/detrans. what the fuck?",
     url: "https://www.reddit.com/r/ftm/comments/1dco0n7/just_visited_rdetrans_what_the_fuck/",

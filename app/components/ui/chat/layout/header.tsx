@@ -36,7 +36,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
   return (
     <div
       className={cn(
-        "border-bottom fixed top-0 right-0 left-0 z-50 flex items-center justify-between p-2 px-4",
+        "border-bottom top-0 right-0 left-0 z-50 flex items-center justify-between p-2 px-4",
         mode === "affirm" || true ? "bg-transparent" : "bg-white dark:bg-black",
       )}
     >

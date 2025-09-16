@@ -122,7 +122,7 @@ export default function Component({ events }) {
   };
 
   return (
-    <div className="mx-auto w-full max-w-4xl mb-8  space-y-4  text-foreground rounded-xl transition-colors duration-300">
+    <div className="mx-auto w-full max-w-4xl mb-4 md:mb-8  space-y-4  text-foreground rounded-xl transition-colors duration-300">
       {/* Header */}
       <div className="flex items-center justify-between pt-2 md:mb-1 -mb-0 -mx-4 px-4 md:-mt-4 -mt-6 rounded-tr-xl rounded-tl-xl">
         <h1 className="md:text-lg text-base font-semibold text-foreground">
@@ -232,7 +232,7 @@ export default function Component({ events }) {
               Answering meta questions with real detrans experiences & perspectives.
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-4 pt-0 sm:p-6">
             <Accordion type="multiple" className="w-full not-prose">
               {answers.map((answer, index) => (
                 <AccordionItem
@@ -273,9 +273,9 @@ export default function Component({ events }) {
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="px-4 pb-4 pt-1 prose prose:dark">
-                    <div className="rounded-md p-3 text-base">
+                    <div className="rounded-md md:p-3 ">
                       {answer.answer ? (
-                        <Markdown content={answer.answer} />
+                        <Markdown content={answer.answer} className="text-sm md:text-base" />
                       ) : (
                         <div className="flex items-center justify-center p-4 text-muted-foreground">
                           {answer.state === "inprogress" ? (
