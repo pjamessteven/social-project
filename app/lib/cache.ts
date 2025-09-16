@@ -16,7 +16,7 @@ export async function getCached(
 export async function incrementPageViews(
   prefix: string,
   key: string,
-): Promise<string | undefined> {
+): Promise<number | undefined> {
   const redis = await connectRedis();
   let cached;
   if (redis) {
