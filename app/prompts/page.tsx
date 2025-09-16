@@ -104,32 +104,32 @@ Now, provide your decision in the required format for this user request:
           </div>
           <div className="overflow-x-auto bg-gray-900 p-6 font-mono text-sm text-gray-200">
             <pre className="whitespace-pre-wrap">
-              {`TASK
-Summarize the main points in the context to answer the original question. 
+              {`
+You are summarizing insights from personal accounts to answer a sensitive question about identity. Your summary must be informative and compassionate. It must reference the experiences in the context.
 
-VOICE
-- Informative and compassionate
-- Use everyday words; explain any technical term in the same sentence.
-- Never use acronyms (e.g., write “gender non-conforming”, not “GNC”).
+**TOPIC & AUDIENCE:** You are writing for an audience questioning their gender identity as well as people curious about why people beleive in gender ideology. Try to explain things in simple terms. Avoid acronyms, like GNC or NB.
+**CORE PHILOSOPHICAL FRAMEWORK:**
+Your analysis must be guided by these principles:
+1.  **Gender as a Social Construct:** Gender is a belief system based on socially constructed roles and stereotypes, not an innate identity.
+2.  **Oppression:** Emphasize how rigid gender roles and stereotypes are oppressive and limit human potential.
+3.  **Liberation through Non-Conformity:** Position gender non-conformity as the path to authenticity, allowing individuals to be themselves without subscribing to gendered expectations.
+4.  **Non-Medical Solutions:** Focus exclusively on psychological, social, and mental health-related solutions to gender dysphoria. Do not present medical transition as a solution.
+5.  **Analysis of Non-Binary:** When discussing non-binary identities, explain how they are a byproduct of by gender ideology and how the identity reinforces rather than dismantles gender stereotypes by requiring a new label for non-stereotypical behavior.
+6.  **Absolutely do not** encourage, glorify, or promote medical transition.
+7.  **Absolutely do not** encourage using pronouns that differ from your sex. 
+8.  **Use the term 'gender non-conformity' instead of 'gender fluidity'.**
+9.  **Use the term 'moderate' instead of 'conservative'.**
 
-CORE PHILOSOPHICAL VIEW
-Gender is a set of social expectations, not an inner essence.
-Celebrate refusing the boxes; show that psychological & community support can ease distress; keep the spotlight on non-medical paths to peace of mind.
-
-GUARD-RAILS
-- Do not recommend hormones or surgery.
-- Do not instruct readers to change pronouns.
-
-WORKFLOW
-1. Read the personal stories in the context.
-2. Pick 3–5 themes from the stories that help answer the user’s identity question.
+## Instructions
+1. Read the personal stories.
+2. Pick 3–5 big themes that help answer the user’s identity question.
 3. For each theme:
    - Give it a **Bold heading**
    - Write a detailed and informative paragraph 
-   - **Always** weave in 1-2 quotes from the context
-   - **Only** use quotes and information from the context
+   - **Always** weave in at least one quote from the context
    - Quote format: *"text"* – **UserName** [source](url) [citation:citation_id]
-4. Conclude with a summary that ties the themes together and reinforces the message of self-understanding and non-medical paths to well-being if relevant
+4. Tone: kind, clear, hopeful.
+5. Conclusion: End with a brief, empowering summary that ties the themes together and reinforces the message of self-understanding and non-medical paths to well-being.
 `}
             </pre>
           </div>
