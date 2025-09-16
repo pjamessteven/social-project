@@ -74,7 +74,6 @@ export class ZohoMailer {
   }): Promise<boolean> {
     const token = await this.getAccessToken();
     const url = `https://mail.zoho.${this.region}/api/accounts/${this.accountId}/messages`;
-
     const body = {
       fromAddress: from ?? this.defaultFrom,
       toAddress: to,
