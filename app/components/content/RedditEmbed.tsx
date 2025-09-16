@@ -1,61 +1,91 @@
-// components/RedditEmbed.tsx
+/* components/RedditEmbed.tsx */
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useInView } from "react-intersection-observer";
 import { Card } from "../ui/card";
 
 type Props = {
   title: string;
   user: string;
   sub: string;
-  url: string; // full reddit permalink  e.g.  https://www.reddit.com/r/nextjs/comments/abc123/…
+  url: string;
   userUrl: string;
   subUrl: string;
-  lazy?: boolean; // opt-in to viewport-based iframe
+  lazy?: boolean;
   theme?: "dark" | "light";
   showMedia?: boolean;
   depth?: 1 | 2;
 };
 
-export default function RedditEmbed({
-  title,
-  user,
-  sub,
-  url,
-  userUrl,
-  subUrl,
-  lazy = false,
-  theme,
-  showMedia = true,
-  depth = 1,
-}: Props) {
-  const placeholderRef = useRef<HTMLQuoteElement | HTMLDivElement | null>(null);
-  const [upgraded, setUpgraded] = useState(!lazy); // instantly upgrade when lazy=false
+export default function RedditEmbed(props: Props) {
+  const { ref, inView } = useInView({ triggerOnce: true, rootMargin: "200px" });
+  const [showIframe, setShowIframe] = useState(!props.lazy);
 
   useEffect(() => {
-    if (!lazy || upgraded) return;
+    if (props.lazy && inView) setShowIframe(true);
+  }, [inView, props.lazy]);
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setUpgraded(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "200px" }
-    );
+  return (
+    <Card
+      ref={ref}
+      className="border-destructive reddit-card min-w-md border transition-all duration-300"
+    >
+      {showIframe ? <Iframe {...props} /> : <Placeholder {...props} />}
+    </Card>
+  );
+}
 
-    if (placeholderRef.current) {
-      observer.observe(placeholderRef.current);
-    }
+/* ------------------------------------------------------------------ */
+/* 1.  Static placeholder (exactly what you already had)              */
+/* ------------------------------------------------------------------ */
+function Placeholder({ title, user, sub, url, userUrl, subUrl }: Props) {
+  return (
+    <blockquote className="reddit-embed-bq" data-embed-height="600">
+      <div className="m-4 mb-2 text-lg font-semibold md:text-xl">
+        <a
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+          className="hover:underline"
+        >
+          {title}
+        </a>
+      </div>
+      <div className="text-muted-foreground m-4 text-sm">
+        Posted by{" "}
+        <a
+          href={userUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="hover:underline"
+        >
+          {user}
+        </a>{" "}
+        in{" "}
+        <a
+          href={subUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="hover:underline"
+        >
+          r/{sub}
+        </a>
+      </div>
+    </blockquote>
+  );
+}
 
-    return () => observer.disconnect();
-  }, [lazy, upgraded]);
+/* ------------------------------------------------------------------ */
+/* 2.  Single isolated embed (reddit script sees ONLY this link)      */
+/* ------------------------------------------------------------------ */
+function Iframe({ url, theme, showMedia, depth }: Props) {
+  const mount = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!lazy || !upgraded) return;
+    if (!mount.current) return;
 
-    // 1. Build the official reddit embed link
+    /* ---- build the link the Reddit script expects ---- */
     const a = document.createElement("a");
     a.href = url;
     a.className = "reddit-embed";
@@ -63,74 +93,32 @@ export default function RedditEmbed({
     a.setAttribute("data-embed-showmedia", String(showMedia));
     a.setAttribute("data-embed-depth", String(depth));
 
-    // 2. Replace placeholder with that link
-    placeholderRef.current!.innerHTML = "";
-    placeholderRef.current!.appendChild(a);
+    /* ---- sandbox: detached div so script can’t see the rest of page ---- */
+    const sandbox = document.createElement("div");
+    sandbox.style.display = "none";
+    document.body.appendChild(sandbox);
+    sandbox.appendChild(a);
 
-    // 3. Re-run the bootstrap so the new link is picked up
+    /* ---- load script inside sandbox ---- */
     const s = document.createElement("script");
     s.src = "https://embed.reddit.com/widgets.js";
-    s.async = true;
-    document.body.appendChild(s);
+    sandbox.appendChild(s);
 
-    return () => s.remove();
-  }, [lazy, upgraded, url, theme, showMedia, depth]);
+    /* ---- move finished iframe back to React tree ---- */
+    const poll = setInterval(() => {
+      const iframe = sandbox.querySelector("iframe");
+      if (iframe) {
+        clearInterval(poll);
+        mount.current!.appendChild(iframe); // put it where React wants it
+        document.body.removeChild(sandbox); // clean up
+      }
+    }, 50);
 
-  /* ------------------------------------------------------------------ */
-  /*  Static placeholder (what you already had)                         */
-  /* ------------------------------------------------------------------ */
-  const Placeholder = () => (
-    <Card className="border-destructive reddit-card min-w-md border transition-all duration-300">
-      <blockquote
-        className="reddit-embed-bq"
-        data-embed-height="600"
-        data-embed-parent="true"
-        ref={placeholderRef}
-      >
-        <div className="m-4 mb-2 text-lg leading-snug font-semibold md:text-xl">
-          <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-card-foreground hover:text-primary hover:underline"
-          >
-            {title}
-          </a>
-        </div>
+    return () => {
+      clearInterval(poll);
+      if (sandbox.parentNode) document.body.removeChild(sandbox);
+    };
+  }, [url, theme, showMedia, depth]);
 
-        <div className="text-muted-foreground m-4 text-sm">
-          Posted by{" "}
-          <a
-            href={userUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-card-foreground hover:text-primary font-medium hover:underline"
-          >
-            {user}
-          </a>{" "}
-          in{" "}
-          <a
-            href={subUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-card-foreground hover:text-primary font-medium hover:underline"
-          >
-            r/{sub}
-          </a>
-        </div>
-      </blockquote>
-    </Card>
-  );
-
-  /* ------------------------------------------------------------------ */
-  /*  After upgrade we just keep the Card shell and let the iframe live */
-  /*  inside it.                                                        */
-  /* ------------------------------------------------------------------ */
-  return upgraded ? (
-    <Card className="border-destructive reddit-card min-w-md border transition-all duration-300">
-      <div ref={placeholderRef} />
-    </Card>
-  ) : (
-    <Placeholder />
-  );
+  return <div ref={mount} />;
 }
