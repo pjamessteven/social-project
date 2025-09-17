@@ -25,8 +25,24 @@ export const DynamicEvents = ({
   componentDefs: ComponentDef[];
   appendError: (error: string) => void;
 }) => {
-  const { message } = useChatMessage();
-  const annotations = message.annotations;
+  const { message, isLast } = useChatMessage();
+  const [debouncedMessage, setDebouncedMessage] = useState(message);
+
+  useEffect(() => {
+    if (isLast) {
+      setDebouncedMessage(message);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setDebouncedMessage(message);
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [message, isLast]);
+  const annotations = debouncedMessage.annotations;
 
   const shownWarningsRef = useRef<Set<string>>(new Set()); // track warnings
   const [hasErrors, setHasErrors] = useState(false);
@@ -47,7 +63,7 @@ export const DynamicEvents = ({
       const type = annotation.type;
       if (!type) return; // Skip if annotation doesn't have a type
 
-      const events = getAnnotationData<JSONValue>(message, type);
+      const events = getAnnotationData<JSONValue>(debouncedMessage, type);
 
       // Skip if it's a built-in component or if we've already shown the warning
       if (
@@ -65,18 +81,18 @@ export const DynamicEvents = ({
         shownWarningsRef.current.add(type);
       }
     });
-  }, [annotations, componentDefs]);
+  }, [annotations, componentDefs, debouncedMessage]);
 
   const components: EventComponent[] = useMemo(
     () =>
       componentDefs
         .map((comp) => {
-          const events = getAnnotationData<JSONValue>(message, comp.type);
+          const events = getAnnotationData<JSONValue>(debouncedMessage, comp.type);
           if (!events?.length) return null;
           return { ...comp, events };
         })
         .filter((comp) => comp !== null),
-    [componentDefs, message],
+    [componentDefs, debouncedMessage],
   );
 
   if (components.length === 0) return null;
