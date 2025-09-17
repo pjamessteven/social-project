@@ -59,10 +59,8 @@ export async function StartPage({
               identity belief systems.
             </h2>
             <h2 className="text-secondary-foreground/80 semibold mt-2">
-              <b>detrans.ai</b> is a research and self-guided therapy tool which
-              generates meta questions and answers them by surfacing and
-              integrating a variety of real human experiences and perspectives
-              from the
+              <b>detrans.ai</b> answers questions from a detrans perspective by
+              integrating real human thoughts and experiences from the
               <span>
                 {" "}
                 <a
@@ -81,7 +79,9 @@ export async function StartPage({
             </h2>
 
             <h2 className="text-secondary-foreground/80 semibold mt-2">
-              For a more <i>affirming</i> experience, please see
+              You can use <b>detrans.ai</b> as your own personal
+              gender-exploratory therapist, or simply as a research tool. For a
+              more <i>affirming</i> experience, please see
               <span>
                 {" "}
                 <a

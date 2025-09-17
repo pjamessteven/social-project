@@ -1,5 +1,4 @@
 "use client";
-import Script from "next/script";
 import RedditEmbed from "./RedditEmbed";
 
 const DETRANS_EMBEDS = [
@@ -16,6 +15,7 @@ const DETRANS_EMBEDS = [
   {
     title: "Me, 2016 vs. 2 years off estrogen",
     url: "https://www.reddit.com/r/detrans/comments/frxfyc/me_2015_vs_2019_1_year_off_estrogen/",
+    imageUrl: "https://i.redd.it/423423t93vp41.jpg",
     user: "u/ResetEarthPlz",
     userUrl: "https://www.reddit.com/user/ResetEarthPlz/",
     sub: "detrans",
@@ -26,6 +26,7 @@ const DETRANS_EMBEDS = [
     title:
       "i finally can go every day without thinking about the fact that i've detransitioned, i feel beautiful. almost 2 years off T",
     url: "https://www.reddit.com/r/detrans/comments/prkixg/i_finally_can_go_every_day_without_thinking_about/",
+    imageUrl: "https://i.redd.it/pheykb0l5ko71.jpg",
     user: "u/smallandfrail",
     userUrl: "https://www.reddit.com/user/smallandfrail/",
     sub: "detrans",
@@ -35,6 +36,7 @@ const DETRANS_EMBEDS = [
     title:
       "4 months off HRT; apparently the physical appearance of my body has no bearing on who I am as a person or the happiness I can have 🤷",
     url: "https://www.reddit.com/r/detrans/comments/ndnyv5/4_months_off_hrt_apparently_the_physical/",
+    imageUrl: "https://i.redd.it/q2k4wsidehz61.jpg",
     user: "u/sentientmassofenergy",
     userUrl: "https://www.reddit.com/user/sentientmassofenergy/",
     sub: "detrans",
@@ -44,6 +46,7 @@ const DETRANS_EMBEDS = [
     title:
       "5 years ago today, I made the decision to “go back” ; Day 1 to Day 1825 living as the self I was made to be✨",
     url: "https://www.reddit.com/r/detrans/comments/rtiph1/5_years_ago_today_i_made_the_decision_to_go_back/",
+    imageUrl: "https://i.redd.it/qzva60tnn2981.jpg",
     user: "u/skinnyguac",
     userUrl: "https://www.reddit.com/user/skinnyguac/",
     sub: "detrans",
@@ -53,6 +56,7 @@ const DETRANS_EMBEDS = [
     title:
       "3 months off estrogen, life may still be hard, but I'm at peace with myself",
     url: "https://www.reddit.com/r/detrans/comments/gy1rgv/3_months_off_estrogen_life_may_still_be_hard_but/",
+    imageUrl: "https://i.redd.it/6hvpcdqond351.jpg",
     user: "u/[deleted]",
     userUrl: "",
     sub: "detrans",
@@ -62,6 +66,7 @@ const DETRANS_EMBEDS = [
     title:
       "The first pic was taken after I got out of the hospital after my suicide attempt. The second picture is me now.",
     url: "https://www.reddit.com/r/detrans/comments/eszlq3/the_first_pic_was_taken_after_i_got_out_of_the/",
+    imageUrl: "https://i.redd.it/z7oty739hlc41.jpg",
     user: "u/[deleted]",
     userUrl: "",
     sub: "detrans",
@@ -71,6 +76,7 @@ const DETRANS_EMBEDS = [
     title:
       "8 months off estrogen. I was transitioning for 4-5 years and felt like I was digging myself into a lifetime of misery.",
     url: "https://www.reddit.com/r/detrans/comments/h0qud8/8_months_off_estrogen_i_was_transitioning_for_45/",
+    imageUrl: "https://i.redd.it/vzq00z1n67451.jpg",
     user: "u/veamoth",
     userUrl: "https://www.reddit.com/user/veamoth/",
     sub: "detrans",
@@ -81,6 +87,7 @@ const DETRANS_EMBEDS = [
     title:
       "Saw the pic on the left in my Snapchat memories and realized I was wearing the same sweater. One year difference.",
     url: "https://www.reddit.com/r/detrans/comments/eftbxa/saw_the_pic_on_the_left_in_my_snapchat_memories/",
+    imageUrl: "https://i.redd.it/2ixot89x1y641.jpg",
     user: "u/ali-pal",
     userUrl: "https://www.reddit.com/user/ali-pal/",
     sub: "detrans",
@@ -90,6 +97,7 @@ const DETRANS_EMBEDS = [
     title:
       "3 months on T to 3.5 years living as detrans. Reclaiming my femininity was one of the most difficult, but rewarding things I've ever done.",
     url: "https://www.reddit.com/r/detrans/comments/itn2im/3_months_on_t_to_35_years_living_as_detrans/",
+    imageUrl: "https://i.redd.it/6tsmbe7z8fn51.jpg",
     user: "u/skinnyguac",
     userUrl: "https://www.reddit.com/user/skinnyguac/",
     sub: "detrans",
@@ -98,6 +106,7 @@ const DETRANS_EMBEDS = [
   {
     title: "3 years on T vs 3 months off",
     url: "https://www.reddit.com/r/detrans/comments/e0m0ty/3_years_on_t_vs_3_months_off/",
+    imageUrl: "https://i.redd.it/fgt9kjuwdh041.jpg",
     user: "u/ali-pal",
     userUrl: "https://www.reddit.com/user/ali-pal/",
     sub: "detrans",
@@ -106,6 +115,7 @@ const DETRANS_EMBEDS = [
   {
     title: "Wow. My face is still changing, patience is key!",
     url: "https://www.reddit.com/r/detrans/comments/1gglhu7/wow_my_face_is_still_changing_patience_is_key/",
+    imageUrl: "https://i.redd.it/b889fmvxx4yd1.jpeg",
     user: "u/Euphoric-Slice-6266",
     userUrl: "https://www.reddit.com/user/Euphoric-Slice-6266/",
     sub: "detrans",
@@ -115,6 +125,7 @@ const DETRANS_EMBEDS = [
     title:
       "Saw the pic on the left in my Snapchat memories and realized I was wearing the same sweater. One year difference.",
     url: "https://www.reddit.com/r/detrans/comments/eftbxa/saw_the_pic_on_the_left_in_my_snapchat_memories/",
+    imageUrl: "https://i.redd.it/2ixot89x1y641.jpg",
     user: "u/ali-pal",
     userUrl: "https://www.reddit.com/user/ali-pal/",
     sub: "detrans",
@@ -123,6 +134,7 @@ const DETRANS_EMBEDS = [
   {
     title: "Lil update! 1.6 year after stopping T (after 7 years on it)",
     url: "https://www.reddit.com/r/detrans/comments/y30cd9/lil_update_16_year_after_stopping_t_after_7_years/",
+    imageUrl: "https://i.redd.it/wwhnuurq3lt91.jpg",
     user: "u/manouxoxo",
     userUrl: "https://www.reddit.com/user/manouxoxo/",
     sub: "detrans",
@@ -131,6 +143,7 @@ const DETRANS_EMBEDS = [
   {
     title: "I was trans and miserable for 7 years. I had many...",
     url: "https://www.reddit.com/r/detrans/comments/11ldt9r/i_was_trans_and_miserable_for_7_years_i_had_many/",
+    imageUrl: "https://i.redd.it/xt0r2bc6rfma1.jpg",
     user: "unknown",
     userUrl: "",
     sub: "detrans",
@@ -138,8 +151,9 @@ const DETRANS_EMBEDS = [
   },
   {
     title:
-      '~9 months off T. I\'m realizing how much of my desire to be a man was rooted in misogyny, fear of social stigma towards "masculine" women, and the pressure of feminine beauty standards. Turns out I can be a gender non-conforming woman and not care about any of that crap. :)',
+      "~9 months off T. I'm realizing how much of my desire to be a man was rooted in misogyny...",
     url: "https://www.reddit.com/r/detrans/comments/qpnph9/9_months_off_t_im_realizing_how_much_of_my_desire/",
+    imageUrl: "https://i.redd.it/z0djse6hwfy71.jpg",
     user: "u/[deleted]",
     userUrl: "",
     sub: "detrans",
@@ -149,6 +163,7 @@ const DETRANS_EMBEDS = [
     title:
       "Butch lesbian 2 yrs 2 months off t after 7 years on, embracing my female masculinity :)",
     url: "https://www.reddit.com/r/detrans/comments/1lg8xym/butch_lesbian_2_yrs_2_months_off_t_after_7_years/",
+    imageUrl: "https://i.redd.it/qonp9mpw348f1.jpg",
     user: "u/Euphoric-Slice-6266",
     userUrl: "https://www.reddit.com/user/Euphoric-Slice-6266/",
     sub: "detrans",
@@ -158,6 +173,8 @@ const DETRANS_EMBEDS = [
     title:
       "for the rare male detransitioners here: femininity in manhood is nothing to be ashamed of 💕",
     url: "https://www.reddit.com/r/detrans/comments/1ad1qlq/for_the_rare_male_detransitioners_here_femininity/",
+    imageUrl:
+      "https://preview.redd.it/for-the-rare-male-detransitioners-here-femininity-in-v0-e7evrif7e6fc1.jpg?width=1080&crop=smart&auto=webp&s=4d2be331783b32a632e65a6f06767c435077e9e0",
     user: "u/femmixo",
     userUrl: "https://www.reddit.com/user/femmixo/",
     sub: "detrans",
@@ -168,6 +185,7 @@ const DETRANS_EMBEDS = [
     title:
       "Came out as a detrans butch to friends and family and it went well, 3.5 months off t and feeling hopeful :)",
     url: "https://www.reddit.com/r/detrans/comments/15fcvuu/came_out_as_a_detrans_butch_to_friends_and_family/",
+    imageUrl: "https://i.redd.it/z3v4fv395ifb1.jpg",
     user: "u/Euphoric-Slice-6266",
     userUrl: "https://www.reddit.com/user/Euphoric-Slice-6266/",
     sub: "detrans",
@@ -177,6 +195,7 @@ const DETRANS_EMBEDS = [
   {
     title: "It's been a wild ride (2011, 2019, 2021)",
     url: "https://www.reddit.com/r/detrans/comments/wbnebf/its_been_a_wild_ride_2011_2019_2021/",
+    imageUrl: "https://i.redd.it/wgc5itd9ime91.jpg",
     user: "u/lonelycyborg",
     userUrl: "https://www.reddit.com/user/lonelycyborg/",
     sub: "detrans",
@@ -187,6 +206,7 @@ const DETRANS_EMBEDS = [
     title:
       "What realisations made you choose to detransition? Mines was that makeup is not gendered and males too can wear mascara 😁",
     url: "https://www.reddit.com/r/detrans/comments/z0hi5f/what_realisations_made_you_choose_to_detransition/",
+    imageUrl: "https://i.redd.it/97ix8fh4581a1.jpg",
     user: "u/lifeson488",
     userUrl: "https://www.reddit.com/user/lifeson488/",
     sub: "detrans",
@@ -211,7 +231,7 @@ const DETRANS_EMBEDS = [
     subUrl: "https://www.reddit.com/r/MtF/",
   },
 ];
-
+/*
 const TRANS_EMBEDS = [
   {
     title: "Feeling good about this morning's selfie",
@@ -335,11 +355,12 @@ const TRANS_EMBEDS = [
     subUrl: "https://www.reddit.com/r/MtF/",
   },
 ];
-
+*/
 export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
-  const EMBEDS = mode === "detrans" ? DETRANS_EMBEDS : TRANS_EMBEDS;
+  const EMBEDS = mode === "detrans" ? DETRANS_EMBEDS : [];
   return (
     <>
+      {/*
       <Script
         src="https://embed.reddit.com/widgets.js"
         strategy="afterInteractive"
@@ -348,7 +369,8 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
           //   (window as any).reddit?.init?.();
         }}
       />
-      <div className="row no-wrap mt-8 flex gap-4 overflow-x-scroll">
+       */}
+      <div className="row no-wrap mt-8 flex items-start gap-4 overflow-x-scroll">
         {EMBEDS.map((embed, index) => (
           <RedditEmbed
             key={index}
@@ -356,6 +378,7 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
             url={embed.url}
             user={embed.user}
             userUrl={embed.userUrl}
+            imageUrl={embed.imageUrl}
             sub={embed.sub}
             subUrl={embed.subUrl}
           />
