@@ -8,7 +8,8 @@ services:
       - "6379:6379"
     volumes:
       - ./redis-data:/data
-    command: redis-server --appendonly yes
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf --appendonly yes
     restart: unless-stopped
 
   qdrant:
