@@ -7,6 +7,7 @@ export default function RedditEmbed({
   sub,
   subUrl,
   url,
+  imageUrl,
 }: {
   title: string;
   user: string;
@@ -14,6 +15,7 @@ export default function RedditEmbed({
   subUrl: string;
   url: string;
   userUrl: string;
+  imageUrl?: string;
 }) {
   return (
     // The Card provides the border, background, and now padding.
