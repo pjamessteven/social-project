@@ -121,29 +121,41 @@ export default function Component({ events }) {
     }
   };
 
+
   // true if any step is currently running
   const isRunning =
     retrieve?.state === "inprogress" ||
     analyze?.state === "inprogress" ||
     answers.some((a) => a.state === "inprogress");
 
+  const thinkingStatus =  useMemo(() => {
+    let status = 'Deep analysis completed'
+    if (retrieve.state === 'inprogress') {
+      return 'Retrieving detrans experiences that are most relevant to your query.'
+    } else if (analyze?.state === "inprogress") {
+      return 'Analyzing experiences and generating meta questions.'
+    } else if(answers.some((a) => a.state === "inprogress") {
+        return answer.question
+    }
+  }, [retrieve.state, analyze.state, answer, isRunning]) 
+
   return (
-    <div className="mx-auto w-full max-w-4xl mb-4 md:mb-8 space-y-4 text-foreground rounded-xl transition-colors duration-300">
+    <div className="not-prose mx-auto w-full max-w-4xl mb-4 md:mb-8 space-y-4 text-foreground rounded-xl transition-colors duration-300">
       {/* Header */}
-      <div className="flex items-center justify-between pt-2 md:mb-1 -mb-0 -mx-4 px-4 md:-mt-4 -mt-6 rounded-tr-xl rounded-tl-xl">
+      <div className="flex items-center justify-start pt-2 mb-4 -mx-4 px-4 md:-mt-4 -mt-6 rounded-tr-xl rounded-tl-xl">
         <h1 className="md:text-lg text-base font-semibold text-foreground">
-          Question Expansion
+          Analysing Detrans Experiences
         </h1>
-        {isRunning && <Loader2 className="h-4 w-4 animate-spin text-blue-500" />}
+        {isRunning || true && <Loader2 className="h-4 w-4 ml-2 animate-spin " />}
       </div>
 
       {/* Collapsible details section */}
-      <Accordion type="single" collapsible defaultValue="details">
+      <Accordion type="single" collapsible defaultValue="">
         <AccordionItem value="details" className="border rounded-xl">
-          <AccordionTrigger className="px-4 py-2 text-sm font-medium">
-            Details
+          <AccordionTrigger className="px-4 py-4 text-sm font-medium">
+            {thinkingStatus}
           </AccordionTrigger>
-          <AccordionContent className="px-4 pb-4 space-y-4">
+          <AccordionContent className="px-4 pb-4 pt-4 space-y-4">
             {/* Retrieve Panel */}
             <Card
               className={cn(
@@ -246,7 +258,7 @@ export default function Component({ events }) {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="px-4 pt-0 sm:p-6">
-                  <Accordion type="multiple" className="w-full not-prose">
+                  <Accordion type="multiple" className="w-full">
                     {answers.map((answer, index) => (
                       <AccordionItem
                         key={answer.id}
