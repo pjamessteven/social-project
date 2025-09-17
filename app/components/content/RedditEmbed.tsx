@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { Card } from "../ui/card";
 
 export default function RedditEmbed({
@@ -9,7 +12,7 @@ export default function RedditEmbed({
   url,
   imageUrl,
 }: {
-  title: string;
+  title:string;
   user: string;
   sub: string;
   subUrl: string;
@@ -17,6 +20,30 @@ export default function RedditEmbed({
   userUrl: string;
   imageUrl?: string;
 }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const imageRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const currentRef = imageRef.current;
+    if (!currentRef) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    observer.observe(currentRef);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     // The Card provides the border, background, and now padding.
     // Your "border-destructive" class is kept for the specific highlight effect.
@@ -44,12 +71,19 @@ export default function RedditEmbed({
 
         {imageUrl && (
           <a href={url} target="_blank" rel="noopener noreferrer">
-            <div className="m-4 aspect-video overflow-hidden rounded-lg">
-              <img
-                src={imageUrl}
-                alt={`Preview for ${title}`}
-                className="h-full w-full object-cover"
-              />
+            <div
+              ref={imageRef}
+              className="m-4 aspect-video overflow-hidden rounded-lg"
+            >
+              {isVisible ? (
+                <img
+                  src={imageUrl}
+                  alt={`Preview for ${title}`}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <div className="h-full w-full animate-pulse rounded-lg bg-accent" />
+              )}
             </div>
           </a>
         )}
