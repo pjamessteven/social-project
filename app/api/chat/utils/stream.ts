@@ -1,6 +1,5 @@
 import {
   agentStreamEvent,
-  type WorkflowContext,
   type WorkflowEvent,
   type WorkflowEventData,
 } from "@llamaindex/workflow";
@@ -48,14 +47,12 @@ export function toDataStream(
   stream: AsyncIterable<WorkflowEventData<unknown>>,
   options: {
     callbacks?: StreamCallbacks;
-    context?: WorkflowContext;
   } = {},
 ) {
-  const { callbacks, context } = options;
+  const { callbacks } = options;
 
   let completionText = "";
   let hasStarted = false;
-  const processedEventHashes = new Set<string>();
 
   return createDataStream({
     execute: async (dataStreamWriter: DataStreamWriter) => {
@@ -65,20 +62,8 @@ export function toDataStream(
       }
 
       for await (const event of stream) {
-        const eventAny = event as any;
-        const eventHash = JSON.stringify(eventAny);
-        if (processedEventHashes.has(eventHash)) {
-          continue;
-        }
-        processedEventHashes.add(eventHash);
-
-        const state = (context as any)?.state;
-        if (state?.isReporting && eventAny.data?.type === "ui_event") {
-          continue;
-        }
-
-        if (agentStreamEvent.include(eventAny) && eventAny.data.delta) {
-          const content = eventAny.data.delta;
+        if (agentStreamEvent.include(event) && event.data.delta) {
+          const content = event.data.delta;
           if (content) {
             completionText += content;
             dataStreamWriter.write(formatDataStreamPart("text", content));
@@ -87,8 +72,8 @@ export function toDataStream(
               await callbacks.onText(content, dataStreamWriter);
             }
           }
-        } else if (humanInputEvent.include(eventAny)) {
-          const { response, ...rest } = eventAny.data;
+        } else if (humanInputEvent.include(event)) {
+          const { response, ...rest } = event.data;
           dataStreamWriter.writeMessageAnnotation(rest); // show human input in UI
 
           if (callbacks?.onPauseForHumanInput) {
@@ -96,7 +81,7 @@ export function toDataStream(
             return; // stop the stream
           }
         } else {
-          dataStreamWriter.writeMessageAnnotation(eventAny.data as JSONValue);
+          dataStreamWriter.writeMessageAnnotation(event.data as JSONValue);
         }
       }
 

@@ -393,8 +393,8 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
           agentStreamEvent.with({
             delta: chunk.delta,
             response,
-            currentAgentName: "",
-            raw: stream,
+            currentAgentName: "LLM",
+            raw: chunk.raw,
           }),
         );
       }

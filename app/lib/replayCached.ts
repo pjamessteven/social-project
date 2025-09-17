@@ -7,7 +7,7 @@ function sleep(ms: number) {
 // Replay cached result as a fake stream, slowly
 export const replayCached = async function* (
   text: string,
-  delay = 25, // ms between chunks
+  delay = 10, // ms between chunks
   chunkSize = 5, // number of characters per chunk
 ): AsyncGenerator<ChatResponseChunk> {
   for (let i = 0; i < text.length; i += chunkSize) {

@@ -33,10 +33,17 @@ import {
 } from "../prompts";
 import { getIndex } from "./data";
 
+/*
 const openAi = new OpenAI({
   apiKey: process.env.OPENROUTER_KEY,
   baseURL: "https://openrouter.ai/api/v1",
   model: "openai/gpt-5-mini",
+});*/
+
+const openAi = new OpenAI({
+  apiKey: process.env.OPENROUTER_KEY,
+  baseURL: "https://openrouter.ai/api/v1",
+  model: "moonshotai/kimi-k2",
 });
 
 const cache = new RedisCache(await connectRedis(), "affirm");
@@ -97,7 +104,8 @@ type DeepResearchState = {
   contextNodes: NodeWithScore<Metadata>[];
   userRequest: MessageContent;
   totalQuestions: number;
-  researchResults: ResearchResult[];
+  researchResults: Map<string, ResearchResult>;
+  isReporting?: boolean;
 };
 // workflow definition
 export function getWorkflow(index: VectorStoreIndex, userIp: string) {
@@ -108,7 +116,8 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       contextNodes: [] as NodeWithScore<Metadata>[],
       userRequest: "" as MessageContent,
       totalQuestions: 0,
-      researchResults: [] as ResearchResult[],
+      researchResults: new Map<string, ResearchResult>(),
+      isReporting: false,
     };
   });
   const workflow = withState(createWorkflow());
@@ -140,12 +149,12 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
 
       let nodes: NodeWithScore<Metadata>[];
 
-      const cachedNodes = await cache.get("nodes:" + userInput);
+      const cachedNodes = await cache.get(originalQuestion + ":nodes");
       if (cachedNodes) {
         nodes = JSON.parse(cachedNodes);
       } else {
-        nodes = await retriever.retrieve({ query: userInput });
-        await cache.set("nodes:" + userInput, JSON.stringify(nodes));
+        nodes = await retriever.retrieve({ query: originalQuestion });
+        await cache.set(originalQuestion + ":nodes", JSON.stringify(nodes));
       }
 
       // experiment with ranking nodes by reddit score
@@ -269,9 +278,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
           sendEvent(researchEvent.with({ questionId: id, question }));
         });
         const events = await stream
-          .until(
-            () => state.researchResults.length === researchQuestions.length,
-          )
+          .until(() => state.researchResults.size === researchQuestions.length)
           .toArray();
         return planResearchEvent.with({});
       } else {
@@ -317,7 +324,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
           question,
           originalQuestion,
         );
-        state.researchResults.push({ questionId, question, answer });
+        state.researchResults.set(questionId, { questionId, question, answer });
 
         state.memory.add({
           role: "assistant",
@@ -363,6 +370,8 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
     ) => {
       const { sendEvent, state } = context;
       const chatHistory = await state.memory.get();
+      state.isReporting = true;
+
       const messages = chatHistory.concat([
         {
           role: "system",
@@ -371,7 +380,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         {
           role: "user",
           content:
-            "Write a summary addressing the user request based on the research provided in the context",
+            "Write a summary addressing the user request. Use ONLY the research provided in the context",
         },
       ]);
 
@@ -391,8 +400,8 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
           agentStreamEvent.with({
             delta: chunk.delta,
             response,
-            currentAgentName: "",
-            raw: stream,
+            currentAgentName: "LLM",
+            raw: chunk.raw,
           }),
         );
       }

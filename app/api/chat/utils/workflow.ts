@@ -7,7 +7,6 @@ import {
   type Workflow,
   type WorkflowContext,
   type WorkflowEvent,
-  type WorkflowEventData,
 } from "@llamaindex/workflow";
 import {
   LLamaCloudFileService,
@@ -67,47 +66,45 @@ export function processWorkflowStream(
   stream: WorkflowStream<WorkflowEvent<unknown>>,
 ) {
   return stream.pipeThrough(
-    new TransformStream<WorkflowEvent<unknown>, WorkflowEvent<unknown>>(
-      {
-        async transform(event, controller) {
-          let transformedEvent = event;
+    new TransformStream<WorkflowEvent<unknown>, WorkflowEvent<unknown>>({
+      async transform(event, controller) {
+        let transformedEvent = event;
 
-          // Handle agent events from AgentToolCall
-          if (agentToolCallEvent.include(event)) {
-            const inputString = JSON.stringify(event.data.toolKwargs);
-            transformedEvent = toAgentRunEvent({
-              agent: event.data.agentName,
-              text: `Using tool: '${event.data.toolName}' with inputs: '${inputString}'`,
-              type: "text",
-            });
+        // Handle agent events from AgentToolCall
+        if (agentToolCallEvent.include(event)) {
+          const inputString = JSON.stringify(event.data.toolKwargs);
+          transformedEvent = toAgentRunEvent({
+            agent: event.data.agentName,
+            text: `Using tool: '${event.data.toolName}' with inputs: '${inputString}'`,
+            type: "text",
+          });
+        }
+        // Handle source nodes from AgentToolCallResult
+        else if (agentToolCallResultEvent.include(event)) {
+          const rawOutput = event.data.raw;
+          if (
+            rawOutput &&
+            typeof rawOutput === "object" &&
+            "sourceNodes" in rawOutput // TODO: better use Zod to validate and extract sourceNodes from toolCallResult
+          ) {
+            const sourceNodes =
+              rawOutput.sourceNodes as unknown as NodeWithScore<Metadata>[];
+            transformedEvent = toSourceEvent(sourceNodes);
           }
-          // Handle source nodes from AgentToolCallResult
-          else if (agentToolCallResultEvent.include(event)) {
-            const rawOutput = event.data.raw;
-            if (
-              rawOutput &&
-              typeof rawOutput === "object" &&
-              "sourceNodes" in rawOutput // TODO: better use Zod to validate and extract sourceNodes from toolCallResult
-            ) {
-              const sourceNodes =
-                rawOutput.sourceNodes as unknown as NodeWithScore<Metadata>[];
-              transformedEvent = toSourceEvent(sourceNodes);
-            }
-          }
-          // Handle artifact events, transform to agentStreamEvent
-          else if (artifactEvent.include(event)) {
-            transformedEvent = toInlineAnnotationEvent(event);
-          }
-          // Post-process for llama-cloud files
-          if (sourceEvent.include(transformedEvent)) {
-            const sourceNodesForDownload = transformedEvent.data.data.nodes; // These are SourceEventNode[]
-            downloadLlamaCloudFilesFromNodes(sourceNodesForDownload); // download files in background
-          }
+        }
+        // Handle artifact events, transform to agentStreamEvent
+        else if (artifactEvent.include(event)) {
+          transformedEvent = toInlineAnnotationEvent(event);
+        }
+        // Post-process for llama-cloud files
+        if (sourceEvent.include(transformedEvent)) {
+          const sourceNodesForDownload = transformedEvent.data.data.nodes; // These are SourceEventNode[]
+          downloadLlamaCloudFilesFromNodes(sourceNodesForDownload); // download files in background
+        }
 
-          controller.enqueue(transformedEvent);
-        },
+        controller.enqueue(transformedEvent);
       },
-    ),
+    }),
   );
 }
 

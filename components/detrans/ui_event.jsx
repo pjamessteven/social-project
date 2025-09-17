@@ -149,7 +149,7 @@ export default function Component({ events }) {
             (prevIndex) => (prevIndex + 1) % answers.length,
           );
         }
-      }, 5000);
+      }, 8000);
       return () => clearInterval(interval);
     }
   }, [
@@ -165,7 +165,7 @@ export default function Component({ events }) {
       return "Retrieving detrans experiences that are most relevant to your query.";
     } else if (analyze?.state === "inprogress") {
       return "Analyzing experiences and generating meta questions.";
-    } else if (answers.length > 0 && isRunning && isCyclingMetaQuestions) {
+    } else if (answers.length > 0 && isCyclingMetaQuestions) {
       // Cycle through answer questions every 5 seconds
       return "Meta question: \n" + answers[currentAnswerIndex]?.question || "";
     } else if (isRunning && !isCyclingMetaQuestions) {
@@ -189,7 +189,7 @@ export default function Component({ events }) {
         <h1 className="text-foreground text-base font-semibold md:text-lg">
           Analysing Detrans Experiences
         </h1>
-        {isRunning ? (
+        {isRunning || isCyclingMetaQuestions ? (
           <Loader2 className="ml-2 h-4 w-4 animate-spin" />
         ) : (
           <CheckCircle className="ml-2 h-4 w-4 text-green-500" />
@@ -198,8 +198,8 @@ export default function Component({ events }) {
 
       {/* Collapsible details section */}
       <Accordion type="single" collapsible defaultValue="">
-        <AccordionItem value="details" className="rounded-xl border">
-          <AccordionTrigger className="px-4 py-4 text-sm font-medium italic opacity-70">
+        <AccordionItem value="details" className="rounded-xl border dark:border-gray-800 dark:bg-gray-900">
+          <AccordionTrigger className="px-4 py-4 text-base font-medium italic opacity-70">
             {thinkingStatus}
           </AccordionTrigger>
           <AccordionContent className="space-y-4 px-4 pt-1 pb-4">

@@ -36,7 +36,7 @@ export const DynamicEvents = ({
 
     const timer = setTimeout(() => {
       setDebouncedMessage(message);
-    }, 200);
+    }, 500);
 
     return () => {
       clearTimeout(timer);
@@ -87,7 +87,10 @@ export const DynamicEvents = ({
     () =>
       componentDefs
         .map((comp) => {
-          const events = getAnnotationData<JSONValue>(debouncedMessage, comp.type);
+          const events = getAnnotationData<JSONValue>(
+            debouncedMessage,
+            comp.type,
+          );
           if (!events?.length) return null;
           return { ...comp, events };
         })
