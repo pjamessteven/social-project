@@ -89,6 +89,7 @@ type UIEventData = z.infer<typeof UIEventSchema>;
 const uiEvent = workflowEvent<{
   type: "ui_event";
   data: UIEventData;
+  isReporting: boolean;
 }>();
 
 type DeepResearchState = {
@@ -108,6 +109,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       userRequest: "" as MessageContent,
       totalQuestions: 0,
       researchResults: new Map<string, ResearchResult>(),
+      isReporting: false,
     };
   });
   const workflow = withState(createWorkflow());
@@ -361,6 +363,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
     ) => {
       const { sendEvent, state } = context;
       const chatHistory = await state.memory.get();
+      state.isReporting = true;
       const messages = chatHistory.concat([
         {
           role: "system",
