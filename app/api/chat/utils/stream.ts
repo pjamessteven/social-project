@@ -1,5 +1,6 @@
 import {
   agentStreamEvent,
+  type WorkflowContext,
   type WorkflowEvent,
   type WorkflowEventData,
 } from "@llamaindex/workflow";
@@ -47,9 +48,10 @@ export function toDataStream(
   stream: AsyncIterable<WorkflowEventData<unknown>>,
   options: {
     callbacks?: StreamCallbacks;
+    context?: WorkflowContext;
   } = {},
 ) {
-  const { callbacks } = options;
+  const { callbacks, context } = options;
 
   let completionText = "";
   let hasStarted = false;
@@ -62,6 +64,11 @@ export function toDataStream(
       }
 
       for await (const event of stream) {
+        const state = (context as any)?.state;
+        if (state?.isReporting && (event.data as any)?.type === "ui_event") {
+          continue;
+        }
+
         if (agentStreamEvent.include(event) && event.data.delta) {
           const content = event.data.delta;
           if (content) {

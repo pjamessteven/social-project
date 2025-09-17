@@ -66,6 +66,7 @@ export async function POST(req: NextRequest) {
     );
 
     const dataStream = toDataStream(stream, {
+      context,
       callbacks: {
         onPauseForHumanInput: async (responseEvent) => {
           await pauseForHumanInput(context, responseEvent, requestId); // use requestId to save snapshot
