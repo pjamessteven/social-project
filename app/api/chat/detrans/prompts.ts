@@ -50,12 +50,12 @@ Title: `;
 export const createPlanResearchPrompt = (MAX_QUESTIONS: number) =>
   new PromptTemplate({
     template: `
-You are a social science professor who is guiding a researcher to research a specific request/problem.
+You are a social science professor who is guiding a researcher to understand detrans experiences and perpsectives about a specific question or idea.
 Your task is to decide on a research plan for the researcher.
 
 The possible actions are:
 + Provide a list of questions for the researcher to investigate, with the purpose of clarifying the request. The questions MUST derive from the questions in the context. 
-+ Write a summary that highlights the main points and the comments that relate to the original question if the researcher has already gathered enough research on the topic and can resolve the initial request.
++ Write a summary that highlights the main points from a detrans perspective if the researcher has already gathered enough detrans insights on the topic and can resolve the initial request.
 + Cancel the research if most of the answers from researchers indicate there is insufficient information to research the request. Do not attempt more than 3 research iterations or too many questions.
 
 The workflow should be:

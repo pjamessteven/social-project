@@ -274,19 +274,18 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
           .until(() => state.researchResults.size === researchQuestions.length)
           .toArray();
         return planResearchEvent.with({});
-      } else {
-        state.memory.add({
-          role: "assistant",
-          content: "No more idea to analyze. We should report the answers.",
-        });
-        sendEvent(
-          uiEvent.with({
-            type: "ui_event",
-            data: { event: "analyze", state: "done" },
-          }),
-        );
-        return reportEvent.with({});
       }
+      state.memory.add({
+        role: "assistant",
+        content: "No more idea to analyze. We should report the answers.",
+      });
+      sendEvent(
+        uiEvent.with({
+          type: "ui_event",
+          data: { event: "analyze", state: "done" },
+        }),
+      );
+      return reportEvent.with({});
     },
   );
 
