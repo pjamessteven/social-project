@@ -45,7 +45,7 @@ export interface StreamCallbacks {
  * @returns A readable stream of data.
  */
 export function toDataStream(
-  stream: AsyncIterable<WorkflowEvent<unknown>>,
+  stream: AsyncIterable<WorkflowEventData<unknown>>,
   options: {
     callbacks?: StreamCallbacks;
     context?: WorkflowContext;
@@ -65,14 +65,21 @@ export function toDataStream(
       }
 
       for await (const event of stream) {
-        if (processedEventIds.has(event.id)) {
+        console.log(event.id);
+        // console.log(event.data.id, event.data);
+        /*
+        if (processedEventIds.has(event.data.id)) {
+          console.log("continuing");
           continue;
         }
-        processedEventIds.add(event.id);
+        processedEventIds.add(event.data.id);
+
+        /*
         const state = (context as any)?.state;
         if (state?.isReporting && (event.data as any)?.type === "ui_event") {
           continue;
         }
+          */
 
         if (agentStreamEvent.include(event) && event.data.delta) {
           const content = event.data.delta;
