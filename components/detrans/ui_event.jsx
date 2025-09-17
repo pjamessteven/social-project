@@ -121,195 +121,211 @@ export default function Component({ events }) {
     }
   };
 
+  // true if any step is currently running
+  const isRunning =
+    retrieve?.state === "inprogress" ||
+    analyze?.state === "inprogress" ||
+    answers.some((a) => a.state === "inprogress");
+
   return (
-    <div className="mx-auto w-full max-w-4xl mb-4 md:mb-8  space-y-4  text-foreground rounded-xl transition-colors duration-300">
+    <div className="mx-auto w-full max-w-4xl mb-4 md:mb-8 space-y-4 text-foreground rounded-xl transition-colors duration-300">
       {/* Header */}
       <div className="flex items-center justify-between pt-2 md:mb-1 -mb-0 -mx-4 px-4 md:-mt-4 -mt-6 rounded-tr-xl rounded-tl-xl">
         <h1 className="md:text-lg text-base font-semibold text-foreground">
           Question Expansion
         </h1>
+        {isRunning && <Loader2 className="h-4 w-4 animate-spin text-blue-500" />}
       </div>
 
-
-      {/* Retrieve Panel */}
-      <Card
-        className={cn(
-          "border transition-all duration-300",
-          retrieve?.state === "inprogress"
-            ? "border-primary shadow-lg"
-            : retrieve?.state === "done"
-            ? "border-green-500"
-            : retrieve?.state === "error"
-            ? "border-destructive"
-            : "border-border"
-        )}
-      >
-        <CardHeader>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <UserSearch className="h-5 w-5 mr-2 text-muted-foreground" />
-              <CardTitle className="text-foreground">
-                Find Experiences
-              </CardTitle>
-            </div>
-            <div
+      {/* Collapsible details section */}
+      <Accordion type="single" collapsible defaultValue="details">
+        <AccordionItem value="details" className="border rounded-xl">
+          <AccordionTrigger className="px-4 py-2 text-sm font-medium">
+            Details
+          </AccordionTrigger>
+          <AccordionContent className="px-4 pb-4 space-y-4">
+            {/* Retrieve Panel */}
+            <Card
               className={cn(
-                "flex items-center space-x-1 no-underline",
+                "border transition-all duration-300",
                 retrieve?.state === "inprogress"
-                  ? "text-primary"
+                  ? "border-primary shadow-lg"
                   : retrieve?.state === "done"
-                  ? "text-green-500"
+                  ? "border-green-500"
                   : retrieve?.state === "error"
-                  ? "text-destructive"
-                  : "text-muted-foreground"
+                  ? "border-destructive"
+                  : "border-border"
               )}
             >
-              {getStatusIcon(retrieve?.state)}
-            </div>
-          </div>
-          <CardDescription>
-            Retrieving detrans experiences that are most relevant to
-            your query.
-          </CardDescription>
-        </CardHeader>
-      </Card>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <UserSearch className="h-5 w-5 mr-2 text-muted-foreground" />
+                    <CardTitle className="text-foreground">
+                      Find Experiences
+                    </CardTitle>
+                  </div>
+                  <div
+                    className={cn(
+                      "flex items-center space-x-1 no-underline",
+                      retrieve?.state === "inprogress"
+                        ? "text-primary"
+                        : retrieve?.state === "done"
+                        ? "text-green-500"
+                        : retrieve?.state === "error"
+                        ? "text-destructive"
+                        : "text-muted-foreground"
+                    )}
+                  >
+                    {getStatusIcon(retrieve?.state)}
+                  </div>
+                </div>
+                <CardDescription>
+                  Retrieving detrans experiences that are most relevant to
+                  your query.
+                </CardDescription>
+              </CardHeader>
+            </Card>
 
-      {/* Analyze Panel */}
-      {retrieve?.state === "done" && (
-        <Card
-          className={cn(
-            "border transition-all duration-300",
-            analyze?.state === "inprogress"
-              ? "border-primary shadow-lg"
-              : analyze?.state === "done"
-              ? "border-green-500"
-              : analyze?.state === "error"
-              ? "border-destructive"
-              : "border-border"
-          )}
-        >
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <Glasses className="h-5 w-5 mr-2 text-muted-foreground" />
-                <CardTitle className="text-foreground">
-                  Analyze Experiences
-                </CardTitle>
-              </div>
-              <div
+            {/* Analyze Panel */}
+            {retrieve?.state === "done" && (
+              <Card
                 className={cn(
-                  "flex items-center space-x-1 no-underline",
+                  "border transition-all duration-300",
                   analyze?.state === "inprogress"
-                    ? "text-primary"
+                    ? "border-primary shadow-lg"
                     : analyze?.state === "done"
-                    ? "text-green-500"
+                    ? "border-green-500"
                     : analyze?.state === "error"
-                    ? "text-destructive"
-                    : "text-muted-foreground"
+                    ? "border-destructive"
+                    : "border-border"
                 )}
               >
-                {getStatusIcon(analyze?.state)}
-              </div>
-            </div>
-            <CardDescription>
-              {analyze?.state === 'error' ? "Error: Daily rate limit reached. You can ask 10 new questions that aren't already in the cache per day. This is to prevent abuse of the system and give everyone fair access. Try some of the questions from the portal, or come back tomorrow :)" : 'Analyzing experiences and generating meta questions.'}
-            </CardDescription>
-          </CardHeader>
-        </Card>
-      )}
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <Glasses className="h-5 w-5 mr-2 text-muted-foreground" />
+                      <CardTitle className="text-foreground">
+                        Analyze Experiences
+                      </CardTitle>
+                    </div>
+                    <div
+                      className={cn(
+                        "flex items-center space-x-1 no-underline",
+                        analyze?.state === "inprogress"
+                          ? "text-primary"
+                          : analyze?.state === "done"
+                          ? "text-green-500"
+                          : analyze?.state === "error"
+                          ? "text-destructive"
+                          : "text-muted-foreground"
+                      )}
+                    >
+                      {getStatusIcon(analyze?.state)}
+                    </div>
+                  </div>
+                  <CardDescription>
+                    {analyze?.state === 'error' ? "Error: Daily rate limit reached. You can ask 10 new questions that aren't already in the cache per day. This is to prevent abuse of the system and give everyone fair access. Try some of the questions from the portal, or come back tomorrow :)" : 'Analyzing experiences and generating meta questions.'}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            )}
 
-      {/* Answer Panel */}
-      {analyze?.state === "done" && answers.length > 0 && (
-        <Card>
-          <CardHeader>
-            <div className="flex items-center space-x-2">
-              <MessageSquare className="h-5 w-5 mr-2 text-muted-foreground" />
-              <CardTitle className="text-foreground">
-                Meta Questions & Answers
-              </CardTitle>
-            </div>
-            <CardDescription>
-              Answering meta questions with real detrans experiences & perspectives.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="px-4 pt-0 sm:p-6">
-            <Accordion type="multiple" className="w-full not-prose">
-              {answers.map((answer, index) => (
-                <AccordionItem
-                  key={answer.id}
-                  value={answer.id}
-                  className={cn(
-                    "mb-4 rounded-lg border border-border transition-colors duration-300",
-                    answer.state === "inprogress"
-                      ? "bg-accent/50"
-                      : answer.state === "done"
-                      ? " dark:bg-gray-700/70"
-                      : answer.state === "error"
-                      ? "bg-destructive/10"
-                      : "bg-muted/50"
-                  )}
-                >
-                  <AccordionTrigger className="px-4 py-3  hover:bg-accent/50 transition-colors duration-300">
-                    <div className="relative flex items-center justify-between grow space-x-3 text-left">
-                      <div className="flex-1">
-                        <p className="italic text-foreground  font-normal text-sm md:text-base ">
-                          {"-> "}{answer.question}
-                        </p>
-                      </div>
-                      <div
+            {/* Answer Panel */}
+            {analyze?.state === "done" && answers.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center space-x-2">
+                    <MessageSquare className="h-5 w-5 mr-2 text-muted-foreground" />
+                    <CardTitle className="text-foreground">
+                      Meta Questions & Answers
+                    </CardTitle>
+                  </div>
+                  <CardDescription>
+                    Answering meta questions with real detrans experiences & perspectives.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="px-4 pt-0 sm:p-6">
+                  <Accordion type="multiple" className="w-full not-prose">
+                    {answers.map((answer, index) => (
+                      <AccordionItem
+                        key={answer.id}
+                        value={answer.id}
                         className={cn(
-                          "ml-auto  absolute top-0 -right-4 flex shrink-0 items-center space-x-1 no-underline",
+                          "mb-4 rounded-lg border border-border transition-colors duration-300",
                           answer.state === "inprogress"
-                            ? "text-primary"
+                            ? "bg-accent/50"
                             : answer.state === "done"
-                            ? "text-green-500"
+                            ? " dark:bg-gray-700/70"
                             : answer.state === "error"
-                            ? "text-destructive"
-                            : "text-muted-foreground"
+                            ? "bg-destructive/10"
+                            : "bg-muted/50"
                         )}
                       >
-                        {getStatusIcon(answer.state)}
-                      </div>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-4 pb-4 pt-1 prose prose:dark">
-                    <div className="rounded-md md:p-3 ">
-                      {answer.answer ? (
-                        <Markdown content={answer.answer} className="text-sm md:text-base" />
-                      ) : (
-                        <div className="flex items-center justify-center p-4 text-muted-foreground">
-                          {answer.state === "inprogress" ? (
-                            <div className="flex items-center space-x-2">
-                              <Loader2 className="h-4 w-4 animate-spin" />
-                              <span>Generating answer...</span>
+                        <AccordionTrigger className="px-4 py-3  hover:bg-accent/50 transition-colors duration-300">
+                          <div className="relative flex items-center justify-between grow space-x-3 text-left">
+                            <div className="flex-1">
+                              <p className="italic text-foreground  font-normal text-sm md:text-base ">
+                                {"-> "}{answer.question}
+                              </p>
                             </div>
-                          ) : (
-                            <span>Waiting for answer</span>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </CardContent>
-          <CardFooter className="flex justify-between">
-            <div className="text-sm text-muted-foreground">
-              {answers.filter((a) => a.state === "done").length} of{" "}
-              {answers.length} questions answered
-            </div>
-            <Progress
-              value={
-                (answers.filter((a) => a.state === "done").length /
-                  answers.length) *
-                100
-              }
-              className="h-2 w-1/3 bg-muted"
-            />
-          </CardFooter>
-        </Card>
-      )}
+                            <div
+                              className={cn(
+                                "ml-auto  absolute top-0 -right-4 flex shrink-0 items-center space-x-1 no-underline",
+                                answer.state === "inprogress"
+                                  ? "text-primary"
+                                  : answer.state === "done"
+                                  ? "text-green-500"
+                                  : answer.state === "error"
+                                  ? "text-destructive"
+                                  : "text-muted-foreground"
+                              )}
+                            >
+                              {getStatusIcon(answer.state)}
+                            </div>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent className="px-4 pb-4 pt-1 prose prose:dark">
+                          <div className="rounded-md md:p-3 ">
+                            {answer.answer ? (
+                              <Markdown content={answer.answer} className="text-sm md:text-base" />
+                            ) : (
+                              <div className="flex items-center justify-center p-4 text-muted-foreground">
+                                {answer.state === "inprogress" ? (
+                                  <div className="flex items-center space-x-2">
+                                    <Loader2 className="h-4 w-4 animate-spin" />
+                                    <span>Generating answer...</span>
+                                  </div>
+                                ) : (
+                                  <span>Waiting for answer</span>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </CardContent>
+                <CardFooter className="flex justify-between">
+                  <div className="text-sm text-muted-foreground">
+                    {answers.filter((a) => a.state === "done").length} of{" "}
+                    {answers.length} questions answered
+                  </div>
+                  <Progress
+                    value={
+                      (answers.filter((a) => a.state === "done").length /
+                        answers.length) *
+                      100
+                    }
+                    className="h-2 w-1/3 bg-muted"
+                  />
+                </CardFooter>
+              </Card>
+            )}
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </div>
   );
 }
