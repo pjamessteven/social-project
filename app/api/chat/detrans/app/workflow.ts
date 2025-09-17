@@ -17,7 +17,6 @@ import { type Message } from "ai";
 import {
   BaseNode,
   extractText,
-  LlamaCloudIndex,
   Memory,
   MessageContent,
   Metadata,
@@ -100,10 +99,7 @@ type DeepResearchState = {
   researchResults: Map<string, ResearchResult>;
 };
 // workflow definition
-export function getWorkflow(
-  index: VectorStoreIndex | LlamaCloudIndex,
-  userIp: string,
-) {
+export function getWorkflow(index: VectorStoreIndex, userIp: string) {
   const retriever = index.asRetriever({ similarityTopK: TOP_K });
   const { withState } = createStatefulMiddleware(() => {
     return {
