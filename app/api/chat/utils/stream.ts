@@ -55,6 +55,7 @@ export function toDataStream(
 
   let completionText = "";
   let hasStarted = false;
+  const processedEventIds = new Set<string>();
 
   return createDataStream({
     execute: async (dataStreamWriter: DataStreamWriter) => {
@@ -64,6 +65,12 @@ export function toDataStream(
       }
 
       for await (const event of stream) {
+        // @ts-expect-error - id is not in the type, but it exists on the event object
+        if (processedEventIds.has(event.id)) {
+          continue;
+        }
+        // @ts-expect-error - id is not in the type, but it exists on the event object
+        processedEventIds.add(event.id);
         const state = (context as any)?.state;
         if (state?.isReporting && (event.data as any)?.type === "ui_event") {
           continue;
