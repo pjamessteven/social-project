@@ -26,67 +26,59 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
-export default function Component({ events }) {
+const aggregateEvents = (events) => {
+  if (!events || events.length === 0)
+    return { retrieve: null, analyze: null, answers: [] };
 
-  const aggregateEvents = (events) => {
-    if (!events || events.length === 0)
-      return { retrieve: null, analyze: null, answers: [] };
-
-    // Initialize the result structure
-    const result = {
-      retrieve: null,
-      analyze: null,
-      answers: [],
-    };
-
-    // Process each event
-    events.forEach((event) => {
-      const { event: eventType, state, id, question, answer } = event;
-
-      if (eventType === "retrieve") {
-        // Update retrieve status
-        result.retrieve = { state };
-      } else if (eventType === "analyze") {
-        // Update analyze status
-        result.analyze = { state };
-      } else if (eventType === "answer" && id) {
-        // Find existing answer with the same id or create a new one
-        const existingAnswerIndex = result.answers.findIndex(
-          (a) => a.id === id,
-        );
-
-        if (existingAnswerIndex >= 0) {
-          // Update existing answer
-          result.answers[existingAnswerIndex] = {
-            ...result.answers[existingAnswerIndex],
-            state,
-            question: question || result.answers[existingAnswerIndex].question,
-            answer: answer || result.answers[existingAnswerIndex].answer,
-          };
-        } else {
-          // Add new answer
-          result.answers.push({
-            id,
-            state,
-            question,
-            answer,
-          });
-        }
-      }
-    });
-
-    return result;
-  };
-
-  const [aggregatedEvents, setAggregatedEvents] = useState({
+  // Initialize the result structure
+  const result = {
     retrieve: null,
     analyze: null,
     answers: [],
+  };
+
+  // Process each event
+  events.forEach((event) => {
+    const { event: eventType, state, id, question, answer } = event;
+
+    if (eventType === "retrieve") {
+      // Update retrieve status
+      result.retrieve = { state };
+    } else if (eventType === "analyze") {
+      // Update analyze status
+      result.analyze = { state };
+    } else if (eventType === "answer" && id) {
+      // Find existing answer with the same id or create a new one
+      const existingAnswerIndex = result.answers.findIndex(
+        (a) => a.id === id,
+      );
+
+      if (existingAnswerIndex >= 0) {
+        // Update existing answer
+        result.answers[existingAnswerIndex] = {
+          ...result.answers[existingAnswerIndex],
+          state,
+          question: question || result.answers[existingAnswerIndex].question,
+          answer: answer || result.answers[existingAnswerIndex].answer,
+        };
+      } else {
+        // Add new answer
+        result.answers.push({
+          id,
+          state,
+          question,
+          answer,
+        });
+      }
+    }
   });
 
-  useEffect(() => {
-    setAggregatedEvents(aggregateEvents(events));
-  }, [events]);
+  return result;
+};
+
+export default function Component({ events }) {
+
+  const aggregatedEvents = useMemo(() => aggregateEvents(events), [events]);
 
   const { retrieve, analyze, answers } = aggregatedEvents;
 
