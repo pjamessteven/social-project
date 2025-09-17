@@ -24,7 +24,7 @@ import {
   MessageSquare,
   UserSearch,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 export default function Component({ events }) {
   const aggregateEvents = (events) => {
@@ -121,23 +121,45 @@ export default function Component({ events }) {
     }
   };
 
-
   // true if any step is currently running
   const isRunning =
     retrieve?.state === "inprogress" ||
     analyze?.state === "inprogress" ||
     answers.some((a) => a.state === "inprogress");
 
-  const thinkingStatus =  useMemo(() => {
-    let status = 'Deep analysis completed'
-    if (retrieve.state === 'inprogress') {
-      return 'Retrieving detrans experiences that are most relevant to your query.'
-    } else if (analyze?.state === "inprogress") {
-      return 'Analyzing experiences and generating meta questions.'
-    } else if(answers.some((a) => a.state === "inprogress") {
-        return answer.question
+  // State to cycle through answer questions
+  const [currentAnswerIndex, setCurrentAnswerIndex] = useState(0);
+
+  // Effect to cycle through answer questions every 5 seconds when not retrieving or analyzing
+  useEffect(() => {
+    if (
+      retrieve?.state !== "inprogress" &&
+      analyze?.state !== "inprogress" &&
+      answers.length > 0
+    ) {
+      const interval = setInterval(() => {
+        setCurrentAnswerIndex((prevIndex) => (prevIndex + 1) % answers.length);
+      }, 5000);
+      return () => clearInterval(interval);
     }
-  }, [retrieve.state, analyze.state, answer, isRunning]) 
+  }, [retrieve?.state, analyze?.state, answers.length]);
+
+  const thinkingStatus = useMemo(() => {
+    if (retrieve?.state === "inprogress") {
+      return "Retrieving detrans experiences that are most relevant to your query.";
+    } else if (analyze?.state === "inprogress") {
+      return "Analyzing experiences and generating meta questions.";
+    } else if (answers.some((a) => a.state === "inprogress")) {
+      // Find the currently in-progress answer
+      const inProgressAnswer = answers.find((a) => a.state === "inprogress");
+      return inProgressAnswer ? inProgressAnswer.question : "";
+    } else if (answers.length > 0) {
+      // Cycle through answer questions every 5 seconds
+      return answers[currentAnswerIndex]?.question || "";
+    } else {
+      return "Deep analysis completed";
+    }
+  }, [retrieve?.state, analyze?.state, answers, currentAnswerIndex]);
 
   return (
     <div className="not-prose mx-auto w-full max-w-4xl mb-4 md:mb-8 space-y-4 text-foreground rounded-xl transition-colors duration-300">
