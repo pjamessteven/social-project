@@ -27,6 +27,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 
 export default function Component({ events }) {
+
   const aggregateEvents = (events) => {
     if (!events || events.length === 0)
       return { retrieve: null, analyze: null, answers: [] };
@@ -41,7 +42,6 @@ export default function Component({ events }) {
     // Process each event
     events.forEach((event) => {
       const { event: eventType, state, id, question, answer } = event;
-      console.log("EVENT", eventType, state, id, event);
 
       if (eventType === "retrieve") {
         // Update retrieve status
@@ -85,7 +85,6 @@ export default function Component({ events }) {
   });
 
   useEffect(() => {
-    console.log('SET EVENTS!')
     setAggregatedEvents(aggregateEvents(events));
   }, [events]);
 
@@ -211,7 +210,7 @@ export default function Component({ events }) {
           <AccordionTrigger className="px-4 py-4 text-sm font-medium italic opacity-70">
             {thinkingStatus}
           </AccordionTrigger>
-          <AccordionContent className="space-y-4 px-4 pt-2 pb-4">
+          <AccordionContent className="space-y-4 px-4 pt-1 pb-4">
             {/* Retrieve Panel */}
             <Card
               className={cn(
