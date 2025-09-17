@@ -42,6 +42,18 @@ export default function RedditEmbed({
           </a>
         </div>
 
+        {imageUrl && (
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            <div className="m-4 aspect-video overflow-hidden rounded-lg">
+              <img
+                src={imageUrl}
+                alt={`Preview for ${title}`}
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </a>
+        )}
+
         {/* Meta Information Section */}
         <div className="text-muted-foreground m-4 text-sm">
           Posted by{" "}
