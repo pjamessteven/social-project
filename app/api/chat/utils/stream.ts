@@ -45,7 +45,7 @@ export interface StreamCallbacks {
  * @returns A readable stream of data.
  */
 export function toDataStream(
-  stream: AsyncIterable<WorkflowEventData<unknown>>,
+  stream: AsyncIterable<WorkflowEvent<unknown>>,
   options: {
     callbacks?: StreamCallbacks;
     context?: WorkflowContext;
@@ -65,11 +65,9 @@ export function toDataStream(
       }
 
       for await (const event of stream) {
-        // @ts-expect-error - id is not in the type, but it exists on the event object
         if (processedEventIds.has(event.id)) {
           continue;
         }
-        // @ts-expect-error - id is not in the type, but it exists on the event object
         processedEventIds.add(event.id);
         const state = (context as any)?.state;
         if (state?.isReporting && (event.data as any)?.type === "ui_event") {

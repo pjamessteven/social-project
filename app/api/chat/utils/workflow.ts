@@ -6,6 +6,7 @@ import {
   type AgentInputData,
   type Workflow,
   type WorkflowContext,
+  type WorkflowEvent,
   type WorkflowEventData,
 } from "@llamaindex/workflow";
 import {
@@ -63,10 +64,10 @@ export async function runWorkflow({
 }
 
 export function processWorkflowStream(
-  stream: WorkflowStream<WorkflowEventData<unknown>>,
+  stream: WorkflowStream<WorkflowEvent<unknown>>,
 ) {
   return stream.pipeThrough(
-    new TransformStream<WorkflowEventData<unknown>, WorkflowEventData<unknown>>(
+    new TransformStream<WorkflowEvent<unknown>, WorkflowEvent<unknown>>(
       {
         async transform(event, controller) {
           let transformedEvent = event;
