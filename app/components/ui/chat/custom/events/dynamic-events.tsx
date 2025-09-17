@@ -7,7 +7,7 @@ import {
   MessageAnnotationType,
   useChatMessage,
 } from "@llamaindex/chat-ui";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { DynamicComponentErrorBoundary } from "./error-boundary";
 import { ComponentDef } from "./types";
 
@@ -67,13 +67,17 @@ export const DynamicEvents = ({
     });
   }, [annotations, componentDefs]);
 
-  const components: EventComponent[] = componentDefs
-    .map((comp) => {
-      const events = getAnnotationData<JSONValue>(message, comp.type);
-      if (!events?.length) return null;
-      return { ...comp, events };
-    })
-    .filter((comp) => comp !== null);
+  const components: EventComponent[] = useMemo(
+    () =>
+      componentDefs
+        .map((comp) => {
+          const events = getAnnotationData<JSONValue>(message, comp.type);
+          if (!events?.length) return null;
+          return { ...comp, events };
+        })
+        .filter((comp) => comp !== null),
+    [componentDefs, message],
+  );
 
   if (components.length === 0) return null;
   if (hasErrors) return null;
