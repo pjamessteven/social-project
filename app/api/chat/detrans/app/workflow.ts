@@ -89,7 +89,6 @@ type UIEventData = z.infer<typeof UIEventSchema>;
 const uiEvent = workflowEvent<{
   type: "ui_event";
   data: UIEventData;
-  isReporting: boolean;
 }>();
 
 type DeepResearchState = {
@@ -98,6 +97,7 @@ type DeepResearchState = {
   userRequest: MessageContent;
   totalQuestions: number;
   researchResults: Map<string, ResearchResult>;
+  isReporting?: boolean;
 };
 // workflow definition
 export function getWorkflow(index: VectorStoreIndex, userIp: string) {
