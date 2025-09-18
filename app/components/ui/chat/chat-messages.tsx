@@ -60,6 +60,7 @@ export default function CustomChatMessages({
                       {mode == "affirm" ? (
                         <Link
                           key={index}
+                          prefetch={false}
                           href={
                             (isDev ? "/chat/" : "https://detrans.ai/chat/") +
                             slugify(lastUserMessage?.content as string)
@@ -72,6 +73,7 @@ export default function CustomChatMessages({
                       ) : (
                         <Link
                           key={index}
+                          prefetch={false}
                           href={
                             (isDev
                               ? "/affirm/chat/"

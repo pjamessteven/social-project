@@ -31,6 +31,7 @@ function SuggestedQuestionsAnnotations() {
     <div className="mt-2 flex flex-col gap-2">
       {questions.map((question, index) => (
         <Link
+          prefetch={false}
           key={index}
           href={"/chat/" + slugify(question)}
           className="cursor-pointer font-medium italic underline hover:underline"

@@ -91,7 +91,6 @@ function ChatSectionPanel({
   // fetch component definitions and use Babel to tranform JSX code to JS code
   // this is triggered only once when the page is initialised
   useEffect(() => {
-    console.log("mode", mode);
     fetchComponentDefinitions({ mode }).then(({ components, errors }) => {
       setComponentDefs(components);
       if (errors.length > 0) {

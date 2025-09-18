@@ -386,6 +386,7 @@ export async function QuestionCategories({
             {category.questions.map(
               (question: string, questionIndex: number) => (
                 <Link
+                  prefetch={false}
                   href={
                     mode === "detrans"
                       ? "/chat/" + slugify(question)
@@ -419,6 +420,7 @@ export async function QuestionCategories({
                 (question: string, questionIndex: number) => (
                   <div className="flex items-center" key={questionIndex}>
                     <Link
+                      prefetch={false}
                       href={
                         (isDev ? "/chat/" : "https://detrans.ai/chat/") +
                         slugify(question)
