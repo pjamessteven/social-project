@@ -5,27 +5,39 @@ import { NextResponse } from "next/server";
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
-
   const { pathname } = req.nextUrl;
-  const host = req.headers.get("host")?.toLowerCase().replace(":443", "");
+
+  const host = req.headers.get("host");
+
+  const allowedHosts = ["detrans.ai", "genderaffirming.ai"];
+
+  if (host && !allowedHosts.includes(host)) {
+    const url = req.nextUrl.clone();
+    url.hostname = "detrans.ai";
+    url.protocol = "https";
+    url.port = "";
+
+    return NextResponse.redirect(url.toString(), 301);
+  }
 
   if (host === "genderaffirming.ai") {
     // map the public path to the internal “/affirm/…” folder
     const rewriteMap: Record<string, string> = {
       "/": "/affirm",
       "/chat": "/affirm/chat",
-      "/prompts": "/affirm_prompts",
-      "/terms": "/affirm_terms",
-      "/contact": "/affirm_contact",
+      "/prompts": "/affirm/prompts",
+      "/terms": "/affirm/terms",
+      "/contact": "/affirm/contact",
     };
 
     const internal = rewriteMap[pathname];
     if (internal) {
       const url = req.nextUrl.clone();
       url.pathname = internal;
-      return NextResponse.rewrite(url);
+      return NextResponse.redirect(url);
     }
   }
+
   /*
   const ip = getIP(req);
 
@@ -40,7 +52,6 @@ export async function middleware(req: NextRequest) {
   res.headers.set("X-RateLimit-Remaining", String(remaining));
   res.headers.set("X-RateLimit-Limit", "10");
   */
-
   res.headers.set("x-pathname", req.nextUrl.pathname);
 
   return res;

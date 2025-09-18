@@ -91,6 +91,8 @@ export async function POST(req: NextRequest) {
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
         "X-Vercel-AI-Data-Stream": "v1",
+        "Cache-Control": "no-cache",
+        "X-Accel-Buffering": "no",
       },
     });
   } catch (error) {
