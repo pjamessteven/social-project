@@ -13,7 +13,7 @@ const nextConfig = {
           {
             type: "header",
             key: "host",
-            value: "genderaffirmation\\.ai",
+            value: "genderaffirming\\.ai",
           },
         ],
         destination: "/affirm",
@@ -24,7 +24,7 @@ const nextConfig = {
           {
             type: "header",
             key: "host",
-            value: "genderaffirmation\\.ai",
+            value: "genderaffirming\\.ai",
           },
         ],
         destination: "/affirm/chat",
@@ -35,7 +35,7 @@ const nextConfig = {
           {
             type: "header",
             key: "host",
-            value: "genderaffirmation\\.ai",
+            value: "genderaffirming\\.ai",
           },
         ],
         destination: "/affirm/prompts",
@@ -46,7 +46,7 @@ const nextConfig = {
           {
             type: "header",
             key: "host",
-            value: "genderaffirmation\\.ai",
+            value: "genderaffirming\\.ai",
           },
         ],
         destination: "/affirm/terms",
@@ -57,7 +57,7 @@ const nextConfig = {
           {
             type: "header",
             key: "host",
-            value: "genderaffirmation\\.ai",
+            value: "genderaffirming\\.ai",
           },
         ],
         destination: "/affirm/contact",
