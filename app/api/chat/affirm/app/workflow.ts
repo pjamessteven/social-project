@@ -1,4 +1,5 @@
 import { CachedLLM, RedisCache } from "@/app/api/shared/cache";
+import { incrementPageViews } from "@/app/lib/cache";
 import { connectRedis } from "@/app/lib/redis";
 import { replayCached } from "@/app/lib/replayCached";
 import { OpenAI } from "@llamaindex/openai";
@@ -134,6 +135,8 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
 
       if (!userInput) throw new Error("Invalid input");
       originalQuestion = userInput as string;
+
+      incrementPageViews("affirm", originalQuestion);
 
       state.memory.add({ role: "user", content: userInput });
       state.userRequest = userInput;

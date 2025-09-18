@@ -1,6 +1,6 @@
 import ChatPage from "@/app/components/content/ChatPage";
 import SeoChatPage from "@/app/components/content/SeoChatPage";
-import { getCached, incrementPageViews } from "@/app/lib/cache";
+import { getCached } from "@/app/lib/cache";
 import { isBot } from "@/app/lib/isBot";
 import {
   capitaliseWords,
@@ -35,8 +35,6 @@ export default async function DetransChatPage({
 
   const { question } = await params;
   const starterQuestion = deslugify(question);
-
-  await incrementPageViews("detrans", starterQuestion);
 
   if (bot) {
     // Return SSR cached final answers to question
