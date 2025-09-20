@@ -12,6 +12,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../../dropdown-menu";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "../../navigation-menu";
 import { cn } from "../../lib/utils";
 
 function NavLink({ href, label }: { href: string; label: string }) {
@@ -68,67 +76,97 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
         <div className="hidden items-center justify-end gap-0.5 p-1 md:flex">
           <NavLink href={!devAffirm ? "/" : "/affirm"} label="Portal" />
           
-          {/* Resources Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                size="sm"
-                variant="ghost"
-                className="rounded-full px-4 transition-all"
-              >
-                Resources
-                <ChevronDown className="ml-1 h-3 w-3" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem asChild>
-                <Link href={!devAffirm ? "/studies" : "/affirm/studies"}>
-                  Studies
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href={!devAffirm ? "/definitions" : "/affirm/definitions"}>
-                  Definitions
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href={!devAffirm ? "/facts" : "/affirm/facts"}>
-                  Facts
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <NavigationMenu>
+            <NavigationMenuList>
+              {/* Resources Menu */}
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="rounded-full px-4 text-sm font-medium">
+                  Resources
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid w-48 gap-1 p-2">
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href={!devAffirm ? "/studies" : "/affirm/studies"}
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <div className="text-sm font-medium leading-none">Studies</div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                          Academic research and studies
+                        </p>
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href={!devAffirm ? "/definitions" : "/affirm/definitions"}
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <div className="text-sm font-medium leading-none">Definitions</div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                          Key terms and concepts
+                        </p>
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href={!devAffirm ? "/facts" : "/affirm/facts"}
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <div className="text-sm font-medium leading-none">Facts</div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                          Important facts and statistics
+                        </p>
+                      </Link>
+                    </NavigationMenuLink>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
 
-          {/* About Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                size="sm"
-                variant="ghost"
-                className="rounded-full px-4 transition-all"
-              >
-                About
-                <ChevronDown className="ml-1 h-3 w-3" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem asChild>
-                <Link href={!devAffirm ? "/prompts" : "/affirm/prompts"}>
-                  System Prompts
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href={!devAffirm ? "/terms" : "/affirm/terms"}>
-                  Terms
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href={!devAffirm ? "/contact" : "/affirm/contact"}>
-                  Contact
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+              {/* About Menu */}
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="rounded-full px-4 text-sm font-medium">
+                  About
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid w-48 gap-1 p-2">
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href={!devAffirm ? "/prompts" : "/affirm/prompts"}
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <div className="text-sm font-medium leading-none">System Prompts</div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                          View the AI system prompts
+                        </p>
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href={!devAffirm ? "/terms" : "/affirm/terms"}
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <div className="text-sm font-medium leading-none">Terms</div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                          Privacy policy and terms
+                        </p>
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href={!devAffirm ? "/contact" : "/affirm/contact"}
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <div className="text-sm font-medium leading-none">Contact</div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                          Get in touch with us
+                        </p>
+                      </Link>
+                    </NavigationMenuLink>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
         </div>
         {/* Donate Button - Always visible */}
         <Link
