@@ -154,6 +154,43 @@ export default async function StudiesPage() {
         exploratory therapists. Therapy first requires all pracitioners to agree
         to the following membership statement:
       </p>
+      
+      <p>
+        Therapy First membership is open to professionals in the mental health field who are in agreement with the values of the organization as outlined below.
+      </p>
+
+      <ul>
+        <li>People who are experiencing distress regarding gender or biological sex should have access to ethical, developmentally appropriate psychotherapy.</li>
+        
+        <li>We reject treatments that set out to change sexual orientation or gender identity. Practices that use coercive techniques have no place in health care.</li>
+        
+        <li>We respect client autonomy and do not impose our own beliefs, values, opinions, ideology, religion, or goals on clients. Conflating exploration of gender identity with "conversion therapy" betrays a misunderstanding of the basic principles of psychotherapy.</li>
+        
+        <li>Psychological approaches should be the first-line treatment for gender dysphoria. Psychological interventions avoid the risks of social and medical transition, and support client autonomy by facilitating deeper self-understanding.</li>
+        
+        <li>Given the lack of long-term, peer-reviewed, longitudinal evidence and the risk of regret, medical interventions for gender dysphoria in children and teens are experimental and should be avoided if possible.</li>
+        
+        <li>We hold a developmental understanding of gender dysphoria and see it as arising in a context. The assumption that gender is an innate quality of the individual is unhelpful as it ignores the multiple factors that may be contributing to the individual's distress. Overlooking these issues can deprive individuals of comprehensive psychological care.</li>
+        
+        <li>We recognize that behavior, feelings, and beliefs, including those related to gender identity, are influenced by factors of which we may not be fully conscious. The exploration of unconscious factors is not inherently pathologizing. Rather, its purpose is to expand and deepen self-understanding.</li>
+        
+        <li>Psychotherapy provides an individualized process to clients who wish to deepen their own self-understanding with therapists who apply established, evidence-based, ethical principles of therapy to individuals experiencing gender-related distress.</li>
+        
+        <li>Adult clients retain the right to bodily autonomy and the role of psychotherapy is to create a space where the client can deepen their understanding of gender dysphoria in the broader scope of their lives.</li>
+        
+        <li>Beginning medical interventions does not preclude an individual from the benefits of psychotherapy, which can offer meaningful support and exploration during the complex and dynamic process of transition.</li>
+        
+        <li>The gender affirmation model of therapy is outdated and inadequate. Gender-affirmative therapies can fail to consider the following:
+          <ul>
+            <li>Gender and sexuality are complex, develop over time, and are influenced by many factors (biological, psychological, social, etc.).</li>
+            <li>The significant medical, psychological, and social risks and unknowns associated with transition (both social and medical/surgical) require honest examination.</li>
+            <li>Personal identity is not static. Identity exploration is a normal part of adolescent and young adult development.</li>
+            <li>It is extremely difficult to determine if a gender identity experienced during childhood and adolescence will remain fixed into adulthood. Because identity remains in flux during adolescence, clinicians should be very circumspect about recommending therapies that result in irreversible changes.</li>
+            <li>Young people may not have the capacity to fully comprehend the impact of gender transition and the treatments they desire.</li>
+            <li>Same-sex attracted youth are often gender nonconforming and may experience distress as they come to terms with their sexual orientation. Gay, lesbian, and bisexual youth may need help and support to accept themselves as they are.</li>
+          </ul>
+        </li>
+      </ul>
     </div>
   );
 }
