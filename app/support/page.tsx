@@ -69,6 +69,41 @@ export default async function StudiesPage() {
         with the Ordem dos Psicologos Portugueses (OPP). She is available for online consultations 
         by secure videocall.
       </p>
+      
+      <h4>Anastassis Spiliadis</h4>
+      <p>
+        <a
+          href="https://www.detransfoundation.com/anastassis-spilliadis.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline"
+        >
+          Anastassis Spiliadis
+        </a>{" "}
+        is a Psychologist, Systemic & Family Psychotherapist and registered Clinical Supervisor 
+        working therapeutically with adolescents, individual adults, couples, parents and families. 
+        He supervises and trains clinicians in different theoretical and clinical approaches and 
+        is based in London and Athens.
+      </p>
+      <p>
+        He worked for four years at the Gender Identity Development Service at the Tavistock in London, 
+        where he established and led the first Family Therapy & Consultation Service in the NHS for 
+        gender-questioning young people. He resigned from GIDS due to disagreements with the lack of 
+        a therapeutic model in understanding gender identity difficulties and later developed the 
+        Gender Exploratory Model/Theory.
+      </p>
+      <p>
+        Anastassis holds multiple advanced degrees including an MSc in Systemic Family Therapy from 
+        King's College London, an MSc in Psychology from Westminster University, and is currently 
+        studying towards a PhD in Psychology at King's College London. He is registered with the 
+        UK Council for Psychotherapy (UKCP), the British Psychological Society (BPS) and the 
+        Association for Family Therapy (AFT).
+      </p>
+      <p>
+        He has worked therapeutically with hundreds of gender-questioning and trans-identified young 
+        people and adults, as well as with desisters and detransitioners in both NHS and private 
+        practice settings.
+      </p>
     </div>
   );
 }
