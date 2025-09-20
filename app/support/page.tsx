@@ -15,6 +15,16 @@ export default async function StudiesPage() {
             Detrans Wiki on Reddit
           </a>
         </li>
+        <li>
+          <a
+            href="https://discord.com/invite/SXgyJ3BKZQ"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            Official /r/detrans Discord Server
+          </a>
+        </li>
       </ul>
     </div>
   );
