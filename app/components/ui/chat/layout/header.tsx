@@ -1,11 +1,17 @@
 "use client";
 
-import { Menu, MessageCircleHeart, X } from "lucide-react";
+import { ChevronDown, Menu, MessageCircleHeart, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Button } from "../../button";
 import { Dialog, DialogContent, DialogTrigger } from "../../dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../../dropdown-menu";
 import { cn } from "../../lib/utils";
 
 function NavLink({ href, label }: { href: string; label: string }) {
@@ -61,18 +67,68 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
         {/* Desktop Navigation - hidden on mobile */}
         <div className="hidden items-center justify-end gap-0.5 p-1 md:flex">
           <NavLink href={!devAffirm ? "/" : "/affirm"} label="Portal" />
-          <NavLink
-            href={!devAffirm ? "/prompts" : "/affirm/prompts"}
-            label="System Prompts"
-          />
-          <NavLink
-            href={!devAffirm ? "/terms" : "/affirm/terms"}
-            label="Terms"
-          />
-          <NavLink
-            href={!devAffirm ? "/contact" : "/affirm/contact"}
-            label="Contact"
-          />
+          
+          {/* Resources Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                size="sm"
+                variant="ghost"
+                className="rounded-full px-4 transition-all"
+              >
+                Resources
+                <ChevronDown className="ml-1 h-3 w-3" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem asChild>
+                <Link href={!devAffirm ? "/studies" : "/affirm/studies"}>
+                  Studies
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href={!devAffirm ? "/definitions" : "/affirm/definitions"}>
+                  Definitions
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href={!devAffirm ? "/facts" : "/affirm/facts"}>
+                  Facts
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* About Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                size="sm"
+                variant="ghost"
+                className="rounded-full px-4 transition-all"
+              >
+                About
+                <ChevronDown className="ml-1 h-3 w-3" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem asChild>
+                <Link href={!devAffirm ? "/prompts" : "/affirm/prompts"}>
+                  System Prompts
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href={!devAffirm ? "/terms" : "/affirm/terms"}>
+                  Terms
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href={!devAffirm ? "/contact" : "/affirm/contact"}>
+                  Contact
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
         {/* Donate Button - Always visible */}
         <Link
@@ -123,55 +179,112 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     Portal
                   </Button>
                 </Link>
-                <Link
-                  href={!devAffirm ? "/prompts" : "/affirm/prompts"}
-                  onClick={() => setIsOpen(false)}
-                >
-                  <Button
-                    variant="ghost"
-                    className={cn(
-                      "w-full justify-start",
-                      pathname === "/prompts" && "bg-muted",
-                    )}
+                
+                {/* Resources Section */}
+                <div className="pt-2">
+                  <h3 className="mb-2 px-3 text-sm font-medium text-muted-foreground">
+                    Resources
+                  </h3>
+                  <Link
+                    href={!devAffirm ? "/studies" : "/affirm/studies"}
+                    onClick={() => setIsOpen(false)}
                   >
-                    System Prompts
-                  </Button>
-                </Link>
-                <Link
-                  href={!devAffirm ? "/terms" : "/affirm/terms"}
-                  onClick={() => setIsOpen(false)}
-                >
-                  <Button
-                    variant="ghost"
-                    className={cn(
-                      "w-full justify-start",
-                      pathname === "/terms" && "bg-muted",
-                    )}
+                    <Button
+                      variant="ghost"
+                      className={cn(
+                        "w-full justify-start",
+                        pathname === "/studies" && "bg-muted",
+                      )}
+                    >
+                      Studies
+                    </Button>
+                  </Link>
+                  <Link
+                    href={!devAffirm ? "/definitions" : "/affirm/definitions"}
+                    onClick={() => setIsOpen(false)}
                   >
-                    Terms
-                  </Button>
-                </Link>
-                <Link
-                  href={!devAffirm ? "/contact" : "/affirm/contact"}
-                  onClick={() => setIsOpen(false)}
-                >
-                  <Button
-                    variant="ghost"
-                    className={cn(
-                      "w-full justify-start",
-                      pathname === "/contact" && "bg-muted",
-                    )}
+                    <Button
+                      variant="ghost"
+                      className={cn(
+                        "w-full justify-start",
+                        pathname === "/definitions" && "bg-muted",
+                      )}
+                    >
+                      Definitions
+                    </Button>
+                  </Link>
+                  <Link
+                    href={!devAffirm ? "/facts" : "/affirm/facts"}
+                    onClick={() => setIsOpen(false)}
                   >
-                    Contact
-                  </Button>
-                </Link>
+                    <Button
+                      variant="ghost"
+                      className={cn(
+                        "w-full justify-start",
+                        pathname === "/facts" && "bg-muted",
+                      )}
+                    >
+                      Facts
+                    </Button>
+                  </Link>
+                </div>
+
+                {/* About Section */}
+                <div className="pt-2">
+                  <h3 className="mb-2 px-3 text-sm font-medium text-muted-foreground">
+                    About
+                  </h3>
+                  <Link
+                    href={!devAffirm ? "/prompts" : "/affirm/prompts"}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Button
+                      variant="ghost"
+                      className={cn(
+                        "w-full justify-start",
+                        pathname === "/prompts" && "bg-muted",
+                      )}
+                    >
+                      System Prompts
+                    </Button>
+                  </Link>
+                  <Link
+                    href={!devAffirm ? "/terms" : "/affirm/terms"}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Button
+                      variant="ghost"
+                      className={cn(
+                        "w-full justify-start",
+                        pathname === "/terms" && "bg-muted",
+                      )}
+                    >
+                      Terms
+                    </Button>
+                  </Link>
+                  <Link
+                    href={!devAffirm ? "/contact" : "/affirm/contact"}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Button
+                      variant="ghost"
+                      className={cn(
+                        "w-full justify-start",
+                        pathname === "/contact" && "bg-muted",
+                      )}
+                    >
+                      Contact
+                    </Button>
+                  </Link>
+                </div>
+
                 <Link
                   href={!devAffirm ? "/donate" : "/affirm/donate"}
                   onClick={() => setIsOpen(false)}
                 >
                   <Button
                     variant="destructive"
-                    className="mt-2 w-full justify-start"
+                    className="mt-4 w-full justify-start"
                   >
                     Donate
                   </Button>
