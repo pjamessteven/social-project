@@ -5,7 +5,16 @@ export default async function StudiesPage() {
 
       <h2>Online Support groups:</h2>
       <ul>
-        <li>Detrans Wiki </li>
+        <li>
+          <a
+            href="https://www.reddit.com/r/detrans/wiki/support/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            Detrans Wiki
+          </a>
+        </li>
       </ul>
     </div>
   );
