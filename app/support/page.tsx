@@ -7,6 +7,16 @@ export default async function StudiesPage() {
       <ul>
         <li>
           <a
+            href="https://www.reddit.com/r/detrans/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            Detrans Community on Reddit
+          </a>
+        </li>
+        <li>
+          <a
             href="https://www.reddit.com/r/detrans/wiki/support/"
             target="_blank"
             rel="noopener noreferrer"
@@ -26,6 +36,7 @@ export default async function StudiesPage() {
           </a>
         </li>
       </ul>
+      <h2>Get one-on-one therapy:</h2>
     </div>
   );
 }
