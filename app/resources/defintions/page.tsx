@@ -56,6 +56,12 @@ export default async function DefinitionsPage() {
       <p>
         Some people may have identified as transgender for many years and have undergone medical interventions such as hormones and surgeries that have changed their bodies irreversibly. They may feel that they regret initiating a medical gender transition but they also continue to identify as transgender and/or continue with cross sex hormones.
       </p>
+      
+      <hr />
+      
+      <p className="text-sm text-gray-600 dark:text-gray-400">
+        Source: <a href="https://www.detransfoundation.com/sex-and-gender-definitions.html" target="_blank" rel="noopener noreferrer" className="underline">The Detrans Foundation</a>
+      </p>
     </div>
   );
 }
