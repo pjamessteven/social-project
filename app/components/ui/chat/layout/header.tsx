@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Button } from "../../button";
-import { Drawer, DrawerContent, DrawerTrigger } from "../../drawer";
+import { Dialog, DialogContent, DialogTrigger } from "../../dialog";
 import { cn } from "../../lib/utils";
 
 function NavLink({ href, label }: { href: string; label: string }) {
@@ -85,8 +85,8 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
         </Link>
 
         {/* Mobile Menu */}
-        <Drawer open={isOpen} onOpenChange={setIsOpen}>
-          <DrawerTrigger asChild>
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          <DialogTrigger asChild>
             <Button
               size="icon"
               variant="ghost"
@@ -95,8 +95,8 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
             >
               <Menu className="h-5 w-5" />
             </Button>
-          </DrawerTrigger>
-          <DrawerContent>
+          </DialogTrigger>
+          <DialogContent className="fixed right-0 top-0 h-full w-80 max-w-80 translate-x-0 translate-y-0 rounded-none border-l p-0 data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right">
             <div className="p-4">
               <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-lg font-semibold">Menu</h2>
@@ -178,8 +178,8 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                 </Link>
               </div>
             </div>
-          </DrawerContent>
-        </Drawer>
+          </DialogContent>
+        </Dialog>
 
         {/* Donate Button - Mobile always visible */}
         <Link href="/donate" className="hidden md:hidden">
