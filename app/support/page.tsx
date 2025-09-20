@@ -12,7 +12,7 @@ export default async function StudiesPage() {
             rel="noopener noreferrer"
             className="underline"
           >
-            Detrans Wiki
+            Detrans Wiki on Reddit
           </a>
         </li>
       </ul>
