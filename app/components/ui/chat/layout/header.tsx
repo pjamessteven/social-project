@@ -388,17 +388,19 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         <Button
                           variant="ghost"
                           className={cn(
-                            "h-auto w-full flex-row items-center justify-start py-3",
+                            "h-auto w-full flex-row items-center justify-between py-3",
                             pathname === "/studies" && "bg-muted",
                           )}
                         >
-                          <ChartNoAxesCombined className="h-4 w-4" />
-                          <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">
-                              Verified Statistics
-                            </div>
-                            <div className="text-muted-foreground text-xs">
-                              statsforgender.org
+                          <div className="flex flex-row items-center">
+                            <ChartNoAxesCombined className="h-4 w-4" />
+                            <div className="ml-4 flex flex-col items-start">
+                              <div className="text-sm font-medium">
+                                Verified Statistics
+                              </div>
+                              <div className="text-muted-foreground text-xs">
+                                statsforgender.org
+                              </div>
                             </div>
                           </div>
                           <ExternalLink className="ml-2 h-4" />
