@@ -228,120 +228,128 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
 
                 {/* Resources Section */}
                 <div className="pt-2">
-                  <h3 className="text-muted-foreground mb-2 px-3 text-sm font-medium">
-                    Resources
-                  </h3>
-                  <Link
-                    href={!devAffirm ? "/studies" : "/affirm/studies"}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <Button
-                      variant="ghost"
-                      className={cn(
-                        "h-auto w-full flex-col items-start justify-start py-3",
-                        pathname === "/studies" && "bg-muted",
-                      )}
-                    >
-                      <div className="text-sm font-medium">Studies</div>
-                      <div className="text-muted-foreground text-xs">
-                        Academic research and studies
-                      </div>
-                    </Button>
-                  </Link>
-                  <Link
-                    href={!devAffirm ? "/definitions" : "/affirm/definitions"}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <Button
-                      variant="ghost"
-                      className={cn(
-                        "h-auto w-full flex-col items-start justify-start py-3",
-                        pathname === "/definitions" && "bg-muted",
-                      )}
-                    >
-                      <div className="text-sm font-medium">Definitions</div>
-                      <div className="text-muted-foreground text-xs">
-                        Key terms and concepts
-                      </div>
-                    </Button>
-                  </Link>
-                  <Link
-                    href={!devAffirm ? "/support" : "/affirm/support"}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <Button
-                      variant="ghost"
-                      className={cn(
-                        "h-auto w-full flex-col items-start justify-start py-3",
-                        pathname === "/support" && "bg-muted",
-                      )}
-                    >
-                      <div className="text-sm font-medium">
-                        Get Detransition Support
-                      </div>
-                      <div className="text-muted-foreground text-xs">
-                        Find community and therapists
-                      </div>
-                    </Button>
-                  </Link>
+                  <div className="rounded-lg border border-border p-3">
+                    <h3 className="text-muted-foreground mb-2 text-sm font-medium">
+                      Resources
+                    </h3>
+                    <div className="space-y-1">
+                      <Link
+                        href={!devAffirm ? "/studies" : "/affirm/studies"}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-col items-start justify-start py-3",
+                            pathname === "/studies" && "bg-muted",
+                          )}
+                        >
+                          <div className="text-sm font-medium">Studies</div>
+                          <div className="text-muted-foreground text-xs">
+                            Academic research and studies
+                          </div>
+                        </Button>
+                      </Link>
+                      <Link
+                        href={!devAffirm ? "/definitions" : "/affirm/definitions"}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-col items-start justify-start py-3",
+                            pathname === "/definitions" && "bg-muted",
+                          )}
+                        >
+                          <div className="text-sm font-medium">Definitions</div>
+                          <div className="text-muted-foreground text-xs">
+                            Key terms and concepts
+                          </div>
+                        </Button>
+                      </Link>
+                      <Link
+                        href={!devAffirm ? "/support" : "/affirm/support"}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-col items-start justify-start py-3",
+                            pathname === "/support" && "bg-muted",
+                          )}
+                        >
+                          <div className="text-sm font-medium">
+                            Get Detransition Support
+                          </div>
+                          <div className="text-muted-foreground text-xs">
+                            Find community and therapists
+                          </div>
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
 
                 {/* About Section */}
                 <div className="pt-2">
-                  <h3 className="text-muted-foreground mb-2 px-3 text-sm font-medium">
-                    About
-                  </h3>
-                  <Link
-                    href={!devAffirm ? "/prompts" : "/affirm/prompts"}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <Button
-                      variant="ghost"
-                      className={cn(
-                        "h-auto w-full flex-col items-start justify-start py-3",
-                        pathname === "/prompts" && "bg-muted",
-                      )}
-                    >
-                      <div className="text-sm font-medium">How It Works</div>
-                      <div className="text-muted-foreground text-xs">
-                        View the AI system prompts
-                      </div>
-                    </Button>
-                  </Link>
-                  <Link
-                    href={!devAffirm ? "/terms" : "/affirm/terms"}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <Button
-                      variant="ghost"
-                      className={cn(
-                        "h-auto w-full flex-col items-start justify-start py-3",
-                        pathname === "/terms" && "bg-muted",
-                      )}
-                    >
-                      <div className="text-sm font-medium">Terms</div>
-                      <div className="text-muted-foreground text-xs">
-                        Privacy policy and terms
-                      </div>
-                    </Button>
-                  </Link>
-                  <Link
-                    href={!devAffirm ? "/contact" : "/affirm/contact"}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <Button
-                      variant="ghost"
-                      className={cn(
-                        "h-auto w-full flex-col items-start justify-start py-3",
-                        pathname === "/contact" && "bg-muted",
-                      )}
-                    >
-                      <div className="text-sm font-medium">Contact</div>
-                      <div className="text-muted-foreground text-xs">
-                        Get in touch with Peter
-                      </div>
-                    </Button>
-                  </Link>
+                  <div className="rounded-lg border border-border p-3">
+                    <h3 className="text-muted-foreground mb-2 text-sm font-medium">
+                      About
+                    </h3>
+                    <div className="space-y-1">
+                      <Link
+                        href={!devAffirm ? "/prompts" : "/affirm/prompts"}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-col items-start justify-start py-3",
+                            pathname === "/prompts" && "bg-muted",
+                          )}
+                        >
+                          <div className="text-sm font-medium">How It Works</div>
+                          <div className="text-muted-foreground text-xs">
+                            View the AI system prompts
+                          </div>
+                        </Button>
+                      </Link>
+                      <Link
+                        href={!devAffirm ? "/terms" : "/affirm/terms"}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-col items-start justify-start py-3",
+                            pathname === "/terms" && "bg-muted",
+                          )}
+                        >
+                          <div className="text-sm font-medium">Terms</div>
+                          <div className="text-muted-foreground text-xs">
+                            Privacy policy and terms
+                          </div>
+                        </Button>
+                      </Link>
+                      <Link
+                        href={!devAffirm ? "/contact" : "/affirm/contact"}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-col items-start justify-start py-3",
+                            pathname === "/contact" && "bg-muted",
+                          )}
+                        >
+                          <div className="text-sm font-medium">Contact</div>
+                          <div className="text-muted-foreground text-xs">
+                            Get in touch with Peter
+                          </div>
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="mt-4 pb-16">
