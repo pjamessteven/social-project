@@ -27,7 +27,7 @@ export async function QuestionCategories({
   return (
     <>
       {questions.map((category, categoryIndex) => (
-        <div key={categoryIndex} className="mb-12">
+        <div key={categoryIndex} className="mb-8">
           <h3 className="text-primary mb-2 text-2xl font-bold">
             {category.title}
           </h3>

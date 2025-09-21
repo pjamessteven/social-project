@@ -4,6 +4,8 @@ import DonationCard from "@/app/components/content/DonationCard";
 import {
   ArrowLeftRight,
   BookOpen,
+  ChartNoAxesCombined,
+  ExternalLink,
   FileText,
   Heart,
   HelpCircle,
@@ -141,6 +143,26 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           </p>
                         </div>
                       </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <a
+                        href="https://statsforgender.org/"
+                        target="_blank"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center justify-between gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                      >
+                        <div className="flex flex-row items-center">
+                          <ChartNoAxesCombined className="mt-0.5 mr-5 h-4 w-4 flex-shrink-0" />
+                          <div className="flex flex-col space-y-1">
+                            <div className="text-sm leading-none font-medium">
+                              Verified Statistics
+                            </div>
+                            <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                              statsforgender.org
+                            </p>
+                          </div>
+                        </div>
+                        <ExternalLink className="ml-2 h-4" />
+                      </a>
                     </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
@@ -360,6 +382,26 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           </div>
                         </Button>
                       </Link>
+                      <a href="https://statsforgender.org/" target="_blank">
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-row items-center justify-start py-3",
+                            pathname === "/studies" && "bg-muted",
+                          )}
+                        >
+                          <ChartNoAxesCombined className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">
+                              Verified Statistics
+                            </div>
+                            <div className="text-muted-foreground text-xs">
+                              statsforgender.org
+                            </div>
+                          </div>
+                          <ExternalLink className="ml-2 h-4" />
+                        </Button>
+                      </a>
                       <Link href={"/support"} onClick={() => setIsOpen(false)}>
                         <Button
                           variant="ghost"

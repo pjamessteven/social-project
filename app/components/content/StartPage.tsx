@@ -252,8 +252,18 @@ export async function StartPage({
           <QuestionCategories mode={mode} />
         </div>
         {mode === "detrans" && (
-          <div className="text-muted-foreground flex flex-col text-base italic opacity-90 sm:text-lg">
-            <p className="mt-16">
+          <div className="text-muted-foreground relative flex flex-col text-base italic opacity-90 sm:text-lg">
+            <div className="right-0 z-0 block w-[200px] sm:absolute sm:top-16 sm:-right-0 sm:w-[250px]">
+              <Image
+                className="dark:invert"
+                src="/vectorstock_29462911_transparent.png"
+                width={300}
+                height={300}
+                alt="Friends helping a friend"
+              />
+              <div className="absolute inset-0 dark:bg-black/40"></div>
+            </div>
+            <p className="mt-8 sm:mt-16">
               The truth can hurt, but it will set you free -
             </p>
             <p className="mt-1">All you need to do, is learn to just be.</p>
