@@ -234,11 +234,14 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <Button
                       variant="ghost"
                       className={cn(
-                        "w-full justify-start",
+                        "w-full justify-start flex-col items-start h-auto py-3",
                         pathname === "/studies" && "bg-muted",
                       )}
                     >
-                      Academic Research & Studies
+                      <div className="text-sm font-medium">Studies</div>
+                      <div className="text-xs text-muted-foreground">
+                        Academic research and studies
+                      </div>
                     </Button>
                   </Link>
                   <Link
@@ -248,25 +251,31 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <Button
                       variant="ghost"
                       className={cn(
-                        "w-full justify-start",
+                        "w-full justify-start flex-col items-start h-auto py-3",
                         pathname === "/definitions" && "bg-muted",
                       )}
                     >
-                      Word Definitions
+                      <div className="text-sm font-medium">Definitions</div>
+                      <div className="text-xs text-muted-foreground">
+                        Key terms and concepts
+                      </div>
                     </Button>
                   </Link>
                   <Link
-                    href={!devAffirm ? "/facts" : "/affirm/facts"}
+                    href={!devAffirm ? "/support" : "/affirm/support"}
                     onClick={() => setIsOpen(false)}
                   >
                     <Button
                       variant="ghost"
                       className={cn(
-                        "w-full justify-start",
+                        "w-full justify-start flex-col items-start h-auto py-3",
                         pathname === "/support" && "bg-muted",
                       )}
                     >
-                      Support
+                      <div className="text-sm font-medium">Get Detransition Support</div>
+                      <div className="text-xs text-muted-foreground">
+                        Find community and therapists
+                      </div>
                     </Button>
                   </Link>
                 </div>
@@ -283,11 +292,14 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <Button
                       variant="ghost"
                       className={cn(
-                        "w-full justify-start",
+                        "w-full justify-start flex-col items-start h-auto py-3",
                         pathname === "/prompts" && "bg-muted",
                       )}
                     >
-                      System Prompts
+                      <div className="text-sm font-medium">System Prompts</div>
+                      <div className="text-xs text-muted-foreground">
+                        View the AI system prompts
+                      </div>
                     </Button>
                   </Link>
                   <Link
@@ -297,11 +309,14 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <Button
                       variant="ghost"
                       className={cn(
-                        "w-full justify-start",
+                        "w-full justify-start flex-col items-start h-auto py-3",
                         pathname === "/terms" && "bg-muted",
                       )}
                     >
-                      Terms
+                      <div className="text-sm font-medium">Terms</div>
+                      <div className="text-xs text-muted-foreground">
+                        Privacy policy and terms
+                      </div>
                     </Button>
                   </Link>
                   <Link
@@ -311,11 +326,14 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <Button
                       variant="ghost"
                       className={cn(
-                        "w-full justify-start",
+                        "w-full justify-start flex-col items-start h-auto py-3",
                         pathname === "/contact" && "bg-muted",
                       )}
                     >
-                      Contact
+                      <div className="text-sm font-medium">Contact</div>
+                      <div className="text-xs text-muted-foreground">
+                        Get in touch with Peter
+                      </div>
                     </Button>
                   </Link>
                 </div>
