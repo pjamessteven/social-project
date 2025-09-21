@@ -94,49 +94,49 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <NavigationMenuLink asChild>
                       <Link
                         href={!devAffirm ? "/studies" : "/affirm/studies"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="flex items-center gap-2">
-                          <BookOpen className="h-4 w-4" />
+                        <BookOpen className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                        <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             Studies
                           </div>
+                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                            Academic research and studies
+                          </p>
                         </div>
-                        <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                          Academic research and studies
-                        </p>
                       </Link>
                     </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
                         href={"/definitions"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="flex items-center gap-2">
-                          <FileText className="h-4 w-4" />
+                        <FileText className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                        <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             Definitions
                           </div>
+                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                            Key terms and concepts
+                          </p>
                         </div>
-                        <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                          Key terms and concepts
-                        </p>
                       </Link>
                     </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
                         href={"/support"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="flex items-center gap-2">
-                          <Heart className="h-4 w-4" />
+                        <Heart className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                        <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             Get Detransition Support
                           </div>
+                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                            Find community and therapists
+                          </p>
                         </div>
-                        <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                          Find community and therapists
-                        </p>
                       </Link>
                     </NavigationMenuLink>
                   </div>
@@ -153,49 +153,49 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <NavigationMenuLink asChild>
                       <Link
                         href={!devAffirm ? "/prompts" : "/affirm/prompts"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="flex items-center gap-2">
-                          <Settings className="h-4 w-4" />
+                        <Settings className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                        <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             System Prompts
                           </div>
+                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                            View the AI system prompts
+                          </p>
                         </div>
-                        <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                          View the AI system prompts
-                        </p>
                       </Link>
                     </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
                         href={!devAffirm ? "/terms" : "/affirm/terms"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="flex items-center gap-2">
-                          <HelpCircle className="h-4 w-4" />
+                        <HelpCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                        <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             Terms
                           </div>
+                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                            Privacy policy and terms
+                          </p>
                         </div>
-                        <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                          Privacy policy and terms
-                        </p>
                       </Link>
                     </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
                         href={!devAffirm ? "/contact" : "/affirm/contact"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="flex items-center gap-2">
-                          <Mail className="h-4 w-4" />
+                        <Mail className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                        <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             Contact
                           </div>
+                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                            Get in touch with Peter
+                          </p>
                         </div>
-                        <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                          Get in touch with Peter
-                        </p>
                       </Link>
                     </NavigationMenuLink>
                   </div>
