@@ -34,8 +34,9 @@ const PromptsPage = () => {
             >
               LlamaIndex
             </a>{" "}
-            framework and the latest OpenAI GPT 5 model, which has
-            state-of-the-art safety guardrails on gender topics.
+            framework and the OpenAI GPT 4o model, which is known to be a very
+            validating model has state-of-the-art safety guardrails on gender
+            topics.
           </span>
         </p>
         <p className="mt-2">

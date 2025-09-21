@@ -170,7 +170,7 @@ export default function Component({ events }) {
                 value={answer.id}
                 className={cn("border-border border-b duration-300")}
               >
-                <AccordionTrigger className="py-3 transition-colors duration-300">
+                <AccordionTrigger className="py-2 md:py-3 transition-colors duration-300">
                   <div className="relative flex grow items-center justify-between space-x-3 text-left">
                     <div className="flex-1 pr-2">
                       <p

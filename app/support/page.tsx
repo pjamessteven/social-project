@@ -48,12 +48,17 @@ export default async function StudiesPage() {
         to affirm your identity, and instead helps you explore why you might
         feel this way. Gender activists hate this idea because it conflicts with
         their belief that gender (a social construct) is something innate within
-        us, and the idea that people can be 'born in the wrong body'.
+        us, and the belief that people who experience gender dysphoria are 'born
+        in the wrong body'.
       </p>
       <p>
-        If you google gender exploratory therapy, you will find all sorts of
-        articles and studies by gender activists who compare it to gay
-        conversion therapy. For example the study{" "}
+        If you Google "gender exploratory therapy", you will find all sorts of
+        articles and studies published by gender activists who compare it to gay
+        conversion therapy and paint it in a very negative light. The truth is
+        that gender identity is completely diffferent from sexuality.
+      </p>
+      <p>
+        Research in this field is often biased. The study{" "}
         <a
           href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10018052/"
           target="_blank"
@@ -75,18 +80,20 @@ export default async function StudiesPage() {
         be treated with skepticism, as they are motivated to protect the
         validity of their identity.
         <p>
-          The notion that gender exploratory therapy is evil and wrong is
-          predicated on the idea that gender is something innate within us, but
-          the mere existence of detrans people causes this theory to fall over
+          The notion that gender exploratory therapy is somehow evil and wrong
+          is predicated on the idea that gender is something innate within us,
+          but there is no evidence to support this belief, and the mere
+          existence of detrans people causes this theory to fall over
           immediatly. Gender activists then fall back to saying that detrans
-          people were never 'real trans' people, but detrans experiences tell us
-          that they were fully 'in it', until they weren't any more.
+          people were never 'real trans' people, but detrans people tell us that
+          they really were believers and fully 'in it', until they weren't any
+          more.
         </p>
         <p>
           It's also noteworthy that scientists are still yet to discover a 'gay
           gene', and that many people who self-identified as gay or straight at
-          one point also come to the realisation that sexuality is not as black
-          and white as society once told them it is. Love knows no bounds.
+          one point come to a realisation that sexuality is not as black and
+          white as society once told them it is. Love knows no bounds.
         </p>
       </p>
       <a

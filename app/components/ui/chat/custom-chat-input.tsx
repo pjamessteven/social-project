@@ -13,7 +13,8 @@ interface CustomChatInputProps {
 
 export function CustomChatInput({ placeholder, mode }: CustomChatInputProps) {
   const pathname = usePathname();
-  const showChatInput = pathname == "/" || pathname.includes("/chat");
+  const showChatInput =
+    pathname == "/" || pathname == "/affirm" || pathname.includes("/chat");
 
   const [value, setValue] = useState("");
 

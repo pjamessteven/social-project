@@ -115,38 +115,57 @@ export async function StartPage({
             </div>
           </div>
         ) : (
-          <div className="mt-8 text-base">
-            <h2 className="text-secondary-foreground/80 semibold mt-2">
+          <div className="prose dark:prose-invert mt-8 text-base">
+            <p>
               <b>genderaffirming.ai</b> is a digital companion built to help you
-              affirm your gender identity in a safe space. It&apos;s powered by
-              insights directly from the trans community.
-            </h2>
-            <h2 className="text-secondary-foreground/80 semibold mt-2">
+              affirm your gender identity. It&apos;s powered by insights
+              directly from the online trans community -{" "}
+              <a
+                href="https://reddit.com/r/mtf"
+                target="_blank"
+                className="underline"
+              >
+                /r/mtf
+              </a>{" "}
+              and{" "}
+              <a
+                href="https://reddit.com/r/ftm"
+                target="_blank"
+                className="underline"
+              >
+                /r/ftm
+              </a>
+              .
+            </p>
+            <p>
               You can use <b>genderaffirming.ai</b> as your own personal
               gender-affirming AI therapist, or to simply explore concepts and
-              ideas from a trans perspective. Please be aware that
-              genderaffirming.ai only includes gender-affirming perspectives
-              from MTF and FTM trans-identifying people.{" "}
-              {/*If you would like to explore topics
-              through the lens of those who have detransitioned, see{" "}
+              ideas from a trans perspective. Please be aware that this site
+              only includes gender-affirming perspectives from people who
+              identify as transgender MTF or FTM. If you would like to explore
+              topics through the lens of those who have detransitioned, see{" "}
               <a
                 href="https://detrans.ai"
                 target="_blank"
-                className=" underline"
+                className="underline"
               >
                 detrans.ai
-              </a>*/}
-            </h2>
+              </a>
+            </p>
 
-            <h2 className="text-secondary-foreground mt-8 mb-8 text-lg font-semibold">
+            <h4>
               Support, life advice and knowledge from over 600,000+ trans
               people.
-            </h2>
+            </h4>
           </div>
         )}
-        <div className="mt-8">
-          {mode === "detrans" && <RedditEmbeds mode={mode} />}
-        </div>
+
+        {mode === "detrans" && (
+          <div className="mt-8">
+            <RedditEmbeds mode={mode} />{" "}
+          </div>
+        )}
+
         <div className="mt-8">
           <QuestionCategories mode={mode} />
         </div>
@@ -162,7 +181,7 @@ export async function StartPage({
             <p className="mt-1">We reap what we sow,</p>
             <p className="mt-1">But through this we can grow.</p>
 
-            <p className="mt-16">
+            <div className="mt-16">
               Built by{" "}
               <a
                 href="https://bitbout.me"
@@ -193,7 +212,7 @@ export async function StartPage({
               <div className="mt-1 flex items-center">
                 Nobody in the real world is afraid of getting cancelled!
               </div>
-            </p>
+            </div>
             <div className="font-base mt-16 text-lg not-italic">
               <DonationCard mode={mode} />
             </div>

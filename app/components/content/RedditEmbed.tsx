@@ -12,7 +12,7 @@ export default function RedditEmbed({
   url,
   imageUrl,
 }: {
-  title:string;
+  title: string;
   user: string;
   sub: string;
   subUrl: string;
@@ -49,7 +49,7 @@ export default function RedditEmbed({
     // Your "border-destructive" class is kept for the specific highlight effect.
     <Card
       className={
-        "border-destructive reddit-card min-w-md border transition-all duration-300"
+        "!border-destructive reddit-card bg-destructive/5 dark:bg-destructive/40 min-w-md border transition-all duration-300"
       }
     >
       <blockquote
@@ -82,7 +82,7 @@ export default function RedditEmbed({
                   className="h-full w-full object-cover"
                 />
               ) : (
-                <div className="h-full w-full animate-pulse rounded-lg bg-accent" />
+                <div className="bg-accent h-full w-full animate-pulse rounded-lg" />
               )}
             </div>
           </a>

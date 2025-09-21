@@ -398,10 +398,10 @@ export async function QuestionCategories({
                   key={questionIndex}
                 >
                   <div className="flex flex-row items-center border-b pt-1 pb-2">
-                    <p className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-lg italic opacity-90">
+                    <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-lg italic opacity-90">
                       <div className="mr-2 whitespace-nowrap">{"->"}</div>
                       <div>{question}</div>
-                    </p>
+                    </div>
                   </div>
                 </Link>
               ),

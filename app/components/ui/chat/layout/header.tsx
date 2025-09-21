@@ -86,23 +86,23 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
             <NavigationMenuList>
               {/* Resources Menu */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="rounded-full px-4 text-sm font-medium">
+                <NavigationMenuTrigger className="rounded-full bg-transparent px-4 text-sm font-medium">
                   Resources
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="grid w-68 gap-1 p-1">
                     <NavigationMenuLink asChild>
                       <Link
-                        href={!devAffirm ? "/studies" : "/affirm/studies"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        href={"/studies"}
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <BookOpen className="mt-0.5 h-4 w-4 flex-shrink-0" />
+                        <BookOpen className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
                         <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             Studies
                           </div>
                           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            Academic research and studies
+                            Academic research & studies
                           </p>
                         </div>
                       </Link>
@@ -110,9 +110,9 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <NavigationMenuLink asChild>
                       <Link
                         href={"/definitions"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <FileText className="mt-0.5 h-4 w-4 flex-shrink-0" />
+                        <FileText className="mr-2 h-8 w-8" />
                         <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             Definitions
@@ -126,9 +126,9 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <NavigationMenuLink asChild>
                       <Link
                         href={"/support"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <Heart className="mt-0.5 h-4 w-4 flex-shrink-0" />
+                        <Heart className="mr-2 h-6 w-6" />
                         <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             Get Detransition Support
@@ -145,7 +145,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
 
               {/* About Menu */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="rounded-full px-4 text-sm font-medium">
+                <NavigationMenuTrigger className="rounded-full bg-transparent px-4 text-sm font-medium">
                   About
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -153,9 +153,9 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <NavigationMenuLink asChild>
                       <Link
                         href={!devAffirm ? "/prompts" : "/affirm/prompts"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <Settings className="mt-0.5 h-4 w-4 flex-shrink-0" />
+                        <Settings className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
                         <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             System Prompts
@@ -169,9 +169,9 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <NavigationMenuLink asChild>
                       <Link
                         href={!devAffirm ? "/terms" : "/affirm/terms"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <HelpCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
+                        <HelpCircle className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
                         <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             Terms
@@ -185,9 +185,9 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <NavigationMenuLink asChild>
                       <Link
                         href={!devAffirm ? "/contact" : "/affirm/contact"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <Mail className="mt-0.5 h-4 w-4 flex-shrink-0" />
+                        <Mail className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
                         <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             Contact
@@ -277,7 +277,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           <div className="ml-4 flex flex-col items-start">
                             <div className="text-sm font-medium">Studies</div>
                             <div className="text-muted-foreground text-xs">
-                              Academic research and studies
+                              Academic research & studies
                             </div>
                           </div>
                         </Button>
@@ -289,7 +289,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         <Button
                           variant="ghost"
                           className={cn(
-                            "no-wrap h-auto w-full flex-row items-center justify-start py-3",
+                            "h-auto w-full flex-row items-center justify-start py-3",
                             pathname === "/definitions" && "bg-muted",
                           )}
                         >

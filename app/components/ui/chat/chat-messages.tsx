@@ -56,7 +56,7 @@ export default function CustomChatMessages({
               {isLast && (
                 <>
                   {!isLoading && (
-                    <div className="row -mt-2 ml-3 flex items-center">
+                    <div className="row -mt-6 ml-3 flex items-center">
                       {mode == "affirm" ? (
                         <Link
                           key={index}
