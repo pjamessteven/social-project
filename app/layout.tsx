@@ -28,15 +28,20 @@ export default async function RootLayout({
       ? "affirm"
       : "detrans";
 
-  const showChatInput = path === "/" || path.includes("/chat");
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta
-          name="apple-mobile-web-app-status-bar-style"
-          content="default"
+          name="theme-color"
+          content="#FFFFFF"
+          media="(prefers-color-scheme: light)"
         />
-        <meta name="theme-color" content="#000000" />
+
+        <meta
+          name="theme-color"
+          content="#000000"
+          media="(prefers-color-scheme: dark)"
+        />
       </head>
       <Script
         strategy="afterInteractive" // Change strategy

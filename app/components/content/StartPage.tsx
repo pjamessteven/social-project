@@ -245,7 +245,7 @@ export async function StartPage({
         )}
 
         {mode === "detrans" && (
-          <div className="mt-8">
+          <div className="mt-4 sm:mt-8">
             <RedditEmbeds mode={mode} />{" "}
           </div>
         )}
@@ -263,7 +263,7 @@ export async function StartPage({
                 height={300}
                 alt="Friends helping a friend"
               />
-              <div className="absolute inset-0 dark:bg-black/40"></div>
+              <div className="inset-0 hidden sm:absolute dark:bg-black/40"></div>
             </div>
             <p className="mt-8 sm:mt-16">
               The truth can hurt, but it will set you free -

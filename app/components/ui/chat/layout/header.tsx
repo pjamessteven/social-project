@@ -500,7 +500,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                   </div>
                 </div>
               </div>
-              <div className="mt-4 pb-16">
+              <div className="mt-4 pb-16" onClick={() => setIsOpen(false)}>
                 <DonationCard mode={mode} />
               </div>
             </div>

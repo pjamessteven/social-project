@@ -62,7 +62,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   return (
     <div
       className={cn(
-        "sticky bottom-0 z-50 mb-[-88px] w-full p-4 shadow-lg backdrop-blur-lg",
+        "fixed bottom-0 z-50 w-full p-4 shadow-lg backdrop-blur-lg",
         "supports-[backdrop-filter]:bg-accent/70 dark:supports-[backdrop-filter]:bg-gray-900/80",
         mode === "affirm" &&
           "bg-gradient-to-r from-[#5BCEFA]/20 via-[#FFFFFF]/20 to-[#F5A9B8]/20 dark:bg-gradient-to-r dark:from-[#5BCEFA]/20 dark:via-[#2D2D2D]/20 dark:to-[#F5A9B8]/20",
