@@ -1,6 +1,7 @@
 "use server";
 
 import Image from "next/image";
+import Link from "next/link";
 import DonationCard from "./DonationCard";
 import { QuestionCategories } from "./QuestionCategories";
 import RedditEmbeds from "./RedditEmbeds";
@@ -96,21 +97,30 @@ export async function StartPage({
                 This produces helpful and insightful responses that help users
                 understand how and why people adopt, inhabit, and let go of
                 gender identities, and how these experiences shape one’s
-                relationship with self, body and the world. You can use{" "}
-                <b>detrans.ai</b> as your own personal gender-exploratory
-                therapist, or simply as a research tool. For a more{" "}
-                <i>affirming</i> experience, please see
-                <span>
-                  {" "}
-                  <a
-                    href={isDev ? "/affirm" : "https://genderaffirming.ai"}
-                    target="_blank"
-                    className="underline"
-                  >
-                    genderaffirming.ai
-                  </a>
-                  .
-                </span>
+                relationship with self, body and the world.
+              </p>
+              <p>
+                You can use <b>detrans.ai</b> as your own personal
+                gender-exploratory therapist, or simply as a research tool. I
+                believe that every person experiencing gender dysphoria should
+                open their mind to the perspectives of people who have 'been
+                there and done that' before before pursuing medical transition.
+              </p>
+              <p>
+                For a more <i>affirming</i> experience, please see{" "}
+                <a
+                  href={isDev ? "/affirm" : "https://genderaffirming.ai"}
+                  target="_blank"
+                  className="underline"
+                >
+                  genderaffirming.ai
+                </a>
+                .<br className="hidden sm:inline" /> You can also compare trans
+                and detrans perspectives from the{" "}
+                <Link prefetch={false} href={"/compare"} className="underline">
+                  compare
+                </Link>{" "}
+                page.
               </p>
               {/*
           <h2 className="text-secondary-foreground/80 semibold mt-2">
