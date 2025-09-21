@@ -4,20 +4,12 @@ export default async function StoriesPage() {
       <h1>Personal Transition & Detransition Stories</h1>
 
       <p className="text-sm text-gray-600 dark:text-gray-400">
-        Source:{" "}
-        <a
-          href="https://www.detransfoundation.com/sex-and-gender-definitions.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline"
-        >
-          The Detrans Foundation
-        </a>
+        Here is a selection of videos and personal memoirs from people who have
+        transitioned and then decided to detransition. There are thousands of
+        these stories on the internet, this is just a small subset.
       </p>
 
-      <h2>Videos</h2>
-
-      <h3>Detransitioned Videos</h3>
+      <h2>YouTube Videos</h2>
 
       <ul>
         <li>
@@ -29,7 +21,10 @@ export default async function StoriesPage() {
           >
             Detrans: How I ruined my life
           </a>
-          <span className="text-gray-500 dark:text-gray-400 font-light"> - by [Max Wayfarer] [MTFTM]</span>
+          <span className="font-light text-gray-500 dark:text-gray-400">
+            {" "}
+            - by [Max Wayfarer] [MTFTM]
+          </span>
         </li>
         <li>
           <a
@@ -41,7 +36,10 @@ export default async function StoriesPage() {
             Why detransitioning after 25 years was the most healing thing I have
             ever done
           </a>
-          <span className="text-gray-500 dark:text-gray-400 font-light"> - [Call me sam] [MTFTM]</span>
+          <span className="font-light text-gray-500 dark:text-gray-400">
+            {" "}
+            - [Call me sam] [MTFTM]
+          </span>
         </li>
         <li>
           <a
@@ -52,7 +50,10 @@ export default async function StoriesPage() {
           >
             Doctors Pushed Me Into Surgery
           </a>
-          <span className="text-gray-500 dark:text-gray-400 font-light"> - [Ritchie Herron] [MTFTM]</span>
+          <span className="font-light text-gray-500 dark:text-gray-400">
+            {" "}
+            - [Ritchie Herron] [MTFTM]
+          </span>
         </li>
         <li>
           <a
@@ -63,7 +64,10 @@ export default async function StoriesPage() {
           >
             My journey of transition and detransition
           </a>
-          <span className="text-gray-500 dark:text-gray-400 font-light"> - by [placeswebreath] [FTMTF]</span>
+          <span className="font-light text-gray-500 dark:text-gray-400">
+            {" "}
+            - by [placeswebreath] [FTMTF]
+          </span>
         </li>
         <li>
           <a
@@ -74,7 +78,10 @@ export default async function StoriesPage() {
           >
             My Penis is gone forever
           </a>
-          <span className="text-gray-500 dark:text-gray-400 font-light"> - [Alexander] [MTFTM]</span>
+          <span className="font-light text-gray-500 dark:text-gray-400">
+            {" "}
+            - [Alexander] [MTFTM]
+          </span>
         </li>
         <li>
           <a
@@ -85,7 +92,10 @@ export default async function StoriesPage() {
           >
             I transitioned, here's what happened
           </a>
-          <span className="text-gray-500 dark:text-gray-400 font-light"> - [Maddy Edwards] [FTMTF]</span>
+          <span className="font-light text-gray-500 dark:text-gray-400">
+            {" "}
+            - [Maddy Edwards] [FTMTF]
+          </span>
         </li>
         <li>
           <a
@@ -96,7 +106,10 @@ export default async function StoriesPage() {
           >
             The cost of transitioning - my body was never the problem
           </a>
-          <span className="text-gray-500 dark:text-gray-400 font-light"> - [Cat Cattinson] [FTMTF]</span>
+          <span className="font-light text-gray-500 dark:text-gray-400">
+            {" "}
+            - [Cat Cattinson] [FTMTF]
+          </span>
         </li>
         <li>
           <a
@@ -107,7 +120,10 @@ export default async function StoriesPage() {
           >
             The detransitioned Male Experience
           </a>
-          <span className="text-gray-500 dark:text-gray-400 font-light"> - [Waffling Willow] [MTFTM]</span>
+          <span className="font-light text-gray-500 dark:text-gray-400">
+            {" "}
+            - [Waffling Willow] [MTFTM]
+          </span>
         </li>
         <li>
           <a
@@ -118,7 +134,10 @@ export default async function StoriesPage() {
           >
             Why I transitioned and detransitioned
           </a>
-          <span className="text-gray-500 dark:text-gray-400 font-light"> - [40daysofrain] [MTFTM]</span>
+          <span className="font-light text-gray-500 dark:text-gray-400">
+            {" "}
+            - [40daysofrain] [MTFTM]
+          </span>
         </li>
         <li>
           <a
@@ -129,7 +148,10 @@ export default async function StoriesPage() {
           >
             Detrans and Back - My Story
           </a>
-          <span className="text-gray-500 dark:text-gray-400 font-light"> - [Max M] [MTFTM]</span>
+          <span className="font-light text-gray-500 dark:text-gray-400">
+            {" "}
+            - [Max M] [MTFTM]
+          </span>
         </li>
         <li>
           <a
@@ -140,7 +162,10 @@ export default async function StoriesPage() {
           >
             Detransitioning and Transhuman Dysphoria
           </a>
-          <span className="text-gray-500 dark:text-gray-400 font-light"> - by [Courtney Coulson] [FTMTF]</span>
+          <span className="font-light text-gray-500 dark:text-gray-400">
+            {" "}
+            - by [Courtney Coulson] [FTMTF]
+          </span>
         </li>
       </ul>
     </div>
