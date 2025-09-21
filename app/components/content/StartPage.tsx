@@ -226,7 +226,7 @@ export async function StartPage({
               </a>{" "}
               provides a more critical view of gender as it answers questions
               from a detrans perspective. It integrates thoughts and experiences
-              from online
+              from the online
               <span>
                 {" "}
                 <a
