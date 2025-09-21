@@ -35,7 +35,7 @@ export default async function RootLayout({
       <Head>
         <meta
           name="apple-mobile-web-app-status-bar-style"
-          content="black-translucent"
+          content="default"
         />
       </Head>
       <Script
