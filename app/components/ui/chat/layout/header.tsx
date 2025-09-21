@@ -197,9 +197,8 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
             </Button>
           </DialogTrigger>
           <DialogContent className="data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right fixed top-0 right-0 h-full w-80 max-w-80 translate-x-0 translate-y-0 rounded-none border-l p-0">
-            <div className="p-4">
-              <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-lg font-semibold">Menu</h2>
+            <div className="flex flex-col p-4">
+              <div className="flex justify-end">
                 <Button
                   size="icon"
                   variant="ghost"
