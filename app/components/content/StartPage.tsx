@@ -82,7 +82,7 @@ export async function StartPage({
               </p>
               <p>
                 <b>detrans.ai</b> answers questions from a detrans perspective
-                by integrating thoughts and experiences from online
+                by integrating thoughts and experiences from the online
                 <span>
                   {" "}
                   <a
