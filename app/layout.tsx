@@ -8,7 +8,6 @@ import "@llamaindex/chat-ui/styles/markdown.css";
 import "@llamaindex/chat-ui/styles/pdf.css";
 import { clsx } from "clsx";
 import { ThemeProvider } from "next-themes";
-import Head from "next/head";
 import { headers } from "next/headers";
 import { CustomChatInput } from "./components/ui/chat/custom-chat-input";
 import Header from "./components/ui/chat/layout/header";
@@ -32,12 +31,12 @@ export default async function RootLayout({
   const showChatInput = path === "/" || path.includes("/chat");
   return (
     <html lang="en" suppressHydrationWarning>
-      <Head>
+      <head>
         <meta
           name="apple-mobile-web-app-status-bar-style"
           content="default"
         />
-      </Head>
+      </head>
       <Script
         strategy="afterInteractive" // Change strategy
         src="https://cloud.umami.is/script.js"
