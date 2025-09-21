@@ -196,8 +196,8 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
               <Menu className="h-5 w-5" />
             </Button>
           </DialogTrigger>
-          <DialogContent className="data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right fixed top-0 right-0 h-full w-full max-w-sm translate-x-0 translate-y-0 rounded-none border-l p-0">
-            <div className="flex flex-col p-4 w-full">
+          <DialogContent className="data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right fixed top-0 right-0 h-full w-lg max-w-sm translate-x-0 translate-y-0 rounded-none border-l p-0">
+            <div className="flex flex-col p-4">
               <div className="flex justify-end">
                 <Button
                   size="icon"
@@ -207,7 +207,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                   <X className="h-5 w-5" />
                 </Button>
               </div>
-              <div className="flex flex-col space-y-2 w-full">
+              <div className="flex w-full flex-col space-y-2">
                 <Link
                   href={!devAffirm ? "/" : "/affirm"}
                   onClick={() => setIsOpen(false)}
