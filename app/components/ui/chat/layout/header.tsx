@@ -12,6 +12,7 @@ import {
   Menu,
   MessageCircleHeart,
   Settings,
+  Video,
   X,
 } from "lucide-react";
 import Link from "next/link";
@@ -95,22 +96,6 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                   <div className="grid w-68 gap-1 p-1">
                     <NavigationMenuLink asChild>
                       <Link
-                        href={"/studies"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                      >
-                        <BookOpen className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
-                        <div className="flex flex-col space-y-1">
-                          <div className="text-sm leading-none font-medium">
-                            Studies
-                          </div>
-                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            Academic research & studies
-                          </p>
-                        </div>
-                      </Link>
-                    </NavigationMenuLink>
-                    <NavigationMenuLink asChild>
-                      <Link
                         href={"/definitions"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
@@ -121,6 +106,38 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           </div>
                           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                             Key terms and concepts
+                          </p>
+                        </div>
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href={"/stories"}
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                      >
+                        <Video className="mr-2 h-8 w-8" />
+                        <div className="flex flex-col space-y-1">
+                          <div className="text-sm leading-none font-medium">
+                            Personal Stories
+                          </div>
+                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                            Videos and memoirs
+                          </p>
+                        </div>
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href={"/studies"}
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                      >
+                        <BookOpen className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
+                        <div className="flex flex-col space-y-1">
+                          <div className="text-sm leading-none font-medium">
+                            Studies
+                          </div>
+                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                            Academic research & studies
                           </p>
                         </div>
                       </Link>
@@ -285,23 +302,6 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                       Resources
                     </h3>
                     <div className="space-y-1">
-                      <Link href={"/studies"} onClick={() => setIsOpen(false)}>
-                        <Button
-                          variant="ghost"
-                          className={cn(
-                            "h-auto w-full flex-row items-center justify-start py-3",
-                            pathname === "/studies" && "bg-muted",
-                          )}
-                        >
-                          <BookOpen className="h-4 w-4" />
-                          <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">Studies</div>
-                            <div className="text-muted-foreground text-xs">
-                              Academic research & studies
-                            </div>
-                          </div>
-                        </Button>
-                      </Link>
                       <Link
                         href={"/definitions"}
                         onClick={() => setIsOpen(false)}
@@ -320,6 +320,42 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                             </div>
                             <div className="text-muted-foreground text-xs">
                               Key terms and concepts
+                            </div>
+                          </div>
+                        </Button>
+                      </Link>
+                      <Link href={"/stories"} onClick={() => setIsOpen(false)}>
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-row items-center justify-start py-3",
+                            pathname === "/stories" && "bg-muted",
+                          )}
+                        >
+                          <Video className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">
+                              Personal Stories
+                            </div>
+                            <div className="text-muted-foreground text-xs">
+                              Videos and memoirs
+                            </div>
+                          </div>
+                        </Button>
+                      </Link>
+                      <Link href={"/studies"} onClick={() => setIsOpen(false)}>
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-row items-center justify-start py-3",
+                            pathname === "/studies" && "bg-muted",
+                          )}
+                        >
+                          <BookOpen className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">Studies</div>
+                            <div className="text-muted-foreground text-xs">
+                              Academic research & studies
                             </div>
                           </div>
                         </Button>
