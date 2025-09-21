@@ -4,29 +4,41 @@ import Image from "next/image";
 import DonationCard from "./DonationCard";
 import { QuestionCategories } from "./QuestionCategories";
 import RedditEmbeds from "./RedditEmbeds";
+import ScrollRestoration from "./ScrollRestoration";
 
 export async function StartPage({
   className,
   mode,
 }: {
   className?: string;
-  mode: "affirm" | "detrans";
+  mode: "affirm" | "detrans" | "compare";
 }) {
   const isDev = process.env.NODE_ENV === "development";
 
   return (
     <>
+      <ScrollRestoration /> {/* client-side logic  */}
       <div className="relative flex flex-col pb-[88px]">
         <h1 className="z-10 mt-[20vh] text-3xl font-bold sm:text-4xl">
           <div className="text-muted-foreground opacity-30 dark:opacity-80">
-            {mode === "detrans" ? "detrans.ai" : "genderaffirming.ai"}
+            {mode === "detrans"
+              ? "detrans.ai"
+              : mode === "affirm"
+                ? "genderaffirming.ai"
+                : "detrans.ai + genderaffirming.ai"}
           </div>
           {/*Come and join us in the real world.*/}
           {mode === "detrans"
             ? "Talk to 50,000+ Detransitioners"
-            : "Talk to 600,000+ Trans and Non-Binary"}
+            : mode == "affirm"
+              ? "Talk to 600,000+ Trans and Non-Binary"
+              : "Compare Perspectives"}
           <div className="text-muted-foreground opacity-30 dark:opacity-80">
-            {mode === "detrans" ? "#FreeYourMind" : "#TransPeopleKnowBest"}
+            {mode === "detrans"
+              ? "#FreeYourMind"
+              : mode == "affirm"
+                ? "#TransPeopleKnowBest"
+                : "#SeeBothSides"}
           </div>
         </h1>
         {mode === "detrans" ? (
@@ -114,12 +126,12 @@ export async function StartPage({
               </h4>
             </div>
           </div>
-        ) : (
+        ) : mode === "affirm" ? (
           <div className="prose dark:prose-invert mt-8 text-base">
             <p>
-              <b>genderaffirming.ai</b> is a digital companion built to help you
-              affirm your gender identity. It&apos;s powered by insights
-              directly from the online trans community -{" "}
+              <b>genderaffirming.ai</b> will affirm your gender identity.
+              It&apos;s powered by insights directly from the online trans
+              community -{" "}
               <a
                 href="https://reddit.com/r/mtf"
                 target="_blank"
@@ -157,6 +169,64 @@ export async function StartPage({
               Support, life advice and knowledge from over 600,000+ trans
               people.
             </h4>
+          </div>
+        ) : (
+          <div className="prose dark:prose-invert mt-8 text-base">
+            <p>
+              On this page you can compare the perspectives of people who
+              identify as trans to the perspective of detrans people who have
+              moved on from trans identity.
+            </p>
+            <p>
+              <a
+                href="https://genderaffirming.ai"
+                target="_blank"
+                className="underline"
+              >
+                <b>genderaffirming.ai</b>
+              </a>{" "}
+              will affirm your gender identity. It&apos;s powered by insights
+              directly from the online trans community -{" "}
+              <a
+                href="https://reddit.com/r/mtf"
+                target="_blank"
+                className="underline"
+              >
+                /r/mtf
+              </a>{" "}
+              and{" "}
+              <a
+                href="https://reddit.com/r/ftm"
+                target="_blank"
+                className="underline"
+              >
+                /r/ftm
+              </a>
+              .
+            </p>
+            <p>
+              <a
+                href="https://detrans.ai"
+                target="_blank"
+                className="underline"
+              >
+                <b>detrans.ai</b>
+              </a>{" "}
+              provides a more critical view of gender as it answers questions
+              from a detrans perspective. It integrates thoughts and experiences
+              from online
+              <span>
+                {" "}
+                <a
+                  href="https://reddit.com/r/detrans"
+                  target="_blank"
+                  className="underline"
+                >
+                  /r/detrans
+                </a>{" "}
+                community.{" "}
+              </span>
+            </p>
           </div>
         )}
 
