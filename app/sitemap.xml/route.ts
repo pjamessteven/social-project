@@ -1,10 +1,15 @@
 import { NextRequest } from "next/server";
+import { questionCategories } from "@/app/components/content/QuestionCategories";
+import { slugify } from "@/app/lib/utils";
 
 export async function GET(request: NextRequest) {
   const host = request.headers.get("host") || "detrans.ai";
   const protocol = request.headers.get("x-forwarded-proto") || "https";
   const baseUrl = `${protocol}://${host}`;
   const includeAffirm = !!host.includes("genderaffirming.ai");
+
+  // Extract all questions from question categories
+  const allQuestions = questionCategories.flatMap(category => category.questions);
 
   const baseRoutes = [
     {
@@ -69,6 +74,28 @@ export async function GET(request: NextRequest) {
     },
   ];
 
+  // Generate chat routes for all questions
+  const chatRoutes = allQuestions.map(question => ({
+    url: `${baseUrl}/chat/${slugify(question)}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: "weekly",
+    priority: 0.7,
+  }));
+
+  const affirmChatRoutes = includeAffirm ? allQuestions.map(question => ({
+    url: `${baseUrl}/affirm/chat/${slugify(question)}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: "weekly",
+    priority: 0.6,
+  })) : [];
+
+  const compareChatRoutes = allQuestions.map(question => ({
+    url: `${baseUrl}/compare/chat/${slugify(question)}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: "weekly",
+    priority: 0.5,
+  }));
+
   const affirmRoutes = includeAffirm
     ? [
         {
@@ -110,7 +137,13 @@ export async function GET(request: NextRequest) {
       ]
     : [];
 
-  const allRoutes = [...baseRoutes, ...affirmRoutes];
+  const allRoutes = [
+    ...baseRoutes, 
+    ...chatRoutes, 
+    ...compareChatRoutes,
+    ...affirmRoutes, 
+    ...(includeAffirm ? affirmChatRoutes : [])
+  ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
