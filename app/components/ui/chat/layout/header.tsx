@@ -1,7 +1,18 @@
 "use client";
 
 import DonationCard from "@/app/components/content/DonationCard";
-import { BookOpen, FileText, Heart, HelpCircle, Home, Menu, MessageCircleHeart, Phone, Settings, X } from "lucide-react";
+import {
+  BookOpen,
+  FileText,
+  Heart,
+  HelpCircle,
+  Home,
+  Mail,
+  Menu,
+  MessageCircleHeart,
+  Settings,
+  X,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -271,7 +282,9 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         >
                           <FileText className="h-4 w-4" />
                           <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">Definitions</div>
+                            <div className="text-sm font-medium">
+                              Definitions
+                            </div>
                             <div className="text-muted-foreground text-xs">
                               Key terms and concepts
                             </div>
@@ -364,7 +377,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                             pathname === "/contact" && "bg-muted",
                           )}
                         >
-                          <Phone className="h-4 w-4" />
+                          <Mail className="h-4 w-4" />
                           <div className="ml-4 flex flex-col items-start">
                             <div className="text-sm font-medium">Contact</div>
                             <div className="text-muted-foreground text-xs">
