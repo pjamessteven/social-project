@@ -1,4 +1,8 @@
-export default async function StoriesPage() {
+"use client";
+
+import { useState } from "react";
+
+export default function StoriesPage() {
   const videos = [
     {
       id: "dxlRQAj2iZE",
@@ -255,6 +259,13 @@ export default async function StoriesPage() {
     },
   ];
 
+  const [filter, setFilter] = useState<"all" | "FTMTF" | "MTFTM">("all");
+
+  const filteredVideos = videos.filter((video) => {
+    if (filter === "all") return true;
+    return video.type === filter;
+  });
+
   return (
     <div className="prose prose-sm dark:prose-invert pb-16 lg:pt-8">
       <h1>Personal Transition & Detransition Stories</h1>
@@ -267,8 +278,41 @@ export default async function StoriesPage() {
 
       <h2>YouTube Videos</h2>
 
+      <div className="not-prose mb-6 flex gap-2">
+        <button
+          onClick={() => setFilter("all")}
+          className={`rounded px-4 py-2 text-sm font-medium transition-colors ${
+            filter === "all"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+          }`}
+        >
+          All ({videos.length})
+        </button>
+        <button
+          onClick={() => setFilter("FTMTF")}
+          className={`rounded px-4 py-2 text-sm font-medium transition-colors ${
+            filter === "FTMTF"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+          }`}
+        >
+          FTMTF ({videos.filter((v) => v.type === "FTMTF").length})
+        </button>
+        <button
+          onClick={() => setFilter("MTFTM")}
+          className={`rounded px-4 py-2 text-sm font-medium transition-colors ${
+            filter === "MTFTM"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+          }`}
+        >
+          MTFTM ({videos.filter((v) => v.type === "MTFTM").length})
+        </button>
+      </div>
+
       <div className="not-prose grid gap-4">
-        {videos.map((video) => (
+        {filteredVideos.map((video) => (
           <a
             href={video.url}
             target="_blank"
