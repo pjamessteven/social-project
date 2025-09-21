@@ -1,7 +1,7 @@
 "use client";
 
 import DonationCard from "@/app/components/content/DonationCard";
-import { Home, Menu, MessageCircleHeart, X } from "lucide-react";
+import { BookOpen, FileText, Heart, HelpCircle, Home, Menu, MessageCircleHeart, Phone, Settings, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -243,13 +243,16 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         <Button
                           variant="ghost"
                           className={cn(
-                            "h-auto w-full flex-col items-start justify-start py-3",
+                            "h-auto w-full flex-row items-center justify-start py-3",
                             pathname === "/studies" && "bg-muted",
                           )}
                         >
-                          <div className="text-sm font-medium">Studies</div>
-                          <div className="text-muted-foreground text-xs">
-                            Academic research and studies
+                          <BookOpen className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">Studies</div>
+                            <div className="text-muted-foreground text-xs">
+                              Academic research and studies
+                            </div>
                           </div>
                         </Button>
                       </Link>
@@ -262,13 +265,16 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         <Button
                           variant="ghost"
                           className={cn(
-                            "h-auto w-full flex-col items-start justify-start py-3",
+                            "h-auto w-full flex-row items-center justify-start py-3",
                             pathname === "/definitions" && "bg-muted",
                           )}
                         >
-                          <div className="text-sm font-medium">Definitions</div>
-                          <div className="text-muted-foreground text-xs">
-                            Key terms and concepts
+                          <FileText className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">Definitions</div>
+                            <div className="text-muted-foreground text-xs">
+                              Key terms and concepts
+                            </div>
                           </div>
                         </Button>
                       </Link>
@@ -279,15 +285,18 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         <Button
                           variant="ghost"
                           className={cn(
-                            "h-auto w-full flex-col items-start justify-start py-3",
+                            "h-auto w-full flex-row items-center justify-start py-3",
                             pathname === "/support" && "bg-muted",
                           )}
                         >
-                          <div className="text-sm font-medium">
-                            Get Detransition Support
-                          </div>
-                          <div className="text-muted-foreground text-xs">
-                            Find community and therapists
+                          <Heart className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">
+                              Get Detransition Support
+                            </div>
+                            <div className="text-muted-foreground text-xs">
+                              Find community and therapists
+                            </div>
                           </div>
                         </Button>
                       </Link>
@@ -309,15 +318,18 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         <Button
                           variant="ghost"
                           className={cn(
-                            "h-auto w-full flex-col items-start justify-start py-3",
+                            "h-auto w-full flex-row items-center justify-start py-3",
                             pathname === "/prompts" && "bg-muted",
                           )}
                         >
-                          <div className="text-sm font-medium">
-                            How It Works
-                          </div>
-                          <div className="text-muted-foreground text-xs">
-                            View the AI system prompts
+                          <Settings className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">
+                              How It Works
+                            </div>
+                            <div className="text-muted-foreground text-xs">
+                              View the AI system prompts
+                            </div>
                           </div>
                         </Button>
                       </Link>
@@ -328,13 +340,16 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         <Button
                           variant="ghost"
                           className={cn(
-                            "h-auto w-full flex-col items-start justify-start py-3",
+                            "h-auto w-full flex-row items-center justify-start py-3",
                             pathname === "/terms" && "bg-muted",
                           )}
                         >
-                          <div className="text-sm font-medium">Terms</div>
-                          <div className="text-muted-foreground text-xs">
-                            Privacy policy and terms
+                          <HelpCircle className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">Terms</div>
+                            <div className="text-muted-foreground text-xs">
+                              Privacy policy and terms
+                            </div>
                           </div>
                         </Button>
                       </Link>
@@ -345,13 +360,16 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         <Button
                           variant="ghost"
                           className={cn(
-                            "h-auto w-full flex-col items-start justify-start py-3",
+                            "h-auto w-full flex-row items-center justify-start py-3",
                             pathname === "/contact" && "bg-muted",
                           )}
                         >
-                          <div className="text-sm font-medium">Contact</div>
-                          <div className="text-muted-foreground text-xs">
-                            Get in touch with Peter
+                          <Phone className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">Contact</div>
+                            <div className="text-muted-foreground text-xs">
+                              Get in touch with Peter
+                            </div>
                           </div>
                         </Button>
                       </Link>
