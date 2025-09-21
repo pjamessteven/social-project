@@ -1,7 +1,7 @@
 "use client";
 
 import DonationCard from "@/app/components/content/DonationCard";
-import { Menu, MessageCircleHeart, X } from "lucide-react";
+import { Home, Menu, MessageCircleHeart, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -218,7 +218,10 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                       pathname === "/" && "bg-muted",
                     )}
                   >
-                    <div className="text-sm font-medium">Portal</div>
+                    <div className="flex items-center gap-2">
+                      <Home className="h-4 w-4" />
+                      <div className="text-sm font-medium">Portal</div>
+                    </div>
 
                     <div className="text-muted-foreground text-xs">
                       Detrans AI Chat
