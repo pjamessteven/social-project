@@ -187,9 +187,9 @@ export async function StartPage({
         ) : (
           <div className="prose dark:prose-invert mt-8 text-base">
             <p>
-              On this page you can compare the perspectives of people who
-              identify as trans to the perspective of detrans people who have
-              moved on from trans identity.
+              Here you can compare the perspectives of people who identify as
+              trans to the perspective of detrans people who have moved on from
+              trans identity.
             </p>
             <p>
               <a

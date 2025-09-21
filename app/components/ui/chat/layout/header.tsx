@@ -136,10 +136,10 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         <BookOpen className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
                         <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
-                            Studies
+                            Peer-reviewed Studies
                           </div>
                           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            Academic research & studies
+                            Relevant Academic Research
                           </p>
                         </div>
                       </Link>
@@ -375,9 +375,11 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         >
                           <BookOpen className="h-4 w-4" />
                           <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">Studies</div>
+                            <div className="text-sm font-medium">
+                              Peer-reviewed Studies
+                            </div>
                             <div className="text-muted-foreground text-xs">
-                              Academic research & studies
+                              Relevant Academic Research
                             </div>
                           </div>
                         </Button>
