@@ -1,7 +1,7 @@
 import {
   affirmingQuestionCategories,
   questionCategories,
-} from "@/app/components/content/QuestionCategories";
+} from "@/app/lib/questions";
 import { slugify } from "@/app/lib/utils";
 import { NextRequest } from "next/server";
 
