@@ -34,17 +34,10 @@ import {
 } from "../prompts";
 import { getIndex } from "./data";
 
-/*
 const openAi = new OpenAI({
   apiKey: process.env.OPENROUTER_KEY,
   baseURL: "https://openrouter.ai/api/v1",
-  model: "openai/gpt-5-mini",
-});*/
-
-const openAi = new OpenAI({
-  apiKey: process.env.OPENROUTER_KEY,
-  baseURL: "https://openrouter.ai/api/v1",
-  model: "moonshotai/kimi-k2",
+  model: "openai/gpt-4o",
 });
 
 const cache = new RedisCache(await connectRedis(), "affirm");
@@ -284,19 +277,18 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
           .until(() => state.researchResults.size === researchQuestions.length)
           .toArray();
         return planResearchEvent.with({});
-      } else {
-        state.memory.add({
-          role: "assistant",
-          content: "No more idea to analyze. We should report the answers.",
-        });
-        sendEvent(
-          uiEvent.with({
-            type: "ui_event",
-            data: { event: "analyze", state: "done" },
-          }),
-        );
-        return reportEvent.with({});
       }
+      state.memory.add({
+        role: "assistant",
+        content: "No more idea to analyze. We should report the answers.",
+      });
+      sendEvent(
+        uiEvent.with({
+          type: "ui_event",
+          data: { event: "analyze", state: "done" },
+        }),
+      );
+      return reportEvent.with({});
     },
   );
 
