@@ -2,6 +2,7 @@
 
 import DonationCard from "@/app/components/content/DonationCard";
 import {
+  ArrowLeftRight,
   BookOpen,
   FileText,
   Heart,
@@ -38,7 +39,7 @@ function NavLink({ href, label }: { href: string; label: string }) {
         size="sm"
         variant="ghost"
         className={cn(
-          "rounded-full px-4 transition-all",
+          "ml-2 rounded-full px-4 transition-all",
           isActive && "bg-accent",
         )}
       >
@@ -81,6 +82,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
         {/* Desktop Navigation - hidden on mobile */}
         <div className="hidden items-center justify-end gap-0.5 p-1 md:flex">
           <NavLink href={!devAffirm ? "/" : "/affirm"} label="Portal" />
+          <NavLink href={"/compare"} label="Compare" />
 
           <NavigationMenu className="ml-2">
             <NavigationMenuList>
@@ -193,7 +195,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                             Contact
                           </div>
                           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            Get in touch with Peter
+                            Get in touch
                           </p>
                         </div>
                       </Link>
@@ -253,6 +255,24 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                       <div className="text-sm font-medium">Portal</div>
                       <div className="text-muted-foreground text-xs">
                         Detrans AI Chat & Starter Questions
+                      </div>
+                    </div>
+                  </Button>
+                </Link>
+                <Link href={"/compare"} onClick={() => setIsOpen(false)}>
+                  <Button
+                    variant="ghost"
+                    className={cn(
+                      "h-auto w-full flex-row items-center justify-start py-3",
+                      pathname === "/compare" && "bg-muted",
+                    )}
+                  >
+                    <ArrowLeftRight className="h-4 w-4" />
+
+                    <div className="ml-4 flex flex-col items-start">
+                      <div className="text-sm font-medium">Compare Sides</div>
+                      <div className="text-muted-foreground text-xs">
+                        Compare Trans & Detrans Perspectives
                       </div>
                     </div>
                   </Button>
@@ -391,7 +411,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           <div className="ml-4 flex flex-col items-start">
                             <div className="text-sm font-medium">Contact</div>
                             <div className="text-muted-foreground text-xs">
-                              Get in touch with Peter
+                              Get in touch
                             </div>
                           </div>
                         </Button>

@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 interface ChatPageProps {
   mode: "detrans" | "affirm";
   starterQuestion?: string;
-  hideChatInput?: boolean;
 }
 
 const ChatSection = dynamic(() => import("../ui/chat/chat-section"), {

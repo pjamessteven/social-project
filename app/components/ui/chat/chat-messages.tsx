@@ -4,6 +4,7 @@ import { slugify } from "@/app/lib/utils";
 import { ChatMessage, ChatMessages, useChatUI } from "@llamaindex/chat-ui";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 import DonationCard from "../../content/DonationCard";
 import { cn } from "../lib/utils";
@@ -24,6 +25,7 @@ export default function CustomChatMessages({
   showDonationMessage: boolean;
 }) {
   const isDev = process.env.NODE_ENV === "development";
+  const path = usePathname();
 
   const { messages, isLoading } = useChatUI();
 
@@ -91,10 +93,12 @@ export default function CustomChatMessages({
                   )}
                   <Link
                     key={index}
-                    href="/"
+                    href={path.includes("compare") ? "/compare" : "/"}
                     className="mt-2 ml-3 cursor-pointer font-medium italic hover:underline"
                   >
-                    {"<- Back to Portal"}
+                    {path.includes("compare")
+                      ? "<- Back to Portal"
+                      : "<- Back to Compare"}
                   </Link>
                   {showDonationMessage && (
                     <div className="mt-4 mr-16 ml-4 sm:mx-0">

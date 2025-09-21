@@ -22,12 +22,13 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const h = await headers(); // both calls are async-safe
-  const host = h.get("host") ?? ""; // genderaffirming.ai | the-other.one
+  const host = h.get("host") ?? ""; // genderaffirming.ai |
   const path = (await headers()).get("x-pathname") ?? "";
-  const mode =
+  const baseMode =
     host.includes("genderaffirming.ai") || path.includes("/affirm")
       ? "affirm"
       : "detrans";
+
   const showChatInput = path === "/" || path.includes("/chat");
   return (
     <html lang="en" suppressHydrationWarning>
@@ -41,7 +42,7 @@ export default async function RootLayout({
         strategy="afterInteractive" // Change strategy
         src="https://cloud.umami.is/script.js"
         data-website-id={
-          mode == "detrans"
+          baseMode == "detrans"
             ? "01d08ff7-3d26-4387-9306-5fa1494bc272"
             : "fc721904-3b3a-479c-a5b6-34c76b32a457"
         }
@@ -49,14 +50,14 @@ export default async function RootLayout({
       <body
         className={clsx(
           inter.className,
-          mode == "affirm"
-            ? "bg-gradient-to-r from-[#5BCEFA]/20 via-[#FFFFFF]/20 to-[#F5A9B8]/20 dark:bg-gradient-to-r dark:from-[#5BCEFA]/20 dark:via-[#2D2D2D]/20 dark:to-[#F5A9B8]/20"
+          baseMode == "affirm"
+            ? "bg-gradient-to-r from-[#5BCEFA]/15 via-[#FFFFFF]/15 to-[#F5A9B8]/15 dark:bg-gradient-to-r dark:from-[#5BCEFA]/10 dark:via-[#2D2D2D]/10 dark:to-[#F5A9B8]/10"
             : "bg-white dark:bg-black",
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="relative flex h-[100dvh] flex-col overflow-hidden">
-            <Header mode={mode} />
+            <Header mode={baseMode} />
             <main
               className={
                 "flex h-full min-h-0 flex-1 flex-row justify-center overflow-x-hidden overflow-y-auto"
@@ -66,14 +67,7 @@ export default async function RootLayout({
                 {children}
               </div>
             </main>
-            <CustomChatInput
-              mode={mode}
-              placeholder={
-                mode === "detrans"
-                  ? "Ask 50,000+ detransitioners..."
-                  : "Ask 600,000+ trans people"
-              }
-            />
+            <CustomChatInput host={host} />
           </div>
         </ThemeProvider>
       </body>

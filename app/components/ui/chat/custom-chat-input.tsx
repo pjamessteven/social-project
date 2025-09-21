@@ -7,14 +7,30 @@ import { Button } from "../button";
 import { Input } from "../input";
 import { cn } from "../lib/utils";
 interface CustomChatInputProps {
-  placeholder: string;
-  mode: "detrans" | "affirm" | "compare";
+  host: string;
 }
 
-export function CustomChatInput({ placeholder, mode }: CustomChatInputProps) {
-  const pathname = usePathname();
+export function CustomChatInput({ host }: CustomChatInputProps) {
+  const path = usePathname();
   const showChatInput =
-    pathname == "/" || pathname == "/affirm" || pathname.includes("/chat");
+    path == "/" ||
+    path == "/compare" ||
+    path == "/affirm" ||
+    path.includes("/chat");
+
+  const mode =
+    host.includes("genderaffirming.ai") || path.includes("/affirm")
+      ? "affirm"
+      : path.includes("/compare")
+        ? "compare"
+        : "detrans";
+
+  const placeholder =
+    mode === "detrans"
+      ? "Ask 50,000+ detransitioners..."
+      : mode === "compare"
+        ? "Compare trans and detrans perspectives"
+        : "Ask 600,000+ trans people";
 
   const [value, setValue] = useState("");
 
@@ -47,7 +63,7 @@ export function CustomChatInput({ placeholder, mode }: CustomChatInputProps) {
     <div
       className={cn(
         "sticky bottom-0 z-50 mb-[-88px] w-full p-4 shadow-lg backdrop-blur-lg",
-        "supports-[backdrop-filter]:bg-gray-100/70 dark:supports-[backdrop-filter]:bg-gray-900/80",
+        "supports-[backdrop-filter]:bg-accent/70 dark:supports-[backdrop-filter]:bg-gray-900/80",
         mode === "affirm" &&
           "bg-gradient-to-r from-[#5BCEFA]/20 via-[#FFFFFF]/20 to-[#F5A9B8]/20 dark:bg-gradient-to-r dark:from-[#5BCEFA]/20 dark:via-[#2D2D2D]/20 dark:to-[#F5A9B8]/20",
       )}
