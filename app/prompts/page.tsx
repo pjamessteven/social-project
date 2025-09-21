@@ -4,14 +4,63 @@ const PromptsPage = () => {
   return (
     <div className="min-h-screen pb-16 lg:pt-8">
       <div className="prose dark:prose-invert">
+        <h2>How does it work?</h2>
+        <p>
+          <b>detrans.ai</b> is a RAG (retrieval augmented generation) chatbot
+          that generates meta questions and answers them by surfacing and
+          integrating real detrans thoughts and experiences from the{" "}
+          <a
+            href="https://reddit.com/r/detrans"
+            target="_blank"
+            className="text-blue-500 underline hover:text-blue-600"
+          >
+            /r/detrans
+          </a>{" "}
+          subreddit. It was built with the{" "}
+          <a
+            href="https://docs.llamaindex.ai/en/stable/"
+            target="_blank"
+            className="text-blue-500 underline hover:text-blue-600"
+          >
+            LlamaIndex
+          </a>{" "}
+          framework and the state-of-the-art open-source Chinese{" "}
+          <span className="whitespace-nowrap">
+            <i>kimi-k2-instruct</i>{" "}
+          </span>
+          model to reduce Western political bias. You can{" "}
+          <a
+            href="https://www.kimi.com/chat/d2v1aq2i59734bfka5qg"
+            target="_blank"
+            className="text-blue-500 underline hover:text-blue-600"
+          >
+            chat directly with kimi here
+          </a>
+          .
+        </p>
+        <p className="mt-2">
+          For reasons I can only speculate on; ChatGPT and most Western LLMs
+          seem to be deliberately programmed to promote and uphold gender
+          ideolgy concepts and to shut down any discussion about the harms and
+          validity of these belief systems. It proved to be impossible to use
+          OpenAI&apos;s GPT models for this project. If you would like to
+          explore topics through the lens of those who beleive in gender
+          ideolgy, see{" "}
+          <a
+            href={"https://genderaffirming.ai"}
+            target="_blank"
+            className="text-blue-500 underline hover:text-blue-600"
+          >
+            genderaffirming.ai
+          </a>
+        </p>{" "}
         <h2>System Prompts</h2>
         <p>
-          These are the prompts that the system uses for the RAG workflow
-          (retrieval augmented generation). You may notice that the LLM (
-          <i>kimi-k2-instruct</i>) sometimes re-writes the responses to be more
-          compassionate or to fit the style guide as they stream during the
-          final answer phase, but there are no other custom instructions or
-          layers other than what is shown on this page.
+          These are the prompts that the system uses for the RAG workflow. You
+          may notice that the LLM (<i>kimi-k2-instruct</i>) might re-write the
+          responses to be more compassionate or to fit the style guide as they
+          stream during the final answer phase, but there are no other custom
+          instructions or layers other than what is shown on this page.
         </p>
         <p>
           Last Updated: <i>15/9/25</i>

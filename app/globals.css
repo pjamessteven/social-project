@@ -160,7 +160,8 @@ html, body, #__next {
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 0 100% 50%;
+    /*--destructive: 0 100% 50%;*/
+    --destructive: 357.56 77.87% 50.39%;
     --destructive-foreground: 210 40% 98%;
 
     --ring: 215 20.2% 65.1%;

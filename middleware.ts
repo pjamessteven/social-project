@@ -7,11 +7,13 @@ export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const { pathname } = req.nextUrl;
 
+  const isDev = process.env.NODE_ENV === "development";
+
   const host = req.headers.get("host");
 
   const allowedHosts = ["detrans.ai", "genderaffirming.ai"];
 
-  if (host && !allowedHosts.includes(host)) {
+  if (host && !allowedHosts.includes(host) && !isDev) {
     const url = req.nextUrl.clone();
     url.hostname = "detrans.ai";
     url.protocol = "https";

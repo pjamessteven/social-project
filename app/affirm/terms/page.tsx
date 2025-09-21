@@ -14,8 +14,8 @@ export default async function TermsPage() {
           <ol type="a">
             <li>
               <b>Cookies / Tracking Technologies: </b> <br />
-              We do <em>not</em> use cookies, local storage, pixel tags, or any
-              similar client-side tracking mechanisms.
+              We do <em>not</em> use cookies, pixel tags, or any similar
+              client-side tracking mechanisms.
             </li>
             <li>
               <b>IP Addresses: </b>

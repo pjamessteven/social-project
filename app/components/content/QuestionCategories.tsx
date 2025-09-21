@@ -13,12 +13,15 @@ export async function QuestionCategories({
 
   const questionCategories = [
     {
-      title: "Top Picks",
-      description: "Some great starter questions to ask detrans people...",
+      title: "Starter Questions",
+      description: "Some of the best questions to ask detrans people...",
       questions: [
-        "What's an egg?",
         "Is gender a social construct?",
+        "Can people be born in the wrong body?",
+        "Why do some people feel like they were born in the wrong body?",
+        "Why do detrans people regret modifying their bodies?",
         "I didn't choose to be trans!",
+        "What's an egg?",
         "What is a belief system?",
         "What is an identity trap?",
         "How can I get out of an identity trap?",
@@ -30,7 +33,7 @@ export async function QuestionCategories({
         "How do online echo chambers cause psychosis?",
         "Why do detrans voices get silenced?",
         "Is gender ideology at odds with the goals of feminism?",
-        "What are the main reasons that women adpot trans identity?",
+        "What are the main reasons that women adopt trans identity?",
         "What are the main reasons that men adopt trans identity?",
         "How do non-binary identities re-inforce sexist stereotypes and roles?",
         "Why do people identify vaguely as queer now?",
@@ -38,7 +41,7 @@ export async function QuestionCategories({
         "Is there a link between autism and transgender identity?",
         "Is gender-affirming care based on science?",
         "Why is gender-affirming care currently considered the only solution to dysphoria?",
-        "Is academic research on trans and gender topics biased?",
+        "Is academic research on trans topics biased?",
         "Is teaching gender ideology to kids progressive?",
         "Is gender ideology fuelling a culture war?",
         "Is the culture war preventing humanity from solving real problems?",
@@ -219,7 +222,7 @@ export async function QuestionCategories({
       title: "Academic & Research Bias",
       description: "Questioning the narrative in institutions",
       questions: [
-        "Is academic research on trans and gender topics biased?",
+        "Is academic research on trans topics biased?",
         "Why is it so hard to find a gender critical therapist?",
         "Why was gender dysphoria removed from list of mental health disorders?",
         "What is the Cass Review?",

@@ -33,7 +33,7 @@ export default function CustomChatMessages({
 
   return (
     <ChatMessages className="!bg-transparent !p-0">
-      <ChatMessages.List className="!overflow-visible pb-32">
+      <ChatMessages.List className="!overflow-visible pb-28">
         {messages.map((message, index) => {
           const isLast = index === messages.length - 1;
           return (
@@ -56,7 +56,7 @@ export default function CustomChatMessages({
               {isLast && (
                 <>
                   {!isLoading && (
-                    <div className="row -mt-6 ml-3 flex items-center">
+                    <div className="row -mt-2 ml-3 flex items-center">
                       {mode == "affirm" ? (
                         <Link
                           key={index}
@@ -81,7 +81,7 @@ export default function CustomChatMessages({
                             slugify(lastUserMessage?.content as string)
                           }
                           target="_blank"
-                          className="cursor-pointer font-medium italic underline hover:underline"
+                          className="cursor-pointer font-medium italic hover:underline"
                         >
                           {"-> See trans perspectives on this topic"}
                         </Link>
@@ -92,7 +92,7 @@ export default function CustomChatMessages({
                   <Link
                     key={index}
                     href="/"
-                    className="ml-2 cursor-pointer text-base italic hover:underline"
+                    className="mt-2 ml-3 cursor-pointer font-medium italic hover:underline"
                   >
                     {"<- Back to Portal"}
                   </Link>

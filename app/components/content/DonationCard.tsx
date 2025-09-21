@@ -22,11 +22,10 @@ export default function DonationCard({ mode }: { mode: "detrans" | "affirm" }) {
           ></div>
         </div>
         <CardDescription className="mt-2">
-          This site is very expensive to run and my main income source right now
-          is government welfare. If you beleive in the cause please make a
-          donation from the <Link href={"/donate"}>donation page.</Link> The
-          site will be run in cache-only mode if I run out of money, with no
-          ability to ask your own questions.
+          If you beleive in the cause please make a donation from the{" "}
+          <Link href={"/donate"}>donation page.</Link> The site will be run in
+          cache-only mode if I run out of money, with no ability to ask your own
+          questions.
         </CardDescription>
 
         <Link href={"/donate"} className="mt-2">

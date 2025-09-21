@@ -4,6 +4,49 @@ const PromptsPage = () => {
   return (
     <div className="min-h-screen pb-16 lg:pt-8">
       <div className="prose dark:prose-invert">
+        <h2>How does it work?</h2>
+        <p>
+          <b>genderaffirming.ai</b> generates meta questions and answers them
+          using RAG techniques to surface and integrate a variety of real human
+          experiences and perspectives about gender from the trans
+          <span>
+            {" "}
+            <a
+              href="https://reddit.com/r/mtf"
+              target="_blank"
+              className="text-blue-500 underline hover:text-blue-600"
+            >
+              /r/mtf
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://reddit.com/r/ftm"
+              target="_blank"
+              className="text-blue-500 underline hover:text-blue-600"
+            >
+              /r/ftm
+            </a>{" "}
+            subreddits. It uses the{" "}
+            <a
+              href="https://docs.llamaindex.ai/en/stable/"
+              target="_blank"
+              className="text-blue-500 underline hover:text-blue-600"
+            >
+              LlamaIndex
+            </a>{" "}
+            framework and the latest OpenAI GPT 5 model, which has
+            state-of-the-art safety guardrails on gender topics.
+          </span>
+        </p>
+        <p className="mt-2">
+          This produces validating responses to help understand how trans people
+          experience the world, online spaces, their identity, and their bodies.
+          Pick a topic below to start exploring ideas through this lens.
+        </p>
+        <p className="mt-2">
+          The service is provided as a free resource; please consider making a
+          donation to keep it running!
+        </p>
         <h2>System Prompts</h2>
         <p>
           These are the prompts that the system uses for the RAG workflow

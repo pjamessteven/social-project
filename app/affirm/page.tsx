@@ -1,5 +1,4 @@
 import { StartPage } from "../components/content/StartPage";
-import { CustomChatInput } from "../components/ui/chat/custom-chat-input";
 
 import type { Metadata } from "next";
 
@@ -24,10 +23,6 @@ export default async function Home() {
       <div className="pb-16">
         <StartPage mode="affirm" />
       </div>
-      <CustomChatInput
-        mode="affirm"
-        placeholder="Ask 600,000+ trans people a question..."
-      />
     </>
   );
 }

@@ -26,7 +26,7 @@ export default async function SeoChatPage({
       <br />
       {answer && (
         <article
-          className="prose dark:prose-dark max-w-none"
+          className="prose dark:prose-invert max-w-none"
           dangerouslySetInnerHTML={{ __html: marked.parse(answer) }}
         />
       )}

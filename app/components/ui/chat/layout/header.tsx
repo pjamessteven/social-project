@@ -1,17 +1,12 @@
 "use client";
 
-import { ChevronDown, Menu, MessageCircleHeart, X } from "lucide-react";
+import { Menu, MessageCircleHeart, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Button } from "../../button";
 import { Dialog, DialogContent, DialogTrigger } from "../../dialog";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../../dropdown-menu";
+import { cn } from "../../lib/utils";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -20,7 +15,6 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "../../navigation-menu";
-import { cn } from "../../lib/utils";
 
 function NavLink({ href, label }: { href: string; label: string }) {
   const pathname = usePathname();
@@ -33,7 +27,7 @@ function NavLink({ href, label }: { href: string; label: string }) {
         variant="ghost"
         className={cn(
           "rounded-full px-4 transition-all",
-          isActive && "bg-black/5",
+          isActive && "bg-accent",
         )}
       >
         {label}
@@ -75,8 +69,8 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
         {/* Desktop Navigation - hidden on mobile */}
         <div className="hidden items-center justify-end gap-0.5 p-1 md:flex">
           <NavLink href={!devAffirm ? "/" : "/affirm"} label="Portal" />
-          
-          <NavigationMenu>
+
+          <NavigationMenu className="ml-2">
             <NavigationMenuList>
               {/* Resources Menu */}
               <NavigationMenuItem>
@@ -84,37 +78,43 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                   Resources
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="grid w-48 gap-1 p-2">
+                  <div className="grid w-68 gap-1 p-1">
                     <NavigationMenuLink asChild>
                       <Link
                         href={!devAffirm ? "/studies" : "/affirm/studies"}
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="text-sm font-medium leading-none">Studies</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        <div className="text-sm leading-none font-medium">
+                          Studies
+                        </div>
+                        <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                           Academic research and studies
                         </p>
                       </Link>
                     </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
-                        href={!devAffirm ? "/definitions" : "/affirm/definitions"}
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        href={"/definitions"}
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="text-sm font-medium leading-none">Definitions</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        <div className="text-sm leading-none font-medium">
+                          Definitions
+                        </div>
+                        <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                           Key terms and concepts
                         </p>
                       </Link>
                     </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
-                        href={!devAffirm ? "/facts" : "/affirm/facts"}
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        href={"/support"}
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="text-sm font-medium leading-none">Facts</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Important facts and statistics
+                        <div className="text-sm leading-none font-medium">
+                          Get Detransition Support
+                        </div>
+                        <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                          Find community and therapists
                         </p>
                       </Link>
                     </NavigationMenuLink>
@@ -128,14 +128,16 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                   About
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="grid w-48 gap-1 p-2">
+                  <div className="grid w-68 gap-1 p-1">
                     <NavigationMenuLink asChild>
                       <Link
                         href={!devAffirm ? "/prompts" : "/affirm/prompts"}
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="text-sm font-medium leading-none">System Prompts</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        <div className="text-sm leading-none font-medium">
+                          System Prompts
+                        </div>
+                        <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                           View the AI system prompts
                         </p>
                       </Link>
@@ -143,10 +145,12 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <NavigationMenuLink asChild>
                       <Link
                         href={!devAffirm ? "/terms" : "/affirm/terms"}
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="text-sm font-medium leading-none">Terms</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        <div className="text-sm leading-none font-medium">
+                          Terms
+                        </div>
+                        <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                           Privacy policy and terms
                         </p>
                       </Link>
@@ -154,11 +158,13 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <NavigationMenuLink asChild>
                       <Link
                         href={!devAffirm ? "/contact" : "/affirm/contact"}
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="text-sm font-medium leading-none">Contact</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Get in touch with us
+                        <div className="text-sm leading-none font-medium">
+                          Contact
+                        </div>
+                        <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                          Get in touch with Peter
                         </p>
                       </Link>
                     </NavigationMenuLink>
@@ -190,7 +196,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
               <Menu className="h-5 w-5" />
             </Button>
           </DialogTrigger>
-          <DialogContent className="fixed right-0 top-0 h-full w-80 max-w-80 translate-x-0 translate-y-0 rounded-none border-l p-0 data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right">
+          <DialogContent className="data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right fixed top-0 right-0 h-full w-80 max-w-80 translate-x-0 translate-y-0 rounded-none border-l p-0">
             <div className="p-4">
               <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-lg font-semibold">Menu</h2>
@@ -217,10 +223,10 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     Portal
                   </Button>
                 </Link>
-                
+
                 {/* Resources Section */}
                 <div className="pt-2">
-                  <h3 className="mb-2 px-3 text-sm font-medium text-muted-foreground">
+                  <h3 className="text-muted-foreground mb-2 px-3 text-sm font-medium">
                     Resources
                   </h3>
                   <Link
@@ -269,7 +275,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
 
                 {/* About Section */}
                 <div className="pt-2">
-                  <h3 className="mb-2 px-3 text-sm font-medium text-muted-foreground">
+                  <h3 className="text-muted-foreground mb-2 px-3 text-sm font-medium">
                     About
                   </h3>
                   <Link

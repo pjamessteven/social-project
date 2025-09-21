@@ -22,13 +22,13 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const h = await headers(); // both calls are async-safe
-  const host = h.get("host") ?? ""; // genderaffirmation.ai | the-other.one
+  const host = h.get("host") ?? ""; // genderaffirming.ai | the-other.one
   const path = (await headers()).get("x-pathname") ?? "";
   const mode =
-    host.includes("genderaffirmation.ai") || path.includes("/affirm")
+    host.includes("genderaffirming.ai") || path.includes("/affirm")
       ? "affirm"
       : "detrans";
-
+  const showChatInput = path === "/" || path.includes("/chat");
   return (
     <html lang="en" suppressHydrationWarning>
       <Head>
@@ -55,11 +55,14 @@ export default async function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="relative flex h-[100dvh] flex-col">
+          <div className="relative flex h-[100dvh] flex-col overflow-hidden">
             <Header mode={mode} />
-
-            <main className="flex h-full min-h-0 flex-1 flex-row justify-center overflow-y-auto">
-              <div className="h-full w-full overflow-visible overflow-x-hidden p-4 sm:overflow-x-visible md:w-3xl">
+            <main
+              className={
+                "flex h-full min-h-0 flex-1 flex-row justify-center overflow-x-hidden overflow-y-auto"
+              }
+            >
+              <div className="h-full w-full overflow-x-hidden overflow-y-visible p-4 sm:overflow-x-visible md:w-3xl">
                 {children}
               </div>
             </main>

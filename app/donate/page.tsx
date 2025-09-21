@@ -15,13 +15,10 @@ export default async function DonationPage() {
           </p>
           <p>
             I can&apos;t afford to run a resource intensive service like this
-            without your support. My main income source at the moment is
-            government welfare and and as of writing this I have less than $1000
-            in my bank account. If this site blows up I could be getting bills
-            for thousands of dollars. If I run out of money, the ability to ask
-            your own questions and explore topics deeper through follow-up
-            questions will be disabled and I will only serve cached responses to
-            the questions in the portal.
+            without your support. I'm on the benefit. If I run out of money, the
+            ability to ask your own questions and explore topics deeper through
+            follow-up questions will be disabled and I will only serve cached
+            responses to the questions in the portal.
           </p>
           <p>
             Please consider a monthly donation. You can donate using paypal
