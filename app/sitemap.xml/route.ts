@@ -31,6 +31,42 @@ export async function GET(request: NextRequest) {
       changeFrequency: "monthly",
       priority: 0.6,
     },
+    {
+      url: `${baseUrl}/stories`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/definitions`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/studies`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/support`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/prompts`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/compare`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "weekly",
+      priority: 0.6,
+    },
   ];
 
   const affirmRoutes = includeAffirm
@@ -58,6 +94,18 @@ export async function GET(request: NextRequest) {
           lastModified: new Date().toISOString(),
           changeFrequency: "monthly",
           priority: 0.5,
+        },
+        {
+          url: `${baseUrl}/affirm/studies`,
+          lastModified: new Date().toISOString(),
+          changeFrequency: "weekly",
+          priority: 0.7,
+        },
+        {
+          url: `${baseUrl}/affirm/prompts`,
+          lastModified: new Date().toISOString(),
+          changeFrequency: "monthly",
+          priority: 0.4,
         },
       ]
     : [];
