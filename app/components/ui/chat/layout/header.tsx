@@ -214,24 +214,24 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                   <Button
                     variant="ghost"
                     className={cn(
-                      "h-auto w-full flex-col items-start justify-start py-3",
+                      "h-auto w-full flex-row items-center justify-start py-3",
                       pathname === "/" && "bg-muted",
                     )}
                   >
-                    <div className="flex items-center gap-2">
-                      <Home className="h-4 w-4" />
-                      <div className="text-sm font-medium">Portal</div>
-                    </div>
+                    <Home className="h-4 w-4" />
 
-                    <div className="text-muted-foreground text-xs">
-                      Detrans AI Chat
+                    <div className="ml-4 flex flex-col items-start">
+                      <div className="text-sm font-medium">Portal</div>
+                      <div className="text-muted-foreground text-xs">
+                        Detrans AI Chat & Starter Questions
+                      </div>
                     </div>
                   </Button>
                 </Link>
 
                 {/* Resources Section */}
                 <div className="pt-2">
-                  <div className="rounded-lg border border-border p-3">
+                  <div className="border-border rounded-lg border p-3">
                     <h3 className="text-muted-foreground mb-2 text-sm font-medium">
                       Resources
                     </h3>
@@ -254,7 +254,9 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         </Button>
                       </Link>
                       <Link
-                        href={!devAffirm ? "/definitions" : "/affirm/definitions"}
+                        href={
+                          !devAffirm ? "/definitions" : "/affirm/definitions"
+                        }
                         onClick={() => setIsOpen(false)}
                       >
                         <Button
@@ -295,7 +297,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
 
                 {/* About Section */}
                 <div className="pt-2">
-                  <div className="rounded-lg border border-border p-3">
+                  <div className="border-border rounded-lg border p-3">
                     <h3 className="text-muted-foreground mb-2 text-sm font-medium">
                       About
                     </h3>
@@ -311,7 +313,9 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                             pathname === "/prompts" && "bg-muted",
                           )}
                         >
-                          <div className="text-sm font-medium">How It Works</div>
+                          <div className="text-sm font-medium">
+                            How It Works
+                          </div>
                           <div className="text-muted-foreground text-xs">
                             View the AI system prompts
                           </div>
