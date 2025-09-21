@@ -1,5 +1,6 @@
 "use client";
 
+import DonationCard from "@/app/components/content/DonationCard";
 import { Menu, MessageCircleHeart, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -193,20 +194,18 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
               className="md:hidden"
               onClick={() => setIsOpen(true)}
             >
-              <Menu className="h-5 w-5" />
+              {isOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </Button>
           </DialogTrigger>
-          <DialogContent className="data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 h-full w-full max-w-none translate-x-0 translate-y-0 rounded-none border-l p-0">
-            <div className="flex flex-col p-4">
-              <div className="flex justify-end">
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <X className="h-5 w-5" />
-                </Button>
-              </div>
+          <DialogContent
+            showOverlay={false}
+            className="data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 !top-[56px] h-full w-full max-w-none translate-x-0 translate-y-0 rounded-none border-none p-0"
+          >
+            <div className="flex h-full flex-col justify-between overflow-y-auto p-4">
               <div className="flex w-full flex-col space-y-2">
                 <Link
                   href={!devAffirm ? "/" : "/affirm"}
@@ -239,7 +238,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         pathname === "/studies" && "bg-muted",
                       )}
                     >
-                      Studies
+                      Academic Research & Studies
                     </Button>
                   </Link>
                   <Link
@@ -253,7 +252,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         pathname === "/definitions" && "bg-muted",
                       )}
                     >
-                      Definitions
+                      Word Definitions
                     </Button>
                   </Link>
                   <Link
@@ -264,10 +263,10 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                       variant="ghost"
                       className={cn(
                         "w-full justify-start",
-                        pathname === "/facts" && "bg-muted",
+                        pathname === "/support" && "bg-muted",
                       )}
                     >
-                      Facts
+                      Support
                     </Button>
                   </Link>
                 </div>
@@ -320,18 +319,9 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     </Button>
                   </Link>
                 </div>
-
-                <Link
-                  href={!devAffirm ? "/donate" : "/affirm/donate"}
-                  onClick={() => setIsOpen(false)}
-                >
-                  <Button
-                    variant="destructive"
-                    className="mt-4 w-full justify-start"
-                  >
-                    Donate
-                  </Button>
-                </Link>
+              </div>
+              <div className="mt-4 pb-16">
+                <DonationCard mode={mode} />
               </div>
             </div>
           </DialogContent>
