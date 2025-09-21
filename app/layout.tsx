@@ -56,7 +56,7 @@ export default async function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="relative flex h-[100dvh] flex-col overflow-hidden">
+          <div className="relative flex h-[100dvh] flex-col">
             <Header mode={baseMode} />
             <main
               className={
