@@ -96,8 +96,11 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         href={!devAffirm ? "/studies" : "/affirm/studies"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="text-sm leading-none font-medium">
-                          Studies
+                        <div className="flex items-center gap-2">
+                          <BookOpen className="h-4 w-4" />
+                          <div className="text-sm leading-none font-medium">
+                            Studies
+                          </div>
                         </div>
                         <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                           Academic research and studies
@@ -109,8 +112,11 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         href={"/definitions"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="text-sm leading-none font-medium">
-                          Definitions
+                        <div className="flex items-center gap-2">
+                          <FileText className="h-4 w-4" />
+                          <div className="text-sm leading-none font-medium">
+                            Definitions
+                          </div>
                         </div>
                         <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                           Key terms and concepts
@@ -122,8 +128,11 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         href={"/support"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="text-sm leading-none font-medium">
-                          Get Detransition Support
+                        <div className="flex items-center gap-2">
+                          <Heart className="h-4 w-4" />
+                          <div className="text-sm leading-none font-medium">
+                            Get Detransition Support
+                          </div>
                         </div>
                         <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                           Find community and therapists
@@ -146,8 +155,11 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         href={!devAffirm ? "/prompts" : "/affirm/prompts"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="text-sm leading-none font-medium">
-                          System Prompts
+                        <div className="flex items-center gap-2">
+                          <Settings className="h-4 w-4" />
+                          <div className="text-sm leading-none font-medium">
+                            System Prompts
+                          </div>
                         </div>
                         <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                           View the AI system prompts
@@ -159,8 +171,11 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         href={!devAffirm ? "/terms" : "/affirm/terms"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="text-sm leading-none font-medium">
-                          Terms
+                        <div className="flex items-center gap-2">
+                          <HelpCircle className="h-4 w-4" />
+                          <div className="text-sm leading-none font-medium">
+                            Terms
+                          </div>
                         </div>
                         <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                           Privacy policy and terms
@@ -172,8 +187,11 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         href={!devAffirm ? "/contact" : "/affirm/contact"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <div className="text-sm leading-none font-medium">
-                          Contact
+                        <div className="flex items-center gap-2">
+                          <Mail className="h-4 w-4" />
+                          <div className="text-sm leading-none font-medium">
+                            Contact
+                          </div>
                         </div>
                         <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                           Get in touch with Peter
