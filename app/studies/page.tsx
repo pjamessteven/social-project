@@ -5,8 +5,8 @@ export default async function StudiesPage() {
 
       <div className="space-y-4">
         <p>
-          Boyd, I., Hackett, T. & S, Bewley (2022) Care of Transgender
-          Patients: A General Practice Quality Improvement Approach.{" "}
+          Boyd, I., Hackett, T. & S, Bewley (2022) Care of Transgender Patients:
+          A General Practice Quality Improvement Approach.{" "}
           <a
             href="https://www.mdpi.com/2227-9032/10/1/121"
             target="_blank"
@@ -18,8 +18,8 @@ export default async function StudiesPage() {
         </p>
 
         <p>
-          Butler, C. & Hutchinson, A. (2020) The pressing need for research
-          and services for gender desisters /detransitioners{" "}
+          Butler, C. & Hutchinson, A. (2020) The pressing need for research and
+          services for gender desisters /detransitioners{" "}
           <a
             href="https://acamh.onlinelibrary.wiley.com/doi/abs/10.1111/camh.12361"
             target="_blank"
@@ -31,9 +31,9 @@ export default async function StudiesPage() {
         </p>
 
         <p>
-          Churcher-Clarke, A. & Spiliadis, A. (2019) Taking the Lid of the
-          Box: The value of extended clinical assessment for adolescents
-          presenting with gender identity difficulties.{" "}
+          Churcher-Clarke, A. & Spiliadis, A. (2019) Taking the Lid of the Box:
+          The value of extended clinical assessment for adolescents presenting
+          with gender identity difficulties.{" "}
           <em>Clinical child psychology and psychiatry</em>, <em>24</em>(2),
           338-352.{" "}
           <a
@@ -150,8 +150,8 @@ export default async function StudiesPage() {
 
         <p>
           Littman, L. (2021) Individuals Treated for Gender Dysphoria with
-          Medical and/or Surgical Transition Who Subsequently Detransitioned:
-          A Survey of 100 Detransitioners{" "}
+          Medical and/or Surgical Transition Who Subsequently Detransitioned: A
+          Survey of 100 Detransitioners{" "}
           <a
             href="https://pubmed.ncbi.nlm.nih.gov/34665380/"
             target="_blank"
@@ -163,8 +163,8 @@ export default async function StudiesPage() {
         </p>
 
         <p>
-          Lomax, J., & C.Butler (2025) Narratives of Adults Registered Female
-          at Birth who Started a Medical Transition and Later Detransitioned{" "}
+          Lomax, J., & C.Butler (2025) Narratives of Adults Registered Female at
+          Birth who Started a Medical Transition and Later Detransitioned{" "}
           <a
             href="https://link.springer.com/article/10.1007/s10508-025-03083-9#ref-CR61"
             target="_blank"
@@ -201,8 +201,8 @@ export default async function StudiesPage() {
         </p>
 
         <p>
-          Roberts, C.M, <em>et al.</em> (2022) Continuation of Gender
-          Affirming Hormones Among Transgender Adolescents and Adults{" "}
+          Roberts, C.M, <em>et al.</em> (2022) Continuation of Gender Affirming
+          Hormones Among Transgender Adolescents and Adults{" "}
           <a
             href="https://academic.oup.com/jcem/article/107/9/e3937/6572526"
             target="_blank"
