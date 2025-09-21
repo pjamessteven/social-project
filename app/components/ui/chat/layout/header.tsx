@@ -265,10 +265,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                       Resources
                     </h3>
                     <div className="space-y-1">
-                      <Link
-                        href={!devAffirm ? "/studies" : "/affirm/studies"}
-                        onClick={() => setIsOpen(false)}
-                      >
+                      <Link href={"/studies"} onClick={() => setIsOpen(false)}>
                         <Button
                           variant="ghost"
                           className={cn(
@@ -286,9 +283,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         </Button>
                       </Link>
                       <Link
-                        href={
-                          !devAffirm ? "/definitions" : "/affirm/definitions"
-                        }
+                        href={"/definitions"}
                         onClick={() => setIsOpen(false)}
                       >
                         <Button
@@ -309,10 +304,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           </div>
                         </Button>
                       </Link>
-                      <Link
-                        href={!devAffirm ? "/support" : "/affirm/support"}
-                        onClick={() => setIsOpen(false)}
-                      >
+                      <Link href={"/support"} onClick={() => setIsOpen(false)}>
                         <Button
                           variant="ghost"
                           className={cn(
