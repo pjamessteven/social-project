@@ -103,10 +103,12 @@ export async function StartPage({
                 You can use <b>detrans.ai</b> as your own personal
                 gender-exploratory therapist, or simply as a research tool.
                 Every person experiencing gender dysphoria should open their
-                mind to the perspectives of people who have 'been there and done
-                that' before pursuing medical transition, and they should also
-                be made aware of how cancel culture and echo chambers affects
-                the information they are receiving.
+                mind to the perspectives of people who have{" "}
+                <i>'been there and done that'</i> before pursuing medical
+                transition, and they should also be make themselves aware of how
+                cancel culture and echo chambers affects the information they
+                are receiving, even from the government, universtities and
+                health institutions.
               </p>
               <p>
                 For a more <i>affirming</i> experience, please see{" "}
