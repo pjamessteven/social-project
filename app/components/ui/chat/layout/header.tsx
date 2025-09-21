@@ -214,11 +214,15 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                   <Button
                     variant="ghost"
                     className={cn(
-                      "w-full justify-start",
+                      "h-auto w-full flex-col items-start justify-start py-3",
                       pathname === "/" && "bg-muted",
                     )}
                   >
-                    Portal
+                    <div className="text-sm font-medium">Portal</div>
+
+                    <div className="text-muted-foreground text-xs">
+                      Detrans AI Chat
+                    </div>
                   </Button>
                 </Link>
 
@@ -234,12 +238,12 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <Button
                       variant="ghost"
                       className={cn(
-                        "w-full justify-start flex-col items-start h-auto py-3",
+                        "h-auto w-full flex-col items-start justify-start py-3",
                         pathname === "/studies" && "bg-muted",
                       )}
                     >
                       <div className="text-sm font-medium">Studies</div>
-                      <div className="text-xs text-muted-foreground">
+                      <div className="text-muted-foreground text-xs">
                         Academic research and studies
                       </div>
                     </Button>
@@ -251,12 +255,12 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <Button
                       variant="ghost"
                       className={cn(
-                        "w-full justify-start flex-col items-start h-auto py-3",
+                        "h-auto w-full flex-col items-start justify-start py-3",
                         pathname === "/definitions" && "bg-muted",
                       )}
                     >
                       <div className="text-sm font-medium">Definitions</div>
-                      <div className="text-xs text-muted-foreground">
+                      <div className="text-muted-foreground text-xs">
                         Key terms and concepts
                       </div>
                     </Button>
@@ -268,12 +272,14 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <Button
                       variant="ghost"
                       className={cn(
-                        "w-full justify-start flex-col items-start h-auto py-3",
+                        "h-auto w-full flex-col items-start justify-start py-3",
                         pathname === "/support" && "bg-muted",
                       )}
                     >
-                      <div className="text-sm font-medium">Get Detransition Support</div>
-                      <div className="text-xs text-muted-foreground">
+                      <div className="text-sm font-medium">
+                        Get Detransition Support
+                      </div>
+                      <div className="text-muted-foreground text-xs">
                         Find community and therapists
                       </div>
                     </Button>
@@ -292,12 +298,12 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <Button
                       variant="ghost"
                       className={cn(
-                        "w-full justify-start flex-col items-start h-auto py-3",
+                        "h-auto w-full flex-col items-start justify-start py-3",
                         pathname === "/prompts" && "bg-muted",
                       )}
                     >
-                      <div className="text-sm font-medium">System Prompts</div>
-                      <div className="text-xs text-muted-foreground">
+                      <div className="text-sm font-medium">How It Works</div>
+                      <div className="text-muted-foreground text-xs">
                         View the AI system prompts
                       </div>
                     </Button>
@@ -309,12 +315,12 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <Button
                       variant="ghost"
                       className={cn(
-                        "w-full justify-start flex-col items-start h-auto py-3",
+                        "h-auto w-full flex-col items-start justify-start py-3",
                         pathname === "/terms" && "bg-muted",
                       )}
                     >
                       <div className="text-sm font-medium">Terms</div>
-                      <div className="text-xs text-muted-foreground">
+                      <div className="text-muted-foreground text-xs">
                         Privacy policy and terms
                       </div>
                     </Button>
@@ -326,12 +332,12 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <Button
                       variant="ghost"
                       className={cn(
-                        "w-full justify-start flex-col items-start h-auto py-3",
+                        "h-auto w-full flex-col items-start justify-start py-3",
                         pathname === "/contact" && "bg-muted",
                       )}
                     >
                       <div className="text-sm font-medium">Contact</div>
-                      <div className="text-xs text-muted-foreground">
+                      <div className="text-muted-foreground text-xs">
                         Get in touch with Peter
                       </div>
                     </Button>
