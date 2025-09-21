@@ -16,9 +16,9 @@ export default async function StoriesPage() {
       </p>
 
       <h2>Videos</h2>
-      
+
       <h3>Detransitioned Videos</h3>
-      
+
       <ul>
         <li>
           <a
@@ -37,7 +37,8 @@ export default async function StoriesPage() {
             rel="noopener noreferrer"
             className="underline"
           >
-            Why detransitioning after 25 years was the most healing thing I have ever done - Call me sam MTFTM
+            Why detransitioning after 25 years was the most healing thing I have
+            ever done - Call me sam MTFTM
           </a>
         </li>
         <li>
@@ -87,7 +88,8 @@ export default async function StoriesPage() {
             rel="noopener noreferrer"
             className="underline"
           >
-            The cost of transitioning - my body was never the problem - Cat Cattinson FTMTF
+            The cost of transitioning - my body was never the problem - Cat
+            Cattinson FTMTF
           </a>
         </li>
         <li>
