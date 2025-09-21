@@ -96,7 +96,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         href={!devAffirm ? "/studies" : "/affirm/studies"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <BookOpen className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                        <BookOpen className="mt-0.5 h-4 w-4 flex-shrink-0" />
                         <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             Studies
@@ -112,7 +112,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         href={"/definitions"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <FileText className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                        <FileText className="mt-0.5 h-4 w-4 flex-shrink-0" />
                         <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             Definitions
@@ -128,7 +128,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         href={"/support"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <Heart className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                        <Heart className="mt-0.5 h-4 w-4 flex-shrink-0" />
                         <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             Get Detransition Support
@@ -155,7 +155,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         href={!devAffirm ? "/prompts" : "/affirm/prompts"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <Settings className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                        <Settings className="mt-0.5 h-4 w-4 flex-shrink-0" />
                         <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             System Prompts
@@ -171,7 +171,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         href={!devAffirm ? "/terms" : "/affirm/terms"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <HelpCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                        <HelpCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
                         <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             Terms
@@ -187,7 +187,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         href={!devAffirm ? "/contact" : "/affirm/contact"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <Mail className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                        <Mail className="mt-0.5 h-4 w-4 flex-shrink-0" />
                         <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             Contact
@@ -289,7 +289,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         <Button
                           variant="ghost"
                           className={cn(
-                            "h-auto w-full flex-row items-center justify-start py-3",
+                            "no-wrap h-auto w-full flex-row items-center justify-start py-3",
                             pathname === "/definitions" && "bg-muted",
                           )}
                         >
