@@ -193,8 +193,10 @@ export async function StartPage({
               >
                 <b>genderaffirming.ai</b>
               </a>{" "}
-              will affirm your gender identity. It&apos;s powered by insights
-              directly from the online trans community -{" "}
+              will affirm your gender identity. It uses OpenAI's <i>gpt-4o</i>{" "}
+              model, which has safety guard-rails on gender topics and it is
+              known to be a very validating model. It&apos;s integrates human
+              experiences and insights from the online trans community -{" "}
               <a
                 href="https://reddit.com/r/mtf"
                 target="_blank"
@@ -221,8 +223,9 @@ export async function StartPage({
                 <b>detrans.ai</b>
               </a>{" "}
               provides a more critical view of gender as it answers questions
-              from a detrans perspective. It integrates thoughts and experiences
-              from the online
+              from a detrans perspective. It uses the Chinese{" "}
+              <i>kimi-k2-instruct</i> model to reduce Western political bias. It
+              integrates thoughts and experiences from the online
               <span>
                 {" "}
                 <a

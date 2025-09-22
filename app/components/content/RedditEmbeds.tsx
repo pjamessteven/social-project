@@ -369,7 +369,6 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
     const initialOffset = window.innerWidth * 0.5;
     container.scrollLeft = initialOffset;
 
-    let intervalId: NodeJS.Timeout;
     let isUserInteracting = false;
     let interactionTimeout: NodeJS.Timeout;
     const scrollSpeed = 1; // pixels per interval
@@ -389,7 +388,7 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
     };
 
     // Use setInterval instead of requestAnimationFrame for better Safari support
-    intervalId = setInterval(autoScroll, 16); // ~60fps
+    const intervalId = setInterval(autoScroll, 16); // ~60fps
 
     const pauseAutoScroll = () => {
       isUserInteracting = true;
