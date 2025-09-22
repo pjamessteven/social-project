@@ -8,8 +8,6 @@ export default function ScrollRestoration() {
   const pathname = usePathname();
 
   useEffect(() => {
-    let currentPath = pathname;
-    
     // Find the main scrollable element
     const getScrollableElement = () => {
       return document.querySelector('main');
@@ -46,7 +44,7 @@ export default function ScrollRestoration() {
     let scrollTimeout: NodeJS.Timeout;
     const handleScroll = () => {
       clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => saveScrollForPath(currentPath), 100);
+      scrollTimeout = setTimeout(() => saveScrollForPath(pathname), 100);
     };
 
     const scrollableElement = getScrollableElement();
@@ -64,12 +62,12 @@ export default function ScrollRestoration() {
     }
 
     // Save scroll on navigation/unload
-    const handleBeforeUnload = () => saveScrollForPath(currentPath);
+    const handleBeforeUnload = () => saveScrollForPath(pathname);
     window.addEventListener("beforeunload", handleBeforeUnload);
     
     return () => {
       // Save scroll position for the current path before cleanup
-      saveScrollForPath(currentPath);
+      saveScrollForPath(pathname);
       clearTimeout(scrollTimeout);
       window.removeEventListener("beforeunload", handleBeforeUnload);
       window.removeEventListener('load', restoreScroll);
