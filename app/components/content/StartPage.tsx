@@ -253,36 +253,34 @@ export async function StartPage({
           <div className="mt-8">
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
               <Link href="/support">
-                <Button variant="secondary" className="h-auto w-full flex-col gap-2 p-4">
-                  <Heart className="h-6 w-6" />
+                <Button variant="secondary" className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4">
+                  <Heart className="h-4 w-4" />
                   <span className="text-sm font-medium">Get Support</span>
                 </Button>
               </Link>
               <Link href="/stories">
-                <Button variant="secondary" className="h-auto w-full flex-col gap-2 p-4">
-                  <Youtube className="h-6 w-6" />
+                <Button variant="secondary" className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4">
+                  <Youtube className="h-4 w-4" />
                   <span className="text-sm font-medium">Personal Stories</span>
                 </Button>
               </Link>
               <Link href="/definitions">
-                <Button variant="secondary" className="h-auto w-full flex-col gap-2 p-4">
-                  <FileText className="h-6 w-6" />
+                <Button variant="secondary" className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4">
+                  <FileText className="h-4 w-4" />
                   <span className="text-sm font-medium">Definitions</span>
                 </Button>
               </Link>
               <Link href="/studies">
-                <Button variant="secondary" className="h-auto w-full flex-col gap-2 p-4">
-                  <BookOpen className="h-6 w-6" />
+                <Button variant="secondary" className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4">
+                  <BookOpen className="h-4 w-4" />
                   <span className="text-sm font-medium">Studies</span>
                 </Button>
               </Link>
               <a href="https://statsforgender.org/" target="_blank" rel="noopener noreferrer">
-                <Button variant="secondary" className="h-auto w-full flex-col gap-2 p-4">
-                  <div className="flex items-center gap-1">
-                    <ChartNoAxesCombined className="h-6 w-6" />
-                    <ExternalLink className="h-3 w-3" />
-                  </div>
+                <Button variant="secondary" className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4">
+                  <ChartNoAxesCombined className="h-4 w-4" />
                   <span className="text-sm font-medium">Statistics</span>
+                  <ExternalLink className="h-3 w-3" />
                 </Button>
               </a>
             </div>
