@@ -325,19 +325,30 @@ export default function StoriesPage() {
             key={video.id}
             className="group block"
           >
-            <div className="rounded-lg border p-4 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800">
-              <div className="mb-3">
+            <div className="flex h-full flex-col rounded-lg border p-4 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800">
+              <div className="relative mb-3">
                 <img
                   src={`https://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
                   alt={`Thumbnail for ${video.title}`}
                   className="h-48 w-full rounded object-cover"
                 />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-black bg-opacity-70 transition-all group-hover:bg-opacity-80">
+                    <svg
+                      className="ml-1 h-8 w-8 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
               </div>
-              <div>
+              <div className="flex flex-1 flex-col">
                 <h3 className="mb-2 text-base font-medium text-blue-600 group-hover:text-blue-800 dark:text-blue-400 dark:group-hover:text-blue-300">
                   {video.title}
                 </h3>
-                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                <p className="mt-auto text-sm font-light text-gray-500 dark:text-gray-400">
                   by <b>{video.author}</b> (
                   {video.type === "FTMTF"
                     ? "Female Detransitioner"
