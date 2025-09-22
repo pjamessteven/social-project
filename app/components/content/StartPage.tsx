@@ -1,8 +1,15 @@
 "use server";
 
+import {
+  BookOpen,
+  ChartNoAxesCombined,
+  ExternalLink,
+  FileText,
+  Heart,
+  Youtube,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { BookOpen, ChartNoAxesCombined, ExternalLink, FileText, Heart, Youtube } from "lucide-react";
 import { Button } from "../ui/button";
 import DonationCard from "./DonationCard";
 import { QuestionCategories } from "./QuestionCategories";
@@ -253,31 +260,50 @@ export async function StartPage({
           <div className="mt-8">
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
               <Link href="/support">
-                <Button variant="secondary" className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4">
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
                   <Heart className="h-4 w-4" />
                   <span className="text-sm font-medium">Get Support</span>
                 </Button>
               </Link>
               <Link href="/stories">
-                <Button variant="secondary" className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4">
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
                   <Youtube className="h-4 w-4" />
-                  <span className="text-sm font-medium">Personal Stories</span>
+                  <span className="text-sm font-medium">Watch Stories</span>
                 </Button>
               </Link>
               <Link href="/definitions">
-                <Button variant="secondary" className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4">
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
                   <FileText className="h-4 w-4" />
                   <span className="text-sm font-medium">Definitions</span>
                 </Button>
               </Link>
               <Link href="/studies">
-                <Button variant="secondary" className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4">
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
                   <BookOpen className="h-4 w-4" />
                   <span className="text-sm font-medium">Studies</span>
                 </Button>
               </Link>
-              <a href="https://statsforgender.org/" target="_blank" rel="noopener noreferrer">
-                <Button variant="secondary" className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4">
+              <a
+                href="https://statsforgender.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
                   <ChartNoAxesCombined className="h-4 w-4" />
                   <span className="text-sm font-medium">Statistics</span>
                   <ExternalLink className="h-3 w-3" />
