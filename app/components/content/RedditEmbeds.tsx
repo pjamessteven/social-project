@@ -394,10 +394,10 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
     const pauseAutoScroll = () => {
       isUserInteracting = true;
       clearTimeout(interactionTimeout);
-      // Resume auto-scrolling after 3 seconds of no user interaction
+      // Resume auto-scrolling after 1 second of no user interaction
       interactionTimeout = setTimeout(() => {
         isUserInteracting = false;
-      }, 3000);
+      }, 1000);
     };
 
     // Listen for wheel events (mouse wheel scrolling)
