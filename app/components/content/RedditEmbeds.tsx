@@ -365,26 +365,26 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
     const container = scrollContainerRef.current;
     if (!container || EMBEDS.length === 0) return;
 
-    let animationId: number;
+    let intervalId: NodeJS.Timeout;
     let isHovered = false;
-    const scrollSpeed = 0.5; // pixels per frame - smoother scrolling
+    const scrollSpeed = 1; // pixels per interval
     const cardWidth = 320; // approximate width of each card + gap
     const totalWidth = EMBEDS.length * cardWidth;
 
     const autoScroll = () => {
       if (!isHovered && container) {
-        container.scrollLeft += scrollSpeed;
+        // Use scrollBy for better Safari compatibility
+        container.scrollBy({ left: scrollSpeed, behavior: 'auto' });
         
         // Seamless loop: when we've scrolled past the first set, reset to beginning
         if (container.scrollLeft >= totalWidth) {
           container.scrollLeft = 0;
         }
       }
-      animationId = requestAnimationFrame(autoScroll);
     };
 
-    // Start the animation
-    animationId = requestAnimationFrame(autoScroll);
+    // Use setInterval instead of requestAnimationFrame for better Safari support
+    intervalId = setInterval(autoScroll, 16); // ~60fps
 
     // Pause scrolling on hover and allow manual scrolling
     const handleMouseEnter = () => {
@@ -395,13 +395,25 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
       isHovered = false;
     };
 
+    const handleTouchStart = () => {
+      isHovered = true;
+    };
+
+    const handleTouchEnd = () => {
+      isHovered = false;
+    };
+
     container.addEventListener('mouseenter', handleMouseEnter);
     container.addEventListener('mouseleave', handleMouseLeave);
+    container.addEventListener('touchstart', handleTouchStart);
+    container.addEventListener('touchend', handleTouchEnd);
 
     return () => {
-      cancelAnimationFrame(animationId);
+      clearInterval(intervalId);
       container.removeEventListener('mouseenter', handleMouseEnter);
       container.removeEventListener('mouseleave', handleMouseLeave);
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchend', handleTouchEnd);
     };
   }, [EMBEDS.length]);
 
