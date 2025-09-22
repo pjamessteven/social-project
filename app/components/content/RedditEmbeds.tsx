@@ -365,6 +365,10 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
     const container = scrollContainerRef.current;
     if (!container || EMBEDS.length === 0) return;
 
+    // Set initial scroll position to offset by 50vw to start from left
+    const initialOffset = window.innerWidth * 0.5;
+    container.scrollLeft = initialOffset;
+
     let intervalId: NodeJS.Timeout;
     let isHovered = false;
     const scrollSpeed = 1; // pixels per interval
@@ -376,9 +380,9 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
         // Use scrollBy for better Safari compatibility
         container.scrollBy({ left: scrollSpeed, behavior: 'auto' });
         
-        // Seamless loop: when we've scrolled past the first set, reset to beginning
-        if (container.scrollLeft >= totalWidth) {
-          container.scrollLeft = 0;
+        // Seamless loop: when we've scrolled past the first set, reset to beginning + offset
+        if (container.scrollLeft >= totalWidth + initialOffset) {
+          container.scrollLeft = initialOffset;
         }
       }
     };
