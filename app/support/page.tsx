@@ -21,6 +21,39 @@ import {
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
+function MobileJumpToSection() {
+  return (
+    <div className="mb-8 rounded-lg border bg-muted/50 p-4 lg:hidden">
+      <h3 className="mb-3 text-sm font-semibold">Jump to:</h3>
+      <div className="space-y-2">
+        {navigationItems.map((item) => (
+          <div key={item.href}>
+            <a
+              href={item.href}
+              className="block text-sm text-muted-foreground hover:text-foreground"
+            >
+              {item.title}
+            </a>
+            {item.children && (
+              <div className="ml-4 mt-1 space-y-1">
+                {item.children.map((child) => (
+                  <a
+                    key={child.href}
+                    href={child.href}
+                    className="block text-xs text-muted-foreground hover:text-foreground"
+                  >
+                    {child.title}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const navigationItems = [
   {
     title: "Online Support Groups",
@@ -105,16 +138,13 @@ export default async function SupportPage() {
   return (
     <SidebarProvider>
       <div className="flex min-h-full w-full">
-        <SupportSidebar />
+        <div className="hidden lg:block">
+          <SupportSidebar />
+        </div>
         <main className="w-full flex-1">
-          <div className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40 border-b backdrop-blur lg:hidden">
-            <div className="flex h-14 items-center px-4">
-              <SidebarTrigger />
-              <h1 className="ml-2 text-lg font-semibold">Support</h1>
-            </div>
-          </div>
           <div className="prose dark:prose-invert px-4 pb-16 lg:px-8 lg:pt-8">
             <h1>Get Help & Support From Real People</h1>
+            <MobileJumpToSection />
             <h2 id="online-support-groups">Online Support groups:</h2>
             <p>
               One of the best ways to get support is to talk to real people who
