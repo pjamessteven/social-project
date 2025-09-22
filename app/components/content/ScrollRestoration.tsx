@@ -10,7 +10,7 @@ export default function ScrollRestoration() {
   useEffect(() => {
     // Find the main scrollable element
     const getScrollableElement = () => {
-      return document.querySelector('main');
+      return document.querySelector("main");
     };
 
     // Save scroll position for a specific path
@@ -27,16 +27,18 @@ export default function ScrollRestoration() {
     const restoreScroll = () => {
       const saved = sessionStorage.getItem(`scroll-${pathname}`);
       const scrollableElement = getScrollableElement();
-      
+
       console.log(`Attempting to restore scroll for ${pathname}: ${saved}`);
-      
+
       if (saved && scrollableElement) {
         const scrollTop = parseInt(saved, 10);
         // Use setTimeout to ensure DOM is fully rendered
         setTimeout(() => {
           scrollableElement.scrollTop = scrollTop;
-          console.log(`Restored scroll position to: ${scrollTop}, actual: ${scrollableElement.scrollTop}`);
-        }, 100);
+          console.log(
+            `Restored scroll position to: ${scrollTop}, actual: ${scrollableElement.scrollTop}`,
+          );
+        }, 0);
       }
     };
 
@@ -48,31 +50,31 @@ export default function ScrollRestoration() {
     };
 
     const scrollableElement = getScrollableElement();
-    
+
     // Restore scroll on page load
-    if (document.readyState === 'complete') {
+    if (document.readyState === "complete") {
       restoreScroll();
     } else {
-      window.addEventListener('load', restoreScroll);
+      window.addEventListener("load", restoreScroll);
     }
 
     // Listen for scroll events to save position
     if (scrollableElement) {
-      scrollableElement.addEventListener('scroll', handleScroll);
+      scrollableElement.addEventListener("scroll", handleScroll);
     }
 
     // Save scroll on navigation/unload
-    const handleBeforeUnload = () => saveScrollForPath(pathname);
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    
+    // const handleBeforeUnload = () => saveScrollForPath(pathname);
+    // window.addEventListener("beforeunload", handleBeforeUnload);
+
     return () => {
       // Save scroll position for the current path before cleanup
-      saveScrollForPath(pathname);
+      // saveScrollForPath(pathname);
       clearTimeout(scrollTimeout);
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-      window.removeEventListener('load', restoreScroll);
+      //    window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("load", restoreScroll);
       if (scrollableElement) {
-        scrollableElement.removeEventListener('scroll', handleScroll);
+        scrollableElement.removeEventListener("scroll", handleScroll);
       }
     };
   }, [pathname]);
