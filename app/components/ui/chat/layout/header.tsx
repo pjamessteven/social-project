@@ -14,8 +14,8 @@ import {
   Menu,
   MessageCircleHeart,
   Settings,
-  Video,
   X,
+  Youtube,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -98,6 +98,22 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                   <div className="grid w-68 gap-1 p-1">
                     <NavigationMenuLink asChild>
                       <Link
+                        href={"/support"}
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                      >
+                        <Heart className="mr-2 h-6 w-6" />
+                        <div className="flex flex-col space-y-1">
+                          <div className="text-sm leading-none font-medium">
+                            Get Support
+                          </div>
+                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                            Find community and therapists
+                          </p>
+                        </div>
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link
                         href={"/definitions"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
@@ -117,13 +133,16 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         href={"/stories"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <Video className="mr-2 h-8 w-8" />
+                        <div>
+                          <Youtube className="mr-2 h-6 w-6" />
+                        </div>
                         <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
                             Personal Stories
                           </div>
                           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            Videos and memoirs
+                            Videos from those who have been through it
+                            themselves
                           </p>
                         </div>
                       </Link>
@@ -163,22 +182,6 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         </div>
                         <ExternalLink className="ml-2 h-4" />
                       </a>
-                    </NavigationMenuLink>
-                    <NavigationMenuLink asChild>
-                      <Link
-                        href={"/support"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                      >
-                        <Heart className="mr-2 h-6 w-6" />
-                        <div className="flex flex-col space-y-1">
-                          <div className="text-sm leading-none font-medium">
-                            Get Detransition Support
-                          </div>
-                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            Find community and therapists
-                          </p>
-                        </div>
-                      </Link>
                     </NavigationMenuLink>
                   </div>
                 </NavigationMenuContent>
@@ -324,6 +327,45 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                       Resources
                     </h3>
                     <div className="space-y-1">
+                      <Link href={"/support"} onClick={() => setIsOpen(false)}>
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-row items-center justify-start py-3",
+                            pathname === "/support" && "bg-muted",
+                          )}
+                        >
+                          <Heart className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">
+                              Get Support
+                            </div>
+                            <div className="text-muted-foreground text-xs">
+                              Find community and therapists
+                            </div>
+                          </div>
+                        </Button>
+                      </Link>
+                      <Link href={"/stories"} onClick={() => setIsOpen(false)}>
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-row items-center justify-start py-3",
+                            pathname === "/stories" && "bg-muted",
+                          )}
+                        >
+                          <Youtube className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">
+                              Personal Stories
+                            </div>
+                            <div className="text-muted-foreground text-xs">
+                              Videos from those who have been through it
+                              themselves
+                            </div>
+                          </div>
+                        </Button>
+                      </Link>
                       <Link
                         href={"/definitions"}
                         onClick={() => setIsOpen(false)}
@@ -346,25 +388,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           </div>
                         </Button>
                       </Link>
-                      <Link href={"/stories"} onClick={() => setIsOpen(false)}>
-                        <Button
-                          variant="ghost"
-                          className={cn(
-                            "h-auto w-full flex-row items-center justify-start py-3",
-                            pathname === "/stories" && "bg-muted",
-                          )}
-                        >
-                          <Video className="h-4 w-4" />
-                          <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">
-                              Personal Stories
-                            </div>
-                            <div className="text-muted-foreground text-xs">
-                              Videos and memoirs
-                            </div>
-                          </div>
-                        </Button>
-                      </Link>
+
                       <Link href={"/studies"} onClick={() => setIsOpen(false)}>
                         <Button
                           variant="ghost"
@@ -389,7 +413,6 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           variant="ghost"
                           className={cn(
                             "h-auto w-full flex-row items-center justify-between py-3",
-                            pathname === "/studies" && "bg-muted",
                           )}
                         >
                           <div className="flex flex-row items-center">
@@ -406,25 +429,6 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           <ExternalLink className="ml-2 h-4" />
                         </Button>
                       </a>
-                      <Link href={"/support"} onClick={() => setIsOpen(false)}>
-                        <Button
-                          variant="ghost"
-                          className={cn(
-                            "h-auto w-full flex-row items-center justify-start py-3",
-                            pathname === "/support" && "bg-muted",
-                          )}
-                        >
-                          <Heart className="h-4 w-4" />
-                          <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">
-                              Get Detransition Support
-                            </div>
-                            <div className="text-muted-foreground text-xs">
-                              Find community and therapists
-                            </div>
-                          </div>
-                        </Button>
-                      </Link>
                     </div>
                   </div>
                 </div>

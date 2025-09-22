@@ -5,11 +5,11 @@ export default async function StudiesPage() {
 
       <div className="space-y-4">
         <div className="mb-4">
-          <p className="mb-1">
+          <p className="mb-0 font-semibold">
             Care of Transgender Patients: A General Practice Quality Improvement
             Approach
           </p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             Boyd, I., Hackett, T. & S, Bewley (2022)
           </p>
           <a
@@ -23,11 +23,11 @@ export default async function StudiesPage() {
         </div>
 
         <div className="mb-4">
-          <p className="mb-1">
+          <p className="mb-0 font-semibold">
             The pressing need for research and services for gender desisters
             /detransitioners
           </p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             Butler, C. & Hutchinson, A. (2020)
           </p>
           <a
@@ -41,11 +41,11 @@ export default async function StudiesPage() {
         </div>
 
         <div className="mb-4">
-          <p className="mb-1">
+          <p className="mb-0 font-semibold">
             Taking the Lid of the Box: The value of extended clinical assessment
             for adolescents presenting with gender identity difficulties
           </p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             Churcher-Clarke, A. & Spiliadis, A. (2019){" "}
             <em>Clinical child psychology and psychiatry</em>, <em>24</em>(2),
             338-352
@@ -61,8 +61,8 @@ export default async function StudiesPage() {
         </div>
 
         <div className="mb-4">
-          <p className="mb-1">The Detransition Rate is Unknown</p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mb-0 font-semibold">The Detransition Rate is Unknown</p>
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             Cohn, J. (2023)
           </p>
           <a
@@ -76,8 +76,10 @@ export default async function StudiesPage() {
         </div>
 
         <div className="mb-4">
-          <p className="mb-1">The Man I'm Trying to be is not Me</p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mb-0 font-semibold">
+            The Man I'm Trying to be is not Me
+          </p>
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             D'Angelo, R. (2020)
           </p>
           <a
@@ -91,11 +93,11 @@ export default async function StudiesPage() {
         </div>
 
         <div className="mb-4">
-          <p className="mb-1">
+          <p className="mb-0 font-semibold">
             Reality check – Detransitioner's testimonies require us to rethink
             gender dysphoria
           </p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             Entwistle, K. (2020)
           </p>
           <a
@@ -109,11 +111,11 @@ export default async function StudiesPage() {
         </div>
 
         <div className="mb-4">
-          <p className="mb-1">
+          <p className="mb-0 font-semibold">
             A Typology of Gender Detransition and Its Implications for
             Healthcare Providers
           </p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             Exposito-Campos, P. (2021)
           </p>
           <a
@@ -127,11 +129,11 @@ export default async function StudiesPage() {
         </div>
 
         <div className="mb-4">
-          <p className="mb-1">
+          <p className="mb-0 font-semibold">
             Breastfeeding Grief After Chest Masculinising Mastectomy and
             Detransition
           </p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             Gribble, K., Bewley, S. & H. Dahlen (2023)
           </p>
           <a
@@ -145,12 +147,12 @@ export default async function StudiesPage() {
         </div>
 
         <div className="mb-4">
-          <p className="mb-1">
+          <p className="mb-0 font-semibold">
             Access to care and frequency of detransition among a cohort
             discharged by a UK national adult gender identity clinic:
             retrospective case-note review
           </p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             Hall, R., Mitchell,L. & J. Sachdeva (2021)
           </p>
           <a
@@ -164,8 +166,10 @@ export default async function StudiesPage() {
         </div>
 
         <div className="mb-4">
-          <p className="mb-1">Iatrogenic Harm in Gender Medicine</p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mb-0 font-semibold">
+            Iatrogenic Harm in Gender Medicine
+          </p>
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             Jorgensen, S. (2023)
           </p>
           <a
@@ -179,11 +183,11 @@ export default async function StudiesPage() {
         </div>
 
         <div className="mb-4">
-          <p className="mb-1">
+          <p className="mb-0 font-semibold">
             Trans-itory Identities: some psychoanalytic reflections on
             transgender identities
           </p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             Lemma, A. (2018)
           </p>
           <a
@@ -197,12 +201,12 @@ export default async function StudiesPage() {
         </div>
 
         <div className="mb-4">
-          <p className="mb-1">
+          <p className="mb-0 font-semibold">
             Individuals Treated for Gender Dysphoria with Medical and/or
             Surgical Transition Who Subsequently Detransitioned: A Survey of 100
             Detransitioners
           </p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             Littman, L. (2021)
           </p>
           <a
@@ -216,11 +220,11 @@ export default async function StudiesPage() {
         </div>
 
         <div className="mb-4">
-          <p className="mb-1">
+          <p className="mb-0 font-semibold">
             Narratives of Adults Registered Female at Birth who Started a
             Medical Transition and Later Detransitioned
           </p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             Lomax, J., & C.Butler (2025)
           </p>
           <a
@@ -234,10 +238,10 @@ export default async function StudiesPage() {
         </div>
 
         <div className="mb-4">
-          <p className="mb-1">
+          <p className="mb-0 font-semibold">
             Detransition Needs Further Understanding, Not Controversy
           </p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             MacKinnon, K.R. & P. Expositos-Campos (2023)
           </p>
           <a
@@ -251,8 +255,10 @@ export default async function StudiesPage() {
         </div>
 
         <div className="mb-4">
-          <p className="mb-1">Gender Detransition: A Case Study</p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mb-0 font-semibold">
+            Gender Detransition: A Case Study
+          </p>
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             Marchiano, L. (2021)
           </p>
           <a
@@ -266,11 +272,11 @@ export default async function StudiesPage() {
         </div>
 
         <div className="mb-4">
-          <p className="mb-1">
+          <p className="mb-0 font-semibold">
             Continuation of Gender Affirming Hormones Among Transgender
             Adolescents and Adults
           </p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             Roberts, C.M, <em>et al.</em> (2022)
           </p>
           <a
@@ -284,11 +290,11 @@ export default async function StudiesPage() {
         </div>
 
         <div className="mb-4">
-          <p className="mb-1">
+          <p className="mb-0 font-semibold">
             Towards a gender exploratory model: Slowing things down, opening
             things up and exploring identity development
           </p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             Spiliadis, A. (2019) <em>Metalogos Systemic Therapy Journal</em>,{" "}
             <em>35</em>, 1-9
           </p>
@@ -303,11 +309,11 @@ export default async function StudiesPage() {
         </div>
 
         <div className="mb-4">
-          <p className="mb-1">
+          <p className="mb-0 font-semibold">
             Detransition-Related Needs and Support: A Cross-Sectional Online
             Survey
           </p>
-          <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
             Vandenbussche, E. (2021)
           </p>
           <a

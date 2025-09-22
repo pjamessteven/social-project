@@ -379,8 +379,8 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
     const autoScroll = () => {
       if (!isUserInteracting && container) {
         // Use scrollBy for better Safari compatibility
-        container.scrollBy({ left: scrollSpeed, behavior: 'auto' });
-        
+        container.scrollBy({ left: scrollSpeed, behavior: "auto" });
+
         // Seamless loop: when we've scrolled past the first set, reset to beginning + offset
         if (container.scrollLeft >= totalWidth + initialOffset) {
           container.scrollLeft = initialOffset;
@@ -397,19 +397,20 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
       // Resume auto-scrolling after 1 second of no user interaction
       interactionTimeout = setTimeout(() => {
         isUserInteracting = false;
-      }, 1000);
+      }, 300);
     };
 
     // Listen for wheel events (mouse wheel scrolling)
     const handleWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaX) > 0) { // Only horizontal scrolling
-        pauseAutoScroll();
+      if (Math.abs(e.deltaX) > 0) {
+        // Only horizontal scrolling
+        //     pauseAutoScroll();
       }
     };
 
     // Listen for touch events
     const handleTouchStart = () => {
-      pauseAutoScroll();
+      //     pauseAutoScroll();
     };
 
     // Listen for mouse drag scrolling
@@ -420,7 +421,7 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
 
     const handleMouseMove = () => {
       if (isMouseDown) {
-        pauseAutoScroll();
+        //   pauseAutoScroll();
       }
     };
 
@@ -428,22 +429,24 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
       isMouseDown = false;
     };
 
-    container.addEventListener('wheel', handleWheel, { passive: true });
-    container.addEventListener('touchstart', handleTouchStart, { passive: true });
-    container.addEventListener('mousedown', handleMouseDown);
-    container.addEventListener('mousemove', handleMouseMove);
-    container.addEventListener('mouseup', handleMouseUp);
-    document.addEventListener('mouseup', handleMouseUp); // In case mouse is released outside container
+    container.addEventListener("wheel", handleWheel, { passive: true });
+    container.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
+    container.addEventListener("mousedown", handleMouseDown);
+    container.addEventListener("mousemove", handleMouseMove);
+    container.addEventListener("mouseup", handleMouseUp);
+    document.addEventListener("mouseup", handleMouseUp); // In case mouse is released outside container
 
     return () => {
       clearInterval(intervalId);
       clearTimeout(interactionTimeout);
-      container.removeEventListener('wheel', handleWheel);
-      container.removeEventListener('touchstart', handleTouchStart);
-      container.removeEventListener('mousedown', handleMouseDown);
-      container.removeEventListener('mousemove', handleMouseMove);
-      container.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('mouseup', handleMouseUp);
+      container.removeEventListener("wheel", handleWheel);
+      container.removeEventListener("touchstart", handleTouchStart);
+      container.removeEventListener("mousedown", handleMouseDown);
+      container.removeEventListener("mousemove", handleMouseMove);
+      container.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener("mouseup", handleMouseUp);
     };
   }, [EMBEDS.length]);
 
@@ -459,14 +462,14 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
         }}
       />
        */}
-      <div 
+      <div
         ref={scrollContainerRef}
-        className="mt-8 flex items-start gap-4 overflow-x-scroll scrollbar-hide cursor-grab active:cursor-grabbing"
-        style={{ 
-          width: '100vw',
-          marginLeft: 'calc(-50vw + 50%)',
-          paddingLeft: 'max(1rem, calc(50vw - 50%))',
-          paddingRight: 'calc(50vw - 50%)'
+        className="scrollbar-hide mt-8 flex cursor-grab items-start gap-4 overflow-x-scroll active:cursor-grabbing"
+        style={{
+          width: "100vw",
+          marginLeft: "calc(-50vw + 50%)",
+          paddingLeft: "max(1rem, calc(50vw - 50%))",
+          paddingRight: "calc(50vw - 50%)",
         }}
       >
         {/* Duplicate the embeds to create seamless loop */}

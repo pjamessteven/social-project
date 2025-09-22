@@ -1,9 +1,7 @@
 export default async function DefinitionsPage() {
   return (
-    <div className="prose prose-sm dark:prose-invert pb-16 lg:pt-8">
-      <h1 className="">
-        Defining Terms Related To Gender Dysphoria, Transition and Detransition
-      </h1>
+    <div className="prose dark:prose-invert pb-16 lg:pt-8">
+      <h1 className="">Defining Gender Related Terms</h1>
 
       <h2>Sex and gender?</h2>
       <p>

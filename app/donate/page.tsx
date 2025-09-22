@@ -5,7 +5,7 @@ import DonationBox from "../components/content/DonationBox";
 export default async function DonationPage() {
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
-      <h2>Keep Detrans.AI Running</h2>
+      <h2>Keep This Service Online</h2>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-1">
         <div className="">
           <p>
@@ -15,16 +15,16 @@ export default async function DonationPage() {
           </p>
           <p>
             I can&apos;t afford to run a resource intensive service like this
-            without your support. I'm on the benefit. If I run out of money, the
-            ability to ask your own questions and explore topics deeper through
-            follow-up questions will be disabled and I will only serve cached
-            responses to the questions in the portal.
+            without your support. I'm on the benefit and work odd jobs. If I run
+            out of money, the ability to ask your own questions and explore
+            topics deeper through follow-up questions will be disabled and I
+            will only serve cached responses to the questions in the portal.
           </p>
           <p>
             Please consider a monthly donation. You can donate using paypal
             below, directly to my New Zealand bank account or with BTC.
           </p>
-          <div className="mt-4 flex max-w-md items-center space-x-1 rounded-xl bg-white shadow-md dark:bg-gray-800">
+          <div className="mt-8 flex max-w-md items-center space-x-1 rounded-xl bg-white shadow-md dark:bg-gray-800">
             <div className="flex-1">
               <p className="px-4 text-sm font-medium opacity-70">
                 Paypal Donation

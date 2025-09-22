@@ -96,9 +96,9 @@ export default function CustomChatMessages({
                     href={path.includes("compare") ? "/compare" : "/"}
                     className="mt-2 ml-3 cursor-pointer font-medium italic hover:underline"
                   >
-                    {path.includes("compare")
-                      ? "<- Back to Portal"
-                      : "<- Back to Compare"}
+                    {path.includes("/compare")
+                      ? "<- Back to Compare"
+                      : "<- Back to Portal"}
                   </Link>
                   {showDonationMessage && (
                     <div className="mt-4 mr-16 ml-4 sm:mx-0">
