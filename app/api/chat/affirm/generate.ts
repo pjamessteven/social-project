@@ -310,14 +310,73 @@ async function filterDb() {
   }
 }
 
+async function deleteAllDataSourceQuestions() {
+  const client = new QdrantClient({ url: "http://localhost:6333" });
+  
+  let nextPage = 0;
+  let processedCount = 0;
+  let deletedCount = 0;
+
+  console.log("Starting to delete questionsThisExcerptCanAnswer field from all entries...");
+
+  do {
+    const res = await fetchWithBackoff(
+      async () =>
+        client.scroll("trans", {
+          limit: 100,
+          with_payload: true,
+          with_vector: false,
+          offset: nextPage,
+        }),
+      3,
+      1000,
+    );
+
+    for (const point of res.points) {
+      const hasQuestions = point.payload?.questionsThisExcerptCanAnswer;
+      
+      if (hasQuestions) {
+        try {
+          // Delete the questionsThisExcerptCanAnswer field
+          await fetchWithBackoff(
+            async () =>
+              client.deletePayload("trans", {
+                points: [point.id],
+                keys: ["questionsThisExcerptCanAnswer"],
+              }),
+            3,
+            1000,
+          );
+
+          deletedCount++;
+          console.log(`Deleted questionsThisExcerptCanAnswer from point ${point.id}`);
+        } catch (error) {
+          console.error(`Error deleting questions from point ${point.id}:`, error);
+        }
+      }
+
+      processedCount++;
+      
+      if (processedCount % 100 === 0) {
+        console.log(`Processed ${processedCount} entries, deleted from ${deletedCount}`);
+      }
+    }
+
+    nextPage = res.next_page_offset as number;
+  } while (nextPage);
+
+  console.log(`Finished deleting questions. Processed: ${processedCount}, Deleted from: ${deletedCount}`);
+}
+
 async function updateDataSourceQuestions() {
   const client = new QdrantClient({ url: "http://localhost:6333" });
   
   let nextPage = 0;
   let processedCount = 0;
   let updatedCount = 0;
+  let skippedCount = 0;
 
-  console.log("Starting to update questionsThisExcerptCanAnswer for all entries...");
+  console.log("Starting to update questionsThisExcerptCanAnswer for entries missing this field...");
 
   do {
     const res = await fetchWithBackoff(
@@ -334,9 +393,17 @@ async function updateDataSourceQuestions() {
 
     for (const point of res.points) {
       const nodeContent = point.payload?._node_content as string;
+      const existingQuestions = point.payload?.questionsThisExcerptCanAnswer;
       
       if (!nodeContent) {
         console.log(`Skipping point ${point.id} - no _node_content found`);
+        continue;
+      }
+
+      // Skip if questions already exist
+      if (existingQuestions) {
+        skippedCount++;
+        processedCount++;
         continue;
       }
 
@@ -384,14 +451,14 @@ async function updateDataSourceQuestions() {
       processedCount++;
       
       if (processedCount % 10 === 0) {
-        console.log(`Processed ${processedCount} entries, updated ${updatedCount}`);
+        console.log(`Processed ${processedCount} entries, updated ${updatedCount}, skipped ${skippedCount}`);
       }
     }
 
     nextPage = res.next_page_offset as number;
   } while (nextPage);
 
-  console.log(`Finished updating questions. Processed: ${processedCount}, Updated: ${updatedCount}`);
+  console.log(`Finished updating questions. Processed: ${processedCount}, Updated: ${updatedCount}, Skipped: ${skippedCount}`);
 }
 
 (async () => {
@@ -410,9 +477,11 @@ async function updateDataSourceQuestions() {
     await filterDb();
   } else if (command === "update-questions") {
     await updateDataSourceQuestions();
+  } else if (command === "delete-questions") {
+    await deleteAllDataSourceQuestions();
   } else {
     console.error(
-      'Invalid command. Please use "datasource", "reset", "deduplicate", "filter", or "update-questions". Running "datasource" by default.',
+      'Invalid command. Please use "datasource", "reset", "deduplicate", "filter", "update-questions", or "delete-questions". Running "datasource" by default.',
     );
     await generateDatasource(); // Default behavior or could throw an error
   }
