@@ -152,180 +152,177 @@ export default async function StudiesPage() {
         >
           trans woman
         </a>
-        . In her study she dramatically condemns the practice People who
-        identify as trans are motivated by their identity, and studies published
-        by them should be treated with skepticism. They are gender activists,
-        pushing their gender agenda. This study is absolutely full of logical
-        fallacies, yet it was still published:
-        <div className="overflow-x-auto">
-          <table border="1" cellpadding="6">
-            <thead>
-              <tr>
-                <th>Fallacy Name</th>
-                <th>Simple Explanation</th>
-                <th>Example from the Paper</th>
-                <th>Page(s)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Straw-Man</td>
-                <td>
-                  Attacks an exaggerated or distorted version of the other side,
-                  not what they actually say.
-                </td>
-                <td>
-                  Claims GET “discourages all affirmation” and “assumes trans
-                  identities are pathological”, while GET proponents say they
-                  allow transition and don’t presume pathology.
-                </td>
-                <td>472-473</td>
-              </tr>
-              <tr>
-                <td>Hasty Generalisation</td>
-                <td>
-                  Uses one or two stories to claim “this always happens to
-                  everyone.”
-                </td>
-                <td>
-                  Cites Keira Bell’s single court case to argue that questioning
-                  gender identity always backfires and forecloses exploration
-                  for every youth.
-                </td>
-                <td>476</td>
-              </tr>
-              <tr>
-                <td>False Analogy</td>
-                <td>
-                  Says “A looks a bit like B, so A must be as bad as B” even
-                  when the important parts are different.
-                </td>
-                <td>
-                  Because GET talks about “exploring causes” like old conversion
-                  therapy did, the paper concludes GET is ethically the same as
-                  anti-gay conversion practices.
-                </td>
-                <td>476-477</td>
-              </tr>
-              <tr>
-                <td>Begging the Question</td>
-                <td>
-                  Assumes the very thing you’re trying to prove, going round in
-                  a circle.
-                </td>
-                <td>
-                  “Being trans is not pathological, therefore any therapy that
-                  looks for pathology is unethical” — assumes pathology can’t
-                  exist instead of proving it.
-                </td>
-                <td>473, 478</td>
-              </tr>
-              <tr>
-                <td>Appeal to Ignorance</td>
-                <td>
-                  “We don’t have proof it’s true, so it must be false” (or the
-                  other way round).
-                </td>
-                <td>
-                  “There is no compelling evidence that trans identities are
-                  maladaptive, so they never are” — treats lack of proof as
-                  disproof.
-                </td>
-                <td>473</td>
-              </tr>
-              <tr>
-                <td>False Dichotomy</td>
-                <td>
-                  Claims there are only two choices—black or white—when other
-                  middle options exist.
-                </td>
-                <td>
-                  Frames the choice as either “full, immediate affirmation” or
-                  “coercive conversion-like exploration”, ignoring
-                  parallel/supportive exploration plus reversible medical steps.
-                </td>
-                <td>Whole article framing</td>
-              </tr>
-              <tr>
-                <td>Ad Hominem / Genetic</td>
-                <td>
-                  Attacks the person or their motives instead of dealing with
-                  their actual argument.
-                </td>
-                <td>
-                  Calls GET advocates “the intellectual arm of political
-                  movements” seeking to criminalise gender-affirming care,
-                  instead of refuting their clinical claims.
-                </td>
-                <td>473</td>
-              </tr>
-              <tr>
-                <td>Slippery Slope</td>
-                <td>
-                  “If we allow X, then terrible Y and Z will surely follow”
-                  without showing the chain will happen.
-                </td>
-                <td>
-                  “Questioning a client’s narrative will undermine trust,
-                  forcing them to lie and rush into medical steps” — no data
-                  given that this routinely occurs.
-                </td>
-                <td>477</td>
-              </tr>
-              <tr>
-                <td>Quantifier Shift</td>
-                <td>
-                  Jumps from “many” or “most” to “all,” erasing exceptions.
-                </td>
-                <td>
-                  “Most youth want affirmation, therefore exploration
-                  disrespects EVERY client’s agenda” — ignores the minority who
-                  ask for deeper exploration.
-                </td>
-                <td>477</td>
-              </tr>
-              <tr>
-                <td>Confirmation Bias</td>
-                <td>
-                  Cites only the evidence that supports your view and ignores
-                  the rest.
-                </td>
-                <td>
-                  Bibliography lists no studies showing neutral or positive
-                  outcomes of GET; only critical or affirmative-therapy papers
-                  are cited.
-                </td>
-                <td>References list</td>
-              </tr>
-              <tr>
-                <td>Category Error</td>
-                <td>
-                  Mixes up two different kinds of things (e.g., a tool with a
-                  moral stance).
-                </td>
-                <td>
-                  “Neutrality, much like the cake, is a lie” — treats clinical
-                  technique of neutrality as moral indifference, which are
-                  separate concepts.
-                </td>
-                <td>477</td>
-              </tr>
-              <tr>
-                <td>Misused Statistics</td>
-                <td>
-                  Uses true numbers to push a claim the numbers don’t actually
-                  support.
-                </td>
-                <td>
-                  Cites low detransition rate (≈3 %) to argue exploratory
-                  screening is unnecessary; low base-rate doesn’t prove
-                  screening can’t prevent individual harm.
-                </td>
-                <td>475</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        . In her study she dramatically condemns the practice. It should be
+        recognised that people who identify as trans are motivated to protect
+        their identity and belief system, and studies published by them should
+        be treated with skepticism. They are gender activists, pushing their
+        gender agenda. This study is absolutely full of logical fallacies, yet
+        it was still published:
+        <details className="mt-4 cursor-pointer">
+          <summary>
+            <i>
+              {" "}
+              See all of the twelve logical fallacies in Florence Ashley's study
+            </i>
+          </summary>
+          <div className="overflow-x-auto">
+            <table border="1" cellpadding="6">
+              <thead>
+                <tr>
+                  <th>Fallacy Name</th>
+                  <th>Simple Explanation</th>
+                  <th>Example from the Paper</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Straw-Man</td>
+                  <td>
+                    Attacks an exaggerated or distorted version of the other
+                    side, not what they actually say.
+                  </td>
+                  <td>
+                    Claims GET “discourages all affirmation” and “assumes trans
+                    identities are pathological”, while GET proponents say they
+                    allow transition and don’t presume pathology.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Hasty Generalisation</td>
+                  <td>
+                    Uses one or two stories to claim “this always happens to
+                    everyone.”
+                  </td>
+                  <td>
+                    Cites Keira Bell’s single court case to argue that
+                    questioning gender identity always backfires and forecloses
+                    exploration for every youth.
+                  </td>
+                </tr>
+                <tr>
+                  <td>False Analogy</td>
+                  <td>
+                    Says “A looks a bit like B, so A must be as bad as B” even
+                    when the important parts are different.
+                  </td>
+                  <td>
+                    Because GET talks about “exploring causes” like old
+                    conversion therapy did, the paper concludes GET is ethically
+                    the same as anti-gay conversion practices.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Begging the Question</td>
+                  <td>
+                    Assumes the very thing you’re trying to prove, going round
+                    in a circle.
+                  </td>
+                  <td>
+                    “Being trans is not pathological, therefore any therapy that
+                    looks for pathology is unethical” — assumes pathology can’t
+                    exist instead of proving it.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Appeal to Ignorance</td>
+                  <td>
+                    “We don’t have proof it’s true, so it must be false” (or the
+                    other way round).
+                  </td>
+                  <td>
+                    “There is no compelling evidence that trans identities are
+                    maladaptive, so they never are” — treats lack of proof as
+                    disproof.
+                  </td>
+                </tr>
+                <tr>
+                  <td>False Dichotomy</td>
+                  <td>
+                    Claims there are only two choices—black or white—when other
+                    middle options exist.
+                  </td>
+                  <td>
+                    Frames the choice as either “full, immediate affirmation” or
+                    “coercive conversion-like exploration”, ignoring
+                    parallel/supportive exploration plus reversible medical
+                    steps.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Ad Hominem / Genetic</td>
+                  <td>
+                    Attacks the person or their motives instead of dealing with
+                    their actual argument.
+                  </td>
+                  <td>
+                    Calls GET advocates “the intellectual arm of political
+                    movements” seeking to criminalise gender-affirming care,
+                    instead of refuting their clinical claims.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Slippery Slope</td>
+                  <td>
+                    “If we allow X, then terrible Y and Z will surely follow”
+                    without showing the chain will happen.
+                  </td>
+                  <td>
+                    “Questioning a client’s narrative will undermine trust,
+                    forcing them to lie and rush into medical steps” — no data
+                    given that this routinely occurs.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Quantifier Shift</td>
+                  <td>
+                    Jumps from “many” or “most” to “all,” erasing exceptions.
+                  </td>
+                  <td>
+                    “Most youth want affirmation, therefore exploration
+                    disrespects EVERY client’s agenda” — ignores the minority
+                    who ask for deeper exploration.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Confirmation Bias</td>
+                  <td>
+                    Cites only the evidence that supports your view and ignores
+                    the rest.
+                  </td>
+                  <td>
+                    Bibliography lists no studies showing neutral or positive
+                    outcomes of GET; only critical or affirmative-therapy papers
+                    are cited.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Category Error</td>
+                  <td>
+                    Mixes up two different kinds of things (e.g., a tool with a
+                    moral stance).
+                  </td>
+                  <td>
+                    “Neutrality, much like the cake, is a lie” — treats clinical
+                    technique of neutrality as moral indifference, which are
+                    separate concepts.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Misused Statistics</td>
+                  <td>
+                    Uses true numbers to push a claim the numbers don’t actually
+                    support.
+                  </td>
+                  <td>
+                    Cites low detransition rate (≈3 %) to argue exploratory
+                    screening is unnecessary; low base-rate doesn’t prove
+                    screening can’t prevent individual harm.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
         <p>
           The notion that gender exploratory therapy is somehow evil and wrong
           is predicated on the idea that gender (a social construct made up of
@@ -333,8 +330,8 @@ export default async function StudiesPage() {
           evidence to support this belief, and the mere existence of detrans
           people causes this theory to fall on its head. Gender activists then
           fall back to saying that detrans people were never 'real trans'
-          people, but detrans people tell us that they really were believers and
-          fully 'in it', until they weren't any more.
+          people, but every single detrans person tells us that they were true
+          believers and were fully 'in it', until one day they weren't any more.
         </p>
         <p>
           It's also noteworthy that scientists are still yet to discover a 'gay
