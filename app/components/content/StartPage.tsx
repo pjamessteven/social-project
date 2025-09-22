@@ -144,10 +144,6 @@ export async function StartPage({
             belief system pervading society.
           </h2>
            */}
-              <h4>
-                Support, life advice and knowledge from over 50,000
-                detransitioners and desisters.
-              </h4>
             </div>
           </div>
         ) : mode === "affirm" ? (
@@ -188,11 +184,6 @@ export async function StartPage({
                 detrans.ai
               </a>
             </p>
-
-            <h4>
-              Support, life advice and knowledge from over 600,000+ trans
-              people.
-            </h4>
           </div>
         ) : (
           <div className="prose dark:prose-invert mt-8 text-base">
@@ -259,7 +250,7 @@ export async function StartPage({
 
         {mode !== "compare" && (
           <div className="mt-8">
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
+            <div className="grid max-w-[660px] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
               <Link href="/support">
                 <Button
                   variant="secondary"
@@ -275,7 +266,7 @@ export async function StartPage({
                   className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
                 >
                   <Youtube className="h-4 w-4" />
-                  <span className="text-sm font-medium">Watch Stories</span>
+                  <span className="text-sm font-medium">Personal Stories</span>
                 </Button>
               </Link>
               <Link href="/definitions">
@@ -324,11 +315,27 @@ export async function StartPage({
         )}
 
         {mode === "detrans" && (
-          <div className="mt-4 sm:mt-8">
+          <div className="">
             <RedditEmbeds mode={mode} />{" "}
           </div>
         )}
-
+        {mode === "affirm" && (
+          <div className="prose dark:prose-invert mt-8">
+            <h3>
+              {" "}
+              Support, life advice and knowledge from over 600,000+ trans
+              people.
+            </h3>
+          </div>
+        )}
+        {mode === "detrans" && (
+          <div className="prose dark:prose-invert mt-8">
+            <h3>
+              Support, life advice and knowledge from over 50,000
+              detransitioners and desisters.
+            </h3>
+          </div>
+        )}
         <div className="mt-8">
           <QuestionCategories mode={mode} />
         </div>
