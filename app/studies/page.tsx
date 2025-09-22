@@ -1,6 +1,6 @@
 export default async function StudiesPage() {
   return (
-    <div className="prose prose-sm dark:prose-invert pb-16 lg:pt-8">
+    <div className="prose dark:prose-invert pb-16 lg:pt-8">
       <h1>Selected Academic Articles</h1>
 
       <div className="space-y-4">
