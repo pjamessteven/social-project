@@ -49,7 +49,7 @@ export default function RedditEmbed({
     // Your "border-destructive" class is kept for the specific highlight effect.
     <Card
       className={
-        "!border-destructive reddit-card bg-destructive/5 dark:bg-destructive/40 min-w-md border transition-all duration-300"
+        "!border-destructive reddit-card bg-destructive/5 dark:bg-destructive/40 w-80 border transition-all duration-300"
       }
     >
       <blockquote

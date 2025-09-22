@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useRef } from "react";
 import RedditEmbed from "./RedditEmbed";
 
 const DETRANS_EMBEDS = [
@@ -358,6 +359,50 @@ const TRANS_EMBEDS = [
 */
 export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
   const EMBEDS = mode === "detrans" ? DETRANS_EMBEDS : [];
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container || EMBEDS.length === 0) return;
+
+    let scrollPosition = 0;
+    const scrollSpeed = 1; // pixels per frame
+    const cardWidth = 320; // approximate width of each card + gap
+    const totalWidth = EMBEDS.length * cardWidth;
+
+    const autoScroll = () => {
+      scrollPosition += scrollSpeed;
+      
+      // Reset to beginning when we've scrolled past all cards
+      if (scrollPosition >= totalWidth) {
+        scrollPosition = 0;
+      }
+      
+      container.scrollLeft = scrollPosition;
+    };
+
+    const intervalId = setInterval(autoScroll, 50); // 20fps
+
+    // Pause scrolling on hover
+    const handleMouseEnter = () => clearInterval(intervalId);
+    const handleMouseLeave = () => {
+      const newIntervalId = setInterval(autoScroll, 50);
+      return newIntervalId;
+    };
+
+    container.addEventListener('mouseenter', handleMouseEnter);
+    container.addEventListener('mouseleave', () => {
+      clearInterval(intervalId);
+      const newIntervalId = setInterval(autoScroll, 50);
+    });
+
+    return () => {
+      clearInterval(intervalId);
+      container.removeEventListener('mouseenter', handleMouseEnter);
+      container.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, [EMBEDS.length]);
+
   return (
     <>
       {/*
@@ -370,18 +415,29 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
         }}
       />
        */}
-      <div className="row no-wrap mt-8 flex items-start gap-4 overflow-x-scroll">
-        {EMBEDS.map((embed, index) => (
-          <RedditEmbed
-            key={index}
-            title={embed.title}
-            url={embed.url}
-            user={embed.user}
-            userUrl={embed.userUrl}
-            imageUrl={embed.imageUrl}
-            sub={embed.sub}
-            subUrl={embed.subUrl}
-          />
+      <div 
+        ref={scrollContainerRef}
+        className="mt-8 flex items-start gap-4 overflow-x-scroll scrollbar-hide"
+        style={{ 
+          width: '100vw',
+          marginLeft: 'calc(-50vw + 50%)',
+          paddingLeft: 'calc(50vw - 50%)',
+          paddingRight: 'calc(50vw - 50%)'
+        }}
+      >
+        {/* Duplicate the embeds to create seamless loop */}
+        {[...EMBEDS, ...EMBEDS].map((embed, index) => (
+          <div key={index} className="flex-shrink-0">
+            <RedditEmbed
+              title={embed.title}
+              url={embed.url}
+              user={embed.user}
+              userUrl={embed.userUrl}
+              imageUrl={embed.imageUrl}
+              sub={embed.sub}
+              subUrl={embed.subUrl}
+            />
+          </div>
         ))}
       </div>
     </>
