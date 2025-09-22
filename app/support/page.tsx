@@ -1,7 +1,9 @@
+import Link from "next/link";
+
 export default async function StudiesPage() {
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
-      <h1>Get Detransition Help & Support From Real People</h1>
+      <h1>Get Help & Support From Real People</h1>
       <h2>Online Support groups:</h2>
       <p>
         One of the best ways to get support is to talk to real people who have
@@ -36,6 +38,21 @@ export default async function StudiesPage() {
           </a>
         </li>
       </ul>
+      <h2>Gender Affirming Care: What is it?</h2>
+      <p>
+        Gender affirming care is currently the standard (and usually the only)
+        treatment option for gender dysphoria provided by healthcare providers
+        around the world. Gender affirming care is a staged approach that begins
+        with social transition (name, pronouns, clothing), then goes on to
+        hormone therapy, and then for some, irreversible surgical procedures.
+        Gender affirming care can work as part of the healing process for gender
+        dysphoria but it does come with serious risks and often permanent
+        side-effects. Proceed with extreme caution, and make sure you{" "}
+        <Link prefetch={false} href={"/stories"} className="underline">
+          watch some testimonies
+        </Link>{" "}
+        from people who have been down this path before going down it yourself.
+      </p>
       <h2>Gender Exploratory Therapy: What is it?</h2>
 
       <p>
