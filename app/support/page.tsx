@@ -153,11 +153,13 @@ export default async function SupportPage() {
               Gender Affirming Care: What is it?
             </h2>
             <p>
-              Gender affirming care is currently the standard (and usually the
+              Gender affirming care is currently the standard (and often the
               only) treatment option for gender dysphoria provided by healthcare
-              providers around the world. Gender affirming care is a staged
-              approach that begins with social transition (name, pronouns,
-              clothing), then goes on to hormone therapy, and then for some,
+              providers around the world. Gender affirming care aims to relieve
+              a patients gender dysphoria in a way that recognises societies
+              gendered expectations and then by adapting the patient to them. It
+              is a staged approach that begins with social transition (name,
+              pronouns, clothing), then hormone therapy, and then for some,
               irreversible surgical procedures. Gender affirming care can work
               as part of the healing process for gender dysphoria but it does
               come with serious risks and often permanent side-effects. Proceed
@@ -245,45 +247,50 @@ export default async function SupportPage() {
                 </tbody>
               </table>
             </div>
-            <div className="mb-8 rounded-lg border p-2 !text-xs sm:p-3">
-              <h4 className="mt-0">References</h4>
-              <ol className="mb-0">
-                <li>
-                  U.S. Dept. of Health & Human Services (2025).{" "}
-                  <em>
-                    Report on Pediatric Gender Dysphoria and Gender Conversion
-                    Efforts
-                  </em>
-                  .
-                </li>
-                <li>
-                  D’Angelo, R. (2025). “Supporting autonomy in young people with
-                  gender dysphoria: psychotherapy is not conversion therapy.”{" "}
-                  <em>Journal of Medical Ethics</em>, 51(1).
-                </li>
-                <li>
-                  Lemma, A. & Schmidt, L. (2024). “Psychodynamic Psychotherapy
-                  for Gender Dysphoria is not Conversion Therapy.”{" "}
-                  <em>Frontiers in Psychology</em>.
-                </li>
-                <li>
-                  Korte, A. et al. (2021). “One Size Does Not Fit All: In
-                  Support of Psychotherapy for Gender Dysphoria.”{" "}
-                  <em>Archives of Sexual Behavior</em>.
-                </li>
-              </ol>
-            </div>
+            <details className="cursor-pointer">
+              <summary>
+                <i> References for the above table</i>
+              </summary>
+              <div className="mb-8 rounded-lg border p-2 !text-xs sm:p-3">
+                <h4 className="mt-0">References</h4>
+                <ol className="mb-0">
+                  <li>
+                    U.S. Dept. of Health & Human Services (2025).{" "}
+                    <em>
+                      Report on Pediatric Gender Dysphoria and Gender Conversion
+                      Efforts
+                    </em>
+                    .
+                  </li>
+                  <li>
+                    D’Angelo, R. (2025). “Supporting autonomy in young people
+                    with gender dysphoria: psychotherapy is not conversion
+                    therapy.” <em>Journal of Medical Ethics</em>, 51(1).
+                  </li>
+                  <li>
+                    Lemma, A. & Schmidt, L. (2024). “Psychodynamic Psychotherapy
+                    for Gender Dysphoria is not Conversion Therapy.”{" "}
+                    <em>Frontiers in Psychology</em>.
+                  </li>
+                  <li>
+                    Korte, A. et al. (2021). “One Size Does Not Fit All: In
+                    Support of Psychotherapy for Gender Dysphoria.”{" "}
+                    <em>Archives of Sexual Behavior</em>.
+                  </li>
+                </ol>
+              </div>
+            </details>
             <p>
               Academic research in this field is often biased. One of the most
-              recognised studies about gender exploratory therapy is{" "}
+              influential studies (
               <a
                 href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10018052/"
                 target="_blank"
                 className="underline"
               >
                 Interrogating Gender-Exploratory Therapy
-              </a>{" "}
-              which was published in 2022 by Florence Ashley, a{" "}
+              </a>
+              ) was published in 2022 by Florence Ashley, a{" "}
               <a
                 href="https://en.wikipedia.org/wiki/Florence_Ashley"
                 target="_blank"
@@ -301,8 +308,7 @@ export default async function SupportPage() {
                 <summary>
                   <i>
                     {" "}
-                    See all of the twelve logical fallacies in Florence Ashley's
-                    study
+                    See all of the logical fallacies in Florence Ashley's study
                   </i>
                 </summary>
                 <div className="overflow-x-auto">
