@@ -73,16 +73,16 @@ export default function RedditEmbed({
           <a href={url} target="_blank" rel="noopener noreferrer">
             <div
               ref={imageRef}
-              className="m-4 aspect-video overflow-hidden rounded-lg"
+              className="m-4 overflow-hidden rounded-lg"
             >
               {isVisible ? (
                 <img
                   src={imageUrl}
                   alt={`Preview for ${title}`}
-                  className="h-full w-full object-cover"
+                  className="w-full h-auto"
                 />
               ) : (
-                <div className="bg-accent h-full w-full animate-pulse rounded-lg" />
+                <div className="bg-accent w-full aspect-video animate-pulse rounded-lg" />
               )}
             </div>
           </a>
