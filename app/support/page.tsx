@@ -61,7 +61,7 @@ function SupportSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>Page Contents</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="gap-2">
               {navigationItems.map((item) => (
                 <SidebarMenuItem key={item.href}>
                   {item.children ? (
@@ -75,7 +75,7 @@ function SupportSidebar() {
                         </SidebarMenuButton>
                       </CollapsibleTrigger>
                       <CollapsibleContent>
-                        <SidebarMenuSub>
+                        <SidebarMenuSub className="gap-1.5">
                           {item.children.map((child) => (
                             <SidebarMenuSubItem key={child.href}>
                               <SidebarMenuSubButton asChild>
