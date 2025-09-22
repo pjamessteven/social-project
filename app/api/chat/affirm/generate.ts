@@ -9,6 +9,7 @@ import {
   QuestionsAnsweredExtractor,
   SummaryExtractor,
   VectorStoreIndex,
+  Settings,
 } from "llamaindex";
 import readline from "readline";
 
@@ -309,6 +310,90 @@ async function filterDb() {
   }
 }
 
+async function updateDataSourceQuestions() {
+  const client = new QdrantClient({ url: "http://localhost:6333" });
+  
+  let nextPage = 0;
+  let processedCount = 0;
+  let updatedCount = 0;
+
+  console.log("Starting to update questionsThisExcerptCanAnswer for all entries...");
+
+  do {
+    const res = await fetchWithBackoff(
+      async () =>
+        client.scroll("trans", {
+          limit: 100, // process in smaller batches for LLM calls
+          with_payload: true,
+          with_vector: false,
+          offset: nextPage,
+        }),
+      3,
+      1000,
+    );
+
+    for (const point of res.points) {
+      const nodeContent = point.payload?._node_content as string;
+      
+      if (!nodeContent) {
+        console.log(`Skipping point ${point.id} - no _node_content found`);
+        continue;
+      }
+
+      try {
+        // Use the existing question prompt to generate new questions
+        const questionsExtractor = new QuestionsAnsweredExtractor({
+          questions: 5,
+          promptTemplate: questionPrompt,
+        });
+
+        // Create a temporary document to extract questions from
+        const tempDoc = new Document({ text: nodeContent });
+        const extractedData = await fetchWithBackoff(
+          async () => questionsExtractor.extract([tempDoc]),
+          3,
+          2000, // longer delay for LLM calls
+        );
+
+        // Get the questions from the extracted metadata
+        const newQuestions = extractedData[0]?.metadata?.questionsThisExcerptCanAnswer;
+
+        if (newQuestions) {
+          // Update the point with new questions
+          await fetchWithBackoff(
+            async () =>
+              client.setPayload("trans", {
+                points: [point.id],
+                payload: {
+                  questionsThisExcerptCanAnswer: newQuestions,
+                },
+              }),
+            3,
+            1000,
+          );
+
+          updatedCount++;
+          console.log(`Updated point ${point.id} with new questions: ${newQuestions}`);
+        } else {
+          console.log(`No questions generated for point ${point.id}`);
+        }
+      } catch (error) {
+        console.error(`Error processing point ${point.id}:`, error);
+      }
+
+      processedCount++;
+      
+      if (processedCount % 10 === 0) {
+        console.log(`Processed ${processedCount} entries, updated ${updatedCount}`);
+      }
+    }
+
+    nextPage = res.next_page_offset as number;
+  } while (nextPage);
+
+  console.log(`Finished updating questions. Processed: ${processedCount}, Updated: ${updatedCount}`);
+}
+
 (async () => {
   const args = process.argv.slice(2);
   const command = args[0];
@@ -323,9 +408,11 @@ async function filterDb() {
     await deduplicateDb();
   } else if (command === "filter") {
     await filterDb();
+  } else if (command === "update-questions") {
+    await updateDataSourceQuestions();
   } else {
     console.error(
-      'Invalid command. Please use "datasource" or "ui". Running "datasource" by default.',
+      'Invalid command. Please use "datasource", "reset", "deduplicate", "filter", or "update-questions". Running "datasource" by default.',
     );
     await generateDatasource(); // Default behavior or could throw an error
   }
