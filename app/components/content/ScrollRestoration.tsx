@@ -8,18 +8,28 @@ export default function ScrollRestoration() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // Find the main scrollable element
+    const getScrollableElement = () => {
+      return document.querySelector('main');
+    };
+
     // Save scroll position before navigation
     const saveScroll = () => {
-      sessionStorage.setItem(`scroll-${pathname}`, String(window.scrollY));
+      const scrollableElement = getScrollableElement();
+      if (scrollableElement) {
+        sessionStorage.setItem(`scroll-${pathname}`, String(scrollableElement.scrollTop));
+      }
     };
 
     // Restore scroll position after content loads
     const restoreScroll = () => {
       const saved = sessionStorage.getItem(`scroll-${pathname}`);
-      if (saved) {
+      const scrollableElement = getScrollableElement();
+      
+      if (saved && scrollableElement) {
         // Use setTimeout to ensure DOM is fully rendered
         setTimeout(() => {
-          window.scrollTo(0, parseInt(saved, 10));
+          scrollableElement.scrollTop = parseInt(saved, 10);
         }, 100);
       }
     };
