@@ -274,20 +274,18 @@ export default function StoriesPage() {
       <h1>Transition & Detransition Stories</h1>
 
       <p className="text-gray-600 dark:text-gray-400">
-        Here is a selection of personal memoirs from people who have
-        transitioned and then came to some kind of realisation and decided to
-        detransition. There are countless stories like these on the internet,
-        this is just a small subset. Want to add your story to this page? Send
-        me the YouTube link through the contact form.
+        Here is a selection of personal memoirs that have been uploaded to
+        YouTube by people who have transitioned and then came to a realisation
+        which has caused them to detransition. There are countless stories like
+        these on the internet, this is just a small subset. Want your story on
+        this page? Send me the link through the contact form.
       </p>
 
-      <h2>YouTube Videos</h2>
-
-      <div className="not-prose mb-6 overflow-x-auto">
-        <div className="flex gap-2 min-w-max">
+      <div className="not-prose mt-8 mb-6 overflow-x-auto">
+        <div className="flex min-w-max gap-2">
           <button
             onClick={() => setFilter("all")}
-            className={`rounded px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap ${
+            className={`rounded px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
               filter === "all"
                 ? "bg-blue-600 text-white"
                 : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
@@ -297,7 +295,7 @@ export default function StoriesPage() {
           </button>
           <button
             onClick={() => setFilter("FTMTF")}
-            className={`rounded px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap ${
+            className={`rounded px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
               filter === "FTMTF"
                 ? "bg-blue-600 text-white"
                 : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
@@ -307,7 +305,7 @@ export default function StoriesPage() {
           </button>
           <button
             onClick={() => setFilter("MTFTM")}
-            className={`rounded px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap ${
+            className={`rounded px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
               filter === "MTFTM"
                 ? "bg-blue-600 text-white"
                 : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
