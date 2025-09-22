@@ -370,13 +370,14 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
     container.scrollLeft = initialOffset;
 
     let intervalId: NodeJS.Timeout;
-    let isHovered = false;
+    let isManuallyScrolling = false;
+    let manualScrollTimeout: NodeJS.Timeout;
     const scrollSpeed = 1; // pixels per interval
     const cardWidth = 320; // approximate width of each card + gap
     const totalWidth = EMBEDS.length * cardWidth;
 
     const autoScroll = () => {
-      if (!isHovered && container) {
+      if (!isManuallyScrolling && container) {
         // Use scrollBy for better Safari compatibility
         container.scrollBy({ left: scrollSpeed, behavior: 'auto' });
         
@@ -390,32 +391,36 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
     // Use setInterval instead of requestAnimationFrame for better Safari support
     intervalId = setInterval(autoScroll, 16); // ~60fps
 
-    // Pause scrolling on hover and allow manual scrolling
-    const handleMouseEnter = () => {
-      isHovered = true;
-    };
-
-    const handleMouseLeave = () => {
-      isHovered = false;
+    // Pause scrolling when user manually scrolls
+    const handleScroll = () => {
+      isManuallyScrolling = true;
+      clearTimeout(manualScrollTimeout);
+      // Resume auto-scrolling after 3 seconds of no manual scrolling
+      manualScrollTimeout = setTimeout(() => {
+        isManuallyScrolling = false;
+      }, 3000);
     };
 
     const handleTouchStart = () => {
-      isHovered = true;
+      isManuallyScrolling = true;
+      clearTimeout(manualScrollTimeout);
     };
 
     const handleTouchEnd = () => {
-      isHovered = false;
+      // Resume auto-scrolling after 3 seconds of no touch interaction
+      manualScrollTimeout = setTimeout(() => {
+        isManuallyScrolling = false;
+      }, 3000);
     };
 
-    container.addEventListener('mouseenter', handleMouseEnter);
-    container.addEventListener('mouseleave', handleMouseLeave);
+    container.addEventListener('scroll', handleScroll);
     container.addEventListener('touchstart', handleTouchStart);
     container.addEventListener('touchend', handleTouchEnd);
 
     return () => {
       clearInterval(intervalId);
-      container.removeEventListener('mouseenter', handleMouseEnter);
-      container.removeEventListener('mouseleave', handleMouseLeave);
+      clearTimeout(manualScrollTimeout);
+      container.removeEventListener('scroll', handleScroll);
       container.removeEventListener('touchstart', handleTouchStart);
       container.removeEventListener('touchend', handleTouchEnd);
     };
