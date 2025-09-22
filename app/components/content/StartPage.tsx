@@ -6,6 +6,7 @@ import {
   ExternalLink,
   FileText,
   Heart,
+  Settings,
   Youtube,
 } from "lucide-react";
 import Image from "next/image";
@@ -258,7 +259,7 @@ export async function StartPage({
 
         {mode !== "compare" && (
           <div className="mt-8">
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
               <Link href="/support">
                 <Button
                   variant="secondary"
@@ -309,6 +310,15 @@ export async function StartPage({
                   <ExternalLink className="h-3 w-3" />
                 </Button>
               </a>
+              <Link href={mode === "affirm" ? "/affirm/prompts" : "/prompts"}>
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
+                  <Settings className="h-4 w-4" />
+                  <span className="text-sm font-medium">How It Works</span>
+                </Button>
+              </Link>
             </div>
           </div>
         )}
