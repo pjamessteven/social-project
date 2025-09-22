@@ -278,7 +278,7 @@ export default function StoriesPage() {
         transitioned and then came to some kind of realisation and decided to
         detransition. There are countless stories like these on the internet,
         this is just a small subset. Want to add your story to this page? Send
-        us the YouTube link through the contact form.
+        me the YouTube link through the contact form.
       </p>
 
       <h2>YouTube Videos</h2>
@@ -333,7 +333,7 @@ export default function StoriesPage() {
                   className="h-48 w-full rounded object-cover"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-black bg-opacity-70 transition-all group-hover:bg-opacity-80">
+                  <div className="bg-opacity-50 group-hover:bg-opacity-80 flex h-16 w-16 items-center justify-center rounded-full bg-black/50 transition-all">
                     <svg
                       className="ml-1 h-8 w-8 text-white"
                       fill="currentColor"
@@ -350,10 +350,7 @@ export default function StoriesPage() {
                 </h3>
                 <p className="mt-auto text-sm font-light text-gray-500 dark:text-gray-400">
                   by <b>{video.author}</b> (
-                  {video.type === "FTMTF"
-                    ? "Female Detransitioner"
-                    : "Male Detransitioner"}
-                  )
+                  {video.type === "FTMTF" ? "Female" : "Male"})
                 </p>
               </div>
             </div>
