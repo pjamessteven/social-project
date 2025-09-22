@@ -173,11 +173,7 @@ async function generateDatasource() {
         1000, // longer initial delay
       );
 
-      await fetchWithBackoff(
-        async () => index.insertNodes(nodes),
-        5, // more retries for database operations
-        500,
-      );
+      index.insertNodes(nodes);
 
       for (const node of nodes) {
         console.log(
@@ -235,15 +231,15 @@ async function deduplicateDb() {
     );
 
     for (const point of res.points) {
-      const permalink = point.payload?.link as string | undefined;
+      const id = point.payload?.id as string | undefined;
 
-      if (!permalink) continue;
+      if (!id) continue;
 
-      if (seen.has(permalink)) {
+      if (seen.has(id)) {
         // Duplicate → mark for deletion
         toDelete.push(point.id as number);
       } else {
-        seen.add(permalink);
+        seen.add(id);
       }
     }
 
