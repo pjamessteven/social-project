@@ -140,7 +140,8 @@ export default function StoriesPage() {
     },
     {
       id: "KXCGi5tbGyk",
-      title: "My detransition story: the dark truth behind gender dysphoria and regret",
+      title:
+        "My detransition story: the dark truth behind gender dysphoria and regret",
       author: "Alexander L",
       type: "MTFTM",
       url: "https://www.youtube.com/watch?v=KXCGi5tbGyk",
@@ -210,7 +211,8 @@ export default function StoriesPage() {
     },
     {
       id: "PqisKeHKPzs",
-      title: "Detransitioner Interview: Botched Surgery, Regret, & The Social Contagion",
+      title:
+        "Detransitioner Interview: Botched Surgery, Regret, & The Social Contagion",
       author: "Shape",
       type: "MTFTM",
       url: "https://www.youtube.com/watch?v=PqisKeHKPzs",
@@ -252,7 +254,8 @@ export default function StoriesPage() {
     },
     {
       id: "_aGZat6fF1I",
-      title: "'I regret trusting' the doctors who pushed me to transition gender",
+      title:
+        "'I regret trusting' the doctors who pushed me to transition gender",
       author: "Ritchie Herron",
       type: "MTFTM",
       url: "https://www.youtube.com/watch?v=_aGZat6fF1I",
@@ -267,13 +270,15 @@ export default function StoriesPage() {
   });
 
   return (
-    <div className="prose prose-sm dark:prose-invert pb-16 lg:pt-8">
-      <h1>Personal Transition & Detransition Stories</h1>
+    <div className="prose dark:prose-invert pb-16 lg:pt-8">
+      <h1>Transition & Detransition Stories</h1>
 
-      <p className="text-sm text-gray-600 dark:text-gray-400">
-        Here is a selection of videos and personal memoirs from people who have
-        transitioned and then decided to detransition. There are countless
-        stories like these on the internet, this is just a small subset.
+      <p className="text-gray-600 dark:text-gray-400">
+        Here is a selection of personal memoirs from people who have
+        transitioned and then came to some kind of realisation and decided to
+        detransition. There are countless stories like these on the internet,
+        this is just a small subset. Want to add your story to this page? Send
+        us the YouTube link through the contact form.
       </p>
 
       <h2>YouTube Videos</h2>
@@ -287,7 +292,7 @@ export default function StoriesPage() {
               : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
           }`}
         >
-          All ({videos.length})
+          All Stories
         </button>
         <button
           onClick={() => setFilter("FTMTF")}
@@ -297,7 +302,7 @@ export default function StoriesPage() {
               : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
           }`}
         >
-          FTMTF ({videos.filter((v) => v.type === "FTMTF").length})
+          Female Stories
         </button>
         <button
           onClick={() => setFilter("MTFTM")}
@@ -307,7 +312,7 @@ export default function StoriesPage() {
               : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
           }`}
         >
-          MTFTM ({videos.filter((v) => v.type === "MTFTM").length})
+          Male Stories
         </button>
       </div>
 
@@ -339,7 +344,11 @@ export default function StoriesPage() {
                   </a>
                 </h3>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                  by <b>{video.author}</b> [{video.type}]
+                  by <b>{video.author}</b> (
+                  {video.type === "FTMTF"
+                    ? "Female Detransitioner"
+                    : "Male Detransitioner"}
+                  )
                 </p>
               </div>
             </div>
