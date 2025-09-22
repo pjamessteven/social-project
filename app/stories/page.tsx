@@ -316,32 +316,26 @@ export default function StoriesPage() {
         </button>
       </div>
 
-      <div className="not-prose grid gap-4">
+      <div className="not-prose grid grid-cols-1 gap-6 md:grid-cols-2">
         {filteredVideos.map((video) => (
           <a
             href={video.url}
             target="_blank"
             rel="noopener noreferrer"
             key={video.id}
+            className="group block"
           >
-            <div className="flex gap-4 rounded-lg border p-4 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800">
-              <div className="flex-shrink-0">
+            <div className="rounded-lg border p-4 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800">
+              <div className="mb-3">
                 <img
                   src={`https://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
                   alt={`Thumbnail for ${video.title}`}
-                  className="h-24 w-32 rounded object-cover"
+                  className="h-48 w-full rounded object-cover"
                 />
               </div>
-              <div className="min-w-0 flex-1">
-                <h3 className="mb-1 text-base font-medium">
-                  <a
-                    href={video.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 underline hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-                  >
-                    {video.title}
-                  </a>
+              <div>
+                <h3 className="mb-2 text-base font-medium text-blue-600 group-hover:text-blue-800 dark:text-blue-400 dark:group-hover:text-blue-300">
+                  {video.title}
                 </h3>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   by <b>{video.author}</b> (
