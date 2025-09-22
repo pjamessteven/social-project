@@ -423,7 +423,7 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
         style={{ 
           width: '100vw',
           marginLeft: 'calc(-50vw + 50%)',
-          paddingLeft: 'calc(50vw - 50%)',
+          paddingLeft: 'max(1rem, calc(50vw - 50%))',
           paddingRight: 'calc(50vw - 50%)'
         }}
       >
