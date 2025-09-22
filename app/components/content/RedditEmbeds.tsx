@@ -370,16 +370,14 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
     container.scrollLeft = initialOffset;
 
     let intervalId: NodeJS.Timeout;
-    let isManuallyScrolling = false;
-    let manualScrollTimeout: NodeJS.Timeout;
-    let isProgrammaticScroll = false;
+    let isUserInteracting = false;
+    let interactionTimeout: NodeJS.Timeout;
     const scrollSpeed = 1; // pixels per interval
     const cardWidth = 320; // approximate width of each card + gap
     const totalWidth = EMBEDS.length * cardWidth;
 
     const autoScroll = () => {
-      if (!isManuallyScrolling && container) {
-        isProgrammaticScroll = true;
+      if (!isUserInteracting && container) {
         // Use scrollBy for better Safari compatibility
         container.scrollBy({ left: scrollSpeed, behavior: 'auto' });
         
@@ -387,50 +385,65 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
         if (container.scrollLeft >= totalWidth + initialOffset) {
           container.scrollLeft = initialOffset;
         }
-        // Reset flag after a short delay to allow the scroll event to fire
-        setTimeout(() => {
-          isProgrammaticScroll = false;
-        }, 10);
       }
     };
 
     // Use setInterval instead of requestAnimationFrame for better Safari support
     intervalId = setInterval(autoScroll, 16); // ~60fps
 
-    // Pause scrolling when user manually scrolls (but not when we auto-scroll)
-    const handleScroll = () => {
-      if (!isProgrammaticScroll) {
-        isManuallyScrolling = true;
-        clearTimeout(manualScrollTimeout);
-        // Resume auto-scrolling after 3 seconds of no manual scrolling
-        manualScrollTimeout = setTimeout(() => {
-          isManuallyScrolling = false;
-        }, 3000);
-      }
-    };
-
-    const handleTouchStart = () => {
-      isManuallyScrolling = true;
-      clearTimeout(manualScrollTimeout);
-    };
-
-    const handleTouchEnd = () => {
-      // Resume auto-scrolling after 3 seconds of no touch interaction
-      manualScrollTimeout = setTimeout(() => {
-        isManuallyScrolling = false;
+    const pauseAutoScroll = () => {
+      isUserInteracting = true;
+      clearTimeout(interactionTimeout);
+      // Resume auto-scrolling after 3 seconds of no user interaction
+      interactionTimeout = setTimeout(() => {
+        isUserInteracting = false;
       }, 3000);
     };
 
-    container.addEventListener('scroll', handleScroll);
-    container.addEventListener('touchstart', handleTouchStart);
-    container.addEventListener('touchend', handleTouchEnd);
+    // Listen for wheel events (mouse wheel scrolling)
+    const handleWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaX) > 0) { // Only horizontal scrolling
+        pauseAutoScroll();
+      }
+    };
+
+    // Listen for touch events
+    const handleTouchStart = () => {
+      pauseAutoScroll();
+    };
+
+    // Listen for mouse drag scrolling
+    let isMouseDown = false;
+    const handleMouseDown = () => {
+      isMouseDown = true;
+    };
+
+    const handleMouseMove = () => {
+      if (isMouseDown) {
+        pauseAutoScroll();
+      }
+    };
+
+    const handleMouseUp = () => {
+      isMouseDown = false;
+    };
+
+    container.addEventListener('wheel', handleWheel, { passive: true });
+    container.addEventListener('touchstart', handleTouchStart, { passive: true });
+    container.addEventListener('mousedown', handleMouseDown);
+    container.addEventListener('mousemove', handleMouseMove);
+    container.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('mouseup', handleMouseUp); // In case mouse is released outside container
 
     return () => {
       clearInterval(intervalId);
-      clearTimeout(manualScrollTimeout);
-      container.removeEventListener('scroll', handleScroll);
+      clearTimeout(interactionTimeout);
+      container.removeEventListener('wheel', handleWheel);
       container.removeEventListener('touchstart', handleTouchStart);
-      container.removeEventListener('touchend', handleTouchEnd);
+      container.removeEventListener('mousedown', handleMouseDown);
+      container.removeEventListener('mousemove', handleMouseMove);
+      container.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('mouseup', handleMouseUp);
     };
   }, [EMBEDS.length]);
 
