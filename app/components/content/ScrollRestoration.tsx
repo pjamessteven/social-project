@@ -13,11 +13,13 @@ export default function ScrollRestoration() {
       return document.querySelector('main');
     };
 
-    // Save scroll position before navigation
+    // Save scroll position
     const saveScroll = () => {
       const scrollableElement = getScrollableElement();
       if (scrollableElement) {
-        sessionStorage.setItem(`scroll-${pathname}`, String(scrollableElement.scrollTop));
+        const scrollTop = scrollableElement.scrollTop;
+        console.log(`Saving scroll position for ${pathname}: ${scrollTop}`);
+        sessionStorage.setItem(`scroll-${pathname}`, String(scrollTop));
       }
     };
 
@@ -26,14 +28,27 @@ export default function ScrollRestoration() {
       const saved = sessionStorage.getItem(`scroll-${pathname}`);
       const scrollableElement = getScrollableElement();
       
+      console.log(`Attempting to restore scroll for ${pathname}: ${saved}`);
+      
       if (saved && scrollableElement) {
+        const scrollTop = parseInt(saved, 10);
         // Use setTimeout to ensure DOM is fully rendered
         setTimeout(() => {
-          scrollableElement.scrollTop = parseInt(saved, 10);
+          scrollableElement.scrollTop = scrollTop;
+          console.log(`Restored scroll position to: ${scrollTop}, actual: ${scrollableElement.scrollTop}`);
         }, 100);
       }
     };
 
+    // Throttled scroll handler to save position periodically
+    let scrollTimeout: NodeJS.Timeout;
+    const handleScroll = () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(saveScroll, 100);
+    };
+
+    const scrollableElement = getScrollableElement();
+    
     // Restore scroll on page load
     if (document.readyState === 'complete') {
       restoreScroll();
@@ -41,13 +56,22 @@ export default function ScrollRestoration() {
       window.addEventListener('load', restoreScroll);
     }
 
+    // Listen for scroll events to save position
+    if (scrollableElement) {
+      scrollableElement.addEventListener('scroll', handleScroll);
+    }
+
     // Save scroll on navigation/unload
     window.addEventListener("beforeunload", saveScroll);
     
     return () => {
       saveScroll();
+      clearTimeout(scrollTimeout);
       window.removeEventListener("beforeunload", saveScroll);
       window.removeEventListener('load', restoreScroll);
+      if (scrollableElement) {
+        scrollableElement.removeEventListener('scroll', handleScroll);
+      }
     };
   }, [pathname]);
 
