@@ -9,6 +9,7 @@ import "@llamaindex/chat-ui/styles/pdf.css";
 import { clsx } from "clsx";
 import { ThemeProvider } from "next-themes";
 import { headers } from "next/headers";
+import ScrollRestoration from "./components/content/ScrollRestoration";
 import { CustomChatInput } from "./components/ui/chat/custom-chat-input";
 import Header from "./components/ui/chat/layout/header";
 import "./globals.css";
@@ -61,6 +62,7 @@ export default async function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ScrollRestoration />
           <div className="relative flex h-[100dvh] flex-col">
             <Header mode={baseMode} />
             <main

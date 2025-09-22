@@ -15,7 +15,6 @@ import { Button } from "../ui/button";
 import DonationCard from "./DonationCard";
 import { QuestionCategories } from "./QuestionCategories";
 import RedditEmbeds from "./RedditEmbeds";
-import ScrollRestoration from "./ScrollRestoration";
 
 export async function StartPage({
   className,
@@ -28,7 +27,6 @@ export async function StartPage({
 
   return (
     <>
-      <ScrollRestoration /> {/* client-side logic  */}
       <div className="relative flex flex-col pb-[88px]">
         <h1 className="z-10 mt-[20vh] text-3xl font-bold sm:text-4xl">
           <div className="text-muted-foreground opacity-30 dark:opacity-80">
