@@ -21,6 +21,7 @@ export default function RedditEmbed({
   imageUrl?: string;
 }) {
   const [isVisible, setIsVisible] = useState(false);
+  const [imageAspectRatio, setImageAspectRatio] = useState<number | null>(null);
   const imageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -79,7 +80,15 @@ export default function RedditEmbed({
                 <img
                   src={imageUrl}
                   alt={`Preview for ${title}`}
-                  className="w-full h-auto"
+                  className={
+                    imageAspectRatio !== null && imageAspectRatio < 1
+                      ? "w-full h-full object-cover aspect-square"
+                      : "w-full h-auto"
+                  }
+                  onLoad={(e) => {
+                    const img = e.target as HTMLImageElement;
+                    setImageAspectRatio(img.naturalWidth / img.naturalHeight);
+                  }}
                 />
               ) : (
                 <div className="bg-accent w-full aspect-video animate-pulse rounded-lg" />
