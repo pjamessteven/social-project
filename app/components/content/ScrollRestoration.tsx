@@ -8,18 +8,20 @@ export default function ScrollRestoration() {
   const pathname = usePathname();
 
   useEffect(() => {
+    let currentPath = pathname;
+    
     // Find the main scrollable element
     const getScrollableElement = () => {
       return document.querySelector('main');
     };
 
-    // Save scroll position
-    const saveScroll = () => {
+    // Save scroll position for a specific path
+    const saveScrollForPath = (path: string) => {
       const scrollableElement = getScrollableElement();
       if (scrollableElement) {
         const scrollTop = scrollableElement.scrollTop;
-        console.log(`Saving scroll position for ${pathname}: ${scrollTop}`);
-        sessionStorage.setItem(`scroll-${pathname}`, String(scrollTop));
+        console.log(`Saving scroll position for ${path}: ${scrollTop}`);
+        sessionStorage.setItem(`scroll-${path}`, String(scrollTop));
       }
     };
 
@@ -44,7 +46,7 @@ export default function ScrollRestoration() {
     let scrollTimeout: NodeJS.Timeout;
     const handleScroll = () => {
       clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(saveScroll, 100);
+      scrollTimeout = setTimeout(() => saveScrollForPath(currentPath), 100);
     };
 
     const scrollableElement = getScrollableElement();
@@ -62,12 +64,14 @@ export default function ScrollRestoration() {
     }
 
     // Save scroll on navigation/unload
-    window.addEventListener("beforeunload", saveScroll);
+    const handleBeforeUnload = () => saveScrollForPath(currentPath);
+    window.addEventListener("beforeunload", handleBeforeUnload);
     
     return () => {
-      saveScroll();
+      // Save scroll position for the current path before cleanup
+      saveScrollForPath(currentPath);
       clearTimeout(scrollTimeout);
-      window.removeEventListener("beforeunload", saveScroll);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
       window.removeEventListener('load', restoreScroll);
       if (scrollableElement) {
         scrollableElement.removeEventListener('scroll', handleScroll);
