@@ -9,7 +9,6 @@ import {
   QuestionsAnsweredExtractor,
   SummaryExtractor,
   VectorStoreIndex,
-  Settings,
 } from "llamaindex";
 import readline from "readline";
 
@@ -312,12 +311,14 @@ async function filterDb() {
 
 async function deleteAllDataSourceQuestions() {
   const client = new QdrantClient({ url: "http://localhost:6333" });
-  
+
   let nextPage = 0;
   let processedCount = 0;
   let deletedCount = 0;
 
-  console.log("Starting to delete questionsThisExcerptCanAnswer field from all entries...");
+  console.log(
+    "Starting to delete questionsThisExcerptCanAnswer field from all entries...",
+  );
 
   do {
     const res = await fetchWithBackoff(
@@ -334,7 +335,7 @@ async function deleteAllDataSourceQuestions() {
 
     for (const point of res.points) {
       const hasQuestions = point.payload?.questionsThisExcerptCanAnswer;
-      
+
       if (hasQuestions) {
         try {
           // Delete the questionsThisExcerptCanAnswer field
@@ -349,34 +350,45 @@ async function deleteAllDataSourceQuestions() {
           );
 
           deletedCount++;
-          console.log(`Deleted questionsThisExcerptCanAnswer from point ${point.id}`);
+          console.log(
+            `Deleted questionsThisExcerptCanAnswer from point ${point.id}`,
+          );
         } catch (error) {
-          console.error(`Error deleting questions from point ${point.id}:`, error);
+          console.error(
+            `Error deleting questions from point ${point.id}:`,
+            error,
+          );
         }
       }
 
       processedCount++;
-      
+
       if (processedCount % 100 === 0) {
-        console.log(`Processed ${processedCount} entries, deleted from ${deletedCount}`);
+        console.log(
+          `Processed ${processedCount} entries, deleted from ${deletedCount}`,
+        );
       }
     }
 
     nextPage = res.next_page_offset as number;
   } while (nextPage);
 
-  console.log(`Finished deleting questions. Processed: ${processedCount}, Deleted from: ${deletedCount}`);
+  console.log(
+    `Finished deleting questions. Processed: ${processedCount}, Deleted from: ${deletedCount}`,
+  );
 }
 
 async function updateDataSourceQuestions() {
   const client = new QdrantClient({ url: "http://localhost:6333" });
-  
+
   let nextPage = 0;
   let processedCount = 0;
   let updatedCount = 0;
   let skippedCount = 0;
 
-  console.log("Starting to update questionsThisExcerptCanAnswer for entries missing this field...");
+  console.log(
+    "Starting to update questionsThisExcerptCanAnswer for entries missing this field...",
+  );
 
   do {
     const res = await fetchWithBackoff(
@@ -394,7 +406,7 @@ async function updateDataSourceQuestions() {
     for (const point of res.points) {
       const nodeContent = point.payload?._node_content as string;
       const existingQuestions = point.payload?.questionsThisExcerptCanAnswer;
-      
+
       if (!nodeContent) {
         console.log(`Skipping point ${point.id} - no _node_content found`);
         continue;
@@ -423,7 +435,8 @@ async function updateDataSourceQuestions() {
         );
 
         // Get the questions from the extracted metadata
-        const newQuestions = extractedData[0]?.metadata?.questionsThisExcerptCanAnswer;
+        // @ts-expect-error something
+        const newQuestions = extractedData[0]?.questionsThisExcerptCanAnswer;
 
         if (newQuestions) {
           // Update the point with new questions
@@ -440,7 +453,9 @@ async function updateDataSourceQuestions() {
           );
 
           updatedCount++;
-          console.log(`Updated point ${point.id} with new questions: ${newQuestions}`);
+          console.log(
+            `Updated point ${point.id} with new questions: ${newQuestions}`,
+          );
         } else {
           console.log(`No questions generated for point ${point.id}`);
         }
@@ -449,16 +464,20 @@ async function updateDataSourceQuestions() {
       }
 
       processedCount++;
-      
+
       if (processedCount % 10 === 0) {
-        console.log(`Processed ${processedCount} entries, updated ${updatedCount}, skipped ${skippedCount}`);
+        console.log(
+          `Processed ${processedCount} entries, updated ${updatedCount}, skipped ${skippedCount}`,
+        );
       }
     }
 
     nextPage = res.next_page_offset as number;
   } while (nextPage);
 
-  console.log(`Finished updating questions. Processed: ${processedCount}, Updated: ${updatedCount}, Skipped: ${skippedCount}`);
+  console.log(
+    `Finished updating questions. Processed: ${processedCount}, Updated: ${updatedCount}, Skipped: ${skippedCount}`,
+  );
 }
 
 (async () => {
