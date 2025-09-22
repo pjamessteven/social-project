@@ -394,7 +394,7 @@ async function updateDataSourceQuestions() {
     const res = await fetchWithBackoff(
       async () =>
         client.scroll("trans", {
-          limit: 100, // process in smaller batches for LLM calls
+          limit: 100,
           with_payload: true,
           with_vector: false,
           offset: nextPage,
@@ -403,12 +403,16 @@ async function updateDataSourceQuestions() {
       1000,
     );
 
+    // Collect points that need question extraction
+    const pointsToProcess: Array<{ point: any; document: Document }> = [];
+    
     for (const point of res.points) {
       const nodeContent = point.payload?._node_content as string;
       const existingQuestions = point.payload?.questionsThisExcerptCanAnswer;
 
       if (!nodeContent) {
         console.log(`Skipping point ${point.id} - no _node_content found`);
+        processedCount++;
         continue;
       }
 
@@ -419,56 +423,67 @@ async function updateDataSourceQuestions() {
         continue;
       }
 
+      // Add to batch for processing
+      pointsToProcess.push({
+        point,
+        document: new Document({ text: nodeContent })
+      });
+    }
+
+    // Process the batch if we have points to process
+    if (pointsToProcess.length > 0) {
       try {
-        // Use the existing question prompt to generate new questions
+        // Use the existing question prompt to generate new questions for the batch
         const questionsExtractor = new QuestionsAnsweredExtractor({
           questions: 5,
           promptTemplate: questionPrompt,
         });
 
-        // Create a temporary document to extract questions from
-        const tempDoc = new Document({ text: nodeContent });
+        const documents = pointsToProcess.map(item => item.document);
         const extractedData = await fetchWithBackoff(
-          async () => questionsExtractor.extract([tempDoc]),
+          async () => questionsExtractor.extract(documents),
           3,
           2000, // longer delay for LLM calls
         );
 
-        // Get the questions from the extracted metadata
-        // @ts-expect-error something
-        const newQuestions = extractedData[0]?.questionsThisExcerptCanAnswer;
+        // Update each point with its corresponding extracted questions
+        for (let i = 0; i < pointsToProcess.length; i++) {
+          const { point } = pointsToProcess[i];
+          // @ts-expect-error something
+          const newQuestions = extractedData[i]?.questionsThisExcerptCanAnswer;
 
-        if (newQuestions) {
-          // Update the point with new questions
-          await fetchWithBackoff(
-            async () =>
-              client.setPayload("trans", {
-                points: [point.id],
-                payload: {
-                  questionsThisExcerptCanAnswer: newQuestions,
-                },
-              }),
-            3,
-            1000,
-          );
+          if (newQuestions) {
+            // Update the point with new questions
+            await fetchWithBackoff(
+              async () =>
+                client.setPayload("trans", {
+                  points: [point.id],
+                  payload: {
+                    questionsThisExcerptCanAnswer: newQuestions,
+                  },
+                }),
+              3,
+              1000,
+            );
 
-          updatedCount++;
-          console.log(
-            `Updated point ${point.id} with new questions: ${newQuestions}`,
-          );
-        } else {
-          console.log(`No questions generated for point ${point.id}`);
+            updatedCount++;
+            console.log(
+              `Updated point ${point.id} with new questions: ${newQuestions}`,
+            );
+          } else {
+            console.log(`No questions generated for point ${point.id}`);
+          }
+
+          processedCount++;
         }
-      } catch (error) {
-        console.error(`Error processing point ${point.id}:`, error);
-      }
 
-      processedCount++;
-
-      if (processedCount % 10 === 0) {
         console.log(
-          `Processed ${processedCount} entries, updated ${updatedCount}, skipped ${skippedCount}`,
+          `Processed batch of ${pointsToProcess.length} entries, updated ${updatedCount}, skipped ${skippedCount}`,
         );
+      } catch (error) {
+        console.error(`Error processing batch:`, error);
+        // Still increment processed count for the failed batch
+        processedCount += pointsToProcess.length;
       }
     }
 
