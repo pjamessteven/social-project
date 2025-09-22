@@ -1,10 +1,117 @@
 import Link from "next/link";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/app/components/ui/sidebar";
+import { ChevronRight } from "lucide-react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/app/components/ui/collapsible";
+
+const navigationItems = [
+  {
+    title: "Online Support Groups",
+    href: "#online-support-groups",
+  },
+  {
+    title: "Gender Affirming Care",
+    href: "#gender-affirming-care",
+  },
+  {
+    title: "Gender Exploratory Therapy",
+    href: "#gender-exploratory-therapy",
+    children: [
+      {
+        title: "Just Therapy",
+        href: "#just-therapy",
+      },
+      {
+        title: "Therapy First",
+        href: "#therapy-first",
+      },
+      {
+        title: "Beyond Trans",
+        href: "#beyond-trans",
+      },
+      {
+        title: "The Detrans Foundation",
+        href: "#detrans-foundation",
+      },
+    ],
+  },
+];
+
+function SupportSidebar() {
+  return (
+    <Sidebar className="w-64">
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Page Contents</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {navigationItems.map((item) => (
+                <SidebarMenuItem key={item.href}>
+                  {item.children ? (
+                    <Collapsible defaultOpen className="group/collapsible">
+                      <CollapsibleTrigger asChild>
+                        <SidebarMenuButton className="w-full justify-between">
+                          <a href={item.href} className="flex-1">
+                            {item.title}
+                          </a>
+                          <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
+                        </SidebarMenuButton>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent>
+                        <SidebarMenuSub>
+                          {item.children.map((child) => (
+                            <SidebarMenuSubItem key={child.href}>
+                              <SidebarMenuSubButton asChild>
+                                <a href={child.href}>{child.title}</a>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          ))}
+                        </SidebarMenuSub>
+                      </CollapsibleContent>
+                    </Collapsible>
+                  ) : (
+                    <SidebarMenuButton asChild>
+                      <a href={item.href}>{item.title}</a>
+                    </SidebarMenuButton>
+                  )}
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
+  );
+}
 
 export default async function StudiesPage() {
   return (
-    <div className="prose dark:prose-invert pb-16 lg:pt-8">
+    <SidebarProvider>
+      <div className="flex min-h-screen w-full">
+        <SupportSidebar />
+        <main className="flex-1">
+          <div className="sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b lg:hidden">
+            <div className="flex h-14 items-center px-4">
+              <SidebarTrigger />
+              <h1 className="ml-2 text-lg font-semibold">Support</h1>
+            </div>
+          </div>
+          <div className="prose dark:prose-invert pb-16 lg:pt-8 px-4 lg:px-8">
       <h1>Get Help & Support From Real People</h1>
-      <h2>Online Support groups:</h2>
+      <h2 id="online-support-groups">Online Support groups:</h2>
       <p>
         One of the best ways to get support is to talk to real people who have
         been there themselves.
@@ -38,7 +145,7 @@ export default async function StudiesPage() {
           </a>
         </li>
       </ul>
-      <h2>Gender Affirming Care: What is it?</h2>
+      <h2 id="gender-affirming-care">Gender Affirming Care: What is it?</h2>
       <p>
         Gender affirming care is currently the standard (and usually the only)
         treatment option for gender dysphoria provided by healthcare providers
@@ -53,7 +160,7 @@ export default async function StudiesPage() {
         </Link>{" "}
         from people who have been down this path before going down it yourself.
       </p>
-      <h2>Gender Exploratory Therapy: What is it?</h2>
+      <h2 id="gender-exploratory-therapy">Gender Exploratory Therapy: What is it?</h2>
 
       <p>
         Gender exploratory therapy simply means that your therapist doesn't rush
@@ -361,11 +468,11 @@ export default async function StudiesPage() {
         Where can I find a therapist who practices gender exploratory therapy?
       </h2>
       <a
-        href="https://beyondtrans.org/therapist-directory/"
+        href="https://just-therapy.org/members/"
         target="_blank"
         className="underline"
       >
-        <h3>
+        <h3 id="just-therapy">
           <b>Just Therapy</b>
         </h3>
       </a>
@@ -407,7 +514,7 @@ export default async function StudiesPage() {
         className="underline"
       >
         {" "}
-        <h3>
+        <h3 id="therapy-first">
           <b>Therapy First</b>
         </h3>
       </a>
@@ -447,7 +554,7 @@ export default async function StudiesPage() {
         target="_blank"
         className="underline"
       >
-        <h3>
+        <h3 id="beyond-trans">
           <b>Beyond Trans</b>
         </h3>
       </a>
@@ -493,7 +600,7 @@ export default async function StudiesPage() {
         target="_blank"
         className="underline"
       >
-        <h3>
+        <h3 id="detrans-foundation">
           <b>The Detrans Foundation</b>
         </h3>
       </a>
@@ -542,6 +649,9 @@ export default async function StudiesPage() {
           <b>Visit the Detrans Foundation website {"->"}</b>
         </a>
       </p>
-    </div>
+          </div>
+        </main>
+      </div>
+    </SidebarProvider>
   );
 }
