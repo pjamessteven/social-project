@@ -372,12 +372,14 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
     let intervalId: NodeJS.Timeout;
     let isManuallyScrolling = false;
     let manualScrollTimeout: NodeJS.Timeout;
+    let isProgrammaticScroll = false;
     const scrollSpeed = 1; // pixels per interval
     const cardWidth = 320; // approximate width of each card + gap
     const totalWidth = EMBEDS.length * cardWidth;
 
     const autoScroll = () => {
       if (!isManuallyScrolling && container) {
+        isProgrammaticScroll = true;
         // Use scrollBy for better Safari compatibility
         container.scrollBy({ left: scrollSpeed, behavior: 'auto' });
         
@@ -385,20 +387,26 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
         if (container.scrollLeft >= totalWidth + initialOffset) {
           container.scrollLeft = initialOffset;
         }
+        // Reset flag after a short delay to allow the scroll event to fire
+        setTimeout(() => {
+          isProgrammaticScroll = false;
+        }, 10);
       }
     };
 
     // Use setInterval instead of requestAnimationFrame for better Safari support
     intervalId = setInterval(autoScroll, 16); // ~60fps
 
-    // Pause scrolling when user manually scrolls
+    // Pause scrolling when user manually scrolls (but not when we auto-scroll)
     const handleScroll = () => {
-      isManuallyScrolling = true;
-      clearTimeout(manualScrollTimeout);
-      // Resume auto-scrolling after 3 seconds of no manual scrolling
-      manualScrollTimeout = setTimeout(() => {
-        isManuallyScrolling = false;
-      }, 3000);
+      if (!isProgrammaticScroll) {
+        isManuallyScrolling = true;
+        clearTimeout(manualScrollTimeout);
+        // Resume auto-scrolling after 3 seconds of no manual scrolling
+        manualScrollTimeout = setTimeout(() => {
+          isManuallyScrolling = false;
+        }, 3000);
+      }
     };
 
     const handleTouchStart = () => {
