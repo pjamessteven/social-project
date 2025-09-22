@@ -365,39 +365,41 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
     const container = scrollContainerRef.current;
     if (!container || EMBEDS.length === 0) return;
 
-    let scrollPosition = 0;
-    const scrollSpeed = 1; // pixels per frame
+    let animationId: number;
+    let isHovered = false;
+    const scrollSpeed = 0.5; // pixels per frame - smoother scrolling
     const cardWidth = 320; // approximate width of each card + gap
     const totalWidth = EMBEDS.length * cardWidth;
 
     const autoScroll = () => {
-      scrollPosition += scrollSpeed;
-      
-      // Reset to beginning when we've scrolled past all cards
-      if (scrollPosition >= totalWidth) {
-        scrollPosition = 0;
+      if (!isHovered && container) {
+        container.scrollLeft += scrollSpeed;
+        
+        // Seamless loop: when we've scrolled past the first set, reset to beginning
+        if (container.scrollLeft >= totalWidth) {
+          container.scrollLeft = 0;
+        }
       }
-      
-      container.scrollLeft = scrollPosition;
+      animationId = requestAnimationFrame(autoScroll);
     };
 
-    const intervalId = setInterval(autoScroll, 50); // 20fps
+    // Start the animation
+    animationId = requestAnimationFrame(autoScroll);
 
-    // Pause scrolling on hover
-    const handleMouseEnter = () => clearInterval(intervalId);
+    // Pause scrolling on hover and allow manual scrolling
+    const handleMouseEnter = () => {
+      isHovered = true;
+    };
+
     const handleMouseLeave = () => {
-      const newIntervalId = setInterval(autoScroll, 50);
-      return newIntervalId;
+      isHovered = false;
     };
 
     container.addEventListener('mouseenter', handleMouseEnter);
-    container.addEventListener('mouseleave', () => {
-      clearInterval(intervalId);
-      const newIntervalId = setInterval(autoScroll, 50);
-    });
+    container.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
-      clearInterval(intervalId);
+      cancelAnimationFrame(animationId);
       container.removeEventListener('mouseenter', handleMouseEnter);
       container.removeEventListener('mouseleave', handleMouseLeave);
     };
@@ -417,7 +419,7 @@ export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
        */}
       <div 
         ref={scrollContainerRef}
-        className="mt-8 flex items-start gap-4 overflow-x-scroll scrollbar-hide"
+        className="mt-8 flex items-start gap-4 overflow-x-scroll scrollbar-hide cursor-grab active:cursor-grabbing"
         style={{ 
           width: '100vw',
           marginLeft: 'calc(-50vw + 50%)',
