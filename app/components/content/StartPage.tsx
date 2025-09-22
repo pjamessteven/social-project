@@ -102,10 +102,10 @@ export async function StartPage({
               <p>
                 You can use <b>detrans.ai</b> as your own personal
                 gender-exploratory therapist, or simply as a research tool.
-                Every person experiencing gender dysphoria should open their
-                mind to the perspectives of people who have{" "}
+                Every person experiencing gender dysphoria should hear the
+                perspectives of people who have{" "}
                 <i>'been there and done that'</i> before pursuing medical
-                transition, and they should also be make themselves aware of how
+                transition, and they should also make themselves aware of how
                 cancel culture and echo chambers can affect the information they
                 are receiving, even from the government, universtities and
                 health institutions.
@@ -187,11 +187,6 @@ export async function StartPage({
         ) : (
           <div className="prose dark:prose-invert mt-8 text-base">
             <p>
-              Here you can compare the perspectives of people who identify as
-              trans to the perspective of detrans people who have moved on from
-              trans identity.
-            </p>
-            <p>
               <a
                 href="https://genderaffirming.ai"
                 target="_blank"
@@ -240,6 +235,14 @@ export async function StartPage({
                 </a>{" "}
                 community.{" "}
               </span>
+            </p>
+            <p>
+              This page allows you to use both <b>detrans.ai</b> and{" "}
+              <b>genderaffirming.ai</b> side-by-side. This allows for a direct
+              comparison between the perspectives of those who currently
+              identify as trans and those who have moved on from trans identity,
+              offering insight into the diverse and sometimes conflicting
+              viewpoints surrounding gender identity.
             </p>
           </div>
         )}
