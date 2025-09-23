@@ -26,6 +26,10 @@ export function ContentWarningDialog() {
     setIsOpen(false);
   };
 
+  const handleExit = () => {
+    window.location.href = "https://google.com";
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="sm:max-w-md">
@@ -38,7 +42,7 @@ export function ContentWarningDialog() {
           </DialogDescription>
         </DialogHeader>
         <div className="mt-2 flex justify-end gap-2">
-          <Button onClick={handleAccept}>Get me out of here!</Button>
+          <Button onClick={handleExit}>Get me out of here!</Button>
 
           <Button onClick={handleAccept}>I Understand {"->"}</Button>
         </div>
