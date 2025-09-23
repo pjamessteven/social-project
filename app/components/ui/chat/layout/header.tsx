@@ -196,22 +196,24 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
 
                 <NavigationMenuContent>
                   <div className="grid w-68 gap-1 p-1">
-                    <NavigationMenuLink asChild>
-                      <Link
-                        href={"/about"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                      >
-                        <Scroll className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
-                        <div className="flex flex-col space-y-1">
-                          <div className="text-sm leading-none font-medium">
-                            Manifesto
+                    {mode !== "affirm" && (
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href={"/about"}
+                          className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        >
+                          <Scroll className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
+                          <div className="flex flex-col space-y-1">
+                            <div className="text-sm leading-none font-medium">
+                              Manifesto
+                            </div>
+                            <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                              Understand why I built this
+                            </p>
                           </div>
-                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            Understand why I built this
-                          </p>
-                        </div>
-                      </Link>
-                    </NavigationMenuLink>
+                        </Link>
+                      </NavigationMenuLink>
+                    )}
                     <NavigationMenuLink asChild>
                       <Link
                         href={!devAffirm ? "/contact" : "/affirm/contact"}
@@ -458,23 +460,27 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                       About
                     </h3>
                     <div className="space-y-1">
-                      <Link href={"/about"} onClick={() => setIsOpen(false)}>
-                        <Button
-                          variant="ghost"
-                          className={cn(
-                            "h-auto w-full flex-row items-center justify-start py-3",
-                            pathname === "/about" && "bg-muted",
-                          )}
-                        >
-                          <Scroll className="h-4 w-4" />
-                          <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">Manifesto</div>
-                            <div className="text-muted-foreground text-xs">
-                              Understand why I built this
+                      {mode !== "affirm" && (
+                        <Link href={"/about"} onClick={() => setIsOpen(false)}>
+                          <Button
+                            variant="ghost"
+                            className={cn(
+                              "h-auto w-full flex-row items-center justify-start py-3",
+                              pathname === "/about" && "bg-muted",
+                            )}
+                          >
+                            <Scroll className="h-4 w-4" />
+                            <div className="ml-4 flex flex-col items-start">
+                              <div className="text-sm font-medium">
+                                Manifesto
+                              </div>
+                              <div className="text-muted-foreground text-xs">
+                                Understand why I built this
+                              </div>
                             </div>
-                          </div>
-                        </Button>
-                      </Link>
+                          </Button>
+                        </Link>
+                      )}
                       <Link
                         href={!devAffirm ? "/contact" : "/affirm/contact"}
                         onClick={() => setIsOpen(false)}
