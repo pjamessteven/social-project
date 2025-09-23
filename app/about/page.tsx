@@ -3,7 +3,7 @@ import Link from "next/link";
 export default async function AboutPage() {
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
-      <h1 className="">About / Manifesto</h1>
+      <h1 className="">About</h1>
       <p>
         Today, Tuesday the 23rd of September 2025, I am launching my latest
         project.
