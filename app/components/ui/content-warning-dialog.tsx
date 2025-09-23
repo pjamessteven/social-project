@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Button } from "./button";
 import {
   Dialog,
   DialogContent,
@@ -8,7 +9,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./dialog";
-import { Button } from "./button";
 
 export function ContentWarningDialog() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,14 +31,16 @@ export function ContentWarningDialog() {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Content Warning:</DialogTitle>
-          <DialogDescription className="text-base">
+          <DialogDescription className="prose dark:prose-invert mt-2 text-base">
             This website contains experiences and perspectives from
             detransitioners. This information may conflict with your current
             beliefs.
           </DialogDescription>
         </DialogHeader>
-        <div className="flex justify-end">
-          <Button onClick={handleAccept}>I Understand</Button>
+        <div className="mt-2 flex justify-end gap-2">
+          <Button onClick={handleAccept}>Get me out of here!</Button>
+
+          <Button onClick={handleAccept}>I Understand {"->"}</Button>
         </div>
       </DialogContent>
     </Dialog>
