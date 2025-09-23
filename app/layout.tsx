@@ -12,6 +12,7 @@ import { headers } from "next/headers";
 import ScrollRestoration from "./components/content/ScrollRestoration";
 import { CustomChatInput } from "./components/ui/chat/custom-chat-input";
 import Header from "./components/ui/chat/layout/header";
+import { ContentWarningDialog } from "./components/ui/content-warning-dialog";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -63,6 +64,7 @@ export default async function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ScrollRestoration />
+          <ContentWarningDialog />
           <div className="relative flex h-[100dvh] flex-col">
             <Header mode={baseMode} />
             <main
