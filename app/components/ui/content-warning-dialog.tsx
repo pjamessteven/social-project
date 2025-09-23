@@ -32,9 +32,9 @@ export function ContentWarningDialog() {
         <DialogHeader>
           <DialogTitle>Content Warning:</DialogTitle>
           <DialogDescription className="prose dark:prose-invert mt-2 text-base">
-            This website contains experiences and perspectives from
-            detransitioners. This information may conflict with your current
-            beliefs.
+            This website contains perspectives and experiences from people
+            detransitioners and desisters. This information may conflict with
+            your current beliefs.
           </DialogDescription>
         </DialogHeader>
         <div className="mt-2 flex justify-end gap-2">
