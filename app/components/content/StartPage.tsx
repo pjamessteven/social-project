@@ -179,8 +179,9 @@ export async function StartPage({
                 target="_blank"
                 className="underline"
               >
-                detrans.ai
+                <span>detrans.ai</span>
               </a>
+              <ExternalLink className="mb-1 ml-1 inline h-3 w-3" />
             </p>
           </div>
         ) : (
@@ -195,7 +196,7 @@ export async function StartPage({
               </a>{" "}
               will affirm your gender identity. It uses OpenAI's <i>gpt-4o</i>{" "}
               model, which has safety guard-rails on gender topics and it is
-              known to be a very validating model. It&apos;s integrates human
+              known to be a very validating model. It integrates human
               experiences and insights from the online trans community -{" "}
               <a
                 href="https://reddit.com/r/mtf"
@@ -258,7 +259,7 @@ export async function StartPage({
                   className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
                 >
                   <Heart className="h-4 w-4" />
-                  <span className="text-sm font-medium">Get Support</span>
+                  <span className="text-sm font-medium">Help & Support</span>
                 </Button>
               </Link>
               <Link href="/stories">
@@ -276,7 +277,9 @@ export async function StartPage({
                   className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
                 >
                   <FileText className="h-4 w-4" />
-                  <span className="text-sm font-medium">Definitions</span>
+                  <span className="text-sm font-medium">
+                    Gender Definitions
+                  </span>
                 </Button>
               </Link>
               <Link href="/studies">
@@ -285,7 +288,7 @@ export async function StartPage({
                   className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
                 >
                   <BookOpen className="h-4 w-4" />
-                  <span className="text-sm font-medium">Studies</span>
+                  <span className="text-sm font-medium">Academic Studies</span>
                 </Button>
               </Link>
               <a
@@ -363,17 +366,17 @@ export async function StartPage({
             <p className="mt-1">But through this we can grow.</p>
 
             <div className="mt-16">
-              Built by{" "}
+              Built by Peter James Steven in Welllington, NZ. Read a{" "}
               <a
                 href="https://bitbout.me"
                 target="_blank"
                 className="underline"
               >
-                Peter James Steven
-              </a>{" "}
-              in Welllington, NZ
+                bitbout.me
+              </a>
+              .
               <br />
-              <div className="mt-1 flex items-center">
+              <div className="mt-2 flex items-center sm:mt-1">
                 <div>
                   This is an open-source project. The code is available under an
                   MIT license on{" "}
@@ -387,10 +390,10 @@ export async function StartPage({
                   .
                 </div>
               </div>
-              <div className="mt-1 flex items-center">
+              <div className="mt-2 flex items-center sm:mt-1">
                 European language translations coming soon...
               </div>
-              <div className="mt-1 flex items-center">
+              <div className="mt-2 flex items-center sm:mt-1">
                 Nobody in the real world is afraid of getting cancelled!
               </div>
             </div>

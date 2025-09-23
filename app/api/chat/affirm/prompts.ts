@@ -17,7 +17,7 @@ Your answer should be wrapped in three sticks which follows the following format
 // Custom prompt template
 export const questionPrompt = `(
   Given the contextual informations below, generate up to {numQuestions} questions this context can provides specific answers to which are unlikely to be found else where. Higher-level summaries of surrounding context may be provided as well. 
-  the context is a comment or experience from a transgender person.
+  the context is a comment or experience from a person who identifies as trans. 
   Try using these summaries to generate better questions that this context can answer.
   ---------------------
   {context}"

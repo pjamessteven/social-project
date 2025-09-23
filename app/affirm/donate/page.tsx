@@ -30,7 +30,7 @@ export default async function DonationPage() {
           <div className="mt-4 flex max-w-md items-center space-x-1 rounded-xl bg-white shadow-md dark:bg-gray-800">
             <div className="flex-1">
               <p className="px-4 text-sm font-medium opacity-70">
-                Paypal Donation
+                Make a Paypal Donation
               </p>
               <div className="flex items-center justify-center">
                 <DonationBox />

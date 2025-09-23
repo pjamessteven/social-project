@@ -59,12 +59,12 @@ export default function RedditEmbed({
         data-embed-parent="true"
       >
         {/* Title Section */}
-        <div className="m-4 mb-2 text-lg leading-snug font-semibold md:text-xl">
+        <div className="m-4 mb-2 !text-base leading-snug font-semibold md:text-xl">
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-card-foreground hover:text-primary hover:underline"
+            className="text-destructive/80 dark:text-primary/80 brightness-50 hover:underline dark:brightness-150"
           >
             {title}
           </a>
@@ -72,18 +72,15 @@ export default function RedditEmbed({
 
         {imageUrl && (
           <a href={url} target="_blank" rel="noopener noreferrer">
-            <div
-              ref={imageRef}
-              className="m-4 overflow-hidden rounded-lg"
-            >
+            <div ref={imageRef} className="m-4 overflow-hidden rounded-lg">
               {isVisible ? (
                 <img
                   src={imageUrl}
                   alt={`Preview for ${title}`}
                   className={
                     imageAspectRatio !== null && imageAspectRatio < 1
-                      ? "w-full h-full object-cover aspect-square"
-                      : "w-full h-auto"
+                      ? "aspect-square h-full w-full object-cover"
+                      : "h-auto w-full"
                   }
                   onLoad={(e) => {
                     const img = e.target as HTMLImageElement;
@@ -91,20 +88,20 @@ export default function RedditEmbed({
                   }}
                 />
               ) : (
-                <div className="bg-accent w-full aspect-video animate-pulse rounded-lg" />
+                <div className="bg-accent aspect-video w-full animate-pulse rounded-lg" />
               )}
             </div>
           </a>
         )}
 
         {/* Meta Information Section */}
-        <div className="text-muted-foreground m-4 text-sm">
+        <div className="text-destructive/70 dark:text-primary/70 m-4 text-sm brightness-50 dark:brightness-150">
           Posted by{" "}
           <a
             href={userUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-card-foreground hover:text-primary font-medium hover:underline"
+            className="font-medium hover:underline"
           >
             {user}
           </a>{" "}
@@ -113,7 +110,7 @@ export default function RedditEmbed({
             href={subUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-card-foreground hover:text-primary font-medium hover:underline"
+            className="font-medium hover:underline"
           >
             r/{sub}
           </a>

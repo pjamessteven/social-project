@@ -13,6 +13,7 @@ import {
   Mail,
   Menu,
   MessageCircleHeart,
+  Scroll,
   Settings,
   X,
   Youtube,
@@ -158,7 +159,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                             Peer-reviewed Studies
                           </div>
                           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            Relevant Academic Research
+                            Relevant academic research
                           </p>
                         </div>
                       </Link>
@@ -192,8 +193,41 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                 <NavigationMenuTrigger className="rounded-full bg-transparent px-4 text-sm font-medium">
                   About
                 </NavigationMenuTrigger>
+
                 <NavigationMenuContent>
                   <div className="grid w-68 gap-1 p-1">
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href={"/about"}
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                      >
+                        <Scroll className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
+                        <div className="flex flex-col space-y-1">
+                          <div className="text-sm leading-none font-medium">
+                            Manifesto
+                          </div>
+                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                            Understand why I built this
+                          </p>
+                        </div>
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href={!devAffirm ? "/contact" : "/affirm/contact"}
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                      >
+                        <Mail className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
+                        <div className="flex flex-col space-y-1">
+                          <div className="text-sm leading-none font-medium">
+                            Contact
+                          </div>
+                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                            Get in touch with me
+                          </p>
+                        </div>
+                      </Link>
+                    </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
                         href={!devAffirm ? "/prompts" : "/affirm/prompts"}
@@ -222,22 +256,6 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           </div>
                           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                             Privacy policy and terms
-                          </p>
-                        </div>
-                      </Link>
-                    </NavigationMenuLink>
-                    <NavigationMenuLink asChild>
-                      <Link
-                        href={!devAffirm ? "/contact" : "/affirm/contact"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                      >
-                        <Mail className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
-                        <div className="flex flex-col space-y-1">
-                          <div className="text-sm leading-none font-medium">
-                            Contact
-                          </div>
-                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            Get in touch
                           </p>
                         </div>
                       </Link>
@@ -403,7 +421,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                               Peer-reviewed Studies
                             </div>
                             <div className="text-muted-foreground text-xs">
-                              Relevant Academic Research
+                              Relevant academic research
                             </div>
                           </div>
                         </Button>
@@ -440,6 +458,43 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                       About
                     </h3>
                     <div className="space-y-1">
+                      <Link href={"/about"} onClick={() => setIsOpen(false)}>
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-row items-center justify-start py-3",
+                            pathname === "/about" && "bg-muted",
+                          )}
+                        >
+                          <Scroll className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">Manifesto</div>
+                            <div className="text-muted-foreground text-xs">
+                              Understand why I built this
+                            </div>
+                          </div>
+                        </Button>
+                      </Link>
+                      <Link
+                        href={!devAffirm ? "/contact" : "/affirm/contact"}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-row items-center justify-start py-3",
+                            pathname === "/contact" && "bg-muted",
+                          )}
+                        >
+                          <Mail className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">Contact</div>
+                            <div className="text-muted-foreground text-xs">
+                              Get in touch with me
+                            </div>
+                          </div>
+                        </Button>
+                      </Link>
                       <Link
                         href={!devAffirm ? "/prompts" : "/affirm/prompts"}
                         onClick={() => setIsOpen(false)}
@@ -478,26 +533,6 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                             <div className="text-sm font-medium">Terms</div>
                             <div className="text-muted-foreground text-xs">
                               Privacy policy and terms
-                            </div>
-                          </div>
-                        </Button>
-                      </Link>
-                      <Link
-                        href={!devAffirm ? "/contact" : "/affirm/contact"}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <Button
-                          variant="ghost"
-                          className={cn(
-                            "h-auto w-full flex-row items-center justify-start py-3",
-                            pathname === "/contact" && "bg-muted",
-                          )}
-                        >
-                          <Mail className="h-4 w-4" />
-                          <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">Contact</div>
-                            <div className="text-muted-foreground text-xs">
-                              Get in touch
                             </div>
                           </div>
                         </Button>

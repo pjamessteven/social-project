@@ -8,7 +8,6 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -16,31 +15,30 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   SidebarProvider,
-  SidebarTrigger,
 } from "@/app/components/ui/sidebar";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 function MobileJumpToSection() {
   return (
-    <div className="mb-8 rounded-lg border bg-muted/50 p-4 lg:hidden">
-      <h3 className="mb-3 text-sm font-semibold">Jump to:</h3>
+    <div className="prose-none bg-muted/50 mb-8 rounded-lg border p-4 lg:hidden">
+      <h3 className="mt-0 mb-3 text-sm font-semibold">Jump to:</h3>
       <div className="space-y-2">
         {navigationItems.map((item) => (
           <div key={item.href}>
             <a
               href={item.href}
-              className="block text-sm text-muted-foreground hover:text-foreground"
+              className="text-muted-foreground hover:text-foreground block text-sm"
             >
               {item.title}
             </a>
             {item.children && (
-              <div className="ml-4 mt-1 space-y-1">
+              <div className="mt-2 ml-4 space-y-2">
                 {item.children.map((child) => (
                   <a
                     key={child.href}
                     href={child.href}
-                    className="block text-xs text-muted-foreground hover:text-foreground"
+                    className="text-muted-foreground hover:text-foreground block text-sm"
                   >
                     {child.title}
                   </a>
@@ -92,7 +90,6 @@ function SupportSidebar() {
     <Sidebar className="w-64">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Page Contents</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu className="gap-2">
               {navigationItems.map((item) => (
@@ -108,7 +105,7 @@ function SupportSidebar() {
                         </SidebarMenuButton>
                       </CollapsibleTrigger>
                       <CollapsibleContent>
-                        <SidebarMenuSub className="gap-1.5">
+                        <SidebarMenuSub className="mt-2 gap-2">
                           {item.children.map((child) => (
                             <SidebarMenuSubItem key={child.href}>
                               <SidebarMenuSubButton asChild>
@@ -143,12 +140,12 @@ export default async function SupportPage() {
         </div>
         <main className="w-full flex-1">
           <div className="prose dark:prose-invert px-4 pb-16 lg:px-8 lg:pt-8">
-            <h1>Get Help & Support From Real People</h1>
+            <h1>Get Gender Help & Support</h1>
             <MobileJumpToSection />
             <h2 id="online-support-groups">Online Support groups:</h2>
             <p>
               One of the best ways to get support is to talk to real people who
-              have been there themselves.
+              have been there themselves and to understand their perspective.
             </p>
             <ul>
               <li>
@@ -184,16 +181,15 @@ export default async function SupportPage() {
             </h2>
             <p>
               Gender affirming care is currently the standard (and often the
-              only) treatment option for gender dysphoria provided by healthcare
-              providers around the world. Gender affirming care aims to relieve
-              a patients gender dysphoria in a way that recognises societies
-              gendered expectations and then by adapting the patient to them. It
-              is a staged approach that begins with social transition (name,
-              pronouns, clothing), then hormone therapy, and then for some,
-              irreversible surgical procedures. Gender affirming care can work
-              as part of the healing process for gender dysphoria but it does
-              come with serious risks and often permanent side-effects. Proceed
-              with extreme caution, and make sure you{" "}
+              only) treatment option for gender dysphoria offered by healthcare
+              providers in the Western world. Gender affirming care essentially
+              recognises societies gendered expectations and then adapts the
+              patient to them. It is a staged approach that begins with social
+              transition (name, pronouns, clothing), then hormone therapy, and
+              then for some, irreversible surgical procedures. Gender affirming
+              care can work as part of the healing process for gender dysphoria
+              but it does come with serious risks and often permanent
+              side-effects. Proceed with extreme caution, and make sure you{" "}
               <Link prefetch={false} href={"/stories"} className="underline">
                 watch some testimonies
               </Link>{" "}
@@ -206,9 +202,8 @@ export default async function SupportPage() {
 
             <p>
               Gender exploratory therapy simply means that your therapist
-              doesn't rush to affirm your identity and medicalise you. Instead
-              they will start by exploring concepts of gender and why you might
-              feel this way.
+              doesn't rush to affirm and medicalise you. Instead they will start
+              by exploring concepts of gender and why you might feel this way.
             </p>
             <p>
               If you Google "gender exploratory therapy", you will find all
@@ -279,9 +274,9 @@ export default async function SupportPage() {
             </div>
             <details className="cursor-pointer">
               <summary>
-                <i> References for the above table</i>
+                <i> Show References</i>
               </summary>
-              <div className="mb-8 rounded-lg border p-2 !text-xs sm:p-3">
+              <div className="mt-2 mb-8 rounded-lg border p-2 !text-sm sm:p-3">
                 <h4 className="mt-0">References</h4>
                 <ol className="mb-0">
                   <li>
@@ -333,7 +328,9 @@ export default async function SupportPage() {
               protect their identity and belief system, and studies published by
               them should be treated with skepticism. They are gender activists,
               pushing their gender agenda. This study is absolutely full of
-              logical fallacies, yet it was still published:
+              logical fallacies, yet it was still published and used as
+              justification for the continued medicalisation of people who
+              experience gender dysphoria.
               <details className="mt-4 cursor-pointer">
                 <summary>
                   <i>
@@ -342,7 +339,7 @@ export default async function SupportPage() {
                   </i>
                 </summary>
                 <div className="overflow-x-auto">
-                  <table border="1" cellpadding="6">
+                  <table>
                     <thead>
                       <tr>
                         <th>Fallacy Name</th>

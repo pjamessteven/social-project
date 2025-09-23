@@ -276,9 +276,9 @@ export default function StoriesPage() {
       <p className="text-gray-600 dark:text-gray-400">
         Here is a selection of personal memoirs that have been uploaded to
         YouTube by people who have transitioned and then came to a realisation
-        which has caused them to detransition. There are countless stories like
-        these on the internet, this is just a small subset. Want your story on
-        this page? Send me the link through the contact form.
+        that caused them to detransition. There are countless stories like these
+        on the internet, this is just a small subset. Want your story on this
+        page? Send me the link through the contact form.
       </p>
 
       <div className="not-prose mt-8 mb-6 overflow-x-auto">
