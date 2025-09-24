@@ -55,8 +55,11 @@ export default async function AboutPage() {
         Society is in an abusive relationship with trans identities.
       </p>
       <div className="rounded border p-2 italic opacity-80">
-        Those who identify as heterosexual, lesbian or gay often stigmatise
-        bisexual people in a similar way - this is called bi-erasure.
+        Many people who identified as gay or straight at one point come to a
+        realisation that sexuality is not as black and white as society once
+        told them it is. Those who identify as heterosexual, lesbian or gay
+        often stigmatise bisexual people in a similar way - this is called
+        bi-erasure.
       </div>
       <div className="mt-2 rounded border p-2 italic opacity-80">
         See also:{" "}
