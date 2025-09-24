@@ -50,9 +50,9 @@ export default async function AboutPage() {
         you and cut you off from your friends by labelling you as either a{" "}
         <i>'transphobe'</i>, <i>'never a real trans person'</i> or{" "}
         <i>'in denial, back in the closet'</i>, because it goes against their
-        narrative that people are born this way. Lesbian and gay communities can
-        act a similar way towards bisexual people - this is called bi-erasure.
-        These are just coping mechanisms, really.{" "}
+        narrative that people are born this way. Those who identify as lesbian,
+        gay or heterosexual often stigmatise bisexual people in a similar way -
+        this is called bi-erasure. These are just coping mechanisms, really.{" "}
         <i>“Death before detransition”</i>, the cult chants. Society is in an
         abusive relationship with trans identities.
       </p>
