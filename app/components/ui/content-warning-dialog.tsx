@@ -60,8 +60,9 @@ export function ContentWarningDialog({ host }: ContentWarningDialogProps) {
               information may conflict with your current beliefs about gender.
             </p>
             <p>
-              If you currently identify as transgender, please make sure you are
-              in the right headspace.
+              If you currently identify as transgender, you may find this
+              content invalidating. Please make sure you are in the right
+              headspace before continuing.
             </p>
           </DialogDescription>
         </DialogHeader>
