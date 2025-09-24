@@ -64,14 +64,12 @@ export default function ScrollRestoration() {
     }
 
     // Save scroll on navigation/unload
-    // const handleBeforeUnload = () => saveScrollForPath(pathname);
-    // window.addEventListener("beforeunload", handleBeforeUnload);
+    const handleBeforeUnload = () => saveScrollForPath(pathname);
+    window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
-      // Save scroll position for the current path before cleanup
-      // saveScrollForPath(pathname);
       clearTimeout(scrollTimeout);
-      //    window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
       window.removeEventListener("load", restoreScroll);
       if (scrollableElement) {
         scrollableElement.removeEventListener("scroll", handleScroll);
