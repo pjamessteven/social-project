@@ -37,6 +37,7 @@ export const questionCategories = [
       "How does LGB differ from the T?",
       "Is there a link between autism and transgender identity?",
       "Is gender-affirming care based on science?",
+      "Why do people who identify as trans believe that taxpayers should pay for their cosmetic surgeries?",
       "Why is gender-affirming care currently considered the only solution to dysphoria?",
       "Is academic research on trans topics biased?",
       "Is teaching gender ideology to kids progressive?",
