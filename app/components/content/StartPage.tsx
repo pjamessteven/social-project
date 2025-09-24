@@ -277,9 +277,7 @@ export async function StartPage({
                   className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
                 >
                   <FileText className="h-4 w-4" />
-                  <span className="text-sm font-medium">
-                    Gender Definitions
-                  </span>
+                  <span className="text-sm font-medium">Definitions</span>
                 </Button>
               </Link>
               <Link href="/studies">
@@ -288,7 +286,7 @@ export async function StartPage({
                   className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
                 >
                   <BookOpen className="h-4 w-4" />
-                  <span className="text-sm font-medium">Academic Studies</span>
+                  <span className="text-sm font-medium">Studies</span>
                 </Button>
               </Link>
               <a
