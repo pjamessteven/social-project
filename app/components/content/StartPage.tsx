@@ -40,13 +40,13 @@ export async function StartPage({
           {mode === "detrans"
             ? "Talk to 50,000+ Detransitioners"
             : mode == "affirm"
-              ? "Talk to 600,000+ Trans and Non-Binary"
+              ? "Talk to 600,000+ Trans People"
               : "Compare Perspectives"}
           <div className="text-muted-foreground opacity-30 dark:opacity-80">
             {mode === "detrans"
               ? "#FreeYourMind"
               : mode == "affirm"
-                ? "#TransPeopleKnowBest"
+                ? "#AffirmYourGender"
                 : "#SeeBothSides"}
           </div>
         </h1>
@@ -84,9 +84,7 @@ export async function StartPage({
                 </a>{" "}
                 in Finland. At the same time, a constantly growing number of
                 people are healing dysphoria, de-transitioning and sharing their
-                experience. These people call themselves &apos;detrans&apos; and
-                their experiences provide fascinating insights into gender
-                ideolgy and identity belief systems.
+                experience.
               </p>
               <p>
                 <b>detrans.ai</b> answers questions from a detrans perspective
@@ -109,31 +107,14 @@ export async function StartPage({
               </p>
               <p>
                 You can use <b>detrans.ai</b> as your own personal
-                gender-exploratory therapist, or simply as a research tool.
-                Every person experiencing gender dysphoria should hear the
-                perspectives of people who have{" "}
-                <i>'been there and done that'</i> before pursuing medical
-                transition, and they should also make themselves aware of how
-                cancel culture and echo chambers can affect the information they
-                are receiving, even from the government, universtities and
-                health institutions.
-              </p>
-              <p>
-                For a more <i>affirming</i> experience, please see{" "}
-                <a
-                  href={isDev ? "/affirm" : "https://genderaffirming.ai"}
-                  target="_blank"
-                  className="underline"
-                >
-                  genderaffirming.ai
-                </a>
-                .<br className="hidden sm:inline" /> You can also compare trans
-                and detrans perspectives from the{" "}
+                gender-exploratory therapist, or simply as a research tool. You
+                can also compare trans and detrans perspectives from the{" "}
                 <Link prefetch={false} href={"/compare"} className="underline">
                   compare
                 </Link>{" "}
                 page.
               </p>
+
               {/*
           <h2 className="text-secondary-foreground/80 semibold mt-2">
             On the surface, gender ideolgy seems progressive; a new way of
@@ -195,9 +176,9 @@ export async function StartPage({
                 <b>genderaffirming.ai</b>
               </a>{" "}
               will affirm your gender identity. It uses OpenAI's <i>gpt-4o</i>{" "}
-              model, which has safety guard-rails on gender topics and it is
-              known to be a very validating model. It integrates human
-              experiences and insights from the online trans community -{" "}
+              model, which has safety guard-rails on gender topics. It
+              integrates human experiences and insights from the online trans
+              community -{" "}
               <a
                 href="https://reddit.com/r/mtf"
                 target="_blank"
@@ -315,7 +296,19 @@ export async function StartPage({
             </div>
           </div>
         )}
-
+        <div className="text-accent-foreground mt-8 w-full max-w-[660px] rounded border p-3 text-sm opacity-80">
+          <b>Disclaimer:</b> <br />
+          The experiences shared on this site are processed by AI and sourced
+          from unverified Reddit accounts. While Reddit is a platform where real
+          people share personal stories, it may also contain bot-generated or
+          misleading content. You are encouraged to inspect the original Reddit
+          posts to verify the source and context. Please note that{" "}
+          {mode === "affirm"
+            ? "/r/mtf and /r/ftm are heavily moderated subreddits"
+            : "/r/detrans is a heavily moderated subreddit"}
+          , but moderation does not guarantee the accuracy or authenticity of
+          every post.
+        </div>
         {mode === "detrans" && (
           <div className="">
             <RedditEmbeds mode={mode} />{" "}
