@@ -19,19 +19,20 @@ export default async function AboutPage() {
         is obviously a psychological issue.
       </p>
       <p>
-        I think that people who identify as trans have too much influence over
-        how people who are experiencing gender dysphoria are treated, and I see
-        clearly how cancel culture and online echo chambers are affecting the
-        information that people are receiving. I believe that gender ideology is
-        harmful to society because it reinforces sexist stereotypes and roles,
-        for example if a kid in school who does not display stereotypically
-        masculine or feminine behaviours they may be seen as a 'trans kid'
-        instead of just a gender non-confirming boy or girl, and pushed into the
-        medical pipeline. Gender ideology is oppressive and directly at-odds
-        with the original goals of feminism, but people who can think for
-        themselves and point this out are now labeled as radicalists. A good
-        thought experiment is to consider non-binary identities, and why those
-        exist today. If you're lazy,{" "}
+        I think that people who currently identify as transgender have too much
+        influence over how people who are experiencing gender dysphoria are
+        treated, and I see clearly how cancel culture has permeated every level
+        of society and how online echo chambers are affecting the information
+        that people are receiving. I believe that gender ideology is harmful to
+        society because it reinforces sexist stereotypes and roles, for example
+        if a kid in school who does not display stereotypically masculine or
+        feminine behaviours they may be seen as a 'trans kid' instead of just a
+        gender non-confirming boy or girl, and pushed into the medical pipeline.
+        Gender ideology is oppressive and directly at-odds with the original
+        goals of feminism, but people who can think for themselves and point
+        this out are now labeled as radicalists. A good thought experiment is to
+        consider non-binary identities, and why those exist today. If you're
+        lazy,{" "}
         <a
           href={
             "https://detrans.ai/chat/how-does-gender-ideology-create-non-binary-identities"
@@ -70,25 +71,23 @@ export default async function AboutPage() {
         they better fit societies gendered expectations, I believe that gender
         exploratory therapy and listening to detrans perspectives should be the
         first line of treatment for people who are experiencing gender
-        dysphoria. Detrans perspectives are fascinating because through their
-        own self-awareness we can hear the truth behind why they decided to
-        transition and also understand the realisations they had which led them
-        to detransition.
+        dysphoria. Gender is a social construct that can be deconstructed.
+        Through detrans perspectives we can hear the truth behind what caused
+        people to transition and also understand the realisations they had which
+        led them to detransition.
       </p>
       <p>
-        Because of this, it is my opinion that detrans perspectives hold a lot
-        more weight than the perspectives of trans indentifting people. I think
-        that we can do better for people who are experiencing gender dysphoria
-        and I genuinely believe that one day we are going to look back at gender
-        affirming care the same way we look at how we used to give people
-        lobotomies today. Please take your time to explore the site and to open
-        your mind to the other side of this topic.
+        I think that we can do better for people who are experiencing gender
+        dysphoria and I genuinely believe that one day we are going to look back
+        at gender affirming care the same way we look at how we used to give
+        people lobotomies today. Please take your time to explore the site and
+        to open your mind to the other side of this topic.
       </p>
       <p>
         If you would like to see myths and about gender exploratory therapy
         debunked, please see the <Link href={"/support"}>support page</Link>.
       </p>
-      <p>If this triggers you, good fucking riddance!</p>
+      <p>If this triggers you, good riddance!</p>
       <p>And don't fucking label me right wing.</p>
       <p>- Peter James Steven</p>
       <p className="py-8">
