@@ -50,23 +50,29 @@ export default async function AboutPage() {
         you and cut you off from your friends by labelling you as either a{" "}
         <i>'transphobe'</i>, <i>'never a real trans person'</i> or{" "}
         <i>'in denial, back in the closet'</i>, because it goes against their
-        narrative that people are born this way. Those who identify as lesbian,
-        gay or heterosexual often stigmatise bisexual people in a similar way -
-        this is called bi-erasure. These are just coping mechanisms, really.{" "}
-        <i>“Death before detransition”</i>, the cult chants. Society is in an
-        abusive relationship with trans identities.
+        narrative that people are born this way. These are just coping
+        mechanisms, really. <i>“Death before detransition”</i>, the cult chants.
+        Society is in an abusive relationship with trans identities.
       </p>
-      <a
-        href={
-          "      https://statsforgender.org/trans-identities-are-more-strongly-associated-with-perpetration-of-bullying-than-subjection-to-bullying/"
-        }
-      >
-        <i>
-          See also: Trans identities are more strongly associated with
-          perpetration of bullying than subjection to bullying.
-          (statsforgender.org)
-        </i>
-      </a>
+      <div className="rounded border p-2 italic opacity-80">
+        Those who identify as heterosexual, lesbian or gay often stigmatise
+        bisexual people in a similar way - this is called bi-erasure.
+      </div>
+      <div className="mt-2 rounded border p-2 italic opacity-80">
+        See also:{" "}
+        <a
+          href={
+            "      https://statsforgender.org/trans-identities-are-more-strongly-associated-with-perpetration-of-bullying-than-subjection-to-bullying/"
+          }
+        >
+          <i>
+            {"->"} Trans identities are more strongly associated with
+            perpetration of bullying than subjection to bullying.
+            (statsforgender.org)
+          </i>
+        </a>
+      </div>
+
       <p>
         Instead of promoting lifetime medicalisation of people's bodies so that
         they better fit societies gendered expectations, I believe that gender
