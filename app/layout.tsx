@@ -14,6 +14,7 @@ import { CustomChatInput } from "./components/ui/chat/custom-chat-input";
 import Header from "./components/ui/chat/layout/header";
 import { ContentWarningDialog } from "./components/ui/content-warning-dialog";
 import "./globals.css";
+import { isBot } from "./lib/isBot";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,8 @@ export default async function RootLayout({
 }) {
   const h = await headers(); // both calls are async-safe
   const host = h.get("host") ?? ""; // genderaffirming.ai |
+  const ua = (await headers()).get("user-agent");
+  const bot = isBot(ua);
   const path = (await headers()).get("x-pathname") ?? "";
   const baseMode =
     host.includes("genderaffirming.ai") || path.includes("/affirm")
@@ -64,7 +67,7 @@ export default async function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ScrollRestoration />
-          <ContentWarningDialog host={host} />
+          {!bot && <ContentWarningDialog host={host} />}
           <div className="relative flex h-[100dvh] flex-col">
             <Header mode={baseMode} />
             <main
