@@ -523,8 +523,10 @@ export default async function SupportPage() {
                 It's also noteworthy that scientists are still yet to discover a
                 'gay gene', and many people who identified as gay or straight at
                 one point come to a realisation that sexuality is not as black
-                and white as society once told them it is. This parallels the
-                detrans experience.
+                and white as society once told them it is. Bisexual people also
+                often face stigmatisation from lesbian, gay and heterosexual
+                identifying people - this is called bi-erasure. This parallels
+                the detrans experience.
               </p>
             </p>
             <h2>
