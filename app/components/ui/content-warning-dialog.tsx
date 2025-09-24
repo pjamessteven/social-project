@@ -61,7 +61,7 @@ export function ContentWarningDialog({ host }: ContentWarningDialogProps) {
             </p>
             <p>
               If you currently identify as transgender, please make sure you are
-              in the right headspace before continuing.
+              in the right headspace.
             </p>
           </DialogDescription>
         </DialogHeader>
