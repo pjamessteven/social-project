@@ -13,10 +13,10 @@ export default async function AboutPage() {
         relief for gender-distressed people, I disagree with how it is the first
         and only treatment option available in most Western countries, and I am
         shocked at how difficult it seems to be to find non-affirming therapists
-        attempt to get to the root of why one feels like they're in the wrong
-        body. I strongly disagree that a lifetime of hormones and chopping off
-        perfectly good body parts is a desirable outcome when gender dysphoria
-        is obviously a psychological issue.
+        attempt to get to the root of why one might feel like they're in the
+        wrong body. I strongly disagree that a lifetime of hormones and chopping
+        off perfectly good body parts is a desirable outcome when gender
+        dysphoria is obviously a psychological issue.
       </p>
       <p>
         I think that people who currently identify as transgender have too much
