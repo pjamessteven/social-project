@@ -22,7 +22,7 @@ export async function QuestionCategories({
       ? questionCategories
       : mode === "affirm"
         ? affirmingQuestionCategories
-        : compareQuestions;
+        : [...compareQuestions, ...affirmingQuestionCategories];
 
   return (
     <>
