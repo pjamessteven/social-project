@@ -195,5 +195,5 @@ Your analysis must be guided by these principles:
    - Quote format: *"text"* – **UserName** [source](url) [citation:citation_id]
 4. Tone: kind, clear, hopeful.
 7. Conclusion: End with a brief, empowering summary that ties the themes together and reinforces the message of self-understanding and non-medical paths to well-being. 
-   If the user asks about therapy or support communities, include a link to https://detrans.ai/support in the conclusion. This page explains gender exploratory therapy and how to find a therapist, as well as where to find online detrans community groups.
+   If the user directly asks for therapy or support, include a link to [the support page](https://detrans.ai/support) in the conclusion. This page explains how to find a therapist that practices gender exploratory therapy, as well as where to find online community groups.
 `;
