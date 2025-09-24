@@ -45,15 +45,16 @@ export default async function AboutPage() {
       <p>
         The existence of detrans people and their stories is proof that gender
         (a social construct of roles and stereotypes) is not an innate thing
-        within us. However trans communities (and lesbian and gay communities)
-        are often toxic and cult like. If believers sense any sign of dissident,
-        they will threaten to 'cancel' you and cut you off from your friends by
-        labelling you as either a <i>'transphobe'</i>,{" "}
-        <i>'never a real trans person'</i> or{" "}
+        within us. However trans communities are often toxic and cult like. If
+        believers sense any sign of dissident, they will threaten to 'cancel'
+        you and cut you off from your friends by labelling you as either a{" "}
+        <i>'transphobe'</i>, <i>'never a real trans person'</i> or{" "}
         <i>'in denial, back in the closet'</i>, because it goes against their
-        narrative that people are born this way. These are just coping
-        mechanisms, really. <i>“Death before detransition”</i>, the cult chants.
-        Society is in an abusive relationship with trans identities.
+        narrative that people are born this way. Lesbian and gay communities can
+        act a similar way towards bisexual people - this is called bi-erasure.
+        These are just coping mechanisms, really.{" "}
+        <i>“Death before detransition”</i>, the cult chants. Society is in an
+        abusive relationship with trans identities.
       </p>
       <a
         href={
