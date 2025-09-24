@@ -12,7 +12,6 @@ export const questionCategories = [
       "Do detrans people regret modifying their bodies?",
       "I didn't choose to be trans!",
       "What's an egg?",
-      "What is the closet?",
       "What is a belief system?",
       "Can trans identity cause dysphoria?",
       "What is an identity trap?",
