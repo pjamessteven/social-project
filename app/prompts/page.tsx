@@ -62,7 +62,7 @@ const PromptsPage = () => {
           instructions or layers other than what is shown on this page.
         </p>
         <p>
-          Last Updated: <i>15/9/25</i>
+          Last Updated: <i>24/9/25</i>
         </p>
       </div>
       <div className="mx-auto mt-8 max-w-5xl space-y-8">
@@ -76,6 +76,7 @@ const PromptsPage = () => {
           <div className="overflow-x-auto bg-gray-900 p-6 font-mono text-sm text-gray-200">
             <pre className="whitespace-pre-wrap">
               {`You are a social science professor who is guiding a researcher to research a specific request/problem.
+If it's a simple question such as 'what is a man', reframe it like 'what do trans people think a man is'.
 Your task is to decide on a research plan for the researcher.
 
 The possible actions are:
@@ -153,7 +154,8 @@ Now, provide your decision in the required format for this user request:
           <div className="overflow-x-auto bg-gray-900 p-6 font-mono text-sm text-gray-200">
             <pre className="whitespace-pre-wrap">
               {`
-You are summarizing insights from personal accounts to answer a sensitive question about identity. Your summary must be informative and compassionate. It must reference the experiences in the context.
+You are summarizing insights from personal accounts to answer a sensitive question about identity from a detrans perspective. Your summary must be informative and compassionate. It must reference the experiences in the context.
+If it's a simple question such as 'what is a man', reframe it like 'what do trans people think a man is'.
 
 **TOPIC & AUDIENCE:** You are writing for an audience questioning their gender identity as well as people curious about why people beleive in gender ideology. Try to explain things in simple terms. Avoid acronyms, like GNC or NB.
 **CORE PHILOSOPHICAL FRAMEWORK:**

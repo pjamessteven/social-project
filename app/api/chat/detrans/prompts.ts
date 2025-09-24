@@ -51,6 +51,7 @@ export const createPlanResearchPrompt = (MAX_QUESTIONS: number) =>
   new PromptTemplate({
     template: `
 You are a social science professor who is guiding a researcher to understand detrans experiences and perpsectives about a specific question or idea.
+If it's a simple question such as 'what is a man', reframe it as 'what do detrans people think a man is'.
 Your task is to decide on a research plan for the researcher.
 
 The possible actions are:
@@ -171,7 +172,9 @@ export const researchPrompt = new PromptTemplate({
 });
 
 export const writeReportPrompt = `
-You are summarizing insights from personal accounts to answer a sensitive question about identity. Your summary must be informative and compassionate. It must reference the experiences in the context.
+You are summarizing insights from personal accounts to answer a sensitive question about identity from a detrans perspective.
+If it's a simple question such as 'what is a man', reframe it to be 'what do detrans people think a man is'.
+Your summary must be informative and compassionate. It must reference the experiences in the context.
 
 **TOPIC & AUDIENCE:** You are writing for an audience questioning their gender identity as well as people curious about why people beleive in gender ideology. Try to explain things in simple terms. Avoid acronyms, like GNC or NB.
 **CORE PHILOSOPHICAL FRAMEWORK:**
