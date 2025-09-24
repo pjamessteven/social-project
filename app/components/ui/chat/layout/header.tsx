@@ -205,7 +205,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           <Scroll className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
                           <div className="flex flex-col space-y-1">
                             <div className="text-sm leading-none font-medium">
-                              Manifesto
+                              About
                             </div>
                             <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                               Understand why I built this
@@ -380,8 +380,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                               Personal Stories
                             </div>
                             <div className="text-muted-foreground text-xs">
-                              Videos from those who have been through it
-                              themselves
+                              Videos by people who have been through it
                             </div>
                           </div>
                         </Button>
@@ -471,9 +470,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           >
                             <Scroll className="h-4 w-4" />
                             <div className="ml-4 flex flex-col items-start">
-                              <div className="text-sm font-medium">
-                                Manifesto
-                              </div>
+                              <div className="text-sm font-medium">About</div>
                               <div className="text-muted-foreground text-xs">
                                 Understand why I built this
                               </div>
