@@ -19,13 +19,15 @@ export function ContentWarningDialog({ host }: ContentWarningDialogProps) {
   const path = usePathname();
 
   const affirmShowWarningPath = path === "/stories";
+  const supportPath = path === "/support";
 
   const mode =
     host.includes("detrans.ai") || process.env.NODE_ENV === "development"
       ? "detrans"
       : "affirm";
 
-  const showDialog = affirmShowWarningPath || mode === "detrans";
+  const showDialog =
+    (affirmShowWarningPath || mode === "detrans") && !supportPath;
 
   useEffect(() => {
     // Check if user has seen the warning before

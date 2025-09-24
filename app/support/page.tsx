@@ -144,8 +144,9 @@ export default async function SupportPage() {
             <MobileJumpToSection />
             <h2 id="online-support-groups">Online Support groups:</h2>
             <p>
-              One of the best ways to get support is to talk to real people who
-              have been there themselves and to understand their perspective.
+              If you are experiencing gender dysphoria, one of the best ways to
+              get support for is to talk to and understand the perspectives of
+              people who have been there themselves and come out the other side.
             </p>
             <ul>
               <li>
@@ -173,6 +174,15 @@ export default async function SupportPage() {
                   className="underline"
                 >
                   Official /r/detrans Discord Server {"->"}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://detrans.ai"
+                  target="_blank"
+                  className="underline"
+                >
+                  Ask 50,0000+ detrans people with detrans.ai {"->"}
                 </a>
               </li>
             </ul>
