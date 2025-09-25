@@ -91,103 +91,104 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
           <NavigationMenu className="ml-2">
             <NavigationMenuList>
               {/* Resources Menu */}
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="rounded-full bg-transparent px-4 text-sm font-medium">
-                  Resources
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="grid w-68 gap-1 p-1">
-                    <NavigationMenuLink asChild>
-                      <Link
-                        href={"/support"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                      >
-                        <Heart className="mr-2 h-6 w-6" />
-                        <div className="flex flex-col space-y-1">
-                          <div className="text-sm leading-none font-medium">
-                            Get Support
-                          </div>
-                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            Find community and therapists
-                          </p>
-                        </div>
-                      </Link>
-                    </NavigationMenuLink>
-                    <NavigationMenuLink asChild>
-                      <Link
-                        href={"/definitions"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                      >
-                        <FileText className="mr-2 h-8 w-8" />
-                        <div className="flex flex-col space-y-1">
-                          <div className="text-sm leading-none font-medium">
-                            Definitions
-                          </div>
-                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            Key terms and concepts
-                          </p>
-                        </div>
-                      </Link>
-                    </NavigationMenuLink>
-                    <NavigationMenuLink asChild>
-                      <Link
-                        href={"/stories"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                      >
-                        <div>
-                          <Youtube className="mr-2 h-6 w-6" />
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <div className="text-sm leading-none font-medium">
-                            Personal Stories
-                          </div>
-                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            Videos from those who have been through it
-                            themselves
-                          </p>
-                        </div>
-                      </Link>
-                    </NavigationMenuLink>
-                    <NavigationMenuLink asChild>
-                      <Link
-                        href={"/studies"}
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                      >
-                        <BookOpen className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
-                        <div className="flex flex-col space-y-1">
-                          <div className="text-sm leading-none font-medium">
-                            Peer-reviewed Studies
-                          </div>
-                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            Relevant academic research
-                          </p>
-                        </div>
-                      </Link>
-                    </NavigationMenuLink>
-                    <NavigationMenuLink asChild>
-                      <a
-                        href="https://statsforgender.org/"
-                        target="_blank"
-                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center justify-between gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                      >
-                        <div className="flex flex-row items-center">
-                          <ChartNoAxesCombined className="mt-0.5 mr-5 h-4 w-4 flex-shrink-0" />
+              {mode === "detrans" && (
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="rounded-full bg-transparent px-4 text-sm font-medium">
+                    Resources
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="grid w-68 gap-1 p-1">
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href={"/support"}
+                          className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        >
+                          <Heart className="mr-2 h-6 w-6" />
                           <div className="flex flex-col space-y-1">
                             <div className="text-sm leading-none font-medium">
-                              Verified Statistics
+                              Get Support
                             </div>
                             <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                              statsforgender.org
+                              Find community and therapists
                             </p>
                           </div>
-                        </div>
-                        <ExternalLink className="ml-2 h-4" />
-                      </a>
-                    </NavigationMenuLink>
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
+                        </Link>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href={"/definitions"}
+                          className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        >
+                          <FileText className="mr-2 h-8 w-8" />
+                          <div className="flex flex-col space-y-1">
+                            <div className="text-sm leading-none font-medium">
+                              Definitions
+                            </div>
+                            <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                              Key terms and concepts
+                            </p>
+                          </div>
+                        </Link>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href={"/stories"}
+                          className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        >
+                          <div>
+                            <Youtube className="mr-2 h-6 w-6" />
+                          </div>
+                          <div className="flex flex-col space-y-1">
+                            <div className="text-sm leading-none font-medium">
+                              Personal Stories
+                            </div>
+                            <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                              Videos from those who have been through it
+                              themselves
+                            </p>
+                          </div>
+                        </Link>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href={"/studies"}
+                          className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        >
+                          <BookOpen className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
+                          <div className="flex flex-col space-y-1">
+                            <div className="text-sm leading-none font-medium">
+                              Peer-reviewed Studies
+                            </div>
+                            <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                              Relevant academic research
+                            </p>
+                          </div>
+                        </Link>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink asChild>
+                        <a
+                          href="https://statsforgender.org/"
+                          target="_blank"
+                          className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center justify-between gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        >
+                          <div className="flex flex-row items-center">
+                            <ChartNoAxesCombined className="mt-0.5 mr-5 h-4 w-4 flex-shrink-0" />
+                            <div className="flex flex-col space-y-1">
+                              <div className="text-sm leading-none font-medium">
+                                Verified Statistics
+                              </div>
+                              <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                                statsforgender.org
+                              </p>
+                            </div>
+                          </div>
+                          <ExternalLink className="ml-2 h-4" />
+                        </a>
+                      </NavigationMenuLink>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              )}
               {/* About Menu */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="rounded-full bg-transparent px-4 text-sm font-medium">
@@ -341,116 +342,127 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                 </Link>
 
                 {/* Resources Section */}
-                <div className="pt-2">
-                  <div className="border-border rounded-lg border p-3">
-                    <h3 className="text-muted-foreground mb-2 text-sm font-medium">
-                      Resources
-                    </h3>
-                    <div className="space-y-1">
-                      <Link href={"/support"} onClick={() => setIsOpen(false)}>
-                        <Button
-                          variant="ghost"
-                          className={cn(
-                            "h-auto w-full flex-row items-center justify-start py-3",
-                            pathname === "/support" && "bg-muted",
-                          )}
+                {mode === "detrans" && (
+                  <div className="pt-2">
+                    <div className="border-border rounded-lg border p-3">
+                      <h3 className="text-muted-foreground mb-2 text-sm font-medium">
+                        Resources
+                      </h3>
+                      <div className="space-y-1">
+                        <Link
+                          href={"/support"}
+                          onClick={() => setIsOpen(false)}
                         >
-                          <Heart className="h-4 w-4" />
-                          <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">
-                              Get Support
-                            </div>
-                            <div className="text-muted-foreground text-xs">
-                              Find community and therapists
-                            </div>
-                          </div>
-                        </Button>
-                      </Link>
-                      <Link href={"/stories"} onClick={() => setIsOpen(false)}>
-                        <Button
-                          variant="ghost"
-                          className={cn(
-                            "h-auto w-full flex-row items-center justify-start py-3",
-                            pathname === "/stories" && "bg-muted",
-                          )}
-                        >
-                          <Youtube className="h-4 w-4" />
-                          <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">
-                              Personal Stories
-                            </div>
-                            <div className="text-muted-foreground text-xs">
-                              Videos by people who have been through it
-                            </div>
-                          </div>
-                        </Button>
-                      </Link>
-                      <Link
-                        href={"/definitions"}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <Button
-                          variant="ghost"
-                          className={cn(
-                            "h-auto w-full flex-row items-center justify-start py-3",
-                            pathname === "/definitions" && "bg-muted",
-                          )}
-                        >
-                          <FileText className="h-4 w-4" />
-                          <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">
-                              Definitions
-                            </div>
-                            <div className="text-muted-foreground text-xs">
-                              Key terms and concepts
-                            </div>
-                          </div>
-                        </Button>
-                      </Link>
-
-                      <Link href={"/studies"} onClick={() => setIsOpen(false)}>
-                        <Button
-                          variant="ghost"
-                          className={cn(
-                            "h-auto w-full flex-row items-center justify-start py-3",
-                            pathname === "/studies" && "bg-muted",
-                          )}
-                        >
-                          <BookOpen className="h-4 w-4" />
-                          <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">
-                              Peer-reviewed Studies
-                            </div>
-                            <div className="text-muted-foreground text-xs">
-                              Relevant academic research
-                            </div>
-                          </div>
-                        </Button>
-                      </Link>
-                      <a href="https://statsforgender.org/" target="_blank">
-                        <Button
-                          variant="ghost"
-                          className={cn(
-                            "h-auto w-full flex-row items-center justify-between py-3",
-                          )}
-                        >
-                          <div className="flex flex-row items-center">
-                            <ChartNoAxesCombined className="h-4 w-4" />
+                          <Button
+                            variant="ghost"
+                            className={cn(
+                              "h-auto w-full flex-row items-center justify-start py-3",
+                              pathname === "/support" && "bg-muted",
+                            )}
+                          >
+                            <Heart className="h-4 w-4" />
                             <div className="ml-4 flex flex-col items-start">
                               <div className="text-sm font-medium">
-                                Verified Statistics
+                                Get Support
                               </div>
                               <div className="text-muted-foreground text-xs">
-                                statsforgender.org
+                                Find community and therapists
                               </div>
                             </div>
-                          </div>
-                          <ExternalLink className="ml-2 h-4" />
-                        </Button>
-                      </a>
+                          </Button>
+                        </Link>
+                        <Link
+                          href={"/stories"}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <Button
+                            variant="ghost"
+                            className={cn(
+                              "h-auto w-full flex-row items-center justify-start py-3",
+                              pathname === "/stories" && "bg-muted",
+                            )}
+                          >
+                            <Youtube className="h-4 w-4" />
+                            <div className="ml-4 flex flex-col items-start">
+                              <div className="text-sm font-medium">
+                                Personal Stories
+                              </div>
+                              <div className="text-muted-foreground text-xs">
+                                Videos by people who have been through it
+                              </div>
+                            </div>
+                          </Button>
+                        </Link>
+                        <Link
+                          href={"/definitions"}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <Button
+                            variant="ghost"
+                            className={cn(
+                              "h-auto w-full flex-row items-center justify-start py-3",
+                              pathname === "/definitions" && "bg-muted",
+                            )}
+                          >
+                            <FileText className="h-4 w-4" />
+                            <div className="ml-4 flex flex-col items-start">
+                              <div className="text-sm font-medium">
+                                Definitions
+                              </div>
+                              <div className="text-muted-foreground text-xs">
+                                Key terms and concepts
+                              </div>
+                            </div>
+                          </Button>
+                        </Link>
+
+                        <Link
+                          href={"/studies"}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <Button
+                            variant="ghost"
+                            className={cn(
+                              "h-auto w-full flex-row items-center justify-start py-3",
+                              pathname === "/studies" && "bg-muted",
+                            )}
+                          >
+                            <BookOpen className="h-4 w-4" />
+                            <div className="ml-4 flex flex-col items-start">
+                              <div className="text-sm font-medium">
+                                Peer-reviewed Studies
+                              </div>
+                              <div className="text-muted-foreground text-xs">
+                                Relevant academic research
+                              </div>
+                            </div>
+                          </Button>
+                        </Link>
+                        <a href="https://statsforgender.org/" target="_blank">
+                          <Button
+                            variant="ghost"
+                            className={cn(
+                              "h-auto w-full flex-row items-center justify-between py-3",
+                            )}
+                          >
+                            <div className="flex flex-row items-center">
+                              <ChartNoAxesCombined className="h-4 w-4" />
+                              <div className="ml-4 flex flex-col items-start">
+                                <div className="text-sm font-medium">
+                                  Verified Statistics
+                                </div>
+                                <div className="text-muted-foreground text-xs">
+                                  statsforgender.org
+                                </div>
+                              </div>
+                            </div>
+                            <ExternalLink className="ml-2 h-4" />
+                          </Button>
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
 
                 {/* About Section */}
                 <div className="pt-2">

@@ -114,7 +114,10 @@ export async function StartPage({
                 <Link prefetch={false} href={"/compare"} className="underline">
                   compare
                 </Link>{" "}
-                page.
+                page. If this website helped you,{" "}
+                <Link prefetch={false} href={"/contact"} className="underline">
+                  please let me know!
+                </Link>
               </p>
 
               {/*
@@ -233,7 +236,7 @@ export async function StartPage({
           </div>
         )}
 
-        {mode !== "compare" && (
+        {mode === "detrans" && (
           <div className="mt-8">
             <div className="grid max-w-[660px] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
               <Link href="/support">
