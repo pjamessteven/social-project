@@ -101,9 +101,11 @@ export async function StartPage({
                   community.{" "}
                 </span>
                 This produces helpful and insightful responses that help users
-                understand how and why people adopt, inhabit, and let go of
+                understand how and why some people adopt, inhabit, and let go of
                 gender identities, and how these experiences shape one’s
-                relationship with self, body and the world.
+                relationship with self, body and the world. Please note, all
+                experiences are subjective and not representative of all trans
+                or detrans people.
               </p>
               <p>
                 You can use <b>detrans.ai</b> as your own personal
