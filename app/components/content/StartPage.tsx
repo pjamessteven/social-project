@@ -289,7 +289,7 @@ export async function StartPage({
                   <ExternalLink className="h-3 w-3" />
                 </Button>
               </a>
-              <Link href={mode === "affirm" ? "/affirm/prompts" : "/prompts"}>
+              <Link href={mode == "detrans" ? "/prompts" : "/affirm/prompts"}>
                 <Button
                   variant="secondary"
                   className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
