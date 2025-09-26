@@ -344,6 +344,7 @@ export async function StartPage({
         {mode === "detrans" && (
           <div className="text-muted-foreground relative flex flex-col text-base italic opacity-90 sm:text-lg">
             <div className="right-0 z-0 block w-[200px] sm:absolute sm:top-16 sm:-right-0 sm:w-[250px]">
+              {/*
               <Image
                 className="dark:invert"
                 src="/vectorstock_29462911_transparent.png"
@@ -353,8 +354,9 @@ export async function StartPage({
               />
               <div className="inset-0 hidden sm:absolute dark:bg-black/40"></div>
             </div>
+             */}
             <p className="mt-8 sm:mt-16">
-              The truth can hurt, but it will set you free -
+              You can set yourself free -
             </p>
             <p className="mt-1">All you need to do, is learn to just be.</p>
             <p className="mt-8">And be sure to mind your thoughts,</p>
