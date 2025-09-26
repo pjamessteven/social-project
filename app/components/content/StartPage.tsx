@@ -42,6 +42,7 @@ export async function StartPage({
             : mode == "affirm"
               ? "Talk to 600,000+ Trans People"
               : "Compare Perspectives"}
+          {/*
           <div className="text-muted-foreground opacity-30 dark:opacity-80">
             {mode === "detrans"
               ? "#FreeYourMind"
@@ -49,6 +50,7 @@ export async function StartPage({
                 ? "#AffirmYourGender"
                 : "#SeeBothSides"}
           </div>
+           */}
         </h1>
         {mode === "detrans" ? (
           <div className="">
