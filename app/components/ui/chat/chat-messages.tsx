@@ -79,7 +79,7 @@ export default function CustomChatMessages({
                           href={
                             (isDev
                               ? "/affirm/chat/"
-                              : "https://genderaffirming.ai/chat/") +
+                              : "https://genderaffirming.ai/affirm/chat/") +
                             slugify(lastUserMessage?.content as string)
                           }
                           target="_blank"

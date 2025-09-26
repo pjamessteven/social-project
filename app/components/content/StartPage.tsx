@@ -64,6 +64,7 @@ export async function StartPage({
             </div>
 
             <div className="prose dark:prose-invert z-10 mt-8">
+              {/*
               <p>
                 Did you know that since 2012, gender dysphoria diagnosises{" "}
                 <a
@@ -86,6 +87,7 @@ export async function StartPage({
                 people are healing dysphoria, de-transitioning and sharing their
                 experience.
               </p>
+               */}
               <p>
                 <b>detrans.ai</b> answers questions from a detrans perspective
                 by integrating thoughts and experiences from the online
@@ -108,9 +110,9 @@ export async function StartPage({
                 or detrans people.
               </p>
               <p>
-                You can use <b>detrans.ai</b> as your own personal
-                gender-exploratory therapist, or simply as a research tool. You
-                can also compare trans and detrans perspectives from the{" "}
+                You can use <b>detrans.ai</b> for detransition help or advice,
+                or simply as a research tool. You can also compare trans and
+                detrans perspectives from the{" "}
                 <Link prefetch={false} href={"/compare"} className="underline">
                   compare
                 </Link>{" "}
