@@ -11,7 +11,6 @@ services:
       - ./redis.conf:/usr/local/etc/redis/redis.conf
     command: redis-server /usr/local/etc/redis/redis.conf
     restart: unless-stopped
-    mem_limit: 2g
   qdrant:
     image: qdrant/qdrant:latest
     container_name: qdrant
