@@ -7,9 +7,9 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - redis_data:/data
+      - ./redis-data:/data
       - ./redis.conf:/usr/local/etc/redis/redis.conf
-    command: redis-server /usr/local/etc/redis/redis.conf --appendonly yes
+    command: redis-server /usr/local/etc/redis/redis.conf
     restart: unless-stopped
 
   qdrant:
@@ -49,4 +49,3 @@ services:
 volumes:
   next_node_modules:
   next_cache:
-  redis_data:
