@@ -119,9 +119,9 @@ export default function Component({ events }) {
     if (retrieve?.state === "error") {
       return "Error retrieving trans experiences, contact Peter!";
     } else if (analyze?.state === "error") {
-      ("Error analyzing trans experiences. You may have been rate-limited, or we might have ran out of money. Try the questions from the portal for now.");
+      return  "We’ve run out of money to pay for the AI that analyses trans experiences and answers questions. If you can, please donate so we can keep the service running. Please try again later. For now, you can still try the questions in the portal."
     }
-  }, [retrieve?.state, analyze?.state]);
+  }, [retrieve, analyze]);
 
   const thinkingStatus = useMemo(() => {
     if (isError) {
@@ -158,7 +158,8 @@ export default function Component({ events }) {
         ) : (
           <CheckCircle className="ml-2 h-4 w-4 text-green-500" />
         )}
-      </div>
+      </div>        
+      {isError && (<h4>{isError}</h4>)}
 
       {/* Answer Panel */}
       {answers.length > 0 && (

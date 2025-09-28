@@ -26,7 +26,6 @@ const aggregateEvents = (events) => {
   // Process each event
   events.forEach((event) => {
     const { event: eventType, state, id, question, answer } = event;
-    console.log("event", event);
     if (eventType === "retrieve") {
       // Update retrieve status
       result.retrieve = { state };
@@ -117,12 +116,13 @@ export default function Component({ events }) {
 
   const isError = useMemo(() => {
     if (retrieve?.state === "error") {
-      return "Error retrieving detrans experiences, contact Peter!";
+      return "Error retrieving detrans experiences!";
     } else if (analyze?.state === "error") {
-      ("Error analyzing detrans experiences. You may have been rate-limited, or we might have ran out of money. Try the questions from the portal for now.");
+      return  "We’ve run out of money to pay for the AI that analyses detrans experiences and answers questions. If you can, please donate so we can keep the service running. Please try again later. For now, you can still try the questions in the portal."
     }
-  }, [retrieve?.state, analyze?.state]);
+  }, [retrieve, analyze]);
 
+  
   const thinkingStatus = useMemo(() => {
     if (isError) {
       return "Deep analysis error";
@@ -152,13 +152,14 @@ export default function Component({ events }) {
           {thinkingStatus}
         </h1>
         {isError ? (
-          <AlertCircle className="h-4 w-4 text-red-500" />
+          <AlertCircle className="ml-2 h-4 w-4 text-red-500" />
         ) : isRunning ? (
           <Loader2 className="ml-2 h-4 w-4 animate-spin text-blue-500 dark:text-blue-100" />
         ) : (
           <CheckCircle className="ml-2 h-4 w-4 text-green-500" />
         )}
       </div>
+      {isError && (<h4>{isError}</h4>)}
 
       {/* Answer Panel */}
       {answers.length > 0 && (

@@ -70,6 +70,7 @@ export const questionCategories = [
     description: "Health, procedures, and biological truths",
     questions: [
       "What physiological changes can hormones induce and what are their limits?",
+      "What is vaginal atrophy?",
       "What are the documented health risks of gender-affirming hormone therapy?",
       "How should someone weigh continuing versus discontinuing hormones?",
       "What does vaginoplasty entail and what are typical outcomes?",
@@ -113,6 +114,7 @@ export const questionCategories = [
     title: "Psychology & Identity",
     description: "Understanding the mental and emotional aspects",
     questions: [
+      "What is the neurochemical cycle of validation?",
       "What is internalised misogyny and how might it relate to body distress?",
       "What is internalised homophobia?",
       "What is autogynephilia and how is it debated in the literature?",
