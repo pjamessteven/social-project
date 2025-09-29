@@ -3,6 +3,12 @@ export const questionCategories = [
     title: "Starter Questions",
     description: "Some of the best questions to ask detrans people...",
     questions: [
+      "Why do some people decide to de-transition?",
+      "Is it common for detransitioners to regret transitioning?",
+      "What can detrans stories teach me, even if my transition is going well so far?",
+      "How would I know if doubts are just nerves or a real stop sign?",
+      "Do detrans people think transition itself is bad?",
+      "What early signs do detrans folks wish they’d noticed sooner?",
       "What is the difference between sex and gender?",
       "Is gender a social construct?",
       "Can gender-nonconformity reduce the pressure to conform to gender roles?",
