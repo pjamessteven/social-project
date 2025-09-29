@@ -5,6 +5,7 @@ export const questionCategories = [
     questions: [
       "Why do some people decide to de-transition?",
       "Is it common for detransitioners to regret transitioning?",
+      "Why do some people re-transition after de-transitioning?",
       "What can detrans stories teach me, even if my transition is going well so far?",
       "How would I know if doubts are just nerves or a real stop sign?",
       "Do detrans people think transition itself is bad?",
