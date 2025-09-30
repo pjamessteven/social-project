@@ -123,14 +123,69 @@ client.upsert(
 print("✅ Topics collection created with labels and keywords")
 
 # -------------------------------
-# 5. Add hierarchy (optional)
+# 5. Print topic hierarchy
 # -------------------------------
-hier = topic_model.hierarchical_topics(questions)
-for child, parent in hier:
-    client.update_payload(
-        collection_name=COLLECTION_T,
-        payload={"parent_topic_id": parent},
-        points=[child]
-    )
+def print_topic_hierarchy(topic_model, questions, topic_info):
+    """Print the hierarchical topic structure without persisting to database"""
+    print("\n" + "="*50)
+    print("TOPIC HIERARCHY")
+    print("="*50)
+    
+    hier = topic_model.hierarchical_topics(questions)
+    
+    # Build parent-child mapping
+    children_map = defaultdict(list)
+    for child, parent in hier:
+        children_map[parent].append(child)
+    
+    # Find root topics (topics that are not children of any other topic)
+    all_children = set(child for child, parent in hier)
+    all_parents = set(parent for child, parent in hier)
+    roots = all_parents - all_children
+    
+    def print_topic_tree(topic_id, level=0):
+        indent = "  " * level
+        
+        # Get topic info
+        topic_row = topic_info[topic_info['Topic'] == topic_id]
+        if not topic_row.empty:
+            count = topic_row.iloc[0]['Count']
+            keywords = [word for word, _ in topic_model.get_topic(topic_id)][:5]
+            keyword_str = ", ".join(keywords) if keywords else "No keywords"
+            
+            print(f"{indent}Topic {topic_id}: {count} questions")
+            print(f"{indent}  Keywords: {keyword_str}")
+        else:
+            print(f"{indent}Topic {topic_id}: (no info)")
+        
+        # Print children recursively
+        for child in sorted(children_map[topic_id]):
+            print_topic_tree(child, level + 1)
+    
+    # Print hierarchy starting from roots
+    for root in sorted(roots):
+        print_topic_tree(root)
+        print()
+    
+    print(f"Total hierarchy relationships: {len(hier)}")
+    print("="*50)
 
-print("✅ Hierarchical structure stored in topics collection")
+# Print the hierarchy
+print_topic_hierarchy(topic_model, questions, topic_info)
+
+# -------------------------------
+# 6. Add hierarchy to database (optional)
+# -------------------------------
+def persist_hierarchy_to_db():
+    """Persist the hierarchical structure to the topics collection"""
+    hier = topic_model.hierarchical_topics(questions)
+    for child, parent in hier:
+        client.update_payload(
+            collection_name=COLLECTION_T,
+            payload={"parent_topic_id": parent},
+            points=[child]
+        )
+    print("✅ Hierarchical structure stored in topics collection")
+
+# Uncomment the line below to persist hierarchy to database
+# persist_hierarchy_to_db()
