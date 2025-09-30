@@ -234,13 +234,30 @@ def print_topic_hierarchy(topic_model, questions, topic_info):
     
     # Build parent-child mapping
     children_map = defaultdict(list)
-    for child, parent in hier:
-        children_map[parent].append(child)
     
-    # Find root topics (topics that are not children of any other topic)
-    all_children = set(child for child, parent in hier)
-    all_parents = set(parent for child, parent in hier)
-    roots = all_parents - all_children
+    # Check the structure of hierarchical topics
+    print(f"Hierarchical topics structure: {hier.columns.tolist()}")
+    print(f"First few rows:\n{hier.head()}")
+    
+    # Extract child-parent relationships from the DataFrame
+    if 'Child_Left' in hier.columns and 'Child_Right' in hier.columns and 'Parent' in hier.columns:
+        # BERTopic hierarchical format: Child_Left, Child_Right, Parent, Distance
+        for _, row in hier.iterrows():
+            parent = row['Parent']
+            child_left = row['Child_Left']
+            child_right = row['Child_Right']
+            children_map[parent].extend([child_left, child_right])
+        
+        # Find root topics
+        all_children = set()
+        all_parents = set()
+        for _, row in hier.iterrows():
+            all_children.update([row['Child_Left'], row['Child_Right']])
+            all_parents.add(row['Parent'])
+        roots = all_parents - all_children
+    else:
+        print("Warning: Unexpected hierarchical topics format")
+        roots = set()
     
     def print_topic_tree(topic_id, level=0):
         indent = "  " * level
@@ -283,12 +300,19 @@ def persist_hierarchy_to_db():
     """Persist the hierarchical structure to the topics collection"""
     hier = topic_model.hierarchical_topics(valid_questions)
     if not DRY_RUN:
-        for child, parent in hier:
-            client.update_payload(
-                collection_name=COLLECTION_T,
-                payload={"parent_topic_id": parent},
-                points=[child]
-            )
+        if 'Child_Left' in hier.columns and 'Child_Right' in hier.columns and 'Parent' in hier.columns:
+            for _, row in hier.iterrows():
+                parent = row['Parent']
+                child_left = row['Child_Left']
+                child_right = row['Child_Right']
+                
+                # Update both children with their parent
+                for child in [child_left, child_right]:
+                    client.update_payload(
+                        collection_name=COLLECTION_T,
+                        payload={"parent_topic_id": parent},
+                        points=[child]
+                    )
         print("✅ Hierarchical structure stored in topics collection")
     else:
         print("🔍 DRY RUN: Would persist hierarchical structure to topics collection (skipped)")
