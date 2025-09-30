@@ -293,7 +293,7 @@ try:
     print("Calculating topic hierarchy before reduction...")
     initial_topic_depths, initial_max_depth = calculate_topic_depths(topic_model, valid_questions)
     
-    topic_model.reduce_topics(valid_questions, nr_topics=150)
+    topic_model.reduce_topics(valid_questions, nr_topics=10)
     print(f"Topics after reduction: {len(set(topic_model.topics_))}")
 
     # Type guard to satisfy type checker
