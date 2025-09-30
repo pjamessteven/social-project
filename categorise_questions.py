@@ -492,7 +492,12 @@ def build_complete_hierarchy():
     parent_to_children = defaultdict(list)
     child_to_parent = {}
     
-    if 'Child_Left_ID' in hier.columns and 'Child_Right_ID' in hier.columns and 'Parent_ID' in hier.columns:
+    print(f"Hierarchy dataframe shape: {hier.shape}")
+    print(f"Hierarchy columns: {hier.columns.tolist()}")
+    
+    if len(hier) > 0 and 'Child_Left_ID' in hier.columns and 'Child_Right_ID' in hier.columns and 'Parent_ID' in hier.columns:
+        print(f"Processing {len(hier)} hierarchy relationships...")
+        
         for _, row in hier.iterrows():
             parent = row['Parent_ID']
             child_left = row['Child_Left_ID']
@@ -506,8 +511,16 @@ def build_complete_hierarchy():
             # If parent is not a leaf topic, it's synthetic
             if parent not in leaf_topics:
                 synthetic_topics.add(parent)
+        
+        print(f"Built parent_to_children mapping with {len(parent_to_children)} parents")
+        print(f"Sample parent_to_children: {dict(list(parent_to_children.items())[:3])}")
+    else:
+        print("No valid hierarchy data found")
     
     print(f"Found {len(leaf_topics)} leaf topics and {len(synthetic_topics)} synthetic parent topics")
+    print(f"Sample leaf topics: {list(leaf_topics)[:10]}")
+    print(f"Sample synthetic topics: {list(synthetic_topics)[:10]}")
+    
     return leaf_topics, synthetic_topics, parent_to_children, child_to_parent
 
 def map_to_reduced_topic(original_topic_id):
@@ -515,7 +528,15 @@ def map_to_reduced_topic(original_topic_id):
     topic_mapping = topic_model.topic_mapper_.get_mappings()
     if topic_mapping and original_topic_id in topic_mapping:
         return topic_mapping[original_topic_id]
-    return original_topic_id  # If no mapping, assume it's already the reduced ID
+    
+    # For topics not in mapping, check if they exist in the final model
+    final_topics = set(topic_model.get_topic_info()['Topic'].tolist())
+    final_topics.discard(-1)
+    
+    if original_topic_id in final_topics:
+        return original_topic_id  # This topic survived reduction unchanged
+    else:
+        return None  # This topic was reduced away or is synthetic
 
 def get_aggregated_questions_for_synthetic_topic(topic_id, parent_to_children, leaf_topics, max_questions=10):
     """Get aggregated representative questions for a synthetic topic from all its descendant leaf topics"""
@@ -545,6 +566,8 @@ def get_aggregated_questions_for_synthetic_topic(topic_id, parent_to_children, l
             leaf_questions = topic_to_questions[reduced_topic][:5]  # Top 5 from each leaf
             all_questions.extend(leaf_questions)
             print(f"  Added {len(leaf_questions)} questions from leaf topic {leaf_topic} -> {reduced_topic}")
+        else:
+            print(f"  Skipped leaf topic {leaf_topic} (reduced_topic={reduced_topic}, in_topic_to_questions={reduced_topic in topic_to_questions if reduced_topic else False})")
     
     print(f"Synthetic topic {topic_id} aggregated {len(all_questions)} total questions")
     # Return top questions (most representative across all descendants)
@@ -577,6 +600,10 @@ def get_aggregated_keywords_for_synthetic_topic(topic_id, parent_to_children, le
                 for word, score in topic_words[:10]:  # Top 10 keywords from each leaf
                     keyword_counts[word] += score
                 keywords_found += len(topic_words[:10])
+            else:
+                print(f"  No keywords found for reduced topic {reduced_topic}")
+        else:
+            print(f"  Skipped leaf topic {leaf_topic} (no valid reduced topic)")
     
     print(f"Synthetic topic {topic_id} aggregated {keywords_found} keywords from {len(descendant_leaves)} leaves")
     
