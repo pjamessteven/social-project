@@ -418,7 +418,7 @@ def persist_hierarchy_to_db():
                 
                 # Update both children with their parent
                 for child in [child_left, child_right]:
-                    client.update_payload(
+                    client.set_payload(
                         collection_name=COLLECTION_T,
                         payload={"parent_topic_id": parent},
                         points=[child]
