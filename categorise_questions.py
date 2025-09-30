@@ -367,7 +367,7 @@ for q, t in zip(valid_questions, topics):
     topic_to_questions[t].append(q)
 
 # Generate labels using LLM
-def generate_llm_title(topic_id, questions, keywords, depth=0, max_depth=1, topn=5):
+def generate_llm_title(topic_id, questions, keywords, depth=0, max_depth=1, topn=10):
     """Generate a descriptive title for a topic using LLM with depth awareness"""
     try:
         # Get the most relevant questions (up to topn)
@@ -397,7 +397,7 @@ Topic Hierarchy Context:
 - Granularity guidance: {granularity_instruction}
 
 Generate a clear, specific title that someone browsing topics would understand. Focus on the main subject matter, not generic phrases. Adjust the specificity based on the hierarchy depth provided.
-
+Respond with only the title, do not include any notes.
 Title:"""
 
         response = openai_client.chat.completions.create(
@@ -498,7 +498,7 @@ for _, row in topic_info.iterrows():
     llm_title = generate_llm_title(topic_id, rep_questions, keywords, depth, max_depth, topn=5)
     
     # Keep the simple label as backup
-    simple_label = generate_simple_label(topic_id, rep_questions, topn=2)
+    simple_label = generate_simple_label(topic_id, rep_questions, topn=15)
     
     topic_points.append(
         models.PointStruct(
