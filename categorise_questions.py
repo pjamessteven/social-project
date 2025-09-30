@@ -211,7 +211,9 @@ try:
 
     topics, probs = topic_model.fit_transform(valid_questions, valid_embeddings)
 
+    print(f"Initial topics before reduction: {len(set(topics))}")
     topic_model.reduce_topics(valid_questions, nr_topics=100)
+    print(f"Topics after reduction: {len(set(topic_model.topics_))}")
 
     # Type guard to satisfy type checker
     if topic_model.topics_ is None:
@@ -332,20 +334,27 @@ def calculate_topic_depths(topic_model, questions):
     """Calculate the depth of each topic in the hierarchy"""
     try:
         hierarchical_topics = topic_model.hierarchical_topics(questions)
+        print(f"Hierarchical topics shape: {hierarchical_topics.shape}")
+        print(f"Hierarchical topics columns: {hierarchical_topics.columns.tolist()}")
         
         # Build depth mapping
         topic_depths = {}
         max_depth = 0
         
-        if 'Child_Left_ID' in hierarchical_topics.columns and 'Child_Right_ID' in hierarchical_topics.columns:
+        if len(hierarchical_topics) > 0 and 'Child_Left_ID' in hierarchical_topics.columns and 'Child_Right_ID' in hierarchical_topics.columns:
             # Build parent-child relationships
             children_to_parent = {}
             for _, row in hierarchical_topics.iterrows():
                 parent = row['Parent_ID']
                 child_left = row['Child_Left_ID']
                 child_right = row['Child_Right_ID']
-                children_to_parent[child_left] = parent
-                children_to_parent[child_right] = parent
+                
+                # Only add relationships for topics that actually exist in the final model
+                if child_left in topic_model.topic_labels_ and child_right in topic_model.topic_labels_:
+                    children_to_parent[child_left] = parent
+                    children_to_parent[child_right] = parent
+            
+            print(f"Found {len(children_to_parent)} parent-child relationships")
             
             # Calculate depths by traversing up the hierarchy
             def get_depth(topic_id):
@@ -362,23 +371,40 @@ def calculate_topic_depths(topic_model, questions):
                 topic_depths[topic_id] = depth
                 return depth
             
-            # Calculate depth for all topics
-            all_topic_ids = set()
-            for _, row in hierarchical_topics.iterrows():
-                all_topic_ids.add(row['Child_Left_ID'])
-                all_topic_ids.add(row['Child_Right_ID'])
-                all_topic_ids.add(row['Parent_ID'])
+            # Calculate depth for all current topics (after reduction)
+            current_topics = set(topic_model.get_topic_info()['Topic'].tolist())
+            current_topics.discard(-1)  # Remove outlier topic
             
-            for topic_id in all_topic_ids:
-                depth = get_depth(topic_id)
-                max_depth = max(max_depth, depth)
+            for topic_id in current_topics:
+                if topic_id in children_to_parent or any(topic_id == parent for parent in children_to_parent.values()):
+                    depth = get_depth(topic_id)
+                    max_depth = max(max_depth, depth)
+                else:
+                    # Topic not in hierarchy, assign depth 0
+                    topic_depths[topic_id] = 0
+            
+            print(f"Topic depths calculated: {dict(list(topic_depths.items())[:5])}...")  # Show first 5
+        else:
+            print("No hierarchical structure found or empty hierarchy")
+            # Assign all topics depth 0
+            current_topics = set(topic_model.get_topic_info()['Topic'].tolist())
+            current_topics.discard(-1)
+            for topic_id in current_topics:
+                topic_depths[topic_id] = 0
         
-        print(f"Calculated topic depths: max_depth = {max_depth}")
+        print(f"Calculated topic depths: max_depth = {max_depth}, total topics with depth = {len(topic_depths)}")
         return topic_depths, max_depth
         
     except Exception as e:
         print(f"Error calculating topic depths: {e}")
-        return {}, 0
+        print("Assigning all topics depth 0 as fallback")
+        # Fallback: assign all topics depth 0
+        topic_depths = {}
+        current_topics = set(topic_model.get_topic_info()['Topic'].tolist())
+        current_topics.discard(-1)
+        for topic_id in current_topics:
+            topic_depths[topic_id] = 0
+        return topic_depths, 0
 
 # Calculate hierarchy depths
 topic_depths, max_depth = calculate_topic_depths(topic_model, valid_questions)
