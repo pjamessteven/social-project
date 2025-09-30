@@ -44,7 +44,7 @@ while True:
     try:
         points, next_page = client.scroll(
             collection_name=COLLECTION_Q,
-            limit=1000,  # Much smaller batch size to avoid timeout
+            limit=10000,  # Much smaller batch size to avoid timeout
             with_payload=True,
             with_vectors=True,
             offset=next_page,
