@@ -387,7 +387,9 @@ if hierarchical_topics is not None:
             
             child_topic_words = topic_model.get_topic(child_id)
             if child_topic_words and isinstance(child_topic_words, list):
-                child_keywords.extend([word for word, _ in child_topic_words[:5]])  # Top 5 keywords from each child
+                # Extract words from tuples and take top 5
+                child_words = [word for word, _ in child_topic_words[:5]]
+                child_keywords.extend(child_words)
         
         # If no child content, use the hierarchical topic name
         if not child_questions and not child_keywords:
@@ -420,7 +422,7 @@ if hierarchical_topics is not None:
                     "topic_id": topic_id,
                     "title": synthetic_title,
                     "label": f"Synthetic parent topic {topic_id}",
-                    "keywords": child_keywords[:10],
+                    "keywords": child_keywords[:10] if child_keywords else [],
                     "depth": depth,
                     "question_count": 0,  # Synthetic topics don't have direct questions
                     "is_synthetic": True,
@@ -438,8 +440,11 @@ print("="*50)
 for point in topic_points:
     topic_id = point.payload["topic_id"]
     title = point.payload["title"]
-    keywords = point.payload["keywords"][:5]  # Show first 5 keywords
-    keyword_str = ", ".join(keywords) if keywords else "No keywords"
+    keywords = point.payload["keywords"]
+    if isinstance(keywords, list):
+        keyword_str = ", ".join(keywords[:5]) if keywords else "No keywords"
+    else:
+        keyword_str = "No keywords"
     
     # Get topic count from topic_info
     topic_row = topic_info[topic_info['Topic'] == topic_id]
