@@ -1,9 +1,11 @@
+from typing import List
 from qdrant_client import QdrantClient, models
 from bertopic import BERTopic
 import numpy as np
 import pandas as pd
 from collections import defaultdict
 import sys
+from hdbscan import HDBSCAN
 from qdrant_client.models import VectorParams, Distance
 # -------------------------------
 # 1. Parse command line arguments and connect to Qdrant
@@ -126,8 +128,18 @@ try:
     valid_embeddings = embeddings[valid_indices]
     valid_ids = [ids[i] for i in valid_indices]
     
-    topic_model = BERTopic(embedding_model=None, verbose=True)
+    topic_model = BERTopic(hdbscan_model=HDBSCAN(min_cluster_size=100), embedding_model=None, verbose=True)
+
     topics, probs = topic_model.fit_transform(valid_questions, valid_embeddings)
+
+    topic_model.reduce_topics(valid_questions, nr_topics=100)
+
+    # Type guard to satisfy type checker
+    if topic_model.topics_ is None:
+        raise ValueError("Model topics_ is None after fitting")
+
+    topics: List[int] = list(topic_model.topics_)
+
     print(f"✅ BERTopic completed. Found {len(set(topics))} topics")
 except Exception as e:
     print(f"❌ Error during BERTopic clustering: {e}")
