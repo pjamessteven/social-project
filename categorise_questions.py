@@ -210,19 +210,22 @@ def calculate_topic_depths(topic_model, questions):
         max_depth = 0
         
         if len(hierarchical_topics) > 0 and 'Child_Left_ID' in hierarchical_topics.columns and 'Child_Right_ID' in hierarchical_topics.columns:
-            # Build parent-child relationships
+            # Build parent-child relationships using ALL topics in hierarchy (not just final topics)
             children_to_parent = {}
+            all_hierarchy_topics = set()
+            
             for _, row in hierarchical_topics.iterrows():
                 parent = row['Parent_ID']
                 child_left = row['Child_Left_ID']
                 child_right = row['Child_Right_ID']
                 
-                # Only add relationships for topics that actually exist in the final model
-                if child_left in topic_model.topic_labels_ and child_right in topic_model.topic_labels_:
-                    children_to_parent[child_left] = parent
-                    children_to_parent[child_right] = parent
+                # Add all relationships - don't filter by final topics yet
+                children_to_parent[child_left] = parent
+                children_to_parent[child_right] = parent
+                all_hierarchy_topics.update([parent, child_left, child_right])
             
             print(f"Found {len(children_to_parent)} parent-child relationships")
+            print(f"All topics in hierarchy: {len(all_hierarchy_topics)}")
             
             # Calculate depths by traversing up the hierarchy
             def get_depth(topic_id):
@@ -239,33 +242,14 @@ def calculate_topic_depths(topic_model, questions):
                 topic_depths[topic_id] = depth
                 return depth
             
-            # Calculate depth for all current topics (after reduction)
-            current_topics = set(topic_model.get_topic_info()['Topic'].tolist())
-            current_topics.discard(-1)  # Remove outlier topic
-            
-            # First, identify all topics that appear in the hierarchy
-            all_hierarchy_topics = set()
-            for _, row in hierarchical_topics.iterrows():
-                parent = row['Parent_ID']
-                child_left = row['Child_Left_ID']
-                child_right = row['Child_Right_ID']
-                all_hierarchy_topics.update([parent, child_left, child_right])
-            
-            print(f"Topics in hierarchy: {len(all_hierarchy_topics)}")
-            print(f"Current topics after reduction: {len(current_topics)}")
-            
-            # Calculate depths for all topics in the hierarchy
+            # Calculate depths for ALL topics in the hierarchy first
             for topic_id in all_hierarchy_topics:
-                if topic_id in current_topics:  # Only process topics that exist after reduction
-                    depth = get_depth(topic_id)
-                    max_depth = max(max_depth, depth)
+                depth = get_depth(topic_id)
+                max_depth = max(max_depth, depth)
             
-            # For topics not in hierarchy, assign depth 0
-            for topic_id in current_topics:
-                if topic_id not in topic_depths:
-                    topic_depths[topic_id] = 0
+            print(f"Calculated depths for {len(topic_depths)} topics, max_depth = {max_depth}")
+            print(f"Sample topic depths: {dict(list(topic_depths.items())[:10])}")
             
-            print(f"Topic depths calculated: {dict(list(topic_depths.items())[:5])}...")  # Show first 5
         else:
             print("No hierarchical structure found or empty hierarchy")
             # Assign all topics depth 0
@@ -274,7 +258,7 @@ def calculate_topic_depths(topic_model, questions):
             for topic_id in current_topics:
                 topic_depths[topic_id] = 0
         
-        print(f"Calculated topic depths: max_depth = {max_depth}, total topics with depth = {len(topic_depths)}")
+        print(f"Final topic depths: max_depth = {max_depth}, total topics with depth = {len(topic_depths)}")
         return topic_depths, max_depth
         
     except Exception as e:
@@ -429,51 +413,67 @@ def generate_simple_label(topic_id, questions, topn=3):
 
 # Map initial hierarchy depths to reduced topics
 print("Mapping hierarchy depths to reduced topics...")
-topic_depths = {}
+final_topic_depths = {}
 
 # Get the topic mapping from original to reduced
 topic_mapping = topic_model.topic_mapper_.get_mappings()
 print(f"Topic mapping available: {topic_mapping is not None}")
 
 if topic_mapping and initial_topic_depths:
+    print(f"Initial topic depths available: {len(initial_topic_depths)} topics")
+    print(f"Topic mapping entries: {len(topic_mapping)}")
+    
     # Map depths from original topics to reduced topics
+    mapped_count = 0
     for original_topic, reduced_topic in topic_mapping.items():
         if original_topic in initial_topic_depths:
-            if reduced_topic not in topic_depths:
-                topic_depths[reduced_topic] = initial_topic_depths[original_topic]
+            if reduced_topic not in final_topic_depths:
+                final_topic_depths[reduced_topic] = initial_topic_depths[original_topic]
+                mapped_count += 1
             else:
                 # If multiple original topics map to same reduced topic, take minimum depth
-                topic_depths[reduced_topic] = min(topic_depths[reduced_topic], initial_topic_depths[original_topic])
+                final_topic_depths[reduced_topic] = min(final_topic_depths[reduced_topic], initial_topic_depths[original_topic])
     
-    print(f"Mapped {len(topic_depths)} topic depths from original to reduced topics")
+    print(f"Successfully mapped {mapped_count} topic depths from original to reduced topics")
+    
+    # Also include synthetic topics that weren't reduced
+    for topic_id, depth in initial_topic_depths.items():
+        if topic_id not in topic_mapping and topic_id not in final_topic_depths:
+            # This is likely a synthetic topic that wasn't reduced
+            final_topic_depths[topic_id] = depth
+            print(f"Added synthetic topic {topic_id} with depth {depth}")
     
     # Debug: print some sample depths
-    if topic_depths:
-        sample_depths = dict(list(topic_depths.items())[:5])
-        print(f"Sample topic depths: {sample_depths}")
-        depth_values = list(topic_depths.values())
+    if final_topic_depths:
+        sample_depths = dict(list(final_topic_depths.items())[:10])
+        print(f"Sample final topic depths: {sample_depths}")
+        depth_values = list(final_topic_depths.values())
         print(f"Depth values range: min={min(depth_values)}, max={max(depth_values)}")
     
     # Recalculate max_depth based on the mapped depths
-    max_depth = max(topic_depths.values()) if topic_depths else 0
+    max_depth = max(final_topic_depths.values()) if final_topic_depths else 0
     print(f"Calculated max_depth from mapped depths: {max_depth}")
 else:
-    print("No topic mapping available, assigning depth 0 to all topics")
+    print("No topic mapping or initial depths available, assigning depth 0 to all topics")
     # Fallback: assign all current topics depth 0
     current_topics = set(topic_model.get_topic_info()['Topic'].tolist())
     current_topics.discard(-1)
     for topic_id in current_topics:
-        topic_depths[topic_id] = 0
+        final_topic_depths[topic_id] = 0
     max_depth = 0
 
 # Ensure all current topics have a depth assigned
 current_topics = set(topic_model.get_topic_info()['Topic'].tolist())
 current_topics.discard(-1)
 for topic_id in current_topics:
-    if topic_id not in topic_depths:
-        topic_depths[topic_id] = 0
+    if topic_id not in final_topic_depths:
+        final_topic_depths[topic_id] = 0
+        print(f"Assigned default depth 0 to topic {topic_id}")
 
-print(f"Final topic depths: max_depth = {max_depth}, topics with depth = {len(topic_depths)}")
+print(f"Final topic depths: max_depth = {max_depth}, topics with depth = {len(final_topic_depths)}")
+
+# Use final_topic_depths instead of topic_depths for the rest of the code
+topic_depths = final_topic_depths
 
 # Generate topic documents with LLM-generated titles
 print("Generating LLM titles for topics...")
