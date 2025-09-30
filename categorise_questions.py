@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from collections import defaultdict
 import sys
-
+from qdrant_client.models import VectorParams, Distance
 # -------------------------------
 # 1. Parse command line arguments and connect to Qdrant
 # -------------------------------
@@ -166,7 +166,7 @@ if not DRY_RUN:
     except:
         client.create_collection(
             collection_name=COLLECTION_T,
-            vectors_config=models.VectorParams(size=0, distance="Cosine")  # no vectors needed
+            vectors_config=models.VectorParams(size=0, distance=Distance.COSINE)  # no vectors needed
         )
 else:
     print("🔍 DRY RUN: Would create/check topics collection (skipped)")
@@ -197,7 +197,7 @@ for _, row in topic_info.iterrows():
     topic_points.append(
         models.PointStruct(
             id=topic_id,
-            vector=None,
+            vector={},
             payload={
                 "topic_id": topic_id,
                 "label": label,
