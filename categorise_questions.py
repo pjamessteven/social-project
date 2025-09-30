@@ -17,7 +17,8 @@ else:
 
 client = QdrantClient(
     url="http://localhost:6333",
-    api_key=None 
+    api_key=None,
+    timeout=60  # 60 second timeout
 )
 
 COLLECTION_Q = "default_questions"
@@ -43,7 +44,7 @@ while True:
     try:
         points, next_page = client.scroll(
             collection_name=COLLECTION_Q,
-            limit=50000,
+            limit=1000,  # Much smaller batch size to avoid timeout
             with_payload=True,
             with_vectors=True,
             offset=next_page,
@@ -54,7 +55,23 @@ while True:
             break
     except Exception as e:
         print(f"❌ Error during scroll: {e}")
-        sys.exit(1)
+        print("Retrying with smaller batch size...")
+        try:
+            # Retry with even smaller batch
+            points, next_page = client.scroll(
+                collection_name=COLLECTION_Q,
+                limit=100,
+                with_payload=True,
+                with_vectors=True,
+                offset=next_page,
+            )
+            all_points.extend(points)
+            print(f"Loaded smaller batch: {len(points)} points (total: {len(all_points)})")
+            if next_page is None:
+                break
+        except Exception as e2:
+            print(f"❌ Failed even with smaller batch: {e2}")
+            sys.exit(1)
 
 print(f"✅ Loaded {len(all_points)} vectors from Qdrant")
 
