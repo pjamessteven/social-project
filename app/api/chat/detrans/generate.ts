@@ -291,11 +291,10 @@ async function deduplicateDb() {
 async function exportQuestions() {
   const client = new QdrantClient({ url: "http://localhost:6333" });
 
-  const seenQuestions = new Set<string>();
-  const questionsData: Array<{
+  const questionsMap = new Map<string, {
     question: string;
-    point_id: number | string;
-  }> = [];
+    point_ids: (number | string)[];
+  }>();
 
   let nextPage = 0;
   let totalProcessed = 0;
@@ -327,13 +326,16 @@ async function exportQuestions() {
 
         for (const question of questions) {
           const normalizedQuestion = question.trim().toLowerCase();
+          const originalQuestion = question.trim();
 
-          // Check for duplicates (case-insensitive)
-          if (!seenQuestions.has(normalizedQuestion)) {
-            seenQuestions.add(normalizedQuestion);
-            questionsData.push({
-              question: question.trim(),
-              point_id,
+          if (questionsMap.has(normalizedQuestion)) {
+            // Add point_id to existing question
+            questionsMap.get(normalizedQuestion)!.point_ids.push(point_id);
+          } else {
+            // Create new entry
+            questionsMap.set(normalizedQuestion, {
+              question: originalQuestion,
+              point_ids: [point_id],
             });
           }
         }
@@ -343,7 +345,7 @@ async function exportQuestions() {
     }
 
     console.log(
-      `Processed ${totalProcessed} documents, found ${questionsData.length} unique questions`,
+      `Processed ${totalProcessed} documents, found ${questionsMap.size} unique questions`,
     );
     nextPage = res.next_page_offset as number;
   } while (nextPage);
@@ -352,14 +354,14 @@ async function exportQuestions() {
   const outputFile = "exported_questions.jsonl";
   const writeStream = fs.createWriteStream(outputFile);
 
-  for (const questionData of questionsData) {
+  for (const questionData of questionsMap.values()) {
     writeStream.write(JSON.stringify(questionData) + "\n");
   }
 
   writeStream.end();
 
   console.log(
-    `✅ Exported ${questionsData.length} unique questions to ${outputFile}`,
+    `✅ Exported ${questionsMap.size} unique questions to ${outputFile}`,
   );
   console.log(`📊 Processed ${totalProcessed} total documents`);
 }
