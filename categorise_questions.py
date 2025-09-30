@@ -81,14 +81,36 @@ if len(all_points) == 0:
 
 print("Extracting data from points...")
 ids = [p.id for p in all_points]
-questions = [p.payload.get("text", "") for p in all_points if p.payload and "text" in p.payload]
+
+# Extract questions from nested _node_content structure
+questions = []
+for p in all_points:
+    if p.payload and "_node_content" in p.payload:
+        try:
+            import json
+            node_content = json.loads(p.payload["_node_content"]) if isinstance(p.payload["_node_content"], str) else p.payload["_node_content"]
+            text = node_content.get("text", "")
+            if text:
+                questions.append(text)
+            else:
+                questions.append("")  # Keep index alignment
+        except (json.JSONDecodeError, TypeError) as e:
+            print(f"Warning: Could not parse _node_content for point {p.id}: {e}")
+            questions.append("")  # Keep index alignment
+    else:
+        questions.append("")  # Keep index alignment
+
 embeddings = np.array([p.vector for p in all_points if p.vector is not None])
 
 print(f"Extracted {len(ids)} IDs, {len(questions)} questions, {len(embeddings)} embeddings")
 
-if len(questions) == 0:
-    print("❌ No questions found in payloads. Check that points have 'text' field.")
+# Filter out empty questions but keep index alignment
+valid_indices = [i for i, q in enumerate(questions) if q.strip()]
+if len(valid_indices) == 0:
+    print("❌ No valid questions found in payloads. Check that points have '_node_content' with 'text' field.")
     sys.exit(1)
+
+print(f"Found {len(valid_indices)} valid questions out of {len(questions)} total points")
 
 if len(embeddings) == 0:
     print("❌ No embeddings found. Check that points have vectors.")
@@ -99,16 +121,21 @@ if len(embeddings) == 0:
 # -------------------------------
 print("Running BERTopic clustering...")
 try:
+    # Filter to only valid questions and their corresponding embeddings
+    valid_questions = [questions[i] for i in valid_indices]
+    valid_embeddings = embeddings[valid_indices]
+    valid_ids = [ids[i] for i in valid_indices]
+    
     topic_model = BERTopic(embedding_model=None, verbose=True)
-    topics, probs = topic_model.fit_transform(questions, embeddings)
+    topics, probs = topic_model.fit_transform(valid_questions, valid_embeddings)
     print(f"✅ BERTopic completed. Found {len(set(topics))} topics")
 except Exception as e:
     print(f"❌ Error during BERTopic clustering: {e}")
     sys.exit(1)
 
-# Assign topic_id to each question
+# Assign topic_id to each valid question
 updates = []
-for idx, qid in enumerate(ids):
+for idx, qid in enumerate(valid_ids):
     updates.append(
         models.PointStruct(
             id=qid,
@@ -148,7 +175,7 @@ topic_info = topic_model.get_topic_info()
 
 # Collect representative questions per topic
 topic_to_questions = defaultdict(list)
-for q, t in zip(questions, topics):
+for q, t in zip(valid_questions, topics):
     topic_to_questions[t].append(q)
 
 # Generate labels (simple version: use first few questions)
@@ -239,14 +266,14 @@ def print_topic_hierarchy(topic_model, questions, topic_info):
     print("="*50)
 
 # Print the hierarchy
-print_topic_hierarchy(topic_model, questions, topic_info)
+print_topic_hierarchy(topic_model, valid_questions, topic_info)
 
 # -------------------------------
 # 6. Add hierarchy to database (optional)
 # -------------------------------
 def persist_hierarchy_to_db():
     """Persist the hierarchical structure to the topics collection"""
-    hier = topic_model.hierarchical_topics(questions)
+    hier = topic_model.hierarchical_topics(valid_questions)
     if not DRY_RUN:
         for child, parent in hier:
             client.update_payload(
