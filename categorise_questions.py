@@ -261,6 +261,8 @@ def generate_simple_label(topic_id, questions, topn=3):
 print("Calculating topic hierarchy depths...")
 topic_depths = {}
 max_depth = 0
+hierarchical_topics = None
+all_topic_ids = set()
 
 try:
     hierarchical_topics = topic_model.hierarchical_topics(valid_questions)
@@ -277,6 +279,9 @@ try:
             children_map[parent].extend([child_left, child_right])
             parent_map[child_left] = parent
             parent_map[child_right] = parent
+            
+            # Collect all topic IDs (including synthetic parent topics)
+            all_topic_ids.update([parent, child_left, child_right])
         
         # Find root topics (topics that are parents but not children)
         all_children = set()
@@ -299,6 +304,7 @@ try:
                 queue.append((child, depth + 1))
         
         print(f"Calculated depths for {len(topic_depths)} topics, max depth: {max_depth}")
+        print(f"Found {len(all_topic_ids)} total topics (including synthetic parent topics)")
     else:
         print("No hierarchical structure found, using depth 0 for all topics")
         
@@ -309,6 +315,9 @@ except Exception as e:
 # Generate topic documents with LLM-generated titles
 print("Generating LLM titles for topics...")
 topic_points = []
+topic_id_to_title = {}
+
+# First, generate titles for original topics
 for _, row in topic_info.iterrows():
     topic_id = int(row["Topic"])
     if topic_id == -1:
@@ -331,6 +340,8 @@ for _, row in topic_info.iterrows():
     # Keep the simple label as backup
     simple_label = generate_simple_label(topic_id, rep_questions, topn=2)
     
+    topic_id_to_title[topic_id] = llm_title
+    
     topic_points.append(
         models.PointStruct(
             id=topic_id,
@@ -344,6 +355,70 @@ for _, row in topic_info.iterrows():
             }
         )
     )
+
+# Generate titles for synthetic parent topics in the hierarchy
+if hierarchical_topics is not None:
+    print("Generating titles for synthetic parent topics...")
+    
+    # Find synthetic parent topics (topics that exist in hierarchy but not in original clustering)
+    original_topic_ids = set(int(row["Topic"]) for _, row in topic_info.iterrows() if int(row["Topic"]) != -1)
+    synthetic_topic_ids = all_topic_ids - original_topic_ids
+    
+    print(f"Found {len(synthetic_topic_ids)} synthetic parent topics to generate titles for")
+    
+    for topic_id in synthetic_topic_ids:
+        # For synthetic topics, we need to infer content from their children
+        child_topics = children_map.get(topic_id, [])
+        
+        # Collect questions and keywords from child topics
+        child_questions = []
+        child_keywords = []
+        
+        for child_id in child_topics:
+            if child_id in topic_to_questions:
+                child_questions.extend(topic_to_questions[child_id][:3])  # Take top 3 from each child
+            
+            child_topic_words = topic_model.get_topic(child_id)
+            if child_topic_words and isinstance(child_topic_words, list):
+                child_keywords.extend([word for word, _ in child_topic_words[:5]])  # Top 5 keywords from each child
+        
+        # If no child content, use the hierarchical topic name
+        if not child_questions and not child_keywords:
+            # Get the name from hierarchical_topics DataFrame
+            parent_row = hierarchical_topics[hierarchical_topics['Parent_ID'] == topic_id]
+            if not parent_row.empty:
+                synthetic_title = parent_row.iloc[0]['Parent_Name']
+            else:
+                synthetic_title = f"Topic Group {topic_id}"
+        else:
+            # Generate title based on child content
+            depth = topic_depths.get(topic_id, None)
+            synthetic_title = generate_llm_title(
+                topic_id, 
+                child_questions[:5],  # Use top 5 questions from children
+                child_keywords[:10],  # Use top 10 keywords from children
+                topn=5, 
+                depth=depth, 
+                max_depth=max_depth if max_depth > 0 else None
+            )
+        
+        topic_id_to_title[topic_id] = synthetic_title
+        
+        # Add to topic_points for database storage
+        topic_points.append(
+            models.PointStruct(
+                id=topic_id,
+                vector={},
+                payload={
+                    "topic_id": topic_id,
+                    "title": synthetic_title,
+                    "label": f"Synthetic parent topic {topic_id}",
+                    "keywords": child_keywords[:10],
+                    "depth": depth,
+                    "is_synthetic": True
+                }
+            )
+        )
 
 # Print summary of generated titles
 print("\n" + "="*50)
@@ -377,18 +452,11 @@ else:
 # -------------------------------
 # 5. Print topic hierarchy
 # -------------------------------
-def print_topic_hierarchy(topic_model, questions, topic_info, topic_points):
+def print_topic_hierarchy(topic_model, questions, topic_info, topic_id_to_title):
     """Print the hierarchical topic structure with LLM-generated titles"""
     print("\n" + "="*50)
     print("TOPIC HIERARCHY WITH LLM TITLES")
     print("="*50)
-    
-    # Create mapping of topic_id to LLM title
-    topic_id_to_title = {}
-    for point in topic_points:
-        topic_id = point.payload["topic_id"]
-        title = point.payload["title"]
-        topic_id_to_title[topic_id] = title
     
     try:
         # Generate hierarchical topics
@@ -447,7 +515,7 @@ def print_topic_hierarchy(topic_model, questions, topic_info, topic_points):
     print("="*50)
 
 # Print the hierarchy with LLM titles
-print_topic_hierarchy(topic_model, valid_questions, topic_info, topic_points)
+print_topic_hierarchy(topic_model, valid_questions, topic_info, topic_id_to_title)
 
 # -------------------------------
 # 6. Add hierarchy to database (optional)
