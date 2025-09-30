@@ -730,7 +730,7 @@ for synthetic_topic_id in synthetic_topics:
     )
     
     # Generate simple label from aggregated questions
-    simple_label = generate_simple_label(synthetic_topic_id, aggregated_questions, topn=3)
+    simple_label = generate_simple_label(synthetic_topic_id, aggregated_questions, topn=15)
     
     topic_points.append(
         models.PointStruct(
