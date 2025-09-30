@@ -510,21 +510,30 @@ def build_complete_hierarchy():
     print(f"Found {len(leaf_topics)} leaf topics and {len(synthetic_topics)} synthetic parent topics")
     return leaf_topics, synthetic_topics, parent_to_children, child_to_parent
 
+def map_to_reduced_topic(original_topic_id):
+    """Map an original topic ID to its reduced topic ID"""
+    topic_mapping = topic_model.topic_mapper_.get_mappings()
+    if topic_mapping and original_topic_id in topic_mapping:
+        return topic_mapping[original_topic_id]
+    return original_topic_id  # If no mapping, assume it's already the reduced ID
+
 def get_aggregated_questions_for_synthetic_topic(topic_id, parent_to_children, leaf_topics, max_questions=10):
     """Get aggregated representative questions for a synthetic topic from all its descendant leaf topics"""
     def get_all_descendant_leaves(topic_id):
         """Recursively get all leaf topic descendants"""
         descendants = []
         if topic_id in leaf_topics:
-            # This is a leaf topic
-            descendants.append(topic_id)
+            # This is a leaf topic - map to reduced topic if needed
+            reduced_topic = map_to_reduced_topic(topic_id)
+            if reduced_topic is not None:
+                descendants.append(reduced_topic)
         elif topic_id in parent_to_children:
             # This is a parent topic, recurse into children
             for child in parent_to_children[topic_id]:
                 descendants.extend(get_all_descendant_leaves(child))
         return descendants
     
-    # Get all leaf descendants
+    # Get all leaf descendants (now mapped to reduced topics)
     descendant_leaves = get_all_descendant_leaves(topic_id)
     
     # Collect questions from all descendant leaf topics
@@ -543,13 +552,16 @@ def get_aggregated_keywords_for_synthetic_topic(topic_id, parent_to_children, le
     def get_all_descendant_leaves(topic_id):
         descendants = []
         if topic_id in leaf_topics:
-            descendants.append(topic_id)
+            # This is a leaf topic - map to reduced topic if needed
+            reduced_topic = map_to_reduced_topic(topic_id)
+            if reduced_topic is not None:
+                descendants.append(reduced_topic)
         elif topic_id in parent_to_children:
             for child in parent_to_children[topic_id]:
                 descendants.extend(get_all_descendant_leaves(child))
         return descendants
     
-    # Get all leaf descendants
+    # Get all leaf descendants (now mapped to reduced topics)
     descendant_leaves = get_all_descendant_leaves(topic_id)
     
     # Collect keywords from all descendant leaf topics
