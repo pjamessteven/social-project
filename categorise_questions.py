@@ -3,10 +3,18 @@ from bertopic import BERTopic
 import numpy as np
 import pandas as pd
 from collections import defaultdict
+import sys
 
 # -------------------------------
-# 1. Connect to Qdrant
+# 1. Parse command line arguments and connect to Qdrant
 # -------------------------------
+DRY_RUN = "--dry-run" in sys.argv
+
+if DRY_RUN:
+    print("🔍 DRY RUN MODE: No database writes will be performed")
+else:
+    print("💾 LIVE MODE: Database writes will be performed")
+
 client = QdrantClient(
     url="http://localhost:6333",
     api_key=None 
@@ -57,27 +65,31 @@ for idx, qid in enumerate(ids):
     )
 
 # Write back in batches
-"""
-BATCH_SIZE = 500
-for i in range(0, len(updates), BATCH_SIZE):
-    client.upsert(
-        collection_name=COLLECTION_Q,
-        points=updates[i:i+BATCH_SIZE]
-    )
-"""
-print("✅ Questions updated with topic_id")
+if not DRY_RUN:
+    BATCH_SIZE = 500
+    for i in range(0, len(updates), BATCH_SIZE):
+        client.upsert(
+            collection_name=COLLECTION_Q,
+            points=updates[i:i+BATCH_SIZE]
+        )
+    print("✅ Questions updated with topic_id")
+else:
+    print("🔍 DRY RUN: Would update questions with topic_id (skipped)")
 
 # -------------------------------
 # 4. Build topics collection
 # -------------------------------
 # Create collection if not exists
-try:
-    client.get_collection(COLLECTION_T)
-except:
-    client.create_collection(
-        collection_name=COLLECTION_T,
-        vectors_config=models.VectorParams(size=0, distance="Cosine")  # no vectors needed
-    )
+if not DRY_RUN:
+    try:
+        client.get_collection(COLLECTION_T)
+    except:
+        client.create_collection(
+            collection_name=COLLECTION_T,
+            vectors_config=models.VectorParams(size=0, distance="Cosine")  # no vectors needed
+        )
+else:
+    print("🔍 DRY RUN: Would create/check topics collection (skipped)")
 
 topic_info = topic_model.get_topic_info()
 
@@ -115,12 +127,15 @@ for _, row in topic_info.iterrows():
     )
 
 # Insert into Qdrant
-client.upsert(
-    collection_name=COLLECTION_T,
-    points=topic_points
-)
-
-print("✅ Topics collection created with labels and keywords")
+if not DRY_RUN:
+    client.upsert(
+        collection_name=COLLECTION_T,
+        points=topic_points
+    )
+    print("✅ Topics collection created with labels and keywords")
+else:
+    print("🔍 DRY RUN: Would create topics collection with labels and keywords (skipped)")
+    print(f"🔍 DRY RUN: Would insert {len(topic_points)} topic points")
 
 # -------------------------------
 # 5. Print topic hierarchy
@@ -179,13 +194,17 @@ print_topic_hierarchy(topic_model, questions, topic_info)
 def persist_hierarchy_to_db():
     """Persist the hierarchical structure to the topics collection"""
     hier = topic_model.hierarchical_topics(questions)
-    for child, parent in hier:
-        client.update_payload(
-            collection_name=COLLECTION_T,
-            payload={"parent_topic_id": parent},
-            points=[child]
-        )
-    print("✅ Hierarchical structure stored in topics collection")
+    if not DRY_RUN:
+        for child, parent in hier:
+            client.update_payload(
+                collection_name=COLLECTION_T,
+                payload={"parent_topic_id": parent},
+                points=[child]
+            )
+        print("✅ Hierarchical structure stored in topics collection")
+    else:
+        print("🔍 DRY RUN: Would persist hierarchical structure to topics collection (skipped)")
+        print(f"🔍 DRY RUN: Would update {len(hier)} hierarchy relationships")
 
 # Uncomment the line below to persist hierarchy to database
 # persist_hierarchy_to_db()
