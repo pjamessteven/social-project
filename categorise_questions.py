@@ -193,7 +193,11 @@ for _, row in topic_info.iterrows():
     rep_questions = topic_to_questions[topic_id]
     label = generate_label(topic_id, rep_questions, topn=2)
 
-    keywords = [word for word, _ in topic_model.get_topic(topic_id)]
+    topic_words = topic_model.get_topic(topic_id)
+    if topic_words and isinstance(topic_words, list):
+        keywords = [word for word, _ in topic_words]
+    else:
+        keywords = []
     topic_points.append(
         models.PointStruct(
             id=topic_id,
@@ -245,7 +249,11 @@ def print_topic_hierarchy(topic_model, questions, topic_info):
         topic_row = topic_info[topic_info['Topic'] == topic_id]
         if not topic_row.empty:
             count = topic_row.iloc[0]['Count']
-            keywords = [word for word, _ in topic_model.get_topic(topic_id)][:5]
+            topic_words = topic_model.get_topic(topic_id)
+            if topic_words and isinstance(topic_words, list):
+                keywords = [word for word, _ in topic_words][:5]
+            else:
+                keywords = []
             keyword_str = ", ".join(keywords) if keywords else "No keywords"
             
             print(f"{indent}Topic {topic_id}: {count} questions")
