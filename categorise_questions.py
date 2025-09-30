@@ -477,7 +477,99 @@ print(f"Final topic depths: max_depth = {max_depth}, topics with depth = {len(to
 
 # Generate topic documents with LLM-generated titles
 print("Generating LLM titles for topics...")
+
+# First, build the complete hierarchy structure including synthetic topics
+def build_complete_hierarchy():
+    """Build complete hierarchy including synthetic parent topics"""
+    hier = topic_model.hierarchical_topics(valid_questions)
+    
+    # Get all topics that exist after reduction (leaf topics)
+    leaf_topics = set(topic_model.get_topic_info()['Topic'].tolist())
+    leaf_topics.discard(-1)  # Remove outlier topic
+    
+    # Get all synthetic parent topics from hierarchy
+    synthetic_topics = set()
+    parent_to_children = defaultdict(list)
+    child_to_parent = {}
+    
+    if 'Child_Left_ID' in hier.columns and 'Child_Right_ID' in hier.columns and 'Parent_ID' in hier.columns:
+        for _, row in hier.iterrows():
+            parent = row['Parent_ID']
+            child_left = row['Child_Left_ID']
+            child_right = row['Child_Right_ID']
+            
+            # Track parent-child relationships
+            parent_to_children[parent].extend([child_left, child_right])
+            child_to_parent[child_left] = parent
+            child_to_parent[child_right] = parent
+            
+            # If parent is not a leaf topic, it's synthetic
+            if parent not in leaf_topics:
+                synthetic_topics.add(parent)
+    
+    print(f"Found {len(leaf_topics)} leaf topics and {len(synthetic_topics)} synthetic parent topics")
+    return leaf_topics, synthetic_topics, parent_to_children, child_to_parent
+
+def get_aggregated_questions_for_synthetic_topic(topic_id, parent_to_children, leaf_topics, max_questions=10):
+    """Get aggregated representative questions for a synthetic topic from all its descendant leaf topics"""
+    def get_all_descendant_leaves(topic_id):
+        """Recursively get all leaf topic descendants"""
+        descendants = []
+        if topic_id in leaf_topics:
+            # This is a leaf topic
+            descendants.append(topic_id)
+        elif topic_id in parent_to_children:
+            # This is a parent topic, recurse into children
+            for child in parent_to_children[topic_id]:
+                descendants.extend(get_all_descendant_leaves(child))
+        return descendants
+    
+    # Get all leaf descendants
+    descendant_leaves = get_all_descendant_leaves(topic_id)
+    
+    # Collect questions from all descendant leaf topics
+    all_questions = []
+    for leaf_topic in descendant_leaves:
+        if leaf_topic in topic_to_questions:
+            # Take top questions from each leaf topic
+            leaf_questions = topic_to_questions[leaf_topic][:5]  # Top 5 from each leaf
+            all_questions.extend(leaf_questions)
+    
+    # Return top questions (most representative across all descendants)
+    return all_questions[:max_questions]
+
+def get_aggregated_keywords_for_synthetic_topic(topic_id, parent_to_children, leaf_topics):
+    """Get aggregated keywords for a synthetic topic from all its descendant leaf topics"""
+    def get_all_descendant_leaves(topic_id):
+        descendants = []
+        if topic_id in leaf_topics:
+            descendants.append(topic_id)
+        elif topic_id in parent_to_children:
+            for child in parent_to_children[topic_id]:
+                descendants.extend(get_all_descendant_leaves(child))
+        return descendants
+    
+    # Get all leaf descendants
+    descendant_leaves = get_all_descendant_leaves(topic_id)
+    
+    # Collect keywords from all descendant leaf topics
+    keyword_counts = defaultdict(float)
+    for leaf_topic in descendant_leaves:
+        topic_words = topic_model.get_topic(leaf_topic)
+        if topic_words and isinstance(topic_words, list):
+            for word, score in topic_words[:10]:  # Top 10 keywords from each leaf
+                keyword_counts[word] += score
+    
+    # Sort by aggregated score and return top keywords
+    sorted_keywords = sorted(keyword_counts.items(), key=lambda x: x[1], reverse=True)
+    return [word for word, _ in sorted_keywords[:15]]  # Top 15 aggregated keywords
+
+# Build complete hierarchy
+leaf_topics, synthetic_topics, parent_to_children, child_to_parent = build_complete_hierarchy()
+
 topic_points = []
+
+# Process leaf topics (actual document clusters)
 for _, row in topic_info.iterrows():
     topic_id = int(row["Topic"])
     if topic_id == -1:
@@ -507,13 +599,60 @@ for _, row in topic_info.iterrows():
             payload={
                 "topic_id": topic_id,
                 "title": llm_title,
-                "label": simple_label,  # Keep as backup
+                "label": simple_label,
                 "keywords": keywords,
                 "depth": depth,
-                "max_depth": max_depth
+                "max_depth": max_depth,
+                "is_synthetic": False,
+                "question_count": len(rep_questions)
             }
         )
     )
+
+# Process synthetic parent topics
+print(f"Processing {len(synthetic_topics)} synthetic parent topics...")
+for synthetic_topic_id in synthetic_topics:
+    # Get aggregated questions from all descendant leaf topics
+    aggregated_questions = get_aggregated_questions_for_synthetic_topic(
+        synthetic_topic_id, parent_to_children, leaf_topics, max_questions=15
+    )
+    
+    # Get aggregated keywords from all descendant leaf topics
+    aggregated_keywords = get_aggregated_keywords_for_synthetic_topic(
+        synthetic_topic_id, parent_to_children, leaf_topics
+    )
+    
+    # Get depth for this synthetic topic
+    depth = topic_depths.get(synthetic_topic_id, 0)
+    
+    # Generate LLM title for synthetic topic
+    llm_title = generate_llm_title(
+        synthetic_topic_id, aggregated_questions, aggregated_keywords, 
+        depth, max_depth, topn=8
+    )
+    
+    # Generate simple label from aggregated questions
+    simple_label = generate_simple_label(synthetic_topic_id, aggregated_questions, topn=3)
+    
+    topic_points.append(
+        models.PointStruct(
+            id=synthetic_topic_id,
+            vector={},
+            payload={
+                "topic_id": synthetic_topic_id,
+                "title": llm_title,
+                "label": simple_label,
+                "keywords": aggregated_keywords,
+                "depth": depth,
+                "max_depth": max_depth,
+                "is_synthetic": True,
+                "question_count": len(aggregated_questions),
+                "child_topics": parent_to_children.get(synthetic_topic_id, [])
+            }
+        )
+    )
+
+print(f"Generated {len(topic_points)} total topics ({len(leaf_topics)} leaf + {len(synthetic_topics)} synthetic)")
 
 # Insert into Qdrant
 if not DRY_RUN:
@@ -579,12 +718,12 @@ def persist_hierarchy_to_db():
     hier = topic_model.hierarchical_topics(valid_questions)
     if not DRY_RUN:
         if 'Child_Left_ID' in hier.columns and 'Child_Right_ID' in hier.columns and 'Parent_ID' in hier.columns:
-            # Get list of existing topic IDs in the collection
+            # Get list of existing topic IDs in the collection (now includes synthetic topics)
             existing_topic_ids = set()
             for point in topic_points:
                 existing_topic_ids.add(point.id)
             
-            print(f"Found {len(existing_topic_ids)} existing topics in collection")
+            print(f"Found {len(existing_topic_ids)} existing topics in collection (including synthetic)")
             
             updated_count = 0
             for _, row in hier.iterrows():
@@ -592,7 +731,7 @@ def persist_hierarchy_to_db():
                 child_left = row['Child_Left_ID']
                 child_right = row['Child_Right_ID']
                 
-                # Update both children with their parent, but only if they exist in the collection
+                # Update both children with their parent - now both should exist in collection
                 for child in [child_left, child_right]:
                     if child in existing_topic_ids:
                         try:
@@ -605,7 +744,7 @@ def persist_hierarchy_to_db():
                         except Exception as e:
                             print(f"Warning: Failed to update topic {child} with parent {parent}: {e}")
                     else:
-                        print(f"Skipping topic {child} - not found in collection")
+                        print(f"Warning: Topic {child} not found in collection")
             
             print(f"✅ Hierarchical structure stored: updated {updated_count} topics with parent relationships")
         else:
