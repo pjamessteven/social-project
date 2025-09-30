@@ -202,19 +202,29 @@ for q, t in zip(valid_questions, topics):
     topic_to_questions[t].append(q)
 
 # Generate labels using LLM
-def generate_llm_title(topic_id, questions, keywords, topn=5):
+def generate_llm_title(topic_id, questions, keywords, topn=5, depth=None, max_depth=None):
     """Generate a descriptive title for a topic using LLM"""
     try:
         # Get the most relevant questions (up to topn)
         sample_questions = questions[:topn]
         keywords_str = ", ".join(keywords[:10])  # Use top 10 keywords
         
+        # Add depth context to the prompt
+        depth_context = ""
+        if depth is not None and max_depth is not None:
+            if depth == 0:
+                depth_context = f"\n\nThis is a ROOT topic (depth {depth}/{max_depth}). Generate a BROAD, high-level category name that encompasses many subtopics."
+            elif depth == max_depth:
+                depth_context = f"\n\nThis is a LEAF topic (depth {depth}/{max_depth}). Generate a SPECIFIC, detailed title that captures the precise subject matter."
+            else:
+                depth_context = f"\n\nThis is a MID-LEVEL topic (depth {depth}/{max_depth}). Generate a moderately specific title - more specific than broad categories but not overly narrow."
+        
         prompt = f"""Based on the following questions and keywords from a topic cluster, generate a concise, descriptive title (2-6 words) that captures the main theme:
 
 Questions:
 {chr(10).join(f"- {q}" for q in sample_questions)}
 
-Keywords: {keywords_str}
+Keywords: {keywords_str}{depth_context}
 
 Generate a clear, specific title that someone browsing topics would understand. Focus on the main subject matter, not generic phrases.
 
@@ -233,7 +243,8 @@ Title:"""
         # Clean up the title (remove quotes, extra whitespace)
         title = title.strip('"\'').strip()
         
-        print(f"Generated title for topic {topic_id}: {title}")
+        depth_str = f" (depth {depth}/{max_depth})" if depth is not None and max_depth is not None else ""
+        print(f"Generated title for topic {topic_id}{depth_str}: {title}")
         return title
         
     except Exception as e:
@@ -245,6 +256,55 @@ def generate_simple_label(topic_id, questions, topn=3):
     """Fallback: simple version using first few questions"""
     sample_qs = questions[:topn]
     return " | ".join(sample_qs)
+
+# Calculate topic hierarchy depths first
+print("Calculating topic hierarchy depths...")
+topic_depths = {}
+max_depth = 0
+
+try:
+    hierarchical_topics = topic_model.hierarchical_topics(valid_questions)
+    
+    # Build parent-child mapping
+    children_map = defaultdict(list)
+    parent_map = {}
+    
+    if 'Child_Left_ID' in hierarchical_topics.columns and 'Child_Right_ID' in hierarchical_topics.columns and 'Parent_ID' in hierarchical_topics.columns:
+        for _, row in hierarchical_topics.iterrows():
+            parent = row['Parent_ID']
+            child_left = row['Child_Left_ID']
+            child_right = row['Child_Right_ID']
+            children_map[parent].extend([child_left, child_right])
+            parent_map[child_left] = parent
+            parent_map[child_right] = parent
+        
+        # Find root topics (topics that are parents but not children)
+        all_children = set()
+        all_parents = set()
+        for _, row in hierarchical_topics.iterrows():
+            all_children.update([row['Child_Left_ID'], row['Child_Right_ID']])
+            all_parents.add(row['Parent_ID'])
+        roots = all_parents - all_children
+        
+        # Calculate depths using BFS
+        from collections import deque
+        queue = deque([(root, 0) for root in roots])
+        
+        while queue:
+            topic_id, depth = queue.popleft()
+            topic_depths[topic_id] = depth
+            max_depth = max(max_depth, depth)
+            
+            for child in children_map[topic_id]:
+                queue.append((child, depth + 1))
+        
+        print(f"Calculated depths for {len(topic_depths)} topics, max depth: {max_depth}")
+    else:
+        print("No hierarchical structure found, using depth 0 for all topics")
+        
+except Exception as e:
+    print(f"Error calculating hierarchy depths: {e}")
+    print("Using depth 0 for all topics")
 
 # Generate topic documents with LLM-generated titles
 print("Generating LLM titles for topics...")
@@ -262,8 +322,11 @@ for _, row in topic_info.iterrows():
     else:
         keywords = []
     
-    # Generate LLM title using questions and keywords
-    llm_title = generate_llm_title(topic_id, rep_questions, keywords, topn=5)
+    # Get depth information for this topic
+    depth = topic_depths.get(topic_id, None)
+    
+    # Generate LLM title using questions, keywords, and depth context
+    llm_title = generate_llm_title(topic_id, rep_questions, keywords, topn=5, depth=depth, max_depth=max_depth if max_depth > 0 else None)
     
     # Keep the simple label as backup
     simple_label = generate_simple_label(topic_id, rep_questions, topn=2)
@@ -276,7 +339,8 @@ for _, row in topic_info.iterrows():
                 "topic_id": topic_id,
                 "title": llm_title,
                 "label": simple_label,  # Keep as backup
-                "keywords": keywords
+                "keywords": keywords,
+                "depth": depth
             }
         )
     )
