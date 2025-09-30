@@ -7,6 +7,8 @@ from collections import defaultdict
 import sys
 from hdbscan import HDBSCAN
 from qdrant_client.models import VectorParams, Distance
+import openai
+import os
 # -------------------------------
 # 1. Parse command line arguments and connect to Qdrant
 # -------------------------------
@@ -16,6 +18,12 @@ if DRY_RUN:
     print("🔍 DRY RUN MODE: No database writes will be performed")
 else:
     print("💾 LIVE MODE: Database writes will be performed")
+
+# Initialize OpenAI client for title generation
+openai_client = openai.OpenAI(
+    api_key=os.getenv("OPENROUTER_KEY"),
+    base_url="https://openrouter.ai/api/v1"
+)
 
 client = QdrantClient(
     url="http://localhost:6333",
@@ -190,12 +198,53 @@ topic_to_questions = defaultdict(list)
 for q, t in zip(valid_questions, topics):
     topic_to_questions[t].append(q)
 
-# Generate labels (simple version: use first few questions)
-def generate_label(topic_id, questions, topn=3):
+# Generate labels using LLM
+def generate_llm_title(topic_id, questions, keywords, topn=5):
+    """Generate a descriptive title for a topic using LLM"""
+    try:
+        # Get the most relevant questions (up to topn)
+        sample_questions = questions[:topn]
+        keywords_str = ", ".join(keywords[:10])  # Use top 10 keywords
+        
+        prompt = f"""Based on the following questions and keywords from a topic cluster, generate a concise, descriptive title (2-6 words) that captures the main theme:
+
+Questions:
+{chr(10).join(f"- {q}" for q in sample_questions)}
+
+Keywords: {keywords_str}
+
+Generate a clear, specific title that someone browsing topics would understand. Focus on the main subject matter, not generic phrases.
+
+Title:"""
+
+        response = openai_client.chat.completions.create(
+            model="deepseek/deepseek-chat-v3.1",
+            messages=[
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=50,
+            temperature=0.3
+        )
+        
+        title = response.choices[0].message.content.strip()
+        # Clean up the title (remove quotes, extra whitespace)
+        title = title.strip('"\'').strip()
+        
+        print(f"Generated title for topic {topic_id}: {title}")
+        return title
+        
+    except Exception as e:
+        print(f"Error generating LLM title for topic {topic_id}: {e}")
+        # Fallback to simple label
+        return generate_simple_label(topic_id, questions, topn=2)
+
+def generate_simple_label(topic_id, questions, topn=3):
+    """Fallback: simple version using first few questions"""
     sample_qs = questions[:topn]
     return " | ".join(sample_qs)
 
-# Generate topic documents
+# Generate topic documents with LLM-generated titles
+print("Generating LLM titles for topics...")
 topic_points = []
 for _, row in topic_info.iterrows():
     topic_id = int(row["Topic"])
@@ -203,20 +252,27 @@ for _, row in topic_info.iterrows():
         continue  # -1 = outliers
 
     rep_questions = topic_to_questions[topic_id]
-    label = generate_label(topic_id, rep_questions, topn=2)
-
+    
     topic_words = topic_model.get_topic(topic_id)
     if topic_words and isinstance(topic_words, list):
         keywords = [word for word, _ in topic_words]
     else:
         keywords = []
+    
+    # Generate LLM title using questions and keywords
+    llm_title = generate_llm_title(topic_id, rep_questions, keywords, topn=5)
+    
+    # Keep the simple label as backup
+    simple_label = generate_simple_label(topic_id, rep_questions, topn=2)
+    
     topic_points.append(
         models.PointStruct(
             id=topic_id,
             vector={},
             payload={
                 "topic_id": topic_id,
-                "label": label,
+                "title": llm_title,
+                "label": simple_label,  # Keep as backup
                 "keywords": keywords
             }
         )
