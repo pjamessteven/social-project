@@ -416,7 +416,6 @@ def generate_simple_label(topic_id, questions, topn=3):
 # Map initial hierarchy depths to reduced topics
 print("Mapping hierarchy depths to reduced topics...")
 topic_depths = {}
-max_depth = initial_max_depth
 
 # Get the topic mapping from original to reduced
 topic_mapping = topic_model.topic_mapper_.get_mappings()
@@ -433,6 +432,9 @@ if topic_mapping and initial_topic_depths:
                 topic_depths[reduced_topic] = min(topic_depths[reduced_topic], initial_topic_depths[original_topic])
     
     print(f"Mapped {len(topic_depths)} topic depths from original to reduced topics")
+    
+    # Recalculate max_depth based on the mapped depths
+    max_depth = max(topic_depths.values()) if topic_depths else 0
 else:
     print("No topic mapping available, assigning depth 0 to all topics")
     # Fallback: assign all current topics depth 0
