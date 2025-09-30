@@ -240,21 +240,23 @@ def print_topic_hierarchy(topic_model, questions, topic_info):
     print(f"First few rows:\n{hier.head()}")
     
     # Extract child-parent relationships from the DataFrame
-    if 'Child_Left' in hier.columns and 'Child_Right' in hier.columns and 'Parent' in hier.columns:
-        # BERTopic hierarchical format: Child_Left, Child_Right, Parent, Distance
+    if 'Child_Left_ID' in hier.columns and 'Child_Right_ID' in hier.columns and 'Parent_ID' in hier.columns:
+        # BERTopic hierarchical format: Child_Left_ID, Child_Right_ID, Parent_ID, Distance
         for _, row in hier.iterrows():
-            parent = row['Parent']
-            child_left = row['Child_Left']
-            child_right = row['Child_Right']
+            parent = row['Parent_ID']
+            child_left = row['Child_Left_ID']
+            child_right = row['Child_Right_ID']
             children_map[parent].extend([child_left, child_right])
         
-        # Find root topics
+        # Find root topics (topics that are parents but not children)
         all_children = set()
         all_parents = set()
         for _, row in hier.iterrows():
-            all_children.update([row['Child_Left'], row['Child_Right']])
-            all_parents.add(row['Parent'])
+            all_children.update([row['Child_Left_ID'], row['Child_Right_ID']])
+            all_parents.add(row['Parent_ID'])
         roots = all_parents - all_children
+        
+        print(f"Found {len(roots)} root topics: {sorted(roots)}")
     else:
         print("Warning: Unexpected hierarchical topics format")
         roots = set()
@@ -300,11 +302,11 @@ def persist_hierarchy_to_db():
     """Persist the hierarchical structure to the topics collection"""
     hier = topic_model.hierarchical_topics(valid_questions)
     if not DRY_RUN:
-        if 'Child_Left' in hier.columns and 'Child_Right' in hier.columns and 'Parent' in hier.columns:
+        if 'Child_Left_ID' in hier.columns and 'Child_Right_ID' in hier.columns and 'Parent_ID' in hier.columns:
             for _, row in hier.iterrows():
-                parent = row['Parent']
-                child_left = row['Child_Left']
-                child_right = row['Child_Right']
+                parent = row['Parent_ID']
+                child_left = row['Child_Left_ID']
+                child_right = row['Child_Right_ID']
                 
                 # Update both children with their parent
                 for child in [child_left, child_right]:
