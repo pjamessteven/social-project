@@ -354,7 +354,7 @@ if not DRY_RUN:
     except:
         client.create_collection(
             collection_name=COLLECTION_T,
-            vectors_config=models.VectorParams(size=0, distance=Distance.COSINE)  # no vectors needed
+            vectors_config={}  # no vectors needed for topics collection
         )
 else:
     print("🔍 DRY RUN: Would create/check topics collection (skipped)")
