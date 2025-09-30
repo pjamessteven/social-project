@@ -433,8 +433,16 @@ if topic_mapping and initial_topic_depths:
     
     print(f"Mapped {len(topic_depths)} topic depths from original to reduced topics")
     
+    # Debug: print some sample depths
+    if topic_depths:
+        sample_depths = dict(list(topic_depths.items())[:5])
+        print(f"Sample topic depths: {sample_depths}")
+        depth_values = list(topic_depths.values())
+        print(f"Depth values range: min={min(depth_values)}, max={max(depth_values)}")
+    
     # Recalculate max_depth based on the mapped depths
     max_depth = max(topic_depths.values()) if topic_depths else 0
+    print(f"Calculated max_depth from mapped depths: {max_depth}")
 else:
     print("No topic mapping available, assigning depth 0 to all topics")
     # Fallback: assign all current topics depth 0
