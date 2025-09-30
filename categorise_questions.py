@@ -197,6 +197,7 @@ if len(embeddings) == 0:
     print("❌ No embeddings found. Check that points have vectors.")
     sys.exit(1)
 
+
 # -------------------------------
 # 3. Run BERTopic with precomputed embeddings
 # -------------------------------
