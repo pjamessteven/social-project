@@ -261,10 +261,20 @@ def print_topic_hierarchy(topic_model, questions, topic_info):
         print("Warning: Unexpected hierarchical topics format")
         roots = set()
     
+    # Create a mapping of topic IDs to names from the hierarchical DataFrame
+    topic_id_to_name = {}
+    for _, row in hier.iterrows():
+        topic_id_to_name[row['Parent_ID']] = row['Parent_Name']
+        topic_id_to_name[row['Child_Left_ID']] = row['Child_Left_Name']
+        topic_id_to_name[row['Child_Right_ID']] = row['Child_Right_Name']
+    
     def print_topic_tree(topic_id, level=0):
         indent = "  " * level
         
-        # Get topic info
+        # Get topic name from hierarchical data
+        topic_name = topic_id_to_name.get(topic_id, f"Topic_{topic_id}")
+        
+        # Try to get topic info from original clustering
         topic_row = topic_info[topic_info['Topic'] == topic_id]
         if not topic_row.empty:
             count = topic_row.iloc[0]['Count']
@@ -275,10 +285,11 @@ def print_topic_hierarchy(topic_model, questions, topic_info):
                 keywords = []
             keyword_str = ", ".join(keywords) if keywords else "No keywords"
             
-            print(f"{indent}Topic {topic_id}: {count} questions")
+            print(f"{indent}Topic {topic_id} ({topic_name}): {count} questions")
             print(f"{indent}  Keywords: {keyword_str}")
         else:
-            print(f"{indent}Topic {topic_id}: (no info)")
+            # For synthetic hierarchical topics, just show the name
+            print(f"{indent}Topic {topic_id} ({topic_name})")
         
         # Print children recursively
         for child in sorted(children_map[topic_id]):
