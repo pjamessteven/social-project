@@ -139,6 +139,7 @@ for idx, qid in enumerate(valid_ids):
     updates.append(
         models.PointStruct(
             id=qid,
+            vector=None,
             payload={"topic_id": int(topics[idx])}
         )
     )
@@ -196,6 +197,7 @@ for _, row in topic_info.iterrows():
     topic_points.append(
         models.PointStruct(
             id=topic_id,
+            vector=None,
             payload={
                 "topic_id": topic_id,
                 "label": label,
