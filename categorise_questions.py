@@ -485,11 +485,12 @@ if not DRY_RUN:
         BATCH_SIZE = 500
         for i in range(0, len(hierarchy_updates), BATCH_SIZE):
             batch = hierarchy_updates[i:i+BATCH_SIZE]
-            client.update_payload(
-                collection_name=COLLECTION_T,
-                payload={point.payload for point in batch},
-                points=[point.id for point in batch]
-            )
+            for point in batch:
+                client.set_payload(
+                    collection_name=COLLECTION_T,
+                    payload=point.payload,
+                    points=[point.id]
+                )
         
         print(f"✅ Hierarchy relationships persisted for {len(hierarchy_updates)} topic relationships")
 else:
@@ -581,7 +582,7 @@ def persist_hierarchy_to_db():
                 
                 # Update both children with their parent
                 for child in [child_left, child_right]:
-                    client.update_payload(
+                    client.set_payload(
                         collection_name=COLLECTION_T,
                         payload={"parent_topic_id": parent},
                         points=[child]
