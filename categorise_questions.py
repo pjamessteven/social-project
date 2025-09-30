@@ -224,28 +224,26 @@ except Exception as e:
     print(f"❌ Error during BERTopic clustering: {e}")
     sys.exit(1)
 
-# Assign topic_id to each valid question
-updates = []
-for idx, qid in enumerate(valid_ids):
-    updates.append(
-        models.PointStruct(
-            id=qid,
-            vector={},
-            payload={"topic_id": int(topics[idx])}
-        )
-    )
-
-# Write back in batches
+# Assign topic_id to each valid question using set_payload to preserve existing data
 if not DRY_RUN:
     BATCH_SIZE = 500
-    for i in range(0, len(updates), BATCH_SIZE):
-        client.upsert(
-            collection_name=COLLECTION_Q,
-            points=updates[i:i+BATCH_SIZE]
-        )
-    print("✅ Questions updated with topic_id")
+    for i in range(0, len(valid_ids), BATCH_SIZE):
+        batch_ids = valid_ids[i:i+BATCH_SIZE]
+        batch_topics = topics[i:i+BATCH_SIZE]
+        
+        # Update each point individually to add topic_id without overwriting existing payload
+        for qid, topic_id in zip(batch_ids, batch_topics):
+            client.set_payload(
+                collection_name=COLLECTION_Q,
+                payload={"topic_id": int(topic_id)},
+                points=[qid]
+            )
+        
+        print(f"Updated batch {i//BATCH_SIZE + 1}: {len(batch_ids)} questions with topic_id")
+    
+    print("✅ Questions updated with topic_id (preserving original data)")
 else:
-    print("🔍 DRY RUN: Would update questions with topic_id (skipped)")
+    print("🔍 DRY RUN: Would update questions with topic_id using set_payload (skipped)")
 
 # -------------------------------
 # 4. Build topics collection
