@@ -143,7 +143,7 @@ try:
 
     topics, probs = topic_model.fit_transform(valid_questions, valid_embeddings)
 
-    topic_model.reduce_topics(valid_questions, nr_topics=100)
+    topic_model.reduce_topics(valid_questions, nr_topics=150)
 
     # Type guard to satisfy type checker
     if topic_model.topics_ is None:
