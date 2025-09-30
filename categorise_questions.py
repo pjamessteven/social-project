@@ -243,12 +243,26 @@ def calculate_topic_depths(topic_model, questions):
             current_topics = set(topic_model.get_topic_info()['Topic'].tolist())
             current_topics.discard(-1)  # Remove outlier topic
             
-            for topic_id in current_topics:
-                if topic_id in children_to_parent or any(topic_id == parent for parent in children_to_parent.values()):
+            # First, identify all topics that appear in the hierarchy
+            all_hierarchy_topics = set()
+            for _, row in hierarchical_topics.iterrows():
+                parent = row['Parent_ID']
+                child_left = row['Child_Left_ID']
+                child_right = row['Child_Right_ID']
+                all_hierarchy_topics.update([parent, child_left, child_right])
+            
+            print(f"Topics in hierarchy: {len(all_hierarchy_topics)}")
+            print(f"Current topics after reduction: {len(current_topics)}")
+            
+            # Calculate depths for all topics in the hierarchy
+            for topic_id in all_hierarchy_topics:
+                if topic_id in current_topics:  # Only process topics that exist after reduction
                     depth = get_depth(topic_id)
                     max_depth = max(max_depth, depth)
-                else:
-                    # Topic not in hierarchy, assign depth 0
+            
+            # For topics not in hierarchy, assign depth 0
+            for topic_id in current_topics:
+                if topic_id not in topic_depths:
                     topic_depths[topic_id] = 0
             
             print(f"Topic depths calculated: {dict(list(topic_depths.items())[:5])}...")  # Show first 5
