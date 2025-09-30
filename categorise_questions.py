@@ -225,82 +225,42 @@ else:
 # 5. Print topic hierarchy
 # -------------------------------
 def print_topic_hierarchy(topic_model, questions, topic_info):
-    """Print the hierarchical topic structure without persisting to database"""
+    """Print the hierarchical topic structure using BERTopic's get_topic_tree method"""
     print("\n" + "="*50)
     print("TOPIC HIERARCHY")
     print("="*50)
     
-    hier = topic_model.hierarchical_topics(questions)
-    
-    # Build parent-child mapping
-    children_map = defaultdict(list)
-    
-    # Check the structure of hierarchical topics
-    print(f"Hierarchical topics structure: {hier.columns.tolist()}")
-    print(f"First few rows:\n{hier.head()}")
-    
-    # Extract child-parent relationships from the DataFrame
-    if 'Child_Left_ID' in hier.columns and 'Child_Right_ID' in hier.columns and 'Parent_ID' in hier.columns:
-        # BERTopic hierarchical format: Child_Left_ID, Child_Right_ID, Parent_ID, Distance
-        for _, row in hier.iterrows():
-            parent = row['Parent_ID']
-            child_left = row['Child_Left_ID']
-            child_right = row['Child_Right_ID']
-            children_map[parent].extend([child_left, child_right])
+    try:
+        # Generate hierarchical topics
+        hierarchical_topics = topic_model.hierarchical_topics(questions)
+        print(f"Generated {len(hierarchical_topics)} hierarchical relationships")
         
-        # Find root topics (topics that are parents but not children)
-        all_children = set()
-        all_parents = set()
-        for _, row in hier.iterrows():
-            all_children.update([row['Child_Left_ID'], row['Child_Right_ID']])
-            all_parents.add(row['Parent_ID'])
-        roots = all_parents - all_children
+        # Use BERTopic's built-in tree visualization
+        tree = topic_model.get_topic_tree(hierarchical_topics)
+        print("\nTopic Tree Structure:")
+        print(tree)
         
-        print(f"Found {len(roots)} root topics: {sorted(roots)}")
-    else:
-        print("Warning: Unexpected hierarchical topics format")
-        roots = set()
-    
-    # Create a mapping of topic IDs to names from the hierarchical DataFrame
-    topic_id_to_name = {}
-    for _, row in hier.iterrows():
-        topic_id_to_name[row['Parent_ID']] = row['Parent_Name']
-        topic_id_to_name[row['Child_Left_ID']] = row['Child_Left_Name']
-        topic_id_to_name[row['Child_Right_ID']] = row['Child_Right_Name']
-    
-    def print_topic_tree(topic_id, level=0):
-        indent = "  " * level
+    except Exception as e:
+        print(f"Error generating topic tree: {e}")
+        print("Falling back to basic topic info...")
         
-        # Get topic name from hierarchical data
-        topic_name = topic_id_to_name.get(topic_id, f"Topic_{topic_id}")
-        
-        # Try to get topic info from original clustering
-        topic_row = topic_info[topic_info['Topic'] == topic_id]
-        if not topic_row.empty:
-            count = topic_row.iloc[0]['Count']
+        # Fallback: just print basic topic information
+        print("\nBasic Topic Information:")
+        for _, row in topic_info.iterrows():
+            topic_id = int(row["Topic"])
+            if topic_id == -1:
+                continue
+            
+            count = row['Count']
             topic_words = topic_model.get_topic(topic_id)
             if topic_words and isinstance(topic_words, list):
                 keywords = [word for word, _ in topic_words][:5]
+                keyword_str = ", ".join(keywords)
             else:
-                keywords = []
-            keyword_str = ", ".join(keywords) if keywords else "No keywords"
+                keyword_str = "No keywords"
             
-            print(f"{indent}Topic {topic_id} ({topic_name}): {count} questions")
-            print(f"{indent}  Keywords: {keyword_str}")
-        else:
-            # For synthetic hierarchical topics, just show the name
-            print(f"{indent}Topic {topic_id} ({topic_name})")
-        
-        # Print children recursively
-        for child in sorted(children_map[topic_id]):
-            print_topic_tree(child, level + 1)
+            print(f"Topic {topic_id}: {count} questions - {keyword_str}")
     
-    # Print hierarchy starting from roots
-    for root in sorted(roots):
-        print_topic_tree(root)
-        print()
-    
-    print(f"Total hierarchy relationships: {len(hier)}")
     print("="*50)
 
 # Print the hierarchy
