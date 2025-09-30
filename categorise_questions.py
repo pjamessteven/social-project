@@ -8,7 +8,10 @@ import sys
 from hdbscan import HDBSCAN
 from qdrant_client.models import VectorParams, Distance
 import openai
+from dotenv import load_dotenv                                                                                                                                          
 import os
+
+load_dotenv()                                                                                                                                                           
 # -------------------------------
 # 1. Parse command line arguments and connect to Qdrant
 # -------------------------------
