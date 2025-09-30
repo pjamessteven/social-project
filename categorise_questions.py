@@ -523,27 +523,30 @@ def get_aggregated_questions_for_synthetic_topic(topic_id, parent_to_children, l
         """Recursively get all leaf topic descendants"""
         descendants = []
         if topic_id in leaf_topics:
-            # This is a leaf topic - map to reduced topic if needed
-            reduced_topic = map_to_reduced_topic(topic_id)
-            if reduced_topic is not None:
-                descendants.append(reduced_topic)
+            # This is a leaf topic
+            descendants.append(topic_id)
         elif topic_id in parent_to_children:
             # This is a parent topic, recurse into children
             for child in parent_to_children[topic_id]:
                 descendants.extend(get_all_descendant_leaves(child))
         return descendants
     
-    # Get all leaf descendants (now mapped to reduced topics)
+    # Get all leaf descendants
     descendant_leaves = get_all_descendant_leaves(topic_id)
+    print(f"Synthetic topic {topic_id} has {len(descendant_leaves)} descendant leaves: {descendant_leaves[:5]}...")
     
     # Collect questions from all descendant leaf topics
     all_questions = []
     for leaf_topic in descendant_leaves:
-        if leaf_topic in topic_to_questions:
+        # Map the original leaf topic to its reduced topic ID
+        reduced_topic = map_to_reduced_topic(leaf_topic)
+        if reduced_topic is not None and reduced_topic in topic_to_questions:
             # Take top questions from each leaf topic
-            leaf_questions = topic_to_questions[leaf_topic][:5]  # Top 5 from each leaf
+            leaf_questions = topic_to_questions[reduced_topic][:5]  # Top 5 from each leaf
             all_questions.extend(leaf_questions)
+            print(f"  Added {len(leaf_questions)} questions from leaf topic {leaf_topic} -> {reduced_topic}")
     
+    print(f"Synthetic topic {topic_id} aggregated {len(all_questions)} total questions")
     # Return top questions (most representative across all descendants)
     return all_questions[:max_questions]
 
@@ -552,25 +555,30 @@ def get_aggregated_keywords_for_synthetic_topic(topic_id, parent_to_children, le
     def get_all_descendant_leaves(topic_id):
         descendants = []
         if topic_id in leaf_topics:
-            # This is a leaf topic - map to reduced topic if needed
-            reduced_topic = map_to_reduced_topic(topic_id)
-            if reduced_topic is not None:
-                descendants.append(reduced_topic)
+            # This is a leaf topic
+            descendants.append(topic_id)
         elif topic_id in parent_to_children:
             for child in parent_to_children[topic_id]:
                 descendants.extend(get_all_descendant_leaves(child))
         return descendants
     
-    # Get all leaf descendants (now mapped to reduced topics)
+    # Get all leaf descendants
     descendant_leaves = get_all_descendant_leaves(topic_id)
     
     # Collect keywords from all descendant leaf topics
     keyword_counts = defaultdict(float)
+    keywords_found = 0
     for leaf_topic in descendant_leaves:
-        topic_words = topic_model.get_topic(leaf_topic)
-        if topic_words and isinstance(topic_words, list):
-            for word, score in topic_words[:10]:  # Top 10 keywords from each leaf
-                keyword_counts[word] += score
+        # Map the original leaf topic to its reduced topic ID
+        reduced_topic = map_to_reduced_topic(leaf_topic)
+        if reduced_topic is not None:
+            topic_words = topic_model.get_topic(reduced_topic)
+            if topic_words and isinstance(topic_words, list):
+                for word, score in topic_words[:10]:  # Top 10 keywords from each leaf
+                    keyword_counts[word] += score
+                keywords_found += len(topic_words[:10])
+    
+    print(f"Synthetic topic {topic_id} aggregated {keywords_found} keywords from {len(descendant_leaves)} leaves")
     
     # Sort by aggregated score and return top keywords
     sorted_keywords = sorted(keyword_counts.items(), key=lambda x: x[1], reverse=True)
