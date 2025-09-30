@@ -294,11 +294,7 @@ async function exportQuestions() {
   const seenQuestions = new Set<string>();
   const questionsData: Array<{
     question: string;
-    comment_id: string;
     point_id: number | string;
-    score: number;
-    author: string;
-    permalink: string;
   }> = [];
 
   let nextPage = 0;
@@ -322,51 +318,49 @@ async function exportQuestions() {
     for (const point of res.points) {
       const comment_id = point.payload?.id as string | undefined;
       const point_id = point.id;
-      const score = point.payload?.score as number || 0;
-      const author = point.payload?.username as string || "unknown";
-      const permalink = point.payload?.link as string || "";
-      
-      const questionsString = point.payload?.questionsThisExcerptCanAnswer as string;
-      
+
+      const questionsString = point.payload
+        ?.questionsThisExcerptCanAnswer as string;
+
       if (questionsString && comment_id) {
         const questions = extractQuestionsFromString(questionsString);
-        
+
         for (const question of questions) {
           const normalizedQuestion = question.trim().toLowerCase();
-          
+
           // Check for duplicates (case-insensitive)
           if (!seenQuestions.has(normalizedQuestion)) {
             seenQuestions.add(normalizedQuestion);
             questionsData.push({
               question: question.trim(),
-              comment_id,
               point_id,
-              score,
-              author,
-              permalink,
             });
           }
         }
       }
-      
+
       totalProcessed++;
     }
 
-    console.log(`Processed ${totalProcessed} documents, found ${questionsData.length} unique questions`);
+    console.log(
+      `Processed ${totalProcessed} documents, found ${questionsData.length} unique questions`,
+    );
     nextPage = res.next_page_offset as number;
   } while (nextPage);
 
   // Export to JSONL file
   const outputFile = "exported_questions.jsonl";
   const writeStream = fs.createWriteStream(outputFile);
-  
+
   for (const questionData of questionsData) {
-    writeStream.write(JSON.stringify(questionData) + '\n');
+    writeStream.write(JSON.stringify(questionData) + "\n");
   }
-  
+
   writeStream.end();
-  
-  console.log(`✅ Exported ${questionsData.length} unique questions to ${outputFile}`);
+
+  console.log(
+    `✅ Exported ${questionsData.length} unique questions to ${outputFile}`,
+  );
   console.log(`📊 Processed ${totalProcessed} total documents`);
 }
 
