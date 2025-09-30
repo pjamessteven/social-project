@@ -342,6 +342,10 @@ for _, row in topic_info.iterrows():
     
     topic_id_to_title[topic_id] = llm_title
     
+    # Get topic count from topic_info
+    topic_row = topic_info[topic_info['Topic'] == topic_id]
+    count = topic_row.iloc[0]['Count'] if not topic_row.empty else 0
+        
     topic_points.append(
         models.PointStruct(
             id=topic_id,
@@ -351,7 +355,10 @@ for _, row in topic_info.iterrows():
                 "title": llm_title,
                 "label": simple_label,  # Keep as backup
                 "keywords": keywords,
-                "depth": depth
+                "depth": depth,
+                "question_count": count,
+                "is_synthetic": False,
+                "topic_type": "original"
             }
         )
     )
@@ -415,7 +422,11 @@ if hierarchical_topics is not None:
                     "label": f"Synthetic parent topic {topic_id}",
                     "keywords": child_keywords[:10],
                     "depth": depth,
-                    "is_synthetic": True
+                    "question_count": 0,  # Synthetic topics don't have direct questions
+                    "is_synthetic": True,
+                    "topic_type": "synthetic_parent",
+                    "child_topics": child_topics,
+                    "child_count": len(child_topics)
                 }
             )
         )
@@ -444,10 +455,48 @@ if not DRY_RUN:
         collection_name=COLLECTION_T,
         points=topic_points
     )
-    print("✅ Topics collection created with labels and keywords")
+    print(f"✅ Topics collection created with {len(topic_points)} topics (including synthetic parent topics)")
+    
+    # Also persist hierarchy relationships
+    if hierarchical_topics is not None:
+        print("Persisting hierarchy relationships...")
+        hierarchy_updates = []
+        
+        for _, row in hierarchical_topics.iterrows():
+            parent_id = row['Parent_ID']
+            child_left_id = row['Child_Left_ID']
+            child_right_id = row['Child_Right_ID']
+            distance = row['Distance']
+            
+            # Update children with parent relationship
+            for child_id in [child_left_id, child_right_id]:
+                hierarchy_updates.append(
+                    models.PointStruct(
+                        id=child_id,
+                        vector={},
+                        payload={
+                            "parent_topic_id": parent_id,
+                            "hierarchy_distance": float(distance)
+                        }
+                    )
+                )
+        
+        # Apply hierarchy updates in batches
+        BATCH_SIZE = 500
+        for i in range(0, len(hierarchy_updates), BATCH_SIZE):
+            batch = hierarchy_updates[i:i+BATCH_SIZE]
+            client.update_payload(
+                collection_name=COLLECTION_T,
+                payload={point.payload for point in batch},
+                points=[point.id for point in batch]
+            )
+        
+        print(f"✅ Hierarchy relationships persisted for {len(hierarchy_updates)} topic relationships")
 else:
     print("🔍 DRY RUN: Would create topics collection with labels and keywords (skipped)")
     print(f"🔍 DRY RUN: Would insert {len(topic_points)} topic points")
+    if hierarchical_topics is not None:
+        print(f"🔍 DRY RUN: Would persist {len(hierarchical_topics)} hierarchy relationships")
 
 # -------------------------------
 # 5. Print topic hierarchy
@@ -542,5 +591,14 @@ def persist_hierarchy_to_db():
         print("🔍 DRY RUN: Would persist hierarchical structure to topics collection (skipped)")
         print(f"🔍 DRY RUN: Would update {len(hier)} hierarchy relationships")
 
-# Uncomment the line below to persist hierarchy to database
-# persist_hierarchy_to_db()
+print("\n" + "="*50)
+print("DATABASE SUMMARY")
+print("="*50)
+print(f"Total topics saved: {len(topic_points)}")
+original_topics = [p for p in topic_points if not p.payload.get("is_synthetic", False)]
+synthetic_topics = [p for p in topic_points if p.payload.get("is_synthetic", False)]
+print(f"  - Original topics: {len(original_topics)}")
+print(f"  - Synthetic parent topics: {len(synthetic_topics)}")
+if hierarchical_topics is not None:
+    print(f"Hierarchy relationships: {len(hierarchical_topics)}")
+print("="*50)
