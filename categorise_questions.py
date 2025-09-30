@@ -579,19 +579,37 @@ def persist_hierarchy_to_db():
     hier = topic_model.hierarchical_topics(valid_questions)
     if not DRY_RUN:
         if 'Child_Left_ID' in hier.columns and 'Child_Right_ID' in hier.columns and 'Parent_ID' in hier.columns:
+            # Get list of existing topic IDs in the collection
+            existing_topic_ids = set()
+            for point in topic_points:
+                existing_topic_ids.add(point.id)
+            
+            print(f"Found {len(existing_topic_ids)} existing topics in collection")
+            
+            updated_count = 0
             for _, row in hier.iterrows():
                 parent = row['Parent_ID']
                 child_left = row['Child_Left_ID']
                 child_right = row['Child_Right_ID']
                 
-                # Update both children with their parent
+                # Update both children with their parent, but only if they exist in the collection
                 for child in [child_left, child_right]:
-                    client.set_payload(
-                        collection_name=COLLECTION_T,
-                        payload={"parent_topic_id": parent},
-                        points=[child]
-                    )
-        print("✅ Hierarchical structure stored in topics collection")
+                    if child in existing_topic_ids:
+                        try:
+                            client.set_payload(
+                                collection_name=COLLECTION_T,
+                                payload={"parent_topic_id": int(parent)},
+                                points=[int(child)]
+                            )
+                            updated_count += 1
+                        except Exception as e:
+                            print(f"Warning: Failed to update topic {child} with parent {parent}: {e}")
+                    else:
+                        print(f"Skipping topic {child} - not found in collection")
+            
+            print(f"✅ Hierarchical structure stored: updated {updated_count} topics with parent relationships")
+        else:
+            print("No hierarchical columns found in hierarchy data")
     else:
         print("🔍 DRY RUN: Would persist hierarchical structure to topics collection (skipped)")
         print(f"🔍 DRY RUN: Would update {len(hier)} hierarchy relationships")
