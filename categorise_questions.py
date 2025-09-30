@@ -113,7 +113,75 @@ for p in all_points:
     else:
         questions.append("")  # Keep index alignment
 
-embeddings = np.array([p.vector for p in all_points if p.vector is not None])
+# Extract embeddings with dimension validation
+vectors = []
+for p in all_points:
+    if p.vector is not None:
+        # Handle both list and dict vector formats
+        if isinstance(p.vector, dict):
+            # If vector is a dict, extract the actual vector array
+            vector_data = p.vector.get('vector', p.vector.get('data', None))
+        else:
+            vector_data = p.vector
+        
+        if vector_data is not None:
+            vectors.append(vector_data)
+
+if not vectors:
+    print("❌ No valid vectors found in points.")
+    sys.exit(1)
+
+# Check vector dimensions
+vector_dims = [len(v) for v in vectors]
+unique_dims = set(vector_dims)
+print(f"Found vector dimensions: {unique_dims}")
+
+if len(unique_dims) > 1:
+    print(f"❌ Inconsistent vector dimensions found: {unique_dims}")
+    print("Using only vectors with the most common dimension...")
+    
+    # Find most common dimension
+    from collections import Counter
+    dim_counts = Counter(vector_dims)
+    most_common_dim = dim_counts.most_common(1)[0][0]
+    print(f"Most common dimension: {most_common_dim} ({dim_counts[most_common_dim]} vectors)")
+    
+    # Filter to only vectors with the most common dimension
+    valid_vector_indices = [i for i, dim in enumerate(vector_dims) if dim == most_common_dim]
+    vectors = [vectors[i] for i in valid_vector_indices]
+    
+    # Also filter the corresponding points
+    filtered_points = [all_points[i] for i in valid_vector_indices]
+    all_points = filtered_points
+    
+    print(f"Filtered to {len(vectors)} vectors with consistent dimension {most_common_dim}")
+
+try:
+    embeddings = np.array(vectors)
+    print(f"✅ Created embeddings array with shape: {embeddings.shape}")
+except Exception as e:
+    print(f"❌ Error creating embeddings array: {e}")
+    print("First few vector shapes:", [np.array(v).shape for v in vectors[:5]])
+    sys.exit(1)
+
+# Re-extract IDs and questions after potential filtering
+ids = [p.id for p in all_points]
+questions = []
+for p in all_points:
+    if p.payload and "_node_content" in p.payload:
+        try:
+            import json
+            node_content = json.loads(p.payload["_node_content"]) if isinstance(p.payload["_node_content"], str) else p.payload["_node_content"]
+            text = node_content.get("text", "")
+            if text:
+                questions.append(text)
+            else:
+                questions.append("")  # Keep index alignment
+        except (json.JSONDecodeError, TypeError) as e:
+            print(f"Warning: Could not parse _node_content for point {p.id}: {e}")
+            questions.append("")  # Keep index alignment
+    else:
+        questions.append("")  # Keep index alignment
 
 print(f"Extracted {len(ids)} IDs, {len(questions)} questions, {len(embeddings)} embeddings")
 
