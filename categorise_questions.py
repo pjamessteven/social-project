@@ -487,13 +487,14 @@ def build_complete_hierarchy():
     leaf_topics = set(topic_model.get_topic_info()['Topic'].tolist())
     leaf_topics.discard(-1)  # Remove outlier topic
     
-    # Get all synthetic parent topics from hierarchy
-    synthetic_topics = set()
+    # Get all topics mentioned in the hierarchy (before reduction)
+    all_hierarchy_topics = set()
     parent_to_children = defaultdict(list)
     child_to_parent = {}
     
     print(f"Hierarchy dataframe shape: {hier.shape}")
     print(f"Hierarchy columns: {hier.columns.tolist()}")
+    print(f"Final leaf topics after reduction: {sorted(list(leaf_topics))}")
     
     if len(hier) > 0 and 'Child_Left_ID' in hier.columns and 'Child_Right_ID' in hier.columns and 'Parent_ID' in hier.columns:
         print(f"Processing {len(hier)} hierarchy relationships...")
@@ -503,23 +504,44 @@ def build_complete_hierarchy():
             child_left = row['Child_Left_ID']
             child_right = row['Child_Right_ID']
             
-            # Track parent-child relationships
+            # Track all topics in hierarchy
+            all_hierarchy_topics.update([parent, child_left, child_right])
+            
+            # Track parent-child relationships (using original topic IDs)
             parent_to_children[parent].extend([child_left, child_right])
             child_to_parent[child_left] = parent
             child_to_parent[child_right] = parent
-            
-            # If parent is not a leaf topic, it's synthetic
-            if parent not in leaf_topics:
-                synthetic_topics.add(parent)
         
+        print(f"All topics in original hierarchy: {len(all_hierarchy_topics)}")
         print(f"Built parent_to_children mapping with {len(parent_to_children)} parents")
-        print(f"Sample parent_to_children: {dict(list(parent_to_children.items())[:3])}")
+        
+        # Identify synthetic topics: those in hierarchy but not in final leaf topics
+        synthetic_topics = all_hierarchy_topics - leaf_topics
+        print(f"Synthetic topics (in hierarchy but not final): {sorted(list(synthetic_topics))}")
+        
+        # Debug: show some parent-child relationships
+        sample_relationships = dict(list(parent_to_children.items())[:5])
+        print(f"Sample parent_to_children: {sample_relationships}")
+        
+        # Verify that synthetic topics actually have children
+        valid_synthetic_topics = set()
+        for synthetic_topic in synthetic_topics:
+            if synthetic_topic in parent_to_children:
+                children = parent_to_children[synthetic_topic]
+                print(f"Synthetic topic {synthetic_topic} has children: {children}")
+                valid_synthetic_topics.add(synthetic_topic)
+            else:
+                print(f"Warning: Synthetic topic {synthetic_topic} has no children in hierarchy")
+        
+        synthetic_topics = valid_synthetic_topics
+        
     else:
         print("No valid hierarchy data found")
+        synthetic_topics = set()
     
-    print(f"Found {len(leaf_topics)} leaf topics and {len(synthetic_topics)} synthetic parent topics")
+    print(f"Found {len(leaf_topics)} leaf topics and {len(synthetic_topics)} valid synthetic parent topics")
     print(f"Sample leaf topics: {list(leaf_topics)[:10]}")
-    print(f"Sample synthetic topics: {list(synthetic_topics)[:10]}")
+    print(f"Valid synthetic topics: {sorted(list(synthetic_topics))}")
     
     return leaf_topics, synthetic_topics, parent_to_children, child_to_parent
 
@@ -540,27 +562,50 @@ def map_to_reduced_topic(original_topic_id):
 
 def get_aggregated_questions_for_synthetic_topic(topic_id, parent_to_children, leaf_topics, max_questions=10):
     """Get aggregated representative questions for a synthetic topic from all its descendant leaf topics"""
-    def get_all_descendant_leaves(topic_id):
+    def get_all_descendant_leaves(topic_id, visited=None):
         """Recursively get all leaf topic descendants"""
+        if visited is None:
+            visited = set()
+        
+        if topic_id in visited:
+            print(f"    Cycle detected at topic {topic_id}, stopping recursion")
+            return []
+        
+        visited.add(topic_id)
         descendants = []
+        
+        print(f"    Checking topic {topic_id}: is_leaf={topic_id in leaf_topics}, has_children={topic_id in parent_to_children}")
+        
         if topic_id in leaf_topics:
             # This is a leaf topic
             descendants.append(topic_id)
+            print(f"    Found leaf topic: {topic_id}")
         elif topic_id in parent_to_children:
             # This is a parent topic, recurse into children
-            for child in parent_to_children[topic_id]:
-                descendants.extend(get_all_descendant_leaves(child))
+            children = parent_to_children[topic_id]
+            print(f"    Topic {topic_id} has children: {children}")
+            for child in children:
+                child_descendants = get_all_descendant_leaves(child, visited.copy())
+                descendants.extend(child_descendants)
+        else:
+            print(f"    Topic {topic_id} is neither leaf nor parent - orphaned topic")
+        
         return descendants
+    
+    print(f"Finding descendants for synthetic topic {topic_id}...")
+    print(f"  Available leaf topics: {sorted(list(leaf_topics))}")
+    print(f"  Parent-to-children keys: {sorted(list(parent_to_children.keys()))}")
     
     # Get all leaf descendants
     descendant_leaves = get_all_descendant_leaves(topic_id)
-    print(f"Synthetic topic {topic_id} has {len(descendant_leaves)} descendant leaves: {descendant_leaves[:5]}...")
+    print(f"Synthetic topic {topic_id} has {len(descendant_leaves)} descendant leaves: {descendant_leaves}")
     
     # Collect questions from all descendant leaf topics
     all_questions = []
     for leaf_topic in descendant_leaves:
         # Map the original leaf topic to its reduced topic ID
         reduced_topic = map_to_reduced_topic(leaf_topic)
+        print(f"  Mapping leaf topic {leaf_topic} -> {reduced_topic}")
         if reduced_topic is not None and reduced_topic in topic_to_questions:
             # Take top questions from each leaf topic
             leaf_questions = topic_to_questions[reduced_topic][:5]  # Top 5 from each leaf
