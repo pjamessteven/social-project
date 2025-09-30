@@ -291,10 +291,20 @@ async function deduplicateDb() {
 async function exportQuestions() {
   const client = new QdrantClient({ url: "http://localhost:6333" });
 
-  const seen = new Set<string>();
-  const toDelete: number[] = [];
+  const seenQuestions = new Set<string>();
+  const questionsData: Array<{
+    question: string;
+    comment_id: string;
+    point_id: number | string;
+    score: number;
+    author: string;
+    permalink: string;
+  }> = [];
 
   let nextPage = 0;
+  let totalProcessed = 0;
+
+  console.log("Starting question extraction...");
 
   do {
     const res = await fetchWithBackoff(
@@ -311,19 +321,53 @@ async function exportQuestions() {
 
     for (const point of res.points) {
       const comment_id = point.payload?.id as string | undefined;
-      const id = point.id;
-      const questions = extractQuestionsFromString(
-        point.payload?.questionsThisExcerptCanAnswer as string,
-      );
-      for (question in questions) {
-        // check for duplicates and export to jsonl
+      const point_id = point.id;
+      const score = point.payload?.score as number || 0;
+      const author = point.payload?.username as string || "unknown";
+      const permalink = point.payload?.link as string || "";
+      
+      const questionsString = point.payload?.questionsThisExcerptCanAnswer as string;
+      
+      if (questionsString && comment_id) {
+        const questions = extractQuestionsFromString(questionsString);
+        
+        for (const question of questions) {
+          const normalizedQuestion = question.trim().toLowerCase();
+          
+          // Check for duplicates (case-insensitive)
+          if (!seenQuestions.has(normalizedQuestion)) {
+            seenQuestions.add(normalizedQuestion);
+            questionsData.push({
+              question: question.trim(),
+              comment_id,
+              point_id,
+              score,
+              author,
+              permalink,
+            });
+          }
+        }
       }
+      
+      totalProcessed++;
     }
 
+    console.log(`Processed ${totalProcessed} documents, found ${questionsData.length} unique questions`);
     nextPage = res.next_page_offset as number;
   } while (nextPage);
 
-  const pipeline = new IngestionPipeline({});
+  // Export to JSONL file
+  const outputFile = "exported_questions.jsonl";
+  const writeStream = fs.createWriteStream(outputFile);
+  
+  for (const questionData of questionsData) {
+    writeStream.write(JSON.stringify(questionData) + '\n');
+  }
+  
+  writeStream.end();
+  
+  console.log(`✅ Exported ${questionsData.length} unique questions to ${outputFile}`);
+  console.log(`📊 Processed ${totalProcessed} total documents`);
 }
 
 /*
@@ -391,6 +435,8 @@ async function filterDb() {
     await deduplicateDb();
   } else if (command === "filter") {
     //await filterDb();
+  } else if (command === "export-questions") {
+    await exportQuestions();
   } else {
     console.error(
       'Invalid command. Please use "datasource" or "ui". Running "datasource" by default.',
