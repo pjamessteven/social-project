@@ -313,34 +313,63 @@ else:
 # -------------------------------
 # 5. Print topic hierarchy
 # -------------------------------
-def print_topic_hierarchy(topic_model, questions, topic_info):
-    """Print the hierarchical topic structure using BERTopic's get_topic_tree method"""
+def print_topic_hierarchy(topic_model, questions, topic_info, topic_points):
+    """Print the hierarchical topic structure with LLM-generated titles"""
     print("\n" + "="*50)
-    print("TOPIC HIERARCHY")
+    print("TOPIC HIERARCHY WITH LLM TITLES")
     print("="*50)
+    
+    # Create mapping of topic_id to LLM title
+    topic_id_to_title = {}
+    for point in topic_points:
+        topic_id = point.payload["topic_id"]
+        title = point.payload["title"]
+        topic_id_to_title[topic_id] = title
     
     try:
         # Generate hierarchical topics
         hierarchical_topics = topic_model.hierarchical_topics(questions)
         print(f"Generated {len(hierarchical_topics)} hierarchical relationships")
         
-        # Use BERTopic's built-in tree visualization
+        # Get the default tree structure
         tree = topic_model.get_topic_tree(hierarchical_topics)
-        print("\nTopic Tree Structure:")
-        print(tree)
+        
+        # Replace topic names in tree with LLM titles
+        tree_lines = tree.split('\n')
+        enhanced_tree_lines = []
+        
+        for line in tree_lines:
+            enhanced_line = line
+            # Look for topic IDs in the line (format: "Topic: XX")
+            import re
+            topic_matches = re.findall(r'Topic:\s*(\d+)', line)
+            
+            for topic_id_str in topic_matches:
+                topic_id = int(topic_id_str)
+                if topic_id in topic_id_to_title:
+                    llm_title = topic_id_to_title[topic_id]
+                    # Replace the topic reference with LLM title
+                    enhanced_line = enhanced_line.replace(f"Topic: {topic_id}", f"Topic {topic_id}: {llm_title}")
+            
+            enhanced_tree_lines.append(enhanced_line)
+        
+        print("\nTopic Tree Structure with LLM Titles:")
+        print('\n'.join(enhanced_tree_lines))
         
     except Exception as e:
         print(f"Error generating topic tree: {e}")
-        print("Falling back to basic topic info...")
+        print("Falling back to basic topic info with LLM titles...")
         
-        # Fallback: just print basic topic information
-        print("\nBasic Topic Information:")
+        # Fallback: print basic topic information with LLM titles
+        print("\nBasic Topic Information with LLM Titles:")
         for _, row in topic_info.iterrows():
             topic_id = int(row["Topic"])
             if topic_id == -1:
                 continue
             
             count = row['Count']
+            llm_title = topic_id_to_title.get(topic_id, "No title")
+            
             topic_words = topic_model.get_topic(topic_id)
             if topic_words and isinstance(topic_words, list):
                 keywords = [word for word, _ in topic_words][:5]
@@ -348,12 +377,13 @@ def print_topic_hierarchy(topic_model, questions, topic_info):
             else:
                 keyword_str = "No keywords"
             
-            print(f"Topic {topic_id}: {count} questions - {keyword_str}")
+            print(f"Topic {topic_id}: '{llm_title}' ({count} questions)")
+            print(f"  Keywords: {keyword_str}")
     
     print("="*50)
 
-# Print the hierarchy
-print_topic_hierarchy(topic_model, valid_questions, topic_info)
+# Print the hierarchy with LLM titles
+print_topic_hierarchy(topic_model, valid_questions, topic_info, topic_points)
 
 # -------------------------------
 # 6. Add hierarchy to database (optional)
