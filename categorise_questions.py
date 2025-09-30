@@ -281,6 +281,24 @@ for _, row in topic_info.iterrows():
         )
     )
 
+# Print summary of generated titles
+print("\n" + "="*50)
+print("GENERATED TOPIC TITLES")
+print("="*50)
+for point in topic_points:
+    topic_id = point.payload["topic_id"]
+    title = point.payload["title"]
+    keywords = point.payload["keywords"][:5]  # Show first 5 keywords
+    keyword_str = ", ".join(keywords) if keywords else "No keywords"
+    
+    # Get topic count from topic_info
+    topic_row = topic_info[topic_info['Topic'] == topic_id]
+    count = topic_row.iloc[0]['Count'] if not topic_row.empty else 0
+    
+    print(f"Topic {topic_id}: '{title}' ({count} questions)")
+    print(f"  Keywords: {keyword_str}")
+    print()
+
 # Insert into Qdrant
 if not DRY_RUN:
     client.upsert(
