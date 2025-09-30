@@ -26,32 +26,68 @@ COLLECTION_T = "default_topics"
 # -------------------------------
 # 2. Load all questions + vectors
 # -------------------------------
+print(f"Connecting to Qdrant and loading from collection: {COLLECTION_Q}")
+
+try:
+    # Check if collection exists
+    collection_info = client.get_collection(COLLECTION_Q)
+    print(f"Collection found: {collection_info.points_count} points")
+except Exception as e:
+    print(f"❌ Error accessing collection {COLLECTION_Q}: {e}")
+    sys.exit(1)
+
 all_points = []
 next_page = None
 
 while True:
-    points, next_page = client.scroll(
-        collection_name=COLLECTION_Q,
-        limit=50000,
-        with_payload=True,
-        with_vectors=True,
-        offset=next_page,
-    )
-    all_points.extend(points)
-    if next_page is None:
-        break
+    try:
+        points, next_page = client.scroll(
+            collection_name=COLLECTION_Q,
+            limit=50000,
+            with_payload=True,
+            with_vectors=True,
+            offset=next_page,
+        )
+        all_points.extend(points)
+        print(f"Loaded batch: {len(points)} points (total: {len(all_points)})")
+        if next_page is None:
+            break
+    except Exception as e:
+        print(f"❌ Error during scroll: {e}")
+        sys.exit(1)
 
-print(f"Loaded {len(all_points)} vectors from Qdrant")
+print(f"✅ Loaded {len(all_points)} vectors from Qdrant")
 
+if len(all_points) == 0:
+    print("❌ No points found in collection. Exiting.")
+    sys.exit(1)
+
+print("Extracting data from points...")
 ids = [p.id for p in all_points]
-questions = [p.payload["text"] for p in all_points]
-embeddings = np.array([p.vector for p in all_points])
+questions = [p.payload.get("text", "") for p in all_points if p.payload and "text" in p.payload]
+embeddings = np.array([p.vector for p in all_points if p.vector is not None])
+
+print(f"Extracted {len(ids)} IDs, {len(questions)} questions, {len(embeddings)} embeddings")
+
+if len(questions) == 0:
+    print("❌ No questions found in payloads. Check that points have 'text' field.")
+    sys.exit(1)
+
+if len(embeddings) == 0:
+    print("❌ No embeddings found. Check that points have vectors.")
+    sys.exit(1)
 
 # -------------------------------
 # 3. Run BERTopic with precomputed embeddings
 # -------------------------------
-topic_model = BERTopic(embedding_model=None, verbose=True)
-topics, probs = topic_model.fit_transform(questions, embeddings)
+print("Running BERTopic clustering...")
+try:
+    topic_model = BERTopic(embedding_model=None, verbose=True)
+    topics, probs = topic_model.fit_transform(questions, embeddings)
+    print(f"✅ BERTopic completed. Found {len(set(topics))} topics")
+except Exception as e:
+    print(f"❌ Error during BERTopic clustering: {e}")
+    sys.exit(1)
 
 # Assign topic_id to each question
 updates = []
