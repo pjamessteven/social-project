@@ -596,5 +596,5 @@ def persist_hierarchy_to_db():
         print("🔍 DRY RUN: Would persist hierarchical structure to topics collection (skipped)")
         print(f"🔍 DRY RUN: Would update {len(hier)} hierarchy relationships")
 
-# Uncomment the line below to persist hierarchy to database
-# persist_hierarchy_to_db()
+# Persist hierarchy to database
+persist_hierarchy_to_db()
