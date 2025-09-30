@@ -139,7 +139,7 @@ for idx, qid in enumerate(valid_ids):
     updates.append(
         models.PointStruct(
             id=qid,
-            vector=None,
+            vector={},
             payload={"topic_id": int(topics[idx])}
         )
     )
