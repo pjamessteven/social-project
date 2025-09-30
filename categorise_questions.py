@@ -500,9 +500,10 @@ def build_complete_hierarchy():
         print(f"Processing {len(hier)} hierarchy relationships...")
         
         for _, row in hier.iterrows():
-            parent = row['Parent_ID']
-            child_left = row['Child_Left_ID']
-            child_right = row['Child_Right_ID']
+            # Convert to int to ensure consistent types
+            parent = int(row['Parent_ID'])
+            child_left = int(row['Child_Left_ID'])
+            child_right = int(row['Child_Right_ID'])
             
             # Track all topics in hierarchy
             all_hierarchy_topics.update([parent, child_left, child_right])
@@ -567,6 +568,9 @@ def get_aggregated_questions_for_synthetic_topic(topic_id, parent_to_children, l
         if visited is None:
             visited = set()
         
+        # Ensure topic_id is int for consistent comparison
+        topic_id = int(topic_id)
+        
         if topic_id in visited:
             print(f"    Cycle detected at topic {topic_id}, stopping recursion")
             return []
@@ -585,7 +589,7 @@ def get_aggregated_questions_for_synthetic_topic(topic_id, parent_to_children, l
             children = parent_to_children[topic_id]
             print(f"    Topic {topic_id} has children: {children}")
             for child in children:
-                child_descendants = get_all_descendant_leaves(child, visited.copy())
+                child_descendants = get_all_descendant_leaves(int(child), visited.copy())
                 descendants.extend(child_descendants)
         else:
             print(f"    Topic {topic_id} is neither leaf nor parent - orphaned topic")
@@ -621,13 +625,15 @@ def get_aggregated_questions_for_synthetic_topic(topic_id, parent_to_children, l
 def get_aggregated_keywords_for_synthetic_topic(topic_id, parent_to_children, leaf_topics):
     """Get aggregated keywords for a synthetic topic from all its descendant leaf topics"""
     def get_all_descendant_leaves(topic_id):
+        # Ensure topic_id is int for consistent comparison
+        topic_id = int(topic_id)
         descendants = []
         if topic_id in leaf_topics:
             # This is a leaf topic
             descendants.append(topic_id)
         elif topic_id in parent_to_children:
             for child in parent_to_children[topic_id]:
-                descendants.extend(get_all_descendant_leaves(child))
+                descendants.extend(get_all_descendant_leaves(int(child)))
         return descendants
     
     # Get all leaf descendants
