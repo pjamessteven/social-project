@@ -605,14 +605,14 @@ def get_aggregated_questions_for_synthetic_topic(topic_id, parent_to_children, l
     
     # Adjust selection strategy based on depth
     if depth == 0:  # Root level - very broad
-        questions_per_leaf = 2  # Fewer questions per leaf for broader coverage
-        max_questions = 8
+        questions_per_leaf = 1  # Fewer questions per leaf for broader coverage
+        max_questions = 15
     elif depth == max_depth:  # Deepest level - most specific
         questions_per_leaf = 8  # More questions per leaf for specificity
         max_questions = 15
     else:  # Middle levels
         questions_per_leaf = 4
-        max_questions = 12
+        max_questions = 15
     
     def get_questions_by_distance(topic_id, max_distance=None):
         """Get questions organized by distance from current topic"""
