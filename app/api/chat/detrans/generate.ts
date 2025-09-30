@@ -1,3 +1,4 @@
+import { extractQuestionsFromString } from "@/app/lib/extractQuestions";
 import { QdrantVectorStore } from "@llamaindex/qdrant";
 import { QdrantClient } from "@qdrant/js-client-rest";
 import "dotenv/config";
@@ -285,6 +286,44 @@ async function deduplicateDb() {
   } else {
     console.log("No duplicates found 🎉");
   }
+}
+
+async function exportQuestions() {
+  const client = new QdrantClient({ url: "http://localhost:6333" });
+
+  const seen = new Set<string>();
+  const toDelete: number[] = [];
+
+  let nextPage = 0;
+
+  do {
+    const res = await fetchWithBackoff(
+      async () =>
+        client.scroll("default", {
+          limit: 5000, // adjust batch size
+          with_payload: true,
+          with_vector: false,
+          offset: nextPage,
+        }),
+      3,
+      1000,
+    );
+
+    for (const point of res.points) {
+      const comment_id = point.payload?.id as string | undefined;
+      const id = point.id;
+      const questions = extractQuestionsFromString(
+        point.payload?.questionsThisExcerptCanAnswer as string,
+      );
+      for (question in questions) {
+        // check for duplicates and export to jsonl
+      }
+    }
+
+    nextPage = res.next_page_offset as number;
+  } while (nextPage);
+
+  const pipeline = new IngestionPipeline({});
 }
 
 /*
