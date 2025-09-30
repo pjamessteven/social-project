@@ -206,8 +206,8 @@ try:
     valid_questions = [questions[i] for i in valid_indices]
     valid_embeddings = embeddings[valid_indices]
     valid_ids = [ids[i] for i in valid_indices]
-    
-    topic_model = BERTopic(hdbscan_model=HDBSCAN(min_cluster_size=100), embedding_model=None, verbose=True)
+     #hdbscan_model=HDBSCAN(min_cluster_size=100), 
+    topic_model = BERTopic(embedding_model=None, verbose=True)
 
     topics, probs = topic_model.fit_transform(valid_questions, valid_embeddings)
 
