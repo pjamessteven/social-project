@@ -351,22 +351,27 @@ for q, t in zip(valid_questions, topics):
     topic_to_questions[t].append(q)
 
 # Generate labels using LLM
-def generate_llm_title(topic_id, questions, keywords, depth=0, max_depth=1, topn=10):
+def generate_llm_title(topic_id, questions, keywords, depth=0, max_depth=1, topn=10, parent_title=None):
     """Generate a descriptive title for a topic using LLM with depth awareness"""
     try:
         # Get the most relevant questions (up to topn)
         sample_questions = questions[:topn]
         keywords_str = ", ".join(keywords[:10])  # Use top 10 keywords
         
+        # Add context about parent topic if available
+        parent_context = ""
+        if parent_title and depth > 0:
+            parent_context = f"\nParent topic: {parent_title}\nGenerate a title that is more specific than the parent topic."
+        
         # Determine granularity based on depth
         if max_depth <= 1:
             granularity_instruction = "Generate a broad, general title that covers the main theme."
         elif depth == 0:
-            granularity_instruction = "Generate a broad, high-level title that covers the main theme."
+            granularity_instruction = "Generate a broad, high-level title that encompasses major themes."
         elif depth == max_depth:
-            granularity_instruction = "Generate a very specific, detailed title that captures the precise subtopic."
+            granularity_instruction = "Generate a very specific, detailed title that captures precise subtopics and distinguishes this from sibling topics."
         else:
-            granularity_instruction = f"Generate a moderately specific title (depth {depth} of {max_depth}) that balances breadth and specificity."
+            granularity_instruction = f"Generate a moderately specific title (depth {depth}/{max_depth}) that is more specific than parent topics but broader than leaf topics."
         
         prompt = f"""Based on the following questions and keywords from a topic cluster, generate a concise, descriptive title (2-6 words) that captures the main theme:
 
@@ -375,12 +380,12 @@ Questions:
 
 Keywords: {keywords_str}
 
-Topic Hierarchy Context:
+Hierarchy Context:
 - Current depth: {depth} (0 = top level)
 - Maximum depth: {max_depth}
-- Granularity guidance: {granularity_instruction}
+- {granularity_instruction}{parent_context}
 
-Generate a clear, specific title that someone browsing topics would understand. Focus on the main subject matter, not generic phrases. Adjust the specificity based on the hierarchy depth provided.
+Focus on what makes this topic distinct from its siblings and parent. Avoid generic terms.
 Respond with only the title, do not include any notes.
 Title:"""
 
@@ -404,6 +409,39 @@ Title:"""
         print(f"Error generating LLM title for topic {topic_id}: {e}")
         # Fallback to simple label
         return generate_simple_label(topic_id, questions, topn=2)
+
+def generate_differentiated_title(topic_id, questions, keywords, depth, max_depth, sibling_titles=None, parent_title=None):
+    """Generate a title that's differentiated from sibling topics"""
+    # Generate initial title
+    initial_title = generate_llm_title(topic_id, questions, keywords, depth, max_depth, parent_title=parent_title)
+    
+    # If we have sibling titles, try to differentiate
+    if sibling_titles and len(sibling_titles) > 0:
+        differentiation_prompt = f"""
+The initial title "{initial_title}" might be too similar to sibling topics: {', '.join(sibling_titles)}
+
+Based on the same questions and keywords, generate a more distinctive title that clearly differentiates this topic from its siblings while remaining accurate.
+
+Questions: {chr(10).join(f"- {q}" for q in questions[:5])}
+Keywords: {', '.join(keywords[:8])}
+
+Distinctive title:"""
+        
+        try:
+            response = openai_client.chat.completions.create(
+                model="deepseek/deepseek-chat-v3.1",
+                messages=[{"role": "user", "content": differentiation_prompt}],
+                max_tokens=50,
+                temperature=0.4
+            )
+            differentiated_title = response.choices[0].message.content.strip().strip('"\'')
+            print(f"Differentiated title for topic {topic_id}: {differentiated_title}")
+            return differentiated_title
+        except Exception as e:
+            print(f"Error generating differentiated title for topic {topic_id}: {e}")
+            return initial_title
+    
+    return initial_title
 
 def generate_simple_label(topic_id, questions, topn=3):
     """Fallback: simple version using first few questions"""
@@ -562,68 +600,77 @@ def map_to_reduced_topic(original_topic_id):
         return None  # This topic was reduced away or is synthetic
 
 def get_aggregated_questions_for_synthetic_topic(topic_id, parent_to_children, leaf_topics, max_questions=10):
-    """Get aggregated representative questions for a synthetic topic from all its descendant leaf topics"""
-    def get_all_descendant_leaves(topic_id, visited=None):
-        """Recursively get all leaf topic descendants"""
-        if visited is None:
-            visited = set()
-        
-        # Ensure topic_id is int for consistent comparison
-        topic_id = int(topic_id)
-        
-        if topic_id in visited:
-            print(f"    Cycle detected at topic {topic_id}, stopping recursion")
-            return []
-        
-        visited.add(topic_id)
-        descendants = []
-        
-        print(f"    Checking topic {topic_id}: is_leaf={topic_id in leaf_topics}, has_children={topic_id in parent_to_children}")
-        
-        if topic_id in leaf_topics:
-            # This is a leaf topic
-            descendants.append(topic_id)
-            print(f"    Found leaf topic: {topic_id}")
-        elif topic_id in parent_to_children:
-            # This is a parent topic, recurse into children
-            children = parent_to_children[topic_id]
-            print(f"    Topic {topic_id} has children: {children}")
-            for child in children:
-                child_descendants = get_all_descendant_leaves(int(child), visited.copy())
-                descendants.extend(child_descendants)
-        else:
-            print(f"    Topic {topic_id} is neither leaf nor parent - orphaned topic")
-        
-        return descendants
+    """Get hierarchical representative questions for a synthetic topic based on depth"""
+    depth = topic_depths.get(topic_id, 0)
     
-    print(f"Finding descendants for synthetic topic {topic_id}...")
-    print(f"  Available leaf topics: {sorted(list(leaf_topics))}")
-    print(f"  Parent-to-children keys: {sorted(list(parent_to_children.keys()))}")
+    # Adjust selection strategy based on depth
+    if depth == 0:  # Root level - very broad
+        questions_per_leaf = 2  # Fewer questions per leaf for broader coverage
+        max_questions = 8
+    elif depth == max_depth:  # Deepest level - most specific
+        questions_per_leaf = 8  # More questions per leaf for specificity
+        max_questions = 15
+    else:  # Middle levels
+        questions_per_leaf = 4
+        max_questions = 12
     
-    # Get all leaf descendants
-    descendant_leaves = get_all_descendant_leaves(topic_id)
-    print(f"Synthetic topic {topic_id} has {len(descendant_leaves)} descendant leaves: {descendant_leaves}")
+    def get_questions_by_distance(topic_id, max_distance=None):
+        """Get questions organized by distance from current topic"""
+        questions_by_distance = defaultdict(list)
+        
+        def collect_questions(current_topic, distance=0, visited=None):
+            if visited is None:
+                visited = set()
+            
+            current_topic = int(current_topic)
+            if current_topic in visited:
+                return
+            visited.add(current_topic)
+            
+            if max_distance is not None and distance > max_distance:
+                return
+                
+            if current_topic in leaf_topics:
+                # This is a leaf - get its questions
+                reduced_topic = map_to_reduced_topic(current_topic)
+                if reduced_topic and reduced_topic in topic_to_questions:
+                    questions_by_distance[distance].extend(topic_to_questions[reduced_topic][:questions_per_leaf])
+            elif current_topic in parent_to_children:
+                # Recurse to children
+                for child in parent_to_children[current_topic]:
+                    collect_questions(int(child), distance + 1, visited.copy())
+        
+        collect_questions(topic_id)
+        return questions_by_distance
     
-    # Collect questions from all descendant leaf topics
-    all_questions = []
-    for leaf_topic in descendant_leaves:
-        # Map the original leaf topic to its reduced topic ID
-        reduced_topic = map_to_reduced_topic(leaf_topic)
-        print(f"  Mapping leaf topic {leaf_topic} -> {reduced_topic}")
-        if reduced_topic is not None and reduced_topic in topic_to_questions:
-            # Take top questions from each leaf topic
-            leaf_questions = topic_to_questions[reduced_topic][:5]  # Top 5 from each leaf
-            all_questions.extend(leaf_questions)
-            print(f"  Added {len(leaf_questions)} questions from leaf topic {leaf_topic} -> {reduced_topic}")
-        else:
-            print(f"  Skipped leaf topic {leaf_topic} (reduced_topic={reduced_topic}, in_topic_to_questions={reduced_topic in topic_to_questions if reduced_topic else False})")
+    print(f"Finding hierarchical questions for synthetic topic {topic_id} (depth {depth}/{max_depth})...")
     
-    print(f"Synthetic topic {topic_id} aggregated {len(all_questions)} total questions")
-    # Return top questions (most representative across all descendants)
+    # Get questions organized by distance
+    if depth == 0:
+        # Root level: sample from all distances but prefer closer ones
+        questions_by_distance = get_questions_by_distance(topic_id)
+        all_questions = []
+        for distance in sorted(questions_by_distance.keys()):
+            # Take fewer questions from more distant topics
+            take_count = max(1, max_questions // (2 ** distance))
+            all_questions.extend(questions_by_distance[distance][:take_count])
+            print(f"  Distance {distance}: took {min(take_count, len(questions_by_distance[distance]))} questions")
+    else:
+        # Deeper levels: focus on immediate children only
+        max_distance = 1 if depth >= max_depth - 1 else 2
+        questions_by_distance = get_questions_by_distance(topic_id, max_distance)
+        all_questions = []
+        for distance in sorted(questions_by_distance.keys()):
+            all_questions.extend(questions_by_distance[distance])
+            print(f"  Distance {distance}: took {len(questions_by_distance[distance])} questions")
+    
+    print(f"Synthetic topic {topic_id} collected {len(all_questions)} hierarchical questions")
     return all_questions[:max_questions]
 
 def get_aggregated_keywords_for_synthetic_topic(topic_id, parent_to_children, leaf_topics):
-    """Get aggregated keywords for a synthetic topic from all its descendant leaf topics"""
+    """Get depth-aware aggregated keywords for a synthetic topic"""
+    depth = topic_depths.get(topic_id, 0)
+    
     def get_all_descendant_leaves(topic_id):
         # Ensure topic_id is int for consistent comparison
         topic_id = int(topic_id)
@@ -657,6 +704,26 @@ def get_aggregated_keywords_for_synthetic_topic(topic_id, parent_to_children, le
             print(f"  Skipped leaf topic {leaf_topic} (no valid reduced topic)")
     
     print(f"Synthetic topic {topic_id} aggregated {keywords_found} keywords from {len(descendant_leaves)} leaves")
+    
+    # Filter keywords based on depth
+    if depth == 0:
+        # Root level: prefer broader, more general terms
+        # Filter out very specific terms
+        filtered_keywords = {}
+        for word, score in keyword_counts.items():
+            # Skip very specific terms at root level
+            if not any(specific in word.lower() for specific in ['specific', 'particular', 'exact', '_']):
+                filtered_keywords[word] = score
+        keyword_counts = filtered_keywords
+        print(f"  Root level: filtered to {len(keyword_counts)} broader keywords")
+        
+    elif depth == max_depth:
+        # Deepest level: prefer more specific terms
+        # Boost scores for compound words or specific terms
+        for word in keyword_counts:
+            if '_' in word or len(word) > 8:  # Compound or longer words tend to be more specific
+                keyword_counts[word] *= 1.5
+        print(f"  Deep level: boosted specific keyword scores")
     
     # Sort by aggregated score and return top keywords
     sorted_keywords = sorted(keyword_counts.items(), key=lambda x: x[1], reverse=True)
@@ -707,48 +774,75 @@ for _, row in topic_info.iterrows():
         )
     )
 
-# Process synthetic parent topics
+# Process synthetic parent topics with sibling awareness
 print(f"Processing {len(synthetic_topics)} synthetic parent topics...")
+
+# Group synthetic topics by parent to handle siblings together
+topics_by_parent = defaultdict(list)
 for synthetic_topic_id in synthetic_topics:
-    # Get aggregated questions from all descendant leaf topics
-    aggregated_questions = get_aggregated_questions_for_synthetic_topic(
-        synthetic_topic_id, parent_to_children, leaf_topics, max_questions=15
-    )
+    parent_id = None
+    # Find parent of this synthetic topic
+    for parent, children in parent_to_children.items():
+        if synthetic_topic_id in children:
+            parent_id = parent
+            break
+    topics_by_parent[parent_id].append(synthetic_topic_id)
+
+# Process each group of siblings together
+for parent_id, sibling_topics in topics_by_parent.items():
+    sibling_titles = []
     
-    # Get aggregated keywords from all descendant leaf topics
-    aggregated_keywords = get_aggregated_keywords_for_synthetic_topic(
-        synthetic_topic_id, parent_to_children, leaf_topics
-    )
-    
-    # Get depth for this synthetic topic
-    depth = topic_depths.get(synthetic_topic_id, 0)
-    
-    # Generate LLM title for synthetic topic
-    llm_title = generate_llm_title(
-        synthetic_topic_id, aggregated_questions, aggregated_keywords, 
-        depth, max_depth, topn=8
-    )
-    
-    # Generate simple label from aggregated questions
-    simple_label = generate_simple_label(synthetic_topic_id, aggregated_questions, topn=15)
-    
-    topic_points.append(
-        models.PointStruct(
-            id=synthetic_topic_id,
-            vector={},
-            payload={
-                "topic_id": synthetic_topic_id,
-                "title": llm_title,
-                "label": simple_label,
-                "keywords": aggregated_keywords,
-                "depth": depth,
-                "max_depth": max_depth,
-                "is_synthetic": True,
-                "question_count": len(aggregated_questions),
-                "child_topics": parent_to_children.get(synthetic_topic_id, [])
-            }
+    for synthetic_topic_id in sibling_topics:
+        # Get aggregated questions from all descendant leaf topics
+        aggregated_questions = get_aggregated_questions_for_synthetic_topic(
+            synthetic_topic_id, parent_to_children, leaf_topics, max_questions=15
         )
-    )
+        
+        # Get aggregated keywords from all descendant leaf topics
+        aggregated_keywords = get_aggregated_keywords_for_synthetic_topic(
+            synthetic_topic_id, parent_to_children, leaf_topics
+        )
+        
+        # Get depth for this synthetic topic
+        depth = topic_depths.get(synthetic_topic_id, 0)
+        
+        # Get parent title if available
+        parent_title = None
+        if parent_id is not None:
+            # Look for parent title in already processed topics
+            for point in topic_points:
+                if point.id == parent_id:
+                    parent_title = point.payload.get("title")
+                    break
+        
+        # Generate differentiated LLM title for synthetic topic
+        llm_title = generate_differentiated_title(
+            synthetic_topic_id, aggregated_questions, aggregated_keywords, 
+            depth, max_depth, sibling_titles, parent_title
+        )
+        
+        sibling_titles.append(llm_title)  # Add to sibling titles for next iteration
+        
+        # Generate simple label from aggregated questions
+        simple_label = generate_simple_label(synthetic_topic_id, aggregated_questions, topn=15)
+        
+        topic_points.append(
+            models.PointStruct(
+                id=synthetic_topic_id,
+                vector={},
+                payload={
+                    "topic_id": synthetic_topic_id,
+                    "title": llm_title,
+                    "label": simple_label,
+                    "keywords": aggregated_keywords,
+                    "depth": depth,
+                    "max_depth": max_depth,
+                    "is_synthetic": True,
+                    "question_count": len(aggregated_questions),
+                    "child_topics": parent_to_children.get(synthetic_topic_id, [])
+                }
+            )
+        )
 
 print(f"Generated {len(topic_points)} total topics ({len(leaf_topics)} leaf + {len(synthetic_topics)} synthetic)")
 
