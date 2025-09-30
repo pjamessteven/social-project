@@ -212,6 +212,11 @@ try:
     topics, probs = topic_model.fit_transform(valid_questions, valid_embeddings)
 
     print(f"Initial topics before reduction: {len(set(topics))}")
+    
+    # Calculate hierarchy BEFORE reducing topics
+    print("Calculating topic hierarchy before reduction...")
+    initial_topic_depths, initial_max_depth = calculate_topic_depths(topic_model, valid_questions)
+    
     topic_model.reduce_topics(valid_questions, nr_topics=100)
     print(f"Topics after reduction: {len(set(topic_model.topics_))}")
 
@@ -406,8 +411,43 @@ def calculate_topic_depths(topic_model, questions):
             topic_depths[topic_id] = 0
         return topic_depths, 0
 
-# Calculate hierarchy depths
-topic_depths, max_depth = calculate_topic_depths(topic_model, valid_questions)
+# Map initial hierarchy depths to reduced topics
+print("Mapping hierarchy depths to reduced topics...")
+topic_depths = {}
+max_depth = initial_max_depth
+
+# Get the topic mapping from original to reduced
+topic_mapping = topic_model.topic_mapper_.get_mappings()
+print(f"Topic mapping available: {topic_mapping is not None}")
+
+if topic_mapping and initial_topic_depths:
+    # Map depths from original topics to reduced topics
+    for original_topic, reduced_topic in topic_mapping.items():
+        if original_topic in initial_topic_depths:
+            if reduced_topic not in topic_depths:
+                topic_depths[reduced_topic] = initial_topic_depths[original_topic]
+            else:
+                # If multiple original topics map to same reduced topic, take minimum depth
+                topic_depths[reduced_topic] = min(topic_depths[reduced_topic], initial_topic_depths[original_topic])
+    
+    print(f"Mapped {len(topic_depths)} topic depths from original to reduced topics")
+else:
+    print("No topic mapping available, assigning depth 0 to all topics")
+    # Fallback: assign all current topics depth 0
+    current_topics = set(topic_model.get_topic_info()['Topic'].tolist())
+    current_topics.discard(-1)
+    for topic_id in current_topics:
+        topic_depths[topic_id] = 0
+    max_depth = 0
+
+# Ensure all current topics have a depth assigned
+current_topics = set(topic_model.get_topic_info()['Topic'].tolist())
+current_topics.discard(-1)
+for topic_id in current_topics:
+    if topic_id not in topic_depths:
+        topic_depths[topic_id] = 0
+
+print(f"Final topic depths: max_depth = {max_depth}, topics with depth = {len(topic_depths)}")
 
 # Generate topic documents with LLM-generated titles
 print("Generating LLM titles for topics...")
