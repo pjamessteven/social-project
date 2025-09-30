@@ -363,15 +363,23 @@ def generate_llm_title(topic_id, questions, keywords, depth=0, max_depth=1, topn
         if parent_title and depth > 0:
             parent_context = f"\nParent topic: {parent_title}\nGenerate a title that is more specific than the parent topic."
         
-        # Determine granularity based on depth
+        # Determine granularity based on depth ratio for better scaling
+        depth_ratio = depth / max_depth if max_depth > 0 else 0
+        
         if max_depth <= 1:
             granularity_instruction = "Generate a broad, general title that covers the main theme."
         elif depth == 0:
             granularity_instruction = "Generate a broad, high-level title that encompasses major themes."
-        elif depth == max_depth:
+        elif depth_ratio >= 0.9:
             granularity_instruction = "Generate a very specific, detailed title that captures precise subtopics and distinguishes this from sibling topics."
+        elif depth_ratio >= 0.7:
+            granularity_instruction = f"Generate a specific title (depth {depth}/{max_depth}) that captures detailed subtopics while being more specific than parent topics."
+        elif depth_ratio >= 0.5:
+            granularity_instruction = f"Generate a moderately specific title (depth {depth}/{max_depth}) that balances specificity with broader applicability."
+        elif depth_ratio >= 0.3:
+            granularity_instruction = f"Generate a somewhat broad title (depth {depth}/{max_depth}) that covers related themes while being more specific than higher-level topics."
         else:
-            granularity_instruction = f"Generate a moderately specific title (depth {depth}/{max_depth}) that is more specific than parent topics but broader than leaf topics."
+            granularity_instruction = f"Generate a broad title (depth {depth}/{max_depth}) that encompasses major themes while being more specific than root topics."
         
         prompt = f"""Based on the following questions and keywords from a topic cluster, generate a concise, descriptive title (2-6 words) that captures the main theme:
 
@@ -603,16 +611,28 @@ def get_aggregated_questions_for_synthetic_topic(topic_id, parent_to_children, l
     """Get hierarchical representative questions for a synthetic topic based on depth"""
     depth = topic_depths.get(topic_id, 0)
     
-    # Adjust selection strategy based on depth
+    # Calculate depth ratio for more nuanced selection strategy
+    depth_ratio = depth / max_depth if max_depth > 0 else 0
+    
+    # Adjust selection strategy based on depth ratio and absolute depth
     if depth == 0:  # Root level - very broad
-        questions_per_leaf = 1  # Fewer questions per leaf for broader coverage
-        max_questions = 15
-    elif depth == max_depth:  # Deepest level - most specific
-        questions_per_leaf = 8  # More questions per leaf for specificity
-        max_questions = 15
-    else:  # Middle levels
+        questions_per_leaf = 1
+        max_questions = 12
+    elif depth_ratio >= 0.9:  # Very deep (top 10% of hierarchy) - most specific
+        questions_per_leaf = 8
+        max_questions = 20
+    elif depth_ratio >= 0.7:  # Deep (70-90%) - quite specific
+        questions_per_leaf = 6
+        max_questions = 18
+    elif depth_ratio >= 0.5:  # Upper middle (50-70%) - moderately specific
         questions_per_leaf = 4
-        max_questions = 15
+        max_questions = 16
+    elif depth_ratio >= 0.3:  # Lower middle (30-50%) - somewhat broad
+        questions_per_leaf = 3
+        max_questions = 14
+    else:  # Shallow (0-30%) - broad
+        questions_per_leaf = 2
+        max_questions = 12
     
     def get_questions_by_distance(topic_id, max_distance=None):
         """Get questions organized by distance from current topic"""
@@ -645,7 +665,7 @@ def get_aggregated_questions_for_synthetic_topic(topic_id, parent_to_children, l
     
     print(f"Finding hierarchical questions for synthetic topic {topic_id} (depth {depth}/{max_depth})...")
     
-    # Get questions organized by distance
+    # Get questions organized by distance with depth-aware strategy
     if depth == 0:
         # Root level: sample from all distances but prefer closer ones
         questions_by_distance = get_questions_by_distance(topic_id)
@@ -655,14 +675,38 @@ def get_aggregated_questions_for_synthetic_topic(topic_id, parent_to_children, l
             take_count = max(1, max_questions // (2 ** distance))
             all_questions.extend(questions_by_distance[distance][:take_count])
             print(f"  Distance {distance}: took {min(take_count, len(questions_by_distance[distance]))} questions")
-    else:
-        # Deeper levels: focus on immediate children only
-        max_distance = 1 if depth >= max_depth - 1 else 2
+    elif depth_ratio >= 0.8:
+        # Very deep levels: focus only on immediate children
+        max_distance = 1
         questions_by_distance = get_questions_by_distance(topic_id, max_distance)
         all_questions = []
         for distance in sorted(questions_by_distance.keys()):
             all_questions.extend(questions_by_distance[distance])
             print(f"  Distance {distance}: took {len(questions_by_distance[distance])} questions")
+    elif depth_ratio >= 0.5:
+        # Middle-deep levels: look 1-2 levels down
+        max_distance = 2
+        questions_by_distance = get_questions_by_distance(topic_id, max_distance)
+        all_questions = []
+        for distance in sorted(questions_by_distance.keys()):
+            # Prefer closer distances
+            weight = 1.0 / (distance + 1)
+            take_count = int(max_questions * weight / sum(1.0/(d+1) for d in questions_by_distance.keys()))
+            take_count = max(1, take_count)
+            all_questions.extend(questions_by_distance[distance][:take_count])
+            print(f"  Distance {distance}: took {min(take_count, len(questions_by_distance[distance]))} questions (weight: {weight:.2f})")
+    else:
+        # Shallow-middle levels: look 2-3 levels down
+        max_distance = 3
+        questions_by_distance = get_questions_by_distance(topic_id, max_distance)
+        all_questions = []
+        for distance in sorted(questions_by_distance.keys()):
+            # More even distribution across distances
+            weight = 0.8 ** distance  # Exponential decay but less aggressive
+            take_count = int(max_questions * weight / sum(0.8**d for d in questions_by_distance.keys()))
+            take_count = max(1, take_count)
+            all_questions.extend(questions_by_distance[distance][:take_count])
+            print(f"  Distance {distance}: took {min(take_count, len(questions_by_distance[distance]))} questions (weight: {weight:.2f})")
     
     print(f"Synthetic topic {topic_id} collected {len(all_questions)} hierarchical questions")
     return all_questions[:max_questions]
@@ -705,10 +749,11 @@ def get_aggregated_keywords_for_synthetic_topic(topic_id, parent_to_children, le
     
     print(f"Synthetic topic {topic_id} aggregated {keywords_found} keywords from {len(descendant_leaves)} leaves")
     
-    # Filter keywords based on depth
+    # Filter keywords based on depth ratio for better granularity
+    depth_ratio = depth / max_depth if max_depth > 0 else 0
+    
     if depth == 0:
         # Root level: prefer broader, more general terms
-        # Filter out very specific terms
         filtered_keywords = {}
         for word, score in keyword_counts.items():
             # Skip very specific terms at root level
@@ -717,13 +762,37 @@ def get_aggregated_keywords_for_synthetic_topic(topic_id, parent_to_children, le
         keyword_counts = filtered_keywords
         print(f"  Root level: filtered to {len(keyword_counts)} broader keywords")
         
-    elif depth == max_depth:
-        # Deepest level: prefer more specific terms
-        # Boost scores for compound words or specific terms
+    elif depth_ratio >= 0.8:
+        # Very deep levels: strongly prefer specific terms
         for word in keyword_counts:
-            if '_' in word or len(word) > 8:  # Compound or longer words tend to be more specific
+            if '_' in word or len(word) > 8:  # Compound or longer words
+                keyword_counts[word] *= 2.0
+            elif len(word) > 6:  # Moderately long words
                 keyword_counts[word] *= 1.5
-        print(f"  Deep level: boosted specific keyword scores")
+        print(f"  Very deep level (ratio {depth_ratio:.2f}): strongly boosted specific keywords")
+        
+    elif depth_ratio >= 0.6:
+        # Deep levels: moderately prefer specific terms
+        for word in keyword_counts:
+            if '_' in word or len(word) > 8:
+                keyword_counts[word] *= 1.5
+            elif len(word) > 6:
+                keyword_counts[word] *= 1.2
+        print(f"  Deep level (ratio {depth_ratio:.2f}): moderately boosted specific keywords")
+        
+    elif depth_ratio >= 0.4:
+        # Middle levels: slight preference for specific terms
+        for word in keyword_counts:
+            if '_' in word or len(word) > 8:
+                keyword_counts[word] *= 1.2
+        print(f"  Middle level (ratio {depth_ratio:.2f}): slightly boosted specific keywords")
+        
+    elif depth_ratio >= 0.2:
+        # Lower-middle levels: slight preference for general terms
+        for word in keyword_counts:
+            if len(word) <= 4:  # Short, general words
+                keyword_counts[word] *= 1.1
+        print(f"  Lower-middle level (ratio {depth_ratio:.2f}): slightly boosted general keywords")
     
     # Sort by aggregated score and return top keywords
     sorted_keywords = sorted(keyword_counts.items(), key=lambda x: x[1], reverse=True)
