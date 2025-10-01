@@ -24,15 +24,9 @@ export default async function DonationPage() {
             Please consider a monthly donation. You can donate using paypal
             below, directly to my New Zealand bank account or with BTC.
           </p>
-          <div className="mt-8 flex max-w-md items-center space-x-1 rounded-xl bg-white shadow-md dark:bg-gray-800">
-            <div className="flex-1">
-              <p className="px-4 text-sm font-medium opacity-70">
-                Make a Paypal Donation
-              </p>
-              <div className="flex items-center justify-center pb-2">
-                <DonationBox />
-              </div>
-            </div>
+
+          <div className="mt-8 flex max-w-[400px] items-center overflow-hidden rounded-xl bg-white shadow-md dark:bg-gray-800">
+            <DonationBox />
           </div>
           <div className="mt-4 mb-4 flex max-w-md items-center space-x-1 rounded-xl bg-white px-4 shadow-md dark:bg-gray-800">
             <div className="mb-4 flex-1 font-mono break-all">

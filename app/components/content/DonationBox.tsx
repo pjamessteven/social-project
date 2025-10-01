@@ -9,7 +9,7 @@ export default function DonationBox() {
         paypalExpress="false"
       ></Script>{" "}
       <iframe
-        src="https://donorbox.org/embed/detrans-ai-donations?default_interval=m"
+        src="https://donorbox.org/embed/detrans-ai-donations-822696?"
         name="donorbox"
         // @ts-expect-error something
         allowpaymentrequest="allowpaymentrequest"
