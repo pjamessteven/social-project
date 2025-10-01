@@ -472,11 +472,16 @@ def generate_keyword_name(keywords, max_words=5):
     
     return "_".join(clean_keywords[:max_words]) if clean_keywords else "unknown_topic"
 
-def generate_title_from_child_titles(topic_id, child_titles, depth, max_depth, parent_title=None):
+def generate_title_from_child_titles(topic_id, child_titles, child_types, depth, max_depth, parent_title=None):
     """Generate a title for synthetic topic based on child topic titles"""
     try:
-        # Build context about the child topics
-        child_titles_str = "\n".join(f"- {title}" for title in child_titles)
+        # Build context about the child topics with type information
+        child_info_lines = []
+        for title, is_synthetic in zip(child_titles, child_types):
+            type_label = "synthetic grouping" if is_synthetic else "document cluster"
+            child_info_lines.append(f"- {title} ({type_label})")
+        
+        child_titles_str = "\n".join(child_info_lines)
         
         # Add parent context if available
         parent_context = ""
@@ -493,6 +498,18 @@ def generate_title_from_child_titles(topic_id, child_titles, depth, max_depth, p
         else:
             granularity_instruction = f"Generate a moderately broad title (depth {depth}/{max_depth}) that encompasses the child topics as related themes."
         
+        # Count non-synthetic children for additional context
+        non_synthetic_count = sum(1 for is_synthetic in child_types if not is_synthetic)
+        synthetic_count = sum(1 for is_synthetic in child_types if is_synthetic)
+        
+        type_context = ""
+        if non_synthetic_count > 0 and synthetic_count > 0:
+            type_context = f"\nNote: This topic contains both actual document clusters ({non_synthetic_count}) and synthetic groupings ({synthetic_count}). Focus on the document clusters for the core meaning."
+        elif non_synthetic_count > 0:
+            type_context = f"\nNote: All child topics are actual document clusters. Generate a title that encompasses these concrete themes."
+        else:
+            type_context = f"\nNote: All child topics are synthetic groupings. Generate a broader title that encompasses these grouped themes."
+        
         prompt = f"""Based on the following child topic titles, generate a concise, descriptive parent title (2-6 words) that encompasses all child topics:
 
 Child Topics:
@@ -501,7 +518,7 @@ Child Topics:
 Hierarchy Context:
 - Current depth: {depth} (0 = top level)
 - Maximum depth: {max_depth}
-- {granularity_instruction}{parent_context}
+- {granularity_instruction}{parent_context}{type_context}
 
 Generate a title that is broader than the child topics but still descriptive and specific enough to be meaningful.
 Respond with only the title, do not include any notes.
@@ -929,8 +946,9 @@ for synthetic_topic_id in synthetic_topics_by_depth:
     # Get direct children of this synthetic topic
     direct_children = parent_to_children.get(synthetic_topic_id, [])
     
-    # Get titles of direct children (both leaf and synthetic)
+    # Get titles of direct children (both leaf and synthetic) with type information
     child_titles = []
+    child_types = []  # Track whether each child is synthetic or not
     for child_id in direct_children:
         child_id = int(child_id)
         
@@ -939,9 +957,11 @@ for synthetic_topic_id in synthetic_topics_by_depth:
             reduced_child = map_to_reduced_topic(child_id)
             if reduced_child and reduced_child in topic_id_to_title:
                 child_titles.append(topic_id_to_title[reduced_child])
+                child_types.append(False)  # Not synthetic - this is a document cluster
         # Check if child is a synthetic topic we've already processed
         elif child_id in topic_id_to_title:
             child_titles.append(topic_id_to_title[child_id])
+            child_types.append(True)  # This is synthetic
     
     # Get aggregated keywords from descendant leaves (for keyword name generation)
     aggregated_keywords = get_aggregated_keywords_for_synthetic_topic(
@@ -957,7 +977,7 @@ for synthetic_topic_id in synthetic_topics_by_depth:
     # Generate title from child titles instead of questions
     if child_titles:
         llm_title = generate_title_from_child_titles(
-            synthetic_topic_id, child_titles, depth, max_depth, parent_title
+            synthetic_topic_id, child_titles, child_types, depth, max_depth, parent_title
         )
     else:
         print(f"Warning: No child titles found for synthetic topic {synthetic_topic_id}")
