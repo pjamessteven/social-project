@@ -10,6 +10,7 @@ from qdrant_client.models import VectorParams, Distance
 import openai
 from dotenv import load_dotenv                                                                                                                                          
 import os
+import re
 
 load_dotenv()                                                                                                                                                           
 # -------------------------------
@@ -456,6 +457,72 @@ def generate_simple_label(topic_id, questions, topn=3):
     sample_qs = questions[:topn]
     return " | ".join(sample_qs)
 
+def generate_keyword_name(keywords, max_words=5):
+    """Generate a keyword-based name like 'the_of_what_to_how'"""
+    if not keywords:
+        return "unknown_topic"
+    
+    # Take top keywords and clean them
+    clean_keywords = []
+    for keyword in keywords[:max_words]:
+        # Remove special characters and convert to lowercase
+        clean_word = re.sub(r'[^a-zA-Z0-9]', '', keyword.lower())
+        if clean_word and len(clean_word) > 1:  # Skip single characters
+            clean_keywords.append(clean_word)
+    
+    return "_".join(clean_keywords[:max_words]) if clean_keywords else "unknown_topic"
+
+def generate_title_from_child_titles(topic_id, child_titles, depth, max_depth, parent_title=None):
+    """Generate a title for synthetic topic based on child topic titles"""
+    try:
+        # Build context about the child topics
+        child_titles_str = "\n".join(f"- {title}" for title in child_titles)
+        
+        # Add parent context if available
+        parent_context = ""
+        if parent_title and depth > 0:
+            parent_context = f"\nParent topic: {parent_title}\nGenerate a title that is broader than the parent but encompasses the child topics."
+        
+        # Determine granularity based on depth
+        depth_ratio = depth / max_depth if max_depth > 0 else 0
+        
+        if depth == 0:
+            granularity_instruction = "Generate a broad, high-level title that encompasses all the child topics as major themes."
+        elif depth_ratio >= 0.7:
+            granularity_instruction = f"Generate a specific title (depth {depth}/{max_depth}) that unifies the child topics while being more specific than parent topics."
+        else:
+            granularity_instruction = f"Generate a moderately broad title (depth {depth}/{max_depth}) that encompasses the child topics as related themes."
+        
+        prompt = f"""Based on the following child topic titles, generate a concise, descriptive parent title (2-6 words) that encompasses all child topics:
+
+Child Topics:
+{child_titles_str}
+
+Hierarchy Context:
+- Current depth: {depth} (0 = top level)
+- Maximum depth: {max_depth}
+- {granularity_instruction}{parent_context}
+
+Generate a title that is broader than the child topics but still descriptive and specific enough to be meaningful.
+Respond with only the title, do not include any notes.
+Title:"""
+
+        response = openai_client.chat.completions.create(
+            model="deepseek/deepseek-chat-v3.1",
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=50,
+            temperature=0.3
+        )
+        
+        title = response.choices[0].message.content.strip().strip('"\'').strip()
+        print(f"Generated title from child titles for topic {topic_id} (depth {depth}/{max_depth}): {title}")
+        return title
+        
+    except Exception as e:
+        print(f"Error generating title from child titles for topic {topic_id}: {e}")
+        # Fallback to joining child titles
+        return " & ".join(child_titles[:3]) if child_titles else f"Topic {topic_id}"
+
 
 # Map initial hierarchy depths to reduced topics
 print("Mapping hierarchy depths to reduced topics...")
@@ -823,6 +890,9 @@ for _, row in topic_info.iterrows():
     # Generate LLM title using questions, keywords, and hierarchy depth
     llm_title = generate_llm_title(topic_id, rep_questions, keywords, depth, max_depth, topn=5)
     
+    # Generate keyword-based name
+    keyword_name = generate_keyword_name(keywords)
+    
     # Keep the simple label as backup
     simple_label = generate_simple_label(topic_id, rep_questions, topn=15)
     
@@ -835,6 +905,7 @@ for _, row in topic_info.iterrows():
                 "title": llm_title,
                 "label": simple_label,
                 "keywords": keywords,
+                "keyword_name": keyword_name,  # Add keyword-based name
                 "depth": depth,
                 "max_depth": max_depth,
                 "is_synthetic": False,
@@ -843,75 +914,82 @@ for _, row in topic_info.iterrows():
         )
     )
 
-# Process synthetic parent topics with sibling awareness
+# Process synthetic parent topics with child title awareness
 print(f"Processing {len(synthetic_topics)} synthetic parent topics...")
 
-# Group synthetic topics by parent to handle siblings together
-topics_by_parent = defaultdict(list)
-for synthetic_topic_id in synthetic_topics:
-    parent_id = None
-    # Find parent of this synthetic topic
-    for parent, children in parent_to_children.items():
-        if synthetic_topic_id in children:
-            parent_id = parent
-            break
-    topics_by_parent[parent_id].append(synthetic_topic_id)
+# First, create a mapping of topic_id to title for all processed topics
+topic_id_to_title = {}
+for point in topic_points:
+    topic_id_to_title[point.id] = point.payload["title"]
 
-# Process each group of siblings together
-for parent_id, sibling_topics in topics_by_parent.items():
-    sibling_titles = []
+# Process synthetic topics in order of depth (deepest first, so parents can use child titles)
+synthetic_topics_by_depth = sorted(synthetic_topics, key=lambda t: topic_depths.get(t, 0), reverse=True)
+
+for synthetic_topic_id in synthetic_topics_by_depth:
+    # Get direct children of this synthetic topic
+    direct_children = parent_to_children.get(synthetic_topic_id, [])
     
-    for synthetic_topic_id in sibling_topics:
-        # Get aggregated questions from all descendant leaf topics
-        aggregated_questions = get_aggregated_questions_for_synthetic_topic(
-            synthetic_topic_id, parent_to_children, leaf_topics, max_questions=15
+    # Get titles of direct children (both leaf and synthetic)
+    child_titles = []
+    for child_id in direct_children:
+        child_id = int(child_id)
+        
+        # Check if child is a leaf topic (map to reduced topic)
+        if child_id in leaf_topics:
+            reduced_child = map_to_reduced_topic(child_id)
+            if reduced_child and reduced_child in topic_id_to_title:
+                child_titles.append(topic_id_to_title[reduced_child])
+        # Check if child is a synthetic topic we've already processed
+        elif child_id in topic_id_to_title:
+            child_titles.append(topic_id_to_title[child_id])
+    
+    # Get aggregated keywords from descendant leaves (for keyword name generation)
+    aggregated_keywords = get_aggregated_keywords_for_synthetic_topic(
+        synthetic_topic_id, parent_to_children, leaf_topics
+    )
+    
+    # Get depth for this synthetic topic
+    depth = topic_depths.get(synthetic_topic_id, 0)
+    
+    # Get parent title if available
+    parent_title = topic_id_to_title.get(child_to_parent.get(synthetic_topic_id))
+    
+    # Generate title from child titles instead of questions
+    if child_titles:
+        llm_title = generate_title_from_child_titles(
+            synthetic_topic_id, child_titles, depth, max_depth, parent_title
         )
-        
-        # Get aggregated keywords from all descendant leaf topics
-        aggregated_keywords = get_aggregated_keywords_for_synthetic_topic(
-            synthetic_topic_id, parent_to_children, leaf_topics
+    else:
+        print(f"Warning: No child titles found for synthetic topic {synthetic_topic_id}")
+        llm_title = f"Topic {synthetic_topic_id}"
+    
+    # Generate keyword-based name
+    keyword_name = generate_keyword_name(aggregated_keywords)
+    
+    # Add to our title mapping for future parent topics
+    topic_id_to_title[synthetic_topic_id] = llm_title
+    
+    # Generate simple label (fallback)
+    simple_label = " & ".join(child_titles[:3]) if child_titles else f"Synthetic Topic {synthetic_topic_id}"
+    
+    topic_points.append(
+        models.PointStruct(
+            id=synthetic_topic_id,
+            vector={},
+            payload={
+                "topic_id": synthetic_topic_id,
+                "title": llm_title,
+                "label": simple_label,
+                "keywords": aggregated_keywords,
+                "keyword_name": keyword_name,  # Add keyword-based name
+                "depth": depth,
+                "max_depth": max_depth,
+                "is_synthetic": True,
+                "child_topics": direct_children,
+                "child_titles": child_titles  # Store child titles for reference
+            }
         )
-        
-        # Get depth for this synthetic topic
-        depth = topic_depths.get(synthetic_topic_id, 0)
-        
-        # Get parent title if available
-        parent_title = None
-        if parent_id is not None:
-            # Look for parent title in already processed topics
-            for point in topic_points:
-                if point.id == parent_id:
-                    parent_title = point.payload.get("title")
-                    break
-        
-        # Generate differentiated LLM title for synthetic topic
-        llm_title = generate_differentiated_title(
-            synthetic_topic_id, aggregated_questions, aggregated_keywords, 
-            depth, max_depth, sibling_titles, parent_title
-        )
-        
-        sibling_titles.append(llm_title)  # Add to sibling titles for next iteration
-        
-        # Generate simple label from aggregated questions
-        simple_label = generate_simple_label(synthetic_topic_id, aggregated_questions, topn=15)
-        
-        topic_points.append(
-            models.PointStruct(
-                id=synthetic_topic_id,
-                vector={},
-                payload={
-                    "topic_id": synthetic_topic_id,
-                    "title": llm_title,
-                    "label": simple_label,
-                    "keywords": aggregated_keywords,
-                    "depth": depth,
-                    "max_depth": max_depth,
-                    "is_synthetic": True,
-                    "question_count": len(aggregated_questions),
-                    "child_topics": parent_to_children.get(synthetic_topic_id, [])
-                }
-            )
-        )
+    )
 
 print(f"Generated {len(topic_points)} total topics ({len(leaf_topics)} leaf + {len(synthetic_topics)} synthetic)")
 
