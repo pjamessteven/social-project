@@ -16,7 +16,7 @@ import { initSettings } from "./app/settings";
 import { KeywordPrompt, questionPrompt, SummaryPrompt } from "./prompts";
 
 // Checkpoint helpers
-const checkpointFile = "checkpoint.json";
+const checkpointFile = "exported_questions.json";
 function saveCheckpoint(lineNumber: number) {
   fs.writeFileSync(checkpointFile, JSON.stringify({ lineNumber }));
 }
@@ -222,6 +222,106 @@ async function generateDatasource() {
   console.log("Storage context successfully generated.");
 }
 
+async function generateQuestionDatasource() {
+  console.log(`Generating storage context...`);
+
+  const vectorStore = new QdrantVectorStore({
+    url: "http://localhost:6333",
+    collectionName: "default_questions",
+  });
+
+  const pipeline = new IngestionPipeline();
+
+  // JSONL streamer with checkpoint support - now processes from end to start
+  async function* streamJsonl(
+    filePath: string,
+    batchSize = 100,
+    startLine = 0,
+    seenIds: Set<string>,
+  ) {
+    // Read all lines first to determine total count
+    const allLines: string[] = [];
+    const fileStream = fs.createReadStream(filePath);
+    const rl = readline.createInterface({
+      input: fileStream,
+      crlfDelay: Infinity,
+    });
+
+    for await (const line of rl) {
+      if (line.trim()) {
+        allLines.push(line);
+      }
+    }
+
+    const totalLines = allLines.length;
+    console.log(`Total lines in file: ${totalLines}`);
+    console.log(`Starting from reverse line: ${startLine}`);
+
+    // Process from end to start
+    let batch: Document[] = [];
+
+    for (let i = totalLines - 1 - startLine; i >= 0; i--) {
+      const line = allLines[i];
+      const obj = JSON.parse(line);
+
+      const doc = new Document({
+        text: obj.question,
+      });
+
+      batch.push(doc);
+
+      if (batch.length >= batchSize) {
+        yield { batch, lineNumber: totalLines - 1 - i }; // reverse line number
+        batch = [];
+      }
+    }
+
+    // yield remaining batch if any
+    if (batch.length > 0) {
+      yield { batch, lineNumber: totalLines - 1 }; // last reverse line number
+    }
+  }
+
+  const index = await VectorStoreIndex.fromVectorStore(vectorStore);
+  const startLine = loadCheckpoint();
+  console.log(`▶️ Resuming from reverse line ${startLine}`);
+
+  const seen = new Set<string>();
+  try {
+    for await (const { batch, lineNumber } of await fetchWithBackoff(async () =>
+      streamJsonl("data/exported_questions.jsonl", 100, startLine, seen),
+    )) {
+      // Process the batch with retry logic for network operations
+      const nodes = await fetchWithBackoff(
+        async () => pipeline.run({ documents: batch }),
+        3, // fewer retries for LLM operations
+        1000, // longer initial delay
+      );
+
+      await fetchWithBackoff(
+        async () => index.insertNodes(nodes),
+        5, // more retries for database operations
+        500,
+      );
+
+      for (const node of nodes) {
+        console.log(node.metadata);
+      }
+      console.log(`Inserted batch of ${batch.length} docs`);
+      console.log(`Processed up to reverse line ${lineNumber}`);
+      saveCheckpoint(lineNumber);
+    }
+  } catch (error) {
+    console.error("Fatal error during processing:", error);
+    console.log(
+      "Checkpoint saved. Run the command again to resume from the last saved position.",
+    );
+    process.exit(1);
+  }
+
+  console.log("Storage context successfully generated.");
+}
+
 async function clearDb() {
   const client = new QdrantClient({ url: "http://localhost:6333" });
 
@@ -291,10 +391,13 @@ async function deduplicateDb() {
 async function exportQuestions() {
   const client = new QdrantClient({ url: "http://localhost:6333" });
 
-  const questionsMap = new Map<string, {
-    question: string;
-    point_ids: (number | string)[];
-  }>();
+  const questionsMap = new Map<
+    string,
+    {
+      question: string;
+      point_ids: (number | string)[];
+    }
+  >();
 
   let nextPage = 0;
   let totalProcessed = 0;
@@ -425,6 +528,8 @@ async function filterDb() {
 
   if (command === "datasource") {
     await generateDatasource();
+  } else if (command === "question-datasource") {
+    await generateQuestionDatasource();
   } else if (command === "reset") {
     await clearDb();
   } else if (command === "deduplicate") {
