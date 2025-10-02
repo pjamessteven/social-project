@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/app/components/ui/button";
 import { slugify } from "@/app/lib/utils";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
@@ -154,10 +153,10 @@ export function DynamicQuestionCategories({
               </div>
             </Link>
           ))}
-          
-          {hasMore && (
-            <div 
-              className="flex flex-row items-center border-b pt-1 pb-2 cursor-pointer"
+
+          {(hasMore || true) && (
+            <div
+              className="flex cursor-pointer flex-row items-center border-b pt-1 pb-2"
               onClick={handleShowMore}
             >
               <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-lg italic opacity-90">
