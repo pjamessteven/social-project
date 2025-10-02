@@ -257,8 +257,8 @@ export default function TopicPage({ params }: { params: { id: string } }) {
         <>
           <div className="mb-8 space-y-3">
             {questions.map((question, index) => {
-              // Calculate question number based on pagination
-              const questionNumber = pagination ? (pagination.page - 1) * pagination.limit + index + 1 : index + 1;
+              // Calculate question number based on position in the full list
+              const questionNumber = index + 1;
               
               return (
                 <Link
