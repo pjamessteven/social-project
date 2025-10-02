@@ -1,16 +1,59 @@
 // lib/cache.ts
-import { connectRedis } from "./redis";
+import { db, detransQuestions, affirmQuestions } from "@/db";
+import { eq } from "drizzle-orm";
 
-export async function getCached(
-  prefix: string,
-  key: string,
+export async function getCachedAnswer(
+  mode: "detrans" | "affirm",
+  question: string,
 ): Promise<string | undefined> {
-  const redis = await connectRedis();
-  let cached;
-  if (redis) {
-    cached = await redis.get(`${prefix}:${key}`);
+  try {
+    const questionsTable = mode === "detrans" ? detransQuestions : affirmQuestions;
+    
+    const result = await db
+      .select({ finalResponse: questionsTable.finalResponse })
+      .from(questionsTable)
+      .where(eq(questionsTable.name, question))
+      .limit(1);
+
+    if (result.length > 0 && result[0].finalResponse) {
+      return result[0].finalResponse;
+    }
+    
+    return undefined;
+  } catch (error) {
+    console.error('Cache get error:', error);
+    return undefined;
   }
-  return cached || undefined;
+}
+
+export async function setCachedAnswer(
+  mode: "detrans" | "affirm",
+  question: string,
+  answer: string,
+): Promise<void> {
+  try {
+    const questionsTable = mode === "detrans" ? detransQuestions : affirmQuestions;
+    
+    await db
+      .insert(questionsTable)
+      .values({
+        name: question,
+        finalResponse: answer,
+        viewsCount: 0,
+        mostRecentlyAsked: new Date(),
+        createdAt: new Date(),
+      })
+      .onConflictDoUpdate({
+        target: questionsTable.name,
+        set: {
+          finalResponse: answer,
+          mostRecentlyAsked: new Date(),
+        },
+      });
+  } catch (error) {
+    console.error('Cache set error:', error);
+    // Don't throw - cache failures shouldn't break the application
+  }
 }
 
 export async function incrementPageViews(mode: string, page: string) {
