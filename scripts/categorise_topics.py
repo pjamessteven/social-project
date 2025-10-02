@@ -350,6 +350,49 @@ topic_to_questions = defaultdict(list)
 for q, t in zip(valid_questions, topics):
     topic_to_questions[t].append(q)
 
+# Collect aggregated data from original points for each topic
+topic_to_aggregated_data = defaultdict(lambda: {
+    'question_count': 0,
+    'keyword_names': set(),
+    'keywords': set(),
+    'children': []
+})
+
+for i, topic_id in enumerate(topics):
+    point = all_points[valid_indices[i]]
+    payload = point.payload or {}
+    
+    # Aggregate question_count
+    if 'question_count' in payload:
+        topic_to_aggregated_data[topic_id]['question_count'] += payload['question_count']
+    else:
+        topic_to_aggregated_data[topic_id]['question_count'] += 1  # Default to 1 if not present
+    
+    # Aggregate keyword_name (convert to array and collect)
+    if 'keyword_name' in payload and payload['keyword_name']:
+        # Split keyword_name by underscore to create array
+        keyword_parts = payload['keyword_name'].split('_')
+        topic_to_aggregated_data[topic_id]['keyword_names'].update(keyword_parts)
+    
+    # Aggregate keywords (concatenate arrays, remove duplicates)
+    if 'keywords' in payload and isinstance(payload['keywords'], list):
+        topic_to_aggregated_data[topic_id]['keywords'].update(payload['keywords'])
+    
+    # Collect children (title and topic_id as objects)
+    if 'title' in payload and 'topic_id' in payload:
+        child_obj = {
+            'title': payload['title'],
+            'topic_id': payload['topic_id']
+        }
+        # Avoid duplicates
+        if child_obj not in topic_to_aggregated_data[topic_id]['children']:
+            topic_to_aggregated_data[topic_id]['children'].append(child_obj)
+
+# Convert sets to lists for JSON serialization
+for topic_id in topic_to_aggregated_data:
+    topic_to_aggregated_data[topic_id]['keyword_names'] = list(topic_to_aggregated_data[topic_id]['keyword_names'])
+    topic_to_aggregated_data[topic_id]['keywords'] = list(topic_to_aggregated_data[topic_id]['keywords'])
+
 # Generate labels using LLM
 def generate_llm_title(topic_id, questions, keywords, depth=0, max_depth=1, topn=10, parent_title=None):
     """Generate a descriptive title for a topic using LLM with depth awareness"""
@@ -794,8 +837,8 @@ def get_aggregated_questions_for_synthetic_topic(topic_id, parent_to_children, l
     print(f"Synthetic topic {topic_id} collected {len(all_questions)} hierarchical questions")
     return all_questions[:max_questions]
 
-def get_aggregated_keywords_for_synthetic_topic(topic_id, parent_to_children, leaf_topics):
-    """Get depth-aware aggregated keywords for a synthetic topic"""
+def get_aggregated_data_for_synthetic_topic(topic_id, parent_to_children, leaf_topics):
+    """Get aggregated data (keywords, keyword_names, question_count, children) for a synthetic topic"""
     depth = topic_depths.get(topic_id, 0)
     
     def get_all_descendant_leaves(topic_id):
@@ -816,23 +859,39 @@ def get_aggregated_keywords_for_synthetic_topic(topic_id, parent_to_children, le
     # Collect keywords from all descendant leaf topics
     keyword_counts = defaultdict(float)
     keywords_found = 0
+    
+    # Aggregate data from descendant leaf topics
+    aggregated_keyword_names = set()
+    aggregated_keywords = set()
+    total_question_count = 0
+    all_children = []
+    
     for leaf_topic in descendant_leaves:
         # Map the original leaf topic to its reduced topic ID
         reduced_topic = map_to_reduced_topic(leaf_topic)
         if reduced_topic is not None:
+            # Get BERTopic keywords
             topic_words = topic_model.get_topic(reduced_topic)
             if topic_words and isinstance(topic_words, list):
                 for word, score in topic_words[:10]:  # Top 10 keywords from each leaf
                     keyword_counts[word] += score
                 keywords_found += len(topic_words[:10])
+            
+            # Get aggregated data from original points for this leaf topic
+            if reduced_topic in topic_to_aggregated_data:
+                leaf_data = topic_to_aggregated_data[reduced_topic]
+                total_question_count += leaf_data['question_count']
+                aggregated_keyword_names.update(leaf_data['keyword_names'])
+                aggregated_keywords.update(leaf_data['keywords'])
+                all_children.extend(leaf_data['children'])
             else:
-                print(f"  No keywords found for reduced topic {reduced_topic}")
+                print(f"  No aggregated data found for reduced topic {reduced_topic}")
         else:
             print(f"  Skipped leaf topic {leaf_topic} (no valid reduced topic)")
     
-    print(f"Synthetic topic {topic_id} aggregated {keywords_found} keywords from {len(descendant_leaves)} leaves")
+    print(f"Synthetic topic {topic_id} aggregated data from {len(descendant_leaves)} leaves: {total_question_count} questions, {len(aggregated_keyword_names)} keyword names, {len(aggregated_keywords)} keywords, {len(all_children)} children")
     
-    # Filter keywords based on depth ratio for better granularity
+    # Filter BERTopic keywords based on depth ratio for better granularity
     depth_ratio = depth / max_depth if max_depth > 0 else 0
     
     if depth == 0:
@@ -879,7 +938,15 @@ def get_aggregated_keywords_for_synthetic_topic(topic_id, parent_to_children, le
     
     # Sort by aggregated score and return top keywords
     sorted_keywords = sorted(keyword_counts.items(), key=lambda x: x[1], reverse=True)
-    return [word for word, _ in sorted_keywords[:15]]  # Top 15 aggregated keywords
+    bertopic_keywords = [word for word, _ in sorted_keywords[:15]]  # Top 15 aggregated keywords
+    
+    return {
+        'bertopic_keywords': bertopic_keywords,
+        'keyword_names': list(aggregated_keyword_names),
+        'keywords': list(aggregated_keywords),
+        'question_count': total_question_count,
+        'children': all_children
+    }
 
 # Build complete hierarchy
 leaf_topics, synthetic_topics, parent_to_children, child_to_parent = build_complete_hierarchy()
@@ -912,6 +979,9 @@ for _, row in topic_info.iterrows():
     # Keep the simple label as backup
     simple_label = generate_simple_label(topic_id, rep_questions, topn=15)
     
+    # Get aggregated data from original points
+    aggregated_data = topic_to_aggregated_data[topic_id]
+    
     topic_points.append(
         models.PointStruct(
             id=topic_id,
@@ -925,7 +995,10 @@ for _, row in topic_info.iterrows():
                 "depth": depth,
                 "max_depth": max_depth,
                 "is_synthetic": False,
-                "question_count": len(rep_questions)
+                "question_count": aggregated_data['question_count'],  # Use aggregated count
+                "keyword_names": aggregated_data['keyword_names'],  # Array of keyword name parts
+                "aggregated_keywords": aggregated_data['keywords'],  # Concatenated unique keywords from original points
+                "children": aggregated_data['children']  # Array of objects with title and topic_id
             }
         )
     )
@@ -962,10 +1035,11 @@ for synthetic_topic_id in synthetic_topics_by_depth:
             child_titles.append(topic_id_to_title[child_id])
             child_types.append(True)  # This is synthetic
     
-    # Get aggregated keywords from descendant leaves (for keyword name generation)
-    aggregated_keywords = get_aggregated_keywords_for_synthetic_topic(
+    # Get aggregated data from descendant leaves
+    aggregated_data = get_aggregated_data_for_synthetic_topic(
         synthetic_topic_id, parent_to_children, leaf_topics
     )
+    aggregated_keywords = aggregated_data['bertopic_keywords']
     
     # Get depth for this synthetic topic
     depth = topic_depths.get(synthetic_topic_id, 0)
@@ -1005,7 +1079,11 @@ for synthetic_topic_id in synthetic_topics_by_depth:
                 "max_depth": max_depth,
                 "is_synthetic": True,
                 "child_topics": direct_children,
-                "child_titles": child_titles  # Store child titles for reference
+                "child_titles": child_titles,  # Store child titles for reference
+                "question_count": aggregated_data['question_count'],  # Aggregated question count
+                "keyword_names": aggregated_data['keyword_names'],  # Array of keyword name parts
+                "aggregated_keywords": aggregated_data['keywords'],  # Concatenated unique keywords from original points
+                "children": aggregated_data['children']  # Array of objects with title and topic_id
             }
         )
     )
