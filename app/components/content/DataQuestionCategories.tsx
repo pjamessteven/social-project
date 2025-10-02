@@ -24,17 +24,17 @@ function TopicNode({
   topic,
   mode,
   level = 0,
-  expandedTopics,
-  onToggleTopic,
+  expandedSubcategories,
+  onToggleSubcategory,
 }: {
   topic: TopicChild;
   mode: "affirm" | "detrans" | "compare";
   level?: number;
-  expandedTopics: Set<string>;
-  onToggleTopic: (topicId: string) => void;
+  expandedSubcategories: Set<string>;
+  onToggleSubcategory: (subcategoryId: string) => void;
 }) {
-  const topicId = `topic-${topic.topic_id || topic.title}`;
-  const isOpen = expandedTopics.has(topicId);
+  const subcategoryId = `subcategory-${topic.topic_id || slugify(topic.title)}`;
+  const isOpen = expandedSubcategories.has(subcategoryId);
   const hasQuestions = topic.questions && topic.questions.length > 0;
   const hasChildren = topic.children && topic.children.length > 0;
 
@@ -57,7 +57,7 @@ function TopicNode({
       <details
         className="group"
         open={isOpen}
-        onToggle={(e) => onToggleTopic(topicId)}
+        onToggle={() => onToggleSubcategory(subcategoryId)}
       >
         <summary className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800">
           <div
@@ -117,8 +117,8 @@ function TopicNode({
                   topic={child}
                   mode={mode}
                   level={level + 1}
-                  expandedTopics={expandedTopics}
-                  onToggleTopic={onToggleTopic}
+                  expandedSubcategories={expandedSubcategories}
+                  onToggleSubcategory={onToggleSubcategory}
                 />
               ))}
             </div>
@@ -140,23 +140,23 @@ export function DataQuestionCategories({
   const searchParams = useSearchParams();
   
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
-  const [expandedTopics, setExpandedTopics] = useState<Set<string>>(new Set());
+  const [expandedSubcategories, setExpandedSubcategories] = useState<Set<string>>(new Set());
 
   // Load expanded state from URL params on mount
   useEffect(() => {
     const expandedCats = searchParams.get('expanded_categories');
-    const expandedTops = searchParams.get('expanded_topics');
+    const expandedSubs = searchParams.get('expanded_subcategories');
     
     if (expandedCats) {
       setExpandedCategories(new Set(expandedCats.split(',')));
     }
-    if (expandedTops) {
-      setExpandedTopics(new Set(expandedTops.split(',')));
+    if (expandedSubs) {
+      setExpandedSubcategories(new Set(expandedSubs.split(',')));
     }
   }, [searchParams]);
 
   // Update URL params when expanded state changes
-  const updateUrlParams = (newExpandedCategories: Set<string>, newExpandedTopics: Set<string>) => {
+  const updateUrlParams = (newExpandedCategories: Set<string>, newExpandedSubcategories: Set<string>) => {
     const params = new URLSearchParams(searchParams.toString());
     
     if (newExpandedCategories.size > 0) {
@@ -165,10 +165,10 @@ export function DataQuestionCategories({
       params.delete('expanded_categories');
     }
     
-    if (newExpandedTopics.size > 0) {
-      params.set('expanded_topics', Array.from(newExpandedTopics).join(','));
+    if (newExpandedSubcategories.size > 0) {
+      params.set('expanded_subcategories', Array.from(newExpandedSubcategories).join(','));
     } else {
-      params.delete('expanded_topics');
+      params.delete('expanded_subcategories');
     }
     
     const newUrl = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
@@ -183,17 +183,17 @@ export function DataQuestionCategories({
       newExpanded.add(categoryId);
     }
     setExpandedCategories(newExpanded);
-    updateUrlParams(newExpanded, expandedTopics);
+    updateUrlParams(newExpanded, expandedSubcategories);
   };
 
-  const toggleTopic = (topicId: string) => {
-    const newExpanded = new Set(expandedTopics);
-    if (newExpanded.has(topicId)) {
-      newExpanded.delete(topicId);
+  const toggleSubcategory = (subcategoryId: string) => {
+    const newExpanded = new Set(expandedSubcategories);
+    if (newExpanded.has(subcategoryId)) {
+      newExpanded.delete(subcategoryId);
     } else {
-      newExpanded.add(topicId);
+      newExpanded.add(subcategoryId);
     }
-    setExpandedTopics(newExpanded);
+    setExpandedSubcategories(newExpanded);
     updateUrlParams(expandedCategories, newExpanded);
   };
 
@@ -201,7 +201,7 @@ export function DataQuestionCategories({
     <>
       <div className="space-y-4">
         {hierarchy.map((category, index) => {
-          const categoryId = `category-${index}`;
+          const categoryId = `category-${slugify(category.title)}`;
           const isOpen = expandedCategories.has(categoryId);
           
           return (
@@ -243,8 +243,8 @@ export function DataQuestionCategories({
                   key={topicIndex} 
                   topic={topic} 
                   mode={mode} 
-                  expandedTopics={expandedTopics}
-                  onToggleTopic={toggleTopic}
+                  expandedSubcategories={expandedSubcategories}
+                  onToggleSubcategory={toggleSubcategory}
                 />
               ))}
             </div>
