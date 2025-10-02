@@ -1,17 +1,14 @@
+import { QdrantClient } from "@qdrant/js-client-rest";
 import { NextRequest, NextResponse } from "next/server";
-import { QdrantVectorStore } from "llamaindex";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   try {
     const topicId = parseInt(params.id);
     if (isNaN(topicId)) {
-      return NextResponse.json(
-        { error: "Invalid topic ID" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Invalid topic ID" }, { status: 400 });
     }
 
     const { searchParams } = new URL(request.url);
@@ -25,20 +22,17 @@ export async function GET(
     if (limit < 1 || limit > 100) {
       return NextResponse.json(
         { error: "Limit must be between 1 and 100" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
-    const vectorStore = new QdrantVectorStore({
-      url: process.env.QDRANT_URL || "http://localhost:6333",
-      collectionName: "default_questions",
-    });
+    const client = new QdrantClient({ url: "http://localhost:6333" });
 
     // Calculate offset for pagination
     const offset = (page - 1) * limit;
 
     // Query Qdrant for nodes with matching topic_id
-    const client = vectorStore.client;
+
     const response = await client.scroll("default_questions", {
       filter: {
         must: [
@@ -95,7 +89,7 @@ export async function GET(
     console.error("Error fetching questions by topic:", error);
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
