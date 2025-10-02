@@ -3,10 +3,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const { id } = await params;
+
   try {
-    const topicId = parseInt(params.id);
+    const topicId = parseInt(id);
     if (isNaN(topicId)) {
       return NextResponse.json({ error: "Invalid topic ID" }, { status: 400 });
     }
@@ -69,13 +71,14 @@ export async function GET(
 
     const items = response.points.map((point) => {
       let text = "";
-      
+
       // Extract text from _node_content JSON
       if (point.payload?._node_content) {
         try {
-          const nodeContent = typeof point.payload._node_content === 'string' 
-            ? JSON.parse(point.payload._node_content)
-            : point.payload._node_content;
+          const nodeContent =
+            typeof point.payload._node_content === "string"
+              ? JSON.parse(point.payload._node_content)
+              : point.payload._node_content;
           text = nodeContent.text || "";
         } catch (error) {
           console.error("Error parsing _node_content:", error);
