@@ -1,0 +1,82 @@
+from qdrant_client import QdrantClient, models
+from openai import OpenAI
+import time
+import os
+from dotenv import load_dotenv                                                                                                                                          
+load_dotenv('../.env')                                                                                                                                                           
+
+# --- Setup clients ---
+qdrant = QdrantClient("http://localhost:6333", prefer_grpc=False)
+openai = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+COLLECTION = "default_topics"
+BATCH_SIZE = 100  # adjust depending on your resources
+
+def generate_embedding(text: str):
+    """Generate a vector embedding for the given text."""
+    response = openai.embeddings.create(
+        input=text,
+        model="text-embedding-3-small"  # or "text-embedding-3-large"
+    )
+    return response.data[0].embedding
+
+def update_all_points():
+    offset = None
+    total_updated = 0
+
+    while True:
+        # Step 1: Scroll through points in batches
+        points, next_offset = qdrant.scroll(
+            collection_name=COLLECTION,
+            with_vectors=False,   # skip fetching vectors
+            with_payload=True,    # need payload to get text
+            limit=BATCH_SIZE,
+            offset=offset
+        )
+
+        if not points:
+            break
+
+        updates = []
+        for pt in points:
+            text = pt.payload.get("title")
+            if not text:
+                continue
+
+            try:
+                # Step 2: Generate embedding
+                emb = generate_embedding(text)
+
+                # Step 3: Build update structure
+                updates.append(
+                    models.PointStruct(
+                        id=pt.id,
+                        vector=emb,
+                        payload=pt.payload  # keep payload unchanged
+                    )
+                )
+            except Exception as e:
+                print(f"Error embedding point {pt.id}: {e}")
+                continue
+
+        # Step 4: Upsert vectors back to Qdrant
+        if updates:
+            qdrant.upsert(
+                collection_name=COLLECTION,
+                points=updates
+            )
+            total_updated += len(updates)
+            print(f"Updated {len(updates)} points (total: {total_updated})")
+
+        # Move to next batch
+        offset = next_offset
+        if offset is None:
+            break
+
+        # Throttle if needed (to avoid rate limits)
+        time.sleep(0.5)
+
+    print(f"Finished. Total points updated with vectors: {total_updated}")
+
+if __name__ == "__main__":
+    update_all_points()
