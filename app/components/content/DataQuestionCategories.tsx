@@ -127,21 +127,23 @@ export function DataQuestionCategories({
 }) {
   const isDev = process.env.NODE_ENV === "development";
   const hierarchy = topicsHierarchy as TopicsHierarchy[];
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       <div className="space-y-4">
-        {hierarchy.map((category, index) => (
-          <details
-            key={index}
-            className="group"
-            onToggle={(e) => setIsOpen(e.currentTarget.open)}
-          >
-            <summary className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800">
-              <div
-                className={`mr-2 transition-transform ${isOpen ? "rotate-90" : ""}`}
-              >
+        {hierarchy.map((category, index) => {
+          const [isOpen, setIsOpen] = useState(false);
+          
+          return (
+            <details
+              key={index}
+              className="group"
+              onToggle={(e) => setIsOpen(e.currentTarget.open)}
+            >
+              <summary className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800">
+                <div
+                  className={`mr-2 transition-transform ${isOpen ? "rotate-90" : ""}`}
+                >
                 <svg
                   className="h-4 w-4"
                   fill="none"
@@ -170,7 +172,7 @@ export function DataQuestionCategories({
               ))}
             </div>
           </details>
-        ))}
+        )})}
       </div>
     </>
   );
