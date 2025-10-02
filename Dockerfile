@@ -31,6 +31,14 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
+# Run database migrations
+RUN \
+  if [ -f yarn.lock ]; then yarn drizzle-kit migrate; \
+  elif [ -f package-lock.json ]; then npm run db:migrate; \
+  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run db:migrate; \
+  else echo "Lockfile not found." && exit 1; \
+  fi
+
 FROM base AS runner
 WORKDIR /app
 
@@ -44,6 +52,8 @@ RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/components ./components
+COPY --from=builder /app/drizzle ./drizzle
+COPY --from=builder /app/drizzle.config.ts ./drizzle.config.ts
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
