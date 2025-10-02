@@ -9,18 +9,39 @@ interface TabScrollHandlerProps {
 export function TabScrollHandler({ hasSearchParams }: TabScrollHandlerProps) {
   useEffect(() => {
     if (hasSearchParams) {
-      // Use a small delay to ensure the page has fully rendered
-      const timer = setTimeout(() => {
+      const scrollToTabs = () => {
         const tabsElement = document.getElementById("question-tabs");
         if (tabsElement) {
           tabsElement.scrollIntoView({ 
             behavior: "smooth", 
             block: "start" 
           });
+          return true;
         }
-      }, 100);
+        return false;
+      };
 
-      return () => clearTimeout(timer);
+      // Try immediately
+      if (scrollToTabs()) return;
+
+      // If not found, try with increasing delays
+      const delays = [50, 100, 200, 500];
+      const timers: NodeJS.Timeout[] = [];
+
+      delays.forEach((delay) => {
+        const timer = setTimeout(() => {
+          if (scrollToTabs()) {
+            // Clear remaining timers if successful
+            timers.forEach(clearTimeout);
+          }
+        }, delay);
+        timers.push(timer);
+      });
+
+      // Cleanup function
+      return () => {
+        timers.forEach(clearTimeout);
+      };
     }
   }, [hasSearchParams]);
 
