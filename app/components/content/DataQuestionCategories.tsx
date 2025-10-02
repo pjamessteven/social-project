@@ -239,22 +239,19 @@ export function DataQuestionCategories({
     <>
       {" "}
       <h3 className="text-primary mb-2 text-2xl font-bold">
-        AI Generated Questions From The Data
+        All Topics From The Data
       </h3>
       <p className="text-muted-foreground mt-4 mb-6 max-w-2xl text-base">
-        Part of how detrans.ai works is that for each comment that's ingested
-        from /r/detrans, several questions are generated for which the comment
-        could potentially be an answer to. It's like using AI upside down.
-        Instead of asking for an answer, we ask for questions. This helps the
-        RAG (retrieval augmented generation) system retrieve experiences that
-        are relevant to your query. Below are all the generated questions in the
-        system, sorted by category and sub-topic. BERTopic was used to
-        categorise the questions. Please note that not all questions were able
-        to be categorised.
+        detrans.ai works in part by generating questions for comments from
+        /r/detrans. Instead of using AI to find answers, it uses AI to find
+        questions—almost like working in reverse. This helps the system find
+        personal stories and experiences that match what you're looking for. The
+        questions are grouped by topic using a tool called BERTopic, though not
+        all questions fit neatly into categories.
       </p>
       <p className="text-muted-foreground mt-4 mb-6 max-w-2xl text-base">
-        In simple terms, these questions are a direct reflection of the Reddit
-        comments. This can also give an idea about the most discussed topics in
+        In simple terms, these questions are a direct reflection of the data.
+        This can also give an idea about the most discussed topics in
         /r/detrans.
       </p>
       <div className="space-y-4">

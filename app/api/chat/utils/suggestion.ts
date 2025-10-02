@@ -1,9 +1,8 @@
-import { connectRedis } from "@/app/lib/redis";
 import { getEnv } from "@llamaindex/env";
 import { OpenAI } from "@llamaindex/openai";
 import type { DataStreamWriter } from "ai";
 import { type ChatMessage } from "llamaindex";
-import { RedisCache } from "../../shared/cache";
+import { PostgresCache } from "../../shared/cache";
 import { NEXT_QUESTION_PROMPT } from "../affirm/prompts";
 
 export const sendSuggestedQuestionsEvent = async (
@@ -12,12 +11,13 @@ export const sendSuggestedQuestionsEvent = async (
   mode: "detrans" | "affirm",
   originalQuestion: string,
 ) => {
-  const cache = new RedisCache(await connectRedis(), mode);
+  const cache = new PostgresCache("detrans");
   const cachedNextQuestions = await cache.get(
     originalQuestion + ":suggested_questions",
   );
   let questions;
   if (cachedNextQuestions) {
+    console.log("CACHED QUETIONS", cachedNextQuestions);
     questions = JSON.parse(cachedNextQuestions);
   } else {
     questions = await generateNextQuestions(chatHistory);
@@ -25,6 +25,7 @@ export const sendSuggestedQuestionsEvent = async (
     await cache.set(
       originalQuestion + ":suggested_questions",
       JSON.stringify(questions),
+      originalQuestion,
     );
   }
 

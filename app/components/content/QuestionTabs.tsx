@@ -66,7 +66,7 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
           onClick={() => handleTabChange("all")}
         >
           <List className="h-4 w-4" />
-          <span className="text-sm font-medium">AI Generated</span>
+          <span className="text-sm font-medium">All Topics</span>
         </Button>
         <Button
           size={"sm"}

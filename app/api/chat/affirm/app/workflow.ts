@@ -1,6 +1,5 @@
-import { CachedLLM, RedisCache } from "@/app/api/shared/cache";
-import { incrementPageViews } from "@/app/lib/cache";
-import { connectRedis } from "@/app/lib/redis";
+import { CachedLLM, PostgresCache } from "@/app/api/shared/cache";
+import { getCachedAnswer, setCachedAnswer } from "@/app/lib/cache";
 import { replayCached } from "@/app/lib/replayCached";
 import { OpenAI } from "@llamaindex/openai";
 import {
@@ -40,8 +39,8 @@ const openAi = new OpenAI({
   model: "openai/gpt-4o",
 });
 
-const cache = new RedisCache(await connectRedis(), "affirm");
-const llm = new CachedLLM(openAi, cache);
+const cache = new PostgresCache("affirm");
+const llm = new CachedLLM(openAi, cache, "affirm");
 
 // workflow factory
 export const workflowFactory = async (
@@ -129,8 +128,6 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       if (!userInput) throw new Error("Invalid input");
       originalQuestion = userInput as string;
 
-      incrementPageViews("affirm", originalQuestion);
-
       state.memory.add({ role: "user", content: userInput });
       state.userRequest = userInput;
       sendEvent(
@@ -150,7 +147,11 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         nodes = JSON.parse(cachedNodes);
       } else {
         nodes = await retriever.retrieve({ query: originalQuestion });
-        await cache.set(originalQuestion + ":nodes", JSON.stringify(nodes));
+        await cache.set(
+          originalQuestion + ":nodes",
+          JSON.stringify(nodes),
+          originalQuestion,
+        );
       }
 
       // experiment with ranking nodes by reddit score
@@ -381,7 +382,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
 
       let response = "";
       let stream;
-      const cachedAnswer = await cache.get(originalQuestion + ":answer");
+      const cachedAnswer = await getCachedAnswer("affirm", originalQuestion);
 
       if (cachedAnswer) {
         stream = replayCached(cachedAnswer);
@@ -402,7 +403,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       }
 
       if (!cachedAnswer) {
-        await cache.set(originalQuestion + ":answer", response);
+        await setCachedAnswer("affirm", originalQuestion, response);
       }
 
       return stopAgentEvent.with({

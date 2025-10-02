@@ -43,7 +43,11 @@ interface SavedPageState {
   hasMore: boolean;
 }
 
-export default function TopicPage({ params }: { params: Promise<{ id: string }> }) {
+export default function TopicPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [pagination, setPagination] = useState<PaginationInfo | null>(null);
   const [topicInfo, setTopicInfo] = useState<TopicInfo | null>(null);
@@ -63,7 +67,7 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
 
   // Save state to localStorage
   const saveState = useCallback(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const state: SavedPageState = {
         questions,
         pagination,
@@ -77,12 +81,12 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
 
   // Load state from localStorage
   const loadState = useCallback((): SavedPageState | null => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       try {
         const saved = localStorage.getItem(storageKey);
         return saved ? JSON.parse(saved) : null;
       } catch (err) {
-        console.error('Error loading saved state:', err);
+        console.error("Error loading saved state:", err);
         return null;
       }
     }
@@ -152,11 +156,19 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
     if (!isRestoringState && questions.length > 0) {
       saveState();
     }
-  }, [questions, pagination, topicInfo, currentPage, hasMore, saveState, isRestoringState]);
+  }, [
+    questions,
+    pagination,
+    topicInfo,
+    currentPage,
+    hasMore,
+    saveState,
+    isRestoringState,
+  ]);
 
   // Resolve params and set topicId
   useEffect(() => {
-    params.then(resolvedParams => {
+    params.then((resolvedParams) => {
       setTopicId(resolvedParams.id);
     });
   }, [params]);
@@ -166,7 +178,7 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
     if (!topicId) return;
 
     const savedState = loadState();
-    
+
     if (savedState && savedState.questions.length > 0) {
       // Restore saved state
       setIsRestoringState(true);
@@ -176,7 +188,7 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
       setCurrentPage(savedState.currentPage);
       setHasMore(savedState.hasMore);
       setLoading(false);
-      
+
       // Mark restoration as complete
       setTimeout(() => {
         setIsRestoringState(false);
@@ -268,7 +280,7 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
             {questions.map((question, index) => {
               // Calculate question number based on position in the full list
               const questionNumber = index + 1;
-              
+
               return (
                 <Link
                   key={question.id}
