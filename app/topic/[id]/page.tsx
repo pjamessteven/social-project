@@ -35,6 +35,14 @@ interface TopicInfo {
   isSynthetic: boolean;
 }
 
+interface SavedPageState {
+  questions: Question[];
+  pagination: PaginationInfo | null;
+  topicInfo: TopicInfo | null;
+  currentPage: number;
+  hasMore: boolean;
+}
+
 export default function TopicPage({ params }: { params: { id: string } }) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [pagination, setPagination] = useState<PaginationInfo | null>(null);
@@ -48,6 +56,38 @@ export default function TopicPage({ params }: { params: { id: string } }) {
   const topicId = params.id;
   const observerRef = useRef<IntersectionObserver | null>(null);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
+  const [isRestoringState, setIsRestoringState] = useState(false);
+
+  // Generate storage key for this topic
+  const storageKey = `topic-${topicId}-state`;
+
+  // Save state to localStorage
+  const saveState = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      const state: SavedPageState = {
+        questions,
+        pagination,
+        topicInfo,
+        currentPage,
+        hasMore,
+      };
+      localStorage.setItem(storageKey, JSON.stringify(state));
+    }
+  }, [questions, pagination, topicInfo, currentPage, hasMore, storageKey]);
+
+  // Load state from localStorage
+  const loadState = useCallback((): SavedPageState | null => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem(storageKey);
+        return saved ? JSON.parse(saved) : null;
+      } catch (err) {
+        console.error('Error loading saved state:', err);
+        return null;
+      }
+    }
+    return null;
+  }, [storageKey]);
 
   const fetchTopicInfo = async () => {
     try {
@@ -107,10 +147,37 @@ export default function TopicPage({ params }: { params: { id: string } }) {
     }
   }, [loadingMore, hasMore, pagination, currentPage]);
 
+  // Save state whenever it changes
   useEffect(() => {
-    fetchTopicInfo();
-    fetchQuestions(1);
-  }, [topicId]);
+    if (!isRestoringState && questions.length > 0) {
+      saveState();
+    }
+  }, [questions, pagination, topicInfo, currentPage, hasMore, saveState, isRestoringState]);
+
+  // Initial load - check for saved state first
+  useEffect(() => {
+    const savedState = loadState();
+    
+    if (savedState && savedState.questions.length > 0) {
+      // Restore saved state
+      setIsRestoringState(true);
+      setQuestions(savedState.questions);
+      setPagination(savedState.pagination);
+      setTopicInfo(savedState.topicInfo);
+      setCurrentPage(savedState.currentPage);
+      setHasMore(savedState.hasMore);
+      setLoading(false);
+      
+      // Mark restoration as complete
+      setTimeout(() => {
+        setIsRestoringState(false);
+      }, 100);
+    } else {
+      // No saved state, fetch fresh data
+      fetchTopicInfo();
+      fetchQuestions(1);
+    }
+  }, [topicId, loadState]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
