@@ -351,12 +351,15 @@ for q, t in zip(valid_questions, topics):
     topic_to_questions[t].append(q)
 
 # Collect aggregated data from original points for each topic
-topic_to_aggregated_data = defaultdict(lambda: {
-    'question_count': 0,
-    'keyword_names': set(),
-    'keywords': set(),
-    'children': []
-})
+def create_aggregated_data():
+    return {
+        'question_count': 0,
+        'keyword_names': set(),
+        'keywords': set(),
+        'children': []
+    }
+
+topic_to_aggregated_data = defaultdict(create_aggregated_data)
 
 for i, topic_id in enumerate(topics):
     point = all_points[valid_indices[i]]
