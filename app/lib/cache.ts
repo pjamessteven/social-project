@@ -1,15 +1,15 @@
 // lib/cache.ts
-import { db, detransQuestions, affirmQuestions } from "@/db";
+import { affirmQuestions, db, detransQuestions } from "@/db";
 import { eq, sql } from "drizzle-orm";
-import { connectRedis } from "./redis";
 
 export async function getCachedAnswer(
   mode: "detrans" | "affirm",
   question: string,
 ): Promise<string | undefined> {
   try {
-    const questionsTable = mode === "detrans" ? detransQuestions : affirmQuestions;
-    
+    const questionsTable =
+      mode === "detrans" ? detransQuestions : affirmQuestions;
+
     const result = await db
       .select({ finalResponse: questionsTable.finalResponse })
       .from(questionsTable)
@@ -19,10 +19,10 @@ export async function getCachedAnswer(
     if (result.length > 0 && result[0].finalResponse) {
       return result[0].finalResponse;
     }
-    
+
     return undefined;
   } catch (error) {
-    console.error('Cache get error:', error);
+    console.error("Cache get error:", error);
     return undefined;
   }
 }
@@ -33,8 +33,9 @@ export async function setCachedAnswer(
   answer: string,
 ): Promise<void> {
   try {
-    const questionsTable = mode === "detrans" ? detransQuestions : affirmQuestions;
-    
+    const questionsTable =
+      mode === "detrans" ? detransQuestions : affirmQuestions;
+
     await db
       .insert(questionsTable)
       .values({
@@ -52,15 +53,19 @@ export async function setCachedAnswer(
         },
       });
   } catch (error) {
-    console.error('Cache set error:', error);
+    console.error("Cache set error:", error);
     // Don't throw - cache failures shouldn't break the application
   }
 }
 
-export async function incrementQuestionViews(mode: "detrans" | "affirm", questionName: string): Promise<void> {
+export async function incrementQuestionViews(
+  mode: "detrans" | "affirm",
+  questionName: string,
+): Promise<void> {
   try {
-    const questionsTable = mode === "detrans" ? detransQuestions : affirmQuestions;
-    
+    const questionsTable =
+      mode === "detrans" ? detransQuestions : affirmQuestions;
+
     await db.transaction(async (tx) => {
       // Insert or update question
       await tx
@@ -80,41 +85,7 @@ export async function incrementQuestionViews(mode: "detrans" | "affirm", questio
         });
     });
   } catch (error) {
-    console.error('Question views increment error:', error);
+    console.error("Question views increment error:", error);
     // Don't throw - analytics failures shouldn't break the application
-  }
-}
-
-export async function incrementPageViews(mode: string, page: string) {
-  const now = Math.floor(Date.now() / 1000); // unix timestamp
-
-  const key = `${mode}:${page}`;
-
-  const redis = await connectRedis();
-  if (redis) {
-    // Use a MULTI transaction to keep everything atomic
-    const tx = redis.multi();
-
-    // Increment pageviews and set/update other fields
-    tx.hIncrBy(key, "pageviews", 1);
-    tx.hSet(key, "last_updated", now);
-
-    // Execute the transaction so far
-    const results = await tx.exec();
-
-    // hIncrBy result is at index 0
-    const newViews = Number(results[0]);
-
-    if (typeof newViews !== "number") {
-      throw new Error("Unexpected result from hIncrBy");
-    }
-    // Now update sorted sets with the new values
-    await redis
-      .multi()
-      .zAdd(`${mode}:page_views`, [{ score: newViews, value: page }])
-      .zAdd(`${mode}:page_updates`, [{ score: now, value: page }])
-      .exec();
-
-    return newViews;
   }
 }

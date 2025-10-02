@@ -6,6 +6,7 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
+
   try {
     const topicId = parseInt(id);
     if (isNaN(topicId)) {
@@ -27,18 +28,13 @@ export async function GET(
       );
     }
 
-    const client = new QdrantClient({
-      url: "http://localhost:6333",
-      checkCompatibility: false,
-      timeout: 10000, // 10 second timeout
-    });
+    const client = new QdrantClient({ url: "http://localhost:6333" });
 
     // Calculate offset for pagination
     const offset = (page - 1) * limit;
 
-    console.log(`Querying topic_id: ${topicId}, offset: ${offset}`);
-
     // Query Qdrant for nodes with matching topic_id
+
     const response = await client.scroll("default_topics", {
       filter: {
         must: [
@@ -56,10 +52,6 @@ export async function GET(
       with_vector: false,
     });
 
-    console.log(
-      `Found ${response.points.length} points for topic_id: ${topicId}`,
-    );
-
     // Get total count for pagination info
     const countResponse = await client.count("default_topics", {
       filter: {
@@ -74,13 +66,11 @@ export async function GET(
       },
     });
 
-    console.log(`Total count for topic_id ${topicId}: ${countResponse.count}`);
-
     const total = countResponse.count;
     const totalPages = Math.ceil(total / limit);
 
     const point = response.points[0];
-    if (point && point.payload) {
+    if (point.payload) {
       return NextResponse.json({
         topic_id: point.payload.topic_id,
         name: point.payload.title,
@@ -91,11 +81,7 @@ export async function GET(
         isSynthetic: point.payload.is_synthetic,
       });
     }
-
-    return NextResponse.json(
-      { error: `Topic with ID ${topicId} not found` },
-      { status: 404 },
-    );
+    throw new Error("Topic not found");
   } catch (error) {
     console.error("Error fetching questions by topic:", error);
     return NextResponse.json(

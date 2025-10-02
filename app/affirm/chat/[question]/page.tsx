@@ -1,6 +1,6 @@
 import ChatPage from "@/app/components/content/ChatPage";
 import SeoChatPage from "@/app/components/content/SeoChatPage";
-import { getCached } from "@/app/lib/cache";
+import { getCachedAnswer } from "@/app/lib/cache";
 import { isBot } from "@/app/lib/isBot";
 import {
   capitaliseWords,
@@ -10,7 +10,7 @@ import {
 import { Metadata } from "next";
 import { headers } from "next/headers";
 
-export const dynamic = "force-dynamic"; // required for redis call in generateMetadata
+export const dynamic = "force-dynamic"; // required for async call in generateMetadata
 
 export async function generateMetadata({
   params,
@@ -19,7 +19,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { question } = await params;
   const starterQuestion = deslugify(question);
-  const answer = await getCached("affirm", starterQuestion + ":answer");
+  const answer = await getCachedAnswer("affirm", starterQuestion);
   return {
     title: capitaliseWords(starterQuestion) + " | genderaffirming.ai",
     description: markdownToPlainText(answer?.slice(0, 300)),
@@ -39,7 +39,7 @@ export default async function AffirmChatPage({
 
   if (bot) {
     // Return SSR cached final answers to question
-    const answer = await getCached("affirm", starterQuestion + ":answer"); // server-rendered, no JS
+    const answer = await getCachedAnswer("affirm", starterQuestion); // server-rendered, no JS
     return (
       <SeoChatPage mode={"affirm"} question={starterQuestion} answer={answer} />
     );

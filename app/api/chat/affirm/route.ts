@@ -13,6 +13,7 @@ import {
 } from "../utils";
 
 // import workflow factory and settings from local file
+import { incrementQuestionViews } from "@/app/lib/cache";
 import { getIP } from "@/app/lib/getIp";
 import { stopAgentEvent } from "@llamaindex/workflow";
 import { initSettings } from "./app/settings";
@@ -58,6 +59,7 @@ export async function POST(req: NextRequest) {
         responses: getHumanResponsesFromMessage(lastMessage),
       },
     });
+    incrementQuestionViews("affirm", lastMessage.content);
 
     // @ts-expect-error something
     const stream = processWorkflowStream(context.stream).until(

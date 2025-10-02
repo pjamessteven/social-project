@@ -16,7 +16,9 @@
     "deduplicate:default": "tsx app/api/chat/detrans/generate.ts deduplicate",
     "questions:default": "tsx app/api/chat/detrans/generate.ts export-questions",
     "generate:affirm": "tsx app/api/chat/affirm/generate.ts",
-    "deduplicate:affirm": "tsx app/api/chat/affirm/generate.ts deduplicate"
+    "deduplicate:affirm": "tsx app/api/chat/affirm/generate.ts deduplicate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -90,6 +92,8 @@
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
     "dotenv": "^16.5.0",
+    "drizzle-kit": "^0.31.5",
+    "drizzle-orm": "^0.44.6",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
     "llamaindex": "^0.11.28",
@@ -97,6 +101,7 @@
     "marked": "^16.2.1",
     "next": "^15.3.0",
     "next-themes": "^0.4.6",
+    "postgres": "^3.4.7",
     "react": "^19.1.0",
     "react-day-picker": "9.7.0",
     "react-dom": "^19.1.0",
@@ -107,7 +112,7 @@
     "sonner": "^2.0.3",
     "tailwind-merge": "^2.6.0",
     "vaul": "^1.1.2",
-    "zod": "^3.23.8",
+    "zod": "^3.25.76",
     "zod-to-json-schema": "^3.23.3"
   }
 }

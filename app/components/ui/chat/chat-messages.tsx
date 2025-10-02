@@ -83,7 +83,7 @@ export default function CustomChatMessages({
                             slugify(lastUserMessage?.content as string)
                           }
                           target="_blank"
-                          className="cursor-pointer font-medium italic hover:underline"
+                          className="cursor-pointer font-medium italic underline hover:underline"
                         >
                           {"-> See trans perspectives on this topic"}
                         </Link>
