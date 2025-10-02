@@ -65,6 +65,7 @@ def process_categories(categories_data):
     
     for category in categories_data:
         processed_category = {
+            'category_id': category.get('topic_id', ''),
             'title': category.get('title', ''),
             'question_count': category.get('question_count', 0),
             'children_ids': []
