@@ -28,13 +28,17 @@ export async function GET(
       );
     }
 
-    const client = new QdrantClient({ url: "http://localhost:6333" });
+    const client = new QdrantClient({ 
+      url: "http://localhost:6333",
+      timeout: 10000 // 10 second timeout
+    });
 
     // Calculate offset for pagination
     const offset = (page - 1) * limit;
 
-    // Query Qdrant for nodes with matching topic_id
+    console.log(`Querying questions for topic_id: ${topicId}, offset: ${offset}, limit: ${limit}`);
 
+    // Query Qdrant for nodes with matching topic_id
     const response = await client.scroll("default_questions", {
       filter: {
         must: [
@@ -52,6 +56,8 @@ export async function GET(
       with_vector: false,
     });
 
+    console.log(`Found ${response.points.length} questions for topic_id: ${topicId}`);
+
     // Get total count for pagination info
     const countResponse = await client.count("default_questions", {
       filter: {
@@ -65,6 +71,8 @@ export async function GET(
         ],
       },
     });
+
+    console.log(`Total questions count for topic_id ${topicId}: ${countResponse.count}`);
 
     const total = countResponse.count;
     const totalPages = Math.ceil(total / limit);
