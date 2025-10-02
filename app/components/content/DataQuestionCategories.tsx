@@ -142,8 +142,10 @@ export function DataQuestionCategories({
   // Sync state with URL params
   useEffect(() => {
     const newTab = searchParams?.get("all") !== null ? "all" : "featured";
-    setCurrentTab(newTab);
-  }, [searchParams]);
+    if (newTab !== currentTab) {
+      setCurrentTab(newTab);
+    }
+  }, [searchParams, currentTab]);
 
   // Sort categories by question count (descending)
   const sortedHierarchy = [...hierarchy].sort(
