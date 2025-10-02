@@ -3,8 +3,8 @@
 import topicsHierarchy from "@/app/lib/topics_hierarchy.json";
 import { slugify } from "@/app/lib/utils";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface TopicChild {
   title: string;
@@ -52,13 +52,22 @@ function TopicNode({
     }
   };
 
+  const getTopicHref = (topicId: number, topicString: string) => {
+    const slug = slugify(topicString);
+    switch (mode) {
+      case "detrans":
+        return "/topic/" + topicId + "?" + slug;
+      case "affirm":
+        return "/affirm/topic/" + topicId + "?" + slug;
+      default:
+        return "/topic/" + topicId + "?" + slug;
+    }
+  };
+
   return (
     <div className={`ml-6 ${level > 0 ? "" : ""}`}>
-      <details
-        className="group"
-        open={isOpen}
-      >
-        <summary 
+      <details className="group" open={isOpen}>
+        <summary
           className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800"
           onClick={(e) => {
             e.preventDefault();
@@ -86,13 +95,26 @@ function TopicNode({
             className={`text-primary font-semibold ${level === 0 ? "text-xl" : level === 1 ? "text-lg" : "text-base"}`}
           >
             {topic.title}
+            <span className="text-muted-foreground ml-2 text-sm font-light">
+              ({topic.question_count} questions)
+            </span>
           </h3>
-          <span className="text-muted-foreground ml-2 text-sm">
-            ({topic.question_count} questions)
-          </span>
         </summary>
 
-        <div className="mt-2">
+        <div className="mt-2 mb-4 ml-4 border-l">
+          <Link
+            prefetch={false}
+            href={getTopicHref(topic.topic_id as number, topic.title)}
+          >
+            <div className="ml-6 flex flex-row items-center border-b pb-2">
+              <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-lg italic opacity-90">
+                <div className="mr-2 whitespace-nowrap">{"->"}</div>
+                <div>
+                  View all {topic.question_count} questions about this topic
+                </div>
+              </div>
+            </div>
+          </Link>
           {hasQuestions && (
             <div className="mb-4 grid gap-1">
               {topic.questions!.map(
@@ -103,7 +125,7 @@ function TopicNode({
                     key={questionIndex}
                   >
                     <div className="ml-6 flex flex-row items-center border-b pt-1 pb-2">
-                      <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90">
+                      <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-lg italic opacity-90">
                         <div className="mr-2 whitespace-nowrap">{"->"}</div>
                         <div>{question}</div>
                       </div>
@@ -113,21 +135,19 @@ function TopicNode({
               )}
             </div>
           )}
-
-          {hasChildren && (
-            <div>
-              {[...topic.children!].map((child, childIndex) => (
-                <TopicNode
-                  key={childIndex}
-                  topic={child}
-                  mode={mode}
-                  level={level + 1}
-                  expandedSubcategories={expandedSubcategories}
-                  onToggleSubcategory={onToggleSubcategory}
-                />
-              ))}
+          <Link
+            prefetch={false}
+            href={getTopicHref(topic.topic_id as number, topic.title)}
+          >
+            <div className="-mt-2 ml-6 flex flex-row items-center border-b pb-2">
+              <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-lg italic opacity-90">
+                <div className="mr-2 whitespace-nowrap">{"->"}</div>
+                <div>
+                  View all {topic.question_count} questions about this topic
+                </div>
+              </div>
             </div>
-          )}
+          </Link>
         </div>
       </details>
     </div>
@@ -143,40 +163,53 @@ export function DataQuestionCategories({
   const hierarchy = topicsHierarchy as TopicsHierarchy[];
   const router = useRouter();
   const searchParams = useSearchParams();
-  
-  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
-  const [expandedSubcategories, setExpandedSubcategories] = useState<Set<string>>(new Set());
+
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
+    new Set(),
+  );
+  const [expandedSubcategories, setExpandedSubcategories] = useState<
+    Set<string>
+  >(new Set());
 
   // Load expanded state from URL params on mount
   useEffect(() => {
-    const expandedCats = searchParams.get('expanded_categories');
-    const expandedSubs = searchParams.get('expanded_subcategories');
-    
+    const expandedCats = searchParams.get("expanded_categories");
+    const expandedSubs = searchParams.get("expanded_subcategories");
+
     if (expandedCats) {
-      setExpandedCategories(new Set(expandedCats.split(',')));
+      setExpandedCategories(new Set(expandedCats.split(",")));
     }
     if (expandedSubs) {
-      setExpandedSubcategories(new Set(expandedSubs.split(',')));
+      setExpandedSubcategories(new Set(expandedSubs.split(",")));
     }
   }, [searchParams]);
 
   // Update URL params when expanded state changes
-  const updateUrlParams = (newExpandedCategories: Set<string>, newExpandedSubcategories: Set<string>) => {
+  const updateUrlParams = (
+    newExpandedCategories: Set<string>,
+    newExpandedSubcategories: Set<string>,
+  ) => {
     const params = new URLSearchParams(searchParams.toString());
-    
+
     if (newExpandedCategories.size > 0) {
-      params.set('expanded_categories', Array.from(newExpandedCategories).join(','));
+      params.set(
+        "expanded_categories",
+        Array.from(newExpandedCategories).join(","),
+      );
     } else {
-      params.delete('expanded_categories');
+      params.delete("expanded_categories");
     }
-    
+
     if (newExpandedSubcategories.size > 0) {
-      params.set('expanded_subcategories', Array.from(newExpandedSubcategories).join(','));
+      params.set(
+        "expanded_subcategories",
+        Array.from(newExpandedSubcategories).join(","),
+      );
     } else {
-      params.delete('expanded_subcategories');
+      params.delete("expanded_subcategories");
     }
-    
-    const newUrl = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+
+    const newUrl = `${window.location.pathname}${params.toString() ? "?" + params.toString() : ""}`;
     router.replace(newUrl, { scroll: false });
   };
 
@@ -204,19 +237,35 @@ export function DataQuestionCategories({
 
   return (
     <>
+      {" "}
+      <h3 className="text-primary mb-2 text-2xl font-bold">
+        AI Generated Questions From The Data
+      </h3>
+      <p className="text-muted-foreground mt-4 mb-6 max-w-2xl text-base">
+        Part of how detrans.ai works is that for each comment that's ingested
+        from /r/detrans, several questions are generated for which the comment
+        could potentially be an answer to. It's like using AI upside down.
+        Instead of asking for an answer, we ask for questions. This helps the
+        RAG (retrieval augmented generation) system retrieve experiences that
+        are relevant to your query. Below are all the generated questions in the
+        system, sorted by category and sub-topic. BERTopic was used to
+        categorise the questions. Please note that not all questions were able
+        to be categorised.
+      </p>
+      <p className="text-muted-foreground mt-4 mb-6 max-w-2xl text-base">
+        In simple terms, these questions are a direct reflection of the Reddit
+        comments. This can also give an idea about the most discussed topics in
+        /r/detrans.
+      </p>
       <div className="space-y-4">
         {hierarchy.map((category, index) => {
           const categoryId = `category-${slugify(category.title)}`;
           const isOpen = expandedCategories.has(categoryId);
-          
+
           return (
-            <details
-              key={index}
-              className="group"
-              open={isOpen}
-            >
-              <summary 
-                className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800"
+            <details key={index} className="group mb-2" open={isOpen}>
+              <summary
+                className="flex cursor-pointer list-none items-center rounded py-2 hover:bg-gray-50 dark:hover:bg-gray-800"
                 onClick={(e) => {
                   e.preventDefault();
                   toggleCategory(categoryId);
@@ -225,41 +274,42 @@ export function DataQuestionCategories({
                 <div
                   className={`mr-2 transition-transform ${isOpen ? "rotate-90" : ""}`}
                 >
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
-              <h2 className="text-primary text-xl font-bold">
-                {category.title}
-                <span className="text-muted-foreground ml-2 text-base">
-                  ({category.question_count} questions)
-                </span>
-              </h2>
-            </summary>
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </div>
+                <h2 className="text-primary text-xl font-semibold">
+                  {category.title}
+                  <span className="text-muted-foreground ml-2 text-sm font-light">
+                    ({category.question_count} questions)
+                  </span>
+                </h2>
+              </summary>
 
-            <div className="mt-4">
-              {[...category.children].map((topic, topicIndex) => (
-                <TopicNode 
-                  key={topicIndex} 
-                  topic={topic} 
-                  mode={mode} 
-                  expandedSubcategories={expandedSubcategories}
-                  onToggleSubcategory={toggleSubcategory}
-                />
-              ))}
-            </div>
-          </details>
-        )})}
+              <div className="mt-2 ml-2 border-l">
+                {[...category.children].map((topic, topicIndex) => (
+                  <TopicNode
+                    key={topicIndex}
+                    topic={topic}
+                    mode={mode}
+                    expandedSubcategories={expandedSubcategories}
+                    onToggleSubcategory={toggleSubcategory}
+                  />
+                ))}
+              </div>
+            </details>
+          );
+        })}
       </div>
     </>
   );

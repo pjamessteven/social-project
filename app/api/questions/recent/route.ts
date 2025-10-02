@@ -28,16 +28,14 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const key = `${mode}:page_views`;
+    const key = `${mode}:page_updates`;
 
     // Calculate offset for pagination
     const offset = (page - 1) * limit;
 
     // Get total count
     const total = await redis.zCard(key);
-    console.log("TOTAL", total);
-    // Get paginated results with scores (highest score first)
-    // ZREVRANGE returns in descending order by score
+
     const results = await redis.sendCommand([
       "ZREVRANGE",
       key,
@@ -45,13 +43,14 @@ export async function GET(request: NextRequest) {
       String(offset + limit - 1),
       "WITHSCORES",
     ]);
+
     // Format the response
     const items = [];
     if (Array.isArray(results) && results.length > 0) {
       for (let i = 0; i < results.length; i += 2) {
         items.push({
           page: results[i] as string,
-          score: results[i + 1] as number,
+          date: results[i + 1] as number,
         });
       }
     }
@@ -72,7 +71,7 @@ export async function GET(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error("Error fetching top pages:", error);
+    console.error("Error fetching recent pages:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 },

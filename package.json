@@ -14,6 +14,7 @@
     "typecheck": "tsc --noEmit",
     "generate:default": "tsx app/api/chat/detrans/generate.ts",
     "deduplicate:default": "tsx app/api/chat/detrans/generate.ts deduplicate",
+    "questions:default": "tsx app/api/chat/detrans/generate.ts export-questions",
     "generate:affirm": "tsx app/api/chat/affirm/generate.ts",
     "deduplicate:affirm": "tsx app/api/chat/affirm/generate.ts deduplicate"
   },

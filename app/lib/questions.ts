@@ -1,14 +1,15 @@
 export const questionCategories = [
   {
-    title: "Starter Questions",
+    title: "Featured Questions",
     description: "Some of the best questions to ask detrans people...",
     questions: [
-      "Why do some people decide to de-transition?",
+      "Why do some people decide to detransition?",
       "Is it common for detransitioners to regret transitioning?",
-      "Why do some people re-transition after de-transitioning?",
+      "Why do some people retransition after detransitioning?",
       "What can detrans stories teach me, even if my transition is going well so far?",
       "How would I know if doubts are just nerves or a real stop sign?",
       "Do detrans people think transition itself is bad?",
+      "What are some false claims made about transgender people?",
       "What early signs do detrans folks wish they’d noticed sooner?",
       "What is the difference between sex and gender?",
       "Is gender a social construct?",
@@ -114,6 +115,7 @@ export const questionCategories = [
       "What is the ‘bathroom debate’ and what evidence exists for either harm or safety?",
       "What are the main arguments in the sports-participation controversy?",
       "How have schools handled gender-questioning pupils in different jurisdictions?",
+      "What do detrans people think about drag queen story telling?",
       "What does ‘medicalisation of gender non-conforming children’ mean to critics and to advocates?",
     ],
   },
@@ -134,8 +136,8 @@ export const questionCategories = [
       "Can someone be a woman without being feminine, or a man without being masculine?",
       "What non-medical options exist for managing dysphoria?",
       "What does ‘passing’ mean and why can it become an obsession for some people?",
-      "How do Jungian concepts of anima/animus relate to modern gender discourse?",
-      "What is shadow work and how is it used in therapy?",
+      "How do Jungian concepts of anima/animus relate to gender identity?",
+      "What is shadow work and can it be used in therapy?",
     ],
   },
   {
@@ -168,14 +170,14 @@ export const questionCategories = [
     ],
   },
   {
-    title: "The Controversial Truth",
+    title: "Controversial Perspectives",
     description:
       "Detrans perspectives that gender activists really don't want you to hear",
     questions: [
-      "How do pharmaceutical-company incentives interact with published research on hormones?",
+      "Are some people making a lot of money out of gender-affirming care?",
       "What structural factors lead to under-representation of detransition stories in mainstream media?",
-      "In what ways do gender belief systems resemble religious or ideological communities?",
-      "How should schools balance pupil autonomy with parental involvement in gender decisions?",
+      "In what ways do gender belief systems resemble religions or cults?",
+      "Are schools sidelining parents when children make choices about gender identity?",
     ],
   },
 ];
@@ -305,7 +307,7 @@ export const affirmingDetransQuestions = [
 
 export const compareQuestions = [
   {
-    title: "Compare Questions",
+    title: "Featured Compare Questions",
     description: "Spicy questions to ask both trans and detrans people...",
     questions: [
       "What is a man?",
