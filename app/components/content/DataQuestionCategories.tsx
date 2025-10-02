@@ -112,14 +112,16 @@ function TopicNode({
 
           {hasChildren && (
             <div>
-              {topic.children!.map((child, childIndex) => (
-                <TopicNode
-                  key={childIndex}
-                  topic={child}
-                  mode={mode}
-                  level={level + 1}
-                />
-              ))}
+              {[...topic.children!]
+                .sort((a, b) => b.question_count - a.question_count)
+                .map((child, childIndex) => (
+                  <TopicNode
+                    key={childIndex}
+                    topic={child}
+                    mode={mode}
+                    level={level + 1}
+                  />
+                ))}
             </div>
           )}
         </div>
@@ -137,7 +139,10 @@ export async function DataQuestionCategories({
 
   const hierarchy = topicsHierarchy as TopicsHierarchy[];
 
-  return hierarchy.map((category, index) => (
+  // Sort categories by question count (descending)
+  const sortedHierarchy = [...hierarchy].sort((a, b) => b.question_count - a.question_count);
+
+  return sortedHierarchy.map((category, index) => (
     <div className="space-y-4" key={index}>
       <details className="group">
         <summary className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800">
@@ -163,9 +168,11 @@ export async function DataQuestionCategories({
         </summary>
 
         <div className="mt-4 space-y-4">
-          {category.children.map((topic, index) => (
-            <TopicNode key={index} topic={topic} mode={mode} />
-          ))}
+          {[...category.children]
+            .sort((a, b) => b.question_count - a.question_count)
+            .map((topic, index) => (
+              <TopicNode key={index} topic={topic} mode={mode} />
+            ))}
         </div>
       </details>
     </div>
