@@ -1,7 +1,35 @@
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Heart } from "lucide-react";
+import { Button } from "../ui/button";
 import { DataQuestionCategories } from "./DataQuestionCategories";
 
-export function QuestionTabs() {
-      return (
+interface QuestionTabsProps {
+  mode: "affirm" | "detrans" | "compare";
+  QuestionCategories: React.ComponentType<{ mode: "affirm" | "detrans" | "compare" }>;
+}
+
+export function QuestionTabs({ mode, QuestionCategories }: QuestionTabsProps) {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const [currentTab, setCurrentTab] = useState<"featured" | "all">("featured");
+
+  // Sync state with URL params on mount
+  useEffect(() => {
+    const newTab = searchParams?.get("all") !== null ? "all" : "featured";
+    setCurrentTab(newTab);
+  }, [searchParams]);
+
+  const handleTabChange = (tab: "featured" | "all") => {
+    setCurrentTab(tab);
+    if (tab === "all") {
+      router.replace("/?all");
+    } else {
+      router.replace("/");
+    }
+  };
+
+  return (
     <>
       <div
         id="question-tabs"
@@ -23,11 +51,12 @@ export function QuestionTabs() {
           <Heart className="h-4 w-4" />
           <span className="text-sm font-medium">All Questions</span>
         </Button>
-
       </div>
-            {currentTab === "featured" ? (
-              <QuestionCategories mode={mode} />
-            ) : <DataQuestionCategories mode={mode}/>
-      </>
-      )
+      {currentTab === "featured" ? (
+        <QuestionCategories mode={mode} />
+      ) : (
+        <DataQuestionCategories mode={mode} />
+      )}
+    </>
+  );
 }
