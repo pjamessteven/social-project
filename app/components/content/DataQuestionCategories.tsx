@@ -135,12 +135,12 @@ export function DataQuestionCategories({
   const hierarchy = topicsHierarchy as TopicsHierarchy[];
   const [isOpen, setIsOpen] = useState(false);
   const searchParams = useSearchParams();
-  
+
   // Initialize tab state from URL params
   const [currentTab, setCurrentTab] = useState<"featured" | "all">(() => {
     return searchParams?.get("featured") !== null ? "featured" : "all";
   });
-  
+
   // Sort categories by question count (descending)
   const sortedHierarchy = [...hierarchy].sort(
     (a, b) => b.question_count - a.question_count,
@@ -152,7 +152,7 @@ export function DataQuestionCategories({
         id="question-tabs"
         className="grid max-w-[660px] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3"
       >
-        <Link href="/?featured">
+        <Link href="/">
           <Button
             variant={currentTab === "featured" ? "default" : "secondary"}
             className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
@@ -173,7 +173,7 @@ export function DataQuestionCategories({
           </Button>
         </Link>
       </div>
-      
+
       {currentTab === "featured" ? (
         <QuestionCategories mode={mode} />
       ) : (
