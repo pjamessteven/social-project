@@ -28,7 +28,9 @@ export async function GET(
       );
     }
 
-    const client = new QdrantClient({ url: "http://localhost:6333" });
+    const client = new QdrantClient({
+      url: process.env.QDRANT_URL || "http://localhost:6333",
+    });
 
     // Calculate offset for pagination
     const offset = (page - 1) * limit;
