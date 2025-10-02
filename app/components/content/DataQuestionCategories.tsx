@@ -139,18 +139,37 @@ export async function DataQuestionCategories({
 
   return hierarchy.map((category, index) => (
     <div className="space-y-4" key={index}>
-      <div className="mb-6">
-        <h2 className="text-primary mb-2 text-3xl font-bold">
-          {category.title}
-        </h2>
-        <p className="text-muted-foreground text-base">
-          Total questions: {category.question_count}
-        </p>
-      </div>
+      <details className="group">
+        <summary className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800">
+          <div className="mr-2 transition-transform group-open:rotate-90">
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </div>
+          <h2 className="text-primary text-3xl font-bold">
+            {category.title}
+          </h2>
+          <span className="text-muted-foreground ml-2 text-base">
+            ({category.question_count} questions)
+          </span>
+        </summary>
 
-      {category.children.map((topic, index) => (
-        <TopicNode key={index} topic={topic} mode={mode} />
-      ))}
+        <div className="mt-4 space-y-4">
+          {category.children.map((topic, index) => (
+            <TopicNode key={index} topic={topic} mode={mode} />
+          ))}
+        </div>
+      </details>
     </div>
   ));
 }
