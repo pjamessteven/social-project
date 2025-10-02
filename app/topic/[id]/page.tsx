@@ -25,14 +25,40 @@ interface TopicResponse {
   pagination: PaginationInfo;
 }
 
+interface TopicInfo {
+  topic_id: number;
+  name: string;
+  label: string;
+  keywords: string[];
+  keyword_name: string;
+  questionCount: number;
+  isSynthetic: boolean;
+}
+
 export default function TopicPage({ params }: { params: { id: string } }) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [pagination, setPagination] = useState<PaginationInfo | null>(null);
+  const [topicInfo, setTopicInfo] = useState<TopicInfo | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
 
   const topicId = params.id;
+
+  const fetchTopicInfo = async () => {
+    try {
+      const response = await fetch(`/api/questions/topic/${topicId}/name`);
+      
+      if (!response.ok) {
+        throw new Error(`Failed to fetch topic info: ${response.statusText}`);
+      }
+      
+      const data: TopicInfo = await response.json();
+      setTopicInfo(data);
+    } catch (err) {
+      console.error('Error fetching topic info:', err);
+    }
+  };
 
   const fetchQuestions = async (page: number) => {
     setLoading(true);
@@ -56,6 +82,7 @@ export default function TopicPage({ params }: { params: { id: string } }) {
   };
 
   useEffect(() => {
+    fetchTopicInfo();
     fetchQuestions(currentPage);
   }, [topicId, currentPage]);
 
@@ -88,8 +115,20 @@ export default function TopicPage({ params }: { params: { id: string } }) {
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-primary">
-          Topic {topicId}
+          {topicInfo ? topicInfo.name : `Topic ${topicId}`}
         </h1>
+        {topicInfo && (
+          <div className="mt-2 space-y-1">
+            <p className="text-muted-foreground">
+              {topicInfo.label}
+            </p>
+            {topicInfo.keywords && topicInfo.keywords.length > 0 && (
+              <p className="text-sm text-muted-foreground">
+                Keywords: {topicInfo.keywords.join(', ')}
+              </p>
+            )}
+          </div>
+        )}
         {pagination && (
           <p className="text-muted-foreground mt-2">
             {pagination.total} questions found
