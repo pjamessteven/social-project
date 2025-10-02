@@ -44,23 +44,8 @@ function TopicNode({
     }
   };
 
-  if (!hasQuestions && !hasChildren) {
-    return (
-      <div className={`mb-2 ${level > 0 ? "ml-6" : ""}`}>
-        <h3
-          className={`text-primary font-semibold ${level === 0 ? "text-xl" : level === 1 ? "text-lg" : "text-base"}`}
-        >
-          {topic.title}
-        </h3>
-        <span className="text-muted-foreground ml-2 text-sm">
-          ({topic.question_count} questions)
-        </span>
-      </div>
-    );
-  }
-
   return (
-    <div className={`mb-4 ${level > 0 ? "ml-6" : ""}`}>
+    <div className={`ml-6 ${level > 0 ? "" : ""}`}>
       <details className="group">
         <summary className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800">
           <div className="mr-2 transition-transform group-open:rotate-90">
@@ -140,7 +125,9 @@ export async function DataQuestionCategories({
   const hierarchy = topicsHierarchy as TopicsHierarchy[];
 
   // Sort categories by question count (descending)
-  const sortedHierarchy = [...hierarchy].sort((a, b) => b.question_count - a.question_count);
+  const sortedHierarchy = [...hierarchy].sort(
+    (a, b) => b.question_count - a.question_count,
+  );
 
   return sortedHierarchy.map((category, index) => (
     <div className="space-y-4" key={index}>
@@ -161,13 +148,15 @@ export async function DataQuestionCategories({
               />
             </svg>
           </div>
-          <h2 className="text-primary text-xl font-bold">{category.title}</h2>
-          <span className="text-muted-foreground ml-2 text-base">
-            ({category.question_count} questions)
-          </span>
+          <h2 className="text-primary text-xl font-bold">
+            {category.title}
+            <span className="text-muted-foreground ml-2 text-base">
+              ({category.question_count} questions)
+            </span>
+          </h2>
         </summary>
 
-        <div className="mt-4 space-y-4">
+        <div className="mt-4">
           {[...category.children]
             .sort((a, b) => b.question_count - a.question_count)
             .map((topic, index) => (
