@@ -25,8 +25,10 @@ interface TopQuestionsResponse {
 
 export function QuestionCategoriesClient({
   mode,
+  questionMode = "top",
 }: {
   mode: "affirm" | "detrans" | "compare";
+  questionMode?: "top" | "recent";
 }) {
   const [topQuestions, setTopQuestions] = useState<TopQuestion[]>([]);
   const [loading, setLoading] = useState(true);
@@ -44,11 +46,11 @@ export function QuestionCategoriesClient({
       }
 
       const response = await fetch(
-        `/api/questions/top?mode=${mode}&page=${page}&limit=20`,
+        `/api/questions/${questionMode}?mode=${mode}&page=${page}&limit=20`,
       );
 
       if (!response.ok) {
-        throw new Error("Failed to fetch top questions");
+        throw new Error(`Failed to fetch ${questionMode} questions`);
       }
 
       const data: TopQuestionsResponse = await response.json();
@@ -72,7 +74,7 @@ export function QuestionCategoriesClient({
 
   useEffect(() => {
     fetchTopQuestions(1);
-  }, [mode]);
+  }, [mode, questionMode]);
 
   const handleShowMore = () => {
     fetchTopQuestions(currentPage + 1, true);
@@ -93,13 +95,18 @@ export function QuestionCategoriesClient({
   if (loading) {
     return (
       <div className="mb-8">
-        <h3 className="text-primary mb-2 text-2xl font-bold">Top Questions</h3>
+        <h3 className="text-primary mb-2 text-2xl font-bold">
+          {questionMode === "top" ? "Top Questions" : "Recent Questions"}
+        </h3>
         <p className="text-muted-foreground mb-6 text-base">
-          These are the top questions people have asked detrans.ai
+          {questionMode === "top" 
+            ? "These are the top questions people have asked detrans.ai"
+            : "These are the most recent questions people have asked detrans.ai"
+          }
         </p>
         <div className="flex items-center justify-center py-8">
           <Loader2 className="h-6 w-6 animate-spin" />
-          <span className="ml-2">Loading top questions...</span>
+          <span className="ml-2">Loading {questionMode} questions...</span>
         </div>
       </div>
     );
@@ -108,9 +115,14 @@ export function QuestionCategoriesClient({
   if (error) {
     return (
       <div className="mb-8">
-        <h3 className="text-primary mb-2 text-2xl font-bold">Top Questions</h3>
+        <h3 className="text-primary mb-2 text-2xl font-bold">
+          {questionMode === "top" ? "Top Questions" : "Recent Questions"}
+        </h3>
         <p className="text-muted-foreground mb-6 text-base">
-          These are the top questions people have asked detrans.ai
+          {questionMode === "top" 
+            ? "These are the top questions people have asked detrans.ai"
+            : "These are the most recent questions people have asked detrans.ai"
+          }
         </p>
         <div className="py-4 text-red-500">
           Error loading questions: {error}
