@@ -12,6 +12,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { DataQuestionCategories } from "./DataQuestionCategories";
 import DonationCard from "./DonationCard";
 import { QuestionCategories } from "./QuestionCategories";
 import RedditEmbeds from "./RedditEmbeds";
@@ -318,7 +319,7 @@ export async function StartPage({
           , but moderation does not guarantee the accuracy or authenticity of
           every post.
         </div>
-        {mode === "detrans" && (
+        {mode === "detrans" && false && (
           <div className="">
             <RedditEmbeds mode={mode} />{" "}
           </div>
@@ -340,9 +341,42 @@ export async function StartPage({
             </h3>
           </div>
         )}
-        <div className="mt-8">
-          <QuestionCategories mode={mode} />
-        </div>
+        {mode == "detrans" && (
+          <>
+            {" "}
+            <div className="grid max-w-[660px] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
+              <Link href="/">
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
+                  <Heart className="h-4 w-4" />
+                  <span className="text-sm font-medium">
+                    Featured Questions
+                  </span>
+                </Button>
+              </Link>
+              <Link href="/?dataQuestions">
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
+                  <Youtube className="h-4 w-4" />
+                  <span className="text-sm font-medium">All Questions</span>
+                </Button>
+              </Link>
+            </div>
+            {questionTab == "dataQuestions" ? (
+              <div className="mt-8">
+                <DataQuestionCategories mode={mode} />
+              </div>
+            ) : (
+              <div className="mt-8">
+                <QuestionCategories mode={mode} />
+              </div>
+            )}
+          </>
+        )}
         {mode === "detrans" && (
           <div className="text-muted-foreground relative flex flex-col text-base italic opacity-90 sm:text-lg">
             <div className="right-0 z-0 block w-[200px] sm:absolute sm:top-16 sm:-right-0 sm:w-[250px]">
