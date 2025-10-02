@@ -57,9 +57,14 @@ function TopicNode({
       <details
         className="group"
         open={isOpen}
-        onToggle={() => onToggleSubcategory(subcategoryId)}
       >
-        <summary className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800">
+        <summary 
+          className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800"
+          onClick={(e) => {
+            e.preventDefault();
+            onToggleSubcategory(subcategoryId);
+          }}
+        >
           <div
             className={`mr-2 transition-transform ${isOpen ? "rotate-90" : ""}`}
           >
@@ -209,9 +214,14 @@ export function DataQuestionCategories({
               key={index}
               className="group"
               open={isOpen}
-              onToggle={() => toggleCategory(categoryId)}
             >
-              <summary className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800">
+              <summary 
+                className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleCategory(categoryId);
+                }}
+              >
                 <div
                   className={`mr-2 transition-transform ${isOpen ? "rotate-90" : ""}`}
                 >
