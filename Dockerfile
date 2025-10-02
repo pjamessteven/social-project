@@ -31,14 +31,6 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
-# Run database migrations
-RUN \
-  if [ -f yarn.lock ]; then yarn drizzle-kit migrate; \
-  elif [ -f package-lock.json ]; then npm run db:migrate; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run db:migrate; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
-
 FROM base AS runner
 WORKDIR /app
 
