@@ -256,25 +256,33 @@ export default function TopicPage({ params }: { params: { id: string } }) {
       ) : (
         <>
           <div className="mb-8 space-y-3">
-            {questions.map((question) => (
-              <Link
-                key={question.id}
-                href={getHref(question.text)}
-                prefetch={false}
-                className="block"
-              >
-                <div className="rounded-lg border-b pb-3 transition-colors">
-                  <div className="flex items-start">
-                    <div className="text-muted-foreground mr-3">{"->"}</div>
-                    <div className="flex-1">
-                      <p className="text-foreground hover:text-primary text-lg transition-colors hover:underline">
-                        {question.text}
-                      </p>
+            {questions.map((question, index) => {
+              // Calculate question number based on pagination
+              const questionNumber = pagination ? (pagination.page - 1) * pagination.limit + index + 1 : index + 1;
+              
+              return (
+                <Link
+                  key={question.id}
+                  href={getHref(question.text)}
+                  prefetch={false}
+                  className="block"
+                >
+                  <div className="rounded-lg border-b pb-3 transition-colors">
+                    <div className="flex items-start">
+                      <div className="text-muted-foreground mr-3">{"->"}</div>
+                      <div className="flex-1">
+                        <p className="text-foreground hover:text-primary text-lg transition-colors hover:underline">
+                          {question.text}{" "}
+                          <span className="text-muted-foreground text-sm">
+                            (#{questionNumber})
+                          </span>
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Infinite scroll trigger */}
