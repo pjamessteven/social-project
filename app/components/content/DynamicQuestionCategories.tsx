@@ -1,14 +1,10 @@
 "use client";
-import {
-  affirmingQuestionCategories,
-  compareQuestions,
-  questionCategories,
-} from "@/app/lib/questions";
+
+import { Button } from "@/app/components/ui/button";
 import { slugify } from "@/app/lib/utils";
+import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Button } from "@/app/components/ui/button";
-import { Loader2 } from "lucide-react";
 
 interface TopQuestion {
   page: string;
@@ -48,26 +44,26 @@ export function QuestionCategoriesClient({
       }
 
       const response = await fetch(
-        `/api/questions/top?mode=${mode}&page=${page}&limit=20`
+        `/api/questions/top?mode=${mode}&page=${page}&limit=20`,
       );
-      
+
       if (!response.ok) {
-        throw new Error('Failed to fetch top questions');
+        throw new Error("Failed to fetch top questions");
       }
 
       const data: TopQuestionsResponse = await response.json();
-      
+
       if (append) {
-        setTopQuestions(prev => [...prev, ...data.items]);
+        setTopQuestions((prev) => [...prev, ...data.items]);
       } else {
         setTopQuestions(data.items);
       }
-      
+
       setHasMore(data.pagination.hasNext);
       setCurrentPage(page);
       setError(null);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
       setLoadingMore(false);
@@ -116,7 +112,7 @@ export function QuestionCategoriesClient({
         <p className="text-muted-foreground mb-6 text-base">
           These are the top questions people have asked detrans.ai
         </p>
-        <div className="text-red-500 py-4">
+        <div className="py-4 text-red-500">
           Error loading questions: {error}
         </div>
       </div>
@@ -149,7 +145,7 @@ export function QuestionCategoriesClient({
             </Link>
           ))}
         </div>
-        
+
         {hasMore && (
           <div className="mt-6 flex justify-center">
             <Button
