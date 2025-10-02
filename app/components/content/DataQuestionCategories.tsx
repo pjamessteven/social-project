@@ -3,7 +3,8 @@
 import topicsHierarchy from "@/app/lib/topics_hierarchy.json";
 import { slugify } from "@/app/lib/utils";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface TopicChild {
   title: string;
@@ -23,12 +24,17 @@ function TopicNode({
   topic,
   mode,
   level = 0,
+  expandedTopics,
+  onToggleTopic,
 }: {
   topic: TopicChild;
   mode: "affirm" | "detrans" | "compare";
   level?: number;
+  expandedTopics: Set<string>;
+  onToggleTopic: (topicId: string) => void;
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const topicId = `topic-${topic.topic_id || topic.title}`;
+  const isOpen = expandedTopics.has(topicId);
   const hasQuestions = topic.questions && topic.questions.length > 0;
   const hasChildren = topic.children && topic.children.length > 0;
 
@@ -50,7 +56,8 @@ function TopicNode({
     <div className={`ml-6 ${level > 0 ? "" : ""}`}>
       <details
         className="group"
-        onToggle={(e) => setIsOpen(e.currentTarget.open)}
+        open={isOpen}
+        onToggle={(e) => onToggleTopic(topicId)}
       >
         <summary className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800">
           <div
@@ -110,6 +117,8 @@ function TopicNode({
                   topic={child}
                   mode={mode}
                   level={level + 1}
+                  expandedTopics={expandedTopics}
+                  onToggleTopic={onToggleTopic}
                 />
               ))}
             </div>
@@ -127,18 +136,80 @@ export function DataQuestionCategories({
 }) {
   const isDev = process.env.NODE_ENV === "development";
   const hierarchy = topicsHierarchy as TopicsHierarchy[];
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
+  const [expandedTopics, setExpandedTopics] = useState<Set<string>>(new Set());
+
+  // Load expanded state from URL params on mount
+  useEffect(() => {
+    const expandedCats = searchParams.get('expanded_categories');
+    const expandedTops = searchParams.get('expanded_topics');
+    
+    if (expandedCats) {
+      setExpandedCategories(new Set(expandedCats.split(',')));
+    }
+    if (expandedTops) {
+      setExpandedTopics(new Set(expandedTops.split(',')));
+    }
+  }, [searchParams]);
+
+  // Update URL params when expanded state changes
+  const updateUrlParams = (newExpandedCategories: Set<string>, newExpandedTopics: Set<string>) => {
+    const params = new URLSearchParams(searchParams.toString());
+    
+    if (newExpandedCategories.size > 0) {
+      params.set('expanded_categories', Array.from(newExpandedCategories).join(','));
+    } else {
+      params.delete('expanded_categories');
+    }
+    
+    if (newExpandedTopics.size > 0) {
+      params.set('expanded_topics', Array.from(newExpandedTopics).join(','));
+    } else {
+      params.delete('expanded_topics');
+    }
+    
+    const newUrl = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+    router.replace(newUrl, { scroll: false });
+  };
+
+  const toggleCategory = (categoryId: string) => {
+    const newExpanded = new Set(expandedCategories);
+    if (newExpanded.has(categoryId)) {
+      newExpanded.delete(categoryId);
+    } else {
+      newExpanded.add(categoryId);
+    }
+    setExpandedCategories(newExpanded);
+    updateUrlParams(newExpanded, expandedTopics);
+  };
+
+  const toggleTopic = (topicId: string) => {
+    const newExpanded = new Set(expandedTopics);
+    if (newExpanded.has(topicId)) {
+      newExpanded.delete(topicId);
+    } else {
+      newExpanded.add(topicId);
+    }
+    setExpandedTopics(newExpanded);
+    updateUrlParams(expandedCategories, newExpanded);
+  };
 
   return (
     <>
       <div className="space-y-4">
         {hierarchy.map((category, index) => {
-          const [isOpen, setIsOpen] = useState(false);
+          const categoryId = `category-${index}`;
+          const isOpen = expandedCategories.has(categoryId);
           
           return (
             <details
               key={index}
               className="group"
-              onToggle={(e) => setIsOpen(e.currentTarget.open)}
+              open={isOpen}
+              onToggle={() => toggleCategory(categoryId)}
             >
               <summary className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800">
                 <div
@@ -168,7 +239,13 @@ export function DataQuestionCategories({
 
             <div className="mt-4">
               {[...category.children].map((topic, topicIndex) => (
-                <TopicNode key={topicIndex} topic={topic} mode={mode} />
+                <TopicNode 
+                  key={topicIndex} 
+                  topic={topic} 
+                  mode={mode} 
+                  expandedTopics={expandedTopics}
+                  onToggleTopic={toggleTopic}
+                />
               ))}
             </div>
           </details>
