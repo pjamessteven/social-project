@@ -20,11 +20,14 @@ import RedditEmbeds from "./RedditEmbeds";
 export async function StartPage({
   className,
   mode,
+  searchParams,
 }: {
   className?: string;
   mode: "affirm" | "detrans" | "compare";
+  searchParams?: { [key: string]: string | string[] | undefined };
 }) {
   const isDev = process.env.NODE_ENV === "development";
+  const questionTab = searchParams?.dataQuestions !== undefined ? "dataQuestions" : "featured";
 
   return (
     <>
@@ -347,7 +350,7 @@ export async function StartPage({
             <div className="grid max-w-[660px] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
               <Link href="/">
                 <Button
-                  variant="secondary"
+                  variant={questionTab === "featured" ? "default" : "secondary"}
                   className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
                 >
                   <Heart className="h-4 w-4" />
@@ -358,7 +361,7 @@ export async function StartPage({
               </Link>
               <Link href="/?dataQuestions">
                 <Button
-                  variant="secondary"
+                  variant={questionTab === "dataQuestions" ? "default" : "secondary"}
                   className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
                 >
                   <Youtube className="h-4 w-4" />
