@@ -1,4 +1,7 @@
 import { rateLimiter } from "@/app/lib/rateLimit";
+import { db, detransQuestions, detransCache, affirmQuestions, affirmCache } from "@/db";
+import { eq, sql } from "drizzle-orm";
+import { createHash } from "crypto";
 import type {
   ChatResponse,
   ChatResponseChunk,
@@ -7,32 +10,109 @@ import type {
   LLMChatParamsStreaming,
 } from "llamaindex";
 
-export class RedisCache implements Cache {
-  constructor(
-    private client: any,
-    private prefix: string,
-  ) {}
+export class PostgresCache implements Cache {
+  constructor(private mode: "detrans" | "affirm") {}
 
-  private makeRootKey(key: string) {
-    return `${this.prefix}:${key}`;
+  private getQuestionsTable() {
+    return this.mode === "detrans" ? detransQuestions : affirmQuestions;
   }
 
-  async get(key: string) {
-    return this.client.get(this.makeRootKey(key));
+  private getCacheTable() {
+    return this.mode === "detrans" ? detransCache : affirmCache;
   }
 
-  async set(key: string, value: string) {
-    await this.client.set(this.makeRootKey(key), value);
+  private hashKey(key: string): string {
+    return createHash('sha256').update(key).digest('hex');
   }
 
-  async increment(key: string) {
-    await this.client.incr(this.makeRootKey(key));
+  async get(key: string): Promise<string | null> {
+    try {
+      const hashedKey = this.hashKey(key);
+      const cacheTable = this.getCacheTable();
+      
+      const result = await db
+        .select({ resultText: cacheTable.resultText })
+        .from(cacheTable)
+        .where(eq(cacheTable.promptHash, hashedKey))
+        .limit(1);
+
+      if (result.length > 0) {
+        // Update last accessed timestamp
+        await db
+          .update(cacheTable)
+          .set({ lastAccessed: new Date() })
+          .where(eq(cacheTable.promptHash, hashedKey));
+        
+        return result[0].resultText;
+      }
+      
+      return null;
+    } catch (error) {
+      console.error('Cache get error:', error);
+      return null;
+    }
+  }
+
+  async set(key: string, value: string, questionName?: string): Promise<void> {
+    try {
+      const hashedKey = this.hashKey(key);
+      const cacheTable = this.getCacheTable();
+      
+      await db
+        .insert(cacheTable)
+        .values({
+          promptHash: hashedKey,
+          promptText: key,
+          resultText: value,
+          questionName: questionName || null,
+          createdAt: new Date(),
+          lastAccessed: new Date(),
+        })
+        .onConflictDoUpdate({
+          target: cacheTable.promptHash,
+          set: {
+            resultText: value,
+            lastAccessed: new Date(),
+          },
+        });
+    } catch (error) {
+      console.error('Cache set error:', error);
+      // Don't throw - cache failures shouldn't break the application
+    }
+  }
+
+  async incrementQuestionViews(questionName: string): Promise<void> {
+    try {
+      const questionsTable = this.getQuestionsTable();
+      
+      await db.transaction(async (tx) => {
+        // Insert or update question
+        await tx
+          .insert(questionsTable)
+          .values({
+            name: questionName,
+            viewsCount: 1,
+            mostRecentlyAsked: new Date(),
+            createdAt: new Date(),
+          })
+          .onConflictDoUpdate({
+            target: questionsTable.name,
+            set: {
+              viewsCount: sql`${questionsTable.viewsCount} + 1`,
+              mostRecentlyAsked: new Date(),
+            },
+          });
+      });
+    } catch (error) {
+      console.error('Question views increment error:', error);
+      // Don't throw - analytics failures shouldn't break the application
+    }
   }
 }
 
 export interface Cache {
   get(key: string): Promise<string | null>;
-  set(key: string, value: string): Promise<void>;
+  set(key: string, value: string, questionName?: string): Promise<void>;
 }
 
 function makeLlmCacheKey(
@@ -44,16 +124,19 @@ function makeLlmCacheKey(
 }
 interface ChatParamsNonStreaming extends LLMChatParamsNonStreaming {
   originalQuestion: string;
+  mode?: "detrans" | "affirm";
 }
 
 interface ChatParamsStreaming extends LLMChatParamsStreaming {
   originalQuestion: string;
+  mode?: "detrans" | "affirm";
 }
 
 export class CachedLLM {
   constructor(
     private llm: LLM,
     private cache: Cache,
+    private mode: "detrans" | "affirm",
   ) {}
 
   /* ---------- chat ---------- */
@@ -64,7 +147,7 @@ export class CachedLLM {
   async chat(
     params: ChatParamsStreaming | ChatParamsNonStreaming,
   ): Promise<ChatResponse | AsyncGenerator<ChatResponseChunk>> {
-    const { originalQuestion, messages, stream, ...options } = params;
+    const { originalQuestion, messages, stream, mode, ...options } = params;
     const lastMessage = messages[messages.length - 1];
     // coerce content to string for the cache key
     const key = makeLlmCacheKey(
@@ -72,6 +155,11 @@ export class CachedLLM {
       String(lastMessage.content),
       options,
     );
+
+    // Increment question views
+    if (this.cache instanceof PostgresCache) {
+      await this.cache.incrementQuestionViews(originalQuestion);
+    }
 
     /* --- Streaming mode --- */
     if (stream) {
@@ -90,14 +178,14 @@ export class CachedLLM {
           full += chunk.delta;
           yield chunk;
         }
-        await this.cache.set(key, full);
+        await this.cache.set(key, full, originalQuestion);
       }.bind(this);
 
       return capture();
     }
     const response = await this.llm.chat({ messages, ...options });
     const text = String(response.message.content);
-    await this.cache.set(key, text);
+    await this.cache.set(key, text, originalQuestion);
 
     return response;
   }
@@ -127,7 +215,6 @@ export class CachedLLM {
   }): Promise<AsyncGenerator<{ delta: string }>>;
   async complete(params: {
     originalQuestion: string;
-
     prompt: string;
     responseFormat?: object; // <- allow object/ZodType or omit
     stream?: boolean;
@@ -146,6 +233,11 @@ export class CachedLLM {
       ...options
     } = params;
     const key = makeLlmCacheKey(originalQuestion, prompt, options);
+
+    // Increment question views
+    if (this.cache instanceof PostgresCache) {
+      await this.cache.incrementQuestionViews(originalQuestion);
+    }
 
     /* --- Streaming mode --- */
     if (stream) {
@@ -186,7 +278,7 @@ export class CachedLLM {
           full += chunk.delta;
           yield chunk;
         }
-        await this.cache.set(key, full);
+        await this.cache.set(key, full, originalQuestion);
       }.bind(this);
 
       return capture();
@@ -212,7 +304,7 @@ export class CachedLLM {
       ...options,
     });
     const text = String(response.text);
-    await this.cache.set(key, text);
+    await this.cache.set(key, text, originalQuestion);
 
     return response;
   }
