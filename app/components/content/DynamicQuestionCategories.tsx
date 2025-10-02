@@ -23,7 +23,7 @@ interface TopQuestionsResponse {
   };
 }
 
-export function QuestionCategoriesClient({
+export function DynamicQuestionCategories({
   mode,
   questionMode = "top",
 }: {
@@ -99,10 +99,9 @@ export function QuestionCategoriesClient({
           {questionMode === "top" ? "Top Questions" : "Recent Questions"}
         </h3>
         <p className="text-muted-foreground mb-6 text-base">
-          {questionMode === "top" 
+          {questionMode === "top"
             ? "These are the top questions people have asked detrans.ai"
-            : "These are the most recent questions people have asked detrans.ai"
-          }
+            : "These are the most recent questions people have asked detrans.ai"}
         </p>
         <div className="flex items-center justify-center py-8">
           <Loader2 className="h-6 w-6 animate-spin" />
@@ -119,10 +118,9 @@ export function QuestionCategoriesClient({
           {questionMode === "top" ? "Top Questions" : "Recent Questions"}
         </h3>
         <p className="text-muted-foreground mb-6 text-base">
-          {questionMode === "top" 
+          {questionMode === "top"
             ? "These are the top questions people have asked detrans.ai"
-            : "These are the most recent questions people have asked detrans.ai"
-          }
+            : "These are the most recent questions people have asked detrans.ai"}
         </p>
         <div className="py-4 text-red-500">
           Error loading questions: {error}
