@@ -5,6 +5,25 @@ import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+function formatRelativeTime(timestamp: number): string {
+  const now = Date.now();
+  const diff = now - timestamp * 1000; // Convert to milliseconds
+  
+  const minutes = Math.floor(diff / (1000 * 60));
+  const hours = Math.floor(diff / (1000 * 60 * 60));
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  
+  if (minutes < 1) {
+    return "just now";
+  } else if (minutes < 60) {
+    return `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
+  } else if (hours < 24) {
+    return `${hours} hour${hours === 1 ? "" : "s"} ago`;
+  } else {
+    return `${days} day${days === 1 ? "" : "s"} ago`;
+  }
+}
+
 interface TopQuestion {
   page: string;
   score: number;
@@ -147,7 +166,10 @@ export function DynamicQuestionCategories({
                   <div className="mr-2 whitespace-nowrap">{"->"}</div>
                   <div className="flex-1">{item.page}</div>
                   <div className="ml-2 text-sm font-normal opacity-60">
-                    ({item.score} views)
+                    {questionMode === "recent" 
+                      ? `(${formatRelativeTime(item.score)})`
+                      : `(${item.score} views)`
+                    }
                   </div>
                 </div>
               </div>
