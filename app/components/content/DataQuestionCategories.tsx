@@ -156,9 +156,7 @@ export async function DataQuestionCategories({
               />
             </svg>
           </div>
-          <h2 className="text-primary text-3xl font-bold">
-            {category.title}
-          </h2>
+          <h2 className="text-primary text-xl font-bold">{category.title}</h2>
           <span className="text-muted-foreground ml-2 text-base">
             ({category.question_count} questions)
           </span>
