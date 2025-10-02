@@ -27,9 +27,10 @@ export async function GET(
       );
     }
 
-    const client = new QdrantClient({ 
+    const client = new QdrantClient({
       url: "http://localhost:6333",
-      timeout: 10000 // 10 second timeout
+      checkCompatibility: false,
+      timeout: 10000, // 10 second timeout
     });
 
     // Calculate offset for pagination
@@ -55,7 +56,9 @@ export async function GET(
       with_vector: false,
     });
 
-    console.log(`Found ${response.points.length} points for topic_id: ${topicId}`);
+    console.log(
+      `Found ${response.points.length} points for topic_id: ${topicId}`,
+    );
 
     // Get total count for pagination info
     const countResponse = await client.count("default_topics", {
@@ -88,10 +91,10 @@ export async function GET(
         isSynthetic: point.payload.is_synthetic,
       });
     }
-    
+
     return NextResponse.json(
       { error: `Topic with ID ${topicId} not found` },
-      { status: 404 }
+      { status: 404 },
     );
   } catch (error) {
     console.error("Error fetching questions by topic:", error);
