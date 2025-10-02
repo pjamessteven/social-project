@@ -38,12 +38,9 @@ export async function GET(request: NextRequest) {
 
     // Get paginated results with scores (highest score first)
     // ZREVRANGE returns in descending order by score
-    const results = await redis.zRevRange(
-      key,
-      offset,
-      offset + limit - 1,
-      { WITHSCORES: true }
-    );
+    const results = await redis.zRevRange(key, offset, offset + limit - 1, {
+      WITHSCORES: true,
+    });
 
     // Format the response
     const items = [];
