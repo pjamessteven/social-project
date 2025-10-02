@@ -38,7 +38,23 @@ def generate_embedding(text: str, max_retries=5):
                 print(f"API error: {e}, retrying in {wait_time:.1f}s (attempt {attempt + 1}/{max_retries})")
                 time.sleep(wait_time)
 
+def check_collection_info():
+    """Check the collection configuration to understand vector setup."""
+    try:
+        collection_info = qdrant.get_collection(COLLECTION)
+        print(f"Collection info: {collection_info}")
+        return collection_info
+    except Exception as e:
+        print(f"Error getting collection info: {e}")
+        return None
+
 def update_all_points():
+    # Check collection configuration first
+    collection_info = check_collection_info()
+    if collection_info:
+        vectors_config = collection_info.config.params.vectors
+        print(f"Vectors config: {vectors_config}")
+    
     # First, get total count for progress tracking
     print("Getting total point count...")
     count_result = qdrant.count(collection_name=COLLECTION)
@@ -73,10 +89,11 @@ def update_all_points():
                 emb = generate_embedding(text)
 
                 # Step 3: Build update structure
+                # Use named vector if collection expects it
                 updates.append(
                     models.PointStruct(
                         id=pt.id,
-                        vector=emb,
+                        vector={"default": emb},  # Use named vector
                         payload=pt.payload  # keep payload unchanged
                     )
                 )
