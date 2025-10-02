@@ -17,11 +17,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
   return (
     <>
       <div className="pb-16">
-        <StartPage mode="detrans" />
+        <StartPage mode="detrans" searchParams={searchParams} />
       </div>
     </>
   );
