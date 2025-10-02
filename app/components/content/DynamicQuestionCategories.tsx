@@ -154,27 +154,28 @@ export function DynamicQuestionCategories({
               </div>
             </Link>
           ))}
-        </div>
-
-        {hasMore && (
-          <div className="mt-6 flex justify-center">
-            <Button
+          
+          {hasMore && (
+            <div 
+              className="flex flex-row items-center border-b pt-1 pb-2 cursor-pointer"
               onClick={handleShowMore}
-              disabled={loadingMore}
-              variant="outline"
-              className="min-w-32"
             >
-              {loadingMore ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Loading...
-                </>
-              ) : (
-                "Show More"
-              )}
-            </Button>
-          </div>
-        )}
+              <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-lg italic opacity-90">
+                <div className="mr-2 whitespace-nowrap">{"->"}</div>
+                <div className="flex-1">
+                  {loadingMore ? (
+                    <span className="flex items-center">
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Loading more results...
+                    </span>
+                  ) : (
+                    "Load more results"
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
