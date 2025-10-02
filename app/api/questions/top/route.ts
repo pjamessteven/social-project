@@ -46,11 +46,11 @@ export async function GET(request: NextRequest) {
 
     // Format the response
     const items = [];
-    if (results && results.length > 0) {
+    if (Array.isArray(results) && results.length > 0) {
       for (let i = 0; i < results.length; i += 2) {
         items.push({
-          page: results[i],
-          score: results[i + 1],
+          page: results[i] as string,
+          score: results[i + 1] as number,
         });
       }
     }
