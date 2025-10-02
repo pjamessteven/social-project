@@ -67,12 +67,27 @@ export async function GET(
     const total = countResponse.count;
     const totalPages = Math.ceil(total / limit);
 
-    const items = response.points.map((point) => ({
-      id: point.id,
-      question: point.payload?.question || "",
-      topic_id: point.payload?.topic_id,
-      ...point.payload,
-    }));
+    const items = response.points.map((point) => {
+      let text = "";
+      
+      // Extract text from _node_content JSON
+      if (point.payload?._node_content) {
+        try {
+          const nodeContent = typeof point.payload._node_content === 'string' 
+            ? JSON.parse(point.payload._node_content)
+            : point.payload._node_content;
+          text = nodeContent.text || "";
+        } catch (error) {
+          console.error("Error parsing _node_content:", error);
+        }
+      }
+
+      return {
+        id: point.id,
+        text,
+        topic_id: point.payload?.topic_id,
+      };
+    });
 
     return NextResponse.json({
       items,
