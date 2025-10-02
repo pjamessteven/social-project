@@ -368,11 +368,10 @@ for i, topic_id in enumerate(topics):
     else:
         topic_to_aggregated_data[topic_id]['question_count'] += 1  # Default to 1 if not present
     
-    # Aggregate keyword_name (convert to array and collect)
+    # Aggregate keyword_name (add whole string to array)
     if 'keyword_name' in payload and payload['keyword_name']:
-        # Split keyword_name by underscore to create array
-        keyword_parts = payload['keyword_name'].split('_')
-        topic_to_aggregated_data[topic_id]['keyword_names'].update(keyword_parts)
+        # Add the whole keyword_name string to the set
+        topic_to_aggregated_data[topic_id]['keyword_names'].add(payload['keyword_name'])
     
     # Aggregate keywords (concatenate arrays, remove duplicates)
     if 'keywords' in payload and isinstance(payload['keywords'], list):
