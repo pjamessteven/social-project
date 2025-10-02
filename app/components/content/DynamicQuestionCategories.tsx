@@ -1,7 +1,7 @@
 "use client";
 
 import { slugify } from "@/app/lib/utils";
-import { Loader2 } from "lucide-react";
+import { ChevronDown, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -168,7 +168,10 @@ export function DynamicQuestionCategories({
                       Loading more results...
                     </span>
                   ) : (
-                    "Load more results"
+                    <span className="flex items-center">
+                      Load more results
+                      <ChevronDown className="ml-2 h-4 w-4" />
+                    </span>
                   )}
                 </div>
               </div>
