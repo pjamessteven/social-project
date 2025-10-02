@@ -48,7 +48,7 @@ function TopicNode({
     <div className={`ml-6 ${level > 0 ? "" : ""}`}>
       <details className="group">
         <summary className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800">
-          <div className="mr-2 transition-transform group-open:rotate-90">
+          <div className="mr-2 transition-transform [details[open]>&]:rotate-90">
             <svg
               className="h-4 w-4"
               fill="none"
@@ -133,7 +133,7 @@ export async function DataQuestionCategories({
     <div className="space-y-4" key={index}>
       <details className="group">
         <summary className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800">
-          <div className="mr-2 transition-transform group-open:rotate-90">
+          <div className="mr-2 transition-transform [details[open]>&]:rotate-90">
             <svg
               className="h-4 w-4"
               fill="none"
