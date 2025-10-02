@@ -132,51 +132,51 @@ export function DataQuestionCategories({
   mode: "affirm" | "detrans" | "compare";
 }) {
   const isDev = process.env.NODE_ENV === "development";
-
   const hierarchy = topicsHierarchy as TopicsHierarchy[];
   const [isOpen, setIsOpen] = useState(false);
-  const [questionTab, setQuestionTab] = useState("all");
   const searchParams = useSearchParams();
+  
+  // Determine current tab based on search params
+  const currentTab = searchParams?.get("featured") !== null ? "featured" : "all";
+  
   // Sort categories by question count (descending)
   const sortedHierarchy = [...hierarchy].sort(
     (a, b) => b.question_count - a.question_count,
   );
 
-  return sortedHierarchy.map((category, index) => {
-    const questionTab =
-      searchParams?.featured !== undefined ? "all" : "featured";
-    return (
-      <>
-        {" "}
-        <div
-          id="question-tabs"
-          className="grid max-w-[660px] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3"
-        >
-          <Link href="/?featured">
-            <Button
-              variant={questionTab === "featured" ? "default" : "secondary"}
-              className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-            >
-              <Heart className="h-4 w-4" />
-              <span className="text-sm font-medium">Featured Questions</span>
-            </Button>
-          </Link>
-          <Link href="/?all">
-            <Button
-              variant={questionTab === "all" ? "default" : "secondary"}
-              className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-            >
-              <Heart className="h-4 w-4" />
-
-              <span className="text-sm font-medium">All Questions</span>
-            </Button>
-          </Link>
-        </div>
-        {questionTab === "featured" ? (
-          <QuestionCategories mode={mode} />
-        ) : (
-          <div className="space-y-4" key={index}>
+  return (
+    <>
+      <div
+        id="question-tabs"
+        className="grid max-w-[660px] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3"
+      >
+        <Link href="/?featured">
+          <Button
+            variant={currentTab === "featured" ? "default" : "secondary"}
+            className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+          >
+            <Heart className="h-4 w-4" />
+            <span className="text-sm font-medium">Featured Questions</span>
+          </Button>
+        </Link>
+        <Link href="/?all">
+          <Button
+            variant={currentTab === "all" ? "default" : "secondary"}
+            className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+          >
+            <Heart className="h-4 w-4" />
+            <span className="text-sm font-medium">All Questions</span>
+          </Button>
+        </Link>
+      </div>
+      
+      {currentTab === "featured" ? (
+        <QuestionCategories mode={mode} />
+      ) : (
+        <div className="space-y-4">
+          {sortedHierarchy.map((category, index) => (
             <details
+              key={index}
               className="group"
               onToggle={(e) => setIsOpen(e.currentTarget.open)}
             >
@@ -209,14 +209,14 @@ export function DataQuestionCategories({
               <div className="mt-4">
                 {[...category.children]
                   .sort((a, b) => b.question_count - a.question_count)
-                  .map((topic, index) => (
-                    <TopicNode key={index} topic={topic} mode={mode} />
+                  .map((topic, topicIndex) => (
+                    <TopicNode key={topicIndex} topic={topic} mode={mode} />
                   ))}
               </div>
             </details>
-          </div>
-        )}
-      </>
-    );
-  });
+          ))}
+        </div>
+      )}
+    </>
+  );
 }
