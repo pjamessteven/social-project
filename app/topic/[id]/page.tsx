@@ -1,7 +1,7 @@
 "use client";
 
 import { slugify } from "@/app/lib/utils";
-import { Loader2, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -48,34 +48,36 @@ export default function TopicPage({ params }: { params: { id: string } }) {
   const fetchTopicInfo = async () => {
     try {
       const response = await fetch(`/api/questions/topic/${topicId}/name`);
-      
+
       if (!response.ok) {
         throw new Error(`Failed to fetch topic info: ${response.statusText}`);
       }
-      
+
       const data: TopicInfo = await response.json();
       setTopicInfo(data);
     } catch (err) {
-      console.error('Error fetching topic info:', err);
+      console.error("Error fetching topic info:", err);
     }
   };
 
   const fetchQuestions = async (page: number) => {
     setLoading(true);
     setError(null);
-    
+
     try {
-      const response = await fetch(`/api/questions/topic/${topicId}?page=${page}&limit=20`);
-      
+      const response = await fetch(
+        `/api/questions/topic/${topicId}?page=${page}&limit=20`,
+      );
+
       if (!response.ok) {
         throw new Error(`Failed to fetch questions: ${response.statusText}`);
       }
-      
+
       const data: TopicResponse = await response.json();
       setQuestions(data.items);
       setPagination(data.pagination);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
     }
@@ -97,7 +99,7 @@ export default function TopicPage({ params }: { params: { id: string } }) {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-64">
+      <div className="flex min-h-64 items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin" />
       </div>
     );
@@ -114,35 +116,32 @@ export default function TopicPage({ params }: { params: { id: string } }) {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-primary">
+        <h1 className="text-primary text-3xl font-bold">
           {topicInfo ? topicInfo.name : `Topic ${topicId}`}
         </h1>
         {topicInfo && (
           <div className="mt-2 space-y-1">
-            <p className="text-muted-foreground">
-              {topicInfo.label}
-            </p>
             {topicInfo.keywords && topicInfo.keywords.length > 0 && (
-              <p className="text-sm text-muted-foreground">
-                Keywords: {topicInfo.keywords.join(', ')}
+              <p className="text-muted-foreground">
+                Keywords: {topicInfo.keywords.join(", ")}
               </p>
             )}
           </div>
         )}
         {pagination && (
           <p className="text-muted-foreground mt-2">
-            {pagination.total} questions found
+            {pagination.total} questions found in the vector database.
           </p>
         )}
       </div>
 
       {questions.length === 0 ? (
-        <div className="text-center text-muted-foreground">
+        <div className="text-muted-foreground text-center">
           <p>No questions found for this topic.</p>
         </div>
       ) : (
         <>
-          <div className="space-y-4 mb-8">
+          <div className="mb-8 space-y-4">
             {questions.map((question) => (
               <Link
                 key={question.id}
@@ -150,14 +149,14 @@ export default function TopicPage({ params }: { params: { id: string } }) {
                 prefetch={false}
                 className="block"
               >
-                <div className="border rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                <div className="rounded-lg border p-4 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800">
                   <div className="flex items-start">
-                    <div className="mr-3 text-muted-foreground">→</div>
+                    <div className="text-muted-foreground mr-3">→</div>
                     <div className="flex-1">
-                      <p className="text-lg text-foreground hover:text-primary transition-colors">
+                      <p className="text-foreground hover:text-primary text-lg transition-colors">
                         {question.text}
                       </p>
-                      <p className="text-sm text-muted-foreground mt-1">
+                      <p className="text-muted-foreground mt-1 text-sm">
                         ID: {question.id}
                       </p>
                     </div>
@@ -168,13 +167,13 @@ export default function TopicPage({ params }: { params: { id: string } }) {
           </div>
 
           {pagination && pagination.totalPages > 1 && (
-            <div className="flex justify-center items-center space-x-4">
+            <div className="flex items-center justify-center space-x-4">
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={!pagination.hasPrev}
-                className="flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               >
-                <ChevronLeft className="w-4 h-4 mr-1" />
+                <ChevronLeft className="mr-1 h-4 w-4" />
                 Previous
               </button>
 
@@ -187,10 +186,10 @@ export default function TopicPage({ params }: { params: { id: string } }) {
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={!pagination.hasNext}
-                className="flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               >
                 Next
-                <ChevronRight className="w-4 h-4 ml-1" />
+                <ChevronRight className="ml-1 h-4 w-4" />
               </button>
             </div>
           )}
