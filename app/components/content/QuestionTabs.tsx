@@ -1,15 +1,17 @@
+"use client";
+
+import { Heart } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Heart } from "lucide-react";
 import { Button } from "../ui/button";
 import { DataQuestionCategories } from "./DataQuestionCategories";
+import { QuestionCategoriesClient } from "./QuestionCategoriesClient";
 
 interface QuestionTabsProps {
   mode: "affirm" | "detrans" | "compare";
-  QuestionCategories: React.ComponentType<{ mode: "affirm" | "detrans" | "compare" }>;
 }
 
-export function QuestionTabs({ mode, QuestionCategories }: QuestionTabsProps) {
+export function QuestionTabs({ mode }: QuestionTabsProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [currentTab, setCurrentTab] = useState<"featured" | "all">("featured");
@@ -53,7 +55,7 @@ export function QuestionTabs({ mode, QuestionCategories }: QuestionTabsProps) {
         </Button>
       </div>
       {currentTab === "featured" ? (
-        <QuestionCategories mode={mode} />
+        <QuestionCategoriesClient mode={mode} />
       ) : (
         <DataQuestionCategories mode={mode} />
       )}
