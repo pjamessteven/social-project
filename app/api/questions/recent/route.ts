@@ -1,4 +1,5 @@
-import { connectRedis } from "@/app/lib/redis";
+import { db, detransQuestions, affirmQuestions } from "@/db";
+import { desc } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -20,40 +21,36 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const redis = await connectRedis();
-    if (!redis) {
-      return NextResponse.json(
-        { error: "Redis connection failed" },
-        { status: 500 },
-      );
-    }
-
-    const key = `${mode}:page_updates`;
+    // Select the appropriate table based on mode
+    const questionsTable = mode === "detrans" ? detransQuestions : affirmQuestions;
 
     // Calculate offset for pagination
     const offset = (page - 1) * limit;
 
     // Get total count
-    const total = await redis.zCard(key);
+    const totalResult = await db
+      .select({ count: questionsTable.name })
+      .from(questionsTable);
+    const total = totalResult.length;
 
-    const results = await redis.sendCommand([
-      "ZREVRANGE",
-      key,
-      String(offset),
-      String(offset + limit - 1),
-      "WITHSCORES",
-    ]);
+    // Get paginated results ordered by most recently asked (newest first)
+    const results = await db
+      .select({
+        name: questionsTable.name,
+        viewsCount: questionsTable.viewsCount,
+        mostRecentlyAsked: questionsTable.mostRecentlyAsked,
+      })
+      .from(questionsTable)
+      .orderBy(desc(questionsTable.mostRecentlyAsked))
+      .limit(limit)
+      .offset(offset);
 
     // Format the response
-    const items = [];
-    if (Array.isArray(results) && results.length > 0) {
-      for (let i = 0; i < results.length; i += 2) {
-        items.push({
-          page: results[i] as string,
-          date: results[i + 1] as number,
-        });
-      }
-    }
+    const items = results.map(result => ({
+      page: result.name,
+      score: result.viewsCount,
+      mostRecentlyAsked: result.mostRecentlyAsked,
+    }));
 
     const totalPages = Math.ceil(total / limit);
     const hasNext = page < totalPages;
