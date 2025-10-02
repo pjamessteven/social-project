@@ -25,9 +25,9 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
   const handleTabChange = (tab: "featured" | "all") => {
     setCurrentTab(tab);
     if (tab === "all") {
-      router.replace("/?all");
+      router.replace("/?all", { scroll: false });
     } else {
-      router.replace("/");
+      router.replace("/", { scroll: false });
     }
   };
 
