@@ -20,12 +20,13 @@ export const metadata: Metadata = {
 export default async function Home({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
+  const resolvedSearchParams = await searchParams;
   return (
     <>
       <div className="pb-16">
-        <StartPage mode="detrans" searchParams={searchParams} />
+        <StartPage mode="detrans" searchParams={resolvedSearchParams} />
       </div>
     </>
   );
