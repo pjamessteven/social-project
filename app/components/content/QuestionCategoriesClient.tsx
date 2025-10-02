@@ -1,4 +1,4 @@
-"use server";
+"use client";
 import {
   affirmingDetransQuestions,
   affirmingQuestionCategories,
@@ -9,7 +9,7 @@ import { slugify } from "@/app/lib/utils";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 
-export async function QuestionCategories({
+export function QuestionCategoriesClient({
   mode,
 }: {
   mode: "affirm" | "detrans" | "compare";

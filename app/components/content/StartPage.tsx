@@ -1,5 +1,6 @@
 "use server";
 
+import { isBot } from "@/app/lib/isBot";
 import {
   BookOpen,
   ChartNoAxesCombined,
@@ -9,14 +10,14 @@ import {
   Settings,
   Youtube,
 } from "lucide-react";
+import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { DataQuestionCategories } from "./DataQuestionCategories";
 import DonationCard from "./DonationCard";
 import { QuestionCategories } from "./QuestionCategories";
+import { QuestionTabs } from "./QuestionTabs";
 import RedditEmbeds from "./RedditEmbeds";
-import { TabScrollHandler } from "./TabScrollHandler";
 
 export async function StartPage({
   className,
@@ -28,12 +29,12 @@ export async function StartPage({
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
   const isDev = process.env.NODE_ENV === "development";
-  const questionTab = searchParams?.dataQuestions !== undefined ? "dataQuestions" : "featured";
-  const hasSearchParams = searchParams && Object.keys(searchParams).length > 0;
+
+  const ua = (await headers()).get("user-agent");
+  const bot = isBot(ua);
 
   return (
     <>
-      <TabScrollHandler hasSearchParams={!!hasSearchParams} />
       <div className="relative flex flex-col pb-[88px]">
         <h1 className="z-10 mt-[20vh] text-3xl font-bold sm:text-4xl">
           <div className="text-muted-foreground opacity-30 dark:opacity-80">
@@ -49,15 +50,15 @@ export async function StartPage({
             : mode == "affirm"
               ? "Talk to 600,000+ Trans People"
               : "Compare Perspectives"}
-          {/*
-          <div className="text-muted-foreground opacity-30 dark:opacity-80">
-            {mode === "detrans"
-              ? "#FreeYourMind"
-              : mode == "affirm"
-                ? "#AffirmYourGender"
-                : "#SeeBothSides"}
-          </div>
-           */}
+          {
+            <div className="text-muted-foreground opacity-30 dark:opacity-80">
+              {mode === "detrans"
+                ? "Support, advice and knowledge."
+                : mode == "affirm"
+                  ? "Support, advide and knowledge"
+                  : ""}
+            </div>
+          }
         </h1>
         {mode === "detrans" ? (
           <div className="">
@@ -73,18 +74,17 @@ export async function StartPage({
             </div>
 
             <div className="prose dark:prose-invert z-10 mt-8">
-              {/*
               <p>
-                Did you know that since 2012, gender dysphoria diagnosises{" "}
+                Since 2011, gender dysphoria diagnosises{" "}
                 <a
                   href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12320607/"
                   target="_blank"
                   className="underline"
                 >
-                  are up 5000%
+                  are up 50-fold
                 </a>{" "}
-                in the UK? Young women are increasingly overrepresented in these
-                statistics,{" "}
+                (5000%) in the UK. Young women are increasingly overrepresented
+                in these statistics,{" "}
                 <a
                   href="https://sci-hub.se/10.1080/08039488.2019.1667429"
                   target="_blank"
@@ -96,7 +96,7 @@ export async function StartPage({
                 people are healing dysphoria, de-transitioning and sharing their
                 experience.
               </p>
-               */}
+
               <p>
                 <b>detrans.ai</b> answers questions from a detrans perspective
                 by integrating thoughts and experiences from the online
@@ -312,13 +312,13 @@ export async function StartPage({
             </div>
           </div>
         )}
-        <div className="text-accent-foreground mt-8 w-full max-w-[660px] rounded border p-3 text-sm opacity-80">
-          <b>Disclaimer:</b> <br />
-          The experiences shared on this site are processed by AI and sourced
-          from unverified Reddit accounts. While Reddit is a platform where real
-          people share personal stories, it may also contain bot-generated or
-          misleading content. You are encouraged to inspect the original Reddit
-          posts to verify the source and context. Please note that{" "}
+        <div className="text-accent-foreground/70 bg-destructive/5 dark:bg-destructive/40 border-destructive mt-8 w-full max-w-[660px] rounded-lg border p-3 text-sm opacity-80">
+          <b className="">Disclaimer:</b> <br className="mb-2" />
+          The experiences shared on this site are sourced from Reddit and
+          processed by AI. While Reddit is a platform where real people share
+          personal stories, it may also contain bot-generated or misleading
+          content. You are encouraged to inspect the original Reddit posts to
+          verify the source and context. Please note that{" "}
           {mode === "affirm"
             ? "/r/mtf and /r/ftm are heavily moderated subreddits"
             : "/r/detrans is a heavily moderated subreddit"}
@@ -327,54 +327,19 @@ export async function StartPage({
         </div>
         {mode === "detrans" && false && (
           <div className="">
-            <RedditEmbeds mode={mode} />{" "}
+            <RedditEmbeds mode={"detrans"} />{" "}
           </div>
         )}
-        {mode === "affirm" && (
-          <div className="prose dark:prose-invert mt-8">
-            <h3>
-              {" "}
-              Support, life advice and knowledge from over 600,000+ trans
-              people.
-            </h3>
-          </div>
-        )}
-        {mode === "detrans" && (
-          <div className="prose dark:prose-invert mt-8">
-            <h3>
-              Support, life advice and knowledge from over 50,000
-              detransitioners and desisters.
-            </h3>
-          </div>
-        )}
-        {mode == "detrans" && (
+
+        <div className="prose dark:prose-invert mt-8">
+          <b>Start with a question below, or ask anything.</b>
+        </div>
+
+        {mode == "detrans" ? (
           <>
-            {" "}
-            <div id="question-tabs" className="grid max-w-[660px] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
-              <Link href="/">
-                <Button
-                  variant={questionTab === "featured" ? "default" : "secondary"}
-                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-                >
-                  <Heart className="h-4 w-4" />
-                  <span className="text-sm font-medium">
-                    Featured Questions
-                  </span>
-                </Button>
-              </Link>
-              <Link href="/?dataQuestions">
-                <Button
-                  variant={questionTab === "dataQuestions" ? "default" : "secondary"}
-                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-                >
-                  <Youtube className="h-4 w-4" />
-                  <span className="text-sm font-medium">All Questions</span>
-                </Button>
-              </Link>
-            </div>
-            {questionTab == "dataQuestions" ? (
-              <div className="mt-8">
-                <DataQuestionCategories mode={mode} />
+            {!bot ? (
+              <div className="mt-2">
+                <QuestionTabs mode={mode} />
               </div>
             ) : (
               <div className="mt-8">
@@ -382,6 +347,10 @@ export async function StartPage({
               </div>
             )}
           </>
+        ) : (
+          <div className="mt-8">
+            <QuestionCategories mode={mode} />
+          </div>
         )}
         {mode === "detrans" && (
           <div className="text-muted-foreground relative flex flex-col text-base italic opacity-90 sm:text-lg">
@@ -398,44 +367,36 @@ export async function StartPage({
              */}
             </div>
 
-            <p className="mt-8 sm:mt-16">You can set yourself free -</p>
+            <p className="mt-8 sm:mt-8">You can set yourself free -</p>
             <p className="mt-1">All you need to do, is learn just to be.</p>
             <p className="mt-8">And be sure to mind your thoughts,</p>
-            <p className="mt-1">Because the mind is like a garden,</p>
-            <p className="mt-1">And each thought is a seed.</p>
+            <p className="mt-1">Because the mind is like a garden.</p>
+            <p className="mt-1">In your garden,</p>
+            <p className="mt-1">Each and every thought is a seed.</p>
             <p className="mt-1">We reap what we sow,</p>
             <p className="mt-1">But through this we can grow.</p>
 
-            <div className="mt-16">
-              Built by Peter James Steven in Welllington, NZ. Read a{" "}
-              <a
-                href="https://bitbout.me"
-                target="_blank"
-                className="underline"
-              >
-                bitbout.me
-              </a>
-              .
+            <div className="mt-8">
+              Built by Peter James Steven in Welllington, NZ.
               <br />
               <div className="mt-2 flex items-center sm:mt-1">
                 <div>
-                  This is an open-source project. The code is available under an
-                  MIT license on{" "}
+                  This is an{" "}
                   <a
                     href="https://github.com/pjamessteven/social-project"
                     target="_blank"
                     className="underline"
                   >
-                    Github
+                    open-source project
                   </a>
-                  .
+                  . The code is published under an MIT license.
                 </div>
               </div>
               <div className="mt-2 flex items-center sm:mt-1">
                 European language translations coming soon...
               </div>
               <div className="mt-2 flex items-center sm:mt-1">
-                Nobody in the real world is afraid of getting cancelled!
+                Nobody in the real world is afraid of getting cancelled.
               </div>
             </div>
             <div className="font-base mt-16 text-lg not-italic">

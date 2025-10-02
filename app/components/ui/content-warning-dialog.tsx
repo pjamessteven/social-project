@@ -58,13 +58,11 @@ export function ContentWarningDialog({ host }: ContentWarningDialogProps) {
           <DialogDescription className="prose dark:prose-invert mt-2 text-base">
             <p className="mb-3">
               This website contains perspectives and experiences from
-              ex-transgender people who have detransitioned or desisted. This
-              information may conflict with your current beliefs about gender.
+              ex-transgender people who have detransitioned or desisted.
             </p>
             <p className="mt-1">
-              If you currently identify as transgender, you may find this
-              content invalidating. Please make sure you are in the right
-              headspace before continuing.
+              This information may conflict with your current beliefs about
+              gender.
             </p>
           </DialogDescription>
         </DialogHeader>

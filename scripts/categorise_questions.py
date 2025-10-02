@@ -12,7 +12,6 @@ from dotenv import load_dotenv
 import os
 import re
 
-from sklearn.cluster import KMeans
 import umap
 
 load_dotenv()                                                                                                                                                           
@@ -38,8 +37,8 @@ client = QdrantClient(
     timeout=60  # 60 second timeout
 )
 
-COLLECTION_Q = "default_topics_with_vectors"
-COLLECTION_T = "default_topic_categories"
+COLLECTION_Q = "default_questions"
+COLLECTION_T = "default_topics"
 
 # -------------------------------
 # 2. Load all questions + vectors
@@ -99,19 +98,20 @@ if len(all_points) == 0:
 print("Extracting data from points...")
 ids = [p.id for p in all_points]
 
-
+# Extract questions from nested _node_content structure
 questions = []
 for p in all_points:
-    if p.payload and "title" in p.payload:
+    if p.payload and "_node_content" in p.payload:
         try:
-            print(p.payload)
-            node_content = p.payload["title"]
-            if node_content:
-                questions.append(node_content)
+            import json
+            node_content = json.loads(p.payload["_node_content"]) if isinstance(p.payload["_node_content"], str) else p.payload["_node_content"]
+            text = node_content.get("text", "")
+            if text:
+                questions.append(text)
             else:
                 questions.append("")  # Keep index alignment
         except (json.JSONDecodeError, TypeError) as e:
-            print(f"Warning: Could not parse title for point {p.id}: {e}")
+            print(f"Warning: Could not parse _node_content for point {p.id}: {e}")
             questions.append("")  # Keep index alignment
     else:
         questions.append("")  # Keep index alignment
@@ -171,16 +171,17 @@ except Exception as e:
 ids = [p.id for p in all_points]
 questions = []
 for p in all_points:
-    if p.payload and "title" in p.payload:
+    if p.payload and "_node_content" in p.payload:
         try:
             import json
-            node_content = p.payload["title"]
-            if node_content:
-                questions.append(node_content)
+            node_content = json.loads(p.payload["_node_content"]) if isinstance(p.payload["_node_content"], str) else p.payload["_node_content"]
+            text = node_content.get("text", "")
+            if text:
+                questions.append(text)
             else:
                 questions.append("")  # Keep index alignment
         except (json.JSONDecodeError, TypeError) as e:
-            print(f"Warning: Could not parse title for point {p.id}: {e}")
+            print(f"Warning: Could not parse _node_content for point {p.id}: {e}")
             questions.append("")  # Keep index alignment
     else:
         questions.append("")  # Keep index alignment
@@ -190,7 +191,7 @@ print(f"Extracted {len(ids)} IDs, {len(questions)} questions, {len(embeddings)} 
 # Filter out empty questions but keep index alignment
 valid_indices = [i for i, q in enumerate(questions) if q.strip()]
 if len(valid_indices) == 0:
-    print("❌ No valid questions found in payloads. Check that points have 'title' field.")
+    print("❌ No valid questions found in payloads. Check that points have '_node_content' with 'text' field.")
     sys.exit(1)
 
 print(f"Found {len(valid_indices)} valid questions out of {len(questions)} total points")
@@ -285,8 +286,21 @@ try:
     valid_embeddings = embeddings[valid_indices]
     valid_ids = [ids[i] for i in valid_indices]
 
-    topic_model = BERTopic(embedding_model=None, verbose=True)
+    umap_model = umap.UMAP(
+        n_neighbors=50,    # much higher → captures more *global* structure
+        n_components=25,
+        min_dist=0.1,      # relaxes density a little
+        metric="cosine"
+    )
 
+    hdbscan_model = HDBSCAN(
+        min_cluster_size=50,   # forces larger, broader clusters
+        min_samples=5,         # less strict → fewer -1s
+        prediction_data=True
+    )
+    
+    topic_model = BERTopic(umap_model=umap_model,
+    hdbscan_model=hdbscan_model,embedding_model=None, verbose=True)
 
     topics, probs = topic_model.fit_transform(valid_questions, valid_embeddings)
 
@@ -296,7 +310,7 @@ try:
     print("Calculating topic hierarchy before reduction...")
     initial_topic_depths, initial_max_depth = calculate_topic_depths(topic_model, valid_questions)
     
-    topic_model.reduce_topics(valid_questions, nr_topics=100)
+    # topic_model.reduce_topics(valid_questions, nr_topics=20)
     # print(f"Topics after reduction: {len(set(topic_model.topics_))}")
 
     # Type guard to satisfy type checker
@@ -353,51 +367,6 @@ topic_to_questions = defaultdict(list)
 for q, t in zip(valid_questions, topics):
     topic_to_questions[t].append(q)
 
-# Collect aggregated data from original points for each topic
-def create_aggregated_data():
-    return {
-        'question_count': 0,
-        'keyword_names': set(),
-        'keywords': set(),
-        'children': []
-    }
-
-topic_to_aggregated_data = defaultdict(create_aggregated_data)
-
-for i, topic_id in enumerate(topics):
-    point = all_points[valid_indices[i]]
-    payload = point.payload or {}
-    
-    # Aggregate question_count
-    if 'question_count' in payload:
-        topic_to_aggregated_data[topic_id]['question_count'] += payload['question_count']
-    else:
-        topic_to_aggregated_data[topic_id]['question_count'] += 1  # Default to 1 if not present
-    
-    # Aggregate keyword_name (add whole string to array)
-    if 'keyword_name' in payload and payload['keyword_name']:
-        # Add the whole keyword_name string to the set
-        topic_to_aggregated_data[topic_id]['keyword_names'].add(payload['keyword_name'])
-    
-    # Aggregate keywords (concatenate arrays, remove duplicates)
-    if 'keywords' in payload and isinstance(payload['keywords'], list):
-        topic_to_aggregated_data[topic_id]['keywords'].update(payload['keywords'])
-    
-    # Collect children (title and topic_id as objects)
-    if 'title' in payload and 'topic_id' in payload:
-        child_obj = {
-            'title': payload['title'],
-            'topic_id': payload['topic_id']
-        }
-        # Avoid duplicates
-        if child_obj not in topic_to_aggregated_data[topic_id]['children']:
-            topic_to_aggregated_data[topic_id]['children'].append(child_obj)
-
-# Convert sets to lists for JSON serialization
-for topic_id in topic_to_aggregated_data:
-    topic_to_aggregated_data[topic_id]['keyword_names'] = list(topic_to_aggregated_data[topic_id]['keyword_names'])
-    topic_to_aggregated_data[topic_id]['keywords'] = list(topic_to_aggregated_data[topic_id]['keywords'])
-
 # Generate labels using LLM
 def generate_llm_title(topic_id, questions, keywords, depth=0, max_depth=1, topn=10, parent_title=None):
     """Generate a descriptive title for a topic using LLM with depth awareness"""
@@ -414,17 +383,34 @@ def generate_llm_title(topic_id, questions, keywords, depth=0, max_depth=1, topn
         # Determine granularity based on depth ratio for better scaling
         depth_ratio = depth / max_depth if max_depth > 0 else 0
         
-
+        if max_depth <= 1:
+            granularity_instruction = "Generate a broad, general title that covers the main theme."
+        elif depth == 0:
+            granularity_instruction = "Generate a broad, high-level title that encompasses major themes."
+        elif depth_ratio >= 0.9:
+            granularity_instruction = "Generate a very specific, detailed title that captures precise subtopics and distinguishes this from sibling topics."
+        elif depth_ratio >= 0.7:
+            granularity_instruction = f"Generate a specific title (depth {depth}/{max_depth}) that captures detailed subtopics while being more specific than parent topics."
+        elif depth_ratio >= 0.5:
+            granularity_instruction = f"Generate a moderately specific title (depth {depth}/{max_depth}) that balances specificity with broader applicability."
+        elif depth_ratio >= 0.3:
+            granularity_instruction = f"Generate a somewhat broad title (depth {depth}/{max_depth}) that covers related themes while being more specific than higher-level topics."
+        else:
+            granularity_instruction = f"Generate a broad title (depth {depth}/{max_depth}) that encompasses major themes while being more specific than root topics."
+        
         prompt = f"""Based on the following questions and keywords from a topic cluster, generate a concise, descriptive title (2-6 words) that captures the main theme:
 
-Subtopics:
+Questions:
 {chr(10).join(f"- {q}" for q in sample_questions)}
 
 Keywords: {keywords_str}
 
-Generate a title that encompasses major themes and captures precise subtopics to distinguish this topic from potential sibling topics.
-The audience is people who are questioning or considering de-transition, as well as parents. Try to word the topics simply and clearly. 
-Focus on what makes this topic distinct. 
+Hierarchy Context:
+- Current depth: {depth} (0 = top level)
+- Maximum depth: {max_depth}
+- {granularity_instruction}{parent_context}
+
+Focus on what makes this topic distinct from its siblings and parent. Avoid generic terms.
 Respond with only the title, do not include any notes.
 Title:"""
 
@@ -448,6 +434,39 @@ Title:"""
         print(f"Error generating LLM title for topic {topic_id}: {e}")
         # Fallback to simple label
         return generate_simple_label(topic_id, questions, topn=2)
+
+def generate_differentiated_title(topic_id, questions, keywords, depth, max_depth, sibling_titles=None, parent_title=None):
+    """Generate a title that's differentiated from sibling topics"""
+    # Generate initial title
+    initial_title = generate_llm_title(topic_id, questions, keywords, depth, max_depth, parent_title=parent_title)
+    
+    # If we have sibling titles, try to differentiate
+    if sibling_titles and len(sibling_titles) > 0:
+        differentiation_prompt = f"""
+The initial title "{initial_title}" might be too similar to sibling topics: {', '.join(sibling_titles)}
+
+Based on the same questions and keywords, generate a more distinctive title that clearly differentiates this topic from its siblings while remaining accurate.
+
+Questions: {chr(10).join(f"- {q}" for q in questions[:5])}
+Keywords: {', '.join(keywords[:8])}
+
+Distinctive title:"""
+        
+        try:
+            response = openai_client.chat.completions.create(
+                model="deepseek/deepseek-chat-v3.1",
+                messages=[{"role": "user", "content": differentiation_prompt}],
+                max_tokens=50,
+                temperature=0.4
+            )
+            differentiated_title = response.choices[0].message.content.strip().strip('"\'')
+            print(f"Differentiated title for topic {topic_id}: {differentiated_title}")
+            return differentiated_title
+        except Exception as e:
+            print(f"Error generating differentiated title for topic {topic_id}: {e}")
+            return initial_title
+    
+    return initial_title
 
 def generate_simple_label(topic_id, questions, topn=3):
     """Fallback: simple version using first few questions"""
@@ -475,8 +494,8 @@ def generate_title_from_child_titles(topic_id, child_titles, child_types, depth,
         # Build context about the child topics with type information
         child_info_lines = []
         for title, is_synthetic in zip(child_titles, child_types):
-           if not is_synthetic:
-            child_info_lines.append(f"- {title}")
+            type_label = "synthetic grouping" if is_synthetic else "document cluster"
+            child_info_lines.append(f"- {title} ({type_label})")
         
         child_titles_str = "\n".join(child_info_lines)
         
@@ -512,8 +531,12 @@ def generate_title_from_child_titles(topic_id, child_titles, child_types, depth,
 Child Topics:
 {child_titles_str}
 
-Generate an informative title that that encompasses the topics and themes of the children topics.
-We already know that the subject is detransition.  
+Hierarchy Context:
+- Current depth: {depth} (0 = top level)
+- Maximum depth: {max_depth}
+- {granularity_instruction}{parent_context}{type_context}
+
+Generate a title that is broader than the child topics but still descriptive and specific enough to be meaningful.
 Respond with only the title, do not include any notes.
 Title:"""
 
@@ -788,8 +811,8 @@ def get_aggregated_questions_for_synthetic_topic(topic_id, parent_to_children, l
     print(f"Synthetic topic {topic_id} collected {len(all_questions)} hierarchical questions")
     return all_questions[:max_questions]
 
-def get_aggregated_data_for_synthetic_topic(topic_id, parent_to_children, leaf_topics):
-    """Get aggregated data (keywords, keyword_names, question_count, children) for a synthetic topic"""
+def get_aggregated_keywords_for_synthetic_topic(topic_id, parent_to_children, leaf_topics):
+    """Get depth-aware aggregated keywords for a synthetic topic"""
     depth = topic_depths.get(topic_id, 0)
     
     def get_all_descendant_leaves(topic_id):
@@ -810,39 +833,23 @@ def get_aggregated_data_for_synthetic_topic(topic_id, parent_to_children, leaf_t
     # Collect keywords from all descendant leaf topics
     keyword_counts = defaultdict(float)
     keywords_found = 0
-    
-    # Aggregate data from descendant leaf topics
-    aggregated_keyword_names = set()
-    aggregated_keywords = set()
-    total_question_count = 0
-    all_children = []
-    
     for leaf_topic in descendant_leaves:
         # Map the original leaf topic to its reduced topic ID
         reduced_topic = map_to_reduced_topic(leaf_topic)
         if reduced_topic is not None:
-            # Get BERTopic keywords
             topic_words = topic_model.get_topic(reduced_topic)
             if topic_words and isinstance(topic_words, list):
                 for word, score in topic_words[:10]:  # Top 10 keywords from each leaf
                     keyword_counts[word] += score
                 keywords_found += len(topic_words[:10])
-            
-            # Get aggregated data from original points for this leaf topic
-            if reduced_topic in topic_to_aggregated_data:
-                leaf_data = topic_to_aggregated_data[reduced_topic]
-                total_question_count += leaf_data['question_count']
-                aggregated_keyword_names.update(leaf_data['keyword_names'])
-                aggregated_keywords.update(leaf_data['keywords'])
-                all_children.extend(leaf_data['children'])
             else:
-                print(f"  No aggregated data found for reduced topic {reduced_topic}")
+                print(f"  No keywords found for reduced topic {reduced_topic}")
         else:
             print(f"  Skipped leaf topic {leaf_topic} (no valid reduced topic)")
     
-    print(f"Synthetic topic {topic_id} aggregated data from {len(descendant_leaves)} leaves: {total_question_count} questions, {len(aggregated_keyword_names)} keyword names, {len(aggregated_keywords)} keywords, {len(all_children)} children")
+    print(f"Synthetic topic {topic_id} aggregated {keywords_found} keywords from {len(descendant_leaves)} leaves")
     
-    # Filter BERTopic keywords based on depth ratio for better granularity
+    # Filter keywords based on depth ratio for better granularity
     depth_ratio = depth / max_depth if max_depth > 0 else 0
     
     if depth == 0:
@@ -889,15 +896,7 @@ def get_aggregated_data_for_synthetic_topic(topic_id, parent_to_children, leaf_t
     
     # Sort by aggregated score and return top keywords
     sorted_keywords = sorted(keyword_counts.items(), key=lambda x: x[1], reverse=True)
-    bertopic_keywords = [word for word, _ in sorted_keywords[:15]]  # Top 15 aggregated keywords
-    
-    return {
-        'bertopic_keywords': bertopic_keywords,
-        'keyword_names': list(aggregated_keyword_names),
-        'keywords': list(aggregated_keywords),
-        'question_count': total_question_count,
-        'children': all_children
-    }
+    return [word for word, _ in sorted_keywords[:15]]  # Top 15 aggregated keywords
 
 # Build complete hierarchy
 leaf_topics, synthetic_topics, parent_to_children, child_to_parent = build_complete_hierarchy()
@@ -930,9 +929,6 @@ for _, row in topic_info.iterrows():
     # Keep the simple label as backup
     simple_label = generate_simple_label(topic_id, rep_questions, topn=15)
     
-    # Get aggregated data from original points
-    aggregated_data = topic_to_aggregated_data[topic_id]
-    
     topic_points.append(
         models.PointStruct(
             id=topic_id,
@@ -946,10 +942,7 @@ for _, row in topic_info.iterrows():
                 "depth": depth,
                 "max_depth": max_depth,
                 "is_synthetic": False,
-                "question_count": aggregated_data['question_count'],  # Use aggregated count
-                "keyword_names": aggregated_data['keyword_names'],  # Array of keyword name parts
-                "aggregated_keywords": aggregated_data['keywords'],  # Concatenated unique keywords from original points
-                "children": aggregated_data['children']  # Array of objects with title and topic_id
+                "question_count": len(rep_questions)
             }
         )
     )
@@ -986,11 +979,10 @@ for synthetic_topic_id in synthetic_topics_by_depth:
             child_titles.append(topic_id_to_title[child_id])
             child_types.append(True)  # This is synthetic
     
-    # Get aggregated data from descendant leaves
-    aggregated_data = get_aggregated_data_for_synthetic_topic(
+    # Get aggregated keywords from descendant leaves (for keyword name generation)
+    aggregated_keywords = get_aggregated_keywords_for_synthetic_topic(
         synthetic_topic_id, parent_to_children, leaf_topics
     )
-    aggregated_keywords = aggregated_data['bertopic_keywords']
     
     # Get depth for this synthetic topic
     depth = topic_depths.get(synthetic_topic_id, 0)
@@ -1030,11 +1022,7 @@ for synthetic_topic_id in synthetic_topics_by_depth:
                 "max_depth": max_depth,
                 "is_synthetic": True,
                 "child_topics": direct_children,
-                "child_titles": child_titles,  # Store child titles for reference
-                "question_count": aggregated_data['question_count'],  # Aggregated question count
-                "keyword_names": aggregated_data['keyword_names'],  # Array of keyword name parts
-                "aggregated_keywords": aggregated_data['keywords'],  # Concatenated unique keywords from original points
-                "children": aggregated_data['children']  # Array of objects with title and topic_id
+                "child_titles": child_titles  # Store child titles for reference
             }
         )
     )

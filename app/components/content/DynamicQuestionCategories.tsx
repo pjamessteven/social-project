@@ -8,11 +8,11 @@ import { useEffect, useState } from "react";
 function formatRelativeTime(timestamp: number): string {
   const now = Date.now();
   const diff = now - timestamp * 1000; // Convert to milliseconds
-  
+
   const minutes = Math.floor(diff / (1000 * 60));
   const hours = Math.floor(diff / (1000 * 60 * 60));
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  
+
   if (minutes < 1) {
     return "just now";
   } else if (minutes < 60) {
@@ -26,7 +26,8 @@ function formatRelativeTime(timestamp: number): string {
 
 interface TopQuestion {
   page: string;
-  score: number;
+  score?: number;
+  date?: number;
 }
 
 interface TopQuestionsResponse {
@@ -150,9 +151,14 @@ export function DynamicQuestionCategories({
   return (
     <>
       <div className="mb-8">
-        <h3 className="text-primary mb-2 text-2xl font-bold">Top Questions</h3>
+        <h3 className="text-primary mb-2 text-2xl font-bold">
+          {" "}
+          {questionMode === "top" ? "Top Questions" : "Recent Questions"}
+        </h3>
         <p className="text-muted-foreground mb-6 text-base">
-          These are the top questions people have asked detrans.ai
+          {questionMode === "top"
+            ? "These are the top questions people have asked detrans.ai"
+            : "These are the most recent questions people have asked detrans.ai"}
         </p>
         <div className="grid gap-1">
           {topQuestions.map((item, index) => (
@@ -162,21 +168,20 @@ export function DynamicQuestionCategories({
               key={`${item.page}-${index}`}
             >
               <div className="flex flex-row items-center border-b pt-1 pb-2">
-                <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-lg italic opacity-90">
+                <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-lg italic opacity-90">
                   <div className="mr-2 whitespace-nowrap">{"->"}</div>
                   <div className="flex-1">{item.page}</div>
                   <div className="ml-2 text-sm font-normal opacity-60">
-                    {questionMode === "recent" 
-                      ? `(${formatRelativeTime(item.score)})`
-                      : `(${item.score} views)`
-                    }
+                    {questionMode === "recent" && item.date
+                      ? `(${formatRelativeTime(item.date)})`
+                      : `(${item.score} views)`}
                   </div>
                 </div>
               </div>
             </Link>
           ))}
 
-          {(hasMore || true) && (
+          {hasMore && (
             <div
               className="flex cursor-pointer flex-row items-center border-b pt-1 pb-2"
               onClick={handleShowMore}

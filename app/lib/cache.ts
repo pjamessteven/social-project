@@ -39,8 +39,8 @@ export async function incrementPageViews(mode: string, page: string) {
     // Now update sorted sets with the new values
     await redis
       .multi()
-      .zAdd("pageviews", [{ score: newViews, value: page }])
-      .zAdd("page_updates", [{ score: now, value: page }])
+      .zAdd(`${mode}:page_views`, [{ score: newViews, value: page }])
+      .zAdd(`${mode}:page_updates`, [{ score: now, value: page }])
       .exec();
 
     return newViews;
