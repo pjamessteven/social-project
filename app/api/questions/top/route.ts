@@ -46,11 +46,13 @@ export async function GET(request: NextRequest) {
 
     // Format the response
     const items = [];
-    for (let i = 0; i < results.length; i += 2) {
-      items.push({
-        page: results[i],
-        score: results[i + 1],
-      });
+    if (results && results.length > 0) {
+      for (let i = 0; i < results.length; i += 2) {
+        items.push({
+          page: results[i],
+          score: results[i + 1],
+        });
+      }
     }
 
     const totalPages = Math.ceil(total / limit);
