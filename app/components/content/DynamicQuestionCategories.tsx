@@ -1,7 +1,7 @@
 "use client";
 
 import { slugify } from "@/app/lib/utils";
-import { ChevronDown, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -160,18 +160,15 @@ export function DynamicQuestionCategories({
               onClick={handleShowMore}
             >
               <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-lg italic opacity-90">
-                <div className="mr-2 whitespace-nowrap">{"->"}</div>
-                <div className="flex-1">
+                <div className="mr-2 whitespace-nowrap"> </div>
+                <div className="ml-5 flex-1">
                   {loadingMore ? (
                     <span className="flex items-center">
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                       Loading more results...
                     </span>
                   ) : (
-                    <span className="flex items-center">
-                      Load more results
-                      <ChevronDown className="ml-2 h-4 w-4" />
-                    </span>
+                    <span className="flex items-center">Load more results</span>
                   )}
                 </div>
               </div>
