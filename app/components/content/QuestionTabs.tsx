@@ -20,16 +20,20 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
 
   // Sync state with URL params on mount
   useEffect(() => {
-    const newTab = searchParams?.get("all") !== null ? "all" : "featured";
-    setCurrentTab(newTab);
+    const questionsParam = searchParams?.get("questions");
+    if (questionsParam === "all" || questionsParam === "top" || questionsParam === "featured") {
+      setCurrentTab(questionsParam);
+    } else {
+      setCurrentTab("featured");
+    }
   }, [searchParams]);
 
   const handleTabChange = (tab: "featured" | "all" | "top") => {
     setCurrentTab(tab);
-    if (tab === "all") {
-      router.replace("/?all", { scroll: false });
-    } else {
+    if (tab === "featured") {
       router.replace("/", { scroll: false });
+    } else {
+      router.replace(`/?questions=${tab}`, { scroll: false });
     }
   };
 
@@ -48,7 +52,7 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
           <span className="text-sm font-medium">Featured Questions</span>
         </Button>
         <Button
-          variant={currentTab === "all" ? "default" : "secondary"}
+          variant={currentTab === "top" ? "default" : "secondary"}
           className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
           onClick={() => handleTabChange("top")}
         >
@@ -66,6 +70,8 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
       </div>
       {currentTab === "featured" ? (
         <QuestionCategoriesClient mode={mode} />
+      ) : currentTab === "top" ? (
+        <DataQuestionCategories mode={mode} />
       ) : (
         <DataQuestionCategories mode={mode} />
       )}
