@@ -16,6 +16,7 @@ import { DataQuestionCategories } from "./DataQuestionCategories";
 import DonationCard from "./DonationCard";
 import { QuestionCategories } from "./QuestionCategories";
 import RedditEmbeds from "./RedditEmbeds";
+import { TabScrollHandler } from "./TabScrollHandler";
 
 export async function StartPage({
   className,
@@ -28,9 +29,11 @@ export async function StartPage({
 }) {
   const isDev = process.env.NODE_ENV === "development";
   const questionTab = searchParams?.dataQuestions !== undefined ? "dataQuestions" : "featured";
+  const hasSearchParams = searchParams && Object.keys(searchParams).length > 0;
 
   return (
     <>
+      <TabScrollHandler hasSearchParams={!!hasSearchParams} />
       <div className="relative flex flex-col pb-[88px]">
         <h1 className="z-10 mt-[20vh] text-3xl font-bold sm:text-4xl">
           <div className="text-muted-foreground opacity-30 dark:opacity-80">
@@ -347,7 +350,7 @@ export async function StartPage({
         {mode == "detrans" && (
           <>
             {" "}
-            <div className="grid max-w-[660px] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
+            <div id="question-tabs" className="grid max-w-[660px] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
               <Link href="/">
                 <Button
                   variant={questionTab === "featured" ? "default" : "secondary"}
