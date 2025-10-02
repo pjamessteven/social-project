@@ -21,8 +21,15 @@ def generate_embedding(text: str):
     return response.data[0].embedding
 
 def update_all_points():
+    # First, get total count for progress tracking
+    print("Getting total point count...")
+    count_result = qdrant.count(collection_name=COLLECTION)
+    total_points = count_result.count
+    print(f"Total points to process: {total_points}")
+    
     offset = None
     total_updated = 0
+    start_time = time.time()
 
     while True:
         # Step 1: Scroll through points in batches
@@ -66,7 +73,18 @@ def update_all_points():
                 points=updates
             )
             total_updated += len(updates)
-            print(f"Updated {len(updates)} points (total: {total_updated})")
+            
+            # Calculate progress and ETA
+            progress_pct = (total_updated / total_points) * 100
+            elapsed_time = time.time() - start_time
+            if total_updated > 0:
+                avg_time_per_point = elapsed_time / total_updated
+                remaining_points = total_points - total_updated
+                eta_seconds = remaining_points * avg_time_per_point
+                eta_minutes = eta_seconds / 60
+                print(f"Updated {len(updates)} points | Progress: {total_updated}/{total_points} ({progress_pct:.1f}%) | ETA: {eta_minutes:.1f} min")
+            else:
+                print(f"Updated {len(updates)} points (total: {total_updated})")
 
         # Move to next batch
         offset = next_offset
