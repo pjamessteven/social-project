@@ -1,8 +1,9 @@
-"use server";
+"use client";
 
 import topicsHierarchy from "@/app/lib/topics_hierarchy.json";
 import { slugify } from "@/app/lib/utils";
 import Link from "next/link";
+import { useState } from "react";
 
 interface TopicChild {
   title: string;
@@ -27,6 +28,7 @@ function TopicNode({
   mode: "affirm" | "detrans" | "compare";
   level?: number;
 }) {
+  const [isOpen, setIsOpen] = useState(false);
   const hasQuestions = topic.questions && topic.questions.length > 0;
   const hasChildren = topic.children && topic.children.length > 0;
 
@@ -46,9 +48,9 @@ function TopicNode({
 
   return (
     <div className={`ml-6 ${level > 0 ? "" : ""}`}>
-      <details className="group">
+      <details className="group" onToggle={(e) => setIsOpen(e.currentTarget.open)}>
         <summary className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800">
-          <div className="mr-2 transition-transform [details[open]>&]:rotate-90">
+          <div className={`mr-2 transition-transform ${isOpen ? 'rotate-90' : ''}`}>
             <svg
               className="h-4 w-4"
               fill="none"
@@ -115,7 +117,7 @@ function TopicNode({
   );
 }
 
-export async function DataQuestionCategories({
+export function DataQuestionCategories({
   mode,
 }: {
   mode: "affirm" | "detrans" | "compare";
@@ -129,11 +131,14 @@ export async function DataQuestionCategories({
     (a, b) => b.question_count - a.question_count,
   );
 
-  return sortedHierarchy.map((category, index) => (
-    <div className="space-y-4" key={index}>
-      <details className="group">
-        <summary className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800">
-          <div className="mr-2 transition-transform [details[open]>&]:rotate-90">
+  return sortedHierarchy.map((category, index) => {
+    const [isOpen, setIsOpen] = useState(false);
+    
+    return (
+      <div className="space-y-4" key={index}>
+        <details className="group" onToggle={(e) => setIsOpen(e.currentTarget.open)}>
+          <summary className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800">
+            <div className={`mr-2 transition-transform ${isOpen ? 'rotate-90' : ''}`}>
             <svg
               className="h-4 w-4"
               fill="none"
@@ -165,5 +170,6 @@ export async function DataQuestionCategories({
         </div>
       </details>
     </div>
-  ));
+    );
+  });
 }
