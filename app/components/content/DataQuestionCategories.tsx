@@ -5,7 +5,7 @@ import { slugify } from "@/app/lib/utils";
 import { Heart } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import { QuestionCategories } from "./QuestionCategories";
 
@@ -137,9 +137,13 @@ export function DataQuestionCategories({
   const searchParams = useSearchParams();
 
   // Initialize tab state from URL params
-  const [currentTab, setCurrentTab] = useState<"featured" | "all">(() => {
-    return searchParams?.get("featured") !== null ? "featured" : "all";
-  });
+  const [currentTab, setCurrentTab] = useState<"featured" | "all">("featured");
+
+  // Sync state with URL params
+  useEffect(() => {
+    const newTab = searchParams?.get("all") !== null ? "all" : "featured";
+    setCurrentTab(newTab);
+  }, [searchParams]);
 
   // Sort categories by question count (descending)
   const sortedHierarchy = [...hierarchy].sort(
@@ -156,7 +160,6 @@ export function DataQuestionCategories({
           <Button
             variant={currentTab === "featured" ? "default" : "secondary"}
             className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-            onClick={() => setCurrentTab("featured")}
           >
             <Heart className="h-4 w-4" />
             <span className="text-sm font-medium">Featured Questions</span>
@@ -166,7 +169,6 @@ export function DataQuestionCategories({
           <Button
             variant={currentTab === "all" ? "default" : "secondary"}
             className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-            onClick={() => setCurrentTab("all")}
           >
             <Heart className="h-4 w-4" />
             <span className="text-sm font-medium">All Questions</span>
