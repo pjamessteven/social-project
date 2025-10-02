@@ -1,4 +1,4 @@
-"use client";
+"use server";
 
 import {
   affirmingDetransQuestions,
@@ -7,9 +7,8 @@ import {
   questionCategories,
 } from "@/app/lib/questions";
 import { slugify } from "@/app/lib/utils";
-import { ChevronDown, ChevronRight, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 import topicsHierarchy from "@/app/lib/topics_hierarchy.json";
 
 interface TopicChild {
@@ -35,10 +34,8 @@ function TopicNode({
   mode: "affirm" | "detrans" | "compare";
   level?: number;
 }) {
-  const [isExpanded, setIsExpanded] = useState(false);
   const hasQuestions = topic.questions && topic.questions.length > 0;
   const hasChildren = topic.children && topic.children.length > 0;
-  const isDev = process.env.NODE_ENV === "development";
 
   const getHref = (question: string) => {
     const slug = slugify(question);
@@ -54,21 +51,9 @@ function TopicNode({
     }
   };
 
-  return (
-    <div className={`mb-4 ${level > 0 ? 'ml-6' : ''}`}>
-      <div 
-        className="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 p-2 rounded"
-        onClick={() => setIsExpanded(!isExpanded)}
-      >
-        {(hasQuestions || hasChildren) && (
-          <div className="mr-2">
-            {isExpanded ? (
-              <ChevronDown className="h-4 w-4" />
-            ) : (
-              <ChevronRight className="h-4 w-4" />
-            )}
-          </div>
-        )}
+  if (!hasQuestions && !hasChildren) {
+    return (
+      <div className={`mb-2 ${level > 0 ? 'ml-6' : ''}`}>
         <h3 className={`text-primary font-semibold ${level === 0 ? 'text-xl' : level === 1 ? 'text-lg' : 'text-base'}`}>
           {topic.title}
         </h3>
@@ -76,8 +61,26 @@ function TopicNode({
           ({topic.question_count} questions)
         </span>
       </div>
+    );
+  }
 
-      {isExpanded && (
+  return (
+    <div className={`mb-4 ${level > 0 ? 'ml-6' : ''}`}>
+      <details className="group">
+        <summary className="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 p-2 rounded list-none">
+          <div className="mr-2 transition-transform group-open:rotate-90">
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+          <h3 className={`text-primary font-semibold ${level === 0 ? 'text-xl' : level === 1 ? 'text-lg' : 'text-base'}`}>
+            {topic.title}
+          </h3>
+          <span className="text-muted-foreground ml-2 text-sm">
+            ({topic.question_count} questions)
+          </span>
+        </summary>
+
         <div className="mt-2">
           {hasQuestions && (
             <div className="grid gap-1 mb-4">
@@ -111,12 +114,12 @@ function TopicNode({
             </div>
           )}
         </div>
-      )}
+      </details>
     </div>
   );
 }
 
-export function QuestionCategories({
+export async function QuestionCategories({
   mode,
 }: {
   mode: "affirm" | "detrans" | "compare";
