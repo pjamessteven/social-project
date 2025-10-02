@@ -11,6 +11,7 @@ qdrant = QdrantClient("http://localhost:6333", prefer_grpc=False)
 openai = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 COLLECTION = "default_topics"
+COLLECTION_WITH_VECTORS = "default_topics_with_vectors"  # New collection for embeddings
 BATCH_SIZE = 100  # adjust depending on your resources
 
 def generate_embedding(text: str, max_retries=5):
@@ -48,12 +49,39 @@ def check_collection_info():
         print(f"Error getting collection info: {e}")
         return None
 
+def create_vector_collection():
+    """Create a new collection with proper vector configuration."""
+    try:
+        # Check if collection already exists
+        try:
+            qdrant.get_collection(COLLECTION_WITH_VECTORS)
+            print(f"Collection {COLLECTION_WITH_VECTORS} already exists")
+            return
+        except:
+            pass  # Collection doesn't exist, create it
+        
+        print(f"Creating collection {COLLECTION_WITH_VECTORS} with vector configuration...")
+        qdrant.create_collection(
+            collection_name=COLLECTION_WITH_VECTORS,
+            vectors_config=models.VectorParams(
+                size=1536,  # text-embedding-3-small dimension
+                distance=models.Distance.COSINE
+            )
+        )
+        print(f"Successfully created collection {COLLECTION_WITH_VECTORS}")
+    except Exception as e:
+        print(f"Error creating collection: {e}")
+        raise
+
 def update_all_points():
     # Check collection configuration first
     collection_info = check_collection_info()
     if collection_info:
         vectors_config = collection_info.config.params.vectors
         print(f"Vectors config: {vectors_config}")
+    
+    # Create the new collection with vectors
+    create_vector_collection()
     
     # First, get total count for progress tracking
     print("Getting total point count...")
@@ -89,11 +117,11 @@ def update_all_points():
                 emb = generate_embedding(text)
 
                 # Step 3: Build update structure
-                # Use named vector if collection expects it
+                # Use unnamed vector for the new collection
                 updates.append(
                     models.PointStruct(
                         id=pt.id,
-                        vector={"default": emb},  # Use named vector
+                        vector=emb,  # Use unnamed vector
                         payload=pt.payload  # keep payload unchanged
                     )
                 )
@@ -102,11 +130,11 @@ def update_all_points():
                 # Continue with other points in the batch
                 continue
 
-        # Step 4: Upsert vectors back to Qdrant
+        # Step 4: Upsert vectors to the new collection
         if updates:
             try:
                 qdrant.upsert(
-                    collection_name=COLLECTION,
+                    collection_name=COLLECTION_WITH_VECTORS,
                     points=updates
                 )
                 total_updated += len(updates)
