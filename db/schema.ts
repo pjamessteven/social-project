@@ -7,6 +7,7 @@ export const detransQuestions = pgTable('detrans_questions', {
   viewsCount: integer('views_count').default(0).notNull(),
   mostRecentlyAsked: timestamp('most_recently_asked').defaultNow().notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
+  finalResponse: text('final_response'),
 }, (table) => ({
   nameIdx: index('idx_detrans_questions_name').on(table.name),
 }));
@@ -29,6 +30,7 @@ export const affirmQuestions = pgTable('affirm_questions', {
   viewsCount: integer('views_count').default(0).notNull(),
   mostRecentlyAsked: timestamp('most_recently_asked').defaultNow().notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
+  finalResponse: text('final_response'),
 }, (table) => ({
   nameIdx: index('idx_affirm_questions_name').on(table.name),
 }));
@@ -51,6 +53,7 @@ export const questionSchema = z.object({
   viewsCount: z.number().int().min(0).default(0),
   mostRecentlyAsked: z.date(),
   createdAt: z.date(),
+  finalResponse: z.string().nullable(),
 });
 
 export const cacheSchema = z.object({
