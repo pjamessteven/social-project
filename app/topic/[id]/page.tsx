@@ -43,7 +43,7 @@ interface SavedPageState {
   hasMore: boolean;
 }
 
-export default function TopicPage({ params }: { params: { id: string } }) {
+export default function TopicPage({ params }: { params: Promise<{ id: string }> }) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [pagination, setPagination] = useState<PaginationInfo | null>(null);
   const [topicInfo, setTopicInfo] = useState<TopicInfo | null>(null);
@@ -52,8 +52,8 @@ export default function TopicPage({ params }: { params: { id: string } }) {
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [topicId, setTopicId] = useState<string | null>(null);
 
-  const topicId = params.id;
   const observerRef = useRef<IntersectionObserver | null>(null);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
   const [isRestoringState, setIsRestoringState] = useState(false);
@@ -154,8 +154,17 @@ export default function TopicPage({ params }: { params: { id: string } }) {
     }
   }, [questions, pagination, topicInfo, currentPage, hasMore, saveState, isRestoringState]);
 
+  // Resolve params and set topicId
+  useEffect(() => {
+    params.then(resolvedParams => {
+      setTopicId(resolvedParams.id);
+    });
+  }, [params]);
+
   // Initial load - check for saved state first
   useEffect(() => {
+    if (!topicId) return;
+
     const savedState = loadState();
     
     if (savedState && savedState.questions.length > 0) {
