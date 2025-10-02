@@ -4,7 +4,7 @@ import topicsHierarchy from "@/app/lib/topics_hierarchy.json";
 import { slugify } from "@/app/lib/utils";
 import { Heart } from "lucide-react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { QuestionCategories } from "./QuestionCategories";
@@ -135,17 +135,25 @@ export function DataQuestionCategories({
   const hierarchy = topicsHierarchy as TopicsHierarchy[];
   const [isOpen, setIsOpen] = useState(false);
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   // Initialize tab state from URL params
   const [currentTab, setCurrentTab] = useState<"featured" | "all">("featured");
 
-  // Sync state with URL params
+  // Sync state with URL params on mount
   useEffect(() => {
     const newTab = searchParams?.get("all") !== null ? "all" : "featured";
-    if (newTab !== currentTab) {
-      setCurrentTab(newTab);
+    setCurrentTab(newTab);
+  }, [searchParams]);
+
+  const handleTabChange = (tab: "featured" | "all") => {
+    setCurrentTab(tab);
+    if (tab === "all") {
+      router.replace("/?all");
+    } else {
+      router.replace("/");
     }
-  }, [searchParams, currentTab]);
+  };
 
   // Sort categories by question count (descending)
   const sortedHierarchy = [...hierarchy].sort(
@@ -158,24 +166,22 @@ export function DataQuestionCategories({
         id="question-tabs"
         className="grid max-w-[660px] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3"
       >
-        <Link href="/">
-          <Button
-            variant={currentTab === "featured" ? "default" : "secondary"}
-            className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-          >
-            <Heart className="h-4 w-4" />
-            <span className="text-sm font-medium">Featured Questions</span>
-          </Button>
-        </Link>
-        <Link href="/?all">
-          <Button
-            variant={currentTab === "all" ? "default" : "secondary"}
-            className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-          >
-            <Heart className="h-4 w-4" />
-            <span className="text-sm font-medium">All Questions</span>
-          </Button>
-        </Link>
+        <Button
+          variant={currentTab === "featured" ? "default" : "secondary"}
+          className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+          onClick={() => handleTabChange("featured")}
+        >
+          <Heart className="h-4 w-4" />
+          <span className="text-sm font-medium">Featured Questions</span>
+        </Button>
+        <Button
+          variant={currentTab === "all" ? "default" : "secondary"}
+          className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+          onClick={() => handleTabChange("all")}
+        >
+          <Heart className="h-4 w-4" />
+          <span className="text-sm font-medium">All Questions</span>
+        </Button>
       </div>
 
       {currentTab === "featured" ? (
