@@ -98,7 +98,13 @@ def create_hierarchical_structure(topics, categories):
             if topic_id in topics:
                 category_obj['children'].append(topics[topic_id])
         
+        # Sort children (topics) by question_count in descending order
+        category_obj['children'].sort(key=lambda x: x['question_count'], reverse=True)
+        
         result.append(category_obj)
+    
+    # Sort categories by question_count in descending order
+    result.sort(key=lambda x: x['question_count'], reverse=True)
     
     return result
 
