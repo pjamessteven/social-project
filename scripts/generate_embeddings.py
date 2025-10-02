@@ -2,6 +2,7 @@ from qdrant_client import QdrantClient, models
 from openai import OpenAI
 import time
 import os
+import random
 from dotenv import load_dotenv                                                                                                                                          
 load_dotenv('../.env')                                                                                                                                                           
 
