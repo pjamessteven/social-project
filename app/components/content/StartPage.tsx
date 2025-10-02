@@ -367,14 +367,13 @@ export async function StartPage({
              */}
             </div>
 
-            <p className="mt-8 sm:mt-8">You can set yourself free -</p>
-            <p className="mt-1">All you need to do, is learn just to be.</p>
-            <p className="mt-8">And be sure to mind your thoughts,</p>
-            <p className="mt-1">Because the mind is like a garden.</p>
-            <p className="mt-1">In your garden,</p>
-            <p className="mt-1">Each and every thought is a seed.</p>
+            <p className="mt-8 sm:mt-8">You can set yourself free,</p>
+            <p className="mt-1">All to do, is just be.</p>
+            <p className="mt-8">And be sure to mind your thoughts!</p>
+            <p className="mt-1">As the mind is like a garden,</p>
+            <p className="mt-1">And every thought is a seed.</p>
             <p className="mt-1">We reap what we sow,</p>
-            <p className="mt-1">But through this we can grow.</p>
+            <p className="mt-1">But through this we can grow...</p>
 
             <div className="mt-8">
               Built by Peter James Steven in Welllington, NZ.
