@@ -1,6 +1,7 @@
 // lib/cache.ts
 import { db, detransQuestions, affirmQuestions } from "@/db";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
+import { connectRedis } from "./redis";
 
 export async function getCachedAnswer(
   mode: "detrans" | "affirm",
@@ -53,6 +54,34 @@ export async function setCachedAnswer(
   } catch (error) {
     console.error('Cache set error:', error);
     // Don't throw - cache failures shouldn't break the application
+  }
+}
+
+export async function incrementQuestionViews(mode: "detrans" | "affirm", questionName: string): Promise<void> {
+  try {
+    const questionsTable = mode === "detrans" ? detransQuestions : affirmQuestions;
+    
+    await db.transaction(async (tx) => {
+      // Insert or update question
+      await tx
+        .insert(questionsTable)
+        .values({
+          name: questionName,
+          viewsCount: 1,
+          mostRecentlyAsked: new Date(),
+          createdAt: new Date(),
+        })
+        .onConflictDoUpdate({
+          target: questionsTable.name,
+          set: {
+            viewsCount: sql`${questionsTable.viewsCount} + 1`,
+            mostRecentlyAsked: new Date(),
+          },
+        });
+    });
+  } catch (error) {
+    console.error('Question views increment error:', error);
+    // Don't throw - analytics failures shouldn't break the application
   }
 }
 

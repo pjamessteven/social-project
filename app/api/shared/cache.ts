@@ -1,6 +1,6 @@
 import { rateLimiter } from "@/app/lib/rateLimit";
 import { db, detransQuestions, detransCache, affirmQuestions, affirmCache } from "@/db";
-import { eq, sql } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { createHash } from "crypto";
 import type {
   ChatResponse,
@@ -81,33 +81,6 @@ export class PostgresCache implements Cache {
     }
   }
 
-  async incrementQuestionViews(questionName: string): Promise<void> {
-    try {
-      const questionsTable = this.getQuestionsTable();
-      
-      await db.transaction(async (tx) => {
-        // Insert or update question
-        await tx
-          .insert(questionsTable)
-          .values({
-            name: questionName,
-            viewsCount: 1,
-            mostRecentlyAsked: new Date(),
-            createdAt: new Date(),
-          })
-          .onConflictDoUpdate({
-            target: questionsTable.name,
-            set: {
-              viewsCount: sql`${questionsTable.viewsCount} + 1`,
-              mostRecentlyAsked: new Date(),
-            },
-          });
-      });
-    } catch (error) {
-      console.error('Question views increment error:', error);
-      // Don't throw - analytics failures shouldn't break the application
-    }
-  }
 }
 
 export interface Cache {
@@ -156,10 +129,6 @@ export class CachedLLM {
       options,
     );
 
-    // Increment question views
-    if (this.cache instanceof PostgresCache) {
-      await this.cache.incrementQuestionViews(originalQuestion);
-    }
 
     /* --- Streaming mode --- */
     if (stream) {
@@ -234,10 +203,6 @@ export class CachedLLM {
     } = params;
     const key = makeLlmCacheKey(originalQuestion, prompt, options);
 
-    // Increment question views
-    if (this.cache instanceof PostgresCache) {
-      await this.cache.incrementQuestionViews(originalQuestion);
-    }
 
     /* --- Streaming mode --- */
     if (stream) {
