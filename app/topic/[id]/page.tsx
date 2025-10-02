@@ -82,13 +82,13 @@ export default function TopicPage({ params }: { params: { id: string } }) {
       }
 
       const data: TopicResponse = await response.json();
-      
+
       if (append) {
-        setQuestions(prev => [...prev, ...data.items]);
+        setQuestions((prev) => [...prev, ...data.items]);
       } else {
         setQuestions(data.items);
       }
-      
+
       setPagination(data.pagination);
       setHasMore(data.pagination.hasNext);
     } catch (err) {
@@ -122,8 +122,8 @@ export default function TopicPage({ params }: { params: { id: string } }) {
       },
       {
         threshold: 0.1,
-        rootMargin: '100px',
-      }
+        rootMargin: "100px",
+      },
     );
 
     observerRef.current = observer;
@@ -164,10 +164,10 @@ export default function TopicPage({ params }: { params: { id: string } }) {
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6">
         <h1 className="text-primary text-3xl font-bold">
-          {topicInfo ? topicInfo.name : `Topic ${topicId}`}
+          {topicInfo ? `Topic: ${topicInfo.name}` : `Topic ${topicId}`}
         </h1>
         {topicInfo && (
-          <div className="mt-2 space-y-1">
+          <div className="mt-4 space-y-1">
             {topicInfo.keywords && topicInfo.keywords.length > 0 && (
               <p className="text-muted-foreground">
                 Keywords: {topicInfo.keywords.join(", ")}
@@ -188,7 +188,7 @@ export default function TopicPage({ params }: { params: { id: string } }) {
         </div>
       ) : (
         <>
-          <div className="mb-8 space-y-4">
+          <div className="mb-8 space-y-3">
             {questions.map((question) => (
               <Link
                 key={question.id}
@@ -196,15 +196,12 @@ export default function TopicPage({ params }: { params: { id: string } }) {
                 prefetch={false}
                 className="block"
               >
-                <div className="rounded-lg border p-4 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800">
+                <div className="rounded-lg border-b pb-3 transition-colors">
                   <div className="flex items-start">
-                    <div className="text-muted-foreground mr-3">→</div>
+                    <div className="text-muted-foreground mr-3">{"->"}</div>
                     <div className="flex-1">
-                      <p className="text-foreground hover:text-primary text-lg transition-colors">
+                      <p className="text-foreground hover:text-primary text-lg transition-colors hover:underline">
                         {question.text}
-                      </p>
-                      <p className="text-muted-foreground mt-1 text-sm">
-                        ID: {question.id}
                       </p>
                     </div>
                   </div>
@@ -218,11 +215,15 @@ export default function TopicPage({ params }: { params: { id: string } }) {
             {loadingMore && (
               <div className="flex items-center space-x-2">
                 <Loader2 className="h-6 w-6 animate-spin" />
-                <span className="text-muted-foreground">Loading more questions...</span>
+                <span className="text-muted-foreground">
+                  Loading more questions...
+                </span>
               </div>
             )}
             {!hasMore && questions.length > 0 && (
-              <p className="text-muted-foreground">No more questions to load.</p>
+              <p className="text-muted-foreground">
+                No more questions to load.
+              </p>
             )}
           </div>
         </>
