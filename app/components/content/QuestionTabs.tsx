@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart } from "lucide-react";
+import { List, Star, TrendingUp } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
@@ -14,7 +14,9 @@ interface QuestionTabsProps {
 export function QuestionTabs({ mode }: QuestionTabsProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [currentTab, setCurrentTab] = useState<"featured" | "all">("featured");
+  const [currentTab, setCurrentTab] = useState<"featured" | "all" | "top">(
+    "featured",
+  );
 
   // Sync state with URL params on mount
   useEffect(() => {
@@ -22,7 +24,7 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
     setCurrentTab(newTab);
   }, [searchParams]);
 
-  const handleTabChange = (tab: "featured" | "all") => {
+  const handleTabChange = (tab: "featured" | "all" | "top") => {
     setCurrentTab(tab);
     if (tab === "all") {
       router.replace("/?all", { scroll: false });
@@ -35,22 +37,30 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
     <>
       <div
         id="question-tabs"
-        className="grid max-w-[660px] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3"
+        className="mb-6 grid max-w-[660px] grid-cols-2 gap-3 border-t border-b py-3 sm:grid-cols-2 lg:grid-cols-3"
       >
         <Button
           variant={currentTab === "featured" ? "default" : "secondary"}
           className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
           onClick={() => handleTabChange("featured")}
         >
-          <Heart className="h-4 w-4" />
+          <Star className="h-4 w-4" />
           <span className="text-sm font-medium">Featured Questions</span>
+        </Button>
+        <Button
+          variant={currentTab === "all" ? "default" : "secondary"}
+          className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+          onClick={() => handleTabChange("top")}
+        >
+          <TrendingUp className="h-4 w-4" />
+          <span className="text-sm font-medium">Top Questions</span>
         </Button>
         <Button
           variant={currentTab === "all" ? "default" : "secondary"}
           className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
           onClick={() => handleTabChange("all")}
         >
-          <Heart className="h-4 w-4" />
+          <List className="h-4 w-4" />
           <span className="text-sm font-medium">All Questions</span>
         </Button>
       </div>
