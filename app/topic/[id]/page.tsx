@@ -1,9 +1,9 @@
 "use client";
 
 import { slugify } from "@/app/lib/utils";
-import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface Question {
   id: string;
@@ -40,10 +40,14 @@ export default function TopicPage({ params }: { params: { id: string } }) {
   const [pagination, setPagination] = useState<PaginationInfo | null>(null);
   const [topicInfo, setTopicInfo] = useState<TopicInfo | null>(null);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
   const topicId = params.id;
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
   const fetchTopicInfo = async () => {
     try {
@@ -60,8 +64,12 @@ export default function TopicPage({ params }: { params: { id: string } }) {
     }
   };
 
-  const fetchQuestions = async (page: number) => {
-    setLoading(true);
+  const fetchQuestions = async (page: number, append = false) => {
+    if (page === 1) {
+      setLoading(true);
+    } else {
+      setLoadingMore(true);
+    }
     setError(null);
 
     try {
@@ -74,23 +82,62 @@ export default function TopicPage({ params }: { params: { id: string } }) {
       }
 
       const data: TopicResponse = await response.json();
-      setQuestions(data.items);
+      
+      if (append) {
+        setQuestions(prev => [...prev, ...data.items]);
+      } else {
+        setQuestions(data.items);
+      }
+      
       setPagination(data.pagination);
+      setHasMore(data.pagination.hasNext);
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
+      setLoadingMore(false);
     }
   };
 
+  const loadMore = useCallback(() => {
+    if (!loadingMore && hasMore && pagination) {
+      const nextPage = currentPage + 1;
+      setCurrentPage(nextPage);
+      fetchQuestions(nextPage, true);
+    }
+  }, [loadingMore, hasMore, pagination, currentPage]);
+
   useEffect(() => {
     fetchTopicInfo();
-    fetchQuestions(currentPage);
-  }, [topicId, currentPage]);
+    fetchQuestions(1);
+  }, [topicId]);
 
-  const handlePageChange = (newPage: number) => {
-    setCurrentPage(newPage);
-  };
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const target = entries[0];
+        if (target.isIntersecting) {
+          loadMore();
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '100px',
+      }
+    );
+
+    observerRef.current = observer;
+
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, [loadMore]);
 
   const getHref = (question: string) => {
     const slug = slugify(question);
@@ -166,33 +213,18 @@ export default function TopicPage({ params }: { params: { id: string } }) {
             ))}
           </div>
 
-          {pagination && pagination.totalPages > 1 && (
-            <div className="flex items-center justify-center space-x-4">
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={!pagination.hasPrev}
-                className="flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-              >
-                <ChevronLeft className="mr-1 h-4 w-4" />
-                Previous
-              </button>
-
+          {/* Infinite scroll trigger */}
+          <div ref={loadMoreRef} className="flex justify-center py-8">
+            {loadingMore && (
               <div className="flex items-center space-x-2">
-                <span className="text-sm text-gray-700 dark:text-gray-300">
-                  Page {pagination.page} of {pagination.totalPages}
-                </span>
+                <Loader2 className="h-6 w-6 animate-spin" />
+                <span className="text-muted-foreground">Loading more questions...</span>
               </div>
-
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={!pagination.hasNext}
-                className="flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-              >
-                Next
-                <ChevronRight className="ml-1 h-4 w-4" />
-              </button>
-            </div>
-          )}
+            )}
+            {!hasMore && questions.length > 0 && (
+              <p className="text-muted-foreground">No more questions to load.</p>
+            )}
+          </div>
         </>
       )}
     </div>
