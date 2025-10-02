@@ -368,7 +368,7 @@ export async function StartPage({
             </div>
 
             <p className="mt-8 sm:mt-8">You can set yourself free,</p>
-            <p className="mt-1">All to do, is just be.</p>
+            <p className="mt-1">All one must do, is just be.</p>
             <p className="mt-8">And be sure to mind your thoughts!</p>
             <p className="mt-1">As the mind is like a garden,</p>
             <p className="mt-1">And every thought is a seed.</p>
