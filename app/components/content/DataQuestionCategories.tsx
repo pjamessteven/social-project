@@ -5,7 +5,7 @@ import { slugify } from "@/app/lib/utils";
 import { Heart } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { QuestionCategories } from "./QuestionCategories";
 
