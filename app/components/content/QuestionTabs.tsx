@@ -45,48 +45,49 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
   };
 
   return (
-    <Tabs
-      value={currentTab}
-      onValueChange={handleTabChange}
-      className="w-full"
-    >
-      <TabsList
-        id="question-tabs"
-        className="mb-8 grid max-w-[660px] grid-cols-2 gap-1 border-t border-b py-3 sm:grid-cols-4"
-      >
-        <TabsTrigger
-          value="featured"
-          className="flex-row items-center gap-2 rounded-xl p-4"
-        >
-          <Star className="h-4 w-4" />
-          <span className="text-sm font-medium">Featured</span>
-        </TabsTrigger>
+    <Tabs value={currentTab} onValueChange={handleTabChange} className="w-full">
+      <div className="relative sticky top-0 z-10">
+        <div className="bg-[linear-gradient(to_bottom,theme(colors.background)_0px,theme(colors.background)_3rem,transparent_5rem)] absolute z-20 h-40 w-screen dark:bg-[linear-gradient(to_bottom,black_0px,black_3rem,transparent_5rem)]" />
 
-        <TabsTrigger
-          value="all"
-          className="flex-row items-center gap-2 rounded-xl p-4"
+        <TabsList
+          id="question-tabs"
+          className="grid-cols- relative z-50 mb-8 grid h-12 max-w-[660px] grid-cols-4 gap-1 rounded-2xl border"
         >
-          <List className="h-4 w-4" />
-          <span className="text-sm font-medium">All Topics</span>
-        </TabsTrigger>
+          <TabsTrigger
+            value="featured"
+            className="flex-row items-center gap-2 rounded-xl py-2"
+          >
+            <Star className="hidden h-4 w-4 sm:block" />
+            <span className="text-sm font-medium">Featured</span>
+          </TabsTrigger>
 
-        <TabsTrigger
-          value="recent"
-          className="flex-row items-center gap-2 rounded-xl p-4"
-        >
-          <HistoryIcon className="h-4 w-4" />
-          <span className="text-sm font-medium">Recent</span>
-        </TabsTrigger>
+          <TabsTrigger
+            value="all"
+            className="flex-row items-center gap-2 rounded-xl py-2"
+          >
+            <List className="hidden h-4 w-4 sm:block" />
+            <span className="text-sm font-medium">
+              <span className="hidden sm:inline">All </span>Topics
+            </span>
+          </TabsTrigger>
 
-        <TabsTrigger
-          value="top"
-          className="flex-row items-center gap-2 rounded-xl p-4"
-        >
-          <TrendingUp className="h-4 w-4" />
-          <span className="text-sm font-medium">Top</span>
-        </TabsTrigger>
-      </TabsList>
+          <TabsTrigger
+            value="recent"
+            className="flex-row items-center gap-2 rounded-xl py-2"
+          >
+            <HistoryIcon className="hidden h-4 w-4 sm:block" />
+            <span className="text-sm font-medium">Recent</span>
+          </TabsTrigger>
 
+          <TabsTrigger
+            value="top"
+            className="flex-row items-center gap-2 rounded-xl py-2"
+          >
+            <TrendingUp className="hidden h-4 w-4 sm:block" />
+            <span className="text-sm font-medium">Top</span>
+          </TabsTrigger>
+        </TabsList>
+      </div>
       <TabsContent value="featured">
         <QuestionCategoriesClient mode={mode} />
       </TabsContent>
@@ -104,11 +105,7 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
       </TabsContent>
 
       <TabsContent value="top">
-        <DynamicQuestionCategories
-          questionMode="top"
-          mode={mode}
-          key="top"
-        />
+        <DynamicQuestionCategories questionMode="top" mode={mode} key="top" />
       </TabsContent>
     </Tabs>
   );
