@@ -62,5 +62,6 @@ ENV HOSTNAME="0.0.0.0"
 
 COPY --from=builder docker-entrypoint.sh /app/
 RUN chmod +x /app/docker-entrypoint.sh
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
 
 CMD ["node", "server.js"]
