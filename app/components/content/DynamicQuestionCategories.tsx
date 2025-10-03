@@ -27,7 +27,7 @@ function formatRelativeTime(timestamp: number): string {
 interface TopQuestion {
   page: string;
   score?: number;
-  date?: number;
+  mostRecentlyAsked?: number;
 }
 
 interface TopQuestionsResponse {
@@ -172,9 +172,10 @@ export function DynamicQuestionCategories({
                   <div className="mr-2 whitespace-nowrap">{"->"}</div>
                   <div className="flex-1">{item.page}</div>
                   <div className="ml-2 text-sm font-normal opacity-60">
-                    {questionMode === "recent" && item.date
-                      ? `(${formatRelativeTime(item.date)})`
+                    {questionMode === "recent" && item.mostRecentlyAsked
+                      ? `(${formatRelativeTime(item.mostRecentlyAsked)})`
                       : `(${item.score} views)`}
+                    {item.mostRecentlyAsked}
                   </div>
                 </div>
               </div>
