@@ -239,22 +239,23 @@ export function DataQuestionCategories({
     <>
       {" "}
       <h3 className="text-primary mb-2 text-2xl font-bold">
-        All Topics From The Data
+        All Topics Discussed
       </h3>
-      <p className="text-muted-foreground mt-4 mb-2 max-w-2xl text-base">
+      <p className="text-muted-foreground mt-4 mb-1 max-w-2xl text-base">
         These questions give an idea about the most discussed topics in
         /r/detrans.
       </p>
       <details className="mb-4">
         <summary className="text-muted-foreground cursor-pointer hover:underline">
-          Where do the questions come from?
+          Read more about these questions.
         </summary>
         <div className="text-muted-foreground mt-2 max-w-2xl space-y-3">
           <p>
-            detrans.ai works in part by generating questions for comments from
-            /r/detrans. Instead of using AI to find answers, it uses AI to find
-            questions—almost like working in reverse. This helps the system find
-            personal stories and experiences that match what you're looking for.
+            detrans.ai works in part by generating questions for every comment
+            in /r/detrans. Instead of using AI to find answers, it uses AI to
+            find questions—almost like working in reverse. This helps the system
+            find personal stories and experiences that match what you're looking
+            for.
           </p>
           <p>
             The questions are grouped by topic using a tool called BERTopic,
@@ -262,7 +263,7 @@ export function DataQuestionCategories({
           </p>
         </div>
       </details>
-      <div className="-ml-1 space-y-4 border-t pt-4">
+      <div className="-ml-1 space-y-4">
         {hierarchy.map((category, index) => {
           const categoryId = `category-${slugify(category.title)}`;
           const isOpen = expandedCategories.has(categoryId);
