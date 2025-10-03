@@ -92,7 +92,7 @@ function TopicNode({
             </svg>
           </div>
           <h3
-            className={`text-primary font-semibold ${level === 0 ? "text-xl" : level === 1 ? "text-lg" : "text-base"}`}
+            className={`text-primary font-semibold ${level === 0 ? "text-base sm:text-xl" : level === 1 ? "text-base sm:text-lg" : "text-base"}`}
           >
             {topic.title}
             <span className="text-muted-foreground ml-2 text-sm font-light">
@@ -107,7 +107,7 @@ function TopicNode({
             href={getTopicHref(topic.topic_id as number, topic.title)}
           >
             <div className="ml-6 flex flex-row items-center border-b pb-2">
-              <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-lg italic opacity-90">
+              <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 sm:text-lg">
                 <div className="mr-2 whitespace-nowrap">{"->"}</div>
                 <div>
                   View all {topic.question_count} questions about this topic
@@ -125,7 +125,7 @@ function TopicNode({
                     key={questionIndex}
                   >
                     <div className="ml-6 flex flex-row items-center border-b pt-1 pb-2">
-                      <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-lg italic opacity-90">
+                      <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 sm:text-lg">
                         <div className="mr-2 whitespace-nowrap">{"->"}</div>
                         <div>{question}</div>
                       </div>
@@ -140,7 +140,7 @@ function TopicNode({
             href={getTopicHref(topic.topic_id as number, topic.title)}
           >
             <div className="-mt-2 ml-6 flex flex-row items-center border-b pb-2">
-              <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-lg italic opacity-90">
+              <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 sm:text-lg">
                 <div className="mr-2 whitespace-nowrap">{"->"}</div>
                 <div>
                   View all {topic.question_count} questions about this topic
@@ -241,15 +241,15 @@ export function DataQuestionCategories({
       <h3 className="text-primary mb-2 text-2xl font-bold">
         All Topics From The Data
       </h3>
-      <p className="text-muted-foreground mt-4 mb-6 max-w-2xl text-base">
-        These questions are a direct reflection of the data and give an idea about the most discussed topics in /r/detrans.
+      <p className="text-muted-foreground mt-4 mb-2 max-w-2xl text-base">
+        These questions give an idea about the most discussed topics in
+        /r/detrans.
       </p>
-      
-      <details className="mb-6">
-        <summary className="text-primary cursor-pointer text-sm font-medium hover:underline">
-          More info
+      <details className="mb-4">
+        <summary className="text-muted-foreground cursor-pointer hover:underline">
+          Where do the questions come from?
         </summary>
-        <div className="text-muted-foreground mt-2 max-w-2xl space-y-3 text-sm">
+        <div className="text-muted-foreground mt-2 max-w-2xl space-y-3">
           <p>
             detrans.ai works in part by generating questions for comments from
             /r/detrans. Instead of using AI to find answers, it uses AI to find
@@ -257,12 +257,12 @@ export function DataQuestionCategories({
             personal stories and experiences that match what you're looking for.
           </p>
           <p>
-            The questions are grouped by topic using a tool called BERTopic, though not
-            all questions fit neatly into categories.
+            The questions are grouped by topic using a tool called BERTopic,
+            though not all questions fit neatly into categories.
           </p>
         </div>
       </details>
-      <div className="space-y-4">
+      <div className="-ml-1 space-y-4 border-t pt-4">
         {hierarchy.map((category, index) => {
           const categoryId = `category-${slugify(category.title)}`;
           const isOpen = expandedCategories.has(categoryId);
@@ -293,7 +293,7 @@ export function DataQuestionCategories({
                     />
                   </svg>
                 </div>
-                <h2 className="text-primary text-xl font-semibold">
+                <h2 className="text-primary text-base font-semibold sm:text-xl">
                   {category.title}
                   <span className="text-muted-foreground ml-2 text-sm font-light">
                     ({category.question_count} questions)
