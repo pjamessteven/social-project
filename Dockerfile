@@ -31,6 +31,7 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
+
 FROM base AS runner
 WORKDIR /app
 
@@ -46,6 +47,7 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/components ./components
 COPY --from=builder /app/drizzle ./drizzle
 COPY --from=builder /app/drizzle.config.ts ./drizzle.config.ts
+COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
@@ -55,8 +57,10 @@ RUN chmod -R a-w+x . && chmod -R a+x .next node_modules
 USER nextjs
 
 EXPOSE 3000
-
 ENV PORT=3000
-
 ENV HOSTNAME="0.0.0.0"
+
+COPY --from=builder docker-entrypoint.sh /app/
+RUN chmod +x /app/docker-entrypoint.sh
+
 CMD ["node", "server.js"]
