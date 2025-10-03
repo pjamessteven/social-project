@@ -20,6 +20,11 @@ interface TopicsHierarchy {
   children: TopicChild[];
 }
 
+interface CategorySummary {
+  title: string;
+  question_count: number;
+}
+
 function TopicNode({
   topic,
   mode,
@@ -160,9 +165,15 @@ export function DataQuestionCategories({
   mode: "affirm" | "detrans" | "compare";
 }) {
   const isDev = process.env.NODE_ENV === "development";
-  const hierarchy = topicsHierarchy as TopicsHierarchy[];
+  const fullHierarchy = topicsHierarchy as TopicsHierarchy[];
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  // Create category summaries for initial render
+  const categorySummaries: CategorySummary[] = fullHierarchy.map(category => ({
+    title: category.title,
+    question_count: category.question_count
+  }));
 
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
     new Set(),
@@ -170,6 +181,9 @@ export function DataQuestionCategories({
   const [expandedSubcategories, setExpandedSubcategories] = useState<
     Set<string>
   >(new Set());
+  const [loadedCategories, setLoadedCategories] = useState<Map<string, TopicsHierarchy>>(
+    new Map(),
+  );
 
   // Load expanded state from URL params on mount
   useEffect(() => {
@@ -177,7 +191,20 @@ export function DataQuestionCategories({
     const expandedSubs = searchParams.get("expanded_subcategories");
 
     if (expandedCats) {
-      setExpandedCategories(new Set(expandedCats.split(",")));
+      const categoryIds = expandedCats.split(",");
+      setExpandedCategories(new Set(categoryIds));
+      
+      // Pre-load data for expanded categories
+      const newLoadedCategories = new Map<string, TopicsHierarchy>();
+      categoryIds.forEach(categoryId => {
+        const categoryData = fullHierarchy.find(cat => 
+          slugify(cat.title) === categoryId.replace('category-', '')
+        );
+        if (categoryData) {
+          newLoadedCategories.set(categoryId, categoryData);
+        }
+      });
+      setLoadedCategories(newLoadedCategories);
     }
     if (expandedSubs) {
       setExpandedSubcategories(new Set(expandedSubs.split(",")));
@@ -219,6 +246,16 @@ export function DataQuestionCategories({
       newExpanded.delete(categoryId);
     } else {
       newExpanded.add(categoryId);
+      
+      // Load category data if not already loaded
+      const categoryTitle = categoryId.replace('category-', '').replace(/-/g, ' ');
+      const categoryData = fullHierarchy.find(cat => 
+        slugify(cat.title) === categoryId.replace('category-', '')
+      );
+      
+      if (categoryData && !loadedCategories.has(categoryId)) {
+        setLoadedCategories(prev => new Map(prev).set(categoryId, categoryData));
+      }
     }
     setExpandedCategories(newExpanded);
     updateUrlParams(newExpanded, expandedSubcategories);
@@ -264,9 +301,10 @@ export function DataQuestionCategories({
         </div>
       </details>
       <div className="-ml-1 space-y-4">
-        {hierarchy.map((category, index) => {
-          const categoryId = `category-${slugify(category.title)}`;
+        {categorySummaries.map((categorySummary, index) => {
+          const categoryId = `category-${slugify(categorySummary.title)}`;
           const isOpen = expandedCategories.has(categoryId);
+          const categoryData = loadedCategories.get(categoryId);
 
           return (
             <details key={index} className="group mb-2" open={isOpen}>
@@ -295,24 +333,26 @@ export function DataQuestionCategories({
                   </svg>
                 </div>
                 <h2 className="text-primary text-base font-semibold sm:text-xl">
-                  {category.title}
+                  {categorySummary.title}
                   <span className="text-muted-foreground ml-2 text-sm font-light">
-                    ({category.question_count} questions)
+                    ({categorySummary.question_count} questions)
                   </span>
                 </h2>
               </summary>
 
-              <div className="mt-2 ml-2 border-l">
-                {[...category.children].map((topic, topicIndex) => (
-                  <TopicNode
-                    key={topicIndex}
-                    topic={topic}
-                    mode={mode}
-                    expandedSubcategories={expandedSubcategories}
-                    onToggleSubcategory={toggleSubcategory}
-                  />
-                ))}
-              </div>
+              {isOpen && categoryData && (
+                <div className="mt-2 ml-2 border-l">
+                  {[...categoryData.children].map((topic, topicIndex) => (
+                    <TopicNode
+                      key={topicIndex}
+                      topic={topic}
+                      mode={mode}
+                      expandedSubcategories={expandedSubcategories}
+                      onToggleSubcategory={toggleSubcategory}
+                    />
+                  ))}
+                </div>
+              )}
             </details>
           );
         })}
