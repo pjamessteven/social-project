@@ -54,14 +54,15 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 # Ensuring no unnecessary permissions are given and add necessary permissions for it to run server.js properly.
 RUN chmod -R a-w+x . && chmod -R a+x .next node_modules
 
+COPY docker-entrypoint.sh /app/
+RUN chmod +x /app/docker-entrypoint.sh
+
 USER nextjs
 
 EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-COPY docker-entrypoint.sh /app/
-RUN chmod +x /app/docker-entrypoint.sh
 ENTRYPOINT ["/app/docker-entrypoint.sh"]
 
 CMD ["node", "server.js"]
