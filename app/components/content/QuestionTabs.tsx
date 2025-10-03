@@ -2,7 +2,7 @@
 
 import { HistoryIcon, List, Star, TrendingUp } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { DataQuestionCategories } from "./DataQuestionCategories";
 import { DynamicQuestionCategories } from "./DynamicQuestionCategories";
@@ -15,6 +15,7 @@ interface QuestionTabsProps {
 export function QuestionTabs({ mode }: QuestionTabsProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const tabsRef = useRef<HTMLDivElement>(null);
   const [currentTab, setCurrentTab] = useState<
     "featured" | "all" | "top" | "recent"
   >("featured");
@@ -42,10 +43,15 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
     } else {
       router.replace(`/?questions=${validTab}`, { scroll: false });
     }
+    
+    // Scroll to the top of the tabs container
+    if (tabsRef.current) {
+      tabsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   return (
-    <Tabs value={currentTab} onValueChange={handleTabChange} className="w-full">
+    <Tabs ref={tabsRef} value={currentTab} onValueChange={handleTabChange} className="w-full">
       <div className="relative sticky top-0 z-10">
         <div className="bg-[linear-gradient(to_bottom,theme(colors.background)_0px,theme(colors.background)_3rem,transparent_5rem)] absolute z-20 h-40 w-screen dark:bg-[linear-gradient(to_bottom,black_0px,black_3rem,transparent_5rem)]" />
 
