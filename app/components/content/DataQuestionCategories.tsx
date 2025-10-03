@@ -242,18 +242,26 @@ export function DataQuestionCategories({
         All Topics From The Data
       </h3>
       <p className="text-muted-foreground mt-4 mb-6 max-w-2xl text-base">
-        detrans.ai works in part by generating questions for comments from
-        /r/detrans. Instead of using AI to find answers, it uses AI to find
-        questions—almost like working in reverse. This helps the system find
-        personal stories and experiences that match what you're looking for. The
-        questions are grouped by topic using a tool called BERTopic, though not
-        all questions fit neatly into categories.
+        These questions are a direct reflection of the data and give an idea about the most discussed topics in /r/detrans.
       </p>
-      <p className="text-muted-foreground mt-4 mb-6 max-w-2xl text-base">
-        In simple terms, these questions are a direct reflection of the data.
-        This can also give an idea about the most discussed topics in
-        /r/detrans.
-      </p>
+      
+      <details className="mb-6">
+        <summary className="text-primary cursor-pointer text-sm font-medium hover:underline">
+          More info
+        </summary>
+        <div className="text-muted-foreground mt-2 max-w-2xl space-y-3 text-sm">
+          <p>
+            detrans.ai works in part by generating questions for comments from
+            /r/detrans. Instead of using AI to find answers, it uses AI to find
+            questions—almost like working in reverse. This helps the system find
+            personal stories and experiences that match what you're looking for.
+          </p>
+          <p>
+            The questions are grouped by topic using a tool called BERTopic, though not
+            all questions fit neatly into categories.
+          </p>
+        </div>
+      </details>
       <div className="space-y-4">
         {hierarchy.map((category, index) => {
           const categoryId = `category-${slugify(category.title)}`;
