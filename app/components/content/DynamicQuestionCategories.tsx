@@ -5,9 +5,10 @@ import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-function formatRelativeTime(timestamp: number): string {
+function formatRelativeTime(dateString: string): string {
   const now = Date.now();
-  const diff = now - timestamp * 1000; // Convert to milliseconds
+  const timestamp = new Date(dateString).getTime();
+  const diff = now - timestamp;
 
   const minutes = Math.floor(diff / (1000 * 60));
   const hours = Math.floor(diff / (1000 * 60 * 60));
@@ -27,7 +28,7 @@ function formatRelativeTime(timestamp: number): string {
 interface TopQuestion {
   page: string;
   score?: number;
-  mostRecentlyAsked?: number;
+  mostRecentlyAsked?: string;
 }
 
 interface TopQuestionsResponse {
