@@ -1,6 +1,12 @@
 #!/bin/sh
 set -e
 
+# Install postgresql-client if not already installed
+if ! command -v pg_isready > /dev/null 2>&1; then
+  echo "Installing postgresql-client..."
+  apk add --no-cache postgresql-client
+fi
+
 # Wait until Postgres is ready
 until pg_isready -h "$POSTGRES_HOST" -p "$POSTGRES_PORT" -U "$POSTGRES_USER"; do
   echo "Waiting for Postgres..."
