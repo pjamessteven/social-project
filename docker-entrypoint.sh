@@ -1,12 +1,6 @@
 #!/bin/sh
 set -e
 
-# Wait until Postgres is ready
-until pg_isready -h "$POSTGRES_HOST" -p "$POSTGRES_PORT" -U "$POSTGRES_USER"; do
-  echo "Waiting for Postgres..."
-  sleep 2
-done
-
 # Run migrations
 if [ -f yarn.lock ]; then
   yarn drizzle-kit migrate
