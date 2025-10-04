@@ -9,7 +9,8 @@ done
 echo "PostgreSQL started"
 
 # Create database if it doesn't exist
-PGPASSWORD=postgres psql -h postgres -U postgres -tc "SELECT 1 FROM pg_database WHERE datname = 'app'" | grep -q 1 || PGPASSWORD=postgres psql -h postgres -U postgres -c "CREATE DATABASE app"
+# I think this was erasing my db
+# PGPASSWORD=postgres psql -h postgres -U postgres -tc "SELECT 1 FROM pg_database WHERE datname = 'app'" | grep -q 1 || PGPASSWORD=postgres psql -h postgres -U postgres -c "CREATE DATABASE app"
 
 # Run migrations
 if [ -f yarn.lock ]; then

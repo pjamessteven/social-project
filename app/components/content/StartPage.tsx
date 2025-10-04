@@ -93,8 +93,8 @@ export async function StartPage({
                   87% of all referrals
                 </a>{" "}
                 in Finland. At the same time, a constantly growing number of
-                people are healing gender dysphoria, detransitioning and sharing
-                their experiences. These people call themselves detrans.
+                people are healing their gender dysphoria, detransitioning and
+                sharing their experiences. These people call themselves detrans.
               </p>
               <p>
                 <b>detrans.ai</b> answers questions about gender from a detrans
@@ -125,10 +125,8 @@ export async function StartPage({
                   compare
                 </Link>{" "}
                 page.
-              </p>{" "}
-              <p>
-                {" "}
-                If this website helped you or your family,{" "}
+                <br className="hidden sm:inline" /> If this website helped you
+                or your family,{" "}
                 <Link prefetch={false} href={"/contact"} className="underline">
                   please let me know!
                 </Link>
