@@ -43,7 +43,7 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
     } else {
       router.replace(`/?questions=${validTab}`, { scroll: false });
     }
-    
+
     // Scroll to the top of the tabs container
     if (tabsRef.current) {
       tabsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -51,9 +51,14 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
   };
 
   return (
-    <Tabs ref={tabsRef} value={currentTab} onValueChange={handleTabChange} className="w-full">
+    <Tabs
+      ref={tabsRef}
+      value={currentTab}
+      onValueChange={handleTabChange}
+      className="w-full"
+    >
       <div className="relative sticky top-0 z-10">
-        <div className="bg-[linear-gradient(to_bottom,theme(colors.background)_0px,theme(colors.background)_3rem,transparent_5rem)] absolute z-20 h-40 w-screen dark:bg-[linear-gradient(to_bottom,black_0px,black_3rem,transparent_5rem)]" />
+        <div className="bg-[linear-gradient(to_bottom,theme(colors.background)_0px,theme(colors.background)_3rem,transparent_5rem)] pointer-events-none absolute z-20 h-40 w-screen dark:bg-[linear-gradient(to_bottom,black_0px,black_3rem,transparent_5rem)]" />
 
         <TabsList
           id="question-tabs"
