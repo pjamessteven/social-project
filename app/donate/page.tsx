@@ -5,7 +5,7 @@ import DonationBox from "../components/content/DonationBox";
 export default async function DonationPage() {
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
-      <h2>Keep This Service Online</h2>
+      <h2>Help Keep This Service Online!</h2>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-1">
         <div className="">
           <p>

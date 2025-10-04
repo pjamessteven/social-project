@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description:
       "Detrans.ai is powered by real detrans perspectives and experiences. Understand why some adopt, inhabit, and let go of gender identities.",
     url: "https://detrans.ai/",
-    images: ["https://detrans.ai/opengraph.png"],
+    images: ["https://detrans.ai/x_lg.png"],
     siteName: "detrans.ai",
     locale: "en_US",
     type: "website",
