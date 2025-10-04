@@ -231,9 +231,6 @@ export default function Component({ events }) {
                 {answers.filter((a) => a.state === "done").length} of{" "}
                 {answers.length} meta questions answered{" "}
               </div>
-              {!isRunningAnalysis && (
-                <CheckCircle className="ml-2 h-4 w-4 text-green-500" />
-              )}
             </div>
             <Progress
               value={
@@ -245,7 +242,7 @@ export default function Component({ events }) {
             />
           </div>
           {!isRunningAnalysis && (
-            <div className="flex items-center justify-start">
+            <div className="flex items-center justify-start mt-8">
               <h1 className="text-foreground text-base font-semibold md:text-lg">
                 {isLoading ? 'Generating Summary...' : 'Summary of findings:'}
               </h1>
