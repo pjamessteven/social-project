@@ -35,6 +35,9 @@ RUN \
 FROM base AS runner
 WORKDIR /app
 
+# Install postgresql-client and netcat for database operations
+RUN apk add --no-cache postgresql-client netcat-openbsd
+
 ENV NODE_ENV=production
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED=1
