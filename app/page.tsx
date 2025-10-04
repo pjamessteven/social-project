@@ -16,6 +16,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    images: "https://detrans.ai/x.png",
+    card: "summary_large_image",
+    title: "detrans.ai | Talk to 50,000+ detransitioners",
+    description:
+      "Detrans.ai is powered by real detrans perspectives and experiences. Understand why some adopt, inhabit, and let go of gender identities.",
+  },
 };
 
 export default async function Home({
