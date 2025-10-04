@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    images: "https://detrans.ai/x.png",
+    images: ["https://detrans.ai/x_lg.png"],
     card: "summary_large_image",
     title: "detrans.ai | Talk to 50,000+ detransitioners",
     description:
