@@ -3,7 +3,6 @@
 import { ChatSection as ChatUI } from "@llamaindex/chat-ui";
 import { useChat } from "ai/react";
 import { useEffect, useMemo, useState } from "react";
-import { ChatInjection } from "./chat-injection";
 
 import CustomChatMessages from "./chat-messages";
 import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
@@ -64,7 +63,6 @@ export default function ChatSection({
           </ChatUI>
         </div>
       </ChatLayout>
-      <ChatInjection />
     </>
   );
 }

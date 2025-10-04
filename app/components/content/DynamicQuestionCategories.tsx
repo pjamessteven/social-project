@@ -176,7 +176,6 @@ export function DynamicQuestionCategories({
                     {questionMode === "recent" && item.mostRecentlyAsked
                       ? `(${formatRelativeTime(item.mostRecentlyAsked)})`
                       : `(${item.score} views)`}
-                    {item.mostRecentlyAsked}
                   </div>
                 </div>
               </div>

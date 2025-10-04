@@ -100,7 +100,7 @@ function TopicNode({
             className={`text-primary font-semibold ${level === 0 ? "text-base sm:text-xl" : level === 1 ? "text-base sm:text-lg" : "text-base"}`}
           >
             {topic.title}
-            <span className="text-muted-foreground ml-2 text-sm font-light">
+            <span className="text-muted-foreground ml-2 text-sm font-light whitespace-nowrap">
               ({topic.question_count} questions)
             </span>
           </h3>
@@ -170,10 +170,12 @@ export function DataQuestionCategories({
   const searchParams = useSearchParams();
 
   // Create category summaries for initial render
-  const categorySummaries: CategorySummary[] = fullHierarchy.map(category => ({
-    title: category.title,
-    question_count: category.question_count
-  }));
+  const categorySummaries: CategorySummary[] = fullHierarchy.map(
+    (category) => ({
+      title: category.title,
+      question_count: category.question_count,
+    }),
+  );
 
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
     new Set(),
@@ -181,9 +183,9 @@ export function DataQuestionCategories({
   const [expandedSubcategories, setExpandedSubcategories] = useState<
     Set<string>
   >(new Set());
-  const [loadedCategories, setLoadedCategories] = useState<Map<string, TopicsHierarchy>>(
-    new Map(),
-  );
+  const [loadedCategories, setLoadedCategories] = useState<
+    Map<string, TopicsHierarchy>
+  >(new Map());
 
   // Load expanded state from URL params on mount
   useEffect(() => {
@@ -193,12 +195,12 @@ export function DataQuestionCategories({
     if (expandedCats) {
       const categoryIds = expandedCats.split(",");
       setExpandedCategories(new Set(categoryIds));
-      
+
       // Pre-load data for expanded categories
       const newLoadedCategories = new Map<string, TopicsHierarchy>();
-      categoryIds.forEach(categoryId => {
-        const categoryData = fullHierarchy.find(cat => 
-          slugify(cat.title) === categoryId.replace('category-', '')
+      categoryIds.forEach((categoryId) => {
+        const categoryData = fullHierarchy.find(
+          (cat) => slugify(cat.title) === categoryId.replace("category-", ""),
         );
         if (categoryData) {
           newLoadedCategories.set(categoryId, categoryData);
@@ -246,15 +248,19 @@ export function DataQuestionCategories({
       newExpanded.delete(categoryId);
     } else {
       newExpanded.add(categoryId);
-      
+
       // Load category data if not already loaded
-      const categoryTitle = categoryId.replace('category-', '').replace(/-/g, ' ');
-      const categoryData = fullHierarchy.find(cat => 
-        slugify(cat.title) === categoryId.replace('category-', '')
+      const categoryTitle = categoryId
+        .replace("category-", "")
+        .replace(/-/g, " ");
+      const categoryData = fullHierarchy.find(
+        (cat) => slugify(cat.title) === categoryId.replace("category-", ""),
       );
-      
+
       if (categoryData && !loadedCategories.has(categoryId)) {
-        setLoadedCategories(prev => new Map(prev).set(categoryId, categoryData));
+        setLoadedCategories((prev) =>
+          new Map(prev).set(categoryId, categoryData),
+        );
       }
     }
     setExpandedCategories(newExpanded);
@@ -278,13 +284,13 @@ export function DataQuestionCategories({
       <h3 className="text-primary mb-2 text-2xl font-bold">
         All Topics Discussed
       </h3>
-      <p className="text-muted-foreground mt-4 mb-1 max-w-2xl text-base">
+      <p className="text-muted-foreground mt-4 mb-2 max-w-2xl text-base">
         These questions give an idea about the most discussed topics in
         /r/detrans.
       </p>
-      <details className="mb-4">
+      <details className="mb-4 marker:content-none">
         <summary className="text-muted-foreground cursor-pointer hover:underline">
-          Read more about these questions.
+          Read more +
         </summary>
         <div className="text-muted-foreground mt-2 max-w-2xl space-y-3">
           <p>
@@ -307,7 +313,7 @@ export function DataQuestionCategories({
           const categoryData = loadedCategories.get(categoryId);
 
           return (
-            <details key={index} className="group mb-2" open={isOpen}>
+            <details key={index} className="group mb-0 sm:mb-2" open={isOpen}>
               <summary
                 className="flex cursor-pointer list-none items-center rounded py-2 hover:bg-gray-50 dark:hover:bg-gray-800"
                 onClick={(e) => {
@@ -334,7 +340,7 @@ export function DataQuestionCategories({
                 </div>
                 <h2 className="text-primary text-base font-semibold sm:text-xl">
                   {categorySummary.title}
-                  <span className="text-muted-foreground ml-2 text-sm font-light">
+                  <span className="text-muted-foreground ml-2 text-sm font-light whitespace-nowrap">
                     ({categorySummary.question_count} questions)
                   </span>
                 </h2>

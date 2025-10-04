@@ -100,11 +100,10 @@ export default function Component({ events }) {
   };
 
   // true if any step is currently running
-  const isRunning =
+  const isRunningAnalysis =
     retrieve?.state === "inprogress" ||
     analyze?.state === "inprogress" ||
-    answers.some((a) => a.state === "inprogress") ||
-    isLoading;
+    answers.some((a) => a.state === "inprogress")
 
   const allAnswersComplete =
     answers.some((a) => a.state === "inprogress") == false;
@@ -118,11 +117,10 @@ export default function Component({ events }) {
     if (retrieve?.state === "error") {
       return "Error retrieving detrans experiences!";
     } else if (analyze?.state === "error") {
-      return  "We’ve run out of money to pay for the AI that analyses detrans experiences and answers questions. If you can, please donate so we can keep the service running. Please try again later. For now, you can still try the questions in the portal."
+      return "We’ve run out of money to pay for the AI that analyses detrans experiences and answers questions. If you can, please donate so we can keep the service running. Please try again later. For now, you can still try the questions in the portal.";
     }
   }, [retrieve, analyze]);
 
-  
   const thinkingStatus = useMemo(() => {
     if (isError) {
       return "Deep analysis error";
@@ -135,14 +133,12 @@ export default function Component({ events }) {
         (answers?.length > 0 && !allAnswersComplete))
     ) {
       return "Generating meta questions...";
-    } else if (!allAnswersComplete) {
+    } else if (!allAnswersComplete || isRunningAnalysis) {
       return "Finding answers to meta questions";
-    } else if (isRunning) {
-      return "Summarising findings...";
-    } else {
+    }  else {
       return "Deep analysis completed";
     }
-  }, [retrieve?.state, analyze?.state, answers, isRunning]);
+  }, [retrieve?.state, analyze?.state, answers, isRunningAnalysis]);
 
   return (
     <div className="not-prose text-foreground mx-auto w-full max-w-4xl space-y-4 rounded-xl transition-colors duration-300">
@@ -153,13 +149,13 @@ export default function Component({ events }) {
         </h1>
         {isError ? (
           <AlertCircle className="ml-2 h-4 w-4 text-red-500" />
-        ) : isRunning ? (
+        ) : isRunningAnalysis ? (
           <Loader2 className="ml-2 h-4 w-4 animate-spin text-blue-500 dark:text-blue-100" />
         ) : (
           <CheckCircle className="ml-2 h-4 w-4 text-green-500" />
         )}
       </div>
-      {isError && (<h4>{isError}</h4>)}
+      {isError && <h4>{isError}</h4>}
 
       {/* Answer Panel */}
       {answers.length > 0 && (
@@ -171,7 +167,7 @@ export default function Component({ events }) {
                 value={answer.id}
                 className={cn("border-border border-b duration-300")}
               >
-                <AccordionTrigger className="py-2 sm:py-3 transition-colors duration-300">
+                <AccordionTrigger className="py-2 transition-colors duration-300 sm:py-3">
                   <div className="relative flex grow items-center justify-between space-x-3 text-left">
                     <div className="flex-1 pr-2">
                       <p
@@ -233,7 +229,7 @@ export default function Component({ events }) {
                 {answers.filter((a) => a.state === "done").length} of{" "}
                 {answers.length} meta questions answered{" "}
               </div>
-              {allAnswersComplete && (
+              {!isRunningAnalysis && (
                 <CheckCircle className="ml-2 h-4 w-4 text-green-500" />
               )}
             </div>
@@ -246,9 +242,18 @@ export default function Component({ events }) {
               className="bg-muted h-2 w-1/4"
             />
           </div>
+          {!isRunningAnalysis && (
+            <div className="flex items-center justify-start">
+              <h1 className="text-foreground text-base font-semibold md:text-lg">
+                {isLoading ? 'Generating Summary...' : 'Summary of findings:'}
+              </h1>
+              {isLoading && (
+                <Loader2 className="ml-2 h-4 w-4 animate-spin text-blue-500 dark:text-blue-100" />
+              )}
+            </div>
+          )}
         </>
       )}
-
     </div>
   );
 }
