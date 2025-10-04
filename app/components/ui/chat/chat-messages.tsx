@@ -46,7 +46,7 @@ export default function CustomChatMessages({
                 isLast={isLast}
                 className={cn(
                   "dark:prose-invert prose max-w-none",
-                  message.role == "user" && "mr-12 sm:mr-0",
+                  message.role == "user" && "user-message mr-12 sm:mr-0",
                 )}
               >
                 <ChatMessageContent

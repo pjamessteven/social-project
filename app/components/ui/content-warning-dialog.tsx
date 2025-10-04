@@ -64,7 +64,7 @@ export function ContentWarningDialog({ host }: ContentWarningDialogProps) {
             <p className="mt-1">
               If you currently identify as transgender you may find this content
               invalidating, but please understand that these people have walked
-              in your shoes.
+              a similar path.
             </p>
           </DialogDescription>
         </DialogHeader>
