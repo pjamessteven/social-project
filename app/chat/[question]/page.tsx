@@ -23,6 +23,10 @@ export async function generateMetadata({
   return {
     title: capitaliseWords(q) + " | detrans.ai",
     description: markdownToPlainText(answer?.slice(0, 300)),
+    openGraph: {
+      title: capitaliseWords(q) + " | detrans.ai",
+      description: markdownToPlainText(answer?.slice(0, 300)),
+    },
   };
 }
 export default async function DetransChatPage({
