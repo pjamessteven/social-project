@@ -29,8 +29,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+      - ./postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
   nextjs:
     platform: linux/amd64   
@@ -55,4 +54,3 @@ services:
 
 volumes:
   redis_data:
-  postgres_data:

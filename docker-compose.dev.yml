@@ -30,7 +30,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
 
   nextjs:
@@ -63,4 +63,3 @@ services:
 volumes:
   next_node_modules:
   next_cache:
-  postgres_data:
