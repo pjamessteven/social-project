@@ -57,8 +57,9 @@ export default function CustomChatMessages({
               </ChatMessage>
               {isLast && (
                 <>
+                  <ChatMessages.Loading className="-ml-16 sm:mr-0" />
                   {!isLoading && (
-                    <div className="row -mt-6 ml-3 flex items-center">
+                    <div className="text-foreground ml-3 flex items-center text-white">
                       {mode == "affirm" ? (
                         <Link
                           key={index}
@@ -94,7 +95,7 @@ export default function CustomChatMessages({
                   <Link
                     key={index}
                     href={path.includes("compare") ? "/compare" : "/"}
-                    className="mt-2 ml-3 cursor-pointer font-medium italic hover:underline"
+                    className="mt-8 ml-3 cursor-pointer font-medium italic hover:underline"
                   >
                     {path.includes("/compare")
                       ? "<- Back to Compare"
@@ -110,7 +111,6 @@ export default function CustomChatMessages({
             </>
           );
         })}
-        <ChatMessages.Loading />
       </ChatMessages.List>
     </ChatMessages>
   );

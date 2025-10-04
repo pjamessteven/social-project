@@ -5,7 +5,11 @@ import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
 export default function DonationCard({ mode }: { mode: "detrans" | "affirm" }) {
   return (
-    <Card className={"border-destructive border transition-all duration-300"}>
+    <Card
+      className={
+        "border-destructive bg-destructive/10 border transition-all duration-300"
+      }
+    >
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">

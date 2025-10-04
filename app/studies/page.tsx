@@ -1,111 +1,141 @@
 const studies = [
   {
-    title: "Narratives of Adults Registered Female at Birth who Started a Medical Transition and Later Detransitioned",
+    title:
+      "Narratives of Adults Registered Female at Birth who Started a Medical Transition and Later Detransitioned",
     authors: "Lomax, J., & C.Butler",
     year: 2025,
     url: "https://link.springer.com/article/10.1007/s10508-025-03083-9#ref-CR61",
-    displayUrl: "link.springer.com/article/10.1007/s10508-025-03083-9#ref-CR61"
+    displayUrl: "link.springer.com/article/10.1007/s10508-025-03083-9#ref-CR61",
   },
   {
     title: "The Detransition Rate is Unknown",
     authors: "Cohn, J.",
     year: 2023,
     url: "https://link.springer.com/article/10.1007/s10508-023-02623-5",
-    displayUrl: "link.springer.com/article/10.1007/s10508-023-02623-5"
+    displayUrl: "link.springer.com/article/10.1007/s10508-023-02623-5",
   },
   {
-    title: "Breastfeeding Grief After Chest Masculinising Mastectomy and Detransition",
+    title:
+      "Gender dysphoria in young people is rising—and so is professional disagreement",
+    authors: "Block, J",
+    year: 2023,
+    url: "https://www.bmj.com/content/380/bmj.p382",
+    displayUrl: "https://www.bmj.com/content/380/bmj.p382",
+  },
+  {
+    title:
+      "Shifts in Gender-Related Medical Requests by Transgender and Gender-Diverse Adolescents",
+    authors:
+      "Ariel Cohen, Veronica Gomez-Lobo, Laura Willing, David Call, Lauren F. Damle, Lawrence J. D'Angelo, Amber Song, John F. Strang,",
+    year: 2023,
+    url: "https://www.sciencedirect.com/science/article/abs/pii/S1054139X22007194",
+    displayUrl:
+      "https://www.sciencedirect.com/science/article/abs/pii/S1054139X22007194",
+  },
+  {
+    title:
+      "Breastfeeding Grief After Chest Masculinising Mastectomy and Detransition",
     authors: "Gribble, K., Bewley, S. & H. Dahlen",
     year: 2023,
     url: "https://www.frontiersin.org/articles/10.3389/fgwh.2023.1073053/full",
-    displayUrl: "www.frontiersin.org/articles/10.3389/fgwh.2023.1073053/full"
+    displayUrl: "www.frontiersin.org/articles/10.3389/fgwh.2023.1073053/full",
   },
   {
     title: "Iatrogenic Harm in Gender Medicine",
     authors: "Jorgensen, S.",
     year: 2023,
     url: "https://www.tandfonline.com/doi/full/10.1080/0092623X.2023.2224320",
-    displayUrl: "www.tandfonline.com/doi/full/10.1080/0092623X.2023.2224320"
+    displayUrl: "www.tandfonline.com/doi/full/10.1080/0092623X.2023.2224320",
   },
   {
     title: "Detransition Needs Further Understanding, Not Controversy",
     authors: "MacKinnon, K.R. & P. Expositos-Campos",
     year: 2023,
     url: "https://www.bmj.com/content/381/bmj-2022-073584",
-    displayUrl: "www.bmj.com/content/381/bmj-2022-073584"
+    displayUrl: "www.bmj.com/content/381/bmj-2022-073584",
   },
   {
-    title: "Care of Transgender Patients: A General Practice Quality Improvement Approach",
+    title:
+      "Care of Transgender Patients: A General Practice Quality Improvement Approach",
     authors: "Boyd, I., Hackett, T. & S, Bewley",
     year: 2022,
     url: "https://www.mdpi.com/2227-9032/10/1/121",
-    displayUrl: "www.mdpi.com/2227-9032/10/1/121"
+    displayUrl: "www.mdpi.com/2227-9032/10/1/121",
   },
   {
-    title: "Continuation of Gender Affirming Hormones Among Transgender Adolescents and Adults",
+    title:
+      "Continuation of Gender Affirming Hormones Among Transgender Adolescents and Adults",
     authors: "Roberts, C.M, et al.",
     year: 2022,
     url: "https://academic.oup.com/jcem/article/107/9/e3937/6572526",
-    displayUrl: "academic.oup.com/jcem/article/107/9/e3937/6572526"
+    displayUrl: "academic.oup.com/jcem/article/107/9/e3937/6572526",
   },
   {
-    title: "A Typology of Gender Detransition and Its Implications for Healthcare Providers",
+    title:
+      "A Typology of Gender Detransition and Its Implications for Healthcare Providers",
     authors: "Exposito-Campos, P.",
     year: 2021,
     url: "https://pubmed.ncbi.nlm.nih.gov/33427094/",
-    displayUrl: "pubmed.ncbi.nlm.nih.gov/33427094/"
+    displayUrl: "pubmed.ncbi.nlm.nih.gov/33427094/",
   },
   {
-    title: "Access to care and frequency of detransition among a cohort discharged by a UK national adult gender identity clinic: retrospective case-note review",
+    title:
+      "Access to care and frequency of detransition among a cohort discharged by a UK national adult gender identity clinic: retrospective case-note review",
     authors: "Hall, R., Mitchell,L. & J. Sachdeva",
     year: 2021,
     url: "https://www.cambridge.org/core/journals/bjpsych-open/article/access-to-care-and-frequency-of-detransition-among-a-cohort-discharged-by-a-uk-national-adult-gender-identity-clinic-retrospective-casenote-review/3F5AC1315A49813922AAD76D9E28F5CB",
-    displayUrl: "www.cambridge.org/core/journals/bjpsych-open/article/access-to-care-and-frequency-of-detransition-among-a-cohort-discharged-by-a-uk-national-adult-gender-identity-clinic-retrospective-casenote-review/3F5AC1315A49813922AAD76D9E28F5CB"
+    displayUrl:
+      "www.cambridge.org/core/journals/bjpsych-open/article/access-to-care-and-frequency-of-detransition-among-a-cohort-discharged-by-a-uk-national-adult-gender-identity-clinic-retrospective-casenote-review/3F5AC1315A49813922AAD76D9E28F5CB",
   },
   {
-    title: "Individuals Treated for Gender Dysphoria with Medical and/or Surgical Transition Who Subsequently Detransitioned: A Survey of 100 Detransitioners",
+    title:
+      "Individuals Treated for Gender Dysphoria with Medical and/or Surgical Transition Who Subsequently Detransitioned: A Survey of 100 Detransitioners",
     authors: "Littman, L.",
     year: 2021,
     url: "https://pubmed.ncbi.nlm.nih.gov/34665380/",
-    displayUrl: "pubmed.ncbi.nlm.nih.gov/34665380/"
+    displayUrl: "pubmed.ncbi.nlm.nih.gov/34665380/",
   },
   {
     title: "Gender Detransition: A Case Study",
     authors: "Marchiano, L.",
     year: 2021,
     url: "https://onlinelibrary.wiley.com/doi/10.1111/1468-5922.12711",
-    displayUrl: "onlinelibrary.wiley.com/doi/10.1111/1468-5922.12711"
+    displayUrl: "onlinelibrary.wiley.com/doi/10.1111/1468-5922.12711",
   },
   {
-    title: "Detransition-Related Needs and Support: A Cross-Sectional Online Survey",
+    title:
+      "Detransition-Related Needs and Support: A Cross-Sectional Online Survey",
     authors: "Vandenbussche, E.",
     year: 2021,
     url: "https://www.tandfonline.com/doi/full/10.1080/00918369.2021.1919479",
-    displayUrl: "www.tandfonline.com/doi/full/10.1080/00918369.2021.1919479"
+    displayUrl: "www.tandfonline.com/doi/full/10.1080/00918369.2021.1919479",
   },
   {
-    title: "The pressing need for research and services for gender desisters /detransitioners",
+    title:
+      "The pressing need for research and services for gender desisters /detransitioners",
     authors: "Butler, C. & Hutchinson, A.",
     year: 2020,
     url: "https://acamh.onlinelibrary.wiley.com/doi/abs/10.1111/camh.12361",
-    displayUrl: "acamh.onlinelibrary.wiley.com/doi/abs/10.1111/camh.12361"
+    displayUrl: "acamh.onlinelibrary.wiley.com/doi/abs/10.1111/camh.12361",
   },
   {
     title: "The Man I'm Trying to be is not Me",
     authors: "D'Angelo, R.",
     year: 2020,
     url: "https://www.tandfonline.com/doi/abs/10.1080/00207578.2020.1810049",
-    displayUrl: "www.tandfonline.com/doi/abs/10.1080/00207578.2020.1810049"
+    displayUrl: "www.tandfonline.com/doi/abs/10.1080/00207578.2020.1810049",
   },
   {
-    title: "Reality check – Detransitioner's testimonies require us to rethink gender dysphoria",
+    title:
+      "Reality check – Detransitioner's testimonies require us to rethink gender dysphoria",
     authors: "Entwistle, K.",
     year: 2020,
     url: "https://acamh.onlinelibrary.wiley.com/doi/abs/10.1111/camh.12380",
-    displayUrl: "acamh.onlinelibrary.wiley.com/doi/abs/10.1111/camh.12380"
+    displayUrl: "acamh.onlinelibrary.wiley.com/doi/abs/10.1111/camh.12380",
   },
   {
-    title: "Taking the Lid of the Box: The value of extended clinical assessment for adolescents presenting with gender identity difficulties",
+    title:
+      "Taking the Lid of the Box: The value of extended clinical assessment for adolescents presenting with gender identity difficulties",
     authors: "Churcher-Clarke, A. & Spiliadis, A.",
     year: 2019,
     journal: "Clinical child psychology and psychiatry",
@@ -113,25 +143,29 @@ const studies = [
     issue: "2",
     pages: "338-352",
     url: "https://www.icf-consultations.com/wp-content/uploads/2019/07/Taking-the-lid-off-the-box.pdf?amp;",
-    displayUrl: "www.icf-consultations.com/wp-content/uploads/2019/07/Taking-the-lid-off-the-box.pdf?amp;"
+    displayUrl:
+      "www.icf-consultations.com/wp-content/uploads/2019/07/Taking-the-lid-off-the-box.pdf?amp;",
   },
   {
-    title: "Towards a gender exploratory model: Slowing things down, opening things up and exploring identity development",
+    title:
+      "Towards a gender exploratory model: Slowing things down, opening things up and exploring identity development",
     authors: "Spiliadis, A.",
     year: 2019,
     journal: "Metalogos Systemic Therapy Journal",
     volume: "35",
     pages: "1-9",
     url: "http://www.researchgate.net/publication/334559847_Towards_a_Gender_Exploratory_Model_slowing_things_down_opening_things_up_and_exploring_identity_development",
-    displayUrl: "www.researchgate.net/publication/334559847_Towards_a_Gender_Exploratory_Model_slowing_things_down_opening_things_up_and_exploring_identity_development"
+    displayUrl:
+      "www.researchgate.net/publication/334559847_Towards_a_Gender_Exploratory_Model_slowing_things_down_opening_things_up_and_exploring_identity_development",
   },
   {
-    title: "Trans-itory Identities: some psychoanalytic reflections on transgender identities",
+    title:
+      "Trans-itory Identities: some psychoanalytic reflections on transgender identities",
     authors: "Lemma, A.",
     year: 2018,
     url: "https://www.tandfonline.com/doi/full/10.1080/00207578.2018.1489710",
-    displayUrl: "www.tandfonline.com/doi/full/10.1080/00207578.2018.1489710"
-  }
+    displayUrl: "www.tandfonline.com/doi/full/10.1080/00207578.2018.1489710",
+  },
 ];
 
 export default async function StudiesPage() {
@@ -142,15 +176,18 @@ export default async function StudiesPage() {
       <div className="space-y-4">
         {studies.map((study, index) => (
           <div key={index} className="mb-4">
-            <p className="mb-0 font-semibold">
-              {study.title}
-            </p>
+            <p className="mb-0 font-semibold">{study.title}</p>
             <p className="mt-0 mb-0 text-sm text-gray-600 dark:text-gray-400">
               {study.authors} ({study.year})
               {study.journal && (
                 <>
-                  {" "}<em>{study.journal}</em>
-                  {study.volume && <>, <em>{study.volume}</em></>}
+                  {" "}
+                  <em>{study.journal}</em>
+                  {study.volume && (
+                    <>
+                      , <em>{study.volume}</em>
+                    </>
+                  )}
                   {study.issue && <>({study.issue})</>}
                   {study.pages && <>, {study.pages}</>}
                 </>
@@ -169,18 +206,6 @@ export default async function StudiesPage() {
       </div>
 
       <hr />
-
-      <p className="text-sm text-gray-600 dark:text-gray-400">
-        Source:{" "}
-        <a
-          href="https://www.detransfoundation.com/sex-and-gender-definitions.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline"
-        >
-          The Detrans Foundation
-        </a>
-      </p>
     </div>
   );
 }

@@ -312,33 +312,33 @@ export async function StartPage({
             </div>
           </div>
         )}
-        <div className="text-accent-foreground/70 bg-destructive/5 dark:bg-destructive/40 border-destructive mt-8 w-full max-w-[660px] rounded-lg border p-3 text-sm opacity-80">
-          <b className="">Disclaimer:</b> <br className="mb-2" />
-          The experiences shared on this site are sourced from Reddit and
-          processed by AI. While Reddit is a platform where real people share
-          personal stories, it may also contain bot-generated or misleading
-          content. You are encouraged to inspect the original Reddit posts to
-          verify the source and context. Please note that{" "}
-          {mode === "affirm"
-            ? "/r/mtf and /r/ftm are heavily moderated subreddits"
-            : "/r/detrans is a heavily moderated subreddit"}
-          , but moderation does not guarantee the accuracy or authenticity of
-          every post.
-        </div>
-        {mode === "detrans" && false && (
-          <div className="">
-            <RedditEmbeds mode={"detrans"} />{" "}
-          </div>
-        )}
-
-        <div className="prose dark:prose-invert mt-8">
-          <b>Start with a question below, or ask anything.</b>
+        <div className="text-accent-foreground/80 bg-destructive/5 dark:bg-destructive/40 border-destructive mt-8 w-full max-w-[660px] rounded-lg border p-3 text-sm opacity-80">
+          <span className="text-destructive font-semibold brightness-80 dark:brightness-120">
+            Disclaimer:
+          </span>{" "}
+          <span className="text-destructive brightness-80 dark:brightness-120">
+            The experiences shared on this site are sourced from Reddit and
+            processed by AI. While Reddit is a platform where real people share
+            personal stories, it may also contain bot-generated or misleading
+            content. You are encouraged to inspect the original Reddit posts to
+            verify the source and context. Please note that{" "}
+            {mode === "affirm"
+              ? "/r/mtf and /r/ftm are heavily moderated subreddits"
+              : "/r/detrans is a heavily moderated subreddit"}
+            , but moderation does not guarantee the accuracy or authenticity of
+            every post.
+          </span>
         </div>
 
+        {/*
+        <div className="prose dark:prose-invert mt-8 font-semibold">
+          Start with a question below, or ask anything.
+        </div>
+ */}
         {mode == "detrans" ? (
           <>
             {!bot ? (
-              <div className="mt-2">
+              <div className="mt-8">
                 <QuestionTabs mode={mode} />
               </div>
             ) : (
@@ -368,7 +368,7 @@ export async function StartPage({
             </div>
 
             <p className="mt-8 sm:mt-8">You can set yourself free,</p>
-            <p className="mt-1">All one must do, is just be.</p>
+            <p className="mt-1">All you need to do is just be.</p>
             <p className="mt-8">And be sure to mind your thoughts!</p>
             <p className="mt-1">As the mind is like a garden,</p>
             <p className="mt-1">And every thought is a seed.</p>
@@ -376,7 +376,8 @@ export async function StartPage({
             <p className="mt-1">But through this we can grow...</p>
 
             <div className="mt-8">
-              Built by Peter James Steven in Welllington, NZ.
+              Built by Peter James Steven <br className="inline sm:hidden" />
+              in Welllington, NZ.
               <br />
               <div className="mt-2 flex items-center sm:mt-1">
                 <div>
@@ -388,19 +389,30 @@ export async function StartPage({
                   >
                     open-source project
                   </a>
-                  . The code is published under an MIT license.
+                  .
                 </div>
               </div>
-              <div className="mt-2 flex items-center sm:mt-1">
-                European language translations coming soon...
+              <div className="mt-1 flex items-center">
+                The code is available under an MIT license.
               </div>
-              <div className="mt-2 flex items-center sm:mt-1">
-                Nobody in the real world is afraid of getting cancelled.
+              <div className="mt-1 flex items-center">
+                European language translations{" "}
+                <br className="inline sm:hidden" />
+                coming soon...
+              </div>
+              <div className="mt-1 flex items-center">
+                Nobody in the real world <br className="inline sm:hidden" />
+                is afraid of getting cancelled.
               </div>
             </div>
             <div className="font-base mt-16 text-lg not-italic">
               <DonationCard mode={mode} />
             </div>
+            {mode === "detrans" && (
+              <div className="">
+                <RedditEmbeds mode={"detrans"} />{" "}
+              </div>
+            )}
           </div>
         )}
       </div>

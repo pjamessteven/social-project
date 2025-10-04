@@ -90,6 +90,15 @@ div.bg-background.border:has(> img[alt="Llama Logo"]) {
   display: none !important;
 }
 
+/* chat message margin style*/
+.custom-markdown > div {
+  margin-bottom: 0 !important;
+}
+
+.custom-markdown{
+  margin-bottom: 16px;
+}
+
 .reddit-card > iframe{
  margin: unset;
 }

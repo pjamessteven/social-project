@@ -272,7 +272,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
         {/* Donate Button - Always visible */}
         <Link
           href={!devAffirm ? "/donate" : "/affirm/donate"}
-          className="hidden md:block"
+          className={isOpen ? "block" : "hidden md:block"}
         >
           <Button size={"sm"} variant={"destructive"}>
             Donate
@@ -317,7 +317,9 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <div className="ml-4 flex flex-col items-start">
                       <div className="text-sm font-medium">Portal</div>
                       <div className="text-muted-foreground text-xs">
-                        Detrans AI Chat & Starter Questions
+                        {mode === "detrans"
+                          ? "Detrans AI Chat & Starter Questions"
+                          : "GenderAffirming AI Chat"}
                       </div>
                     </div>
                   </Button>
@@ -562,13 +564,6 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
             </div>
           </DialogContent>
         </Dialog>
-
-        {/* Donate Button - Mobile always visible */}
-        <Link href="/donate" className="hidden md:hidden">
-          <Button variant={"destructive"} size={"sm"}>
-            Donate
-          </Button>
-        </Link>
       </div>
     </div>
   );
