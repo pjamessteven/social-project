@@ -62,7 +62,7 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
 
         <TabsList
           id="question-tabs"
-          className="grid-cols- relative z-50 mb-8 grid h-12 max-w-[660px] grid-cols-4 gap-1 rounded-2xl border"
+          className="grid-cols- relative z-50 mb-4 grid h-12 grid-cols-4 gap-1 rounded-2xl border sm:mb-8"
         >
           <TabsTrigger
             value="featured"

@@ -25,6 +25,11 @@ export function capitaliseWords(str?: string) {
   }
 }
 
+export function capitaliseFirstWord(str?: string) {
+  if (!str) return "";
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 export function markdownToPlainText(md?: string) {
   if (md) {
     return md

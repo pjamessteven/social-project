@@ -20986,16 +20986,6 @@
     ]
   },
   {
-    "title": "Understanding the Detransition Conversation",
-    "question_count": 37,
-    "children": []
-  },
-  {
-    "title": "Understanding Gender Transition and Detransition",
-    "question_count": 28,
-    "children": []
-  },
-  {
     "title": "Understanding Identity and Transition",
     "question_count": 27,
     "children": [
@@ -21021,30 +21011,5 @@
         ]
       }
     ]
-  },
-  {
-    "title": "Gender and Medical Transition Decisions",
-    "question_count": 26,
-    "children": []
-  },
-  {
-    "title": "Human Development and Social Wellbeing",
-    "question_count": 23,
-    "children": []
-  },
-  {
-    "title": "Understanding Detransition Health and Outcomes",
-    "question_count": 23,
-    "children": []
-  },
-  {
-    "title": "Understanding Gender Identity and Transition",
-    "question_count": 14,
-    "children": []
-  },
-  {
-    "title": "Understanding Detransition and Well-being",
-    "question_count": 11,
-    "children": []
   }
 ]

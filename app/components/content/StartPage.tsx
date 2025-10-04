@@ -73,7 +73,7 @@ export async function StartPage({
               <div className="absolute inset-0 dark:bg-black/40"></div>
             </div>
 
-            <div className="prose dark:prose-invert z-10 mt-8">
+            <div className="prose dark:prose-invert z-10 mt-8 max-w-full">
               <p>
                 Since 2011, gender dysphoria diagnosises{" "}
                 <a
@@ -84,22 +84,21 @@ export async function StartPage({
                   are up 50-fold
                 </a>{" "}
                 (5000%) in the UK. Young women are increasingly overrepresented
-                in these statistics,{" "}
+                in these statistics, representing up to{" "}
                 <a
                   href="https://sci-hub.se/10.1080/08039488.2019.1667429"
                   target="_blank"
                   className="underline"
                 >
-                  up to 87% of all referrals
+                  87% of all referrals
                 </a>{" "}
                 in Finland. At the same time, a constantly growing number of
-                people are healing dysphoria, de-transitioning and sharing their
-                experience.
+                people are healing gender dysphoria, detransitioning and sharing
+                their experiences. These people call themselves detrans.
               </p>
-
               <p>
-                <b>detrans.ai</b> answers questions from a detrans perspective
-                by integrating thoughts and experiences from the online
+                <b>detrans.ai</b> answers questions about gender from a detrans
+                perspective by integrating thoughts and experiences from the
                 <span>
                   {" "}
                   <a
@@ -109,28 +108,31 @@ export async function StartPage({
                   >
                     /r/detrans
                   </a>{" "}
-                  community.{" "}
+                  community on Reddit.{" "}
                 </span>
                 This produces helpful and insightful responses that help users
-                understand how and why some people adopt, inhabit, and let go of
-                gender identities, and how these experiences shape one’s
-                relationship with self, body and the world. Please note, all
-                experiences are subjective and not representative of all trans
-                or detrans people.
+                understand why some people adopt, inhabit, and let go of gender
+                identities, and how these experiences shape one’s relationship
+                with self, body and the world. Please note, all experiences are
+                subjective and not representative of all trans or detrans
+                people.
               </p>
               <p>
-                You can use <b>detrans.ai</b> for detransition help or advice,
-                or simply as a research tool. You can also compare trans and
-                detrans perspectives from the{" "}
+                Use <b>detrans.ai</b> for detransition help and advice, as a
+                virtual gender therapist, or simply as a research tool. You can
+                also compare trans and detrans perspectives on the{" "}
                 <Link prefetch={false} href={"/compare"} className="underline">
                   compare
                 </Link>{" "}
-                page. If this website helped you,{" "}
+                page.
+              </p>{" "}
+              <p>
+                {" "}
+                If this website helped you or your family,{" "}
                 <Link prefetch={false} href={"/contact"} className="underline">
                   please let me know!
                 </Link>
               </p>
-
               {/*
           <h2 className="text-secondary-foreground/80 semibold mt-2">
             On the surface, gender ideolgy seems progressive; a new way of
@@ -249,7 +251,7 @@ export async function StartPage({
 
         {mode === "detrans" && (
           <div className="mt-8">
-            <div className="grid max-w-[660px] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
               <Link href="/support">
                 <Button
                   variant="secondary"
@@ -312,7 +314,7 @@ export async function StartPage({
             </div>
           </div>
         )}
-        <div className="text-accent-foreground/80 bg-destructive/5 dark:bg-destructive/40 border-destructive mt-8 w-full max-w-[660px] rounded-lg border p-3 text-sm opacity-80">
+        <div className="text-accent-foreground/80 bg-destructive/5 dark:bg-destructive/40 border-destructive mt-8 w-full rounded-lg border p-3 text-sm opacity-80">
           <span className="text-destructive font-semibold brightness-80 dark:brightness-120">
             Disclaimer:
           </span>{" "}

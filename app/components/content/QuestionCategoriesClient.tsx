@@ -30,7 +30,7 @@ export function QuestionCategoriesClient({
           <h3 className="text-primary mb-2 text-2xl font-bold">
             {category.title}
           </h3>
-          <p className="text-muted-foreground mb-6 text-base">
+          <p className="text-muted-foreground mb-4 text-base sm:mb-6">
             {category.description}
           </p>
           <div className="grid gap-1">
@@ -65,7 +65,7 @@ export function QuestionCategoriesClient({
             <h3 className="text-primary mb-4 text-2xl font-bold">
               {category.title}
             </h3>
-            <p className="text-muted-foreground mb-6 text-base">
+            <p className="text-muted-foreground mb-4 text-base sm:mb-6">
               {category.description}
             </p>
             <div className="grid gap-1">
