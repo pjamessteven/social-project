@@ -240,7 +240,7 @@ export default function Component({ events }) {
             />
           </div>
           {!isRunningAnalysis && (
-            <div className="flex items-center justify-start mt-8">
+            <div className="flex items-center justify-start mt-8 mb-2">
               <h1 className="text-foreground text-base font-semibold md:text-lg">
                 {isLoading ? 'Generating Summary...' : 'Summary of findings:'}
               </h1>
