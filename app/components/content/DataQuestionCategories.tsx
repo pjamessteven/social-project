@@ -281,16 +281,16 @@ export function DataQuestionCategories({
   return (
     <>
       {" "}
-      <h3 className="text-primary mb-2 text-2xl font-bold">
+      <h3 className="text-primary text-2xl font-bold sm:mb-2">
         All Topics Discussed
       </h3>
-      <p className="text-muted-foreground mt-4 mb-2 max-w-2xl text-base">
-        These questions give an idea about the most discussed topics in
-        /r/detrans.
+      <p className="text-muted-foreground mt-2 mb-2 max-w-2xl text-base sm:mt-4">
+        These categorised questions give an idea about the most discussed topics
+        in /r/detrans.
       </p>
-      <details className="mb-4 marker:content-none">
+      <details className="mb-2 marker:content-none sm:mb-4">
         <summary className="text-muted-foreground cursor-pointer hover:underline">
-          Read more +
+          Read more about these topics +
         </summary>
         <div className="text-muted-foreground mt-2 max-w-2xl space-y-3">
           <p>

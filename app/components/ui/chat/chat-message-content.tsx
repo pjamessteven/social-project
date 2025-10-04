@@ -1,6 +1,6 @@
 "use client";
 
-import { slugify } from "@/app/lib/utils";
+import { capitaliseFirstWord, slugify } from "@/app/lib/utils";
 import {
   ChatMessage,
   getAnnotationData,
@@ -36,7 +36,7 @@ function SuggestedQuestionsAnnotations() {
           href={"/chat/" + slugify(question)}
           className="cursor-pointer font-medium italic underline hover:underline"
         >
-          {`-> ${question}`}
+          {`-> ${capitaliseFirstWord(question)}`}
         </Link>
       ))}
     </div>

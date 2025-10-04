@@ -156,7 +156,7 @@ export function DynamicQuestionCategories({
           {" "}
           {questionMode === "top" ? "Top Questions" : "Recent Questions"}
         </h3>
-        <p className="text-muted-foreground mb-6 text-base">
+        <p className="text-muted-foreground mb-4 text-base sm:mb-6">
           {questionMode === "top"
             ? "These are the top questions people have asked detrans.ai"
             : "These are the most recent questions people have asked detrans.ai"}
