@@ -1,6 +1,7 @@
 import { CachedLLM, PostgresCache } from "@/app/api/shared/cache";
 import { getCachedAnswer, setCachedAnswer } from "@/app/lib/cache";
 import { replayCached } from "@/app/lib/replayCached";
+import { getLogger } from "@/app/lib/logger";
 import { OpenAI } from "@llamaindex/openai";
 import {
   AgentInputData,
@@ -141,14 +142,28 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       );
 
       let nodes: NodeWithScore<Metadata>[];
+      const logger = getLogger();
+      const nodesKey = originalQuestion + ":nodes";
 
-      const cachedNodes = await cache.get(originalQuestion + ":nodes");
+      const cachedNodes = await cache.get(nodesKey);
       if (cachedNodes) {
+        logger.info({
+          originalQuestion,
+          cacheKey: 'nodes',
+          mode: 'detrans',
+          type: 'workflow_cache'
+        }, 'Workflow cache hit (nodes)');
         nodes = JSON.parse(cachedNodes);
       } else {
+        logger.info({
+          originalQuestion,
+          cacheKey: 'nodes',
+          mode: 'detrans',
+          type: 'workflow_cache'
+        }, 'Workflow cache miss, retrieving nodes');
         nodes = await retriever.retrieve({ query: originalQuestion });
         await cache.set(
-          originalQuestion + ":nodes",
+          nodesKey,
           JSON.stringify(nodes),
           originalQuestion,
         );
@@ -382,12 +397,25 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
 
       let response = "";
       let stream;
+      const logger = getLogger();
 
       const cachedAnswer = await getCachedAnswer("detrans", originalQuestion);
 
       if (cachedAnswer) {
+        logger.info({
+          originalQuestion,
+          cacheKey: 'final_answer',
+          mode: 'detrans',
+          type: 'workflow_cache'
+        }, 'Workflow cache hit (final answer)');
         stream = replayCached(cachedAnswer);
       } else {
+        logger.info({
+          originalQuestion,
+          cacheKey: 'final_answer',
+          mode: 'detrans',
+          type: 'workflow_cache'
+        }, 'Workflow cache miss, generating final answer');
         stream = await llm.chat({ messages, originalQuestion, stream: true });
       }
 
