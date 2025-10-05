@@ -15,6 +15,7 @@ import type {
   LLMChatParamsNonStreaming,
   LLMChatParamsStreaming,
 } from "llamaindex";
+import { getLogger } from "@/app/lib/logger";
 
 export class PostgresCache implements Cache {
   constructor(private mode: "detrans" | "affirm") {}
@@ -133,9 +134,19 @@ export class CachedLLM {
       String(lastMessage.content),
       options,
     );
+    const hashedKey = this.cache instanceof PostgresCache ? 
+      (this.cache as any).hashKey(key) : createHash("sha256").update(key).digest("hex");
+    const logger = getLogger();
 
     /* --- Streaming mode --- */
     if (stream) {
+      logger.info({
+        originalQuestion,
+        hashedKey,
+        mode: this.mode,
+        type: 'chat_streaming'
+      }, 'LLM cache generating new (streaming)');
+
       // Call underlying LLM in streaming mode
       const rawStream = await this.llm.chat({
         messages,
@@ -159,6 +170,13 @@ export class CachedLLM {
     const response = await this.llm.chat({ messages, ...options });
     const text = String(response.message.content);
     await this.cache.set(key, text, originalQuestion);
+
+    logger.info({
+      originalQuestion,
+      hashedKey,
+      mode: this.mode,
+      type: 'chat'
+    }, 'LLM cache generating new');
 
     return response;
   }
@@ -207,17 +225,36 @@ export class CachedLLM {
     } = params;
     const key = makeLlmCacheKey(originalQuestion, prompt, options);
 
+    const hashedKey = this.cache instanceof PostgresCache ? 
+      (this.cache as any).hashKey(key) : createHash("sha256").update(key).digest("hex");
+    const logger = getLogger();
+
     /* --- Streaming mode --- */
     if (stream) {
       const cached = await this.cache.get(key);
       if (cached) {
+        logger.info({
+          originalQuestion,
+          hashedKey,
+          mode: this.mode,
+          type: 'complete_streaming'
+        }, 'LLM cache hit (streaming)');
+
         // Replay cached result as a fake stream
         const replayCached = async function* (
           text: string,
         ): AsyncGenerator<{ delta: string }> {
           yield { delta: text };
         };
+        return replayCached(cached);
       }
+
+      logger.info({
+        originalQuestion,
+        hashedKey,
+        mode: this.mode,
+        type: 'complete_streaming'
+      }, 'LLM cache miss, generating new (streaming)');
 
       if (
         rateLimit &&
@@ -253,8 +290,21 @@ export class CachedLLM {
     /* --- Non-streaming mode --- */
     const cached = await this.cache.get(key);
     if (cached) {
+      logger.info({
+        originalQuestion,
+        hashedKey,
+        mode: this.mode,
+        type: 'complete'
+      }, 'LLM cache hit');
       return { text: cached };
     }
+
+    logger.info({
+      originalQuestion,
+      hashedKey,
+      mode: this.mode,
+      type: 'complete'
+    }, 'LLM cache miss, generating new');
 
     if (
       rateLimit &&
