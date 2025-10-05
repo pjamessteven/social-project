@@ -14,13 +14,13 @@ function getIP(req: NextRequest): string {
 }
 
 export async function middleware(req: NextRequest) {
-  const res = NextResponse.next();
   const { pathname, searchParams } = req.nextUrl;
 
   const isDev = process.env.NODE_ENV === "development";
   const host = req.headers.get("host");
   const ip = getIP(req);
   const logger = getLogger();
+  const startTime = Date.now();
 
   // Log the request
   logger.info({
@@ -38,6 +38,11 @@ export async function middleware(req: NextRequest) {
       'authorization': req.headers.get('authorization') ? '[REDACTED]' : null,
     }
   }, 'Request received');
+
+  let res: NextResponse;
+  
+  try {
+    res = NextResponse.next();
 
   const allowedHosts = ["detrans.ai", "genderaffirming.ai"];
 
@@ -68,23 +73,47 @@ export async function middleware(req: NextRequest) {
     }
   }
 
-  /*
-  const ip = getIP(req);
+    /*
+    const ip = getIP(req);
 
-  const slug =
-    req.nextUrl.hostname === "detrans.ai"
-      ? "detrans:general-req"
-      : "affirm:general-req";
+    const slug =
+      req.nextUrl.hostname === "detrans.ai"
+        ? "detrans:general-req"
+        : "affirm:general-req";
 
-  // 100 page loads per day allowed
-  const { allowed, remaining } = await rateLimiter(ip, slug, 200);
-  // limit is for fresh LLM content which is controlled by CachedLLM in workflow
-  res.headers.set("X-RateLimit-Remaining", String(remaining));
-  res.headers.set("X-RateLimit-Limit", "10");
-  */
-  res.headers.set("x-pathname", req.nextUrl.pathname);
+    // 100 page loads per day allowed
+    const { allowed, remaining } = await rateLimiter(ip, slug, 200);
+    // limit is for fresh LLM content which is controlled by CachedLLM in workflow
+    res.headers.set("X-RateLimit-Remaining", String(remaining));
+    res.headers.set("X-RateLimit-Limit", "10");
+    */
+    res.headers.set("x-pathname", req.nextUrl.pathname);
 
-  return res;
+    // Log the response
+    logger.info({
+      method: req.method,
+      pathname,
+      status: res.status,
+      duration: Date.now() - startTime,
+      ip,
+    }, 'Request completed');
+
+    return res;
+  } catch (error) {
+    const duration = Date.now() - startTime;
+    
+    // Log the error
+    logger.error({
+      method: req.method,
+      pathname,
+      error: error instanceof Error ? error.message : 'Unknown error',
+      duration,
+      ip,
+    }, 'Request failed');
+
+    // Re-throw the error to maintain normal error handling
+    throw error;
+  }
 }
 
 export const config = {
