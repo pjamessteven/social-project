@@ -22,17 +22,6 @@ export async function middleware(req: NextRequest) {
   const ip = getIP(req);
   const logger = getLogger();
 
-  // Get request body for non-GET requests
-  let body = null;
-  if (req.method !== 'GET' && req.method !== 'HEAD') {
-    try {
-      const clonedReq = req.clone();
-      body = await clonedReq.text();
-    } catch (e) {
-      body = 'Could not parse body';
-    }
-  }
-
   // Log the request
   logger.info({
     method: req.method,
@@ -43,7 +32,6 @@ export async function middleware(req: NextRequest) {
     ip,
     userAgent: req.headers.get('user-agent'),
     referer: req.headers.get('referer'),
-    body: body ? (body.length > 1000 ? body.substring(0, 1000) + '...' : body) : null,
     headers: {
       'content-type': req.headers.get('content-type'),
       'accept': req.headers.get('accept'),
