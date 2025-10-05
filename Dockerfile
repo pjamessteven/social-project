@@ -53,6 +53,7 @@ COPY --from=builder /app/drizzle ./drizzle
 COPY --from=builder /app/drizzle.config.ts ./drizzle.config.ts
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 
 # Ensuring no unnecessary permissions are given and add necessary permissions for it to run server.js properly.
 RUN chmod -R a-w+x . && chmod -R a+x .next node_modules
