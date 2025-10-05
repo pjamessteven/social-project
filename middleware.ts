@@ -7,9 +7,9 @@ import { getLogger } from "./app/lib/logger";
 function getIP(req: NextRequest): string {
   return (
     req.ip ||
-    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-    req.headers.get('x-real-ip') ||
-    'unknown'
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    req.headers.get("x-real-ip") ||
+    "unknown"
   );
 }
 
@@ -23,55 +23,58 @@ export async function middleware(req: NextRequest) {
   const startTime = Date.now();
 
   // Log the request
-  logger.info({
-    method: req.method,
-    url: req.url,
-    pathname,
-    searchParams: Object.fromEntries(searchParams),
-    host,
-    ip,
-    userAgent: req.headers.get('user-agent'),
-    referer: req.headers.get('referer'),
-    headers: {
-      'content-type': req.headers.get('content-type'),
-      'accept': req.headers.get('accept'),
-      'authorization': req.headers.get('authorization') ? '[REDACTED]' : null,
-    }
-  }, 'Request received');
+  logger.info(
+    {
+      method: req.method,
+      url: req.url,
+      pathname,
+      searchParams: Object.fromEntries(searchParams),
+      host,
+      ip,
+      userAgent: req.headers.get("user-agent"),
+      referer: req.headers.get("referer"),
+      headers: {
+        "content-type": req.headers.get("content-type"),
+        accept: req.headers.get("accept"),
+        authorization: req.headers.get("authorization") ? "[REDACTED]" : null,
+      },
+    },
+    "Request received",
+  );
 
   let res: NextResponse;
-  
+
   try {
     res = NextResponse.next();
 
-  const allowedHosts = ["detrans.ai", "genderaffirming.ai"];
+    const allowedHosts = ["detrans.ai", "genderaffirming.ai"];
 
-  if (host && !allowedHosts.includes(host) && !isDev) {
-    const url = req.nextUrl.clone();
-    url.hostname = "detrans.ai";
-    url.protocol = "https";
-    url.port = "";
-
-    return NextResponse.redirect(url.toString(), 301);
-  }
-
-  if (host === "genderaffirming.ai") {
-    // map the public path to the internal “/affirm/…” folder
-    const rewriteMap: Record<string, string> = {
-      "/": "/affirm",
-      "/chat": "/affirm/chat",
-      "/prompts": "/affirm/prompts",
-      "/terms": "/affirm/terms",
-      "/contact": "/affirm/contact",
-    };
-
-    const internal = rewriteMap[pathname];
-    if (internal) {
+    if (host && !allowedHosts.includes(host) && !isDev) {
       const url = req.nextUrl.clone();
-      url.pathname = internal;
-      return NextResponse.redirect(url);
+      url.hostname = "detrans.ai";
+      url.protocol = "https";
+      url.port = "";
+
+      return NextResponse.redirect(url.toString(), 301);
     }
-  }
+
+    if (host === "genderaffirming.ai") {
+      // map the public path to the internal “/affirm/…” folder
+      const rewriteMap: Record<string, string> = {
+        "/": "/affirm",
+        "/chat": "/affirm/chat",
+        "/prompts": "/affirm/prompts",
+        "/terms": "/affirm/terms",
+        "/contact": "/affirm/contact",
+      };
+
+      const internal = rewriteMap[pathname];
+      if (internal) {
+        const url = req.nextUrl.clone();
+        url.pathname = internal;
+        return NextResponse.redirect(url);
+      }
+    }
 
     /*
     const ip = getIP(req);
@@ -90,26 +93,32 @@ export async function middleware(req: NextRequest) {
     res.headers.set("x-pathname", req.nextUrl.pathname);
 
     // Log the response
-    logger.info({
-      method: req.method,
-      pathname,
-      status: res.status,
-      duration: Date.now() - startTime,
-      ip,
-    }, 'Request completed');
+    logger.info(
+      {
+        method: req.method,
+        pathname,
+        status: res.status,
+        duration: Date.now() - startTime,
+        ip,
+      },
+      "Request completed",
+    );
 
     return res;
   } catch (error) {
     const duration = Date.now() - startTime;
-    
+
     // Log the error
-    logger.error({
-      method: req.method,
-      pathname,
-      error: error instanceof Error ? error.message : 'Unknown error',
-      duration,
-      ip,
-    }, 'Request failed');
+    logger.error(
+      {
+        method: req.method,
+        pathname,
+        error: error instanceof Error ? error.message : "Unknown error",
+        duration,
+        ip,
+      },
+      "Request failed",
+    );
 
     // Re-throw the error to maintain normal error handling
     throw error;

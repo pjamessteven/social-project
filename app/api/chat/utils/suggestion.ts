@@ -17,7 +17,6 @@ export const sendSuggestedQuestionsEvent = async (
   );
   let questions;
   if (cachedNextQuestions) {
-    console.log("CACHED QUETIONS", cachedNextQuestions);
     questions = JSON.parse(cachedNextQuestions);
   } else {
     questions = await generateNextQuestions(chatHistory);
