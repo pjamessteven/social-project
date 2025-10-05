@@ -2,14 +2,54 @@
 
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
+import { getLogger } from "./app/lib/logger";
+
+function getIP(req: NextRequest): string {
+  return (
+    req.ip ||
+    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    req.headers.get('x-real-ip') ||
+    'unknown'
+  );
+}
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
-  const { pathname } = req.nextUrl;
+  const { pathname, searchParams } = req.nextUrl;
 
   const isDev = process.env.NODE_ENV === "development";
-
   const host = req.headers.get("host");
+  const ip = getIP(req);
+  const logger = getLogger();
+
+  // Get request body for non-GET requests
+  let body = null;
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    try {
+      const clonedReq = req.clone();
+      body = await clonedReq.text();
+    } catch (e) {
+      body = 'Could not parse body';
+    }
+  }
+
+  // Log the request
+  logger.info({
+    method: req.method,
+    url: req.url,
+    pathname,
+    searchParams: Object.fromEntries(searchParams),
+    host,
+    ip,
+    userAgent: req.headers.get('user-agent'),
+    referer: req.headers.get('referer'),
+    body: body ? (body.length > 1000 ? body.substring(0, 1000) + '...' : body) : null,
+    headers: {
+      'content-type': req.headers.get('content-type'),
+      'accept': req.headers.get('accept'),
+      'authorization': req.headers.get('authorization') ? '[REDACTED]' : null,
+    }
+  }, 'Request received');
 
   const allowedHosts = ["detrans.ai", "genderaffirming.ai"];
 
