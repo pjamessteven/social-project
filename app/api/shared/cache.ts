@@ -1,7 +1,13 @@
 import { rateLimiter } from "@/app/lib/rateLimit";
-import { db, detransQuestions, detransCache, affirmQuestions, affirmCache } from "@/db";
-import { eq } from "drizzle-orm";
+import {
+  affirmCache,
+  affirmQuestions,
+  db,
+  detransCache,
+  detransQuestions,
+} from "@/db";
 import { createHash } from "crypto";
+import { eq } from "drizzle-orm";
 import type {
   ChatResponse,
   ChatResponseChunk,
@@ -22,14 +28,14 @@ export class PostgresCache implements Cache {
   }
 
   private hashKey(key: string): string {
-    return createHash('sha256').update(key).digest('hex');
+    return createHash("sha256").update(key).digest("hex");
   }
 
   async get(key: string): Promise<string | null> {
     try {
       const hashedKey = this.hashKey(key);
       const cacheTable = this.getCacheTable();
-      
+
       const result = await db
         .select({ resultText: cacheTable.resultText })
         .from(cacheTable)
@@ -42,13 +48,13 @@ export class PostgresCache implements Cache {
           .update(cacheTable)
           .set({ lastAccessed: new Date() })
           .where(eq(cacheTable.promptHash, hashedKey));
-        
+
         return result[0].resultText;
       }
-      
+
       return null;
     } catch (error) {
-      console.error('Cache get error:', error);
+      console.error("Cache get error:", error);
       return null;
     }
   }
@@ -57,7 +63,7 @@ export class PostgresCache implements Cache {
     try {
       const hashedKey = this.hashKey(key);
       const cacheTable = this.getCacheTable();
-      
+
       await db
         .insert(cacheTable)
         .values({
@@ -76,11 +82,10 @@ export class PostgresCache implements Cache {
           },
         });
     } catch (error) {
-      console.error('Cache set error:', error);
+      console.error("Cache set error:", error);
       // Don't throw - cache failures shouldn't break the application
     }
   }
-
 }
 
 export interface Cache {
@@ -128,7 +133,6 @@ export class CachedLLM {
       String(lastMessage.content),
       options,
     );
-
 
     /* --- Streaming mode --- */
     if (stream) {
@@ -203,7 +207,6 @@ export class CachedLLM {
     } = params;
     const key = makeLlmCacheKey(originalQuestion, prompt, options);
 
-
     /* --- Streaming mode --- */
     if (stream) {
       const cached = await this.cache.get(key);
@@ -214,8 +217,6 @@ export class CachedLLM {
         ): AsyncGenerator<{ delta: string }> {
           yield { delta: text };
         };
-        console.log("REPLAY CACHED: ", key);
-        return replayCached(cached);
       }
 
       if (
@@ -252,7 +253,6 @@ export class CachedLLM {
     /* --- Non-streaming mode --- */
     const cached = await this.cache.get(key);
     if (cached) {
-      console.log("REPLAY CACHED: ", key);
       return { text: cached };
     }
 
