@@ -6,7 +6,6 @@ import { getLogger } from "./app/lib/logger";
 
 function getIP(req: NextRequest): string {
   return (
-    req.ip ||
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
     req.headers.get("x-real-ip") ||
     "unknown"
