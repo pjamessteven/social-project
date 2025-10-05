@@ -26,7 +26,7 @@ const aggregateEvents = (events) => {
   // Process each event
   events.forEach((event) => {
     const { event: eventType, state, id, question, answer } = event;
-    console.log("event", event);
+
     if (eventType === "retrieve") {
       // Update retrieve status
       result.retrieve = { state };
