@@ -4,6 +4,7 @@ import { isBot } from "@/app/lib/isBot";
 import {
   BookOpen,
   ChartNoAxesCombined,
+  ChevronDown,
   ExternalLink,
   FileText,
   Heart,
@@ -73,7 +74,7 @@ export async function StartPage({
               <div className="absolute inset-0 dark:bg-black/40"></div>
             </div>
 
-            <div className="prose dark:prose-invert z-10 mt-8 max-w-full">
+            <div className="prose dark:prose-invert prose-sm sm:prose-base z-10 mt-8 max-w-full">
               <p>
                 Since 2011, gender dysphoria diagnosises{" "}
                 <a
@@ -142,7 +143,7 @@ export async function StartPage({
             </div>
           </div>
         ) : mode === "affirm" ? (
-          <div className="prose dark:prose-invert mt-8 text-base">
+          <div className="prose dark:prose-invert mt-8 text-base max-w-full">
             <p>
               <b>genderaffirming.ai</b> will affirm your gender identity.
               It&apos;s powered by insights directly from the online trans
@@ -182,7 +183,7 @@ export async function StartPage({
             </p>
           </div>
         ) : (
-          <div className="prose dark:prose-invert mt-8 text-base">
+          <div className="prose dark:prose-invert mt-8 text-base max-w-full">
             <p>
               <a
                 href="https://genderaffirming.ai"
@@ -312,23 +313,27 @@ export async function StartPage({
             </div>
           </div>
         )}
-        <div className="text-accent-foreground/80 bg-destructive/5 dark:bg-destructive/40 border-destructive mt-8 w-full rounded-lg border p-3 text-sm opacity-80">
-          <span className="text-destructive font-semibold brightness-80 dark:brightness-120">
-            Disclaimer:
-          </span>{" "}
-          <span className="text-destructive brightness-80 dark:brightness-120">
-            The experiences shared on this site are sourced from Reddit and
-            processed by AI. While Reddit is a platform where real people share
-            personal stories, it may also contain bot-generated or misleading
-            content. You are encouraged to inspect the original Reddit posts to
-            verify the source and context. Please note that{" "}
-            {mode === "affirm"
-              ? "/r/mtf and /r/ftm are heavily moderated subreddits"
-              : "/r/detrans is a heavily moderated subreddit"}
-            , but moderation does not guarantee the accuracy or authenticity of
-            every post.
-          </span>
-        </div>
+        <details className="text-accent-foreground/80 bg-destructive/5 dark:bg-destructive/40 border-destructive mt-8 w-full rounded-lg border p-3 text-sm opacity-80 ">
+          <summary className="text-destructive cursor-pointer brightness-80 dark:brightness-120 ">
+
+                <span className="font-semibold">Disclaimer: </span>The experiences and perspectives on this site are sourced from Reddit
+                and processed by AI.
+
+          </summary>
+          <div className="text-destructive mt-2 max-w-2xl space-y-3 brightness-80 dark:brightness-120">
+            <p>
+              While Reddit is a platform where real people share personal
+              stories, it may also contain bot-generated or misleading content.
+              You are encouraged to inspect the original Reddit posts to verify
+              the source and context. Please note that{" "}
+              {mode === "affirm"
+                ? "/r/mtf and /r/ftm are heavily moderated subreddits"
+                : "/r/detrans is a heavily moderated subreddit"}
+              , but moderation does not guarantee the accuracy or authenticity
+              of every post.
+            </p>
+          </div>
+        </details>
 
         {/*
         <div className="prose dark:prose-invert mt-8 font-semibold">
@@ -400,10 +405,7 @@ export async function StartPage({
                 <br className="inline sm:hidden" />
                 coming soon...
               </div>
-              <div className="mt-1 flex items-center">
-                Nobody in the real world <br className="inline sm:hidden" />
-                is afraid of getting cancelled.
-              </div>
+
             </div>
             <div className="font-base mt-16 text-lg not-italic">
               <DonationCard mode={mode} />

@@ -28,15 +28,22 @@ function SuggestedQuestionsAnnotations() {
   const questions = suggestedQuestionsData[0] as string[];
 
   return (
-    <div className="mt-2 flex flex-col gap-2">
+    <div className="sm:mt-8  flex flex-col gap-2">
+
+      <div className="text-base font-semibold md:text-lg mb-2 ">Follow-up questions:</div>
       {questions.map((question, index) => (
         <Link
           prefetch={false}
           key={index}
           href={"/chat/" + slugify(question)}
-          className="cursor-pointer font-medium italic underline hover:underline"
+          className="cursor-pointer font-medium  italic no-underline"
         >
-          {`-> ${capitaliseFirstWord(question)}`}
+          <div className="flex flex-row items-center border-b pt-1 pb-2">
+            <div className="text-muted-foreground hover:text-foreground transition-colors no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 sm:text-base">
+              <div className="mr-2 whitespace-nowrap">{"->"}</div>
+              <div className=" hover:underline">{capitaliseFirstWord(question)}`</div>
+            </div>
+          </div>
         </Link>
       ))}
     </div>

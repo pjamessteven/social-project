@@ -30,7 +30,7 @@ export function QuestionCategoriesClient({
           <h3 className="text-primary mb-2 text-2xl font-bold">
             {category.title}
           </h3>
-          <p className="text-muted-foreground mb-4 text-base sm:mb-6">
+          <p className="text-muted-foreground mb-4 text-sm sm:text-base sm:mb-6">
             {category.description}
           </p>
           <div className="grid gap-1">
@@ -48,9 +48,9 @@ export function QuestionCategoriesClient({
                   key={questionIndex}
                 >
                   <div className="flex flex-row items-center border-b pt-1 pb-2">
-                    <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-lg italic opacity-90">
-                      <div className="mr-2 whitespace-nowrap">{"->"}</div>
-                      <div>{question}</div>
+                    <div className="text-muted-foreground transition-colors hover:text-primary flex cursor-pointer flex-row items-start text-base sm:text-lg italic opacity-90">
+                      <span className="mr-2 whitespace-nowrap">{"->"}</span>
+                      <span className="pr-2">{question}</span>
                     </div>
                   </div>
                 </Link>
@@ -79,7 +79,7 @@ export function QuestionCategoriesClient({
                         slugify(question)
                       }
                     >
-                      <p className="text-muted-foreground hover:text-primary cursor-pointer text-lg italic opacity-90">
+                      <p className="text-muted-foreground transition-colors hover:text-primary cursor-pointer text-lg italic opacity-90">
                         {"->"} {question}
                       </p>
                     </Link>

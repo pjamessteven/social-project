@@ -86,11 +86,15 @@
   font-size: 1rem !important; /* Tailwind text-lg */
   line-height: 1.5rem !important;
 }
+
 div.bg-background.border:has(> img[alt="Llama Logo"]) {
   display: none !important;
 }
 
 /* chat message margin style*/
+.user-message :is(.custom-markdown) {
+  border-top-right-radius: 0 !important;
+}
 .user-message :is(.custom-markdown > div) {
   margin-bottom: 0 !important;
 }
@@ -115,6 +119,7 @@ html, body, #__next {
     color: white;
   }
 }
+
 
 
 /*
