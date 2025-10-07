@@ -118,7 +118,7 @@ export function DynamicQuestionCategories({
         <h3 className="text-primary mb-2 text-2xl font-bold">
           {questionMode === "top" ? "Top Questions" : "Recent Questions"}
         </h3>
-        <p className="text-muted-foreground mb-6 text-base">
+        <p className="text-muted-foreground mb-6 text-sm">
           {questionMode === "top"
             ? "These are the top questions people have asked detrans.ai"
             : "These are the most recent questions people have asked detrans.ai"}
@@ -137,7 +137,7 @@ export function DynamicQuestionCategories({
         <h3 className="text-primary mb-2 text-2xl font-bold">
           {questionMode === "top" ? "Top Questions" : "Recent Questions"}
         </h3>
-        <p className="text-muted-foreground mb-6 text-base">
+        <p className="text-muted-foreground mb-6 text-sm sm:text-base">
           {questionMode === "top"
             ? "These are the top questions people have asked detrans.ai"
             : "These are the most recent questions people have asked detrans.ai"}
@@ -156,7 +156,7 @@ export function DynamicQuestionCategories({
           {" "}
           {questionMode === "top" ? "Top Questions" : "Recent Questions"}
         </h3>
-        <p className="text-muted-foreground mb-4 text-base sm:mb-6">
+        <p className="text-muted-foreground mb-4 text-sm sm:mb-6">
           {questionMode === "top"
             ? "These are the top questions people have asked detrans.ai"
             : "These are the most recent questions people have asked detrans.ai"}
@@ -169,10 +169,10 @@ export function DynamicQuestionCategories({
               key={`${item.page}-${index}`}
             >
               <div className="flex flex-row items-center border-b pt-1 pb-2">
-                <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-lg italic opacity-90">
+                <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-base sm:text-lg italic opacity-90">
                   <div className="mr-2 whitespace-nowrap">{"->"}</div>
                   <div className="flex-1">{item.page}</div>
-                  <div className="ml-2 text-sm font-normal opacity-60">
+                  <div className="ml-2 text-xs sm:text-sm font-normal opacity-60">
                     {questionMode === "recent" && item.mostRecentlyAsked
                       ? `(${formatRelativeTime(item.mostRecentlyAsked)})`
                       : `(${item.score} views)`}

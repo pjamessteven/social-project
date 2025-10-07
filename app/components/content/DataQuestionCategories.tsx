@@ -70,7 +70,7 @@ function TopicNode({
   };
 
   return (
-    <div className={`ml-6 ${level > 0 ? "" : ""}`}>
+    <div className={`ml-2 ${level > 0 ? "" : ""}`}>
       <details className="group" open={isOpen}>
         <summary
           className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800"
@@ -106,20 +106,8 @@ function TopicNode({
           </h3>
         </summary>
 
-        <div className="mt-2 mb-4 ml-4 border-l">
-          <Link
-            prefetch={false}
-            href={getTopicHref(topic.topic_id as number, topic.title)}
-          >
-            <div className="ml-6 flex flex-row items-center border-b pb-2">
-              <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 sm:text-lg">
-                <div className="mr-2 whitespace-nowrap">{"->"}</div>
-                <div>
-                  View all {topic.question_count} questions about this topic
-                </div>
-              </div>
-            </div>
-          </Link>
+        <div className="mt-2 mb-4 ml-4  border-l">
+
           {hasQuestions && (
             <div className="mb-4 grid gap-1">
               {topic.questions!.map(
@@ -282,15 +270,15 @@ export function DataQuestionCategories({
     <>
       {" "}
       <h3 className="text-primary text-2xl font-bold sm:mb-2">
-        All Topics Discussed
+        Generated Questions
       </h3>
-      <p className="text-muted-foreground mt-2 mb-2 max-w-2xl text-base sm:mt-4">
-        These categorised questions give an idea about the most discussed topics
+      <p className="text-muted-foreground mt-2 mb-2 max-w-2xl text-sm sm:text-base sm:mt-4">
+        These generated questions give an idea about the most discussed topics
         in /r/detrans.
       </p>
       <details className="mb-2 marker:content-none sm:mb-4">
-        <summary className="text-muted-foreground cursor-pointer hover:underline">
-          Read more about these topics +
+        <summary className="text-muted-foreground cursor-pointer text-sm sm:text-base hover:underline">
+          Read more about generated questions
         </summary>
         <div className="text-muted-foreground mt-2 max-w-2xl space-y-3">
           <p>

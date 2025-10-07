@@ -59,47 +59,73 @@ export default function CustomChatMessages({
                 <>
                   <ChatMessages.Loading className="-ml-16 sm:mr-0" />
                   {!isLoading && (
-                    <div className="text-foreground ml-3 flex items-center text-white">
-                      {mode == "affirm" ? (
-                        <Link
-                          key={index}
-                          prefetch={false}
-                          href={
-                            (isDev ? "/chat/" : "https://detrans.ai/chat/") +
-                            slugify(lastUserMessage?.content as string)
-                          }
-                          target="_blank"
-                          className="cursor-pointer font-medium italic underline hover:underline"
-                        >
-                          {"-> See detrans perspectives on this topic"}
-                        </Link>
-                      ) : (
-                        <Link
-                          key={index}
-                          prefetch={false}
-                          href={
-                            (isDev
-                              ? "/affirm/chat/"
-                              : "https://genderaffirming.ai/affirm/chat/") +
-                            slugify(lastUserMessage?.content as string)
-                          }
-                          target="_blank"
-                          className="cursor-pointer font-medium italic underline hover:underline"
-                        >
-                          {"-> See trans perspectives on this topic"}
-                        </Link>
-                      )}
-                      <ExternalLink className="ml-2 h-4" />
-                    </div>
+                    <>
+                      <div className="text-foreground mr-16 ml-3 flex items-center border-b">
+                        {mode == "affirm" ? (
+                          <Link
+                            key={index}
+                            prefetch={false}
+                            href={
+                              (isDev ? "/chat/" : "https://detrans.ai/chat/") +
+                              slugify(lastUserMessage?.content as string)
+                            }
+                            target="_blank"
+                            className="cursor-pointer font-regular text-muted-foreground italic no-underline"
+                          >
+                            <div className="flex flex-row items-center pt-0 pb-3">
+                              <div className="text-muted-foreground hover:text-foreground transition-colors  no-wrap flex cursor-pointer flex-row items-start text-base italic transition-opacity sm:text-base">
+                                <div className="mr-2 whitespace-nowrap">
+                                  {"->"}
+                                </div>
+                                <div className="hover:underline">
+                                  See detrans perspectives on this topic
+                                </div>
+                              </div>
+                              <ExternalLink className="ml-2 h-4" />
+                            </div>
+                          </Link>
+                        ) : (
+                          <Link
+                            key={index}
+                            prefetch={false}
+                            href={
+                              (isDev
+                                ? "/affirm/chat/"
+                                : "https://genderaffirming.ai/affirm/chat/") +
+                              slugify(lastUserMessage?.content as string)
+                            }
+                            target="_blank"
+                            className="cursor-pointer font-medium text-muted-foreground  italic no-underline"
+                          >
+                            <div className="flex flex-row items-center pt-0 pb-3">
+                              <div className="text-muted-foreground hover:text-foreground transition-colors  no-wrap flex cursor-pointer flex-row items-start text-base italic transition-opacity sm:text-base">
+                                <div className="mr-2 whitespace-nowrap">
+                                  {"->"}
+                                </div>
+                                <div className="hover:underline">
+                                  See trans perspectives on this topic
+                                </div>
+                              </div>
+                              <ExternalLink className="ml-2 h-4" />
+                            </div>
+                          </Link>
+                        )}
+                      </div>
+                    </>
                   )}
                   <Link
                     key={index}
                     href={path.includes("compare") ? "/compare" : "/"}
-                    className="mt-8 ml-3 cursor-pointer font-medium italic hover:underline"
+                    className="mt-16 mb-4 ml-3 cursor-pointer font-semibold hover:underline"
                   >
-                    {path.includes("/compare")
-                      ? "<- Back to Compare"
-                      : "<- Back to Portal"}
+                    <div className="text-muted-primary  hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base  opacity-90 transition-colors sm:text-base">
+                      <div className="mr-2 whitespace-nowrap">{"<-"}</div>
+                      <div className="hover:underline">
+                        {path.includes("/compare")
+                          ? "Back to Compare"
+                          : "Back to Portal"}
+                      </div>
+                    </div>
                   </Link>
                   {showDonationMessage && (
                     <div className="mt-4 mr-16 ml-4 sm:mx-0">

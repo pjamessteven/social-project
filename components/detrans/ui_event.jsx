@@ -172,10 +172,10 @@ export default function Component({ events }) {
                     <div className="flex-1 pr-2">
                       <p
                         className={cn(
-                          "pr-2 text-base font-medium italic opacity-70 transition-colors transition-opacity hover:opacity-100",
+                          "pr-2 text-base font-medium italic text-muted-foreground hover:text-foreground transition-colors transition-opacity transition-colors ",
                           answer.state === "inprogress"
-                            ? "text-gray-400 dark:text-gray-600"
-                            : "text-foreground",
+                            ? "opacity-50"
+                            : "opacity-100",
                         )}
                       >
                         {"-> "}
@@ -240,7 +240,7 @@ export default function Component({ events }) {
             />
           </div>
           {!isRunningAnalysis && (
-            <div className="flex items-center justify-start mt-8 mb-2">
+            <div className="flex items-center justify-start mt-8 sm:mt-16 mb-0">
               <h1 className="text-foreground text-base font-semibold md:text-lg">
                 {isLoading ? 'Generating Summary...' : 'Summary of findings:'}
               </h1>

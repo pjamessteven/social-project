@@ -57,7 +57,7 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
       onValueChange={handleTabChange}
       className="w-full"
     >
-      <div className="relative sticky top-0 z-10">
+      <div className="relative sticky top-0 z-10 pb-1">
         <div className="bg-[linear-gradient(to_bottom,theme(colors.background)_0px,theme(colors.background)_3rem,transparent_5rem)] pointer-events-none absolute z-20 h-40 w-screen dark:bg-[linear-gradient(to_bottom,black_0px,black_3rem,transparent_5rem)]" />
 
         <TabsList
@@ -69,7 +69,7 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
             className="flex-row items-center gap-2 rounded-xl py-2"
           >
             <Star className="hidden h-4 w-4 sm:block" />
-            <span className="text-sm font-medium">Featured</span>
+            <span className="text-sm font-medium">Topics</span>
           </TabsTrigger>
 
           <TabsTrigger
@@ -78,7 +78,7 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
           >
             <List className="hidden h-4 w-4 sm:block" />
             <span className="text-sm font-medium">
-              <span className="hidden sm:inline">All </span>Topics
+    Generated
             </span>
           </TabsTrigger>
 
