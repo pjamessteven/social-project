@@ -49,7 +49,7 @@ export const affirmCache = pgTable('affirm_cache', {
 
 // Detrans comments table
 export const detransComments = pgTable('detrans_comments', {
-  uuid: varchar('uuid', { length: 36 }).primaryKey().default(sql`gen_random_uuid()`),
+  uuid: varchar('uuid', { length: 50 }).primaryKey(), // Remove auto-generation, use Qdrant point ID
   text: text('text').notNull(),
   summary: text('summary'),
   questions: text('questions'),
@@ -111,7 +111,7 @@ export const cacheSchema = z.object({
 });
 
 export const detransCommentSchema = z.object({
-  uuid: z.string().uuid(),
+  uuid: z.string(),
   text: z.string(),
   summary: z.string().nullable(),
   questions: z.string().nullable(),
