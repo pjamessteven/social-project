@@ -51,6 +51,36 @@ class TimelineGenerator:
             print(f"❌ spaCy setup failed: {e}")
             sys.exit(1)
     
+    def get_user_comments(self, username: str) -> Optional[str]:
+        """
+        Get all comments for a specific user concatenated together.
+        """
+        query = """
+        SELECT 
+            username,
+            COUNT(*) as comment_count,
+            STRING_AGG(text, ' | ' ORDER BY created) as all_comments
+        FROM detrans_comments 
+        WHERE username = %s
+        GROUP BY username
+        """
+        
+        try:
+            with self.db_connection.cursor(cursor_factory=RealDictCursor) as cursor:
+                cursor.execute(query, (username,))
+                result = cursor.fetchone()
+                
+            if result:
+                print(f"✅ Retrieved {result['comment_count']} comments for user: {username}")
+                return result['all_comments']
+            else:
+                print(f"❌ No comments found for user: {username}")
+                return None
+                
+        except Exception as e:
+            print(f"❌ Database query failed: {e}")
+            return None
+
     def get_users_by_comment_count(self, limit: Optional[int] = None) -> pd.DataFrame:
         """
         Stage 1: Ingestion
@@ -388,6 +418,47 @@ class TimelineGenerator:
             'total_sentences': len(normalized.get('sentences', []))
         }
 
+    def test_user_extraction(self, username: str):
+        """
+        Test temporal extraction for a specific user and print results to console.
+        """
+        print(f"🧪 Testing temporal extraction for user: {username}")
+        print("=" * 60)
+        
+        # Get user comments
+        comments = self.get_user_comments(username)
+        if not comments:
+            return
+        
+        # Process the user
+        result = self.process_user_comments(username, comments)
+        
+        # Print detailed results
+        print(f"\n📊 Results for {username}:")
+        print(f"  Total sentences: {result['total_sentences']}")
+        print(f"  Temporal markers found: {len(result['temporal_markers'])}")
+        print(f"  Temporal sentence count: {result['temporal_sentence_count']}")
+        
+        if result['temporal_markers']:
+            print(f"\n🎯 Temporal markers by type:")
+            marker_types = {}
+            for marker in result['temporal_markers']:
+                marker_type = marker['type']
+                if marker_type not in marker_types:
+                    marker_types[marker_type] = []
+                marker_types[marker_type].append(marker)
+            
+            for marker_type, markers in marker_types.items():
+                print(f"\n  {marker_type.upper()} ({len(markers)} markers):")
+                for i, marker in enumerate(markers[:10]):  # Show first 10 of each type
+                    print(f"    {i+1}. '{marker['match_text']}' in: \"{marker['sentence'][:100]}...\"")
+                if len(markers) > 10:
+                    print(f"    ... and {len(markers) - 10} more")
+        else:
+            print(f"\n❌ No temporal markers found for {username}")
+        
+        return result
+
     def run_pipeline(self, limit_users: Optional[int] = 10):
         """
         Run the complete pipeline for stages 1-3.
@@ -454,11 +525,16 @@ def main():
     generator = TimelineGenerator()
     
     try:
-        # Run pipeline with first 50 users for testing
-        results = generator.run_pipeline(limit_users=50)
-        
-        # You can save results or continue with stages 4-10 here
-        print("\n✅ Pipeline stages 1-3 completed successfully!")
+        # Check if username provided as command line argument
+        if len(sys.argv) > 1 and sys.argv[1] != "--dry-run":
+            username = sys.argv[1]
+            print(f"🎯 Testing mode: Processing user '{username}'")
+            generator.test_user_extraction(username)
+        else:
+            # Run pipeline with first 50 users for testing
+            print("🚀 Running full pipeline mode")
+            results = generator.run_pipeline(limit_users=50)
+            print("\n✅ Pipeline stages 1-3 completed successfully!")
         
     except KeyboardInterrupt:
         print("\n⚠️ Pipeline interrupted by user")
