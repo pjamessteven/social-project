@@ -2,9 +2,16 @@
 
 import topicsHierarchy from "@/app/lib/topics_hierarchy.json";
 import { slugify } from "@/app/lib/utils";
+import { Info } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../ui/accordion";
 
 interface TopicChild {
   title: string;
@@ -276,24 +283,29 @@ export function DataQuestionCategories({
         These generated questions give an idea about the most discussed topics
         in /r/detrans.
       </p>
-      <details className="mb-2 marker:content-none sm:mb-4">
-        <summary className="text-muted-foreground cursor-pointer text-sm sm:text-base hover:underline">
-          Read more about generated questions
-        </summary>
-        <div className="text-muted-foreground mt-2 max-w-2xl space-y-3">
-          <p>
-            detrans.ai works in part by generating questions for every comment
-            in /r/detrans. Instead of using AI to find answers, it uses AI to
-            find questions—almost like working in reverse. This helps the system
-            find personal stories and experiences that match what you're looking
-            for.
-          </p>
-          <p>
-            The questions are grouped by topic using a tool called BERTopic,
-            though not all questions fit neatly into categories.
-          </p>
-        </div>
-      </details>
+      <Accordion type="single" collapsible className="mb-2 sm:mb-4">
+        <AccordionItem value="info" className="border-none">
+          <AccordionTrigger className="text-muted-foreground py-2 text-sm sm:text-base hover:no-underline hover:underline">
+            <div className="flex items-center gap-2">
+              <Info className="h-4 w-4" />
+              Read more about generated questions
+            </div>
+          </AccordionTrigger>
+          <AccordionContent className="text-muted-foreground max-w-2xl space-y-3 pb-2">
+            <p>
+              detrans.ai works in part by generating questions for every comment
+              in /r/detrans. Instead of using AI to find answers, it uses AI to
+              find questions—almost like working in reverse. This helps the system
+              find personal stories and experiences that match what you're looking
+              for.
+            </p>
+            <p>
+              The questions are grouped by topic using a tool called BERTopic,
+              though not all questions fit neatly into categories.
+            </p>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
       <div className="-ml-1 space-y-4">
         {categorySummaries.map((categorySummary, index) => {
           const categoryId = `category-${slugify(categorySummary.title)}`;
