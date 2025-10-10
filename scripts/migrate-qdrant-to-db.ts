@@ -1,17 +1,16 @@
 import { QdrantClient } from "@qdrant/js-client-rest";
+import "dotenv/config";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import { detransComments } from "../db/schema";
-import "dotenv/config";
 
 // Database connection
-const connectionString = process.env.DATABASE_URL!;
+const connectionString = "postgresql://postgres:postgres@localhost:5432/app";
 const sql = postgres(connectionString);
 const db = drizzle(sql);
 
 // Qdrant client
 const qdrantClient = new QdrantClient({ url: "http://localhost:6333" });
-
 
 async function migrateQdrantToDb() {
   console.log("Starting migration from Qdrant to detransComments table...");
@@ -32,19 +31,21 @@ async function migrateQdrantToDb() {
 
     for (const point of res.points) {
       const payload = point.payload;
-      
+
       if (!payload) continue;
 
       // Convert UTC timestamp to Date object
       const createdTimestamp = payload.created as number;
       const createdDate = new Date(createdTimestamp * 1000);
 
+      const nodeContent = JSON.parse(payload._node_content as string);
+
       const commentData = {
         uuid: point.id.toString(), // Use Qdrant point ID as UUID
-        text: payload.text as string,
-        summary: (payload.summary as string) || null,
+        text: nodeContent.text as string,
+        summary: (payload.sectionSummary as string) || null,
         questions: (payload.questionsThisExcerptCanAnswer as string) || null,
-        keywords: (payload.keywords as string) || null,
+        keywords: (payload.excerptKeywords as string) || null,
         username: (payload.username as string) || null,
         userFlair: (payload.userFlair as string) || null,
         link: (payload.link as string) || null,
@@ -56,10 +57,11 @@ async function migrateQdrantToDb() {
       };
 
       // Validate required fields
-      if (!commentData.text || !commentData.id) {
-        console.warn(`Skipping point with missing required fields:`, payload);
+      if (!commentData.text) {
+        console.warn(`Skipping point with missing required text:`, commentData);
         continue;
       }
+
 
       batch.push(commentData);
       totalProcessed++;
@@ -69,7 +71,9 @@ async function migrateQdrantToDb() {
         try {
           await db.insert(detransComments).values(batch);
           totalInserted += batch.length;
-          console.log(`Inserted batch of ${batch.length} comments. Total inserted: ${totalInserted}`);
+          console.log(
+            `Inserted batch of ${batch.length} comments. Total inserted: ${totalInserted}`,
+          );
           batch = [];
         } catch (error) {
           console.error("Error inserting batch:", error);
