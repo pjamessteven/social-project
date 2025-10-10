@@ -69,6 +69,29 @@ export const detransComments = pgTable('detrans_comments', {
   linkIdIdx: index('idx_detrans_comments_link_id').on(table.linkId),
 }));
 
+// trans comments table
+export const transComments = pgTable('trans_comments', {
+  uuid: varchar('uuid', { length: 36 }).primaryKey().default(sql`gen_random_uuid()`),
+  text: text('text').notNull(),
+  summary: text('summary'),
+  questions: text('questions'),
+  keywords: text('keywords'),
+  username: varchar('username', { length: 255 }),
+  userFlair: varchar('user_flair', { length: 255 }),
+  subreddit: varchar('subreddit', { length: 255 }),
+  link: text('link'),
+  score: integer('score'),
+  created: timestamp('created').notNull(), // Converted from UTC timestamp
+  id: varchar('id', { length: 50 }).notNull(),
+  parentId: varchar('parent_id', { length: 50 }),
+  linkId: varchar('link_id', { length: 50 }),
+}, (table) => ({
+  idIdx: index('idx_trans_comments_id').on(table.id),
+  createdIdx: index('idx_trans_comments_created').on(table.created),
+  parentIdIdx: index('idx_trans_comments_parent_id').on(table.parentId),
+  linkIdIdx: index('idx_trans_comments_link_id').on(table.linkId),
+}));
+
 // Zod schemas
 export const questionSchema = z.object({
   name: z.string().max(255),
