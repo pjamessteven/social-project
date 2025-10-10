@@ -212,7 +212,19 @@ class TimelineGenerator:
 
             # developmental stages
             r'\b(puberty|teenage|adolescen[ct]|childhood|early\s+twenties|mid\s+twenties|late\s+twenties)\b',
-            r'\b(pre-?teen|prepubescent|young\s+adult|adult\s+life|maturity)\b'
+            r'\b(pre-?teen|prepubescent|young\s+adult|adult\s+life|maturity)\b',
+
+            # trauma and abuse markers
+            r'\b(trauma|traumatic|traumatized|traumatizing)\b',
+            r'\b(abuse|abused|abusive|abuser)\b',
+            r'\b(rape|raped|sexual\s+assault|sexually\s+assaulted)\b',
+            r'\b(molest|molested|molestation|sexual\s+abuse)\b',
+            r'\b(domestic\s+violence|physical\s+abuse|emotional\s+abuse|psychological\s+abuse)\b',
+            r'\b(bullying|bullied|harassment|harassed)\b',
+            r'\b(grooming|groomed|predator|inappropriate\s+touching)\b',
+            r'\b(ptsd|post-?traumatic\s+stress|flashbacks?|triggers?|triggered)\b',
+            r'\b(self-?harm|cutting|suicide\s+attempt|suicidal)\b',
+            r'\b(eating\s+disorder|anorexia|bulimia|body\s+dysmorphia)\b'
         ]
 
         # ----------------------------------------------------------------------
