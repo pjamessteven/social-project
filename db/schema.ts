@@ -1,4 +1,5 @@
-import { pgTable, varchar, integer, timestamp, text, index, sql } from 'drizzle-orm/pg-core';
+import { pgTable, varchar, integer, timestamp, text, index } from 'drizzle-orm/pg-core';
+import { sql } from 'drizzle-orm';
 import { z } from 'zod';
 
 // Detrans tables
