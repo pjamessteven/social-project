@@ -189,10 +189,13 @@ class TimelineGenerator:
         # 3. MEDICAL / TRANSITION TIMELINES
         # ----------------------------------------------------------------------
 
+        # Number patterns - both written and numeric forms
+        NUMBERS = r"(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|\d+(?:\.\d+)?)"
+        
         HORMONES = r"(?:HRT|hormones?|testosterone|T\b|test|estrogen|estradiol|E\b|blockers?|puberty\s+blockers|GnRH)"
         SURGERIES = r"(?:surgery|surgeries|op|operation|top\s+surgery|bottom\s+surgery|FFS|BA|GCS|GRS|vaginoplasty|mastectomy|phalloplasty|phaloplasty|hysterectomy|facial|orchi|orchiectomy)"
         TRANSITION_TERMS = r"(?:transition|trans\s+journey|was\s+out|came\s+out|coming\s+out|egg|socially|social\s+transition|medical\s+transition)"
-        DURATION = r"(\d+(?:\.\d+)?)\s*(years?|months?|weeks?|days?)"
+        DURATION = fr"(?:(?:first|last|past|initial)\s+)?({NUMBERS})\s*(years?|months?|weeks?|days?)"
 
         medical_patterns = [
             # Hormone start / initiation
@@ -224,10 +227,10 @@ class TimelineGenerator:
 
             # Transition phase keywords
             r'\b(pre-?transition|early\s+transition|mid\s+transition|late\s+transition|post-?transition)\b',
-            fr'\b(one|two|three|four|five|six)\s+days?\s+(?:on|into)\s+{HORMONES}\b',
-            fr'\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|1|3|4|5|6|7|8|9|10|11|12)\s+months?\s+(?:on|into)\s+{HORMONES}\b',
-            fr'\b(one|two|three|four|five|six)\s+years?\s+(?:on|into)\s+{HORMONES}\b',
-            fr'\b(first|second|third|fourth|fifth)\s+year\s+(?:on|into)\s+{HORMONES}\b'
+            fr'\b(?:(?:first|last|past|initial)\s+)?({NUMBERS})\s+days?\s+(?:on|into)\s+{HORMONES}\b',
+            fr'\b(?:(?:first|last|past|initial)\s+)?({NUMBERS})\s+months?\s+(?:on|into)\s+{HORMONES}\b',
+            fr'\b(?:(?:first|last|past|initial)\s+)?({NUMBERS})\s+years?\s+(?:on|into)\s+{HORMONES}\b',
+            fr'\b(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth)\s+year\s+(?:on|into)\s+{HORMONES}\b'
         ]
 
         # ----------------------------------------------------------------------
