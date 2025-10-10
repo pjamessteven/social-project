@@ -40,6 +40,15 @@ async function migrateQdrantToDb() {
 
       const nodeContent = JSON.parse(payload._node_content as string);
 
+      // Extract ID from link if not present in payload
+      let commentId = payload.id as string;
+      if (!commentId && payload.link) {
+        const linkMatch = (payload.link as string).match(/\/([a-z0-9]+)\/?$/);
+        if (linkMatch) {
+          commentId = linkMatch[1];
+        }
+      }
+
       const commentData = {
         uuid: point.id.toString(), // Use Qdrant point ID as UUID
         text: nodeContent.text as string,
@@ -51,14 +60,18 @@ async function migrateQdrantToDb() {
         link: (payload.link as string) || null,
         score: (payload.score as number) || null,
         created: createdDate,
-        id: payload.id as string,
+        id: commentId,
         parentId: (payload.parent_id as string) || null,
         linkId: (payload.link_id as string) || null,
       };
 
       // Validate required fields
-      if (!commentData.text) {
-        console.warn(`Skipping point with missing required text:`, commentData);
+      if (!commentData.text || !commentData.id) {
+        console.warn(`Skipping point with missing required fields:`, {
+          hasText: !!commentData.text,
+          hasId: !!commentData.id,
+          link: commentData.link
+        });
         continue;
       }
 
