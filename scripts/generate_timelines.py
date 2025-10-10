@@ -276,7 +276,104 @@ class TimelineGenerator:
         ]
 
         # ----------------------------------------------------------------------
-        # 4. ONLINE / MEDIA INFLUENCE MARKERS
+        # 4. DETRANSITION-SPECIFIC MARKERS
+        # ----------------------------------------------------------------------
+        detransition_patterns = [
+            # Stopping/discontinuing
+            r'\b(stopped|quit|discontinued|went\s+off|got\s+off|came\s+off)\s+(?:taking\s+)?(?:HRT|hormones?|testosterone|estrogen|T\b|E\b)\b',
+            r'\b(detransition|detrans|de-transition|retransition|going\s+back)\b',
+            r'\b(regret|regretting|wish\s+I\s+hadn\'t|mistake|wrong\s+path)\b',
+            
+            # Reversal processes
+            r'\b(reversal|reverse|undoing|going\s+back|returning\s+to)\b',
+            r'\b(voice\s+training|speech\s+therapy)\s+(?:to\s+)?(?:feminize|masculinize|change\s+back)\b',
+            r'\b(laser\s+hair\s+removal|electrolysis)\s+(?:to\s+remove|for\s+facial\s+hair)\b',
+            
+            # Realization markers
+            r'\b(realized|figured\s+out|came\s+to\s+understand|epiphany|awakening)\s+(?:that\s+)?(?:I\s+was|this\s+was)\s+(?:wrong|a\s+mistake|not\s+right)\b',
+            r'\b(questioning|doubting|second\s+thoughts|having\s+doubts)\s+(?:my\s+)?(?:transition|identity|decision)\b',
+        ]
+
+        # ----------------------------------------------------------------------
+        # 5. MENTAL HEALTH & COMORBIDITY MARKERS
+        # ----------------------------------------------------------------------
+        mental_health_patterns = [
+            # Specific conditions often mentioned
+            r'\b(autism|autistic|ASD|asperger|neurodivergent|ADHD|ADD)\b',
+            r'\b(depression|depressed|anxiety|anxious|OCD|bipolar|BPD|borderline)\b',
+            r'\b(dissociation|dissociative|depersonalization|derealization)\b',
+            r'\b(therapy|therapist|counseling|counselor|psychologist|psychiatrist)\b',
+            r'\b(medication|antidepressant|SSRIs?|mood\s+stabilizer)\b',
+            
+            # Body image issues
+            r'\b(body\s+dysmorphia|dysmorphic|body\s+image|self-image)\b',
+            r'\b(dysphoria|euphoria|gender\s+dysphoria|social\s+dysphoria|body\s+dysphoria)\b',
+        ]
+
+        # ----------------------------------------------------------------------
+        # 6. SOCIAL/FAMILY MARKERS
+        # ----------------------------------------------------------------------
+        social_markers = [
+            # Family dynamics
+            r'\b(parents?|mom|dad|mother|father|family)\s+(?:didn\'t\s+)?(?:support|accept|understand|approve)\b',
+            r'\b(came\s+out\s+to|told)\s+(?:my\s+)?(?:parents?|family|friends?|partner|spouse)\b',
+            r'\b(disowned|kicked\s+out|cut\s+off|no\s+contact|estranged)\b',
+            
+            # Peer influence
+            r'\b(friend\s+group|peer\s+pressure|influenced\s+by|encouraged\s+by)\b',
+            r'\b(trans\s+friends?|queer\s+friends?|LGBT\s+community)\b',
+            
+            # Name/pronoun changes
+            r'\b(changed\s+my\s+name|new\s+name|chosen\s+name|legal\s+name\s+change)\b',
+            r'\b(pronouns?|they/them|he/him|she/her|preferred\s+pronouns?)\b',
+        ]
+
+        # ----------------------------------------------------------------------
+        # 7. MEDICAL COMPLICATIONS/SIDE EFFECTS
+        # ----------------------------------------------------------------------
+        medical_complications = [
+            # Hormone side effects
+            r'\b(side\s+effects?|adverse\s+effects?|complications?|problems?)\s+(?:from|with|on)\s+(?:HRT|hormones?|testosterone|estrogen)\b',
+            r'\b(blood\s+clots?|liver\s+damage|mood\s+swings?|acne|hair\s+loss|voice\s+changes?)\b',
+            r'\b(hot\s+flashes?|night\s+sweats?|libido|sex\s+drive|fertility|infertility)\b',
+            
+            # Surgery complications
+            r'\b(complications?|infection|healing\s+issues?|revision\s+surgery|botched)\b',
+            r'\b(nerve\s+damage|sensation\s+loss|chronic\s+pain|scarring)\b',
+        ]
+
+        # ----------------------------------------------------------------------
+        # 8. TRANSITION TIMING IMPROVEMENTS
+        # ----------------------------------------------------------------------
+        transition_timing_patterns = [
+            # Specific transition phases
+            r'\b(egg\s+crack|cracked|egg\s+moment)\b',  # Trans community term
+            r'\b(first\s+time|initially|originally)\s+(?:identified|came\s+out|realized)\b',
+            r'\b(always\s+knew|since\s+childhood|from\s+a\s+young\s+age)\b',
+            
+            # Rapid onset patterns
+            r'\b(sudden|suddenly|rapid|quickly|fast|overnight)\s+(?:onset|change|realization|decision)\b',
+            r'\b(within\s+(?:weeks?|months?)|in\s+a\s+matter\s+of)\b',
+            
+            # Gradual patterns
+            r'\b(gradual|slowly|over\s+time|process|journey|evolution)\b',
+        ]
+
+        # ----------------------------------------------------------------------
+        # 9. PROFESSIONAL/EDUCATIONAL CONTEXT
+        # ----------------------------------------------------------------------
+        professional_markers = [
+            # Work/career impact
+            r'\b(work|job|career|workplace|employer|colleagues?)\s+(?:transition|coming\s+out|discrimination)\b',
+            r'\b(HR|human\s+resources|legal\s+name|documentation)\b',
+            
+            # Medical professionals
+            r'\b(endocrinologist|gender\s+clinic|informed\s+consent|WPATH|gatekeeping)\b',
+            r'\b(referral|assessment|evaluation|diagnosis|letter)\b',
+        ]
+
+        # ----------------------------------------------------------------------
+        # 10. ONLINE / MEDIA INFLUENCE MARKERS
         # ----------------------------------------------------------------------
         # Online platforms and services
         SOCIAL_PLATFORMS = r"(?:reddit|tumblr|twitter|x\.com|tiktok|instagram|insta|youtube|yt|snapchat|discord|4chan|facebook|fb|pinterest|linkedin|twitch|telegram|whatsapp|signal)"
@@ -312,7 +409,7 @@ class TimelineGenerator:
         ]
 
         # ----------------------------------------------------------------------
-        # 5. GENDER IDENTITY MARKERS
+        # 11. GENDER IDENTITY MARKERS
         # ----------------------------------------------------------------------
         gender_identity_patterns = [
             # Common umbrella terms
@@ -330,7 +427,7 @@ class TimelineGenerator:
         ]
 
         # ----------------------------------------------------------------------
-        # 4. PROCESSING: EXTRACT & NORMALIZE
+        # 12. PROCESSING: EXTRACT & NORMALIZE
         # ----------------------------------------------------------------------
         for sent in doc.sents:
             sent_text = sent.text.strip()
@@ -387,6 +484,84 @@ class TimelineGenerator:
                     temporal_markers.append({
                         'sentence': sent_text,
                         'type': 'gender_identity_timeline',
+                        'value': match.group(0).lower(),
+                        'pattern': pattern,
+                        'match_text': match.group(0),
+                        'start_char': sent.start_char + match.start(),
+                        'end_char': sent.start_char + match.end()
+                    })
+
+            # DETRANSITION TIMELINE
+            for pattern in detransition_patterns:
+                for match in re.finditer(pattern, sent_text, re.IGNORECASE):
+                    temporal_markers.append({
+                        'sentence': sent_text,
+                        'type': 'detransition_timeline',
+                        'value': match.group(0).lower(),
+                        'pattern': pattern,
+                        'match_text': match.group(0),
+                        'start_char': sent.start_char + match.start(),
+                        'end_char': sent.start_char + match.end()
+                    })
+
+            # MENTAL HEALTH TIMELINE
+            for pattern in mental_health_patterns:
+                for match in re.finditer(pattern, sent_text, re.IGNORECASE):
+                    temporal_markers.append({
+                        'sentence': sent_text,
+                        'type': 'mental_health_timeline',
+                        'value': match.group(0).lower(),
+                        'pattern': pattern,
+                        'match_text': match.group(0),
+                        'start_char': sent.start_char + match.start(),
+                        'end_char': sent.start_char + match.end()
+                    })
+
+            # SOCIAL TIMELINE
+            for pattern in social_markers:
+                for match in re.finditer(pattern, sent_text, re.IGNORECASE):
+                    temporal_markers.append({
+                        'sentence': sent_text,
+                        'type': 'social_timeline',
+                        'value': match.group(0).lower(),
+                        'pattern': pattern,
+                        'match_text': match.group(0),
+                        'start_char': sent.start_char + match.start(),
+                        'end_char': sent.start_char + match.end()
+                    })
+
+            # MEDICAL COMPLICATIONS TIMELINE
+            for pattern in medical_complications:
+                for match in re.finditer(pattern, sent_text, re.IGNORECASE):
+                    temporal_markers.append({
+                        'sentence': sent_text,
+                        'type': 'medical_complications_timeline',
+                        'value': match.group(0).lower(),
+                        'pattern': pattern,
+                        'match_text': match.group(0),
+                        'start_char': sent.start_char + match.start(),
+                        'end_char': sent.start_char + match.end()
+                    })
+
+            # TRANSITION TIMING TIMELINE
+            for pattern in transition_timing_patterns:
+                for match in re.finditer(pattern, sent_text, re.IGNORECASE):
+                    temporal_markers.append({
+                        'sentence': sent_text,
+                        'type': 'transition_timing_timeline',
+                        'value': match.group(0).lower(),
+                        'pattern': pattern,
+                        'match_text': match.group(0),
+                        'start_char': sent.start_char + match.start(),
+                        'end_char': sent.start_char + match.end()
+                    })
+
+            # PROFESSIONAL TIMELINE
+            for pattern in professional_markers:
+                for match in re.finditer(pattern, sent_text, re.IGNORECASE):
+                    temporal_markers.append({
+                        'sentence': sent_text,
+                        'type': 'professional_timeline',
                         'value': match.group(0).lower(),
                         'pattern': pattern,
                         'match_text': match.group(0),
