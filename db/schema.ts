@@ -1,4 +1,4 @@
-import { pgTable, varchar, integer, timestamp, text, index } from 'drizzle-orm/pg-core';
+import { pgTable, varchar, integer, timestamp, text, index, serial, numeric } from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
 import { z } from 'zod';
 
@@ -46,6 +46,17 @@ export const affirmCache = pgTable('affirm_cache', {
 }, (table) => ({
   questionIdx: index('idx_affirm_cache_question').on(table.questionName),
   createdIdx: index('idx_affirm_cache_created').on(table.createdAt),
+}));
+
+// Detrans user events table
+export const detransUserEvents = pgTable('detrans_user_events', {
+  id: serial('id').primaryKey(),
+  username: varchar('username', { length: 255 }).notNull(),
+  age: numeric('age'),
+  eventName: varchar('event_name', { length: 255 }).notNull(),
+}, (table) => ({
+  usernameIdx: index('idx_detrans_user_events_username').on(table.username),
+  eventNameIdx: index('idx_detrans_user_events_event_name').on(table.eventName),
 }));
 
 // Detrans comments table
@@ -111,6 +122,13 @@ export const cacheSchema = z.object({
   lastAccessed: z.date(),
 });
 
+export const detransUserEventSchema = z.object({
+  id: z.number().int(),
+  username: z.string().max(255),
+  age: z.number().nullable(),
+  eventName: z.string().max(255),
+});
+
 export const detransCommentSchema = z.object({
   uuid: z.string(),
   text: z.string(),
@@ -129,4 +147,5 @@ export const detransCommentSchema = z.object({
 
 export type Question = z.infer<typeof questionSchema>;
 export type Cache = z.infer<typeof cacheSchema>;
+export type DetransUserEvent = z.infer<typeof detransUserEventSchema>;
 export type DetransComment = z.infer<typeof detransCommentSchema>;
