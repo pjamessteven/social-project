@@ -12,34 +12,6 @@ const db = drizzle(sql);
 // Qdrant client
 const qdrantClient = new QdrantClient({ url: "http://localhost:6333" });
 
-async function fetchWithBackoff<T>(
-  fn: () => Promise<T>,
-  retries = 5,
-  delay = 500,
-): Promise<T> {
-  let attempt = 0;
-
-  while (attempt <= retries) {
-    try {
-      return await fn();
-    } catch (err) {
-      if (attempt === retries) {
-        throw err;
-      }
-
-      const backoff = delay * Math.pow(2, attempt);
-      console.warn(
-        `Attempt ${attempt + 1} failed. Retrying in ${backoff}ms...`,
-        err,
-      );
-
-      await new Promise((resolve) => setTimeout(resolve, backoff));
-      attempt++;
-    }
-  }
-
-  throw new Error("Unexpected error in fetchWithBackoff");
-}
 
 async function migrateQdrantToDb() {
   console.log("Starting migration from Qdrant to detransComments table...");
@@ -51,17 +23,12 @@ async function migrateQdrantToDb() {
   let batch: any[] = [];
 
   do {
-    const res = await fetchWithBackoff(
-      async () =>
-        qdrantClient.scroll("default", {
-          limit: 5000,
-          with_payload: true,
-          with_vector: false,
-          offset: nextPage,
-        }),
-      3,
-      1000,
-    );
+    const res = await qdrantClient.scroll("default", {
+      limit: 5000,
+      with_payload: true,
+      with_vector: false,
+      offset: nextPage,
+    });
 
     for (const point of res.points) {
       const payload = point.payload;
@@ -100,11 +67,7 @@ async function migrateQdrantToDb() {
       // Insert batch when it reaches batchSize
       if (batch.length >= batchSize) {
         try {
-          await fetchWithBackoff(
-            async () => db.insert(detransComments).values(batch),
-            3,
-            1000,
-          );
+          await db.insert(detransComments).values(batch);
           totalInserted += batch.length;
           console.log(`Inserted batch of ${batch.length} comments. Total inserted: ${totalInserted}`);
           batch = [];
@@ -123,11 +86,7 @@ async function migrateQdrantToDb() {
   // Insert remaining batch
   if (batch.length > 0) {
     try {
-      await fetchWithBackoff(
-        async () => db.insert(detransComments).values(batch),
-        3,
-        1000,
-      );
+      await db.insert(detransComments).values(batch);
       totalInserted += batch.length;
       console.log(`Inserted final batch of ${batch.length} comments`);
     } catch (error) {
