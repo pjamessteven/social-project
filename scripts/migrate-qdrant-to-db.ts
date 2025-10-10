@@ -73,6 +73,7 @@ async function migrateQdrantToDb() {
       const createdDate = new Date(createdTimestamp * 1000);
 
       const commentData = {
+        uuid: point.id.toString(), // Use Qdrant point ID as UUID
         text: payload.text as string,
         summary: (payload.summary as string) || null,
         questions: (payload.questionsThisExcerptCanAnswer as string) || null,
