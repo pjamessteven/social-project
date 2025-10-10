@@ -592,7 +592,7 @@ class TimelineGenerator:
 
         # Stage 2: Normalize
         normalized = self.normalize_text(comments)
-        normalized_text = normalized['normalized_text'] if isinstance(normalized, dict) else comments
+        normalized_text = normalized['anonymized_text'] if isinstance(normalized, dict) else comments
 
         # Stage 3: Extract temporal markers from normalized text
         temporal_markers = self.extract_temporal_markers(normalized_text)
