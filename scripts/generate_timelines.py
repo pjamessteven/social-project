@@ -243,16 +243,30 @@ class TimelineGenerator:
         # 4. ONLINE / MEDIA INFLUENCE MARKERS
         # ----------------------------------------------------------------------
         online_influence_patterns = [
-            # Platform names and shorthand
-            r'\b(reddit|r/\w+|tumblr|twitter|x\.com|tiktok|instagram|insta|youtube|yt|snapchat|discord|4chan|facebook|fb|pinterest)\b',
+            # Platform names and variants
+            fr'\b({SOCIAL_PLATFORMS}|{REDDIT_SPECIFIC}|{PLATFORM_VARIANTS})\b',
 
-            # Discovery / influence verbs around them
-            r'\b(found|discovered|learned\s+about|saw|read|watched|joined|posted\s+on|started\s+using)\s+(?:the\s+)?(reddit|tumblr|tiktok|discord|subreddit|community|server|forum)\b',
-            r'\b(on|through|via|because\s+of)\s+(?:a\s+)?(reddit|tiktok|tumblr|discord|youtube|instagram)\b',
+            # Discovery / influence verbs with platforms
+            fr'\b(found|discovered|learned\s+about|saw|read|watched|joined|posted\s+(?:on|to)|started\s+using|got\s+into|stumbled\s+(?:upon|across)|came\s+across)\s+(?:the\s+)?(?:a\s+)?({SOCIAL_PLATFORMS}|{REDDIT_SPECIFIC}|{ONLINE_SPACES})\b',
+            
+            # Prepositions indicating platform usage
+            fr'\b(on|through|via|because\s+of|from|after\s+seeing|while\s+on|browsing)\s+(?:a\s+)?(?:the\s+)?({SOCIAL_PLATFORMS}|{REDDIT_SPECIFIC}|{ONLINE_SPACES})\b',
+            
+            # Time-based platform engagement
+            fr'\b(?:(?:first|last|past|initial)\s+)?({NUMBERS})\s*(?:years?|months?|weeks?|days?)\s+(?:on|using|browsing|in|lurking\s+on)\s+({SOCIAL_PLATFORMS}|{REDDIT_SPECIFIC})\b',
+            fr'\b(?:started|began|joined|got\s+on)\s+({SOCIAL_PLATFORMS}|{REDDIT_SPECIFIC})\s+(?:(?:first|last|past|initial)\s+)?({NUMBERS})\s*(?:years?|months?|weeks?|days?)\s+ago\b',
 
-            # Explicit "online community" or "internet" context
-            r'\b(online|internet|social\s+media|community|server|forum|group|subreddit|timeline|feed)\b',
-            r'\b(trans\s+subreddit|detrans\s+subreddit|trans\s+discord|trans\s+tumblr|trans\s+tiktok|lgbt\s+community)\b',
+            # Explicit online community context
+            fr'\b(online|internet|social\s+media|digital)\s+({ONLINE_SPACES}|influence|content|algorithm|rabbit\s+hole)\b',
+            fr'\b({ONLINE_SPACES})\s+(?:on|in)\s+({SOCIAL_PLATFORMS}|{REDDIT_SPECIFIC})\b',
+            
+            # Trans-specific online spaces
+            fr'\b(trans|transgender|detrans|lgbt|lgbtq\+?|queer|gender)\s+({ONLINE_SPACES}|{SOCIAL_PLATFORMS}|{REDDIT_SPECIFIC})\b',
+            fr'\b({SOCIAL_PLATFORMS}|{REDDIT_SPECIFIC})\s+(trans|transgender|detrans|lgbt|lgbtq\+?|queer|gender)\s+({ONLINE_SPACES})\b',
+            
+            # Algorithm and content discovery
+            r'\b(algorithm|recommended|suggested|for\s+you\s+page|fyp|explore\s+page|trending|viral|feed)\b',
+            r'\b(binge\s+watched|scrolled\s+through|deep\s+dive|rabbit\s+hole|echo\s+chamber)\b',
         ]
 
         # ----------------------------------------------------------------------
