@@ -192,6 +192,12 @@ class TimelineGenerator:
         # Number patterns - both written and numeric forms
         NUMBERS = r"(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|\d+(?:\.\d+)?)"
         
+        # Online platforms and services
+        SOCIAL_PLATFORMS = r"(?:reddit|tumblr|twitter|x\.com|tiktok|instagram|insta|youtube|yt|snapchat|discord|4chan|facebook|fb|pinterest|linkedin|twitch|telegram|whatsapp|signal)"
+        REDDIT_SPECIFIC = r"(?:r/\w+|subreddit|/r/\w+)"
+        PLATFORM_VARIANTS = r"(?:ig|snap|tt|fb|yt|insta)"
+        ONLINE_SPACES = r"(?:community|server|forum|group|chat|channel|board|thread|post|feed|timeline|story|stories)"
+        
         HORMONES = r"(?:HRT|hormones?|testosterone|T\b|test|estrogen|estradiol|E\b|blockers?|puberty\s+blockers|GnRH)"
         SURGERIES = r"(?:surgery|surgeries|op|operation|top\s+surgery|bottom\s+surgery|FFS|BA|GCS|GRS|vaginoplasty|mastectomy|phalloplasty|phaloplasty|hysterectomy|facial|orchi|orchiectomy)"
         TRANSITION_TERMS = r"(?:transition|trans\s+journey|was\s+out|came\s+out|coming\s+out|egg|socially|social\s+transition|medical\s+transition)"
