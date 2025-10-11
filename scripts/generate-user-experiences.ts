@@ -304,49 +304,70 @@ async function processUser(userComments: UserComments): Promise<void> {
     .from(detransUsers)
     .where(eq(detransUsers.username, username))
     .limit(1);
-  if (existingUser.length > 0) {
-    console.log(`User ${username} already exists, skipping...`);
+
+  // Check if user has tags
+  const existingTags = await db
+    .select()
+    .from(detransUserTags)
+    .where(eq(detransUserTags.username, username));
+
+  if (existingUser.length > 0 && existingTags.length > 0) {
+    console.log(`User ${username} already exists with tags, skipping...`);
     return;
   }
 
-  try {
-    // Generate experience report
-    console.log(`Generating experience report for ${username}...`);
-    const experienceReport = await generateExperienceReport(
-      username,
-      all_comments,
-    );
+  const userExists = existingUser.length > 0;
+  if (userExists && existingTags.length === 0) {
+    console.log(`User ${username} exists but has no tags, generating tags...`);
+  }
 
-    if (!experienceReport) {
-      console.log(
-        `Failed to generate experience report for ${username}, skipping...`,
+  try {
+    let experienceReport: string;
+    let redFlagsReport: string;
+
+    if (userExists) {
+      // User exists, use existing experience report for tag generation
+      experienceReport = existingUser[0].experience || all_comments;
+      redFlagsReport = existingUser[0].redFlagsReport || "";
+    } else {
+      // Generate experience report for new user
+      console.log(`Generating experience report for ${username}...`);
+      experienceReport = await generateExperienceReport(
+        username,
+        all_comments,
       );
-      return;
+
+      if (!experienceReport) {
+        console.log(
+          `Failed to generate experience report for ${username}, skipping...`,
+        );
+        return;
+      }
+
+      redFlagsReport = await generateRedFlagsReport(username, all_comments);
+
+      // Generate summary
+      console.log(`Generating experience summary for ${username}...`);
+      const experienceSummary = await generateExperienceSummary(experienceReport);
+
+      // Determine birth sex
+      console.log(`Determining birth sex for ${username}...`);
+      const birthSex = await determineBirthSex(username, experienceReport);
+
+      // Insert into database
+      await db.insert(detransUsers).values({
+        username,
+        activeSince: earliest_comment_date,
+        sex: birthSex,
+        experienceSummary: experienceSummary || null,
+        experience: experienceReport,
+        redFlagsReport: redFlagsReport || null,
+      });
     }
 
-    const redFlagsReport = await generateRedFlagsReport(username, all_comments);
-
-    // Generate summary
-    console.log(`Generating experience summary for ${username}...`);
-    const experienceSummary = await generateExperienceSummary(experienceReport);
-
-    // Determine birth sex
-    console.log(`Determining birth sex for ${username}...`);
-    const birthSex = await determineBirthSex(username, experienceReport);
-
-    // Generate tags
+    // Generate tags (for both new users and existing users without tags)
     console.log(`Generating tags for ${username}...`);
     const tagNames = await generateTags(username, experienceReport, redFlagsReport);
-
-    // Insert into database
-    await db.insert(detransUsers).values({
-      username,
-      activeSince: earliest_comment_date,
-      sex: birthSex,
-      experienceSummary: experienceSummary || null,
-      experience: experienceReport,
-      redFlagsReport: redFlagsReport || null,
-    });
 
     // Handle tags
     if (tagNames.length > 0) {
