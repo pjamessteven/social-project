@@ -83,6 +83,8 @@ export async function GET(request: NextRequest) {
         username: detransUsers.username,
         activeSince: detransUsers.activeSince,
         sex: detransUsers.sex,
+        transitionAge: detransUsers.transitionAge,
+        detransitionAge: detransUsers.detransitionAge,
         experienceSummary: detransUsers.experienceSummary,
         commentCount: sql<number>`COALESCE(COUNT(DISTINCT ${detransComments.id}), 0)`,
       })
