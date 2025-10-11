@@ -86,7 +86,7 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
             {`Transitioned: ${payload[0]?.value || 0} users`}
           </p>
           <p className="text-red-600">
-            {`Detransitioned: ${Math.abs(payload[1]?.value || 0)} users`}
+            {`Detransitioned: ${payload[1]?.value || 0} users`}
           </p>
         </div>
       );
@@ -151,7 +151,6 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
                   angle: -90, 
                   position: 'insideMiddle'
                 }}
-                tickFormatter={(value) => Math.abs(value).toString()}
               />
               <Tooltip content={<CustomTooltip />} />
               <Legend verticalAlign="bottom" align="left" height={36} wrapperStyle={{ paddingTop: '28px', paddingLeft: '56px' }} />
