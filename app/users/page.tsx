@@ -197,11 +197,9 @@ export default function UsersPage() {
               <div className="flex justify-between items-start mb-2">
                 <h3 className="text-lg font-semibold">{user.username}</h3>
                 <div className="flex items-center gap-2">
-                  <Badge variant="outline">
-                    {user.sex === "f" ? "Female" : "Male"}
-                  </Badge>
+
                   <span className="text-sm text-gray-500">
-                    Active since {formatDate(user.activeSince)}
+                    Active on /r/detrans since {formatDate(user.activeSince)}
                   </span>
                 </div>
               </div>
@@ -214,6 +212,9 @@ export default function UsersPage() {
               
               {user.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2">
+                                    <Badge variant="secondary">
+                    {user.sex === "f" ? "Female" : "Male"}
+                  </Badge>
                   {user.tags.slice(0, 5).map((tag) => (
                     <Badge key={tag} variant="secondary" className="text-xs">
                       {tag}
