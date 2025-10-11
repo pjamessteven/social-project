@@ -206,7 +206,7 @@ export default async function UserPage({
 
         {/* Top Comments */}
         <div>
-          <h3 className="mb-4 font-semibold">Top Comments</h3>
+          <h3 className="mb-4 font-semibold">Top Comments by /u/{username}:</h3>
           {comments.length === 0 ? (
             <p className="text-gray-500 dark:text-gray-400">
               No comments found.

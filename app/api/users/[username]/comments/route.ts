@@ -20,7 +20,7 @@ export async function GET(
     const comments = await db
       .select()
       .from(detransComments)
-      .where(eq(detransComments.author, decodeURIComponent(username)))
+      .where(eq(detransComments.username, decodeURIComponent(username)))
       .orderBy(desc(detransComments.score))
       .limit(limit);
 
