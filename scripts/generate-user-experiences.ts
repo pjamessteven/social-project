@@ -21,6 +21,15 @@ const openai = new OpenAI({
 
 const MODEL = "moonshotai/kimi-k2";
 
+// Rough estimate: 1 token ≈ 4 characters for English text
+function truncateToTokenLimit(text: string, maxTokens: number): string {
+  const maxChars = maxTokens * 4;
+  if (text.length <= maxChars) {
+    return text;
+  }
+  return text.substring(0, maxChars) + "...";
+}
+
 interface UserComments {
   username: string;
   comment_count: number;
@@ -57,6 +66,9 @@ async function generateExperienceReport(
   username: string,
   comments: string,
 ): Promise<string> {
+  // Limit comments to stay within token limit (leave room for prompt + response)
+  const truncatedComments = truncateToTokenLimit(comments, 260000);
+  
   const prompt = `You are analyzing comments from a user named "${username}" from a detransition support community. Based on their comments, write a detailed, compassionate experience report that captures their detransition journey.
 
 The comments are separated by " | ". Please create a comprehensive narrative that:
@@ -67,7 +79,7 @@ The comments are separated by " | ". Please create a comprehensive narrative tha
 5. Highlights any advice or insights they've shared
 6. Maintains a respectful, clinical tone
 
-Comments: ${comments}
+Comments: ${truncatedComments}
 
 Write a detailed experience report (aim for 3-5 paragraphs):`;
 
