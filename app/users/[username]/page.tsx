@@ -1,13 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/app/components/ui/accordion";
+import { ArrowLeft } from "lucide-react";
+import { marked } from "marked";
 import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
 import { Skeleton } from "../../components/ui/skeleton";
-import { ArrowLeft } from "lucide-react";
-import { marked } from "marked";
 
 interface User {
   username: string;
@@ -40,8 +46,10 @@ export default function UserPage() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch(`/api/users/${encodeURIComponent(username)}`);
-        
+        const response = await fetch(
+          `/api/users/${encodeURIComponent(username)}`,
+        );
+
         if (!response.ok) {
           if (response.status === 404) {
             setError("User not found");
@@ -63,8 +71,10 @@ export default function UserPage() {
 
     const fetchComments = async () => {
       try {
-        const response = await fetch(`/api/users/${encodeURIComponent(username)}/comments?limit=10`);
-        
+        const response = await fetch(
+          `/api/users/${encodeURIComponent(username)}/comments?limit=10`,
+        );
+
         if (response.ok) {
           const data = await response.json();
           setComments(data.comments);
@@ -90,8 +100,8 @@ export default function UserPage() {
     });
   };
 
-  const formatCommentDate = (utcTimestamp: string) => {
-    return new Date(parseInt(utcTimestamp) * 1000).toLocaleDateString("en-US", {
+  const formatCommentDate = (utcDate: string) => {
+    return new Date(utcDate).toLocaleDateString("en-US", {
       year: "numeric",
       month: "short",
       day: "numeric",
@@ -101,26 +111,26 @@ export default function UserPage() {
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <Skeleton className="h-8 w-32 mb-6" />
+        <Skeleton className="mb-6 h-8 w-32" />
         <div className="space-y-6">
           <div>
-            <Skeleton className="h-8 w-48 mb-4" />
-            <div className="flex gap-4 mb-4">
+            <Skeleton className="mb-4 h-8 w-48" />
+            <div className="mb-4 flex gap-4">
               <Skeleton className="h-6 w-20" />
               <Skeleton className="h-6 w-32" />
             </div>
-            <div className="flex gap-2 mb-6">
+            <div className="mb-6 flex gap-2">
               <Skeleton className="h-6 w-16" />
               <Skeleton className="h-6 w-20" />
               <Skeleton className="h-6 w-24" />
             </div>
           </div>
           <div>
-            <Skeleton className="h-6 w-32 mb-4" />
+            <Skeleton className="mb-4 h-6 w-32" />
             <Skeleton className="h-32 w-full" />
           </div>
           <div>
-            <Skeleton className="h-6 w-40 mb-4" />
+            <Skeleton className="mb-4 h-6 w-40" />
             <Skeleton className="h-64 w-full" />
           </div>
         </div>
@@ -133,12 +143,12 @@ export default function UserPage() {
       <div className="container mx-auto px-4 py-8">
         <Link href="/users">
           <Button variant="ghost" className="mb-6">
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Users
           </Button>
         </Link>
-        <div className="text-center py-12">
-          <h1 className="text-2xl font-bold mb-4">
+        <div className="py-12 text-center">
+          <h1 className="mb-4 text-2xl font-bold">
             {error || "User not found"}
           </h1>
           <p className="text-gray-600 dark:text-gray-400">
@@ -153,16 +163,16 @@ export default function UserPage() {
     <div className="container mx-auto px-4 py-8">
       <Link href="/users">
         <Button variant="ghost" className="mb-6">
-          <ArrowLeft className="w-4 h-4 mr-2" />
+          <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Users
         </Button>
       </Link>
 
-      <div className="space-y-6 prose dark:prose-invert">
+      <div className="prose dark:prose-invert space-y-6">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold mb-4">{user.username}</h1>
-          <div className="flex flex-wrap gap-4 mb-4 text-sm text-gray-600 dark:text-gray-400">
+          <h1 className="mb-4 text-3xl font-bold">{user.username}</h1>
+          <div className="mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
             <div className="flex items-center gap-2">
               <Badge variant="outline">
                 {user.sex === "f" ? "Female" : "Male"}
@@ -170,9 +180,9 @@ export default function UserPage() {
             </div>
             <div>Active in /r/detrans since {formatDate(user.activeSince)}</div>
           </div>
-          
+
           {user.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="mb-6 flex flex-wrap gap-2">
               {user.tags.map((tag) => (
                 <Badge key={tag} variant="secondary">
                   {tag}
@@ -185,74 +195,96 @@ export default function UserPage() {
         {/* Experience Summary */}
         {user.experienceSummary && (
           <div>
-            <h3 className=" font-semibold mb-4">Summary</h3>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                {user.experienceSummary}
-              </p>
+            <h3 className="mb-4 font-semibold">Summary</h3>
+            <p className="leading-relaxed text-gray-700 dark:text-gray-300">
+              {user.experienceSummary}
+            </p>
           </div>
+        )}
+
+
+        {/* Red Flags Report */}
+        {user.redFlagsReport && (
+          <Accordion type="single" collapsible className="mt-8  pt-0 w-full prose-none">
+            <AccordionItem
+              value="disclaimer"
+              className="overflow-hidden rounded-xl border opacity-80 "
+            >
+              <AccordionTrigger className="px-3 py-0 mt-0 prose-none ">
+                Authenticity Assessment
+              </AccordionTrigger>
+              <AccordionContent className="px-3 pb-3 text-sm ">
+                <div className="max-w-2xl space-y-3 prose dark:prose-invert">
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: marked.parse(user.redFlagsReport),
+                    }}
+                  ></p>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         )}
 
         {/* Full Experience */}
         {user.experience && (
           <div>
-            <h3 className=" font-semibold mb-4">Full Experience</h3>
+            <h3 className="mb-4 font-semibold">Full Experience</h3>
             <div className="bg-white dark:bg-gray-900">
-              <div className="prose dark:prose-invert max-w-none"           
-          dangerouslySetInnerHTML={{ __html: marked.parse(user.experience) }}>
-
-              </div>
+              <div
+                className="prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{
+                  __html: marked.parse(user.experience),
+                }}
+              ></div>
             </div>
           </div>
         )}
 
-        {/* Red Flags Report */}
-        {user.redFlagsReport && (
-          <div>
-            <h2 className="text-xl font-semibold mb-4">Authenticity Assessment</h2>
-            <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6">
-              <p className="text-yellow-800 dark:text-yellow-200 leading-relaxed">
-                {user.redFlagsReport}
-              </p>
-            </div>
-          </div>
-        )}
 
         {/* Top Comments */}
         <div>
-          <h3 className="font-semibold mb-4">Top Comments</h3>
+          <h3 className="mb-4 font-semibold">Top Comments</h3>
           {commentsLoading ? (
             <div className="space-y-4">
               {Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="border rounded-lg p-4">
-                  <Skeleton className="h-4 w-32 mb-2" />
+                <div key={i} className="rounded-lg border p-4">
+                  <Skeleton className="mb-2 h-4 w-32" />
                   <Skeleton className="h-16 w-full" />
                 </div>
               ))}
             </div>
           ) : comments.length === 0 ? (
-            <p className="text-gray-500 dark:text-gray-400">No comments found.</p>
+            <p className="text-gray-500 dark:text-gray-400">
+              No comments found.
+            </p>
           ) : (
             <div className="space-y-4">
               {comments.map((comment) => (
-                <div key={comment.id} className="border rounded-lg p-4 bg-white dark:bg-gray-900">
-                  <div className="flex justify-between items-start mb-2">
+                <div
+                  key={comment.id}
+                  className="rounded-lg border bg-white p-4 dark:bg-gray-900"
+                >
+                  <div className="mb-2 flex items-start justify-between">
                     <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                       <Badge variant="outline">{comment.score} points</Badge>
-                      <span>r/{comment.subreddit}</span>
-                      <span>{formatCommentDate(comment.created_utc)}</span>
+                      <span>r/detrans</span>
+                      <span>{formatCommentDate(comment.created)}</span>
                     </div>
-                    <Link 
-                      href={`https://reddit.com${comment.permalink}`}
+                    <Link
+                      href={`https://reddit.com${comment.link}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm"
+                      className="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
                     >
                       View on Reddit
                     </Link>
                   </div>
-                  <div 
+                  <div
                     className="prose dark:prose-invert max-w-none text-sm"
-                    dangerouslySetInnerHTML={{ __html: marked.parse(comment.body) }}
+                    dangerouslySetInnerHTML={{
+                      __html: marked.parse(comment.text),
+                    }}
                   />
                 </div>
               ))}
