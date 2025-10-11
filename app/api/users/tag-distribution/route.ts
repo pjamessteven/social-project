@@ -3,6 +3,7 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import { sql, eq, and, inArray } from "drizzle-orm";
 import postgres from "postgres";
 import { detransUsers, detransTags, detransUserTags } from "@/db/schema";
+import { availableTags } from "@/app/lib/availableTags";
 
 const connectionString = process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/app";
 const client = postgres(connectionString);
@@ -182,8 +183,11 @@ function categorizeUser(user: any): string[] {
   const tags = user.tags || [];
   const flow: string[] = [];
 
+  // Filter tags to only include those in availableTags
+  const validTags = tags.filter((tag: string) => availableTags.includes(tag));
+
   // Debug logging for all users to see what tags we're getting
-  console.log(`User ${user.username}: tags=[${tags.join(', ')}]`);
+  console.log(`User ${user.username}: validTags=[${validTags.join(', ')}]`);
 
   // Stage 1: Sex - map database values to node IDs
   let sexCategory = 'unknown';
@@ -199,11 +203,11 @@ function categorizeUser(user: any): string[] {
                      user.transition_age && user.transition_age >= 18 ? 'after_18' : 'unknown';
   flow.push(`transition_age_${ageCategory}`);
 
-  // Stage 3: Medical Interventions
-  const hasHormones = tags.includes('hormones') || tags.includes('testosterone') || tags.includes('estrogen');
-  const hasTopSurgery = tags.includes('top surgery') || tags.includes('mastectomy');
-  const hasBottomSurgery = tags.includes('bottom surgery');
-  const socialOnly = tags.includes('social transition') || tags.includes('no medical transition');
+  // Stage 3: Medical Interventions - using exact tag names from availableTags
+  const hasHormones = validTags.includes('took hormones');
+  const hasTopSurgery = validTags.includes('got top surgery');
+  const hasBottomSurgery = validTags.includes('got bottom surgery');
+  const socialOnly = validTags.includes('only transitioned socially');
   
   console.log(`User ${user.username} medical checks: hormones=${hasHormones}, topSurgery=${hasTopSurgery}, bottomSurgery=${hasBottomSurgery}, socialOnly=${socialOnly}`);
   
@@ -221,9 +225,9 @@ function categorizeUser(user: any): string[] {
   console.log(`User ${user.username} final medical category: ${medicalCategory}`);
   flow.push(`medical_${medicalCategory}`);
 
-  // Stage 4: Outcome
-  const regrets = tags.includes('regret');
-  const noRegrets = tags.includes('regret absent') || tags.includes('regret avoided');
+  // Stage 4: Outcome - using exact tag names from availableTags
+  const regrets = validTags.includes('regrets transitioning');
+  const noRegrets = validTags.includes("doesn't regret transitioning");
   
   let outcome = 'unknown';
   if (regrets) {
