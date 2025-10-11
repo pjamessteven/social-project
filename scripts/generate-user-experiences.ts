@@ -5,7 +5,7 @@ import { OpenAI } from "openai";
 
 import { availableTags } from "@/app/lib/availableTags";
 import postgres from "postgres";
-import { detransUsers, tags, userTags } from "../db/schema";
+import { detransUsers, detransTags, detransUserTags } from "../db/schema";
 
 dotenv.config();
 
@@ -255,18 +255,18 @@ async function ensureTagsExist(tagNames: string[]): Promise<number[]> {
   
   for (const tagName of tagNames) {
     // Check if tag exists
-    let existingTag = await db
+    const existingTag = await db
       .select()
-      .from(tags)
-      .where(eq(tags.name, tagName))
+      .from(detransTags)
+      .where(eq(detransTags.name, tagName))
       .limit(1);
     
     if (existingTag.length === 0) {
       // Create new tag
       const newTag = await db
-        .insert(tags)
+        .insert(detransTags)
         .values({ name: tagName })
-        .returning({ id: tags.id });
+        .returning({ id: detransTags.id });
       tagIds.push(newTag[0].id);
     } else {
       tagIds.push(existingTag[0].id);
@@ -278,11 +278,11 @@ async function ensureTagsExist(tagNames: string[]): Promise<number[]> {
 
 async function assignTagsToUser(username: string, tagIds: number[]): Promise<void> {
   // Remove existing tags for this user
-  await db.delete(userTags).where(eq(userTags.username, username));
+  await db.delete(detransUserTags).where(eq(detransUserTags.username, username));
   
   // Insert new tags
   if (tagIds.length > 0) {
-    await db.insert(userTags).values(
+    await db.insert(detransUserTags).values(
       tagIds.map(tagId => ({
         username,
         tagId,
