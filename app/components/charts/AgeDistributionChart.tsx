@@ -145,7 +145,6 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
                   <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" />
               <XAxis 
                 dataKey="age" 
                 label={{ value: 'Age', position: 'insideBottom', offset:-10 }}
