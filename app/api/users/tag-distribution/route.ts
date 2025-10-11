@@ -123,7 +123,6 @@ function processSankeyData(users: any[]) {
   // Create nodes for each stage
   const stages = [
     { name: "sex", categories: ["male", "female", "unknown"] },
-    { name: "sexuality", categories: ["homosexual", "heterosexual", "bisexual", "asexual", "unknown"] },
     { name: "transition_age", categories: ["before_18", "after_18", "unknown"] },
     { name: "medical", categories: ["took_hormones", "got_surgery", "social_only", "unknown"] },
     { name: "outcome", categories: ["regrets", "no_regrets", "unknown"] }
@@ -178,18 +177,12 @@ function categorizeUser(user: any): string[] {
   }
   flow.push(`sex_${sexCategory}`);
 
-  // Stage 2: Sexuality
-  const sexuality = tags.find((tag: string) => 
-    ['homosexual', 'heterosexual', 'bisexual', 'asexual'].includes(tag)
-  ) || 'unknown';
-  flow.push(`sexuality_${sexuality}`);
-
-  // Stage 3: Transition Age
+  // Stage 2: Transition Age
   const ageCategory = user.transition_age && user.transition_age < 18 ? 'before_18' : 
                      user.transition_age && user.transition_age >= 18 ? 'after_18' : 'unknown';
   flow.push(`transition_age_${ageCategory}`);
 
-  // Stage 4: Medical Interventions
+  // Stage 3: Medical Interventions
   const hasHormones = tags.includes('took hormones');
   const hasTopSurgery = tags.includes('got top surgery');
   const hasBottomSurgery = tags.includes('got bottom surgery');
@@ -208,7 +201,7 @@ function categorizeUser(user: any): string[] {
   
   flow.push(`medical_${medicalCategory}`);
 
-  // Stage 5: Outcome
+  // Stage 4: Outcome
   const regrets = tags.includes('regrets transitioning');
   const noRegrets = tags.includes("doesn't regret transitioning");
   
