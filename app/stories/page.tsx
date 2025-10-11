@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Badge } from "../components/ui/badge";
 import UsersFilters from "../components/UsersFilters";
 import UsersPagination from "../components/UsersPagination";
-import { availableTags } from "../lib/availableTags";
 import { isBot } from "../lib/isBot";
 
 interface User {
@@ -125,7 +124,7 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
         </p>
       </div>
 
-      <UsersFilters availableTags={availableTags} />
+      <UsersFilters />
 
       {/* Results count */}
       <div className="mb-6 text-sm text-gray-600 dark:text-gray-400">

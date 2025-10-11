@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import {
   Select,
@@ -11,16 +12,40 @@ import {
 } from "./ui/select";
 import { MultiSelect } from "./ui/multi-select";
 
-interface UsersFiltersProps {
-  availableTags: string[];
+interface Tag {
+  id: number;
+  name: string;
+  userCount: number;
 }
 
-export default function UsersFilters({ availableTags }: UsersFiltersProps) {
+interface UsersFiltersProps {}
+
+export default function UsersFilters({}: UsersFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [tags, setTags] = useState<Tag[]>([]);
+  const [loading, setLoading] = useState(true);
   
   const selectedSex = searchParams.get("sex") || "";
   const selectedTags = searchParams.getAll("tag").flatMap(tag => tag.split(',').filter(Boolean));
+
+  useEffect(() => {
+    async function fetchTags() {
+      try {
+        const response = await fetch('/api/tags');
+        if (response.ok) {
+          const data = await response.json();
+          setTags(data.tags);
+        }
+      } catch (error) {
+        console.error('Failed to fetch tags:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchTags();
+  }, []);
 
   const updateSexFilter = (value: string) => {
     const params = new URLSearchParams(searchParams);
@@ -82,12 +107,22 @@ export default function UsersFilters({ availableTags }: UsersFiltersProps) {
 
         {/* Tag Filter */}
         <div className="flex flex-col gap-2 min-w-[300px] flex-1">
-          <MultiSelect
-            options={availableTags}
-            selected={selectedTags}
-            onChange={updateTagsFilter}
-            placeholder="Select tags to filter by..."
-          />
+          {loading ? (
+            <div className="h-10 bg-gray-100 dark:bg-gray-800 rounded animate-pulse" />
+          ) : (
+            <MultiSelect
+              options={tags.map(tag => `${tag.name} (${tag.userCount})`)}
+              selected={selectedTags}
+              onChange={(selectedWithCounts) => {
+                // Extract tag names from "tagname (count)" format
+                const tagNames = selectedWithCounts.map(item => 
+                  item.replace(/ \(\d+\)$/, '')
+                );
+                updateTagsFilter(tagNames);
+              }}
+              placeholder="Select tags to filter by..."
+            />
+          )}
         </div>
 
         {/* Clear Filters */}
