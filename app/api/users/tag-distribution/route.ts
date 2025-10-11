@@ -73,21 +73,35 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    const whereClause = sql.join(conditions, sql` AND `);
-
     // Get all users with their tags and computed categories
-    const usersWithTags = await db.execute(sql`
-      SELECT 
-        u.username,
-        u.sex,
-        u.transition_age,
-        ARRAY_AGG(t.name) FILTER (WHERE t.name IS NOT NULL) as tags
-      FROM detrans_users u
-      LEFT JOIN detrans_user_tags ut ON u.username = ut.username  
-      LEFT JOIN detrans_tags t ON ut.tag_id = t.id
-      WHERE ${whereClause}
-      GROUP BY u.username, u.sex, u.transition_age
-    `);
+    let usersWithTags;
+    if (conditions.length > 0) {
+      const whereClause = sql.join(conditions, sql` AND `);
+      usersWithTags = await db.execute(sql`
+        SELECT 
+          u.username,
+          u.sex,
+          u.transition_age,
+          ARRAY_AGG(t.name) FILTER (WHERE t.name IS NOT NULL) as tags
+        FROM detrans_users u
+        LEFT JOIN detrans_user_tags ut ON u.username = ut.username  
+        LEFT JOIN detrans_tags t ON ut.tag_id = t.id
+        WHERE ${whereClause}
+        GROUP BY u.username, u.sex, u.transition_age
+      `);
+    } else {
+      usersWithTags = await db.execute(sql`
+        SELECT 
+          u.username,
+          u.sex,
+          u.transition_age,
+          ARRAY_AGG(t.name) FILTER (WHERE t.name IS NOT NULL) as tags
+        FROM detrans_users u
+        LEFT JOIN detrans_user_tags ut ON u.username = ut.username  
+        LEFT JOIN detrans_tags t ON ut.tag_id = t.id
+        GROUP BY u.username, u.sex, u.transition_age
+      `);
+    }
 
     // Process users into Sankey nodes and links
     const sankeyData = processSankeyData(usersWithTags);
