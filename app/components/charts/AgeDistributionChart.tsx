@@ -136,7 +136,7 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
                 label={{ value: 'Age', position: 'insideBottom', offset:-10 }}
               />
               <YAxis 
-                label={{ value: 'Number of Users', angle: -90, position: 'insideTopLeft', offset:5}}
+                label={{ value: 'Number of Users', angle: -90, position: 'insideMiddle', offset:10}}
                 tickFormatter={(value) => Math.abs(value).toString()}
               />
               <Tooltip content={<CustomTooltip />} />
