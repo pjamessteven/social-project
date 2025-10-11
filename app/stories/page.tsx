@@ -137,7 +137,11 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
 
       <UsersFilters />
 
-      <AgeDistributionChart className="mb-8" searchParams={resolvedSearchParams} />
+      <AgeDistributionChart 
+        className="mb-8" 
+        minAge={typeof resolvedSearchParams.minAge === "string" ? parseInt(resolvedSearchParams.minAge) : 10}
+        maxAge={typeof resolvedSearchParams.maxAge === "string" ? parseInt(resolvedSearchParams.maxAge) : 40}
+      />
 
       {/* Results count */}
       <div className="mb-6 text-sm text-gray-600 dark:text-gray-400">
