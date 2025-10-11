@@ -200,10 +200,10 @@ function categorizeUser(user: any): string[] {
   flow.push(`transition_age_${ageCategory}`);
 
   // Stage 3: Medical Interventions
-  const hasHormones = tags.includes('took hormones');
-  const hasTopSurgery = tags.includes('got top surgery');
-  const hasBottomSurgery = tags.includes('got bottom surgery');
-  const socialOnly = tags.includes('only transitioned socially');
+  const hasHormones = tags.includes('hormones') || tags.includes('testosterone') || tags.includes('estrogen');
+  const hasTopSurgery = tags.includes('top surgery') || tags.includes('mastectomy');
+  const hasBottomSurgery = tags.includes('bottom surgery');
+  const socialOnly = tags.includes('social transition') || tags.includes('no medical transition');
   
   console.log(`User ${user.username} medical checks: hormones=${hasHormones}, topSurgery=${hasTopSurgery}, bottomSurgery=${hasBottomSurgery}, socialOnly=${socialOnly}`);
   
@@ -222,8 +222,8 @@ function categorizeUser(user: any): string[] {
   flow.push(`medical_${medicalCategory}`);
 
   // Stage 4: Outcome
-  const regrets = tags.includes('regrets transitioning');
-  const noRegrets = tags.includes("doesn't regret transitioning");
+  const regrets = tags.includes('regret') || tags.includes('detransition');
+  const noRegrets = tags.includes('regret absent') || tags.includes('regret avoided');
   
   let outcome = 'unknown';
   if (regrets) {
