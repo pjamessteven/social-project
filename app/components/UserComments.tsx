@@ -8,10 +8,10 @@ import { Button } from "./ui/button";
 
 interface Comment {
   id: string;
-  body: string;
+  text: string;
   score: number;
-  created_utc: string;
-  permalink: string;
+  created: string;
+  link: string;
   subreddit: string;
 }
 
@@ -75,10 +75,10 @@ export default function UserComments({ username, initialComments }: UserComments
                     </span>
                   </Badge>
                   <span className="hidden sm:inline">r/detrans</span>
-                  <span>{formatCommentDate(comment.created_utc)}</span>
+                  <span>{formatCommentDate(comment.created)}</span>
                 </div>
                 <Link
-                  href={`https://reddit.com${comment.permalink}`}
+                  href={`https://reddit.com${comment.link}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
@@ -89,7 +89,7 @@ export default function UserComments({ username, initialComments }: UserComments
               <div
                 className="prose dark:prose-invert mt-4 max-w-none text-sm"
                 dangerouslySetInnerHTML={{
-                  __html: marked.parse(comment.body || ""),
+                  __html: marked.parse(comment.text || ""),
                 }}
               />
             </div>
