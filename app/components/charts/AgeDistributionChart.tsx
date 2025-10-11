@@ -140,7 +140,7 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
                 tickFormatter={(value) => Math.abs(value).toString()}
               />
               <Tooltip content={<CustomTooltip />} />
-              <Legend />
+              <Legend verticalAlign="bottom" height={36} wrapperStyle={{ paddingTop: '20px' }} />
               <Bar 
                 dataKey="transition" 
                 fill="#3b82f6" 
