@@ -34,6 +34,7 @@ interface UserComments {
   username: string;
   comment_count: number;
   all_comments: string;
+  all_comment_dates: string;
   earliest_comment_date: Date;
 }
 
@@ -45,6 +46,7 @@ async function getUserComments(): Promise<UserComments[]> {
       username,
       COUNT(*) as comment_count,
       STRING_AGG(text, ' | ' ORDER BY created) as all_comments,
+      STRING_AGG(created::text, ' | ' ORDER BY created) as all_comment_dates,
       MIN(created) as earliest_comment_date
     FROM detrans_comments 
     WHERE username IS NOT NULL 
@@ -58,6 +60,7 @@ async function getUserComments(): Promise<UserComments[]> {
     username: row.username as string,
     comment_count: Number(row.comment_count),
     all_comments: row.all_comments as string,
+    all_comment_dates: row.all_comment_dates as string,
     earliest_comment_date: new Date(row.earliest_comment_date as string),
   }));
 }
