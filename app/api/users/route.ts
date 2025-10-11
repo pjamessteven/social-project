@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import { detransUsers } from "../../../db/schema";
+import { detransUsers, detransComments } from "../../../db/schema";
 import { eq, and, like, sql } from "drizzle-orm";
 
 const connectionString = process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/app";
@@ -43,11 +43,26 @@ export async function GET(request: NextRequest) {
     
     const total = totalResult[0]?.count || 0;
 
-    // Get paginated users
+    // Get paginated users with comment count
     const users = await db
-      .select()
+      .select({
+        username: detransUsers.username,
+        activeSince: detransUsers.activeSince,
+        sex: detransUsers.sex,
+        experienceSummary: detransUsers.experienceSummary,
+        tags: detransUsers.tags,
+        commentCount: sql<number>`COALESCE(COUNT(${detransComments.id}), 0)`,
+      })
       .from(detransUsers)
+      .leftJoin(detransComments, eq(detransUsers.username, detransComments.username))
       .where(whereClause)
+      .groupBy(
+        detransUsers.username,
+        detransUsers.activeSince,
+        detransUsers.sex,
+        detransUsers.experienceSummary,
+        detransUsers.tags
+      )
       .orderBy(sql`${detransUsers.activeSince} DESC`)
       .limit(limit)
       .offset((page - 1) * limit);
@@ -55,7 +70,8 @@ export async function GET(request: NextRequest) {
     // Parse tags for each user
     const usersWithParsedTags = users.map(user => ({
       ...user,
-      tags: user.tags ? JSON.parse(user.tags) : []
+      tags: user.tags ? JSON.parse(user.tags) : [],
+      commentCount: Number(user.commentCount)
     }));
 
     return NextResponse.json({
