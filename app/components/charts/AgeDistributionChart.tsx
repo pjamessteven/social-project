@@ -83,10 +83,10 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
         <div className="bg-white p-3 border border-gray-300 rounded shadow-lg">
           <p className="font-medium">{`Age: ${label}`}</p>
           <p className="text-blue-600">
-            {`Transition: ${payload[0]?.value || 0} users`}
+            {`Transitioned: ${payload[0]?.value || 0} users`}
           </p>
           <p className="text-red-600">
-            {`Detransition: ${Math.abs(payload[1]?.value || 0)} users`}
+            {`Detransitioned: ${Math.abs(payload[1]?.value || 0)} users`}
           </p>
         </div>
       );
@@ -112,7 +112,7 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
   return (
     <Card className={className}>
       <CardHeader>
-        <CardTitle>Transition vs Detransition Age Distribution</CardTitle>
+        <CardTitle>Transition {" -> "} Detransition Ages</CardTitle>
       </CardHeader>
       <CardContent>
         {loading ? (
@@ -133,7 +133,7 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis 
                 dataKey="age" 
-                label={{ value: 'Age', position: 'insideBottom', offset: -5 }}
+                label={{ value: 'Age', position: 'insideBottom', offset:-10 }}
               />
               <YAxis 
                 label={{ value: 'Number of Users', angle: -90, position: 'insideLeft' }}
