@@ -63,7 +63,7 @@ export async function GET(request: NextRequest) {
         detransUsers.experienceSummary,
         detransUsers.tags
       )
-      .orderBy(sql`${detransUsers.activeSince} DESC`)
+      .orderBy(sql`COALESCE(COUNT(${detransComments.id}), 0) DESC`)
       .limit(limit)
       .offset((page - 1) * limit);
 
