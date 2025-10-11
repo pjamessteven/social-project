@@ -33,8 +33,8 @@ interface Comment {
 async function getUser(username: string): Promise<User | null> {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/users/${encodeURIComponent(username)}`,
-      { cache: 'no-store' }
+      `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/users/${encodeURIComponent(username)}`,
+      { cache: "no-store" },
     );
 
     if (!response.ok) {
@@ -52,8 +52,8 @@ async function getUser(username: string): Promise<User | null> {
 async function getUserComments(username: string): Promise<Comment[]> {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/users/${encodeURIComponent(username)}/comments?limit=10`,
-      { cache: 'no-store' }
+      `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/users/${encodeURIComponent(username)}/comments?limit=10`,
+      { cache: "no-store" },
     );
 
     if (response.ok) {
@@ -99,19 +99,26 @@ export default async function UserPage({
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-0 pb-8">
       <Link href="/users">
         <Button variant="ghost" className="mb-6">
-          <ArrowLeft className="mr-2 h-4 w-4" />
+          <ArrowLeft className="mr-2 -ml-4 h-4 w-4" />
           Back to Users
         </Button>
       </Link>
 
-      <div className="prose dark:prose-invert space-y-6">
+      <div className="sm:prose-base prose-sm dark:prose-invert space-y-6">
         {/* Header */}
         <div>
-          <div className="mb-4 flex items-start justify-between">
-            <h1 className="text-3xl font-bold">{user.username}</h1>
+          <div className="mb-4 flex sm:flex-row flex-col items-baseline justify-between">
+            <div className="flex flex-col mb-4 sm:mb-0">
+              <h1 className="mb-4 sm:mb-8 text-3xl font-bold">
+                Reddit user /u/{user.username}
+              </h1>
+              <div className="text-sm text-gray-600 dark:text-gray-400">
+                Active in /r/detrans since {formatDate(user.activeSince)}
+              </div>
+            </div>
             <Link
               href={`https://reddit.com/u/${user.username}`}
               target="_blank"
@@ -123,19 +130,15 @@ export default async function UserPage({
               </Button>
             </Link>
           </div>
-          <div className="mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
-            <div className="flex items-center gap-2">
-              <Badge variant="outline">
-                {user.sex === "f" ? "Female" : "Male"}
-              </Badge>
-            </div>
-            <div>Active in /r/detrans since {formatDate(user.activeSince)}</div>
-          </div>
 
           {user.tags.length > 0 && (
             <div className="mb-6 flex flex-wrap gap-2">
+              <Badge variant="primary">
+                {user.sex === "f" ? "Female" : "Male"}
+              </Badge>
+
               {user.tags.map((tag) => (
-                <Badge key={tag} variant="secondary">
+                <Badge key={tag} variant="primary">
                   {tag}
                 </Badge>
               ))}
@@ -143,25 +146,28 @@ export default async function UserPage({
           )}
         </div>
 
-                {/* Red Flags Report */}
+        {/* Red Flags Report */}
         {user.redFlagsReport && (
-          <Accordion type="single" collapsible className="mt-8  pt-0 w-full ">
+          <Accordion type="single" collapsible className="mt-8 w-full pt-0">
             <AccordionItem
               value="disclaimer"
-              className={`overflow-hidden rounded-xl border opacity-80  ${
-                user.tags.includes('suspicious account') 
-                  ? 'border-destructive bg-destructive/5' 
-                  : ''
+              className={`bg-secondary overflow-hidden rounded-xl border opacity-80 ${
+                user.tags.includes("suspicious account")
+                  ? "border-destructive bg-destructive/5"
+                  : ""
               }`}
             >
-              <AccordionTrigger className="px-3  py-0 -mt-4 not-prose ">
-                Authenticity Assessment: {user.tags.includes('suspicious account') ? 'Suspicious Account' : 'Not suspicious'}
+              <AccordionTrigger className="not-prose -mt-4 px-3 py-0">
+                Authenticity Assessment:{" "}
+                {user.tags.includes("suspicious account")
+                  ? "Suspicious Account"
+                  : "Not suspicious"}
               </AccordionTrigger>
-              <AccordionContent className="px-3 pb-3   prose-sm">
-                <div className="max-w-2xl ">
+              <AccordionContent className="prose-sm px-3 pb-3">
+                <div className="max-w-2xl">
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: marked.parse(user.redFlagsReport || ''),
+                      __html: marked.parse(user.redFlagsReport || ""),
                     }}
                   ></p>
                 </div>
@@ -173,31 +179,30 @@ export default async function UserPage({
         {/* Experience Summary */}
         {user.experienceSummary && (
           <div>
-            <h3 className="mb-4 font-semibold">Summary</h3>
-            <p className="leading-relaxed text-gray-700 dark:text-gray-300">
+            <h3 className="mb-2 font-semibold">About me (AI generated)</h3>
+            <p className="border-t pt-4 leading-relaxed">
               {user.experienceSummary}
             </p>
           </div>
         )}
 
-
-
-
         {/* Full Experience */}
         {user.experience && (
-          <div>
-            <h3 className="mb-4 font-semibold">Full Experience</h3>
-            <div className="bg-white dark:bg-gray-900">
+          <div className="">
+            <h3 className="mb-2 font-semibold">
+              My detransition story (AI generated)
+            </h3>
+
+            <div className="border-t">
               <div
-                className="prose dark:prose-invert max-w-none"
+                className="mt-4 max-w-none"
                 dangerouslySetInnerHTML={{
-                  __html: marked.parse(user.experience || ''),
+                  __html: marked.parse(user.experience || ""),
                 }}
               ></div>
             </div>
           </div>
         )}
-
 
         {/* Top Comments */}
         <div>
@@ -215,8 +220,12 @@ export default async function UserPage({
                 >
                   <div className="mb-2 flex items-start justify-between">
                     <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                      <Badge variant="outline">{comment.score} points</Badge>
-                      <span>r/detrans</span>
+                      <Badge variant="outline ">
+                        <span className="whitespace-nowrap">
+                          {comment.score} points
+                        </span>
+                      </Badge>
+                      <span className="hidden sm:inline">r/detrans</span>
                       <span>{formatCommentDate(comment.created)}</span>
                     </div>
                     <Link
@@ -229,9 +238,9 @@ export default async function UserPage({
                     </Link>
                   </div>
                   <div
-                    className="prose dark:prose-invert max-w-none text-sm mt-4"
+                    className="prose dark:prose-invert mt-4 max-w-none text-sm"
                     dangerouslySetInnerHTML={{
-                      __html: marked.parse(comment.text || ''),
+                      __html: marked.parse(comment.text || ""),
                     }}
                   />
                 </div>
