@@ -24,7 +24,7 @@ interface UsersResponse {
 }
 
 interface UsersPageProps {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 const availableTags = [
@@ -90,7 +90,8 @@ function formatDate(dateString: string) {
 }
 
 export default async function UsersPage({ searchParams }: UsersPageProps) {
-  const data = await fetchUsers(searchParams);
+  const resolvedSearchParams = await searchParams;
+  const data = await fetchUsers(resolvedSearchParams);
   const { users, pagination } = data;
 
   return (
