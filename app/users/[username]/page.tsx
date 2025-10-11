@@ -138,7 +138,7 @@ export default async function UserPage({
               </Badge>
 
               {user.tags.map((tag) => (
-                <Badge key={tag} variant="primary">
+                <Badge key={tag} variant={tag === "suspicious account" ? "destructive" : "primary"}>
                   {tag}
                 </Badge>
               ))}
