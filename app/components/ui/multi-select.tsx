@@ -17,7 +17,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "./popover";
-import { cn } from "../../lib/utils";
+import { cn } from "./lib/utils";
+
 
 interface MultiSelectProps {
   options: string[];
@@ -100,6 +101,7 @@ export function MultiSelect({
                         selected.includes(option) ? "opacity-100" : "opacity-0"
                       )}
                     />
+
                     {option}
                   </CommandItem>
                 ))}
