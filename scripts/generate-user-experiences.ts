@@ -23,7 +23,7 @@ const MODEL = "moonshotai/kimi-k2";
 
 // Rough estimate: 1 token ≈ 4 characters for English text
 function truncateToTokenLimit(text: string, maxTokens: number): string {
-  const maxChars = maxTokens * 4;
+  const maxChars = maxTokens * 3;
   if (text.length <= maxChars) {
     return text;
   }
@@ -96,7 +96,10 @@ async function generateRedFlagsReport(
   // Limit comments to stay within token limit (leave room for prompt + response)
   const truncatedComments = truncateToTokenLimit(comments, 260000);
 
-  const prompt = `You are analyzing comments from a user named "${username}" from a detransition support community. Based on their comments, are there any red flags that suggest that this person is a bot and not a real person?
+  const prompt = `You are analyzing comments from a user named "${username}" from a detransition support community. Based on their comments, is this person an authentic detransitioner? Are there any red flags that suggest that this person is a bot, not a real person, or not a de-transitioner? 
+
+  If you think it is a bot, or not an authentic detransitioner, explain the red flags, and give examples.
+  Explain your answer clearly.
 
 Comments: ${truncatedComments}
 `;
@@ -119,7 +122,7 @@ Comments: ${truncatedComments}
 async function generateExperienceSummary(
   experienceReport: string,
 ): Promise<string> {
-  const prompt = `Summarize the following detransition experience report in exactly 5 sentences or fewer. Focus on who this person is (male/female detransitioner, or other), the most important aspects of their journey:
+  const prompt = `Summarize the following detransition experience report in exactly 5 sentences or fewer. Focus on who this person is (male/female detransitioner, or other), the most important aspects of their journey, and where they are at now.:
 
 ${experienceReport}
 
@@ -200,7 +203,7 @@ async function generateTags(
   ];
 
   const prompt = `Based on the following comments from a detransition community user, identify which of these predetermined tags apply to their experience. Only select tags that are clearly supported by the content.
-  There is also a 'suspicious account' tag. Only use this tag if the redFlagsReport suspects that this account might not be authentic. 
+Only use the 'suspicious account' tag if the redFlagsReport suspects that this account might not be authentic. 
 
 Available tags: ${predefinedTags.join(", ")}
 
