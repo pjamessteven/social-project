@@ -153,7 +153,7 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
                 label={{ 
                   value: 'Number of Users', 
                   angle: -90, 
-                  position: 'insideMiddle'
+                  position: 'insideLeft'
                 }}
               />
               <Tooltip content={<CustomTooltip />} />
