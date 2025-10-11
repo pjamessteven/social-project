@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import { detransUsers, detransComments } from "../../../../db/schema";
+import { detransUsers, detransComments, tags, userTags } from "../../../../db/schema";
 import { eq, sql } from "drizzle-orm";
 
 const connectionString = process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/app";
@@ -22,9 +22,8 @@ export async function GET(
         sex: detransUsers.sex,
         experienceSummary: detransUsers.experienceSummary,
         experience: detransUsers.experience,
-        tags: detransUsers.tags,
         redFlagsReport: detransUsers.redFlagsReport,
-        commentCount: sql<number>`COALESCE(COUNT(${detransComments.id}), 0)`,
+        commentCount: sql<number>`COALESCE(COUNT(DISTINCT ${detransComments.id}), 0)`,
       })
       .from(detransUsers)
       .leftJoin(detransComments, eq(detransUsers.username, detransComments.username))
@@ -34,7 +33,8 @@ export async function GET(
         detransUsers.activeSince,
         detransUsers.sex,
         detransUsers.experienceSummary,
-        detransUsers.tags
+        detransUsers.experience,
+        detransUsers.redFlagsReport
       )
       .limit(1);
 
@@ -45,14 +45,22 @@ export async function GET(
       );
     }
 
-    // Parse tags
-    const userWithParsedTags = {
+    // Get user tags
+    const userTagsResult = await db
+      .select({
+        tagName: tags.name,
+      })
+      .from(userTags)
+      .innerJoin(tags, eq(userTags.tagId, tags.id))
+      .where(eq(userTags.username, decodeURIComponent(username)));
+
+    const userWithTags = {
       ...user[0],
-      tags: user[0].tags ? JSON.parse(user[0].tags) : [],
+      tags: userTagsResult.map(t => t.tagName),
       commentCount: Number(user[0].commentCount)
     };
 
-    return NextResponse.json({ user: userWithParsedTags });
+    return NextResponse.json({ user: userWithTags });
   } catch (error) {
     console.error("Error fetching user:", error);
     return NextResponse.json(
