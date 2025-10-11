@@ -63,7 +63,12 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
       }
       
       const result = await response.json();
-      setData(result.data);
+      // Transform data to ensure both datasets are positive
+      const transformedData = result.data.map((item: AgeData) => ({
+        ...item,
+        detransition: Math.abs(item.detransition)
+      }));
+      setData(transformedData);
       setError(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
