@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Badge } from "../components/ui/badge";
 import UsersFilters from "../components/UsersFilters";
 import UsersPagination from "../components/UsersPagination";
+import { availableTags } from "../lib/availableTags";
 
 interface User {
   username: string;
@@ -28,36 +29,6 @@ interface UsersPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-const availableTags = [
-  "trauma",
-  "autism",
-  "ocd",
-  "puberty discomfort",
-  "top surgery",
-  "bottom surgery",
-  "internalised homophobia",
-  "autogynephilia (AGP)",
-  "started as non-binary",
-  "escapism",
-  "depression",
-  "low self-esteem",
-  "anxiety",
-  "eating disorder",
-  "influenced online",
-  "influenced by friends",
-  "trans kid",
-  "hormone therapy",
-  "puberty blockers",
-  "health complications",
-  "infertility",
-  "body dysmorphia",
-  "retransition",
-  "social transition only",
-  "homosexual",
-  "heterosexual",
-  "bisexual",
-  "suspicious account",
-];
 
 async function fetchUsers(searchParams: { [key: string]: string | string[] | undefined }) {
   const params = new URLSearchParams();

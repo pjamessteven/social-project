@@ -3,38 +3,8 @@ import {
   questionCategories,
 } from "@/app/lib/questions";
 import { slugify } from "@/app/lib/utils";
+import { availableTags } from "@/app/lib/availableTags";
 import { NextRequest } from "next/server";
-
-const availableTags = [
-  "trauma",
-  "autism",
-  "ocd",
-  "puberty discomfort",
-  "top surgery",
-  "bottom surgery",
-  "internalised homophobia",
-  "autogynephilia (AGP)",
-  "started as non-binary",
-  "escapism",
-  "depression",
-  "low self-esteem",
-  "anxiety",
-  "eating disorder",
-  "influenced online",
-  "influenced by friends",
-  "trans kid",
-  "hormone therapy",
-  "puberty blockers",
-  "health complications",
-  "infertility",
-  "body dysmorphia",
-  "retransition",
-  "social transition only",
-  "homosexual",
-  "heterosexual",
-  "bisexual",
-  "suspicious account",
-];
 
 export async function GET(request: NextRequest) {
   const host = request.headers.get("host") || "detrans.ai";
