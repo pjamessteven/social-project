@@ -148,9 +148,11 @@ export default function TransitionPathwaysChart({
             </p>
           </div>
           
-          <div className="h-96 w-full border rounded-lg ">
+          <div className="h-96 w-full border rounded-lg">
             <ResponsiveContainer width="100%" height="100%">
               <Sankey
+                width={960}
+                height={500}
                 data={rechartsData}
                 nodePadding={20}
                 nodeWidth={15}
@@ -165,12 +167,6 @@ export default function TransitionPathwaysChart({
                 link={{ 
                   stroke: '#94a3b8',
                   strokeOpacity: 0.6
-                }}
-                label={{
-                  position: 'outside',
-                  offset: 10,
-                  fontSize: 12,
-                  fill: '#374151'
                 }}
               >
                 <Tooltip 
