@@ -145,16 +145,11 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
                   <Badge variant="secondary">
                     {user.sex === "f" ? "Female" : "Male"}
                   </Badge>
-                  {user.tags.slice(0, 5).map((tag) => (
+                  {user.tags.map((tag) => (
                     <Badge key={tag} variant="secondary" className="text-xs">
                       {tag}
                     </Badge>
                   ))}
-                  {user.tags.length > 5 && (
-                    <Badge variant="secondary" className="text-xs">
-                      +{user.tags.length - 5} more
-                    </Badge>
-                  )}
                 </div>
               )}
             </Link>
