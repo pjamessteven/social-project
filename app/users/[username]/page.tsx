@@ -192,6 +192,33 @@ export default function UserPage() {
           )}
         </div>
 
+                {/* Red Flags Report */}
+        {user.redFlagsReport && (
+          <Accordion type="single" collapsible className="mt-8  pt-0 w-full ">
+            <AccordionItem
+              value="disclaimer"
+              className={`overflow-hidden rounded-xl border opacity-80  ${
+                user.tags.includes('suspicious account') 
+                  ? 'border-destructive bg-destructive/5' 
+                  : ''
+              }`}
+            >
+              <AccordionTrigger className="px-3  py-0 -mt-4 not-prose ">
+                Authenticity Assessment: {user.tags.includes('suspicious account') ? 'Suspicious Account' : 'Not suspicious'}
+              </AccordionTrigger>
+              <AccordionContent className="px-3 pb-3   prose-sm">
+                <div className="max-w-2xl ">
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: marked.parse(user.redFlagsReport),
+                    }}
+                  ></p>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        )}
+
         {/* Experience Summary */}
         {user.experienceSummary && (
           <div>
@@ -203,32 +230,7 @@ export default function UserPage() {
         )}
 
 
-        {/* Red Flags Report */}
-        {user.redFlagsReport && (
-          <Accordion type="single" collapsible className="mt-8  pt-0 w-full prose-none">
-            <AccordionItem
-              value="disclaimer"
-              className={`overflow-hidden rounded-xl border opacity-80 ${
-                user.tags.includes('suspicious account') 
-                  ? 'border-destructive bg-destructive/5' 
-                  : ''
-              }`}
-            >
-              <AccordionTrigger className="px-3 py-0 mt-0 prose-none ">
-                Authenticity Assessment
-              </AccordionTrigger>
-              <AccordionContent className="px-3 pb-3 text-sm ">
-                <div className="max-w-2xl space-y-3 prose dark:prose-invert">
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: marked.parse(user.redFlagsReport),
-                    }}
-                  ></p>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        )}
+
 
         {/* Full Experience */}
         {user.experience && (
