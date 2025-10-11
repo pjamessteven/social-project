@@ -17,7 +17,6 @@ const db = drizzle(client);
 const openai = new OpenAI({
   apiKey: process.env.OPENROUTER_KEY,
   baseURL: "https://openrouter.ai/api/v1",
-  model: "deepseek/deepseek-chat-v3.1",
 });
 
 interface UserComments {
@@ -70,7 +69,7 @@ Write a detailed experience report (aim for 3-5 paragraphs):`;
 
   try {
     const response = await openai.chat.completions.create({
-      model: "deepseek-chat",
+      model: "deepseek/deepseek-chat-v3.1",
       messages: [{ role: "user", content: prompt }],
       temperature: 0.3,
       max_tokens: 1500,
@@ -94,7 +93,7 @@ Summary (5 sentences max):`;
 
   try {
     const response = await openai.chat.completions.create({
-      model: "deepseek-chat",
+      model: "deepseek/deepseek-chat-v3.1",
       messages: [{ role: "user", content: prompt }],
       temperature: 0.2,
       max_tokens: 300,
@@ -119,7 +118,7 @@ Respond with only "m" for male or "f" for female birth sex. If unclear, make you
 
   try {
     const response = await openai.chat.completions.create({
-      model: "deepseek-chat",
+      model: "deepseek/deepseek-chat-v3.1",
       messages: [{ role: "user", content: prompt }],
       temperature: 0.1,
       max_tokens: 10,
@@ -174,7 +173,7 @@ Return only a JSON array of applicable tags. Example: ["trauma", "top surgery", 
 
   try {
     const response = await openai.chat.completions.create({
-      model: "deepseek-chat",
+      model: "deepseek/deepseek-chat-v3.1",
       messages: [{ role: "user", content: prompt }],
       temperature: 0.1,
       max_tokens: 200,
