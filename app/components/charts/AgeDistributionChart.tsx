@@ -23,12 +23,17 @@ interface AgeData {
 
 interface AgeDistributionChartProps {
   className?: string;
+  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
-export default function AgeDistributionChart({ className }: AgeDistributionChartProps) {
+export default function AgeDistributionChart({ className, searchParams }: AgeDistributionChartProps) {
   const [data, setData] = useState<AgeData[]>([]);
   const [loading, setLoading] = useState(true);
-  const [ageRange, setAgeRange] = useState([10, 40]);
+  const [ageRange, setAgeRange] = useState(() => {
+    const minAge = searchParams?.minAge ? parseInt(searchParams.minAge as string) : 10;
+    const maxAge = searchParams?.maxAge ? parseInt(searchParams.maxAge as string) : 40;
+    return [minAge, maxAge];
+  });
   const [error, setError] = useState<string | null>(null);
 
   const fetchData = async (minAge: number, maxAge: number) => {
@@ -59,6 +64,16 @@ export default function AgeDistributionChart({ className }: AgeDistributionChart
 
   const handleAgeRangeChange = (newRange: number[]) => {
     setAgeRange(newRange);
+    
+    // Update URL with new age range
+    const url = new URL(window.location.href);
+    url.searchParams.set('minAge', newRange[0].toString());
+    url.searchParams.set('maxAge', newRange[1].toString());
+    url.searchParams.set('page', '1'); // Reset to first page when filtering
+    window.history.pushState({}, '', url.toString());
+    
+    // Trigger a page refresh to apply the filter
+    window.location.reload();
   };
 
   const CustomTooltip = ({ active, payload, label }: any) => {

@@ -52,6 +52,14 @@ async function fetchUsers(searchParams: {
     params.set("tag", searchParams.tag);
   }
 
+  if (searchParams.minAge && typeof searchParams.minAge === "string") {
+    params.set("minAge", searchParams.minAge);
+  }
+
+  if (searchParams.maxAge && typeof searchParams.maxAge === "string") {
+    params.set("maxAge", searchParams.maxAge);
+  }
+
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
   const response = await fetch(`${baseUrl}/api/users?${params}`, {
     cache: "no-store",
@@ -129,7 +137,7 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
 
       <UsersFilters />
 
-      <AgeDistributionChart className="mb-8" />
+      <AgeDistributionChart className="mb-8" searchParams={resolvedSearchParams} />
 
       {/* Results count */}
       <div className="mb-6 text-sm text-gray-600 dark:text-gray-400">

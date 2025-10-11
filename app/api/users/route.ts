@@ -13,6 +13,8 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const sex = searchParams.get("sex");
     const tag = searchParams.get("tag");
+    const minAge = searchParams.get("minAge");
+    const maxAge = searchParams.get("maxAge");
     const page = parseInt(searchParams.get("page") || "1");
     const limit = parseInt(searchParams.get("limit") || "20");
 
