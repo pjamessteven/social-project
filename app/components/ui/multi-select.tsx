@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { Check, ChevronsUpDown, X } from "lucide-react";
-import { cn } from "../../lib/utils";
 import { Button } from "./button";
 import { Badge } from "./badge";
 import {
@@ -18,6 +17,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "./popover";
+import { cn } from "./lib/utils";
 
 interface MultiSelectProps {
   options: string[];
