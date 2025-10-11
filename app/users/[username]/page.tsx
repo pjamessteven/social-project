@@ -19,11 +19,22 @@ interface User {
   tags: string[];
 }
 
+interface Comment {
+  id: string;
+  body: string;
+  score: number;
+  created_utc: string;
+  permalink: string;
+  subreddit: string;
+}
+
 export default function UserPage() {
   const params = useParams();
   const username = params.username as string;
   const [user, setUser] = useState<User | null>(null);
+  const [comments, setComments] = useState<Comment[]>([]);
   const [loading, setLoading] = useState(true);
+  const [commentsLoading, setCommentsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -50,8 +61,24 @@ export default function UserPage() {
       }
     };
 
+    const fetchComments = async () => {
+      try {
+        const response = await fetch(`/api/users/${encodeURIComponent(username)}/comments?limit=10`);
+        
+        if (response.ok) {
+          const data = await response.json();
+          setComments(data.comments);
+        }
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+      } finally {
+        setCommentsLoading(false);
+      }
+    };
+
     if (username) {
       fetchUser();
+      fetchComments();
     }
   }, [username]);
 
@@ -59,6 +86,14 @@ export default function UserPage() {
     return new Date(dateString).toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
+      day: "numeric",
+    });
+  };
+
+  const formatCommentDate = (utcTimestamp: string) => {
+    return new Date(parseInt(utcTimestamp) * 1000).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
       day: "numeric",
     });
   };
@@ -181,6 +216,49 @@ export default function UserPage() {
             </div>
           </div>
         )}
+
+        {/* Top Comments */}
+        <div>
+          <h3 className="font-semibold mb-4">Top Comments</h3>
+          {commentsLoading ? (
+            <div className="space-y-4">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="border rounded-lg p-4">
+                  <Skeleton className="h-4 w-32 mb-2" />
+                  <Skeleton className="h-16 w-full" />
+                </div>
+              ))}
+            </div>
+          ) : comments.length === 0 ? (
+            <p className="text-gray-500 dark:text-gray-400">No comments found.</p>
+          ) : (
+            <div className="space-y-4">
+              {comments.map((comment) => (
+                <div key={comment.id} className="border rounded-lg p-4 bg-white dark:bg-gray-900">
+                  <div className="flex justify-between items-start mb-2">
+                    <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                      <Badge variant="outline">{comment.score} points</Badge>
+                      <span>r/{comment.subreddit}</span>
+                      <span>{formatCommentDate(comment.created_utc)}</span>
+                    </div>
+                    <Link 
+                      href={`https://reddit.com${comment.permalink}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm"
+                    >
+                      View on Reddit
+                    </Link>
+                  </div>
+                  <div 
+                    className="prose dark:prose-invert max-w-none text-sm"
+                    dangerouslySetInnerHTML={{ __html: marked.parse(comment.body) }}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
