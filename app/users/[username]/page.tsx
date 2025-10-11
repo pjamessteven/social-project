@@ -7,6 +7,7 @@ import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
 import { Skeleton } from "../../components/ui/skeleton";
 import { ArrowLeft } from "lucide-react";
+import { marked } from "marked";
 
 interface User {
   username: string;
@@ -122,7 +123,7 @@ export default function UserPage() {
         </Button>
       </Link>
 
-      <div className="space-y-6">
+      <div className="space-y-6 prose dark:prose-invert">
         {/* Header */}
         <div>
           <h1 className="text-3xl font-bold mb-4">{user.username}</h1>
@@ -132,7 +133,7 @@ export default function UserPage() {
                 {user.sex === "f" ? "Female" : "Male"}
               </Badge>
             </div>
-            <div>Active since {formatDate(user.activeSince)}</div>
+            <div>Active in /r/detrans since {formatDate(user.activeSince)}</div>
           </div>
           
           {user.tags.length > 0 && (
@@ -149,26 +150,21 @@ export default function UserPage() {
         {/* Experience Summary */}
         {user.experienceSummary && (
           <div>
-            <h2 className="text-xl font-semibold mb-4">Summary</h2>
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+            <h3 className=" font-semibold mb-4">Summary</h3>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 {user.experienceSummary}
               </p>
-            </div>
           </div>
         )}
 
         {/* Full Experience */}
         {user.experience && (
           <div>
-            <h2 className="text-xl font-semibold mb-4">Full Experience</h2>
-            <div className="bg-white dark:bg-gray-900 border rounded-lg p-6">
-              <div className="prose dark:prose-invert max-w-none">
-                {user.experience.split('\n').map((paragraph, index) => (
-                  <p key={index} className="mb-4 last:mb-0 leading-relaxed">
-                    {paragraph}
-                  </p>
-                ))}
+            <h3 className=" font-semibold mb-4">Full Experience</h3>
+            <div className="bg-white dark:bg-gray-900">
+              <div className="prose dark:prose-invert max-w-none"           
+          dangerouslySetInnerHTML={{ __html: marked.parse(user.experience) }}>
+
               </div>
             </div>
           </div>
