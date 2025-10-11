@@ -40,10 +40,11 @@ export default function UserComments({ username, initialComments }: UserComments
     // Remove "QUESTIONS: " prefix if it exists
     const cleanText = questionsText.replace(/^QUESTIONS:\s*/, '');
     
-    // Split on question marks followed by capital letters (start of next question)
-    const questions = cleanText.split(/\?(?=[A-Z])/)
-      .map(q => q.trim() + (q.trim().endsWith('?') ? '' : '?'))
-      .filter(q => q.length > 1);
+    // Split by question marks and filter out empty strings
+    const questions = cleanText.split('?')
+      .map(q => q.trim())
+      .filter(q => q.length > 0)
+      .map(q => q + '?'); // Add question mark back
     
     return questions;
   };
