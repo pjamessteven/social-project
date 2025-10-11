@@ -80,7 +80,6 @@ export default function UsersFilters({ availableTags }: UsersFiltersProps) {
       <div className="flex flex-wrap gap-4 items-start">
         {/* Sex Filter */}
         <div className="flex flex-col gap-2 min-w-[120px]">
-          <label className="text-sm font-medium">Sex</label>
           <Select
             value={selectedSex || "all"}
             onValueChange={updateSexFilter}
@@ -98,7 +97,6 @@ export default function UsersFilters({ availableTags }: UsersFiltersProps) {
 
         {/* Tag Filter */}
         <div className="flex flex-col gap-2 min-w-[200px] flex-1">
-          <label className="text-sm font-medium">Tags</label>
           <Select onValueChange={toggleTag}>
             <SelectTrigger>
               <SelectValue placeholder="Select tags to filter by" />
