@@ -75,13 +75,19 @@ export const SankeyTagMappings = {
     "asexual": "asexual"
   },
   medical: {
-    "took hormones": "took_hormones",
-    "got top surgery": "got_surgery", 
-    "got bottom surgery": "got_surgery",
-    "only transitioned socially": "social_only"
+    "hormones": "took_hormones",
+    "testosterone": "took_hormones",
+    "estrogen": "took_hormones",
+    "top surgery": "got_surgery",
+    "mastectomy": "got_surgery", 
+    "bottom surgery": "got_surgery",
+    "social transition": "social_only",
+    "no medical transition": "social_only"
   },
   outcome: {
-    "regrets transitioning": "regrets",
-    "doesn't regret transitioning": "no_regrets"
+    "regret": "regrets",
+    "detransition": "regrets",
+    "regret absent": "no_regrets",
+    "regret avoided": "no_regrets"
   }
 };
