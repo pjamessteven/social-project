@@ -68,20 +68,38 @@ async function generateExperienceReport(
 ): Promise<string> {
   // Limit comments to stay within token limit (leave room for prompt + response)
   const truncatedComments = truncateToTokenLimit(comments, 260000);
-  
-  const prompt = `You are analyzing comments from a user named "${username}" from a detransition support community. Based on their comments, write a detailed, compassionate experience report that captures their detransition journey.
 
-The comments are separated by " | ". Please create a comprehensive narrative that:
-1. Identifies key themes in their experience
-2. Describes their transition and detransition timeline if mentioned
-3. Notes any medical interventions discussed
-4. Captures their emotional journey and challenges
-5. Highlights any advice or insights they've shared
-6. Maintains a respectful, clinical tone
+  const prompt = `You are analyzing comments from a user named "${username}" from a detransition support community. Based on their comments, write a detailed experience report that captures their detransition journey.
 
 Comments: ${truncatedComments}
+`;
 
-Write a detailed experience report (aim for 3-5 paragraphs):`;
+  try {
+    const response = await openai.chat.completions.create({
+      model: MODEL,
+      messages: [{ role: "user", content: prompt }],
+      temperature: 0.3,
+      max_tokens: 1500,
+    });
+
+    return response.choices[0]?.message?.content || "";
+  } catch (error) {
+    console.error(`Error generating experience report for ${username}:`, error);
+    return "";
+  }
+}
+
+async function generateRedFlagsReport(
+  username: string,
+  comments: string,
+): Promise<string> {
+  // Limit comments to stay within token limit (leave room for prompt + response)
+  const truncatedComments = truncateToTokenLimit(comments, 260000);
+
+  const prompt = `You are analyzing comments from a user named "${username}" from a detransition support community. Based on their comments, are there any red flags that suggest that this person is a bot and not a real person?
+
+Comments: ${truncatedComments}
+`;
 
   try {
     const response = await openai.chat.completions.create({
@@ -101,7 +119,7 @@ Write a detailed experience report (aim for 3-5 paragraphs):`;
 async function generateExperienceSummary(
   experienceReport: string,
 ): Promise<string> {
-  const prompt = `Summarize the following detransition experience report in exactly 5 sentences or fewer. Focus on the most important aspects of their journey:
+  const prompt = `Summarize the following detransition experience report in exactly 5 sentences or fewer. Focus on who this person is (male/female detransitioner, or other), the most important aspects of their journey:
 
 ${experienceReport}
 
@@ -151,8 +169,8 @@ Respond with only "m" for male or "f" for female birth sex. If unclear, make you
 async function generateTags(
   username: string,
   comments: string,
+  redFlagsReport: string,
 ): Promise<string[]> {
-
   const predefinedTags = [
     "trauma",
     "autism",
@@ -178,13 +196,16 @@ async function generateTags(
     "body dysmorphia",
     "retransition",
     "social transition only",
+    "suspicious account"
   ];
 
   const prompt = `Based on the following comments from a detransition community user, identify which of these predetermined tags apply to their experience. Only select tags that are clearly supported by the content.
+  There is also a 'suspicious account' tag. Only use this tag if the redFlagsReport suspects that this account might not be authentic. 
 
 Available tags: ${predefinedTags.join(", ")}
 
 Comments from user "${username}": ${comments.substring(0, 3000)}...
+Red flag report of comments : ${redFlagsReport}...
 
 Return only a JSON array of applicable tags. Example: ["trauma", "top surgery", "autism"]`;
 
@@ -256,17 +277,20 @@ async function processUser(userComments: UserComments): Promise<void> {
       return;
     }
 
+    const redFlagsReport = await generateRedFlagsReport(username, all_comments);
+
+
     // Generate summary
     console.log(`Generating experience summary for ${username}...`);
     const experienceSummary = await generateExperienceSummary(experienceReport);
 
     // Determine birth sex
     console.log(`Determining birth sex for ${username}...`);
-    const birthSex = await determineBirthSex(username, all_comments);
+    const birthSex = await determineBirthSex(username, experienceReport);
 
     // Generate tags
     console.log(`Generating tags for ${username}...`);
-    const tags = await generateTags(username, all_comments);
+    const tags = await generateTags(username, experienceReport, redFlagsReport);
 
     // Insert into database
     await db.insert(detransUsers).values({
