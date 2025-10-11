@@ -126,7 +126,7 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
               margin={{
                 top: 20,
                 right: 0,
-                left: 0,
+                left: -20,
                 bottom: 10,
               }}
             >
@@ -140,7 +140,7 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
                   value: 'Number of Users', 
                   angle: -90, 
                   position: 'insideMiddle',
-                  style: { marginRight: '20px' }
+                  style: { marginRight: '200px' }
                 }}
                 tickFormatter={(value) => Math.abs(value).toString()}
               />
