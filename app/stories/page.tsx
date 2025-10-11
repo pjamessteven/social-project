@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Badge } from "../components/ui/badge";
 import UsersFilters from "../components/UsersFilters";
 import UsersPagination from "../components/UsersPagination";
+import AgeDistributionChart from "../components/charts/AgeDistributionChart";
 import { isBot } from "../lib/isBot";
 
 interface User {
@@ -125,6 +126,8 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
       </div>
 
       <UsersFilters />
+
+      <AgeDistributionChart className="mb-8" />
 
       {/* Results count */}
       <div className="mb-6 text-sm text-gray-600 dark:text-gray-400">
