@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   BarChart,
   Bar,
@@ -27,6 +28,8 @@ interface AgeDistributionChartProps {
 }
 
 export default function AgeDistributionChart({ className, searchParams }: AgeDistributionChartProps) {
+  const router = useRouter();
+  const currentSearchParams = useSearchParams();
   const [data, setData] = useState<AgeData[]>([]);
   const [loading, setLoading] = useState(true);
   const [ageRange, setAgeRange] = useState(() => {
@@ -65,15 +68,13 @@ export default function AgeDistributionChart({ className, searchParams }: AgeDis
   const handleAgeRangeChange = (newRange: number[]) => {
     setAgeRange(newRange);
     
-    // Update URL with new age range
-    const url = new URL(window.location.href);
-    url.searchParams.set('minAge', newRange[0].toString());
-    url.searchParams.set('maxAge', newRange[1].toString());
-    url.searchParams.set('page', '1'); // Reset to first page when filtering
-    window.history.pushState({}, '', url.toString());
+    // Update URL with new age range using Next.js router
+    const params = new URLSearchParams(currentSearchParams.toString());
+    params.set('minAge', newRange[0].toString());
+    params.set('maxAge', newRange[1].toString());
+    params.set('page', '1'); // Reset to first page when filtering
     
-    // Trigger a page refresh to apply the filter
-    window.location.reload();
+    router.push(`?${params.toString()}`);
   };
 
   const CustomTooltip = ({ active, payload, label }: any) => {
