@@ -82,7 +82,7 @@ async function migrateQdrantToDb() {
       // Insert batch when it reaches batchSize
       if (batch.length >= batchSize) {
         try {
-          await db.insert(detransComments).values(batch);
+          const result = await db.insert(detransComments).values(batch).onConflictDoNothing({ target: detransComments.link });
           totalInserted += batch.length;
           console.log(
             `Inserted batch of ${batch.length} comments. Total inserted: ${totalInserted}`,
@@ -103,7 +103,7 @@ async function migrateQdrantToDb() {
   // Insert remaining batch
   if (batch.length > 0) {
     try {
-      await db.insert(detransComments).values(batch);
+      const result = await db.insert(detransComments).values(batch).onConflictDoNothing({ target: detransComments.link });
       totalInserted += batch.length;
       console.log(`Inserted final batch of ${batch.length} comments`);
     } catch (error) {
