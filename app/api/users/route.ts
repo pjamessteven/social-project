@@ -29,8 +29,16 @@ export async function GET(request: NextRequest) {
     }
     
     if (tag) {
-      // Search for tag in JSON array
-      conditions.push(sql`${detransUsers.tags}::text LIKE ${`%"${tag}"%`}`);
+      // Handle multiple tags separated by commas
+      const tags = tag.split(',').map(t => t.trim()).filter(Boolean);
+      if (tags.length > 0) {
+        // Create OR conditions for each tag
+        const tagConditions = tags.map(t => 
+          sql`${detransUsers.tags}::text LIKE ${`%"${t}"%`}`
+        );
+        // Combine with OR logic
+        conditions.push(sql`(${sql.join(tagConditions, sql` OR `)})`);
+      }
     }
 
     const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
