@@ -54,16 +54,28 @@ async function getUser(username: string): Promise<User | null> {
 
 async function getUserComments(username: string): Promise<Comment[]> {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/users/${encodeURIComponent(username)}/comments?limit=10`,
-      { cache: "no-store" },
-    );
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    const url = `${baseUrl}/api/users/${encodeURIComponent(username)}/comments?limit=10`;
+    
+    console.log("Fetching comments from:", url);
+    
+    const response = await fetch(url, { 
+      cache: "no-store",
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+
+    console.log("Response status:", response.status);
 
     if (response.ok) {
       const data = await response.json();
-      return data.comments;
+      console.log("Comments data:", data);
+      return data.comments || [];
+    } else {
+      console.error("Failed to fetch comments:", response.status, response.statusText);
+      return [];
     }
-    return [];
   } catch (error) {
     console.error("Error fetching comments:", error);
     return [];
