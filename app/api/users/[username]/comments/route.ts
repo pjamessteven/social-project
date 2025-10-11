@@ -27,6 +27,7 @@ export async function GET(
         link: detransComments.link,
         subreddit: detransComments.subreddit,
         questions: detransComments.questions,
+        summary: detransComments.summary,
       })
       .from(detransComments)
       .where(eq(detransComments.username, decodeURIComponent(username)))
