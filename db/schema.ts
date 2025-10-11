@@ -71,7 +71,7 @@ export const detransComments = pgTable('detrans_comments', {
   keywords: text('keywords'),
   username: varchar('username', { length: 255 }),
   userFlair: varchar('user_flair', { length: 255 }),
-  link: text('link'),
+  link: text('link').unique(),
   score: integer('score'),
   created: timestamp('created').notNull(), // Converted from UTC timestamp
   id: varchar('id', { length: 50 }).notNull(),
