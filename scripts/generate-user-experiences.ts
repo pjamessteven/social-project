@@ -1,9 +1,10 @@
-import { drizzle } from 'drizzle-orm/postgres-js';
-import postgres from 'postgres';
-import { detransComments, detransUsers } from '../db/schema';
-import { sql, eq } from 'drizzle-orm';
-import OpenAI from 'openai';
-import * as dotenv from 'dotenv';
+import * as dotenv from "dotenv";
+import { eq, sql } from "drizzle-orm";
+import { drizzle } from "drizzle-orm/postgres-js";
+import { OpenAI } from "openai";
+
+import postgres from "postgres";
+import { detransUsers } from "../db/schema";
 
 dotenv.config();
 
@@ -14,8 +15,9 @@ const db = drizzle(client);
 
 // OpenAI client configured for DeepSeek
 const openai = new OpenAI({
-  apiKey: process.env.DEEPSEEK_API_KEY!,
-  baseURL: 'https://api.deepseek.com/v1',
+  apiKey: process.env.OPENROUTER_KEY,
+  baseURL: "https://openrouter.ai/api/v1",
+  model: "deepseek/deepseek-chat-v3.1",
 });
 
 interface UserComments {
@@ -26,8 +28,8 @@ interface UserComments {
 }
 
 async function getUserComments(): Promise<UserComments[]> {
-  console.log('Fetching user comments from database...');
-  
+  console.log("Fetching user comments from database...");
+
   const result = await db.execute(sql`
     SELECT 
       username,
@@ -40,7 +42,7 @@ async function getUserComments(): Promise<UserComments[]> {
     ORDER BY comment_count DESC
   `);
 
-  return result.rows.map(row => ({
+  return result.rows.map((row) => ({
     username: row.username as string,
     comment_count: Number(row.comment_count),
     all_comments: row.all_comments as string,
@@ -48,7 +50,10 @@ async function getUserComments(): Promise<UserComments[]> {
   }));
 }
 
-async function generateExperienceReport(username: string, comments: string): Promise<string> {
+async function generateExperienceReport(
+  username: string,
+  comments: string,
+): Promise<string> {
   const prompt = `You are analyzing comments from a user named "${username}" from a detransition support community. Based on their comments, write a detailed, compassionate experience report that captures their detransition journey.
 
 The comments are separated by " | ". Please create a comprehensive narrative that:
@@ -65,20 +70,22 @@ Write a detailed experience report (aim for 3-5 paragraphs):`;
 
   try {
     const response = await openai.chat.completions.create({
-      model: 'deepseek-chat',
-      messages: [{ role: 'user', content: prompt }],
+      model: "deepseek-chat",
+      messages: [{ role: "user", content: prompt }],
       temperature: 0.3,
       max_tokens: 1500,
     });
 
-    return response.choices[0]?.message?.content || '';
+    return response.choices[0]?.message?.content || "";
   } catch (error) {
     console.error(`Error generating experience report for ${username}:`, error);
-    return '';
+    return "";
   }
 }
 
-async function generateExperienceSummary(experienceReport: string): Promise<string> {
+async function generateExperienceSummary(
+  experienceReport: string,
+): Promise<string> {
   const prompt = `Summarize the following detransition experience report in exactly 5 sentences or fewer. Focus on the most important aspects of their journey:
 
 ${experienceReport}
@@ -87,20 +94,23 @@ Summary (5 sentences max):`;
 
   try {
     const response = await openai.chat.completions.create({
-      model: 'deepseek-chat',
-      messages: [{ role: 'user', content: prompt }],
+      model: "deepseek-chat",
+      messages: [{ role: "user", content: prompt }],
       temperature: 0.2,
       max_tokens: 300,
     });
 
-    return response.choices[0]?.message?.content || '';
+    return response.choices[0]?.message?.content || "";
   } catch (error) {
-    console.error('Error generating experience summary:', error);
-    return '';
+    console.error("Error generating experience summary:", error);
+    return "";
   }
 }
 
-async function determineBirthSex(username: string, comments: string): Promise<'m' | 'f'> {
+async function determineBirthSex(
+  username: string,
+  comments: string,
+): Promise<"m" | "f"> {
   const prompt = `Based on the following comments from a detransition community user, determine their birth sex (biological sex assigned at birth). Look for explicit mentions of their birth sex, transition direction (FTM/MTF), or other clear indicators.
 
 Comments from user "${username}": ${comments.substring(0, 2000)}...
@@ -109,51 +119,54 @@ Respond with only "m" for male or "f" for female birth sex. If unclear, make you
 
   try {
     const response = await openai.chat.completions.create({
-      model: 'deepseek-chat',
-      messages: [{ role: 'user', content: prompt }],
+      model: "deepseek-chat",
+      messages: [{ role: "user", content: prompt }],
       temperature: 0.1,
       max_tokens: 10,
     });
 
     const result = response.choices[0]?.message?.content?.trim().toLowerCase();
-    return result === 'm' || result === 'male' ? 'm' : 'f';
+    return result === "m" || result === "male" ? "m" : "f";
   } catch (error) {
     console.error(`Error determining birth sex for ${username}:`, error);
-    return 'f'; // Default fallback
+    return "f"; // Default fallback
   }
 }
 
-async function generateTags(username: string, comments: string): Promise<string[]> {
+async function generateTags(
+  username: string,
+  comments: string,
+): Promise<string[]> {
+
   const predefinedTags = [
-    'trauma',
-    'autism',
-    'adhd',
-    'ocd',
-    'top surgery',
-    'bottom surgery',
-    'homophobia',
-    'agp',
-    'non-binary',
-    'escapism',
-    'depression',
-    'anxiety',
-    'eating disorder',
-    'family rejection',
-    'peer pressure',
-    'social media influence',
-    'medical regret',
-    'hormone therapy',
-    'voice changes',
-    'fertility concerns',
-    'detransition support',
-    'religious conflict',
-    'identity confusion',
-    'body dysmorphia'
+    "trauma",
+    "autism",
+    "ocd",
+    "puberty discomfort",
+    "top surgery",
+    "bottom surgery",
+    "internalised homophobia",
+    "agp",
+    "non-binary",
+    "escapism",
+    "depression",
+    "anxiety",
+    "eating disorder",
+    "family rejection",
+    "peer pressure",
+    "social media influence",
+    "medical regret",
+    "hormone therapy",
+    "voice changes",
+    "infertility",
+    "religious conflict",
+    "body dysmorphia",
+    "desire for belonging",
   ];
 
   const prompt = `Based on the following comments from a detransition community user, identify which of these predetermined tags apply to their experience. Only select tags that are clearly supported by the content.
 
-Available tags: ${predefinedTags.join(', ')}
+Available tags: ${predefinedTags.join(", ")}
 
 Comments from user "${username}": ${comments.substring(0, 3000)}...
 
@@ -161,11 +174,11 @@ Return only a JSON array of applicable tags. Example: ["trauma", "top surgery", 
 
   try {
     const response = await openai.chat.completions.create({
-      model: 'deepseek-chat',
-      messages: [{ role: 'user', content: prompt }],
+      model: "deepseek-chat",
+      messages: [{ role: "user", content: prompt }],
       temperature: 0.1,
       max_tokens: 200,
-      response_format: { type: 'json_object' }
+      response_format: { type: "json_object" },
     });
 
     const result = response.choices[0]?.message?.content;
@@ -173,22 +186,21 @@ Return only a JSON array of applicable tags. Example: ["trauma", "top surgery", 
 
     // Parse the JSON response
     const parsed = JSON.parse(result);
-    
+
     // Handle different possible response formats
     let tags: string[] = [];
     if (Array.isArray(parsed)) {
       tags = parsed;
     } else if (parsed.tags && Array.isArray(parsed.tags)) {
       tags = parsed.tags;
-    } else if (typeof parsed === 'object') {
+    } else if (typeof parsed === "object") {
       // Try to find an array property
-      const arrayProp = Object.values(parsed).find(val => Array.isArray(val));
+      const arrayProp = Object.values(parsed).find((val) => Array.isArray(val));
       if (arrayProp) tags = arrayProp as string[];
     }
 
     // Filter to only include predefined tags
-    return tags.filter(tag => predefinedTags.includes(tag.toLowerCase()));
-    
+    return tags.filter((tag) => predefinedTags.includes(tag.toLowerCase()));
   } catch (error) {
     console.error(`Error generating tags for ${username}:`, error);
     return [];
@@ -197,11 +209,17 @@ Return only a JSON array of applicable tags. Example: ["trauma", "top surgery", 
 
 async function processUser(userComments: UserComments): Promise<void> {
   const { username, all_comments, earliest_comment_date } = userComments;
-  
-  console.log(`Processing user: ${username} (${userComments.comment_count} comments)`);
+
+  console.log(
+    `Processing user: ${username} (${userComments.comment_count} comments)`,
+  );
 
   // Check if user already exists
-  const existingUser = await db.select().from(detransUsers).where(eq(detransUsers.username, username)).limit(1);
+  const existingUser = await db
+    .select()
+    .from(detransUsers)
+    .where(eq(detransUsers.username, username))
+    .limit(1);
   if (existingUser.length > 0) {
     console.log(`User ${username} already exists, skipping...`);
     return;
@@ -210,10 +228,15 @@ async function processUser(userComments: UserComments): Promise<void> {
   try {
     // Generate experience report
     console.log(`Generating experience report for ${username}...`);
-    const experienceReport = await generateExperienceReport(username, all_comments);
-    
+    const experienceReport = await generateExperienceReport(
+      username,
+      all_comments,
+    );
+
     if (!experienceReport) {
-      console.log(`Failed to generate experience report for ${username}, skipping...`);
+      console.log(
+        `Failed to generate experience report for ${username}, skipping...`,
+      );
       return;
     }
 
@@ -240,10 +263,9 @@ async function processUser(userComments: UserComments): Promise<void> {
     });
 
     console.log(`Successfully processed user: ${username}`);
-    
+
     // Add delay to respect rate limits
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
+    await new Promise((resolve) => setTimeout(resolve, 1000));
   } catch (error) {
     console.error(`Error processing user ${username}:`, error);
   }
@@ -251,8 +273,8 @@ async function processUser(userComments: UserComments): Promise<void> {
 
 async function main() {
   try {
-    console.log('Starting user experience generation...');
-    
+    console.log("Starting user experience generation...");
+
     const userComments = await getUserComments();
     console.log(`Found ${userComments.length} users to process`);
 
@@ -260,21 +282,22 @@ async function main() {
     const batchSize = 5;
     for (let i = 0; i < userComments.length; i += batchSize) {
       const batch = userComments.slice(i, i + batchSize);
-      console.log(`Processing batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(userComments.length / batchSize)}`);
-      
+      console.log(
+        `Processing batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(userComments.length / batchSize)}`,
+      );
+
       await Promise.all(batch.map(processUser));
-      
+
       // Longer delay between batches
       if (i + batchSize < userComments.length) {
-        console.log('Waiting before next batch...');
-        await new Promise(resolve => setTimeout(resolve, 5000));
+        console.log("Waiting before next batch...");
+        await new Promise((resolve) => setTimeout(resolve, 5000));
       }
     }
 
-    console.log('User experience generation completed!');
-    
+    console.log("User experience generation completed!");
   } catch (error) {
-    console.error('Error in main process:', error);
+    console.error("Error in main process:", error);
   } finally {
     await client.end();
   }
