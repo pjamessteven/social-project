@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Accordion,
   AccordionContent,
@@ -9,11 +7,9 @@ import {
 import { ArrowLeft } from "lucide-react";
 import { marked } from "marked";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { notFound } from "next/navigation";
 import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
-import { Skeleton } from "../../components/ui/skeleton";
 
 interface User {
   username: string;
@@ -34,63 +30,57 @@ interface Comment {
   subreddit: string;
 }
 
-export default function UserPage() {
-  const params = useParams();
-  const username = params.username as string;
-  const [user, setUser] = useState<User | null>(null);
-  const [comments, setComments] = useState<Comment[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [commentsLoading, setCommentsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+async function getUser(username: string): Promise<User | null> {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/users/${encodeURIComponent(username)}`,
+      { cache: 'no-store' }
+    );
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await fetch(
-          `/api/users/${encodeURIComponent(username)}`,
-        );
-
-        if (!response.ok) {
-          if (response.status === 404) {
-            setError("User not found");
-          } else {
-            setError("Failed to load user");
-          }
-          return;
-        }
-
-        const data = await response.json();
-        setUser(data.user);
-      } catch (error) {
-        console.error("Error fetching user:", error);
-        setError("Failed to load user");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    const fetchComments = async () => {
-      try {
-        const response = await fetch(
-          `/api/users/${encodeURIComponent(username)}/comments?limit=10`,
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          setComments(data.comments);
-        }
-      } catch (error) {
-        console.error("Error fetching comments:", error);
-      } finally {
-        setCommentsLoading(false);
-      }
-    };
-
-    if (username) {
-      fetchUser();
-      fetchComments();
+    if (!response.ok) {
+      return null;
     }
-  }, [username]);
+
+    const data = await response.json();
+    return data.user;
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    return null;
+  }
+}
+
+async function getUserComments(username: string): Promise<Comment[]> {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/users/${encodeURIComponent(username)}/comments?limit=10`,
+      { cache: 'no-store' }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      return data.comments;
+    }
+    return [];
+  } catch (error) {
+    console.error("Error fetching comments:", error);
+    return [];
+  }
+}
+
+export default async function UserPage({
+  params,
+}: {
+  params: Promise<{ username: string }>;
+}) {
+  const { username } = await params;
+  const [user, comments] = await Promise.all([
+    getUser(username),
+    getUserComments(username),
+  ]);
+
+  if (!user) {
+    notFound();
+  }
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -107,57 +97,6 @@ export default function UserPage() {
       day: "numeric",
     });
   };
-
-  if (loading) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <Skeleton className="mb-6 h-8 w-32" />
-        <div className="space-y-6">
-          <div>
-            <Skeleton className="mb-4 h-8 w-48" />
-            <div className="mb-4 flex gap-4">
-              <Skeleton className="h-6 w-20" />
-              <Skeleton className="h-6 w-32" />
-            </div>
-            <div className="mb-6 flex gap-2">
-              <Skeleton className="h-6 w-16" />
-              <Skeleton className="h-6 w-20" />
-              <Skeleton className="h-6 w-24" />
-            </div>
-          </div>
-          <div>
-            <Skeleton className="mb-4 h-6 w-32" />
-            <Skeleton className="h-32 w-full" />
-          </div>
-          <div>
-            <Skeleton className="mb-4 h-6 w-40" />
-            <Skeleton className="h-64 w-full" />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (error || !user) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <Link href="/users">
-          <Button variant="ghost" className="mb-6">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Users
-          </Button>
-        </Link>
-        <div className="py-12 text-center">
-          <h1 className="mb-4 text-2xl font-bold">
-            {error || "User not found"}
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400">
-            The user you're looking for doesn't exist or couldn't be loaded.
-          </p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -251,16 +190,7 @@ export default function UserPage() {
         {/* Top Comments */}
         <div>
           <h3 className="mb-4 font-semibold">Top Comments</h3>
-          {commentsLoading ? (
-            <div className="space-y-4">
-              {Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="rounded-lg border p-4">
-                  <Skeleton className="mb-2 h-4 w-32" />
-                  <Skeleton className="h-16 w-full" />
-                </div>
-              ))}
-            </div>
-          ) : comments.length === 0 ? (
+          {comments.length === 0 ? (
             <p className="text-gray-500 dark:text-gray-400">
               No comments found.
             </p>
@@ -275,10 +205,10 @@ export default function UserPage() {
                     <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                       <Badge variant="outline">{comment.score} points</Badge>
                       <span>r/detrans</span>
-                      <span>{formatCommentDate(comment.created)}</span>
+                      <span>{formatCommentDate(comment.created_utc)}</span>
                     </div>
                     <Link
-                      href={`https://reddit.com${comment.link}`}
+                      href={`https://reddit.com${comment.permalink}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
@@ -289,7 +219,7 @@ export default function UserPage() {
                   <div
                     className="prose dark:prose-invert max-w-none text-sm"
                     dangerouslySetInnerHTML={{
-                      __html: marked.parse(comment.text),
+                      __html: marked.parse(comment.body),
                     }}
                   />
                 </div>
