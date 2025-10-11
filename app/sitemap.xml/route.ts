@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
       priority: 0.6,
     },
     {
-      url: `${baseUrl}/stories`,
+      url: `${baseUrl}/videos`,
       lastModified: new Date().toISOString(),
       changeFrequency: "weekly",
       priority: 0.8,
