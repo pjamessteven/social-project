@@ -17,7 +17,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "./popover";
-import { cn } from "./lib/utils";
+import { cn } from "../../lib/utils";
 
 
 interface MultiSelectProps {
