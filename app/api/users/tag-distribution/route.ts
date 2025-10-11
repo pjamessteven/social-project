@@ -141,9 +141,16 @@ function processSankeyData(users: any[]) {
 
   // Process each user through the flow
   const flowCounts = new Map<string, number>();
+  
+  console.log(`Processing ${users.length} users for Sankey data`);
 
   users.forEach(user => {
     const userCategories = categorizeUser(user);
+    
+    // Debug logging for first few users
+    if (users.indexOf(user) < 3) {
+      console.log(`User ${user.username}: ${userCategories.join(' → ')}`);
+    }
     
     // Create links between consecutive stages
     for (let i = 0; i < userCategories.length - 1; i++) {
@@ -155,12 +162,19 @@ function processSankeyData(users: any[]) {
     }
   });
 
-  // Convert flow counts to links
+  // Convert flow counts to links and log age-medical connections
   flowCounts.forEach((value, key) => {
     const [source, target] = key.split('->');
     links.push({ source, target, value });
+    
+    // Log age-medical connections specifically
+    if (source.startsWith('transition_age_') && target.startsWith('medical_')) {
+      console.log(`Age-Medical link: ${source} → ${target} (${value} users)`);
+    }
   });
 
+  console.log(`Created ${links.length} total links`);
+  
   return { nodes, links };
 }
 
@@ -213,6 +227,11 @@ function categorizeUser(user: any): string[] {
   }
   
   flow.push(`outcome_${outcome}`);
+
+  // Debug logging for medical categorization
+  if (Math.random() < 0.01) { // Log 1% of users for debugging
+    console.log(`User ${user.username}: age=${user.transition_age} (${ageCategory}), tags=[${tags.join(', ')}], medical=${medicalCategory}`);
+  }
 
   return flow;
 }
