@@ -9,6 +9,7 @@ interface User {
   sex: "m" | "f";
   experienceSummary: string | null;
   tags: string[];
+  commentCount: number;
 }
 
 interface UsersResponse {
@@ -138,7 +139,7 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
                 <h3 className="text-lg font-semibold">/u/{user.username}</h3>
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-gray-500">
-    Posting since {formatDate(user.activeSince)}
+                    {user.commentCount} comments • Posting since {formatDate(user.activeSince)}
                   </span>
                 </div>
               </div>
