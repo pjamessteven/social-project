@@ -156,7 +156,7 @@ export default function TransitionPathwaysChart({
                 nodeWidth={15}
                 linkCurvature={0.5}
                 iterations={32}
-                margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+                margin={{ top: 20, right: 80, bottom: 20, left: 80 }}
                 node={{ 
                   fill: '#3b82f6',
                   stroke: '#1e40af',
@@ -165,6 +165,12 @@ export default function TransitionPathwaysChart({
                 link={{ 
                   stroke: '#94a3b8',
                   strokeOpacity: 0.6
+                }}
+                label={{
+                  position: 'outside',
+                  offset: 10,
+                  fontSize: 12,
+                  fill: '#374151'
                 }}
               >
                 <Tooltip 
