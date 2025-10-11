@@ -50,14 +50,14 @@ export function MultiSelect({
   };
 
   return (
-    <div className={cn("flex flex-col gap-2", className)}>
+    <div className="flex flex-col gap-2">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="justify-between min-h-10 h-auto"
+            className={cn("justify-between min-h-10 h-auto", className)}
           >
             <div className="flex flex-wrap gap-1 flex-1">
               {selected.length === 0 ? (
