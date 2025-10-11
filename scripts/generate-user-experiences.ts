@@ -5,6 +5,7 @@ import { OpenAI } from "openai";
 
 import postgres from "postgres";
 import { detransUsers, detransTags, detransUserTags } from "../db/schema";
+import { availableTags } from "@/app/lib/availableTags";
 
 dotenv.config();
 
@@ -75,8 +76,8 @@ async function generateExperienceReport(
   const prompt = `You are a user in an online detransition support community and you are summarising your experiences to be shared in an online archive. 
   Write a detailed plain-word first-person summary from your own comments about your whole transition journey from start to finish. 
   
-  For example, if this information is available, what you were like before you transitioned, did you have underlying issues, what made you transition, what was it like, were you happy, what made you begin detransitioning, what is your sexual orientation and has it changed, what do you think of gender now, are you better now, etc. 
-  
+  Try and tell us the following, if this information is available in your previous comments, what you were like before you transitioned, did you have underlying issues, what made you transition, what was it like, were you happy, what made you begin detransitioning, what is your sexual orientation and has it changed, what do you think of gender now, are you better now, do you regret transitioning? do you not regret transitioning? etc. 
+  If any of the topics delcare in Topics of Significance relate to your experience, make sure to write about them. 
   Use a table to show your timeline of transition/detransition at the end of your response. 
 
   **Use only your past experiences from your previous comments** 
@@ -91,7 +92,10 @@ async function generateExperienceReport(
   Don't use the terms AFAB or AMAB. Just say male or female. Or born male/born female, if you have to.
   Use plain and simple language that clearly reflects the your real experiences.
 
+  Topics of significance: ${availableTags}
+
   Your previous Comments: ${truncatedComments}
+
 `;
 
   try {
@@ -217,6 +221,8 @@ Look for explicit mentions of ages and years, such as:
 - "I transitioned in 2018"
 - "I started detransitioning in 2022"
 - "Back in 2015, I began my transition"
+
+If detransition and transition year are not clearly stated, attempt to work them out from the rest of the data and dates in the information.
 
 Experience report: ${experienceReport.substring(0, 4000)}...
 
