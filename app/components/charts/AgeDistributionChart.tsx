@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   BarChart,
   Bar,
@@ -27,6 +28,7 @@ interface AgeDistributionChartProps {
 }
 
 export default function AgeDistributionChart({ className, minAge, maxAge }: AgeDistributionChartProps) {
+  const searchParams = useSearchParams();
   const [data, setData] = useState<AgeData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -35,20 +37,19 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
     try {
       setLoading(true);
       
-      // Get current search params to include filters
-      const currentParams = new URLSearchParams(window.location.search);
+      // Build params from current search params
       const params = new URLSearchParams();
       params.set('minAge', minAge.toString());
       params.set('maxAge', maxAge.toString());
       
       // Include sex filter if present
-      const sex = currentParams.get('sex');
+      const sex = searchParams.get('sex');
       if (sex) {
         params.set('sex', sex);
       }
       
       // Include tag filter if present
-      const tag = currentParams.get('tag');
+      const tag = searchParams.get('tag');
       if (tag) {
         params.set('tag', tag);
       }
@@ -74,7 +75,7 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
 
   useEffect(() => {
     fetchData(minAge, maxAge);
-  }, [minAge, maxAge]);
+  }, [minAge, maxAge, searchParams]);
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
