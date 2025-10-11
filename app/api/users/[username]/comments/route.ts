@@ -19,7 +19,15 @@ export async function GET(
     const offset = parseInt(searchParams.get("offset") || "0");
 
     const comments = await db
-      .select()
+      .select({
+        id: detransComments.id,
+        text: detransComments.text,
+        score: detransComments.score,
+        created: detransComments.created,
+        link: detransComments.link,
+        subreddit: detransComments.subreddit,
+        questions: detransComments.questions,
+      })
       .from(detransComments)
       .where(eq(detransComments.username, decodeURIComponent(username)))
       .orderBy(desc(detransComments.score))

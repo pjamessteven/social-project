@@ -13,6 +13,7 @@ interface Comment {
   created: string;
   link: string;
   subreddit: string;
+  questions: string | null;
 }
 
 interface UserCommentsProps {
@@ -31,6 +32,20 @@ export default function UserComments({ username, initialComments }: UserComments
       month: "short",
       day: "numeric",
     });
+  };
+
+  const parseQuestions = (questionsText: string | null): string[] => {
+    if (!questionsText) return [];
+    
+    // Remove "QUESTIONS: " prefix if it exists
+    const cleanText = questionsText.replace(/^QUESTIONS:\s*/, '');
+    
+    // Split on question marks followed by capital letters (start of next question)
+    const questions = cleanText.split(/\?(?=[A-Z])/)
+      .map(q => q.trim() + (q.trim().endsWith('?') ? '' : '?'))
+      .filter(q => q.length > 1);
+    
+    return questions;
   };
 
   const loadMoreComments = async () => {
@@ -92,6 +107,21 @@ export default function UserComments({ username, initialComments }: UserComments
                   __html: marked.parse(comment.text || ""),
                 }}
               />
+              
+              {comment.questions && (
+                <div className="mt-4 border-t pt-4">
+                  <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Related Questions:
+                  </h4>
+                  <ul className="space-y-1">
+                    {parseQuestions(comment.questions).map((question, index) => (
+                      <li key={index} className="text-sm text-gray-600 dark:text-gray-400">
+                        • {question}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           ))}
           
