@@ -143,12 +143,12 @@ function processSankeyData(users: any[]) {
   const flowCounts = new Map<string, number>();
 
   users.forEach(user => {
-    const userFlow = categorizeUser(user);
+    const userCategories = categorizeUser(user);
     
     // Create links between consecutive stages
-    for (let i = 0; i < userFlow.length - 1; i++) {
-      const source = userFlow[i];
-      const target = userFlow[i + 1];
+    for (let i = 0; i < userCategories.length - 1; i++) {
+      const source = userCategories[i];
+      const target = userCategories[i + 1];
       const linkKey = `${source}->${target}`;
       
       flowCounts.set(linkKey, (flowCounts.get(linkKey) || 0) + 1);
