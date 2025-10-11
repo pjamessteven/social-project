@@ -24,7 +24,7 @@ const MODEL = "moonshotai/kimi-k2"
 
 // Rough estimate: 1 token ≈ 4 characters for English text
 function truncateToTokenLimit(text: string, maxTokens: number): string {
-  const maxChars = maxTokens * 3;
+  const maxChars = maxTokens * 2.5;
   if (text.length <= maxChars) {
     return text;
   }
@@ -78,7 +78,7 @@ async function generateExperienceReport(
   
   For example, if this information is available, what you were like before you transitioned, did you have underlying issues, what made you transition, what was it like, were you happy, what made you begin detransitioning, what is your sexual orientation and has it changed, what do you think of gender now, are you better now, etc. 
   
-  Format your timeline of transition/detransition as a table at the end of your response. 
+  Use a table to show your timeline of transition/detransition at the end of your response. 
 
   **Use only your past experiences from your previous comments** 
   **Provide as much information as possible** 
@@ -99,7 +99,7 @@ async function generateExperienceReport(
     const response = await openai.chat.completions.create({
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
-      temperature: 0.2,
+      temperature: 0.3,
     });
 
     return response.choices[0]?.message?.content || "";
