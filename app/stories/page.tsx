@@ -2,10 +2,10 @@ import { ChevronRight } from "lucide-react";
 import { Metadata } from "next";
 import { headers } from "next/headers";
 import Link from "next/link";
+import AgeDistributionChart from "../components/charts/AgeDistributionChart";
 import { Badge } from "../components/ui/badge";
 import UsersFilters from "../components/UsersFilters";
 import UsersPagination from "../components/UsersPagination";
-import AgeDistributionChart from "../components/charts/AgeDistributionChart";
 import { isBot } from "../lib/isBot";
 
 interface User {
@@ -15,6 +15,8 @@ interface User {
   experienceSummary: string | null;
   tags: string[];
   commentCount: number;
+  transitionAge: number | null;
+  detransitionAge: number | null;
 }
 
 interface UsersResponse {
@@ -147,8 +149,8 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
               href={`/stories/${encodeURIComponent(user.username)}`}
               className="block border-t pt-6 transition-colors sm:rounded-lg sm:border sm:p-6 sm:hover:bg-gray-50 sm:dark:hover:bg-gray-800"
             >
-              <div className="flex flex-row items-center justify-between grow w-full">
-                <div className="mb-2 flex flex-col items-start justify-between sm:flex-row grow">
+              <div className="flex w-full grow flex-row items-center justify-between">
+                <div className="mb-2 flex grow flex-col items-start justify-between sm:flex-row">
                   <h3 className="text-lg font-semibold">/u/{user.username}</h3>
                   <div className="flex items-center gap-2">
                     <span className="text-sm text-gray-500">
@@ -157,7 +159,13 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
                     </span>
                   </div>
                 </div>
-                <ChevronRight className="h-6 mb-3 sm:hidden" />
+                <ChevronRight className="mb-3 h-6 sm:hidden" />
+              </div>
+              <div className="font-medium mb-2 text-sm sm:text-base text-gray-700 dark:text-gray-300">
+                {user.transitionAge && "Transitioned at " + user.transitionAge}
+                {user.detransitionAge && user.transitionAge && " -> "}
+                {user.detransitionAge &&
+                  (user.tags.includes('only transitioned socially') ? "Desisted at " : "Detransitioned at ") + user.detransitionAge}
               </div>
               {user.experienceSummary && (
                 <p className="prose-sm sm:prose-base mb-4 text-gray-700 dark:text-gray-300">

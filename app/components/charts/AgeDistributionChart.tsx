@@ -11,8 +11,9 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { Slider } from "@/components/ui/slider";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Slider } from "../ui/slider";
 
 interface AgeData {
   age: number;
