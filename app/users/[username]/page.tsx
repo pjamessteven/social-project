@@ -208,7 +208,11 @@ export default function UserPage() {
           <Accordion type="single" collapsible className="mt-8  pt-0 w-full prose-none">
             <AccordionItem
               value="disclaimer"
-              className="overflow-hidden rounded-xl border opacity-80 "
+              className={`overflow-hidden rounded-xl border opacity-80 ${
+                user.tags.includes('suspicious account') 
+                  ? 'border-destructive bg-destructive/5' 
+                  : ''
+              }`}
             >
               <AccordionTrigger className="px-3 py-0 mt-0 prose-none ">
                 Authenticity Assessment
