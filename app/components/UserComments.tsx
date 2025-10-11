@@ -26,6 +26,8 @@ export default function UserComments({
   username,
   initialComments,
 }: UserCommentsProps) {
+  console.log("UserComments received:", { username, initialComments });
+  
   const [comments, setComments] = useState<Comment[]>(initialComments);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(initialComments.length === 10); // Assume more if we got a full page
