@@ -182,6 +182,9 @@ function categorizeUser(user: any): string[] {
   const tags = user.tags || [];
   const flow: string[] = [];
 
+  // Debug logging for all users to see what tags we're getting
+  console.log(`User ${user.username}: tags=[${tags.join(', ')}]`);
+
   // Stage 1: Sex - map database values to node IDs
   let sexCategory = 'unknown';
   if (user.sex === 'm') {
@@ -202,17 +205,20 @@ function categorizeUser(user: any): string[] {
   const hasBottomSurgery = tags.includes('got bottom surgery');
   const socialOnly = tags.includes('only transitioned socially');
   
+  console.log(`User ${user.username} medical checks: hormones=${hasHormones}, topSurgery=${hasTopSurgery}, bottomSurgery=${hasBottomSurgery}, socialOnly=${socialOnly}`);
+  
   let medicalCategory = 'unknown'; // Default to unknown
   
   // Priority order: surgery > hormones > social only
   if (hasTopSurgery || hasBottomSurgery) {
-    medicalCategory = 'got_surgery'; // Surgery implies hormones too
+    medicalCategory = 'got_surgery';
   } else if (hasHormones) {
     medicalCategory = 'took_hormones';
   } else if (socialOnly) {
     medicalCategory = 'social_only';
   }
   
+  console.log(`User ${user.username} final medical category: ${medicalCategory}`);
   flow.push(`medical_${medicalCategory}`);
 
   // Stage 4: Outcome
@@ -227,11 +233,6 @@ function categorizeUser(user: any): string[] {
   }
   
   flow.push(`outcome_${outcome}`);
-
-  // Debug logging for medical categorization
-  if (Math.random() < 0.01) { // Log 1% of users for debugging
-    console.log(`User ${user.username}: age=${user.transition_age} (${ageCategory}), tags=[${tags.join(', ')}], medical=${medicalCategory}`);
-  }
 
   return flow;
 }
