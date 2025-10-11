@@ -5,6 +5,37 @@ import {
 import { slugify } from "@/app/lib/utils";
 import { NextRequest } from "next/server";
 
+const availableTags = [
+  "trauma",
+  "autism",
+  "ocd",
+  "puberty discomfort",
+  "top surgery",
+  "bottom surgery",
+  "internalised homophobia",
+  "autogynephilia (AGP)",
+  "started as non-binary",
+  "escapism",
+  "depression",
+  "low self-esteem",
+  "anxiety",
+  "eating disorder",
+  "influenced online",
+  "influenced by friends",
+  "trans kid",
+  "hormone therapy",
+  "puberty blockers",
+  "health complications",
+  "infertility",
+  "body dysmorphia",
+  "retransition",
+  "social transition only",
+  "homosexual",
+  "heterosexual",
+  "bisexual",
+  "suspicious account",
+];
+
 export async function GET(request: NextRequest) {
   const host = request.headers.get("host") || "detrans.ai";
   const protocol = request.headers.get("x-forwarded-proto") || "https";
@@ -80,6 +111,36 @@ export async function GET(request: NextRequest) {
       changeFrequency: "weekly",
       priority: 0.6,
     },
+    {
+      url: `${baseUrl}/stories`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+  ];
+
+  // Generate tag routes for stories
+  const tagRoutes = availableTags.map((tag) => ({
+    url: `${baseUrl}/stories?tag=${encodeURIComponent(tag)}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: "weekly",
+    priority: 0.7,
+  }));
+
+  // Generate sex filter routes for stories
+  const sexRoutes = [
+    {
+      url: `${baseUrl}/stories?sex=f`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/stories?sex=m`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
   ];
 
   // Generate chat routes for all questions
@@ -143,6 +204,8 @@ export async function GET(request: NextRequest) {
   const allRoutes = [
     ...baseRoutes,
     ...chatRoutes,
+    ...tagRoutes,
+    ...sexRoutes,
     ...affirmRoutes,
     ...(includeAffirm ? affirmChatRoutes : []),
   ];
