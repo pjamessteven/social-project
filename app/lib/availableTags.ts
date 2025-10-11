@@ -47,25 +47,19 @@ export const SankeyFlow = [
     categories: ["Male", "Female"],
     label: "Biological Sex"
   },
-  // Stage 2: Sexual Orientation  
-  {
-    stage: "sexuality",
-    categories: ["homosexual", "heterosexual", "bisexual", "asexual"],
-    label: "Sexual Orientation"
-  },
-  // Stage 3: Transition Age
+  // Stage 2: Transition Age
   {
     stage: "transition_age",
     categories: ["before_18", "after_18"],
     label: "Transition Age"
   },
-  // Stage 4: Medical Interventions
+  // Stage 3: Medical Interventions
   {
     stage: "medical",
     categories: ["took_hormones", "got_surgery", "social_only"],
     label: "Medical Interventions"
   },
-  // Stage 5: Outcome
+  // Stage 4: Outcome
   {
     stage: "outcome", 
     categories: ["regrets", "no_regrets"],
