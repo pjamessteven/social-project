@@ -199,6 +199,46 @@ Respond with only "m" for male or "f" for female birth sex. If unclear, make you
   }
 }
 
+async function extractAges(
+  username: string,
+  experienceReport: string,
+): Promise<{ transitionAge: number | null; detransitionAge: number | null }> {
+  const prompt = `Based on the following experience report from a detransition community user, extract their age when they started transitioning and their age when they started detransitioning.
+
+Look for explicit mentions of ages, such as:
+- "I started transitioning at 16"
+- "When I was 14, I began..."
+- "At age 20, I decided to detransition"
+- "I'm now 25 and have been detransitioning for 2 years" (calculate: 25-2=23 for detransition age)
+
+Experience report: ${experienceReport.substring(0, 4000)}...
+
+Return a JSON object with "transitionAge" and "detransitionAge" as numbers, or null if not mentioned or unclear.
+Example: {"transitionAge": 16, "detransitionAge": 23}
+If ages are not clearly stated, return null for those fields.`;
+
+  try {
+    const response = await openai.chat.completions.create({
+      model: MODEL,
+      messages: [{ role: "user", content: prompt }],
+      response_format: { type: "json_object" },
+      temperature: 0.1,
+    });
+
+    const result = response.choices[0]?.message?.content;
+    if (!result) return { transitionAge: null, detransitionAge: null };
+
+    const parsed = JSON.parse(result);
+    return {
+      transitionAge: typeof parsed.transitionAge === 'number' ? parsed.transitionAge : null,
+      detransitionAge: typeof parsed.detransitionAge === 'number' ? parsed.detransitionAge : null,
+    };
+  } catch (error) {
+    console.error(`Error extracting ages for ${username}:`, error);
+    return { transitionAge: null, detransitionAge: null };
+  }
+}
+
 async function generateTags(
   username: string,
   comments: string,
@@ -354,6 +394,10 @@ async function processUser(userComments: UserComments): Promise<void> {
       console.log(`Determining birth sex for ${username}...`);
       const birthSex = await determineBirthSex(username, experienceReport);
 
+      // Extract ages
+      console.log(`Extracting transition/detransition ages for ${username}...`);
+      const { transitionAge, detransitionAge } = await extractAges(username, experienceReport);
+
       // Insert into database
       await db.insert(detransUsers).values({
         username,
@@ -362,6 +406,8 @@ async function processUser(userComments: UserComments): Promise<void> {
         experienceSummary: experienceSummary || null,
         experience: experienceReport,
         redFlagsReport: redFlagsReport || null,
+        transitionAge,
+        detransitionAge,
       });
     }
 
