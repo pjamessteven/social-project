@@ -10,11 +10,13 @@ import {
   Heart,
   HelpCircle,
   Home,
+  List,
   Mail,
   Menu,
   MessageCircleHeart,
   Scroll,
   Settings,
+  Users,
   X,
   Youtube,
 } from "lucide-react";
@@ -85,7 +87,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
       <div className="flex items-center gap-2">
         {/* Desktop Navigation - hidden on mobile */}
         <div className="hidden items-center justify-end gap-0.5 p-1 md:flex">
-          <NavLink href={!devAffirm ? "/" : "/affirm"} label="Portal" />
+          <NavLink href={!devAffirm ? "/" : "/affirm"} label="Chat" />
           <NavLink href={"/compare"} label="Compare" />
 
           <NavigationMenu className="ml-2">
@@ -106,7 +108,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           <Heart className="mr-2 h-6 w-6" />
                           <div className="flex flex-col space-y-1">
                             <div className="text-sm leading-none font-medium">
-                              Get Support
+                              Gender Support
                             </div>
                             <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                               Find community and therapists
@@ -136,15 +138,32 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                         >
                           <div>
+                            <Users className="mr-2 h-6 w-6" />
+                          </div>
+                          <div className="flex flex-col space-y-1">
+                            <div className="text-sm leading-none font-medium">
+                              Detransition Stories
+                            </div>
+                            <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                              From /r/detrans users
+                            </p>
+                          </div>
+                        </Link>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href={"/videos"}
+                          className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        >
+                          <div>
                             <Youtube className="mr-2 h-6 w-6" />
                           </div>
                           <div className="flex flex-col space-y-1">
                             <div className="text-sm leading-none font-medium">
-                              Personal Stories
+                              Detransition Videos
                             </div>
                             <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                              Videos from those who have been through it
-                              themselves
+                              Personal memoirs
                             </p>
                           </div>
                         </Link>
@@ -315,7 +334,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <Home className="h-4 w-4" />
 
                     <div className="ml-4 flex flex-col items-start">
-                      <div className="text-sm font-medium">Portal</div>
+                      <div className="text-sm font-medium">Chat Portal</div>
                       <div className="text-muted-foreground text-xs">
                         {mode === "detrans"
                           ? "Detrans AI Chat & Starter Questions"
@@ -346,8 +365,8 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                 {/* Resources Section */}
                 {mode === "detrans" && (
                   <div className="pt-2">
-                    <div className="border-border rounded-lg border p-3">
-                      <h3 className="text-muted-foreground mb-2 text-sm font-medium">
+                    <div className="border-border  border-t py-3">
+                      <h3 className="text-muted-foreground py-2 ml-1 text-sm font-medium">
                         Resources
                       </h3>
                       <div className="space-y-1">
@@ -365,7 +384,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                             <Heart className="h-4 w-4" />
                             <div className="ml-4 flex flex-col items-start">
                               <div className="text-sm font-medium">
-                                Get Support
+                                Gender Support
                               </div>
                               <div className="text-muted-foreground text-xs">
                                 Find community and therapists
@@ -373,10 +392,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                             </div>
                           </Button>
                         </Link>
-                        <Link
-                          href={"/stories"}
-                          onClick={() => setIsOpen(false)}
-                        >
+                        <Link href={"/stories"} onClick={() => setIsOpen(false)}>
                           <Button
                             variant="ghost"
                             className={cn(
@@ -384,13 +400,35 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                               pathname === "/stories" && "bg-muted",
                             )}
                           >
+                            <Users className="h-4 w-4" />
+                            <div className="ml-4 flex flex-col items-start">
+                              <div className="text-sm font-medium">
+                                Detransition Stories
+                              </div>
+                              <div className="text-muted-foreground text-xs">
+                                From /r/detrans users
+                              </div>
+                            </div>
+                          </Button>
+                        </Link>
+                        <Link
+                          href={"/videos"}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <Button
+                            variant="ghost"
+                            className={cn(
+                              "h-auto w-full flex-row items-center justify-start py-3",
+                              pathname === "/videos" && "bg-muted",
+                            )}
+                          >
                             <Youtube className="h-4 w-4" />
                             <div className="ml-4 flex flex-col items-start">
                               <div className="text-sm font-medium">
-                                Personal Stories
+                                Detransition Videos
                               </div>
                               <div className="text-muted-foreground text-xs">
-                                Videos by people who have been through it
+                                Personal memoirs
                               </div>
                             </div>
                           </Button>
@@ -467,9 +505,9 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                 )}
 
                 {/* About Section */}
-                <div className="pt-2">
-                  <div className="border-border rounded-lg border p-3">
-                    <h3 className="text-muted-foreground mb-2 text-sm font-medium">
+                  <div className="pt-2">
+                    <div className="border-border  border-t py-3">
+                      <h3 className="text-muted-foreground py-2 ml-1 text-sm font-medium">
                       About
                     </h3>
                     <div className="space-y-1">

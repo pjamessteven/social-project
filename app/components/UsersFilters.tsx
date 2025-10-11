@@ -65,7 +65,6 @@ export default function UsersFilters({ availableTags }: UsersFiltersProps) {
       <div className="flex flex-wrap gap-4 items-start">
         {/* Sex Filter */}
         <div className="flex flex-col gap-2 min-w-[120px]">
-          <label className="text-sm font-medium">Sex</label>
           <Select
             value={selectedSex || "all"}
             onValueChange={updateSexFilter}
@@ -83,7 +82,6 @@ export default function UsersFilters({ availableTags }: UsersFiltersProps) {
 
         {/* Tag Filter */}
         <div className="flex flex-col gap-2 min-w-[300px] flex-1">
-          <label className="text-sm font-medium">Tags</label>
           <MultiSelect
             options={availableTags}
             selected={selectedTags}
@@ -95,7 +93,6 @@ export default function UsersFilters({ availableTags }: UsersFiltersProps) {
         {/* Clear Filters */}
         {(selectedSex || selectedTags.length > 0) && (
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium invisible">Clear</label>
             <Button variant="outline" onClick={clearFilters}>
               Clear Filters
             </Button>

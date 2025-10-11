@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { Button } from "../components/ui/button";
 import { ChartNoAxesCombined, ExternalLink } from "lucide-react";
 
@@ -171,6 +172,22 @@ const studies = [
   },
 ];
 
+export const metadata: Metadata = {
+  title: "detrans.ai | Academic Studies on Detransition Topics",
+  description:
+    "Find on this page a selection of academic studies, peer-reviewed journal articles and verified statistics that relate to gender identity trends and detransition. ",
+  openGraph: {
+  title: "detrans.ai | Academic Studies on Detransition Topics",
+    description:
+    "Find on this page a selection of academic studies and peer-reviewed journal articles and verified statistics that relate to gender identity trends and detransition. ",
+    url: "https://detrans.ai/videos",
+    siteName: "detrans.ai",
+    images: ["https://detrans.ai/x_lg.png"],
+    locale: "en_US",
+    type: "website",
+  },
+};
+
 export default async function StudiesPage() {
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
@@ -187,7 +204,7 @@ export default async function StudiesPage() {
             className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
           >
             <ChartNoAxesCombined className="h-4 w-4" />
-            <span className="text-sm font-medium">Statistics</span>
+            <span className="text-sm font-medium">For up-to-date statistics, see statsforgender</span>
             <ExternalLink className="h-3 w-3" />
           </Button>
         </a>

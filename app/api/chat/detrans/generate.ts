@@ -16,7 +16,7 @@ import { initSettings } from "./app/settings";
 import { KeywordPrompt, questionPrompt, SummaryPrompt } from "./prompts";
 
 // Checkpoint helpers
-const checkpointFile = "exported_questions.json";
+const checkpointFile = "checkpoint.json";
 function saveCheckpoint(lineNumber: number) {
   fs.writeFileSync(checkpointFile, JSON.stringify({ lineNumber }));
 }

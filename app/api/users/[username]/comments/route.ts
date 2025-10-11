@@ -27,7 +27,6 @@ export async function GET(
         score: detransComments.score,
         created: detransComments.created,
         link: detransComments.link,
-        subreddit: detransComments.subreddit,
         questions: detransComments.questions,
         summary: detransComments.summary,
       })

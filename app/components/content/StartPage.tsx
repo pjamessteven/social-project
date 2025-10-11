@@ -8,7 +8,9 @@ import {
   ExternalLink,
   FileText,
   Heart,
+  List,
   Settings,
+  Users,
   Youtube,
 } from "lucide-react";
 import { headers } from "next/headers";
@@ -266,13 +268,22 @@ export async function StartPage({
                   <span className="text-sm font-medium">Help & Support</span>
                 </Button>
               </Link>
-              <Link href="/stories">
+              <Link href="/videos">
                 <Button
                   variant="secondary"
                   className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
                 >
                   <Youtube className="h-4 w-4" />
-                  <span className="text-sm font-medium">Personal Stories</span>
+                  <span className="text-sm font-medium">Detrans Videos</span>
+                </Button>
+              </Link>
+                            <Link href="/stories">
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
+                  <Users className="h-4 w-4" />
+                  <span className="text-sm font-medium">Detrans Stories</span>
                 </Button>
               </Link>
               <Link href="/definitions">
@@ -290,23 +301,10 @@ export async function StartPage({
                   className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
                 >
                   <BookOpen className="h-4 w-4" />
-                  <span className="text-sm font-medium">Studies</span>
+                  <span className="text-sm font-medium">Studies & Stats</span>
                 </Button>
               </Link>
-              <a
-                href="https://statsforgender.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button
-                  variant="secondary"
-                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-                >
-                  <ChartNoAxesCombined className="h-4 w-4" />
-                  <span className="text-sm font-medium">Statistics</span>
-                  <ExternalLink className="h-3 w-3" />
-                </Button>
-              </a>
+
               <Link href={mode == "detrans" ? "/prompts" : "/affirm/prompts"}>
                 <Button
                   variant="secondary"
@@ -322,10 +320,10 @@ export async function StartPage({
         <Accordion type="single" collapsible className="mt-8 w-full">
           <AccordionItem 
             value="disclaimer" 
-            className="bg-destructive/5 dark:bg-destructive/40 border-destructive rounded-lg border opacity-80"
+            className="bg-destructive/5 dark:bg-destructive/40 overflow-hidden border-destructive rounded-xl border opacity-80"
           >
             <AccordionTrigger className="text-destructive px-3 py-3 text-sm brightness-80 dark:brightness-120 hover:no-underline">
-              <span className="font-semibold">Disclaimer: </span>The experiences and perspectives on this site are sourced from Reddit
+              Disclaimer: Experiences and perspectives on this site are sourced from Reddit
               and processed by AI.
             </AccordionTrigger>
             <AccordionContent className="text-destructive px-3 pb-3 text-sm brightness-80 dark:brightness-120">

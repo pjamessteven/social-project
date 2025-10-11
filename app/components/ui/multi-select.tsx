@@ -59,7 +59,7 @@ export function MultiSelect({
             aria-expanded={open}
             className={cn("justify-between min-h-10 h-auto", className)}
           >
-            <div className="flex flex-wrap gap-1 flex-1">
+            <div className="flex flex-wrap gap-1 flex-1 ">
               {selected.length === 0 ? (
                 <span className="text-muted-foreground">{placeholder}</span>
               ) : (
@@ -67,7 +67,7 @@ export function MultiSelect({
                   <Badge
                     key={item}
                     variant="secondary"
-                    className="mr-1 mb-1"
+                    className="mr-1 "
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
@@ -98,7 +98,7 @@ export function MultiSelect({
                     <Check
                       className={cn(
                         "mr-2 h-4 w-4",
-                        selected.includes(option) ? "opacity-100" : "opacity-0"
+                        selected.includes(option) ? "opacity-100" : "invisible"
                       )}
                     />
 

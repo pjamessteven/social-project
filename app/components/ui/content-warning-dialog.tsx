@@ -18,7 +18,7 @@ export function ContentWarningDialog({ host }: ContentWarningDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
   const path = usePathname();
 
-  const affirmShowWarningPath = path === "/stories";
+  const affirmShowWarningPath = path === "/videos";
   const supportPath = path === "/support";
 
   const mode =

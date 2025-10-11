@@ -62,19 +62,19 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
 
         <TabsList
           id="question-tabs"
-          className="grid-cols- relative z-50 mb-4 grid h-12 grid-cols-4 gap-1 rounded-2xl border sm:mb-8"
+          className="grid-cols- relative z-50 mb-4 grid h-12 grid-cols-4 gap-1 rounded-xl border sm:mb-8"
         >
           <TabsTrigger
             value="featured"
-            className="flex-row items-center gap-2 rounded-xl py-2"
+            className="flex-row items-center gap-2 rounded-lg py-2"
           >
             <Star className="hidden h-4 w-4 sm:block" />
-            <span className="text-sm font-medium">Topics</span>
+            <span className="text-sm font-medium">Featured</span>
           </TabsTrigger>
 
           <TabsTrigger
             value="all"
-            className="flex-row items-center gap-2 rounded-xl py-2"
+            className="flex-row items-center gap-2 rounded-lg py-2"
           >
             <List className="hidden h-4 w-4 sm:block" />
             <span className="text-sm font-medium">
@@ -84,7 +84,7 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
 
           <TabsTrigger
             value="recent"
-            className="flex-row items-center gap-2 rounded-xl py-2"
+            className="flex-row items-center gap-2 rounded-lg py-2"
           >
             <HistoryIcon className="hidden h-4 w-4 sm:block" />
             <span className="text-sm font-medium">Recent</span>
@@ -92,7 +92,7 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
 
           <TabsTrigger
             value="top"
-            className="flex-row items-center gap-2 rounded-xl py-2"
+            className="flex-row items-center gap-2 rounded-lg py-2"
           >
             <TrendingUp className="hidden h-4 w-4 sm:block" />
             <span className="text-sm font-medium">Top</span>

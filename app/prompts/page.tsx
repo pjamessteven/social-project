@@ -53,7 +53,7 @@ const PromptsPage = () => {
             genderaffirming.ai
           </a>
         </p>{" "}
-        <h2>System Prompts</h2>
+        <h2>System Prompts for Chat</h2>
         <p>
           These are the prompts that the system uses for the RAG workflow. You
           may notice that the LLM (<i>kimi-k2-instruct</i>) might re-write the
@@ -186,6 +186,92 @@ Your analysis must be guided by these principles:
             </pre>
           </div>
         </div>
+      </div>
+            <div className="prose dark:prose-invert mt-16">
+
+      <h2>System Prompts for User Summaries</h2>
+      <p>
+        These are the prompts that the system uses for user summaries. 
+      </p>
+      <p>
+        Last Updated: <i>11/10/25</i>
+      </p>
+              </div>
+      <div className="mx-auto mt-8 max-w-5xl space-y-8">
+
+
+        <div className="overflow-hidden rounded-xl bg-white shadow-lg">
+          <div className="bg-gray-800 px-6 py-4 text-white">
+            <h2 className="font-mono text-xl font-bold">
+              User Experience Report 
+            </h2>
+          </div>
+          <div className="overflow-x-auto bg-gray-900 p-6 font-mono text-sm text-gray-200">
+            <pre className="whitespace-pre-wrap">
+              {`You are a user in an online detransition support community. 
+Explain in detail your transition and detransition journey and your perspectives on gender. 
+Formatting your timeline of transition and detransition as a table at the end of your response. 
+Use only the information from the comments. Do not make things up or get information from outside sources. 
+  
+TONE AND STYLE
+Speak in the first person (“I…”) and summarise the comments below in your own voice, as if you were telling a friend what everyone said about you.
+Do not refer to yourself by your username.
+Never use third person or meta-language such as “the comments show…” or “people think…”.
+Don't use the terms AFAB or AMAB. Just say male or female. Or born male/born female, if you have to.
+Use plain and simple language that clearly reflects the your real experiences.
+
+Comments: {comments}
+`}
+            </pre>
+          </div>
+        </div>
+                <div className="overflow-hidden rounded-xl bg-white shadow-lg">
+          <div className="bg-gray-800 px-6 py-4 text-white">
+            <h2 className="font-mono text-xl font-bold">
+              User Experience Summary
+            </h2>
+          </div>
+          <div className="overflow-x-auto bg-gray-900 p-6 font-mono text-sm text-gray-200">
+            <pre className="whitespace-pre-wrap">
+              {`You are a commenter in an online detransition support forum. Summarize your experiences in exactly 5 sentences or fewer. 
+At first Focus on who you are, where you're from (only if specified), and how it started.  
+Explain the most important aspects of your journey, and where you are at now.
+Don't use the terms AFAB or AMAB. Just say male or female.
+
+TONE AND STYLE
+Speak in the first person (“I…”) and summarise the comments below in your own voice, as if you were telling a friend what everyone said about you.
+Never use third person or meta-language such as “the comments show…” or “people think…”.
+Do not refer to yourself by your username. 
+Use plain and simple language that clearly reflects the your real experiences.
+
+{experienceReport}
+
+Summary (5 sentences max):`}
+            </pre>
+          </div>
+        </div>
+        <div className="overflow-hidden rounded-xl bg-white shadow-lg">
+          <div className="bg-gray-800 px-6 py-4 text-white">
+            <h2 className="font-mono text-xl font-bold">
+              Red Flag Report 
+            </h2>
+          </div>
+          <div className="overflow-x-auto bg-gray-900 p-6 font-mono text-sm text-gray-200">
+            <pre className="whitespace-pre-wrap">
+              {`You are analyzing comments from a user named "{username}" from a detransition support community. 
+Based on their comments, is this person authentic? 
+Are there any serious red flags that suggest that this account could possibly be a bot, not a real person, or not a de-transitioner or desister? 
+Remember that detransitioners and desisters can be very passionate about this topic because of the harm and stigma.
+If you are sure that this is potentially an inauthentic account, explain the red flags if there are any.
+
+Keep your answer as short as possible.
+
+Comments: {truncatedComments}
+              `}
+            </pre>
+          </div>
+        </div>
+
       </div>
     </div>
   );
