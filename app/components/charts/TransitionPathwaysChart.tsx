@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { SankeyFlow } from "@/app/lib/availableTags";
+import { ResponsiveContainer, Sankey, Tooltip } from "recharts";
 
 interface SankeyNode {
   id: string;
@@ -19,6 +20,21 @@ interface SankeyLink {
 interface SankeyData {
   nodes: SankeyNode[];
   links: SankeyLink[];
+}
+
+interface RechartsNode {
+  name: string;
+}
+
+interface RechartsLink {
+  source: number;
+  target: number;
+  value: number;
+}
+
+interface RechartsData {
+  nodes: RechartsNode[];
+  links: RechartsLink[];
 }
 
 interface TransitionPathwaysChartProps {
@@ -81,23 +97,37 @@ export default function TransitionPathwaysChart({
     fetchData(minAge, maxAge);
   }, [minAge, maxAge, searchParams]);
 
-  // Group nodes by stage for rendering
-  const nodesByStage = data.nodes.reduce((acc, node) => {
-    if (!acc[node.stage]) acc[node.stage] = [];
-    acc[node.stage].push(node);
-    return acc;
-  }, {} as Record<number, SankeyNode[]>);
+  // Transform data for Recharts format
+  const transformDataForRecharts = (sankeyData: SankeyData): RechartsData => {
+    // Create a mapping from node IDs to indices
+    const nodeIdToIndex = new Map<string, number>();
+    sankeyData.nodes.forEach((node, index) => {
+      nodeIdToIndex.set(node.id, index);
+    });
 
-  // Calculate node positions and sizes based on flow values
-  const getNodeSize = (nodeId: string) => {
-    const incomingFlow = data.links
-      .filter(link => link.target === nodeId)
-      .reduce((sum, link) => sum + link.value, 0);
-    const outgoingFlow = data.links
-      .filter(link => link.source === nodeId)
-      .reduce((sum, link) => sum + link.value, 0);
-    return Math.max(incomingFlow, outgoingFlow, 1);
+    // Transform nodes to Recharts format
+    const rechartsNodes: RechartsNode[] = sankeyData.nodes.map(node => ({
+      name: node.label
+    }));
+
+    // Transform links to use indices instead of IDs
+    const rechartsLinks: RechartsLink[] = sankeyData.links.map(link => ({
+      source: nodeIdToIndex.get(link.source) || 0,
+      target: nodeIdToIndex.get(link.target) || 0,
+      value: link.value
+    }));
+
+    return {
+      nodes: rechartsNodes,
+      links: rechartsLinks
+    };
   };
+
+  const rechartsData = transformDataForRecharts(data);
+
+  // Calculate total users for display
+  const totalUsers = data.nodes.length > 0 ? 
+    Math.max(...data.links.map(link => link.value)) : 0;
 
   if (error) {
     return <div className="py-8 text-center text-red-500">Error: {error}</div>;
@@ -118,41 +148,46 @@ export default function TransitionPathwaysChart({
             </p>
           </div>
           
-          <div className="relative h-96 overflow-x-auto border rounded-lg bg-gray-50 p-4">
-            <div className="flex h-full min-w-max items-center justify-between space-x-8">
-              {SankeyFlow.map((stage, stageIndex) => (
-                <div key={stage.stage} className="flex flex-col items-center space-y-2">
-                  <h4 className="text-sm font-medium text-gray-700 mb-2">
-                    {stage.label}
-                  </h4>
-                  <div className="flex flex-col space-y-1">
-                    {nodesByStage[stageIndex]?.map((node) => {
-                      const size = getNodeSize(node.id);
-                      const height = Math.max(20, Math.min(80, size * 2));
+          <div className="h-96 w-full border rounded-lg bg-white">
+            <ResponsiveContainer width="100%" height="100%">
+              <Sankey
+                data={rechartsData}
+                nodePadding={20}
+                nodeWidth={15}
+                linkCurvature={0.5}
+                iterations={32}
+                margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+                node={{ 
+                  fill: '#3b82f6',
+                  stroke: '#1e40af',
+                  strokeWidth: 1
+                }}
+                link={{ 
+                  stroke: '#94a3b8',
+                  strokeOpacity: 0.6
+                }}
+              >
+                <Tooltip 
+                  content={({ active, payload }) => {
+                    if (active && payload && payload.length > 0) {
+                      const data = payload[0].payload;
                       return (
-                        <div
-                          key={node.id}
-                          className="flex items-center justify-center rounded bg-blue-500 text-white text-xs px-2 py-1 min-w-20"
-                          style={{ height: `${height}px` }}
-                          title={`${node.label}: ${size} users`}
-                        >
-                          <div className="text-center">
-                            <div className="font-medium">{node.label}</div>
-                            <div className="text-xs opacity-80">{size}</div>
-                          </div>
+                        <div className="bg-white p-2 border rounded shadow-lg">
+                          <p className="font-medium">{data.name || `${data.source?.name} → ${data.target?.name}`}</p>
+                          {data.value && <p className="text-sm text-gray-600">Users: {data.value}</p>}
                         </div>
                       );
-                    })}
-                  </div>
-                </div>
-              ))}
-            </div>
+                    }
+                    return null;
+                  }}
+                />
+              </Sankey>
+            </ResponsiveContainer>
           </div>
 
           <div className="mt-4 text-sm text-gray-600">
             <p>
-              <strong>Total users:</strong> {data.nodes.length > 0 ? 
-                Math.max(...data.nodes.map(node => getNodeSize(node.id))) : 0}
+              <strong>Total users:</strong> {totalUsers}
             </p>
             <p>
               <strong>Flow connections:</strong> {data.links.length}
