@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { SankeyFlow } from "@/app/lib/availableTags";
+import { SankeyFlow } from "@/lib/availableTags";
 
 interface SankeyNode {
   id: string;
