@@ -154,7 +154,7 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
                     {user.sex === "f" ? "female" : "male"}
                   </Badge>
                   {user.tags.map((tag) => (
-                    <Badge key={tag} variant="inverted" >
+                    <Badge key={tag} variant={tag === "suspicious account" ? "destructive" : "inverted"} >
                       {tag}
                     </Badge>
                   ))}
