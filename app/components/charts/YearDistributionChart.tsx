@@ -15,32 +15,32 @@ import {
 
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
-interface AgeData {
-  age: number;
+interface YearData {
+  year: number;
   transition: number;
   detransition: number;
 }
 
-interface AgeDistributionChartProps {
+interface YearDistributionChartProps {
   className?: string;
-  minAge: number;
-  maxAge: number;
+  minYear: number;
+  maxYear: number;
 }
 
-export default function AgeDistributionChart({ className, minAge, maxAge }: AgeDistributionChartProps) {
+export default function YearDistributionChart({ className, minYear, maxYear }: YearDistributionChartProps) {
   const searchParams = useSearchParams();
-  const [data, setData] = useState<AgeData[]>([]);
+  const [data, setData] = useState<YearData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchData = async (minAge: number, maxAge: number) => {
+  const fetchData = async (minYear: number, maxYear: number) => {
     try {
       setLoading(true);
       
       // Build params from current search params
       const params = new URLSearchParams();
-      params.set('minAge', minAge.toString());
-      params.set('maxAge', maxAge.toString());
+      params.set('minYear', minYear.toString());
+      params.set('maxYear', maxYear.toString());
       
       // Include sex filter if present
       const sex = searchParams.get('sex');
@@ -55,16 +55,16 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
       }
       
       const response = await fetch(
-        `/api/users/age-distribution?${params.toString()}`
+        `/api/users/year-distribution?${params.toString()}`
       );
       
       if (!response.ok) {
-        throw new Error("Failed to fetch age distribution data");
+        throw new Error("Failed to fetch year distribution data");
       }
       
       const result = await response.json();
       // Transform data to ensure both datasets are positive
-      const transformedData = result.data.map((item: AgeData) => ({
+      const transformedData = result.data.map((item: YearData) => ({
         ...item,
         detransition: Math.abs(item.detransition)
       }));
@@ -79,14 +79,14 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
   };
 
   useEffect(() => {
-    fetchData(minAge, maxAge);
-  }, [minAge, maxAge, searchParams]);
+    fetchData(minYear, maxYear);
+  }, [minYear, maxYear, searchParams]);
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
         <div className="bg-white p-3 border border-gray-300 rounded shadow-lg">
-          <p className="font-medium text-black">{`Age: ${label}`}</p>
+          <p className="font-medium text-black">{`Year: ${label}`}</p>
           <p className="font-medium  text-blue-600">
             {`Transitioned: ${payload[0]?.value || 0} users`}
           </p>
@@ -103,7 +103,7 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
     return (
       <Card className={className}>
         <CardHeader>
-          <CardTitle>Age Distribution</CardTitle>
+          <CardTitle>Year Distribution</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="text-red-500 text-center py-8">
@@ -117,7 +117,7 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
   return (
     <Card className={className}>
       <CardHeader>
-        <CardTitle>Transition & Detransition Age Distribution</CardTitle>
+        <CardTitle>Transition & Detransition Year Distribution</CardTitle>
       </CardHeader>
       <CardContent className="p-0">
         {loading ? (
@@ -146,8 +146,8 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
                 </linearGradient>
               </defs>
               <XAxis 
-                dataKey="age" 
-                label={{ value: 'Age', position: 'bottom', offset:5 }}
+                dataKey="year" 
+                label={{ value: 'Year', position: 'bottom', offset:5 }}
               />
               <YAxis 
                 label={{ 
@@ -182,7 +182,7 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
         
         {!loading && data.length === 0 && (
           <div className="text-center py-8 text-gray-500">
-            No data available for the selected age range
+            No data available for the selected year range
           </div>
         )}
       </CardContent>
