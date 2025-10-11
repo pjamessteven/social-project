@@ -131,9 +131,10 @@ function processSankeyData(users: any[]) {
 
   stages.forEach((stage, stageIndex) => {
     stage.categories.forEach(category => {
+      const label = formatCategoryLabel(stage.name, category);
       nodes.push({
         id: `${stage.name}_${category}`,
-        label: category.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+        label: label,
         stage: stageIndex
       });
     });
@@ -215,4 +216,35 @@ function categorizeUser(user: any): string[] {
   flow.push(`outcome_${outcome}`);
 
   return flow;
+}
+
+function formatCategoryLabel(stageName: string, category: string): string {
+  // Custom formatting for better readability
+  const labelMap: { [key: string]: string } = {
+    // Sex labels
+    'male': 'Male',
+    'female': 'Female',
+    'unknown': 'Unknown',
+    
+    // Sexuality labels
+    'homosexual': 'Homosexual',
+    'heterosexual': 'Heterosexual',
+    'bisexual': 'Bisexual',
+    'asexual': 'Asexual',
+    
+    // Age labels
+    'before_18': 'Before 18',
+    'after_18': 'After 18',
+    
+    // Medical labels
+    'took_hormones': 'Took Hormones',
+    'got_surgery': 'Got Surgery',
+    'social_only': 'Social Only',
+    
+    // Outcome labels
+    'regrets': 'Regrets',
+    'no_regrets': 'No Regrets'
+  };
+  
+  return labelMap[category] || category.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 }
