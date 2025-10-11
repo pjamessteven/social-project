@@ -43,7 +43,7 @@ async function getUserComments(): Promise<UserComments[]> {
     ORDER BY comment_count DESC
   `);
 
-  return result.rows.map((row) => ({
+  return result.map((row) => ({
     username: row.username as string,
     comment_count: Number(row.comment_count),
     all_comments: row.all_comments as string,
@@ -147,22 +147,23 @@ async function generateTags(
     "top surgery",
     "bottom surgery",
     "internalised homophobia",
-    "agp",
-    "non-binary",
+    "autogynephilia (AGP)",
+    "started as non-binary",
     "escapism",
     "depression",
+    "low self-esteem",
     "anxiety",
     "eating disorder",
-    "family rejection",
-    "peer pressure",
-    "social media influence",
-    "medical regret",
+    "influenced online",
+    "influenced by friends",
+    "trans kid",
     "hormone therapy",
-    "voice changes",
+    "puberty blockers",
+    "health complications",
     "infertility",
-    "religious conflict",
     "body dysmorphia",
-    "desire for belonging",
+    "retransition",
+    "social transition only",
   ];
 
   const prompt = `Based on the following comments from a detransition community user, identify which of these predetermined tags apply to their experience. Only select tags that are clearly supported by the content.
