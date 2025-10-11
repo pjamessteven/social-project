@@ -283,15 +283,15 @@ export function DataQuestionCategories({
         These generated questions give an idea about the most discussed topics
         in /r/detrans.
       </p>
-      <Accordion type="single" collapsible className="mb-2 sm:mb-4">
-        <AccordionItem value="info" className="border-none">
-          <AccordionTrigger className="text-muted-foreground py-2 text-sm sm:text-base hover:no-underline hover:underline">
+      <Accordion type="single" collapsible className="mb-2 sm:mb-4 mt-4">
+        <AccordionItem value="info" className="border-t border-l border-r rounded-xl overflow-hidden">
+          <AccordionTrigger className="text-muted-foreground py-2 px-3 text-sm sm:text-base hover:no-underline">
             <div className="flex items-center gap-2">
               <Info className="h-4 w-4" />
               Read more about generated questions
             </div>
           </AccordionTrigger>
-          <AccordionContent className="text-muted-foreground max-w-2xl space-y-3 pb-2">
+          <AccordionContent className="text-muted-foreground max-w-2xl space-y-3 p-3 ">
             <p>
               detrans.ai works in part by generating questions for every comment
               in /r/detrans. Instead of using AI to find answers, it uses AI to

@@ -21,6 +21,7 @@ export async function GET(
         activeSince: detransUsers.activeSince,
         sex: detransUsers.sex,
         experienceSummary: detransUsers.experienceSummary,
+        experience: detransUsers.experience,
         tags: detransUsers.tags,
         commentCount: sql<number>`COALESCE(COUNT(${detransComments.id}), 0)`,
       })

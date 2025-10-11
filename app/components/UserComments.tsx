@@ -1,9 +1,9 @@
 "use client";
 
+import { ExternalLink } from "lucide-react";
 import { marked } from "marked";
 import Link from "next/link";
 import { useState } from "react";
-import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 
 interface Comment {
@@ -27,7 +27,7 @@ export default function UserComments({
   initialComments,
 }: UserCommentsProps) {
   console.log("UserComments received:", { username, initialComments });
-  
+
   const [comments, setComments] = useState<Comment[]>(initialComments);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(initialComments.length === 10); // Assume more if we got a full page
@@ -92,32 +92,30 @@ export default function UserComments({
               key={comment.id}
               className="rounded-lg border bg-white dark:bg-gray-900"
             >
-              <div className="bg-secondary flex flex-col">
-                <div className="mb-2 flex items-start justify-between border-b  p-4">
+              <div className="bg-secondary dark:bg-primary/5 flex flex-col">
+                <div className="prose dark:prose-invert max-w-full px-4 pb-2 pt-3 text-sm font-semibold">
+                  {comment.summary}
+                </div>
+                <div className=" flex items-start justify-between px-4 pb-3">
                   <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                    <Badge variant="inverted">
-                      <span className="whitespace-nowrap">
-                        {comment.score} points
-                      </span>
-                    </Badge>
-                    <span className="hidden sm:inline">r/detrans</span>
-                    <span>{formatCommentDate(comment.created)}</span>
+                    <span className="whitespace-nowrap">
+                      {comment.score} points
+                    </span>
+                    •<span>{formatCommentDate(comment.created)}</span>
                   </div>
                   <Link
                     href={`https://reddit.com${comment.link}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                    className="flex items-center text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
                   >
-                    View on Reddit
+                    <div>View on Reddit</div>
+                    <ExternalLink className="ml- h-3" />
                   </Link>
-                </div>
-                <div className=" prose font-semibold  px-4 pb-2 text-sm dark:prose-invert">
-                {comment.summary}
                 </div>
               </div>
               <div
-                className="prose px-4 dark:prose-invert max-w-none text-sm"
+                className="prose dark:prose-invert max-w-none px-4 text-sm"
                 dangerouslySetInnerHTML={{
                   __html: marked.parse(comment.text || ""),
                 }}

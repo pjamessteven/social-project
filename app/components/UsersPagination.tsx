@@ -23,7 +23,7 @@ export default function UsersPagination({ pagination }: UsersPaginationProps) {
     params.set("page", page.toString());
     
     const queryString = params.toString();
-    router.push(`/users?${queryString}`);
+    router.push(`/stories?${queryString}`);
   };
 
   if (pagination.totalPages <= 1) {

@@ -72,7 +72,17 @@ async function generateExperienceReport(
   // Limit comments to stay within token limit (leave room for prompt + response)
   const truncatedComments = truncateToTokenLimit(comments, 260000);
 
-  const prompt = `You are analyzing comments from a user named "${username}" from a detransition support community. Based on their comments, write a detailed experience report that captures their detransition journey.
+  const prompt = `You are a user in an online detransition support community. 
+  Explain in detail your transition and detransition journey and your perspectives on gender. 
+  Formatting your timeline of transition and detransition as a table at the end of your response. 
+  Use only the information from the comments. Do not make things up or get information from outside sources. 
+  
+  TONE AND STYLE
+  Speak in the first person (“I…”) and summarise the comments below in your own voice, as if you were telling a friend what everyone said about you.
+  Do not refer to yourself by your username.
+  Never use third person or meta-language such as “the comments show…” or “people think…”.
+  Don't use the terms AFAB or AMAB. Just say male or female. Or born male/born female, if you have to.
+  Use plain and simple language that clearly reflects the your real experiences.
 
 Comments: ${truncatedComments}
 `;
@@ -99,12 +109,15 @@ async function generateRedFlagsReport(
   // Limit comments to stay within token limit (leave room for prompt + response)
   const truncatedComments = truncateToTokenLimit(comments, 260000);
 
-  const prompt = `You are analyzing comments from a user named "${username}" from a detransition support community. Based on their comments, is this person an authentic detransitioner? Are there any red flags that suggest that this person is a bot, not a real person, or not a de-transitioner? 
+  const prompt = `You are analyzing comments from a user named "${username}" from a detransition support community. 
+  Based on their comments, is this person authentic? 
+  Are there any serious red flags that suggest that this account could possibly be a bot, not a real person, or not a de-transitioner or desister? 
+  Remember that detransitioners and desisters can be very passionate about this topic because of the harm and stigma.
+  If you are sure that this is potentially an inauthentic account, explain the red flags if there are any.
 
-  If you think it is a bot, or not an authentic detransitioner, explain the red flags, and give examples.
-  Explain your answer clearly.
+  Keep your answer as short as possible.
 
-Comments: ${truncatedComments}
+  Comments: ${truncatedComments}
 `;
 
   try {
@@ -125,11 +138,20 @@ Comments: ${truncatedComments}
 async function generateExperienceSummary(
   experienceReport: string,
 ): Promise<string> {
-  const prompt = `Summarize the following detransition experience report in exactly 5 sentences or fewer. Focus on who this person is (male/female detransitioner, or other), the most important aspects of their journey, and where they are at now.:
+  const prompt = `You are a commenter in an online detransition support forum. Summarize your experiences in exactly 5 sentences or fewer. 
+  At first Focus on who you are, where you're from (only if specified), and how it started.  
+  Explain the most important aspects of your journey, and where you are at now.
+  Don't use the terms AFAB or AMAB. Just say male or female.
 
-${experienceReport}
+  TONE AND STYLE
+  Speak in the first person (“I…”) and summarise the comments below in your own voice, as if you were telling a friend what everyone said about you.
+  Never use third person or meta-language such as “the comments show…” or “people think…”.
+  Do not refer to yourself by your username. 
+  Use plain and simple language that clearly reflects the your real experiences.
 
-Summary (5 sentences max):`;
+  ${experienceReport}
+
+  Summary (5 sentences max):`;
 
   try {
     const response = await openai.chat.completions.create({
@@ -202,10 +224,15 @@ async function generateTags(
     "body dysmorphia",
     "retransition",
     "social transition only",
+    "homosexual",
+    "heterosexual",
+    "bisexual",
     "suspicious account"
   ];
 
-  const prompt = `Based on the following comments from a detransition community user, identify which of these predetermined tags apply to their experience. Only select tags that are clearly supported by the content.
+  const prompt = `Based on the following comments from a detransition community user, identify which of these predetermined tags apply to their experience. 
+Only select tags that are clearly supported by the content and are directly relevant to the user.
+For example, only include 'infertility' if the user is actually now infertile, or 'bottom surgery' if the user had bottom surgery.
 Only use the 'suspicious account' tag if the redFlagsReport suspects that this account might not be authentic. 
 
 Available tags: ${predefinedTags.join(", ")}

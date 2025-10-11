@@ -1,3 +1,21 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "detrans.ai | Defining Gender Related Terms",
+  description:
+    "In every day speech sex and gender are sometimes used interchangeably and in some languages there is only one word to describe the two. However, the whole concept of gender dysphoria relies on understanding that there are differences between sex and gender.",
+  openGraph: {
+    title: "detrans.ai | Defining Gender Related Terms",
+    description:
+      "In every day speech sex and gender are sometimes used interchangeably and in some languages there is only one word to describe the two. However, the whole concept of gender dysphoria relies on understanding that there are differences between sex and gender.",
+    url: "https://detrans.ai/definitions",
+    siteName: "detrans.ai",
+    images: ["https://detrans.ai/x_lg.png"],
+    locale: "en_US",
+    type: "website",
+  },
+};
+
 export default async function DefinitionsPage() {
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">

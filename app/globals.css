@@ -121,6 +121,68 @@ html, body, #__next {
 }
 
 
+.prose-table > table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  margin: 1rem 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Remove all borders from cells */
+.prose-table > table th,
+.prose-table > table td {
+  border: none;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+/* Optional: add a bottom border to rows for visual separation */
+.prose-table > table tr:not(:last-child) td,
+.prose-table > table tr:not(:last-child) th {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.prose-table > table th {
+  background-color: #f9fafb;
+  font-weight: 600;
+  white-space: nowrap; /* prevent header text from wrapping */
+}
+
+.prose-table > table tbody td {
+  background-color: #ffffff;
+}
+
+/* Dark mode adjustments */
+.dark .prose-table > table {
+  border-color: var(--color-border);
+}
+
+.dark .prose-table > table tr:not(:last-child) td,
+.dark .prose-table > table tr:not(:last-child) th {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.dark .prose-table > table th {
+  background-color: var(--color-secondary);
+  color: #f3f4f6;
+  
+}
+
+.dark .prose-table > table td {
+  background-color: var(--color-secondary);
+  color: #e5e7eb;
+}
+.prose-table > table td:not(:last-child),
+.prose-table > table th:not(:last-child) {
+  border-right: 1px solid #e5e7eb;
+}
+.dark .prose-table > table td:not(:last-child),
+.dark .prose-table > table th:not(:last-child) {
+  border-right: 1px solid var(--color-border);
+}
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,

@@ -17,6 +17,7 @@ import {
   SidebarProvider,
 } from "@/app/components/ui/sidebar";
 import { ChevronRight } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
 
 function MobileJumpToSection() {
@@ -131,6 +132,22 @@ function SupportSidebar() {
   );
 }
 
+export const metadata: Metadata = {
+  title: "detrans.ai | Get Gender Help and Support",
+  description:
+     "Learn the difference between gender affirmming care and gender exploratory therapy. If you are experiencing gender dysphoria, one of the best ways to get support for is to talk to and understand the perspectives of people who have been there themselves and come out the other side.",
+  openGraph: {
+    title: "detrans.ai | Get Gender Help and Support",
+    description:
+      "Learn the difference between gender affirmming care and gender exploratory therapy. If you are experiencing gender dysphoria, one of the best ways to get support for is to talk to and understand the perspectives of people who have been there themselves and come out the other side.",
+    url: "https://detrans.ai/support",
+    siteName: "detrans.ai",
+    images: ["https://detrans.ai/x_lg.png"],
+    locale: "en_US",
+    type: "website",
+  },
+};
+
 export default async function SupportPage() {
   return (
     <SidebarProvider>
@@ -197,10 +214,10 @@ export default async function SupportPage() {
               patient to them. It is a staged approach that begins with social
               transition (name, pronouns, clothing), then hormone therapy, and
               then for some, irreversible surgical procedures. Gender affirming
-              care can work as part of the healing process for gender dysphoria
-              but it does come with serious risks and often permanent
+              care can provide relief for gender dysphoria
+              but it does come with serious health risks and often permanent
               side-effects. Proceed with extreme caution, and make sure you{" "}
-              <Link prefetch={false} href={"/stories"} className="underline">
+              <Link prefetch={false} href={"/videos"} className="underline">
                 watch some testimonies
               </Link>{" "}
               from people who have been down this path before going down it

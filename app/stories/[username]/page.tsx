@@ -11,8 +11,12 @@ import { notFound } from "next/navigation";
 import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
 import UserComments from "../../components/UserComments";
+import { Metadata } from "next";
+import { markdownToPlainText } from "@/app/lib/utils";
+import { Alert, AlertDescription, AlertTitle } from "@/app/components/ui/alert";
 
 interface User {
+  commentCount: string;
   username: string;
   activeSince: string;
   sex: "m" | "f";
@@ -31,6 +35,24 @@ interface Comment {
   subreddit: string;
   questions: string | null;
   summary: string;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ username?: string }>;
+}): Promise<Metadata> {
+  const { username } = await params;
+  const user = await getUser(username!);
+  return {
+    title: "Reddit user /u/" + username + "'s Detransition Story | detrans.ai",
+    description: markdownToPlainText(user?.experienceSummary?.slice(0, 300)),
+    openGraph: {
+      title: username + "'s Detransition Story | detrans.ai",
+      description: markdownToPlainText(user?.experienceSummary?.slice(0, 300)),
+      images: ["https://detrans.ai/x_lg.png"],
+    },
+  };
 }
 
 async function getUser(username: string): Promise<User | null> {
@@ -108,7 +130,7 @@ export default async function UserPage({
 
   return (
     <div className="container mx-auto px-0 pb-8">
-      <Link href="/users">
+      <Link href="/stories">
         <Button variant="ghost" className="mb-6">
           <ArrowLeft className="mr-2 -ml-4 h-4 w-4" />
           Back to Users
@@ -121,11 +143,11 @@ export default async function UserPage({
           <div className="mb-6 flex sm:flex-row flex-col items-baseline justify-between">
             <div className="flex flex-col mb-4 sm:mb-0">
               <h1 className="mb-4 sm:mb-2 text-3xl font-bold">
-                Reddit user /u/{user.username}
+                Reddit user <span className="whitespace-nowrap">/u/{user.username}'s</span> Detransition Story
               </h1>
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                Active in /r/detrans since {formatDate(user.activeSince)}
-              </div>
+           {user.commentCount} comments • Posting since{" "}
+                    {formatDate(user.activeSince)}              </div>
             </div>
             <Link
               href={`https://reddit.com/u/${user.username}`}
@@ -141,12 +163,12 @@ export default async function UserPage({
 
           {user.tags.length > 0 && (
             <div className="mb-6 flex flex-wrap gap-2">
-              <Badge variant="primary">
+              <Badge variant="inverted">
                 {user.sex === "f" ? "female" : "male"}
               </Badge>
 
               {user.tags.map((tag) => (
-                <Badge key={tag} variant={tag === "suspicious account" ? "destructive" : "primary"}>
+                <Badge key={tag} variant={tag === "suspicious account" ? "destructive" : "inverted"}>
                   {tag}
                 </Badge>
               ))}
@@ -183,6 +205,27 @@ export default async function UserPage({
             </AccordionItem>
           </Accordion>
         )}
+        
+                <Accordion type="single" collapsible className="mt-8 w-full">
+                  <AccordionItem 
+                    value="disclaimer" 
+                    className="bg-secondary overflow-hidden  rounded-xl border dark:border-primary/50 dark:bg-none  opacity-80"
+                  >
+                    <AccordionTrigger className="text-secondary-foreground -mt-5 px-3 py-0 text-sm hover:no-underline">
+      This detransition story is from all of /u/{username}'s comments on Reddit, summarised by our AI.
+                    </AccordionTrigger>
+                    <AccordionContent className="text-secondary-foreground px-3 pb-0 text-sm ">
+                      <div className="max-w-2xl space-y-3">
+                        <p>
+      On Reddit, people often share their experiences across multiple comments or posts. To make this information more accessible, our AI gathers all of those scattered pieces into a single, easy-to-read summary and timeline. All system prompts are noted on the prompts page.
+
+                        </p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+
+
 
         {/* Experience Summary */}
         {user.experienceSummary && (
