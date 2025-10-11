@@ -39,7 +39,8 @@ export async function GET(request: NextRequest) {
     // Build where conditions for filtering
     const conditions = [];
     
-    conditions.push(sql`u.age >= ${minAge} AND u.age <= ${maxAge}`);
+    // Remove age filtering since the database doesn't have an age column
+    // The age filtering will be handled by minAge/maxAge parameters for transition_age if needed
     
     if (sex && (sex === "m" || sex === "f")) {
       conditions.push(sql`u.sex = ${sex}`);
