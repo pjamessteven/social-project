@@ -141,14 +141,14 @@ export default function TransitionPathwaysChart({
         </div>
       ) : (
         <div className={`w-full ${className}`}>
-          <div className="mb-4">
+          <div className="p-4">
             <h3 className="text-lg font-semibold">Transition Pathways Flow</h3>
             <p className="text-sm text-gray-600">
               Flow from demographics through transition outcomes
             </p>
           </div>
           
-          <div className="h-96 w-full border rounded-lg bg-white">
+          <div className="h-96 w-full border rounded-lg ">
             <ResponsiveContainer width="100%" height="100%">
               <Sankey
                 data={rechartsData}
@@ -185,7 +185,7 @@ export default function TransitionPathwaysChart({
             </ResponsiveContainer>
           </div>
 
-          <div className="mt-4 text-sm text-gray-600">
+          <div className="p-4 text-sm text-gray-600">
             <p>
               <strong>Total users:</strong> {totalUsers}
             </p>
