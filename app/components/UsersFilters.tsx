@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from "./ui/select";
 import { MultiSelect } from "./ui/multi-select";
+import { Slider } from "./ui/slider";
 
 interface Tag {
   id: number;
@@ -28,6 +29,11 @@ export default function UsersFilters({}: UsersFiltersProps) {
   
   const selectedSex = searchParams.get("sex") || "";
   const selectedTags = searchParams.getAll("tag").flatMap(tag => tag.split(',').filter(Boolean));
+  const [ageRange, setAgeRange] = useState(() => {
+    const minAge = searchParams.get("minAge") ? parseInt(searchParams.get("minAge")!) : 10;
+    const maxAge = searchParams.get("maxAge") ? parseInt(searchParams.get("maxAge")!) : 40;
+    return [minAge, maxAge];
+  });
 
   useEffect(() => {
     async function fetchTags() {
@@ -81,7 +87,20 @@ export default function UsersFilters({}: UsersFiltersProps) {
     router.push(`/stories${queryString ? `?${queryString}` : ""}`);
   };
 
+  const updateAgeFilter = (newRange: number[]) => {
+    setAgeRange(newRange);
+    
+    const params = new URLSearchParams(searchParams);
+    params.set('minAge', newRange[0].toString());
+    params.set('maxAge', newRange[1].toString());
+    params.delete('page'); // Reset to first page when filtering
+    
+    const queryString = params.toString();
+    router.push(`/stories${queryString ? `?${queryString}` : ""}`);
+  };
+
   const clearFilters = () => {
+    setAgeRange([10, 40]);
     router.push("/stories");
   };
 
@@ -126,13 +145,28 @@ export default function UsersFilters({}: UsersFiltersProps) {
         </div>
 
         {/* Clear Filters */}
-        {(selectedSex || selectedTags.length > 0) && (
+        {(selectedSex || selectedTags.length > 0 || ageRange[0] !== 10 || ageRange[1] !== 40) && (
           <div className="flex flex-col gap-2">
             <Button variant="outline" onClick={clearFilters}>
               Clear Filters
             </Button>
           </div>
         )}
+      </div>
+
+      {/* Age Range Filter */}
+      <div className="space-y-2">
+        <label className="text-sm font-medium">
+          Age Range: {ageRange[0]} - {ageRange[1]} years
+        </label>
+        <Slider
+          value={ageRange}
+          onValueChange={updateAgeFilter}
+          min={5}
+          max={60}
+          step={1}
+          className="w-full max-w-md"
+        />
       </div>
     </div>
   );

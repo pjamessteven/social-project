@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import {
   BarChart,
   Bar,
@@ -14,7 +13,6 @@ import {
 } from "recharts";
 
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Slider } from "../ui/slider";
 
 interface AgeData {
   age: number;
@@ -24,19 +22,13 @@ interface AgeData {
 
 interface AgeDistributionChartProps {
   className?: string;
-  searchParams?: { [key: string]: string | string[] | undefined };
+  minAge: number;
+  maxAge: number;
 }
 
-export default function AgeDistributionChart({ className, searchParams }: AgeDistributionChartProps) {
-  const router = useRouter();
-  const currentSearchParams = useSearchParams();
+export default function AgeDistributionChart({ className, minAge, maxAge }: AgeDistributionChartProps) {
   const [data, setData] = useState<AgeData[]>([]);
   const [loading, setLoading] = useState(true);
-  const [ageRange, setAgeRange] = useState(() => {
-    const minAge = searchParams?.minAge ? parseInt(searchParams.minAge as string) : 10;
-    const maxAge = searchParams?.maxAge ? parseInt(searchParams.maxAge as string) : 40;
-    return [minAge, maxAge];
-  });
   const [error, setError] = useState<string | null>(null);
 
   const fetchData = async (minAge: number, maxAge: number) => {
@@ -62,20 +54,8 @@ export default function AgeDistributionChart({ className, searchParams }: AgeDis
   };
 
   useEffect(() => {
-    fetchData(ageRange[0], ageRange[1]);
-  }, [ageRange]);
-
-  const handleAgeRangeChange = (newRange: number[]) => {
-    setAgeRange(newRange);
-    
-    // Update URL with new age range using Next.js router
-    const params = new URLSearchParams(currentSearchParams.toString());
-    params.set('minAge', newRange[0].toString());
-    params.set('maxAge', newRange[1].toString());
-    params.set('page', '1'); // Reset to first page when filtering
-    
-    router.push(`?${params.toString()}`);
-  };
+    fetchData(minAge, maxAge);
+  }, [minAge, maxAge]);
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
@@ -113,21 +93,6 @@ export default function AgeDistributionChart({ className, searchParams }: AgeDis
     <Card className={className}>
       <CardHeader>
         <CardTitle>Transition vs Detransition Age Distribution</CardTitle>
-        <div className="space-y-4">
-          <div>
-            <label className="text-sm font-medium mb-2 block">
-              Age Range: {ageRange[0]} - {ageRange[1]} years
-            </label>
-            <Slider
-              value={ageRange}
-              onValueChange={handleAgeRangeChange}
-              min={5}
-              max={60}
-              step={1}
-              className="w-full"
-            />
-          </div>
-        </div>
       </CardHeader>
       <CardContent>
         {loading ? (
