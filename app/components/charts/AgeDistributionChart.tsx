@@ -34,8 +34,27 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
   const fetchData = async (minAge: number, maxAge: number) => {
     try {
       setLoading(true);
+      
+      // Get current search params to include filters
+      const currentParams = new URLSearchParams(window.location.search);
+      const params = new URLSearchParams();
+      params.set('minAge', minAge.toString());
+      params.set('maxAge', maxAge.toString());
+      
+      // Include sex filter if present
+      const sex = currentParams.get('sex');
+      if (sex) {
+        params.set('sex', sex);
+      }
+      
+      // Include tag filter if present
+      const tag = currentParams.get('tag');
+      if (tag) {
+        params.set('tag', tag);
+      }
+      
       const response = await fetch(
-        `/api/users/age-distribution?minAge=${minAge}&maxAge=${maxAge}`
+        `/api/users/age-distribution?${params.toString()}`
       );
       
       if (!response.ok) {
