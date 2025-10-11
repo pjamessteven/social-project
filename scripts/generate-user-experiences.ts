@@ -299,6 +299,7 @@ async function processUser(userComments: UserComments): Promise<void> {
       sex: birthSex,
       experienceSummary: experienceSummary || null,
       experience: experienceReport,
+      redFlagsReport: redFlagsReport || null,
       tags: tags.length > 0 ? JSON.stringify(tags) : null,
     });
 
