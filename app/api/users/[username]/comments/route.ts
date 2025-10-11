@@ -18,6 +18,8 @@ export async function GET(
     const limit = parseInt(searchParams.get("limit") || "10");
     const offset = parseInt(searchParams.get("offset") || "0");
 
+    console.log("Fetching comments for username:", username);
+
     const comments = await db
       .select({
         id: detransComments.id,
@@ -35,11 +37,18 @@ export async function GET(
       .limit(limit)
       .offset(offset);
 
-    return NextResponse.json({ comments });
+    console.log("Found comments:", comments?.length || 0);
+
+    // Ensure we always return an array, even if comments is null/undefined
+    const safeComments = Array.isArray(comments) ? comments : [];
+
+    return NextResponse.json({ comments: safeComments });
   } catch (error) {
     console.error("Error fetching user comments:", error);
+    // Make sure error is safely serializable
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
     return NextResponse.json(
-      { error: "Failed to fetch comments" },
+      { error: "Failed to fetch comments", details: errorMessage, comments: [] },
       { status: 500 }
     );
   }
