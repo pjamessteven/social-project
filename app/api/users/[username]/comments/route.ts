@@ -16,13 +16,15 @@ export async function GET(
     const { username } = await params;
     const { searchParams } = new URL(request.url);
     const limit = parseInt(searchParams.get("limit") || "10");
+    const offset = parseInt(searchParams.get("offset") || "0");
 
     const comments = await db
       .select()
       .from(detransComments)
       .where(eq(detransComments.username, decodeURIComponent(username)))
       .orderBy(desc(detransComments.score))
-      .limit(limit);
+      .limit(limit)
+      .offset(offset);
 
     return NextResponse.json({ comments });
   } catch (error) {

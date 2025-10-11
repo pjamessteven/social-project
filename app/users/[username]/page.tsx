@@ -10,6 +10,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
+import UserComments from "../../components/UserComments";
 
 interface User {
   username: string;
@@ -90,13 +91,6 @@ export default async function UserPage({
     });
   };
 
-  const formatCommentDate = (utcDate: string) => {
-    return new Date(utcDate).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-  };
 
   return (
     <div className="container mx-auto px-0 pb-8">
@@ -205,49 +199,7 @@ export default async function UserPage({
         )}
 
         {/* Top Comments */}
-        <div>
-          <h3 className="mb-4 font-semibold">Top Comments by /u/{username}:</h3>
-          {comments.length === 0 ? (
-            <p className="text-gray-500 dark:text-gray-400">
-              No comments found.
-            </p>
-          ) : (
-            <div className="space-y-4">
-              {comments.map((comment) => (
-                <div
-                  key={comment.id}
-                  className="rounded-lg border bg-white p-4 dark:bg-gray-900"
-                >
-                  <div className="mb-2 flex items-start justify-between">
-                    <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                      <Badge variant="inverted ">
-                        <span className="whitespace-nowrap">
-                          {comment.score} points
-                        </span>
-                      </Badge>
-                      <span className="hidden sm:inline">r/detrans</span>
-                      <span>{formatCommentDate(comment.created)}</span>
-                    </div>
-                    <Link
-                      href={`https://reddit.com${comment.link}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-                    >
-                      View on Reddit
-                    </Link>
-                  </div>
-                  <div
-                    className="prose dark:prose-invert mt-4 max-w-none text-sm"
-                    dangerouslySetInnerHTML={{
-                      __html: marked.parse(comment.text || ""),
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        <UserComments username={user.username} initialComments={comments} />
       </div>
     </div>
   );
