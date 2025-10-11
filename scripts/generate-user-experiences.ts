@@ -99,6 +99,7 @@ async function generateExperienceReport(
     const response = await openai.chat.completions.create({
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
+      temperature: 0.2,
     });
 
     return response.choices[0]?.message?.content || "";
@@ -131,7 +132,7 @@ async function generateRedFlagsReport(
     const response = await openai.chat.completions.create({
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
-
+      temperature: 0.1,
     });
 
     return response.choices[0]?.message?.content || "";
@@ -163,7 +164,7 @@ async function generateExperienceSummary(
     const response = await openai.chat.completions.create({
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
-
+      temperature: 0.2,
     });
 
     return response.choices[0]?.message?.content || "";
@@ -187,7 +188,7 @@ Respond with only "m" for male or "f" for female birth sex. If unclear, make you
     const response = await openai.chat.completions.create({
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
-
+      temperature: 0.1,
     });
 
     const result = response.choices[0]?.message?.content?.trim().toLowerCase();
@@ -220,6 +221,7 @@ Return only a JSON array of applicable tags. Example: ["trauma", "top surgery", 
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
       response_format: { type: "json_object" },
+      temperature: 0.1,
     });
 
     const result = response.choices[0]?.message?.content;
