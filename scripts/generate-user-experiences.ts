@@ -123,6 +123,78 @@ Respond with only "m" for male or "f" for female birth sex. If unclear, make you
   }
 }
 
+async function generateTags(username: string, comments: string): Promise<string[]> {
+  const predefinedTags = [
+    'trauma',
+    'autism',
+    'adhd',
+    'ocd',
+    'top surgery',
+    'bottom surgery',
+    'homophobia',
+    'agp',
+    'non-binary',
+    'escapism',
+    'depression',
+    'anxiety',
+    'eating disorder',
+    'family rejection',
+    'peer pressure',
+    'social media influence',
+    'medical regret',
+    'hormone therapy',
+    'voice changes',
+    'fertility concerns',
+    'detransition support',
+    'religious conflict',
+    'identity confusion',
+    'body dysmorphia'
+  ];
+
+  const prompt = `Based on the following comments from a detransition community user, identify which of these predetermined tags apply to their experience. Only select tags that are clearly supported by the content.
+
+Available tags: ${predefinedTags.join(', ')}
+
+Comments from user "${username}": ${comments.substring(0, 3000)}...
+
+Return only a JSON array of applicable tags. Example: ["trauma", "top surgery", "autism"]`;
+
+  try {
+    const response = await openai.chat.completions.create({
+      model: 'deepseek-chat',
+      messages: [{ role: 'user', content: prompt }],
+      temperature: 0.1,
+      max_tokens: 200,
+      response_format: { type: 'json_object' }
+    });
+
+    const result = response.choices[0]?.message?.content;
+    if (!result) return [];
+
+    // Parse the JSON response
+    const parsed = JSON.parse(result);
+    
+    // Handle different possible response formats
+    let tags: string[] = [];
+    if (Array.isArray(parsed)) {
+      tags = parsed;
+    } else if (parsed.tags && Array.isArray(parsed.tags)) {
+      tags = parsed.tags;
+    } else if (typeof parsed === 'object') {
+      // Try to find an array property
+      const arrayProp = Object.values(parsed).find(val => Array.isArray(val));
+      if (arrayProp) tags = arrayProp as string[];
+    }
+
+    // Filter to only include predefined tags
+    return tags.filter(tag => predefinedTags.includes(tag.toLowerCase()));
+    
+  } catch (error) {
+    console.error(`Error generating tags for ${username}:`, error);
+    return [];
+  }
+}
+
 async function processUser(userComments: UserComments): Promise<void> {
   const { username, all_comments, earliest_comment_date } = userComments;
   
@@ -153,6 +225,10 @@ async function processUser(userComments: UserComments): Promise<void> {
     console.log(`Determining birth sex for ${username}...`);
     const birthSex = await determineBirthSex(username, all_comments);
 
+    // Generate tags
+    console.log(`Generating tags for ${username}...`);
+    const tags = await generateTags(username, all_comments);
+
     // Insert into database
     await db.insert(detransUsers).values({
       username,
@@ -160,6 +236,7 @@ async function processUser(userComments: UserComments): Promise<void> {
       sex: birthSex,
       experienceSummary: experienceSummary || null,
       experience: experienceReport,
+      tags: tags.length > 0 ? JSON.stringify(tags) : null,
     });
 
     console.log(`Successfully processed user: ${username}`);
