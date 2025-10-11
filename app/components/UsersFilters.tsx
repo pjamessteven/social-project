@@ -2,6 +2,13 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "./ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 interface UsersFiltersProps {
   availableTags: string[];
@@ -17,7 +24,7 @@ export default function UsersFilters({ availableTags }: UsersFiltersProps) {
   const updateFilters = (key: string, value: string) => {
     const params = new URLSearchParams(searchParams);
     
-    if (value) {
+    if (value && value !== "all") {
       params.set(key, value);
     } else {
       params.delete(key);
@@ -36,45 +43,51 @@ export default function UsersFilters({ availableTags }: UsersFiltersProps) {
 
   return (
     <div className="mb-6 space-y-4">
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-4 items-end">
         {/* Sex Filter */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 min-w-[120px]">
           <label className="text-sm font-medium">Sex:</label>
-          <select
-            value={selectedSex}
-            onChange={(e) => updateFilters("sex", e.target.value)}
-            className="px-3 py-2 border rounded-md bg-background"
+          <Select
+            value={selectedSex || "all"}
+            onValueChange={(value) => updateFilters("sex", value)}
           >
-            <option value="">All</option>
-            <option value="f">Female</option>
-            <option value="m">Male</option>
-          </select>
+            <SelectTrigger>
+              <SelectValue placeholder="All" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="f">Female</SelectItem>
+              <SelectItem value="m">Male</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         {/* Tag Filter */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 min-w-[200px]">
           <label className="text-sm font-medium">Tag:</label>
-          <select
-            value={selectedTag}
-            onChange={(e) => updateFilters("tag", e.target.value)}
-            className="px-3 py-2 border rounded-md bg-background"
+          <Select
+            value={selectedTag || "all"}
+            onValueChange={(value) => updateFilters("tag", value)}
           >
-            <option value="">All tags</option>
-            {availableTags.map((tag) => (
-              <option key={tag} value={tag}>
-                {tag}
-              </option>
-            ))}
-          </select>
+            <SelectTrigger>
+              <SelectValue placeholder="All tags" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All tags</SelectItem>
+              {availableTags.map((tag) => (
+                <SelectItem key={tag} value={tag}>
+                  {tag}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
         {/* Clear Filters */}
         {(selectedSex || selectedTag) && (
-          <div className="flex flex-col justify-end">
-            <Button variant="outline" onClick={clearFilters}>
-              Clear Filters
-            </Button>
-          </div>
+          <Button variant="outline" onClick={clearFilters}>
+            Clear Filters
+          </Button>
         )}
       </div>
     </div>
