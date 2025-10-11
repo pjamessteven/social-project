@@ -99,23 +99,38 @@ export default function TransitionPathwaysChart({
 
   // Transform data for Recharts format
   const transformDataForRecharts = (sankeyData: SankeyData): RechartsData => {
+    // Filter out nodes that have no connections
+    const connectedNodeIds = new Set<string>();
+    sankeyData.links.forEach(link => {
+      connectedNodeIds.add(link.source);
+      connectedNodeIds.add(link.target);
+    });
+
+    const connectedNodes = sankeyData.nodes.filter(node => 
+      connectedNodeIds.has(node.id)
+    );
+
     // Create a mapping from node IDs to indices
     const nodeIdToIndex = new Map<string, number>();
-    sankeyData.nodes.forEach((node, index) => {
+    connectedNodes.forEach((node, index) => {
       nodeIdToIndex.set(node.id, index);
     });
 
-    // Transform nodes to Recharts format
-    const rechartsNodes: RechartsNode[] = sankeyData.nodes.map(node => ({
+    // Transform nodes to Recharts format with better labels
+    const rechartsNodes: RechartsNode[] = connectedNodes.map(node => ({
       name: node.label
     }));
 
-    // Transform links to use indices instead of IDs
-    const rechartsLinks: RechartsLink[] = sankeyData.links.map(link => ({
-      source: nodeIdToIndex.get(link.source) || 0,
-      target: nodeIdToIndex.get(link.target) || 0,
-      value: link.value
-    }));
+    // Transform links to use indices instead of IDs, filter out invalid links
+    const rechartsLinks: RechartsLink[] = sankeyData.links
+      .filter(link => 
+        nodeIdToIndex.has(link.source) && nodeIdToIndex.has(link.target)
+      )
+      .map(link => ({
+        source: nodeIdToIndex.get(link.source)!,
+        target: nodeIdToIndex.get(link.target)!,
+        value: link.value
+      }));
 
     return {
       nodes: rechartsNodes,
@@ -125,9 +140,10 @@ export default function TransitionPathwaysChart({
 
   const rechartsData = transformDataForRecharts(data);
 
-  // Calculate total users for display
-  const totalUsers = data.nodes.length > 0 ? 
-    Math.max(...data.links.map(link => link.value)) : 0;
+  // Calculate total users for display (sum of first stage outgoing links)
+  const totalUsers = data.links
+    .filter(link => link.source.startsWith('sex_'))
+    .reduce((sum, link) => sum + link.value, 0);
 
   if (error) {
     return <div className="py-8 text-center text-red-500">Error: {error}</div>;
@@ -154,15 +170,36 @@ export default function TransitionPathwaysChart({
                 width={960}
                 height={500}
                 data={rechartsData}
-                nodePadding={20}
-                nodeWidth={15}
+                nodePadding={30}
+                nodeWidth={20}
                 linkCurvature={0.5}
                 iterations={32}
-                margin={{ top: 20, right: 80, bottom: 20, left: 80 }}
-                node={{ 
-                  fill: '#3b82f6',
-                  stroke: '#1e40af',
-                  strokeWidth: 1
+                margin={{ top: 40, right: 120, bottom: 40, left: 120 }}
+                node={(props: any) => {
+                  const { x, y, width, height, payload } = props;
+                  return (
+                    <g>
+                      <rect
+                        x={x}
+                        y={y}
+                        width={width}
+                        height={height}
+                        fill="#3b82f6"
+                        stroke="#1e40af"
+                        strokeWidth={1}
+                      />
+                      <text
+                        x={x + width + 6}
+                        y={y + height / 2}
+                        textAnchor="start"
+                        dominantBaseline="middle"
+                        fontSize={12}
+                        fill="#374151"
+                      >
+                        {payload.name}
+                      </text>
+                    </g>
+                  );
                 }}
                 link={{ 
                   stroke: '#94a3b8',
