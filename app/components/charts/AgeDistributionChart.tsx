@@ -127,7 +127,7 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
                 top: 20,
                 right: 30,
                 left: 20,
-                bottom: 5,
+                bottom: 10,
               }}
             >
               <CartesianGrid strokeDasharray="3 3" />
