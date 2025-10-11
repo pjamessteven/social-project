@@ -222,7 +222,7 @@ function categorizeUser(user: any): string[] {
   flow.push(`medical_${medicalCategory}`);
 
   // Stage 4: Outcome
-  const regrets = tags.includes('regret') || tags.includes('detransition');
+  const regrets = tags.includes('regret');
   const noRegrets = tags.includes('regret absent') || tags.includes('regret avoided');
   
   let outcome = 'unknown';

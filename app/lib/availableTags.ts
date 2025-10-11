@@ -86,7 +86,6 @@ export const SankeyTagMappings = {
   },
   outcome: {
     "regret": "regrets",
-    "detransition": "regrets",
     "regret absent": "no_regrets",
     "regret avoided": "no_regrets"
   }
