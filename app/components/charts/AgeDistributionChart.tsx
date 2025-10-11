@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import {
-  BarChart,
-  Bar,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -121,15 +121,25 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
           </div>
         ) : (
           <ResponsiveContainer width="100%" height={400}>
-            <BarChart
+            <AreaChart
               data={data}
               margin={{
                 top: 20,
-                right: 0,
-                left: -20,
+                right: 30,
+                left: 0,
                 bottom: 10,
               }}
             >
+              <defs>
+                <linearGradient id="colorTransition" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8}/>
+                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                </linearGradient>
+                <linearGradient id="colorDetransition" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#ef4444" stopOpacity={0.8}/>
+                  <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
+                </linearGradient>
+              </defs>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis 
                 dataKey="age" 
@@ -139,26 +149,29 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
                 label={{ 
                   value: 'Number of Users', 
                   angle: -90, 
-                  position: 'insideMiddle',
-                  style: { marginRight: '200px' }
+                  position: 'insideMiddle'
                 }}
                 tickFormatter={(value) => Math.abs(value).toString()}
               />
               <Tooltip content={<CustomTooltip />} />
               <Legend verticalAlign="bottom" align="left" height={36} wrapperStyle={{ paddingTop: '28px', paddingLeft: '56px' }} />
-              <Bar 
+              <Area 
+                type="monotone"
                 dataKey="transition" 
-                fill="#3b82f6" 
+                stroke="#3b82f6"
+                fillOpacity={1}
+                fill="url(#colorTransition)"
                 name="Transition Age"
-                radius={[2, 2, 0, 0]}
               />
-              <Bar 
+              <Area 
+                type="monotone"
                 dataKey="detransition" 
-                fill="#ef4444" 
+                stroke="#ef4444"
+                fillOpacity={1}
+                fill="url(#colorDetransition)"
                 name="Detransition Age"
-                radius={[2, 2, 0, 0]}
               />
-            </BarChart>
+            </AreaChart>
           </ResponsiveContainer>
         )}
         
