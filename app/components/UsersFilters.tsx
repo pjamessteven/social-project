@@ -34,11 +34,11 @@ export default function UsersFilters({ availableTags }: UsersFiltersProps) {
     params.delete("page");
     
     const queryString = params.toString();
-    router.push(`/users${queryString ? `?${queryString}` : ""}`);
+    router.push(`/stories${queryString ? `?${queryString}` : ""}`);
   };
 
   const clearFilters = () => {
-    router.push("/users");
+    router.push("/stories");
   };
 
   return (
@@ -46,16 +46,15 @@ export default function UsersFilters({ availableTags }: UsersFiltersProps) {
       <div className="flex flex-wrap gap-4 items-end">
         {/* Sex Filter */}
         <div className="flex flex-col gap-2 min-w-[120px]">
-          <label className="text-sm font-medium">Sex:</label>
           <Select
             value={selectedSex || "all"}
             onValueChange={(value) => updateFilters("sex", value)}
           >
             <SelectTrigger>
-              <SelectValue placeholder="All" />
+              <SelectValue placeholder="Male and Female" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="all">Male and Female</SelectItem>
               <SelectItem value="f">Female</SelectItem>
               <SelectItem value="m">Male</SelectItem>
             </SelectContent>
@@ -64,13 +63,12 @@ export default function UsersFilters({ availableTags }: UsersFiltersProps) {
 
         {/* Tag Filter */}
         <div className="flex flex-col gap-2 min-w-[200px]">
-          <label className="text-sm font-medium">Tag:</label>
           <Select
             value={selectedTag || "all"}
             onValueChange={(value) => updateFilters("tag", value)}
           >
             <SelectTrigger>
-              <SelectValue placeholder="All tags" />
+              <SelectValue placeholder="All tags"   />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All tags</SelectItem>
