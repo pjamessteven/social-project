@@ -56,6 +56,7 @@ export const detransUsers = pgTable('detrans_users', {
   sex: varchar('sex', { length: 1 }).notNull(), // 'm' or 'f'
   experienceSummary: text('experience_summary'),
   experience: text('experience'),
+  redFlagsReport: text('red_flags_report'),
   tags: text('tags'), // JSON array of tags
 }, (table) => ({
   usernameIdx: index('idx_detrans_users_username').on(table.username),
@@ -138,6 +139,7 @@ export const detransUserSchema = z.object({
   sex: z.enum(['m', 'f']),
   experienceSummary: z.string().nullable(),
   experience: z.string().nullable(),
+  redFlagsReport: z.string().nullable(),
   tags: z.string().nullable(), // JSON array of tags
 });
 
