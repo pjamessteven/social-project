@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import { detransUsers, detransComments } from "../../../db/schema";
-import { eq, and, like, sql } from "drizzle-orm";
+import { detransUsers, detransComments, tags, userTags } from "../../../db/schema";
+import { eq, and, like, sql, inArray } from "drizzle-orm";
 
 const connectionString = process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/app";
 const client = postgres(connectionString);
@@ -30,14 +30,40 @@ export async function GET(request: NextRequest) {
     
     if (tag) {
       // Handle multiple tags separated by commas
-      const tags = tag.split(',').map(t => t.trim()).filter(Boolean);
-      if (tags.length > 0) {
-        // Create AND conditions for each tag - user must have ALL selected tags
-        const tagConditions = tags.map(t => 
-          sql`${detransUsers.tags}::text LIKE ${`%"${t}"%`}`
-        );
-        // Combine with AND logic
-        conditions.push(sql`(${sql.join(tagConditions, sql` AND `)})`);
+      const tagNames = tag.split(',').map(t => t.trim()).filter(Boolean);
+      if (tagNames.length > 0) {
+        // Get tag IDs for the requested tag names
+        const tagIds = await db
+          .select({ id: tags.id })
+          .from(tags)
+          .where(inArray(tags.name, tagNames));
+        
+        if (tagIds.length > 0) {
+          // Find users who have ALL the requested tags
+          const usersWithAllTags = await db
+            .select({ username: userTags.username })
+            .from(userTags)
+            .where(inArray(userTags.tagId, tagIds.map(t => t.id)))
+            .groupBy(userTags.username)
+            .having(sql`COUNT(DISTINCT ${userTags.tagId}) = ${tagIds.length}`);
+          
+          if (usersWithAllTags.length > 0) {
+            conditions.push(inArray(detransUsers.username, usersWithAllTags.map(u => u.username)));
+          } else {
+            // No users have all the requested tags, return empty result
+            return NextResponse.json({
+              users: [],
+              pagination: {
+                page,
+                limit,
+                total: 0,
+                totalPages: 0,
+                hasNext: false,
+                hasPrev: false,
+              },
+            });
+          }
+        }
       }
     }
 
@@ -58,8 +84,7 @@ export async function GET(request: NextRequest) {
         activeSince: detransUsers.activeSince,
         sex: detransUsers.sex,
         experienceSummary: detransUsers.experienceSummary,
-        tags: detransUsers.tags,
-        commentCount: sql<number>`COALESCE(COUNT(${detransComments.id}), 0)`,
+        commentCount: sql<number>`COALESCE(COUNT(DISTINCT ${detransComments.id}), 0)`,
       })
       .from(detransUsers)
       .leftJoin(detransComments, eq(detransUsers.username, detransComments.username))
@@ -68,22 +93,39 @@ export async function GET(request: NextRequest) {
         detransUsers.username,
         detransUsers.activeSince,
         detransUsers.sex,
-        detransUsers.experienceSummary,
-        detransUsers.tags
+        detransUsers.experienceSummary
       )
-      .orderBy(sql`COALESCE(COUNT(${detransComments.id}), 0) DESC`)
+      .orderBy(sql`COALESCE(COUNT(DISTINCT ${detransComments.id}), 0) DESC`)
       .limit(limit)
       .offset((page - 1) * limit);
 
-    // Parse tags for each user
-    const usersWithParsedTags = users.map(user => ({
+    // Get tags for all users in this page
+    const usernames = users.map(u => u.username);
+    const allUserTags = usernames.length > 0 ? await db
+      .select({
+        username: userTags.username,
+        tagName: tags.name,
+      })
+      .from(userTags)
+      .innerJoin(tags, eq(userTags.tagId, tags.id))
+      .where(inArray(userTags.username, usernames)) : [];
+
+    // Group tags by username
+    const tagsByUsername = allUserTags.reduce((acc, { username, tagName }) => {
+      if (!acc[username]) acc[username] = [];
+      acc[username].push(tagName);
+      return acc;
+    }, {} as Record<string, string[]>);
+
+    // Combine users with their tags
+    const usersWithTags = users.map(user => ({
       ...user,
-      tags: user.tags ? JSON.parse(user.tags) : [],
+      tags: tagsByUsername[user.username] || [],
       commentCount: Number(user.commentCount)
     }));
 
     return NextResponse.json({
-      users: usersWithParsedTags,
+      users: usersWithTags,
       pagination: {
         page,
         limit,

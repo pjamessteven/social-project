@@ -5,7 +5,7 @@ import { OpenAI } from "openai";
 
 import { availableTags } from "@/app/lib/availableTags";
 import postgres from "postgres";
-import { detransUsers } from "../db/schema";
+import { detransUsers, tags, userTags } from "../db/schema";
 
 dotenv.config();
 
@@ -231,22 +231,63 @@ Return only a JSON array of applicable tags. Example: ["trauma", "top surgery", 
     const parsed = JSON.parse(result);
 
     // Handle different possible response formats
-    let tags: string[] = [];
+    let tagNames: string[] = [];
     if (Array.isArray(parsed)) {
-      tags = parsed;
+      tagNames = parsed;
     } else if (parsed.tags && Array.isArray(parsed.tags)) {
-      tags = parsed.tags;
+      tagNames = parsed.tags;
     } else if (typeof parsed === "object") {
       // Try to find an array property
       const arrayProp = Object.values(parsed).find((val) => Array.isArray(val));
-      if (arrayProp) tags = arrayProp as string[];
+      if (arrayProp) tagNames = arrayProp as string[];
     }
 
     // Filter to only include predefined tags
-    return tags.filter((tag) => availableTags.includes(tag.toLowerCase()));
+    return tagNames.filter((tag) => availableTags.includes(tag.toLowerCase()));
   } catch (error) {
     console.error(`Error generating tags for ${username}:`, error);
     return [];
+  }
+}
+
+async function ensureTagsExist(tagNames: string[]): Promise<number[]> {
+  const tagIds: number[] = [];
+  
+  for (const tagName of tagNames) {
+    // Check if tag exists
+    let existingTag = await db
+      .select()
+      .from(tags)
+      .where(eq(tags.name, tagName))
+      .limit(1);
+    
+    if (existingTag.length === 0) {
+      // Create new tag
+      const newTag = await db
+        .insert(tags)
+        .values({ name: tagName })
+        .returning({ id: tags.id });
+      tagIds.push(newTag[0].id);
+    } else {
+      tagIds.push(existingTag[0].id);
+    }
+  }
+  
+  return tagIds;
+}
+
+async function assignTagsToUser(username: string, tagIds: number[]): Promise<void> {
+  // Remove existing tags for this user
+  await db.delete(userTags).where(eq(userTags.username, username));
+  
+  // Insert new tags
+  if (tagIds.length > 0) {
+    await db.insert(userTags).values(
+      tagIds.map(tagId => ({
+        username,
+        tagId,
+      }))
+    );
   }
 }
 
@@ -295,7 +336,7 @@ async function processUser(userComments: UserComments): Promise<void> {
 
     // Generate tags
     console.log(`Generating tags for ${username}...`);
-    const tags = await generateTags(username, experienceReport, redFlagsReport);
+    const tagNames = await generateTags(username, experienceReport, redFlagsReport);
 
     // Insert into database
     await db.insert(detransUsers).values({
@@ -305,8 +346,14 @@ async function processUser(userComments: UserComments): Promise<void> {
       experienceSummary: experienceSummary || null,
       experience: experienceReport,
       redFlagsReport: redFlagsReport || null,
-      tags: tags.length > 0 ? JSON.stringify(tags) : null,
     });
+
+    // Handle tags
+    if (tagNames.length > 0) {
+      console.log(`Assigning tags to ${username}:`, tagNames);
+      const tagIds = await ensureTagsExist(tagNames);
+      await assignTagsToUser(username, tagIds);
+    }
 
     console.log(`Successfully processed user: ${username}`);
 

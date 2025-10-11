@@ -49,6 +49,29 @@ export const affirmCache = pgTable('affirm_cache', {
 }));
 
 
+// Tags table
+export const tags = pgTable('tags', {
+  id: serial('id').primaryKey(),
+  name: varchar('name', { length: 255 }).notNull().unique(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+}, (table) => ({
+  nameIdx: index('idx_tags_name').on(table.name),
+}));
+
+// User tags junction table
+export const userTags = pgTable('user_tags', {
+  id: serial('id').primaryKey(),
+  username: varchar('username', { length: 255 }).notNull().references(() => detransUsers.username, { onDelete: 'cascade' }),
+  tagId: integer('tag_id').notNull().references(() => tags.id, { onDelete: 'cascade' }),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+}, (table) => ({
+  usernameTagIdx: index('idx_user_tags_username_tag').on(table.username, table.tagId),
+  usernameIdx: index('idx_user_tags_username').on(table.username),
+  tagIdIdx: index('idx_user_tags_tag_id').on(table.tagId),
+  // Ensure unique combination of username and tag
+  uniqueUserTag: index('idx_user_tags_unique').on(table.username, table.tagId),
+}));
+
 // Detrans users table
 export const detransUsers = pgTable('detrans_users', {
   username: varchar('username', { length: 255 }).primaryKey(),
@@ -57,7 +80,6 @@ export const detransUsers = pgTable('detrans_users', {
   experienceSummary: text('experience_summary'),
   experience: text('experience'),
   redFlagsReport: text('red_flags_report'),
-  tags: text('tags'), // JSON array of tags
 }, (table) => ({
   usernameIdx: index('idx_detrans_users_username').on(table.username),
   activeSinceIdx: index('idx_detrans_users_active_since').on(table.activeSince),
@@ -133,6 +155,19 @@ export const detransUserEventSchema = z.object({
   eventName: z.string().max(255),
 });
 
+export const tagSchema = z.object({
+  id: z.number().int(),
+  name: z.string().max(255),
+  createdAt: z.date(),
+});
+
+export const userTagSchema = z.object({
+  id: z.number().int(),
+  username: z.string().max(255),
+  tagId: z.number().int(),
+  createdAt: z.date(),
+});
+
 export const detransUserSchema = z.object({
   username: z.string().max(255),
   activeSince: z.date(),
@@ -140,7 +175,6 @@ export const detransUserSchema = z.object({
   experienceSummary: z.string().nullable(),
   experience: z.string().nullable(),
   redFlagsReport: z.string().nullable(),
-  tags: z.string().nullable(), // JSON array of tags
 });
 
 export const detransCommentSchema = z.object({
@@ -164,3 +198,5 @@ export type Cache = z.infer<typeof cacheSchema>;
 export type DetransUserEvent = z.infer<typeof detransUserEventSchema>;
 export type DetransUser = z.infer<typeof detransUserSchema>;
 export type DetransComment = z.infer<typeof detransCommentSchema>;
+export type Tag = z.infer<typeof tagSchema>;
+export type UserTag = z.infer<typeof userTagSchema>;
