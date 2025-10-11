@@ -3,7 +3,6 @@ import { eq, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/postgres-js";
 import { OpenAI } from "openai";
 
-import { availableTags } from "@/app/lib/availableTags";
 import postgres from "postgres";
 import { detransUsers, detransTags, detransUserTags } from "../db/schema";
 
@@ -202,20 +201,28 @@ Respond with only "m" for male or "f" for female birth sex. If unclear, make you
 async function extractAges(
   username: string,
   experienceReport: string,
-): Promise<{ transitionAge: number | null; detransitionAge: number | null }> {
-  const prompt = `Based on the following experience report from a detransition community user, extract their age when they started transitioning and their age when they started detransitioning.
+): Promise<{ 
+  transitionAge: number | null; 
+  detransitionAge: number | null;
+  transitionYear: number | null;
+  detransitionYear: number | null;
+}> {
+  const prompt = `Based on the following experience report from a detransition community user, extract their age when they started transitioning, their age when they started detransitioning, and the years when these events occurred.
 
-Look for explicit mentions of ages, such as:
+Look for explicit mentions of ages and years, such as:
 - "I started transitioning at 16"
 - "When I was 14, I began..."
 - "At age 20, I decided to detransition"
 - "I'm now 25 and have been detransitioning for 2 years" (calculate: 25-2=23 for detransition age)
+- "I transitioned in 2018"
+- "I started detransitioning in 2022"
+- "Back in 2015, I began my transition"
 
 Experience report: ${experienceReport.substring(0, 4000)}...
 
-Return a JSON object with "transitionAge" and "detransitionAge" as numbers, or null if not mentioned or unclear.
-Example: {"transitionAge": 16, "detransitionAge": 23}
-If ages are not clearly stated, return null for those fields.`;
+Return a JSON object with "transitionAge", "detransitionAge", "transitionYear", and "detransitionYear" as numbers, or null if not mentioned or unclear.
+Example: {"transitionAge": 16, "detransitionAge": 23, "transitionYear": 2018, "detransitionYear": 2022}
+If ages or years are not clearly stated, return null for those fields.`;
 
   try {
     const response = await openai.chat.completions.create({
@@ -226,16 +233,18 @@ If ages are not clearly stated, return null for those fields.`;
     });
 
     const result = response.choices[0]?.message?.content;
-    if (!result) return { transitionAge: null, detransitionAge: null };
+    if (!result) return { transitionAge: null, detransitionAge: null, transitionYear: null, detransitionYear: null };
 
     const parsed = JSON.parse(result);
     return {
       transitionAge: typeof parsed.transitionAge === 'number' ? parsed.transitionAge : null,
       detransitionAge: typeof parsed.detransitionAge === 'number' ? parsed.detransitionAge : null,
+      transitionYear: typeof parsed.transitionYear === 'number' ? parsed.transitionYear : null,
+      detransitionYear: typeof parsed.detransitionYear === 'number' ? parsed.detransitionYear : null,
     };
   } catch (error) {
     console.error(`Error extracting ages for ${username}:`, error);
-    return { transitionAge: null, detransitionAge: null };
+    return { transitionAge: null, detransitionAge: null, transitionYear: null, detransitionYear: null };
   }
 }
 
@@ -244,12 +253,17 @@ async function generateTags(
   comments: string,
   redFlagsReport: string,
 ): Promise<string[]> {
-  const prompt = `Based on the following comments from a detransition community user, identify which of these predetermined tags apply to their experience. 
+  const prompt = `Based on the following comments from a detransition community user, identify relevant tags that apply to their experience. 
 Only select tags that are clearly supported by the content and are directly relevant to the user.
 For example, only include 'infertility' if the user is actually now infertile, or 'bottom surgery' if the user had bottom surgery.
 Only use the 'suspicious account' tag if the redFlagsReport suspects that this account might not be authentic. 
 
-Available tags: ${availableTags.join(", ")}
+Generate appropriate tags based on the content. Common categories include:
+- Medical procedures (top surgery, bottom surgery, hormones, etc.)
+- Mental health (depression, anxiety, autism, trauma, etc.)
+- Social aspects (family support, religious background, etc.)
+- Outcomes (regret, infertility, voice changes, etc.)
+- Account authenticity (suspicious account if flagged)
 
 Comments from user "${username}": ${comments.substring(0, 3000)}...
 Red flag report of comments : ${redFlagsReport}...
@@ -282,8 +296,8 @@ Return only a JSON array of applicable tags. Example: ["trauma", "top surgery", 
       if (arrayProp) tagNames = arrayProp as string[];
     }
 
-    // Filter to only include predefined tags
-    return tagNames.filter((tag) => availableTags.includes(tag.toLowerCase()));
+    // Return all generated tags (no filtering against predefined list)
+    return tagNames.map(tag => tag.toLowerCase());
   } catch (error) {
     console.error(`Error generating tags for ${username}:`, error);
     return [];
@@ -394,9 +408,9 @@ async function processUser(userComments: UserComments): Promise<void> {
       console.log(`Determining birth sex for ${username}...`);
       const birthSex = await determineBirthSex(username, experienceReport);
 
-      // Extract ages
-      console.log(`Extracting transition/detransition ages for ${username}...`);
-      const { transitionAge, detransitionAge } = await extractAges(username, experienceReport);
+      // Extract ages and years
+      console.log(`Extracting transition/detransition ages and years for ${username}...`);
+      const { transitionAge, detransitionAge, transitionYear, detransitionYear } = await extractAges(username, experienceReport);
 
       // Insert into database
       await db.insert(detransUsers).values({
@@ -408,6 +422,8 @@ async function processUser(userComments: UserComments): Promise<void> {
         redFlagsReport: redFlagsReport || null,
         transitionAge,
         detransitionAge,
+        transitionYear,
+        detransitionYear,
       });
     }
 
