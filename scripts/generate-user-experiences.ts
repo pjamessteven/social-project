@@ -39,8 +39,10 @@ async function getUserComments(): Promise<UserComments[]> {
       MIN(created) as earliest_comment_date
     FROM detrans_comments 
     WHERE username IS NOT NULL 
+      AND username != '[deleted]'
     GROUP BY username 
     ORDER BY comment_count DESC
+    LIMIT 5
   `);
 
   return result.map((row) => ({
