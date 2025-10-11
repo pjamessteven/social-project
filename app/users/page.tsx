@@ -52,7 +52,10 @@ const availableTags = [
   "body dysmorphia",
   "retransition",
   "social transition only",
-  "suspicious account"
+  "homosexual",
+  "heterosexual",
+  "bisexual",
+  "suspicious account",
 ];
 
 async function fetchUsers(searchParams: { [key: string]: string | string[] | undefined }) {
@@ -91,17 +94,22 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
   const { users, pagination } = data;
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">Detrans Users</h1>
+    <div className="container mx-auto px-0 pb-8 lg:pt-8">
+      <div className="mb-8  prose sm:prose-base prose-sm dark:prose-invert max-w-full">
+        <h1 className="text-3xl font-bold ">Detransition Stories and Timelines</h1>
         <p className="text-gray-600 dark:text-gray-400">
-          Browse summarised experiences from most active members in the /r/detrans Reddit community, the largest open collection of detransition stories on the internet.  
+          Browse summarised detransition experiences from members of the                 <a
+                    href="https://reddit.com/r/detrans"
+                    target="_blank"
+                    className="underline"
+                  >/r/detrans</a> Reddit community, the largest open collection of detransition stories on the internet.  
         </p>
-                <p className="text-gray-600 dark:text-gray-400 mt-2">
-                Each user has been analysed for signs of bot generated or inauthentic content. Any account that does not appear to be a genuine de-transitioner is tagged 'suspicious account'.
-          </p>
-                          <p className="text-gray-600 dark:text-gray-400 mt-2">
-               Accounts that have left fewer than five comments have been ommitted from analysis.
+        <p className="text-gray-600 dark:text-gray-400">
+          On Reddit, people often share their experiences across multiple comments or posts. To make this information more accessible, AI has been used to weave all of the experiences shared by a user into a detailed timeline. All system prompts are noted on the  <Link href={"/prompts"}><b>prompts page</b></Link>. 
+        </p>
+                <p className="text-gray-600 dark:text-gray-400">
+                Every user has been analysed for signs of bot generated or inauthentic content. Any account that does not appear to be a genuine de-transitioner is flagged 'suspicious'. These accounts will be reviewed and removed from the detrans.ai dataset.
+               Accounts that have made fewer than five comments have been ommitted from analysis.
           </p>
       </div>
 
@@ -125,28 +133,28 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
               href={`/users/${encodeURIComponent(user.username)}`}
               className="block border rounded-lg p-6 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
             >
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="text-lg font-semibold">{user.username}</h3>
+              <div className="flex flex-col sm:flex-row justify-between items-start mb-2">
+                <h3 className="text-lg font-semibold">/u/{user.username}</h3>
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-gray-500">
-                    Active on /r/detrans since {formatDate(user.activeSince)}
+    Posting since {formatDate(user.activeSince)}
                   </span>
                 </div>
               </div>
               
               {user.experienceSummary && (
-                <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
+                <p className="text-gray-700 dark:text-gray-300 mb-4 prose-sm sm:prose-base">
                   {user.experienceSummary}
                 </p>
               )}
               
               {user.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">
-                    {user.sex === "f" ? "Female" : "Male"}
+                  <Badge variant={'inverted'}>
+                    {user.sex === "f" ? "female" : "male"}
                   </Badge>
                   {user.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="text-xs">
+                    <Badge key={tag} variant="inverted" >
                       {tag}
                     </Badge>
                   ))}
