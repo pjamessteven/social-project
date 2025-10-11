@@ -117,7 +117,7 @@ async function generateRedFlagsReport(
   const truncatedComments = truncateToTokenLimit(comments, 260000);
 
   const prompt = `You are analyzing comments from a user named "${username}" from /r/detrans on reddit. 
-  Based on their comments, is this person authentic? 
+  Based on their comments, is this user account authentic? 
   Are there any serious red flags that suggest that this account could possibly be a bot, not a real person, or not a de-transitioner or desister? 
   Remember that detransitioners and desisters can be very passionate and pissed off about this topic because of the harm and stigma.
   Remember that you can still be a desister without medically transitioning.
@@ -125,14 +125,14 @@ async function generateRedFlagsReport(
 
   Keep your answer as short as possible.
 
-  Comments: ${truncatedComments}
+  All User Comments in /r/detrans: ${truncatedComments}
 `;
 
   try {
     const response = await openai.chat.completions.create({
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
-      temperature: 0.1,
+      temperature: 0.2,
     });
 
     return response.choices[0]?.message?.content || "";
