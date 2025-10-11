@@ -28,6 +28,25 @@ export async function GET(request: NextRequest) {
       conditions.push(eq(detransUsers.sex, sex));
     }
     
+    // Age filtering - include users whose transition age is >= minAge OR detransition age is <= maxAge
+    if (minAge) {
+      const minAgeNum = parseInt(minAge);
+      if (!isNaN(minAgeNum)) {
+        conditions.push(
+          sql`(${detransUsers.transitionAge} >= ${minAgeNum} OR ${detransUsers.transitionAge} IS NULL)`
+        );
+      }
+    }
+    
+    if (maxAge) {
+      const maxAgeNum = parseInt(maxAge);
+      if (!isNaN(maxAgeNum)) {
+        conditions.push(
+          sql`(${detransUsers.detransitionAge} <= ${maxAgeNum} OR ${detransUsers.detransitionAge} IS NULL)`
+        );
+      }
+    }
+    
     if (tag) {
       // Handle multiple tags separated by commas
       const tagNames = tag.split(',').map(t => t.trim()).filter(Boolean);
