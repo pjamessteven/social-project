@@ -1,3 +1,6 @@
+import { Button } from "../components/ui/button";
+import { ChartNoAxesCombined, ExternalLink } from "lucide-react";
+
 const studies = [
   {
     title:
@@ -172,6 +175,23 @@ export default async function StudiesPage() {
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
       <h1>Selected Academic Articles</h1>
+
+      <div className="mb-6 not-prose">
+        <a
+          href="https://statsforgender.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button
+            variant="secondary"
+            className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+          >
+            <ChartNoAxesCombined className="h-4 w-4" />
+            <span className="text-sm font-medium">Statistics</span>
+            <ExternalLink className="h-3 w-3" />
+          </Button>
+        </a>
+      </div>
 
       <div className="space-y-4">
         {studies.map((study, index) => (
