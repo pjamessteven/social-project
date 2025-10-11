@@ -24,11 +24,13 @@ interface User {
 
 interface Comment {
   id: string;
-  body: string;
+  text: string;
   score: number;
-  created_utc: string;
-  permalink: string;
+  created: string;
+  link: string;
   subreddit: string;
+  questions: string | null;
+  summary: string;
 }
 
 async function getUser(username: string): Promise<User | null> {
