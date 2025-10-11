@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import { detransUsers, detransComments, tags, userTags } from "../../../db/schema";
+import { detransUsers, detransComments, detransTags, detransUserTags } from "../../../db/schema";
 import { eq, and, like, sql, inArray } from "drizzle-orm";
 
 const connectionString = process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/app";
@@ -34,18 +34,18 @@ export async function GET(request: NextRequest) {
       if (tagNames.length > 0) {
         // Get tag IDs for the requested tag names
         const tagIds = await db
-          .select({ id: tags.id })
-          .from(tags)
-          .where(inArray(tags.name, tagNames));
+          .select({ id: detransTags.id })
+          .from(detransTags)
+          .where(inArray(detransTags.name, tagNames));
         
         if (tagIds.length > 0) {
           // Find users who have ALL the requested tags
           const usersWithAllTags = await db
-            .select({ username: userTags.username })
-            .from(userTags)
-            .where(inArray(userTags.tagId, tagIds.map(t => t.id)))
-            .groupBy(userTags.username)
-            .having(sql`COUNT(DISTINCT ${userTags.tagId}) = ${tagIds.length}`);
+            .select({ username: detransUserTags.username })
+            .from(detransUserTags)
+            .where(inArray(detransUserTags.tagId, tagIds.map(t => t.id)))
+            .groupBy(detransUserTags.username)
+            .having(sql`COUNT(DISTINCT ${detransUserTags.tagId}) = ${tagIds.length}`);
           
           if (usersWithAllTags.length > 0) {
             conditions.push(inArray(detransUsers.username, usersWithAllTags.map(u => u.username)));
@@ -103,12 +103,12 @@ export async function GET(request: NextRequest) {
     const usernames = users.map(u => u.username);
     const allUserTags = usernames.length > 0 ? await db
       .select({
-        username: userTags.username,
-        tagName: tags.name,
+        username: detransUserTags.username,
+        tagName: detransTags.name,
       })
-      .from(userTags)
-      .innerJoin(tags, eq(userTags.tagId, tags.id))
-      .where(inArray(userTags.username, usernames)) : [];
+      .from(detransUserTags)
+      .innerJoin(detransTags, eq(detransUserTags.tagId, detransTags.id))
+      .where(inArray(detransUserTags.username, usernames)) : [];
 
     // Group tags by username
     const tagsByUsername = allUserTags.reduce((acc, { username, tagName }) => {
