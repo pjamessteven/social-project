@@ -49,6 +49,18 @@ export const affirmCache = pgTable('affirm_cache', {
 }));
 
 
+// Detrans users table
+export const detransUsers = pgTable('detrans_users', {
+  username: varchar('username', { length: 255 }).primaryKey(),
+  activeSince: timestamp('active_since').notNull(),
+  sex: varchar('sex', { length: 1 }).notNull(), // 'm' or 'f'
+  experienceSummary: text('experience_summary'),
+  experience: text('experience'),
+}, (table) => ({
+  usernameIdx: index('idx_detrans_users_username').on(table.username),
+  activeSinceIdx: index('idx_detrans_users_active_since').on(table.activeSince),
+}));
+
 // Detrans comments table
 export const detransComments = pgTable('detrans_comments', {
   uuid: varchar('uuid', { length: 50 }).primaryKey(), // Remove auto-generation, use Qdrant point ID
@@ -119,6 +131,14 @@ export const detransUserEventSchema = z.object({
   eventName: z.string().max(255),
 });
 
+export const detransUserSchema = z.object({
+  username: z.string().max(255),
+  activeSince: z.date(),
+  sex: z.enum(['m', 'f']),
+  experienceSummary: z.string().nullable(),
+  experience: z.string().nullable(),
+});
+
 export const detransCommentSchema = z.object({
   uuid: z.string(),
   text: z.string(),
@@ -138,4 +158,5 @@ export const detransCommentSchema = z.object({
 export type Question = z.infer<typeof questionSchema>;
 export type Cache = z.infer<typeof cacheSchema>;
 export type DetransUserEvent = z.infer<typeof detransUserEventSchema>;
+export type DetransUser = z.infer<typeof detransUserSchema>;
 export type DetransComment = z.infer<typeof detransCommentSchema>;
