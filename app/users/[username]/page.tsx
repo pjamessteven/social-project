@@ -149,7 +149,7 @@ export default async function UserPage({
                 <div className="max-w-2xl ">
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: marked.parse(user.redFlagsReport),
+                      __html: marked.parse(user.redFlagsReport || ''),
                     }}
                   ></p>
                 </div>
@@ -179,7 +179,7 @@ export default async function UserPage({
               <div
                 className="prose dark:prose-invert max-w-none"
                 dangerouslySetInnerHTML={{
-                  __html: marked.parse(user.experience),
+                  __html: marked.parse(user.experience || ''),
                 }}
               ></div>
             </div>
@@ -219,7 +219,7 @@ export default async function UserPage({
                   <div
                     className="prose dark:prose-invert max-w-none text-sm"
                     dangerouslySetInnerHTML={{
-                      __html: marked.parse(comment.body),
+                      __html: marked.parse(comment.body || ''),
                     }}
                   />
                 </div>
