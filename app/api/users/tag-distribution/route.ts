@@ -125,7 +125,7 @@ function processSankeyData(users: any[]) {
     { name: "sex", categories: ["male", "female", "unknown"] },
     { name: "sexuality", categories: ["homosexual", "heterosexual", "bisexual", "asexual", "unknown"] },
     { name: "transition_age", categories: ["before_18", "after_18", "unknown"] },
-    { name: "medical", categories: ["took_hormones", "got_surgery", "social_only", "unknown"] },
+    { name: "medical", categories: ["took_hormones", "got_surgery", "social_only"] },
     { name: "outcome", categories: ["regrets", "no_regrets", "unknown"] }
   ];
 
@@ -188,14 +188,13 @@ function categorizeUser(user: any): string[] {
   const hasBottomSurgery = tags.includes('got bottom surgery');
   const socialOnly = tags.includes('only transitioned socially');
   
-  let medicalCategory = 'unknown';
-  if (socialOnly) {
-    medicalCategory = 'social_only';
-  } else if (hasHormones) {
+  let medicalCategory = 'social_only'; // Default to social_only
+  if (hasHormones) {
     medicalCategory = 'took_hormones';
   } else if (hasTopSurgery || hasBottomSurgery) {
     medicalCategory = 'got_surgery';
   }
+  // If none of the above, keep as 'social_only' (includes explicit social_only and unknown cases)
   
   flow.push(`medical_${medicalCategory}`);
 
