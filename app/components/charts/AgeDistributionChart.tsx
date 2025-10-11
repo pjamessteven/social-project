@@ -86,11 +86,11 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
     if (active && payload && payload.length) {
       return (
         <div className="bg-white p-3 border border-gray-300 rounded shadow-lg">
-          <p className="font-medium">{`Age: ${label}`}</p>
-          <p className="text-blue-600">
+          <p className="font-medium text-black">{`Age: ${label}`}</p>
+          <p className="font-medium  text-blue-600">
             {`Transitioned: ${payload[0]?.value || 0} users`}
           </p>
-          <p className="text-red-600">
+          <p className="font-medium  text-red-600">
             {`Detransitioned: ${payload[1]?.value || 0} users`}
           </p>
         </div>
@@ -117,9 +117,9 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
   return (
     <Card className={className}>
       <CardHeader>
-        <CardTitle>Transition {" -> "} Detransition Ages</CardTitle>
+        <CardTitle>Transition & Detransition Age Distribution</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-0">
         {loading ? (
           <div className="flex items-center justify-center h-96">
             <div className="text-gray-500">Loading chart data...</div>
@@ -130,9 +130,9 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
               data={data}
               margin={{
                 top: 20,
-                right: 30,
-                left: -20,
-                bottom: 10,
+                right: 0,
+                left: 28,
+                bottom: 28,
               }}
             >
               <defs>
@@ -147,17 +147,19 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
               </defs>
               <XAxis 
                 dataKey="age" 
-                label={{ value: 'Age', position: 'insideBottom', offset:-10 }}
+                label={{ value: 'Age', position: 'bottom', offset:5 }}
               />
               <YAxis 
                 label={{ 
                   value: 'Number of Users', 
                   angle: -90, 
-                  position: 'insideLeft'
+                  position: 'left',
+                  offset: 5
                 }}
+
               />
               <Tooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="bottom" align="left" height={36} wrapperStyle={{ paddingTop: '28px', paddingLeft: '56px' }} />
+              <Legend verticalAlign="bottom" align="left" height={36} wrapperStyle={{ paddingTop: '28px' }} />
               <Area 
                 type="monotone"
                 dataKey="transition" 
