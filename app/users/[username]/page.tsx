@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/app/components/ui/accordion";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import { marked } from "marked";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -110,7 +110,19 @@ export default async function UserPage({
       <div className="prose dark:prose-invert space-y-6">
         {/* Header */}
         <div>
-          <h1 className="mb-4 text-3xl font-bold">{user.username}</h1>
+          <div className="mb-4 flex items-start justify-between">
+            <h1 className="text-3xl font-bold">{user.username}</h1>
+            <Link
+              href={`https://reddit.com/u/${user.username}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="outline" size="sm">
+                <ExternalLink className="mr-2 h-4 w-4" />
+                View on Reddit
+              </Button>
+            </Link>
+          </div>
           <div className="mb-4 flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
             <div className="flex items-center gap-2">
               <Badge variant="outline">
