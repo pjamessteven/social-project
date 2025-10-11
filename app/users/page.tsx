@@ -95,8 +95,14 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-4">Detrans Users</h1>
         <p className="text-gray-600 dark:text-gray-400">
-          Browse experiences from the detransition community
+          Browse summarised experiences from most active members in the /r/detrans Reddit community, the largest open collection of detransition stories on the internet.  
         </p>
+                <p className="text-gray-600 dark:text-gray-400 mt-2">
+                Each user has been analysed for signs of bot generated or inauthentic content. Any account that does not appear to be a genuine de-transitioner is tagged 'suspicious account'.
+          </p>
+                          <p className="text-gray-600 dark:text-gray-400 mt-2">
+               Accounts that have left fewer than five comments have been ommitted from analysis.
+          </p>
       </div>
 
       <UsersFilters availableTags={availableTags} />
