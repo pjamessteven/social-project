@@ -50,26 +50,26 @@ export const affirmCache = pgTable('affirm_cache', {
 
 
 // Tags table
-export const tags = pgTable('tags', {
+export const detransTags = pgTable('detrans_tags', {
   id: serial('id').primaryKey(),
   name: varchar('name', { length: 255 }).notNull().unique(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 }, (table) => ({
-  nameIdx: index('idx_tags_name').on(table.name),
+  nameIdx: index('idx_detrans_tags_name').on(table.name),
 }));
 
 // User tags junction table
-export const userTags = pgTable('user_tags', {
+export const detransUserTags = pgTable('detrans_user_tags', {
   id: serial('id').primaryKey(),
   username: varchar('username', { length: 255 }).notNull().references(() => detransUsers.username, { onDelete: 'cascade' }),
-  tagId: integer('tag_id').notNull().references(() => tags.id, { onDelete: 'cascade' }),
+  tagId: integer('tag_id').notNull().references(() => detransTags.id, { onDelete: 'cascade' }),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 }, (table) => ({
-  usernameTagIdx: index('idx_user_tags_username_tag').on(table.username, table.tagId),
-  usernameIdx: index('idx_user_tags_username').on(table.username),
-  tagIdIdx: index('idx_user_tags_tag_id').on(table.tagId),
+  usernameTagIdx: index('idx_detrans_user_tags_username_tag').on(table.username, table.tagId),
+  usernameIdx: index('idx_detrans_user_tags_username').on(table.username),
+  tagIdIdx: index('idx_detrans_user_tags_tag_id').on(table.tagId),
   // Ensure unique combination of username and tag
-  uniqueUserTag: index('idx_user_tags_unique').on(table.username, table.tagId),
+  uniqueUserTag: index('idx_detrans_user_tags_unique').on(table.username, table.tagId),
 }));
 
 // Detrans users table

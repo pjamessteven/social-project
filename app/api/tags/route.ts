@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import { tags, userTags } from "../../../db/schema";
+import { detransTags, detransUserTags } from "../../../db/schema";
 import { sql } from "drizzle-orm";
 
 const connectionString = process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/app";
@@ -12,14 +12,14 @@ export async function GET(request: NextRequest) {
   try {
     const tagsWithCounts = await db
       .select({
-        id: tags.id,
-        name: tags.name,
-        userCount: sql<number>`COALESCE(COUNT(${userTags.username}), 0)`,
+        id: detransTags.id,
+        name: detransTags.name,
+        userCount: sql<number>`COALESCE(COUNT(${detransUserTags.username}), 0)`,
       })
-      .from(tags)
-      .leftJoin(userTags, sql`${tags.id} = ${userTags.tagId}`)
-      .groupBy(tags.id, tags.name)
-      .orderBy(sql`COALESCE(COUNT(${userTags.username}), 0) DESC`);
+      .from(detransTags)
+      .leftJoin(detransUserTags, sql`${detransTags.id} = ${detransUserTags.tagId}`)
+      .groupBy(detransTags.id, detransTags.name)
+      .orderBy(sql`COALESCE(COUNT(${detransUserTags.username}), 0) DESC`);
 
     const tagsWithParsedCounts = tagsWithCounts.map(tag => ({
       ...tag,
