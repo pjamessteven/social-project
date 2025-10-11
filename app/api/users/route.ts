@@ -32,12 +32,12 @@ export async function GET(request: NextRequest) {
       // Handle multiple tags separated by commas
       const tags = tag.split(',').map(t => t.trim()).filter(Boolean);
       if (tags.length > 0) {
-        // Create OR conditions for each tag
+        // Create AND conditions for each tag - user must have ALL selected tags
         const tagConditions = tags.map(t => 
           sql`${detransUsers.tags}::text LIKE ${`%"${t}"%`}`
         );
-        // Combine with OR logic
-        conditions.push(sql`(${sql.join(tagConditions, sql` OR `)})`);
+        // Combine with AND logic
+        conditions.push(sql`(${sql.join(tagConditions, sql` AND `)})`);
       }
     }
 
