@@ -205,10 +205,10 @@ export default async function UserPage({
                     <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                       <Badge variant="outline">{comment.score} points</Badge>
                       <span>r/detrans</span>
-                      <span>{formatCommentDate(comment.created_utc)}</span>
+                      <span>{formatCommentDate(comment.created)}</span>
                     </div>
                     <Link
-                      href={`https://reddit.com${comment.permalink}`}
+                      href={`https://reddit.com${comment.link}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
@@ -217,9 +217,9 @@ export default async function UserPage({
                     </Link>
                   </div>
                   <div
-                    className="prose dark:prose-invert max-w-none text-sm"
+                    className="prose dark:prose-invert max-w-none text-sm mt-4"
                     dangerouslySetInnerHTML={{
-                      __html: marked.parse(comment.body || ''),
+                      __html: marked.parse(comment.text || ''),
                     }}
                   />
                 </div>
