@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { marked } from "marked";
 import Link from "next/link";
+import { useState } from "react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 
@@ -14,6 +14,7 @@ interface Comment {
   link: string;
   subreddit: string;
   questions: string | null;
+  summary: string;
 }
 
 interface UserCommentsProps {
@@ -21,7 +22,10 @@ interface UserCommentsProps {
   initialComments: Comment[];
 }
 
-export default function UserComments({ username, initialComments }: UserCommentsProps) {
+export default function UserComments({
+  username,
+  initialComments,
+}: UserCommentsProps) {
   const [comments, setComments] = useState<Comment[]>(initialComments);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(initialComments.length === 10); // Assume more if we got a full page
@@ -36,20 +40,21 @@ export default function UserComments({ username, initialComments }: UserComments
 
   const parseQuestions = (questionsText: string | null): string[] => {
     if (!questionsText) return [];
-    
+
     // Remove "QUESTIONS: " prefix if it exists
-    const cleanText = questionsText.replace(/^QUESTIONS:\s*/, '');
-    
+    const cleanText = questionsText.replace(/^QUESTIONS:\s*/, "");
+
     // Split by question marks and filter out empty strings
-    const questions = cleanText.split('?')
-      .map(q => q.trim())
-      .filter(q => q.length > 0)
-      .map(q => {
+    const questions = cleanText
+      .split("?")
+      .map((q) => q.trim())
+      .filter((q) => q.length > 0)
+      .map((q) => {
         // Remove leading numbers (e.g., "5. " or "10. ")
-        const withoutNumber = q.replace(/^\d+\.\s*/, '');
-        return withoutNumber + '?';
+        const withoutNumber = q.replace(/^\d+\.\s*/, "");
+        return withoutNumber + "?";
       });
-    
+
     return questions;
   };
 
@@ -57,9 +62,9 @@ export default function UserComments({ username, initialComments }: UserComments
     setLoading(true);
     try {
       const response = await fetch(
-        `/api/users/${encodeURIComponent(username)}/comments?offset=${comments.length}&limit=10`
+        `/api/users/${encodeURIComponent(username)}/comments?offset=${comments.length}&limit=10`,
       );
-      
+
       if (response.ok) {
         const data = await response.json();
         const newComments = data.comments || [];
@@ -77,63 +82,71 @@ export default function UserComments({ username, initialComments }: UserComments
     <div>
       <h3 className="mb-4 font-semibold">Top Comments by /u/{username}:</h3>
       {comments.length === 0 ? (
-        <p className="text-gray-500 dark:text-gray-400">
-          No comments found.
-        </p>
+        <p className="text-gray-500 dark:text-gray-400">No comments found.</p>
       ) : (
         <div className="space-y-4">
           {comments.map((comment) => (
             <div
               key={comment.id}
-              className="rounded-lg border bg-white p-4 dark:bg-gray-900"
+              className="rounded-lg border bg-white dark:bg-gray-900"
             >
-              <div className="mb-2 flex items-start justify-between">
-                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <Badge variant="inverted">
-                    <span className="whitespace-nowrap">
-                      {comment.score} points
-                    </span>
-                  </Badge>
-                  <span className="hidden sm:inline">r/detrans</span>
-                  <span>{formatCommentDate(comment.created)}</span>
+              <div className="bg-secondary flex flex-col">
+                <div className="mb-2 flex items-start justify-between border-b  p-4">
+                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                    <Badge variant="inverted">
+                      <span className="whitespace-nowrap">
+                        {comment.score} points
+                      </span>
+                    </Badge>
+                    <span className="hidden sm:inline">r/detrans</span>
+                    <span>{formatCommentDate(comment.created)}</span>
+                  </div>
+                  <Link
+                    href={`https://reddit.com${comment.link}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                  >
+                    View on Reddit
+                  </Link>
                 </div>
-                <Link
-                  href={`https://reddit.com${comment.link}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-                >
-                  View on Reddit
-                </Link>
+                <div className=" prose font-semibold  px-4 pb-2 text-sm dark:prose-invert">
+                {comment.summary}
+                </div>
               </div>
               <div
-                className="prose dark:prose-invert mt-4 max-w-none text-sm"
+                className="prose px-4 dark:prose-invert max-w-none text-sm"
                 dangerouslySetInnerHTML={{
                   __html: marked.parse(comment.text || ""),
                 }}
               />
-              
-              {comment.questions && (
+
+              {comment.questions && false && (
                 <div className="mt-4 border-t pt-4">
-                  <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <h4 className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                     Related Questions:
                   </h4>
                   <ul className="space-y-1">
-                    {parseQuestions(comment.questions).map((question, index) => (
-                      <li key={index} className="text-sm text-gray-600 dark:text-gray-400">
-                        • {question}
-                      </li>
-                    ))}
+                    {parseQuestions(comment.questions).map(
+                      (question, index) => (
+                        <li
+                          key={index}
+                          className="text-sm text-gray-600 dark:text-gray-400"
+                        >
+                          • {question}
+                        </li>
+                      ),
+                    )}
                   </ul>
                 </div>
               )}
             </div>
           ))}
-          
+
           {hasMore && (
             <div className="flex justify-center pt-4">
-              <Button 
-                onClick={loadMoreComments} 
+              <Button
+                onClick={loadMoreComments}
                 disabled={loading}
                 variant="outline"
               >
