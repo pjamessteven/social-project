@@ -40,11 +40,54 @@ export const availableTags = [
   "suspicious account",
 ];
 
-export const SankeyTags = [
-  ['Male', 'Female'],
-  ['homosexual', 'hetrosexual', 'bisexual', 'asexual'],
-  ['transitioned before 18', 'transitioned after 18']
-  ['took hormones', 'didnt take hormones (tag missing)'],
-  ['Got top surgery', 'Got bottom surgery', 'socially transitioned only/ no surgery tag'],
-  ['regrets transitioning', 'doesnt regret transitioning'],
+export const SankeyFlow = [
+  // Stage 1: Demographics
+  {
+    stage: "sex",
+    categories: ["Male", "Female"],
+    label: "Biological Sex"
+  },
+  // Stage 2: Sexual Orientation  
+  {
+    stage: "sexuality",
+    categories: ["homosexual", "heterosexual", "bisexual", "asexual"],
+    label: "Sexual Orientation"
+  },
+  // Stage 3: Transition Age
+  {
+    stage: "transition_age",
+    categories: ["before_18", "after_18"],
+    label: "Transition Age"
+  },
+  // Stage 4: Medical Interventions
+  {
+    stage: "medical",
+    categories: ["took_hormones", "got_surgery", "social_only"],
+    label: "Medical Interventions"
+  },
+  // Stage 5: Outcome
+  {
+    stage: "outcome", 
+    categories: ["regrets", "no_regrets"],
+    label: "Transition Outcome"
+  }
 ];
+
+export const SankeyTagMappings = {
+  sexuality: {
+    "homosexual": "homosexual",
+    "heterosexual": "heterosexual", 
+    "bisexual": "bisexual",
+    "asexual": "asexual"
+  },
+  medical: {
+    "took hormones": "took_hormones",
+    "got top surgery": "got_surgery", 
+    "got bottom surgery": "got_surgery",
+    "only transitioned socially": "social_only"
+  },
+  outcome: {
+    "regrets transitioning": "regrets",
+    "doesn't regret transitioning": "no_regrets"
+  }
+};
