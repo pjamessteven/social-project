@@ -29,7 +29,33 @@ interface UsersResponse {
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
-  const [availableTags, setAvailableTags] = useState<string[]>([]);
+  const availableTags = [
+    "trauma",
+    "autism",
+    "ocd",
+    "puberty discomfort",
+    "top surgery",
+    "bottom surgery",
+    "internalised homophobia",
+    "autogynephilia (AGP)",
+    "started as non-binary",
+    "escapism",
+    "depression",
+    "low self-esteem",
+    "anxiety",
+    "eating disorder",
+    "influenced online",
+    "influenced by friends",
+    "trans kid",
+    "hormone therapy",
+    "puberty blockers",
+    "health complications",
+    "infertility",
+    "body dysmorphia",
+    "retransition",
+    "social transition only",
+    "suspicious account"
+  ];
   const [selectedSex, setSelectedSex] = useState<string>("");
   const [selectedTag, setSelectedTag] = useState<string>("");
   const [pagination, setPagination] = useState({
@@ -64,19 +90,6 @@ export default function UsersPage() {
     }
   };
 
-  const fetchTags = async () => {
-    try {
-      const response = await fetch("/api/users/tags");
-      const data = await response.json();
-      setAvailableTags(data.tags);
-    } catch (error) {
-      console.error("Error fetching tags:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchTags();
-  }, []);
 
   useEffect(() => {
     fetchUsers(1);
