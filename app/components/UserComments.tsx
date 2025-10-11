@@ -44,7 +44,11 @@ export default function UserComments({ username, initialComments }: UserComments
     const questions = cleanText.split('?')
       .map(q => q.trim())
       .filter(q => q.length > 0)
-      .map(q => q + '?'); // Add question mark back
+      .map(q => {
+        // Remove leading numbers (e.g., "5. " or "10. ")
+        const withoutNumber = q.replace(/^\d+\.\s*/, '');
+        return withoutNumber + '?';
+      });
     
     return questions;
   };
