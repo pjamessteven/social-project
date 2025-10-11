@@ -48,16 +48,6 @@ export const affirmCache = pgTable('affirm_cache', {
   createdIdx: index('idx_affirm_cache_created').on(table.createdAt),
 }));
 
-// Detrans user events table
-export const detransUserEvents = pgTable('detrans_user_events', {
-  id: serial('id').primaryKey(),
-  username: varchar('username', { length: 255 }).notNull(),
-  age: numeric('age'),
-  eventName: varchar('event_name', { length: 255 }).notNull(),
-}, (table) => ({
-  usernameIdx: index('idx_detrans_user_events_username').on(table.username),
-  eventNameIdx: index('idx_detrans_user_events_event_name').on(table.eventName),
-}));
 
 // Detrans comments table
 export const detransComments = pgTable('detrans_comments', {
