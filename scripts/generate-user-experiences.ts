@@ -254,6 +254,55 @@ If ages or years are not clearly stated, return null for those fields.`;
   }
 }
 
+async function fillMissingAges(
+  username: string,
+  existingUser: any,
+): Promise<{ 
+  transitionAge: number | null; 
+  detransitionAge: number | null;
+  transitionYear: number | null;
+  detransitionYear: number | null;
+}> {
+  // Check if any age fields are missing
+  const hasAllAges = existingUser.transitionAge !== null && 
+                     existingUser.detransitionAge !== null && 
+                     existingUser.transitionYear !== null && 
+                     existingUser.detransitionYear !== null;
+
+  if (hasAllAges) {
+    return {
+      transitionAge: existingUser.transitionAge,
+      detransitionAge: existingUser.detransitionAge,
+      transitionYear: existingUser.transitionYear,
+      detransitionYear: existingUser.detransitionYear,
+    };
+  }
+
+  console.log(`Attempting to fill missing age data for ${username} from experience text...`);
+
+  // Use experience text to extract missing ages
+  const experienceText = existingUser.experience || existingUser.experienceSummary || "";
+  if (!experienceText) {
+    console.log(`No experience text available for ${username}, cannot fill missing ages`);
+    return {
+      transitionAge: existingUser.transitionAge,
+      detransitionAge: existingUser.detransitionAge,
+      transitionYear: existingUser.transitionYear,
+      detransitionYear: existingUser.detransitionYear,
+    };
+  }
+
+  const extractedAges = await extractAges(username, experienceText);
+
+  // Merge existing data with extracted data, preferring existing data when available
+  return {
+    transitionAge: existingUser.transitionAge ?? extractedAges.transitionAge,
+    detransitionAge: existingUser.detransitionAge ?? extractedAges.detransitionAge,
+    transitionYear: existingUser.transitionYear ?? extractedAges.transitionYear,
+    detransitionYear: existingUser.detransitionYear ?? extractedAges.detransitionYear,
+  };
+}
+
 async function generateTags(
   username: string,
   comments: string,
@@ -371,12 +420,37 @@ async function processUser(userComments: UserComments): Promise<void> {
     .from(detransUserTags)
     .where(eq(detransUserTags.username, username));
 
+  const userExists = existingUser.length > 0;
+  
   if (existingUser.length > 0 && existingTags.length > 0) {
-    console.log(`User ${username} already exists with tags, skipping...`);
+    // Check if user has missing age data
+    const user = existingUser[0];
+    const hasMissingAges = user.transitionAge === null || 
+                          user.detransitionAge === null || 
+                          user.transitionYear === null || 
+                          user.detransitionYear === null;
+    
+    if (hasMissingAges) {
+      console.log(`User ${username} has missing age data, attempting to fill from experience...`);
+      const updatedAges = await fillMissingAges(username, user);
+      
+      // Update the user with the filled age data
+      await db.update(detransUsers)
+        .set({
+          transitionAge: updatedAges.transitionAge,
+          detransitionAge: updatedAges.detransitionAge,
+          transitionYear: updatedAges.transitionYear,
+          detransitionYear: updatedAges.detransitionYear,
+        })
+        .where(eq(detransUsers.username, username));
+      
+      console.log(`Updated age data for ${username}`);
+    } else {
+      console.log(`User ${username} already exists with complete data, skipping...`);
+    }
     return;
   }
 
-  const userExists = existingUser.length > 0;
   if (userExists && existingTags.length === 0) {
     console.log(`User ${username} exists but has no tags, generating tags...`);
   }
