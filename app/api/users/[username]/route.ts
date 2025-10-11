@@ -23,6 +23,7 @@ export async function GET(
         experienceSummary: detransUsers.experienceSummary,
         experience: detransUsers.experience,
         tags: detransUsers.tags,
+        redFlagsReport: detransUsers.redFlagsReport,
         commentCount: sql<number>`COALESCE(COUNT(${detransComments.id}), 0)`,
       })
       .from(detransUsers)
