@@ -3,6 +3,7 @@ import { eq, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/postgres-js";
 import { OpenAI } from "openai";
 
+import { availableTags } from "@/app/lib/availableTags";
 import postgres from "postgres";
 import { detransUsers } from "../db/schema";
 
@@ -19,7 +20,7 @@ const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
 });
 
-const MODEL = "moonshotai/kimi-k2";
+const MODEL = "moonshotai/kimi-k2"
 
 // Rough estimate: 1 token ≈ 4 characters for English text
 function truncateToTokenLimit(text: string, maxTokens: number): string {
@@ -53,7 +54,7 @@ async function getUserComments(): Promise<UserComments[]> {
       AND username != '[deleted]'
     GROUP BY username 
     ORDER BY comment_count DESC
-    LIMIT 5
+    LIMIT 15
   `);
 
   return result.map((row) => ({
@@ -72,27 +73,32 @@ async function generateExperienceReport(
   // Limit comments to stay within token limit (leave room for prompt + response)
   const truncatedComments = truncateToTokenLimit(comments, 260000);
 
-  const prompt = `You are a user in an online detransition support community. 
-  Explain in detail your transition and detransition journey and your perspectives on gender. 
-  Formatting your timeline of transition and detransition as a table at the end of your response. 
-  Use only the information from the comments. Do not make things up or get information from outside sources. 
+  const prompt = `You are a user in an online detransition support community and you are summarising your experiences to be shared in an online archive. 
+  Write a detailed plain-word first-person summary from your own comments about your whole transition journey from start to finish. 
+  
+  For example, if this information is available, what you were like before you transitioned, did you have underlying issues, what made you transition, what was it like, were you happy, what made you begin detransitioning, what is your sexual orientation and has it changed, what do you think of gender now, are you better now, etc. 
+  
+  Format your timeline of transition/detransition as a table at the end of your response. 
+
+  **Use only your past experiences from your previous comments** 
+  **Provide as much information as possible** 
+  **Do not make things up or get information from outside sources**
   
   TONE AND STYLE
   Speak in the first person (“I…”) and summarise the comments below in your own voice, as if you were telling a friend what everyone said about you.
+  If you are a parent, write about your childs transition, not your own. 
   Do not refer to yourself by your username.
   Never use third person or meta-language such as “the comments show…” or “people think…”.
   Don't use the terms AFAB or AMAB. Just say male or female. Or born male/born female, if you have to.
   Use plain and simple language that clearly reflects the your real experiences.
 
-Comments: ${truncatedComments}
+  Your previous Comments: ${truncatedComments}
 `;
 
   try {
     const response = await openai.chat.completions.create({
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
-      temperature: 0.3,
-      max_tokens: 1500,
     });
 
     return response.choices[0]?.message?.content || "";
@@ -109,10 +115,11 @@ async function generateRedFlagsReport(
   // Limit comments to stay within token limit (leave room for prompt + response)
   const truncatedComments = truncateToTokenLimit(comments, 260000);
 
-  const prompt = `You are analyzing comments from a user named "${username}" from a detransition support community. 
+  const prompt = `You are analyzing comments from a user named "${username}" from /r/detrans on reddit. 
   Based on their comments, is this person authentic? 
   Are there any serious red flags that suggest that this account could possibly be a bot, not a real person, or not a de-transitioner or desister? 
-  Remember that detransitioners and desisters can be very passionate about this topic because of the harm and stigma.
+  Remember that detransitioners and desisters can be very passionate and pissed off about this topic because of the harm and stigma.
+  Remember that you can still be a desister without medically transitioning.
   If you are sure that this is potentially an inauthentic account, explain the red flags if there are any.
 
   Keep your answer as short as possible.
@@ -124,8 +131,7 @@ async function generateRedFlagsReport(
     const response = await openai.chat.completions.create({
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
-      temperature: 0.3,
-      max_tokens: 1500,
+
     });
 
     return response.choices[0]?.message?.content || "";
@@ -157,8 +163,7 @@ async function generateExperienceSummary(
     const response = await openai.chat.completions.create({
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
-      temperature: 0.2,
-      max_tokens: 300,
+
     });
 
     return response.choices[0]?.message?.content || "";
@@ -182,8 +187,7 @@ Respond with only "m" for male or "f" for female birth sex. If unclear, make you
     const response = await openai.chat.completions.create({
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
-      temperature: 0.1,
-      max_tokens: 10,
+
     });
 
     const result = response.choices[0]?.message?.content?.trim().toLowerCase();
@@ -199,43 +203,12 @@ async function generateTags(
   comments: string,
   redFlagsReport: string,
 ): Promise<string[]> {
-  const predefinedTags = [
-    "trauma",
-    "autism",
-    "ocd",
-    "puberty discomfort",
-    "top surgery",
-    "bottom surgery",
-    "internalised homophobia",
-    "autogynephilia (AGP)",
-    "started as non-binary",
-    "escapism",
-    "depression",
-    "low self-esteem",
-    "anxiety",
-    "eating disorder",
-    "influenced online",
-    "influenced by friends",
-    "trans kid",
-    "hormone therapy",
-    "puberty blockers",
-    "health complications",
-    "infertility",
-    "body dysmorphia",
-    "retransition",
-    "social transition only",
-    "homosexual",
-    "heterosexual",
-    "bisexual",
-    "suspicious account"
-  ];
-
   const prompt = `Based on the following comments from a detransition community user, identify which of these predetermined tags apply to their experience. 
 Only select tags that are clearly supported by the content and are directly relevant to the user.
 For example, only include 'infertility' if the user is actually now infertile, or 'bottom surgery' if the user had bottom surgery.
 Only use the 'suspicious account' tag if the redFlagsReport suspects that this account might not be authentic. 
 
-Available tags: ${predefinedTags.join(", ")}
+Available tags: ${availableTags.join(", ")}
 
 Comments from user "${username}": ${comments.substring(0, 3000)}...
 Red flag report of comments : ${redFlagsReport}...
@@ -246,8 +219,6 @@ Return only a JSON array of applicable tags. Example: ["trauma", "top surgery", 
     const response = await openai.chat.completions.create({
       model: MODEL,
       messages: [{ role: "user", content: prompt }],
-      temperature: 0.1,
-      max_tokens: 200,
       response_format: { type: "json_object" },
     });
 
@@ -270,7 +241,7 @@ Return only a JSON array of applicable tags. Example: ["trauma", "top surgery", 
     }
 
     // Filter to only include predefined tags
-    return tags.filter((tag) => predefinedTags.includes(tag.toLowerCase()));
+    return tags.filter((tag) => availableTags.includes(tag.toLowerCase()));
   } catch (error) {
     console.error(`Error generating tags for ${username}:`, error);
     return [];
@@ -312,7 +283,6 @@ async function processUser(userComments: UserComments): Promise<void> {
 
     const redFlagsReport = await generateRedFlagsReport(username, all_comments);
 
-
     // Generate summary
     console.log(`Generating experience summary for ${username}...`);
     const experienceSummary = await generateExperienceSummary(experienceReport);
@@ -353,7 +323,7 @@ async function main() {
     console.log(`Found ${userComments.length} users to process`);
 
     // Process users in batches to avoid overwhelming the API
-    const batchSize = 5;
+    const batchSize = 15;
     for (let i = 0; i < userComments.length; i += batchSize) {
       const batch = userComments.slice(i, i + batchSize);
       console.log(
