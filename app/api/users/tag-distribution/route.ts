@@ -169,8 +169,14 @@ function categorizeUser(user: any): string[] {
   const tags = user.tags || [];
   const flow: string[] = [];
 
-  // Stage 1: Sex
-  flow.push(`sex_${user.sex?.toLowerCase() || 'unknown'}`);
+  // Stage 1: Sex - map database values to node IDs
+  let sexCategory = 'unknown';
+  if (user.sex === 'm') {
+    sexCategory = 'male';
+  } else if (user.sex === 'f') {
+    sexCategory = 'female';
+  }
+  flow.push(`sex_${sexCategory}`);
 
   // Stage 2: Sexuality
   const sexuality = tags.find((tag: string) => 
