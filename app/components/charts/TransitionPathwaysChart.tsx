@@ -118,7 +118,7 @@ export default function TransitionPathwaysChart({
 
     // Transform nodes to Recharts format with better labels
     const rechartsNodes: RechartsNode[] = connectedNodes.map(node => ({
-      name: node.label
+      name: node.label || node.id.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
     }));
 
     // Transform links to use indices instead of IDs, filter out invalid links
@@ -177,6 +177,8 @@ export default function TransitionPathwaysChart({
                 margin={{ top: 40, right: 120, bottom: 40, left: 120 }}
                 node={(props: any) => {
                   const { x, y, width, height, payload } = props;
+                  const labelText = payload?.name || 'Unknown';
+                  
                   return (
                     <g>
                       <rect
@@ -189,14 +191,15 @@ export default function TransitionPathwaysChart({
                         strokeWidth={1}
                       />
                       <text
-                        x={x + width + 6}
+                        x={x + width + 8}
                         y={y + height / 2}
                         textAnchor="start"
-                        dominantBaseline="middle"
-                        fontSize={12}
+                        dominantBaseline="central"
+                        fontSize={11}
                         fill="#374151"
+                        fontFamily="system-ui, -apple-system, sans-serif"
                       >
-                        {payload.name}
+                        {labelText}
                       </text>
                     </g>
                   );
