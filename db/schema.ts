@@ -80,6 +80,8 @@ export const detransUsers = pgTable('detrans_users', {
   experienceSummary: text('experience_summary'),
   experience: text('experience'),
   redFlagsReport: text('red_flags_report'),
+  transitionAge: integer('transition_age'),
+  detransitionAge: integer('detransition_age'),
 }, (table) => ({
   usernameIdx: index('idx_detrans_users_username').on(table.username),
   activeSinceIdx: index('idx_detrans_users_active_since').on(table.activeSince),
@@ -175,6 +177,8 @@ export const detransUserSchema = z.object({
   experienceSummary: z.string().nullable(),
   experience: z.string().nullable(),
   redFlagsReport: z.string().nullable(),
+  transitionAge: z.number().int().nullable(),
+  detransitionAge: z.number().int().nullable(),
 });
 
 export const detransCommentSchema = z.object({
