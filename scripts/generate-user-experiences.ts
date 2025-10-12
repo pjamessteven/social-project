@@ -63,7 +63,7 @@ const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
 });
 
-const MODEL = "moonshotai/kimi-k2"
+const MODEL = "deepseek/deepseek-chat-v3.1"
 
 // Backoff utility for API calls
 async function fetchWithBackoff<T>(
@@ -149,11 +149,11 @@ async function generateExperienceReport(
   const truncatedComments = truncateToTokenLimit(comments, 260000);
 
   const prompt = `You are a user in an online detransition support community and you are summarising your experiences to be shared in an online archive. 
-  Write a detailed plain-word first-person summary from your own comments about your whole transition journey from start to finish. 
   
-  Try and tell us the following, if this information is available in your previous comments, what you were like before you transitioned, did you have underlying issues, what made you transition, what was it like, were you happy, what made you begin detransitioning, what is your sexual orientation and has it changed, what do you think of gender now, are you better now, do you regret transitioning? do you not regret transitioning? etc. 
+  Write a detailed plain-word first-person summary from your own comments about your whole transition journey from start to finish. 
   If any of the topics delcare in Topics of Significance relate to your experience, make sure to write about them. 
-  Use a table to show your timeline of transition/detransition at the end of your response. 
+  Explain your thoughts on gender and state if you have any regrets about your transition.
+  Use a table to show your timeline of transition/detransition events at the end of your response. Try and put your exact age for each event if it's available.
 
   **Use only your past experiences from your previous comments** 
   **Provide as much information as possible** 
@@ -300,29 +300,21 @@ async function extractAges(
   bottomSurgeryAge: number | null;
   pubertyBlockersAge: number | null;
 }> {
-  const prompt = `Based on the following experience report from a detransition community user, extract their ages for various transition-related events and the years when these events occurred.
+  const prompt = `Based on the following timeline from a detransition community user, extract their ages for various transition-related events and the years when these events occurred.
 
-Look for explicit mentions of ages and years, such as:
-- "I started transitioning at 16"
-- "When I was 14, I began..."
-- "At age 20, I decided to detransition"
-- "I started hormones at 17"
-- "I got top surgery when I was 19"
-- "I had bottom surgery at 21"
-- "I started puberty blockers at 13"
-- "I was put on blockers when I was 14"
-- "I'm now 25 and have been detransitioning for 2 years" (calculate: 25-2=23 for detransition age)
-- "I transitioned in 2018"
-- "I started detransitioning in 2022"
-- "Back in 2015, I began my transition"
+Definitions:
+transitionAge: generally when someone starts socially identifying as trans, non-binary, or the opposite sex, or says to themself "i'm trans"
+detransitionAge: when someone stops identifying as trans or stops taking hormones/HRT
+pubertyBlockersAge: when someone starts puberty blockers
+hormonesAge: when someone starts HRT - oestrogen (also spelt estrogen) or testosterone
+topSurgeryAge: when a someone gets a masectomy
+bottomSurgeryAge: when someone gets bottom surgery - a phalloplasty or vaginoplasty. 
 
-If detransition year and transition year are not clearly stated, attempt to work them out from the information provided.
-
-Experience report: 
+Detransition timeline (look for the table): 
 ${experienceReport}
 
-Return a JSON object with "transitionAge", "detransitionAge", "transitionYear", "detransitionYear", "hormonesAge", "topSurgeryAge", "bottomSurgeryAge", and "pubertyBlockersAge" as numbers, or null if not mentioned or unclear.
-Example: {"transitionAge": 16, "detransitionAge": 23, "transitionYear": 2018, "detransitionYear": 2022, "hormonesAge": 17, "topSurgeryAge": 19, "bottomSurgeryAge": null, "pubertyBlockersAge": 13}
+Return a JSON object with "transitionAge", "detransitionAge", "hormonesAge", "topSurgeryAge", "bottomSurgeryAge", and "pubertyBlockersAge" as numbers, or null if not mentioned or unclear.
+Example: {"transitionAge": 16, "detransitionAge": 23, "hormonesAge": 17, "topSurgeryAge": 19, "bottomSurgeryAge": null, "pubertyBlockersAge": 13}
 If ages or years are not clearly stated, return null for those fields.`;
 
   try {
@@ -331,7 +323,7 @@ If ages or years are not clearly stated, return null for those fields.`;
         model: MODEL,
         messages: [{ role: "user", content: prompt }],
         response_format: { type: "json_object" },
-        temperature: 0.1,
+        temperature: 0.2,
       })
     );
 
@@ -451,6 +443,7 @@ async function generateTags(
   You may only select tags that are listed in the Available tag options. 
 Only select tags that are clearly supported by the content and are directly relevant to the user.
 For example, only include 'infertility' if the user is actually now infertile, or 'bottom surgery' if the user had bottom surgery.
+Don't include "only transitioned socially" if the user actually took hormones or had surgery. 
 Only use the 'suspicious account' tag if the Red Flag Report suspects that this account might not be authentic. 
 
 Available Tag Options: 
