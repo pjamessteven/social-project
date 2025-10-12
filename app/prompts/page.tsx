@@ -6,8 +6,8 @@ const PromptsPage = () => {
       <div className="prose dark:prose-invert">
         <h2>How does it work?</h2>
         <p>
-          <b>detrans.ai</b> is a RAG (retrieval augmented generation) chatbot
-          that generates meta questions and answers them by surfacing and
+          <b>detrans.ai</b> chat is a RAG (retrieval augmented generation)
+          system that generates meta questions and answers them by surfacing and
           integrating real detrans thoughts and experiences from the{" "}
           <a
             href="https://reddit.com/r/detrans"
@@ -24,7 +24,7 @@ const PromptsPage = () => {
           >
             LlamaIndex
           </a>{" "}
-          framework and the state-of-the-art open-source Chinese{" "}
+          framework and the open-source Chinese{" "}
           <span className="whitespace-nowrap">
             <i>kimi-k2-instruct</i>{" "}
           </span>
@@ -38,13 +38,49 @@ const PromptsPage = () => {
           </a>
           .
         </p>
+        <ol>
+          <li>
+            <b>User asks a question:</b> The RAG workflow receives the user's
+            question
+          </li>
+          <li>
+            <b>Retrieve relevant content:</b> Get related Reddit comments from
+            /r/detrans
+          </li>
+          <li>
+            <b>Rank and cache results:</b> Sorts results by similarity + Reddit
+            score, caches for faster future responses{" "}
+          </li>
+          <li>
+            <b>Generate meta questions:</b> AI analyzes the retrieved content
+            and generates specific research questions to investigate
+          </li>
+          <li>
+            <b>Answer each meta question:</b> For each question, AI searches
+            through the content to find answers{" "}
+          </li>
+          <li>
+            <b>Collect all answers:</b> Waits until all meta questions have
+            been answered{" "}
+          </li>
+          <li>
+            <b>Write final report:</b> AI synthesizes all the meta question answers
+            into a final comprehensive response to the original question{" "}
+          </li>
+          <li>
+            <b>Stream response to user:</b> Sends the final answer back to the
+            user in real-time{" "}
+          </li>
+        </ol>
         <p className="mt-2">
-          For reasons I can only speculate on; ChatGPT and most Western LLMs
-          seem to be deliberately programmed to promote and uphold gender
-          ideolgy concepts and to shut down any discussion about the validity of
-          these belief systems. It proved to be impossible to use OpenAI&apos;s
-          GPT models for this project. If you would like to explore topics
-          through the lens of those who beleive in gender ideolgy, see{" "}
+          For reasons I can only speculate on; ChatGPT and most other Western
+          LLMs are quite aggressive in the way that they promote and uphold
+          gender ideolgy concepts. It proved to be impossible to use
+          OpenAI&apos;s GPT models for this project, as the models would
+          constantly insert contradictory statements about gender that were
+          directly at odds with the detrans experiences which it was tasked to
+          summarise. If you would like to explore topics through the lens of
+          those who beleive that people can be born in the wrong body, see{" "}
           <a
             href={"https://genderaffirming.ai"}
             target="_blank"
@@ -187,45 +223,50 @@ Your analysis must be guided by these principles:
           </div>
         </div>
       </div>
-            <div className="prose dark:prose-invert mt-16">
-
-      <h2>System Prompts for User Summaries</h2>
-      <p>
-        These are the prompts that the system uses for user summaries. 
-      </p>
-      <p>
-        Last Updated: <i>11/10/25</i>
-      </p>
-              </div>
+      <div className="prose dark:prose-invert mt-16">
+        <h2>System Prompts for User Summaries</h2>
+        <p>These are the system prompts for the generated user summaries.</p>
+        <p>
+          Last Updated: <i>11/10/25</i>
+        </p>
+      </div>
       <div className="mx-auto mt-8 max-w-5xl space-y-8">
-
-
         <div className="overflow-hidden rounded-xl bg-white shadow-lg">
           <div className="bg-gray-800 px-6 py-4 text-white">
             <h2 className="font-mono text-xl font-bold">
-              User Experience Report 
+              User Experience Report
             </h2>
           </div>
           <div className="overflow-x-auto bg-gray-900 p-6 font-mono text-sm text-gray-200">
             <pre className="whitespace-pre-wrap">
-              {`You are a user in an online detransition support community. 
-Explain in detail your transition and detransition journey and your perspectives on gender. 
-Formatting your timeline of transition and detransition as a table at the end of your response. 
-Use only the information from the comments. Do not make things up or get information from outside sources. 
-  
+              {`You are a user in an online detransition support community and you are summarising your experiences to be shared in an online archive. 
+Write a detailed plain-word first-person summary from your own comments about your whole transition journey from start to finish. 
+
+Try and tell us the following, if this information is available in your previous comments, what you were like before you transitioned, did you have underlying issues, what made you transition, what was it like, were you happy, what made you begin detransitioning, what is your sexual orientation and has it changed, what do you think of gender now, are you better now, do you regret transitioning? do you not regret transitioning? etc. 
+If any of the topics delcare in Topics of Significance relate to your experience, make sure to write about them. 
+Use a table to show your timeline of transition/detransition at the end of your response. 
+
+**Use only your past experiences from your previous comments** 
+**Provide as much information as possible** 
+**Do not make things up or get information from outside sources**
+
 TONE AND STYLE
 Speak in the first person (“I…”) and summarise the comments below in your own voice, as if you were telling a friend what everyone said about you.
+If you are a parent, write about your childs transition, not your own. 
 Do not refer to yourself by your username.
 Never use third person or meta-language such as “the comments show…” or “people think…”.
 Don't use the terms AFAB or AMAB. Just say male or female. Or born male/born female, if you have to.
 Use plain and simple language that clearly reflects the your real experiences.
 
-Comments: {comments}
+Topics of significance: {availableTags}
+
+Your previous Comments: {truncatedComments}
+              
 `}
             </pre>
           </div>
         </div>
-                <div className="overflow-hidden rounded-xl bg-white shadow-lg">
+        <div className="overflow-hidden rounded-xl bg-white shadow-lg">
           <div className="bg-gray-800 px-6 py-4 text-white">
             <h2 className="font-mono text-xl font-bold">
               User Experience Summary
@@ -244,7 +285,7 @@ Never use third person or meta-language such as “the comments show…” or �
 Do not refer to yourself by your username. 
 Use plain and simple language that clearly reflects the your real experiences.
 
-{experienceReport}
+Experience Report: {experienceReport}
 
 Summary (5 sentences max):`}
             </pre>
@@ -252,9 +293,70 @@ Summary (5 sentences max):`}
         </div>
         <div className="overflow-hidden rounded-xl bg-white shadow-lg">
           <div className="bg-gray-800 px-6 py-4 text-white">
-            <h2 className="font-mono text-xl font-bold">
-              Red Flag Report 
-            </h2>
+            <h2 className="font-mono text-xl font-bold">Generate Tags</h2>
+          </div>
+          <div className="overflow-x-auto bg-gray-900 p-6 font-mono text-sm text-gray-200">
+            <pre className="whitespace-pre-wrap">
+              {`Based on the following experience report from an detransition community user, identify relevant tags that apply to their experience. 
+You may only select tags that are listed in the Available tag options. 
+Only select tags that are clearly supported by the content and are directly relevant to the user.
+For example, only include 'infertility' if the user is actually now infertile, or 'bottom surgery' if the user had bottom surgery.
+Only use the 'suspicious account' tag if the redFlagsReport suspects that this account might not be authentic. 
+
+Available Tag Options: {availableTags}
+
+Experience Report from user "{username}": {experienceReport}
+
+Red Flag Report: {redFlagsReport}
+
+Return only a JSON array of applicable tags. Example: ["trauma", "top surgery", "autism"]`}
+            </pre>
+          </div>
+        </div>
+        <div className="overflow-hidden rounded-xl bg-white shadow-lg">
+          <div className="bg-gray-800 px-6 py-4 text-white">
+            <h2 className="font-mono text-xl font-bold">Extract Ages</h2>
+          </div>
+          <div className="overflow-x-auto bg-gray-900 p-6 font-mono text-sm text-gray-200">
+            <pre className="whitespace-pre-wrap">
+              {`Based on the following experience report from a detransition community user, extract their age when they started transitioning, their age when they started detransitioning, and the years when these events occurred.
+
+Look for explicit mentions of ages and years, such as:
+- "I started transitioning at 16"
+- "When I was 14, I began..."
+- "At age 20, I decided to detransition"
+- "I'm now 25 and have been detransitioning for 2 years" (calculate: 25-2=23 for detransition age)
+- "I transitioned in 2018"
+- "I started detransitioning in 2022"
+- "Back in 2015, I began my transition"
+
+If detransition year and transition year are not clearly stated, attempt to work them out from the information provided.
+
+Experience report: {experienceReport}
+
+Return a JSON object with "transitionAge", "detransitionAge", "transitionYear", and "detransitionYear" as numbers, or null if not mentioned or unclear.
+Example: {"transitionAge": 16, "detransitionAge": 23, "transitionYear": 2018, "detransitionYear": 2022}
+If ages or years are not clearly stated, return null for those fields.`}
+            </pre>
+          </div>
+        </div>
+                <div className="overflow-hidden rounded-xl bg-white shadow-lg">
+          <div className="bg-gray-800 px-6 py-4 text-white">
+            <h2 className="font-mono text-xl font-bold">Determine Birth Sex</h2>
+          </div>
+          <div className="overflow-x-auto bg-gray-900 p-6 font-mono text-sm text-gray-200">
+            <pre className="whitespace-pre-wrap">
+              {`Based on the following experience report from a detransitioner, determine their birth sex (biological sex assigned at birth). Look for explicit mentions of their birth sex, transition direction (FTM/MTF), or other clear indicators.
+
+Experience report from user "{username}": {experienceReport}
+
+Respond with only "m" for male or "f" for female birth sex. If unclear, make your best inference based on transition patterns mentioned.`}
+            </pre>
+          </div>
+        </div>
+                <div className="overflow-hidden rounded-xl bg-white shadow-lg">
+          <div className="bg-gray-800 px-6 py-4 text-white">
+            <h2 className="font-mono text-xl font-bold">Red Flag Report</h2>
           </div>
           <div className="overflow-x-auto bg-gray-900 p-6 font-mono text-sm text-gray-200">
             <pre className="whitespace-pre-wrap">
@@ -271,7 +373,6 @@ Comments: {truncatedComments}
             </pre>
           </div>
         </div>
-
       </div>
     </div>
   );

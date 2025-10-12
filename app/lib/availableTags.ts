@@ -28,6 +28,7 @@ export const availableTags = [
   "body dysmorphia",
   "retransition",
   "benefited from psychedelic drugs",
+  "had religious background",
   "became religious",
   "become non-religious",
   "only transitioned socially",

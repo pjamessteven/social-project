@@ -30,8 +30,8 @@ export default function UsersFilters({}: UsersFiltersProps) {
   const selectedSex = searchParams.get("sex") || "";
   const selectedTags = searchParams.getAll("tag").flatMap(tag => tag.split(',').filter(Boolean));
   const [ageRange, setAgeRange] = useState(() => {
-    const minAge = searchParams.get("minAge") ? parseInt(searchParams.get("minAge")!) : 10;
-    const maxAge = searchParams.get("maxAge") ? parseInt(searchParams.get("maxAge")!) : 40;
+    const minAge = searchParams.get("minAge") ? parseInt(searchParams.get("minAge")!) : 5;
+    const maxAge = searchParams.get("maxAge") ? parseInt(searchParams.get("maxAge")!) : 80;
     return [minAge, maxAge];
   });
 
@@ -100,12 +100,29 @@ export default function UsersFilters({}: UsersFiltersProps) {
   };
 
   const clearFilters = () => {
-    setAgeRange([10, 40]);
+    setAgeRange([5, 80]);
     router.push("/stories");
   };
 
   return (
     <div className="mb-6 space-y-4">
+            {/* Age Range Filter */}
+      <div className=" flex flex-col sm:flex-row bg-background sm:items-center border rounded-md p-3">
+        <label className="text-sm  whitespace-nowrap">
+          Age Range: {ageRange[0]} - {ageRange[1]} years
+        </label>
+        <div className="mb-1 sm:ml-4 mt-4 sm:mt-2 w-full">
+        <Slider
+          value={ageRange}
+          onValueChange={updateAgeFilter}
+          min={5}
+          max={80}
+          step={1}
+          className="w-full "
+        />
+
+        </div>
+      </div>
       <div className="flex flex-wrap gap-4 items-start">
         {/* Sex Filter */}
         <div className="flex flex-col gap-2 min-w-[120px]">
@@ -145,7 +162,7 @@ export default function UsersFilters({}: UsersFiltersProps) {
         </div>
 
         {/* Clear Filters */}
-        {(selectedSex || selectedTags.length > 0 || ageRange[0] !== 10 || ageRange[1] !== 40) && (
+        {(selectedSex || selectedTags.length > 0 || ageRange[0] !== 5 || ageRange[1] !== 80) && (
           <div className="flex flex-col gap-2">
             <Button variant="outline" onClick={clearFilters}>
               Clear Filters
@@ -154,20 +171,7 @@ export default function UsersFilters({}: UsersFiltersProps) {
         )}
       </div>
 
-      {/* Age Range Filter */}
-      <div className="space-y-2">
-        <label className="text-sm font-medium">
-          Age Range: {ageRange[0]} - {ageRange[1]} years
-        </label>
-        <Slider
-          value={ageRange}
-          onValueChange={updateAgeFilter}
-          min={5}
-          max={60}
-          step={1}
-          className="w-full max-w-md"
-        />
-      </div>
+
     </div>
   );
 }

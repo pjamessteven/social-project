@@ -150,51 +150,51 @@ export default function TransitionPathwaysChart({
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length > 0) {
       const data = payload[0].payload;
-      
+
       // Handle link tooltips (pathways between nodes)
-      if (data.source !== undefined && data.target !== undefined && data.value) {
+      if (
+        data.source !== undefined &&
+        data.target !== undefined &&
+        data.value
+      ) {
         const sourceNode = rechartsData.nodes[data.source];
         const targetNode = rechartsData.nodes[data.target];
-        const percentage = ((data.value / totalUsers) * 100).toFixed(1);
         return (
           <div className="rounded border border-gray-300 bg-white p-3 shadow-lg">
             <p className="font-medium text-black">
               {sourceNode?.name} → {targetNode?.name}
             </p>
-            <p className="font-medium text-blue-600">
-              {data.value} users ({percentage}%)
-            </p>
+            <p className="font-medium text-blue-600">{data.value} users</p>
             <p className="text-sm text-gray-600">
-              {percentage}% of total users
+              {((data.value / totalUsers) * 100).toFixed(1)}% of total
             </p>
           </div>
         );
       }
-      
+
       // Handle node tooltips
       if (data.name) {
         // Calculate total users flowing through this node
-        const nodeIndex = rechartsData.nodes.findIndex(n => n.name === data.name);
+        const nodeIndex = rechartsData.nodes.findIndex(
+          (n) => n.name === data.name,
+        );
         const incomingFlow = rechartsData.links
-          .filter(link => link.target === nodeIndex)
+          .filter((link) => link.target === nodeIndex)
           .reduce((sum, link) => sum + link.value, 0);
         const outgoingFlow = rechartsData.links
-          .filter(link => link.source === nodeIndex)
+          .filter((link) => link.source === nodeIndex)
           .reduce((sum, link) => sum + link.value, 0);
-        
+
         const nodeFlow = Math.max(incomingFlow, outgoingFlow);
-        const percentage = totalUsers > 0 ? ((nodeFlow / totalUsers) * 100).toFixed(1) : "0.0";
-        
+
         return (
           <div className="rounded border border-gray-300 bg-white p-3 shadow-lg">
             <p className="font-medium text-black">{data.name}</p>
             {nodeFlow > 0 && (
               <>
-                <p className="font-medium text-blue-600">
-                  {nodeFlow} users ({percentage}%)
-                </p>
+                <p className="font-medium text-blue-600">{nodeFlow} users</p>
                 <p className="text-sm text-gray-600">
-                  {percentage}% of total users
+                  {((nodeFlow / totalUsers) * 100).toFixed(1)}% of total
                 </p>
               </>
             )}
@@ -222,8 +222,8 @@ export default function TransitionPathwaysChart({
               Detransition Pathways Flow
             </h3>
             <p className="text-sm text-gray-600">
-              Flow of /r/detrans Reddit user demographics through to detransition
-              outcomes
+              Flow of /r/detrans Reddit user demographics through to
+              detransition outcomes
             </p>
           </div>
           <div className={`w-full ${className}`}>
@@ -245,6 +245,11 @@ export default function TransitionPathwaysChart({
                       payload?.name ||
                       "Not Stated";
 
+                    const percentage = (
+                      (payload.value / totalUsers) *
+                      100
+                    ).toFixed(1);
+
                     return (
                       <g>
                         <rect
@@ -256,17 +261,30 @@ export default function TransitionPathwaysChart({
                           stroke="#1e40af"
                           strokeWidth={1}
                         />
+
+                        <text
+                          x={x + width + 8}
+                          y={y + height / 2 + 16}
+                          textAnchor="start"
+                          dominantBaseline="central"
+                          fontSize={11}
+                          fill="#b5b5b5ff"
+                          fontFamily="system-ui, -apple-system, sans-serif"
+                        >
+                          ({percentage}%)
+                        </text>
                         <text
                           x={x + width + 8}
                           y={y + height / 2}
                           textAnchor="start"
                           dominantBaseline="central"
                           fontSize={11}
-                          fill="#374151"
+                          fill="white"
                           fontFamily="system-ui, -apple-system, sans-serif"
                         >
                           {labelText}
                         </text>
+
                       </g>
                     );
                   }}

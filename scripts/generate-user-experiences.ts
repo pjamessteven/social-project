@@ -159,6 +159,7 @@ async function generateExperienceSummary(
   Do not refer to yourself by your username. 
   Use plain and simple language that clearly reflects the your real experiences.
 
+  Experience Report:
   ${experienceReport}
 
   Summary (5 sentences max):`;
@@ -179,11 +180,12 @@ async function generateExperienceSummary(
 
 async function determineBirthSex(
   username: string,
-  comments: string,
+  experienceReport: string,
 ): Promise<"m" | "f"> {
-  const prompt = `Based on the following comments from a detransition community user, determine their birth sex (biological sex assigned at birth). Look for explicit mentions of their birth sex, transition direction (FTM/MTF), or other clear indicators.
+  const prompt = `Based on the following experience report from a detransitioner, determine their birth sex (biological sex assigned at birth). Look for explicit mentions of their birth sex, transition direction (FTM/MTF), or other clear indicators.
 
-Comments from user "${username}": ${comments.substring(0, 2000)}...
+Experience report from user "${username}": 
+${experienceReport}
 
 Respond with only "m" for male or "f" for female birth sex. If unclear, make your best inference based on transition patterns mentioned.`;
 
@@ -222,9 +224,10 @@ Look for explicit mentions of ages and years, such as:
 - "I started detransitioning in 2022"
 - "Back in 2015, I began my transition"
 
-If detransition and transition year are not clearly stated, attempt to work them out from the rest of the data and dates in the information.
+If detransition year and transition year are not clearly stated, attempt to work them out from the information provided.
 
-Experience report: ${experienceReport.substring(0, 4000)}...
+Experience report: 
+${experienceReport}
 
 Return a JSON object with "transitionAge", "detransitionAge", "transitionYear", and "detransitionYear" as numbers, or null if not mentioned or unclear.
 Example: {"transitionAge": 16, "detransitionAge": 23, "transitionYear": 2018, "detransitionYear": 2022}
@@ -305,23 +308,23 @@ async function fillMissingAges(
 
 async function generateTags(
   username: string,
-  comments: string,
+  experienceReport: string,
   redFlagsReport: string,
 ): Promise<string[]> {
-  const prompt = `Based on the following comments from a detransition community user, identify relevant tags that apply to their experience. 
+  const prompt = `Based on the following experience report from an detransition community user, identify relevant tags that apply to their experience. 
+  You may only select tags that are listed in the Available tag options. 
 Only select tags that are clearly supported by the content and are directly relevant to the user.
 For example, only include 'infertility' if the user is actually now infertile, or 'bottom surgery' if the user had bottom surgery.
-Only use the 'suspicious account' tag if the redFlagsReport suspects that this account might not be authentic. 
+Only use the 'suspicious account' tag if the Red Flag Report suspects that this account might not be authentic. 
 
-Generate appropriate tags based on the content. Common categories include:
-- Medical procedures (top surgery, bottom surgery, hormones, etc.)
-- Mental health (depression, anxiety, autism, trauma, etc.)
-- Social aspects (family support, religious background, etc.)
-- Outcomes (regret, infertility, voice changes, etc.)
-- Account authenticity (suspicious account if flagged)
+Available Tag Options: 
+${availableTags}
 
-Comments from user "${username}": ${comments.substring(0, 3000)}...
-Red flag report of comments : ${redFlagsReport}...
+Experience Report from user "${username}": 
+${experienceReport}
+
+Red Flag Report: 
+${redFlagsReport}
 
 Return only a JSON array of applicable tags. Example: ["trauma", "top surgery", "autism"]`;
 
@@ -421,15 +424,18 @@ async function processUser(userComments: UserComments): Promise<void> {
     .where(eq(detransUserTags.username, username));
 
   const userExists = existingUser.length > 0;
-  
+
   if (existingUser.length > 0 && existingTags.length > 0) {
     // Check if user has missing age data
+             /*
     const user = existingUser[0];
+
     const hasMissingAges = user.transitionAge === null || 
                           user.detransitionAge === null || 
                           user.transitionYear === null || 
                           user.detransitionYear === null;
-    
+ 
+
     if (hasMissingAges) {
       console.log(`User ${username} has missing age data, attempting to fill from experience...`);
       const updatedAges = await fillMissingAges(username, user);
@@ -448,6 +454,8 @@ async function processUser(userComments: UserComments): Promise<void> {
     } else {
       console.log(`User ${username} already exists with complete data, skipping...`);
     }
+          */
+
     return;
   }
 

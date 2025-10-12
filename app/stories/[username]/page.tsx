@@ -4,16 +4,15 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/app/components/ui/accordion";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { markdownToPlainText } from "@/app/lib/utils";
+import { Check, ExternalLink, Info, ShieldQuestion } from "lucide-react";
 import { marked } from "marked";
+import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
 import UserComments from "../../components/UserComments";
-import { Metadata } from "next";
-import { markdownToPlainText } from "@/app/lib/utils";
-import { Alert, AlertDescription, AlertTitle } from "@/app/components/ui/alert";
 
 interface User {
   commentCount: string;
@@ -24,6 +23,8 @@ interface User {
   experience: string | null;
   redFlagsReport: string | null;
   tags: string[];
+  transitionAge: number | null;
+  detransitionAge: number | null;
 }
 
 interface Comment {
@@ -78,14 +79,14 @@ async function getUserComments(username: string): Promise<Comment[]> {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
     const url = `${baseUrl}/api/users/${encodeURIComponent(username)}/comments?limit=10`;
-    
+
     console.log("Fetching comments from:", url);
-    
-    const response = await fetch(url, { 
+
+    const response = await fetch(url, {
       cache: "no-store",
       headers: {
-        'Content-Type': 'application/json',
-      }
+        "Content-Type": "application/json",
+      },
     });
 
     console.log("Response status:", response.status);
@@ -95,7 +96,11 @@ async function getUserComments(username: string): Promise<Comment[]> {
       console.log("Comments data:", data);
       return data.comments || [];
     } else {
-      console.error("Failed to fetch comments:", response.status, response.statusText);
+      console.error(
+        "Failed to fetch comments:",
+        response.status,
+        response.statusText,
+      );
       return [];
     }
   } catch (error) {
@@ -127,36 +132,42 @@ export default async function UserPage({
     });
   };
 
-
   return (
     <div className="container mx-auto px-0 pb-8">
       <Link href="/stories">
-        <Button variant="ghost" className="mb-6">
-          <ArrowLeft className="mr-2 -ml-4 h-4 w-4" />
+        <Button variant="link" className="mb-6 -ml-4">
+          {"<- "}
           Back to Users
         </Button>
       </Link>
 
-      <div className="sm:prose-base prose-sm dark:prose-invert space-y-6">
+      <div className="sm:prose-base dark:prose-invert space-y-6">
         {/* Header */}
         <div>
-          <div className="mb-6 flex sm:flex-row flex-col items-baseline justify-between">
-            <div className="flex flex-col mb-4 sm:mb-0">
-              <h1 className="mb-4 sm:mb-2 text-3xl font-bold">
-                Reddit user <span className="whitespace-nowrap">/u/{user.username}'s</span> Detransition Story
+          <div className="mb-6 flex flex-col items-baseline justify-between sm:mb-8 sm:flex-row">
+            <div className="mb-4 flex flex-col sm:mb-0">
+              <h1 className="mb-2 !text-2xl font-bold sm:mb-2">
+                Reddit user{" "}
+                <span className="whitespace-nowrap">/u/{user.username}'s</span>{" "}
+                Detransition Story
               </h1>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-           {user.commentCount} comments • Posting since{" "}
-                    {formatDate(user.activeSince)}              </div>
+              {(user.transitionAge || user.detransitionAge) && (
+                <div className="text-gray-500">
+                  {user.transitionAge && "Transitioned: " + user.transitionAge}
+                  {user.transitionAge && user.detransitionAge && " -> "}
+                  {user.detransitionAge &&
+                    "Detransitioned: " + user.detransitionAge}
+                </div>
+              )}
             </div>
             <Link
               href={`https://reddit.com/u/${user.username}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button variant="outline" size="sm">
+              <Button variant="default" size="sm">
                 <ExternalLink className="mr-2 h-4 w-4" />
-                View on Reddit
+                Reddit Profile
               </Button>
             </Link>
           </div>
@@ -168,7 +179,12 @@ export default async function UserPage({
               </Badge>
 
               {user.tags.map((tag) => (
-                <Badge key={tag} variant={tag === "suspicious account" ? "destructive" : "inverted"}>
+                <Badge
+                  key={tag}
+                  variant={
+                    tag === "suspicious account" ? "destructive" : "inverted"
+                  }
+                >
                   {tag}
                 </Badge>
               ))}
@@ -176,24 +192,57 @@ export default async function UserPage({
           )}
         </div>
 
+        <Accordion type="single" collapsible className="not-prose mt-8 w-full">
+          <AccordionItem
+            value="disclaimer"
+            className="overflow-hidden dark:bg-none"
+          >
+            <AccordionTrigger className="text-muted-foreground mb-2 py-1 pr-3 text-xs hover:no-underline sm:text-sm">
+              <div className="flex items-center">
+                <Info className="mr-2 h-4 min-w-4" />
+                <div>
+                  This detransition story is from all of this users comments on
+                  Reddit, summarised by our AI.
+                </div>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="text-secondary-foreground px-0 pb-3 text-sm">
+              <div className="max-w-2xl space-y-3">
+                <p>
+                  On Reddit, people often share their experiences across
+                  multiple comments or posts. To make this information more
+                  accessible, our AI gathers all of those scattered pieces into
+                  a single, easy-to-read summary and timeline. All system
+                  prompts are noted on the prompts page.
+                </p>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+
         {/* Red Flags Report */}
         {user.redFlagsReport && (
-          <Accordion type="single" collapsible className="mt-0 w-full pt-0">
+          <Accordion
+            type="single"
+            collapsible
+            className="not-prose -mt-4 w-full pt-0"
+          >
             <AccordionItem
               value="disclaimer"
-              className={`bg-secondary overflow-hidden rounded-xl border opacity-80 ${
-                user.tags.includes("suspicious account")
-                  ? "border-destructive bg-destructive/5"
-                  : ""
-              }`}
+              className={`overflow-hidden dark:bg-none border-none`}
             >
-              <AccordionTrigger className="not-prose -mt-4 mb-1 px-3 py-0">
-                Authenticity Assessment:{" "}
-                {user.tags.includes("suspicious account")
-                  ? "Suspicious Account"
-                  : "Not suspicious"}
+              <AccordionTrigger className="text-muted-foreground py-1 pr-3 text-xs hover:no-underline sm:text-sm">
+                <div className="flex items-center justify-start">
+                  {user.tags.includes("suspicious account") ? <ShieldQuestion className="mr-2 h-4 min-w-4"/> : <Check className="mr-2 h-4 min-w-4" />}
+                  <div>
+                    Authenticity Assessment:{" "}
+                    {user.tags.includes("suspicious account")
+                      ? "Suspicious Account"
+                      : "Not suspicious"}
+                  </div>
+                </div>
               </AccordionTrigger>
-              <AccordionContent className="prose-sm px-3 pb-3">
+              <AccordionContent className="px-0 pt-3 pb-3">
                 <div className="max-w-2xl">
                   <p
                     dangerouslySetInnerHTML={{
@@ -205,27 +254,6 @@ export default async function UserPage({
             </AccordionItem>
           </Accordion>
         )}
-        
-                <Accordion type="single" collapsible className="mt-8 w-full">
-                  <AccordionItem 
-                    value="disclaimer" 
-                    className="bg-secondary overflow-hidden  rounded-xl border dark:border-primary/50 dark:bg-none  opacity-80"
-                  >
-                    <AccordionTrigger className="text-secondary-foreground -mt-5 px-3 py-0 text-sm hover:no-underline">
-      This detransition story is from all of /u/{username}'s comments on Reddit, summarised by our AI.
-                    </AccordionTrigger>
-                    <AccordionContent className="text-secondary-foreground px-3 pb-0 text-sm ">
-                      <div className="max-w-2xl space-y-3">
-                        <p>
-      On Reddit, people often share their experiences across multiple comments or posts. To make this information more accessible, our AI gathers all of those scattered pieces into a single, easy-to-read summary and timeline. All system prompts are noted on the prompts page.
-
-                        </p>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-
-
 
         {/* Experience Summary */}
         {user.experienceSummary && (
@@ -240,13 +268,11 @@ export default async function UserPage({
         {/* Full Experience */}
         {user.experience && (
           <div className="">
-            <h3 className="mb-2 font-semibold">
-              My detransition story
-            </h3>
+            <h3 className="mb-2 font-semibold">My detransition story</h3>
 
             <div className="border-t">
               <div
-                className="mt-4 max-w-none prose-table"
+                className="prose-table mt-4 max-w-none"
                 dangerouslySetInnerHTML={{
                   __html: marked.parse(user.experience || ""),
                 }}
@@ -256,7 +282,13 @@ export default async function UserPage({
         )}
 
         {/* Top Comments */}
-        <UserComments username={user.username} initialComments={comments} />
+
+        <UserComments
+          username={user.username}
+          initialComments={comments}
+          commentCount={Number(user.commentCount)}
+          activeSince={formatDate(user.activeSince)}
+        />
       </div>
     </div>
   );
