@@ -376,11 +376,15 @@ async function calculateTransitionYears(
 
   const prompt = `Based on the following user comments and extracted age data, calculate the missing transition and/or detransition years.
 
-Use the following information to calculate the transition/detransition years:
+Transition ages is when the user started identifying as transgender/the opposite sex socially, or saying to themselves "i'm trans", generally before taking hormones or getting surgeries. 
+
+Use the following information to calculate the years:
 - Transition age: ${extractedAges.transitionAge || 'unknown'}
 - Detransition age: ${extractedAges.detransitionAge || 'unknown'}
 
-Look for clues in the experience report such as:
+
+Look for clues in the comments such as:
+- Comment date
 - Current age mentions ("I'm now 25")
 - Time references ("2 years ago", "last year", "5 years later")
 - Specific years mentioned in context
@@ -686,12 +690,6 @@ async function processUser(userComments: UserComments, index: number, total: num
       console.log(`Extracting transition/detransition ages and years for ${username}...`);
       const { transitionAge, detransitionAge, hormonesAge, topSurgeryAge, bottomSurgeryAge, pubertyBlockersAge } = await extractAges(username, experienceReport);
 
-      // Calculate missing transition/detransition years if needed
-      console.log(`Calculating missing transition/detransition years for ${username}...`);
-      const calculatedYears = await calculateTransitionYears(username, all_comments, {
-        transitionAge,
-        detransitionAge,
-      });
 
       // Insert into database
       await db.insert(detransUsers).values({
@@ -703,8 +701,6 @@ async function processUser(userComments: UserComments, index: number, total: num
         redFlagsReport: redFlagsReport || null,
         transitionAge,
         detransitionAge,
-        transitionYear: calculatedYears.transitionYear,
-        detransitionYear: calculatedYears.detransitionYear,
         hormonesAge,
         topSurgeryAge,
         bottomSurgeryAge,
