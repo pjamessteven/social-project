@@ -18,6 +18,7 @@ import LizardAnimation from "../ui/lizard-animation";
 import { QuestionCategories } from "./QuestionCategories";
 import { QuestionTabs } from "./QuestionTabs";
 import RedditEmbeds from "./RedditEmbeds";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 
 export async function StartPage({
   className,
@@ -313,6 +314,7 @@ export async function StartPage({
             </p>
           </div>
         )}
+        {/*
         <div className="prose dark:prose-invert max-w-full">
           <details className="mb- mt-5 cursor-pointer sm:mt-6">
             <summary className="text-m sm:text-base">
@@ -334,12 +336,13 @@ export async function StartPage({
             </div>
           </details>
         </div>
+         */}
         <div className="mt-8 w-full border-t" />
         <div className="mt-1 w-full border-t" />
         <div className="mt-1 w-full border-t" />
 
-        {/*
-        <Accordion type="single" collapsible className="mt-4 sm:mt-8 w-full">
+
+        <Accordion type="single" collapsible className="mt-8 sm:mt-8 w-full">
           <AccordionItem
             value="disclaimer"
             className="bg-destructive/5 dark:bg-destructive/20 dark:border-destructive/30  border-destructive overflow-hidden rounded-xl border "
@@ -365,7 +368,7 @@ export async function StartPage({
             </AccordionContent>
           </AccordionItem>
         </Accordion>
- */}
+
         {/*
         <div className="prose dark:prose-invert mt-8 font-semibold">
           Start with a question below, or ask anything.
