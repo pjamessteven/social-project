@@ -218,22 +218,58 @@ export default function TransitionPathwaysChart({
                   }}
                 >
                   <Tooltip
-                    content={({ active, payload }) => {
+                    content={({ active, payload, label }) => {
                       if (active && payload && payload.length > 0) {
                         const data = payload[0].payload;
-                        return (
-                          <div className="rounded border bg-white p-2 shadow-lg">
-                            <p className="font-medium">
-                              {data.name ||
-                                `${data.source?.name} → ${data.target?.name}`}
-                            </p>
-                            {data.value && (
-                              <p className="text-sm text-gray-600">
-                                Users: {data.value}
+                        
+                        // Handle link tooltips (pathways between nodes)
+                        if (data.source && data.target && data.value) {
+                          const sourceNode = rechartsData.nodes[data.source];
+                          const targetNode = rechartsData.nodes[data.target];
+                          return (
+                            <div className="rounded border bg-white p-3 shadow-lg">
+                              <p className="font-medium text-gray-900">
+                                {sourceNode?.name} → {targetNode?.name}
                               </p>
-                            )}
-                          </div>
-                        );
+                              <p className="text-sm text-blue-600 font-semibold">
+                                {data.value} users
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                {((data.value / totalUsers) * 100).toFixed(1)}% of total
+                              </p>
+                            </div>
+                          );
+                        }
+                        
+                        // Handle node tooltips
+                        if (data.name) {
+                          // Calculate total users flowing through this node
+                          const nodeIndex = rechartsData.nodes.findIndex(n => n.name === data.name);
+                          const incomingFlow = rechartsData.links
+                            .filter(link => link.target === nodeIndex)
+                            .reduce((sum, link) => sum + link.value, 0);
+                          const outgoingFlow = rechartsData.links
+                            .filter(link => link.source === nodeIndex)
+                            .reduce((sum, link) => sum + link.value, 0);
+                          
+                          const nodeFlow = Math.max(incomingFlow, outgoingFlow);
+                          
+                          return (
+                            <div className="rounded border bg-white p-3 shadow-lg">
+                              <p className="font-medium text-gray-900">{data.name}</p>
+                              {nodeFlow > 0 && (
+                                <>
+                                  <p className="text-sm text-blue-600 font-semibold">
+                                    {nodeFlow} users
+                                  </p>
+                                  <p className="text-xs text-gray-500">
+                                    {((nodeFlow / totalUsers) * 100).toFixed(1)}% of total
+                                  </p>
+                                </>
+                              )}
+                            </div>
+                          );
+                        }
                       }
                       return null;
                     }}
