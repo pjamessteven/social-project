@@ -144,7 +144,7 @@ const metadata: Metadata = {
       "Learn the difference between gender affirmming care and gender exploratory therapy. If you are experiencing gender dysphoria, one of the best ways to get support for is to talk to and understand the perspectives of people who have been there themselves and come out the other side.",
     url: "https://detrans.ai/support",
     siteName: "detrans.ai",
-    images: ["https://detrans.ai/x_lg.png"],
+    images: ["https://detrans.ai/x_card_lg.png"],
     locale: "en_US",
     type: "website",
   },

@@ -88,7 +88,7 @@ const metadata: Metadata = {
       "Read heartfelt detransition stories, timelines and trends from the members of the /r/detrans Reddit community, the largest open collection of detransition stories on the internet. Find out how old were detransitioners when they transitioned and de-transitioned and what pathways they took.",
     url: "https://detrans.ai/stories",
     siteName: "detrans.ai",
-    images: ["https://detrans.ai/x_lg.png"],
+    images: ["https://detrans.ai/x_card_lg.png"],
     locale: "en_US",
     type: "website",
   },

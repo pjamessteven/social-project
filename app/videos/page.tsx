@@ -12,7 +12,7 @@ const metadata: Metadata = {
       "Here's a selection of personal video memoirs that have been uploaded to YouTube by people who have transitioned and then came to a realisation that caused them to detransition. There are countless stories like these on the internet, this is just a small subset.",
     url: "https://detrans.ai/videos",
     siteName: "detrans.ai",
-    images: ["https://detrans.ai/x_lg.png"],
+    images: ["https://detrans.ai/x_card_lg.png"],
     locale: "en_US",
     type: "website",
   },
