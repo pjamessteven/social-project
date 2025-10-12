@@ -44,12 +44,12 @@ export async function GET(request: NextRequest) {
       conditions.push(sql`u.sex = ${sex}`);
     }
 
-    // Add age filtering
+    // Add age filtering only for users who have a transition_age specified
     if (minAge) {
-      conditions.push(sql`u.transition_age >= ${minAge}`);
+      conditions.push(sql`(u.transition_age IS NULL OR u.transition_age >= ${minAge})`);
     }
     if (maxAge) {
-      conditions.push(sql`u.transition_age <= ${maxAge}`);
+      conditions.push(sql`(u.transition_age IS NULL OR u.transition_age <= ${maxAge})`);
     }
 
     if (tag) {
