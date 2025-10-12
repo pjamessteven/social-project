@@ -1,3 +1,5 @@
+"use server"
+
 import {
   Collapsible,
   CollapsibleContent,
@@ -132,7 +134,7 @@ function SupportSidebar() {
   );
 }
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "detrans.ai | Get Gender Help and Support",
   description:
      "Learn the difference between gender affirmming care and gender exploratory therapy. If you are experiencing gender dysphoria, one of the best ways to get support for is to talk to and understand the perspectives of people who have been there themselves and come out the other side.",
@@ -147,6 +149,10 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return metadata
+}
 
 export default async function SupportPage() {
   return (

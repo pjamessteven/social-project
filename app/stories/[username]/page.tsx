@@ -1,3 +1,5 @@
+"use server"
+
 import { markdownToPlainText } from "@/app/lib/utils";
 import { Check, ExternalLink, ShieldQuestion } from "lucide-react";
 import { marked } from "marked";

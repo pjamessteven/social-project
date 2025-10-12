@@ -1,6 +1,7 @@
+"use server"
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "detrans.ai | Defining Gender Related Terms",
   description:
     "In every day speech sex and gender are sometimes used interchangeably and in some languages there is only one word to describe the two. However, the whole concept of gender dysphoria relies on understanding that there are differences between sex and gender.",
@@ -15,6 +16,10 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return metadata
+}
 
 export default async function DefinitionsPage() {
   return (

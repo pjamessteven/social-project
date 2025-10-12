@@ -7,6 +7,7 @@ import "@llamaindex/chat-ui/styles/editor.css";
 import "@llamaindex/chat-ui/styles/markdown.css";
 import "@llamaindex/chat-ui/styles/pdf.css";
 import { clsx } from "clsx";
+import { Metadata, Viewport } from "next";
 import { ThemeProvider } from "next-themes";
 import { headers } from "next/headers";
 import ScrollRestoration from "./components/content/ScrollRestoration";
@@ -17,6 +18,17 @@ import "./globals.css";
 import { isBot } from "./lib/isBot";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
+  ],
+}
+
+export async function generateViewport(): Promise<Viewport> {
+  return viewport
+}
 
 export default async function RootLayout({
   children,
@@ -35,19 +47,6 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <meta
-          name="theme-color"
-          content="#FFFFFF"
-          media="(prefers-color-scheme: light)"
-        />
-
-        <meta
-          name="theme-color"
-          content="#000000"
-          media="(prefers-color-scheme: dark)"
-        />
-      </head>
       <Script
         strategy="afterInteractive" // Change strategy
         src="https://cloud.umami.is/script.js"

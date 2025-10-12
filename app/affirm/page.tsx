@@ -1,8 +1,9 @@
+"use server"
 import { StartPage } from "../components/content/StartPage";
 
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "genderaffirming.ai | Talk to 600,000+ trans people",
   description:
     "GenderAffirming.AI is a self-guided online gender-affirming therapy tool for MTF and FTM transgender people powered by real trans perspectives and experiences.",
@@ -16,6 +17,10 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return metadata
+}
 
 export default async function Home() {
   return (

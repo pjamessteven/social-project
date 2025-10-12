@@ -1,14 +1,15 @@
+"use server"
 import { Metadata } from "next";
 import VideoList from "../components/VideoList";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "detrans.ai | Watch Videos By Detransitioners",
   description:
-    "Here is a selection of personal video memoirs that have been uploaded to YouTube by people who have transitioned and then came to a realisation that caused them to detransition. There are countless stories like these on the internet, this is just a small subset.",
+    "Here's a selection of personal video memoirs that have been uploaded to YouTube by people who have transitioned and then came to a realisation that caused them to detransition. There are countless stories like these on the internet, this is just a small subset.",
   openGraph: {
     title: "detrans.ai | Watch Videos By Detransitioners",
     description:
-    "Here is a selection of personal video memoirs that have been uploaded to YouTube by people who have transitioned and then came to a realisation that caused them to detransition. There are countless stories like these on the internet, this is just a small subset.",
+    "Here's a selection of personal video memoirs that have been uploaded to YouTube by people who have transitioned and then came to a realisation that caused them to detransition. There are countless stories like these on the internet, this is just a small subset.",
     url: "https://detrans.ai/videos",
     siteName: "detrans.ai",
     images: ["https://detrans.ai/x_lg.png"],
@@ -16,6 +17,10 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return metadata
+}
 
 export default function VideosPage() {
 

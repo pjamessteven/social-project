@@ -1,3 +1,4 @@
+"use server"
 import { Metadata } from "next";
 import { Button } from "../components/ui/button";
 import { ChartNoAxesCombined, ExternalLink } from "lucide-react";
@@ -172,7 +173,7 @@ const studies = [
   },
 ];
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "detrans.ai | Academic Studies on Detransition Topics",
   description:
     "Find on this page a selection of academic studies, peer-reviewed journal articles and verified statistics that relate to gender identity trends and detransition. ",
@@ -187,6 +188,10 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return metadata
+}
 
 export default async function StudiesPage() {
   return (
