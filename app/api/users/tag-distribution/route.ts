@@ -52,8 +52,6 @@ export async function GET(request: NextRequest) {
       conditions.push(sql`u.transition_age <= ${maxAge}`);
     }
 
-    // Handle tag filtering
-    let tagFilterClause = sql``;
     if (tag) {
       const tagNames = tag.split(',').map(t => t.trim()).filter(Boolean);
       if (tagNames.length > 0) {
