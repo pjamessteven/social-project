@@ -54,7 +54,6 @@ async function getUserComments(): Promise<UserComments[]> {
       AND username != '[deleted]'
     GROUP BY username 
     ORDER BY comment_count DESC
-    LIMIT 15
   `);
 
   return result.map((row) => ({
