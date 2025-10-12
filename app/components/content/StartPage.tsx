@@ -318,12 +318,35 @@ export async function StartPage({
             </p>
           </div>
         )}
+          <div className="prose dark:prose-invert max-w-full">
 
-
+      
+        <details className="cursor-pointer mb- mt-5 sm:mt-6">
+          <summary className=" text-m sm:text-base">
+            <i>
+             Disclaimer: All experiences and perspectives are sourced
+              from Reddit and processed by AI.
+            </i>
+          </summary>
+          <div className="  p-0 py-0 py-3 ">
+                  While Reddit is a platform where real people share personal
+                  stories, it may also contain bot-generated or misleading
+                  content. You are encouraged to inspect the original Reddit
+                  posts to verify the source and context. Please note that{" "}
+                  {mode === "affirm"
+                    ? "/r/mtf and /r/ftm are heavily moderated subreddits"
+                    : "/r/detrans is a heavily moderated subreddit"}
+                  , but moderation does not guarantee the accuracy or
+                  authenticity of every post.
+          </div>
+        </details>
+        </div>
       <div className="border-t w-full mt-8 "/>
       <div className="border-t mt-1 w-full "/>
       <div className="border-t mt-1 w-full "/>
 
+
+                    {/*
         <Accordion type="single" collapsible className="mt-4 sm:mt-8 w-full">
           <AccordionItem
             value="disclaimer"
@@ -350,7 +373,7 @@ export async function StartPage({
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-
+ */}
         {/*
         <div className="prose dark:prose-invert mt-8 font-semibold">
           Start with a question below, or ask anything.
@@ -359,7 +382,7 @@ export async function StartPage({
         {mode == "detrans" ? (
           <>
             {!bot ? (
-              <div className="mt-4 sm:mt-8">
+              <div className="mt-8 sm:mt-8">
                 <QuestionTabs mode={mode} />
               </div>
             ) : (
