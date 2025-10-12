@@ -140,7 +140,8 @@ function processSankeyData(users: any[]) {
     { name: "sex", categories: ["male", "female", "unknown"] },
     { name: "transition_age", categories: ["before_18", "after_18", "unknown"] },
     { name: "puberty_blockers", categories: ["took_blockers", "no_blockers"] },
-    { name: "medical", categories: ["took_hormones", "got_top_surgery", "got_bottom_surgery", "social_only", "unknown"] },
+    { name: "hormones", categories: ["took_hormones", "social_only"] },
+    { name: "surgery", categories: ["got_top_surgery", "got_bottom_surgery", "no_surgery"] },
     { name: "outcome", categories: ["regrets", "no_regrets", "unknown"] }
   ];
 
@@ -183,9 +184,9 @@ function processSankeyData(users: any[]) {
     const [source, target] = key.split('->');
     links.push({ source, target, value });
     
-    // Log age-medical connections specifically
-    if (source.startsWith('transition_age_') && target.startsWith('medical_')) {
-      console.log(`Age-Medical link: ${source} → ${target} (${value} users)`);
+    // Log age-hormones connections specifically
+    if (source.startsWith('transition_age_') && target.startsWith('hormones_')) {
+      console.log(`Age-Hormones link: ${source} → ${target} (${value} users)`);
     }
   });
 
@@ -226,11 +227,15 @@ function categorizeUser(user: any): string[] {
   const blockersCategory = tookBlockers ? 'took_blockers' : 'no_blockers';
   flow.push(`puberty_blockers_${blockersCategory}`);
 
-  // Stage 4: Medical Interventions - check age columns first, then tags
+  // Stage 4: Hormones - check age columns first, then tags
   const hasHormonesAge = user.hormones_age !== null;
   const hasHormonesTag = validTags.includes('took hormones');
   const hasHormones = hasHormonesAge || hasHormonesTag;
   
+  const hormonesCategory = hasHormones ? 'took_hormones' : 'social_only';
+  flow.push(`hormones_${hormonesCategory}`);
+
+  // Stage 5: Surgery - check age columns first, then tags
   const hasTopSurgeryAge = user.top_surgery_age !== null;
   const hasTopSurgeryTag = validTags.includes('got top surgery');
   const hasTopSurgery = hasTopSurgeryAge || hasTopSurgeryTag;
@@ -239,27 +244,21 @@ function categorizeUser(user: any): string[] {
   const hasBottomSurgeryTag = validTags.includes('got bottom surgery');
   const hasBottomSurgery = hasBottomSurgeryAge || hasBottomSurgeryTag;
   
-  const socialOnly = validTags.includes('only transitioned socially');
+  console.log(`User ${user.username} surgery checks: topSurgery=${hasTopSurgery}, bottomSurgery=${hasBottomSurgery}`);
   
-  console.log(`User ${user.username} medical checks: hormones=${hasHormones}, topSurgery=${hasTopSurgery}, bottomSurgery=${hasBottomSurgery}, socialOnly=${socialOnly}`);
+  let surgeryCategory = 'no_surgery'; // Default to no surgery
   
-  let medicalCategory = 'unknown'; // Default to unknown
-  
-  // Priority order: bottom surgery > top surgery > hormones > social only
+  // Priority order: bottom surgery > top surgery > no surgery
   if (hasBottomSurgery) {
-    medicalCategory = 'got_bottom_surgery';
+    surgeryCategory = 'got_bottom_surgery';
   } else if (hasTopSurgery) {
-    medicalCategory = 'got_top_surgery';
-  } else if (hasHormones) {
-    medicalCategory = 'took_hormones';
-  } else if (socialOnly) {
-    medicalCategory = 'social_only';
+    surgeryCategory = 'got_top_surgery';
   }
   
-  console.log(`User ${user.username} final medical category: ${medicalCategory}`);
-  flow.push(`medical_${medicalCategory}`);
+  console.log(`User ${user.username} final surgery category: ${surgeryCategory}`);
+  flow.push(`surgery_${surgeryCategory}`);
 
-  // Stage 5: Outcome - using exact tag names from availableTags
+  // Stage 6: Outcome - using exact tag names from availableTags
   const regrets = validTags.includes('regrets transitioning');
   const noRegrets = validTags.includes("doesn't regret transitioning");
   
@@ -297,11 +296,14 @@ function formatCategoryLabel(stageName: string, category: string): string {
     'took_blockers': 'Took Blockers',
     'no_blockers': 'No Blockers',
     
-    // Medical labels
+    // Hormones labels
     'took_hormones': 'Took Hormones',
+    'social_only': 'Social Only',
+    
+    // Surgery labels
     'got_top_surgery': 'Got Top Surgery',
     'got_bottom_surgery': 'Got Bottom Surgery',
-    'social_only': 'Social Only',
+    'no_surgery': 'No Surgery',
     
     // Outcome labels
     'regrets': 'Regrets',
