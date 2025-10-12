@@ -293,8 +293,7 @@ async function extractAges(
 ): Promise<{ 
   transitionAge: number | null; 
   detransitionAge: number | null;
-  transitionYear: number | null;
-  detransitionYear: number | null;
+
   hormonesAge: number | null;
   topSurgeryAge: number | null;
   bottomSurgeryAge: number | null;
@@ -331,8 +330,6 @@ If ages or years are not clearly stated, return null for those fields.`;
     if (!result) return { 
       transitionAge: null, 
       detransitionAge: null, 
-      transitionYear: null, 
-      detransitionYear: null,
       hormonesAge: null,
       topSurgeryAge: null,
       bottomSurgeryAge: null,
@@ -343,8 +340,8 @@ If ages or years are not clearly stated, return null for those fields.`;
     return {
       transitionAge: typeof parsed.transitionAge === 'number' ? parsed.transitionAge : null,
       detransitionAge: typeof parsed.detransitionAge === 'number' ? parsed.detransitionAge : null,
-      transitionYear: typeof parsed.transitionYear === 'number' ? parsed.transitionYear : null,
-      detransitionYear: typeof parsed.detransitionYear === 'number' ? parsed.detransitionYear : null,
+      transitionYear: null,
+      detransitionYear: null,
       hormonesAge: typeof parsed.hormonesAge === 'number' ? parsed.hormonesAge : null,
       topSurgeryAge: typeof parsed.topSurgeryAge === 'number' ? parsed.topSurgeryAge : null,
       bottomSurgeryAge: typeof parsed.bottomSurgeryAge === 'number' ? parsed.bottomSurgeryAge : null,
@@ -367,32 +364,21 @@ If ages or years are not clearly stated, return null for those fields.`;
 
 async function calculateTransitionYears(
   username: string,
-  experienceReport: string,
+  comments: string,
   extractedAges: {
     transitionAge: number | null;
     detransitionAge: number | null;
-    transitionYear: number | null;
-    detransitionYear: number | null;
   }
 ): Promise<{
   transitionYear: number | null;
   detransitionYear: number | null;
 }> {
-  // If we already have both years, return them
-  if (extractedAges.transitionYear && extractedAges.detransitionYear) {
-    return {
-      transitionYear: extractedAges.transitionYear,
-      detransitionYear: extractedAges.detransitionYear,
-    };
-  }
 
-  const prompt = `Based on the following experience report and extracted age data, calculate the missing transition and/or detransition years.
+  const prompt = `Based on the following user comments and extracted age data, calculate the missing transition and/or detransition years.
 
-Use the following information to calculate the years:
+Use the following information to calculate the transition/detransition years:
 - Transition age: ${extractedAges.transitionAge || 'unknown'}
 - Detransition age: ${extractedAges.detransitionAge || 'unknown'}
-- Transition year: ${extractedAges.transitionYear || 'unknown'}
-- Detransition year: ${extractedAges.detransitionYear || 'unknown'}
 
 Look for clues in the experience report such as:
 - Current age mentions ("I'm now 25")
@@ -401,11 +387,11 @@ Look for clues in the experience report such as:
 - Duration of transition ("I was on hormones for 3 years")
 
 Calculate the missing years based on:
-1. If you know current age and transition/detransition age, work backwards from 2024
+1. If you know current age and transition/detransition age, work backwards from the date in the comments.
 2. If you know one year and the age difference, calculate the other
 3. If you know duration between events, use that to calculate
 
-Experience report: ${experienceReport.substring(0, 3000)}...
+user comments: ${comments}...
 
 Return a JSON object with "transitionYear" and "detransitionYear" as numbers, or null if cannot be calculated.
 Example: {"transitionYear": 2018, "detransitionYear": 2022}`;
@@ -698,15 +684,13 @@ async function processUser(userComments: UserComments, index: number, total: num
 
       // Extract ages and years
       console.log(`Extracting transition/detransition ages and years for ${username}...`);
-      const { transitionAge, detransitionAge, transitionYear, detransitionYear, hormonesAge, topSurgeryAge, bottomSurgeryAge, pubertyBlockersAge } = await extractAges(username, experienceReport);
+      const { transitionAge, detransitionAge, hormonesAge, topSurgeryAge, bottomSurgeryAge, pubertyBlockersAge } = await extractAges(username, experienceReport);
 
       // Calculate missing transition/detransition years if needed
       console.log(`Calculating missing transition/detransition years for ${username}...`);
-      const calculatedYears = await calculateTransitionYears(username, experienceReport, {
+      const calculatedYears = await calculateTransitionYears(username, all_comments, {
         transitionAge,
         detransitionAge,
-        transitionYear,
-        detransitionYear,
       });
 
       // Insert into database
