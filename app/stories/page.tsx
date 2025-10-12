@@ -106,7 +106,7 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
     <div className="container mx-auto px-0 pb-8 lg:pt-8">
       <div className="prose prose-base dark:prose-invert mb-8 max-w-full">
         <h1 className="text-3xl font-bold">
-          {bot && searchParams.tag + " "}Detransition Stories and Timelines
+          {bot && searchParams.tag as string + " "}Detransition Stories and Timelines
         </h1>
         <p className="text-gray-600 dark:text-gray-400">
           Browse detransition experiences from members of the{" "}
