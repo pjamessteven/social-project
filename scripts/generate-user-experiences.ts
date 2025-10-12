@@ -120,7 +120,7 @@ async function getUserComments(): Promise<UserComments[]> {
     SELECT 
       username,
       COUNT(*) as comment_count,
-      STRING_AGG(text, ' | ' ORDER BY created) as all_comments,
+      STRING_AGG(created::text || ': ' || text, ' | ' ORDER BY created) as all_comments,
       STRING_AGG(created::text, ' | ' ORDER BY created) as all_comment_dates,
       MIN(created) as earliest_comment_date,
       MAX(score) as top_score
