@@ -145,7 +145,7 @@ export default function Component({ events }) {
   return (
     <div className="not-prose text-foreground mx-auto w-full max-w-4xl space-y-4 rounded-xl transition-colors duration-300">
       {/* Header */}
-      <div className="-mx-4 -mt-6 mb-2 flex items-center justify-start rounded-tl-xl rounded-tr-xl px-4 pt-2 md:-mt-4">
+      <div className="-mx-4 -mt-4 mb-2 flex items-center justify-start rounded-tl-xl rounded-tr-xl px-4 pt-2 md:-mt-0">
         <h1 className="text-foreground text-base font-semibold md:text-lg">
           {thinkingStatus}
         </h1>
@@ -227,11 +227,19 @@ export default function Component({ events }) {
 
           <div className="mb-2 mb-4 flex items-center justify-between">
             <div className="text-muted-foreground flex items-center text-sm">
-              <div>
-                {answers.filter((a) => a.state === "done").length} of{" "}
-                {answers.length} meta questions answered{" "}
-              </div>
+              {isLoading && !isRunningAnalysis ? (
+                <>
+                  <div>Generating summary of answers</div>
+                  <Loader2 className="ml-2 h-4 w-4 animate-spin text-blue-500 dark:text-blue-100" />
+                </>
+              ) : (
+                <div>
+                  {answers.filter((a) => a.state === "done").length} of{" "}
+                  {answers.length} meta questions answered{" "}
+                </div>
+              )}
             </div>
+
             <Progress
               value={
                 (answers.filter((a) => a.state === "done").length /
@@ -241,16 +249,6 @@ export default function Component({ events }) {
               className="bg-muted h-2 w-1/4"
             />
           </div>
-          {!isRunningAnalysis && (
-            <div className="flex items-center justify-start mt-8 sm:mt-16 mb-2">
-              <h1 className="text-foreground text-base font-semibold md:text-lg">
-                {isLoading ? 'Generating Summary...' : 'Summary of findings:'}
-              </h1>
-              {isLoading && (
-                <Loader2 className="ml-2 h-4 w-4 animate-spin text-blue-500 dark:text-blue-100" />
-              )}
-            </div>
-          )}
         </>
       )}
 

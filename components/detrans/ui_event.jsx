@@ -103,7 +103,7 @@ export default function Component({ events }) {
   const isRunningAnalysis =
     retrieve?.state === "inprogress" ||
     analyze?.state === "inprogress" ||
-    answers.some((a) => a.state === "inprogress")
+    answers.some((a) => a.state === "inprogress");
 
   const allAnswersComplete =
     answers.some((a) => a.state === "inprogress") == false;
@@ -135,7 +135,7 @@ export default function Component({ events }) {
       return "Generating meta questions...";
     } else if (!allAnswersComplete || isRunningAnalysis) {
       return "Finding answers to meta questions";
-    }  else {
+    } else {
       return "Deep analysis completed";
     }
   }, [retrieve?.state, analyze?.state, answers, isRunningAnalysis]);
@@ -143,7 +143,7 @@ export default function Component({ events }) {
   return (
     <div className="not-prose text-foreground mx-auto w-full max-w-4xl space-y-4 rounded-xl transition-colors duration-300">
       {/* Header */}
-      <div className="-mx-4 -mt-6 mb-2 flex items-center justify-start rounded-tl-xl rounded-tr-xl px-4 pt-2 md:-mt-4">
+      <div className="-mx-4 -mt-4 mb-2 flex items-center justify-start rounded-tl-xl rounded-tr-xl px-4 pt-2 md:-mt-0">
         <h1 className="text-foreground text-base font-semibold md:text-lg">
           {thinkingStatus}
         </h1>
@@ -172,14 +172,18 @@ export default function Component({ events }) {
                     <div className="flex-1 pr-2">
                       <p
                         className={cn(
-                          "pr-2 text-base font-medium italic text-muted-foreground hover:text-foreground transition-colors transition-opacity transition-colors ",
+                          "text-muted-foreground hover:text-foreground pr-2 text-base font-medium italic transition-colors transition-opacity",
                           answer.state === "inprogress"
                             ? "opacity-50"
                             : "opacity-100",
                         )}
                       >
-                        {"-> "}
-                        {answer.question}
+                        <div className="text-muted-foreground hover:text-foreground no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 transition-colors sm:text-base">
+                          <div className="mr-2 whitespace-nowrap">{"->"}</div>
+                          <div className="hover:underline">
+                            {answer.question}
+                          </div>
+                        </div>
                       </p>
                     </div>
                     {answer.state !== "done" &&
@@ -222,14 +226,21 @@ export default function Component({ events }) {
               </AccordionItem>
             ))}
           </Accordion>
-
           <div className="mb-2 mb-4 flex items-center justify-between">
             <div className="text-muted-foreground flex items-center text-sm">
-              <div>
-                {answers.filter((a) => a.state === "done").length} of{" "}
-                {answers.length} meta questions answered{" "}
-              </div>
+              {isLoading && !isRunningAnalysis ? (
+                <>
+                  <div>Generating summary of answers</div>
+                  <Loader2 className="ml-2 h-4 w-4 animate-spin text-blue-500 dark:text-blue-100" />
+                </>
+              ) : (
+                <div>
+                  {answers.filter((a) => a.state === "done").length} of{" "}
+                  {answers.length} meta questions answered{" "}
+                </div>
+              )}
             </div>
+
             <Progress
               value={
                 (answers.filter((a) => a.state === "done").length /
@@ -239,16 +250,6 @@ export default function Component({ events }) {
               className="bg-muted h-2 w-1/4"
             />
           </div>
-          {!isRunningAnalysis && (
-            <div className="flex items-center justify-start mt-8 sm:mt-16 mb-0">
-              <h1 className="text-foreground text-base font-semibold md:text-lg">
-                {isLoading ? 'Generating Summary...' : 'Summary of findings:'}
-              </h1>
-              {isLoading && (
-                <Loader2 className="ml-2 h-4 w-4 animate-spin text-blue-500 dark:text-blue-100" />
-              )}
-            </div>
-          )}
         </>
       )}
     </div>

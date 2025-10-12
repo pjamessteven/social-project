@@ -86,7 +86,7 @@ export async function StartPage({
                 >
                   <Users className="h-4 w-4" />
                   <span className="text-sm font-medium">
-                    Stories & Timelines
+                    Stories<span className="hidden sm:inline">{" "}& Timelines</span> 
                   </span>
                 </Button>
               </Link>
@@ -131,6 +131,12 @@ export async function StartPage({
           </div>
         )}
 
+
+        <div className=" w-full mt-8">
+      <div className="border-t w-full "/>
+      <div className="border-t mt-1 w-full "/>
+      <div className="border-t mt-1 w-full "/>
+      </div>
         {mode === "detrans" ? (
           <div className="">
             <div className="absolute -top-8 right-0 z-0 w-[200px] sm:top-0 sm:-right-32 sm:w-[250px]">
@@ -144,9 +150,9 @@ export async function StartPage({
               <div className="absolute inset-0 dark:bg-black/40"></div>
             </div>
 
-            <div className="prose dark:prose-invert prose-base border- z-10 mt-4 max-w-full pt-8">
+            <div className="prose dark:prose-invert prose-base border- z-10 mt-4 max-w-full pt-4 ">
               <div className="flex w-full justify-end">
-                <div className="text-background mb-0 max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-slate-800 px-4 py-2 sm:max-w-lg dark:bg-slate-100">
+                <div className="text-background mb-0 max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white">
                   What is a detransitioner and why are there so many?
                 </div>
               </div>
@@ -174,7 +180,7 @@ export async function StartPage({
                 sharing their experiences. These people call themselves detrans.
               </p>
               <div className="flex w-full justify-end">
-                <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-slate-800 px-4 py-2 sm:max-w-lg dark:bg-slate-100">
+                <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white">
                   What is a detrans.ai? What is this good for?
                 </div>
               </div>
@@ -218,7 +224,7 @@ export async function StartPage({
         ) : mode === "affirm" ? (
           <div className="prose dark:prose-invert mt-8 max-w-full text-base">
             <div className="flex w-full justify-end">
-              <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-slate-800 px-4 py-2 sm:max-w-lg dark:bg-slate-100">
+              <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white">
                 What is a genderaffirming.ai? What is this good for?
               </div>
             </div>
@@ -326,16 +332,21 @@ export async function StartPage({
           </div>
         )}
 
-        <Accordion type="single" collapsible className="mt-8 w-full">
+
+      <div className="border-t w-full mt-8 "/>
+      <div className="border-t mt-1 w-full "/>
+      <div className="border-t mt-1 w-full "/>
+
+        <Accordion type="single" collapsible className="mt-4 sm:mt-8 w-full">
           <AccordionItem
             value="disclaimer"
-            className="bg-destructive/5 dark:bg-destructive/40 border-destructive overflow-hidden rounded-xl border opacity-80"
+            className="bg-destructive/5 dark:bg-destructive/40 border-destructive overflow-hidden rounded-xl border "
           >
-            <AccordionTrigger className="text-destructive px-3 py-3 text-sm brightness-80 hover:no-underline dark:brightness-120">
+            <AccordionTrigger className="text-destructive px-3 py-3 text-xs font-medium sm:text-sm brightness-80 hover:no-underline dark:brightness-120">
               Disclaimer: Experiences and perspectives on this site are sourced
               from Reddit and processed by AI.
             </AccordionTrigger>
-            <AccordionContent className="text-destructive px-3 pb-3 text-sm brightness-80 dark:brightness-120">
+            <AccordionContent className="text-destructive px-3 pb-3text-xs sm:text-sm brightness-80 dark:brightness-120">
               <div className="max-w-2xl space-y-3">
                 <p>
                   While Reddit is a platform where real people share personal
@@ -361,7 +372,7 @@ export async function StartPage({
         {mode == "detrans" ? (
           <>
             {!bot ? (
-              <div className="mt-8">
+              <div className="mt-4 sm:mt-8">
                 <QuestionTabs mode={mode} />
               </div>
             ) : (
