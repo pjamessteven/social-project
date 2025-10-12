@@ -55,7 +55,7 @@ async function fetchWithBackoff<T>(
 
 // Rough estimate: 1 token ≈ 4 characters for English text
 function truncateToTokenLimit(text: string, maxTokens: number): string {
-  const maxChars = maxTokens * 2.5;
+  const maxChars = maxTokens * 2;
   if (text.length <= maxChars) {
     return text;
   }
