@@ -216,7 +216,7 @@ function categorizeUser(user: any): string[] {
 
   // Stage 2: Transition Age
   // Check if user has transition-related tags even if no transitionAge is recorded
-  const hasTransitionTags = validTags.some(tag => 
+  const hasTransitionTags = validTags.some((tag: string)  => 
     ['got top surgery', 'got bottom surgery', 'took hormones', 'only transitioned socially'].includes(tag)
   );
   
