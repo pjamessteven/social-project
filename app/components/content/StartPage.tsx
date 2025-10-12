@@ -24,7 +24,7 @@ import DonationCard from "./DonationCard";
 import { QuestionCategories } from "./QuestionCategories";
 import { QuestionTabs } from "./QuestionTabs";
 import RedditEmbeds from "./RedditEmbeds";
-import LizardAnimation from "../ui/lizard-animation.svg";
+import LizardAnimation from "../ui/lizard-animation";
 
 export async function StartPage({
   className,
