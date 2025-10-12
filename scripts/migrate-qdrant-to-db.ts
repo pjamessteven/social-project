@@ -5,12 +5,19 @@ import postgres from "postgres";
 import { detransComments } from "../db/schema";
 
 // Database connection
-const connectionString = process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/app";
+const connectionString =
+  process.env.DATABASE_URL ||
+  "postgresql://postgres:postgres@localhost:5432/app";
 const sql = postgres(connectionString);
 const db = drizzle(sql);
 
+console.log(process.env.QDRANT_URL);
 // Qdrant client
-const qdrantClient = new QdrantClient({ url: process.env.QDRANT_URL || "http://localhost:6333" });
+const qdrantClient = new QdrantClient({
+  url: process.env.QDRANT_URL || "http://localhost:6333",
+  checkCompatibility: false,
+  timeout: 10000, // 10 second timeout
+});
 
 async function migrateQdrantToDb() {
   console.log("Starting migration from Qdrant to detransComments table...");
@@ -70,11 +77,10 @@ async function migrateQdrantToDb() {
         console.warn(`Skipping point with missing required fields:`, {
           hasText: !!commentData.text,
           hasId: !!commentData.id,
-          link: commentData.link
+          link: commentData.link,
         });
         continue;
       }
-
 
       batch.push(commentData);
       totalProcessed++;
@@ -82,7 +88,10 @@ async function migrateQdrantToDb() {
       // Insert batch when it reaches batchSize
       if (batch.length >= batchSize) {
         try {
-          const result = await db.insert(detransComments).values(batch).onConflictDoNothing({ target: detransComments.link });
+          const result = await db
+            .insert(detransComments)
+            .values(batch)
+            .onConflictDoNothing({ target: detransComments.link });
           totalInserted += batch.length;
           console.log(
             `Inserted batch of ${batch.length} comments. Total inserted: ${totalInserted}`,
@@ -103,7 +112,10 @@ async function migrateQdrantToDb() {
   // Insert remaining batch
   if (batch.length > 0) {
     try {
-      const result = await db.insert(detransComments).values(batch).onConflictDoNothing({ target: detransComments.link });
+      const result = await db
+        .insert(detransComments)
+        .values(batch)
+        .onConflictDoNothing({ target: detransComments.link });
       totalInserted += batch.length;
       console.log(`Inserted final batch of ${batch.length} comments`);
     } catch (error) {
