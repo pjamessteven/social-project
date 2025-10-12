@@ -44,6 +44,14 @@ export async function GET(request: NextRequest) {
       conditions.push(sql`u.sex = ${sex}`);
     }
 
+    // Add age filtering
+    if (minAge) {
+      conditions.push(sql`u.transition_age >= ${minAge}`);
+    }
+    if (maxAge) {
+      conditions.push(sql`u.transition_age <= ${maxAge}`);
+    }
+
     // Handle tag filtering
     let tagFilterClause = sql``;
     if (tag) {
