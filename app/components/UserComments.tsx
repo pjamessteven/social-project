@@ -89,7 +89,7 @@ export default function UserComments({
       <h3 className="mb-4 font-semibold">
         Top Reddit Comments by /u/{username}:
       </h3>
-      <div className="mb-4 text-sm text-gray-600 dark:text-gray-400">
+      <div className="mb-6 -mt-2 text-sm text-gray-600 dark:text-gray-400">
         {commentCount} comments • Posting since {activeSince}
         {}{" "}
       </div>
