@@ -53,6 +53,7 @@ async function getUserComments(): Promise<UserComments[]> {
     WHERE username IS NOT NULL 
       AND username != '[deleted]'
     GROUP BY username 
+    HAVING COUNT(*) >= 5
     ORDER BY comment_count DESC
   `);
 
