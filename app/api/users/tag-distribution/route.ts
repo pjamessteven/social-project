@@ -89,12 +89,16 @@ export async function GET(request: NextRequest) {
           u.username,
           u.sex,
           u.transition_age,
+          u.hormones_age,
+          u.top_surgery_age,
+          u.bottom_surgery_age,
+          u.puberty_blockers_age,
           ARRAY_AGG(t.name) FILTER (WHERE t.name IS NOT NULL) as tags
         FROM detrans_users u
         LEFT JOIN detrans_user_tags ut ON u.username = ut.username  
         LEFT JOIN detrans_tags t ON ut.tag_id = t.id
         WHERE ${whereClause}
-        GROUP BY u.username, u.sex, u.transition_age
+        GROUP BY u.username, u.sex, u.transition_age, u.hormones_age, u.top_surgery_age, u.bottom_surgery_age, u.puberty_blockers_age
       `);
     } else {
       usersWithTags = await db.execute(sql`
@@ -102,11 +106,15 @@ export async function GET(request: NextRequest) {
           u.username,
           u.sex,
           u.transition_age,
+          u.hormones_age,
+          u.top_surgery_age,
+          u.bottom_surgery_age,
+          u.puberty_blockers_age,
           ARRAY_AGG(t.name) FILTER (WHERE t.name IS NOT NULL) as tags
         FROM detrans_users u
         LEFT JOIN detrans_user_tags ut ON u.username = ut.username  
         LEFT JOIN detrans_tags t ON ut.tag_id = t.id
-        GROUP BY u.username, u.sex, u.transition_age
+        GROUP BY u.username, u.sex, u.transition_age, u.hormones_age, u.top_surgery_age, u.bottom_surgery_age, u.puberty_blockers_age
       `);
     }
 
@@ -131,7 +139,8 @@ function processSankeyData(users: any[]) {
   const stages = [
     { name: "sex", categories: ["male", "female", "unknown"] },
     { name: "transition_age", categories: ["before_18", "after_18", "unknown"] },
-    { name: "medical", categories: ["took_hormones", "got_surgery", "social_only", "unknown"] },
+    { name: "puberty_blockers", categories: ["took_blockers", "no_blockers"] },
+    { name: "medical", categories: ["took_hormones", "got_top_surgery", "got_bottom_surgery", "social_only", "unknown"] },
     { name: "outcome", categories: ["regrets", "no_regrets", "unknown"] }
   ];
 
@@ -209,19 +218,38 @@ function categorizeUser(user: any): string[] {
                      user.transition_age && user.transition_age >= 18 ? 'after_18' : 'unknown';
   flow.push(`transition_age_${ageCategory}`);
 
-  // Stage 3: Medical Interventions - using exact tag names from availableTags
-  const hasHormones = validTags.includes('took hormones');
-  const hasTopSurgery = validTags.includes('got top surgery');
-  const hasBottomSurgery = validTags.includes('got bottom surgery');
+  // Stage 3: Puberty Blockers - check age column or tag
+  const hasBlockersAge = user.puberty_blockers_age !== null;
+  const hasBlockersTag = validTags.includes('took puberty blockers');
+  const tookBlockers = hasBlockersAge || hasBlockersTag;
+  
+  const blockersCategory = tookBlockers ? 'took_blockers' : 'no_blockers';
+  flow.push(`puberty_blockers_${blockersCategory}`);
+
+  // Stage 4: Medical Interventions - check age columns first, then tags
+  const hasHormonesAge = user.hormones_age !== null;
+  const hasHormonesTag = validTags.includes('took hormones');
+  const hasHormones = hasHormonesAge || hasHormonesTag;
+  
+  const hasTopSurgeryAge = user.top_surgery_age !== null;
+  const hasTopSurgeryTag = validTags.includes('got top surgery');
+  const hasTopSurgery = hasTopSurgeryAge || hasTopSurgeryTag;
+  
+  const hasBottomSurgeryAge = user.bottom_surgery_age !== null;
+  const hasBottomSurgeryTag = validTags.includes('got bottom surgery');
+  const hasBottomSurgery = hasBottomSurgeryAge || hasBottomSurgeryTag;
+  
   const socialOnly = validTags.includes('only transitioned socially');
   
   console.log(`User ${user.username} medical checks: hormones=${hasHormones}, topSurgery=${hasTopSurgery}, bottomSurgery=${hasBottomSurgery}, socialOnly=${socialOnly}`);
   
   let medicalCategory = 'unknown'; // Default to unknown
   
-  // Priority order: surgery > hormones > social only
-  if (hasTopSurgery || hasBottomSurgery) {
-    medicalCategory = 'got_surgery';
+  // Priority order: bottom surgery > top surgery > hormones > social only
+  if (hasBottomSurgery) {
+    medicalCategory = 'got_bottom_surgery';
+  } else if (hasTopSurgery) {
+    medicalCategory = 'got_top_surgery';
   } else if (hasHormones) {
     medicalCategory = 'took_hormones';
   } else if (socialOnly) {
@@ -231,7 +259,7 @@ function categorizeUser(user: any): string[] {
   console.log(`User ${user.username} final medical category: ${medicalCategory}`);
   flow.push(`medical_${medicalCategory}`);
 
-  // Stage 4: Outcome - using exact tag names from availableTags
+  // Stage 5: Outcome - using exact tag names from availableTags
   const regrets = validTags.includes('regrets transitioning');
   const noRegrets = validTags.includes("doesn't regret transitioning");
   
@@ -265,9 +293,14 @@ function formatCategoryLabel(stageName: string, category: string): string {
     'before_18': 'Before 18',
     'after_18': 'After 18',
     
+    // Puberty blockers labels
+    'took_blockers': 'Took Blockers',
+    'no_blockers': 'No Blockers',
+    
     // Medical labels
     'took_hormones': 'Took Hormones',
-    'got_surgery': 'Got Surgery',
+    'got_top_surgery': 'Got Top Surgery',
+    'got_bottom_surgery': 'Got Bottom Surgery',
     'social_only': 'Social Only',
     
     // Outcome labels
