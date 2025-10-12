@@ -155,16 +155,17 @@ export default function TransitionPathwaysChart({
       if (data.source !== undefined && data.target !== undefined && data.value) {
         const sourceNode = rechartsData.nodes[data.source];
         const targetNode = rechartsData.nodes[data.target];
+        const percentage = ((data.value / totalUsers) * 100).toFixed(1);
         return (
           <div className="rounded border border-gray-300 bg-white p-3 shadow-lg">
             <p className="font-medium text-black">
               {sourceNode?.name} → {targetNode?.name}
             </p>
             <p className="font-medium text-blue-600">
-              {data.value} users
+              {data.value} users ({percentage}%)
             </p>
             <p className="text-sm text-gray-600">
-              {((data.value / totalUsers) * 100).toFixed(1)}% of total
+              {percentage}% of total users
             </p>
           </div>
         );
@@ -182,6 +183,7 @@ export default function TransitionPathwaysChart({
           .reduce((sum, link) => sum + link.value, 0);
         
         const nodeFlow = Math.max(incomingFlow, outgoingFlow);
+        const percentage = totalUsers > 0 ? ((nodeFlow / totalUsers) * 100).toFixed(1) : "0.0";
         
         return (
           <div className="rounded border border-gray-300 bg-white p-3 shadow-lg">
@@ -189,10 +191,10 @@ export default function TransitionPathwaysChart({
             {nodeFlow > 0 && (
               <>
                 <p className="font-medium text-blue-600">
-                  {nodeFlow} users
+                  {nodeFlow} users ({percentage}%)
                 </p>
                 <p className="text-sm text-gray-600">
-                  {((nodeFlow / totalUsers) * 100).toFixed(1)}% of total
+                  {percentage}% of total users
                 </p>
               </>
             )}
