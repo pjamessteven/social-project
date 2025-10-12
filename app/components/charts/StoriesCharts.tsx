@@ -34,6 +34,7 @@ export default function StoriesCharts({
           <div className="font-semibold">Age Distribution</div>
         </div>
 
+          {/*
         <div
           className={`hover:text-foreground cursor-pointer p-4 sm:px-6  text-sm sm:text-base ${
             activeTab === "year"
@@ -44,7 +45,7 @@ export default function StoriesCharts({
         >
           <div className="font-semibold">Year Distribution</div>
         </div>
-
+ */}
         <div
           className={`hover:text-foreground cursor-pointer  p-4 sm:px-6 text-sm sm:text-base ${
             activeTab === "pathways"
@@ -72,6 +73,7 @@ export default function StoriesCharts({
             }
           />
         )}
+                  {/*
         {activeTab === "year" && (
           <YearDistributionChart
             className="shadow-lg min-w-lg"
@@ -87,6 +89,7 @@ export default function StoriesCharts({
             }
           />
         )}
+          */}
         {activeTab === "pathways" && (
           <TransitionPathwaysChart
             className="shadow-lg min-w-xl"

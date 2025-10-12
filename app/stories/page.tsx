@@ -4,7 +4,6 @@ import { headers } from "next/headers";
 import Link from "next/link";
 import StoriesCharts from "../components/charts/StoriesCharts";
 import { Badge } from "../components/ui/badge";
-import { Card, CardContent, CardTitle } from "../components/ui/card";
 import UsersFilters from "../components/UsersFilters";
 import UsersPagination from "../components/UsersPagination";
 import { isBot } from "../lib/isBot";
@@ -78,11 +77,11 @@ function formatDate(dateString: string) {
 }
 
 export const metadata: Metadata = {
-  title: "detrans.ai | Detransition Stories and Timelines",
+  title: "detrans.ai | Detransition Stories & Timelines",
   description:
     "Detransition experiences, timelines and trends from members of the /r/detrans Reddit community, the largest open collection of detransition stories on the internet.",
   openGraph: {
-    title: "detrans.ai | Detransition Stories and Timelines",
+    title: "detrans.ai | Detransition Stories & Timelines",
     description:
       "Detransition experiences, timelines and trends from members of the /r/detrans Reddit community, the largest open collection of detransition stories on the internet.",
     url: "https://detrans.ai/stories",
@@ -106,10 +105,11 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
     <div className="container mx-auto px-0 pb-8 lg:pt-8">
       <div className="prose prose-base dark:prose-invert mb-8 max-w-full">
         <h1 className="text-3xl font-bold">
-          {bot && resolvedSearchParams.tag as string + " "}Detransition Stories and Timelines
+          {bot && (resolvedSearchParams.tag as string) + " "}Detransition
+          Stories & Timelines
         </h1>
         <p className="text-gray-600 dark:text-gray-400">
-          Browse detransition experiences from members of the{" "}
+          Browse and read through {pagination.total} unique detransition stories from the top users in the{" "}
           <a
             href="https://reddit.com/r/detrans"
             target="_blank"
@@ -120,23 +120,32 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
           Reddit community, the largest open collection of detransition stories
           on the internet.
         </p>
-        <p className="text-gray-600 dark:text-gray-400">
-          On Reddit, people often share their experiences across multiple
-          comments or posts. To make this information more accessible, our AI
-          gathers all of those scattered pieces into a single, easy-to-read
-          summary and timeline. All system prompts are noted on the{" "}
-          <Link href={"/prompts"}>prompts page</Link>.
-        </p>
-        <p className="text-gray-600 dark:text-gray-400">
-          Every user has been analysed for signs of bot generated or inauthentic
-          content. Any account that does not appear to be a genuine
-          de-transitioner is flagged 'suspicious'. These accounts will be manually
-          reviewed and removed from the detrans.ai dataset if they are found to be inauthentic. Accounts that have
-          made fewer than five comments have been ommitted from analysis.
-        </p>
+        <details className="cursor-pointer">
+          <summary>
+            <i> More info about this content</i>
+          </summary>
+          <div className="mt-2 text-gray-600 dark:text-gray-400  py-0 mb-8 rounded-lg border p-2 sm:p-3">
+
+              On Reddit, people often share their experiences across multiple
+              comments or posts. To make this information more accessible, our
+              AI gathers all of those scattered pieces into a single,
+              easy-to-read summary and timeline. All system prompts are noted on
+              the <Link href={"/prompts"}>prompts page</Link>.
+
+            <p />
+                
+
+              Every user has been analysed for signs of bot generated or
+              inauthentic content. Any account that does not appear to be a
+              genuine de-transitioner is flagged 'suspicious'. These accounts
+              will be manually reviewed and removed from the detrans.ai dataset
+              if they are found to be inauthentic. Accounts that have made fewer
+              than five comments have been ommitted from analysis.
+          </div>
+        </details>
       </div>
 
-      <StoriesCharts resolvedSearchParams={resolvedSearchParams}/>
+      <StoriesCharts resolvedSearchParams={resolvedSearchParams} />
 
       <UsersFilters />
 
@@ -154,58 +163,61 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
         <div className="space-y-4">
           {users.map((user) => (
             <>
-            <div className="border-t sm:hidden pt-4 -mx-4"/>
-            <Link
-              key={user.username}
-              href={`/stories/${encodeURIComponent(user.username)}`}
-              className="block  sm:pt-6 transition-colors sm:rounded-lg sm:border sm:p-6 sm:hover:bg-gray-50 sm:dark:hover:bg-gray-800"
-            >
-              <div className="flex w-full grow flex-row items-center justify-between">
-                <div className="mb-2 flex grow flex-col items-start justify-between sm:flex-row">
-                  <h3 className="text-lg font-semibold">/u/{user.username}</h3>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm text-gray-500">
-                      {user.commentCount} comments • Posting since{" "}
-                      {formatDate(user.activeSince)}
-                    </span>
+              <div className="-mx-4 border-t pt-4 sm:hidden" />
+              <Link
+                key={user.username}
+                href={`/stories/${encodeURIComponent(user.username)}`}
+                className="block transition-colors sm:rounded-lg sm:border sm:p-6 sm:pt-6 sm:hover:bg-gray-50 sm:dark:hover:bg-gray-800/80"
+              >
+                <div className="flex w-full grow flex-row items-center justify-between">
+                  <div className="mb-2 flex grow flex-col items-start justify-between sm:flex-row">
+                    <h3 className="text-lg font-semibold">
+                      /u/{user.username}
+                    </h3>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-gray-500">
+                        {user.commentCount} comments • Posting since{" "}
+                        {formatDate(user.activeSince)}
+                      </span>
+                    </div>
                   </div>
+                  <ChevronRight className="mb-3 h-6 sm:hidden" />
                 </div>
-                <ChevronRight className="mb-3 h-6 sm:hidden" />
-              </div>
-              <div className="mb-2 mt-4 sm:mt-2 font-medium text-gray-700 dark:text-gray-300">
-                {user.transitionAge && "Transitioned at " + user.transitionAge}
-                {user.detransitionAge && user.transitionAge && " -> "}
-                {user.detransitionAge &&
-                  (user.tags.includes("only transitioned socially")
-                    ? "Desisted at "
-                    : "Detransitioned at ") + user.detransitionAge}
-              </div>
-              {user.experienceSummary && (
-                <p className="prose-base mb-4 text-gray-700 dark:text-gray-300">
-                  {user.experienceSummary}
-                </p>
-              )}
+                <div className="mt-4 mb-2 font-medium text-gray-700 sm:mt-2 dark:text-gray-300">
+                  {user.transitionAge &&
+                    "Transitioned at " + user.transitionAge}
+                  {user.detransitionAge && user.transitionAge && " -> "}
+                  {user.detransitionAge &&
+                    (user.tags.includes("only transitioned socially")
+                      ? "Desisted at "
+                      : "Detransitioned at ") + user.detransitionAge}
+                </div>
+                {user.experienceSummary && (
+                  <p className="prose-base mb-4 text-gray-700 dark:text-gray-300">
+                    {user.experienceSummary}
+                  </p>
+                )}
 
-              {user.tags.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant={"inverted"}>
-                    {user.sex === "f" ? "female" : "male"}
-                  </Badge>
-                  {user.tags.map((tag) => (
-                    <Badge
-                      key={tag}
-                      variant={
-                        tag === "suspicious account"
-                          ? "destructive"
-                          : "inverted"
-                      }
-                    >
-                      {tag}
+                {user.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant={"inverted"}>
+                      {user.sex === "f" ? "female" : "male"}
                     </Badge>
-                  ))}
-                </div>
-              )}
-            </Link>
+                    {user.tags.map((tag) => (
+                      <Badge
+                        key={tag}
+                        variant={
+                          tag === "suspicious account"
+                            ? "destructive"
+                            : "inverted"
+                        }
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+              </Link>
             </>
           ))}
         </div>

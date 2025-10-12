@@ -1,11 +1,5 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/app/components/ui/accordion";
 import { markdownToPlainText } from "@/app/lib/utils";
-import { Check, ExternalLink, Info, ShieldQuestion } from "lucide-react";
+import { Check, ExternalLink, ShieldQuestion } from "lucide-react";
 import { marked } from "marked";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -144,7 +138,7 @@ export default async function UserPage({
       <div className="sm:prose-base dark:prose-invert space-y-6">
         {/* Header */}
         <div>
-          <div className="mb-6 flex flex-col items-baseline justify-between sm:mb-8 sm:flex-row">
+          <div className="mb-6 flex flex-col items-baseline justify-between sm:mb-4 sm:flex-row">
             <div className="mb-4 flex flex-col sm:mb-0">
               <h1 className="mb-2 !text-2xl font-bold sm:mb-2">
                 Reddit user{" "}
@@ -152,7 +146,7 @@ export default async function UserPage({
                 Detransition Story
               </h1>
               {(user.transitionAge || user.detransitionAge) && (
-                <div className="text-gray-500">
+                <div className="text-muted-foreground">
                   {user.transitionAge && "Transitioned: " + user.transitionAge}
                   {user.transitionAge && user.detransitionAge && " -> "}
                   {user.detransitionAge &&
@@ -173,7 +167,7 @@ export default async function UserPage({
           </div>
 
           {user.tags.length > 0 && (
-            <div className="mb-6 flex flex-wrap gap-2">
+            <div className="mb-2 flex flex-wrap gap-2">
               <Badge variant="inverted">
                 {user.sex === "f" ? "female" : "male"}
               </Badge>
@@ -192,67 +186,39 @@ export default async function UserPage({
           )}
         </div>
 
-        <Accordion type="single" collapsible className="not-prose mt-8 w-full">
-          <AccordionItem
-            value="disclaimer"
-            className="overflow-hidden dark:bg-none"
-          >
-            <AccordionTrigger className="text-muted-foreground mb-2 py-1 pr-3 text-xs hover:no-underline sm:text-sm">
-              <div className="flex items-center">
-                <Info className="mr-2 h-4 min-w-4" />
-                <div>
-                  This detransition story is from all of this users comments on
-                  Reddit, summarised by our AI.
-                </div>
-              </div>
-            </AccordionTrigger>
-            <AccordionContent className="text-secondary-foreground px-0 pb-3 text-sm">
-              <div className="max-w-2xl space-y-3">
-                <p>
-                  On Reddit, people often share their experiences across
-                  multiple comments or posts. To make this information more
-                  accessible, our AI gathers all of those scattered pieces into
-                  a single, easy-to-read summary and timeline. All system
-                  prompts are noted on the prompts page.
-                </p>
-              </div>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-
+        <details className="cursor-pointer mb-2">
+          <summary className="text-muted-foreground">
+            <i>
+              This detransition story is from all of this user's comments on
+              Reddit, summarised by our AI.
+            </i>
+          </summary>
+          <div className="mt-2 mb-8 rounded-lg border p-2 py-0 text-gray-600 sm:p-3 dark:text-gray-400">
+            On Reddit, people often share their experiences across multiple
+            comments or posts. To make this information more accessible, our AI
+            gathers all of those scattered pieces into a single, easy-to-read
+            summary and timeline. All system prompts are noted on the prompts
+            page.
+          </div>
+        </details>
         {/* Red Flags Report */}
         {user.redFlagsReport && (
-          <Accordion
-            type="single"
-            collapsible
-            className="not-prose -mt-4 w-full pt-0"
-          >
-            <AccordionItem
-              value="disclaimer"
-              className={`overflow-hidden dark:bg-none border-none`}
-            >
-              <AccordionTrigger className="text-muted-foreground py-1 pr-3 text-xs hover:no-underline sm:text-sm">
-                <div className="flex items-center justify-start">
-                  {user.tags.includes("suspicious account") ? <ShieldQuestion className="mr-2 h-4 min-w-4"/> : <Check className="mr-2 h-4 min-w-4" />}
-                  <div>
-                    Authenticity Assessment:{" "}
-                    {user.tags.includes("suspicious account")
-                      ? "Suspicious Account"
-                      : "Not suspicious"}
-                  </div>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent className="px-0 pt-3 pb-3">
-                <div className="max-w-2xl">
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: marked.parse(user.redFlagsReport || ""),
-                    }}
-                  ></p>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+          <details className="cursor-pointer">
+          <summary className="text-muted-foreground">
+              <i>
+                User Authenticity Assessment:{" "}
+                {user.tags.includes("suspicious account")
+                  ? "Suspicious Account"
+                  : "Not Suspicious"}
+              </i>
+            </summary>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: marked.parse(user.redFlagsReport || ""),
+              }}
+             className="mt-2 mb-8 rounded-lg border p-2 py-0 text-sm no-prose prose-none text-gray-600 sm:px-3 dark:text-gray-400"
+            ></div>
+          </details>
         )}
 
         {/* Experience Summary */}
