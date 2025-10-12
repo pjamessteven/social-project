@@ -13,53 +13,32 @@ export default function LizardAnimation({ className }: LizardAnimationProps) {
       className={`lizard-animation ${className || ''}`}
       style={{
         stroke: '#edf2f6',
-        animation: 'lizard-dashoffset 10s both, lizard-fill-opacity 10s both, lizard-stroke-opacity 10s both',
+        animation: 'lizard-dashoffset 5s both, lizard-fill-opacity 5s both, lizard-stroke-opacity 5s both',
         strokeDasharray: '500%',
         strokeDashoffset: '500%',
         fillOpacity: 0,
         strokeOpacity: 0
       }}
     >
-      <style>{`
-        @keyframes lizard-stroke-opacity{
-          0%{stroke-opacity:0;stroke-width:0}
-          10%{stroke-opacity:.75;stroke-width:2%}
-          60%{stroke-opacity:.75;stroke-width:2%}
-          70%{stroke-opacity:0;stroke-width:0}
-          100%{stroke-opacity:0;stroke-width:0}
-        }
-        @keyframes lizard-fill-opacity{
-          0%{fill-opacity:0}
-          60%{fill-opacity:0}
-          70%{fill-opacity:1}
-          100%{fill-opacity:1}
-        }
-        @keyframes lizard-dashoffset{
-          0%{stroke-dashoffset:500%}
-          10%{stroke-dashoffset:500%}
-          60%{stroke-dashoffset:0%}
-          100%{stroke-dashoffset:0%}
-        }
-      `}</style>
+
       <title>🦎: lizard (U+1F98E) - emojiall.com</title>
       <style>{`
         .lizard-animation{
           stroke:#edf2f6;
-          animation:lizard-dashoffset 10s both,lizard-fill-opacity 10s both,lizard-stroke-opacity 10s both;
           stroke-dasharray:500%;
           stroke-dashoffset:500%
         }
         @keyframes lizard-stroke-opacity{
           0%{stroke-opacity:0;stroke-width:0}
           10%{stroke-opacity:.75;stroke-width:2%}
-          60%{stroke-opacity:.75;stroke-width:2%}
-          70%{stroke-opacity:0;stroke-width:0}
+          30%{stroke-opacity:.75;stroke-width:2%}
+          100%{stroke-opacity:0;stroke-width:0}
           100%{stroke-opacity:0;stroke-width:0}
         }
         @keyframes lizard-fill-opacity{
           0%{fill-opacity:0}
-          60%{fill-opacity:0}
-          70%{fill-opacity:1}
+          40%{fill-opacity:0}
+          45%{fill-opacity:1}
           100%{fill-opacity:1}
         }
         @keyframes lizard-dashoffset{
