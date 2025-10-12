@@ -87,6 +87,7 @@ export const detransUsers = pgTable('detrans_users', {
   hormonesAge: integer('hormones_age'),
   topSurgeryAge: integer('top_surgery_age'),
   bottomSurgeryAge: integer('bottom_surgery_age'),
+  pubertyBlockersAge: integer('puberty_blockers_age'),
 }, (table) => ({
   usernameIdx: index('idx_detrans_users_username').on(table.username),
   activeSinceIdx: index('idx_detrans_users_active_since').on(table.activeSince),
@@ -189,6 +190,7 @@ export const detransUserSchema = z.object({
   hormonesAge: z.number().int().nullable(),
   topSurgeryAge: z.number().int().nullable(),
   bottomSurgeryAge: z.number().int().nullable(),
+  pubertyBlockersAge: z.number().int().nullable(),
 });
 
 export const detransCommentSchema = z.object({
