@@ -10,25 +10,45 @@ export default function LizardAnimation({ className }: LizardAnimationProps) {
       xmlns="http://www.w3.org/2000/svg" 
       xmlnsXlink="http://www.w3.org/1999/xlink" 
       viewBox="0 0 36 36"
-      className={className}
+      className={`lizard-animation ${className || ''}`}
+      style={{
+        stroke: '#edf2f6',
+        animation: 'lizard-dashoffset 10s both, lizard-fill-opacity 10s both, lizard-stroke-opacity 10s both',
+        strokeDasharray: '500%',
+        strokeDashoffset: '500%'
+      }}
     >
-      <title>🦎: lizard (U+1F98E) - emojiall.com</title>
       <style>{`
-        svg{
-          stroke:#edf2f6;
-          animation:dashoffset 10s both,fill-opacity 10s both,stroke-opacity 10s both;
-          stroke-dasharray:500%;
-          stroke-dashoffset:500%
-        }
-        @keyframes stroke-opacity{
+        @keyframes lizard-stroke-opacity{
           2%,25%{stroke-opacity:.75;stroke-width:2%}
           100%,75%{stroke-opacity:0;stroke-width:0}
         }
-        @keyframes fill-opacity{
+        @keyframes lizard-fill-opacity{
           10%,25%{fill-opacity:0}
           0%,100%,50%{fill-opacity:1}
         }
-        @keyframes dashoffset{
+        @keyframes lizard-dashoffset{
+          0%,2%{stroke-dashoffset:500%}
+          100%{stroke-dashoffset:0%}
+        }
+      `}</style>
+      <title>🦎: lizard (U+1F98E) - emojiall.com</title>
+      <style>{`
+        .lizard-animation{
+          stroke:#edf2f6;
+          animation:lizard-dashoffset 10s both,lizard-fill-opacity 10s both,lizard-stroke-opacity 10s both;
+          stroke-dasharray:500%;
+          stroke-dashoffset:500%
+        }
+        @keyframes lizard-stroke-opacity{
+          2%,25%{stroke-opacity:.75;stroke-width:2%}
+          100%,75%{stroke-opacity:0;stroke-width:0}
+        }
+        @keyframes lizard-fill-opacity{
+          10%,25%{fill-opacity:0}
+          0%,100%,50%{fill-opacity:1}
+        }
+        @keyframes lizard-dashoffset{
           0%,2%{stroke-dashoffset:500%}
           100%{stroke-dashoffset:0%}
         }
