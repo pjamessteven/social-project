@@ -2,7 +2,6 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { SankeyFlow } from "@/app/lib/availableTags";
 import { ResponsiveContainer, Sankey, Tooltip } from "recharts";
 
 interface SankeyNode {
@@ -101,13 +100,13 @@ export default function TransitionPathwaysChart({
   const transformDataForRecharts = (sankeyData: SankeyData): RechartsData => {
     // Filter out nodes that have no connections
     const connectedNodeIds = new Set<string>();
-    sankeyData.links.forEach(link => {
+    sankeyData.links.forEach((link) => {
       connectedNodeIds.add(link.source);
       connectedNodeIds.add(link.target);
     });
 
-    const connectedNodes = sankeyData.nodes.filter(node => 
-      connectedNodeIds.has(node.id)
+    const connectedNodes = sankeyData.nodes.filter((node) =>
+      connectedNodeIds.has(node.id),
     );
 
     // Create a mapping from node IDs to indices
@@ -117,24 +116,27 @@ export default function TransitionPathwaysChart({
     });
 
     // Transform nodes to Recharts format with better labels
-    const rechartsNodes: RechartsNode[] = connectedNodes.map(node => ({
-      name: node.label || node.id.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+    const rechartsNodes: RechartsNode[] = connectedNodes.map((node) => ({
+      name:
+        node.label ||
+        node.id.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase()),
     }));
 
     // Transform links to use indices instead of IDs, filter out invalid links
     const rechartsLinks: RechartsLink[] = sankeyData.links
-      .filter(link => 
-        nodeIdToIndex.has(link.source) && nodeIdToIndex.has(link.target)
+      .filter(
+        (link) =>
+          nodeIdToIndex.has(link.source) && nodeIdToIndex.has(link.target),
       )
-      .map(link => ({
+      .map((link) => ({
         source: nodeIdToIndex.get(link.source)!,
         target: nodeIdToIndex.get(link.target)!,
-        value: link.value
+        value: link.value,
       }));
 
     return {
       nodes: rechartsNodes,
-      links: rechartsLinks
+      links: rechartsLinks,
     };
   };
 
@@ -142,7 +144,7 @@ export default function TransitionPathwaysChart({
 
   // Calculate total users for display (sum of first stage outgoing links)
   const totalUsers = data.links
-    .filter(link => link.source.startsWith('sex_'))
+    .filter((link) => link.source.startsWith("sex_"))
     .reduce((sum, link) => sum + link.value, 0);
 
   if (error) {
@@ -156,86 +158,100 @@ export default function TransitionPathwaysChart({
           <div className="text-gray-500">Loading pathway data...</div>
         </div>
       ) : (
-        <div className={`w-full ${className}`}>
+        <>
           <div className="p-4">
-            <h3 className="text-lg font-semibold">Transition Pathways Flow</h3>
+            <h3 className="text-lg font-semibold">
+              Detransition Pathways Flow
+            </h3>
             <p className="text-sm text-gray-600">
-              Flow from demographics through transition outcomes
+              Flow of /r/detrans Reddit user demographics through to detransition
+              outcomes
             </p>
           </div>
-          
-          <div className="h-96 w-full border rounded-lg">
-            <ResponsiveContainer width="100%" height="100%">
-              <Sankey
-                width={960}
-                height={500}
-                data={rechartsData}
-                nodePadding={30}
-                nodeWidth={20}
-                linkCurvature={0.5}
-                iterations={32}
-                margin={{ top: 40, right: 120, bottom: 40, left: 120 }}
-                node={(props: any) => {
-                  const { x, y, width, height, payload } = props;
-                  const labelText = payload?.name || 'Unknown';
-                  
-                  return (
-                    <g>
-                      <rect
-                        x={x}
-                        y={y}
-                        width={width}
-                        height={height}
-                        fill="#3b82f6"
-                        stroke="#1e40af"
-                        strokeWidth={1}
-                      />
-                      <text
-                        x={x + width + 8}
-                        y={y + height / 2}
-                        textAnchor="start"
-                        dominantBaseline="central"
-                        fontSize={11}
-                        fill="#374151"
-                        fontFamily="system-ui, -apple-system, sans-serif"
-                      >
-                        {labelText}
-                      </text>
-                    </g>
-                  );
-                }}
-                link={{ 
-                  stroke: '#94a3b8',
-                  strokeOpacity: 0.6
-                }}
-              >
-                <Tooltip 
-                  content={({ active, payload }) => {
-                    if (active && payload && payload.length > 0) {
-                      const data = payload[0].payload;
-                      return (
-                        <div className="bg-white p-2 border rounded shadow-lg">
-                          <p className="font-medium">{data.name || `${data.source?.name} → ${data.target?.name}`}</p>
-                          {data.value && <p className="text-sm text-gray-600">Users: {data.value}</p>}
-                        </div>
-                      );
-                    }
-                    return null;
-                  }}
-                />
-              </Sankey>
-            </ResponsiveContainer>
-          </div>
+          <div className={`w-full ${className}`}>
+            <div className="h-96 w-full rounded-lg border">
+              <ResponsiveContainer width="100%" height="100%">
+                <Sankey
+                  width={960}
+                  height={500}
+                  data={rechartsData}
+                  nodePadding={30}
+                  nodeWidth={20}
+                  linkCurvature={0.5}
+                  iterations={32}
+                  margin={{ top: 40, right: 96, bottom: 40, left: 32 }}
+                  node={(props: any) => {
+                    const { x, y, width, height, payload } = props;
+                    const labelText =
+                      (payload?.name === "Unknown" && "Not Stated") ||
+                      payload?.name ||
+                      "Not Stated";
 
-          <div className="p-4 text-sm text-gray-600">
-            <p>
-              <strong>Total users:</strong> {totalUsers}
-            </p>
-            <p>
-              <strong>Flow connections:</strong> {data.links.length}
-            </p>
+                    return (
+                      <g>
+                        <rect
+                          x={x}
+                          y={y}
+                          width={width}
+                          height={height}
+                          fill="#3b82f6"
+                          stroke="#1e40af"
+                          strokeWidth={1}
+                        />
+                        <text
+                          x={x + width + 8}
+                          y={y + height / 2}
+                          textAnchor="start"
+                          dominantBaseline="central"
+                          fontSize={11}
+                          fill="#374151"
+                          fontFamily="system-ui, -apple-system, sans-serif"
+                        >
+                          {labelText}
+                        </text>
+                      </g>
+                    );
+                  }}
+                  link={{
+                    stroke: "#94a3b8",
+                    strokeOpacity: 0.6,
+                  }}
+                >
+                  <Tooltip
+                    content={({ active, payload }) => {
+                      if (active && payload && payload.length > 0) {
+                        const data = payload[0].payload;
+                        return (
+                          <div className="rounded border bg-white p-2 shadow-lg">
+                            <p className="font-medium">
+                              {data.name ||
+                                `${data.source?.name} → ${data.target?.name}`}
+                            </p>
+                            {data.value && (
+                              <p className="text-sm text-gray-600">
+                                Users: {data.value}
+                              </p>
+                            )}
+                          </div>
+                        );
+                      }
+                      return null;
+                    }}
+                  />
+                </Sankey>
+              </ResponsiveContainer>
+            </div>
+
+            <div className="p-4 text-sm text-gray-600">
+              <p>
+                <strong>Total users:</strong> {totalUsers}
+              </p>
+              <p>
+                <strong>Flow connections:</strong> {data.links.length}
+              </p>
+            </div>
           </div>
-        </div>
+        </>
       )}
 
       {!loading && data.nodes.length === 0 && (
