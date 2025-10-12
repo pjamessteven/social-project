@@ -12,8 +12,6 @@ import {
 import { Metadata } from "next";
 import { headers } from "next/headers";
 
-export const dynamic = "force-dynamic"; // required for async call in generateMetadata
-
 export async function generateMetadata({
   params,
 }: {
