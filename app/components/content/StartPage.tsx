@@ -141,7 +141,6 @@ export async function StartPage({
         {mode === "detrans" ? (
           <div className="">
             <div className="absolute -top-8 right-0 z-0 w-[200px] sm:top-0 sm:-right-32 sm:w-[250px]">
-              <LizardAnimation className="w-full h-full" />
               <div className="absolute inset-0 dark:bg-black/40"></div>
             </div>
 
