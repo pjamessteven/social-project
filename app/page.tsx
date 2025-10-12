@@ -1,8 +1,10 @@
+"use server";
+
 import { StartPage } from "./components/content/StartPage";
 
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "detrans.ai | Talk to 50,000+ detransitioners",
   description:
     "Detrans.ai is a self-guided gender-exploratory therapy tool that is powered by real detrans perspectives and experiences. Understand why some adopt, inhabit, and let go of gender identities. ",
@@ -23,7 +25,15 @@ export const metadata: Metadata = {
     description:
       "Detrans.ai is powered by real detrans perspectives and experiences. Understand why some adopt, inhabit, and let go of gender identities.",
   },
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return metadata;
+}
 
 export default async function Home({
   searchParams,

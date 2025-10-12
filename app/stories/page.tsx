@@ -1,3 +1,5 @@
+"use server";
+
 import { ChevronRight } from "lucide-react";
 import { Metadata } from "next";
 import { headers } from "next/headers";
@@ -76,14 +78,14 @@ function formatDate(dateString: string) {
   return new Date(dateString).toLocaleDateString();
 }
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "detrans.ai | Detransition Stories & Timelines",
   description:
-    "Detransition experiences, timelines and trends from members of the /r/detrans Reddit community, the largest open collection of detransition stories on the internet.",
+    "Read heartfelt detransition stories, timelines and trends from the members of the /r/detrans Reddit community, the largest open collection of detransition stories on the internet. Find out how old were detransitioners when they transitioned and de-transitioned and what pathways they took.",
   openGraph: {
     title: "detrans.ai | Detransition Stories & Timelines",
     description:
-      "Detransition experiences, timelines and trends from members of the /r/detrans Reddit community, the largest open collection of detransition stories on the internet.",
+      "Read heartfelt detransition stories, timelines and trends from the members of the /r/detrans Reddit community, the largest open collection of detransition stories on the internet. Find out how old were detransitioners when they transitioned and de-transitioned and what pathways they took.",
     url: "https://detrans.ai/stories",
     siteName: "detrans.ai",
     images: ["https://detrans.ai/x_lg.png"],
@@ -91,6 +93,10 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return metadata;
+}
 
 export default async function UsersPage({ searchParams }: UsersPageProps) {
   const resolvedSearchParams = await searchParams;
@@ -109,7 +115,8 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
           Stories & Timelines
         </h1>
         <p className="text-gray-600 dark:text-gray-400">
-          Browse and read through {pagination.total} unique detransition stories which have been woven together from the heartfelt comments of the most active users in the{" "}
+          Browse through {pagination.total} unique detransition stories of the
+          most active users in the{" "}
           <a
             href="https://reddit.com/r/detrans"
             target="_blank"
@@ -117,30 +124,26 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
           >
             /r/detrans
           </a>{" "}
-          subreddit, the largest open collection of detransition stories
-          on the internet!
+          subreddit, the largest open collection of detransition stories on the
+          internet!
         </p>
         <details className="cursor-pointer">
           <summary>
             <i> More info about this content</i>
           </summary>
-          <div className="mt-2 text-gray-600 dark:text-gray-400 mb-8 rounded-lg border text-sm sm:text-base p-3">
-
-              On Reddit, people often share their experiences across multiple
-              comments or posts. To make this information more accessible, our
-              AI gathers all of those scattered pieces into a single,
-              easy-to-read summary and timeline. All system prompts are noted on
-              the <Link href={"/prompts"}>prompts page</Link>.
-
+          <div className="mt-2 mb-8 rounded-lg border p-3 text-sm text-gray-600 sm:text-base dark:text-gray-400">
+            On Reddit, people often share their experiences across multiple
+            comments or posts. To make this information more accessible, our AI
+            gathers all of those scattered pieces into a single, easy-to-read
+            summary and timeline. All system prompts are noted on the{" "}
+            <Link href={"/prompts"}>prompts page</Link>.
             <p />
-                
-
-              Every user has been analysed for signs of bot generated or
-              inauthentic content. Any account that does not appear to be a
-              genuine de-transitioner is flagged 'suspicious'. These accounts
-              will be manually reviewed and removed from the detrans.ai dataset
-              if they are found to be inauthentic. Accounts that have made fewer
-              than five comments have been ommitted from analysis.
+            Every user has been analysed for signs of bot generated or
+            inauthentic content. Any account that does not appear to be a
+            genuine de-transitioner is flagged 'suspicious'. These accounts will
+            be manually reviewed and removed from the detrans.ai dataset if they
+            are found to be inauthentic. Accounts that have made fewer than five
+            comments have been ommitted from analysis.
           </div>
         </details>
       </div>

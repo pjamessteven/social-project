@@ -1,3 +1,5 @@
+"use server"
+
 import ChatPage from "@/app/components/content/ChatPage";
 import SeoChatPage from "@/app/components/content/SeoChatPage";
 import { getCachedAnswer } from "@/app/lib/cache";

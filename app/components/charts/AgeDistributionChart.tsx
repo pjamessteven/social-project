@@ -114,7 +114,7 @@ export default function AgeDistributionChart({
         <>
           <div className="p-4">
             <h3 className="text-lg font-semibold">
-              How old were users when they transitioned and de-transitioned?
+              How old were detransitioners when they transitioned and de-transitioned?
             </h3>
             <p className="text-sm text-gray-600">
               Data from Reddit user transition timelines
