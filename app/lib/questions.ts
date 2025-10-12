@@ -13,6 +13,7 @@ export const questionCategories = [
       "What can detrans stories teach me, even if my transition is going well so far?",
       "How would I know if doubts are just nerves or a sign that I should stop?",
       "Do detrans people think transition itself is bad?",
+      "Do detrans people think gender affirming care and hormones should be banned?",
       "What are some false claims made about transgender people?",
       "What are some false claims made about people who have detransitioned?",
       "What early signs do detrans folks wish they’d noticed sooner?",
