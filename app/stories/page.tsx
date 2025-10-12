@@ -115,33 +115,34 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
           Stories & Timelines
         </h1>
         <p className="text-gray-600 dark:text-gray-400">
-          Browse through {pagination.total} unique detransition stories of the
-          top contributors in the{" "}
+          Browse through {pagination.total} unique detransition stories and timelines of
+          people who haved shared their experiences in the{" "}
           <a
             href="https://reddit.com/r/detrans"
             target="_blank"
-            className="underline"
+            className="underline whitespace-nowrap"
           >
             /r/detrans
           </a>{" "}
-          subreddit, the largest open collection of detransition stories on the
+          subreddit, which is the largest open collection of detransition stories and experiences on the
           internet!
         </p>
         <details className="cursor-pointer">
           <summary>
-            <i> More info about this content</i>
+            <i> More info about these stories </i>
           </summary>
           <div className="mt-2 mb-8 rounded-lg border p-3 text-sm text-gray-600 sm:text-base dark:text-gray-400">
-            Only users who have shared enough to put together a full story and timeline are
-            included. Users that have posted less than five comments or their
-            comments that received less than three upvotes are disregarded. Posts
-            are not yet included in the dataset.
-            <p />
+
             On Reddit, people often share their experiences across multiple
             comments or posts. To make this information more accessible, our AI
             gathers all of those scattered pieces into a single, easy-to-read
             summary and timeline. All system prompts are noted on the{" "}
             <Link href={"/prompts"}>prompts page</Link>.
+            <p />
+            Only users who have shared enough to put together a full story and timeline are
+            included. Users that have posted less than five comments or their
+            comments that received less than three upvotes are disregarded. Posts
+            are not yet included in the dataset.
             <p />
             Every user has been analysed for signs of bot generated or
             inauthentic content. Any account that does not appear to be a
