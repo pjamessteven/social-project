@@ -129,7 +129,7 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
         </p>
         <details className="cursor-pointer">
           <summary>
-            <i> More info about these stories </i>
+            <i>These stories have been summarised with the help of AI.  </i>
           </summary>
           <div className="mt-2 mb-8 rounded-lg border p-3 text-sm text-gray-600 sm:text-base dark:text-gray-400">
 

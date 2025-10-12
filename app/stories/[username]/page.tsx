@@ -191,8 +191,7 @@ export default async function UserPage({
         <details className="cursor-pointer mb-2">
           <summary className="text-muted-foreground">
             <i>
-              This detransition story is from all of this user's comments on
-              Reddit, summarised by our AI.
+              This story is from the comments by /u/{username} that are listed below, summarised with AI.
             </i>
           </summary>
           <div className="mt-2 mb-8 rounded-lg border p-2 py-0 text-gray-600 sm:p-3 dark:text-gray-400">

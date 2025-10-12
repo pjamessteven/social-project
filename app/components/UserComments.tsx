@@ -103,7 +103,7 @@ export default function UserComments({
               className="rounded-lg border bg-white dark:bg-gray-900"
             >
               <div className="bg-secondary dark:bg-primary/5 flex flex-col">
-                <div className="prose dark:prose-invert max-w-full px-4 pt-3 pb-2 text-sm font-semibold">
+                <div className="prose dark:prose-invert max-w-full px-4 pt-3 pb-3  font-semibold">
                   {comment.summary}
                 </div>
                 <div className="flex items-start justify-between px-4 pb-3">
@@ -125,7 +125,7 @@ export default function UserComments({
                 </div>
               </div>
               <div
-                className="prose dark:prose-invert max-w-none px-4 py-3 sm:py-0 text-sm"
+                className="prose dark:prose-invert max-w-none px-4 py-3 sm:py-0 "
                 dangerouslySetInnerHTML={{
                   __html: marked.parse(comment.text || ""),
                 }}
