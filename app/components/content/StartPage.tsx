@@ -140,13 +140,14 @@ export async function StartPage({
       </div>
         {mode === "detrans" ? (
           <div className="">
-            <div className="absolute -top-8 right-0 z-0 w-[200px] sm:top-0 sm:-right-32 sm:w-[250px]">
-              <div className="absolute inset-0 dark:bg-black/40"></div>
+            <div className="absolute top-0 right-0 z-0 w-[180px] sm:top-8 rotate-15 sm:-right-32 sm:w-[250px]">
+              <LizardAnimation/>
+              <div className="absolute inset-0 dark:bg-black/20"></div>
             </div>
 
             <div className="prose dark:prose-invert prose-base border- z-10 mt-4 max-w-full pt-4 ">
               <div className="flex w-full justify-end">
-                <div className="text-background mb-0 max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white">
+                <div className="text-background mb-0 max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white/80">
                   What is a detransitioner and why are there so many?
                 </div>
               </div>
@@ -161,20 +162,12 @@ export async function StartPage({
                   are up 50-fold
                 </a>{" "}
                 (5000%) in the UK. Young women are increasingly overrepresented
-                in these statistics, representing up to{" "}
-                <a
-                  href="https://sci-hub.se/10.1080/08039488.2019.1667429"
-                  target="_blank"
-                  className="underline"
-                >
-                  87% of all referrals
-                </a>{" "}
-                in Finland. At the same time, a constantly growing number of
+                in these statistics. At the same time, a constantly growing number of
                 people are healing their gender dysphoria, detransitioning and
-                sharing their experiences. These people call themselves detrans.
+                sharing their experiences. These people call themselves detrans, and online they identify themselves with the lizard emoji.
               </p>
-              <div className="flex w-full justify-end">
-                <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white">
+              <div className="flex w-full justify-end pt-2">
+                <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white/80">
                   What is a detrans.ai? What is this good for?
                 </div>
               </div>
@@ -334,7 +327,7 @@ export async function StartPage({
         <Accordion type="single" collapsible className="mt-4 sm:mt-8 w-full">
           <AccordionItem
             value="disclaimer"
-            className="bg-destructive/5 dark:bg-destructive/40 border-destructive overflow-hidden rounded-xl border "
+            className="bg-destructive/5 dark:bg-destructive/20 dark:border-destructive/30  border-destructive overflow-hidden rounded-xl border "
           >
             <AccordionTrigger className="text-destructive px-3 py-3 text-xs font-medium sm:text-sm brightness-80 hover:no-underline dark:brightness-120">
               Disclaimer: Experiences and perspectives on this site are sourced
