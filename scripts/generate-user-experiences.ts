@@ -10,7 +10,7 @@ import { availableTags } from "@/app/lib/availableTags";
 dotenv.config();
 
 // Database connection
-const connectionString = "postgresql://postgres:postgres@localhost:5432/app";
+const connectionString = process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/app";
 const client = postgres(connectionString);
 const db = drizzle(client);
 

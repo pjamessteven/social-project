@@ -5,12 +5,12 @@ import postgres from "postgres";
 import { detransComments } from "../db/schema";
 
 // Database connection
-const connectionString = "postgresql://postgres:postgres@localhost:5432/app";
+const connectionString = process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/app";
 const sql = postgres(connectionString);
 const db = drizzle(sql);
 
 // Qdrant client
-const qdrantClient = new QdrantClient({ url: "http://localhost:6333" });
+const qdrantClient = new QdrantClient({ url: process.env.QDRANT_URL || "http://localhost:6333" });
 
 async function migrateQdrantToDb() {
   console.log("Starting migration from Qdrant to detransComments table...");
