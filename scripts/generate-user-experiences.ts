@@ -5,7 +5,50 @@ import { OpenAI } from "openai";
 
 import postgres from "postgres";
 import { detransUsers, detransTags, detransUserTags } from "../db/schema";
-import { availableTags } from "@/app/lib/availableTags";
+
+export const availableTags = [
+  "trauma",
+  "autistic",
+  "ocd",
+  "puberty discomfort",
+  "got top surgery",
+  "got bottom surgery",
+  "internalised homophobia",
+  "autogynephilia (AGP)",
+  "started as non-binary",
+  "escapism",
+  "depression",
+  "low self-esteem",
+  "anxiety",
+  "porn problem",
+  "hated breasts",
+  "benefited from non-affirming therapy",
+  "eating disorder",
+  "influenced online",
+  "influenced by friends",
+  "regrets transitioning",
+  "doesn't regret transitioning",
+  "trans kid",
+  "took hormones",
+  "took puberty blockers",
+  "serious health complications",
+  "now infertile",
+  "body dysmorphia",
+  "retransition",
+  "benefited from psychedelic drugs",
+  "had religious background",
+  "became religious",
+  "become non-religious",
+  "only transitioned socially",
+  "intersex",
+  "asexual",
+  "homosexual",
+  "heterosexual",
+  "bisexual",
+  "sexuality changed",
+  "suspicious account",
+];
+
 
 dotenv.config();
 
