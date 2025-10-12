@@ -94,12 +94,12 @@ div.bg-background.border:has(> img[alt="Llama Logo"]) {
 /* chat message margin style*/
 .user-message :is(.custom-markdown) {
   border-top-right-radius: 0px !important;
-  background: var(--color-slate-800);
+
 }
 @media (prefers-color-scheme: dark) {
 .user-message :is(.custom-markdown) {
 
-  background: var(--color-slate-100);
+
 }
 }
 .user-message :is(.custom-markdown > div) {
@@ -215,6 +215,7 @@ html, body, #__next {
     cursor: pointer;
   }
 }
+
 
 @layer base {
   :root {
