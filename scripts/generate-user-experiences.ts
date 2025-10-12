@@ -22,6 +22,37 @@ const openai = new OpenAI({
 
 const MODEL = "moonshotai/kimi-k2"
 
+// Backoff utility for API calls
+async function fetchWithBackoff<T>(
+  fn: () => Promise<T>,
+  retries = 5,
+  delay = 500, // initial delay in ms
+): Promise<T> {
+  let attempt = 0;
+
+  while (attempt <= retries) {
+    try {
+      return await fn();
+    } catch (err) {
+      if (attempt === retries) {
+        throw err; // out of retries, rethrow the error
+      }
+
+      const backoff = delay * Math.pow(2, attempt); // exponential backoff
+      console.warn(
+        `Attempt ${attempt + 1} failed. Retrying in ${backoff}ms...`,
+        err,
+      );
+
+      await new Promise((resolve) => setTimeout(resolve, backoff));
+      attempt++;
+    }
+  }
+
+  // should never reach here
+  throw new Error("Unexpected error in fetchWithBackoff");
+}
+
 // Rough estimate: 1 token ≈ 4 characters for English text
 function truncateToTokenLimit(text: string, maxTokens: number): string {
   const maxChars = maxTokens * 2.5;
@@ -99,11 +130,13 @@ async function generateExperienceReport(
 `;
 
   try {
-    const response = await openai.chat.completions.create({
-      model: MODEL,
-      messages: [{ role: "user", content: prompt }],
-      temperature: 0.3,
-    });
+    const response = await fetchWithBackoff(() =>
+      openai.chat.completions.create({
+        model: MODEL,
+        messages: [{ role: "user", content: prompt }],
+        temperature: 0.3,
+      })
+    );
 
     return response.choices[0]?.message?.content || "";
   } catch (error) {
@@ -132,11 +165,13 @@ async function generateRedFlagsReport(
 `;
 
   try {
-    const response = await openai.chat.completions.create({
-      model: MODEL,
-      messages: [{ role: "user", content: prompt }],
-      temperature: 0.2,
-    });
+    const response = await fetchWithBackoff(() =>
+      openai.chat.completions.create({
+        model: MODEL,
+        messages: [{ role: "user", content: prompt }],
+        temperature: 0.2,
+      })
+    );
 
     return response.choices[0]?.message?.content || "";
   } catch (error) {
@@ -165,11 +200,13 @@ async function generateExperienceSummary(
   Summary (5 sentences max):`;
 
   try {
-    const response = await openai.chat.completions.create({
-      model: MODEL,
-      messages: [{ role: "user", content: prompt }],
-      temperature: 0.2,
-    });
+    const response = await fetchWithBackoff(() =>
+      openai.chat.completions.create({
+        model: MODEL,
+        messages: [{ role: "user", content: prompt }],
+        temperature: 0.2,
+      })
+    );
 
     return response.choices[0]?.message?.content || "";
   } catch (error) {
@@ -190,11 +227,13 @@ ${experienceReport}
 Respond with only "m" for male or "f" for female birth sex. If unclear, make your best inference based on transition patterns mentioned.`;
 
   try {
-    const response = await openai.chat.completions.create({
-      model: MODEL,
-      messages: [{ role: "user", content: prompt }],
-      temperature: 0.1,
-    });
+    const response = await fetchWithBackoff(() =>
+      openai.chat.completions.create({
+        model: MODEL,
+        messages: [{ role: "user", content: prompt }],
+        temperature: 0.1,
+      })
+    );
 
     const result = response.choices[0]?.message?.content?.trim().toLowerCase();
     return result === "m" || result === "male" ? "m" : "f";
@@ -234,12 +273,14 @@ Example: {"transitionAge": 16, "detransitionAge": 23, "transitionYear": 2018, "d
 If ages or years are not clearly stated, return null for those fields.`;
 
   try {
-    const response = await openai.chat.completions.create({
-      model: MODEL,
-      messages: [{ role: "user", content: prompt }],
-      response_format: { type: "json_object" },
-      temperature: 0.1,
-    });
+    const response = await fetchWithBackoff(() =>
+      openai.chat.completions.create({
+        model: MODEL,
+        messages: [{ role: "user", content: prompt }],
+        response_format: { type: "json_object" },
+        temperature: 0.1,
+      })
+    );
 
     const result = response.choices[0]?.message?.content;
     if (!result) return { transitionAge: null, detransitionAge: null, transitionYear: null, detransitionYear: null };
@@ -329,12 +370,14 @@ ${redFlagsReport}
 Return only a JSON array of applicable tags. Example: ["trauma", "top surgery", "autism"]`;
 
   try {
-    const response = await openai.chat.completions.create({
-      model: MODEL,
-      messages: [{ role: "user", content: prompt }],
-      response_format: { type: "json_object" },
-      temperature: 0.1,
-    });
+    const response = await fetchWithBackoff(() =>
+      openai.chat.completions.create({
+        model: MODEL,
+        messages: [{ role: "user", content: prompt }],
+        response_format: { type: "json_object" },
+        temperature: 0.1,
+      })
+    );
 
     const result = response.choices[0]?.message?.content;
     if (!result) return [];
