@@ -183,7 +183,7 @@ const metadata: Metadata = {
     "Find on this page a selection of academic studies and peer-reviewed journal articles and verified statistics that relate to gender identity trends and detransition. ",
     url: "https://detrans.ai/videos",
     siteName: "detrans.ai",
-    images: ["https://detrans.ai/x_lg.png"],
+    images: ["https://detrans.ai/x_card_lg.png"],
     locale: "en_US",
     type: "website",
   },

@@ -47,7 +47,7 @@ export async function generateMetadata({
     openGraph: {
       title: username + "'s Detransition Story | detrans.ai",
       description: markdownToPlainText(user?.experienceSummary?.slice(0, 300)),
-      images: ["https://detrans.ai/x_lg.png"],
+      images: ["https://detrans.ai/x_card_lg.png"],
     },
   };
 }

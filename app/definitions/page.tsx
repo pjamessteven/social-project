@@ -11,7 +11,7 @@ const metadata: Metadata = {
       "In every day speech sex and gender are sometimes used interchangeably and in some languages there is only one word to describe the two. However, the whole concept of gender dysphoria relies on understanding that there are differences between sex and gender.",
     url: "https://detrans.ai/definitions",
     siteName: "detrans.ai",
-    images: ["https://detrans.ai/x_lg.png"],
+    images: ["https://detrans.ai/x_card_lg.png"],
     locale: "en_US",
     type: "website",
   },
