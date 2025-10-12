@@ -13,7 +13,7 @@ export default function LizardAnimation({ className }: LizardAnimationProps) {
       className={`lizard-animation ${className || ''}`}
       style={{
         stroke: '#edf2f6',
-        animation: 'lizard-dashoffset 5s both, lizard-fill-opacity 5s both, lizard-stroke-opacity 5s both',
+        animation: 'lizard-dashoffset 5s ease both, lizard-fill-opacity 5s ease both, lizard-stroke-opacity 5s ease both',
         strokeDasharray: '500%',
         strokeDashoffset: '500%',
         fillOpacity: 0,
