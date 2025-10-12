@@ -24,6 +24,7 @@ import DonationCard from "./DonationCard";
 import { QuestionCategories } from "./QuestionCategories";
 import { QuestionTabs } from "./QuestionTabs";
 import RedditEmbeds from "./RedditEmbeds";
+import LizardAnimation from "../ui/lizard-animation.svg";
 
 export async function StartPage({
   className,
@@ -140,13 +141,7 @@ export async function StartPage({
         {mode === "detrans" ? (
           <div className="">
             <div className="absolute -top-8 right-0 z-0 w-[200px] sm:top-0 sm:-right-32 sm:w-[250px]">
-              <Image
-                className=""
-                src="/vectorstock_47933493_transparent.png"
-                width={300}
-                height={300}
-                alt="Compassionate love heart"
-              />
+              <LizardAnimation className="w-full h-full" />
               <div className="absolute inset-0 dark:bg-black/40"></div>
             </div>
 
