@@ -295,13 +295,19 @@ async function extractAges(
   detransitionAge: number | null;
   transitionYear: number | null;
   detransitionYear: number | null;
+  hormonesAge: number | null;
+  topSurgeryAge: number | null;
+  bottomSurgeryAge: number | null;
 }> {
-  const prompt = `Based on the following experience report from a detransition community user, extract their age when they started transitioning, their age when they started detransitioning, and the years when these events occurred.
+  const prompt = `Based on the following experience report from a detransition community user, extract their ages for various transition-related events and the years when these events occurred.
 
 Look for explicit mentions of ages and years, such as:
 - "I started transitioning at 16"
 - "When I was 14, I began..."
 - "At age 20, I decided to detransition"
+- "I started hormones at 17"
+- "I got top surgery when I was 19"
+- "I had bottom surgery at 21"
 - "I'm now 25 and have been detransitioning for 2 years" (calculate: 25-2=23 for detransition age)
 - "I transitioned in 2018"
 - "I started detransitioning in 2022"
@@ -312,8 +318,8 @@ If detransition year and transition year are not clearly stated, attempt to work
 Experience report: 
 ${experienceReport}
 
-Return a JSON object with "transitionAge", "detransitionAge", "transitionYear", and "detransitionYear" as numbers, or null if not mentioned or unclear.
-Example: {"transitionAge": 16, "detransitionAge": 23, "transitionYear": 2018, "detransitionYear": 2022}
+Return a JSON object with "transitionAge", "detransitionAge", "transitionYear", "detransitionYear", "hormonesAge", "topSurgeryAge", and "bottomSurgeryAge" as numbers, or null if not mentioned or unclear.
+Example: {"transitionAge": 16, "detransitionAge": 23, "transitionYear": 2018, "detransitionYear": 2022, "hormonesAge": 17, "topSurgeryAge": 19, "bottomSurgeryAge": null}
 If ages or years are not clearly stated, return null for those fields.`;
 
   try {
@@ -327,7 +333,15 @@ If ages or years are not clearly stated, return null for those fields.`;
     );
 
     const result = response.choices[0]?.message?.content;
-    if (!result) return { transitionAge: null, detransitionAge: null, transitionYear: null, detransitionYear: null };
+    if (!result) return { 
+      transitionAge: null, 
+      detransitionAge: null, 
+      transitionYear: null, 
+      detransitionYear: null,
+      hormonesAge: null,
+      topSurgeryAge: null,
+      bottomSurgeryAge: null
+    };
 
     const parsed = JSON.parse(result);
     return {
@@ -335,10 +349,21 @@ If ages or years are not clearly stated, return null for those fields.`;
       detransitionAge: typeof parsed.detransitionAge === 'number' ? parsed.detransitionAge : null,
       transitionYear: typeof parsed.transitionYear === 'number' ? parsed.transitionYear : null,
       detransitionYear: typeof parsed.detransitionYear === 'number' ? parsed.detransitionYear : null,
+      hormonesAge: typeof parsed.hormonesAge === 'number' ? parsed.hormonesAge : null,
+      topSurgeryAge: typeof parsed.topSurgeryAge === 'number' ? parsed.topSurgeryAge : null,
+      bottomSurgeryAge: typeof parsed.bottomSurgeryAge === 'number' ? parsed.bottomSurgeryAge : null,
     };
   } catch (error) {
     console.error(`Error extracting ages for ${username}:`, error);
-    return { transitionAge: null, detransitionAge: null, transitionYear: null, detransitionYear: null };
+    return { 
+      transitionAge: null, 
+      detransitionAge: null, 
+      transitionYear: null, 
+      detransitionYear: null,
+      hormonesAge: null,
+      topSurgeryAge: null,
+      bottomSurgeryAge: null
+    };
   }
 }
 
@@ -350,12 +375,18 @@ async function fillMissingAges(
   detransitionAge: number | null;
   transitionYear: number | null;
   detransitionYear: number | null;
+  hormonesAge: number | null;
+  topSurgeryAge: number | null;
+  bottomSurgeryAge: number | null;
 }> {
   // Check if any age fields are missing
   const hasAllAges = existingUser.transitionAge !== null && 
                      existingUser.detransitionAge !== null && 
                      existingUser.transitionYear !== null && 
-                     existingUser.detransitionYear !== null;
+                     existingUser.detransitionYear !== null &&
+                     existingUser.hormonesAge !== null &&
+                     existingUser.topSurgeryAge !== null &&
+                     existingUser.bottomSurgeryAge !== null;
 
   if (hasAllAges) {
     return {
@@ -363,6 +394,9 @@ async function fillMissingAges(
       detransitionAge: existingUser.detransitionAge,
       transitionYear: existingUser.transitionYear,
       detransitionYear: existingUser.detransitionYear,
+      hormonesAge: existingUser.hormonesAge,
+      topSurgeryAge: existingUser.topSurgeryAge,
+      bottomSurgeryAge: existingUser.bottomSurgeryAge,
     };
   }
 
@@ -377,6 +411,9 @@ async function fillMissingAges(
       detransitionAge: existingUser.detransitionAge,
       transitionYear: existingUser.transitionYear,
       detransitionYear: existingUser.detransitionYear,
+      hormonesAge: existingUser.hormonesAge,
+      topSurgeryAge: existingUser.topSurgeryAge,
+      bottomSurgeryAge: existingUser.bottomSurgeryAge,
     };
   }
 
@@ -388,6 +425,9 @@ async function fillMissingAges(
     detransitionAge: existingUser.detransitionAge ?? extractedAges.detransitionAge,
     transitionYear: existingUser.transitionYear ?? extractedAges.transitionYear,
     detransitionYear: existingUser.detransitionYear ?? extractedAges.detransitionYear,
+    hormonesAge: existingUser.hormonesAge ?? extractedAges.hormonesAge,
+    topSurgeryAge: existingUser.topSurgeryAge ?? extractedAges.topSurgeryAge,
+    bottomSurgeryAge: existingUser.bottomSurgeryAge ?? extractedAges.bottomSurgeryAge,
   };
 }
 
@@ -585,7 +625,7 @@ async function processUser(userComments: UserComments, index: number, total: num
 
       // Extract ages and years
       console.log(`Extracting transition/detransition ages and years for ${username}...`);
-      const { transitionAge, detransitionAge, transitionYear, detransitionYear } = await extractAges(username, experienceReport);
+      const { transitionAge, detransitionAge, transitionYear, detransitionYear, hormonesAge, topSurgeryAge, bottomSurgeryAge } = await extractAges(username, experienceReport);
 
       // Insert into database
       await db.insert(detransUsers).values({
@@ -599,6 +639,9 @@ async function processUser(userComments: UserComments, index: number, total: num
         detransitionAge,
         transitionYear,
         detransitionYear,
+        hormonesAge,
+        topSurgeryAge,
+        bottomSurgeryAge,
       });
     }
 
