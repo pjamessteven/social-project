@@ -586,15 +586,34 @@ async function main() {
     const userComments = await getUserComments();
     console.log(`Found ${userComments.length} users to process`);
 
+    const startTime = Date.now();
+    let processedCount = 0;
+
     // Process users in batches to avoid overwhelming the API
     const batchSize = 15;
     for (let i = 0; i < userComments.length; i += batchSize) {
       const batch = userComments.slice(i, i + batchSize);
+      const batchNumber = Math.floor(i / batchSize) + 1;
+      const totalBatches = Math.ceil(userComments.length / batchSize);
+      
       console.log(
-        `Processing batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(userComments.length / batchSize)}`,
+        `Processing batch ${batchNumber}/${totalBatches} (Users ${i + 1}-${Math.min(i + batchSize, userComments.length)} of ${userComments.length})`,
       );
 
       await Promise.all(batch.map((user, batchIndex) => processUser(user, i + batchIndex, userComments.length)));
+
+      processedCount += batch.length;
+      
+      // Calculate and display progress
+      const elapsedTime = Date.now() - startTime;
+      const avgTimePerUser = elapsedTime / processedCount;
+      const remainingUsers = userComments.length - processedCount;
+      const estimatedTimeRemaining = avgTimePerUser * remainingUsers;
+      
+      const progressPercent = ((processedCount / userComments.length) * 100).toFixed(1);
+      const etaMinutes = Math.round(estimatedTimeRemaining / 60000);
+      
+      console.log(`Progress: ${processedCount}/${userComments.length} users (${progressPercent}%) - ETA: ${etaMinutes} minutes`);
 
       // Longer delay between batches
       if (i + batchSize < userComments.length) {
@@ -603,7 +622,8 @@ async function main() {
       }
     }
 
-    console.log("User experience generation completed!");
+    const totalTime = Math.round((Date.now() - startTime) / 60000);
+    console.log(`User experience generation completed! Total time: ${totalTime} minutes`);
   } catch (error) {
     console.error("Error in main process:", error);
   } finally {
