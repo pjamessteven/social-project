@@ -35,7 +35,7 @@ export default function ContactPage() {
 
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
-      <h1 className="">Contact Form</h1>
+      <h1 className="text-3xl font-bold">Contact Form</h1>
       <p>
         If you have any thoughts, suggestions, or if this free service has
         helped you, your family or your friend, I would like to hear from you.

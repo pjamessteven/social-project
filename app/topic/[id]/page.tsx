@@ -1,5 +1,6 @@
 "use client";
 
+import { Badge } from "@/app/components/ui/badge";
 import { slugify } from "@/app/lib/utils";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
@@ -252,20 +253,29 @@ export default function TopicPage({
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6">
         <h1 className="text-primary text-3xl font-bold">
-          {topicInfo ? `Topic: ${topicInfo.name}` : `Topic ${topicId}`}
+          {topicInfo
+            ? ` ${topicInfo.name}: Meta questions`
+            : `Topic ${topicId}`}
         </h1>
         {topicInfo && (
-          <div className="mt-4 space-y-1">
-            {topicInfo.keywords && topicInfo.keywords.length > 0 && (
-              <p className="text-muted-foreground">
-                Keywords: {topicInfo.keywords.join(", ")}
-              </p>
-            )}
+          <div className="mt-4  mb-4 gap-2 flex flex-wrap">
+            {topicInfo.keywords &&
+              topicInfo.keywords.length > 0 &&
+              topicInfo.keywords.map((tag) => (
+                <Badge
+                  key={tag}
+                  variant={
+                    tag === "suspicious account" ? "destructive" : "inverted"
+                  }
+                >
+                  {tag}
+                </Badge>
+              ))}
           </div>
         )}
         {pagination && (
           <p className="text-muted-foreground mt-2">
-            {pagination.total} questions found in the vector database.
+            {pagination.total} questions found:
           </p>
         )}
       </div>
@@ -288,16 +298,14 @@ export default function TopicPage({
                   prefetch={false}
                   className="block"
                 >
-                  <div className="rounded-lg border-b pb-3 transition-colors">
-                    <div className="flex items-start">
-                      <div className="text-muted-foreground mr-3">{"->"}</div>
-                      <div className="flex-1">
-                        <p className="text-foreground hover:text-primary text-lg transition-colors hover:underline">
-                          {question.text}{" "}
-                          <span className="text-muted-foreground text-sm">
-                            (#{questionNumber})
-                          </span>
-                        </p>
+                  <div className="ml-0 flex flex-row items-center border-b pb-2 pl-2">
+                    <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 sm:text-lg">
+                      <div className="mr-2 whitespace-nowrap">{"->"}</div>
+                      <div>
+                        {question.text}
+                        <span className="text-muted-foreground text-sm">
+                          &nbsp;(#{questionNumber})
+                        </span>
                       </div>
                     </div>
                   </div>

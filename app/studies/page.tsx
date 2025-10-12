@@ -191,7 +191,7 @@ export const metadata: Metadata = {
 export default async function StudiesPage() {
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
-      <h1>Selected Academic Articles</h1>
+      <h1 className="text-3xl font-bold">Selected Academic Articles</h1>
 
       <div className="mb-6 not-prose">
         <a

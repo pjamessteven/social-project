@@ -156,8 +156,9 @@ export default async function SupportPage() {
           <SupportSidebar />
         </div>
         <main className="w-full flex-1">
-          <div className="prose dark:prose-invert px-4 pb-16 lg:px-8 lg:pt-8">
-            <h1>Get Gender Help & Support</h1>
+          <div className="prose dark:prose-invert pb-16  lg:pt-8">
+                    <h1 className="text-3xl font-bold">
+Get Gender Help & Support</h1>
             <MobileJumpToSection />
             <h2 id="online-support-groups">Online Support groups:</h2>
             <p>
@@ -204,7 +205,7 @@ export default async function SupportPage() {
               </li>
             </ul>
             <h2 id="gender-affirming-care">
-              Gender Affirming Care: What is it?
+              Gender Affirming Care: <br className="sm:hidden"/>What is it?
             </h2>
             <p>
               Gender affirming care is currently the standard (and often the

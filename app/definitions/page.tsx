@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default async function DefinitionsPage() {
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
-      <h1 className="">Defining Gender Related Terms</h1>
+      <h1 className="text-3xl font-bold">Defining Gender Related Terms</h1>
 
       <h2>Sex and gender?</h2>
       <p>
