@@ -109,7 +109,7 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
           Stories & Timelines
         </h1>
         <p className="text-gray-600 dark:text-gray-400">
-          Browse and read through {pagination.total} unique detransition stories from the top users in the{" "}
+          Browse and read through {pagination.total} unique detransition stories which have been woven together from the heartfelt comments of the most active users in the{" "}
           <a
             href="https://reddit.com/r/detrans"
             target="_blank"
@@ -117,14 +117,14 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
           >
             /r/detrans
           </a>{" "}
-          Reddit community, the largest open collection of detransition stories
-          on the internet.
+          subreddit, the largest open collection of detransition stories
+          on the internet!
         </p>
         <details className="cursor-pointer">
           <summary>
             <i> More info about this content</i>
           </summary>
-          <div className="mt-2 text-gray-600 dark:text-gray-400  py-0 mb-8 rounded-lg border p-2 sm:p-3">
+          <div className="mt-2 text-gray-600 dark:text-gray-400 mb-8 rounded-lg border text-sm sm:text-base p-3">
 
               On Reddit, people often share their experiences across multiple
               comments or posts. To make this information more accessible, our

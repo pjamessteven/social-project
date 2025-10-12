@@ -92,7 +92,7 @@ export default function StoriesCharts({
           */}
         {activeTab === "pathways" && (
           <TransitionPathwaysChart
-            className="shadow-lg min-w-xl"
+            className="shadow-lg min-w-2xl"
             minAge={
               typeof resolvedSearchParams.minAge === "string"
                 ? parseInt(resolvedSearchParams.minAge)
