@@ -215,8 +215,19 @@ function categorizeUser(user: any): string[] {
   flow.push(`sex_${sexCategory}`);
 
   // Stage 2: Transition Age
-  const ageCategory = user.transition_age && user.transition_age < 18 ? 'before_18' : 
-                     user.transition_age && user.transition_age >= 18 ? 'after_18' : 'unknown';
+  // Check if user has transition-related tags even if no transitionAge is recorded
+  const hasTransitionTags = validTags.some(tag => 
+    ['got top surgery', 'got bottom surgery', 'took hormones', 'only transitioned socially'].includes(tag)
+  );
+  
+  let ageCategory = 'unknown';
+  if (user.transition_age) {
+    ageCategory = user.transition_age < 18 ? 'before_18' : 'after_18';
+  } else if (hasTransitionTags) {
+    // If they have transition-related tags but no age, we still include them in the flow
+    // Default to 'unknown' age category but they'll still flow through
+    ageCategory = 'unknown';
+  }
   flow.push(`transition_age_${ageCategory}`);
 
   // Stage 3: Puberty Blockers - check age column or tag
