@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import { detransUsers, detransComments, tags, userTags } from "../../../../db/schema";
+import { detransUsers, detransComments, detransTags, detransUserTags } from "../../../../db/schema";
 import { eq, sql } from "drizzle-orm";
 
 const connectionString = process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/app";
@@ -23,6 +23,8 @@ export async function GET(
         experienceSummary: detransUsers.experienceSummary,
         experience: detransUsers.experience,
         redFlagsReport: detransUsers.redFlagsReport,
+        transitionAge: detransUsers.transitionAge,
+        detransitionAge: detransUsers.detransitionAge,
         commentCount: sql<number>`COALESCE(COUNT(DISTINCT ${detransComments.id}), 0)`,
       })
       .from(detransUsers)
@@ -48,11 +50,11 @@ export async function GET(
     // Get user tags
     const userTagsResult = await db
       .select({
-        tagName: tags.name,
+        tagName: detransTags.name,
       })
-      .from(userTags)
-      .innerJoin(tags, eq(userTags.tagId, tags.id))
-      .where(eq(userTags.username, decodeURIComponent(username)));
+      .from(detransUserTags)
+      .innerJoin(detransTags, eq(detransUserTags.tagId, detransTags.id))
+      .where(eq(detransUserTags.username, decodeURIComponent(username)));
 
     const userWithTags = {
       ...user[0],

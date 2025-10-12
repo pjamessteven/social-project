@@ -142,7 +142,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           </div>
                           <div className="flex flex-col space-y-1">
                             <div className="text-sm leading-none font-medium">
-                              Detransition Stories
+                              Stories & Timelines
                             </div>
                             <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                               From /r/detrans users
@@ -364,9 +364,9 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
 
                 {/* Resources Section */}
                 {mode === "detrans" && (
-                  <div className="pt-2">
-                    <div className="border-border  border-t py-3">
-                      <h3 className="text-muted-foreground py-2 ml-1 text-sm font-medium">
+
+                    <div className="border-border  border-t py-2">
+                      <h3 className="text-muted-foreground pt-2 ml-1 text-sm font-medium">
                         Resources
                       </h3>
                       <div className="space-y-1">
@@ -384,7 +384,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                             <Heart className="h-4 w-4" />
                             <div className="ml-4 flex flex-col items-start">
                               <div className="text-sm font-medium">
-                                Gender Support
+                                Help & Support
                               </div>
                               <div className="text-muted-foreground text-xs">
                                 Find community and therapists
@@ -403,7 +403,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                             <Users className="h-4 w-4" />
                             <div className="ml-4 flex flex-col items-start">
                               <div className="text-sm font-medium">
-                                Detransition Stories
+                                Stories & Timelines
                               </div>
                               <div className="text-muted-foreground text-xs">
                                 From /r/detrans users
@@ -501,13 +501,13 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         </a>
                       </div>
                     </div>
-                  </div>
+
                 )}
 
                 {/* About Section */}
-                  <div className="pt-2">
-                    <div className="border-border  border-t py-3">
-                      <h3 className="text-muted-foreground py-2 ml-1 text-sm font-medium">
+
+                    <div className="border-border  border-t py-2">
+                      <h3 className="text-muted-foreground pt-2 ml-1 text-sm font-medium">
                       About
                     </h3>
                     <div className="space-y-1">
@@ -593,7 +593,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         </Button>
                       </Link>
                     </div>
-                  </div>
+
                 </div>
               </div>
               <div className="mt-4 pb-16" onClick={() => setIsOpen(false)}>

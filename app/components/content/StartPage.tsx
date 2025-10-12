@@ -3,12 +3,9 @@
 import { isBot } from "@/app/lib/isBot";
 import {
   BookOpen,
-  ChartNoAxesCombined,
-  ChevronDown,
   ExternalLink,
   FileText,
   Heart,
-  List,
   Settings,
   Users,
   Youtube,
@@ -16,13 +13,13 @@ import {
 import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "../ui/button";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
+import { Button } from "../ui/button";
 import DonationCard from "./DonationCard";
 import { QuestionCategories } from "./QuestionCategories";
 import { QuestionTabs } from "./QuestionTabs";
@@ -69,6 +66,71 @@ export async function StartPage({
             </div>
           }
         </h1>
+
+        {mode === "detrans" && (
+          <div className="mt-8">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
+              <Link href="/videos">
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
+                  <Youtube className="h-4 w-4" />
+                  <span className="text-sm font-medium">Personal Videos</span>
+                </Button>
+              </Link>
+              <Link href="/stories">
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
+                  <Users className="h-4 w-4" />
+                  <span className="text-sm font-medium">
+                    Stories & Timelines
+                  </span>
+                </Button>
+              </Link>
+              <Link href="/support">
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
+                  <Heart className="h-4 w-4" />
+                  <span className="text-sm font-medium">Help & Support</span>
+                </Button>
+              </Link>
+              <Link href="/definitions">
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
+                  <FileText className="h-4 w-4" />
+                  <span className="text-sm font-medium">Definitions</span>
+                </Button>
+              </Link>
+              <Link href="/studies">
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
+                  <BookOpen className="h-4 w-4" />
+                  <span className="text-sm font-medium">Studies & Stats</span>
+                </Button>
+              </Link>
+
+              <Link href={mode == "detrans" ? "/prompts" : "/affirm/prompts"}>
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
+                  <Settings className="h-4 w-4" />
+                  <span className="text-sm font-medium">How It Works</span>
+                </Button>
+              </Link>
+            </div>
+          </div>
+        )}
+
         {mode === "detrans" ? (
           <div className="">
             <div className="absolute -top-8 right-0 z-0 w-[200px] sm:top-0 sm:-right-32 sm:w-[250px]">
@@ -82,8 +144,14 @@ export async function StartPage({
               <div className="absolute inset-0 dark:bg-black/40"></div>
             </div>
 
-            <div className="prose dark:prose-invert prose-sm sm:prose-base z-10 mt-8 max-w-full">
+            <div className="prose dark:prose-invert prose-base border- z-10 mt-4 max-w-full pt-8">
+              <div className="flex w-full justify-end">
+                <div className="text-background mb-0 max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-slate-800 px-4 py-2 sm:max-w-lg dark:bg-slate-100">
+                  What is a detransitioner and why are there so many?
+                </div>
+              </div>
               <p>
+                A detransitioner is someone who used to identify as transgender.
                 Since 2011, gender dysphoria diagnosises{" "}
                 <a
                   href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12320607/"
@@ -105,6 +173,11 @@ export async function StartPage({
                 people are healing their gender dysphoria, detransitioning and
                 sharing their experiences. These people call themselves detrans.
               </p>
+              <div className="flex w-full justify-end">
+                <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-slate-800 px-4 py-2 sm:max-w-lg dark:bg-slate-100">
+                  What is a detrans.ai? What is this good for?
+                </div>
+              </div>
               <p>
                 <b>detrans.ai</b> answers questions about gender from a detrans
                 perspective by integrating thoughts and experiences from the
@@ -140,18 +213,15 @@ export async function StartPage({
                   please let me know!
                 </Link>
               </p>
-              {/*
-          <h2 className="text-secondary-foreground/80 semibold mt-2">
-            On the surface, gender ideolgy seems progressive; a new way of
-            thinking (it certainly is). But detrans experiences repeatedly
-            uncover contradictions and uncomfortable truths about this new
-            belief system pervading society.
-          </h2>
-           */}
             </div>
           </div>
         ) : mode === "affirm" ? (
-          <div className="prose dark:prose-invert mt-8 text-base max-w-full">
+          <div className="prose dark:prose-invert mt-8 max-w-full text-base">
+            <div className="flex w-full justify-end">
+              <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-slate-800 px-4 py-2 sm:max-w-lg dark:bg-slate-100">
+                What is a genderaffirming.ai? What is this good for?
+              </div>
+            </div>
             <p>
               <b>genderaffirming.ai</b> will affirm your gender identity.
               It&apos;s powered by insights directly from the online trans
@@ -191,7 +261,7 @@ export async function StartPage({
             </p>
           </div>
         ) : (
-          <div className="prose dark:prose-invert mt-8 text-base max-w-full">
+          <div className="prose dark:prose-invert mt-8 max-w-full text-base">
             <p>
               <a
                 href="https://genderaffirming.ai"
@@ -256,88 +326,27 @@ export async function StartPage({
           </div>
         )}
 
-        {mode === "detrans" && (
-          <div className="mt-8">
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
-              <Link href="/support">
-                <Button
-                  variant="secondary"
-                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-                >
-                  <Heart className="h-4 w-4" />
-                  <span className="text-sm font-medium">Help & Support</span>
-                </Button>
-              </Link>
-              <Link href="/videos">
-                <Button
-                  variant="secondary"
-                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-                >
-                  <Youtube className="h-4 w-4" />
-                  <span className="text-sm font-medium">Detrans Videos</span>
-                </Button>
-              </Link>
-                            <Link href="/stories">
-                <Button
-                  variant="secondary"
-                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-                >
-                  <Users className="h-4 w-4" />
-                  <span className="text-sm font-medium">Detrans Stories</span>
-                </Button>
-              </Link>
-              <Link href="/definitions">
-                <Button
-                  variant="secondary"
-                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-                >
-                  <FileText className="h-4 w-4" />
-                  <span className="text-sm font-medium">Definitions</span>
-                </Button>
-              </Link>
-              <Link href="/studies">
-                <Button
-                  variant="secondary"
-                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-                >
-                  <BookOpen className="h-4 w-4" />
-                  <span className="text-sm font-medium">Studies & Stats</span>
-                </Button>
-              </Link>
-
-              <Link href={mode == "detrans" ? "/prompts" : "/affirm/prompts"}>
-                <Button
-                  variant="secondary"
-                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-                >
-                  <Settings className="h-4 w-4" />
-                  <span className="text-sm font-medium">How It Works</span>
-                </Button>
-              </Link>
-            </div>
-          </div>
-        )}
         <Accordion type="single" collapsible className="mt-8 w-full">
-          <AccordionItem 
-            value="disclaimer" 
-            className="bg-destructive/5 dark:bg-destructive/40 overflow-hidden border-destructive rounded-xl border opacity-80"
+          <AccordionItem
+            value="disclaimer"
+            className="bg-destructive/5 dark:bg-destructive/40 border-destructive overflow-hidden rounded-xl border opacity-80"
           >
-            <AccordionTrigger className="text-destructive px-3 py-3 text-sm brightness-80 dark:brightness-120 hover:no-underline">
-              Disclaimer: Experiences and perspectives on this site are sourced from Reddit
-              and processed by AI.
+            <AccordionTrigger className="text-destructive px-3 py-3 text-sm brightness-80 hover:no-underline dark:brightness-120">
+              Disclaimer: Experiences and perspectives on this site are sourced
+              from Reddit and processed by AI.
             </AccordionTrigger>
             <AccordionContent className="text-destructive px-3 pb-3 text-sm brightness-80 dark:brightness-120">
               <div className="max-w-2xl space-y-3">
                 <p>
                   While Reddit is a platform where real people share personal
-                  stories, it may also contain bot-generated or misleading content.
-                  You are encouraged to inspect the original Reddit posts to verify
-                  the source and context. Please note that{" "}
+                  stories, it may also contain bot-generated or misleading
+                  content. You are encouraged to inspect the original Reddit
+                  posts to verify the source and context. Please note that{" "}
                   {mode === "affirm"
                     ? "/r/mtf and /r/ftm are heavily moderated subreddits"
                     : "/r/detrans is a heavily moderated subreddit"}
-                  , but moderation does not guarantee the accuracy or authenticity
-                  of every post.
+                  , but moderation does not guarantee the accuracy or
+                  authenticity of every post.
                 </p>
               </div>
             </AccordionContent>
@@ -414,7 +423,6 @@ export async function StartPage({
                 <br className="inline sm:hidden" />
                 coming soon...
               </div>
-
             </div>
             <div className="font-base mt-16 text-lg not-italic">
               <DonationCard mode={mode} />

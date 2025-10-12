@@ -20,11 +20,15 @@ interface Comment {
 interface UserCommentsProps {
   username: string;
   initialComments: Comment[];
+  activeSince: string;
+  commentCount: number;
 }
 
 export default function UserComments({
   username,
   initialComments,
+  activeSince,
+  commentCount,
 }: UserCommentsProps) {
   console.log("UserComments received:", { username, initialComments });
 
@@ -82,7 +86,13 @@ export default function UserComments({
 
   return (
     <div>
-      <h3 className="mb-4 font-semibold">Top Comments by /u/{username}:</h3>
+      <h3 className="mb-4 font-semibold">
+        Top Reddit Comments by /u/{username}:
+      </h3>
+      <div className="mb-4 text-sm text-gray-600 dark:text-gray-400">
+        {commentCount} comments • Posting since {activeSince}
+        {}{" "}
+      </div>
       {comments.length === 0 ? (
         <p className="text-gray-500 dark:text-gray-400">No comments found.</p>
       ) : (
@@ -93,10 +103,10 @@ export default function UserComments({
               className="rounded-lg border bg-white dark:bg-gray-900"
             >
               <div className="bg-secondary dark:bg-primary/5 flex flex-col">
-                <div className="prose dark:prose-invert max-w-full px-4 pb-2 pt-3 text-sm font-semibold">
+                <div className="prose dark:prose-invert max-w-full px-4 pt-3 pb-2 text-sm font-semibold">
                   {comment.summary}
                 </div>
-                <div className=" flex items-start justify-between px-4 pb-3">
+                <div className="flex items-start justify-between px-4 pb-3">
                   <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                     <span className="whitespace-nowrap">
                       {comment.score} points
@@ -115,7 +125,7 @@ export default function UserComments({
                 </div>
               </div>
               <div
-                className="prose dark:prose-invert max-w-none px-4 text-sm"
+                className="prose dark:prose-invert max-w-none px-4 py-3 sm:py-0 text-sm"
                 dangerouslySetInnerHTML={{
                   __html: marked.parse(comment.text || ""),
                 }}

@@ -2,8 +2,9 @@ import { ChevronRight } from "lucide-react";
 import { Metadata } from "next";
 import { headers } from "next/headers";
 import Link from "next/link";
-import AgeDistributionChart from "../components/charts/AgeDistributionChart";
+import StoriesCharts from "../components/charts/StoriesCharts";
 import { Badge } from "../components/ui/badge";
+import { Card, CardContent, CardTitle } from "../components/ui/card";
 import UsersFilters from "../components/UsersFilters";
 import UsersPagination from "../components/UsersPagination";
 import { isBot } from "../lib/isBot";
@@ -79,11 +80,11 @@ function formatDate(dateString: string) {
 export const metadata: Metadata = {
   title: "detrans.ai | Detransition Stories and Timelines",
   description:
-    "Browse detransition experiences from members of the /r/detrans Reddit community, the largest open collection of detransition stories on the internet.",
+    "Detransition experiences, timelines and trends from members of the /r/detrans Reddit community, the largest open collection of detransition stories on the internet.",
   openGraph: {
     title: "detrans.ai | Detransition Stories and Timelines",
     description:
-      "Browse detransition experiences from members of the /r/detrans Reddit community, the largest open collection of detransition stories on the internet.",
+      "Detransition experiences, timelines and trends from members of the /r/detrans Reddit community, the largest open collection of detransition stories on the internet.",
     url: "https://detrans.ai/stories",
     siteName: "detrans.ai",
     images: ["https://detrans.ai/x_lg.png"],
@@ -103,7 +104,7 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
 
   return (
     <div className="container mx-auto px-0 pb-8 lg:pt-8">
-      <div className="prose sm:prose-base prose-sm dark:prose-invert mb-8 max-w-full">
+      <div className="prose prose-base dark:prose-invert mb-8 max-w-full">
         <h1 className="text-3xl font-bold">
           {bot && searchParams.tag + " "}Detransition Stories and Timelines
         </h1>
@@ -129,19 +130,15 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
         <p className="text-gray-600 dark:text-gray-400">
           Every user has been analysed for signs of bot generated or inauthentic
           content. Any account that does not appear to be a genuine
-          de-transitioner is flagged 'suspicious'. These accounts will be
-          reviewed and removed from the detrans.ai dataset. Accounts that have
+          de-transitioner is flagged 'suspicious'. These accounts will be manually
+          reviewed and removed from the detrans.ai dataset if they are found to be inauthentic. Accounts that have
           made fewer than five comments have been ommitted from analysis.
         </p>
       </div>
 
-      <UsersFilters />
+      <StoriesCharts resolvedSearchParams={resolvedSearchParams}/>
 
-      <AgeDistributionChart 
-        className="mb-8" 
-        minAge={typeof resolvedSearchParams.minAge === "string" ? parseInt(resolvedSearchParams.minAge) : 10}
-        maxAge={typeof resolvedSearchParams.maxAge === "string" ? parseInt(resolvedSearchParams.maxAge) : 40}
-      />
+      <UsersFilters />
 
       {/* Results count */}
       <div className="mb-6 text-sm text-gray-600 dark:text-gray-400">
@@ -156,10 +153,12 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
       ) : (
         <div className="space-y-4">
           {users.map((user) => (
+            <>
+            <div className="border-t sm:hidden pt-4 -mx-4"/>
             <Link
               key={user.username}
               href={`/stories/${encodeURIComponent(user.username)}`}
-              className="block border-t pt-6 transition-colors sm:rounded-lg sm:border sm:p-6 sm:hover:bg-gray-50 sm:dark:hover:bg-gray-800"
+              className="block  sm:pt-6 transition-colors sm:rounded-lg sm:border sm:p-6 sm:hover:bg-gray-50 sm:dark:hover:bg-gray-800"
             >
               <div className="flex w-full grow flex-row items-center justify-between">
                 <div className="mb-2 flex grow flex-col items-start justify-between sm:flex-row">
@@ -173,14 +172,16 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
                 </div>
                 <ChevronRight className="mb-3 h-6 sm:hidden" />
               </div>
-              <div className="font-medium mb-2 text-sm sm:text-base text-gray-700 dark:text-gray-300">
+              <div className="mb-2 mt-4 sm:mt-2 font-medium text-gray-700 dark:text-gray-300">
                 {user.transitionAge && "Transitioned at " + user.transitionAge}
                 {user.detransitionAge && user.transitionAge && " -> "}
                 {user.detransitionAge &&
-                  (user.tags.includes('only transitioned socially') ? "Desisted at " : "Detransitioned at ") + user.detransitionAge}
+                  (user.tags.includes("only transitioned socially")
+                    ? "Desisted at "
+                    : "Detransitioned at ") + user.detransitionAge}
               </div>
               {user.experienceSummary && (
-                <p className="prose-sm sm:prose-base mb-4 text-gray-700 dark:text-gray-300">
+                <p className="prose-base mb-4 text-gray-700 dark:text-gray-300">
                   {user.experienceSummary}
                 </p>
               )}
@@ -205,6 +206,7 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
                 </div>
               )}
             </Link>
+            </>
           ))}
         </div>
       )}
