@@ -84,57 +84,18 @@ export default function YearDistributionChart({
   }, [minAge, maxAge, searchParams]);
 
   const CustomTooltip = ({ active, payload, label }: any) => {
-    if (active && payload && payload.length > 0) {
-      const data = payload[0].payload;
-      
-      // Handle link tooltips (pathways between nodes)
-      if (data.source !== undefined && data.target !== undefined && data.value) {
-        const sourceNode = rechartsData.nodes[data.source];
-        const targetNode = rechartsData.nodes[data.target];
-        return (
-          <div className="rounded border border-gray-300 bg-white p-3 shadow-lg">
-            <p className="font-medium text-black">
-              {sourceNode?.name} → {targetNode?.name}
-            </p>
-            <p className="font-medium text-blue-600">
-              {data.value} users
-            </p>
-            <p className="text-sm text-gray-600">
-              {((data.value / totalUsers) * 100).toFixed(1)}% of total
-            </p>
-          </div>
-        );
-      }
-      
-      // Handle node tooltips
-      if (data.name) {
-        // Calculate total users flowing through this node
-        const nodeIndex = rechartsData.nodes.findIndex(n => n.name === data.name);
-        const incomingFlow = rechartsData.links
-          .filter(link => link.target === nodeIndex)
-          .reduce((sum, link) => sum + link.value, 0);
-        const outgoingFlow = rechartsData.links
-          .filter(link => link.source === nodeIndex)
-          .reduce((sum, link) => sum + link.value, 0);
-        
-        const nodeFlow = Math.max(incomingFlow, outgoingFlow);
-        
-        return (
-          <div className="rounded border border-gray-300 bg-white p-3 shadow-lg">
-            <p className="font-medium text-black">{data.name}</p>
-            {nodeFlow > 0 && (
-              <>
-                <p className="font-medium text-blue-600">
-                  {nodeFlow} users
-                </p>
-                <p className="text-sm text-gray-600">
-                  {((nodeFlow / totalUsers) * 100).toFixed(1)}% of total
-                </p>
-              </>
-            )}
-          </div>
-        );
-      }
+    if (active && payload && payload.length) {
+      return (
+        <div className="rounded border border-gray-300 bg-white p-3 shadow-lg">
+          <p className="font-medium text-black">{`Year: ${label}`}</p>
+          <p className="font-medium text-blue-600">
+            {`Transitioned: ${payload[0]?.value || 0} users`}
+          </p>
+          <p className="font-medium text-red-600">
+            {`Detransitioned: ${payload[1]?.value || 0} users`}
+          </p>
+        </div>
+      );
     }
     return null;
   };
