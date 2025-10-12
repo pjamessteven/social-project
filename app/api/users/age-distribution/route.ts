@@ -23,8 +23,7 @@ export async function GET(request: NextRequest) {
       conditions.push(sql`${detransUsers.sex} = ${sex}`);
     }
 
-    // Handle tag filtering
-    let userFilterSubquery = sql``;
+
     if (tag) {
       const tagNames = tag.split(',').map(t => t.trim()).filter(Boolean);
       if (tagNames.length > 0) {
