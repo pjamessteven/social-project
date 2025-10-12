@@ -164,7 +164,7 @@ export async function StartPage({
                 (5000%) in the UK. Young women are increasingly overrepresented
                 in these statistics. At the same time, a constantly growing number of
                 people are healing their gender dysphoria, detransitioning and
-                sharing their experiences. These people call themselves detrans, and online they identify themselves with the lizard emoji.
+                sharing their experiences. These people call themselves detrans, and they identify themselves online with the lizard emoji.
               </p>
               <div className="flex w-full justify-end pt-2">
                 <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white/80">
