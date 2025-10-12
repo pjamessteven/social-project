@@ -79,13 +79,14 @@ async function getUserComments(): Promise<UserComments[]> {
       COUNT(*) as comment_count,
       STRING_AGG(text, ' | ' ORDER BY created) as all_comments,
       STRING_AGG(created::text, ' | ' ORDER BY created) as all_comment_dates,
-      MIN(created) as earliest_comment_date
+      MIN(created) as earliest_comment_date,
+      MAX(score) as top_score
     FROM detrans_comments 
     WHERE username IS NOT NULL 
       AND username != '[deleted]'
     GROUP BY username 
     HAVING COUNT(*) >= 5
-    ORDER BY comment_count DESC
+    ORDER BY MAX(score) DESC, comment_count DESC
   `);
 
   return result.map((row) => ({
