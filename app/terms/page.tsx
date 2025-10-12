@@ -3,7 +3,8 @@
 export default async function TermsPage() {
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
-      <h2>Privacy Policy</h2>
+                      <h1 className="text-3xl font-bold">
+Privacy Policy</h1>
       <p>
         This Privacy Policy explains what information we collect, why we collect
         it, and how we keep it safe when you visit or use our service.

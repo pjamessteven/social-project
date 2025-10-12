@@ -4,7 +4,7 @@ const PromptsPage = () => {
   return (
     <div className="min-h-screen pb-16 lg:pt-8">
       <div className="prose dark:prose-invert">
-        <h2>How does it work?</h2>
+        <h1 className="text-3xl font-bold">How does it work?</h1>
         <p>
           <b>detrans.ai</b> chat is a RAG (retrieval augmented generation)
           system that generates meta questions and answers them by surfacing and
@@ -60,12 +60,13 @@ const PromptsPage = () => {
             through the content to find answers{" "}
           </li>
           <li>
-            <b>Collect all answers:</b> Waits until all meta questions have
-            been answered{" "}
+            <b>Collect all answers:</b> Waits until all meta questions have been
+            answered{" "}
           </li>
           <li>
-            <b>Write final report:</b> AI synthesizes all the meta question answers
-            into a final comprehensive response to the original question{" "}
+            <b>Write final report:</b> AI synthesizes all the meta question
+            answers into a final comprehensive response to the original
+            question{" "}
           </li>
           <li>
             <b>Stream response to user:</b> Sends the final answer back to the
@@ -340,7 +341,7 @@ If ages or years are not clearly stated, return null for those fields.`}
             </pre>
           </div>
         </div>
-                <div className="overflow-hidden rounded-xl bg-white shadow-lg">
+        <div className="overflow-hidden rounded-xl bg-white shadow-lg">
           <div className="bg-gray-800 px-6 py-4 text-white">
             <h2 className="font-mono text-xl font-bold">Determine Birth Sex</h2>
           </div>
@@ -354,7 +355,7 @@ Respond with only "m" for male or "f" for female birth sex. If unclear, make you
             </pre>
           </div>
         </div>
-                <div className="overflow-hidden rounded-xl bg-white shadow-lg">
+        <div className="overflow-hidden rounded-xl bg-white shadow-lg">
           <div className="bg-gray-800 px-6 py-4 text-white">
             <h2 className="font-mono text-xl font-bold">Red Flag Report</h2>
           </div>

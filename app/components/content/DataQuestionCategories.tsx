@@ -80,7 +80,7 @@ function TopicNode({
     <div className={`ml-2 ${level > 0 ? "" : ""}`}>
       <details className="group" open={isOpen}>
         <summary
-          className="flex cursor-pointer list-none items-center rounded p-2 hover:bg-gray-50 dark:hover:bg-gray-800"
+          className="flex cursor-pointer list-none items-center rounded p-2 mb-1 hover:bg-gray-50 dark:hover:bg-gray-800"
           onClick={(e) => {
             e.preventDefault();
             onToggleSubcategory(subcategoryId);
@@ -124,7 +124,7 @@ function TopicNode({
                     href={getHref(question)}
                     key={questionIndex}
                   >
-                    <div className="ml-6 flex flex-row items-center border-b pt-1 pb-2">
+                    <div className="ml-0 pl-2 flex flex-row items-center border-b pt-1 pb-2">
                       <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 sm:text-lg">
                         <div className="mr-2 whitespace-nowrap">{"->"}</div>
                         <div>{question}</div>
@@ -139,7 +139,7 @@ function TopicNode({
             prefetch={false}
             href={getTopicHref(topic.topic_id as number, topic.title)}
           >
-            <div className="-mt-2 ml-6 flex flex-row items-center border-b pb-2">
+            <div className="-mt-2 ml-0 pl-2 flex flex-row items-center border-b pb-2">
               <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 sm:text-lg">
                 <div className="mr-2 whitespace-nowrap">{"->"}</div>
                 <div>

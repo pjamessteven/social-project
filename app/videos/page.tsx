@@ -22,12 +22,12 @@ export default function VideosPage() {
 
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
-      <h1>Transition & Detransition Videos</h1>
+ <h1 className="text-3xl font-bold">
+Transition & Detransition Videos</h1>
 
       <p className="text-gray-600 dark:text-gray-400">
-        Here is a selection of personal memoirs that have been uploaded to
-        YouTube by people who have transitioned and then came to a realisation
-        that caused them to detransition. There are countless stories like these
+        Here's a selection of personal memoirs that have been uploaded to
+        YouTube by detransitioners. There are countless stories like these
         on the internet, this is just a small subset. Want your story on this
         page? Send me the link through the contact form.
       </p>

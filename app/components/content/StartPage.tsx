@@ -13,18 +13,11 @@ import {
 import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "../ui/accordion";
 import { Button } from "../ui/button";
-import DonationCard from "./DonationCard";
+import LizardAnimation from "../ui/lizard-animation";
 import { QuestionCategories } from "./QuestionCategories";
 import { QuestionTabs } from "./QuestionTabs";
 import RedditEmbeds from "./RedditEmbeds";
-import LizardAnimation from "../ui/lizard-animation";
 
 export async function StartPage({
   className,
@@ -87,7 +80,8 @@ export async function StartPage({
                 >
                   <Users className="h-4 w-4" />
                   <span className="text-sm font-medium">
-                    Stories<span className="hidden sm:inline">{" "}& Timelines</span> 
+                    Stories
+                    <span className="hidden sm:inline"> & Timelines</span>
                   </span>
                 </Button>
               </Link>
@@ -132,20 +126,19 @@ export async function StartPage({
           </div>
         )}
 
-
-        <div className=" w-full mt-8">
-      <div className="border-t w-full "/>
-      <div className="border-t mt-1 w-full "/>
-      <div className="border-t mt-1 w-full "/>
-      </div>
+        <div className="mt-8 w-full">
+          <div className="w-full border-t" />
+          <div className="mt-1 w-full border-t" />
+          <div className="mt-1 w-full border-t" />
+        </div>
         {mode === "detrans" ? (
           <div className="">
-            <div className="absolute top-0 right-0 z-0 w-[180px] sm:top-8 rotate-15 sm:-right-32 sm:w-[250px]">
-              <LizardAnimation/>
+            <div className="absolute top-0 right-0 z-0 w-[180px] rotate-15 sm:top-8 sm:-right-32 sm:w-[250px]">
+              <LizardAnimation />
               <div className="absolute inset-0 dark:bg-black/20"></div>
             </div>
 
-            <div className="prose dark:prose-invert prose-base border- z-10 mt-4 max-w-full pt-4 ">
+            <div className="prose dark:prose-invert prose-base border- z-10 mt-4 max-w-full pt-4">
               <div className="flex w-full justify-end">
                 <div className="text-background mb-0 max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white/80">
                   What is a detransitioner and why are there so many?
@@ -162,9 +155,11 @@ export async function StartPage({
                   are up 50-fold
                 </a>{" "}
                 (5000%) in the UK. Young women are increasingly overrepresented
-                in these statistics. At the same time, a constantly growing number of
-                people are healing their gender dysphoria, detransitioning and
-                sharing their experiences. These people call themselves detrans, and they identify themselves online with the lizard emoji.
+                in these statistics. At the same time, a constantly growing
+                number of people are healing their gender dysphoria,
+                detransitioning and sharing their experiences. These people call
+                themselves detrans, and they identify themselves online with the
+                lizard emoji.
               </p>
               <div className="flex w-full justify-end pt-2">
                 <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white/80">
@@ -318,35 +313,32 @@ export async function StartPage({
             </p>
           </div>
         )}
-          <div className="prose dark:prose-invert max-w-full">
-
-      
-        <details className="cursor-pointer mb- mt-5 sm:mt-6">
-          <summary className=" text-m sm:text-base">
-            <i>
-             Disclaimer: All experiences and perspectives are sourced
-              from Reddit and processed by AI.
-            </i>
-          </summary>
-          <div className="  p-0 py-0 py-3 ">
-                  While Reddit is a platform where real people share personal
-                  stories, it may also contain bot-generated or misleading
-                  content. You are encouraged to inspect the original Reddit
-                  posts to verify the source and context. Please note that{" "}
-                  {mode === "affirm"
-                    ? "/r/mtf and /r/ftm are heavily moderated subreddits"
-                    : "/r/detrans is a heavily moderated subreddit"}
-                  , but moderation does not guarantee the accuracy or
-                  authenticity of every post.
-          </div>
-        </details>
+        <div className="prose dark:prose-invert max-w-full">
+          <details className="mb- mt-5 cursor-pointer sm:mt-6">
+            <summary className="text-m sm:text-base">
+              <i>
+                Disclaimer: All experiences and perspectives are sourced from
+                Reddit and processed by AI.
+              </i>
+            </summary>
+            <div className="p-0 py-0 py-3">
+              While Reddit is a platform where real people share personal
+              stories, it may also contain bot-generated or misleading content.
+              You are encouraged to inspect the original Reddit posts to verify
+              the source and context. Please note that{" "}
+              {mode === "affirm"
+                ? "/r/mtf and /r/ftm are heavily moderated subreddits"
+                : "/r/detrans is a heavily moderated subreddit"}
+              , but moderation does not guarantee the accuracy or authenticity
+              of every post.
+            </div>
+          </details>
         </div>
-      <div className="border-t w-full mt-8 "/>
-      <div className="border-t mt-1 w-full "/>
-      <div className="border-t mt-1 w-full "/>
+        <div className="mt-8 w-full border-t" />
+        <div className="mt-1 w-full border-t" />
+        <div className="mt-1 w-full border-t" />
 
-
-                    {/*
+        {/*
         <Accordion type="single" collapsible className="mt-4 sm:mt-8 w-full">
           <AccordionItem
             value="disclaimer"
@@ -399,7 +391,6 @@ export async function StartPage({
         {mode === "detrans" && (
           <div className="text-muted-foreground relative flex flex-col text-base italic opacity-90 sm:text-lg">
             <div className="right-0 z-0 block w-[200px] sm:absolute sm:top-16 sm:-right-0 sm:w-[250px]">
-              
               <Image
                 className=""
                 src="/vectorstock_47933493_transparent.png"
@@ -443,12 +434,16 @@ export async function StartPage({
                 <br className="inline sm:hidden" />
                 coming soon...
               </div>
+              <div className="mt-1 flex items-center">
+                Please make a donation if you can xx
+              </div>
+              <div className="mt-1 flex items-center">
+                And be kind to each other.
+              </div>
             </div>
-            <div className="font-base mt-16 text-lg not-italic">
-              <DonationCard mode={mode} />
-            </div>
+
             {mode === "detrans" && (
-              <div className="">
+              <div className="mt-8">
                 <RedditEmbeds mode={"detrans"} />{" "}
               </div>
             )}
