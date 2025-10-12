@@ -447,11 +447,11 @@ async function assignTagsToUser(username: string, tagIds: number[]): Promise<voi
   }
 }
 
-async function processUser(userComments: UserComments): Promise<void> {
+async function processUser(userComments: UserComments, index: number, total: number): Promise<void> {
   const { username, all_comments, earliest_comment_date } = userComments;
 
   console.log(
-    `Processing user: ${username} (${userComments.comment_count} comments)`,
+    `[${index + 1}/${total}] Processing user: ${username} (${userComments.comment_count} comments)`,
   );
 
   // Check if user already exists
@@ -594,7 +594,7 @@ async function main() {
         `Processing batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(userComments.length / batchSize)}`,
       );
 
-      await Promise.all(batch.map(processUser));
+      await Promise.all(batch.map((user, batchIndex) => processUser(user, i + batchIndex, userComments.length)));
 
       // Longer delay between batches
       if (i + batchSize < userComments.length) {
