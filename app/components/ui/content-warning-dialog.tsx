@@ -57,10 +57,14 @@ export function ContentWarningDialog({ host }: ContentWarningDialogProps) {
           <DialogTitle>Content Warning:</DialogTitle>
           <DialogDescription className="prose dark:prose-invert mt-2 text-base">
             <p className="mb-3">
-              This website contains personal stories and perspectives from individuals who previously identified as transgender and later changed their minds. These experiences may present viewpoints that differ from mainstream narratives about gender identity.
+              This website contains stories, experiences and perspectives from
+              ex-transgender people. Content includes topics such as transition
+              regret, medical complications, and alternative views on
+              dysphoria.
             </p>
             <p className="mt-1">
-              Please be aware that some content may challenge commonly held beliefs about gender and transition.
+              Please be aware that some content may challenge commonly held
+              beliefs about gender and transition.
             </p>
           </DialogDescription>
         </DialogHeader>
