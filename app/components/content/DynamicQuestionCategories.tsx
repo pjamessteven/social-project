@@ -114,7 +114,7 @@ export function DynamicQuestionCategories({
 
   if (loading) {
     return (
-      <div className="mb-8">
+      <div className="mb-8 min-h-[80vh]">
         <h3 className="text-primary mb-2 text-2xl font-bold">
           {questionMode === "top" ? "Top Questions" : "Recent Questions"}
         </h3>
@@ -133,7 +133,7 @@ export function DynamicQuestionCategories({
 
   if (error) {
     return (
-      <div className="mb-8">
+      <div className="mb-8 min-h-[80vh]">
         <h3 className="text-primary mb-2 text-2xl font-bold">
           {questionMode === "top" ? "Top Questions" : "Recent Questions"}
         </h3>
@@ -151,7 +151,7 @@ export function DynamicQuestionCategories({
 
   return (
     <>
-      <div className="mb-8">
+      <div className="mb-8 min-h-[80vh]">
         <h3 className="text-primary mb-2 text-2xl font-bold">
           {" "}
           {questionMode === "top" ? "Top Questions" : "Recent Questions"}
@@ -161,7 +161,7 @@ export function DynamicQuestionCategories({
             ? "These are the top questions people have asked detrans.ai"
             : "These are the most recent questions people have asked detrans.ai"}
         </p>
-        <div className="grid gap-1">
+        <div className="grid gap-1 ">
           {topQuestions.map((item, index) => (
             <Link
               prefetch={false}

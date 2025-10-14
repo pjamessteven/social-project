@@ -134,14 +134,14 @@ export async function StartPage({
         </div>
         {mode === "detrans" ? (
           <div className="">
-            <div className="absolute top-0 right-0 z-0 w-[180px] rotate-15 sm:top-8 sm:-right-32 sm:w-[250px]">
+            <div className="absolute top-0 right-0 z-0 w-[180px] rotate-15 sm:top-8 sm:-right-32 sm:w-[220px]">
               <LizardAnimation />
               <div className="absolute inset-0 dark:bg-black/20"></div>
             </div>
 
             <div className="prose dark:prose-invert prose-base border- z-10 mt-4 max-w-full pt-4">
               <div className="flex w-full justify-end">
-                <div className="text-background mb-0 max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white/80">
+                <div className="text-background mb-0 max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white">
                   What is a detransitioner and why are there so many?
                 </div>
               </div>
@@ -163,8 +163,8 @@ export async function StartPage({
                 lizard emoji.
               </p>
               <div className="flex w-full justify-end pt-2">
-                <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white/80">
-                  What is a detrans.ai? What is this good for?
+                <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white">
+                  What is detrans.ai and what is it good for?
                 </div>
               </div>
               <p>
@@ -337,21 +337,18 @@ export async function StartPage({
           </details>
         </div>
          */}
-        <div className="mt-8 w-full border-t" />
-        <div className="mt-1 w-full border-t" />
-        <div className="mt-1 w-full border-t" />
 
 
-        <Accordion type="single" collapsible className="mt-8 sm:mt-8 w-full">
+        <Accordion type="single" collapsible className="mt-8 sm:mt-8 w-full opacity-60 dark:opacity-100">
           <AccordionItem
             value="disclaimer"
-            className="bg-destructive/5 dark:bg-destructive/20 dark:border-destructive/30  border-destructive overflow-hidden rounded-xl border "
+            className="bg-destructive/5 dark:bg-destructive/20 dark:border-destructive/50  border-destructive overflow-hidden rounded-xl border "
           >
-            <AccordionTrigger className="text-destructive px-3 py-3 text-xs font-medium sm:text-sm brightness-80 hover:no-underline dark:brightness-120">
+            <AccordionTrigger className="text-destructive px-3 py-3 text-xs font-medium sm:text-sm brightness-80 hover:no-underline dark:brightness-100">
               Disclaimer: Experiences and perspectives on this site are sourced
               from Reddit and processed by AI.
             </AccordionTrigger>
-            <AccordionContent className="text-destructive px-3 pb-3text-xs sm:text-sm brightness-80 dark:brightness-120">
+            <AccordionContent className="text-destructive px-3 pb-3 text-xs sm:text-sm brightness-80 dark:brightness-120">
               <div className="max-w-2xl space-y-3">
                 <p>
                   While Reddit is a platform where real people share personal
@@ -368,6 +365,11 @@ export async function StartPage({
             </AccordionContent>
           </AccordionItem>
         </Accordion>
+        <div className="mt-8 w-full border-t" />
+        <div className="mt-1 w-full border-t" />
+        <div className="mt-1 w-full border-t" />
+
+
 
         {/*
         <div className="prose dark:prose-invert mt-8 font-semibold">
@@ -377,7 +379,7 @@ export async function StartPage({
         {mode == "detrans" ? (
           <>
             {!bot ? (
-              <div className="mt-8 sm:mt-8">
+              <div className="mt-4 sm:mt-8">
                 <QuestionTabs mode={mode} />
               </div>
             ) : (
@@ -438,7 +440,7 @@ export async function StartPage({
                 coming soon...
               </div>
               <div className="mt-1 flex items-center">
-                Please make a donation if you can xx
+                Please make a donation if you can,
               </div>
               <div className="mt-1 flex items-center">
                 And be kind to each other.

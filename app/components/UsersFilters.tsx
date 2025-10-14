@@ -109,7 +109,7 @@ export default function UsersFilters({}: UsersFiltersProps) {
             {/* Age Range Filter */}
       <div className=" flex flex-col sm:flex-row bg-background sm:items-center border rounded-md p-3">
         <label className="text-sm  whitespace-nowrap">
-          Age Range: {ageRange[0]} - {ageRange[1]} years
+          <span className="font-semibold">Age Range: </span> {ageRange[0]} - {ageRange[1]} years
         </label>
         <div className="mb-1 sm:ml-4 mt-4 sm:mt-2 w-full">
         <Slider

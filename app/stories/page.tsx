@@ -138,6 +138,9 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
             gathers all of those scattered pieces into a single, easy-to-read
             summary and timeline. All system prompts are noted on the{" "}
             <Link href={"/prompts"}>prompts page</Link>.
+             <p />
+            Sometimes AI can hallucinate or state things that are not true. 
+            But generally, the summarised stories are accurate reflections of the original comments by users.
             <p />
             Only users who have shared enough to put together a full story and timeline are
             included. Users that have posted less than five comments or their
@@ -150,6 +153,7 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
             be manually reviewed and removed from the detrans.ai dataset if they
             are found to be inauthentic. Accounts that have made fewer than five
             comments have been ommitted from analysis.
+           
           </div>
         </details>
       </div>
@@ -160,7 +164,7 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
 
       {/* Results count */}
       <div className="mb-6 text-sm text-gray-600 dark:text-gray-400">
-        Showing {users.length} of {pagination.total} users
+        Showing {users.length} of {pagination.total} user stories
       </div>
 
       {/* Users List */}

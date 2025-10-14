@@ -84,10 +84,10 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
         </div>
       </Link>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2"> 
         {/* Desktop Navigation - hidden on mobile */}
         <div className="hidden items-center justify-end gap-0.5 p-1 md:flex">
-          <NavLink href={!devAffirm ? "/" : "/affirm"} label="Chat" />
+          <NavLink href={!devAffirm ? "/" : "/affirm"} label="Home" />
           <NavLink href={"/compare"} label="Compare" />
 
           <NavigationMenu className="ml-2">
