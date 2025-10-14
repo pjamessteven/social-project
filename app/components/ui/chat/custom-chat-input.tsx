@@ -2,7 +2,7 @@
 import { slugify } from "@/app/lib/utils";
 import { Send } from "lucide-react";
 import { redirect, usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "../button";
 import { Input } from "../input";
 import { cn } from "../lib/utils";
@@ -12,6 +12,9 @@ interface CustomChatInputProps {
 
 export function CustomChatInput({ host }: CustomChatInputProps) {
   const path = usePathname();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+  
   const showChatInput =
     path == "/" ||
     path == "/compare" ||
@@ -33,6 +36,22 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
         : "Ask 600,000+ trans people";
 
   const [value, setValue] = useState("");
+
+  useEffect(() => {
+    const checkIsDesktop = () => {
+      setIsDesktop(window.matchMedia('(min-width: 768px) and (pointer: fine)').matches);
+    };
+    
+    checkIsDesktop();
+    window.addEventListener('resize', checkIsDesktop);
+    return () => window.removeEventListener('resize', checkIsDesktop);
+  }, []);
+
+  useEffect(() => {
+    if (isDesktop && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isDesktop]);
 
   if (!showChatInput) {
     return <></>;
@@ -72,6 +91,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
         <form onSubmit={handleSubmit} className="flex w-3xl items-center gap-2">
           <div className="relative flex-1 grow">
             <Input
+              ref={inputRef}
               style={{
                 boxShadow: "rgba(0, 0, 0, 0.2) 0px 18px 50px -10px",
               }}
