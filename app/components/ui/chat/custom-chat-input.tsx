@@ -48,10 +48,15 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   }, []);
 
   useEffect(() => {
-    if (isDesktop && inputRef.current && showChatInput) {
-      inputRef.current.focus();
+    if (isDesktop && showChatInput && inputRef.current) {
+      // Small delay to ensure DOM is ready after navigation
+      const timer = setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+      
+      return () => clearTimeout(timer);
     }
-  }, [isDesktop, showChatInput]);
+  }, [isDesktop, showChatInput, path]);
 
   if (!showChatInput) {
     return <></>;
