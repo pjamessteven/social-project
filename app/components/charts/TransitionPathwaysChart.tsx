@@ -309,7 +309,7 @@ export default function TransitionPathwaysChart({
                       <path
                         d={path}
                         stroke={stroke}
-                        strokeWidth={Math.max(1, payload?.value / 50)}
+                        strokeWidth={Math.max(2, Math.sqrt(payload?.value) * 2)}
                         strokeOpacity={0.7}
                         fill="none"
                       />
