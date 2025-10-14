@@ -305,7 +305,7 @@ export default function TransitionPathwaysChart({
                     
                     // Calculate proportion-based width
                     const proportion = payload?.value / totalUsers;
-                    const strokeWidth = Math.max(2, proportion * 100); // Scale proportion to reasonable pixel width
+                    const strokeWidth = Math.max(10, proportion * 100); // Scale proportion to reasonable pixel width
 
                     const path = `M${sourceX},${sourceY}C${sourceControlX},${sourceY} ${targetControlX},${targetY} ${targetX},${targetY}`;
                     
