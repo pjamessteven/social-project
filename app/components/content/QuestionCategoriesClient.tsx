@@ -48,7 +48,7 @@ export function QuestionCategoriesClient({
                   key={questionIndex}
                 >
                   <div className="flex flex-row items-center border-b pt-1 pb-2">
-                    <div className="text-muted-foreground transition-colors hover:text-primary flex cursor-pointer flex-row items-start text-base sm:text-lg italic opacity-90">
+                    <div className="text-muted-foreground transition-colors hover:text-primary flex cursor-pointer flex-row items-start text-lg italic opacity-90">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">{question}</span>
                     </div>

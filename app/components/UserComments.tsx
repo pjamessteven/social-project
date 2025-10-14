@@ -86,8 +86,8 @@ export default function UserComments({
 
   return (
     <div>
-      <h3 className="mb-4 font-semibold">
-        Top Reddit Comments by /u/{username}:
+      <h3 className="text-lg mb-4 sm:mt-16 font-semibold">
+        Top Comments by /u/{username}:
       </h3>
       <div className="mb-6 -mt-2 text-sm text-gray-600 dark:text-gray-400">
         {commentCount} comments • Posting since {activeSince}
@@ -125,7 +125,7 @@ export default function UserComments({
                 </div>
               </div>
               <div
-                className="prose dark:prose-invert max-w-none px-4 py-3 sm:py-0 "
+                className="prose dark:prose-invert max-w-none px-4 py-3 dark:text-muted-foreground "
                 dangerouslySetInnerHTML={{
                   __html: marked.parse(comment.text || ""),
                 }}

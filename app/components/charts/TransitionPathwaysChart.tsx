@@ -289,7 +289,7 @@ export default function TransitionPathwaysChart({
                           y={y}
                           width={width}
                           height={height}
-                          fill={isDarkMode ? "#374151" : "#edededff"}
+                          fill={isDarkMode ? "#2d3751ff" : "#f1f5f9"}
                           stroke={isDarkMode ? "#6b7280" : "#c4c4c4ff"}
                           strokeWidth={1}
                         />
@@ -299,8 +299,8 @@ export default function TransitionPathwaysChart({
                           y={y + height / 2 + 16}
                           textAnchor="start"
                           dominantBaseline="central"
-                          fontSize={11}
-                          fill={isDarkMode ? "#9ca3af" : "#b5b5b5ff"}
+                          fontSize={12}
+                          fill={isDarkMode ? "#9ca3af" : "#727272ff"}
                           fontFamily="system-ui, -apple-system, sans-serif"
                         >
                           ({percentage}%)
@@ -310,7 +310,7 @@ export default function TransitionPathwaysChart({
                           y={y + height / 2}
                           textAnchor="start"
                           dominantBaseline="central"
-                          fontSize={11}
+                          fontSize={12}
                           fill={isDarkMode ? "#f3f4f6" : "#374151"}
                           fontFamily="system-ui, -apple-system, sans-serif"
                         >
@@ -326,9 +326,9 @@ export default function TransitionPathwaysChart({
                     // Color based on sex
                     let stroke = "#94a3b8"; // default gray
                     if (payload?.sex === "male") {
-                      stroke = "#3b82f6"; // blue for male
+                      stroke = isDarkMode ? "#3b82f6" : "#aacaffff" ; // blue for male
                     } else if (payload?.sex === "female") {
-                      stroke = "#ec4899"; // pink for female
+                      stroke = isDarkMode ? "#ec4899" : "#fca0ceff"; // pink for female
                     }
                     
                     // Calculate stroke width based on the link's proportion of total flow
@@ -371,10 +371,7 @@ export default function TransitionPathwaysChart({
                   <div className="h-3 w-3 rounded-full bg-pink-500"></div>
                   <span>Female</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <div className="h-3 w-3 rounded-full bg-gray-400"></div>
-                  <span>Unknown/Other</span>
-                </div>
+
               </div>
             </div>
           </div>

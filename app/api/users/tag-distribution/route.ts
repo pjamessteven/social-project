@@ -11,12 +11,7 @@ const db = drizzle(client);
 
 // Tag mappings for Sankey flow
 const TAG_MAPPINGS = {
-  sexuality: {
-    "homosexual": "homosexual",
-    "heterosexual": "heterosexual", 
-    "bisexual": "bisexual",
-    "asexual": "asexual"
-  },
+
   medical: {
     "took hormones": "took_hormones",
     "got top surgery": "got_top_surgery", 
@@ -299,18 +294,13 @@ function formatCategoryLabel(stageName: string, category: string): string {
     'female': 'Female',
     'unknown': 'Unknown',
     
-    // Sexuality labels
-    'homosexual': 'Homosexual',
-    'heterosexual': 'Heterosexual',
-    'bisexual': 'Bisexual',
-    'asexual': 'Asexual',
-    
+
     // Age labels
     'before_18': 'Before 18',
     'after_18': 'After 18',
     
     // Puberty blockers labels
-    'took_blockers': 'Took Blockers',
+    'took_blockers': 'Puberty Blockers',
     'no_blockers': 'No Blockers',
     
     // Hormones labels
@@ -318,8 +308,8 @@ function formatCategoryLabel(stageName: string, category: string): string {
     'social_only': 'Social Only',
     
     // Surgery labels
-    'got_top_surgery': 'Got Top Surgery',
-    'got_bottom_surgery': 'Got Bottom Surgery',
+    'got_top_surgery': 'Top Surgery',
+    'got_bottom_surgery': 'Bottom Surgery',
     'no_surgery': 'No Surgery',
     
     // Outcome labels

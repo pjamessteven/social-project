@@ -26,12 +26,12 @@ export default function StoriesCharts({
         <div
           className={`hover:text-foreground cursor-pointer p-4 sm:px-6  text-sm sm:text-base ${
             activeTab === "age"
-              ? "dark:bg-secondary bg-white"
-              : "text-muted-foreground"
+              ? "dark:bg-secondary bg-white font-medium"
+              : "text-muted-foreground font-medium"
           }`}
           onClick={() => setActiveTab("age")}
         >
-          <div className="font-semibold">Age Distribution</div>
+          <div className="">Age Distribution</div>
         </div>
 
           {/*
@@ -49,12 +49,12 @@ export default function StoriesCharts({
         <div
           className={`hover:text-foreground cursor-pointer  p-4 sm:px-6 text-sm sm:text-base ${
             activeTab === "pathways"
-              ? "dark:bg-secondary bg-white"
-              : "text-muted-foreground"
+              ? "dark:bg-secondary bg-white font-medium"
+              : "text-muted-foreground font-medium"
           }`}
           onClick={() => setActiveTab("pathways")}
         >
-          <div className="font-semibold">Detransition Pathways</div>
+          <div >Detransition Pathways</div>
         </div>
       </div>
       <CardContent className="p-0 overflow-x-auto">
@@ -92,7 +92,7 @@ export default function StoriesCharts({
           */}
         {activeTab === "pathways" && (
           <TransitionPathwaysChart
-            className="shadow-lg min-w-2xl"
+            className="shadow-lg min-w-xl"
             minAge={
               typeof resolvedSearchParams.minAge === "string"
                 ? parseInt(resolvedSearchParams.minAge)

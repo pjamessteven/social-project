@@ -1,7 +1,7 @@
-"use server"
+"use server";
 
 import { markdownToPlainText } from "@/app/lib/utils";
-import { Check, ExternalLink, ShieldQuestion } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { marked } from "marked";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -133,11 +133,11 @@ export default async function UserPage({
       <Link href="/stories">
         <Button variant="link" className="mb-6 -ml-4">
           {"<- "}
-          Back to Users
+          All Stories
         </Button>
       </Link>
 
-      <div className="sm:prose-base dark:prose-invert space-y-6">
+      <div className="prose dark:prose-invert space-y-6 max-w-full">
         {/* Header */}
         <div>
           <div className="mb-6 flex flex-col items-baseline justify-between sm:mb-4 sm:flex-row">
@@ -188,26 +188,31 @@ export default async function UserPage({
           )}
         </div>
 
-        <details className="cursor-pointer mb-2">
+        <details className="mb-4 cursor-pointer">
           <summary className="text-muted-foreground">
             <i>
-              This story is from the comments by /u/{username} that are listed below, summarised with AI.
+              This story is from the comments listed
+              below, summarised by AI.
             </i>
           </summary>
-          <div className="mt-2 mb-8 rounded-lg border p-2 py-0 text-gray-600 sm:p-3 dark:text-gray-400">
+          <div className="mt-2 mb-8 rounded-lg border p-3 text-sm text-gray-600 sm:text-base dark:text-gray-400">
             On Reddit, people often share their experiences across multiple
             comments or posts. To make this information more accessible, our AI
             gathers all of those scattered pieces into a single, easy-to-read
             summary and timeline. All system prompts are noted on the prompts
             page.
+            <p />
+            Sometimes AI can hallucinate or state things that are not true. But
+            generally, the summarised stories are accurate reflections of the
+            original comments by users.
           </div>
         </details>
         {/* Red Flags Report */}
         {user.redFlagsReport && (
           <details className="cursor-pointer">
-          <summary className="text-muted-foreground">
+            <summary className="text-muted-foreground">
               <i>
-                User Authenticity Assessment:{" "}
+                Authenticity Assessment:{" "}
                 {user.tags.includes("suspicious account")
                   ? "Suspicious Account"
                   : "Not Suspicious"}
@@ -217,7 +222,7 @@ export default async function UserPage({
               dangerouslySetInnerHTML={{
                 __html: marked.parse(user.redFlagsReport || ""),
               }}
-             className="mt-2 mb-8 rounded-lg border p-2 py-0 text-sm no-prose prose-none text-gray-600 sm:px-3 dark:text-gray-400"
+              className="mt-2 mb-8 rounded-lg border p-3 text-sm text-gray-600 sm:text-base dark:text-gray-400"
             ></div>
           </details>
         )}
