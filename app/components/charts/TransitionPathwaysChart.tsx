@@ -218,7 +218,7 @@ export default function TransitionPathwaysChart({
       ) : (
         <>
           <div className="p-4">
-            <h3 className="text-lg font-semibold">
+            <h3 className="font-semibold">
               Detransition Pathways Flow
             </h3>
             <p className="text-sm text-gray-600">
