@@ -302,7 +302,11 @@ export default function TransitionPathwaysChart({
                     } else if (payload?.sex === "female") {
                       stroke = "#ec4899"; // pink for female
                     }
-                    
+                    const percentage = (
+                      (payload.value / totalUsers) * // calculate proportion of sex
+                      100
+                    ).toFixed(1);
+
                     const path = `M${sourceX},${sourceY}C${sourceControlX},${sourceY} ${targetControlX},${targetY} ${targetX},${targetY}`;
                     
                     return (
