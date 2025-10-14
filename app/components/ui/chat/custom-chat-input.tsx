@@ -48,10 +48,10 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   }, []);
 
   useEffect(() => {
-    if (isDesktop && inputRef.current) {
+    if (isDesktop && inputRef.current && showChatInput) {
       inputRef.current.focus();
     }
-  }, [isDesktop]);
+  }, [isDesktop, showChatInput]);
 
   if (!showChatInput) {
     return <></>;
