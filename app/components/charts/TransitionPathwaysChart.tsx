@@ -261,8 +261,8 @@ export default function TransitionPathwaysChart({
                           y={y}
                           width={width}
                           height={height}
-                          fill="#3b82f6"
-                          stroke="#1e40af"
+                          fill="#edededff"
+                          stroke="#c4c4c4ff"
                           strokeWidth={1}
                         />
 
@@ -306,7 +306,7 @@ export default function TransitionPathwaysChart({
                     // Calculate stroke width based on the link's proportion of total flow
                     // This should match the visual thickness represented by node heights
                     const proportion = payload?.value / totalUsers;
-                    const maxNodeHeight = 400; // Approximate max height available for nodes
+                    const maxNodeHeight = 244; // Approximate max height available for nodes
                     const strokeWidth = Math.max(2, proportion * maxNodeHeight);
 
                     const path = `M${sourceX},${sourceY}C${sourceControlX},${sourceY} ${targetControlX},${targetY} ${targetX},${targetY}`;
