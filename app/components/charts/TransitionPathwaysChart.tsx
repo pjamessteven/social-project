@@ -4,6 +4,25 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ResponsiveContainer, Sankey, Tooltip } from "recharts";
 
+// Hook to detect dark mode
+function useDarkMode() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const checkDarkMode = () => {
+      setIsDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    };
+
+    checkDarkMode();
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', checkDarkMode);
+
+    return () => mediaQuery.removeEventListener('change', checkDarkMode);
+  }, []);
+
+  return isDarkMode;
+}
+
 interface SankeyNode {
   id: string;
   label: string;
@@ -53,6 +72,7 @@ export default function TransitionPathwaysChart({
   const [data, setData] = useState<SankeyData>({ nodes: [], links: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const isDarkMode = useDarkMode();
 
   const fetchData = async (minAge: number, maxAge: number) => {
     try {
@@ -164,12 +184,16 @@ export default function TransitionPathwaysChart({
         const targetNode = rechartsData.nodes[data.target];
         const sexLabel = data.sex ? ` (${data.sex})` : '';
         return (
-          <div className="rounded border border-gray-300 bg-white p-3 shadow-lg">
-            <p className="font-medium text-black">
+          <div className={`rounded border p-3 shadow-lg ${
+            isDarkMode 
+              ? 'border-gray-600 bg-gray-800' 
+              : 'border-gray-300 bg-white'
+          }`}>
+            <p className={`font-medium ${isDarkMode ? 'text-white' : 'text-black'}`}>
               {sourceNode?.name} → {targetNode?.name}{sexLabel}
             </p>
             <p className="font-medium text-blue-600">{data.value} users</p>
-            <p className="text-sm text-gray-600">
+            <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
               {((data.value / totalUsers) * 100).toFixed(1)}% of total
             </p>
           </div>
@@ -192,12 +216,16 @@ export default function TransitionPathwaysChart({
         const nodeFlow = Math.max(incomingFlow, outgoingFlow);
 
         return (
-          <div className="rounded border border-gray-300 bg-white p-3 shadow-lg">
-            <p className="font-medium text-black">{data.name}</p>
+          <div className={`rounded border p-3 shadow-lg ${
+            isDarkMode 
+              ? 'border-gray-600 bg-gray-800' 
+              : 'border-gray-300 bg-white'
+          }`}>
+            <p className={`font-medium ${isDarkMode ? 'text-white' : 'text-black'}`}>{data.name}</p>
             {nodeFlow > 0 && (
               <>
                 <p className="font-medium text-blue-600">{nodeFlow} users</p>
-                <p className="text-sm text-gray-600">
+                <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                   {((nodeFlow / totalUsers) * 100).toFixed(1)}% of total
                 </p>
               </>
@@ -261,8 +289,8 @@ export default function TransitionPathwaysChart({
                           y={y}
                           width={width}
                           height={height}
-                          fill="#edededff"
-                          stroke="#c4c4c4ff"
+                          fill={isDarkMode ? "#374151" : "#edededff"}
+                          stroke={isDarkMode ? "#6b7280" : "#c4c4c4ff"}
                           strokeWidth={1}
                         />
 
@@ -272,7 +300,7 @@ export default function TransitionPathwaysChart({
                           textAnchor="start"
                           dominantBaseline="central"
                           fontSize={11}
-                          fill="#b5b5b5ff"
+                          fill={isDarkMode ? "#9ca3af" : "#b5b5b5ff"}
                           fontFamily="system-ui, -apple-system, sans-serif"
                         >
                           ({percentage}%)
@@ -283,7 +311,7 @@ export default function TransitionPathwaysChart({
                           textAnchor="start"
                           dominantBaseline="central"
                           fontSize={11}
-                          fill="white"
+                          fill={isDarkMode ? "#f3f4f6" : "#374151"}
                           fontFamily="system-ui, -apple-system, sans-serif"
                         >
                           {labelText}
