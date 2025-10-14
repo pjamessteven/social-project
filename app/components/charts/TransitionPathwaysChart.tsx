@@ -302,10 +302,10 @@ export default function TransitionPathwaysChart({
                     } else if (payload?.sex === "female") {
                       stroke = "#ec4899"; // pink for female
                     }
-                    const percentage = (
-                      (payload.value / totalUsers) * // calculate proportion of sex
-                      100
-                    ).toFixed(1);
+                    
+                    // Calculate proportion-based width
+                    const proportion = payload?.value / totalUsers;
+                    const strokeWidth = Math.max(2, proportion * 100); // Scale proportion to reasonable pixel width
 
                     const path = `M${sourceX},${sourceY}C${sourceControlX},${sourceY} ${targetControlX},${targetY} ${targetX},${targetY}`;
                     
@@ -313,7 +313,7 @@ export default function TransitionPathwaysChart({
                       <path
                         d={path}
                         stroke={stroke}
-                        strokeWidth={Math.max(2, Math.sqrt(payload?.value) * 2)}
+                        strokeWidth={strokeWidth}
                         strokeOpacity={0.7}
                         fill="none"
                       />
