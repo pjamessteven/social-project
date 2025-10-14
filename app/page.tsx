@@ -7,11 +7,11 @@ import type { Metadata } from "next";
 const metadata: Metadata = {
   title: "detrans.ai | Talk to 50,000+ detransitioners",
   description:
-    "Detrans.ai is a self-guided gender-exploratory therapy tool that is powered by real detrans perspectives and experiences. Understand why some adopt, inhabit, and let go of gender identities. ",
+  "Detrans.ai is powered by real detrans perspectives and experiences. Use detrans.ai for detransition help and advice, as a virtual gender-exploratory therapist, or simply as a gender research tool to understand why some people adopt, inhabit, and let go of gender identities.",
   openGraph: {
     title: "detrans.ai | Talk to 50,000+ detransitioners",
     description:
-      "Detrans.ai is powered by real detrans perspectives and experiences. Understand why some adopt, inhabit, and let go of gender identities.",
+      "Detrans.ai is powered by real detrans perspectives and experiences. Use detrans.ai for detransition help and advice, as a virtual gender-exploratory therapist, or simply as a gender research tool to understand why some adopt, inhabit, and let go of gender identities.",
     url: "https://detrans.ai/",
     images: ["https://detrans.ai/x_card_lg.png"],
     siteName: "detrans.ai",
