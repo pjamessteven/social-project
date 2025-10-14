@@ -160,7 +160,7 @@ export async function StartPage({
                 number of people are healing their gender dysphoria,
                 detransitioning and sharing their experiences. These people call
                 themselves detrans, and they identify themselves online with the
-                lizard emoji.
+                lizard emoji, because of their ability to regrow their tails and heal.
               </p>
               <div className="flex w-full justify-end pt-2">
                 <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white">
@@ -208,7 +208,7 @@ export async function StartPage({
           <div className="prose dark:prose-invert mt-8 max-w-full text-base">
             <div className="flex w-full justify-end">
               <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white">
-                What is a genderaffirming.ai? What is this good for?
+                What is a genderaffirming.ai and what is this good for?
               </div>
             </div>
             <p>
