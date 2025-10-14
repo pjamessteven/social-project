@@ -133,7 +133,7 @@ export async function GET(request: NextRequest) {
 
 function processSankeyData(users: any[]) {
   const nodes: { id: string; label: string; stage: number }[] = [];
-  const links: { source: string; target: string; value: number }[] = [];
+  const links: { source: string; target: string; value: number; sex?: string }[] = [];
   
   // Create nodes for each stage
   const stages = [
@@ -156,41 +156,47 @@ function processSankeyData(users: any[]) {
     });
   });
 
-  // Process each user through the flow
+  // Process each user through the flow, tracking sex for each link
   const flowCounts = new Map<string, number>();
   
   console.log(`Processing ${users.length} users for Sankey data`);
 
   users.forEach(user => {
     const userCategories = categorizeUser(user);
+    const userSex = user.sex === 'm' ? 'male' : user.sex === 'f' ? 'female' : 'unknown';
     
     // Debug logging for first few users
     if (users.indexOf(user) < 3) {
-      console.log(`User ${user.username}: ${userCategories.join(' → ')}`);
+      console.log(`User ${user.username} (${userSex}): ${userCategories.join(' → ')}`);
     }
     
-    // Create links between consecutive stages
+    // Create links between consecutive stages, including sex information
     for (let i = 0; i < userCategories.length - 1; i++) {
       const source = userCategories[i];
       const target = userCategories[i + 1];
-      const linkKey = `${source}->${target}`;
+      const linkKey = `${source}->${target}|${userSex}`;
       
       flowCounts.set(linkKey, (flowCounts.get(linkKey) || 0) + 1);
     }
   });
 
-  // Convert flow counts to links and log age-medical connections
+  // Convert flow counts to links with sex information
   flowCounts.forEach((value, key) => {
-    const [source, target] = key.split('->');
-    links.push({ source, target, value });
+    const [linkPart, sex] = key.split('|');
+    const [source, target] = linkPart.split('->');
+    links.push({ source, target, value, sex });
     
     // Log age-hormones connections specifically
     if (source.startsWith('transition_age_') && target.startsWith('hormones_')) {
-      console.log(`Age-Hormones link: ${source} → ${target} (${value} users)`);
+      console.log(`Age-Hormones link: ${source} → ${target} (${value} ${sex} users)`);
     }
   });
 
-  console.log(`Created ${links.length} total links`);
+  console.log(`Created ${links.length} total links with sex breakdown`);
+  console.log(`Sex distribution in links:`, links.reduce((acc, link) => {
+    acc[link.sex || 'unknown'] = (acc[link.sex || 'unknown'] || 0) + link.value;
+    return acc;
+  }, {} as Record<string, number>));
   
   return { nodes, links };
 }
