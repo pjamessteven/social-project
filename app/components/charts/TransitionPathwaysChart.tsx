@@ -14,6 +14,7 @@ interface SankeyLink {
   source: string;
   target: string;
   value: number;
+  sex?: string;
 }
 
 interface SankeyData {
@@ -29,6 +30,7 @@ interface RechartsLink {
   source: number;
   target: number;
   value: number;
+  sex?: string;
 }
 
 interface RechartsData {
@@ -132,6 +134,7 @@ export default function TransitionPathwaysChart({
         source: nodeIdToIndex.get(link.source)!,
         target: nodeIdToIndex.get(link.target)!,
         value: link.value,
+        sex: link.sex,
       }));
 
     return {
@@ -159,10 +162,11 @@ export default function TransitionPathwaysChart({
       ) {
         const sourceNode = rechartsData.nodes[data.source];
         const targetNode = rechartsData.nodes[data.target];
+        const sexLabel = data.sex ? ` (${data.sex})` : '';
         return (
           <div className="rounded border border-gray-300 bg-white p-3 shadow-lg">
             <p className="font-medium text-black">
-              {sourceNode?.name} → {targetNode?.name}
+              {sourceNode?.name} → {targetNode?.name}{sexLabel}
             </p>
             <p className="font-medium text-blue-600">{data.value} users</p>
             <p className="text-sm text-gray-600">
@@ -288,9 +292,28 @@ export default function TransitionPathwaysChart({
                       </g>
                     );
                   }}
-                  link={{
-                    stroke: "#94a3b8",
-                    strokeOpacity: 0.6,
+                  link={(props: any) => {
+                    const { sourceX, sourceY, targetX, targetY, sourceControlX, targetControlX, payload } = props;
+                    
+                    // Color based on sex
+                    let stroke = "#94a3b8"; // default gray
+                    if (payload?.sex === "male") {
+                      stroke = "#3b82f6"; // blue for male
+                    } else if (payload?.sex === "female") {
+                      stroke = "#ec4899"; // pink for female
+                    }
+                    
+                    const path = `M${sourceX},${sourceY}C${sourceControlX},${sourceY} ${targetControlX},${targetY} ${targetX},${targetY}`;
+                    
+                    return (
+                      <path
+                        d={path}
+                        stroke={stroke}
+                        strokeWidth={Math.max(1, payload?.value / 50)}
+                        strokeOpacity={0.7}
+                        fill="none"
+                      />
+                    );
                   }}
                 >
                   <Tooltip content={<CustomTooltip />} />
@@ -305,6 +328,20 @@ export default function TransitionPathwaysChart({
               <p>
                 <strong>Flow connections:</strong> {data.links.length}
               </p>
+              <div className="mt-2 flex items-center gap-4">
+                <div className="flex items-center gap-1">
+                  <div className="h-3 w-3 rounded-full bg-blue-500"></div>
+                  <span>Male</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <div className="h-3 w-3 rounded-full bg-pink-500"></div>
+                  <span>Female</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <div className="h-3 w-3 rounded-full bg-gray-400"></div>
+                  <span>Unknown/Other</span>
+                </div>
+              </div>
             </div>
           </div>
         </>
