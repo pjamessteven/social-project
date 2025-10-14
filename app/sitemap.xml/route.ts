@@ -5,6 +5,8 @@ import {
 import { slugify } from "@/app/lib/utils";
 import { availableTags } from "@/app/lib/availableTags";
 import { NextRequest } from "next/server";
+import { db } from "@/db";
+import { detransUsers } from "@/db/schema";
 
 export async function GET(request: NextRequest) {
   const host = request.headers.get("host") || "detrans.ai";
@@ -19,6 +21,9 @@ export async function GET(request: NextRequest) {
   const allAffirmingQuestions = affirmingQuestionCategories.flatMap(
     (category) => category.questions,
   );
+
+  // Fetch all users from database
+  const users = await db.select({ username: detransUsers.username }).from(detransUsers);
 
   const baseRoutes = [
     {
@@ -87,6 +92,12 @@ export async function GET(request: NextRequest) {
       changeFrequency: "daily",
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/videos`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
   ];
 
   // Generate tag routes for stories
@@ -112,6 +123,14 @@ export async function GET(request: NextRequest) {
       priority: 0.7,
     },
   ];
+
+  // Generate user story routes
+  const userRoutes = users.map((user) => ({
+    url: `${baseUrl}/stories/${encodeURIComponent(user.username)}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: "weekly",
+    priority: 0.7,
+  }));
 
   // Generate chat routes for all questions
   const chatRoutes = allQuestions.map((question) => ({
@@ -173,6 +192,7 @@ export async function GET(request: NextRequest) {
 
   const allRoutes = [
     ...baseRoutes,
+    ...userRoutes,
     ...chatRoutes,
     ...tagRoutes,
     ...sexRoutes,
