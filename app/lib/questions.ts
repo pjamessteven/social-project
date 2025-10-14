@@ -32,7 +32,7 @@ export const questionCategories = [
       "What does the term ‘egg’ mean in trans communities?",
       "What is an identity trap and how do people typically realise they are in one?",
       "Where can someone look for a therapist who offers open-ended, non-directive gender exploration? What red-flags should I look out for?",
-      "Does asking for pronouns help versus hinder gender-nonconforming people?",
+      "Does asking for pronouns help or hinder gender-nonconforming people?",
       "If a young girl with short hair is constantly being asked for her pronouns, what is the implication and how would this make her feel?",
       "How do non-binary labels reinforce traditional gender stereotypes?",
       "What is cancel culture and what effects does it have on public health discourse?",
