@@ -293,7 +293,7 @@ export default function TransitionPathwaysChart({
                     );
                   }}
                   link={(props: any) => {
-                    const { sourceX, sourceY, targetX, targetY, sourceControlX, targetControlX, payload } = props;
+                    const { sourceX, sourceY, targetX, targetY, sourceControlX, targetControlX, payload, sourceRelativeValue, targetRelativeValue } = props;
                     
                     // Color based on sex
                     let stroke = "#94a3b8"; // default gray
@@ -303,9 +303,11 @@ export default function TransitionPathwaysChart({
                       stroke = "#ec4899"; // pink for female
                     }
                     
-                    // Calculate proportion-based width
+                    // Calculate stroke width based on the link's proportion of total flow
+                    // This should match the visual thickness represented by node heights
                     const proportion = payload?.value / totalUsers;
-                    const strokeWidth = Math.max(10, proportion * 100); // Scale proportion to reasonable pixel width
+                    const maxNodeHeight = 400; // Approximate max height available for nodes
+                    const strokeWidth = Math.max(2, proportion * maxNodeHeight);
 
                     const path = `M${sourceX},${sourceY}C${sourceControlX},${sourceY} ${targetControlX},${targetY} ${targetX},${targetY}`;
                     
