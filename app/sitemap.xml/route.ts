@@ -1,18 +1,18 @@
+import { availableTags } from "@/app/lib/availableTags";
 import {
   affirmingQuestionCategories,
   questionCategories,
 } from "@/app/lib/questions";
 import { slugify } from "@/app/lib/utils";
-import { availableTags } from "@/app/lib/availableTags";
-import { NextRequest } from "next/server";
 import { db } from "@/db";
 import { detransUsers } from "@/db/schema";
+import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
   const host = request.headers.get("host") || "detrans.ai";
   const protocol = request.headers.get("x-forwarded-proto") || "https";
   const baseUrl = `${protocol}://${host}`;
-  const includeAffirm = !!host.includes("genderaffirming.ai");
+  const isAffirm = !!host.includes("genderaffirming.ai");
 
   // Extract all questions from question categories
   const allQuestions = questionCategories.flatMap(
@@ -23,7 +23,9 @@ export async function GET(request: NextRequest) {
   );
 
   // Fetch all users from database
-  const users = await db.select({ username: detransUsers.username }).from(detransUsers);
+  const users = await db
+    .select({ username: detransUsers.username })
+    .from(detransUsers);
 
   const baseRoutes = [
     {
@@ -100,6 +102,45 @@ export async function GET(request: NextRequest) {
     },
   ];
 
+  const affirmRoutes = [
+    {
+      url: `${baseUrl}/affirm`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/affirm/contact`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/affirm/donate`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/affirm/terms`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/affirm/studies`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/affirm/prompts`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.4,
+    },
+  ];
+
   // Generate tag routes for stories
   const tagRoutes = availableTags.map((tag) => ({
     url: `${baseUrl}/stories?tag=${encodeURIComponent(tag)}`,
@@ -140,64 +181,19 @@ export async function GET(request: NextRequest) {
     priority: 0.7,
   }));
 
-  const affirmChatRoutes = includeAffirm
-    ? allAffirmingQuestions.map((question) => ({
-        url: `${baseUrl}/affirm/chat/${slugify(question)}`,
-        lastModified: new Date().toISOString(),
-        changeFrequency: "weekly",
-        priority: 0.6,
-      }))
-    : [];
-
-  const affirmRoutes = includeAffirm
-    ? [
-        {
-          url: `${baseUrl}/affirm`,
-          lastModified: new Date().toISOString(),
-          changeFrequency: "daily",
-          priority: 0.9,
-        },
-        {
-          url: `${baseUrl}/affirm/contact`,
-          lastModified: new Date().toISOString(),
-          changeFrequency: "monthly",
-          priority: 0.7,
-        },
-        {
-          url: `${baseUrl}/affirm/donate`,
-          lastModified: new Date().toISOString(),
-          changeFrequency: "monthly",
-          priority: 0.6,
-        },
-        {
-          url: `${baseUrl}/affirm/terms`,
-          lastModified: new Date().toISOString(),
-          changeFrequency: "monthly",
-          priority: 0.5,
-        },
-        {
-          url: `${baseUrl}/affirm/studies`,
-          lastModified: new Date().toISOString(),
-          changeFrequency: "weekly",
-          priority: 0.7,
-        },
-        {
-          url: `${baseUrl}/affirm/prompts`,
-          lastModified: new Date().toISOString(),
-          changeFrequency: "monthly",
-          priority: 0.4,
-        },
-      ]
-    : [];
+  const affirmChatRoutes = allAffirmingQuestions.map((question) => ({
+    url: `${baseUrl}/affirm/chat/${slugify(question)}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: "weekly",
+    priority: 0.6,
+  }));
 
   const allRoutes = [
-    ...baseRoutes,
-    ...userRoutes,
-    ...chatRoutes,
-    ...tagRoutes,
-    ...sexRoutes,
-    ...affirmRoutes,
-    ...(includeAffirm ? affirmChatRoutes : []),
+    ...(isAffirm ? affirmChatRoutes : chatRoutes),
+    ...(isAffirm ? affirmRoutes : baseRoutes),
+    ...(isAffirm ? [] : userRoutes),
+    ...(isAffirm ? [] : tagRoutes),
+    ...(isAffirm ? [] : sexRoutes),
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
