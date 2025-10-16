@@ -79,7 +79,7 @@ function formatDate(dateString: string) {
 }
 
 const metadata: Metadata = {
-  title: "detrans.ai | Detransition Stories & Timelines",
+  title: "detrans.ai | Detransition Stories & Statistics",
   description:
     "Read heartfelt detransition stories, timelines and trends from the members of the /r/detrans Reddit community, the largest open collection of detransition stories on the internet. Find out how old were detransitioners when they transitioned and de-transitioned and what pathways they took.",
   openGraph: {
@@ -112,11 +112,11 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
       <div className="prose prose-base dark:prose-invert mb-8 max-w-full">
         <h1 className="text-3xl font-bold">
           {bot && (resolvedSearchParams.tag as string) + " "}Detransition
-          Stories & Timelines
+          Stories & Statistics
         </h1>
         <p className="text-gray-600 dark:text-gray-400">
-          Browse through {pagination.total} unique detransition stories and timelines of
-          people who haved shared their experiences in the{" "}
+          Browse and visualise {pagination.total} unique detransition stories and timelines of
+          people who have shared their experiences in the{" "}
           <a
             href="https://reddit.com/r/detrans"
             target="_blank"
@@ -125,7 +125,7 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
             /r/detrans
           </a>{" "}
           subreddit, which is the largest open collection of detransition stories and experiences on the
-          internet!
+          internet.
         </p>
         <details className="cursor-pointer text-sm sm:text-base">
           <summary>
