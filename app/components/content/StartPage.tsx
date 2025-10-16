@@ -445,6 +445,7 @@ export async function StartPage({
               <div className="mt-1 flex items-center">
                 And be kind to each other.
               </div>
+
             </div>
 
             {mode === "detrans" && (
