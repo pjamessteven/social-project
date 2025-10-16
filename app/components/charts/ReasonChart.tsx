@@ -185,7 +185,11 @@ export default function TransitionReasonChart({
     type: 'square' as const,
     id: `legend-${index}`,
     color: COLORS[index % COLORS.length],
-    payload: item
+    payload: {
+      strokeDasharray: '',
+      value: item.userCount,
+      ...item
+    }
   }));
 
   if (loading) {
@@ -261,10 +265,9 @@ export default function TransitionReasonChart({
               payload={legendPayload}
               wrapperStyle={{ marginTop: "-20px" }}
               formatter={(value, entry) => {
-                const item = entry.payload;
                 return (
                   <span style={{ color: entry.color }}>
-                    {value} ({item.userCount})
+                    {value} ({entry.payload.userCount})
                   </span>
                 );
               }}
