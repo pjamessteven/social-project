@@ -3,45 +3,63 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
-  Area,
-  AreaChart,
+  Cell,
   Legend,
+  Pie,
+  PieChart,
   ResponsiveContainer,
   Tooltip,
-  XAxis,
-  YAxis,
 } from "recharts";
 
-interface AgeData {
-  age: number;
-  transition: number;
-  detransition: number;
+interface TransitionReasonData {
+  id: number;
+  name: string;
+  userCount: number;
 }
 
-interface AgeDistributionChartProps {
+interface TransitionReasonChartProps {
   className?: string;
-  minAge: number;
-  maxAge: number;
+  minAge?: number;
+  maxAge?: number;
 }
 
-export default function AgeDistributionChart({
+// Color palette for pie chart segments
+const COLORS = [
+  "#3b82f6", // blue
+  "#ef4444", // red
+  "#10b981", // green
+  "#f59e0b", // yellow
+  "#8b5cf6", // purple
+  "#06b6d4", // cyan
+  "#f97316", // orange
+  "#84cc16", // lime
+  "#ec4899", // pink
+  "#6b7280", // gray
+];
+
+export default function TransitionReasonChart({
   className,
   minAge,
   maxAge,
-}: AgeDistributionChartProps) {
+}: TransitionReasonChartProps) {
   const searchParams = useSearchParams();
-  const [data, setData] = useState<AgeData[]>([]);
+  const [data, setData] = useState<TransitionReasonData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchData = async (minAge: number, maxAge: number) => {
+  const fetchData = async () => {
     try {
       setLoading(true);
 
-      // Build params from current search params
+      // Build params from current search params and props
       const params = new URLSearchParams();
-      params.set("minAge", minAge.toString());
-      params.set("maxAge", maxAge.toString());
+      
+      if (minAge !== undefined) {
+        params.set("minAge", minAge.toString());
+      }
+      if (maxAge !== undefined) {
+        params.set("maxAge", maxAge.toString());
+      }
 
       // Include sex filter if present
       const sex = searchParams.get("sex");
@@ -49,27 +67,18 @@ export default function AgeDistributionChart({
         params.set("sex", sex);
       }
 
-      // Include tag filter if present
-      const tag = searchParams.get("tag");
-      if (tag) {
-        params.set("tag", tag);
-      }
-
       const response = await fetch(
-        `/api/users/age-distribution?${params.toString()}`,
+        `/api/users/transition-reasons?${params.toString()}`,
       );
 
       if (!response.ok) {
-        throw new Error("Failed to fetch age distribution data");
+        throw new Error("Failed to fetch transition reasons data");
       }
 
       const result = await response.json();
-      // Transform data to ensure both datasets are positive
-      const transformedData = result.data.map((item: AgeData) => ({
-        ...item,
-        detransition: Math.abs(item.detransition),
-      }));
-      setData(transformedData);
+      // Filter out reasons with 0 users for cleaner visualization
+      const filteredData = result.data.filter((item: TransitionReasonData) => item.userCount > 0);
+      setData(filteredData);
       setError(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
@@ -80,25 +89,51 @@ export default function AgeDistributionChart({
   };
 
   useEffect(() => {
-    fetchData(minAge, maxAge);
+    fetchData();
   }, [minAge, maxAge, searchParams]);
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
+      const data = payload[0].payload;
       return (
         <div className="rounded border border-gray-300 bg-white p-3 shadow-lg">
-          <p className="font-medium text-black">{`Age: ${label}`}</p>
-          <p className="font-medium text-blue-600">
-            {`Transitioned: ${payload[0]?.value || 0} users`}
-          </p>
-          <p className="font-medium text-red-600">
-            {`Detransitioned: ${payload[1]?.value || 0} users`}
+          <p className="font-medium text-black">{data.name}</p>
+          <p className="text-sm text-gray-600">
+            {`${data.userCount} users (${((data.userCount / payload[0].payload.total) * 100).toFixed(1)}%)`}
           </p>
         </div>
       );
     }
     return null;
   };
+
+  const CustomLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }: any) => {
+    // Only show label if percentage is above 5% to avoid clutter
+    if (percent < 0.05) return null;
+    
+    const RADIAN = Math.PI / 180;
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    return (
+      <text 
+        x={x} 
+        y={y} 
+        fill="white" 
+        textAnchor={x > cx ? 'start' : 'end'} 
+        dominantBaseline="central"
+        fontSize={12}
+        fontWeight="bold"
+      >
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
+
+  // Calculate total for percentage calculations
+  const totalUsers = data.reduce((sum, item) => sum + item.userCount, 0);
+  const dataWithTotal = data.map(item => ({ ...item, total: totalUsers }));
 
   if (error) {
     return <div className="py-8 text-center text-red-500">Error: {error}</div>;
@@ -114,81 +149,41 @@ export default function AgeDistributionChart({
         <>
           <div className="p-4">
             <h3 className="font-semibold">
-              How old were detransitioners when they transitioned and de-transitioned?
+              What were the main reasons for transitioning?
             </h3>
             <p className="text-sm text-gray-600">
-              Data from Reddit user transition timelines
+              Data from Reddit user transition timelines ({totalUsers} users)
             </p>
           </div>
           <div className={`w-full ${className}`}>
-            <ResponsiveContainer width="100%" height={400}>
-              <AreaChart
-                data={data}
-                margin={{
-                  top: 32,
-                  right: 32,
-                  left: 32,
-                  bottom: 32,
-                }}
-              >
-                <defs>
-                  <linearGradient
-                    id="colorTransition"
-                    x1="0"
-                    y1="0"
-                    x2="0"
-                    y2="1"
-                  >
-                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8} />
-                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
-                  </linearGradient>
-                  <linearGradient
-                    id="colorDetransition"
-                    x1="0"
-                    y1="0"
-                    x2="0"
-                    y2="1"
-                  >
-                    <stop offset="5%" stopColor="#ef4444" stopOpacity={0.8} />
-                    <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
-                  </linearGradient>
-                </defs>
-                <XAxis
-                  dataKey="age"
-                  label={{ value: "Age", position: "bottom", offset: 5 }}
-                />
-                <YAxis
-                  label={{
-                    value: "Number of Users",
-                    angle: -90,
-                    position: "left",
-                    offset: 5,
-                  }}
-                />
+            <ResponsiveContainer width="100%" height={500}>
+              <PieChart>
+                <Pie
+                  data={dataWithTotal}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={CustomLabel}
+                  outerRadius={150}
+                  fill="#8884d8"
+                  dataKey="userCount"
+                >
+                  {dataWithTotal.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
                 <Tooltip content={<CustomTooltip />} />
-                <Legend
-                  verticalAlign="bottom"
-                  align="left"
+                <Legend 
+                  verticalAlign="bottom" 
                   height={36}
-                  wrapperStyle={{ paddingTop: "28px" }}
+                  wrapperStyle={{ paddingTop: "20px" }}
+                  formatter={(value, entry) => (
+                    <span style={{ color: entry.color }}>
+                      {value} ({entry.payload.userCount})
+                    </span>
+                  )}
                 />
-                <Area
-                  type="monotone"
-                  dataKey="transition"
-                  stroke="#3b82f6"
-                  fillOpacity={1}
-                  fill="url(#colorTransition)"
-                  name="Transition Age"
-                />
-                <Area
-                  type="monotone"
-                  dataKey="detransition"
-                  stroke="#ef4444"
-                  fillOpacity={1}
-                  fill="url(#colorDetransition)"
-                  name="Detransition Age"
-                />
-              </AreaChart>
+              </PieChart>
             </ResponsiveContainer>
           </div>
         </>
@@ -196,7 +191,7 @@ export default function AgeDistributionChart({
 
       {!loading && data.length === 0 && (
         <div className="py-8 text-center text-gray-500">
-          No data available for the selected age range
+          No transition reason data available for the selected filters
         </div>
       )}
     </>
