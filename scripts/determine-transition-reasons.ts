@@ -1,5 +1,5 @@
 import * as dotenv from "dotenv";
-import { eq, sql } from "drizzle-orm";
+import { eq, sql, isNull } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/postgres-js";
 import { OpenAI } from "openai";
 
@@ -188,7 +188,7 @@ async function main() {
         transitionReasonId: detransUsers.transitionReasonId,
       })
       .from(detransUsers)
-      .where(eq(detransUsers.transitionReasonId, null));
+      .where(isNull(detransUsers.transitionReasonId));
 
     console.log(`Found ${users.length} users without transition reasons`);
 
