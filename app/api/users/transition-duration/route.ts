@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
-import { detransUsers, detransUserTags } from "@/lib/db/schema";
+
+
 import { sql, and, gte, lte, eq, isNotNull } from "drizzle-orm";
+import { detransUsers, detransUserTags } from "@/db/schema";
+import { db } from "@/db";
 
 export async function GET(request: NextRequest) {
   try {
