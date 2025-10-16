@@ -253,6 +253,7 @@ export default function TransitionReasonChart({
               wrapperStyle={{ marginTop: "-20px" }}
               formatter={(value, entry) => {
                 const index = dataWithTotal.findIndex(item => item.name === value);
+                if (index >= 20) return null;
                 const userCount = index >= 0 ? dataWithTotal[index].userCount : 0;
                 return (
                   <span style={{ color: entry.color }}>
