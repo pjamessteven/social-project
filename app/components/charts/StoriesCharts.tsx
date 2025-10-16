@@ -38,7 +38,7 @@ export default function StoriesCharts({
           }`}
           onClick={() => setActiveTab("age")}
         >
-          <div className="whitespace-nowrap">Ages</div>
+          <div className="whitespace-nowrap">Age</div>
         </div>
         <div
           className={`hover:text-foreground cursor-pointer border-r p-4 text-sm sm:px-6 ${
@@ -48,7 +48,7 @@ export default function StoriesCharts({
           }`}
           onClick={() => setActiveTab("duration")}
         >
-          <div className="whitespace-nowrap">Durations</div>
+          <div className="whitespace-nowrap">Duration</div>
         </div>
         <div
           className={`hover:text-foreground cursor-pointer border-r p-4 text-sm sm:px-6 ${
@@ -58,7 +58,7 @@ export default function StoriesCharts({
           }`}
           onClick={() => setActiveTab("transitionReasons")}
         >
-          <div className="whitespace-nowrap">Transition Reasons</div>
+          <div className="whitespace-nowrap">Transition Reason</div>
         </div>
         <div
           className={`hover:text-foreground cursor-pointer border-r p-4 text-sm sm:px-6 ${
@@ -68,7 +68,7 @@ export default function StoriesCharts({
           }`}
           onClick={() => setActiveTab("detransitionReasons")}
         >
-          <div className="whitespace-nowrap">Detransition Reasons</div>
+          <div className="whitespace-nowrap">Detransition Reason</div>
         </div>
         <div
           className={`hover:text-foreground cursor-pointer p-4 text-sm sm:px-6 ${
@@ -78,7 +78,7 @@ export default function StoriesCharts({
           }`}
           onClick={() => setActiveTab("pathways")}
         >
-          <div className="whitespace-nowrap">Pathways</div>
+          <div className="whitespace-nowrap">Pathway</div>
         </div>
       </div>
       <CardContent className="overflow-x-auto overflow-y-hidden p-0">
