@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { drizzle } from "drizzle-orm/postgres-js";
 import { sql, eq, and } from "drizzle-orm";
 import postgres from "postgres";
-import { detransUsers, detransTags, detransUserTags } from "@/db/schema";
+import { detransUsers, detransTags, detransTagTypes, detransUserTags } from "@/db/schema";
 
 const connectionString = process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/app";
 const client = postgres(connectionString);
@@ -18,8 +18,8 @@ export async function GET(request: NextRequest) {
 
     const type = mode === 'detransition' ? 'detransition reason' : 'transition reason'
     
-    // Build where conditions for tags
-    const tagConditions = [eq(detransTags.type, type)];
+    // Build where conditions for tag types
+    const tagConditions = [eq(detransTagTypes.type, type)];
     
     // Build where conditions for users
     const userConditions = [];
@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
       userConditions.push(sql`(${detransUsers.transitionAge} IS NULL OR ${detransUsers.transitionAge} <= ${maxAge})`);
     }
 
-    // Get all transition reason tags with filtered user counts
+    // Get all reason tags with filtered user counts
     const detransitionReasons = await db
       .select({
         id: detransTags.id,
@@ -43,6 +43,7 @@ export async function GET(request: NextRequest) {
         userCount: sql<number>`COALESCE(COUNT(DISTINCT ${detransUserTags.username}), 0)`,
       })
       .from(detransTags)
+      .innerJoin(detransTagTypes, eq(detransTags.id, detransTagTypes.tagId))
       .leftJoin(detransUserTags, eq(detransTags.id, detransUserTags.tagId))
       .leftJoin(detransUsers, eq(detransUserTags.username, detransUsers.username))
       .where(and(
