@@ -50,6 +50,7 @@ export default function TransitionReasonChart({
   const fetchData = async () => {
     try {
       setLoading(true);
+      setError(null);
 
       // Build params from current search params and props
       const params = new URLSearchParams();
@@ -67,20 +68,32 @@ export default function TransitionReasonChart({
         params.set("sex", sex);
       }
 
+      console.log("Fetching transition reasons with params:", params.toString());
+
       const response = await fetch(
         `/api/users/transition-reasons?${params.toString()}`,
       );
 
       if (!response.ok) {
-        throw new Error("Failed to fetch transition reasons data");
+        const errorText = await response.text();
+        throw new Error(`Failed to fetch transition reasons data: ${response.status} ${errorText}`);
       }
 
       const result = await response.json();
+      console.log("Transition reasons API response:", result);
+      
+      if (!result.data || !Array.isArray(result.data)) {
+        throw new Error("Invalid data format received from API");
+      }
+
       // Filter out reasons with 0 users for cleaner visualization
       const filteredData = result.data.filter((item: TransitionReasonData) => item.userCount > 0);
+      console.log("Filtered transition reasons data:", filteredData);
+      
       setData(filteredData);
       setError(null);
     } catch (err) {
+      console.error("Error fetching transition reasons:", err);
       setError(err instanceof Error ? err.message : "An error occurred");
       setData([]);
     } finally {
@@ -135,65 +148,77 @@ export default function TransitionReasonChart({
   const totalUsers = data.reduce((sum, item) => sum + item.userCount, 0);
   const dataWithTotal = data.map(item => ({ ...item, total: totalUsers }));
 
+  if (loading) {
+    return (
+      <div className="flex h-96 items-center justify-center">
+        <div className="text-gray-500">Loading chart data...</div>
+      </div>
+    );
+  }
+
   if (error) {
-    return <div className="py-8 text-center text-red-500">Error: {error}</div>;
+    return (
+      <div className="py-8 text-center">
+        <div className="text-red-500 mb-2">Error: {error}</div>
+        <button 
+          onClick={fetchData}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
+
+  if (data.length === 0) {
+    return (
+      <div className="py-8 text-center text-gray-500">
+        No transition reason data available for the selected filters
+      </div>
+    );
   }
 
   return (
     <>
-      {loading ? (
-        <div className="flex h-96 items-center justify-center">
-          <div className="text-gray-500">Loading chart data...</div>
-        </div>
-      ) : (
-        <>
-          <div className="p-4">
-            <h3 className="font-semibold">
-              What were the main reasons for transitioning?
-            </h3>
-            <p className="text-sm text-gray-600">
-              Data from Reddit user transition timelines ({totalUsers} users)
-            </p>
-          </div>
-          <div className={`w-full ${className}`}>
-            <ResponsiveContainer width="100%" height={500}>
-              <PieChart>
-                <Pie
-                  data={dataWithTotal}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  label={CustomLabel}
-                  outerRadius={150}
-                  fill="#8884d8"
-                  dataKey="userCount"
-                >
-                  {dataWithTotal.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip content={<CustomTooltip />} />
-                <Legend 
-                  verticalAlign="bottom" 
-                  height={36}
-                  wrapperStyle={{ paddingTop: "20px" }}
-                  formatter={(value, entry) => (
-                    <span style={{ color: entry.color }}>
-                      {value} ({entry.payload.userCount})
-                    </span>
-                  )}
-                />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-        </>
-      )}
-
-      {!loading && data.length === 0 && (
-        <div className="py-8 text-center text-gray-500">
-          No transition reason data available for the selected filters
-        </div>
-      )}
+      <div className="p-4">
+        <h3 className="font-semibold">
+          What were the main reasons for transitioning?
+        </h3>
+        <p className="text-sm text-gray-600">
+          Data from Reddit user transition timelines ({totalUsers} users)
+        </p>
+      </div>
+      <div className={`w-full ${className}`}>
+        <ResponsiveContainer width="100%" height={500}>
+          <PieChart>
+            <Pie
+              data={dataWithTotal}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              label={CustomLabel}
+              outerRadius={150}
+              fill="#8884d8"
+              dataKey="userCount"
+            >
+              {dataWithTotal.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip content={<CustomTooltip />} />
+            <Legend 
+              verticalAlign="bottom" 
+              height={36}
+              wrapperStyle={{ paddingTop: "20px" }}
+              formatter={(value, entry) => (
+                <span style={{ color: entry.color }}>
+                  {value} ({entry.payload.userCount})
+                </span>
+              )}
+            />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
     </>
   );
 }
