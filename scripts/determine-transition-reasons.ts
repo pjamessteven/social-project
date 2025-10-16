@@ -110,7 +110,9 @@ Examples of good tag formats:
 - medical complications
 - trauma response
 - peer influence
-- autogynephilia`;
+- autogynephilia
+- internalised homophobia
+- internalised misogony`;
 
   try {
     const response = await fetchWithBackoff(() =>
