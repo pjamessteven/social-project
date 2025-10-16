@@ -111,7 +111,7 @@ export default function TransitionDurationChart({
               Transition Duration: Age at Transition vs Age at Detransition
             </h3>
             <p className="text-sm text-gray-600">
-              Each point shows transition age (X) vs detransition age (Y). Points above the diagonal line represent longer transition periods.
+              Each point shows transition age (X) vs detransition age (Y). Points above the diagonal line represent longer transition periods. Larger, more opaque points represent more users.
             </p>
           </div>
           <div className={`w-full ${className}`}>
@@ -156,9 +156,35 @@ export default function TransitionDurationChart({
                 <Scatter
                   dataKey="detransitionAge"
                   fill="#3b82f6"
-                  fillOpacity={0.6}
                   stroke="#1d4ed8"
                   strokeWidth={1}
+                  shape={(props: any) => {
+                    const { cx, cy, payload } = props;
+                    if (!payload) return null;
+                    
+                    // Calculate size based on count (min 3, max 15)
+                    const maxCount = Math.max(...data.map(d => d.count));
+                    const minSize = 3;
+                    const maxSize = 15;
+                    const size = minSize + (payload.count / maxCount) * (maxSize - minSize);
+                    
+                    // Calculate opacity based on count (min 0.3, max 0.8)
+                    const minOpacity = 0.3;
+                    const maxOpacity = 0.8;
+                    const opacity = minOpacity + (payload.count / maxCount) * (maxOpacity - minOpacity);
+                    
+                    return (
+                      <circle
+                        cx={cx}
+                        cy={cy}
+                        r={size}
+                        fill="#3b82f6"
+                        fillOpacity={opacity}
+                        stroke="#1d4ed8"
+                        strokeWidth={1}
+                      />
+                    );
+                  }}
                 />
               </ScatterChart>
             </ResponsiveContainer>
