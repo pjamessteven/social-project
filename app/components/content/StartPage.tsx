@@ -117,7 +117,7 @@ export async function StartPage({
                   className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
                 >
                   <BookOpen className="h-4 w-4" />
-                  <span className="text-sm font-medium">Studies & Stats</span>
+                  <span className="text-sm font-medium">Academic Research</span>
                 </Button>
               </Link>
 
