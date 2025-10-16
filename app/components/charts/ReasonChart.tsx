@@ -178,7 +178,15 @@ export default function TransitionReasonChart({
 
   // Calculate total for percentage calculations and limit legend entries
   const dataWithTotal = data.map((item) => ({ ...item, total: totalUsers, totalReasonCount }));
-  const legendData = dataWithTotal.slice(0, 14);
+  
+  // Create custom payload for legend showing only top 16 values
+  const legendPayload = dataWithTotal.slice(0, 16).map((item, index) => ({
+    value: item.name,
+    type: 'square' as const,
+    id: `legend-${index}`,
+    color: COLORS[index % COLORS.length],
+    payload: item
+  }));
 
   if (loading) {
     return (
@@ -250,15 +258,13 @@ export default function TransitionReasonChart({
             <Legend
               verticalAlign="bottom"
               height={68}
-              payload={legendData}
+              payload={legendPayload}
               wrapperStyle={{ marginTop: "-20px" }}
               formatter={(value, entry) => {
-                const index = dataWithTotal.findIndex(item => item.name === value);
-                if (index >= 0) return null;
-                const userCount = index >= 0 ? dataWithTotal[index].userCount : 0;
+                const item = entry.payload;
                 return (
                   <span style={{ color: entry.color }}>
-                    {value} ({userCount})
+                    {value} ({item.userCount})
                   </span>
                 );
               }}
