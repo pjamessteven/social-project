@@ -171,9 +171,9 @@ export default function TransitionReasonChart({
     );
   };
 
-  // Calculate total for percentage calculations
-
+  // Calculate total for percentage calculations and limit legend entries
   const dataWithTotal = data.map((item) => ({ ...item, total: totalUsers }));
+  const legendData = dataWithTotal.slice(0, 16);
 
   if (loading) {
     return (
@@ -246,6 +246,12 @@ export default function TransitionReasonChart({
               verticalAlign="bottom"
               height={68}
               wrapperStyle={{ marginTop: "-20px" }}
+              payload={legendData.map((entry, index) => ({
+                value: entry.name,
+                type: 'rect',
+                color: COLORS[index % COLORS.length],
+                payload: entry
+              }))}
               formatter={(value, entry) => (
                 <span style={{ color: entry.color }}>
                   {value} ({(entry.payload as any).userCount})
