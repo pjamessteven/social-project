@@ -159,8 +159,7 @@ export async function StartPage({
                 in these statistics. At the same time, a constantly growing
                 number of people are healing their gender dysphoria,
                 detransitioning and sharing their experiences. These people call
-                themselves detrans, and they identify themselves online with the
-                lizard emoji, because of their ability to regrow their tail and heal.
+                themselves detrans, and they use the lizard emoji online as a symbol of regeneration and healing.
               </p>
               <div className="flex w-full justify-end pt-2">
                 <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white">
