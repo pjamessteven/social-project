@@ -208,9 +208,9 @@ export async function GET(request: NextRequest) {
   }));
 
   const allRoutes = [
+    ...(isAffirm ? affirmRoutes : baseRoutes),
     ...(isAffirm ? affirmChatRoutes : chatRoutes),
     ...topQuestionRoutes,
-    ...(isAffirm ? affirmRoutes : baseRoutes),
     ...(isAffirm ? [] : userRoutes),
     ...(isAffirm ? [] : tagRoutes),
     ...(isAffirm ? [] : sexRoutes),
