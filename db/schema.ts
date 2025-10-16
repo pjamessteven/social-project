@@ -53,6 +53,7 @@ export const affirmCache = pgTable('affirm_cache', {
 export const detransTags = pgTable('detrans_tags', {
   id: serial('id').primaryKey(),
   name: varchar('name', { length: 255 }).notNull().unique(),
+  type: varchar('type', { length: 100 }),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 }, (table) => ({
   nameIdx: index('idx_detrans_tags_name').on(table.name),
@@ -164,6 +165,7 @@ export const detransUserEventSchema = z.object({
 export const tagSchema = z.object({
   id: z.number().int(),
   name: z.string().max(255),
+  type: z.string().max(100).nullable(),
   createdAt: z.date(),
 });
 
