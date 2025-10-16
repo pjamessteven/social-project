@@ -4,7 +4,7 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import { OpenAI } from "openai";
 
 import postgres from "postgres";
-import { detransUsers, detransTags, detransTagTypes } from "../db/schema";
+import { detransUsers, detransTags, detransTagTypes, detransUserTags } from "../db/schema";
 
 dotenv.config();
 
@@ -183,6 +183,30 @@ async function ensureTagExists(tagName: string, tagType: 'transition reason' | '
   return tagId;
 }
 
+async function ensureUserTagRelation(username: string, tagId: number): Promise<void> {
+  // Check if user-tag relation already exists
+  const existingRelation = await db
+    .select()
+    .from(detransUserTags)
+    .where(
+      sql`${detransUserTags.username} = ${username} AND ${detransUserTags.tagId} = ${tagId}`
+    )
+    .limit(1);
+  
+  if (existingRelation.length === 0) {
+    // Create the user-tag relation
+    console.log(`Creating user-tag relation for ${username} and tag ID ${tagId}`);
+    await db
+      .insert(detransUserTags)
+      .values({
+        username: username,
+        tagId: tagId
+      });
+  } else {
+    console.log(`User-tag relation already exists for ${username} and tag ID ${tagId}`);
+  }
+}
+
 async function processUser(user: any, index: number, total: number): Promise<void> {
   const { username, experience, sex, transitionReasonId, detransitionReasonId } = user;
 
@@ -250,6 +274,14 @@ async function processUser(user: any, index: number, total: number): Promise<voi
         .where(eq(detransUsers.username, username));
 
       console.log(`Updated ${username} with:`, updates);
+
+      // Create user-tag relations for the assigned reasons
+      if (updates.transitionReasonId) {
+        await ensureUserTagRelation(username, updates.transitionReasonId);
+      }
+      if (updates.detransitionReasonId) {
+        await ensureUserTagRelation(username, updates.detransitionReasonId);
+      }
     }
 
     // Add delay between API calls (now only one call per user)
