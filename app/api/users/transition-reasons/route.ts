@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { drizzle } from "drizzle-orm/postgres-js";
 import { sql, eq, and } from "drizzle-orm";
 import postgres from "postgres";
-import { detransUsers, detransTags } from "@/db/schema";
+import { detransUsers, detransTags, detransUserTags } from "@/db/schema";
 
 const connectionString = process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/app";
 const client = postgres(connectionString);
@@ -15,9 +15,11 @@ export async function GET(request: NextRequest) {
     const maxAge = parseInt(searchParams.get("maxAge") || "50");
     const sex = searchParams.get("sex");
 
-    // Build where conditions for filtering users
-    const userConditions = [eq(detransTags.type, 'transition reason')];
+    // Build where conditions for tags
+    const tagConditions = [eq(detransTags.type, 'transition reason')];
     
+    // Build where conditions for users
+    const userConditions = [];
     if (sex && (sex === "m" || sex === "f")) {
       userConditions.push(eq(detransUsers.sex, sex));
     }
@@ -35,13 +37,17 @@ export async function GET(request: NextRequest) {
       .select({
         id: detransTags.id,
         name: detransTags.name,
-        userCount: sql<number>`COALESCE(COUNT(${detransUsers.username}), 0)`,
+        userCount: sql<number>`COALESCE(COUNT(DISTINCT ${detransUserTags.username}), 0)`,
       })
       .from(detransTags)
-      .leftJoin(detransUsers, eq(detransTags.id, detransUsers.transitionReasonId))
-      .where(and(...userConditions))
+      .leftJoin(detransUserTags, eq(detransTags.id, detransUserTags.tagId))
+      .leftJoin(detransUsers, eq(detransUserTags.username, detransUsers.username))
+      .where(and(
+        ...tagConditions,
+        ...(userConditions.length > 0 ? [and(...userConditions)] : [])
+      ))
       .groupBy(detransTags.id, detransTags.name)
-      .orderBy(sql`COUNT(${detransUsers.username}) DESC`);
+      .orderBy(sql`COUNT(DISTINCT ${detransUserTags.username}) DESC`);
 
     return NextResponse.json({ 
       data: transitionReasons,
