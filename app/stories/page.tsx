@@ -127,11 +127,11 @@ export default async function UsersPage({ searchParams }: UsersPageProps) {
           subreddit, which is the largest open collection of detransition stories and experiences on the
           internet!
         </p>
-        <details className="cursor-pointer">
+        <details className="cursor-pointer text-sm sm:text-base">
           <summary>
             <i>These stories have been summarised using AI.  </i>
           </summary>
-          <div className="mt-2 mb-8 rounded-lg border p-3 text-sm text-gray-600 sm:text-base dark:text-gray-400">
+          <div className="mt-2 mb-8 py-3 text-sm text-gray-600 sm:text-base dark:text-gray-400">
 
             On Reddit, people often share their experiences across multiple
             comments or posts. To make this information more accessible, our AI

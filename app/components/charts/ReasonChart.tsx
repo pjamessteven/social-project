@@ -71,14 +71,15 @@ export default function TransitionReasonChart({
         params.set("sex", sex);
       }
 
+      // set mode 'transition reason' or 'detransition reason'
+      params.set("mode", mode);
+
       console.log(
         `Fetching ${mode} reasons with params:`,
         params.toString(),
       );
 
-      const apiRoute = mode === "detransition" 
-        ? "/api/users/detransition-reasons" 
-        : "/api/users/transition-reasons";
+      const apiRoute = "/api/users/reasons" 
 
       const response = await fetch(
         `${apiRoute}?${params.toString()}`,

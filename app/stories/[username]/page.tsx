@@ -188,14 +188,14 @@ export default async function UserPage({
           )}
         </div>
 
-        <details className="mb-4 cursor-pointer">
+        <details className="mb-4 cursor-pointer text-sm sm:text-base">
           <summary className="text-muted-foreground">
             <i>
               This story is from the comments listed
               below, summarised by AI.
             </i>
           </summary>
-          <div className="mt-2 mb-8 rounded-lg border p-3 text-sm text-gray-600 sm:text-base dark:text-gray-400">
+          <div className="mt-2 mb-8 py-3 text-gray-600  dark:text-gray-400">
             On Reddit, people often share their experiences across multiple
             comments or posts. To make this information more accessible, our AI
             gathers all of those scattered pieces into a single, easy-to-read
@@ -209,7 +209,7 @@ export default async function UserPage({
         </details>
         {/* Red Flags Report */}
         {user.redFlagsReport && (
-          <details className="cursor-pointer">
+          <details className="cursor-pointer  text-sm sm:text-base">
             <summary className="text-muted-foreground">
               <i>
                 Authenticity Assessment:{" "}
@@ -222,7 +222,7 @@ export default async function UserPage({
               dangerouslySetInnerHTML={{
                 __html: marked.parse(user.redFlagsReport || ""),
               }}
-              className="mt-2 mb-8 rounded-lg border p-3 text-sm text-gray-600 sm:text-base dark:text-gray-400"
+              className="mt-2 mb-8  text-gray-600  dark:text-gray-400"
             ></div>
           </details>
         )}
