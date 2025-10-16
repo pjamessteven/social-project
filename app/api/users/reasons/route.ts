@@ -14,9 +14,12 @@ export async function GET(request: NextRequest) {
     const minAge = parseInt(searchParams.get("minAge") || "10");
     const maxAge = parseInt(searchParams.get("maxAge") || "50");
     const sex = searchParams.get("sex");
+    const mode = searchParams.get("mode");
 
+    const type = mode === 'detransition' ? 'detransition reason' : 'transition reason'
+    
     // Build where conditions for tags
-    const tagConditions = [eq(detransTags.type, 'transition reason')];
+    const tagConditions = [eq(detransTags.type, type)];
     
     // Build where conditions for users
     const userConditions = [];
@@ -33,7 +36,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get all transition reason tags with filtered user counts
-    const transitionReasons = await db
+    const detransitionReasons = await db
       .select({
         id: detransTags.id,
         name: detransTags.name,
@@ -50,13 +53,13 @@ export async function GET(request: NextRequest) {
       .orderBy(sql`COUNT(DISTINCT ${detransUserTags.username}) DESC`);
 
     return NextResponse.json({ 
-      data: transitionReasons,
-      total: transitionReasons.length 
+      data: detransitionReasons,
+      total: detransitionReasons.length 
     });
   } catch (error) {
-    console.error("Error fetching transition reasons:", error);
+    console.error("Error fetching reasons:", error);
     return NextResponse.json(
-      { error: "Failed to fetch transition reasons" },
+      { error: "Failed to fetch reasons" },
       { status: 500 }
     );
   }
