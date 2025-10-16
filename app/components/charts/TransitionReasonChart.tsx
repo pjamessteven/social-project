@@ -89,11 +89,14 @@ export default function TransitionReasonChart({
 
       setTotalUsers(result.total)
 
-      // Filter out reasons with 0 users for cleaner visualization
-      const filteredData = result.data.filter((item: TransitionReasonData) => item.userCount > 0);
-      console.log("Filtered transition reasons data:", filteredData);
+      // Convert userCount to numbers and filter out reasons with 0 users for cleaner visualization
+      const processedData = result.data.map((item: any) => ({
+        ...item,
+        userCount: parseInt(item.userCount, 10)
+      })).filter((item: TransitionReasonData) => item.userCount > 0);
+      console.log("Filtered transition reasons data:", processedData);
       
-      setData(filteredData);
+      setData(processedData);
       setError(null);
     } catch (err) {
       console.error("Error fetching transition reasons:", err);
@@ -192,7 +195,6 @@ export default function TransitionReasonChart({
         </p>
       </div>
       <div className={`w-full ${className}`}>
-        {JSON.stringify(dataWithTotal)}
         <ResponsiveContainer width="100%" height={500}>
           <PieChart>
             <Pie
