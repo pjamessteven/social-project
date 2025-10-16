@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
-export default function DonationCard({ mode }: { mode: "detrans" | "affirm" }) {
+export default function DonationCard({ mode }: { mode: "detrans" | "affirm" | 'compare' }) {
   return (
     <Card
       className={
@@ -16,7 +16,7 @@ export default function DonationCard({ mode }: { mode: "detrans" | "affirm" }) {
             <HandCoins className="text-foreground mr-2 h-5 w-5" />
             <CardTitle className="text-foreground dark:text-white">
               Donations needed to keep{" "}
-              {mode === "detrans" ? "detrans.ai" : "genderaffirming.ai"} alive!
+              {mode === "affirm" ? "genderaffirming.ai" : "detrans.ai"} alive!
             </CardTitle>
           </div>
           <div

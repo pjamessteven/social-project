@@ -5,6 +5,7 @@ import { useState } from "react";
 import AgeDistributionChart from "./AgeDistributionChart";
 import YearDistributionChart from "./YearDistributionChart";
 import TransitionPathwaysChart from "./TransitionPathwaysChart";
+import TransitionReasonChart from "./TransitionReasonChart";
 
 interface StoriesChartsProps {
   resolvedSearchParams: {
@@ -16,7 +17,7 @@ interface StoriesChartsProps {
 export default function StoriesCharts({
   resolvedSearchParams,
 }: StoriesChartsProps) {
-  const [activeTab, setActiveTab] = useState<"age" | "year" | "pathways">(
+  const [activeTab, setActiveTab] = useState<"age" | "reasons" | "pathways">(
     "age",
   );
 
@@ -34,18 +35,18 @@ export default function StoriesCharts({
           <div className="">Age Distribution</div>
         </div>
 
-          {/*
+
         <div
           className={`hover:text-foreground cursor-pointer p-4 sm:px-6  text-sm sm:text-base ${
-            activeTab === "year"
+            activeTab === "reasons"
               ? "dark:bg-secondary bg-white"
               : "text-muted-foreground"
           }`}
-          onClick={() => setActiveTab("year")}
+          onClick={() => setActiveTab("reasons")}
         >
-          <div className="font-semibold">Year Distribution</div>
+          <div className="font-semibold">Transition Reasons</div>
         </div>
- */}
+
         <div
           className={`hover:text-foreground cursor-pointer  p-4 sm:px-6 text-sm sm:text-base ${
             activeTab === "pathways"
@@ -73,9 +74,9 @@ export default function StoriesCharts({
             }
           />
         )}
-                  {/*
-        {activeTab === "year" && (
-          <YearDistributionChart
+
+        {activeTab === "reasons" && (
+          <TransitionReasonChart
             className="shadow-lg min-w-lg"
             minAge={
               typeof resolvedSearchParams.minAge === "string"
@@ -89,7 +90,7 @@ export default function StoriesCharts({
             }
           />
         )}
-          */}
+
         {activeTab === "pathways" && (
           <TransitionPathwaysChart
             className="shadow-lg min-w-xl"

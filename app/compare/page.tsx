@@ -3,22 +3,20 @@ import { StartPage } from "../components/content/StartPage";
 import type { Metadata } from "next";
 
 const metadata: Metadata = {
-  title: "genderaffirming.ai | Talk to 600,000+ trans people",
+  title: "Compare Trans vs Detrans Perspectives",
   description:
-    "GenderAffirming.AI is a self-guided online gender-affirming therapy tool for MTF and FTM transgender people powered by real trans perspectives and experiences.",
+    "You can use this tool to see trans and detrans perspectives side-by-side. Pick from any of the spicy starter questions, or ask your own question to see the differences. This tool is very useful for transition and detransition research. ",
   openGraph: {
-    title: "genderaffirming.ai | Talk to 600,000+ trans people",
+    title: "Compare Trans vs Detrans Perspectives",
     description:
-      "GenderAffirming.AI is a self-guided online gender-affirming therapy tool for MTF and FTM transgender people powered by real trans perspectives and experiences.",
-    url: "https://genderaffirming.ai",
-    siteName: "genderaffirming.ai",
+    "You can use this tool to see trans and detrans perspectives side-by-side. Pick from any of the spicy starter questions, or ask your own question to see the differences. This tool is very useful for transition and detransition research. ",
     locale: "en_US",
     type: "website",
   },
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  return metadata
+  return metadata;
 }
 
 export default async function Home() {

@@ -4,7 +4,7 @@ interface LizardAnimationProps {
   className?: string;
 }
 
-export default function LizardAnimation({ className }: LizardAnimationProps) {
+export default function AffirmAnimation({ className }: LizardAnimationProps) {
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
