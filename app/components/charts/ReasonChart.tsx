@@ -251,17 +251,15 @@ export default function TransitionReasonChart({
               verticalAlign="bottom"
               height={68}
               wrapperStyle={{ marginTop: "-20px" }}
-              payload={legendData.map((entry, index) => ({
-                value: entry.name,
-                type: 'rect',
-                color: COLORS[index % COLORS.length],
-                payload: entry
-              }))}
-              formatter={(value, entry) => (
-                <span style={{ color: entry.color }}>
-                  {value} ({(entry.payload as any).userCount})
-                </span>
-              )}
+              formatter={(value, entry) => {
+                const index = dataWithTotal.findIndex(item => item.name === value);
+                const userCount = index >= 0 ? dataWithTotal[index].userCount : 0;
+                return (
+                  <span style={{ color: entry.color }}>
+                    {value} ({userCount})
+                  </span>
+                );
+              }}
             />
           </PieChart>
         </ResponsiveContainer>
