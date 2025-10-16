@@ -49,6 +49,7 @@ export default function TransitionReasonChart({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [totalUsers, setTotalUsers] = useState<number | null>(0);
+  const [totalReasonCount, setTotalReasonCount] = useState<number>(0);
 
   const fetchData = async () => {
     try {
@@ -110,6 +111,10 @@ export default function TransitionReasonChart({
         .filter((item: TransitionReasonData) => item.userCount > 0);
       console.log(`Filtered ${mode} reasons data:`, processedData);
 
+      // Calculate total reason count (sum of all individual reason counts)
+      const totalCount = processedData.reduce((sum, item) => sum + item.userCount, 0);
+      setTotalReasonCount(totalCount);
+
       setData(processedData);
       setError(null);
     } catch (err) {
@@ -132,7 +137,7 @@ export default function TransitionReasonChart({
         <div className="rounded border border-gray-300 bg-white p-3 shadow-lg">
           <p className="font-medium text-black">{data.name}</p>
           <p className="text-sm text-gray-600">
-            {`${data.userCount} users (${((data.userCount / payload[0].payload.total) * 100).toFixed(1)}%)`}
+            {`${data.userCount} mentions (${((data.userCount / payload[0].payload.totalReasonCount) * 100).toFixed(1)}%)`}
           </p>
         </div>
       );
@@ -172,7 +177,7 @@ export default function TransitionReasonChart({
   };
 
   // Calculate total for percentage calculations and limit legend entries
-  const dataWithTotal = data.map((item) => ({ ...item, total: totalUsers }));
+  const dataWithTotal = data.map((item) => ({ ...item, total: totalUsers, totalReasonCount }));
   const legendData = dataWithTotal.slice(0, 14);
 
   if (loading) {
@@ -212,7 +217,7 @@ export default function TransitionReasonChart({
           Why did detransitioners {mode === "detransition" ? "de-transition" : "transition"}?
         </h3>
         <p className="text-sm text-gray-600">
-          Data from Reddit user {mode} timelines ({totalUsers} users)
+          Data from Reddit user {mode} timelines ({totalUsers} users, {totalReasonCount} total reasons)
         </p>
       </div>
       <div className={`w-full ${className}`}>
