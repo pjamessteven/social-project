@@ -209,7 +209,7 @@ export default function TransitionReasonChart({
     <>
       <div className="p-4">
         <h3 className="font-semibold">
-          What were the main reasons for {mode === "detransition" ? "detransitioning" : "transitioning"}?
+          Why did detransitioners {mode === "detransition" ? "detransition" : "transition"}?
         </h3>
         <p className="text-sm text-gray-600">
           Data from Reddit user {mode} timelines ({totalUsers} users)
