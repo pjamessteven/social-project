@@ -5,7 +5,8 @@ import {
 } from "@/app/lib/questions";
 import { slugify } from "@/app/lib/utils";
 import { db } from "@/db";
-import { detransUsers } from "@/db/schema";
+import { detransUsers, detransQuestions, affirmQuestions } from "@/db/schema";
+import { desc } from "drizzle-orm";
 import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -26,6 +27,14 @@ export async function GET(request: NextRequest) {
   const users = await db
     .select({ username: detransUsers.username })
     .from(detransUsers);
+
+  // Fetch top 1000 questions from database based on mode
+  const questionsTable = isAffirm ? affirmQuestions : detransQuestions;
+  const topQuestions = await db
+    .select({ name: questionsTable.name })
+    .from(questionsTable)
+    .orderBy(desc(questionsTable.viewsCount))
+    .limit(1000);
 
   const baseRoutes = [
     {
@@ -188,8 +197,19 @@ export async function GET(request: NextRequest) {
     priority: 0.6,
   }));
 
+  // Generate chat routes for top questions from database
+  const topQuestionRoutes = topQuestions.map((question) => ({
+    url: isAffirm 
+      ? `${baseUrl}/affirm/chat/${slugify(question.name)}`
+      : `${baseUrl}/chat/${slugify(question.name)}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
+
   const allRoutes = [
     ...(isAffirm ? affirmChatRoutes : chatRoutes),
+    ...topQuestionRoutes,
     ...(isAffirm ? affirmRoutes : baseRoutes),
     ...(isAffirm ? [] : userRoutes),
     ...(isAffirm ? [] : tagRoutes),
