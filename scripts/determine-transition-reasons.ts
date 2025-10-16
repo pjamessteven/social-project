@@ -4,7 +4,7 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import { OpenAI } from "openai";
 
 import postgres from "postgres";
-import { detransUsers, detransTags } from "../db/schema";
+import { detransUsers, detransTags, detransTagTypes } from "../db/schema";
 
 dotenv.config();
 
@@ -56,7 +56,8 @@ async function getTransitionReasonTags(): Promise<string[]> {
   const tags = await db
     .select({ name: detransTags.name })
     .from(detransTags)
-    .where(eq(detransTags.type, 'transition reason'));
+    .innerJoin(detransTagTypes, eq(detransTags.id, detransTagTypes.tagId))
+    .where(eq(detransTagTypes.type, 'transition reason'));
   
   return tags.map(tag => tag.name);
 }
@@ -65,7 +66,8 @@ async function getDetransitionReasonTags(): Promise<string[]> {
   const tags = await db
     .select({ name: detransTags.name })
     .from(detransTags)
-    .where(eq(detransTags.type, 'detransition reason'));
+    .innerJoin(detransTagTypes, eq(detransTags.id, detransTagTypes.tagId))
+    .where(eq(detransTagTypes.type, 'detransition reason'));
   
   return tags.map(tag => tag.name);
 }
@@ -168,20 +170,41 @@ async function ensureTagExists(tagName: string, tagType: 'transition reason' | '
     .where(eq(detransTags.name, tagName))
     .limit(1);
   
+  let tagId: number;
+  
   if (existingTag.length === 0) {
-    // Create new tag with specified type
-    console.log(`Creating new ${tagType} tag: "${tagName}"`);
+    // Create new tag
+    console.log(`Creating new tag: "${tagName}"`);
     const newTag = await db
       .insert(detransTags)
-      .values({ 
-        name: tagName,
-        type: tagType
-      })
+      .values({ name: tagName })
       .returning({ id: detransTags.id });
-    return newTag[0].id;
+    tagId = newTag[0].id;
   } else {
-    return existingTag[0].id;
+    tagId = existingTag[0].id;
   }
+  
+  // Check if this tag already has this type
+  const existingTagType = await db
+    .select()
+    .from(detransTagTypes)
+    .where(
+      sql`${detransTagTypes.tagId} = ${tagId} AND ${detransTagTypes.type} = ${tagType}`
+    )
+    .limit(1);
+  
+  if (existingTagType.length === 0) {
+    // Add the type to this tag
+    console.log(`Adding type "${tagType}" to tag "${tagName}"`);
+    await db
+      .insert(detransTagTypes)
+      .values({
+        tagId: tagId,
+        type: tagType
+      });
+  }
+  
+  return tagId;
 }
 
 async function processUser(user: any, index: number, total: number): Promise<void> {

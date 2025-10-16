@@ -53,10 +53,21 @@ export const affirmCache = pgTable('affirm_cache', {
 export const detransTags = pgTable('detrans_tags', {
   id: serial('id').primaryKey(),
   name: varchar('name', { length: 255 }).notNull().unique(),
-  type: varchar('type', { length: 100 }),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 }, (table) => ({
   nameIdx: index('idx_detrans_tags_name').on(table.name),
+}));
+
+// Tag types junction table
+export const detransTagTypes = pgTable('detrans_tag_types', {
+  id: serial('id').primaryKey(),
+  tagId: integer('tag_id').notNull().references(() => detransTags.id, { onDelete: 'cascade' }),
+  type: varchar('type', { length: 100 }).notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+}, (table) => ({
+  tagTypeIdx: index('idx_detrans_tag_types_tag_type').on(table.tagId, table.type),
+  // Ensure unique combination of tag and type
+  uniqueTagType: index('idx_detrans_tag_types_unique').on(table.tagId, table.type),
 }));
 
 // User tags junction table
@@ -169,7 +180,13 @@ export const detransUserEventSchema = z.object({
 export const tagSchema = z.object({
   id: z.number().int(),
   name: z.string().max(255),
-  type: z.string().max(100).nullable(),
+  createdAt: z.date(),
+});
+
+export const tagTypeSchema = z.object({
+  id: z.number().int(),
+  tagId: z.number().int(),
+  type: z.string().max(100),
   createdAt: z.date(),
 });
 
@@ -219,4 +236,5 @@ export type DetransUserEvent = z.infer<typeof detransUserEventSchema>;
 export type DetransUser = z.infer<typeof detransUserSchema>;
 export type DetransComment = z.infer<typeof detransCommentSchema>;
 export type Tag = z.infer<typeof tagSchema>;
+export type TagType = z.infer<typeof tagTypeSchema>;
 export type UserTag = z.infer<typeof userTagSchema>;
