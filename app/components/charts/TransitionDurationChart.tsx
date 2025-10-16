@@ -160,7 +160,9 @@ export default function TransitionDurationChart({
                   strokeWidth={1}
                   shape={(props: any) => {
                     const { cx, cy, payload } = props;
-                    if (!payload) return null;
+                    if (!payload || !cx || !cy) {
+                      return <circle cx={0} cy={0} r={0} fill="transparent" />;
+                    }
                     
                     // Calculate size based on count (min 3, max 15)
                     const maxCount = Math.max(...data.map(d => d.count));
