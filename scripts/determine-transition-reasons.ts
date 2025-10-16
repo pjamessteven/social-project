@@ -77,21 +77,9 @@ ${userExperience}
 
 Instructions:
 1. If one of the available tags accurately describes their main transition reason, return that exact tag name.
-2. If none of the available tags fit well, create a new descriptive tag (2-4 words, lowercase) that captures their main transition reason.
+2. If none of the available tags fit well, create a new descriptive tag (1-4 words, lowercase) that captures their main transition reason.
 3. Focus on the ROOT CAUSE, not just symptoms or later developments.
 4. Return ONLY the tag name, nothing else.
-
-Examples of good transition reason tags:
-- "gender dysphoria"
-- "social contagion"
-- "autism and confusion"
-- "trauma response"
-- "internalized homophobia"
-- "body dysmorphia"
-- "peer pressure"
-- "online influence"
-- "escape from femininity"
-- "sexual trauma"
 
 Tag:`;
 
