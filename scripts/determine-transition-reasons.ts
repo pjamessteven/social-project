@@ -98,7 +98,7 @@ Instructions:
 1. For each reason, if an available tag fits, use that exact tag name
 2. If no available tag fits, create a new descriptive tag (1-4 words, lowercase)
 3. Focus on ROOT CAUSES and primary motivations
-4. Tag names should use simple words separated by spaces (e.g. "social pressure", "medical complications")
+4. Tag names should use simple lowercase words separated by spaces (e.g. "social pressure", "medical complications")
 5. Do NOT use asterisks, underscores, hyphens, or any special characters in tag names
 6. Return ONLY the tag name after each label, nothing else
 7. Return in this exact format:
@@ -107,7 +107,7 @@ DETRANSITION_REASON: [tag name]
 
 Examples of good tag formats:
 - social pressure
-- medical complications  
+- medical complications
 - trauma response
 - peer influence
 - autogynephilia`;
