@@ -38,21 +38,24 @@ export async function GET(request: NextRequest) {
     // Get all reason tags with filtered user counts
     const reasonField = mode === 'detransition' ? detransUsers.detransitionReasonId : detransUsers.transitionReasonId;
     
+    // Build the user filter condition for the COUNT
+    let userFilterCondition = sql`1=1`;
+    if (userConditions.length > 0) {
+      userFilterCondition = and(...userConditions) || sql`1=1`;
+    }
+    
     const detransitionReasons = await db
       .select({
         id: detransTags.id,
         name: detransTags.name,
-        userCount: sql<number>`COALESCE(COUNT(DISTINCT ${detransUsers.username}), 0)`,
+        userCount: sql<number>`COALESCE(COUNT(DISTINCT CASE WHEN ${reasonField} = ${detransTags.id} AND ${userFilterCondition} THEN ${detransUsers.username} END), 0)`,
       })
       .from(detransTags)
       .innerJoin(detransTagTypes, eq(detransTags.id, detransTagTypes.tagId))
-      .leftJoin(detransUsers, eq(detransTags.id, reasonField))
-      .where(and(
-        ...tagConditions,
-        ...(userConditions.length > 0 ? userConditions : [])
-      ))
+      .leftJoin(detransUsers, sql`1=1`)
+      .where(and(...tagConditions))
       .groupBy(detransTags.id, detransTags.name)
-      .orderBy(sql`COUNT(DISTINCT ${detransUsers.username}) DESC`);
+      .orderBy(sql`COALESCE(COUNT(DISTINCT CASE WHEN ${reasonField} = ${detransTags.id} AND ${userFilterCondition} THEN ${detransUsers.username} END), 0) DESC`);
 
     return NextResponse.json({ 
       data: detransitionReasons,
