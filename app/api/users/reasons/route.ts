@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { drizzle } from "drizzle-orm/postgres-js";
-import { sql, eq, and } from "drizzle-orm";
+import { sql, eq, and, inArray } from "drizzle-orm";
 import postgres from "postgres";
 import { detransUsers, detransTags, detransTagTypes, detransUserTags } from "@/db/schema";
 
@@ -14,6 +14,7 @@ export async function GET(request: NextRequest) {
     const minAge = parseInt(searchParams.get("minAge") || "10");
     const maxAge = parseInt(searchParams.get("maxAge") || "50");
     const sex = searchParams.get("sex");
+    const tag = searchParams.get("tag");
     const mode = searchParams.get("mode");
 
     const type = mode === 'detransition' ? 'detransition reason' : 'transition reason'
@@ -33,6 +34,38 @@ export async function GET(request: NextRequest) {
     }
     if (maxAge) {
       userConditions.push(sql`(${detransUsers.transitionAge} IS NULL OR ${detransUsers.transitionAge} <= ${maxAge})`);
+    }
+
+    // Add tag filtering
+    if (tag) {
+      const tagNames = tag.split(',').map(t => t.trim()).filter(Boolean);
+      if (tagNames.length > 0) {
+        // Get tag IDs for the requested tag names
+        const tagIds = await db
+          .select({ id: detransTags.id })
+          .from(detransTags)
+          .where(inArray(detransTags.name, tagNames));
+        
+        if (tagIds.length > 0) {
+          // Find users who have ALL the requested tags
+          const usersWithAllTags = await db
+            .select({ username: detransUserTags.username })
+            .from(detransUserTags)
+            .where(inArray(detransUserTags.tagId, tagIds.map(t => t.id)))
+            .groupBy(detransUserTags.username)
+            .having(sql`COUNT(DISTINCT ${detransUserTags.tagId}) = ${tagIds.length}`);
+          
+          if (usersWithAllTags.length > 0) {
+            userConditions.push(sql`${detransUsers.username} IN (${sql.join(usersWithAllTags.map(u => sql`${u.username}`), sql`, `)})`);
+          } else {
+            // No users have all the requested tags, return empty result
+            return NextResponse.json({ 
+              data: [],
+              total: 0 
+            });
+          }
+        }
+      }
     }
 
     // Get all reason tags with filtered user counts
