@@ -250,10 +250,11 @@ export default function TransitionReasonChart({
             <Legend
               verticalAlign="bottom"
               height={68}
+              payload={legendData}
               wrapperStyle={{ marginTop: "-20px" }}
               formatter={(value, entry) => {
                 const index = dataWithTotal.findIndex(item => item.name === value);
-                if (index >= 20) return null;
+                if (index >= 0) return null;
                 const userCount = index >= 0 ? dataWithTotal[index].userCount : 0;
                 return (
                   <span style={{ color: entry.color }}>
