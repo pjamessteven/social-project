@@ -36,22 +36,23 @@ export async function GET(request: NextRequest) {
     }
 
     // Get all reason tags with filtered user counts
+    const reasonField = mode === 'detransition' ? detransUsers.detransitionReasonId : detransUsers.transitionReasonId;
+    
     const detransitionReasons = await db
       .select({
         id: detransTags.id,
         name: detransTags.name,
-        userCount: sql<number>`COALESCE(COUNT(DISTINCT ${detransUserTags.username}), 0)`,
+        userCount: sql<number>`COALESCE(COUNT(DISTINCT ${detransUsers.username}), 0)`,
       })
       .from(detransTags)
       .innerJoin(detransTagTypes, eq(detransTags.id, detransTagTypes.tagId))
-      .leftJoin(detransUserTags, eq(detransTags.id, detransUserTags.tagId))
-      .leftJoin(detransUsers, eq(detransUserTags.username, detransUsers.username))
+      .leftJoin(detransUsers, eq(detransTags.id, reasonField))
       .where(and(
         ...tagConditions,
-        ...(userConditions.length > 0 ? [and(...userConditions)] : [])
+        ...(userConditions.length > 0 ? userConditions : [])
       ))
       .groupBy(detransTags.id, detransTags.name)
-      .orderBy(sql`COUNT(DISTINCT ${detransUserTags.username}) DESC`);
+      .orderBy(sql`COUNT(DISTINCT ${detransUsers.username}) DESC`);
 
     return NextResponse.json({ 
       data: detransitionReasons,
