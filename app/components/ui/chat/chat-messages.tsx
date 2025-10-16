@@ -21,17 +21,20 @@ export default function CustomChatMessages({
   componentDefs: ComponentDef[];
   appendError: (error: string) => void;
   onReset: () => void;
-  mode: "detrans" | "affirm";
+  mode: "detrans" | "affirm" | "compare",
   showDonationMessage: boolean;
 }) {
   const isDev = process.env.NODE_ENV === "development";
   const path = usePathname();
+
+  const isCompare = path.includes("/compare/")
 
   const { messages, isLoading } = useChatUI();
 
   const lastUserMessage = useMemo(() => {
     return messages?.findLast((x) => x.role === "user");
   }, [messages]);
+
 
   return (
     <ChatMessages className="!bg-transparent !p-0">
@@ -52,6 +55,7 @@ export default function CustomChatMessages({
                 <ChatMessageContent
                   componentDefs={componentDefs}
                   appendError={appendError}
+                  mode={isCompare ? 'compare' : mode}
                 />
                 <ChatMessage.Actions />
               </ChatMessage>
@@ -115,13 +119,13 @@ export default function CustomChatMessages({
                   )}
                   <Link
                     key={index}
-                    href={path.includes("compare") ? "/compare" : "/"}
+                    href={isCompare ? "/compare" : "/"}
                     className="mt-16 mb-4 ml-3 cursor-pointer font-semibold hover:underline"
                   >
                     <div className="text-muted-primary  hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base  opacity-90 transition-colors sm:text-base">
                       <div className="mr-2 whitespace-nowrap">{"<-"}</div>
                       <div className="hover:underline">
-                        {path.includes("/compare")
+                        {isCompare
                           ? "Back to Compare"
                           : "Back to Portal"}
                       </div>

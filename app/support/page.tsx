@@ -1,4 +1,4 @@
-"use server"
+"use server";
 
 import {
   Collapsible,
@@ -90,11 +90,12 @@ const navigationItems = [
 
 function SupportSidebar() {
   return (
-    <Sidebar className="w-64">
+    <Sidebar className="w-64 bg-gradient-to-b from-white to-secondary dark:from-black">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu className="gap-2">
+            <SidebarMenu className="gap-2 ">
+              <div className="font-semibold ml-2 mt-2 mb-1">Get Gender Support:</div>
               {navigationItems.map((item) => (
                 <SidebarMenuItem key={item.href}>
                   {item.children ? (
@@ -137,7 +138,7 @@ function SupportSidebar() {
 const metadata: Metadata = {
   title: "detrans.ai | Get Gender Help and Support",
   description:
-     "Learn the difference between gender affirmming care and gender exploratory therapy. If you are experiencing gender dysphoria, one of the best ways to get support for is to talk to and understand the perspectives of people who have been there themselves and come out the other side.",
+    "Learn the difference between gender affirmming care and gender exploratory therapy. If you are experiencing gender dysphoria, one of the best ways to get support for is to talk to and understand the perspectives of people who have been there themselves and come out the other side.",
   openGraph: {
     title: "detrans.ai | Get Gender Help and Support",
     description:
@@ -151,7 +152,7 @@ const metadata: Metadata = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  return metadata
+  return metadata;
 }
 
 export default async function SupportPage() {
@@ -162,9 +163,8 @@ export default async function SupportPage() {
           <SupportSidebar />
         </div>
         <main className="w-full flex-1">
-          <div className="prose dark:prose-invert pb-16  lg:pt-8">
-                    <h1 className="text-3xl font-bold">
-Get Gender Help & Support</h1>
+          <div className="prose dark:prose-invert pb-16 lg:pt-8 w-full">
+            <h1 className="text-3xl font-bold">Get Gender Help & Support</h1>
             <MobileJumpToSection />
             <h2 id="online-support-groups">Online Support groups:</h2>
             <p>
@@ -211,7 +211,8 @@ Get Gender Help & Support</h1>
               </li>
             </ul>
             <h2 id="gender-affirming-care">
-              Gender Affirming Care: <br className="sm:hidden"/>What is it?
+              Gender Affirming Care: <br className="sm:hidden" />
+              What is it?
             </h2>
             <p>
               Gender affirming care is currently the standard (and often the
@@ -221,9 +222,9 @@ Get Gender Help & Support</h1>
               patient to them. It is a staged approach that begins with social
               transition (name, pronouns, clothing), then hormone therapy, and
               then for some, irreversible surgical procedures. Gender affirming
-              care can provide relief for gender dysphoria
-              but it does come with serious health risks and often permanent
-              side-effects. Proceed with extreme caution, and make sure you{" "}
+              care can provide relief for gender dysphoria but it does come with
+              serious health risks and often permanent side-effects. Proceed
+              with extreme caution, and make sure you{" "}
               <Link prefetch={false} href={"/videos"} className="underline">
                 watch some testimonies
               </Link>{" "}

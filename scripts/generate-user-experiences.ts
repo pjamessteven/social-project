@@ -358,65 +358,6 @@ If ages are not clearly stated, return null for those fields.`;
 }
 
 
-async function fillMissingAges(
-  username: string,
-  existingUser: any,
-): Promise<{ 
-  transitionAge: number | null; 
-  detransitionAge: number | null;
-  hormonesAge: number | null;
-  topSurgeryAge: number | null;
-  bottomSurgeryAge: number | null;
-  pubertyBlockersAge: number | null;
-}> {
-  // Check if any age fields are missing
-  const hasAllAges = existingUser.transitionAge !== null && 
-                     existingUser.detransitionAge !== null && 
-                     existingUser.hormonesAge !== null &&
-                     existingUser.topSurgeryAge !== null &&
-                     existingUser.bottomSurgeryAge !== null &&
-                     existingUser.pubertyBlockersAge !== null;
-
-  if (hasAllAges) {
-    return {
-      transitionAge: existingUser.transitionAge,
-      detransitionAge: existingUser.detransitionAge,
-      hormonesAge: existingUser.hormonesAge,
-      topSurgeryAge: existingUser.topSurgeryAge,
-      bottomSurgeryAge: existingUser.bottomSurgeryAge,
-      pubertyBlockersAge: existingUser.pubertyBlockersAge,
-    };
-  }
-
-  console.log(`Attempting to fill missing age data for ${username} from experience text...`);
-
-  // Use experience text to extract missing ages
-  const experienceText = existingUser.experience || existingUser.experienceSummary || "";
-  if (!experienceText) {
-    console.log(`No experience text available for ${username}, cannot fill missing ages`);
-    return {
-      transitionAge: existingUser.transitionAge,
-      detransitionAge: existingUser.detransitionAge,
-      hormonesAge: existingUser.hormonesAge,
-      topSurgeryAge: existingUser.topSurgeryAge,
-      bottomSurgeryAge: existingUser.bottomSurgeryAge,
-      pubertyBlockersAge: existingUser.pubertyBlockersAge,
-    };
-  }
-
-  const extractedAges = await extractAges(username, experienceText);
-
-  // Merge existing data with extracted data, preferring existing data when available
-  return {
-    transitionAge: existingUser.transitionAge ?? extractedAges.transitionAge,
-    detransitionAge: existingUser.detransitionAge ?? extractedAges.detransitionAge,
-    hormonesAge: existingUser.hormonesAge ?? extractedAges.hormonesAge,
-    topSurgeryAge: existingUser.topSurgeryAge ?? extractedAges.topSurgeryAge,
-    bottomSurgeryAge: existingUser.bottomSurgeryAge ?? extractedAges.bottomSurgeryAge,
-    pubertyBlockersAge: existingUser.pubertyBlockersAge ?? extractedAges.pubertyBlockersAge,
-  };
-}
-
 async function generateTags(
   username: string,
   experienceReport: string,

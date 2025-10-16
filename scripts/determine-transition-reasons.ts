@@ -64,13 +64,19 @@ async function getTransitionReasonTags(): Promise<string[]> {
 async function determineTransitionReason(
   username: string,
   userExperience: string,
+  userSex: string,
   availableReasonTags: string[]
 ): Promise<string> {
   const prompt = `Based on the following user experience from a detransitioner, determine the MAIN reason why they initially transitioned. 
 
 Look for the primary underlying cause or motivation that led them to transition in the first place. This could be psychological, social, medical, or other factors.
+Prioritize using one of the available transition reason tags. 
 
 Available transition reason tags: ${availableReasonTags.join(', ')}
+autogynephilia can only apply to males. 
+autoandrophilia can only apply to females.
+
+The user's sex is "${userSex}"
 
 User experience from "${username}":
 ${userExperience}
@@ -126,7 +132,7 @@ async function ensureTagExists(tagName: string): Promise<number> {
 }
 
 async function processUser(user: any, index: number, total: number): Promise<void> {
-  const { username, experience, transitionReasonId } = user;
+  const { username, experience, sex, transitionReasonId } = user;
 
   console.log(`[${index + 1}/${total}] Processing user: ${username}`);
 
@@ -149,7 +155,7 @@ async function processUser(user: any, index: number, total: number): Promise<voi
     console.log(`Available transition reason tags: ${availableReasonTags.length} tags`);
 
     // Determine transition reason using LLM
-    const reasonTag = await determineTransitionReason(username, experience, availableReasonTags);
+    const reasonTag = await determineTransitionReason(username, experience, sex, availableReasonTags);
     
     if (!reasonTag || reasonTag === "unknown") {
       console.log(`Could not determine transition reason for ${username}, skipping...`);

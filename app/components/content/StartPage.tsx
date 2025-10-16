@@ -13,12 +13,19 @@ import {
 import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../ui/accordion";
+import AffirmAnimation from "../ui/affirm-animation";
 import { Button } from "../ui/button";
+import CompareAnimation from "../ui/compare-animation";
 import LizardAnimation from "../ui/lizard-animation";
 import { QuestionCategories } from "./QuestionCategories";
 import { QuestionTabs } from "./QuestionTabs";
 import RedditEmbeds from "./RedditEmbeds";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 
 export async function StartPage({
   className,
@@ -56,8 +63,8 @@ export async function StartPage({
               {mode === "detrans"
                 ? "Support, advice and knowledge."
                 : mode == "affirm"
-                  ? "Support, advide and knowledge"
-                  : ""}
+                  ? "Infinite affirmation & validation"
+                  : "See Both Sides"}
             </div>
           }
         </h1>
@@ -132,13 +139,27 @@ export async function StartPage({
           <div className="mt-1 w-full border-t" />
           <div className="mt-1 w-full border-t" />
         </div>
+        {mode === "detrans" && (
+          <div className="absolute top-0 right-0 z-0 w-[180px] rotate-15 sm:top-8 sm:-right-32 sm:w-[220px]">
+            <LizardAnimation />
+            <div className="absolute inset-0 dark:bg-black/20"></div>
+          </div>
+        )}
+        {mode === "compare" && (
+          <div className="absolute top-8 right-8 z-0 w-[160px] rotate-45 sm:top-8 sm:-right-24 sm:w-[220px]">
+            <CompareAnimation />
+            <div className="absolute inset-0 dark:bg-black/20"></div>
+          </div>
+        )}
+
+        {mode === "affirm" && (
+          <div className="absolute top-0 right-0 z-0 w-[180px] rotate-15 sm:top-8 sm:right-0 sm:w-[220px]">
+            <AffirmAnimation />
+            <div className="absolute inset-0 dark:bg-black/20"></div>
+          </div>
+        )}
         {mode === "detrans" ? (
           <div className="">
-            <div className="absolute top-0 right-0 z-0 w-[180px] rotate-15 sm:top-8 sm:-right-32 sm:w-[220px]">
-              <LizardAnimation />
-              <div className="absolute inset-0 dark:bg-black/20"></div>
-            </div>
-
             <div className="prose dark:prose-invert prose-base border- z-10 mt-4 max-w-full pt-4">
               <div className="flex w-full justify-end">
                 <div className="text-background mb-0 max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white">
@@ -159,7 +180,8 @@ export async function StartPage({
                 in these statistics. At the same time, a constantly growing
                 number of people are healing their gender dysphoria,
                 detransitioning and sharing their experiences. These people call
-                themselves detrans, and they use the lizard emoji online as a symbol of regeneration and healing.
+                themselves detrans, and they use with the lizard emoji when
+                posting online as a symbol of regeneration and healing.
               </p>
               <div className="flex w-full justify-end pt-2">
                 <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white">
@@ -229,15 +251,15 @@ export async function StartPage({
               >
                 /r/ftm
               </a>
-              .
+              . You can use <b>genderaffirming.ai</b> as your own personal
+              gender-affirming AI therapist, or to simply explore concepts and
+              ideas from a trans perspective.{" "}
             </p>
             <p>
-              You can use <b>genderaffirming.ai</b> as your own personal
-              gender-affirming AI therapist, or to simply explore concepts and
-              ideas from a trans perspective. Please be aware that this site
-              only includes gender-affirming perspectives from people who
-              identify as transgender MTF or FTM. If you would like to explore
-              topics through the lens of those who have detransitioned, see{" "}
+              Please be aware that this site only includes gender-affirming
+              perspectives from people who identify as transgender MTF or FTM.
+              If you would like to explore topics through the lens of those who
+              have detransitioned, see{" "}
               <a
                 href="https://detrans.ai"
                 target="_blank"
@@ -251,6 +273,15 @@ export async function StartPage({
         ) : (
           <div className="prose dark:prose-invert mt-8 max-w-full text-base">
             <p>
+              Two distinct ways of thinking about gender now exist side-by-side.
+              The mainstream trans perspective sees gender identity as innate and transition as the only
+              ethical path to well-being. The gender-critical detrans perspective sees gender as a social
+              script, believes dysphoria can ease without medical steps, and
+              advocates for non-conformity over stereotypes. Most mainstream
+              voices - including ChatGPT - speak and give advice only from the first
+              perspective.
+            </p>
+            <p>
               <a
                 href="https://genderaffirming.ai"
                 target="_blank"
@@ -258,7 +289,7 @@ export async function StartPage({
               >
                 <b>genderaffirming.ai</b>
               </a>{" "}
-              will affirm your gender identity. It uses OpenAI's <i>gpt-4o</i>{" "}
+              will affirm and validate your gender identity. It uses OpenAI's <i>gpt-4o</i>{" "}
               model, which has safety guard-rails on gender topics. It
               integrates human experiences and insights from the online trans
               community -{" "}
@@ -305,11 +336,8 @@ export async function StartPage({
             </p>
             <p>
               This page allows you to use both <b>detrans.ai</b> and{" "}
-              <b>genderaffirming.ai</b> side-by-side. This allows for a direct
-              comparison between the perspectives of those who currently
-              identify as trans and those who have moved on from trans identity,
-              offering insight into the diverse and sometimes conflicting
-              viewpoints surrounding gender identity.
+              <b>genderaffirming.ai</b> side-by-side, offering insight into the diverse and often
+              conflicting viewpoints surrounding gender identity.
             </p>
           </div>
         )}
@@ -337,17 +365,20 @@ export async function StartPage({
         </div>
          */}
 
-
-        <Accordion type="single" collapsible className="mt-8 sm:mt-8 w-full opacity-60 dark:opacity-100">
+        <Accordion
+          type="single"
+          collapsible
+          className="mt-8 w-full opacity-60 sm:mt-8 dark:opacity-100"
+        >
           <AccordionItem
             value="disclaimer"
-            className="bg-destructive/5 dark:bg-destructive/20 dark:border-destructive/50  border-destructive overflow-hidden rounded-xl border "
+            className="bg-destructive/5 dark:bg-destructive/20 dark:border-destructive/50 border-destructive overflow-hidden rounded-xl border"
           >
-            <AccordionTrigger className="text-destructive px-3 py-3 text-xs font-medium sm:text-sm brightness-80 hover:no-underline dark:brightness-100">
+            <AccordionTrigger className="text-destructive px-3 py-3 text-xs font-medium brightness-80 hover:no-underline sm:text-sm dark:brightness-100">
               Disclaimer: Experiences and perspectives on this site are sourced
               from Reddit and processed by AI.
             </AccordionTrigger>
-            <AccordionContent className="text-destructive px-3 pb-3 text-xs sm:text-sm brightness-80 dark:brightness-120">
+            <AccordionContent className="text-destructive px-3 pb-3 text-xs brightness-80 sm:text-sm dark:brightness-120">
               <div className="max-w-2xl space-y-3">
                 <p>
                   While Reddit is a platform where real people share personal
@@ -367,8 +398,6 @@ export async function StartPage({
         <div className="mt-8 w-full border-t" />
         <div className="mt-1 w-full border-t" />
         <div className="mt-1 w-full border-t" />
-
-
 
         {/*
         <div className="prose dark:prose-invert mt-8 font-semibold">
@@ -394,7 +423,7 @@ export async function StartPage({
         )}
         {mode === "detrans" && (
           <div className="text-muted-foreground relative flex flex-col text-base italic opacity-90 sm:text-lg">
-            <div className="right-0 z-0 block w-[200px] sm:absolute sm:top-16 sm:-right-0 sm:w-[250px]">
+            <div className="relative right-0 z-0 block w-[200px] sm:absolute sm:top-16 sm:-right-0 sm:w-[250px]">
               <Image
                 className=""
                 src="/vectorstock_47933493_transparent.png"
@@ -444,7 +473,6 @@ export async function StartPage({
               <div className="mt-1 flex items-center">
                 And be kind to each other.
               </div>
-
             </div>
 
             {mode === "detrans" && (

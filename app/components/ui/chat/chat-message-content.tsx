@@ -13,7 +13,13 @@ import { DynamicEvents } from "./custom/events/dynamic-events";
 import { ComponentDef } from "./custom/events/types";
 import { ToolAnnotations } from "./tools/chat-tools";
 
-function SuggestedQuestionsAnnotations() {
+function SuggestedQuestionsAnnotations({
+  mode,
+}: {
+  mode: "detrans" | "affirm" | "compare";
+}) {
+  const isDev = process.env.NODE_ENV === "development";
+
   const { append, requestData } = useChatUI();
   const { message, isLast } = useChatMessage();
 
@@ -27,21 +33,36 @@ function SuggestedQuestionsAnnotations() {
 
   const questions = suggestedQuestionsData[0] as string[];
 
-  return (
-    <div className="sm:mt-8  flex flex-col gap-2">
+  const getQuestionUrl = (question: string) => {
+    let baseUrl;
+    if (mode == "affirm") {
+      baseUrl = "/affirm/chat/";
+    } else if (mode === "detrans") {
+      baseUrl = "/chat/";
+    } else if (mode === "compare") {
+      baseUrl = "/compare/chat/";
+    }
+    return baseUrl + slugify(question);
+  };
 
-      <div className="text-base font-semibold md:text-lg mb-2 ">Follow-up questions:</div>
+  return (
+    <div className="flex flex-col gap-2 sm:mt-8">
+      <div className="mb-2 text-base font-semibold md:text-lg">
+        Follow-up questions:
+      </div>
       {questions.map((question, index) => (
         <Link
           prefetch={false}
           key={index}
-          href={"/chat/" + slugify(question)}
-          className="cursor-pointer font-medium  italic no-underline"
+          href={getQuestionUrl(question)}
+          className="cursor-pointer font-medium italic no-underline"
         >
           <div className="flex flex-row items-center border-b pt-1 pb-2">
-            <div className="text-muted-foreground hover:text-foreground transition-colors no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 sm:text-base">
+            <div className="text-muted-foreground hover:text-foreground no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 transition-colors sm:text-base">
               <div className="mr-2 whitespace-nowrap">{"->"}</div>
-              <div className=" hover:underline">{capitaliseFirstWord(question)}`</div>
+              <div className="hover:underline">
+                {capitaliseFirstWord(question)}`
+              </div>
             </div>
           </div>
         </Link>
@@ -53,9 +74,11 @@ function SuggestedQuestionsAnnotations() {
 export function ChatMessageContent({
   componentDefs,
   appendError,
+  mode,
 }: {
   componentDefs: ComponentDef[];
   appendError: (error: string) => void;
+  mode: "detrans" | "affirm" | "compare";
 }) {
   return (
     <ChatMessage.Content>
@@ -67,7 +90,7 @@ export function ChatMessageContent({
       <ChatMessage.Content.Markdown />
       <ChatMessage.Content.DocumentFile />
       <ChatMessage.Content.Source />
-      <SuggestedQuestionsAnnotations />
+      {mode !== "compare" && <SuggestedQuestionsAnnotations mode={mode} />}
     </ChatMessage.Content>
   );
 }
