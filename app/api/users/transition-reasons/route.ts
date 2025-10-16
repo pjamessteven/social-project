@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { drizzle } from "drizzle-orm/postgres-js";
-import { sql, eq } from "drizzle-orm";
+import { sql, eq, and } from "drizzle-orm";
 import postgres from "postgres";
 import { detransUsers, detransTags } from "@/db/schema";
 
@@ -10,7 +10,27 @@ const db = drizzle(client);
 
 export async function GET(request: NextRequest) {
   try {
-    // Get all transition reason tags with user counts
+    const { searchParams } = new URL(request.url);
+    const minAge = parseInt(searchParams.get("minAge") || "10");
+    const maxAge = parseInt(searchParams.get("maxAge") || "50");
+    const sex = searchParams.get("sex");
+
+    // Build where conditions for filtering users
+    const userConditions = [eq(detransTags.type, 'transition reason')];
+    
+    if (sex && (sex === "m" || sex === "f")) {
+      userConditions.push(eq(detransUsers.sex, sex));
+    }
+
+    // Add age filtering only for users who have a transition_age specified
+    if (minAge) {
+      userConditions.push(sql`(${detransUsers.transitionAge} IS NULL OR ${detransUsers.transitionAge} >= ${minAge})`);
+    }
+    if (maxAge) {
+      userConditions.push(sql`(${detransUsers.transitionAge} IS NULL OR ${detransUsers.transitionAge} <= ${maxAge})`);
+    }
+
+    // Get all transition reason tags with filtered user counts
     const transitionReasons = await db
       .select({
         id: detransTags.id,
@@ -19,7 +39,7 @@ export async function GET(request: NextRequest) {
       })
       .from(detransTags)
       .leftJoin(detransUsers, eq(detransTags.id, detransUsers.transitionReasonId))
-      .where(eq(detransTags.type, 'transition reason'))
+      .where(and(...userConditions))
       .groupBy(detransTags.id, detransTags.name)
       .orderBy(sql`COUNT(${detransUsers.username}) DESC`);
 
