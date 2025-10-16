@@ -214,10 +214,10 @@ export default function TransitionReasonChart({
     <>
       <div className="p-4">
         <h3 className="font-semibold">
-          Why did detransitioners {mode === "detransition" ? "de-transition" : "transition"}?
+          Why do detransitioners say they {mode === "detransition" ? "de-transitioned" : "transitioned"}?
         </h3>
         <p className="text-sm text-gray-600">
-          Data from Reddit user {mode} timelines ({totalUsers} users, {totalReasonCount} total reasons)
+          Data from Reddit user {mode} timelines ({totalReasonCount} total users, {totalUsers} distinct reasons.)
         </p>
       </div>
       <div className={`w-full ${className}`}>
