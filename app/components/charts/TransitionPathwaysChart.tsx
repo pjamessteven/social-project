@@ -10,14 +10,14 @@ function useDarkMode() {
 
   useEffect(() => {
     const checkDarkMode = () => {
-      setIsDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches);
+      setIsDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
     };
 
     checkDarkMode();
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    mediaQuery.addEventListener("change", checkDarkMode);
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', checkDarkMode);
 
-    return () => mediaQuery.removeEventListener("change", checkDarkMode);
+    return () => mediaQuery.removeEventListener('change', checkDarkMode);
   }, []);
 
   return isDarkMode;
@@ -182,25 +182,18 @@ export default function TransitionPathwaysChart({
       ) {
         const sourceNode = rechartsData.nodes[data.source];
         const targetNode = rechartsData.nodes[data.target];
-        const sexLabel = data.sex ? ` (${data.sex})` : "";
+        const sexLabel = data.sex ? ` (${data.sex})` : '';
         return (
-          <div
-            className={`rounded border p-3 shadow-lg ${
-              isDarkMode
-                ? "border-gray-600 bg-gray-800"
-                : "border-gray-300 bg-white"
-            }`}
-          >
-            <p
-              className={`font-medium ${isDarkMode ? "text-white" : "text-black"}`}
-            >
-              {sourceNode?.name} → {targetNode?.name}
-              {sexLabel}
+          <div className={`rounded border p-3 shadow-lg ${
+            isDarkMode 
+              ? 'border-gray-600 bg-gray-800' 
+              : 'border-gray-300 bg-white'
+          }`}>
+            <p className={`font-medium ${isDarkMode ? 'text-white' : 'text-black'}`}>
+              {sourceNode?.name} → {targetNode?.name}{sexLabel}
             </p>
             <p className="font-medium text-blue-600">{data.value} users</p>
-            <p
-              className={`text-sm ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
-            >
+            <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
               {((data.value / totalUsers) * 100).toFixed(1)}% of total
             </p>
           </div>
@@ -223,24 +216,16 @@ export default function TransitionPathwaysChart({
         const nodeFlow = Math.max(incomingFlow, outgoingFlow);
 
         return (
-          <div
-            className={`rounded border p-3 shadow-lg ${
-              isDarkMode
-                ? "border-gray-600 bg-gray-800"
-                : "border-gray-300 bg-white"
-            }`}
-          >
-            <p
-              className={`font-medium ${isDarkMode ? "text-white" : "text-black"}`}
-            >
-              {data.name}
-            </p>
+          <div className={`rounded border p-3 shadow-lg ${
+            isDarkMode 
+              ? 'border-gray-600 bg-gray-800' 
+              : 'border-gray-300 bg-white'
+          }`}>
+            <p className={`font-medium ${isDarkMode ? 'text-white' : 'text-black'}`}>{data.name}</p>
             {nodeFlow > 0 && (
               <>
                 <p className="font-medium text-blue-600">{nodeFlow} users</p>
-                <p
-                  className={`text-sm ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
-                >
+                <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                   {((nodeFlow / totalUsers) * 100).toFixed(1)}% of total
                 </p>
               </>
@@ -265,7 +250,9 @@ export default function TransitionPathwaysChart({
       ) : (
         <>
           <div className="p-4">
-            <h3 className="font-semibold">Detransition Pathways Flow</h3>
+            <h3 className="font-semibold">
+              Detransition Pathways Flow
+            </h3>
             <p className="text-sm text-gray-600">
               Flow of /r/detrans Reddit user demographics through to
               detransition outcomes
@@ -302,8 +289,8 @@ export default function TransitionPathwaysChart({
                           y={y}
                           width={width}
                           height={height}
-                          fill={isDarkMode ? "#204889ff" : "#3b82f6"}
-                          stroke={isDarkMode ? "#0f2260ff" : "#1e40af"}
+                          fill={isDarkMode ? "#2d3751ff" : "#f1f5f9"}
+                          stroke={isDarkMode ? "#6b7280" : "#c4c4c4ff"}
                           strokeWidth={1}
                         />
 
@@ -329,12 +316,38 @@ export default function TransitionPathwaysChart({
                         >
                           {labelText}
                         </text>
+
                       </g>
                     );
                   }}
-                  link={{
-                    stroke: isDarkMode ? "#77a4e7ff" : "#79adf6ff",
-                    strokeOpacity: 0.6,
+                  link={(props: any) => {
+                    const { sourceX, sourceY, targetX, targetY, sourceControlX, targetControlX, payload, sourceRelativeValue, targetRelativeValue } = props;
+                    
+                    // Color based on sex
+                    let stroke = "#94a3b8"; // default gray
+                    if (payload?.sex === "male") {
+                      stroke = isDarkMode ? "#3b82f6" : "#aacaffff" ; // blue for male
+                    } else if (payload?.sex === "female") {
+                      stroke = isDarkMode ? "#ec4899" : "#fca0ceff"; // pink for female
+                    }
+                    
+                    // Calculate stroke width based on the link's proportion of total flow
+                    // This should match the visual thickness represented by node heights
+                    const proportion = payload?.value / totalUsers;
+                    const maxNodeHeight = 244; // Approximate max height available for nodes
+                    const strokeWidth = Math.max(2, proportion * maxNodeHeight);
+
+                    const path = `M${sourceX},${sourceY}C${sourceControlX},${sourceY} ${targetControlX},${targetY} ${targetX},${targetY}`;
+                    
+                    return (
+                      <path
+                        d={path}
+                        stroke={stroke}
+                        strokeWidth={strokeWidth}
+                        strokeOpacity={0.7}
+                        fill="none"
+                      />
+                    );
                   }}
                 >
                   <Tooltip content={<CustomTooltip />} />
@@ -349,7 +362,17 @@ export default function TransitionPathwaysChart({
               <p>
                 <strong>Flow connections:</strong> {data.links.length}
               </p>
+              <div className="mt-2 flex items-center gap-4">
+                <div className="flex items-center gap-1">
+                  <div className="h-3 w-3 rounded-full bg-blue-500"></div>
+                  <span>Male</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <div className="h-3 w-3 rounded-full bg-pink-500"></div>
+                  <span>Female</span>
+                </div>
 
+              </div>
             </div>
           </div>
         </>
