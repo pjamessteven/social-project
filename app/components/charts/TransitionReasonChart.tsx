@@ -46,7 +46,8 @@ export default function TransitionReasonChart({
   const [data, setData] = useState<TransitionReasonData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
+  const [totalUsers, setTotalUsers] = useState<number| null>(0)
+  
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -85,6 +86,8 @@ export default function TransitionReasonChart({
       if (!result.data || !Array.isArray(result.data)) {
         throw new Error("Invalid data format received from API");
       }
+
+      setTotalUsers(result.total)
 
       // Filter out reasons with 0 users for cleaner visualization
       const filteredData = result.data.filter((item: TransitionReasonData) => item.userCount > 0);
@@ -145,7 +148,7 @@ export default function TransitionReasonChart({
   };
 
   // Calculate total for percentage calculations
-  const totalUsers = data.reduce((sum, item) => sum + item.userCount, 0);
+
   const dataWithTotal = data.map(item => ({ ...item, total: totalUsers }));
 
   if (loading) {
@@ -189,6 +192,7 @@ export default function TransitionReasonChart({
         </p>
       </div>
       <div className={`w-full ${className}`}>
+        {JSON.stringify(dataWithTotal)}
         <ResponsiveContainer width="100%" height={500}>
           <PieChart>
             <Pie
@@ -212,7 +216,7 @@ export default function TransitionReasonChart({
               wrapperStyle={{ paddingTop: "20px" }}
               formatter={(value, entry) => (
                 <span style={{ color: entry.color }}>
-                  {value} ({entry.payload.userCount})
+                  {value} ({(entry.payload as any).userCount})
                 </span>
               )}
             />
