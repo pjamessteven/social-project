@@ -21,6 +21,7 @@ interface TransitionReasonChartProps {
   className?: string;
   minAge?: number;
   maxAge?: number;
+  mode: "detransition" | "transition";
 }
 
 // Color palette for pie chart segments
@@ -41,6 +42,7 @@ export default function TransitionReasonChart({
   className,
   minAge,
   maxAge,
+  mode,
 }: TransitionReasonChartProps) {
   const searchParams = useSearchParams();
   const [data, setData] = useState<TransitionReasonData[]>([]);
@@ -70,23 +72,27 @@ export default function TransitionReasonChart({
       }
 
       console.log(
-        "Fetching transition reasons with params:",
+        `Fetching ${mode} reasons with params:`,
         params.toString(),
       );
 
+      const apiRoute = mode === "detransition" 
+        ? "/api/users/detransition-reasons" 
+        : "/api/users/transition-reasons";
+
       const response = await fetch(
-        `/api/users/transition-reasons?${params.toString()}`,
+        `${apiRoute}?${params.toString()}`,
       );
 
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(
-          `Failed to fetch transition reasons data: ${response.status} ${errorText}`,
+          `Failed to fetch ${mode} reasons data: ${response.status} ${errorText}`,
         );
       }
 
       const result = await response.json();
-      console.log("Transition reasons API response:", result);
+      console.log(`${mode} reasons API response:`, result);
 
       if (!result.data || !Array.isArray(result.data)) {
         throw new Error("Invalid data format received from API");
@@ -101,12 +107,12 @@ export default function TransitionReasonChart({
           userCount: parseInt(item.userCount, 10),
         }))
         .filter((item: TransitionReasonData) => item.userCount > 0);
-      console.log("Filtered transition reasons data:", processedData);
+      console.log(`Filtered ${mode} reasons data:`, processedData);
 
       setData(processedData);
       setError(null);
     } catch (err) {
-      console.error("Error fetching transition reasons:", err);
+      console.error(`Error fetching ${mode} reasons:`, err);
       setError(err instanceof Error ? err.message : "An error occurred");
       setData([]);
     } finally {
@@ -116,7 +122,7 @@ export default function TransitionReasonChart({
 
   useEffect(() => {
     fetchData();
-  }, [minAge, maxAge, searchParams]);
+  }, [minAge, maxAge, searchParams, mode]);
 
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
@@ -193,7 +199,7 @@ export default function TransitionReasonChart({
   if (data.length === 0) {
     return (
       <div className="py-8 text-center text-gray-500">
-        No transition reason data available for the selected filters
+        No {mode} reason data available for the selected filters
       </div>
     );
   }
@@ -202,10 +208,10 @@ export default function TransitionReasonChart({
     <>
       <div className="p-4">
         <h3 className="font-semibold">
-          What were the main reasons for transitioning?
+          What were the main reasons for {mode === "detransition" ? "detransitioning" : "transitioning"}?
         </h3>
         <p className="text-sm text-gray-600">
-          Data from Reddit user transition timelines ({totalUsers} users)
+          Data from Reddit user {mode} timelines ({totalUsers} users)
         </p>
       </div>
       <div className={`w-full ${className}`}>
