@@ -68,7 +68,7 @@ export default function StoriesCharts({
           }`}
           onClick={() => setActiveTab("detransitionReasons")}
         >
-          <div className="whitespace-nowrap">Detransition Reason</div>
+          <div className="whitespace-nowrap">De-transition Reason</div>
         </div>
         <div
           className={`hover:text-foreground cursor-pointer p-4 text-sm sm:px-6 ${
