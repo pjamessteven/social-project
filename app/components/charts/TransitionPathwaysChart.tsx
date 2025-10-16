@@ -326,9 +326,9 @@ export default function TransitionPathwaysChart({
                     // Color based on sex
                     let stroke = "#94a3b8"; // default gray
                     if (payload?.sex === "male") {
-                      stroke = isDarkMode ? "#3b82f6" : "#aacaffff" ; // blue for male
+                      stroke = "#3b82f6"; // blue for male (matches AgeDistributionChart)
                     } else if (payload?.sex === "female") {
-                      stroke = isDarkMode ? "#ec4899" : "#fca0ceff"; // pink for female
+                      stroke = "#ef4444"; // red for female (matches AgeDistributionChart)
                     }
                     
                     // Calculate stroke width based on the link's proportion of total flow
@@ -368,7 +368,7 @@ export default function TransitionPathwaysChart({
                   <span>Male</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <div className="h-3 w-3 rounded-full bg-pink-500"></div>
+                  <div className="h-3 w-3 rounded-full bg-red-500"></div>
                   <span>Female</span>
                 </div>
 
