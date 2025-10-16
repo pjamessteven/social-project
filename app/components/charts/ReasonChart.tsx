@@ -112,7 +112,7 @@ export default function TransitionReasonChart({
       console.log(`Filtered ${mode} reasons data:`, processedData);
 
       // Calculate total reason count (sum of all individual reason counts)
-      const totalCount = processedData.reduce((sum, item) => sum + item.userCount, 0);
+      const totalCount = processedData.reduce((sum: any, item: { userCount: any; }) => sum + item.userCount, 0);
       setTotalReasonCount(totalCount);
 
       setData(processedData);
