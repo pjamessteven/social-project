@@ -72,33 +72,35 @@ async function getDetransitionReasonTags(): Promise<string[]> {
   return tags.map(tag => tag.name);
 }
 
-async function determineTransitionReason(
+async function determineBothReasons(
   username: string,
   userExperience: string,
   userSex: string,
-  availableReasonTags: string[]
-): Promise<string> {
-  const prompt = `Based on the following user experience from a detransitioner, determine the MAIN reason why they initially transitioned. 
+  availableTransitionTags: string[],
+  availableDetransitionTags: string[]
+): Promise<{ transitionReason: string; detransitionReason: string }> {
+  const prompt = `Based on the following user experience from a detransitioner, determine BOTH:
+1. The MAIN reason why they initially transitioned
+2. The MAIN reason why they decided to detransition
 
-Look for the primary underlying cause or motivation that led them to transition in the first place. This could be psychological, social, medical, or other factors.
-Prioritize using one of the available transition reason tags. 
+Look for the primary underlying causes/motivations for each decision.
 
-Available transition reason tags: ${availableReasonTags.join(', ')}
-autogynephilia can only apply to males. 
-autoandrophilia can only apply to females.
+Available transition reason tags: ${availableTransitionTags.join(', ')}
+Available detransition reason tags: ${availableDetransitionTags.join(', ')}
 
+Note: autogynephilia can only apply to males, autoandrophilia can only apply to females.
 The user's sex is "${userSex}"
 
 User experience from "${username}":
 ${userExperience}
 
 Instructions:
-1. If one of the available tags accurately describes their main transition reason, return that exact tag name.
-2. If none of the available tags fit well, create a new descriptive tag (1-4 words, lowercase) that captures their main transition reason.
-3. Focus on the ROOT CAUSE, not just symptoms or later developments.
-4. Return ONLY the tag name, nothing else.
-
-Tag:`;
+1. For each reason, if an available tag fits, use that exact tag name
+2. If no available tag fits, create a new descriptive tag (1-4 words, lowercase)
+3. Focus on ROOT CAUSES and primary motivations
+4. Return in this exact format:
+TRANSITION_REASON: [tag name]
+DETRANSITION_REASON: [tag name]`;
 
   try {
     const response = await fetchWithBackoff(() =>
@@ -106,59 +108,23 @@ Tag:`;
         model: MODEL,
         messages: [{ role: "user", content: prompt }],
         temperature: 0.2,
-        max_tokens: 50,
+        max_tokens: 100,
       })
     );
 
-    const result = response.choices[0]?.message?.content?.trim().toLowerCase();
-    return result || "unknown";
+    const result = response.choices[0]?.message?.content?.trim();
+    
+    // Parse the response
+    const transitionMatch = result?.match(/TRANSITION_REASON:\s*(.+)/i);
+    const detransitionMatch = result?.match(/DETRANSITION_REASON:\s*(.+)/i);
+    
+    return {
+      transitionReason: transitionMatch?.[1]?.trim().toLowerCase() || "unknown",
+      detransitionReason: detransitionMatch?.[1]?.trim().toLowerCase() || "unknown"
+    };
   } catch (error) {
-    console.error(`Error determining transition reason for ${username}:`, error);
-    return "unknown";
-  }
-}
-
-async function determineDetransitionReason(
-  username: string,
-  userExperience: string,
-  userSex: string,
-  availableReasonTags: string[]
-): Promise<string> {
-  const prompt = `Based on the following user experience from a detransitioner, determine the MAIN reason why they decided to detransition.
-
-Look for the primary motivation or realization that led them to stop transitioning and return to their birth sex. This could be medical complications, regret, changed understanding, social factors, etc.
-Prioritize using one of the available detransition reason tags.
-
-Available detransition reason tags: ${availableReasonTags.join(', ')}
-
-The user's sex is "${userSex}"
-
-User experience from "${username}":
-${userExperience}
-
-Instructions:
-1. If one of the available tags accurately describes their main detransition reason, return that exact tag name.
-2. If none of the available tags fit well, create a new descriptive tag (1-4 words, lowercase) that captures their main detransition reason.
-3. Focus on what specifically motivated them to detransition, not their original transition reasons.
-4. Return ONLY the tag name, nothing else.
-
-Tag:`;
-
-  try {
-    const response = await fetchWithBackoff(() =>
-      openai.chat.completions.create({
-        model: MODEL,
-        messages: [{ role: "user", content: prompt }],
-        temperature: 0.2,
-        max_tokens: 50,
-      })
-    );
-
-    const result = response.choices[0]?.message?.content?.trim().toLowerCase();
-    return result || "unknown";
-  } catch (error) {
-    console.error(`Error determining detransition reason for ${username}:`, error);
-    return "unknown";
+    console.error(`Error determining reasons for ${username}:`, error);
+    return { transitionReason: "unknown", detransitionReason: "unknown" };
   }
 }
 
@@ -230,44 +196,40 @@ async function processUser(user: any, index: number, total: number): Promise<voi
   try {
     let updates: any = {};
 
-    // Process transition reason if not assigned
-    if (!hasTransitionReason) {
-      const availableTransitionTags = await getTransitionReasonTags();
-      console.log(`Available transition reason tags: ${availableTransitionTags.length} tags`);
+    // Get available tags for both types
+    const availableTransitionTags = await getTransitionReasonTags();
+    const availableDetransitionTags = await getDetransitionReasonTags();
+    
+    console.log(`Available transition reason tags: ${availableTransitionTags.length} tags`);
+    console.log(`Available detransition reason tags: ${availableDetransitionTags.length} tags`);
 
-      const transitionReasonTag = await determineTransitionReason(username, experience, sex, availableTransitionTags);
-      
-      if (transitionReasonTag && transitionReasonTag !== "unknown") {
-        console.log(`Determined transition reason for ${username}: "${transitionReasonTag}"`);
-        const transitionTagId = await ensureTagExists(transitionReasonTag, 'transition reason');
-        updates.transitionReasonId = transitionTagId;
-        console.log(`Will update ${username} with transition reason ID: ${transitionTagId}`);
-      } else {
-        console.log(`Could not determine transition reason for ${username}`);
-      }
+    // Determine both reasons in a single API call
+    const { transitionReason, detransitionReason } = await determineBothReasons(
+      username, 
+      experience, 
+      sex, 
+      availableTransitionTags, 
+      availableDetransitionTags
+    );
 
-      // Add delay between API calls
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+    // Process transition reason if not already assigned
+    if (!hasTransitionReason && transitionReason && transitionReason !== "unknown") {
+      console.log(`Determined transition reason for ${username}: "${transitionReason}"`);
+      const transitionTagId = await ensureTagExists(transitionReason, 'transition reason');
+      updates.transitionReasonId = transitionTagId;
+      console.log(`Will update ${username} with transition reason ID: ${transitionTagId}`);
+    } else if (!hasTransitionReason) {
+      console.log(`Could not determine transition reason for ${username}`);
     }
 
-    // Process detransition reason if not assigned
-    if (!hasDetransitionReason) {
-      const availableDetransitionTags = await getDetransitionReasonTags();
-      console.log(`Available detransition reason tags: ${availableDetransitionTags.length} tags`);
-
-      const detransitionReasonTag = await determineDetransitionReason(username, experience, sex, availableDetransitionTags);
-      
-      if (detransitionReasonTag && detransitionReasonTag !== "unknown") {
-        console.log(`Determined detransition reason for ${username}: "${detransitionReasonTag}"`);
-        const detransitionTagId = await ensureTagExists(detransitionReasonTag, 'detransition reason');
-        updates.detransitionReasonId = detransitionTagId;
-        console.log(`Will update ${username} with detransition reason ID: ${detransitionTagId}`);
-      } else {
-        console.log(`Could not determine detransition reason for ${username}`);
-      }
-
-      // Add delay between API calls
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+    // Process detransition reason if not already assigned
+    if (!hasDetransitionReason && detransitionReason && detransitionReason !== "unknown") {
+      console.log(`Determined detransition reason for ${username}: "${detransitionReason}"`);
+      const detransitionTagId = await ensureTagExists(detransitionReason, 'detransition reason');
+      updates.detransitionReasonId = detransitionTagId;
+      console.log(`Will update ${username} with detransition reason ID: ${detransitionTagId}`);
+    } else if (!hasDetransitionReason) {
+      console.log(`Could not determine detransition reason for ${username}`);
     }
 
     // Update user with any new reason IDs
@@ -279,6 +241,9 @@ async function processUser(user: any, index: number, total: number): Promise<voi
 
       console.log(`Updated ${username} with:`, updates);
     }
+
+    // Add delay between API calls (now only one call per user)
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
   } catch (error) {
     console.error(`Error processing user ${username}:`, error);
