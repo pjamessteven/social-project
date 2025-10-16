@@ -133,7 +133,6 @@ export default function TransitionDurationChart({
                 />
                 <YAxis
                   type="number"
-                  dataKey="detransitionAge"
                   domain={[minAge, maxAge]}
                   label={{
                     value: "Age at Detransition",
