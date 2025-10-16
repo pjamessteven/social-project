@@ -78,7 +78,7 @@ export default function StoriesCharts({
           }`}
           onClick={() => setActiveTab("pathways")}
         >
-          <div className="whitespace-nowrap">Pathway</div>
+          <div className="whitespace-nowrap">Pathways</div>
         </div>
       </div>
       <CardContent className="overflow-x-auto overflow-y-hidden p-0">
