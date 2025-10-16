@@ -21,7 +21,7 @@ export default function LizardAnimation({ className }: LizardAnimationProps) {
       }}
     >
 
-      <title>↔: left-right arrow (U+2194) - emojiall.com</title>
+      <title>🏳️‍⚧️: transgender flag (U+1F3F3 FE0F 200D 26A7 FE0F) - emojiall.com</title>
       <style>{`
         .lizard-animation{
           stroke:#edf2f6;
@@ -48,9 +48,11 @@ export default function LizardAnimation({ className }: LizardAnimationProps) {
           100%{stroke-dashoffset:0%}
         }
       `}</style>
-      <path fill="#3B88C3" d="M36 32c0 2.209-1.791 4-4 4H4c-2.209 0-4-1.791-4-4V4c0-2.209 1.791-4 4-4h28c2.209 0 4 1.791 4 4v28z"/>
-      <path fill="#FFF" d="M13 9L3 18l10 9zm20 9L23 9v18z"/>
-      <path fill="#FFF" d="M12 14h12v8H12z"/>
+      <path fill="#5BCEFA" d="M0 27c0 2.209 1.791 4 4 4h28c2.209 0 4-1.791 4-4v-1.3H0V27z"/>
+      <path fill="#F5A9B8" d="M.026 20.5L0 25.8h36v-5.3z"/>
+      <path fill="#EEE" d="M0 15.3h36v5.3H0z"/>
+      <path fill="#F5A9B8" d="M0 9.902h36V15.4H0z"/>
+      <path fill="#5BCEFA" d="M36 9c0-2.209-1.791-4-4-4H4C1.791 5 0 6.791 0 9v1.2h36V9z"/>
     </svg>
   );
 }
