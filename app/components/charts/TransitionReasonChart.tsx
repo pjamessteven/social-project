@@ -46,8 +46,8 @@ export default function TransitionReasonChart({
   const [data, setData] = useState<TransitionReasonData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [totalUsers, setTotalUsers] = useState<number| null>(0)
-  
+  const [totalUsers, setTotalUsers] = useState<number | null>(0);
+
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -55,7 +55,7 @@ export default function TransitionReasonChart({
 
       // Build params from current search params and props
       const params = new URLSearchParams();
-      
+
       if (minAge !== undefined) {
         params.set("minAge", minAge.toString());
       }
@@ -69,7 +69,10 @@ export default function TransitionReasonChart({
         params.set("sex", sex);
       }
 
-      console.log("Fetching transition reasons with params:", params.toString());
+      console.log(
+        "Fetching transition reasons with params:",
+        params.toString(),
+      );
 
       const response = await fetch(
         `/api/users/transition-reasons?${params.toString()}`,
@@ -77,25 +80,29 @@ export default function TransitionReasonChart({
 
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(`Failed to fetch transition reasons data: ${response.status} ${errorText}`);
+        throw new Error(
+          `Failed to fetch transition reasons data: ${response.status} ${errorText}`,
+        );
       }
 
       const result = await response.json();
       console.log("Transition reasons API response:", result);
-      
+
       if (!result.data || !Array.isArray(result.data)) {
         throw new Error("Invalid data format received from API");
       }
 
-      setTotalUsers(result.total)
+      setTotalUsers(result.total);
 
       // Convert userCount to numbers and filter out reasons with 0 users for cleaner visualization
-      const processedData = result.data.map((item: any) => ({
-        ...item,
-        userCount: parseInt(item.userCount, 10)
-      })).filter((item: TransitionReasonData) => item.userCount > 0);
+      const processedData = result.data
+        .map((item: any) => ({
+          ...item,
+          userCount: parseInt(item.userCount, 10),
+        }))
+        .filter((item: TransitionReasonData) => item.userCount > 0);
       console.log("Filtered transition reasons data:", processedData);
-      
+
       setData(processedData);
       setError(null);
     } catch (err) {
@@ -126,21 +133,28 @@ export default function TransitionReasonChart({
     return null;
   };
 
-  const CustomLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }: any) => {
+  const CustomLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+  }: any) => {
     // Only show label if percentage is above 5% to avoid clutter
     if (percent < 0.05) return null;
-    
+
     const RADIAN = Math.PI / 180;
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
     return (
-      <text 
-        x={x} 
-        y={y} 
-        fill="white" 
-        textAnchor={x > cx ? 'start' : 'end'} 
+      <text
+        x={x}
+        y={y}
+        fill="white"
+        textAnchor={x > cx ? "start" : "end"}
         dominantBaseline="central"
         fontSize={12}
         fontWeight="bold"
@@ -152,7 +166,7 @@ export default function TransitionReasonChart({
 
   // Calculate total for percentage calculations
 
-  const dataWithTotal = data.map(item => ({ ...item, total: totalUsers }));
+  const dataWithTotal = data.map((item) => ({ ...item, total: totalUsers }));
 
   if (loading) {
     return (
@@ -165,10 +179,10 @@ export default function TransitionReasonChart({
   if (error) {
     return (
       <div className="py-8 text-center">
-        <div className="text-red-500 mb-2">Error: {error}</div>
-        <button 
+        <div className="mb-2 text-red-500">Error: {error}</div>
+        <button
           onClick={fetchData}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
         >
           Retry
         </button>
@@ -196,7 +210,13 @@ export default function TransitionReasonChart({
       </div>
       <div className={`w-full ${className}`}>
         <ResponsiveContainer width="100%" height={500}>
-          <PieChart>
+          <PieChart
+            margin={{
+              bottom: 96,
+              right: 8,
+              left: 8,
+            }}
+          >
             <Pie
               data={dataWithTotal}
               cx="50%"
@@ -208,14 +228,17 @@ export default function TransitionReasonChart({
               dataKey="userCount"
             >
               {dataWithTotal.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
               ))}
             </Pie>
             <Tooltip content={<CustomTooltip />} />
-            <Legend 
-              verticalAlign="bottom" 
-              height={36}
-              wrapperStyle={{ paddingTop: "20px" }}
+            <Legend
+              verticalAlign="bottom"
+              height={68}
+              wrapperStyle={{ marginTop: "-20px" }}
               formatter={(value, entry) => (
                 <span style={{ color: entry.color }}>
                   {value} ({(entry.payload as any).userCount})
