@@ -111,7 +111,7 @@ export default function TransitionDurationChart({
               Transition Duration: Age at Transition vs Age at Detransition
             </h3>
             <p className="text-sm text-gray-600">
-              Each point shows transition age (X) vs detransition age (Y). Points above the diagonal line represent longer transition periods. Larger, more opaque points represent more users.
+              Each point shows transition age (X) vs detransition age (Y). <br className="hidden sm:inline"/>Larger, more opaque points represent more users.
             </p>
           </div>
           <div className={`w-full ${className}`}>

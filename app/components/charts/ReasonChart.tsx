@@ -173,7 +173,7 @@ export default function TransitionReasonChart({
 
   // Calculate total for percentage calculations and limit legend entries
   const dataWithTotal = data.map((item) => ({ ...item, total: totalUsers }));
-  const legendData = dataWithTotal.slice(0, 16);
+  const legendData = dataWithTotal.slice(0, 14);
 
   if (loading) {
     return (
@@ -209,7 +209,7 @@ export default function TransitionReasonChart({
     <>
       <div className="p-4">
         <h3 className="font-semibold">
-          Why did detransitioners {mode === "detransition" ? "detransition" : "transition"}?
+          Why did detransitioners {mode === "detransition" ? "de-transition" : "transition"}?
         </h3>
         <p className="text-sm text-gray-600">
           Data from Reddit user {mode} timelines ({totalUsers} users)
