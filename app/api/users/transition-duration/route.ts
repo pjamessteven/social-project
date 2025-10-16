@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-
-
 import { sql, and, gte, lte, eq, isNotNull } from "drizzle-orm";
-import { detransUsers, detransUserTags } from "@/db/schema";
+import { detransUsers, detransUserTags, detransTags } from "@/db/schema";
 import { db } from "@/db";
 
 export async function GET(request: NextRequest) {
@@ -31,28 +29,35 @@ export async function GET(request: NextRequest) {
       isNotNull(detransUsers.detransitionAge)
     );
 
-    let query = db
-      .select({
-        transitionAge: detransUsers.transitionAge,
-        detransitionAge: detransUsers.detransitionAge,
-        count: sql<number>`COUNT(*)`,
-      })
-      .from(detransUsers);
+    let result;
 
-    // Join with tags if tag filter is provided
     if (tag) {
-      query = query
+      // Query with tag filter
+      result = await db
+        .select({
+          transitionAge: detransUsers.transitionAge,
+          detransitionAge: detransUsers.detransitionAge,
+          count: sql<number>`COUNT(*)`,
+        })
+        .from(detransUsers)
         .innerJoin(detransUserTags, eq(detransUsers.username, detransUserTags.username))
-        .innerJoin(
-          sql`(SELECT id FROM detrans_tags WHERE name = ${tag})`,
-          sql`detrans_user_tags.tag_id = detrans_tags.id`
-        );
+        .innerJoin(detransTags, eq(detransUserTags.tagId, detransTags.id))
+        .where(and(...conditions, eq(detransTags.name, tag)))
+        .groupBy(detransUsers.transitionAge, detransUsers.detransitionAge)
+        .orderBy(detransUsers.transitionAge, detransUsers.detransitionAge);
+    } else {
+      // Query without tag filter
+      result = await db
+        .select({
+          transitionAge: detransUsers.transitionAge,
+          detransitionAge: detransUsers.detransitionAge,
+          count: sql<number>`COUNT(*)`,
+        })
+        .from(detransUsers)
+        .where(and(...conditions))
+        .groupBy(detransUsers.transitionAge, detransUsers.detransitionAge)
+        .orderBy(detransUsers.transitionAge, detransUsers.detransitionAge);
     }
-
-    const result = await query
-      .where(and(...conditions))
-      .groupBy(detransUsers.transitionAge, detransUsers.detransitionAge)
-      .orderBy(detransUsers.transitionAge, detransUsers.detransitionAge);
 
     // Transform the data to include duration calculation
     const transformedData = result.map(row => ({
