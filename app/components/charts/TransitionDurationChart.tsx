@@ -176,7 +176,7 @@ export default function TransitionDurationChart({
                     const opacity = minOpacity + (payload.count / maxCount) * (maxOpacity - minOpacity);
                     
                     // Choose color based on sex
-                    const isMale = payload.sex === 'M';
+                    const isMale = payload.sex === 'm';
                     const fillColor = isMale ? "#3b82f6" : "#ef4444";
                     const strokeColor = isMale ? "#1d4ed8" : "#dc2626";
                     
