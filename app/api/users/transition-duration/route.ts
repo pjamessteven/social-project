@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
         .innerJoin(detransUserTags, eq(detransUsers.username, detransUserTags.username))
         .innerJoin(detransTags, eq(detransUserTags.tagId, detransTags.id))
         .where(and(...conditions, eq(detransTags.name, tag)))
-        .groupBy(detransUsers.transitionAge, detransUsers.detransitionAge)
+        .groupBy(detransUsers.transitionAge, detransUsers.detransitionAge, detransUsers.sex)
         .orderBy(detransUsers.transitionAge, detransUsers.detransitionAge);
     } else {
       // Query without tag filter
