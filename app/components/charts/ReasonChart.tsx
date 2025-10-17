@@ -180,7 +180,7 @@ export default function TransitionReasonChart({
   const dataWithTotal = data.map((item) => ({ ...item, total: totalUsers, totalReasonCount }));
   
   // Create custom payload for legend showing only top 16 values
-  const legendPayload = dataWithTotal.slice(0, 16).map((item, index) => ({
+  const legendPayload = dataWithTotal.slice(0, 14).map((item, index) => ({
     value: item.name,
     type: 'square' as const,
     id: `legend-${index}`,
