@@ -37,6 +37,7 @@ export async function GET(request: NextRequest) {
         .select({
           transitionAge: detransUsers.transitionAge,
           detransitionAge: detransUsers.detransitionAge,
+          sex: detransUsers.sex,
           count: sql<number>`COUNT(*)`,
         })
         .from(detransUsers)
@@ -51,11 +52,12 @@ export async function GET(request: NextRequest) {
         .select({
           transitionAge: detransUsers.transitionAge,
           detransitionAge: detransUsers.detransitionAge,
+          sex: detransUsers.sex,
           count: sql<number>`COUNT(*)`,
         })
         .from(detransUsers)
         .where(and(...conditions))
-        .groupBy(detransUsers.transitionAge, detransUsers.detransitionAge)
+        .groupBy(detransUsers.transitionAge, detransUsers.detransitionAge, detransUsers.sex)
         .orderBy(detransUsers.transitionAge, detransUsers.detransitionAge);
     }
 
@@ -64,6 +66,7 @@ export async function GET(request: NextRequest) {
       transitionAge: row.transitionAge!,
       detransitionAge: row.detransitionAge!,
       duration: row.detransitionAge! - row.transitionAge!,
+      sex: row.sex,
       count: row.count,
     }));
 

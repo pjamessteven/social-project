@@ -16,6 +16,7 @@ interface TransitionDurationData {
   transitionAge: number;
   detransitionAge: number;
   duration: number;
+  sex: string;
   count: number;
 }
 
@@ -111,7 +112,9 @@ export default function TransitionDurationChart({
               Transition Duration: Age at Transition vs Age at Detransition
             </h3>
             <p className="text-sm text-gray-600">
-              Each point shows transition age (X) vs detransition age (Y). <br className="hidden sm:inline"/>Larger, more opaque points represent more users.
+              Each point shows transition age (X) vs detransition age (Y). <br className="hidden sm:inline"/>
+              <span className="text-blue-600">Blue = Male</span>, <span className="text-red-500">Red = Female</span>. <br className="hidden sm:inline"/>
+              Larger, more opaque points represent more users.
             </p>
           </div>
           <div className={`w-full ${className}`}>
@@ -153,7 +156,9 @@ export default function TransitionDurationChart({
                   strokeDasharray="5 5"
                 />
                 
+                {/* Separate scatter plots for males and females */}
                 <Scatter
+                  data={data.filter(d => d.sex === 'M')}
                   dataKey="detransitionAge"
                   fill="#3b82f6"
                   stroke="#1d4ed8"
@@ -183,6 +188,42 @@ export default function TransitionDurationChart({
                         fill="#3b82f6"
                         fillOpacity={opacity}
                         stroke="#1d4ed8"
+                        strokeWidth={1}
+                      />
+                    );
+                  }}
+                />
+                <Scatter
+                  data={data.filter(d => d.sex === 'F')}
+                  dataKey="detransitionAge"
+                  fill="#ef4444"
+                  stroke="#dc2626"
+                  strokeWidth={1}
+                  shape={(props: any) => {
+                    const { cx, cy, payload } = props;
+                    if (!payload || !cx || !cy) {
+                      return <circle cx={0} cy={0} r={0} fill="transparent" />;
+                    }
+                    
+                    // Calculate size based on count (min 3, max 15)
+                    const maxCount = Math.max(...data.map(d => d.count));
+                    const minSize = 3;
+                    const maxSize = 15;
+                    const size = minSize + (payload.count / maxCount) * (maxSize - minSize);
+                    
+                    // Calculate opacity based on count (min 0.3, max 0.8)
+                    const minOpacity = 0.3;
+                    const maxOpacity = 0.8;
+                    const opacity = minOpacity + (payload.count / maxCount) * (maxOpacity - minOpacity);
+                    
+                    return (
+                      <circle
+                        cx={cx}
+                        cy={cy}
+                        r={size}
+                        fill="#ef4444"
+                        fillOpacity={opacity}
+                        stroke="#dc2626"
                         strokeWidth={1}
                       />
                     );
