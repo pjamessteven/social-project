@@ -156,11 +156,8 @@ export default function TransitionDurationChart({
                   strokeDasharray="5 5"
                 />
                 
-                {/* Separate scatter plots for males and females */}
                 <Scatter
-                  name="Male"
-                  data={data.filter(d => d.sex === 'M')}
-                  fill="#3b82f6"
+                  dataKey="detransitionAge"
                   shape={(props: any) => {
                     const { cx, cy, payload } = props;
                     if (!payload || !cx || !cy) {
@@ -178,48 +175,19 @@ export default function TransitionDurationChart({
                     const maxOpacity = 0.8;
                     const opacity = minOpacity + (payload.count / maxCount) * (maxOpacity - minOpacity);
                     
-                    return (
-                      <circle
-                        cx={cx}
-                        cy={cy}
-                        r={size}
-                        fill="#3b82f6"
-                        fillOpacity={opacity}
-                        stroke="#1d4ed8"
-                        strokeWidth={1}
-                      />
-                    );
-                  }}
-                />
-                <Scatter
-                  name="Female"
-                  data={data.filter(d => d.sex === 'F')}
-                  fill="#ef4444"
-                  shape={(props: any) => {
-                    const { cx, cy, payload } = props;
-                    if (!payload || !cx || !cy) {
-                      return <circle cx={0} cy={0} r={0} fill="transparent" />;
-                    }
-                    
-                    // Calculate size based on count (min 3, max 15)
-                    const maxCount = Math.max(...data.map(d => d.count));
-                    const minSize = 3;
-                    const maxSize = 15;
-                    const size = minSize + (payload.count / maxCount) * (maxSize - minSize);
-                    
-                    // Calculate opacity based on count (min 0.3, max 0.8)
-                    const minOpacity = 0.3;
-                    const maxOpacity = 0.8;
-                    const opacity = minOpacity + (payload.count / maxCount) * (maxOpacity - minOpacity);
+                    // Choose color based on sex
+                    const isMale = payload.sex === 'M';
+                    const fillColor = isMale ? "#3b82f6" : "#ef4444";
+                    const strokeColor = isMale ? "#1d4ed8" : "#dc2626";
                     
                     return (
                       <circle
                         cx={cx}
                         cy={cy}
                         r={size}
-                        fill="#ef4444"
+                        fill={fillColor}
                         fillOpacity={opacity}
-                        stroke="#dc2626"
+                        stroke={strokeColor}
                         strokeWidth={1}
                       />
                     );
