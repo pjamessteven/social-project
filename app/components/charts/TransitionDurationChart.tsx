@@ -158,11 +158,9 @@ export default function TransitionDurationChart({
                 
                 {/* Separate scatter plots for males and females */}
                 <Scatter
+                  name="Male"
                   data={data.filter(d => d.sex === 'M')}
-                  dataKey="detransitionAge"
                   fill="#3b82f6"
-                  stroke="#1d4ed8"
-                  strokeWidth={1}
                   shape={(props: any) => {
                     const { cx, cy, payload } = props;
                     if (!payload || !cx || !cy) {
@@ -194,11 +192,9 @@ export default function TransitionDurationChart({
                   }}
                 />
                 <Scatter
+                  name="Female"
                   data={data.filter(d => d.sex === 'F')}
-                  dataKey="detransitionAge"
                   fill="#ef4444"
-                  stroke="#dc2626"
-                  strokeWidth={1}
                   shape={(props: any) => {
                     const { cx, cy, payload } = props;
                     if (!payload || !cx || !cy) {
