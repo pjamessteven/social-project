@@ -249,9 +249,9 @@ export default function TransitionDurationChart({
                 {(() => {
                   const maleData = data.filter((d) => d.sex === "m");
                   if (maleData.length > 0) {
-                    const totalDuration = maleData.reduce((sum, d) => sum + d.duration * d.count, 0);
+                    const totalWeightedDuration = maleData.reduce((sum, d) => sum + d.duration * d.count, 0);
                     const totalCount = maleData.reduce((sum, d) => sum + d.count, 0);
-                    const avgDuration = totalDuration / totalCount;
+                    const avgDuration = totalWeightedDuration / totalCount;
                     return <span className="text-sm text-gray-600">({avgDuration.toFixed(1)} years avg)</span>;
                   }
                   return null;
@@ -263,9 +263,9 @@ export default function TransitionDurationChart({
                 {(() => {
                   const femaleData = data.filter((d) => d.sex === "f");
                   if (femaleData.length > 0) {
-                    const totalDuration = femaleData.reduce((sum, d) => sum + d.duration * d.count, 0);
+                    const totalWeightedDuration = femaleData.reduce((sum, d) => sum + d.duration * d.count, 0);
                     const totalCount = femaleData.reduce((sum, d) => sum + d.count, 0);
-                    const avgDuration = totalDuration / totalCount;
+                    const avgDuration = totalWeightedDuration / totalCount;
                     return <span className="text-sm text-gray-600">({avgDuration.toFixed(1)} years avg)</span>;
                   }
                   return null;
