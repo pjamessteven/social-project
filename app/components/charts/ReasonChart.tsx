@@ -264,7 +264,7 @@ export default function TransitionReasonChart({
               height={68}
               payload={legendPayload}
               wrapperStyle={{ marginTop: "-20px" }}
-              formatter={(value, entry) => {
+              formatter={(value, entry:any) => {
                 return (
                   <span style={{ color: entry.color }}>
                     {value} ({entry.payload?.userCount || 0})
