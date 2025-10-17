@@ -3,13 +3,13 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
+  ReferenceLine,
   ResponsiveContainer,
-  ScatterChart,
   Scatter,
+  ScatterChart,
+  Tooltip,
   XAxis,
   YAxis,
-  Tooltip,
-  ReferenceLine,
 } from "recharts";
 
 interface TransitionDurationData {
@@ -88,7 +88,7 @@ export default function TransitionDurationChart({
           <p className="font-medium text-black">{`Transition Age: ${data.transitionAge}`}</p>
           <p className="font-medium text-black">{`Detransition Age: ${data.detransitionAge}`}</p>
           <p className="font-medium text-blue-600">{`Duration: ${data.duration} years`}</p>
-          <p className="text-sm text-gray-600">{`${data.count} user${data.count !== 1 ? 's' : ''}`}</p>
+          <p className="text-sm text-gray-600">{`${data.count} user${data.count !== 1 ? "s" : ""}`}</p>
         </div>
       );
     }
@@ -112,15 +112,14 @@ export default function TransitionDurationChart({
               Transition Duration: Age at Transition vs Age at Detransition
             </h3>
             <p className="text-sm text-gray-600">
-              Each point shows transition age (X) vs detransition age (Y). <br className="hidden sm:inline"/>
-              <span className="text-blue-600">Blue = Male</span>, <span className="text-red-500">Red = Female</span>. <br className="hidden sm:inline"/>
+              Each point shows transition age (X) vs detransition age (Y).{" "}
+              <br className="hidden sm:inline" />
               Larger, more opaque points represent more users.
             </p>
           </div>
           <div className={`w-full ${className}`}>
             <ResponsiveContainer width="100%" height={400}>
               <ScatterChart
-                data={data}
                 margin={{
                   top: 32,
                   right: 32,
@@ -132,7 +131,11 @@ export default function TransitionDurationChart({
                   type="number"
                   dataKey="transitionAge"
                   domain={[minAge, maxAge]}
-                  label={{ value: "Age at Transition", position: "bottom", offset: 5 }}
+                  label={{
+                    value: "Age at Transition",
+                    position: "bottom",
+                    offset: 5,
+                  }}
                 />
                 <YAxis
                   type="number"
@@ -145,38 +148,44 @@ export default function TransitionDurationChart({
                   }}
                 />
                 <Tooltip content={<CustomTooltip />} />
-                
+
                 {/* Reference line showing where transition age = detransition age */}
                 <ReferenceLine
                   segment={[
                     { x: minAge, y: minAge },
-                    { x: maxAge, y: maxAge }
+                    { x: maxAge, y: maxAge },
                   ]}
                   stroke="#94a3b8"
                   strokeDasharray="5 5"
                 />
-                
+
                 {/* Male data scatter */}
                 <Scatter
-                  data={data.filter(d => d.sex === 'm')}
+                  data={data.filter((d) => d.sex === "m")}
                   dataKey="detransitionAge"
                   shape={(props: any) => {
                     const { cx, cy, payload } = props;
                     if (!payload || !cx || !cy) {
                       return <circle cx={0} cy={0} r={0} fill="transparent" />;
                     }
-                    
+
                     // Calculate size based on count (min 3, max 15)
-                    const maxCount = Math.max(...data.map(d => d.count));
+                    const maxCount = Math.max(
+                      ...data.filter((d) => d.sex === "m").map((d) => d.count),
+                    );
                     const minSize = 3;
                     const maxSize = 15;
-                    const size = minSize + (payload.count / maxCount) * (maxSize - minSize);
-                    
+                    const size =
+                      minSize +
+                      (payload.count / maxCount) * (maxSize - minSize);
+
                     // Calculate opacity based on count (min 0.3, max 0.8)
                     const minOpacity = 0.3;
                     const maxOpacity = 0.8;
-                    const opacity = minOpacity + (payload.count / maxCount) * (maxOpacity - minOpacity);
-                    
+                    const opacity =
+                      minOpacity +
+                      (payload.count / maxCount) * (maxOpacity - minOpacity);
+
                     return (
                       <circle
                         cx={cx}
@@ -190,28 +199,34 @@ export default function TransitionDurationChart({
                     );
                   }}
                 />
-                
+
                 {/* Female data scatter */}
                 <Scatter
-                  data={data.filter(d => d.sex === 'f')}
+                  data={data.filter((d) => d.sex === "f")}
                   dataKey="detransitionAge"
                   shape={(props: any) => {
                     const { cx, cy, payload } = props;
                     if (!payload || !cx || !cy) {
                       return <circle cx={0} cy={0} r={0} fill="transparent" />;
                     }
-                    
+
                     // Calculate size based on count (min 3, max 15)
-                    const maxCount = Math.max(...data.map(d => d.count));
+                    const maxCount = Math.max(
+                      ...data.filter((d) => d.sex === "f").map((d) => d.count),
+                    );
                     const minSize = 3;
                     const maxSize = 15;
-                    const size = minSize + (payload.count / maxCount) * (maxSize - minSize);
-                    
+                    const size =
+                      minSize +
+                      (payload.count / maxCount) * (maxSize - minSize);
+
                     // Calculate opacity based on count (min 0.3, max 0.8)
                     const minOpacity = 0.3;
                     const maxOpacity = 0.8;
-                    const opacity = minOpacity + (payload.count / maxCount) * (maxOpacity - minOpacity);
-                    
+                    const opacity =
+                      minOpacity +
+                      (payload.count / maxCount) * (maxOpacity - minOpacity);
+
                     return (
                       <circle
                         cx={cx}
@@ -227,6 +242,16 @@ export default function TransitionDurationChart({
                 />
               </ScatterChart>
             </ResponsiveContainer>
+            <div className="flex items-center gap-4 p-4 pl-6">
+              <div className="flex items-center gap-1">
+                <div className="h-3 w-3 rounded-full bg-blue-500"></div>
+                <span>Male</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <div className="h-3 w-3 rounded-full bg-red-500"></div>
+                <span>Female</span>
+              </div>
+            </div>
           </div>
         </>
       )}
