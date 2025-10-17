@@ -246,10 +246,30 @@ export default function TransitionDurationChart({
               <div className="flex items-center gap-1">
                 <div className="h-3 w-3 rounded-full bg-blue-500"></div>
                 <span>Male</span>
+                {(() => {
+                  const maleData = data.filter((d) => d.sex === "m");
+                  if (maleData.length > 0) {
+                    const totalDuration = maleData.reduce((sum, d) => sum + d.duration * d.count, 0);
+                    const totalCount = maleData.reduce((sum, d) => sum + d.count, 0);
+                    const avgDuration = totalDuration / totalCount;
+                    return <span className="text-sm text-gray-600">({avgDuration.toFixed(1)} years avg)</span>;
+                  }
+                  return null;
+                })()}
               </div>
               <div className="flex items-center gap-1">
                 <div className="h-3 w-3 rounded-full bg-red-500"></div>
                 <span>Female</span>
+                {(() => {
+                  const femaleData = data.filter((d) => d.sex === "f");
+                  if (femaleData.length > 0) {
+                    const totalDuration = femaleData.reduce((sum, d) => sum + d.duration * d.count, 0);
+                    const totalCount = femaleData.reduce((sum, d) => sum + d.count, 0);
+                    const avgDuration = totalDuration / totalCount;
+                    return <span className="text-sm text-gray-600">({avgDuration.toFixed(1)} years avg)</span>;
+                  }
+                  return null;
+                })()}
               </div>
             </div>
           </div>
