@@ -171,20 +171,20 @@ export default function TransitionDurationChart({
 
                     // Calculate size based on count (min 3, max 15)
                     const maxCount = Math.max(
-                      ...data.filter((d) => d.sex === "m").map((d) => d.count),
+                      ...data.filter((d) => d.sex === "m").map((d) => Number(d.count)),
                     );
                     const minSize = 3;
                     const maxSize = 15;
                     const size =
                       minSize +
-                      (payload.count / maxCount) * (maxSize - minSize);
+                      (Number(payload.count) / maxCount) * (maxSize - minSize);
 
                     // Calculate opacity based on count (min 0.3, max 0.8)
                     const minOpacity = 0.3;
                     const maxOpacity = 0.8;
                     const opacity =
                       minOpacity +
-                      (payload.count / maxCount) * (maxOpacity - minOpacity);
+                      (Number(payload.count) / maxCount) * (maxOpacity - minOpacity);
 
                     return (
                       <circle
@@ -212,20 +212,20 @@ export default function TransitionDurationChart({
 
                     // Calculate size based on count (min 3, max 15)
                     const maxCount = Math.max(
-                      ...data.filter((d) => d.sex === "f").map((d) => d.count),
+                      ...data.filter((d) => d.sex === "f").map((d) => Number(d.count)),
                     );
                     const minSize = 3;
                     const maxSize = 15;
                     const size =
                       minSize +
-                      (payload.count / maxCount) * (maxSize - minSize);
+                      (Number(payload.count) / maxCount) * (maxSize - minSize);
 
                     // Calculate opacity based on count (min 0.3, max 0.8)
                     const minOpacity = 0.3;
                     const maxOpacity = 0.8;
                     const opacity =
                       minOpacity +
-                      (payload.count / maxCount) * (maxOpacity - minOpacity);
+                      (Number(payload.count) / maxCount) * (maxOpacity - minOpacity);
 
                     return (
                       <circle
@@ -249,8 +249,8 @@ export default function TransitionDurationChart({
                 {(() => {
                   const maleData = data.filter((d) => d.sex === "m");
                   if (maleData.length > 0) {
-                    const totalWeightedDuration = maleData.reduce((sum, d) => sum + d.duration * d.count, 0);
-                    const totalCount = maleData.reduce((sum, d) => sum + d.count, 0);
+                    const totalWeightedDuration = maleData.reduce((sum, d) => sum + d.duration * Number(d.count), 0);
+                    const totalCount = maleData.reduce((sum, d) => sum + Number(d.count), 0);
                     const avgDuration = totalWeightedDuration / totalCount;
                     return <span className="text-sm text-gray-600">({avgDuration.toFixed(1)} years avg)</span>;
                   }
@@ -263,8 +263,8 @@ export default function TransitionDurationChart({
                 {(() => {
                   const femaleData = data.filter((d) => d.sex === "f");
                   if (femaleData.length > 0) {
-                    const totalWeightedDuration = femaleData.reduce((sum, d) => sum + d.duration * d.count, 0);
-                    const totalCount = femaleData.reduce((sum, d) => sum + d.count, 0);
+                    const totalWeightedDuration = femaleData.reduce((sum, d) => sum + d.duration * Number(d.count), 0);
+                    const totalCount = femaleData.reduce((sum, d) => sum + Number(d.count), 0);
                     const avgDuration = totalWeightedDuration / totalCount;
                     return <span className="text-sm text-gray-600">({avgDuration.toFixed(1)} years avg)</span>;
                   }
