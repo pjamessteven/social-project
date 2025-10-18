@@ -129,6 +129,13 @@ const videos: Video[] = [
     url: "https://www.youtube.com/watch?v=WtFZaPC3jPk",
   },
   {
+    id: "gAYCQB8qFL4",
+    title: "Identity Crisis: Breaking Free From the Transgender Contagion",
+    author: "Simon Amaya Price",
+    type: "MTFTM",
+    url: "https://www.youtube.com/watch?v=gAYCQB8qFL4",
+  },
+  {
     id: "Fs5e6sOhLsE",
     title: "I was a trans kid so you don't have to be",
     author: "Unknown",
