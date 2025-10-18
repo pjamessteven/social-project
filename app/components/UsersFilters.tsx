@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import {
@@ -13,7 +13,7 @@ import {
 } from "./ui/select";
 import { MultiSelect } from "./ui/multi-select";
 import { Slider } from "./ui/slider";
-import { Search } from "lucide-react";
+import { Search, Loader2 } from "lucide-react";
 
 interface Tag {
   id: number;
@@ -28,6 +28,7 @@ export default function UsersFilters({}: UsersFiltersProps) {
   const searchParams = useSearchParams();
   const [tags, setTags] = useState<Tag[]>([]);
   const [loading, setLoading] = useState(true);
+  const [searchLoading, setSearchLoading] = useState(false);
   
   const selectedSex = searchParams.get("sex") || "";
   const selectedTags = searchParams.getAll("tag").flatMap(tag => tag.split(',').filter(Boolean));
@@ -102,8 +103,8 @@ export default function UsersFilters({}: UsersFiltersProps) {
     router.push(`/stories${queryString ? `?${queryString}` : ""}`);
   };
 
-  const updateSearchFilter = (query: string) => {
-    setSearchQuery(query);
+  const updateSearchFilter = useCallback((query: string) => {
+    setSearchLoading(true);
     
     const params = new URLSearchParams(searchParams);
     
@@ -118,7 +119,22 @@ export default function UsersFilters({}: UsersFiltersProps) {
     
     const queryString = params.toString();
     router.push(`/stories${queryString ? `?${queryString}` : ""}`);
-  };
+    
+    // Reset loading state after a short delay to allow for navigation
+    setTimeout(() => setSearchLoading(false), 100);
+  }, [searchParams, router]);
+
+  // Debounced search effect
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      const currentSearch = searchParams.get("search") || "";
+      if (searchQuery !== currentSearch) {
+        updateSearchFilter(searchQuery);
+      }
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery, updateSearchFilter, searchParams]);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -128,6 +144,7 @@ export default function UsersFilters({}: UsersFiltersProps) {
   const clearFilters = () => {
     setAgeRange([5, 80]);
     setSearchQuery("");
+    setSearchLoading(false);
     router.push("/stories");
   };
 
@@ -136,7 +153,11 @@ export default function UsersFilters({}: UsersFiltersProps) {
       {/* Search Bar */}
       <form onSubmit={handleSearchSubmit} className="relative">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          {searchLoading ? (
+            <Loader2 className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 animate-spin" />
+          ) : (
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          )}
           <Input
             type="text"
             placeholder="Search user experiences..."
