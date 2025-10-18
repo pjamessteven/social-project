@@ -40,10 +40,10 @@ export function QuestionCategoriesClient({
                   prefetch={false}
                   href={
                     mode === "detrans"
-                      ? "/chat/" + slugify(question)
+                      ? "/research/" + slugify(question)
                       : mode === "affirm"
-                        ? "/affirm/chat/" + slugify(question)
-                        : "/compare/chat/" + slugify(question)
+                        ? "/affirm/research/" + slugify(question)
+                        : "/compare/research/" + slugify(question)
                   }
                   key={questionIndex}
                 >
@@ -75,7 +75,7 @@ export function QuestionCategoriesClient({
                     <Link
                       prefetch={false}
                       href={
-                        (isDev ? "/chat/" : "https://detrans.ai/chat/") +
+                        (isDev ? "/research/" : "https://detrans.ai/research/") +
                         slugify(question)
                       }
                     >

@@ -5,6 +5,7 @@ import React, { FunctionComponent, useEffect, useState } from "react";
 import { getConfig } from "../../lib/utils";
 import { DynamicComponentErrorBoundary } from "../custom/events/error-boundary";
 import { parseComponent } from "../custom/events/loader";
+import { DefaultHeader } from "./header";
 
 type LayoutFile = {
   type: "header" | "footer";
@@ -61,9 +62,9 @@ export function ChatLayout({ children }: { children: React.ReactNode }) {
   const uniqueErrors = [...new Set(errors)];
 
   return (
-    <div className="text-foreground flex w-full grow flex-col transition-colors duration-300">
+    <div className="flex h-screen w-screen flex-col overflow-hidden">
       {uniqueErrors.length > 0 && (
-        <div className="w-full bg-yellow-100 px-4 py-2 text-black/70 dark:bg-yellow-900/20 dark:text-yellow-200">
+        <div className="w-full bg-yellow-100 px-4 py-2 text-black/70">
           <h2 className="mb-2 font-semibold">
             Errors happened while rendering the layout:
           </h2>
@@ -74,6 +75,12 @@ export function ChatLayout({ children }: { children: React.ReactNode }) {
           ))}
         </div>
       )}
+
+      <LayoutRenderer
+        component={getLayoutCode("header")}
+        onError={handleError}
+        fallback={<DefaultHeader />}
+      />
 
       {children}
 

@@ -1,6 +1,9 @@
-import { type WorkflowContext, type WorkflowEvent } from "@llamaindex/workflow";
+import {
+  request,
+  type WorkflowContext,
+  type WorkflowEvent,
+} from "@llamaindex/workflow";
 import { randomUUID } from "node:crypto";
-//import request from "../request";
 import type { HumanResponseEventData } from "./events";
 import { ensureSnapshotWorkflowContext, saveSnapshot } from "./snapshot";
 
@@ -14,7 +17,7 @@ export const pauseForHumanInput = async (
   const { snapshot, sendEvent } = snapshotWorkflowContext;
 
   // send a request event to save the missing step (`humanResponseEvent`) to the snapshot
-  //sendEvent(request(responseEvent));
+  sendEvent(request(responseEvent));
 
   // get and save snapshot
   const [_, snapshotData] = await snapshot();

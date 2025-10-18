@@ -36,7 +36,7 @@ export default async function AboutPage() {
         those exist today. If you're lazy,{" "}
         <a
           href={
-            "https://detrans.ai/chat/how-does-gender-ideology-create-non-binary-identities"
+            "https://detrans.ai/research/how-does-gender-ideology-create-non-binary-identities"
           }
         >
           you can just ask detrans.ai

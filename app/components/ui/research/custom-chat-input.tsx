@@ -25,7 +25,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     path == "/" ||
     path == "/compare" ||
     path == "/affirm" ||
-    path.includes("/chat");
+    path.includes("/research");
 
   const mode =
     host.includes("genderaffirming.ai") || path.includes("/affirm")
@@ -117,11 +117,11 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
       const val = value.trim();
       setValue("");
       if (mode == "compare") {
-        redirect("/compare/chat/" + slugify(val));
+        redirect("/compare/research/" + slugify(val));
       } else if (mode == "affirm") {
-        redirect("/affirm/chat/" + slugify(val));
+        redirect("/affirm/research/" + slugify(val));
       } else {
-        redirect("/chat/" + slugify(val));
+        redirect("/research/" + slugify(val));
       }
     }
   };
@@ -240,10 +240,10 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                   prefetch={false}
                   href={
                     mode === "detrans"
-                      ? "/chat/" + slugify(question)
+                      ? "/research/" + slugify(question)
                       : mode === "affirm"
-                        ? "/affirm/chat/" + slugify(question)
-                        : "/compare/chat/" + slugify(question)
+                        ? "/affirm/research/" + slugify(question)
+                        : "/compare/research/" + slugify(question)
                   }
                   key={index}
                 >
