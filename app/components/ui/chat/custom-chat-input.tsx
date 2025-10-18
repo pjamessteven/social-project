@@ -19,6 +19,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
+  const containerRef = useRef<HTMLDivElement>(null);
   
   const showChatInput =
     path == "/" ||
@@ -91,6 +92,21 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
       return () => clearTimeout(timer);
     }
   }, [isDesktop, showChatInput, path]);
+
+  // Handle click outside to hide suggestions
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+        setSelectedSuggestion(-1);
+      }
+    };
+
+    if (showSuggestions) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [showSuggestions]);
 
   if (!showChatInput) {
     return <></>;
@@ -171,7 +187,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     >
       <div className="z-10 flex items-center justify-center">
         <form onSubmit={handleSubmit} className="flex w-3xl items-center gap-2">
-          <div className="relative flex-1 grow">
+          <div ref={containerRef} className="relative flex-1 grow">
             <Input
               ref={inputRef}
               style={{
