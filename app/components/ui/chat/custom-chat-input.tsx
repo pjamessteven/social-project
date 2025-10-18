@@ -247,10 +247,10 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                   }
                   key={index}
                 >
-                  <div className={`flex flex-row items-center pt-2 pl-3 pb-2 truncate ... hover:bg-secondary ${index < suggestions.length - 1 ? '' : ''}`}>
-                    <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-sm sm:text-base italic opacity-90">
+                  <div className={`flex flex-row items-center pt-2 pl-3 pb-2 hover:bg-secondary ${index < suggestions.length - 1 ? '' : ''}`}>
+                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start text-sm sm:text-base italic opacity-90 min-w-0 flex-1">
                       <div className="mr-2 whitespace-nowrap">{"->"}</div>
-                      <div className="...">{question}</div>
+                      <div className="truncate">{question}</div>
                     </div>
                   </div>
                 </Link>
