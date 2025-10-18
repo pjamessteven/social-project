@@ -2,8 +2,10 @@
 /data
 /data_other
 /qdrant-storage
+/postgres-data
 /redis-data
 /storage
+qdrant-storage.zip
 
 checkpoint*.json
 # dependencies
