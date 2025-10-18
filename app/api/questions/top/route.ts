@@ -1,5 +1,5 @@
 import { db, detransQuestions, affirmQuestions } from "@/db";
-import { desc } from "drizzle-orm";
+import { desc, like } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -8,6 +8,7 @@ export async function GET(request: NextRequest) {
     const mode = searchParams.get("mode") || "detrans";
     const page = parseInt(searchParams.get("page") || "1");
     const limit = parseInt(searchParams.get("limit") || "20");
+    const query = searchParams.get("q");
 
     // Validate parameters
     if (page < 1) {
@@ -27,20 +28,34 @@ export async function GET(request: NextRequest) {
     // Calculate offset for pagination
     const offset = (page - 1) * limit;
 
-    // Get total count
-    const totalResult = await db
-      .select({ count: questionsTable.name })
-      .from(questionsTable);
-    const total = totalResult.length;
-
-    // Get paginated results ordered by views count (highest first)
-    const results = await db
+    // Build the base query
+    let baseQuery = db
       .select({
         name: questionsTable.name,
         viewsCount: questionsTable.viewsCount,
         mostRecentlyAsked: questionsTable.mostRecentlyAsked,
       })
-      .from(questionsTable)
+      .from(questionsTable);
+
+    // Add search filter if query is provided
+    if (query && query.trim()) {
+      baseQuery = baseQuery.where(like(questionsTable.name, `%${query.trim()}%`));
+    }
+
+    // Get total count with the same filter
+    let countQuery = db
+      .select({ count: questionsTable.name })
+      .from(questionsTable);
+
+    if (query && query.trim()) {
+      countQuery = countQuery.where(like(questionsTable.name, `%${query.trim()}%`));
+    }
+
+    const totalResult = await countQuery;
+    const total = totalResult.length;
+
+    // Get paginated results ordered by views count (highest first)
+    const results = await baseQuery
       .orderBy(desc(questionsTable.viewsCount))
       .limit(limit)
       .offset(offset);
