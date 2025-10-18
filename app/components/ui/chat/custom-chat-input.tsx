@@ -14,6 +14,10 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   const path = usePathname();
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [value, setValue] = useState("");
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
   
   const showChatInput =
     path == "/" ||
@@ -35,8 +39,6 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
         ? "Compare trans and detrans perspectives"
         : "Ask 600,000+ trans people";
 
-  const [value, setValue] = useState("");
-
   useEffect(() => {
     const checkIsDesktop = () => {
       setIsDesktop(window.matchMedia('(min-width: 768px) and (pointer: fine)').matches);
@@ -46,6 +48,37 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     window.addEventListener('resize', checkIsDesktop);
     return () => window.removeEventListener('resize', checkIsDesktop);
   }, []);
+
+  // Fetch suggestions when value changes
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      if (value.trim().length < 2) {
+        setSuggestions([]);
+        setShowSuggestions(false);
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          `/api/questions/top?mode=${mode}&q=${encodeURIComponent(value.trim())}&limit=5`
+        );
+        const data = await response.json();
+        
+        if (data.items) {
+          setSuggestions(data.items.map((item: any) => item.page));
+          setShowSuggestions(true);
+          setSelectedSuggestion(-1);
+        }
+      } catch (error) {
+        console.error("Error fetching suggestions:", error);
+        setSuggestions([]);
+        setShowSuggestions(false);
+      }
+    };
+
+    const debounceTimer = setTimeout(fetchSuggestions, 300);
+    return () => clearTimeout(debounceTimer);
+  }, [value, mode]);
 
   useEffect(() => {
     if (isDesktop && showChatInput && inputRef.current) {
@@ -77,10 +110,53 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (showSuggestions && suggestions.length > 0) {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setSelectedSuggestion(prev => 
+          prev < suggestions.length - 1 ? prev + 1 : prev
+        );
+        return;
+      }
+      
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setSelectedSuggestion(prev => prev > 0 ? prev - 1 : -1);
+        return;
+      }
+      
+      if (e.key === "Tab" && selectedSuggestion >= 0) {
+        e.preventDefault();
+        setValue(suggestions[selectedSuggestion]);
+        setShowSuggestions(false);
+        setSelectedSuggestion(-1);
+        return;
+      }
+      
+      if (e.key === "Escape") {
+        setShowSuggestions(false);
+        setSelectedSuggestion(-1);
+        return;
+      }
+    }
+
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      handleSubmit(e);
+      if (showSuggestions && selectedSuggestion >= 0) {
+        setValue(suggestions[selectedSuggestion]);
+        setShowSuggestions(false);
+        setSelectedSuggestion(-1);
+      } else {
+        handleSubmit(e);
+      }
     }
+  };
+
+  const handleSuggestionClick = (suggestion: string) => {
+    setValue(suggestion);
+    setShowSuggestions(false);
+    setSelectedSuggestion(-1);
+    inputRef.current?.focus();
   };
 
   return (
@@ -107,6 +183,24 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               onKeyDown={handleKeyDown}
               placeholder={placeholder}
             />
+            
+            {/* Suggestions dropdown */}
+            {showSuggestions && suggestions.length > 0 && (
+              <div className="absolute bottom-full left-0 right-0 mb-2 max-h-60 overflow-y-auto rounded-lg border bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800">
+                {suggestions.map((suggestion, index) => (
+                  <div
+                    key={index}
+                    className={cn(
+                      "cursor-pointer px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700",
+                      selectedSuggestion === index && "bg-gray-100 dark:bg-gray-700"
+                    )}
+                    onClick={() => handleSuggestionClick(suggestion)}
+                  >
+                    {suggestion}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           <Button
             type="submit"
