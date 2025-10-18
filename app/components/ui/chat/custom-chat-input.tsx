@@ -182,6 +182,11 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     }
   };
 
+  const handleClickSuggestion =() => {
+    setShowSuggestions(false)
+    setValue("")
+  }
+
   return (
     <div
       className={cn(
@@ -210,10 +215,10 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
             
             {/* Suggestions dropdown */}
             {showSuggestions && suggestions.length > 0 && (
-              <div className="absolute bottom-0 left-0 right-0 pb-16 z-0 overflow-y-auto rounded-[32px] rounded-br-[32px]  border bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800 backdrop-filter backdrop-blur-lg animate-in fade-in-0 duration-200">
+              <div className="absolute bottom-0 left-0 right-0 pb-16 z-0 overflow-y-auto rounded-[32px] rounded-br-[32px]  border bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800 backdrop-filter backdrop-blur-lg animate-in fade-in-0 fade-out-0 duration-300">
                 <div className="px-5 pt-4 pb-2 font-semibold">Suggestions:</div>
                 {suggestions.map((question, index) => (
-                <Link onClick={() => setShowSuggestions(false)}
+                <Link onClick={handleClickSuggestion}
                   prefetch={false}
                   href={
                     mode === "detrans"
