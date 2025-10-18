@@ -104,11 +104,11 @@ export function DynamicQuestionCategories({
     const slug = slugify(question);
     switch (mode) {
       case "affirm":
-        return `/affirm/chat/${slug}`;
+        return `/affirm/research/${slug}`;
       case "compare":
-        return `/compare/chat/${slug}`;
+        return `/compare/research/${slug}`;
       default:
-        return `/chat/${slug}`;
+        return `/research/${slug}`;
     }
   };
 

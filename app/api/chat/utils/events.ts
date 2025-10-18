@@ -2,6 +2,7 @@ import { randomUUID } from "@llamaindex/env";
 import { workflowEvent } from "@llamaindex/workflow";
 import type { Message } from "ai";
 import {
+  MetadataMode,
   type ChatMessage,
   type Metadata,
   type NodeWithScore,
@@ -54,8 +55,7 @@ export function toSourceEventNode(node: NodeWithScore<Metadata>) {
     url: `/api/files/${filePath}`,
     metadata: node.node.metadata,
     score: node.score ?? null,
-    // @ts-expect-error does exist
-    text: node.node.text,
+    text: node.node.getContent(MetadataMode.NONE),
   };
 }
 

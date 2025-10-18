@@ -52,7 +52,7 @@ async function generateDatasource() {
     transformations: [
       new SentenceSplitter({
         chunkSize: 512,
-        chunkOverlap: 50,
+        chunkOverlap: 100,
       }),
     ],
   });

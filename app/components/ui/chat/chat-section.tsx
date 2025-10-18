@@ -1,26 +1,25 @@
 "use client";
 
-import { ChatSection as ChatUI } from "@llamaindex/chat-ui";
+import { ChatSection as ChatUI, useChatWorkflow } from "@llamaindex/chat-ui";
 import { useChat } from "ai/react";
 import { useEffect, useMemo, useState } from "react";
-
+import { getConfig } from "../lib/utils";
+import { ResizablePanel, ResizablePanelGroup } from "../resizable";
+import { ChatCanvasPanel } from "./canvas/panel";
+import { ChatInjection } from "./chat-injection";
+import CustomChatInput from "./chat-input";
 import CustomChatMessages from "./chat-messages";
 import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
 import { fetchComponentDefinitions } from "./custom/events/loader";
 import { ComponentDef } from "./custom/events/types";
+import { DevModePanel } from "./dev-mode-panel";
 import { ChatLayout } from "./layout";
 
-export default function ChatSection({
-  onReset,
-  starterQuestion,
-  mode,
-  showDonationMessage,
-}: {
-  onReset: () => void;
-  starterQuestion?: string;
-  mode: "detrans" | "affirm";
-  showDonationMessage: boolean;
-}) {
+export default function ChatSection() {
+  const deployment = getConfig("DEPLOYMENT") || "";
+  const workflow = getConfig("WORKFLOW") || "";
+  const shouldUseChatWorkflow = deployment && workflow;
+
   const handleError = (error: unknown) => {
     if (!(error instanceof Error)) throw error;
     let errorMessage: string;
@@ -33,49 +32,41 @@ export default function ChatSection({
   };
 
   const useChatHandler = useChat({
-    api: mode == "affirm" ? "/api/chat/affirm" : "/api/chat/detrans",
+    api: getConfig("CHAT_API") || "/api/chat",
     onError: handleError,
     experimental_throttle: 100,
   });
 
-  useEffect(() => {
-    if (starterQuestion) {
-      useChatHandler.append({
-        role: "user",
-        content: starterQuestion,
-      });
-    }
-  }, []);
+  const useChatWorkflowHandler = useChatWorkflow({
+    deployment,
+    workflow,
+    onError: handleError,
+  });
+
+  const handler = shouldUseChatWorkflow
+    ? useChatWorkflowHandler
+    : useChatHandler;
 
   return (
     <>
       <ChatLayout>
-        <div className="-mr-16 -ml-4 sm:mx-0">
-          <ChatUI
-            handler={useChatHandler}
-            className="relative flex min-h-0 flex-1 flex-row justify-center gap-4 !bg-transparent !p-0"
-          >
-            <ChatSectionPanel
-              onReset={onReset}
-              mode={mode}
-              showDonationMessage={showDonationMessage}
-            />
-          </ChatUI>
-        </div>
+        <ChatUI
+          handler={handler}
+          className="relative flex min-h-0 flex-1 flex-row justify-center gap-4 px-4 py-0"
+        >
+          <ResizablePanelGroup direction="horizontal">
+            <ChatSectionPanel />
+            <ChatCanvasPanel />
+          </ResizablePanelGroup>
+          <DevModePanel />
+        </ChatUI>
       </ChatLayout>
+      <ChatInjection />
     </>
   );
 }
 
-function ChatSectionPanel({
-  onReset,
-  mode,
-  showDonationMessage,
-}: {
-  onReset: () => void;
-  mode: "detrans" | "affirm";
-  showDonationMessage: boolean;
-}) {
+function ChatSectionPanel() {
   const [componentDefs, setComponentDefs] = useState<ComponentDef[]>([]);
   const [dynamicEventsErrors, setDynamicEventsErrors] = useState<string[]>([]); // contain all errors when rendering dynamic events from componentDir
 
@@ -90,7 +81,7 @@ function ChatSectionPanel({
   // fetch component definitions and use Babel to tranform JSX code to JS code
   // this is triggered only once when the page is initialised
   useEffect(() => {
-    fetchComponentDefinitions({ mode }).then(({ components, errors }) => {
+    fetchComponentDefinitions().then(({ components, errors }) => {
       setComponentDefs(components);
       if (errors.length > 0) {
         setDynamicEventsErrors((prev) => [...prev, ...errors]);
@@ -99,18 +90,18 @@ function ChatSectionPanel({
   }, []);
 
   return (
-    <div className="flex h-full min-w-0 flex-1 flex-col gap-4">
-      <DynamicEventsErrors
-        errors={uniqueErrors}
-        clearErrors={() => setDynamicEventsErrors([])}
-      />
-      <CustomChatMessages
-        showDonationMessage={showDonationMessage}
-        componentDefs={componentDefs}
-        appendError={appendError}
-        onReset={onReset}
-        mode={mode}
-      />
-    </div>
+    <ResizablePanel defaultSize={40} minSize={30} className="max-w-1/2 mx-auto">
+      <div className="flex h-full min-w-0 flex-1 flex-col gap-4">
+        <DynamicEventsErrors
+          errors={uniqueErrors}
+          clearErrors={() => setDynamicEventsErrors([])}
+        />
+        <CustomChatMessages
+          componentDefs={componentDefs}
+          appendError={appendError}
+        />
+        <CustomChatInput />
+      </div>
+    </ResizablePanel>
   );
 }

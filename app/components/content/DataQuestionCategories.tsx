@@ -54,13 +54,13 @@ function TopicNode({
     const slug = slugify(question);
     switch (mode) {
       case "detrans":
-        return "/chat/" + slug;
+        return "/research/" + slug;
       case "affirm":
-        return "/affirm/chat/" + slug;
+        return "/affirm/research/" + slug;
       case "compare":
-        return "/compare/chat/" + slug;
+        return "/compare/research/" + slug;
       default:
-        return "/chat/" + slug;
+        return "/research/" + slug;
     }
   };
 

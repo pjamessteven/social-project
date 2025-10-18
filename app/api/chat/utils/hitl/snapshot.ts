@@ -1,5 +1,4 @@
 import {
-  // @ts-expect-error something
   withSnapshot,
   type Workflow,
   type WorkflowContext,

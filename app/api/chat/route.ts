@@ -10,11 +10,9 @@ import {
   runWorkflow,
   sendSuggestedQuestionsEvent,
   toDataStream,
-} from "../utils";
+} from "./utils";
 
 // import workflow factory and settings from local file
-import { incrementQuestionViews } from "@/app/lib/cache";
-import { getIP } from "@/app/lib/getIp";
 import { stopAgentEvent } from "@llamaindex/workflow";
 import { initSettings } from "./app/settings";
 import { workflowFactory } from "./app/workflow";
@@ -23,7 +21,6 @@ initSettings();
 
 export async function POST(req: NextRequest) {
   try {
-    const userIp = getIP(req);
     const reqBody = await req.json();
     const suggestNextQuestions = process.env.SUGGEST_NEXT_QUESTIONS === "true";
 
@@ -52,18 +49,15 @@ export async function POST(req: NextRequest) {
     );
 
     const context = await runWorkflow({
-      workflow: await workflowFactory(reqBody, userIp),
+      workflow: await workflowFactory(reqBody),
       input: { userInput: lastMessage.content, chatHistory },
       human: {
         snapshotId: requestId, // use requestId to restore snapshot
         responses: getHumanResponsesFromMessage(lastMessage),
       },
     });
-    incrementQuestionViews("affirm", lastMessage.content);
 
-    // @ts-expect-error something
     const stream = processWorkflowStream(context.stream).until(
-      // @ts-expect-error something
       (event) =>
         abortController.signal.aborted || stopAgentEvent.include(event),
     );
@@ -79,12 +73,7 @@ export async function POST(req: NextRequest) {
             content: completion,
           });
           if (suggestNextQuestions) {
-            await sendSuggestedQuestionsEvent(
-              dataStreamWriter,
-              chatHistory,
-              "affirm",
-              lastMessage.content,
-            );
+            await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory);
           }
         },
       },
@@ -94,8 +83,6 @@ export async function POST(req: NextRequest) {
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
         "X-Vercel-AI-Data-Stream": "v1",
-        "Cache-Control": "no-cache",
-        "X-Accel-Buffering": "no",
       },
     });
   } catch (error) {

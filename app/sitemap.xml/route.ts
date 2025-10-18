@@ -183,25 +183,25 @@ export async function GET(request: NextRequest) {
   }));
 
   // Generate chat routes for all questions
-  const chatRoutes = allQuestions.map((question) => ({
-    url: `${baseUrl}/chat/${slugify(question)}`,
+  const researchRoutes = allQuestions.map((question) => ({
+    url: `${baseUrl}/research/${slugify(question)}`,
     lastModified: new Date().toISOString(),
     changeFrequency: "weekly",
     priority: 0.7,
   }));
 
-  const affirmChatRoutes = allAffirmingQuestions.map((question) => ({
-    url: `${baseUrl}/affirm/chat/${slugify(question)}`,
+  const affirmResearchRoutes = allAffirmingQuestions.map((question) => ({
+    url: `${baseUrl}/affirm/research/${slugify(question)}`,
     lastModified: new Date().toISOString(),
     changeFrequency: "weekly",
     priority: 0.6,
   }));
 
   // Generate chat routes for top questions from database
-  const topQuestionRoutes = topQuestions.map((question) => ({
+  const topQuestionResearchRoutes = topQuestions.map((question) => ({
     url: isAffirm 
-      ? `${baseUrl}/affirm/chat/${slugify(question.name)}`
-      : `${baseUrl}/chat/${slugify(question.name)}`,
+      ? `${baseUrl}/affirm/research/${slugify(question.name)}`
+      : `${baseUrl}/research/${slugify(question.name)}`,
     lastModified: new Date().toISOString(),
     changeFrequency: "weekly",
     priority: 0.8,
@@ -209,8 +209,8 @@ export async function GET(request: NextRequest) {
 
   const allRoutes = [
     ...(isAffirm ? affirmRoutes : baseRoutes),
-    ...(isAffirm ? affirmChatRoutes : chatRoutes),
-    ...topQuestionRoutes,
+    ...(isAffirm ? affirmResearchRoutes : researchRoutes),
+    ...topQuestionResearchRoutes,
     ...(isAffirm ? [] : userRoutes),
     ...(isAffirm ? [] : tagRoutes),
     ...(isAffirm ? [] : sexRoutes),
