@@ -28,37 +28,46 @@ export async function GET(request: NextRequest) {
     // Calculate offset for pagination
     const offset = (page - 1) * limit;
 
-    // Build the base query
-    let baseQuery = db
-      .select({
-        name: questionsTable.name,
-        viewsCount: questionsTable.viewsCount,
-        mostRecentlyAsked: questionsTable.mostRecentlyAsked,
-      })
-      .from(questionsTable);
+    // Build queries with conditional where clause
+    const whereCondition = query && query.trim() 
+      ? like(questionsTable.name, `%${query.trim()}%`) 
+      : undefined;
 
-    // Add search filter if query is provided
-    if (query && query.trim()) {
-      baseQuery = baseQuery.where(like(questionsTable.name, `%${query.trim()}%`));
-    }
+    // Get total count
+    const totalResult = whereCondition
+      ? await db
+          .select({ count: questionsTable.name })
+          .from(questionsTable)
+          .where(whereCondition)
+      : await db
+          .select({ count: questionsTable.name })
+          .from(questionsTable);
 
-    // Get total count with the same filter
-    let countQuery = db
-      .select({ count: questionsTable.name })
-      .from(questionsTable);
-
-    if (query && query.trim()) {
-      countQuery = countQuery.where(like(questionsTable.name, `%${query.trim()}%`));
-    }
-
-    const totalResult = await countQuery;
     const total = totalResult.length;
 
     // Get paginated results ordered by views count (highest first)
-    const results = await baseQuery
-      .orderBy(desc(questionsTable.viewsCount))
-      .limit(limit)
-      .offset(offset);
+    const results = whereCondition
+      ? await db
+          .select({
+            name: questionsTable.name,
+            viewsCount: questionsTable.viewsCount,
+            mostRecentlyAsked: questionsTable.mostRecentlyAsked,
+          })
+          .from(questionsTable)
+          .where(whereCondition)
+          .orderBy(desc(questionsTable.viewsCount))
+          .limit(limit)
+          .offset(offset)
+      : await db
+          .select({
+            name: questionsTable.name,
+            viewsCount: questionsTable.viewsCount,
+            mostRecentlyAsked: questionsTable.mostRecentlyAsked,
+          })
+          .from(questionsTable)
+          .orderBy(desc(questionsTable.viewsCount))
+          .limit(limit)
+          .offset(offset);
 
     // Format the response
     const items = results.map(result => ({
