@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "../button";
 import { Input } from "../input";
 import { cn } from "../lib/utils";
+import Link from "next/link";
 interface CustomChatInputProps {
   host: string;
 }
@@ -177,7 +178,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                 boxShadow: "rgba(0, 0, 0, 0.2) 0px 18px 50px -10px",
               }}
               size="lg"
-              className="!placeholder-opacity-100 flex grow rounded-full bg-white pr-2 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
+              className="!placeholder-opacity-100 flex grow z-20 rounded-full bg-white pr-2 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
               value={value}
               onChange={(event) => setValue(event.target.value)}
               onKeyDown={handleKeyDown}
@@ -186,18 +187,27 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
             
             {/* Suggestions dropdown */}
             {showSuggestions && suggestions.length > 0 && (
-              <div className="absolute bottom-full left-0 right-0 mb-2 max-h-60 overflow-y-auto rounded-lg border bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800">
-                {suggestions.map((suggestion, index) => (
-                  <div
-                    key={index}
-                    className={cn(
-                      "cursor-pointer px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700",
-                      selectedSuggestion === index && "bg-gray-100 dark:bg-gray-700"
-                    )}
-                    onClick={() => handleSuggestionClick(suggestion)}
-                  >
-                    {suggestion}
+              <div className="absolute bottom-0 left-0 right-0 pb-32 z-0 overflow-y-auto rounded-lg border bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800">
+                <div className="px-3 pt-3 pb-2 font-semibold">Suggestions:</div>
+                {suggestions.map((question, index) => (
+                <Link
+                  prefetch={false}
+                  href={
+                    mode === "detrans"
+                      ? "/chat/" + slugify(question)
+                      : mode === "affirm"
+                        ? "/affirm/chat/" + slugify(question)
+                        : "/compare/chat/" + slugify(question)
+                  }
+                  key={index}
+                >
+                  <div className="flex flex-row items-center border-b pt-2 pl-3 pb-2 hover:bg-secondary">
+                    <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-lg italic opacity-90">
+                      <div className="mr-2 whitespace-nowrap">{"->"}</div>
+                      <div>{question}</div>
+                    </div>
                   </div>
+                </Link>
                 ))}
               </div>
             )}
