@@ -190,7 +190,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               <div className="absolute bottom-0 left-0 right-0 pb-16 z-0 overflow-y-auto rounded-[32px] rounded-br-[32px]  border bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800 backdrop-filter backdrop-blur-lg animate-in fade-in-0 duration-200">
                 <div className="px-5 pt-4 pb-2 font-semibold">Suggestions:</div>
                 {suggestions.map((question, index) => (
-                <Link
+                <Link onClick={() => setShowSuggestions(false)}
                   prefetch={false}
                   href={
                     mode === "detrans"
