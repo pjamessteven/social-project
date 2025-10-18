@@ -1,6 +1,6 @@
 "use client";
 import { slugify } from "@/app/lib/utils";
-import { Send } from "lucide-react";
+import { Send, X } from "lucide-react";
 import { redirect, usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../button";
@@ -182,6 +182,13 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     }
   };
 
+  const handleClear = () => {
+    setValue("");
+    setShowSuggestions(false);
+    setSelectedSuggestion(-1);
+    inputRef.current?.focus();
+  };
+
   const handleClickSuggestion =() => {
     setShowSuggestions(false)
     setValue("")
@@ -205,13 +212,24 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                 boxShadow: "rgba(0, 0, 0, 0.2) 0px 18px 50px -10px",
               }}
               size="lg"
-              className="!placeholder-opacity-100 relative flex grow z-20 rounded-full bg-white pr-2 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
+              className="!placeholder-opacity-100 relative flex grow z-20 rounded-full bg-white pr-12 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
               value={value}
               onChange={(event) => setValue(event.target.value)}
               onKeyDown={handleKeyDown}
               onFocus={handleFocus}
               placeholder={placeholder}
             />
+            
+            {/* Clear button */}
+            {value.trim() && (
+              <button
+                type="button"
+                onClick={handleClear}
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-30 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              >
+                <X className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+              </button>
+            )}
             
             {/* Suggestions dropdown */}
             {showSuggestions && suggestions.length > 0 && (
