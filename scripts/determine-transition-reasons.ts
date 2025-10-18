@@ -98,7 +98,7 @@ Instructions:
 1. For each reason, if an available tag fits, use that exact tag name
 2. If user did not transition or did not de-transition, return null instead of tag.
 3. Focus on ROOT CAUSES and primary motivations
-4. Return tag name in exact original format
+4. Return tag name in exact original format (lower case, spaces between words)
 5. Return ONLY the tag name after each label, nothing else
 6. Return in this exact format:
 TRANSITION_REASON: [tag name]
@@ -223,9 +223,10 @@ async function processUser(user: any, index: number, total: number): Promise<voi
     let updates: any = {};
 
     // Get available tags for both types
-    const availableTransitionTags = await getTransitionReasonTags();
-    const availableDetransitionTags = await getDetransitionReasonTags();
-    
+    // const availableTransitionTags = await getTransitionReasonTags();
+    // const availableDetransitionTags = await getDetransitionReasonTags();
+    const availableDetransitionTags = ["autoandrophilia realisation","autism/neurodivergence realisation","realisation of true self","autogynephilia realisation","internalised homophobia realisation","internalised misogyny realisation","desire for family","social ostracism","internalised misandry realisation","ocd realisation","exhaustion from performance","mental health issues resolved","mental health issues not resolved","psychedelic drugs","medical complications","social pressure","ideological shift realisation","fetish acceptance","medical patient aversion","surgery regret and lack of resolution","ideology disillusionment","social anxiety and isolation","community disillusionment","spiritual healing experience","natural development resolution","family responsibility guilt","forced cessation and reflection","fantasy reality disillusionment","cultural reconnection and acceptance","hormone-induced dysphoria","failure to pass and social ostracism","therapy and self realisation","dating isolation and incompatibility","religious trauma realisation","community and role model exposure","identity realisation","parental and medical restrictions","psychosis clarity","social environment change","neurological health focus","fertility preservation desire","social role realisation","relationship preservation fear","medical system disillusionment","maternal role realisation","body reconciliation realisation","gender role realisation","social system disillusionment","relationship objectification realisation","religious faith conflict","voice change regret","biological sex realisation","social construct realisation","environmental change and personal growth","unwanted physical changes realisation","religious changes","trauma realisation","body dysmorphia","underlying health issues"]
+    const availableTransitionTags = ["trauma","influenced online","influenced by friends","intersex","internalised homophobia","internalised misogyny","parental or medical coercion","social role discomfort","internalised misandry","ocd intrusive thoughts","identity instability","fear of sexualization","depersonalisation","mental health issues","autism/neurodivergence","autogynephilia","autoandrophilia","body dysmorphia","identity validation pressure","underlying health issues"]
     console.log(`Available transition reason tags: ${availableTransitionTags.length} tags`);
     console.log(`Available detransition reason tags: ${availableDetransitionTags.length} tags`);
 
