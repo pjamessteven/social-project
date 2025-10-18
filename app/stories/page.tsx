@@ -62,6 +62,10 @@ async function fetchUsers(searchParams: {
     params.set("maxAge", searchParams.maxAge);
   }
 
+  if (searchParams.search && typeof searchParams.search === "string") {
+    params.set("search", searchParams.search);
+  }
+
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
   const response = await fetch(`${baseUrl}/api/users?${params}`, {
     cache: "no-store",
