@@ -1,22 +1,148 @@
-import { SimpleDirectoryReader } from "@llamaindex/readers/directory";
+import { QdrantVectorStore } from "@llamaindex/qdrant";
+import { db } from "@/db";
+import { detransUsers, detransUserTags, detransTags } from "@/db/schema";
+import { eq, sql } from "drizzle-orm";
 import "dotenv/config";
-import { storageContextFromDefaults, VectorStoreIndex } from "llamaindex";
+import {
+  Document,
+  IngestionPipeline,
+  VectorStoreIndex,
+  SentenceSplitter,
+} from "llamaindex";
 import { initSettings } from "./app/settings";
 
-async function generateDatasource() {
-  console.log(`Generating storage context...`);
-  // Split documents, create embeddings and store them in the storage context
-  const storageContext = await storageContextFromDefaults({
-    persistDir: "storage",
-  });
-  // load documents from current directory into an index
-  const reader = new SimpleDirectoryReader();
-  const documents = await reader.loadData("data");
+async function fetchWithBackoff<T>(
+  fn: () => Promise<T>,
+  retries = 5,
+  delay = 500,
+): Promise<T> {
+  let attempt = 0;
 
-  await VectorStoreIndex.fromDocuments(documents, {
-    storageContext,
+  while (attempt <= retries) {
+    try {
+      return await fn();
+    } catch (err) {
+      if (attempt === retries) {
+        throw err;
+      }
+
+      const backoff = delay * Math.pow(2, attempt);
+      console.warn(
+        `Attempt ${attempt + 1} failed. Retrying in ${backoff}ms...`,
+        err,
+      );
+
+      await new Promise((resolve) => setTimeout(resolve, backoff));
+      attempt++;
+    }
+  }
+
+  throw new Error("Unexpected error in fetchWithBackoff");
+}
+
+async function generateDatasource() {
+  console.log(`Generating detrans stories datasource...`);
+
+  const vectorStore = new QdrantVectorStore({
+    url: "http://localhost:6333",
+    collectionName: "detrans_stories",
   });
-  console.log("Storage context successfully generated.");
+
+  const pipeline = new IngestionPipeline({
+    transformations: [
+      new SentenceSplitter({
+        chunkSize: 512,
+        chunkOverlap: 50,
+      }),
+    ],
+  });
+
+  // Fetch all users with their experience stories and associated metadata
+  const usersWithStories = await db
+    .select({
+      username: detransUsers.username,
+      experience: detransUsers.experience,
+      transitionAge: detransUsers.transitionAge,
+      detransitionAge: detransUsers.detransitionAge,
+      transitionReasonId: detransUsers.transitionReasonId,
+      detransitionReasonId: detransUsers.detransitionReasonId,
+      transitionReason: sql<string>`tr.name`,
+      detransitionReason: sql<string>`dr.name`,
+      tags: sql<string[]>`COALESCE(array_agg(DISTINCT t.name) FILTER (WHERE t.name IS NOT NULL), ARRAY[]::text[])`,
+    })
+    .from(detransUsers)
+    .leftJoin(
+      sql`${detransTags} tr`,
+      eq(detransUsers.transitionReasonId, sql`tr.id`)
+    )
+    .leftJoin(
+      sql`${detransTags} dr`, 
+      eq(detransUsers.detransitionReasonId, sql`dr.id`)
+    )
+    .leftJoin(detransUserTags, eq(detransUsers.username, detransUserTags.username))
+    .leftJoin(detransTags, eq(detransUserTags.tagId, detransTags.id))
+    .where(sql`${detransUsers.experience} IS NOT NULL AND ${detransUsers.experience} != ''`)
+    .groupBy(
+      detransUsers.username,
+      detransUsers.experience,
+      detransUsers.transitionAge,
+      detransUsers.detransitionAge,
+      detransUsers.transitionReasonId,
+      detransUsers.detransitionReasonId,
+      sql`tr.name`,
+      sql`dr.name`
+    );
+
+  console.log(`Found ${usersWithStories.length} users with experience stories`);
+
+  const index = await VectorStoreIndex.fromVectorStore(vectorStore);
+  let processedCount = 0;
+
+  // Process users in batches
+  const batchSize = 10;
+  for (let i = 0; i < usersWithStories.length; i += batchSize) {
+    const batch = usersWithStories.slice(i, i + batchSize);
+    const documents: Document[] = [];
+
+    for (const user of batch) {
+      if (!user.experience) continue;
+
+      const doc = new Document({
+        text: user.experience,
+        metadata: {
+          username: user.username,
+          tags: user.tags || [],
+          transitionReason: user.transitionReason || null,
+          detransitionReason: user.detransitionReason || null,
+          transitionAge: user.transitionAge || null,
+          detransitionAge: user.detransitionAge || null,
+          type: "user_story",
+        },
+      });
+
+      documents.push(doc);
+    }
+
+    if (documents.length > 0) {
+      // Process the batch with retry logic
+      const nodes = await fetchWithBackoff(
+        async () => pipeline.run({ documents }),
+        3,
+        1000,
+      );
+
+      await fetchWithBackoff(
+        async () => index.insertNodes(nodes),
+        5,
+        500,
+      );
+
+      processedCount += documents.length;
+      console.log(`Processed ${processedCount}/${usersWithStories.length} user stories`);
+    }
+  }
+
+  console.log("Detrans stories datasource successfully generated.");
 }
 
 (async () => {
