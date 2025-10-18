@@ -178,7 +178,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                 boxShadow: "rgba(0, 0, 0, 0.2) 0px 18px 50px -10px",
               }}
               size="lg"
-              className="!placeholder-opacity-100 flex grow z-20 rounded-full bg-white pr-2 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
+              className="!placeholder-opacity-100 relative flex grow z-20 rounded-full bg-white pr-2 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
               value={value}
               onChange={(event) => setValue(event.target.value)}
               onKeyDown={handleKeyDown}
@@ -187,7 +187,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
             
             {/* Suggestions dropdown */}
             {showSuggestions && suggestions.length > 0 && (
-              <div className="absolute bottom-0 left-0 right-0 pb-32 z-0 overflow-y-auto rounded-lg border bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800">
+              <div className="absolute bottom-0 left-0 right-0 pb-32 z-0 overflow-y-auto rounded-bl-[32px]  rounded-br-[32px] rounded-lg border bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800">
                 <div className="px-3 pt-3 pb-2 font-semibold">Suggestions:</div>
                 {suggestions.map((question, index) => (
                 <Link
