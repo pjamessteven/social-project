@@ -176,6 +176,12 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     inputRef.current?.focus();
   };
 
+  const handleFocus = () => {
+    if (value.trim().length >= 2 && suggestions.length > 0) {
+      setShowSuggestions(true);
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -198,6 +204,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               value={value}
               onChange={(event) => setValue(event.target.value)}
               onKeyDown={handleKeyDown}
+              onFocus={handleFocus}
               placeholder={placeholder}
             />
             
