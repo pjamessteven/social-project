@@ -494,7 +494,7 @@ async function processUser(
 }
 
 async function main() {
-  let state: ProcessingState;
+  let state: ProcessingState | undefined;
   
   try {
     console.log("Starting user tag generation...");
@@ -608,7 +608,7 @@ async function main() {
     console.error("Error in main process:", error);
     
     // Save progress even on error
-    if (state) {
+    if (state !== undefined) {
       await saveProgress(state);
     }
   } finally {
