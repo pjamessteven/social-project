@@ -363,12 +363,14 @@ async function generateTags(
   experienceReport: string,
   redFlagsReport: string,
 ): Promise<string[]> {
-  const prompt = `Based on the following experience report from an detransition community user, identify relevant tags that apply to their experience. 
-  You may only select tags that are listed in the Available tag options. 
-Only select tags that are clearly supported by the content and are directly relevant to the user.
-For example, only include 'infertility' if the user is actually now infertile, or 'bottom surgery' if the user had bottom surgery.
-Don't include "only transitioned socially" if the user actually took hormones or had surgery. 
-Only use the 'suspicious account' tag if the Red Flag Report suspects that this account might not be authentic. 
+  const prompt = `Based on the following experience report from a detransition community user, identify relevant tags that apply to their experience. 
+
+You may only select tags that are listed in the Available tag options.  
+Only select tags that are **explicitly and directly supported** by the user's own words.  
+Do **not** infer or assume anything beyond what is clearly stated.  
+If a tag is not clearly mentioned or implied, do **not** include it.  
+Do **not** include tags based on general themes or possibilities.  
+Only use the 'suspicious account' tag if the Red Flag Report explicitly suspects the account is not authentic.
 
 Available Tag Options: 
 ${availableTags}
@@ -379,7 +381,7 @@ ${experienceReport}
 Red Flag Report: 
 ${redFlagsReport}
 
-Return only a JSON array of applicable tags. Example: ["trauma", "top surgery", "autism"]`;
+Return only a JSON array of applicable tags. Example: ["trauma", "autism"]`;
 
   try {
     const response = await fetchWithBackoff(() =>
