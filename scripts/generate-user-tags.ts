@@ -218,17 +218,13 @@ async function fetchWithBackoff<T>(
   throw new Error("Unexpected error in fetchWithBackoff");
 }
 
-interface TagWithEvidence {
-  tag: string;
-  quote: string;
-}
 
-async function generateTagsWithEvidence(
+async function generateTags(
   username: string,
   experienceReport: string,
   redFlagsReport: string,
   userSex: string,
-): Promise<TagWithEvidence[]> {
+): Promise<string[]> {
   const prompt = `You are a medical annotator that accurately labels detransition stories with relevant labels.
 
 LABELS = ${JSON.stringify(availableTags)}
@@ -252,7 +248,7 @@ ${redFlagsReport}
 """
 
 Output format:
-["trauma", "autism"]`;
+["trauma", "autism/neurodivergence"]`;
 
   try {
     const response = await fetchWithBackoff(() =>
@@ -277,31 +273,25 @@ Output format:
     }
 
     // Handle different possible response formats
-    let tagsWithEvidence: TagWithEvidence[] = [];
+    let tags: string[] = [];
     if (Array.isArray(parsed)) {
-      tagsWithEvidence = parsed;
+      tags = parsed;
     } else if (parsed.tags && Array.isArray(parsed.tags)) {
-      tagsWithEvidence = parsed.tags;
+      tags = parsed.tags;
     } else if (typeof parsed === "object") {
       // Try to find an array property
       const arrayProp = Object.values(parsed).find((val) => Array.isArray(val));
-      if (arrayProp) tagsWithEvidence = arrayProp as TagWithEvidence[];
+      if (arrayProp) tags = arrayProp as string[];
     }
 
-    // Validate the structure and filter valid tags
-    const validTags = tagsWithEvidence.filter(item => 
-      item && 
-      typeof item === 'object' && 
-      typeof item.tag === 'string' && 
-      typeof item.quote === 'string' &&
-      item.tag.trim().length > 0 &&
-      item.quote.trim().length > 0
+    // Validate and filter valid tags
+    const validTags = tags.filter(tag => 
+      typeof tag === 'string' && 
+      tag.trim().length > 0 &&
+      availableTags.includes(tag.toLowerCase())
     );
 
-    console.log(`Generated ${validTags.length} tags with evidence for ${username}`);
-    validTags.forEach(({ tag, quote }) => {
-      console.log(`  - ${tag}: "${quote.substring(0, 100)}${quote.length > 100 ? '...' : ''}"`);
-    });
+    console.log(`Generated ${validTags.length} valid tags for ${username}:`, validTags);
 
     return validTags;
   } catch (error) {
@@ -453,22 +443,16 @@ async function processUser(
       throw new ValidationError("Experience text too long (may exceed token limits)");
     }
 
-    // Generate tags with evidence
-    const tagsWithEvidence = await generateTagsWithEvidence(username, experience, redFlagsReport, sex);
+    // Generate tags
+    const tags = await generateTags(username, experience, redFlagsReport, sex);
 
-    if (tagsWithEvidence.length > 0) {
-      // Extract just the tag names and validate against available tags
-      const tagNames = tagsWithEvidence
-        .map(item => item.tag.toLowerCase())
-        .filter(tag => availableTags.includes(tag));
+    if (tags.length > 0) {
+      // Convert to lowercase for consistency
+      const tagNames = tags.map(tag => tag.toLowerCase());
       
-      if (tagNames.length > 0) {
-        console.log(`Assigning ${tagNames.length} valid tags to ${username}:`, tagNames);
-        const tagIds = await ensureTagsExist(tagNames);
-        await assignTagsToUser(username, tagIds);
-      } else {
-        console.log(`No valid tags generated for ${username} (all tags were invalid)`);
-      }
+      console.log(`Assigning ${tagNames.length} tags to ${username}:`, tagNames);
+      const tagIds = await ensureTagsExist(tagNames);
+      await assignTagsToUser(username, tagIds);
     } else {
       console.log(`No tags generated for ${username}`);
     }
