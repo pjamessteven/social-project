@@ -39,8 +39,12 @@ export const availableTags = [
   "benefited from non-affirming therapy",
   "eating disorder",
   "parental or medical coercion",
-  "regrets transitioning",
-  "doesn't regret transitioning",
+  "regrets transition",
+  "doesn't regret transition",
+  "regrets hormones",
+  "doesn't regret hormones",
+  "regrets surgery",
+  "doesn't regret surgery",
   "trans kid",
   "feminine boy",
   "tomboy",
@@ -76,6 +80,9 @@ export const availableTags = [
   "bone density issues",
   "unsupportive family",
   "supportive family",
+  "parent - not trans themselves",
+  "friend - not trans themselves",
+  "researcher - not trans themselves",
 ];
 
 dotenv.config();
@@ -222,18 +229,19 @@ async function generateTagsWithEvidence(
   redFlagsReport: string,
   userSex: string,
 ): Promise<TagWithEvidence[]> {
-  const prompt = `You are a medical annotator that labels detransition stories.
+  const prompt = `You are a medical annotator that accurately labels detransition stories with relevant labels.
 
 LABELS = ${JSON.stringify(availableTags)}
 
 RULES:
-1. For every tag you add, copy ONE verbatim sentence that explicitly supports it.
-2. If no sentence supports a label, you MUST NOT invent one.
+1. For every label you add, there must be ONE sentence that explicitly supports it.
+2. You must only use labels from the list above, do NOT invent new labels.
 3. Output only valid JSON.
 4. Only use the 'suspicious account' tag if the Red Flag Report explicitly suspects the account is not authentic.
-5. Only include 'regrets transitioning' if there is a strong sense of regret. 
-6. Base sexuality on biological sex. If a male says their girlfriend is trans, this means their girlfriend is actually male, therefor they are homosexual. Likewise if a female says their boyfriend is trans, this means their boyfriend is actually female, therefor they are homosexual.
-7. Consider the user's biological sex (${userSex}) when determining sexuality labels (homosexual/heterosexual/bisexual).
+5. Only label with 'regrets transitioning' or 'doesn't regret transitioning' if there is a very strong sense of (or lack of) regret. 
+6. Only label with 're-transitioned' if the story explicitly mentions re-transitioning after de-transitioning. 
+7. Base sexuality on biological sex. If a male says their girlfriend is trans, this means their girlfriend is actually male, therefor they are homosexual. Likewise if a female says their boyfriend is trans, this means their boyfriend is actually female, therefor they are homosexual.
+8. Consider the user's biological sex (${userSex}) when determining sexuality labels (homosexual/heterosexual/bisexual).
  
 Story: """
 ${experienceReport}
@@ -244,12 +252,7 @@ ${redFlagsReport}
 """
 
 Output format:
-[
-  {"tag": "got top surgery",
-   "quote": "I had double-incision mastectomy in 2021"},
-  {"tag": "now infertile",
-   "quote": "My endocrinologist confirmed my AMH is post-menopausal"}
-]`;
+["trauma", "autism"]`;
 
   try {
     const response = await fetchWithBackoff(() =>
