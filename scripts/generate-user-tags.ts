@@ -267,8 +267,10 @@ Output format:
     let parsed;
     try {
       parsed = JSON.parse(result);
+      console.log(`Raw LLM response for ${username}:`, JSON.stringify(parsed));
     } catch (parseError) {
       console.error(`JSON parse error for ${username}:`, parseError);
+      console.error(`Raw response:`, result);
       return [];
     }
 
@@ -276,20 +278,33 @@ Output format:
     let tags: string[] = [];
     if (Array.isArray(parsed)) {
       tags = parsed;
+      console.log(`Found direct array for ${username}:`, tags);
     } else if (parsed.labels && Array.isArray(parsed.labels)) {
       tags = parsed.labels;
+      console.log(`Found labels array for ${username}:`, tags);
     } else if (typeof parsed === "object") {
       // Try to find an array property
       const arrayProp = Object.values(parsed).find((val) => Array.isArray(val));
-      if (arrayProp) tags = arrayProp as string[];
+      if (arrayProp) {
+        tags = arrayProp as string[];
+        console.log(`Found array property for ${username}:`, tags);
+      }
     }
 
+    console.log(`All extracted tags for ${username}:`, tags);
+
     // Validate and filter valid tags
-    const validTags = tags.filter(tag => 
-      typeof tag === 'string' && 
-      tag.trim().length > 0 &&
-      availableTags.includes(tag.toLowerCase())
-    );
+    const validTags = tags.filter(tag => {
+      const isString = typeof tag === 'string';
+      const hasLength = tag && tag.trim().length > 0;
+      const isAvailable = availableTags.includes(tag.toLowerCase());
+      
+      if (!isString) console.log(`  - Rejected ${tag}: not a string`);
+      else if (!hasLength) console.log(`  - Rejected "${tag}": empty or whitespace`);
+      else if (!isAvailable) console.log(`  - Rejected "${tag}": not in available tags list`);
+      
+      return isString && hasLength && isAvailable;
+    });
 
     console.log(`Generated ${validTags.length} valid tags for ${username}:`, validTags);
 
