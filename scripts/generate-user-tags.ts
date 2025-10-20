@@ -39,8 +39,8 @@ export const availableTags = [
   "benefited from non-affirming therapy",
   "eating disorder",
   "parental or medical coercion",
-  "regrets transition",
-  "doesn't regret transition",
+  "completely regrets transition",
+  "doesn't completely regret transition",
   "regrets hormones",
   "doesn't regret hormones",
   "regrets surgery",
@@ -80,9 +80,9 @@ export const availableTags = [
   "bone density issues",
   "unsupportive family",
   "supportive family",
-  "parent - not trans themselves",
-  "friend - not trans themselves",
-  "researcher - not trans themselves",
+  "is parent (not trans themselves)",
+  "is friend (not trans themselves)",
+  "is researcher (not trans themselves)",
 ];
 
 dotenv.config();
@@ -98,7 +98,7 @@ const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
 });
 
-const MODEL = "google/gemini-2.5-pro"
+const MODEL = "moonshotai/kimi-k2-0905"
 
 // Progress tracking interface
 interface ProcessingState {
@@ -278,7 +278,7 @@ Output format:
       return [];
     }
 
-    console.log(`Extracted tags for ${username}:`, tags);
+   // console.log(`Extracted tags for ${username}:`, tags);
 
     // Validate and filter valid tags
     const validTags = tags.filter(tag => {
@@ -293,7 +293,7 @@ Output format:
       return isString && hasLength && isAvailable;
     });
 
-    console.log(`Generated ${validTags.length} valid tags for ${username}:`, validTags);
+  //  console.log(`Generated ${validTags.length} valid tags for ${username}:`, validTags);
 
     return validTags;
   } catch (error) {
