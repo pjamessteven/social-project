@@ -248,7 +248,7 @@ ${redFlagsReport}
 """
 
 Output format:
-{"tags": ["trauma", "autism/neurodivergence"]}`;
+{"labels": ["trauma", "autism/neurodivergence"]}`;
 
   try {
     const response = await fetchWithBackoff(() =>
@@ -276,8 +276,8 @@ Output format:
     let tags: string[] = [];
     if (Array.isArray(parsed)) {
       tags = parsed;
-    } else if (parsed.tags && Array.isArray(parsed.tags)) {
-      tags = parsed.tags;
+    } else if (parsed.labels && Array.isArray(parsed.labels)) {
+      tags = parsed.labels;
     } else if (typeof parsed === "object") {
       // Try to find an array property
       const arrayProp = Object.values(parsed).find((val) => Array.isArray(val));
