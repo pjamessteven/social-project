@@ -65,7 +65,6 @@ export const availableTags = [
   "psychosis clarity",
   "depersonalisation",
   "mental health issues",
-  "null",
   "identity validation pressure",
   "underlying health issues",
   "suspicious account",
@@ -90,7 +89,7 @@ const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
 });
 
-const MODEL = "deepseek/deepseek-chat-v3.1"
+const MODEL = "deepseek/deepseek-chat-v3-0324:free"
 
 // Backoff utility for API calls
 async function fetchWithBackoff<T>(
