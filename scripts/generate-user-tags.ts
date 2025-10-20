@@ -248,7 +248,7 @@ ${redFlagsReport}
 """
 
 Output format:
-["trauma", "autism/neurodivergence"]`;
+{"tags": ["trauma", "autism/neurodivergence"]}`;
 
   try {
     const response = await fetchWithBackoff(() =>
