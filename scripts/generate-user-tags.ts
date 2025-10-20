@@ -233,6 +233,7 @@ RULES:
 4. Only use the 'suspicious account' tag if the Red Flag Report explicitly suspects the account is not authentic.
 5. Only include 'regrets transitioning' if there is a strong sense of regret. 
 6. Base sexuality on biological sex. If a male says their girlfriend is trans, this means their girlfriend is actually male, therefor they are homosexual. Likewise if a female says their boyfriend is trans, this means their boyfriend is actually female, therefor they are homosexual.
+7. Consider the user's biological sex (${userSex}) when determining sexuality labels (homosexual/heterosexual/bisexual).
  
 Story: """
 ${experienceReport}
