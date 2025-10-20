@@ -358,107 +358,6 @@ If ages are not clearly stated, return null for those fields.`;
 }
 
 
-async function generateTags(
-  username: string,
-  experienceReport: string,
-  redFlagsReport: string,
-): Promise<string[]> {
-  const prompt = `Based on the following experience report from a detransition community user, identify relevant tags that apply to their experience. 
-
-You may only select tags that are listed in the Available tag options.  
-Only select tags that are **explicitly and directly supported** by the user's own words.  
-Do **not** infer or assume anything beyond what is clearly stated.  
-If a tag is not clearly mentioned or implied, do **not** include it.  
-Do **not** include tags based on general themes or possibilities.  
-Only use the 'suspicious account' tag if the Red Flag Report explicitly suspects the account is not authentic.
-
-Available Tag Options: 
-${availableTags}
-
-Experience Report from user "${username}": 
-${experienceReport}
-
-Red Flag Report: 
-${redFlagsReport}
-
-Return only a JSON array of applicable tags. Example: ["trauma", "autism"]`;
-
-  try {
-    const response = await fetchWithBackoff(() =>
-      openai.chat.completions.create({
-        model: MODEL,
-        messages: [{ role: "user", content: prompt }],
-        response_format: { type: "json_object" },
-        temperature: 0.1,
-      })
-    );
-
-    const result = response.choices[0]?.message?.content;
-    if (!result) return [];
-
-    // Parse the JSON response
-    const parsed = JSON.parse(result);
-
-    // Handle different possible response formats
-    let tagNames: string[] = [];
-    if (Array.isArray(parsed)) {
-      tagNames = parsed;
-    } else if (parsed.tags && Array.isArray(parsed.tags)) {
-      tagNames = parsed.tags;
-    } else if (typeof parsed === "object") {
-      // Try to find an array property
-      const arrayProp = Object.values(parsed).find((val) => Array.isArray(val));
-      if (arrayProp) tagNames = arrayProp as string[];
-    }
-
-    // Return all generated tags (no filtering against predefined list)
-    return tagNames.map(tag => tag.toLowerCase());
-  } catch (error) {
-    console.error(`Error generating tags for ${username}:`, error);
-    return [];
-  }
-}
-
-async function ensureTagsExist(tagNames: string[]): Promise<number[]> {
-  const tagIds: number[] = [];
-  
-  for (const tagName of tagNames) {
-    // Check if tag exists
-    const existingTag = await db
-      .select()
-      .from(detransTags)
-      .where(eq(detransTags.name, tagName))
-      .limit(1);
-    
-    if (existingTag.length === 0) {
-      // Create new tag
-      const newTag = await db
-        .insert(detransTags)
-        .values({ name: tagName })
-        .returning({ id: detransTags.id });
-      tagIds.push(newTag[0].id);
-    } else {
-      tagIds.push(existingTag[0].id);
-    }
-  }
-  
-  return tagIds;
-}
-
-async function assignTagsToUser(username: string, tagIds: number[]): Promise<void> {
-  // Remove existing tags for this user
-  await db.delete(detransUserTags).where(eq(detransUserTags.username, username));
-  
-  // Insert new tags
-  if (tagIds.length > 0) {
-    await db.insert(detransUserTags).values(
-      tagIds.map(tagId => ({
-        username,
-        tagId,
-      }))
-    );
-  }
-}
 
 async function processUser(userComments: UserComments, index: number, total: number): Promise<void> {
   const { username, all_comments, earliest_comment_date } = userComments;
@@ -571,16 +470,8 @@ async function processUser(userComments: UserComments, index: number, total: num
       });
     }
 
-    // Generate tags (for both new users and existing users without tags)
-    console.log(`Generating tags for ${username}...`);
-    const tagNames = await generateTags(username, experienceReport, redFlagsReport);
-
-    // Handle tags
-    if (tagNames.length > 0) {
-      console.log(`Assigning tags to ${username}:`, tagNames);
-      const tagIds = await ensureTagsExist(tagNames);
-      await assignTagsToUser(username, tagIds);
-    }
+    // Note: Tag generation has been moved to a separate script (generate-user-tags.ts)
+    // Run that script separately to generate tags for users
 
     console.log(`Successfully processed user: ${username}`);
 
