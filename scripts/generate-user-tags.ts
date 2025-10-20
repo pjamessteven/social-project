@@ -248,14 +248,13 @@ ${redFlagsReport}
 """
 
 Output format:
-{"labels": ["trauma", "autism/neurodivergence"]}`;
+["trauma", "autism/neurodivergence"]`;
 
   try {
     const response = await fetchWithBackoff(() =>
       openai.chat.completions.create({
         model: MODEL,
         messages: [{ role: "user", content: prompt }],
-        response_format: { type: "json_object" },
         temperature: 0.1,
       })
     );
@@ -264,34 +263,22 @@ Output format:
     if (!result) return [];
 
     // Parse the JSON response
-    let parsed;
+    let tags: string[] = [];
     try {
-      parsed = JSON.parse(result);
-      console.log(`Raw LLM response for ${username}:`, JSON.stringify(parsed));
+      tags = JSON.parse(result);
+      console.log(`Raw LLM response for ${username}:`, JSON.stringify(tags));
+      
+      if (!Array.isArray(tags)) {
+        console.error(`Expected array but got ${typeof tags} for ${username}`);
+        return [];
+      }
     } catch (parseError) {
       console.error(`JSON parse error for ${username}:`, parseError);
       console.error(`Raw response:`, result);
       return [];
     }
 
-    // Handle different possible response formats
-    let tags: string[] = [];
-    if (Array.isArray(parsed)) {
-      tags = parsed;
-      console.log(`Found direct array for ${username}:`, tags);
-    } else if (parsed.labels && Array.isArray(parsed.labels)) {
-      tags = parsed.labels;
-      console.log(`Found labels array for ${username}:`, tags);
-    } else if (typeof parsed === "object") {
-      // Try to find an array property
-      const arrayProp = Object.values(parsed).find((val) => Array.isArray(val));
-      if (arrayProp) {
-        tags = arrayProp as string[];
-        console.log(`Found array property for ${username}:`, tags);
-      }
-    }
-
-    console.log(`All extracted tags for ${username}:`, tags);
+    console.log(`Extracted tags for ${username}:`, tags);
 
     // Validate and filter valid tags
     const validTags = tags.filter(tag => {
