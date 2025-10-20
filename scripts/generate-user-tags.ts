@@ -220,6 +220,7 @@ async function generateTagsWithEvidence(
   username: string,
   experienceReport: string,
   redFlagsReport: string,
+  userSex: string,
 ): Promise<TagWithEvidence[]> {
   const prompt = `You are a medical annotator that labels detransition stories.
 
@@ -350,11 +351,12 @@ async function getUsersWithoutTags(excludeUsernames: string[] = []): Promise<Arr
   username: string;
   experience: string;
   redFlagsReport: string;
+  sex: string;
 }>> {
   console.log("Fetching users without tags...");
 
   let query = sql`
-    SELECT u.username, u.experience, u.red_flags_report
+    SELECT u.username, u.experience, u.red_flags_report, u.sex
     FROM detrans_users u
     LEFT JOIN detrans_user_tags ut ON u.username = ut.username
     WHERE ut.username IS NULL
@@ -366,7 +368,7 @@ async function getUsersWithoutTags(excludeUsernames: string[] = []): Promise<Arr
   if (excludeUsernames.length > 0) {
     const placeholders = excludeUsernames.map(() => '?').join(',');
     query = sql`
-      SELECT u.username, u.experience, u.red_flags_report
+      SELECT u.username, u.experience, u.red_flags_report, u.sex
       FROM detrans_users u
       LEFT JOIN detrans_user_tags ut ON u.username = ut.username
       WHERE ut.username IS NULL
@@ -384,6 +386,7 @@ async function getUsersWithoutTags(excludeUsernames: string[] = []): Promise<Arr
     username: row.username as string,
     experience: row.experience as string,
     redFlagsReport: (row.red_flags_report as string) || "",
+    sex: row.sex as string,
   }));
 }
 
@@ -391,6 +394,7 @@ async function getRetryableFailedUsers(state: ProcessingState, maxRetries: numbe
   username: string;
   experience: string;
   redFlagsReport: string;
+  sex: string;
 }>> {
   const retryableUsernames = state.failedUsers
     .filter(f => f.retryCount < maxRetries)
@@ -404,7 +408,7 @@ async function getRetryableFailedUsers(state: ProcessingState, maxRetries: numbe
 
   const placeholders = retryableUsernames.map(name => `'${name}'`).join(',');
   const result = await db.execute(sql`
-    SELECT u.username, u.experience, u.red_flags_report
+    SELECT u.username, u.experience, u.red_flags_report, u.sex
     FROM detrans_users u
     WHERE u.username IN (${sql.raw(placeholders)})
       AND u.experience IS NOT NULL
@@ -416,6 +420,7 @@ async function getRetryableFailedUsers(state: ProcessingState, maxRetries: numbe
     username: row.username as string,
     experience: row.experience as string,
     redFlagsReport: (row.red_flags_report as string) || "",
+    sex: row.sex as string,
   }));
 }
 
@@ -424,12 +429,13 @@ async function processUser(
     username: string;
     experience: string;
     redFlagsReport: string;
+    sex: string;
   },
   index: number,
   total: number,
   state: ProcessingState,
 ): Promise<{ success: boolean; error?: string }> {
-  const { username, experience, redFlagsReport } = user;
+  const { username, experience, redFlagsReport, sex } = user;
 
   console.log(`[${index + 1}/${total}] Processing tags for user: ${username}`);
 
@@ -444,7 +450,7 @@ async function processUser(
     }
 
     // Generate tags with evidence
-    const tagsWithEvidence = await generateTagsWithEvidence(username, experience, redFlagsReport);
+    const tagsWithEvidence = await generateTagsWithEvidence(username, experience, redFlagsReport, sex);
 
     if (tagsWithEvidence.length > 0) {
       // Extract just the tag names and validate against available tags
