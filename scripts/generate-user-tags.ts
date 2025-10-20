@@ -15,6 +15,7 @@ export const availableTags = [
   "ocd intrusive thoughts",
   "puberty discomfort",
   "got top surgery",
+  "got top surgery as part of male detransition",
   "got bottom surgery",
   "internalised homophobia",
   "internalised misogyny",
@@ -30,12 +31,13 @@ export const availableTags = [
   "borderline personality disorder",
   "suicidal ideation",
   "self-harm",
-  "porn problem",
+  "porn influence",
+  "anime influence",
+  "influenced online",
+  "influenced by friends",
   "hated breasts",
   "benefited from non-affirming therapy",
   "eating disorder",
-  "influenced online",
-  "influenced by friends",
   "parental or medical coercion",
   "regrets transitioning",
   "doesn't regret transitioning",
@@ -62,12 +64,10 @@ export const availableTags = [
   "bisexual",
   "sexuality changed",
   "social role discomfort",
-  "identity instability",
   "fear of sexualization",
   "psychosis clarity",
   "depersonalisation",
   "mental health issues",
-  "identity validation pressure",
   "underlying health issues",
   "suspicious account",
   "hair loss",
@@ -91,7 +91,7 @@ const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
 });
 
-const MODEL = "deepseek/deepseek-chat-v3-0324:free"
+const MODEL = "google/gemini-2.5-pro"
 
 // Progress tracking interface
 interface ProcessingState {
@@ -226,12 +226,13 @@ async function generateTagsWithEvidence(
 LABELS = ${JSON.stringify(availableTags)}
 
 RULES:
-1. Reread the story twice.
-2. For every tag you add, copy ONE verbatim sentence that explicitly supports it.
-3. If no sentence supports a label, you MUST NOT invent one.
-4. Output only valid JSON.
-5. Only use the 'suspicious account' tag if the Red Flag Report explicitly suspects the account is not authentic.
-
+1. For every tag you add, copy ONE verbatim sentence that explicitly supports it.
+2. If no sentence supports a label, you MUST NOT invent one.
+3. Output only valid JSON.
+4. Only use the 'suspicious account' tag if the Red Flag Report explicitly suspects the account is not authentic.
+5. Only include 'regrets transitioning' if there is a strong sense of regret. 
+6. Base sexuality on biological sex. If a male says their girlfriend is trans, this means their girlfriend is actually male, therefor they are homosexual. Likewise if a female says their boyfriend is trans, this means their boyfriend is actually female, therefor they are homosexual.
+ 
 Story: """
 ${experienceReport}
 """
