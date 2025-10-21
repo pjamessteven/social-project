@@ -148,21 +148,7 @@ export async function POST(req: NextRequest) {
         type: 'chat_cache'
       }, 'Chat cache hit');
       
-      const cachedStream = new ReadableStream({
-        async start(controller) {
-          try {
-            const replayStream = replayCached(cachedAnswer);
-            for await (const chunk of replayStream) {
-              controller.enqueue(new TextEncoder().encode(chunk));
-            }
-            controller.close();
-          } catch (error) {
-            controller.error(error);
-          }
-        },
-      });
-      
-      return new Response(cachedStream, {
+      return new Response(replayCached(cachedAnswer), {
         headers: {
           'Content-Type': 'text/plain; charset=utf-8',
           'X-Vercel-AI-Data-Stream': 'v1',
@@ -224,7 +210,6 @@ export async function POST(req: NextRequest) {
     return new Response(stream, {
       headers: {
         'Content-Type': 'text/plain; charset=utf-8',
-        'X-Vercel-AI-Data-Stream': 'v1',
       },
     });
 
