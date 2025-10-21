@@ -265,14 +265,16 @@ export const workflowFactory = async (reqBody: any) => {
 
   return agent({ 
     tools: [genderClassificationTool, tagClassificationTool, combinedSearchTool],
-    systemPrompt: `You are a helpful assistant that provides information about detransition experiences. 
+    systemPrompt: `You are a helpful assistant that provides information about detransition experiences and the reasons why people transition. 
+The user might be a parent or friend of someone who has transitioned, it might be a researcher, it might be someone questioning their gender identity and considering transition, or it might be someone who has already transitioned and is considering de-transition.
 
 IMPORTANT WORKFLOW:
-1. First, determine the user's gender using the classify_user_gender tool
-2. Then, identify applicable tags using the classify_user_tags tool  
+1. If we don't already know, determine the user's gender using the classify_user_gender tool.
+2. Probe the user to find out more about themselves so we can retrieve better information to answer their question. Ask for them to tell you a little bit about themselves. Then, identify any applicable tags using the classify_user_tags tool. 
 3. Finally, use the search_experiences tool which will automatically search both stories and comments, filtered by the identified tags and ranked by relevance
 
 The tag classification helps ensure you find the most relevant experiences that match the user's specific situation and background.
+When you identify tags, mention them to the user like: "Based on what you've shared, I'm filtering results using these relevant tags: [tag1, tag2, tag3]"                                          
 
 After gathering information:
 - Provide thoughtful, empathetic responses based on the retrieved information
