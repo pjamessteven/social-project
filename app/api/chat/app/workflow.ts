@@ -87,22 +87,44 @@ const userContext: {
 } = {};
 
 // Define tools outside the factory to ensure they persist
-const classifyUserSex = async ({ userMessage }: { userMessage: string }) => {
+const classifyUserSex = async ({ userMessage }: { userMessage: any }) => {
     console.log('[SEX CLASSIFICATION TOOL] Called with input:', { 
-      userMessage: userMessage ? userMessage.substring(0, 100) + '...' : 'undefined'
+      userMessage: typeof userMessage === 'string' ? userMessage.substring(0, 100) + '...' : JSON.stringify(userMessage).substring(0, 100) + '...'
     });
     console.log('[SEX CLASSIFICATION TOOL] Input type:', typeof userMessage);
     console.log('[SEX CLASSIFICATION TOOL] Input is undefined?', userMessage === undefined);
     
-    if (!userMessage || typeof userMessage !== 'string') {
-      console.error('[SEX CLASSIFICATION TOOL] Invalid input - userMessage is not a string:', userMessage);
-      return { sex: 'unknown', confidence: 'low', error: 'Invalid input' };
+    // Extract string content from various possible input formats
+    let messageText: string;
+    if (typeof userMessage === 'string') {
+      messageText = userMessage;
+    } else if (userMessage && typeof userMessage === 'object') {
+      // Try to extract text from object structure
+      if (userMessage.content) {
+        messageText = userMessage.content;
+      } else if (userMessage.text) {
+        messageText = userMessage.text;
+      } else if (Array.isArray(userMessage) && userMessage.length > 0) {
+        // If it's an array, try to get the last user message
+        const lastUserMsg = userMessage.filter(msg => msg.role === 'user').pop();
+        messageText = lastUserMsg?.content || JSON.stringify(userMessage);
+      } else {
+        messageText = JSON.stringify(userMessage);
+      }
+    } else {
+      console.error('[SEX CLASSIFICATION TOOL] Invalid input - cannot extract text:', userMessage);
+      return { sex: 'unknown', confidence: 'low', error: 'Invalid input format' };
     }
     
-    console.log('[SEX CLASSIFICATION] Starting analysis for message:', userMessage ? userMessage.substring(0, 100) + '...' : 'undefined');
+    if (!messageText || typeof messageText !== 'string') {
+      console.error('[SEX CLASSIFICATION TOOL] Could not extract valid text from input:', userMessage);
+      return { sex: 'unknown', confidence: 'low', error: 'No valid text found' };
+    }
+    
+    console.log('[SEX CLASSIFICATION] Starting analysis for message:', messageText.substring(0, 100) + '...');
     
     // Analyze the user's message to determine sex
-    const lowerMessage = userMessage.toLowerCase();
+    const lowerMessage = messageText.toLowerCase();
     
     // Look for explicit sex indicators
     const maleIndicators = [
@@ -180,7 +202,7 @@ const sexClassificationTool = tool(classifyUserSex, {
   name: "classify_user_sex",
   description: "Analyze the user's message to determine their sex (male/female) based on explicit statements, pronouns, and contextual clues",
   parameters: z.object({
-    userMessage: z.string({
+    userMessage: z.any({
       description: "The user's message to analyze for sex indicators",
     }),
   }),
@@ -188,28 +210,56 @@ const sexClassificationTool = tool(classifyUserSex, {
 
 console.log('[WORKFLOW] Sex classification tool created');
 
-const classifyUserTags = async ({ userMessage }: { userMessage: string }) => {
+const classifyUserTags = async ({ userMessage }: { userMessage: any }) => {
     try {
       console.log('[TAG CLASSIFICATION TOOL] Called with input:', { 
-        userMessage: userMessage ? userMessage.substring(0, 100) + '...' : 'undefined'
+        userMessage: typeof userMessage === 'string' ? userMessage.substring(0, 100) + '...' : JSON.stringify(userMessage).substring(0, 100) + '...'
       });
       console.log('[TAG CLASSIFICATION TOOL] Input type:', typeof userMessage);
       console.log('[TAG CLASSIFICATION TOOL] Input is undefined?', userMessage === undefined);
       
-      if (!userMessage || typeof userMessage !== 'string') {
-        console.error('[TAG CLASSIFICATION TOOL] Invalid input - userMessage is not a string:', userMessage);
+      // Extract string content from various possible input formats
+      let messageText: string;
+      if (typeof userMessage === 'string') {
+        messageText = userMessage;
+      } else if (userMessage && typeof userMessage === 'object') {
+        // Try to extract text from object structure
+        if (userMessage.content) {
+          messageText = userMessage.content;
+        } else if (userMessage.text) {
+          messageText = userMessage.text;
+        } else if (Array.isArray(userMessage) && userMessage.length > 0) {
+          // If it's an array, try to get the last user message
+          const lastUserMsg = userMessage.filter(msg => msg.role === 'user').pop();
+          messageText = lastUserMsg?.content || JSON.stringify(userMessage);
+        } else {
+          messageText = JSON.stringify(userMessage);
+        }
+      } else {
+        console.error('[TAG CLASSIFICATION TOOL] Invalid input - cannot extract text:', userMessage);
         return { 
           applicableTags: [], 
           totalTagsFound: 0, 
           foundKeywords: {}, 
-          message: 'Invalid input', 
-          error: 'Invalid input' 
+          message: 'Invalid input format', 
+          error: 'Invalid input format' 
         };
       }
       
-      console.log('[TAG CLASSIFICATION] Starting analysis for message:', userMessage ? userMessage.substring(0, 100) + '...' : 'undefined');
+      if (!messageText || typeof messageText !== 'string') {
+        console.error('[TAG CLASSIFICATION TOOL] Could not extract valid text from input:', userMessage);
+        return { 
+          applicableTags: [], 
+          totalTagsFound: 0, 
+          foundKeywords: {}, 
+          message: 'No valid text found', 
+          error: 'No valid text found' 
+        };
+      }
       
-      const lowerMessage = userMessage.toLowerCase();
+      console.log('[TAG CLASSIFICATION] Starting analysis for message:', messageText.substring(0, 100) + '...');
+      
+      const lowerMessage = messageText.toLowerCase();
       const applicableTags: string[] = [];
       const foundKeywords: Record<string, string[]> = {};
       
@@ -296,7 +346,7 @@ const tagClassificationTool = tool(classifyUserTags, {
   name: "classify_user_tags",
   description: "Analyze the user's message to determine which tags from the available tag list apply to their situation",
   parameters: z.object({
-    userMessage: z.string({
+    userMessage: z.any({
       description: "The user's message to analyze for applicable tags",
     }),
   }),
