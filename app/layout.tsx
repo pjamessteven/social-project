@@ -12,7 +12,7 @@ import { ThemeProvider } from "next-themes";
 import { headers } from "next/headers";
 import ScrollRestoration from "./components/content/ScrollRestoration";
 import { CustomChatInput } from "./components/ui/research/custom-chat-input";
-import Header from "./components/ui/research/layout/header";
+import Header from "./components/ui/common/layout/header";
 import { ContentWarningDialog } from "./components/ui/content-warning-dialog";
 import "./globals.css";
 import { isBot } from "./lib/isBot";

@@ -13,12 +13,11 @@ import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
 import { fetchComponentDefinitions } from "./custom/events/loader";
 import { ComponentDef } from "./custom/events/types";
 import { DevModePanel } from "./dev-mode-panel";
-import { ChatLayout } from "./layout";
+import { ChatLayout } from "../common/layout";
 
 export default function ChatSection() {
   const deployment = getConfig("DEPLOYMENT") || "";
-  const workflow = getConfig("WORKFLOW") || "";
-  const shouldUseChatWorkflow = deployment && workflow;
+
 
   const handleError = (error: unknown) => {
     if (!(error instanceof Error)) throw error;
@@ -37,30 +36,25 @@ export default function ChatSection() {
     experimental_throttle: 100,
   });
 
-  const useChatWorkflowHandler = useChatWorkflow({
-    deployment,
-    workflow,
-    onError: handleError,
-  });
 
-  const handler = shouldUseChatWorkflow
-    ? useChatWorkflowHandler
-    : useChatHandler;
+  const handler =  useChatHandler;
 
   return (
     <>
-      <ChatLayout>
-        <ChatUI
-          handler={handler}
-          className="relative flex min-h-0 flex-1 flex-row justify-center gap-4 px-4 py-0"
-        >
-          <ResizablePanelGroup direction="horizontal">
-            <ChatSectionPanel />
-            <ChatCanvasPanel />
-          </ResizablePanelGroup>
-          <DevModePanel />
-        </ChatUI>
-      </ChatLayout>
+
+        <div className="-mr-16 -ml-4 sm:mx-0 h-full w-full">
+          <ChatUI
+            handler={handler}
+            className="relative flex min-h-0 flex-1 flex-row justify-center gap-4 px-4 py-0"
+          >
+            <ResizablePanelGroup direction="horizontal">
+              <ChatSectionPanel />
+              <ChatCanvasPanel />
+            </ResizablePanelGroup>
+            <DevModePanel />
+          </ChatUI>
+        </div>
+
       <ChatInjection />
     </>
   );
@@ -90,7 +84,7 @@ function ChatSectionPanel() {
   }, []);
 
   return (
-    <ResizablePanel defaultSize={40} minSize={30} className="max-w-1/2 mx-auto">
+    <ResizablePanel defaultSize={40} minSize={30} className="w-full">
       <div className="flex h-full min-w-0 flex-1 flex-col gap-4">
         <DynamicEventsErrors
           errors={uniqueErrors}
