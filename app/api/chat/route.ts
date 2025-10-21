@@ -79,14 +79,51 @@ export async function POST(req: NextRequest) {
     const stream = processWorkflowStream(context.stream).until(
           // @ts-expect-error something
       (event) => {
-        console.log('[ROUTE] Stream event check:', typeof event, event);
+        console.log('[ROUTE] Stream event check:', typeof event);
+        try {
+          console.log('[ROUTE] Event toString():', event.toString());
+        } catch (e) {
+          console.error('[ROUTE] Error in event.toString():', e);
+        }
+        try {
+          console.log('[ROUTE] Event toJSON():', event.toJSON());
+        } catch (e) {
+          console.error('[ROUTE] Error in event.toJSON():', e);
+        }
+        try {
+          console.log('[ROUTE] Event data:', event.data);
+        } catch (e) {
+          console.error('[ROUTE] Error accessing event.data:', e);
+        }
         return abortController.signal.aborted || stopAgentEvent.include(event);
       },
     );
     console.log('[ROUTE] Stream processed successfully');
 
     console.log('[ROUTE] About to create data stream...');
-    const dataStream = toDataStream(stream, {
+    
+    // Wrap the stream to catch JSON parsing errors
+    const wrappedStream = (async function* () {
+      try {
+        for await (const event of stream) {
+          console.log('[ROUTE] Processing stream event in dataStream wrapper');
+          try {
+            // Test if the event can be safely serialized
+            const testSerialization = JSON.stringify(event);
+            console.log('[ROUTE] Event serialization test passed, length:', testSerialization.length);
+          } catch (serializationError) {
+            console.error('[ROUTE] Event serialization failed:', serializationError);
+            console.log('[ROUTE] Problematic event:', event);
+          }
+          yield event;
+        }
+      } catch (streamError) {
+        console.error('[ROUTE] Error in stream iteration:', streamError);
+        throw streamError;
+      }
+    })();
+    
+    const dataStream = toDataStream(wrappedStream, {
       callbacks: {
         onPauseForHumanInput: async (responseEvent) => {
           console.log('[ROUTE] onPauseForHumanInput callback triggered');
