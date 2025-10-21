@@ -203,9 +203,7 @@ const sexClassificationTool = tool(classifyUserSex, {
   name: "classify_user_sex",
   description: "Analyze the user's message to determine their sex (male/female) based on explicit statements, pronouns, and contextual clues",
   parameters: z.object({
-    userMessage: z.any({
-      description: "The user's message to analyze for sex indicators",
-    }),
+    userMessage: z.any().describe("The user's message to analyze for sex indicators"),
   }),
 });
 
@@ -348,9 +346,7 @@ const tagClassificationTool = tool(classifyUserTags, {
   name: "classify_user_tags",
   description: "Analyze the user's message to determine which tags from the available tag list apply to their situation",
   parameters: z.object({
-    userMessage: z.any({
-      description: "The user's message to analyze for applicable tags",
-    }),
+    userMessage: z.any().describe("The user's message to analyze for applicable tags"),
   }),
 });
 
