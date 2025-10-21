@@ -205,7 +205,7 @@ const sexClassificationTool = tool(classifyUserSex, {
 
 console.log('[WORKFLOW] Sex classification tool created');
 
-const classifyUserTags = async ({ userMessage }: { userMessage: any }) => {
+const classifyUserTags = async ({ userMessage }: { userMessage: any }): Promise<Record<string, any>> => {
     try {
       console.log('[TAG CLASSIFICATION TOOL] Input type:', typeof userMessage);
       console.log('[TAG CLASSIFICATION TOOL] Input is undefined?', userMessage === undefined);
