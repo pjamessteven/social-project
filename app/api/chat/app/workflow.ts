@@ -241,45 +241,21 @@ export const workflowFactory = async (reqBody: any) => {
     }
   );
 
-  const commentsEngineTool = new FunctionTool(
+  const combinedSearchTool = new FunctionTool(
     async ({ query }: { query: string }) => {
-      const commentsIndex = await getCommentsIndex(reqBody?.data, userContext.applicableTags);
-      const queryEngine = commentsIndex.asQueryEngine();
-      const response = await queryEngine.query({ query });
-      return response.toString();
+      const { searchCombinedContent } = await import('./data');
+      const results = await searchCombinedContent(query, reqBody?.data, userContext.applicableTags);
+      return results;
     },
     {
-      name: "query_user_comments",
-      description: "Retrieve reddit comments related to detransition, filtered by the user's applicable tags",
+      name: "search_experiences",
+      description: "Search both detransition stories and reddit comments, returning the most relevant results based on similarity, first-person content, and community engagement",
       parameters: {
         type: "object",
         properties: {
           query: {
             type: "string",
-            description: "The search query for finding relevant comments",
-          },
-        },
-        required: ["query"],
-      },
-    }
-  );
-
-  const storiesEngineTool = new FunctionTool(
-    async ({ query }: { query: string }) => {
-      const storiesIndex = await getStoriesIndex(reqBody?.data, userContext.applicableTags);
-      const queryEngine = storiesIndex.asQueryEngine();
-      const response = await queryEngine.query({ query });
-      return response.toString();
-    },
-    {
-      name: "query_user_stories", 
-      description: "Retrieve first person detransition stories and experiences, filtered by the user's applicable tags",
-      parameters: {
-        type: "object",
-        properties: {
-          query: {
-            type: "string", 
-            description: "The search query for finding relevant stories",
+            description: "The search query for finding relevant detransition experiences and comments",
           },
         },
         required: ["query"],
@@ -288,13 +264,13 @@ export const workflowFactory = async (reqBody: any) => {
   );
 
   return agent({ 
-    tools: [genderClassificationTool, tagClassificationTool, commentsEngineTool, storiesEngineTool],
+    tools: [genderClassificationTool, tagClassificationTool, combinedSearchTool],
     systemPrompt: `You are a helpful assistant that provides information about detransition experiences. 
 
 IMPORTANT WORKFLOW:
 1. First, determine the user's gender using the classify_user_gender tool
 2. Then, identify applicable tags using the classify_user_tags tool  
-3. Finally, use the query tools (query_user_comments and query_user_stories) which will automatically filter results by the identified tags
+3. Finally, use the search_experiences tool which will automatically search both stories and comments, filtered by the identified tags and ranked by relevance
 
 The tag classification helps ensure you find the most relevant experiences that match the user's specific situation and background.
 
