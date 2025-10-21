@@ -260,9 +260,11 @@ export const workflowFactory = async (reqBody: any) => {
   initSettings();
   
   console.log('[WORKFLOW] Creating separate query engine tools...');
+  console.log('[WORKFLOW] reqBody:', reqBody);
+  console.log('[WORKFLOW] userContext:', userContext);
   
   // Create stories index and query engine tool
-  const storiesIndex = await getStoriesIndex(reqBody?.data, userContext.applicableTags);
+  const storiesIndex = await getStoriesIndex(reqBody?.data || null, userContext.applicableTags || []);
   const storiesRetriever = await storiesIndex.asRetriever();
   storiesRetriever.similarityTopK = 10;
   const storiesQueryEngine = await storiesIndex.asQueryEngine({
@@ -278,7 +280,7 @@ export const workflowFactory = async (reqBody: any) => {
   });
 
   // Create comments index and query engine tool
-  const commentsIndex = await getCommentsIndex(reqBody?.data, userContext.applicableTags);
+  const commentsIndex = await getCommentsIndex(reqBody?.data || null, userContext.applicableTags || []);
   const commentsRetriever = await commentsIndex.asRetriever();
   commentsRetriever.similarityTopK = 10;
   const commentsQueryEngine = await commentsIndex.asQueryEngine({
