@@ -15,6 +15,7 @@ export const availableTags = [
   "ocd intrusive thoughts",
   "puberty discomfort",
   "got top surgery",
+  "got facial surgery",
   "got top surgery as part of male detransition",
   "got bottom surgery",
   "internalised homophobia",
@@ -233,8 +234,10 @@ RULES:
 4. Only use the 'suspicious account' tag if the Red Flag Report explicitly suspects the account is not authentic.
 5. Only label with 're-transitioned' if the story explicitly mentions re-transitioning after de-transitioning. 
 6. Consider the person's biological sex (${userSex}) when determining sexuality labels (homosexual/heterosexual/bisexual). If a male says their girlfriend is trans, this means their girlfriend is actually male, therefor they are homosexual. Likewise if a female says their boyfriend is trans, this means their boyfriend is actually female, therefor they are homosexual. 
-7. If the person detransitioned, Make sure you assign a correct level of transition regret ["completely regrets transitioning",   "partially regrets transition",
+7. If the person detransitioned, Make sure you assign a correct level of transition regret ["completely regrets transition",   "partially regrets transition",
   "doesn't regret transition"] 
+8. "got bottom surgery" includes vaginoplasty, phalloplasty and hysterectomy.
+9. "got top surgery" includes masectomy and breast implants. 
 
 Story: """
 ${experienceReport}
