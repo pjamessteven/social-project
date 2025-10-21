@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
         responses: getHumanResponsesFromMessage(lastMessage),
       },
     });
-
+    console.log('CONTEXT', JSON.stringify(context))
         // @ts-expect-error something
     const stream = processWorkflowStream(context.stream).until(
           // @ts-expect-error something
