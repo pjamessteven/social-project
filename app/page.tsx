@@ -7,11 +7,11 @@ import type { Metadata } from "next";
 const metadata: Metadata = {
   title: "detrans.ai | Talk to 50,000+ detransitioners",
   description:
-  "Detrans.ai is powered by real detrans perspectives and experiences. Use it for detransition help and advice, as a virtual gender-exploratory therapist, or simply as a gender research tool to understand why some people adopt, inhabit, and let go of gender identities.",
+  "Detrans.ai is a chatbot powered by real detrans perspectives and experiences. It's super helpful if you are questioning your gender or thinking about transitioning, for detransition help and advice, as a virtual gender-exploratory therapist, or simply as a gender research tool to understand why some people adopt, inhabit, and let go of gender identities.",
   openGraph: {
     title: "detrans.ai | Talk to 50,000+ detransitioners",
     description:
-      "Detrans.ai is powered by real detrans perspectives and experiences. Use it for detransition help and advice, as a virtual gender-exploratory therapist, or simply as a gender research tool to understand why some adopt, inhabit, and let go of gender identities.",
+    "Detrans.ai is a chatbot powered by real detrans perspectives and experiences. It's super helpful if you are questioning your gender or thinking about transitioning, for detransition help and advice, as a virtual gender-exploratory therapist, or simply as a gender research tool to understand why some people adopt, inhabit, and let go of gender identities.",
     url: "https://detrans.ai/",
     images: ["https://detrans.ai/x_card_lg.png"],
     siteName: "detrans.ai",
@@ -23,7 +23,7 @@ const metadata: Metadata = {
     card: "summary_large_image",
     title: "detrans.ai | Talk to 50,000+ detransitioners",
     description:
-      "Detrans.ai is powered by real detrans perspectives and experiences. Understand why some adopt, inhabit, and let go of gender identities.",
+      "Detrans.ai is a chatbot powered by real detrans perspectives and experiences. Understand why some adopt, inhabit, and let go of gender identities.",
   },
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
