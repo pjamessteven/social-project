@@ -6,6 +6,7 @@ import { getLogger } from "@/app/lib/logger";
 import { OpenAI } from "@llamaindex/openai";
 import { VectorStoreIndex, NodeWithScore, Metadata } from "llamaindex";
 import { QdrantVectorStore } from "@llamaindex/qdrant";
+import { toDataStream } from "./utils/stream";
 
 import { initSettings } from "./app/settings";
 
@@ -188,26 +189,36 @@ export async function POST(req: NextRequest) {
       stream: true,
     });
 
-    let fullResponse = '';
-    const stream = new ReadableStream({
-      async start(controller) {
-        try {
-          for await (const chunk of response) {
-            const delta = chunk.delta || '';
-            fullResponse += delta;
-            controller.enqueue(new TextEncoder().encode(delta));
+    // Create an async generator that yields workflow-like events
+    async function* createEventStream() {
+      for await (const chunk of response) {
+        const delta = chunk.delta || '';
+        yield {
+          type: 'agent_stream',
+          data: {
+            delta,
+            response: '',
+            currentAgentName: 'LLM',
+            raw: chunk.raw,
           }
-          
+        };
+      }
+    }
+
+    let fullResponse = '';
+    const dataStream = toDataStream(createEventStream(), {
+      callbacks: {
+        onText: async (text) => {
+          fullResponse += text;
+        },
+        onFinal: async (completion) => {
           // Cache the complete response
-          await setCachedAnswer("detrans", contextKey, fullResponse);
-          controller.close();
-        } catch (error) {
-          controller.error(error);
-        }
+          await setCachedAnswer("detrans", contextKey, completion);
+        },
       },
     });
 
-    return new Response(stream, {
+    return new Response(dataStream, {
       headers: {
         'Content-Type': 'text/plain; charset=utf-8',
         'X-Vercel-AI-Data-Stream': 'v1',
