@@ -88,7 +88,9 @@ const userContext: {
 
 // Define tools outside the factory to ensure they persist
 const classifyUserSex = async ({ userMessage }: { userMessage: string }) => {
-    console.log('[SEX CLASSIFICATION TOOL] Called with input:', { userMessage: userMessage?.substring(0, 100) + '...' });
+    console.log('[SEX CLASSIFICATION TOOL] Called with input:', { 
+      userMessage: userMessage ? userMessage.substring(0, 100) + '...' : 'undefined'
+    });
     console.log('[SEX CLASSIFICATION TOOL] Input type:', typeof userMessage);
     console.log('[SEX CLASSIFICATION TOOL] Input is undefined?', userMessage === undefined);
     
@@ -97,7 +99,7 @@ const classifyUserSex = async ({ userMessage }: { userMessage: string }) => {
       return { sex: 'unknown', confidence: 'low', error: 'Invalid input' };
     }
     
-    console.log('[SEX CLASSIFICATION] Starting analysis for message:', userMessage.substring(0, 100) + '...');
+    console.log('[SEX CLASSIFICATION] Starting analysis for message:', userMessage ? userMessage.substring(0, 100) + '...' : 'undefined');
     
     // Analyze the user's message to determine sex
     const lowerMessage = userMessage.toLowerCase();
@@ -187,7 +189,9 @@ const sexClassificationTool = tool(classifyUserSex, {
 console.log('[WORKFLOW] Sex classification tool created');
 
 const classifyUserTags = async ({ userMessage }: { userMessage: string }) => {
-    console.log('[TAG CLASSIFICATION TOOL] Called with input:', { userMessage: userMessage?.substring(0, 100) + '...' });
+    console.log('[TAG CLASSIFICATION TOOL] Called with input:', { 
+      userMessage: userMessage ? userMessage.substring(0, 100) + '...' : 'undefined'
+    });
     console.log('[TAG CLASSIFICATION TOOL] Input type:', typeof userMessage);
     console.log('[TAG CLASSIFICATION TOOL] Input is undefined?', userMessage === undefined);
     
@@ -196,7 +200,7 @@ const classifyUserTags = async ({ userMessage }: { userMessage: string }) => {
       return { applicableTags: [], totalTagsFound: 0, foundKeywords: {}, message: 'Invalid input', error: 'Invalid input' };
     }
     
-    console.log('[TAG CLASSIFICATION] Starting analysis for message:', userMessage.substring(0, 100) + '...');
+    console.log('[TAG CLASSIFICATION] Starting analysis for message:', userMessage ? userMessage.substring(0, 100) + '...' : 'undefined');
     
     const lowerMessage = userMessage.toLowerCase();
     const applicableTags: string[] = [];
