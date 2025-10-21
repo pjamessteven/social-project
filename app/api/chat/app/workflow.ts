@@ -291,11 +291,15 @@ export const workflowFactory = async (reqBody: any) => {
 
 IMPORTANT WORKFLOW:
 1. First determine who the user is. The user might be a parent or friend of someone who has transitioned, it might be a researcher, it might be someone questioning their gender identity and considering transition, or it might be someone who has already transitioned and is considering de-transition. Also ask if they were born male or female (do not use any variation of 'assigned sex at birth') and determine the user's gender using the classify_user_gender tool.
-2. Probe the user to find out more about themselves so we can retrieve better information to answer their question. Ask for them to tell you a little bit about themselves. Then, identify any applicable tags using the classify_user_tags tool. 
-3. For every response or question from the user, use the classify_user_tags tool to see if they have shared any more information that will help us narrow our search query, and use the search_experiences tool which will automatically search both stories and comments, filtered by the identified tags and ranked by relevance
+2. Probe the user to find out more about themselves so we can retrieve better information to answer their question. Ask for them to tell you a little bit about themselves. 
+3. If the latest user message mentions any of the available tags, use the classify_user_tags tool to see if they have shared any more information that will help us narrow our search query. 
+4. If necessary, use the search_experiences tool to search for relevant stories and comments.
 
 The tag classification helps ensure you find the most relevant experiences that match the user's specific situation and background.
 When you identify tags, mention them to the user like: "Based on what you've shared, I'm filtering results using these relevant tags: [tag1, tag2, tag3]"                                          
+
+available tags: 
+${availableTags}
 
 After gathering information:
 - Provide thoughtful, empathetic responses based on the retrieved information
