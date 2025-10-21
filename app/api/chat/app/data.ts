@@ -10,6 +10,8 @@ let storiesIndexCache: VectorStoreIndex | null = null;
 let commentsIndexCache: VectorStoreIndex | null = null;
 
 export async function getStoriesIndex(params?: any, tags?: string[]) {
+  console.log('[STORIES INDEX] Called with params:', params, 'tags:', tags);
+  
   if (!storiesIndexCache) {
     console.log('[STORIES INDEX] Creating new stories index (first time)');
     
@@ -29,6 +31,8 @@ export async function getStoriesIndex(params?: any, tags?: string[]) {
 }
 
 export async function getCommentsIndex(params?: any, tags?: string[]) {
+  console.log('[COMMENTS INDEX] Called with params:', params, 'tags:', tags);
+  
   if (!commentsIndexCache) {
     console.log('[COMMENTS INDEX] Creating new comments index (first time)');
     
