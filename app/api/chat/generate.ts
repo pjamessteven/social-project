@@ -65,6 +65,7 @@ async function generateDatasource() {
     .select({
       username: detransUsers.username,
       experience: detransUsers.experience,
+      sex: detransUsers.sex,
       transitionAge: detransUsers.transitionAge,
       detransitionAge: detransUsers.detransitionAge,
       transitionReasonId: detransUsers.transitionReasonId,
@@ -121,6 +122,7 @@ async function generateDatasource() {
       const doc = new Document({
         text: user.experience,
         metadata: {
+          sex: user.sex,
           username: user.username,
           tags: user.tags || [],
           transitionReason: user.transitionReason || null,
