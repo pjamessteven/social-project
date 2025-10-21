@@ -272,10 +272,7 @@ export default function TransitionPathwaysChart({
                   margin={{ top: 40, right: 96, bottom: 40, left: 32 }}
                   node={(props: any) => {
                     const { x, y, width, height, payload } = props;
-                    const labelText =
-                      (payload?.name === "Unknown" && "Not Stated") ||
-                      payload?.name ||
-                      "Not Stated";
+                    const labelText = payload?.name || "Not Stated";
 
                     const percentage = (
                       (payload.value / totalUsers) *
