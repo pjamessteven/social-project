@@ -1,6 +1,5 @@
 import { agent } from "@llamaindex/workflow";
 import { tool, QueryEngineTool } from "llamaindex";
-import { z } from "zod";
 import { getCommentsIndex, getStoriesIndex } from "./data";
 import { initSettings } from "./settings";
 
@@ -202,9 +201,6 @@ const classifyUserSex = async ({ userMessage }: { userMessage: any }) => {
 const sexClassificationTool = tool(classifyUserSex, {
   name: "classify_user_sex",
   description: "Analyze the user's message to determine their sex (male/female) based on explicit statements, pronouns, and contextual clues",
-  parameters: z.object({
-    userMessage: z.any().describe("The user's message to analyze for sex indicators"),
-  }),
 });
 
 console.log('[WORKFLOW] Sex classification tool created');
@@ -345,9 +341,6 @@ const classifyUserTags = async ({ userMessage }: { userMessage: any }) => {
 const tagClassificationTool = tool(classifyUserTags, {
   name: "classify_user_tags",
   description: "Analyze the user's message to determine which tags from the available tag list apply to their situation",
-  parameters: z.object({
-    userMessage: z.any().describe("The user's message to analyze for applicable tags"),
-  }),
 });
 
 console.log('[WORKFLOW] Tag classification tool created');
