@@ -6,6 +6,7 @@ import { getLogger } from "@/app/lib/logger";
 import { OpenAI } from "@llamaindex/openai";
 import { VectorStoreIndex, NodeWithScore, Metadata } from "llamaindex";
 import { QdrantVectorStore } from "@llamaindex/qdrant";
+import { streamText } from "ai";
 
 import { initSettings } from "./app/settings";
 
@@ -148,12 +149,16 @@ export async function POST(req: NextRequest) {
         type: 'chat_cache'
       }, 'Chat cache hit');
       
-      return new Response(replayCached(cachedAnswer), {
-        headers: {
-          'Content-Type': 'text/plain; charset=utf-8',
-          'X-Vercel-AI-Data-Stream': 'v1',
+      // Return cached response using streamText for proper format
+      const result = await streamText({
+        model: llm,
+        messages: [{ role: "assistant", content: cachedAnswer }],
+        async onFinish() {
+          // Cache is already set, no need to re-cache
         },
       });
+      
+      return result.toDataStreamResponse();
     }
 
     logger.info({
@@ -177,41 +182,22 @@ export async function POST(req: NextRequest) {
     const context = formatContext(reRankedNodes);
     const chatHistory = formatChatHistory(messages);
 
-    // Generate response
+    // Generate response using streamText
     const prompt = PROMPT_TEMPLATE
       .replace('{context}', context)
       .replace('{chat_history}', chatHistory)
       .replace('{question}', userQuestion);
 
-    const response = await llm.chat({
+    const result = await streamText({
+      model: llm,
       messages: [{ role: "user", content: prompt }],
-      stream: true,
-    });
-
-    let fullResponse = '';
-    const stream = new ReadableStream({
-      async start(controller) {
-        try {
-          for await (const chunk of response) {
-            const delta = chunk.delta || '';
-            fullResponse += delta;
-            controller.enqueue(new TextEncoder().encode(delta));
-          }
-          
-          // Cache the complete response
-          await setCachedAnswer("detrans", contextKey, fullResponse);
-          controller.close();
-        } catch (error) {
-          controller.error(error);
-        }
+      async onFinish({ text }) {
+        // Cache the complete response
+        await setCachedAnswer("detrans", contextKey, text);
       },
     });
 
-    return new Response(stream, {
-      headers: {
-        'Content-Type': 'text/plain; charset=utf-8',
-      },
-    });
+    return result.toDataStreamResponse();
 
   } catch (error) {
     console.error("Chat handler error:", error);
