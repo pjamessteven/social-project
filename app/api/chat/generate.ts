@@ -43,8 +43,11 @@ async function fetchWithBackoff<T>(
 async function generateDatasource() {
   console.log(`Generating detrans stories datasource...`);
 
+  const qdrantUrl = process.env.QDRANT_URL || "http://localhost:6333";
+  console.log(`Connecting to Qdrant at: ${qdrantUrl}`);
+
   const vectorStore = new QdrantVectorStore({
-    url: "http://localhost:6333",
+    url: qdrantUrl,
     collectionName: "detrans_stories",
   });
 
@@ -95,7 +98,15 @@ async function generateDatasource() {
 
   console.log(`Found ${usersWithStories.length} users with experience stories`);
 
-  const index = await VectorStoreIndex.fromVectorStore(vectorStore);
+  let index;
+  try {
+    index = await VectorStoreIndex.fromVectorStore(vectorStore);
+  } catch (error) {
+    console.error("Failed to connect to Qdrant vector store:", error);
+    console.error("Make sure Qdrant is running and accessible at:", qdrantUrl);
+    process.exit(1);
+  }
+
   let processedCount = 0;
 
   // Process users in batches
