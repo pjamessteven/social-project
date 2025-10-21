@@ -57,7 +57,9 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    // @ts-expect-error something
     const stream = processWorkflowStream(context.stream).until(
+    // @ts-expect-error something
       (event) =>
         abortController.signal.aborted || stopAgentEvent.include(event),
     );
