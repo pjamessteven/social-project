@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     );
 
     const context = await runWorkflow({
-      workflow: await workflowFactory(reqBody),
+      workflow: await workflowFactory(reqBody || {}),
       input: { userInput: lastMessage.content, chatHistory },
       human: {
         snapshotId: requestId, // use requestId to restore snapshot
