@@ -223,39 +223,47 @@ async function generateTags(
   redFlagsReport: string,
   userSex: string,
 ): Promise<string[]> {
-  const prompt = `You are a medical annotator that accurately labels detransition stories with relevant labels.
+  const systemPrompt = `You are a medical annotator specializing in detransition story analysis. Your task is to accurately label stories with relevant tags based on explicit evidence in the text.
 
-LABELS = ${JSON.stringify(availableTags)}
+AVAILABLE TAGS: ${JSON.stringify(availableTags)}
 
-RULES:
-1. For every label you add, there must be ONE sentence that explicitly supports it.
-2. You must only use labels from the list above, do NOT invent new labels.
-3. Output only valid JSON.
-4. Only use the 'suspicious account' tag if the Red Flag Report explicitly suspects the account is not authentic.
-5. Only label with 're-transitioned' if the story explicitly mentions re-transitioning after de-transitioning. 
-6. Consider the person's biological sex (${userSex}) when determining sexuality labels (homosexual/heterosexual/bisexual). If a male says their girlfriend is trans, this means their girlfriend is actually male, therefor they are homosexual. Likewise if a female says their boyfriend is trans, this means their boyfriend is actually female, therefor they are homosexual. 
-7. If the person detransitioned, Make sure you assign a correct level of transition regret ["completely regrets transition",   "partially regrets transition",
-  "doesn't regret transition"] 
-8. "got bottom surgery" includes vaginoplasty, phalloplasty and hysterectomy.
-9. "got top surgery" includes masectomy and breast implants. 
+LABELING RULES:
+1. Only use tags from the provided list - never invent new ones
+2. Each tag must be supported by at least one explicit sentence in the story
+3. Output only valid JSON array format: ["tag1", "tag2"]
+4. Consider biological sex (${userSex}) for sexuality labels:
+   - If male mentions trans girlfriend → homosexual (girlfriend is biologically male)
+   - If female mentions trans boyfriend → homosexual (boyfriend is biologically female)
+5. Assign appropriate regret level: "completely regrets transition", "partially regrets transition", or "doesn't regret transition"
+6. Surgery definitions:
+   - "got bottom surgery": vaginoplasty, phalloplasty, hysterectomy
+   - "got top surgery": mastectomy, breast implants
+7. Only use "suspicious account" if Red Flag Report explicitly questions authenticity
+8. Only use "re-transitioned" if story explicitly mentions transitioning again after detransitioning
 
-Story: """
+Be precise and evidence-based in your labeling.`;
+
+  const userPrompt = `Story:
+"""
 ${experienceReport}
 """
 
-Red Flag Report: """
+Red Flag Report:
+"""
 ${redFlagsReport}
 """
 
-Output format:
-["trauma", "autism/neurodivergence"]`;
+Provide the appropriate tags as a JSON array.`;
 
   try {
     const response = await fetchWithBackoff(() =>
       openai.chat.completions.create({
         model: MODEL,
-        messages: [{ role: "user", content: prompt }],
-        temperature: 0.1,
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: userPrompt }
+        ],
+        temperature: 0.6,
       })
     );
 
