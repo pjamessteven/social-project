@@ -88,7 +88,16 @@ const userContext: {
 
 // Define tools outside the factory to ensure they persist
 const classifyUserSex = async ({ userMessage }: { userMessage: string }) => {
-    console.log('[sex CLASSIFICATION] Starting analysis for message:', userMessage.substring(0, 100) + '...');
+    console.log('[SEX CLASSIFICATION TOOL] Called with input:', { userMessage: userMessage?.substring(0, 100) + '...' });
+    console.log('[SEX CLASSIFICATION TOOL] Input type:', typeof userMessage);
+    console.log('[SEX CLASSIFICATION TOOL] Input is undefined?', userMessage === undefined);
+    
+    if (!userMessage || typeof userMessage !== 'string') {
+      console.error('[SEX CLASSIFICATION TOOL] Invalid input - userMessage is not a string:', userMessage);
+      return { sex: 'unknown', confidence: 'low', error: 'Invalid input' };
+    }
+    
+    console.log('[SEX CLASSIFICATION] Starting analysis for message:', userMessage.substring(0, 100) + '...');
     
     // Analyze the user's message to determine sex
     const lowerMessage = userMessage.toLowerCase();
@@ -159,8 +168,10 @@ const classifyUserSex = async ({ userMessage }: { userMessage: string }) => {
     
     userContext.sex = 'unknown';
     userContext.sexConfidence = 'low';
-    console.log('[sex CLASSIFICATION] Result: unknown (low confidence)');
-    return { sex: 'unknown', confidence: 'low' };
+    console.log('[SEX CLASSIFICATION] Result: unknown (low confidence)');
+    const result = { sex: 'unknown', confidence: 'low' };
+    console.log('[SEX CLASSIFICATION TOOL] Returning result:', JSON.stringify(result));
+    return result;
   };
 
 const sexClassificationTool = tool(classifyUserSex, {
@@ -173,7 +184,18 @@ const sexClassificationTool = tool(classifyUserSex, {
   }),
 });
 
+console.log('[WORKFLOW] Sex classification tool created');
+
 const classifyUserTags = async ({ userMessage }: { userMessage: string }) => {
+    console.log('[TAG CLASSIFICATION TOOL] Called with input:', { userMessage: userMessage?.substring(0, 100) + '...' });
+    console.log('[TAG CLASSIFICATION TOOL] Input type:', typeof userMessage);
+    console.log('[TAG CLASSIFICATION TOOL] Input is undefined?', userMessage === undefined);
+    
+    if (!userMessage || typeof userMessage !== 'string') {
+      console.error('[TAG CLASSIFICATION TOOL] Invalid input - userMessage is not a string:', userMessage);
+      return { applicableTags: [], totalTagsFound: 0, foundKeywords: {}, message: 'Invalid input', error: 'Invalid input' };
+    }
+    
     console.log('[TAG CLASSIFICATION] Starting analysis for message:', userMessage.substring(0, 100) + '...');
     
     const lowerMessage = userMessage.toLowerCase();
@@ -236,7 +258,7 @@ const classifyUserTags = async ({ userMessage }: { userMessage: string }) => {
     // Store in context
     userContext.applicableTags = applicableTags;
     
-    return { 
+    const result = { 
       applicableTags,
       totalTagsFound: applicableTags.length,
       foundKeywords,
@@ -244,6 +266,9 @@ const classifyUserTags = async ({ userMessage }: { userMessage: string }) => {
         ? `Found ${applicableTags.length} applicable tags: ${applicableTags.join(', ')}`
         : "No specific tags identified from the message"
     };
+    
+    console.log('[TAG CLASSIFICATION TOOL] Returning result:', JSON.stringify(result));
+    return result;
   };
 
 const tagClassificationTool = tool(classifyUserTags, {
@@ -255,6 +280,8 @@ const tagClassificationTool = tool(classifyUserTags, {
     }),
   }),
 });
+
+console.log('[WORKFLOW] Tag classification tool created');
 
 export const workflowFactory = async (reqBody: any) => {
   initSettings();
@@ -278,6 +305,8 @@ export const workflowFactory = async (reqBody: any) => {
       description: 'This tool can search through personal detransition stories and experiences. Use this to find detailed first-person accounts of people who have detransitioned, their reasons, experiences, and outcomes.',
     },
   });
+  
+  console.log('[WORKFLOW] Stories search tool created');
 
   // Create comments index and query engine tool
   const commentsIndex = await getCommentsIndex(reqBody?.data || null, userContext.applicableTags || []);
@@ -294,7 +323,11 @@ export const workflowFactory = async (reqBody: any) => {
       description: 'This tool can search through Reddit comments and community discussions about detransition. Use this to find community perspectives, advice, and shorter experiences shared in discussion forums.',
     },
   });
+  
+  console.log('[WORKFLOW] Comments search tool created');
 
+  console.log('[WORKFLOW] Creating agent with tools...');
+  
   const workflow = agent({ 
     tools: [sexClassificationTool, tagClassificationTool, storiesSearchTool, commentsSearchTool],
     systemPrompt: `You are a helpful assistant that provides information about detransition experiences and the reasons why people adopt, inhibit, and let go of gender identities. Your purpose is to help people use critical thinking skills to resolve gender dysphoria without resorting to transition. Encourage people to think about what might have led them to transition in the first place. 
