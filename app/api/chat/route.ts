@@ -102,6 +102,25 @@ export async function POST(req: NextRequest) {
 
     console.log('[ROUTE] About to create data stream...');
     
+    // Override JSON.parse temporarily to catch the problematic call
+    const originalJSONParse = JSON.parse;
+    JSON.parse = function(text: string, reviver?: any) {
+      console.log('[JSON.parse] Called with text type:', typeof text);
+      console.log('[JSON.parse] Text preview:', typeof text === 'string' ? text.substring(0, 100) : text);
+      
+      if (typeof text === 'string' && text.startsWith('undefined{')) {
+        console.error('[JSON.parse] FOUND THE PROBLEM! Text starts with "undefined{"');
+        console.error('[JSON.parse] Full problematic text:', text);
+        console.error('[JSON.parse] Stack trace:', new Error().stack);
+        // Try to fix it by removing the "undefined" prefix
+        const fixedText = text.replace(/^undefined/, '');
+        console.log('[JSON.parse] Attempting to parse fixed text:', fixedText.substring(0, 100));
+        return originalJSONParse.call(this, fixedText, reviver);
+      }
+      
+      return originalJSONParse.call(this, text, reviver);
+    };
+    
     // Wrap the stream to catch JSON parsing errors
     const wrappedStream = (async function* () {
       try {
@@ -123,26 +142,39 @@ export async function POST(req: NextRequest) {
       }
     })();
     
-    const dataStream = toDataStream(wrappedStream, {
-      callbacks: {
-        onPauseForHumanInput: async (responseEvent) => {
-          console.log('[ROUTE] onPauseForHumanInput callback triggered');
-          await pauseForHumanInput(context, responseEvent, requestId); // use requestId to save snapshot
+    let dataStream;
+    try {
+      dataStream = toDataStream(wrappedStream, {
+        callbacks: {
+          onPauseForHumanInput: async (responseEvent) => {
+            console.log('[ROUTE] onPauseForHumanInput callback triggered');
+            await pauseForHumanInput(context, responseEvent, requestId); // use requestId to save snapshot
+          },
+          onFinal: async (completion, dataStreamWriter) => {
+            console.log('[ROUTE] onFinal callback triggered, completion length:', completion?.length);
+            chatHistory.push({
+              role: "assistant" as MessageType,
+              content: completion,
+            });
+            if (suggestNextQuestions) {
+             // await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory);
+            }
+          },
         },
-        onFinal: async (completion, dataStreamWriter) => {
-          console.log('[ROUTE] onFinal callback triggered, completion length:', completion?.length);
-          chatHistory.push({
-            role: "assistant" as MessageType,
-            content: completion,
-          });
-          if (suggestNextQuestions) {
-           // await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory);
-          }
-        },
-      },
-    });
-    console.log('[ROUTE] Data stream created successfully');
+      });
+      console.log('[ROUTE] Data stream created successfully');
+    } catch (dataStreamError) {
+      console.error('[ROUTE] Error creating data stream:', dataStreamError);
+      throw dataStreamError;
+    } finally {
+      // Restore original JSON.parse
+      JSON.parse = originalJSONParse;
+    }
     console.log('[ROUTE] About to return response...');
+    
+    // Restore JSON.parse in case it wasn't restored in the finally block
+    JSON.parse = originalJSONParse;
+    
     return new Response(dataStream, {
       status: 200,
       headers: {
