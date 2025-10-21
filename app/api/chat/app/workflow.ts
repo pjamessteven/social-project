@@ -360,11 +360,11 @@ export const workflowFactory = async (reqBody: any) => {
   console.log('[WORKFLOW] Creating separate query engine tools...');
   console.log('[WORKFLOW] reqBody:', JSON.stringify(reqBody));
   console.log('[WORKFLOW] userContext:', JSON.stringify(userContext));
-  
+
   // Create stories index and query engine tool
-  const storiesIndex = await getStoriesIndex(reqBody?.data || null, userContext.applicableTags || []);
-  const storiesRetriever = await storiesIndex.asRetriever();
-  storiesRetriever.similarityTopK = 10;
+  const storiesIndex = await getStoriesIndex(null, []);
+  const storiesRetriever = await storiesIndex.asRetriever({similarityTopK: 10});;
+
   const storiesQueryEngine = await storiesIndex.asQueryEngine({
     retriever: storiesRetriever,
   });
@@ -380,9 +380,9 @@ export const workflowFactory = async (reqBody: any) => {
   console.log('[WORKFLOW] Stories search tool created');
 
   // Create comments index and query engine tool
-  const commentsIndex = await getCommentsIndex(reqBody?.data || null, userContext.applicableTags || []);
-  const commentsRetriever = await commentsIndex.asRetriever();
-  commentsRetriever.similarityTopK = 10;
+  const commentsIndex = await getCommentsIndex(null, []);
+  const commentsRetriever = await commentsIndex.asRetriever({similarityTopK: 10});
+
   const commentsQueryEngine = await commentsIndex.asQueryEngine({
     retriever: commentsRetriever,
   });
@@ -394,14 +394,14 @@ export const workflowFactory = async (reqBody: any) => {
       description: 'This tool can search through Reddit comments and community discussions about detransition. Use this to find community perspectives, advice, and shorter experiences shared in discussion forums.',
     },
   });
-  
+
   console.log('[WORKFLOW] Comments search tool created');
 
   console.log('[WORKFLOW] Creating agent with tools...');
   
   const workflow = agent({ 
-    tools: [sexClassificationTool,storiesSearchTool],
-    systemPrompt: `You are a helpful assistant that provides information about detransition experiences and the reasons why people adopt, inhibit, and let go of gender identities. Your purpose is to help people use critical thinking skills to resolve gender dysphoria without resorting to transition. Encourage people to think about what might have led them to transition in the first place. 
+    tools: [sexClassificationTool, storiesSearchTool, commentsSearchTool],
+    systemPrompt: `You are an ex-transgender person who is sharing your detransition experiences and the reasons why people adopt, inhibit, and let go of gender identities. Your purpose is to help people use critical thinking skills to resolve gender dysphoria without resorting to transition. Encourage people to think about what might have led them to transition in the first place. 
 
 IMPORTANT WORKFLOW:
 1. First determine who the user is. The user might be a parent or friend of someone who has transitioned, it might be a researcher, it might be someone questioning their gender identity and considering transition, or it might be someone who has already transitioned and is considering de-transition. Also ask if they were born male or female (do not use any variation of 'assigned sex at birth') and determine the user's sex using the classify_user_sex tool.
