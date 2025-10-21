@@ -4,7 +4,9 @@ import { getCachedAnswer, setCachedAnswer } from "@/app/lib/cache";
 import { replayCached } from "@/app/lib/replayCached";
 import { getLogger } from "@/app/lib/logger";
 import { OpenAI } from "@llamaindex/openai";
-import { QdrantVectorStore, VectorStoreIndex, NodeWithScore, Metadata } from "llamaindex";
+import { VectorStoreIndex, NodeWithScore, Metadata } from "llamaindex";
+import { QdrantVectorStore } from "@llamaindex/qdrant";
+
 import { initSettings } from "./app/settings";
 
 initSettings();
@@ -43,7 +45,7 @@ async function getRetrievers() {
   // Narrative collection (detrans users/stories)
   const narrativeStore = new QdrantVectorStore({
     url: process.env.QDRANT_URL || "http://localhost:6333",
-    collectionName: "narratives", // Assuming this collection exists for stories
+    collectionName: "detrans_stories", // Assuming this collection exists for stories
   });
   
   // Comment collection
