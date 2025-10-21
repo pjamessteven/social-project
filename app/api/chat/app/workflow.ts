@@ -189,90 +189,107 @@ const sexClassificationTool = tool(classifyUserSex, {
 console.log('[WORKFLOW] Sex classification tool created');
 
 const classifyUserTags = async ({ userMessage }: { userMessage: string }) => {
-    console.log('[TAG CLASSIFICATION TOOL] Called with input:', { 
-      userMessage: userMessage ? userMessage.substring(0, 100) + '...' : 'undefined'
-    });
-    console.log('[TAG CLASSIFICATION TOOL] Input type:', typeof userMessage);
-    console.log('[TAG CLASSIFICATION TOOL] Input is undefined?', userMessage === undefined);
-    
-    if (!userMessage || typeof userMessage !== 'string') {
-      console.error('[TAG CLASSIFICATION TOOL] Invalid input - userMessage is not a string:', userMessage);
-      return { applicableTags: [], totalTagsFound: 0, foundKeywords: {}, message: 'Invalid input', error: 'Invalid input' };
-    }
-    
-    console.log('[TAG CLASSIFICATION] Starting analysis for message:', userMessage ? userMessage.substring(0, 100) + '...' : 'undefined');
-    
-    const lowerMessage = userMessage.toLowerCase();
-    const applicableTags: string[] = [];
-    const foundKeywords: Record<string, string[]> = {};
-    
-    // Define keyword mappings for tags
-    const tagKeywords: Record<string, string[]> = {
-      "trauma": ["trauma", "traumatic", "abuse", "abused", "ptsd"],
-      "autism/neurodivergence": ["autism", "autistic", "neurodivergent", "asperger", "spectrum"],
-      "adhd": ["adhd", "attention deficit", "hyperactive"],
-      "ocd intrusive thoughts": ["ocd", "obsessive", "compulsive", "intrusive thoughts"],
-      "puberty discomfort": ["puberty", "pubescent", "adolescence", "teenage"],
-      "got top surgery": ["top surgery", "mastectomy", "chest surgery", "breast removal"],
-      "got facial surgery": ["facial surgery", "ffs", "facial feminization", "facial masculinization"],
-      "got bottom surgery": ["bottom surgery", "srs", "genital surgery", "vaginoplasty", "phalloplasty"],
-      "internalised homophobia": ["internalized homophobia", "internalised homophobia", "self-hatred", "gay shame"],
-      "internalised misogyny": ["internalized misogyny", "internalised misogyny", "hated being female"],
-      "internalised misandry": ["internalized misandry", "internalised misandry", "hated being male"],
-      "depression": ["depression", "depressed", "sad", "hopeless", "suicidal"],
-      "low self-esteem": ["low self-esteem", "self-worth", "confidence issues", "insecure"],
-      "social anxiety and isolation": ["social anxiety", "isolated", "lonely", "withdrawn"],
-      "bipolar": ["bipolar", "manic", "mood swings"],
-      "borderline personality disorder": ["bpd", "borderline", "personality disorder"],
-      "suicidal ideation": ["suicidal", "suicide", "self-harm", "cutting"],
-      "self-harm": ["self-harm", "cutting", "self-injury"],
-      "porn influence": ["porn", "pornography", "sexual content"],
-      "anime influence": ["anime", "manga", "japanese media"],
-      "influenced online": ["online", "internet", "social media", "tumblr", "reddit"],
-      "influenced by friends": ["friends", "peer pressure", "social influence"],
-      "eating disorder": ["eating disorder", "anorexia", "bulimia", "body image"],
-      "body dysmorphia": ["body dysmorphia", "dysmorphic", "body image"],
-      "took hormones": ["hormones", "testosterone", "estrogen", "hrt"],
-      "DIY hormones": ["diy", "self-medicated", "without prescription"],
-      "took puberty blockers": ["puberty blockers", "blockers", "lupron"],
-      "surgery complications": ["complications", "surgical problems", "botched"],
-      "medical complications": ["medical issues", "health problems", "side effects"],
-      "rapid onset gender dysphoria (ROGD)": ["rogd", "rapid onset", "sudden dysphoria"],
-      "mental health issues": ["mental health", "psychiatric", "psychological"],
-      "unsupportive family": ["unsupportive family", "family rejection", "parents rejected"],
-      "supportive family": ["supportive family", "family support", "parents supported"],
-    };
-    
-    // Check for tag matches
-    for (const [tag, keywords] of Object.entries(tagKeywords)) {
-      for (const keyword of keywords) {
-        if (lowerMessage.includes(keyword)) {
-          if (!applicableTags.includes(tag)) {
-            applicableTags.push(tag);
-            foundKeywords[tag] = [];
+    try {
+      console.log('[TAG CLASSIFICATION TOOL] Called with input:', { 
+        userMessage: userMessage ? userMessage.substring(0, 100) + '...' : 'undefined'
+      });
+      console.log('[TAG CLASSIFICATION TOOL] Input type:', typeof userMessage);
+      console.log('[TAG CLASSIFICATION TOOL] Input is undefined?', userMessage === undefined);
+      
+      if (!userMessage || typeof userMessage !== 'string') {
+        console.error('[TAG CLASSIFICATION TOOL] Invalid input - userMessage is not a string:', userMessage);
+        return { 
+          applicableTags: [], 
+          totalTagsFound: 0, 
+          foundKeywords: {}, 
+          message: 'Invalid input', 
+          error: 'Invalid input' 
+        };
+      }
+      
+      console.log('[TAG CLASSIFICATION] Starting analysis for message:', userMessage ? userMessage.substring(0, 100) + '...' : 'undefined');
+      
+      const lowerMessage = userMessage.toLowerCase();
+      const applicableTags: string[] = [];
+      const foundKeywords: Record<string, string[]> = {};
+      
+      // Define keyword mappings for tags
+      const tagKeywords: Record<string, string[]> = {
+        "trauma": ["trauma", "traumatic", "abuse", "abused", "ptsd"],
+        "autism/neurodivergence": ["autism", "autistic", "neurodivergent", "asperger", "spectrum"],
+        "adhd": ["adhd", "attention deficit", "hyperactive"],
+        "ocd intrusive thoughts": ["ocd", "obsessive", "compulsive", "intrusive thoughts"],
+        "puberty discomfort": ["puberty", "pubescent", "adolescence", "teenage"],
+        "got top surgery": ["top surgery", "mastectomy", "chest surgery", "breast removal"],
+        "got facial surgery": ["facial surgery", "ffs", "facial feminization", "facial masculinization"],
+        "got bottom surgery": ["bottom surgery", "srs", "genital surgery", "vaginoplasty", "phalloplasty"],
+        "internalised homophobia": ["internalized homophobia", "internalised homophobia", "self-hatred", "gay shame"],
+        "internalised misogyny": ["internalized misogyny", "internalised misogyny", "hated being female"],
+        "internalised misandry": ["internalized misandry", "internalised misandry", "hated being male"],
+        "depression": ["depression", "depressed", "sad", "hopeless", "suicidal"],
+        "low self-esteem": ["low self-esteem", "self-worth", "confidence issues", "insecure"],
+        "social anxiety and isolation": ["social anxiety", "isolated", "lonely", "withdrawn"],
+        "bipolar": ["bipolar", "manic", "mood swings"],
+        "borderline personality disorder": ["bpd", "borderline", "personality disorder"],
+        "suicidal ideation": ["suicidal", "suicide", "self-harm", "cutting"],
+        "self-harm": ["self-harm", "cutting", "self-injury"],
+        "porn influence": ["porn", "pornography", "sexual content"],
+        "anime influence": ["anime", "manga", "japanese media"],
+        "influenced online": ["online", "internet", "social media", "tumblr", "reddit"],
+        "influenced by friends": ["friends", "peer pressure", "social influence"],
+        "eating disorder": ["eating disorder", "anorexia", "bulimia", "body image"],
+        "body dysmorphia": ["body dysmorphia", "dysmorphic", "body image"],
+        "took hormones": ["hormones", "testosterone", "estrogen", "hrt"],
+        "DIY hormones": ["diy", "self-medicated", "without prescription"],
+        "took puberty blockers": ["puberty blockers", "blockers", "lupron"],
+        "surgery complications": ["complications", "surgical problems", "botched"],
+        "medical complications": ["medical issues", "health problems", "side effects"],
+        "rapid onset gender dysphoria (ROGD)": ["rogd", "rapid onset", "sudden dysphoria"],
+        "mental health issues": ["mental health", "psychiatric", "psychological"],
+        "unsupportive family": ["unsupportive family", "family rejection", "parents rejected"],
+        "supportive family": ["supportive family", "family support", "parents supported"],
+      };
+      
+      // Check for tag matches
+      for (const [tag, keywords] of Object.entries(tagKeywords)) {
+        for (const keyword of keywords) {
+          if (lowerMessage.includes(keyword)) {
+            if (!applicableTags.includes(tag)) {
+              applicableTags.push(tag);
+              foundKeywords[tag] = [];
+            }
+            foundKeywords[tag].push(keyword);
           }
-          foundKeywords[tag].push(keyword);
         }
       }
+      
+      console.log('[TAG CLASSIFICATION] Found keywords by tag:', JSON.stringify(foundKeywords));
+      console.log('[TAG CLASSIFICATION] Applicable tags:', JSON.stringify(applicableTags));
+      
+      // Store in context
+      userContext.applicableTags = applicableTags;
+      
+      const result = { 
+        applicableTags: applicableTags,
+        totalTagsFound: applicableTags.length,
+        foundKeywords: foundKeywords,
+        message: applicableTags.length > 0 
+          ? `Found ${applicableTags.length} applicable tags: ${applicableTags.join(', ')}`
+          : "No specific tags identified from the message"
+      };
+      
+      console.log('[TAG CLASSIFICATION TOOL] Returning result:', JSON.stringify(result));
+      return result;
+    } catch (error) {
+      console.error('[TAG CLASSIFICATION TOOL] Error:', error);
+      return { 
+        applicableTags: [], 
+        totalTagsFound: 0, 
+        foundKeywords: {}, 
+        message: 'Error processing tags', 
+        error: String(error) 
+      };
     }
-    
-    console.log('[TAG CLASSIFICATION] Found keywords by tag:', foundKeywords);
-    console.log('[TAG CLASSIFICATION] Applicable tags:', applicableTags);
-    
-    // Store in context
-    userContext.applicableTags = applicableTags;
-    
-    const result = { 
-      applicableTags,
-      totalTagsFound: applicableTags.length,
-      foundKeywords,
-      message: applicableTags.length > 0 
-        ? `Found ${applicableTags.length} applicable tags: ${applicableTags.join(', ')}`
-        : "No specific tags identified from the message"
-    };
-    
-    console.log('[TAG CLASSIFICATION TOOL] Returning result:', JSON.stringify(result));
-    return result;
   };
 
 const tagClassificationTool = tool(classifyUserTags, {
