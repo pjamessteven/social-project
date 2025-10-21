@@ -37,7 +37,7 @@ import { getIndex } from "./data";
 const openAi = new OpenAI({
   apiKey: process.env.OPENROUTER_KEY,
   baseURL: "https://openrouter.ai/api/v1",
-  model: "openai/gpt-4o",
+  model: "deepseek/deepseek-chat-v3.1",
 });
 
 const cache = new PostgresCache("affirm");

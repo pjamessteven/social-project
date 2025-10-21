@@ -19,7 +19,7 @@ const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
 });
 
-const MODEL = "deepseek/deepseek-chat-v3.1";
+const MODEL = "moonshotai/kimi-k2-0905";
 
 // Backoff utility for API calls
 async function fetchWithBackoff<T>(

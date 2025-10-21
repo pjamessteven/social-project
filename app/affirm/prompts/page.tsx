@@ -34,9 +34,7 @@ const PromptsPage = () => {
             >
               LlamaIndex
             </a>{" "}
-            framework and the OpenAI GPT 4o model, which is known to be a very
-            validating model has state-of-the-art safety guardrails on gender
-            topics.
+            framework under the hood, with the <i>deepseek-chat-v3.1</i> model to reduce costs.
           </span>
         </p>
         <p className="mt-2">
