@@ -1,5 +1,5 @@
 import { getEnv } from "@llamaindex/env";
-import { LLamaCloudFileService } from "llamaindex";
+
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
@@ -14,7 +14,6 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
   try {
     const config = {
-      projects: await LLamaCloudFileService.getAllProjectsWithPipelines(),
       pipeline: {
         pipeline: getEnv("LLAMA_CLOUD_INDEX_NAME"),
         project: getEnv("LLAMA_CLOUD_PROJECT_NAME"),

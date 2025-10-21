@@ -9,7 +9,6 @@ import {
   type WorkflowEventData,
 } from "@llamaindex/workflow";
 import {
-  LLamaCloudFileService,
   type Metadata,
   type NodeWithScore,
 } from "llamaindex";
@@ -97,11 +96,7 @@ export function processWorkflowStream(
           else if (artifactEvent.include(event)) {
             transformedEvent = toInlineAnnotationEvent(event);
           }
-          // Post-process for llama-cloud files
-          if (sourceEvent.include(transformedEvent)) {
-            const sourceNodesForDownload = transformedEvent.data.data.nodes; // These are SourceEventNode[]
-            downloadLlamaCloudFilesFromNodes(sourceNodesForDownload); // download files in background
-          }
+
 
           controller.enqueue(transformedEvent);
         },
@@ -110,22 +105,3 @@ export function processWorkflowStream(
   );
 }
 
-async function downloadLlamaCloudFilesFromNodes(nodes: SourceEventNode[]) {
-  const downloadedFiles: string[] = [];
-
-  for (const node of nodes) {
-    if (!node.url || !node.filePath) continue; // skip if url or filePath is not available
-    if (downloadedFiles.includes(node.filePath)) continue; // skip if file already downloaded
-    if (!node.metadata.pipeline_id) continue; // only download files from LlamaCloud
-
-    const downloadUrl = await LLamaCloudFileService.getFileUrl(
-      node.metadata.pipeline_id,
-      node.fileName,
-    );
-    if (!downloadUrl) continue;
-
-    await downloadFile(downloadUrl, node.filePath);
-
-    downloadedFiles.push(node.filePath);
-  }
-}
