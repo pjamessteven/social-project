@@ -329,46 +329,54 @@ async function ensureTagsExist(tagNames: string[]): Promise<number[]> {
 }
 
 async function assignTagsToUser(username: string, tagIds: number[]): Promise<void> {
-  // Remove existing tags for this user
-  await db.delete(detransUserTags).where(eq(detransUserTags.username, username));
+  if (tagIds.length === 0) return;
+
+  // Get existing tag IDs for this user
+  const existingTags = await db
+    .select({ tagId: detransUserTags.tagId })
+    .from(detransUserTags)
+    .where(eq(detransUserTags.username, username));
   
-  // Insert new tags
-  if (tagIds.length > 0) {
+  const existingTagIds = new Set(existingTags.map(t => t.tagId));
+  
+  // Filter out tags that already exist for this user
+  const newTagIds = tagIds.filter(tagId => !existingTagIds.has(tagId));
+  
+  // Insert only new tags
+  if (newTagIds.length > 0) {
     await db.insert(detransUserTags).values(
-      tagIds.map(tagId => ({
+      newTagIds.map(tagId => ({
         username,
         tagId,
       }))
     );
+    console.log(`  Added ${newTagIds.length} new tags (${tagIds.length - newTagIds.length} already existed)`);
+  } else {
+    console.log(`  All ${tagIds.length} tags already exist for this user`);
   }
 }
 
-async function getUsersWithoutTags(excludeUsernames: string[] = []): Promise<Array<{
+async function getUsersWithExperience(excludeUsernames: string[] = []): Promise<Array<{
   username: string;
   experience: string;
   redFlagsReport: string;
   sex: string;
 }>> {
-  console.log("Fetching users without tags...");
+  console.log("Fetching users with experience data...");
 
   let query = sql`
     SELECT u.username, u.experience, u.red_flags_report, u.sex
     FROM detrans_users u
-    LEFT JOIN detrans_user_tags ut ON u.username = ut.username
-    WHERE ut.username IS NULL
-      AND u.experience IS NOT NULL
+    WHERE u.experience IS NOT NULL
       AND u.experience != ''
   `;
 
   // Exclude already processed users
   if (excludeUsernames.length > 0) {
-    const placeholders = excludeUsernames.map(() => '?').join(',');
     query = sql`
       SELECT u.username, u.experience, u.red_flags_report, u.sex
       FROM detrans_users u
-      LEFT JOIN detrans_user_tags ut ON u.username = ut.username
-      WHERE ut.username IS NULL
-        AND u.experience IS NOT NULL
+      WHERE u.experience IS NOT NULL
         AND u.experience != ''
         AND u.username NOT IN (${sql.raw(excludeUsernames.map(name => `'${name}'`).join(','))})
     `;
@@ -503,13 +511,13 @@ async function main() {
     state = await loadProgress();
 
     // Get users that need processing
-    const newUsers = await getUsersWithoutTags(state.completedUsers);
+    const newUsers = await getUsersWithExperience(state.completedUsers);
     const retryUsers = await getRetryableFailedUsers(state);
     
     // Combine new users and retry users
     const allUsers = [...retryUsers, ...newUsers];
     
-    console.log(`Found ${newUsers.length} new users and ${retryUsers.length} retry users to process`);
+    console.log(`Found ${newUsers.length} users with experience data and ${retryUsers.length} retry users to process`);
     console.log(`Total users to process: ${allUsers.length}`);
 
     if (allUsers.length === 0) {
