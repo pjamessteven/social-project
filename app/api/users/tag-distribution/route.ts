@@ -137,7 +137,7 @@ function processSankeyData(users: any[]) {
     { name: "puberty_blockers", categories: ["took_blockers", "no_blockers"] },
     { name: "hormones", categories: ["took_hormones", "social_only"] },
     { name: "surgery", categories: ["got_top_surgery", "got_bottom_surgery", "no_surgery"] },
-    { name: "outcome", categories: ["regrets", "no_regrets", "unknown"] }
+    { name: "outcome", categories: ["completely_regrets", "partially_regrets", "no_regrets", "not_stated"] }
   ];
 
   stages.forEach((stage, stageIndex) => {
@@ -271,12 +271,15 @@ function categorizeUser(user: any): string[] {
   flow.push(`surgery_${surgeryCategory}`);
 
   // Stage 6: Outcome - using exact tag names from availableTags
-  const regrets = validTags.includes('regrets transitioning');
-  const noRegrets = validTags.includes("doesn't regret transitioning");
+  const completelyRegrets = validTags.includes('completely regrets transition');
+  const partiallyRegrets = validTags.includes('partially regrets transition');
+  const noRegrets = validTags.includes("doesn't regret transition");
   
-  let outcome = 'unknown';
-  if (regrets) {
-    outcome = 'regrets';
+  let outcome = 'not_stated';
+  if (completelyRegrets) {
+    outcome = 'completely_regrets';
+  } else if (partiallyRegrets) {
+    outcome = 'partially_regrets';
   } else if (noRegrets) {
     outcome = 'no_regrets';
   }
@@ -313,8 +316,10 @@ function formatCategoryLabel(stageName: string, category: string): string {
     'no_surgery': 'No Surgery',
     
     // Outcome labels
-    'regrets': 'Regrets',
-    'no_regrets': 'No Regrets'
+    'completely_regrets': 'Completely Regrets',
+    'partially_regrets': 'Partially Regrets',
+    'no_regrets': 'No Regrets',
+    'not_stated': 'Not Stated'
   };
   
   return labelMap[category] || category.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
