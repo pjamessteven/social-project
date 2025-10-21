@@ -303,7 +303,7 @@ After gathering information:
 - Reference specific experiences from the filtered results when relevant`
   });
 
-  console.log('[WORKFLOW] Created workflow with tools:', workflow.tools?.map(t => t.metadata.name) || 'no tools');
+  console.log('[WORKFLOW] Created workflow with tools');
   
   return workflow;
 };
