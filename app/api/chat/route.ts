@@ -48,6 +48,7 @@ export async function POST(req: NextRequest) {
       abortController.abort("Connection closed"),
     );
 
+    console.log('[ROUTE] About to run workflow...');
     const context = await runWorkflow({
       workflow: await workflowFactory(reqBody || {}),
       input: { userInput: lastMessage.content, chatHistory },
@@ -56,20 +57,43 @@ export async function POST(req: NextRequest) {
         responses: getHumanResponsesFromMessage(lastMessage),
       },
     });
-    console.log('CONTEXT', JSON.stringify(context))
+    console.log('[ROUTE] Workflow completed, context received');
+    console.log('[ROUTE] Context keys:', Object.keys(context));
+    console.log('[ROUTE] Context.stream type:', typeof context.stream);
+    console.log('[ROUTE] Context.stream:', context.stream);
+    
+    try {
+      console.log('[ROUTE] Attempting to stringify context...');
+      const contextStr = JSON.stringify(context);
+      console.log('[ROUTE] Context stringified successfully, length:', contextStr.length);
+    } catch (stringifyError) {
+      console.error('[ROUTE] Error stringifying context:', stringifyError);
+      console.log('[ROUTE] Context structure inspection:');
+      for (const [key, value] of Object.entries(context)) {
+        console.log(`[ROUTE] - ${key}:`, typeof value, value);
+      }
+    }
+
+    console.log('[ROUTE] About to process workflow stream...');
         // @ts-expect-error something
     const stream = processWorkflowStream(context.stream).until(
           // @ts-expect-error something
-      (event) =>
-        abortController.signal.aborted || stopAgentEvent.include(event),
+      (event) => {
+        console.log('[ROUTE] Stream event check:', typeof event, event);
+        return abortController.signal.aborted || stopAgentEvent.include(event);
+      },
     );
+    console.log('[ROUTE] Stream processed successfully');
 
+    console.log('[ROUTE] About to create data stream...');
     const dataStream = toDataStream(stream, {
       callbacks: {
         onPauseForHumanInput: async (responseEvent) => {
+          console.log('[ROUTE] onPauseForHumanInput callback triggered');
           await pauseForHumanInput(context, responseEvent, requestId); // use requestId to save snapshot
         },
         onFinal: async (completion, dataStreamWriter) => {
+          console.log('[ROUTE] onFinal callback triggered, completion length:', completion?.length);
           chatHistory.push({
             role: "assistant" as MessageType,
             content: completion,
@@ -80,6 +104,8 @@ export async function POST(req: NextRequest) {
         },
       },
     });
+    console.log('[ROUTE] Data stream created successfully');
+    console.log('[ROUTE] About to return response...');
     return new Response(dataStream, {
       status: 200,
       headers: {
@@ -88,7 +114,9 @@ export async function POST(req: NextRequest) {
       },
     });
   } catch (error) {
-    console.error("Chat handler error:", error);
+    console.error("[ROUTE] Chat handler error:", error);
+    console.error("[ROUTE] Error stack:", error instanceof Error ? error.stack : 'No stack trace');
+    console.error("[ROUTE] Error name:", error instanceof Error ? error.name : 'Unknown error type');
     return NextResponse.json(
       {
         detail: (error as Error).message || "Internal server error",
