@@ -149,16 +149,36 @@ export async function POST(req: NextRequest) {
         type: 'chat_cache'
       }, 'Chat cache hit');
       
-      // Return cached response using streamText for proper format
-      const result = await streamText({
-        model: llm,
-        messages: [{ role: "assistant", content: cachedAnswer }],
-        async onFinish() {
-          // Cache is already set, no need to re-cache
-        },
+      // Return cached response as a proper data stream without calling LLM
+      const encoder = new TextEncoder();
+      const stream = new ReadableStream({
+        start(controller) {
+          // Send the cached text as chunks to simulate streaming
+          const chunks = cachedAnswer.split(' ');
+          let i = 0;
+          
+          const sendChunk = () => {
+            if (i < chunks.length) {
+              const chunk = i === 0 ? chunks[i] : ' ' + chunks[i];
+              controller.enqueue(encoder.encode(`0:"${chunk}"\n`));
+              i++;
+              setTimeout(sendChunk, 10); // Small delay to simulate streaming
+            } else {
+              controller.enqueue(encoder.encode(`d:{"finishReason":"stop","usage":{"promptTokens":0,"completionTokens":${chunks.length}}}\n`));
+              controller.close();
+            }
+          };
+          
+          sendChunk();
+        }
       });
       
-      return result.toDataStreamResponse();
+      return new Response(stream, {
+        headers: {
+          'Content-Type': 'text/plain; charset=utf-8',
+          'X-Vercel-AI-Data-Stream': 'v1',
+        },
+      });
     }
 
     logger.info({
