@@ -85,27 +85,7 @@ export async function getStoriesIndex(params?: any, tags?: string[]) {
     collectionName: "detrans_stories",
   });
 
-  // Add tag filtering if tags are provided
-  if (tags && tags.length > 0) {
-    const filter = {
-      should: tags.map(tag => ({
-        key: "tags",
-        match: {
-          value: tag
-        }
-      }))
-    };
-    
-    console.log('[STORIES INDEX] Applying filter:', JSON.stringify(filter, null, 2));
-    
-    // Apply filter to vector store
-    vectorStore.clientConfig = {
-      ...(vectorStore.clientConfig || {}),
-      filter
-    };
-  } else {
-    console.log('[STORIES INDEX] No tags provided, searching all stories');
-  }
+  console.log('[STORIES INDEX] Vector store created successfully');
 
   return await VectorStoreIndex.fromVectorStore(vectorStore);
 }
@@ -118,27 +98,7 @@ export async function getCommentsIndex(params?: any, tags?: string[]) {
     collectionName: "default",
   });
 
-  // Add tag filtering if tags are provided  
-  if (tags && tags.length > 0) {
-    const filter = {
-      should: tags.map(tag => ({
-        key: "tags",
-        match: {
-          value: tag
-        }
-      }))
-    };
-    
-    console.log('[COMMENTS INDEX] Applying filter:', JSON.stringify(filter, null, 2));
-    
-    // Apply filter to vector store
-    vectorStore.clientConfig = {
-      ...(vectorStore.clientConfig || {}),
-      filter
-    };
-  } else {
-    console.log('[COMMENTS INDEX] No tags provided, searching all comments');
-  }
+  console.log('[COMMENTS INDEX] Vector store created successfully');
 
   return await VectorStoreIndex.fromVectorStore(vectorStore);
 }
@@ -149,18 +109,40 @@ export async function searchCombinedContent(query: string, params?: any, tags?: 
   console.log('[SEARCH COMBINED] Tags filter:', tags);
   console.log('[SEARCH COMBINED] Params:', params);
   
+  // Create filter for tags if provided
+  let filter = undefined;
+  if (tags && tags.length > 0) {
+    filter = {
+      should: tags.map(tag => ({
+        key: "tags",
+        match: {
+          value: tag
+        }
+      }))
+    };
+    console.log('[SEARCH COMBINED] Using filter:', JSON.stringify(filter, null, 2));
+  } else {
+    console.log('[SEARCH COMBINED] No tags provided, searching all content');
+  }
+  
   // Get top-k stories (k=8)
   console.log('[SEARCH COMBINED] Fetching stories index...');
-  const storiesIndex = await getStoriesIndex(params, tags);
-  const storiesQueryEngine = storiesIndex.asQueryEngine({ similarityTopK: 8 });
+  const storiesIndex = await getStoriesIndex(params);
+  const storiesQueryEngine = storiesIndex.asQueryEngine({ 
+    similarityTopK: 8,
+    ...(filter && { filter })
+  });
   console.log('[SEARCH COMBINED] Querying stories...');
   const storiesResponse = await storiesQueryEngine.query({ query });
   console.log('[SEARCH COMBINED] Stories response nodes count:', storiesResponse.sourceNodes?.length || 0);
   
   // Get top-m comments (m=4)  
   console.log('[SEARCH COMBINED] Fetching comments index...');
-  const commentsIndex = await getCommentsIndex(params, tags);
-  const commentsQueryEngine = commentsIndex.asQueryEngine({ similarityTopK: 4 });
+  const commentsIndex = await getCommentsIndex(params);
+  const commentsQueryEngine = commentsIndex.asQueryEngine({ 
+    similarityTopK: 4,
+    ...(filter && { filter })
+  });
   console.log('[SEARCH COMBINED] Querying comments...');
   const commentsResponse = await commentsQueryEngine.query({ query });
   console.log('[SEARCH COMBINED] Comments response nodes count:', commentsResponse.sourceNodes?.length || 0);
