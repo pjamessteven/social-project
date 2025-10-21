@@ -90,6 +90,8 @@ export const workflowFactory = async (reqBody: any) => {
 
   const genderClassificationTool = new FunctionTool(
     async ({ userMessage }: { userMessage: string }) => {
+      console.log('[GENDER CLASSIFICATION] Starting analysis for message:', userMessage.substring(0, 100) + '...');
+      
       // Analyze the user's message to determine gender
       const lowerMessage = userMessage.toLowerCase();
       
@@ -106,12 +108,18 @@ export const workflowFactory = async (reqBody: any) => {
       
       for (const indicator of maleIndicators) {
         if (lowerMessage.includes(indicator)) {
+          console.log('[GENDER CLASSIFICATION] Found male indicator:', indicator);
+          userContext.gender = 'male';
+          userContext.genderConfidence = 'high';
           return { gender: 'male', confidence: 'high' };
         }
       }
       
       for (const indicator of femaleIndicators) {
         if (lowerMessage.includes(indicator)) {
+          console.log('[GENDER CLASSIFICATION] Found female indicator:', indicator);
+          userContext.gender = 'female';
+          userContext.genderConfidence = 'high';
           return { gender: 'female', confidence: 'high' };
         }
       }
@@ -124,25 +132,36 @@ export const workflowFactory = async (reqBody: any) => {
       let femaleScore = 0;
       
       for (const pronoun of malePronouns) {
-        if (lowerMessage.includes(pronoun)) maleScore++;
+        if (lowerMessage.includes(pronoun)) {
+          maleScore++;
+          console.log('[GENDER CLASSIFICATION] Found male pronoun:', pronoun);
+        }
       }
       
       for (const pronoun of femalePronouns) {
-        if (lowerMessage.includes(pronoun)) femaleScore++;
+        if (lowerMessage.includes(pronoun)) {
+          femaleScore++;
+          console.log('[GENDER CLASSIFICATION] Found female pronoun:', pronoun);
+        }
       }
+      
+      console.log('[GENDER CLASSIFICATION] Pronoun scores - Male:', maleScore, 'Female:', femaleScore);
       
       if (maleScore > femaleScore) {
         userContext.gender = 'male';
         userContext.genderConfidence = 'medium';
+        console.log('[GENDER CLASSIFICATION] Result: male (medium confidence)');
         return { gender: 'male', confidence: 'medium' };
       } else if (femaleScore > maleScore) {
         userContext.gender = 'female';
         userContext.genderConfidence = 'medium';
+        console.log('[GENDER CLASSIFICATION] Result: female (medium confidence)');
         return { gender: 'female', confidence: 'medium' };
       }
       
       userContext.gender = 'unknown';
       userContext.genderConfidence = 'low';
+      console.log('[GENDER CLASSIFICATION] Result: unknown (low confidence)');
       return { gender: 'unknown', confidence: 'low' };
     },
     {
@@ -163,8 +182,11 @@ export const workflowFactory = async (reqBody: any) => {
 
   const tagClassificationTool = new FunctionTool(
     async ({ userMessage }: { userMessage: string }) => {
+      console.log('[TAG CLASSIFICATION] Starting analysis for message:', userMessage.substring(0, 100) + '...');
+      
       const lowerMessage = userMessage.toLowerCase();
       const applicableTags: string[] = [];
+      const foundKeywords: Record<string, string[]> = {};
       
       // Define keyword mappings for tags
       const tagKeywords: Record<string, string[]> = {
@@ -209,10 +231,15 @@ export const workflowFactory = async (reqBody: any) => {
           if (lowerMessage.includes(keyword)) {
             if (!applicableTags.includes(tag)) {
               applicableTags.push(tag);
+              foundKeywords[tag] = [];
             }
+            foundKeywords[tag].push(keyword);
           }
         }
       }
+      
+      console.log('[TAG CLASSIFICATION] Found keywords by tag:', foundKeywords);
+      console.log('[TAG CLASSIFICATION] Applicable tags:', applicableTags);
       
       // Store in context
       userContext.applicableTags = applicableTags;
@@ -220,6 +247,7 @@ export const workflowFactory = async (reqBody: any) => {
       return { 
         applicableTags,
         totalTagsFound: applicableTags.length,
+        foundKeywords,
         message: applicableTags.length > 0 
           ? `Found ${applicableTags.length} applicable tags: ${applicableTags.join(', ')}`
           : "No specific tags identified from the message"
@@ -243,8 +271,16 @@ export const workflowFactory = async (reqBody: any) => {
 
   const combinedSearchTool = new FunctionTool(
     async ({ query }: { query: string }) => {
+      console.log('[COMBINED SEARCH] Starting search with query:', query);
+      console.log('[COMBINED SEARCH] User context:', userContext);
+      console.log('[COMBINED SEARCH] Applied tags:', userContext.applicableTags);
+      
       const { searchCombinedContent } = await import('./data');
       const results = await searchCombinedContent(query, reqBody?.data, userContext.applicableTags);
+      
+      console.log('[COMBINED SEARCH] Search completed, results length:', results.length);
+      console.log('[COMBINED SEARCH] Results preview:', results.substring(0, 500) + '...');
+      
       return results;
     },
     {
