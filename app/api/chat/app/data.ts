@@ -100,7 +100,7 @@ export async function getStoriesIndex(params?: any, tags?: string[]) {
     
     // Apply filter to vector store
     vectorStore.clientConfig = {
-      ...vectorStore.clientConfig,
+      ...(vectorStore.clientConfig || {}),
       filter
     };
   } else {
@@ -133,7 +133,7 @@ export async function getCommentsIndex(params?: any, tags?: string[]) {
     
     // Apply filter to vector store
     vectorStore.clientConfig = {
-      ...vectorStore.clientConfig,
+      ...(vectorStore.clientConfig || {}),
       filter
     };
   } else {
