@@ -137,7 +137,7 @@ class APIError extends Error {
   }
 }
 
-const PROGRESS_FILE = "tag-generation-progress.json";
+const PROGRESS_FILE = "/tmp/tag-generation-progress.json";
 
 // Progress persistence functions
 async function loadProgress(): Promise<ProcessingState> {
