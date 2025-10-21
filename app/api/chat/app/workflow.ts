@@ -86,7 +86,7 @@ const userContext: {
 } = {};
 
 // Define tools outside the factory to ensure they persist
-const classifyUserSex = async ({ userMessage }: { userMessage: any }) => {
+const classifyUserSex = async ({ userMessage }: { userMessage: any }): Promise<Record<string, any>> => {
     console.log('[SEX CLASSIFICATION TOOL] Called with input type:', typeof userMessage);
     console.log('[SEX CLASSIFICATION TOOL] Input is undefined?', userMessage === undefined);
     
