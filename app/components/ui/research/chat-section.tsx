@@ -8,7 +8,7 @@ import CustomChatMessages from "./chat-messages";
 import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
 import { fetchComponentDefinitions } from "./custom/events/loader";
 import { ComponentDef } from "./custom/events/types";
-import { ChatLayout } from "./layout";
+import { ChatLayout } from "../common/layout";
 
 export default function ChatSection({
   onReset,

@@ -3,8 +3,8 @@
 import { Loader2 } from "lucide-react";
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { getConfig } from "../../lib/utils";
-import { DynamicComponentErrorBoundary } from "../custom/events/error-boundary";
-import { parseComponent } from "../custom/events/loader";
+import { DynamicComponentErrorBoundary } from "../../research/custom/events/error-boundary";
+import { parseComponent } from "../../research/custom/events/loader";
 
 type LayoutFile = {
   type: "header" | "footer";
