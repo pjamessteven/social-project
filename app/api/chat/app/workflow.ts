@@ -88,6 +88,7 @@ export const workflowFactory = async (reqBody: any) => {
     applicableTags?: string[];
   } = {};
 
+  console.log('[WORKFLOW] Creating gender classification tool...');
   const genderClassificationTool = new FunctionTool(
     async ({ userMessage }: { userMessage: string }) => {
       console.log('[GENDER CLASSIFICATION] Starting analysis for message:', userMessage.substring(0, 100) + '...');
@@ -180,6 +181,7 @@ export const workflowFactory = async (reqBody: any) => {
     }
   );
 
+  console.log('[WORKFLOW] Creating tag classification tool...');
   const tagClassificationTool = new FunctionTool(
     async ({ userMessage }: { userMessage: string }) => {
       console.log('[TAG CLASSIFICATION] Starting analysis for message:', userMessage.substring(0, 100) + '...');
@@ -269,6 +271,7 @@ export const workflowFactory = async (reqBody: any) => {
     }
   );
 
+  console.log('[WORKFLOW] Creating combined search tool...');
   const combinedSearchTool = new FunctionTool(
     async ({ query }: { query: string }) => {
       console.log('[COMBINED SEARCH] Starting search with query:', query);
@@ -299,7 +302,7 @@ export const workflowFactory = async (reqBody: any) => {
     }
   );
 
-  return agent({ 
+  const workflow = agent({ 
     tools: [genderClassificationTool, tagClassificationTool, combinedSearchTool],
     systemPrompt: `You are a helpful assistant that provides information about detransition experiences and the reasons why people adopt, inhibit, and let go of gender identities. Your purpose is to help people resolve gender dysphoria without resorting to transition.
 
@@ -316,4 +319,8 @@ After gathering information:
 - Be sensitive to the user's experience and avoid making assumptions beyond what they've shared
 - Reference specific experiences from the filtered results when relevant`
   });
+
+  console.log('[WORKFLOW] Created workflow with tools:', workflow.tools?.map(t => t.metadata.name) || 'no tools');
+  
+  return workflow;
 };
