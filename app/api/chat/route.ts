@@ -134,6 +134,8 @@ export async function POST(req: NextRequest) {
             console.error('[ROUTE] Event serialization failed:', serializationError);
             console.log('[ROUTE] Problematic event:', event);
           }
+          console.log('event', event)
+          console.log('json event', JSON.stringify(event))
           yield event;
         }
       } catch (streamError) {
