@@ -3,15 +3,19 @@
 import { capitaliseFirstWord, slugify } from "@/app/lib/utils";
 import {
   ChatMessage,
-  getAnnotationData,
-  MessageAnnotationType,
+
+  getParts,
+
+  SuggestionPart,
+
+  SuggestionPartType,
+
   useChatMessage,
   useChatUI,
 } from "@llamaindex/chat-ui";
 import Link from "next/link";
 import { DynamicEvents } from "./custom/events/dynamic-events";
 import { ComponentDef } from "./custom/events/types";
-import { ToolAnnotations } from "./tools/chat-tools";
 
 function SuggestedQuestionsAnnotations({
   mode,
@@ -20,18 +24,20 @@ function SuggestedQuestionsAnnotations({
 }) {
   const isDev = process.env.NODE_ENV === "development";
 
-  const { append, requestData } = useChatUI();
+  const { requestData } = useChatUI();
   const { message, isLast } = useChatMessage();
 
-  if (!isLast || !append) return null;
+  if (!isLast) return null;
 
-  const suggestedQuestionsData = getAnnotationData(
+  
+  const suggestedQuestionsData = getParts<SuggestionPart>(
     message,
-    MessageAnnotationType.SUGGESTED_QUESTIONS,
+    SuggestionPartType,
   );
   if (suggestedQuestionsData.length === 0) return null;
-
-  const questions = suggestedQuestionsData[0] as string[];
+  
+  console.log('message', message)
+  const questions = ['test'] //suggestedQuestionsData[0] as string[];
 
   const getQuestionUrl = (question: string) => {
     let baseUrl;
@@ -83,12 +89,8 @@ export function ChatMessageContent({
   return (
     <ChatMessage.Content>
       <ChatMessage.Content.Event />
-      <ChatMessage.Content.AgentEvent />
-      <ToolAnnotations />
-      <ChatMessage.Content.Image />
       <DynamicEvents componentDefs={componentDefs} appendError={appendError} />
       <ChatMessage.Content.Markdown />
-      <ChatMessage.Content.DocumentFile />
       <ChatMessage.Content.Source />
       {(mode !=='compare') && (
         <SuggestedQuestionsAnnotations mode={mode} />

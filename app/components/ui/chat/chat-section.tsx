@@ -1,7 +1,8 @@
 "use client";
 
-import { ChatSection as ChatUI, useChatWorkflow } from "@llamaindex/chat-ui";
-import { useChat } from "ai/react";
+import { useChat } from "@ai-sdk/react";
+import { ChatSection as ChatUI } from "@llamaindex/chat-ui";
+import { DefaultChatTransport } from "ai";
 import { useEffect, useMemo, useState } from "react";
 import { getConfig } from "../lib/utils";
 import { ResizablePanel, ResizablePanelGroup } from "../resizable";
@@ -13,11 +14,9 @@ import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
 import { fetchComponentDefinitions } from "./custom/events/loader";
 import { ComponentDef } from "./custom/events/types";
 import { DevModePanel } from "./dev-mode-panel";
-import { ChatLayout } from "../common/layout";
 
 export default function ChatSection() {
   const deployment = getConfig("DEPLOYMENT") || "";
-
 
   const handleError = (error: unknown) => {
     if (!(error instanceof Error)) throw error;
@@ -31,29 +30,29 @@ export default function ChatSection() {
   };
 
   const useChatHandler = useChat({
-    api: getConfig("CHAT_API") || "/api/chat",
+    transport: new DefaultChatTransport({
+      api: "/api/chat",
+    }),
     onError: handleError,
     experimental_throttle: 100,
   });
 
-
-  const handler =  useChatHandler;
+  const handler = useChatHandler;
 
   return (
     <>
-
-        <div className="-mr-16 -ml-4 sm:mx-0 h-full w-full">
-          <ChatUI
-            handler={handler}
-            className="relative flex min-h-0 flex-1 flex-row justify-center gap-4 px-4 py-0"
-          >
-            <ResizablePanelGroup direction="horizontal">
-              <ChatSectionPanel />
-              <ChatCanvasPanel />
-            </ResizablePanelGroup>
-            <DevModePanel />
-          </ChatUI>
-        </div>
+      <div className="-mr-16 -ml-4 h-full w-full sm:mx-0">
+        <ChatUI
+          handler={handler}
+          className="relative flex min-h-0 flex-1 flex-row justify-center gap-4 px-4 py-0"
+        >
+          <ResizablePanelGroup direction="horizontal">
+            <ChatSectionPanel />
+            <ChatCanvasPanel />
+          </ResizablePanelGroup>
+          <DevModePanel />
+        </ChatUI>
+      </div>
 
       <ChatInjection />
     </>

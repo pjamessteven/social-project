@@ -1,14 +1,15 @@
 "use client";
 
+import { useChat } from "@ai-sdk/react";
 import { ChatSection as ChatUI } from "@llamaindex/chat-ui";
-import { useChat } from "ai/react";
 import { useEffect, useMemo, useState } from "react";
 
+import { ChatLayout } from "../common/layout";
 import CustomChatMessages from "./chat-messages";
 import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
 import { fetchComponentDefinitions } from "./custom/events/loader";
 import { ComponentDef } from "./custom/events/types";
-import { ChatLayout } from "../common/layout";
+import { DefaultChatTransport } from "ai";
 
 export default function ChatSection({
   onReset,
@@ -33,16 +34,17 @@ export default function ChatSection({
   };
 
   const useChatHandler = useChat({
-    api: mode == "affirm" ? "/api/research/affirm" : "/api/research/detrans",
+    transport: new DefaultChatTransport({
+      api: mode == "affirm" ? "/api/research/affirm" : "/api/research/detrans",
+    }),
     onError: handleError,
     experimental_throttle: 100,
   });
 
   useEffect(() => {
     if (starterQuestion) {
-      useChatHandler.append({
-        role: "user",
-        content: starterQuestion,
+      useChatHandler.sendMessage({
+        text: starterQuestion,
       });
     }
   }, []);
