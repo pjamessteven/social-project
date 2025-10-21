@@ -1,5 +1,5 @@
 import { agent } from "@llamaindex/workflow";
-import { tool } from "llamaindex";
+import { tool, QueryEngineTool } from "llamaindex";
 import { z } from "zod";
 import { getCommentsIndex, getStoriesIndex } from "./data";
 import { initSettings } from "./settings";
@@ -256,45 +256,52 @@ const tagClassificationTool = tool(classifyUserTags, {
   }),
 });
 
-const createSearchExperiences = (reqBody: any) => async ({ query }: { query: string }) => {
-  console.log('[COMBINED SEARCH] Starting search with query:', query);
-  console.log('[COMBINED SEARCH] User context:', userContext);
-  console.log('[COMBINED SEARCH] Applied tags:', userContext.applicableTags);
-  
-  const { searchCombinedContent } = await import('./data');
-  const results = await searchCombinedContent(query, reqBody?.data, userContext.applicableTags);
-  
-  console.log('[COMBINED SEARCH] Search completed, results length:', results.length);
-  console.log('[COMBINED SEARCH] Results preview:', results.substring(0, 500) + '...');
-  
-  return results;
-};
-
 export const workflowFactory = async (reqBody: any) => {
   initSettings();
   
-  console.log('[WORKFLOW] Creating combined search tool...');
-  const searchExperiences = createSearchExperiences(reqBody);
+  console.log('[WORKFLOW] Creating separate query engine tools...');
+  
+  // Create stories index and query engine tool
+  const storiesIndex = await getStoriesIndex(reqBody?.data, userContext.applicableTags);
+  const storiesRetriever = await storiesIndex.asRetriever();
+  storiesRetriever.similarityTopK = 10;
+  const storiesQueryEngine = await storiesIndex.asQueryEngine({
+    retriever: storiesRetriever,
+  });
+  
+  const storiesSearchTool = new QueryEngineTool({
+    queryEngine: storiesQueryEngine,
+    metadata: {
+      name: 'search_detransition_stories',
+      description: 'This tool can search through personal detransition stories and experiences. Use this to find detailed first-person accounts of people who have detransitioned, their reasons, experiences, and outcomes.',
+    },
+  });
 
-  const combinedSearchTool = tool(searchExperiences, {
-    name: "search_experiences",
-    description: "Search both detransition stories and reddit comments, returning the most relevant results based on similarity, first-person content, and community engagement",
-    parameters: z.object({
-      query: z.string({
-        description: "The search query for finding relevant detransition experiences and comments",
-      }),
-    }),
+  // Create comments index and query engine tool
+  const commentsIndex = await getCommentsIndex(reqBody?.data, userContext.applicableTags);
+  const commentsRetriever = await commentsIndex.asRetriever();
+  commentsRetriever.similarityTopK = 10;
+  const commentsQueryEngine = await commentsIndex.asQueryEngine({
+    retriever: commentsRetriever,
+  });
+  
+  const commentsSearchTool = new QueryEngineTool({
+    queryEngine: commentsQueryEngine,
+    metadata: {
+      name: 'search_community_comments',
+      description: 'This tool can search through Reddit comments and community discussions about detransition. Use this to find community perspectives, advice, and shorter experiences shared in discussion forums.',
+    },
   });
 
   const workflow = agent({ 
-    tools: [genderClassificationTool, tagClassificationTool, combinedSearchTool],
+    tools: [genderClassificationTool, tagClassificationTool, storiesSearchTool, commentsSearchTool],
     systemPrompt: `You are a helpful assistant that provides information about detransition experiences and the reasons why people adopt, inhibit, and let go of gender identities. Your purpose is to help people resolve gender dysphoria without resorting to transition.
 
 IMPORTANT WORKFLOW:
 1. First determine who the user is. The user might be a parent or friend of someone who has transitioned, it might be a researcher, it might be someone questioning their gender identity and considering transition, or it might be someone who has already transitioned and is considering de-transition. Also ask if they were born male or female (do not use any variation of 'assigned sex at birth') and determine the user's gender using the classify_user_gender tool.
 2. Probe the user to find out more about themselves so we can retrieve better information to answer their question. Ask for them to tell you a little bit about themselves. 
 3. If the latest user message mentions any of the available tags, use the classify_user_tags tool to see if they have shared any more information that will help us narrow our search query. 
-4. If necessary, use the search_experiences tool to search for relevant stories and comments.
+4. If necessary, use the search_detransition_stories tool to find detailed personal accounts, or the search_community_comments tool to find community discussions and shorter experiences.
 
 The tag classification helps ensure you find the most relevant experiences that match the user's specific situation and background.
 When you identify tags, mention them to the user like: "Based on what you've shared, I'm filtering results using these relevant tags: [tag1, tag2, tag3]"                                          
