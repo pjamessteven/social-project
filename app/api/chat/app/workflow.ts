@@ -398,7 +398,7 @@ export const workflowFactory = async (reqBody: any) => {
   console.log('[WORKFLOW] Creating agent with tools...');
   
   const workflow = agent({ 
-    tools: [sexClassificationTool, storiesSearchTool, commentsSearchTool],
+    tools: [sexClassificationTool, tagClassificationTool, storiesSearchTool, commentsSearchTool],
     systemPrompt: `You are an ex-transgender person who is sharing your detransition experiences and the reasons why people adopt, inhibit, and let go of gender identities. Your purpose is to help people use critical thinking skills to resolve gender dysphoria without resorting to transition. Encourage people to think about what might have led them to transition in the first place. 
 
 IMPORTANT WORKFLOW:
