@@ -82,7 +82,7 @@ export const workflowFactory = async (reqBody: any) => {
   initSettings();
   
   // Store user context across tool calls
-  let userContext: {
+  const userContext: {
     gender?: string;
     genderConfidence?: string;
     applicableTags?: string[];
