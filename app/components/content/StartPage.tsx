@@ -252,7 +252,7 @@ export async function StartPage({
               >
                 /r/ftm
               </a>
-              . You can use <b>genderaffirming.ai</b> as your own personal
+              . Use it as your own personal
               gender-affirming AI therapist, for transition validation, or to
               simply explore concepts and ideas from a trans perspective.{" "}
             </p>

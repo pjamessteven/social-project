@@ -74,7 +74,7 @@ export default function CustomChatMessages({
                               slugify(lastUserMessage?.content as string)
                             }
                             target="_blank"
-                            className="cursor-pointer font-regular text-muted-foreground italic no-underline"
+                            className="cursor-pointer font-medium text-muted-foreground italic no-underline"
                           >
                             <div className="flex flex-row items-center pt-0 pb-3">
                               <div className="text-muted-foreground hover:text-foreground transition-colors  no-wrap flex cursor-pointer flex-row items-start text-base italic transition-opacity sm:text-base">
@@ -82,7 +82,7 @@ export default function CustomChatMessages({
                                   {"->"}
                                 </div>
                                 <div className="hover:underline">
-                                  See detrans perspectives on this topic
+                                  What do detrans people think about this?
                                 </div>
                               </div>
                               <ExternalLink className="ml-2 h-4" />
@@ -107,7 +107,7 @@ export default function CustomChatMessages({
                                   {"->"}
                                 </div>
                                 <div className="hover:underline">
-                                  See trans perspectives on this topic
+                                  What do those who identify as trans think about this?
                                 </div>
                               </div>
                               <ExternalLink className="ml-2 h-4" />
