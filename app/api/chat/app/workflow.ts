@@ -88,10 +88,7 @@ const userContext: {
 
 // Define tools outside the factory to ensure they persist
 const classifyUserSex = async ({ userMessage }: { userMessage: any }) => {
-    console.log('[SEX CLASSIFICATION TOOL] Called with input:', { 
-      userMessage: typeof userMessage === 'string' ? userMessage.substring(0, 100) + '...' : JSON.stringify(userMessage).substring(0, 100) + '...'
-    });
-    console.log('[SEX CLASSIFICATION TOOL] Input type:', typeof userMessage);
+    console.log('[SEX CLASSIFICATION TOOL] Called with input type:', typeof userMessage);
     console.log('[SEX CLASSIFICATION TOOL] Input is undefined?', userMessage === undefined);
     
     // Extract string content from various possible input formats
@@ -107,9 +104,13 @@ const classifyUserSex = async ({ userMessage }: { userMessage: any }) => {
       } else if (Array.isArray(userMessage) && userMessage.length > 0) {
         // If it's an array, try to get the last user message
         const lastUserMsg = userMessage.filter(msg => msg.role === 'user').pop();
-        messageText = lastUserMsg?.content || JSON.stringify(userMessage);
+        messageText = lastUserMsg?.content || '';
       } else {
-        messageText = JSON.stringify(userMessage);
+        try {
+          messageText = JSON.stringify(userMessage);
+        } catch (e) {
+          messageText = '';
+        }
       }
     } else {
       console.error('[SEX CLASSIFICATION TOOL] Invalid input - cannot extract text:', userMessage);
@@ -212,9 +213,6 @@ console.log('[WORKFLOW] Sex classification tool created');
 
 const classifyUserTags = async ({ userMessage }: { userMessage: any }) => {
     try {
-      console.log('[TAG CLASSIFICATION TOOL] Called with input:', { 
-        userMessage: typeof userMessage === 'string' ? userMessage.substring(0, 100) + '...' : JSON.stringify(userMessage).substring(0, 100) + '...'
-      });
       console.log('[TAG CLASSIFICATION TOOL] Input type:', typeof userMessage);
       console.log('[TAG CLASSIFICATION TOOL] Input is undefined?', userMessage === undefined);
       
@@ -231,9 +229,13 @@ const classifyUserTags = async ({ userMessage }: { userMessage: any }) => {
         } else if (Array.isArray(userMessage) && userMessage.length > 0) {
           // If it's an array, try to get the last user message
           const lastUserMsg = userMessage.filter(msg => msg.role === 'user').pop();
-          messageText = lastUserMsg?.content || JSON.stringify(userMessage);
+          messageText = lastUserMsg?.content || '';
         } else {
-          messageText = JSON.stringify(userMessage);
+          try {
+            messageText = JSON.stringify(userMessage);
+          } catch (e) {
+            messageText = '';
+          }
         }
       } else {
         console.error('[TAG CLASSIFICATION TOOL] Invalid input - cannot extract text:', userMessage);
