@@ -1,22 +1,8 @@
 {
   "completedUsers": [
-    "DraftCurrent4706",
-    "fem_shady",
-    "NeighborhoodFit2786",
-    "allADD",
-    "split_skunk",
-    "oldtomboy",
-    "Timely-Squirrel-6407",
-    "jin_rouh",
-    "AstraAeDraconis",
-    "NeverCrumbling",
-    "ResetEarthPlz",
-    "LukeOfAppalachia",
-    "AlviToronto"
+
   ],
   "failedUsers": [],
   "startTime": "2025-10-20T22:45:55.372Z",
-  "totalUsers": 13,
-  "processedCount": 35,
-  "lastProcessedUser": "AlviToronto"
+  "totalUsers": 13
 }
