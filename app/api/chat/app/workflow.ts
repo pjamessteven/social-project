@@ -308,8 +308,8 @@ export const workflowFactory = async (reqBody: any) => {
   initSettings();
   
   console.log('[WORKFLOW] Creating separate query engine tools...');
-  console.log('[WORKFLOW] reqBody:', reqBody);
-  console.log('[WORKFLOW] userContext:', userContext);
+  console.log('[WORKFLOW] reqBody:', JSON.stringify(reqBody));
+  console.log('[WORKFLOW] userContext:', JSON.stringify(userContext));
   
   // Create stories index and query engine tool
   const storiesIndex = await getStoriesIndex(reqBody?.data || null, userContext.applicableTags || []);
