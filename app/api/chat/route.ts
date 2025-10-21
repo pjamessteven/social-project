@@ -152,9 +152,11 @@ export async function POST(req: NextRequest) {
         async start(controller) {
           try {
             const replayStream = replayCached(cachedAnswer);
-            for await (const chunk of replayStream) {
-              controller.enqueue(new TextEncoder().encode(chunk));
-            }
+          for await (const chunk of replayStream) {
+            const delta = chunk.delta || '';
+            fullResponse += delta;
+            controller.enqueue(new TextEncoder().encode(delta));
+          }
             controller.close();
           } catch (error) {
             controller.error(error);
