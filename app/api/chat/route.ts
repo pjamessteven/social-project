@@ -1,4 +1,4 @@
-import { type Message } from "ai";
+import { type Message, StreamingTextResponse, createStreamDataTransformer } from "ai";
 import { NextRequest, NextResponse } from "next/server";
 import { getCachedAnswer, setCachedAnswer } from "@/app/lib/cache";
 import { replayCached } from "@/app/lib/replayCached";
@@ -207,11 +207,9 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    return new Response(stream, {
-      headers: {
-        'Content-Type': 'text/plain; charset=utf-8',
-      },
-    });
+    return new StreamingTextResponse(
+      stream.pipeThrough(createStreamDataTransformer()),
+    );
 
   } catch (error) {
     console.error("Chat handler error:", error);
