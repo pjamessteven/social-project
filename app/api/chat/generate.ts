@@ -68,7 +68,7 @@ async function generateDatasource() {
       detransitionReasonId: detransUsers.detransitionReasonId,
       transitionReason: sql<string>`tr.name`,
       detransitionReason: sql<string>`dr.name`,
-      tags: sql<string[]>`COALESCE(array_agg(DISTINCT t.name) FILTER (WHERE t.name IS NOT NULL), ARRAY[]::text[])`,
+      tags: sql<string[]>`COALESCE(array_agg(DISTINCT ${detransTags.name}) FILTER (WHERE ${detransTags.name} IS NOT NULL), ARRAY[]::text[])`,
     })
     .from(detransUsers)
     .leftJoin(
