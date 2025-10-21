@@ -71,7 +71,7 @@ export function ContentWarningDialog({ host }: ContentWarningDialogProps) {
         <div className="mt-2 flex justify-end gap-2">
           <Button onClick={handleExit}>Get me out of here!</Button>
 
-          <Button onClick={handleAccept}>I Understand {"->"}</Button>
+          <Button onClick={handleAccept}>Continue</Button>
         </div>
       </DialogContent>
     </Dialog>

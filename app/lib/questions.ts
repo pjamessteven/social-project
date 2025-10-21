@@ -5,6 +5,7 @@ export const questionCategories = [
     questions: [
       "What does trans mean?",
       "Have trans people always existed?",
+      "Is it true that only 1% detransition?",
       "What is the difference between sex and gender?",
       "What is gender dysphoria and what can cause it?",
       "Why do some people decide to detransition?",
