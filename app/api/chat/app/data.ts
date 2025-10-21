@@ -125,26 +125,31 @@ export async function searchCombinedContent(query: string, params?: any, tags?: 
     console.log('[SEARCH COMBINED] No tags provided, searching all content');
   }
   
-  // Get top-k stories (k=8)
-  console.log('[SEARCH COMBINED] Fetching stories index...');
-  const storiesIndex = await getStoriesIndex(params);
+  // Create both indexes in parallel for better performance
+  console.log('[SEARCH COMBINED] Creating indexes in parallel...');
+  const [storiesIndex, commentsIndex] = await Promise.all([
+    getStoriesIndex(params),
+    getCommentsIndex(params)
+  ]);
+  console.log('[SEARCH COMBINED] Both indexes created successfully');
+  
+  // Create query engines
   const storiesQueryEngine = storiesIndex.asQueryEngine({ 
     similarityTopK: 8,
     ...(filter && { filter })
   });
-  console.log('[SEARCH COMBINED] Querying stories...');
-  const storiesResponse = await storiesQueryEngine.query({ query });
-  console.log('[SEARCH COMBINED] Stories response nodes count:', storiesResponse.sourceNodes?.length || 0);
-  
-  // Get top-m comments (m=4)  
-  console.log('[SEARCH COMBINED] Fetching comments index...');
-  const commentsIndex = await getCommentsIndex(params);
   const commentsQueryEngine = commentsIndex.asQueryEngine({ 
     similarityTopK: 4,
     ...(filter && { filter })
   });
-  console.log('[SEARCH COMBINED] Querying comments...');
-  const commentsResponse = await commentsQueryEngine.query({ query });
+  
+  // Execute queries in parallel
+  console.log('[SEARCH COMBINED] Executing queries in parallel...');
+  const [storiesResponse, commentsResponse] = await Promise.all([
+    storiesQueryEngine.query({ query }),
+    commentsQueryEngine.query({ query })
+  ]);
+  console.log('[SEARCH COMBINED] Stories response nodes count:', storiesResponse.sourceNodes?.length || 0);
   console.log('[SEARCH COMBINED] Comments response nodes count:', commentsResponse.sourceNodes?.length || 0);
   
   // Extract results with metadata
