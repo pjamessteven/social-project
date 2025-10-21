@@ -81,44 +81,44 @@ export const availableTags = [
 
 // Store user context across tool calls - moved outside factory to persist
 const userContext: {
-  gender?: string;
-  genderConfidence?: string;
+  sex?: string;
+  sexConfidence?: string;
   applicableTags?: string[];
 } = {};
 
 // Define tools outside the factory to ensure they persist
-const classifyUserGender = async ({ userMessage }: { userMessage: string }) => {
-    console.log('[GENDER CLASSIFICATION] Starting analysis for message:', userMessage.substring(0, 100) + '...');
+const classifyUserSex = async ({ userMessage }: { userMessage: string }) => {
+    console.log('[sex CLASSIFICATION] Starting analysis for message:', userMessage.substring(0, 100) + '...');
     
-    // Analyze the user's message to determine gender
+    // Analyze the user's message to determine sex
     const lowerMessage = userMessage.toLowerCase();
     
-    // Look for explicit gender indicators
+    // Look for explicit sex indicators
     const maleIndicators = [
-      'i am a man', 'i am male', 'i\'m a man', 'i\'m male', 'as a man', 'as a male',
-      'i was a boy', 'when i was a boy', 'ftm', 'female to male', 'trans man', 'transman'
+      'i am a man', 'i am male', 'i\'m a man', 'i\'m male', 'as a man', 'as a male', 'amab', 'male at birth', 'born male',
+      'i was a boy', 'when i was a boy', 'ftm', 'male to female', 'trans woman', 'transwoman', 'trans femme', 'femme boy'
     ];
     
     const femaleIndicators = [
-      'i am a woman', 'i am female', 'i\'m a woman', 'i\'m female', 'as a woman', 'as a female',
-      'i was a girl', 'when i was a girl', 'mtf', 'male to female', 'trans woman', 'transwoman'
+      'i am a woman', 'i am female', 'i\'m a woman', 'i\'m female', 'as a woman', 'as a female', 'afab', 'born female',
+      'i was a girl', 'when i was a girl', 'ftm', 'female to male', 'trans man', 'transman', 'transmasc', 'trans masc'
     ];
     
     for (const indicator of maleIndicators) {
       if (lowerMessage.includes(indicator)) {
-        console.log('[GENDER CLASSIFICATION] Found male indicator:', indicator);
-        userContext.gender = 'male';
-        userContext.genderConfidence = 'high';
-        return { gender: 'male', confidence: 'high' };
+        console.log('[SEX CLASSIFICATION] Found male indicator:', indicator);
+        userContext.sex = 'male';
+        userContext.sexConfidence = 'high';
+        return { sex: 'male', confidence: 'high' };
       }
     }
     
     for (const indicator of femaleIndicators) {
       if (lowerMessage.includes(indicator)) {
-        console.log('[GENDER CLASSIFICATION] Found female indicator:', indicator);
-        userContext.gender = 'female';
-        userContext.genderConfidence = 'high';
-        return { gender: 'female', confidence: 'high' };
+        console.log('[SEX CLASSIFICATION] Found female indicator:', indicator);
+        userContext.sex = 'female';
+        userContext.sexConfidence = 'high';
+        return { sex: 'female', confidence: 'high' };
       }
     }
     
@@ -132,43 +132,43 @@ const classifyUserGender = async ({ userMessage }: { userMessage: string }) => {
     for (const pronoun of malePronouns) {
       if (lowerMessage.includes(pronoun)) {
         maleScore++;
-        console.log('[GENDER CLASSIFICATION] Found male pronoun:', pronoun);
+        console.log('[sex CLASSIFICATION] Found male pronoun:', pronoun);
       }
     }
     
     for (const pronoun of femalePronouns) {
       if (lowerMessage.includes(pronoun)) {
         femaleScore++;
-        console.log('[GENDER CLASSIFICATION] Found female pronoun:', pronoun);
+        console.log('[sex CLASSIFICATION] Found female pronoun:', pronoun);
       }
     }
     
-    console.log('[GENDER CLASSIFICATION] Pronoun scores - Male:', maleScore, 'Female:', femaleScore);
+    console.log('[sex CLASSIFICATION] Pronoun scores - Male:', maleScore, 'Female:', femaleScore);
     
     if (maleScore > femaleScore) {
-      userContext.gender = 'male';
-      userContext.genderConfidence = 'medium';
-      console.log('[GENDER CLASSIFICATION] Result: male (medium confidence)');
-      return { gender: 'male', confidence: 'medium' };
+      userContext.sex = 'male';
+      userContext.sexConfidence = 'medium';
+      console.log('[sex CLASSIFICATION] Result: male (medium confidence)');
+      return { sex: 'male', confidence: 'medium' };
     } else if (femaleScore > maleScore) {
-      userContext.gender = 'female';
-      userContext.genderConfidence = 'medium';
-      console.log('[GENDER CLASSIFICATION] Result: female (medium confidence)');
-      return { gender: 'female', confidence: 'medium' };
+      userContext.sex = 'female';
+      userContext.sexConfidence = 'medium';
+      console.log('[sex CLASSIFICATION] Result: female (medium confidence)');
+      return { sex: 'female', confidence: 'medium' };
     }
     
-    userContext.gender = 'unknown';
-    userContext.genderConfidence = 'low';
-    console.log('[GENDER CLASSIFICATION] Result: unknown (low confidence)');
-    return { gender: 'unknown', confidence: 'low' };
+    userContext.sex = 'unknown';
+    userContext.sexConfidence = 'low';
+    console.log('[sex CLASSIFICATION] Result: unknown (low confidence)');
+    return { sex: 'unknown', confidence: 'low' };
   };
 
-const genderClassificationTool = tool(classifyUserGender, {
-  name: "classify_user_gender",
-  description: "Analyze the user's message to determine their gender (male/female) based on explicit statements, pronouns, and contextual clues",
+const sexClassificationTool = tool(classifyUserSex, {
+  name: "classify_user_sex",
+  description: "Analyze the user's message to determine their sex (male/female) based on explicit statements, pronouns, and contextual clues",
   parameters: z.object({
     userMessage: z.string({
-      description: "The user's message to analyze for gender indicators",
+      description: "The user's message to analyze for sex indicators",
     }),
   }),
 });
@@ -294,11 +294,11 @@ export const workflowFactory = async (reqBody: any) => {
   });
 
   const workflow = agent({ 
-    tools: [genderClassificationTool, tagClassificationTool, storiesSearchTool, commentsSearchTool],
-    systemPrompt: `You are a helpful assistant that provides information about detransition experiences and the reasons why people adopt, inhibit, and let go of gender identities. Your purpose is to help people resolve gender dysphoria without resorting to transition.
+    tools: [sexClassificationTool, tagClassificationTool, storiesSearchTool, commentsSearchTool],
+    systemPrompt: `You are a helpful assistant that provides information about detransition experiences and the reasons why people adopt, inhibit, and let go of gender identities. Your purpose is to help people use critical thinking skills to resolve gender dysphoria without resorting to transition. Encourage people to think about what might have led them to transition in the first place. 
 
 IMPORTANT WORKFLOW:
-1. First determine who the user is. The user might be a parent or friend of someone who has transitioned, it might be a researcher, it might be someone questioning their gender identity and considering transition, or it might be someone who has already transitioned and is considering de-transition. Also ask if they were born male or female (do not use any variation of 'assigned sex at birth') and determine the user's gender using the classify_user_gender tool.
+1. First determine who the user is. The user might be a parent or friend of someone who has transitioned, it might be a researcher, it might be someone questioning their gender identity and considering transition, or it might be someone who has already transitioned and is considering de-transition. Also ask if they were born male or female (do not use any variation of 'assigned sex at birth') and determine the user's sex using the classify_user_sex tool.
 2. Probe the user to find out more about themselves so we can retrieve better information to answer their question. Ask for them to tell you a little bit about themselves. 
 3. If the latest user message mentions any of the available tags, use the classify_user_tags tool to see if they have shared any more information that will help us narrow our search query. 
 4. If necessary, use the search_detransition_stories tool to find detailed personal accounts, or the search_community_comments tool to find community discussions and shorter experiences.
