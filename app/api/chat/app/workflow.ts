@@ -79,18 +79,15 @@ export const availableTags = [
   "is researcher (not trans themselves)",
 ];
 
-export const workflowFactory = async (reqBody: any) => {
-  initSettings();
-  
-  // Store user context across tool calls
-  const userContext: {
-    gender?: string;
-    genderConfidence?: string;
-    applicableTags?: string[];
-  } = {};
+// Store user context across tool calls - moved outside factory to persist
+const userContext: {
+  gender?: string;
+  genderConfidence?: string;
+  applicableTags?: string[];
+} = {};
 
-  console.log('[WORKFLOW] Creating gender classification tool...');
-  const classifyUserGender = async ({ userMessage }: { userMessage: string }) => {
+// Define tools outside the factory to ensure they persist
+const classifyUserGender = async ({ userMessage }: { userMessage: string }) => {
     console.log('[GENDER CLASSIFICATION] Starting analysis for message:', userMessage.substring(0, 100) + '...');
     
     // Analyze the user's message to determine gender
@@ -166,18 +163,17 @@ export const workflowFactory = async (reqBody: any) => {
     return { gender: 'unknown', confidence: 'low' };
   };
 
-  const genderClassificationTool = tool(classifyUserGender, {
-    name: "classify_user_gender",
-    description: "Analyze the user's message to determine their gender (male/female) based on explicit statements, pronouns, and contextual clues",
-    parameters: z.object({
-      userMessage: z.string({
-        description: "The user's message to analyze for gender indicators",
-      }),
+const genderClassificationTool = tool(classifyUserGender, {
+  name: "classify_user_gender",
+  description: "Analyze the user's message to determine their gender (male/female) based on explicit statements, pronouns, and contextual clues",
+  parameters: z.object({
+    userMessage: z.string({
+      description: "The user's message to analyze for gender indicators",
     }),
-  });
+  }),
+});
 
-  console.log('[WORKFLOW] Creating tag classification tool...');
-  const classifyUserTags = async ({ userMessage }: { userMessage: string }) => {
+const classifyUserTags = async ({ userMessage }: { userMessage: string }) => {
     console.log('[TAG CLASSIFICATION] Starting analysis for message:', userMessage.substring(0, 100) + '...');
     
     const lowerMessage = userMessage.toLowerCase();
@@ -250,30 +246,35 @@ export const workflowFactory = async (reqBody: any) => {
     };
   };
 
-  const tagClassificationTool = tool(classifyUserTags, {
-    name: "classify_user_tags",
-    description: "Analyze the user's message to determine which tags from the available tag list apply to their situation",
-    parameters: z.object({
-      userMessage: z.string({
-        description: "The user's message to analyze for applicable tags",
-      }),
+const tagClassificationTool = tool(classifyUserTags, {
+  name: "classify_user_tags",
+  description: "Analyze the user's message to determine which tags from the available tag list apply to their situation",
+  parameters: z.object({
+    userMessage: z.string({
+      description: "The user's message to analyze for applicable tags",
     }),
-  });
+  }),
+});
 
+const createSearchExperiences = (reqBody: any) => async ({ query }: { query: string }) => {
+  console.log('[COMBINED SEARCH] Starting search with query:', query);
+  console.log('[COMBINED SEARCH] User context:', userContext);
+  console.log('[COMBINED SEARCH] Applied tags:', userContext.applicableTags);
+  
+  const { searchCombinedContent } = await import('./data');
+  const results = await searchCombinedContent(query, reqBody?.data, userContext.applicableTags);
+  
+  console.log('[COMBINED SEARCH] Search completed, results length:', results.length);
+  console.log('[COMBINED SEARCH] Results preview:', results.substring(0, 500) + '...');
+  
+  return results;
+};
+
+export const workflowFactory = async (reqBody: any) => {
+  initSettings();
+  
   console.log('[WORKFLOW] Creating combined search tool...');
-  const searchExperiences = async ({ query }: { query: string }) => {
-    console.log('[COMBINED SEARCH] Starting search with query:', query);
-    console.log('[COMBINED SEARCH] User context:', userContext);
-    console.log('[COMBINED SEARCH] Applied tags:', userContext.applicableTags);
-    
-    const { searchCombinedContent } = await import('./data');
-    const results = await searchCombinedContent(query, reqBody?.data, userContext.applicableTags);
-    
-    console.log('[COMBINED SEARCH] Search completed, results length:', results.length);
-    console.log('[COMBINED SEARCH] Results preview:', results.substring(0, 500) + '...');
-    
-    return results;
-  };
+  const searchExperiences = createSearchExperiences(reqBody);
 
   const combinedSearchTool = tool(searchExperiences, {
     name: "search_experiences",
