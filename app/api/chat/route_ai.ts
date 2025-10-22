@@ -1,4 +1,4 @@
-import { type Message } from "ai";
+import { type UIMessage } from "ai";
 import { NextRequest, NextResponse } from "next/server";
 import { getLogger } from "@/app/lib/logger";
 import { OpenAI } from "openai";
@@ -107,7 +107,7 @@ function formatContext(nodes: NodeWithScore<Metadata>[]): string {
     .join('\n');
 }
 
-function formatChatHistory(messages: Message[]): string {
+function formatChatHistory(messages: UIMessage[]): string {
   if (messages.length <= 1) return '';
   
   const history = messages.slice(0, -1).map(msg => 
@@ -120,7 +120,7 @@ function formatChatHistory(messages: Message[]): string {
 export async function POST(req: NextRequest) {
   try {
     const reqBody = await req.json();
-    const { messages } = reqBody as { messages: Message[] };
+    const { messages } = reqBody as { messages: UIMessage[] };
 
     const lastMessage = messages[messages.length - 1];
     if (lastMessage?.role !== "user") {
@@ -153,12 +153,19 @@ export async function POST(req: NextRequest) {
       .replace('{chat_history}', chatHistory)
       .replace('{question}', userQuestion);
 
-    const result = await streamText({
+    const result = streamText({
       model: llm,
-      messages: [{ role: "user", content: prompt }],
+      messages: [{
+        role: "user",
+
+        parts: [{
+          type: 'text',
+          text: prompt
+        }]
+      }],
     });
 
-    return result.toDataStreamResponse();
+    return result.toUIMessageStreamResponse();
 
   } catch (error) {
     console.error("Chat handler error:", error);

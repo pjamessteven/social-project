@@ -1,6 +1,6 @@
 import { pgTable, varchar, integer, timestamp, text, index, serial, numeric } from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
-import { z } from 'zod';
+import { z } from 'zod/v3';
 
 // Detrans tables
 export const detransQuestions = pgTable('detrans_questions', {

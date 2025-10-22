@@ -1,7 +1,7 @@
 "use client";
 
 import { slugify } from "@/app/lib/utils";
-import { ChatMessage, ChatMessages, useChatUI } from "@llamaindex/chat-ui";
+import { ChatMessage, ChatMessages, TextPart, useChatUI } from "@llamaindex/chat-ui";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -32,7 +32,8 @@ export default function CustomChatMessages({
   const { messages, isLoading } = useChatUI();
 
   const lastUserMessage = useMemo(() => {
-    return messages?.findLast((x) => x.role === "user");
+    const message = messages?.findLast((x) => x.role === "user");
+    return (message?.parts[0] as TextPart)?.text 
   }, [messages]);
 
 
@@ -63,6 +64,7 @@ export default function CustomChatMessages({
                 <>
                   <ChatMessages.Loading className="-ml-16 sm:mr-0" />
                   {!isLoading && (
+
                     <>
                       <div className="text-foreground mr-16 ml-3 flex items-center border-b">
                         {mode == "affirm" ? (
@@ -71,7 +73,7 @@ export default function CustomChatMessages({
                             prefetch={false}
                             href={
                               (isDev ? "/research/" : "https://detrans.ai/research/") +
-                              slugify(lastUserMessage?.content as string)
+                              slugify('')
                             }
                             target="_blank"
                             className="cursor-pointer font-regular text-muted-foreground italic no-underline"
@@ -96,7 +98,7 @@ export default function CustomChatMessages({
                               (isDev
                                 ? "/affirm/research/"
                                 : "https://genderaffirming.ai/affirm/research/") +
-                              slugify(lastUserMessage?.content as string)
+                              slugify(lastUserMessage || "")
                             }
                             target="_blank"
                             className="cursor-pointer font-medium text-muted-foreground  italic no-underline"
@@ -116,6 +118,7 @@ export default function CustomChatMessages({
                         )}
                       </div>
                     </>
+
                   )}
                   <Link
                     key={index}

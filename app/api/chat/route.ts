@@ -1,4 +1,4 @@
-import { type Message } from "ai";
+import { type UIMessage } from "ai";
 import { type MessageType } from "llamaindex";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     const suggestNextQuestions = process.env.SUGGEST_NEXT_QUESTIONS === "true";
 
     const { messages, id: requestId } = reqBody as {
-      messages: Message[];
+      messages: UIMessage[];
       id?: string;
     };
     const chatHistory = messages.map((message) => ({

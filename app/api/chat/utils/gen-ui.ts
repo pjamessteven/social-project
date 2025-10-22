@@ -14,7 +14,7 @@ import {
   workflowEvent,
 } from "@llamaindex/workflow";
 import type { LLM } from "llamaindex";
-import type { ZodType } from "zod";
+import { ZodType } from 'zod/v3';
 
 const writeAggregationEvent = workflowEvent<{
   eventSchema: object;

@@ -1,6 +1,6 @@
 import { agentStreamEvent, type WorkflowEventData } from "@llamaindex/workflow";
 import { type ChatMessage } from "llamaindex";
-import { z } from "zod";
+import { z } from 'zod/v3';
 
 const INLINE_ANNOTATION_KEY = "annotation"; // the language key to detect inline annotation code in markdown
 

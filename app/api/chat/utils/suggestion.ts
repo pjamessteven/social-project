@@ -1,16 +1,17 @@
+import { SuggestionPartType } from "@llamaindex/chat-ui";
 import { getEnv } from "@llamaindex/env";
-import type { DataStreamWriter } from "ai";
+import type { UIMessageStreamWriter } from "ai";
 import { type ChatMessage, Settings } from "llamaindex";
 import { NEXT_QUESTION_PROMPT } from "./prompts";
 
 export const sendSuggestedQuestionsEvent = async (
-  streamWriter: DataStreamWriter,
+  streamWriter: UIMessageStreamWriter,
   chatHistory: ChatMessage[] = [],
 ) => {
   const questions = await generateNextQuestions(chatHistory);
   if (questions.length > 0) {
-    streamWriter.writeMessageAnnotation({
-      type: "suggested_questions",
+    streamWriter.write({
+      type: SuggestionPartType,
       data: questions,
     });
   }
