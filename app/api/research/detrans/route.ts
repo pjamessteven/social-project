@@ -56,7 +56,10 @@ export async function POST(req: NextRequest) {
 
     const context = await runWorkflow({
       workflow: await workflowFactory(reqBody, userIp),
-      input: { userInput: lastMessage.parts[0].text, chatHistory },
+      input: { 
+        userInput: lastMessage.parts[0].type === 'text' ? lastMessage.parts[0].text : '', 
+        chatHistory 
+      },
       human: {
         snapshotId: requestId, // use requestId to restore snapshot
         responses: getHumanResponsesFromMessage(lastMessage),
