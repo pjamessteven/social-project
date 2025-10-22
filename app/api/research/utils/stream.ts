@@ -53,9 +53,10 @@ export function toDataStream(
 
   let completionText = "";
   let hasStarted = false;
+  let textId: string | null = null;
 
   return createUIMessageStream({
-    execute: async ({writer}) => {
+    execute: async ({ writer }) => {
       if (!hasStarted && callbacks?.onStart) {
         await callbacks.onStart(writer);
         hasStarted = true;
@@ -65,18 +66,31 @@ export function toDataStream(
         if (agentStreamEvent.include(event) && event.data.delta) {
           const content = event.data.delta;
           if (content) {
+            // Start text block if not already started
+            if (!textId) {
+              textId = `text-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+              writer.write({
+                type: 'text-start',
+                id: textId,
+              });
+            }
+
             completionText += content;
-            writer.write({type: TextPartType, value: content});
+            writer.write({
+              type: 'text-delta',
+              id: textId,
+              delta: content,
+            });
 
             if (callbacks?.onText) {
-              await callbacks.onText(content, dataStreamWriter);
+              await callbacks.onText(content, writer);
             }
           }
         } else if (humanInputEvent.include(event)) {
           const { response, ...rest } = event.data;
-          dataStreamWriter.write({
-            'type': 'message-annotations',
-            'value': [rest]
+          writer.write({
+            type: 'message-annotations',
+            value: [rest]
           }); // show human input in UI
 
           if (callbacks?.onPauseForHumanInput) {
@@ -84,16 +98,24 @@ export function toDataStream(
             return; // stop the stream
           }
         } else {
-          dataStreamWriter.write({
-            'type': 'message-annotations',
-            'value': [event.data as JSONValue]
+          writer.write({
+            type: 'message-annotations',
+            value: [event.data as JSONValue]
           });
         }
       }
 
+      // End text block if it was started
+      if (textId) {
+        writer.write({
+          type: 'text-end',
+          id: textId,
+        });
+      }
+
       // Call onFinal with the complete text when stream ends
       if (callbacks?.onFinal) {
-        await callbacks.onFinal(completionText, dataStreamWriter);
+        await callbacks.onFinal(completionText, writer);
       }
     },
     onError: (error: unknown) => {
