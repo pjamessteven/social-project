@@ -1,12 +1,12 @@
 import { randomUUID } from "@llamaindex/env";
 import { workflowEvent } from "@llamaindex/workflow";
-import type { Message } from "ai";
+import type { UIMessage } from "ai";
 import {
   type ChatMessage,
   type Metadata,
   type NodeWithScore,
 } from "llamaindex";
-import { z } from "zod";
+import { z } from 'zod/v3';
 import { getStoredFilePath } from "./file";
 import { getInlineAnnotations } from "./inline";
 
@@ -245,7 +245,7 @@ export type ServerFile = FileAnnotation & {
  * @returns The file attachments.
  */
 export function extractFileAttachmentsFromMessage(
-  message: Message,
+  message: UIMessage,
 ): ServerFile[] {
   const fileAttachments: ServerFile[] = [];
   if (message.role === "user" && message.annotations) {
@@ -269,7 +269,7 @@ export function extractFileAttachmentsFromMessage(
  * @param messages - The messages to extract file attachments from.
  * @returns The file attachments.
  */
-export function extractFileAttachments(messages: Message[]): ServerFile[] {
+export function extractFileAttachments(messages: UIMessage[]): ServerFile[] {
   const fileAttachments: ServerFile[] = [];
 
   for (const message of messages) {

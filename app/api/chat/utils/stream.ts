@@ -4,31 +4,31 @@ import {
   type WorkflowEventData,
 } from "@llamaindex/workflow";
 import {
-  createDataStream,
-  formatDataStreamPart,
-  type DataStreamWriter,
+  createUIMessageStream,
+  type UIMessageStreamWriter,
   type JSONValue,
 } from "ai";
 import type { ChatResponseChunk } from "llamaindex";
 import { humanInputEvent, type HumanResponseEventData } from "./hitl";
+import { TextPartType } from "@llamaindex/chat-ui";
 
 /**
  * Configuration options and helper callback methods for stream lifecycle events.
  */
 export interface StreamCallbacks {
   /** `onStart`: Called once when the stream is initialized. */
-  onStart?: (dataStreamWriter: DataStreamWriter) => Promise<void> | void;
+  onStart?: (dataStreamWriter: UIMessageStreamWriter) => Promise<void> | void;
 
   /** `onFinal`: Called once when the stream is closed with the final completion message. */
   onFinal?: (
     completion: string,
-    dataStreamWriter: DataStreamWriter,
+    dataStreamWriter: UIMessageStreamWriter,
   ) => Promise<void> | void;
 
   /** `onText`: Called for each text chunk. */
   onText?: (
     text: string,
-    dataStreamWriter: DataStreamWriter,
+    dataStreamWriter: UIMessageStreamWriter,
   ) => Promise<void> | void;
 
   /** `onPauseForHumanInput`: Called when human input event is emitted. */
@@ -53,11 +53,12 @@ export function toDataStream(
 
   let completionText = "";
   let hasStarted = false;
+  let textId: string | null = null;
 
-  return createDataStream({
-    execute: async (dataStreamWriter: DataStreamWriter) => {
+  return createUIMessageStream({
+    execute: async ({ writer }) => {
       if (!hasStarted && callbacks?.onStart) {
-        await callbacks.onStart(dataStreamWriter);
+        await callbacks.onStart(writer);
         hasStarted = true;
       }
 
@@ -65,29 +66,59 @@ export function toDataStream(
         if (agentStreamEvent.include(event) && event.data.delta) {
           const content = event.data.delta;
           if (content) {
+            // Start text block if not already started
+            if (!textId) {
+              textId = `text-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+              writer.write({
+                type: 'text-start',
+                id: textId,
+              });
+            }
+
             completionText += content;
-            dataStreamWriter.write(formatDataStreamPart("text", content));
+            writer.write({
+              type: 'text-delta',
+              id: textId,
+              delta: content,
+            });
 
             if (callbacks?.onText) {
-              await callbacks.onText(content, dataStreamWriter);
+              await callbacks.onText(content, writer);
             }
           }
-        } else if (humanInputEvent.include(event)) {
+        }
+        /* else if (humanInputEvent.include(event)) {
           const { response, ...rest } = event.data;
-          dataStreamWriter.writeMessageAnnotation(rest); // show human input in UI
+          writer.write({
+            type: 'text-delta',
+            delta: [rest]
+          }); // show human input in UI
 
           if (callbacks?.onPauseForHumanInput) {
             await callbacks.onPauseForHumanInput(response);
             return; // stop the stream
           }
         } else {
-          dataStreamWriter.writeMessageAnnotation(event.data as JSONValue);
+          writer.write({
+            type: 'message-annotations',
+            value: [event.data as JSONValue]
+          });
         }
+                  */
+
+      }
+
+      // End text block if it was started
+      if (textId) {
+        writer.write({
+          type: 'text-end',
+          id: textId,
+        });
       }
 
       // Call onFinal with the complete text when stream ends
       if (callbacks?.onFinal) {
-        await callbacks.onFinal(completionText, dataStreamWriter);
+        await callbacks.onFinal(completionText, writer);
       }
     },
     onError: (error: unknown) => {

@@ -3,13 +3,9 @@
 import { capitaliseFirstWord, slugify } from "@/app/lib/utils";
 import {
   ChatMessage,
-
   getParts,
-
   SuggestionPart,
-
   SuggestionPartType,
-
   useChatMessage,
   useChatUI,
 } from "@llamaindex/chat-ui";
@@ -29,15 +25,13 @@ function SuggestedQuestionsAnnotations({
 
   if (!isLast) return null;
 
-  
   const suggestedQuestionsData = getParts<SuggestionPart>(
     message,
     SuggestionPartType,
   );
   if (suggestedQuestionsData.length === 0) return null;
-  
-  console.log('message', message)
-  const questions = ['test'] //suggestedQuestionsData[0] as string[];
+
+  const questions = suggestedQuestionsData[0].data;
 
   const getQuestionUrl = (question: string) => {
     let baseUrl;
@@ -67,7 +61,7 @@ function SuggestedQuestionsAnnotations({
             <div className="text-muted-foreground hover:text-foreground no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 transition-colors sm:text-base">
               <div className="mr-2 whitespace-nowrap">{"->"}</div>
               <div className="hover:underline">
-                {capitaliseFirstWord(question)}`
+                {capitaliseFirstWord(question)}
               </div>
             </div>
           </div>
@@ -87,14 +81,16 @@ export function ChatMessageContent({
   mode: "detrans" | "affirm" | "compare";
 }) {
   return (
-    <ChatMessage.Content>
-      <ChatMessage.Content.Event />
+    <div className="flex w-full flex-col">
       <DynamicEvents componentDefs={componentDefs} appendError={appendError} />
-      <ChatMessage.Content.Markdown />
-      <ChatMessage.Content.Source />
-      {(mode !=='compare') && (
-        <SuggestedQuestionsAnnotations mode={mode} />
-      )}
-    </ChatMessage.Content>
+
+      <ChatMessage.Content>
+        <ChatMessage.Part.Event />
+        <ChatMessage.Part.Markdown />
+        <ChatMessage.Part.Source />
+      </ChatMessage.Content>
+
+      {mode !== "compare" && <SuggestedQuestionsAnnotations mode={mode} />}
+    </div>
   );
 }

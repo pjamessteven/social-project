@@ -6,15 +6,10 @@ import {
   FilePartType,
   getParts,
   JSONValue,
-
   MessagePart,
-
   SourcesPartType,
-
   SuggestionPartType,
-
   TextPartType,
-
   useChatMessage,
 } from "@llamaindex/chat-ui";
 import React, { useEffect, useRef, useState } from "react";
@@ -26,7 +21,14 @@ type EventComponent = ComponentDef & {
 };
 
 // image, document_file, sources, events, suggested_questions, agent
-const BUILT_IN_CHATUI_COMPONENTS = [TextPartType, FilePartType, ArtifactPartType, EventPartType, SourcesPartType, SuggestionPartType]
+const BUILT_IN_CHATUI_COMPONENTS = [
+  TextPartType,
+  FilePartType,
+  ArtifactPartType,
+  EventPartType,
+  SourcesPartType,
+  SuggestionPartType,
+];
 
 export const DynamicEvents = ({
   componentDefs,
@@ -53,6 +55,7 @@ export const DynamicEvents = ({
     const availableComponents = new Set(componentDefs.map((comp) => comp.type));
 
     parts.forEach((item: JSONValue) => {
+      console.log("PART", item);
       const part = item as MessagePart;
       const type = part.type;
       if (!type) return; // Skip if annotation doesn't have a type
@@ -87,7 +90,6 @@ export const DynamicEvents = ({
 
   if (components.length === 0) return null;
   if (hasErrors) return null;
-
   return (
     <div className="components-container">
       {components.map((component, index) => {

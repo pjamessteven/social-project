@@ -3,9 +3,9 @@ import {
   type WorkflowEventData,
   workflowEvent,
 } from "@llamaindex/workflow";
-import type { Message } from "ai";
+import type { UIMessage } from "ai";
 import type { JSONValue } from "llamaindex";
-import z from "zod";
+import { z } from 'zod/v3';
 
 export type HumanInputEventData = {
   type: string;
@@ -23,7 +23,7 @@ export type HumanResponseEventData = {
 export const humanResponseEvent = workflowBaseEvent<HumanResponseEventData>();
 
 // helper function to extract human responses from message annotations
-export const getHumanResponsesFromMessage = (message: Message) => {
+export const getHumanResponsesFromMessage = (message: UIMessage) => {
   const schema = z.object({ type: z.literal("human_response"), data: z.any() });
   return (
     message.annotations?.filter(

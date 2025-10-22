@@ -14,7 +14,7 @@ import {
   WorkflowContext,
   workflowEvent,
 } from "@llamaindex/workflow";
-import { type Message } from "ai";
+import { type UIMessage } from "ai";
 import {
   BaseNode,
   extractText,
@@ -25,7 +25,7 @@ import {
   VectorStoreIndex,
 } from "llamaindex";
 import { randomUUID } from "node:crypto";
-import { z } from "zod";
+import { z } from 'zod/v3';
 import { toSourceEvent } from "../../utils";
 import {
   createPlanResearchPrompt,
@@ -45,7 +45,7 @@ const llm = new CachedLLM(kimi, cache, "detrans");
 
 // workflow factory
 export const workflowFactory = async (
-  chatBody: { messages: Message[] },
+  chatBody: { messages: UIMessage[] },
   userIp: string,
 ) => {
   const index = await getIndex(chatBody);
@@ -89,7 +89,7 @@ export const UIEventSchema = z
 type UIEventData = z.infer<typeof UIEventSchema>;
 
 const uiEvent = workflowEvent<{
-  type: "ui_event";
+  type: "data-ui_event";
   data: UIEventData;
 }>();
 
@@ -133,7 +133,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       state.userRequest = userInput;
       sendEvent(
         uiEvent.with({
-          type: "ui_event",
+          type: "data-ui_event",
           data: {
             event: "retrieve",
             state: "inprogress",
@@ -187,7 +187,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       sendEvent(toSourceEvent(rankedNodes));
       sendEvent(
         uiEvent.with({
-          type: "ui_event",
+          type: "data-ui_event",
           data: { event: "retrieve", state: "done" },
         }),
       );
@@ -209,7 +209,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
 
       sendEvent(
         uiEvent.with({
-          type: "ui_event",
+          type: "data-ui_event",
           data: { event: "analyze", state: "inprogress" },
         }),
       );
@@ -240,7 +240,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         // rate-limit or other LLM error – send UI event and stop workflow
         sendEvent(
           uiEvent.with({
-            type: "ui_event",
+            type: "data-ui_event",
             data: {
               event: "analyze",
               state: "error",
@@ -255,14 +255,14 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
 
       sendEvent(
         uiEvent.with({
-          type: "ui_event",
+          type: "data-ui_event",
           data: { event: "analyze", state: "done" },
         }),
       );
       if (decision === "cancel") {
         sendEvent(
           uiEvent.with({
-            type: "ui_event",
+            type: "data-ui_event",
             data: { event: "analyze", state: "done" },
           }),
         );
@@ -284,7 +284,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         researchQuestions.forEach(({ questionId: id, question }) => {
           sendEvent(
             uiEvent.with({
-              type: "ui_event",
+              type: "data-ui_event",
               data: { event: "answer", state: "pending", id, question },
             }),
           );
@@ -301,7 +301,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       });
       sendEvent(
         uiEvent.with({
-          type: "ui_event",
+          type: "data-ui_event",
           data: { event: "analyze", state: "done" },
         }),
       );
@@ -320,7 +320,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
 
       sendEvent(
         uiEvent.with({
-          type: "ui_event",
+          type: "data-ui_event",
           data: {
             event: "answer",
             state: "inprogress",
@@ -345,7 +345,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
 
         sendEvent(
           uiEvent.with({
-            type: "ui_event",
+            type: "data-ui_event",
             data: {
               event: "answer",
               state: "done",
@@ -359,7 +359,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         // forward the error to the UI and then re-throw so the workflow fails
         sendEvent(
           uiEvent.with({
-            type: "ui_event",
+            type: "data-ui_event",
             data: {
               event: "answer",
               state: "error",

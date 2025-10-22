@@ -1,12 +1,13 @@
 import { getEnv } from "@llamaindex/env";
 import { OpenAI } from "@llamaindex/openai";
-import type { DataStreamWriter } from "ai";
+import type { UIMessageStreamWriter } from "ai";
 import { type ChatMessage } from "llamaindex";
 import { PostgresCache } from "../../shared/cache";
 import { NEXT_QUESTION_PROMPT } from "../affirm/prompts";
+import { SuggestionPartType } from "@llamaindex/chat-ui";
 
 export const sendSuggestedQuestionsEvent = async (
-  streamWriter: DataStreamWriter,
+  streamWriter: UIMessageStreamWriter,
   chatHistory: ChatMessage[] = [],
   mode: "detrans" | "affirm",
   originalQuestion: string,
@@ -29,9 +30,9 @@ export const sendSuggestedQuestionsEvent = async (
   }
 
   if (questions.length > 0) {
-    streamWriter.writeMessageAnnotation({
-      type: "suggested_questions",
-      data: questions,
+    streamWriter.write({
+      type: "data-suggested_questions",
+      data: questions ,
     });
   }
 };

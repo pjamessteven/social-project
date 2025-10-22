@@ -1,8 +1,7 @@
-import { type Message } from "ai";
-import { type MessageType } from "llamaindex";
+import { toUIMessageStream } from "@ai-sdk/llamaindex";
+import { createUIMessageStreamResponse, type UIMessage } from "ai";
+import { ChatMessage, type MessageType } from "llamaindex";
 import { NextRequest, NextResponse } from "next/server";
-
-// import chat utils
 import {
   getHumanResponsesFromMessage,
   pauseForHumanInput,
@@ -27,13 +26,14 @@ export async function POST(req: NextRequest) {
     const reqBody = await req.json();
     const suggestNextQuestions = process.env.SUGGEST_NEXT_QUESTIONS === "true";
 
+    console.log("reqbody", reqBody);
     const { messages, id: requestId } = reqBody as {
-      messages: Message[];
+      messages: UIMessage[];
       id?: string;
     };
-    const chatHistory = messages.map((message) => ({
+    const chatHistory: ChatMessage[] = messages.map((message) => ({
       role: message.role as MessageType,
-      content: message.content,
+      content: message.parts[0].type === "text" ? message.parts[0].text : "", // mmessage.parts[0]?
     }));
 
     const lastMessage = messages[messages.length - 1];
@@ -46,6 +46,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const userInput =
+      lastMessage.parts[0].type === "text" ? lastMessage.parts[0].text : "";
+
     const abortController = new AbortController();
     req.signal.addEventListener("abort", () =>
       abortController.abort("Connection closed"),
@@ -53,13 +56,16 @@ export async function POST(req: NextRequest) {
 
     const context = await runWorkflow({
       workflow: await workflowFactory(reqBody, userIp),
-      input: { userInput: lastMessage.content, chatHistory },
+      input: {
+        userInput,
+        chatHistory,
+      },
       human: {
         snapshotId: requestId, // use requestId to restore snapshot
         responses: getHumanResponsesFromMessage(lastMessage),
       },
     });
-    incrementQuestionViews("affirm", lastMessage.content);
+    incrementQuestionViews("affirm", userInput);
 
     // @ts-expect-error something
     const stream = processWorkflowStream(context.stream).until(
@@ -83,13 +89,14 @@ export async function POST(req: NextRequest) {
               dataStreamWriter,
               chatHistory,
               "affirm",
-              lastMessage.content,
+              userInput,
             );
           }
         },
       },
     });
-    return new Response(dataStream, {
+    return createUIMessageStreamResponse({
+      stream: dataStream,
       status: 200,
       headers: {
         "Content-Type": "text/plain; charset=utf-8",

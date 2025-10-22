@@ -45,6 +45,7 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@ai-sdk/llamaindex": "^1.0.76",
     "@ai-sdk/react": "^2.0.76",
     "@babel/parser": "^7.27.0",
     "@babel/standalone": "^7.27.0",
