@@ -9,78 +9,67 @@ import postgres from "postgres";
 import { detransUsers, detransTags, detransUserTags } from "../db/schema";
 
 export const availableTags = [
-  "trauma",
-  "autism/neurodivergence",
-  "adhd",
-  "ocd intrusive thoughts",
+  "trans kid",
+  "feminine boy",
+  "tomboy",
   "puberty discomfort",
-  "got top surgery",
-  "got facial surgery",
-  "got top surgery as part of male detransition",
-  "got bottom surgery",
   "internalised homophobia",
   "internalised misogyny",
   "internalised misandry",
   "autogynephilia",
   "autoandrophilia",
   "started as non-binary",
+  "trauma",
+  "social role discomfort",
+  "fear of sexualization",
+  "autism/neurodivergence",
+  "mental health issues",
+  "adhd",
+  "ocd intrusive thoughts",
   "escapism",
   "depression",
-  "low self-esteem",
+  "low self-esteem",  
+  "body dysmorphia",
+  "eating disorder",
   "social anxiety and isolation",
   "bipolar",
   "borderline personality disorder",
   "suicidal ideation",
-  "self-harm",
+  "self-harmed",
   "porn influence",
   "anime influence",
   "influenced online",
   "influenced by friends",
-  "hated breasts",
   "benefited from non-affirming therapy",
-  "eating disorder",
+  "psychosis clarity",
   "parental or medical coercion",
-  "completely regrets transition",
-  "partially regrets transition",
-  "doesn't regret transition",
-  "trans kid",
-  "feminine boy",
-  "tomboy",
   "took hormones",
-  "DIY hormones",
   "took puberty blockers",
+  "got top surgery",
+  "got facial surgery",
+  "got bottom surgery",
+  "only transitioned socially",
+  "regrets social transition",
+  "regrets medical transition",
+  "doesn't regret social transition",
+  "doesn't regret medical transition",
   "surgery complications",
-  "medical complications",
-  "now infertile",
-  "body dysmorphia",
+  "other medical complications",
+  "is now infertile",
   "re-transitioned",
-  "rapid onset gender dysphoria (ROGD)",
   "benefited from psychedelic drugs",
   "had religious background",
   "became religious",
-  "only transitioned socially",
+  "had unsupportive family",
+  "had supportive family",
+  "never transitioned",
   "intersex",
   "asexual",
   "homosexual",
   "heterosexual",
   "bisexual",
   "sexuality changed",
-  "social role discomfort",
-  "fear of sexualization",
-  "psychosis clarity",
-  "depersonalisation",
-  "mental health issues",
-  "underlying health issues",
   "suspicious account",
-  "hair loss",
-  "chronic pain",
-  "weight gain/loss",
-  "bone density issues",
-  "unsupportive family",
-  "supportive family",
-  "is parent (not trans themselves)",
-  "is friend (not trans themselves)",
-  "is researcher (not trans themselves)",
 ];
 
 dotenv.config();
@@ -96,7 +85,7 @@ const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
 });
 
-const MODEL = "moonshotai/kimi-k2-0905"
+const MODEL = "deepseek/deepseek-chat-v3.1"
 
 // Progress tracking interface
 interface ProcessingState {
@@ -232,14 +221,13 @@ LABELING RULES:
 2. Each tag must be supported by at least one explicit sentence in the story
 3. Output only valid JSON array format: ["tag1", "tag2"]
 4. Consider biological sex (${userSex}) for sexuality labels:
-   - If male mentions trans girlfriend → homosexual (girlfriend is biologically male)
-   - If female mentions trans boyfriend → homosexual (boyfriend is biologically female)
-5. Assign appropriate regret level: "completely regrets transition", "partially regrets transition", or "doesn't regret transition"
-6. Surgery definitions:
+   - If male mentions trans girlfriend → homosexual (trans girlfriend is biologically male)
+   - If female mentions trans boyfriend → homosexual (trans boyfriend is biologically female)
+5. Surgery definitions:
    - "got bottom surgery": vaginoplasty, phalloplasty, hysterectomy
    - "got top surgery": mastectomy, breast implants
-7. Only use "suspicious account" if Red Flag Report explicitly questions authenticity
-8. Only use "re-transitioned" if story explicitly mentions transitioning again after detransitioning
+6. Only use "suspicious account" if Red Flag Report explicitly questions authenticity
+7. Only use "re-transitioned" if story explicitly mentions transitioning again after detransitioning
 
 Be precise and evidence-based in your labeling.`;
 
@@ -263,7 +251,7 @@ Provide the appropriate tags as a JSON array.`;
           { role: "system", content: systemPrompt },
           { role: "user", content: userPrompt }
         ],
-        temperature: 0.6,
+        temperature: 0.1,
       })
     );
 
