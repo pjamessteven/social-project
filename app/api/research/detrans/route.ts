@@ -1,4 +1,4 @@
-import { type Message } from "ai";
+import { type UIMessage } from "ai";
 import { type MessageType } from "llamaindex";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -27,13 +27,14 @@ export async function POST(req: NextRequest) {
     const reqBody = await req.json();
     const suggestNextQuestions = process.env.SUGGEST_NEXT_QUESTIONS === "true";
 
+    console.log('reqbody', reqBody)
     const { messages, id: requestId } = reqBody as {
-      messages: Message[];
+      messages: UIMessage[];
       id?: string;
     };
     const chatHistory = messages.map((message) => ({
       role: message.role as MessageType,
-      content: message.content,
+      content: message.parts,
     }));
 
     const lastMessage = messages[messages.length - 1];
@@ -46,6 +47,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    console.log('LAST MESSAGE', lastMessage)
+
     const abortController = new AbortController();
     req.signal.addEventListener("abort", () =>
       abortController.abort("Connection closed"),
@@ -53,7 +56,7 @@ export async function POST(req: NextRequest) {
 
     const context = await runWorkflow({
       workflow: await workflowFactory(reqBody, userIp),
-      input: { userInput: lastMessage.content, chatHistory },
+      input: { userInput: lastMessage.parts[0].text, chatHistory },
       human: {
         snapshotId: requestId, // use requestId to restore snapshot
         responses: getHumanResponsesFromMessage(lastMessage),
