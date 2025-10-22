@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
       input: { userInput, chatHistory },
       human: {
         snapshotId: requestId, // use requestId to restore snapshot
-        responses: getHumanResponsesFromMessage(lastMessage),
+       responses: getHumanResponsesFromMessage(lastMessage),
       },
     });
         // @ts-expect-error something
