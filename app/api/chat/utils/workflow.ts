@@ -76,19 +76,33 @@ export function processWorkflowStream(
           console.log('piping', event)
           // Handle agent events from AgentToolCall
           if (agentToolCallEvent.include(event)) {
-                      console.log('piping 1')
+            console.log('[TOOL CALL] Tool being called:', {
+              toolName: event.data.toolName,
+              agentName: event.data.agentName,
+              toolKwargs: event.data.toolKwargs
+            });
             const inputString = JSON.stringify(event.data.toolKwargs);
             transformedEvent = toAgentRunEvent({
               agent: event.data.agentName,
               text: `Using tool: '${event.data.toolName}' with inputs: '${inputString}'`,
               type: "text",
             });
-                                  console.log('piping 2')
           }
           // Handle source nodes from AgentToolCallResult
           else if (agentToolCallResultEvent.include(event)) {
-                                  console.log('piping 3')
+            console.log('[TOOL RESULT] Tool call result received:', {
+              toolName: event.data.toolName,
+              agentName: event.data.agentName,
+              hasRaw: !!event.data.raw
+            });
             const rawOutput = event.data.raw;
+            console.log('[TOOL RESULT] Raw output structure:', {
+              type: typeof rawOutput,
+              isObject: typeof rawOutput === "object",
+              hasSourceNodes: rawOutput && typeof rawOutput === "object" && "sourceNodes" in rawOutput,
+              keys: rawOutput && typeof rawOutput === "object" ? Object.keys(rawOutput) : null
+            });
+            
             if (
               rawOutput &&
               typeof rawOutput === "object" &&
@@ -96,9 +110,14 @@ export function processWorkflowStream(
             ) {
               const sourceNodes =
                 rawOutput.sourceNodes as unknown as NodeWithScore<Metadata>[];
+              console.log('[TOOL RESULT] Found source nodes:', {
+                count: sourceNodes?.length || 0,
+                firstNodeId: sourceNodes?.[0]?.node?.id_ || 'none'
+              });
               transformedEvent = toSourceEvent(sourceNodes);
+            } else {
+              console.log('[TOOL RESULT] No source nodes found in raw output');
             }
-                                              console.log('piping 4')
           }
           // Handle artifact events, transform to agentStreamEvent
           else if (artifactEvent.include(event)) {
