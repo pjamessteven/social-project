@@ -146,7 +146,7 @@ export async function StartPage({
           </div>
         )}
         {mode === "compare" && (
-          <div className="absolute top-8 right-8 z-0 w-[120px] rotate-45 sm:top-8 sm:-right-20 sm:w-[180px]">
+          <div className="absolute top-8 right-8 z-0 w-[160px] rotate-45 sm:top-8 sm:-right-24 sm:w-[220px]">
             <CompareAnimation />
             <div className="absolute inset-0 dark:bg-black/20"></div>
           </div>
@@ -177,11 +177,10 @@ export async function StartPage({
                   are up 50-fold
                 </a>{" "}
                 (5000%) in the UK. Young women are increasingly overrepresented
-                in these statistics. At the same time, a constantly growing
-                number of people are healing their gender dysphoria,
+                in these statistics. Meanwhile, a growing
+                number of people are healing,
                 detransitioning and sharing their experiences. These people call
-                themselves detrans, and they use with the lizard emoji when
-                posting online as a symbol of regeneration and healing.
+                themselves detrans, and they use the lizard emoji as a symbol of regeneration and healing.
               </p>
               <div className="flex w-full justify-end pt-2">
                 <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white">
@@ -190,7 +189,7 @@ export async function StartPage({
               </div>
               <p>
                 <b>detrans.ai</b> answers questions about gender from a detrans
-                perspective by integrating thoughts and experiences from the
+                perspective by finding relevant experiences from the
                 <span>
                   {" "}
                   <a
@@ -205,21 +204,17 @@ export async function StartPage({
                 This produces helpful and insightful responses that help users
                 understand why some people adopt, inhabit, and let go of gender
                 identities, and how these experiences shape one’s relationship
-                with self, body and the world. Please note, all experiences are
-                subjective and not representative of all trans or detrans
-                people.
+                with self, body and the world. 
               </p>
               <p>
-                Use <b>detrans.ai</b> for support if you are questioning your gender
-                identity, for detransition help and advice, as a virtual gender
-                therapist, or simply as a research tool. You can also compare
-                trans and detrans perspectives on the{" "}
+                Use <b>detrans.ai</b> if you are thinking about transitioning, as a
+                virtual gender therapist, for detransition help and advice,  or simply as a research tool. You can
+                also compare trans and detrans perspectives on the{" "}
                 <Link prefetch={false} href={"/compare"} className="underline">
                   compare
                 </Link>{" "}
                 page.
-                <br className="hidden sm:inline" /> If this website helped you
-                or your family,{" "}
+                <br className="hidden " /> If this website helped you,{" "}
                 <Link prefetch={false} href={"/contact"} className="underline">
                   please let me know!
                 </Link>
@@ -234,8 +229,8 @@ export async function StartPage({
               </div>
             </div>
             <p>
-              <b>genderaffirming.ai</b> is an affirming chatbot that&apos;s
-              powered by insights and perspectives from the online trans
+              <b>genderaffirming.ai</b> will affirm your gender identity.
+              It&apos;s powered by insights directly from the online trans
               community -{" "}
               <a
                 href="https://reddit.com/r/mtf"
@@ -252,9 +247,9 @@ export async function StartPage({
               >
                 /r/ftm
               </a>
-              . Use it as your own personal
-              gender-affirming AI therapist, for transition validation, or to
-              simply explore concepts and ideas from a trans perspective.{" "}
+              . You can use <b>genderaffirming.ai</b> as your own personal
+              gender-affirming AI therapist, or to simply explore concepts and
+              ideas from a trans perspective.{" "}
             </p>
             <p>
               Please be aware that this site only includes gender-affirming
@@ -275,6 +270,12 @@ export async function StartPage({
           <div className="prose dark:prose-invert mt-8 max-w-full text-base">
             <p>
               Two distinct ways of thinking about gender now exist side-by-side.
+              The mainstream trans perspective sees gender identity as innate and transition as the only
+              ethical path to well-being. The gender-critical detrans perspective sees gender as a social
+              script, believes dysphoria can ease without medical steps, and
+              advocates for non-conformity over stereotypes. Most mainstream
+              voices - including ChatGPT - speak and give advice only from the first
+              perspective.
             </p>
             <p>
               <a
@@ -284,11 +285,10 @@ export async function StartPage({
               >
                 <b>genderaffirming.ai</b>
               </a>{" "}
-              gives responses through the lens of the mainstream trans
-              perspective which sees gender identity as innate and transition as
-              the only ethical path to well-being. It will affirm and validate
-              your gender identity. It integrates thoughts and experiences from
-              the online trans community -{" "}
+              will affirm and validate your gender identity. It uses OpenAI's <i>gpt-4o</i>{" "}
+              model, which has safety guard-rails on gender topics. It
+              integrates human experiences and insights from the online trans
+              community -{" "}
               <a
                 href="https://reddit.com/r/mtf"
                 target="_blank"
@@ -314,12 +314,10 @@ export async function StartPage({
               >
                 <b>detrans.ai</b>
               </a>{" "}
-              gives respones from a gender-critical detrans perspective which
-              sees gender as a social script, believes dysphoria can ease
-              without medical steps, and advocates for non-conformity over
-              stereotypes. It uses the Chinese <i>kimi-k2-instruct</i> model to
-              reduce Western political bias. It integrates thoughts and
-              experiences from the online
+              provides a more critical view of gender as it answers questions
+              from a detrans perspective. It uses the Chinese{" "}
+              <i>kimi-k2-instruct</i> model to reduce Western political bias. It
+              integrates thoughts and experiences from the online
               <span>
                 {" "}
                 <a
@@ -334,9 +332,8 @@ export async function StartPage({
             </p>
             <p>
               This page allows you to use both <b>detrans.ai</b> and{" "}
-              <b>genderaffirming.ai</b> side-by-side, offering insight into the
-              diverse and often conflicting viewpoints surrounding gender
-              identity.
+              <b>genderaffirming.ai</b> side-by-side, offering insight into the diverse and often
+              conflicting viewpoints surrounding gender identity.
             </p>
           </div>
         )}
@@ -394,9 +391,7 @@ export async function StartPage({
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-        <div className="mt-8 w-full border-t" />
-        <div className="mt-1 w-full border-t" />
-        <div className="mt-1 w-full border-t" />
+
 
         {/*
         <div className="prose dark:prose-invert mt-8 font-semibold">
