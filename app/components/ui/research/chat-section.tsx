@@ -2,7 +2,7 @@
 
 import { useChat } from "@ai-sdk/react";
 import { ChatSection as ChatUI } from "@llamaindex/chat-ui";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 
 import { ChatLayout } from "../common/layout";
 import CustomChatMessages from "./chat-messages";
@@ -41,13 +41,16 @@ export default function ChatSection({
     experimental_throttle: 100,
   });
 
+  const hasStarterQuestionSent = useRef(false);
+
   useEffect(() => {
-    if (starterQuestion) {
+    if (starterQuestion && !hasStarterQuestionSent.current) {
+      hasStarterQuestionSent.current = true;
       useChatHandler.sendMessage({
         text: starterQuestion,
       });
     }
-  }, []);
+  }, [starterQuestion, useChatHandler]);
 
   return (
     <>
