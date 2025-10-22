@@ -177,11 +177,10 @@ export async function StartPage({
                   are up 50-fold
                 </a>{" "}
                 (5000%) in the UK. Young women are increasingly overrepresented
-                in these statistics. At the same time, a constantly growing
-                number of people are healing their gender dysphoria,
+                in these statistics. Meanwhile, a growing
+                number of people are healing,
                 detransitioning and sharing their experiences. These people call
-                themselves detrans, and they use with the lizard emoji when
-                posting online as a symbol of regeneration and healing.
+                themselves detrans, and they use the lizard emoji as a symbol of regeneration and healing.
               </p>
               <div className="flex w-full justify-end pt-2">
                 <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white">
@@ -190,7 +189,7 @@ export async function StartPage({
               </div>
               <p>
                 <b>detrans.ai</b> answers questions about gender from a detrans
-                perspective by integrating thoughts and experiences from the
+                perspective by finding relevant experiences from the
                 <span>
                   {" "}
                   <a
@@ -205,20 +204,17 @@ export async function StartPage({
                 This produces helpful and insightful responses that help users
                 understand why some people adopt, inhabit, and let go of gender
                 identities, and how these experiences shape one’s relationship
-                with self, body and the world. Please note, all experiences are
-                subjective and not representative of all trans or detrans
-                people.
+                with self, body and the world. 
               </p>
               <p>
-                Use <b>detrans.ai</b> for detransition help and advice, as a
-                virtual gender therapist, or simply as a research tool. You can
+                Use <b>detrans.ai</b> if you are thinking about transitioning, as a
+                virtual gender therapist, for detransition help and advice,  or simply as a research tool. You can
                 also compare trans and detrans perspectives on the{" "}
                 <Link prefetch={false} href={"/compare"} className="underline">
                   compare
                 </Link>{" "}
                 page.
-                <br className="hidden sm:inline" /> If this website helped you
-                or your family,{" "}
+                <br className="hidden " /> If this website helped you,{" "}
                 <Link prefetch={false} href={"/contact"} className="underline">
                   please let me know!
                 </Link>
@@ -395,9 +391,7 @@ export async function StartPage({
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-        <div className="mt-8 w-full border-t" />
-        <div className="mt-1 w-full border-t" />
-        <div className="mt-1 w-full border-t" />
+
 
         {/*
         <div className="prose dark:prose-invert mt-8 font-semibold">
