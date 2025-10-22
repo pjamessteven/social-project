@@ -4,31 +4,31 @@ import {
   type WorkflowEventData,
 } from "@llamaindex/workflow";
 import {
-  createDataStream,
-  formatDataStreamPart,
-  type DataStreamWriter,
+  createUIMessageStream,
+  type UIMessageStreamWriter,
   type JSONValue,
 } from "ai";
 import type { ChatResponseChunk } from "llamaindex";
 import { humanInputEvent, type HumanResponseEventData } from "./hitl";
+import { TextPartType } from "@llamaindex/chat-ui";
 
 /**
  * Configuration options and helper callback methods for stream lifecycle events.
  */
 export interface StreamCallbacks {
   /** `onStart`: Called once when the stream is initialized. */
-  onStart?: (dataStreamWriter: DataStreamWriter) => Promise<void> | void;
+  onStart?: (dataStreamWriter: UIMessageStreamWriter) => Promise<void> | void;
 
   /** `onFinal`: Called once when the stream is closed with the final completion message. */
   onFinal?: (
     completion: string,
-    dataStreamWriter: DataStreamWriter,
+    dataStreamWriter: UIMessageStreamWriter,
   ) => Promise<void> | void;
 
   /** `onText`: Called for each text chunk. */
   onText?: (
     text: string,
-    dataStreamWriter: DataStreamWriter,
+    dataStreamWriter: UIMessageStreamWriter,
   ) => Promise<void> | void;
 
   /** `onPauseForHumanInput`: Called when human input event is emitted. */
@@ -54,10 +54,10 @@ export function toDataStream(
   let completionText = "";
   let hasStarted = false;
 
-  return createDataStream({
-    execute: async (dataStreamWriter: DataStreamWriter) => {
+  return createUIMessageStream({
+    execute: async ({writer}) => {
       if (!hasStarted && callbacks?.onStart) {
-        await callbacks.onStart(dataStreamWriter);
+        await callbacks.onStart(writer);
         hasStarted = true;
       }
 
@@ -66,7 +66,7 @@ export function toDataStream(
           const content = event.data.delta;
           if (content) {
             completionText += content;
-            dataStreamWriter.write(formatDataStreamPart("text", content));
+            writer.write({type: TextPartType, value: content});
 
             if (callbacks?.onText) {
               await callbacks.onText(content, dataStreamWriter);
@@ -74,14 +74,20 @@ export function toDataStream(
           }
         } else if (humanInputEvent.include(event)) {
           const { response, ...rest } = event.data;
-          dataStreamWriter.writeMessageAnnotation(rest); // show human input in UI
+          dataStreamWriter.write({
+            'type': 'message-annotations',
+            'value': [rest]
+          }); // show human input in UI
 
           if (callbacks?.onPauseForHumanInput) {
             await callbacks.onPauseForHumanInput(response);
             return; // stop the stream
           }
         } else {
-          dataStreamWriter.writeMessageAnnotation(event.data as JSONValue);
+          dataStreamWriter.write({
+            'type': 'message-annotations',
+            'value': [event.data as JSONValue]
+          });
         }
       }
 
