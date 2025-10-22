@@ -26,7 +26,6 @@ const aggregateEvents = (events) => {
   // Process each event
   events.forEach((event) => {
     const { event: eventType, state, id, question, answer } = event.data;
-
     if (eventType === "retrieve") {
       // Update retrieve status
       result.retrieve = { state };
@@ -61,6 +60,7 @@ const aggregateEvents = (events) => {
 };
 
 export default function Component({ events }) {
+
   const aggregatedEvents = useMemo(() => aggregateEvents(events), [events]);
 
   const { retrieve, analyze, answers } = aggregatedEvents;
@@ -104,8 +104,7 @@ export default function Component({ events }) {
   const isRunningAnalysis =
     retrieve?.state === "inprogress" ||
     analyze?.state === "inprogress" ||
-    answers.some((a) => a.state === "inprogress")
-
+    answers.some((a) => a.state === "inprogress");
 
   const allAnswersComplete =
     answers.some((a) => a.state === "inprogress") == false;
@@ -117,9 +116,9 @@ export default function Component({ events }) {
 
   const isError = useMemo(() => {
     if (retrieve?.state === "error") {
-      return "Error retrieving trans experiences, contact Peter!";
+      return "Error retrieving experiences!";
     } else if (analyze?.state === "error") {
-      return  "We’ve run out of money to pay for the AI that analyses trans experiences and answers questions. If you can, please donate so we can keep the service running. Please try again later. For now, you can still try the questions in the portal."
+      return "We’ve run out of money to pay for the AI that analyses experiences and answers questions. If you can, please donate so we can keep the service running. Please try again later. For now, you can still try the questions in the portal.";
     }
   }, [retrieve, analyze]);
 
@@ -127,7 +126,7 @@ export default function Component({ events }) {
     if (isError) {
       return "Deep analysis error";
     } else if (retrieve?.state === "inprogress") {
-      return "Retrieving detrans experiences...";
+      return "Retrieving experiences...";
     } else if (
       analyze?.state === "inprogress" &&
       (!answers ||
@@ -137,7 +136,7 @@ export default function Component({ events }) {
       return "Generating meta questions...";
     } else if (!allAnswersComplete || isRunningAnalysis) {
       return "Finding answers to meta questions";
-    }  else {
+    } else {
       return "Deep analysis completed";
     }
   }, [retrieve?.state, analyze?.state, answers, isRunningAnalysis]);
@@ -150,14 +149,14 @@ export default function Component({ events }) {
           {thinkingStatus}
         </h1>
         {isError ? (
-          <AlertCircle className="h-4 w-4 text-red-500" />
+          <AlertCircle className="ml-2 h-4 w-4 text-red-500" />
         ) : isRunningAnalysis ? (
           <Loader2 className="ml-2 h-4 w-4 animate-spin text-blue-500 dark:text-blue-100" />
         ) : (
           <CheckCircle className="ml-2 h-4 w-4 text-green-500" />
         )}
-      </div>        
-      {isError && (<h4>{isError}</h4>)}
+      </div>
+      {isError && <h4>{isError}</h4>}
 
       {/* Answer Panel */}
       {answers.length > 0 && (
@@ -169,19 +168,23 @@ export default function Component({ events }) {
                 value={answer.id}
                 className={cn("border-border border-b duration-300")}
               >
-                <AccordionTrigger className="py-2 md:py-3 transition-colors duration-300">
+                <AccordionTrigger className="py-2 !no-underline !hover:no-underline transition-colors duration-300 sm:py-3">
                   <div className="relative flex grow items-center justify-between space-x-3 text-left">
                     <div className="flex-1 pr-2">
                       <p
                         className={cn(
-                          "pr-2 text-base font-medium italic text-muted-foreground hover:text-foreground transition-colors transition-opacity transition-colors ",
+                          "text-muted-foreground no-underline hover:text-foreground pr-2 text-base font-medium italic transition-colors transition-opacity",
                           answer.state === "inprogress"
                             ? "opacity-50"
                             : "opacity-100",
                         )}
                       >
-                        {"-> "}
-                        {answer.question}
+                        <div className="text-muted-foreground hover:text-foreground no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 transition-colors sm:text-base">
+                          <div className="mr-2 whitespace-nowrap">{"->"}</div>
+                          <div className="hover:underline">
+                            {answer.question}
+                          </div>
+                        </div>
                       </p>
                     </div>
                     {answer.state !== "done" &&
@@ -224,7 +227,6 @@ export default function Component({ events }) {
               </AccordionItem>
             ))}
           </Accordion>
-
           <div className="mb-2 mb-4 flex items-center justify-between">
             <div className="text-muted-foreground flex items-center text-sm">
               {isLoading && !isRunningAnalysis ? (
@@ -251,7 +253,6 @@ export default function Component({ events }) {
           </div>
         </>
       )}
-
     </div>
   );
 }
