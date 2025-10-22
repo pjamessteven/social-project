@@ -15,8 +15,8 @@ export const workflowFactory = async (reqBody: any) => {
 
   // first arg is LLM input, second is bound arg
 const queryStories = async ({ query}: {query: string}) => {
-  const response = await storiesEngineTool.retrieve({query})
-  // ...
+  const response = await storiesEngineTool.query(query);
+  return response.response;
 };
 
 // define tool with zod validation
