@@ -168,12 +168,12 @@ export default function Component({ events }) {
                 value={answer.id}
                 className={cn("border-border border-b duration-300")}
               >
-                <AccordionTrigger className="py-2 transition-colors duration-300 sm:py-3">
+                <AccordionTrigger className="py-2 !no-underline !hover:no-underline transition-colors duration-300 sm:py-3">
                   <div className="relative flex grow items-center justify-between space-x-3 text-left">
                     <div className="flex-1 pr-2">
                       <p
                         className={cn(
-                          "text-muted-foreground hover:text-foreground pr-2 text-base font-medium italic transition-colors transition-opacity",
+                          "text-muted-foreground no-underline hover:text-foreground pr-2 text-base font-medium italic transition-colors transition-opacity",
                           answer.state === "inprogress"
                             ? "opacity-50"
                             : "opacity-100",
