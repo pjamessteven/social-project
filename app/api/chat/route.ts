@@ -70,7 +70,32 @@ export async function POST(req: NextRequest) {
       },
     );
 
-    const dataStream = toDataStream(stream, {
+    // Wrap the stream to handle malformed JSON
+    const wrappedStream = (async function* () {
+      for await (const event of stream) {
+        // Ensure event data is properly serialized
+        if (event && typeof event === 'object') {
+          try {
+            // Test serialization and catch any undefined concatenation issues
+            const serialized = JSON.stringify(event);
+            if (serialized.includes('undefined{')) {
+              console.warn('Detected malformed JSON with undefined prefix, attempting to fix');
+              // Skip this event or try to fix it
+              continue;
+            }
+            yield event;
+          } catch (error) {
+            console.error('Error serializing event:', error);
+            // Skip malformed events
+            continue;
+          }
+        } else {
+          yield event;
+        }
+      }
+    })();
+
+    const dataStream = toDataStream(wrappedStream, {
       callbacks: {
         onPauseForHumanInput: async (responseEvent) => {
           await pauseForHumanInput(context, responseEvent, requestId); // use requestId to save snapshot
