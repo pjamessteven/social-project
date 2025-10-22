@@ -1,5 +1,5 @@
-import { type UIMessage } from "ai";
-import { type MessageType } from "llamaindex";
+import { createUIMessageStreamResponse, type UIMessage } from "ai";
+import { ChatMessage, type MessageType } from "llamaindex";
 import { NextRequest, NextResponse } from "next/server";
 
 // import chat utils
@@ -28,10 +28,11 @@ export async function POST(req: NextRequest) {
       messages: UIMessage[];
       id?: string;
     };
-    const chatHistory = messages.map((message) => ({
+    const chatHistory: ChatMessage[] = messages.map((message) => ({
       role: message.role as MessageType,
-      content: message.content,
+      content: message.parts[0].type === "text" ? message.parts[0].text : "", // mmessage.parts[0]?
     }));
+
 
     const lastMessage = messages[messages.length - 1];
     if (lastMessage?.role !== "user") {
@@ -43,6 +44,11 @@ export async function POST(req: NextRequest) {
       );
     }
 
+
+    const userInput =
+      lastMessage.parts[0].type === "text" ? lastMessage.parts[0].text : "";
+
+
     const abortController = new AbortController();
     req.signal.addEventListener("abort", () =>
       abortController.abort("Connection closed"),
@@ -51,7 +57,7 @@ export async function POST(req: NextRequest) {
     console.log('[ROUTE] About to run workflow...');
     const context = await runWorkflow({
       workflow: await workflowFactory(reqBody || {}),
-      input: { userInput: lastMessage.content, chatHistory },
+      input: { userInput, chatHistory },
       human: {
         snapshotId: requestId, // use requestId to restore snapshot
         responses: getHumanResponsesFromMessage(lastMessage),
@@ -177,7 +183,8 @@ export async function POST(req: NextRequest) {
     // Restore JSON.parse in case it wasn't restored in the finally block
     JSON.parse = originalJSONParse;
     
-    return new Response(dataStream, {
+    return createUIMessageStreamResponse({
+      stream: dataStream, 
       status: 200,
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
