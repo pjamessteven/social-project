@@ -1,13 +1,11 @@
 import { OpenAI, OpenAIEmbedding } from "@llamaindex/openai";
 import { Settings } from "llamaindex";
+import { DeepSeekLLM } from "@llamaindex/deepseek";
 
 export function initSettings() {
-  Settings.llm = new OpenAI({
-    apiKey: process.env.OPENROUTER_KEY,
-    baseURL: "https://openrouter.ai/api/v1",
-    //  model: "deepseek/deepseek-chat-v3.1",
-    model: "moonshotai/kimi-k2",
-    temperature: 0.6,
+  Settings.llm = new DeepSeekLLM({
+    apiKey: process.env.DEEPSEEK_KEY,
+    model: "deepseek-chat" as 'deepseek-chat',
   });
   Settings.embedModel = new OpenAIEmbedding({
     model: process.env.EMBEDDING_MODEL,

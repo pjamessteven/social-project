@@ -3,14 +3,10 @@ import {
   type WorkflowEvent,
   type WorkflowEventData,
 } from "@llamaindex/workflow";
-import {
-  createUIMessageStream,
-  type UIMessageStreamWriter,
-  type JSONValue,
-} from "ai";
+import { createUIMessageStream, UIMessageStreamWriter } from "ai";
+import { randomUUID } from "crypto";
 import type { ChatResponseChunk } from "llamaindex";
 import { humanInputEvent, type HumanResponseEventData } from "./hitl";
-import { TextPartType } from "@llamaindex/chat-ui";
 
 /**
  * Configuration options and helper callback methods for stream lifecycle events.
@@ -56,7 +52,7 @@ export function toDataStream(
   let textId: string | null = null;
 
   return createUIMessageStream({
-    execute: async ({ writer }) => {
+    async execute({ writer }) {
       if (!hasStarted && callbacks?.onStart) {
         await callbacks.onStart(writer);
         hasStarted = true;
@@ -68,16 +64,17 @@ export function toDataStream(
           if (content) {
             // Start text block if not already started
             if (!textId) {
-              textId = `text-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+              textId = `text-${randomUUID()}`;
+              console.log("TEXTID", textId);
               writer.write({
-                type: 'text-start',
+                type: "text-start",
                 id: textId,
               });
             }
 
             completionText += content;
             writer.write({
-              type: 'text-delta',
+              type: "text-delta",
               id: textId,
               delta: content,
             });
@@ -85,37 +82,32 @@ export function toDataStream(
             if (callbacks?.onText) {
               await callbacks.onText(content, writer);
             }
+          } else if (humanInputEvent.include(event)) {
+            const { response, ...rest } = event.data;
+            writer.write({
+              type: "data-annotation",
+              data: rest,
+            });
+            if (callbacks?.onPauseForHumanInput) {
+              await callbacks.onPauseForHumanInput(response);
+              return; // stop the stream
+            }
+          } else {
+            writer.write({
+              type: "data-annotation",
+              data: event.data,
+            });
           }
         }
-        /* else if (humanInputEvent.include(event)) {
-          const { response, ...rest } = event.data;
-          writer.write({
-            type: 'text-delta',
-            delta: [rest]
-          }); // show human input in UI
-
-          if (callbacks?.onPauseForHumanInput) {
-            await callbacks.onPauseForHumanInput(response);
-            return; // stop the stream
-          }
-        } else {
-          writer.write({
-            type: 'message-annotations',
-            value: [event.data as JSONValue]
-          });
-        }
-                  */
-
       }
 
       // End text block if it was started
       if (textId) {
         writer.write({
-          type: 'text-end',
+          type: "text-end",
           id: textId,
         });
       }
-
       // Call onFinal with the complete text when stream ends
       if (callbacks?.onFinal) {
         await callbacks.onFinal(completionText, writer);

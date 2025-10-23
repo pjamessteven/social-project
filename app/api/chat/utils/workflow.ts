@@ -9,6 +9,7 @@ import {
   type WorkflowEventData,
 } from "@llamaindex/workflow";
 import {
+
   type Metadata,
   type NodeWithScore,
 } from "llamaindex";
@@ -42,16 +43,13 @@ export async function runWorkflow({
 
   if (human?.responses?.length && human?.snapshotId) {
     // resume the workflow if there is human response
-    console.log(1)
     context = await resumeWorkflowFromHumanResponses(
       workflow,
       human.responses,
       human.snapshotId,
     );
-        console.log(2)
   } else {
     // otherwise, create a new empty context and run the workflow with startAgentEvent
-        console.log(3)
     context = workflow.createContext();
     context.sendEvent(
       startAgentEvent.with({
@@ -59,7 +57,6 @@ export async function runWorkflow({
         chatHistory: input.chatHistory,
       }),
     );
-        console.log(4)
   }
 
   return context;
@@ -73,14 +70,9 @@ export function processWorkflowStream(
       {
         async transform(event, controller) {
           let transformedEvent = event;
-          console.log('piping', event)
+
           // Handle agent events from AgentToolCall
           if (agentToolCallEvent.include(event)) {
-            console.log('[TOOL CALL] Tool being called:', {
-              toolName: event.data.toolName,
-              agentName: event.data.agentName,
-              toolKwargs: event.data.toolKwargs
-            });
             const inputString = JSON.stringify(event.data.toolKwargs);
             transformedEvent = toAgentRunEvent({
               agent: event.data.agentName,
@@ -90,19 +82,7 @@ export function processWorkflowStream(
           }
           // Handle source nodes from AgentToolCallResult
           else if (agentToolCallResultEvent.include(event)) {
-            console.log('[TOOL RESULT] Tool call result received:', {
-              toolName: event.data.toolName,
-              agentName: event.data.agentName,
-              hasRaw: !!event.data.raw
-            });
             const rawOutput = event.data.raw;
-            console.log('[TOOL RESULT] Raw output structure:', {
-              type: typeof rawOutput,
-              isObject: typeof rawOutput === "object",
-              hasSourceNodes: rawOutput && typeof rawOutput === "object" && "sourceNodes" in rawOutput,
-              keys: rawOutput && typeof rawOutput === "object" ? Object.keys(rawOutput) : null
-            });
-            
             if (
               rawOutput &&
               typeof rawOutput === "object" &&
@@ -110,20 +90,12 @@ export function processWorkflowStream(
             ) {
               const sourceNodes =
                 rawOutput.sourceNodes as unknown as NodeWithScore<Metadata>[];
-              console.log('[TOOL RESULT] Found source nodes:', {
-                count: sourceNodes?.length || 0,
-                firstNodeId: sourceNodes?.[0]?.node?.id_ || 'none'
-              });
               transformedEvent = toSourceEvent(sourceNodes);
-            } else {
-              console.log('[TOOL RESULT] No source nodes found in raw output');
             }
           }
           // Handle artifact events, transform to agentStreamEvent
           else if (artifactEvent.include(event)) {
-                                              console.log('piping 5')
             transformedEvent = toInlineAnnotationEvent(event);
-                                              console.log('piping 6')
           }
 
 

@@ -33,8 +33,8 @@ export async function getStoriesIndex(params?: any, tags?: string[]) {
       try {
         const queryEngine = storiesIndexCache.asQueryEngine();
         if (queryEngine) {
-          const testQuery = await queryEngine.query("test");
-          console.log('[STORIES INDEX] Test query successful, response length:', testQuery.response?.length || 0);
+       //   const testQuery = await queryEngine.query("test");
+        //  console.log('[STORIES INDEX] Test query successful, response length:', testQuery.response?.length || 0);
         } else {
           console.warn('[STORIES INDEX] Query engine is undefined, index may be empty');
         }
@@ -76,8 +76,8 @@ export async function getCommentsIndex(params?: any, tags?: string[]) {
       try {
         const queryEngine = commentsIndexCache.asQueryEngine();
         if (queryEngine) {
-          const testQuery = await queryEngine.query("test");
-          console.log('[COMMENTS INDEX] Test query successful, response length:', testQuery.response?.length || 0);
+          //const testQuery = await queryEngine.query("test");
+         // console.log('[COMMENTS INDEX] Test query successful, response length:', testQuery.response?.length || 0);
         } else {
           console.warn('[COMMENTS INDEX] Query engine is undefined, index may be empty');
         }

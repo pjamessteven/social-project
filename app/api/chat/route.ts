@@ -28,11 +28,12 @@ export async function POST(req: NextRequest) {
       messages: UIMessage[];
       id?: string;
     };
+
     const chatHistory: ChatMessage[] = messages.map((message) => ({
       role: message.role as MessageType,
       content: message.parts[0].type === "text" ? message.parts[0].text : "", // mmessage.parts[0]?
     }));
-
+    console.log("Chat history:", chatHistory);
 
     const lastMessage = messages[messages.length - 1];
     if (lastMessage?.role !== "user") {
@@ -43,11 +44,8 @@ export async function POST(req: NextRequest) {
         { status: 400 },
       );
     }
-
-
     const userInput =
       lastMessage.parts[0].type === "text" ? lastMessage.parts[0].text : "";
-
 
     const abortController = new AbortController();
     req.signal.addEventListener("abort", () =>
@@ -55,47 +53,22 @@ export async function POST(req: NextRequest) {
     );
 
     const context = await runWorkflow({
-      workflow: await workflowFactory(reqBody || {}),
-      input: { userInput, chatHistory },
+      workflow: await workflowFactory(reqBody),
+      input: { userInput: userInput, chatHistory },
       human: {
         snapshotId: requestId, // use requestId to restore snapshot
-       responses: getHumanResponsesFromMessage(lastMessage),
+        responses: getHumanResponsesFromMessage(lastMessage),
       },
     });
-        // @ts-expect-error something
+
+    // @ts-expect-error something
     const stream = processWorkflowStream(context.stream).until(
-          // @ts-expect-error something
-      (event) => {
-        return abortController.signal.aborted || stopAgentEvent.include(event);
-      },
+      // @ts-expect-error something
+      (event) =>
+        abortController.signal.aborted || stopAgentEvent.include(event),
     );
 
-    // Wrap the stream to handle malformed JSON
-    const wrappedStream = (async function* () {
-      for await (const event of stream) {
-        // Ensure event data is properly serialized
-        if (event && typeof event === 'object') {
-          try {
-            // Test serialization and catch any undefined concatenation issues
-            const serialized = JSON.stringify(event);
-            if (serialized.includes('undefined{')) {
-              console.warn('Detected malformed JSON with undefined prefix, attempting to fix');
-              // Skip this event or try to fix it
-              continue;
-            }
-            yield event;
-          } catch (error) {
-            console.error('Error serializing event:', error);
-            // Skip malformed events
-            continue;
-          }
-        } else {
-          yield event;
-        }
-      }
-    })();
-
-    const dataStream = toDataStream(wrappedStream, {
+    const dataStream = toDataStream(stream, {
       callbacks: {
         onPauseForHumanInput: async (responseEvent) => {
           await pauseForHumanInput(context, responseEvent, requestId); // use requestId to save snapshot
@@ -105,19 +78,20 @@ export async function POST(req: NextRequest) {
             role: "assistant" as MessageType,
             content: completion,
           });
-          if (suggestNextQuestions) {
-           // await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory);
+          if (suggestNextQuestions && false) {
+            await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory);
           }
         },
       },
     });
-    
     return createUIMessageStreamResponse({
-      stream: dataStream, 
+      stream: dataStream,
       status: 200,
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
         "X-Vercel-AI-Data-Stream": "v1",
+        "Cache-Control": "no-cache",
+        "X-Accel-Buffering": "no",
       },
     });
   } catch (error) {

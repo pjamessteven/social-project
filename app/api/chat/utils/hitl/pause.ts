@@ -15,9 +15,11 @@ export const pauseForHumanInput = async (
   const snapshotWorkflowContext = ensureSnapshotWorkflowContext(context);
   const { snapshot, sendEvent } = snapshotWorkflowContext;
 
-  // send the response event to save the missing step (`humanResponseEvent`) to the snapshot
-  sendEvent(responseEvent);
-
+  // send a request event to save the missing step (`humanResponseEvent`) to the snapshot
+  sendEvent({
+    type: "request",
+    data: responseEvent,
+  });
   // get and save snapshot
   const [_, snapshotData] = await snapshot();
   await saveSnapshot(snapshotId, snapshotData);
