@@ -5,7 +5,7 @@ services:
     image: redis:7-alpine
     container_name: redis
     ports:
-      - "127.0.0.1:6379"
+      - "127.0.0.1:6379:6379"
     volumes:
       - ./redis-data:/data
       - ./redis.conf:/usr/local/etc/redis/redis.conf
@@ -15,7 +15,7 @@ services:
     image: qdrant/qdrant:latest
     container_name: qdrant
     ports:
-      - "127.0.0.1:6333"
+      - "127.0.0.1:6333:6333"
     volumes:
       - ./qdrant-storage:/qdrant/storage
     restart: unless-stopped
@@ -23,7 +23,7 @@ services:
     image: postgres:15-alpine
     container_name: postgres
     ports:
-      - "127.0.0.1:5432"
+      - "127.0.0.1:5432:5432"
     environment:
       - POSTGRES_DB=app
       - POSTGRES_USER=postgres
@@ -39,7 +39,7 @@ services:
       dockerfile: Dockerfile
     container_name: nextjs
     ports:
-      - "127.0.0.1:3000"
+      - "127.0.0.1:3000:3000"
     env_file:
       - .env
     environment:
