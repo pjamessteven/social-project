@@ -25,10 +25,6 @@ const metadata: Metadata = {
     description:
       "Detrans.ai is powered by real detrans perspectives and experiences. Understand why some adopt, inhabit, and let go of gender identities.",
   },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
-  ],
 };
 
 export async function generateMetadata(): Promise<Metadata> {
