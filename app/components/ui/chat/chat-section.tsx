@@ -82,6 +82,19 @@ function ChatSectionPanel() {
     });
   }, []);
 
+    const hasStarterQuestionSent = useRef(false);
+  
+    
+    useEffect(() => {
+      if (starterQuestion && !hasStarterQuestionSent.current) {
+        hasStarterQuestionSent.current = true;
+        useChatHandler.sendMessage({
+          text: starterQuestion,
+        });
+      }
+    }, [starterQuestion, useChatHandler]);
+  
+
   return (
     <ResizablePanel defaultSize={40} minSize={30} className="w-full">
       <div className="flex h-full min-w-0 flex-1 flex-col gap-4">
