@@ -94,21 +94,6 @@ function ChatSectionPanel() {
     });
   }, []);
 
-    const hasStarterQuestionSent = useRef(false);
-  
-    
-    // Handle pending chat message from sessionStorage
-    useEffect(() => {
-      const pendingMessage = sessionStorage.getItem("pendingChatMessage");
-      if (pendingMessage) {
-        sessionStorage.removeItem("pendingChatMessage");
-        useChatHandler.sendMessage({
-          text: pendingMessage,
-        });
-      }
-    }, [useChatHandler]);
-  
-
   return (
     <ResizablePanel defaultSize={40} minSize={30} className="w-full">
       <div className="flex h-full min-w-0 flex-1 flex-col gap-4">
