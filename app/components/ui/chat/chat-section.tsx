@@ -8,8 +8,8 @@ import { getConfig } from "../lib/utils";
 import { ResizablePanel, ResizablePanelGroup } from "../resizable";
 import { ChatCanvasPanel } from "./canvas/panel";
 import { ChatInjection } from "./chat-injection";
-import CustomChatInput from "./chat-input";
-import { CustomChatInput as ResearchChatInput } from "../research/custom-chat-input";
+
+import { CustomChatInput  } from "../research/custom-chat-input";
 import CustomChatMessages from "./chat-messages";
 import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
 import { fetchComponentDefinitions } from "./custom/events/loader";
@@ -105,11 +105,9 @@ function ChatSectionPanel() {
           componentDefs={componentDefs}
           appendError={appendError}
         />
-        <CustomChatInput />
-        <ResearchChatInput 
-          host={typeof window !== 'undefined' ? window.location.host : ''}
-          chatHandler={useChatHandler}
-        />
+        <CustomChatInput           
+host={typeof window !== 'undefined' ? window.location.host : ''}
+          chatHandler={useChatHandler}/>        />
       </div>
     </ResizablePanel>
   );
