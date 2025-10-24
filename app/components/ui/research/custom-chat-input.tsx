@@ -1,24 +1,30 @@
 "use client";
 import { slugify } from "@/app/lib/utils";
-import { Send, X } from "lucide-react";
-import { redirect, usePathname } from "next/navigation";
+import { Send, X, NotebookPen } from "lucide-react";
+import { redirect, usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../button";
 import { Input } from "../input";
 import { cn } from "../lib/utils";
 import Link from "next/link";
+
 interface CustomChatInputProps {
   host: string;
+  chatHandler?: {
+    sendMessage: (message: { text: string }) => void;
+  };
 }
 
-export function CustomChatInput({ host }: CustomChatInputProps) {
+export function CustomChatInput({ host, chatHandler }: CustomChatInputProps) {
   const path = usePathname();
+  const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
+  const [isDeepResearch, setIsDeepResearch] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   
   const showChatInput =
@@ -116,12 +122,28 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     if (value.trim()) {
       const val = value.trim();
       setValue("");
-      if (mode == "compare") {
-        redirect("/compare/research/" + slugify(val));
-      } else if (mode == "affirm") {
-        redirect("/affirm/research/" + slugify(val));
+      setShowSuggestions(false);
+      
+      if (isDeepResearch) {
+        // Deep research mode - redirect to research routes
+        if (mode == "compare") {
+          redirect("/compare/research/" + slugify(val));
+        } else if (mode == "affirm") {
+          redirect("/affirm/research/" + slugify(val));
+        } else {
+          redirect("/research/" + slugify(val));
+        }
       } else {
-        redirect("/research/" + slugify(val));
+        // Chat mode - use chat handler or navigate to chat
+        if (chatHandler && path === "/chat") {
+          // We're on chat page and have handler, send message directly
+          chatHandler.sendMessage({ text: val });
+        } else {
+          // Navigate to chat page
+          router.push("/chat");
+          // Store the message to send after navigation
+          sessionStorage.setItem("pendingChatMessage", val);
+        }
       }
     }
   };
@@ -212,7 +234,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                 boxShadow: "rgba(0, 0, 0, 0.2) 0px 18px 50px -10px",
               }}
               size="lg"
-              className="!placeholder-opacity-100 relative flex grow z-20 rounded-full bg-white pr-12 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
+              className="!placeholder-opacity-100 relative flex grow z-20 rounded-full bg-white pr-20 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
               value={value}
               onChange={(event) => setValue(event.target.value)}
               onKeyDown={handleKeyDown}
@@ -220,6 +242,21 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               placeholder={placeholder}
             />
             
+            {/* Deep research toggle button */}
+            <button
+              type="button"
+              onClick={() => setIsDeepResearch(!isDeepResearch)}
+              className={cn(
+                "absolute right-10 top-1/2 -translate-y-1/2 z-30 p-1 rounded-full transition-colors",
+                isDeepResearch 
+                  ? "bg-blue-100 text-blue-600 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-400 dark:hover:bg-blue-800" 
+                  : "text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
+              )}
+              title={isDeepResearch ? "Deep Research Mode (Active)" : "Deep Research Mode (Inactive)"}
+            >
+              <NotebookPen className="h-4 w-4" />
+            </button>
+
             {/* Clear button */}
             {value.trim() && (
               <button

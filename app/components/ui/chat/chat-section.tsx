@@ -3,12 +3,13 @@
 import { useChat } from "@ai-sdk/react";
 import { ChatSection as ChatUI } from "@llamaindex/chat-ui";
 import { DefaultChatTransport } from "ai";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { getConfig } from "../lib/utils";
 import { ResizablePanel, ResizablePanelGroup } from "../resizable";
 import { ChatCanvasPanel } from "./canvas/panel";
 import { ChatInjection } from "./chat-injection";
 import CustomChatInput from "./chat-input";
+import { CustomChatInput as ResearchChatInput } from "../research/custom-chat-input";
 import CustomChatMessages from "./chat-messages";
 import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
 import { fetchComponentDefinitions } from "./custom/events/loader";
@@ -38,6 +39,17 @@ export default function ChatSection() {
   });
 
   const handler = useChatHandler;
+
+  // Handle pending chat message from sessionStorage
+  useEffect(() => {
+    const pendingMessage = sessionStorage.getItem("pendingChatMessage");
+    if (pendingMessage) {
+      sessionStorage.removeItem("pendingChatMessage");
+      useChatHandler.sendMessage({
+        text: pendingMessage,
+      });
+    }
+  }, [useChatHandler]);
 
   return (
     <>
@@ -85,14 +97,16 @@ function ChatSectionPanel() {
     const hasStarterQuestionSent = useRef(false);
   
     
+    // Handle pending chat message from sessionStorage
     useEffect(() => {
-      if (starterQuestion && !hasStarterQuestionSent.current) {
-        hasStarterQuestionSent.current = true;
+      const pendingMessage = sessionStorage.getItem("pendingChatMessage");
+      if (pendingMessage) {
+        sessionStorage.removeItem("pendingChatMessage");
         useChatHandler.sendMessage({
-          text: starterQuestion,
+          text: pendingMessage,
         });
       }
-    }, [starterQuestion, useChatHandler]);
+    }, [useChatHandler]);
   
 
   return (
@@ -107,6 +121,10 @@ function ChatSectionPanel() {
           appendError={appendError}
         />
         <CustomChatInput />
+        <ResearchChatInput 
+          host={typeof window !== 'undefined' ? window.location.host : ''}
+          chatHandler={useChatHandler}
+        />
       </div>
     </ResizablePanel>
   );
