@@ -24,7 +24,7 @@ export function CustomChatInput({ host, chatHandler }: CustomChatInputProps) {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
-  const [isDeepResearch, setIsDeepResearch] = useState(true);
+  const [isDeepResearch, setIsDeepResearch] = useState(path.includes('/research'));
   const containerRef = useRef<HTMLDivElement>(null);
   
   const showChatInput =
@@ -56,6 +56,11 @@ export function CustomChatInput({ host, chatHandler }: CustomChatInputProps) {
     window.addEventListener('resize', checkIsDesktop);
     return () => window.removeEventListener('resize', checkIsDesktop);
   }, []);
+
+  // Update deep research state based on current path
+  useEffect(() => {
+    setIsDeepResearch(path.includes('/research'));
+  }, [path]);
 
   // Fetch suggestions when value changes
   useEffect(() => {
