@@ -14,9 +14,11 @@ import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
 import { fetchComponentDefinitions } from "./custom/events/loader";
 import { ComponentDef } from "./custom/events/types";
 import { DevModePanel } from "./dev-mode-panel";
+import { useChatStore } from "@/stores/chat-store";
 
 export default function ChatSection() {
   const deployment = getConfig("DEPLOYMENT") || "";
+  const { setChatHandler } = useChatStore();
 
   const handleError = (error: unknown) => {
     if (!(error instanceof Error)) throw error;
@@ -38,6 +40,11 @@ export default function ChatSection() {
   });
 
   const handler = useChatHandler;
+
+  // Set chat handler in Zustand store
+  useEffect(() => {
+    setChatHandler(useChatHandler);
+  }, [useChatHandler, setChatHandler]);
 
   // Handle pending chat message from sessionStorage
   useEffect(() => {
