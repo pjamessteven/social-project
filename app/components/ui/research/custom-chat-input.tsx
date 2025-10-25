@@ -1,12 +1,12 @@
 "use client";
 import { slugify } from "@/app/lib/utils";
-import { Send, X, NotebookPen } from "lucide-react";
+import { NotebookPen, Send, UserSearch, X } from "lucide-react";
+import Link from "next/link";
 import { redirect, usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../button";
 import { Input } from "../input";
 import { cn } from "../lib/utils";
-import Link from "next/link";
 
 interface CustomChatInputProps {
   host: string;
@@ -24,13 +24,16 @@ export function CustomChatInput({ host, chatHandler }: CustomChatInputProps) {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
-  const [isDeepResearch, setIsDeepResearch] = useState(path.includes('/research'));
+  const [isDeepResearch, setIsDeepResearch] = useState(
+    path.includes("/research"),
+  );
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   const showChatInput =
     path == "/" ||
     path == "/compare" ||
     path == "/affirm" ||
+    path.includes("/chat") ||
     path.includes("/research");
 
   const mode =
@@ -42,24 +45,26 @@ export function CustomChatInput({ host, chatHandler }: CustomChatInputProps) {
 
   const placeholder =
     mode === "detrans"
-      ? "Ask 50,000+ detransitioners..."
+      ? "Ask detrans.ai..."
       : mode === "compare"
         ? "Compare trans and detrans perspectives"
         : "Ask 600,000+ trans people";
 
   useEffect(() => {
     const checkIsDesktop = () => {
-      setIsDesktop(window.matchMedia('(min-width: 768px) and (pointer: fine)').matches);
+      setIsDesktop(
+        window.matchMedia("(min-width: 768px) and (pointer: fine)").matches,
+      );
     };
-    
+
     checkIsDesktop();
-    window.addEventListener('resize', checkIsDesktop);
-    return () => window.removeEventListener('resize', checkIsDesktop);
+    window.addEventListener("resize", checkIsDesktop);
+    return () => window.removeEventListener("resize", checkIsDesktop);
   }, []);
 
   // Update deep research state based on current path
   useEffect(() => {
-    setIsDeepResearch(path.includes('/research'));
+    setIsDeepResearch(path.includes("/research"));
   }, [path]);
 
   // Fetch suggestions when value changes
@@ -73,10 +78,10 @@ export function CustomChatInput({ host, chatHandler }: CustomChatInputProps) {
 
       try {
         const response = await fetch(
-          `/api/questions/top?mode=${mode}&q=${encodeURIComponent(value.trim())}&limit=5`
+          `/api/questions/top?mode=${mode}&q=${encodeURIComponent(value.trim())}&limit=5`,
         );
         const data = await response.json();
-        
+
         if (data.items) {
           setSuggestions(data.items.map((item: any) => item.page));
           setShowSuggestions(true);
@@ -99,7 +104,7 @@ export function CustomChatInput({ host, chatHandler }: CustomChatInputProps) {
       const timer = setTimeout(() => {
         inputRef.current?.focus();
       }, 100);
-      
+
       return () => clearTimeout(timer);
     }
   }, [isDesktop, showChatInput, path]);
@@ -107,15 +112,19 @@ export function CustomChatInput({ host, chatHandler }: CustomChatInputProps) {
   // Handle click outside to hide suggestions
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
         setShowSuggestions(false);
         setSelectedSuggestion(-1);
       }
     };
 
     if (showSuggestions) {
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
     }
   }, [showSuggestions]);
 
@@ -128,7 +137,7 @@ export function CustomChatInput({ host, chatHandler }: CustomChatInputProps) {
       const val = value.trim();
       setValue("");
       setShowSuggestions(false);
-      
+
       if (isDeepResearch) {
         // Deep research mode - redirect to research routes
         if (mode == "compare") {
@@ -157,18 +166,18 @@ export function CustomChatInput({ host, chatHandler }: CustomChatInputProps) {
     if (showSuggestions && suggestions.length > 0) {
       if (e.key === "ArrowDown") {
         e.preventDefault();
-        setSelectedSuggestion(prev => 
-          prev < suggestions.length - 1 ? prev + 1 : prev
+        setSelectedSuggestion((prev) =>
+          prev < suggestions.length - 1 ? prev + 1 : prev,
         );
         return;
       }
-      
+
       if (e.key === "ArrowUp") {
         e.preventDefault();
-        setSelectedSuggestion(prev => prev > 0 ? prev - 1 : -1);
+        setSelectedSuggestion((prev) => (prev > 0 ? prev - 1 : -1));
         return;
       }
-      
+
       if (e.key === "Tab" && selectedSuggestion >= 0) {
         e.preventDefault();
         setValue(suggestions[selectedSuggestion]);
@@ -176,7 +185,7 @@ export function CustomChatInput({ host, chatHandler }: CustomChatInputProps) {
         setSelectedSuggestion(-1);
         return;
       }
-      
+
       if (e.key === "Escape") {
         setShowSuggestions(false);
         setSelectedSuggestion(-1);
@@ -216,10 +225,10 @@ export function CustomChatInput({ host, chatHandler }: CustomChatInputProps) {
     inputRef.current?.focus();
   };
 
-  const handleClickSuggestion =() => {
-    setShowSuggestions(false)
-    setValue("")
-  }
+  const handleClickSuggestion = () => {
+    setShowSuggestions(false);
+    setValue("");
+  };
 
   return (
     <div
@@ -239,63 +248,71 @@ export function CustomChatInput({ host, chatHandler }: CustomChatInputProps) {
                 boxShadow: "rgba(0, 0, 0, 0.2) 0px 18px 50px -10px",
               }}
               size="lg"
-              className="!placeholder-opacity-100 relative flex grow z-20 rounded-full bg-white pr-20 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
+              className="!placeholder-opacity-100 relative z-20 flex grow rounded-full bg-white pr-32 sm:pr-40 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
               value={value}
               onChange={(event) => setValue(event.target.value)}
               onKeyDown={handleKeyDown}
               onFocus={handleFocus}
               placeholder={placeholder}
             />
-            
+
             {/* Deep research toggle button */}
-            <button
+            <Button
+              variant='chatOutline'
               type="button"
               onClick={() => setIsDeepResearch(!isDeepResearch)}
-              className={cn(
-                "absolute right-10 top-1/2 -translate-y-1/2 z-30 p-1 rounded-full transition-colors",
-                isDeepResearch 
-                  ? "bg-blue-100 text-blue-600 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-400 dark:hover:bg-blue-800" 
-                  : "text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
+              size={'xs'}
+              className={cn(  
+                "absolute top-1/2 right-3 z-30 -translate-y-1/2 rounded-full py-0 px-0 transition-colors",
+                isDeepResearch
+                  ? "bg-blue-100 !text-blue-500 border-blue-200 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-400 dark:hover:bg-blue-800"
+                  : "text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700",
               )}
-              title={isDeepResearch ? "Deep Research Mode (Active)" : "Deep Research Mode (Inactive)"}
+  
             >
-              <NotebookPen className="h-4 w-4" />
-            </button>
+              <div className="flex flex-row items-center px-3 text-xs">
+                <div className="flex flex-row mr-2 "><span className="hidden sm:inline">Deep&nbsp;</span>Research</div>
+                <UserSearch className="h-3 w-3 sm:h-4 sm:w-4" />
+              </div>
+            </Button>
 
             {/* Clear button */}
             {value.trim() && (
               <button
                 type="button"
                 onClick={handleClear}
-                className="absolute right-3 top-1/2 -translate-y-1/2 z-30 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="absolute top-1/2 right-3 z-30 -translate-y-1/2 rounded-full hidden p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <X className="h-4 w-4 text-gray-500 dark:text-gray-400" />
               </button>
             )}
-            
+
             {/* Suggestions dropdown */}
             {showSuggestions && suggestions.length > 0 && (
-              <div className="absolute bottom-0 left-0 right-0 pb-16 z-0 overflow-y-auto rounded-[32px] rounded-br-[32px]  border bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800 backdrop-filter backdrop-blur-lg animate-in fade-in-0 fade-out-0 duration-300">
+              <div className="animate-in fade-in-0 fade-out-0 absolute right-0 bottom-0 left-0 z-0 overflow-y-auto rounded-[32px] rounded-br-[32px] border bg-white pb-16 shadow-xl backdrop-blur-lg backdrop-filter duration-300 dark:border-slate-700 dark:bg-slate-800">
                 <div className="px-5 pt-4 pb-2 font-semibold">Suggestions:</div>
                 {suggestions.map((question, index) => (
-                <Link onClick={handleClickSuggestion}
-                  prefetch={false}
-                  href={
-                    mode === "detrans"
-                      ? "/research/" + slugify(question)
-                      : mode === "affirm"
-                        ? "/affirm/research/" + slugify(question)
-                        : "/compare/research/" + slugify(question)
-                  }
-                  key={index}
-                >
-                  <div className={`flex flex-row items-center pt-2 px-3 pb-2 hover:bg-secondary ${index < suggestions.length - 1 ? 'border-b' : ''}`}>
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start text-sm sm:text-lg italic opacity-90 min-w-0 flex-1">
-                      <div className="mr-2 whitespace-nowrap">{"->"}</div>
-                      <div className="pr-2 truncate">{question}</div>
+                  <Link
+                    onClick={handleClickSuggestion}
+                    prefetch={false}
+                    href={
+                      mode === "detrans"
+                        ? "/research/" + slugify(question)
+                        : mode === "affirm"
+                          ? "/affirm/research/" + slugify(question)
+                          : "/compare/research/" + slugify(question)
+                    }
+                    key={index}
+                  >
+                    <div
+                      className={`hover:bg-secondary flex flex-row items-center px-3 pt-2 pb-2 ${index < suggestions.length - 1 ? "border-b" : ""}`}
+                    >
+                      <div className="text-muted-foreground hover:text-primary flex min-w-0 flex-1 cursor-pointer flex-row items-start text-sm italic opacity-90 sm:text-lg">
+                        <div className="mr-2 whitespace-nowrap">{"->"}</div>
+                        <div className="truncate pr-2">{question}</div>
+                      </div>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
                 ))}
               </div>
             )}
