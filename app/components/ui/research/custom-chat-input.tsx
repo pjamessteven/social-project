@@ -7,26 +7,22 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "../button";
 import { Input } from "../input";
 import { cn } from "../lib/utils";
+import { useChatStore } from "@/stores/chat-store";
 
 interface CustomChatInputProps {
   host: string;
-  chatHandler?: {
-    sendMessage: (message: { text: string }) => void;
-  };
 }
 
-export function CustomChatInput({ host, chatHandler }: CustomChatInputProps) {
+export function CustomChatInput({ host }: CustomChatInputProps) {
   const path = usePathname();
   const router = useRouter();
+  const { chatHandler, isDeepResearch, setIsDeepResearch } = useChatStore();
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
-  const [isDeepResearch, setIsDeepResearch] = useState(
-    path.includes("/research"),
-  );
   const containerRef = useRef<HTMLDivElement>(null);
 
   const showChatInput =
@@ -65,7 +61,7 @@ export function CustomChatInput({ host, chatHandler }: CustomChatInputProps) {
   // Update deep research state based on current path
   useEffect(() => {
     setIsDeepResearch(path.includes("/research"));
-  }, [path]);
+  }, [path, setIsDeepResearch]);
 
   // Fetch suggestions when value changes
   useEffect(() => {
