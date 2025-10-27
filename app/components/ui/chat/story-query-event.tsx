@@ -66,7 +66,7 @@ export default function StoryQueryEventPart() {
     if (!eventPart?.data?.result) return [];
     try {
       return JSON.parse(eventPart.data.result) as { 
-        user: { username: string }; 
+        username: string; 
         story: string; 
       }[];
     } catch (error) {
@@ -84,8 +84,8 @@ export default function StoryQueryEventPart() {
 
     const fetchUsers = async () => {
       setLoading(true);
-      const userPromises = results.map(({ user }) => 
-        fetchUserByUsername(user.username)
+      const userPromises = results.map(({ username }) => 
+        fetchUserByUsername(username)
       );
       
       const fetchedUsers = await Promise.all(userPromises);
@@ -93,6 +93,7 @@ export default function StoryQueryEventPart() {
       setUsers(validUsers);
       setLoading(false);
     };
+    console.log('RESULTS', results)
 
     fetchUsers();
   }, [results]);
