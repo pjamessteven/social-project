@@ -62,11 +62,11 @@ export default function StoryQueryEventPart() {
   // usePart returns data only if current part matches the type
   const eventPart = usePart<EventPart>("data-story-query-event");
   const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!eventPart) return;
-
+    if (!eventPart?.data?.result) return;
+    console.log(eventPart.data)
     const results: { 
       user: { username: string }; 
       story: string; 
@@ -100,7 +100,7 @@ export default function StoryQueryEventPart() {
         </AccordionTrigger>
         <AccordionContent className="prose dark:prose-invert max-w-full pb-3 text-base">
           {loading ? (
-            <p>Loading user stories...</p>
+            <p>Loading user...</p>
           ) : (
             <div className="space-y-4">
               {users.map((user) => (
