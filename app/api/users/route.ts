@@ -16,6 +16,7 @@ export async function GET(request: NextRequest) {
     const minAge = searchParams.get("minAge");
     const maxAge = searchParams.get("maxAge");
     const search = searchParams.get("search");
+    const username = searchParams.get("username");
     const page = parseInt(searchParams.get("page") || "1");
     const limit = parseInt(searchParams.get("limit") || "20");
 
@@ -55,6 +56,10 @@ export async function GET(request: NextRequest) {
       conditions.push(
         sql`${detransUsers.experienceSummary} ILIKE ${searchTerm}`
       );
+    }
+    
+    if (username && username.trim()) {
+      conditions.push(eq(detransUsers.username, username.trim()));
     }
     
     if (tag) {
