@@ -41,17 +41,14 @@ interface User {
 async function fetchUserByUsername(username: string): Promise<User | null> {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const response = await fetch(`${baseUrl}/api/users?search=${encodeURIComponent(username)}&limit=1`);
+    const response = await fetch(`${baseUrl}/api/users/${encodeURIComponent(username)}`);
     
     if (!response.ok) {
       return null;
     }
     
-    const data = await response.json();
-    const users = data.users || [];
-    
-    // Find exact username match
-    return users.find((user: User) => user.username === username) || null;
+    const user = await response.json();
+    return user;
   } catch (error) {
     console.error("Error fetching user:", error);
     return null;
