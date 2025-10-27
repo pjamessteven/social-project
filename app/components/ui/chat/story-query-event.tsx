@@ -13,7 +13,7 @@ import {
 } from "../accordion";
 import Link from "next/link";
 import UserCard from "../../UserCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 type EventPart = {
   id?: string | undefined;
@@ -64,13 +64,26 @@ export default function StoryQueryEventPart() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Memoize the parsed results to prevent unnecessary re-parsing
+  const results = useMemo(() => {
+    if (!eventPart?.data?.result) return [];
+    try {
+      return JSON.parse(eventPart.data.result) as { 
+        user: { username: string }; 
+        story: string; 
+      }[];
+    } catch (error) {
+      console.error("Error parsing event data:", error);
+      return [];
+    }
+  }, [eventPart?.data?.result]);
+
   useEffect(() => {
-    if (!eventPart?.data?.result) return;
-    console.log(eventPart.data)
-    const results: { 
-      user: { username: string }; 
-      story: string; 
-    }[] = JSON.parse(eventPart.data.result);
+    if (results.length === 0) {
+      setUsers([]);
+      setLoading(false);
+      return;
+    }
 
     const fetchUsers = async () => {
       setLoading(true);
@@ -85,7 +98,7 @@ export default function StoryQueryEventPart() {
     };
 
     fetchUsers();
-  }, [eventPart]);
+  }, [results]);
 
   if (!eventPart) return null;
 
