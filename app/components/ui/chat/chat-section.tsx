@@ -5,7 +5,7 @@ import { ChatSection as ChatUI } from "@llamaindex/chat-ui";
 import { DefaultChatTransport } from "ai";
 import { useEffect, useMemo, useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
-import { getConfig, deslugify } from "../lib/utils";
+import { getConfig } from "../lib/utils";
 import { ResizablePanel, ResizablePanelGroup } from "../resizable";
 import { ChatCanvasPanel } from "./canvas/panel";
 
@@ -15,6 +15,7 @@ import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
 import { fetchComponentDefinitions } from "./custom/events/loader";
 import { ComponentDef } from "./custom/events/types";
 import { useChatStore } from "@/stores/chat-store";
+import { deslugify } from "@/app/lib/utils";
 
 export default function ChatSection() {
   const deployment = getConfig("DEPLOYMENT") || "";
