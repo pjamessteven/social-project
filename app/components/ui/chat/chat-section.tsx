@@ -4,6 +4,7 @@ import { useChat } from "@ai-sdk/react";
 import { ChatSection as ChatUI } from "@llamaindex/chat-ui";
 import { DefaultChatTransport } from "ai";
 import { useEffect, useMemo, useState, useRef } from "react";
+import { useSearchParams } from "next/navigation";
 import { getConfig } from "../lib/utils";
 import { ResizablePanel, ResizablePanelGroup } from "../resizable";
 import { ChatCanvasPanel } from "./canvas/panel";
@@ -18,6 +19,7 @@ import { useChatStore } from "@/stores/chat-store";
 export default function ChatSection() {
   const deployment = getConfig("DEPLOYMENT") || "";
   const { setChatHandler } = useChatStore();
+  const searchParams = useSearchParams();
 
   const handleError = (error: unknown) => {
     if (!(error instanceof Error)) throw error;
@@ -55,6 +57,16 @@ export default function ChatSection() {
       });
     }
   }, [useChatHandler]);
+
+  // Handle starter message from URL query parameter
+  useEffect(() => {
+    const starterMessage = searchParams.get("starter");
+    if (starterMessage && useChatHandler.messages.length === 0) {
+      useChatHandler.sendMessage({
+        text: starterMessage,
+      });
+    }
+  }, [searchParams, useChatHandler]);
 
   return (
     <>
