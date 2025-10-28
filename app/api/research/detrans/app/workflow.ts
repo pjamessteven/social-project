@@ -145,28 +145,45 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       const logger = getLogger();
       const nodesKey = originalQuestion + ":nodes";
 
+      const nodesStartTime = Date.now();
       const cachedNodes = await cache.get(nodesKey);
       if (cachedNodes) {
-        logger.info({
-          originalQuestion,
-          cacheKey: 'nodes',
-          mode: 'detrans',
-          type: 'workflow_cache'
-        }, 'Workflow cache hit (nodes)');
+        const parseStartTime = Date.now();
         nodes = JSON.parse(cachedNodes);
-      } else {
+        const parseTime = Date.now() - parseStartTime;
+        const totalTime = Date.now() - nodesStartTime;
         logger.info({
           originalQuestion,
           cacheKey: 'nodes',
           mode: 'detrans',
-          type: 'workflow_cache'
-        }, 'Workflow cache miss, retrieving nodes');
+          type: 'workflow_cache',
+          cacheRetrievalTime: nodesStartTime,
+          parseTime,
+          totalTime
+        }, 'Workflow cache hit (nodes)');
+      } else {
+        const retrievalStartTime = Date.now();
         nodes = await retriever.retrieve({ query: originalQuestion });
+        const retrievalTime = Date.now() - retrievalStartTime;
+        
+        const cacheSetStartTime = Date.now();
         await cache.set(
           nodesKey,
           JSON.stringify(nodes),
           originalQuestion,
         );
+        const cacheSetTime = Date.now() - cacheSetStartTime;
+        const totalTime = Date.now() - nodesStartTime;
+        
+        logger.info({
+          originalQuestion,
+          cacheKey: 'nodes',
+          mode: 'detrans',
+          type: 'workflow_cache',
+          retrievalTime,
+          cacheSetTime,
+          totalTime
+        }, 'Workflow cache miss, retrieving nodes');
       }
 
       // experiment with ranking nodes by reddit score
@@ -219,6 +236,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       let cancelReason: string | undefined;
 
       try {
+        const planStartTime = Date.now();
         const plan = await createResearchPlan(
           state.memory,
           state.contextNodes
@@ -233,6 +251,16 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
           state.userRequest,
           userIp,
         );
+        const planTime = Date.now() - planStartTime;
+        
+        logger.info({
+          originalQuestion,
+          mode: 'detrans',
+          type: 'workflow_timing',
+          step: 'create_research_plan',
+          planTime
+        }, 'Research plan creation completed');
+        
         decision = plan.decision;
         researchQuestions = plan.researchQuestions;
         cancelReason = plan.cancelReason;
@@ -331,11 +359,23 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       );
 
       try {
+        const answerStartTime = Date.now();
         const answer = await answerQuestion(
           contextStr(state.contextNodes),
           question,
           originalQuestion,
         );
+        const answerTime = Date.now() - answerStartTime;
+        
+        logger.info({
+          originalQuestion,
+          questionId,
+          mode: 'detrans',
+          type: 'workflow_timing',
+          step: 'answer_question',
+          answerTime
+        }, 'Question answered');
+        
         state.researchResults.set(questionId, { questionId, question, answer });
 
         state.memory.add({
@@ -399,24 +439,36 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       let stream;
       const logger = getLogger();
 
+      const finalAnswerStartTime = Date.now();
       const cachedAnswer = await getCachedAnswer("detrans", originalQuestion);
+      const cacheCheckTime = Date.now() - finalAnswerStartTime;
 
       if (cachedAnswer) {
-        logger.info({
-          originalQuestion,
-          cacheKey: 'final_answer',
-          mode: 'detrans',
-          type: 'workflow_cache'
-        }, 'Workflow cache hit (final answer)');
+        const replayStartTime = Date.now();
         stream = replayCached(cachedAnswer);
-      } else {
+        const replaySetupTime = Date.now() - replayStartTime;
+        
         logger.info({
           originalQuestion,
           cacheKey: 'final_answer',
           mode: 'detrans',
-          type: 'workflow_cache'
-        }, 'Workflow cache miss, generating final answer');
+          type: 'workflow_cache',
+          cacheCheckTime,
+          replaySetupTime
+        }, 'Workflow cache hit (final answer)');
+      } else {
+        const llmStartTime = Date.now();
         stream = await llm.chat({ messages, originalQuestion, stream: true });
+        const llmSetupTime = Date.now() - llmStartTime;
+        
+        logger.info({
+          originalQuestion,
+          cacheKey: 'final_answer',
+          mode: 'detrans',
+          type: 'workflow_cache',
+          cacheCheckTime,
+          llmSetupTime
+        }, 'Workflow cache miss, generating final answer');
       }
 
       for await (const chunk of stream) {
