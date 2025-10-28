@@ -33,38 +33,82 @@ export class PostgresCache implements Cache {
   }
 
   async get(key: string): Promise<string | null> {
+    const startTime = Date.now();
     try {
+      const hashStartTime = Date.now();
       const hashedKey = this.hashKey(key);
+      const hashTime = Date.now() - hashStartTime;
+      
       const cacheTable = this.getCacheTable();
 
+      const queryStartTime = Date.now();
       const result = await db
         .select({ resultText: cacheTable.resultText })
         .from(cacheTable)
         .where(eq(cacheTable.promptHash, hashedKey))
         .limit(1);
+      const queryTime = Date.now() - queryStartTime;
 
       if (result.length > 0) {
+        const updateStartTime = Date.now();
         // Update last accessed timestamp
         await db
           .update(cacheTable)
           .set({ lastAccessed: new Date() })
           .where(eq(cacheTable.promptHash, hashedKey));
+        const updateTime = Date.now() - updateStartTime;
+        const totalTime = Date.now() - startTime;
+
+        getLogger().info({
+          mode: this.mode,
+          type: 'cache_timing',
+          operation: 'get_hit',
+          hashTime,
+          queryTime,
+          updateTime,
+          totalTime,
+          hashedKey: hashedKey.substring(0, 8)
+        }, 'Cache get hit timing');
 
         return result[0].resultText;
       }
 
+      const totalTime = Date.now() - startTime;
+      getLogger().info({
+        mode: this.mode,
+        type: 'cache_timing',
+        operation: 'get_miss',
+        hashTime,
+        queryTime,
+        totalTime,
+        hashedKey: hashedKey.substring(0, 8)
+      }, 'Cache get miss timing');
+
       return null;
     } catch (error) {
+      const totalTime = Date.now() - startTime;
+      getLogger().error({
+        mode: this.mode,
+        type: 'cache_timing',
+        operation: 'get_error',
+        totalTime,
+        error: error instanceof Error ? error.message : 'Unknown error'
+      }, 'Cache get error timing');
       console.error("Cache get error:", error);
       return null;
     }
   }
 
   async set(key: string, value: string, questionName?: string): Promise<void> {
+    const startTime = Date.now();
     try {
+      const hashStartTime = Date.now();
       const hashedKey = this.hashKey(key);
+      const hashTime = Date.now() - hashStartTime;
+      
       const cacheTable = this.getCacheTable();
 
+      const insertStartTime = Date.now();
       await db
         .insert(cacheTable)
         .values({
@@ -82,7 +126,28 @@ export class PostgresCache implements Cache {
             lastAccessed: new Date(),
           },
         });
+      const insertTime = Date.now() - insertStartTime;
+      const totalTime = Date.now() - startTime;
+
+      getLogger().info({
+        mode: this.mode,
+        type: 'cache_timing',
+        operation: 'set',
+        hashTime,
+        insertTime,
+        totalTime,
+        valueLength: value.length,
+        hashedKey: hashedKey.substring(0, 8)
+      }, 'Cache set timing');
     } catch (error) {
+      const totalTime = Date.now() - startTime;
+      getLogger().error({
+        mode: this.mode,
+        type: 'cache_timing',
+        operation: 'set_error',
+        totalTime,
+        error: error instanceof Error ? error.message : 'Unknown error'
+      }, 'Cache set error timing');
       console.error("Cache set error:", error);
       // Don't throw - cache failures shouldn't break the application
     }
