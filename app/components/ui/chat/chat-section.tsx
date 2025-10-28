@@ -21,6 +21,7 @@ export default function ChatSection() {
   const deployment = getConfig("DEPLOYMENT") || "";
   const { setChatHandler } = useChatStore();
   const searchParams = useSearchParams();
+  const starterSentRef = useRef(false);
 
   const handleError = (error: unknown) => {
     if (!(error instanceof Error)) throw error;
@@ -62,7 +63,8 @@ export default function ChatSection() {
   // Handle starter message from URL query parameter
   useEffect(() => {
     const starterParam = searchParams.get("starter");
-    if (starterParam && useChatHandler.messages.length === 0) {
+    if (starterParam && useChatHandler.messages.length === 0 && !starterSentRef.current) {
+      starterSentRef.current = true;
       const starterMessage = deslugify(starterParam);
       useChatHandler.sendMessage({
         text: starterMessage,
