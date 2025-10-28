@@ -253,7 +253,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         );
         const planTime = Date.now() - planStartTime;
         
-        logger.info({
+        getLogger().info({
           originalQuestion,
           mode: 'detrans',
           type: 'workflow_timing',
@@ -367,7 +367,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         );
         const answerTime = Date.now() - answerStartTime;
         
-        logger.info({
+        getLogger().info({
           originalQuestion,
           questionId,
           mode: 'detrans',
@@ -437,7 +437,6 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
 
       let response = "";
       let stream;
-      const logger = getLogger();
 
       const finalAnswerStartTime = Date.now();
       const cachedAnswer = await getCachedAnswer("detrans", originalQuestion);
@@ -448,7 +447,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         stream = replayCached(cachedAnswer);
         const replaySetupTime = Date.now() - replayStartTime;
         
-        logger.info({
+        getLogger().info({
           originalQuestion,
           cacheKey: 'final_answer',
           mode: 'detrans',
@@ -461,7 +460,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         stream = await llm.chat({ messages, originalQuestion, stream: true });
         const llmSetupTime = Date.now() - llmStartTime;
         
-        logger.info({
+        getLogger().info({
           originalQuestion,
           cacheKey: 'final_answer',
           mode: 'detrans',
