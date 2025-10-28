@@ -7,13 +7,12 @@ import { useEffect, useMemo, useState, useRef } from "react";
 import { getConfig } from "../lib/utils";
 import { ResizablePanel, ResizablePanelGroup } from "../resizable";
 import { ChatCanvasPanel } from "./canvas/panel";
-import { ChatInjection } from "./chat-injection";
+
 
 import CustomChatMessages from "./chat-messages";
 import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
 import { fetchComponentDefinitions } from "./custom/events/loader";
 import { ComponentDef } from "./custom/events/types";
-import { DevModePanel } from "./dev-mode-panel";
 import { useChatStore } from "@/stores/chat-store";
 
 export default function ChatSection() {
@@ -44,7 +43,7 @@ export default function ChatSection() {
   // Set chat handler in Zustand store
   useEffect(() => {
     setChatHandler(useChatHandler);
-  }, [useChatHandler, setChatHandler]);
+  }, [setChatHandler]);
 
   // Handle pending chat message from sessionStorage
   useEffect(() => {
@@ -59,20 +58,19 @@ export default function ChatSection() {
 
   return (
     <>
-      <div className="-mr-16 -ml-4 h-full w-full sm:mx-0">
+        <div className="-mr-16 -ml-4 sm:mx-0">
         <ChatUI
           handler={handler}
-          className="relative flex min-h-0 flex-1 flex-row justify-center gap-4 px-4 py-0"
+            className="relative flex min-h-0 flex-1 flex-row justify-center gap-4 !bg-transparent !p-0"
         >
           <ResizablePanelGroup direction="horizontal">
             <ChatSectionPanel />
             <ChatCanvasPanel />
           </ResizablePanelGroup>
-          <DevModePanel />
+
         </ChatUI>
       </div>
 
-      <ChatInjection />
     </>
   );
 }
