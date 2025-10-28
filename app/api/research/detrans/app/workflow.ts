@@ -334,35 +334,20 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         const sortedResults = Array.from(state.researchResults.values())
           .sort((a, b) => a.questionId.localeCompare(b.questionId));
 
-        // Clear memory of research results and add them back in sorted order
-        const baseMemoryMessages = await state.memory.get();
-        // Find the index where research results start (after "We need to find answers...")
-        const researchStartIndex = baseMemoryMessages.findIndex(msg => 
-          msg.role === "assistant" && 
-          String(msg.content).includes("We need to find answers to the following questions:")
-        );
-        
-        if (researchStartIndex !== -1) {
-          // Keep only messages before research results
-          const baseMessages = baseMemoryMessages.slice(0, researchStartIndex + 1);
-          state.memory = new Memory(baseMessages, {});
-          
-          // Add sorted research results
-          sortedResults.forEach(({ question, answer }) => {
-            state.memory.add({
-              role: "assistant",
-              content: `<Question>${question}</Question>\n<Answer>${answer}</Answer>`,
-            });
+        // Add sorted research results to memory
+        sortedResults.forEach(({ question, answer }) => {
+          state.memory.add({
+            role: "assistant",
+            content: `<Question>${question}</Question>\n<Answer>${answer}</Answer>`,
           });
-          
-          getLogger().info({
-            originalQuestion,
-            mode: 'detrans',
-            type: 'memory_debug',
-            sortedQuestionIds: sortedResults.map(r => r.questionId),
-            researchStartIndex
-          }, 'Reordered memory with sorted research results');
-        }
+        });
+        
+        getLogger().info({
+          originalQuestion,
+          mode: 'detrans',
+          type: 'memory_debug',
+          sortedQuestionIds: sortedResults.map(r => r.questionId)
+        }, 'Added sorted research results to memory');
         
         return planResearchEvent.with({});
       }
