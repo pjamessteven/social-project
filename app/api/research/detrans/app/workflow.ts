@@ -145,6 +145,14 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       const logger = getLogger();
       const nodesKey = originalQuestion + ":nodes";
 
+      getLogger().info({
+        originalQuestion,
+        nodesKey,
+        keyLength: nodesKey.length,
+        mode: 'detrans',
+        type: 'cache_debug'
+      }, 'Looking for cached nodes with key');
+
       const nodesStartTime = Date.now();
       const cachedNodes = await cache.get(nodesKey);
       if (cachedNodes) {
@@ -437,6 +445,13 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
 
       let response = "";
       let stream;
+
+      getLogger().info({
+        originalQuestion,
+        questionLength: originalQuestion.length,
+        mode: 'detrans',
+        type: 'cache_debug'
+      }, 'Looking for cached final answer');
 
       const finalAnswerStartTime = Date.now();
       const cachedAnswer = await getCachedAnswer("detrans", originalQuestion);

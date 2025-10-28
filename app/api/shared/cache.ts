@@ -39,6 +39,16 @@ export class PostgresCache implements Cache {
       const hashedKey = this.hashKey(key);
       const hashTime = Date.now() - hashStartTime;
       
+      getLogger().info({
+        mode: this.mode,
+        type: 'cache_debug',
+        operation: 'get_attempt',
+        originalKey: key.substring(0, 100) + (key.length > 100 ? '...' : ''),
+        keyLength: key.length,
+        hashedKey: hashedKey.substring(0, 16),
+        fullHashedKey: hashedKey
+      }, 'Cache get attempt with key details');
+      
       const cacheTable = this.getCacheTable();
 
       const queryStartTime = Date.now();
@@ -48,6 +58,15 @@ export class PostgresCache implements Cache {
         .where(eq(cacheTable.promptHash, hashedKey))
         .limit(1);
       const queryTime = Date.now() - queryStartTime;
+
+      getLogger().info({
+        mode: this.mode,
+        type: 'cache_debug',
+        operation: 'query_result',
+        hashedKey: hashedKey.substring(0, 16),
+        resultCount: result.length,
+        queryTime
+      }, 'Database query completed');
 
       if (result.length > 0) {
         const updateStartTime = Date.now();
@@ -105,6 +124,18 @@ export class PostgresCache implements Cache {
       const hashStartTime = Date.now();
       const hashedKey = this.hashKey(key);
       const hashTime = Date.now() - hashStartTime;
+      
+      getLogger().info({
+        mode: this.mode,
+        type: 'cache_debug',
+        operation: 'set_attempt',
+        originalKey: key.substring(0, 100) + (key.length > 100 ? '...' : ''),
+        keyLength: key.length,
+        hashedKey: hashedKey.substring(0, 16),
+        fullHashedKey: hashedKey,
+        valueLength: value.length,
+        questionName
+      }, 'Cache set attempt with key details');
       
       const cacheTable = this.getCacheTable();
 
@@ -164,7 +195,21 @@ function makeLlmCacheKey(
   prompt: string,
   options: any,
 ): string {
-  return question + ":llm:" + JSON.stringify({ prompt, ...options });
+  const key = question + ":llm:" + JSON.stringify({ prompt, ...options });
+  
+  getLogger().info({
+    type: 'cache_debug',
+    operation: 'make_llm_cache_key',
+    question: question.substring(0, 50) + (question.length > 50 ? '...' : ''),
+    questionLength: question.length,
+    prompt: prompt.substring(0, 50) + (prompt.length > 50 ? '...' : ''),
+    promptLength: prompt.length,
+    options: JSON.stringify(options).substring(0, 100),
+    finalKey: key.substring(0, 100) + (key.length > 100 ? '...' : ''),
+    finalKeyLength: key.length
+  }, 'LLM cache key construction');
+  
+  return key;
 }
 interface ChatParamsNonStreaming extends LLMChatParamsNonStreaming {
   originalQuestion: string;
@@ -359,7 +404,8 @@ export class CachedLLM {
         originalQuestion,
         hashedKey,
         mode: this.mode,
-        type: 'complete'
+        type: 'complete',
+        cacheKey: key.substring(0, 100) + (key.length > 100 ? '...' : '')
       }, 'LLM cache hit');
       return { text: cached };
     }
@@ -368,7 +414,8 @@ export class CachedLLM {
       originalQuestion,
       hashedKey,
       mode: this.mode,
-      type: 'complete'
+      type: 'complete',
+      cacheKey: key.substring(0, 100) + (key.length > 100 ? '...' : '')
     }, 'LLM cache miss, generating new');
 
     if (
