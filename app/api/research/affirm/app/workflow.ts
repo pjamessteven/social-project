@@ -24,7 +24,7 @@ import {
   NodeWithScore,
   VectorStoreIndex,
 } from "llamaindex";
-import { randomUUID } from "node:crypto";
+import { randomUUID, createHash } from "node:crypto";
 import { z } from 'zod/v3';
 import { toSourceEvent } from "../../utils";
 import {
@@ -292,6 +292,19 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         const events = await stream
           .until(() => state.researchResults.size === researchQuestions.length)
           .toArray();
+        
+        // Sort results by questionId to ensure deterministic order
+        const sortedResults = Array.from(state.researchResults.values())
+          .sort((a, b) => a.questionId.localeCompare(b.questionId));
+
+        // Add sorted research results to memory
+        sortedResults.forEach(({ question, answer }) => {
+          state.memory.add({
+            role: "assistant",
+            content: `<Question>${question}</Question>\n<Answer>${answer}</Answer>`,
+          });
+        });
+        
         return planResearchEvent.with({});
       }
       state.memory.add({
@@ -337,10 +350,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         );
         state.researchResults.set(questionId, { questionId, question, answer });
 
-        state.memory.add({
-          role: "assistant",
-          content: `<Question>${question}</Question>\n<Answer>${answer}</Answer>`,
-        });
+        // Don't add to memory here - we'll add all results in sorted order later
 
         sendEvent(
           uiEvent.with({
@@ -480,10 +490,12 @@ const createResearchPlan = async (
 
   return {
     ...plan,
-    researchQuestions: plan.researchQuestions.map((question) => ({
-      questionId: randomUUID(),
-      question,
-    })),
+    researchQuestions: plan.researchQuestions
+      .sort() // Sort questions alphabetically for deterministic order
+      .map((question) => ({
+        questionId: createHash("sha256").update(question).digest("hex").substring(0, 8), // Deterministic ID based on question content
+        question,
+      })),
   };
 };
 
