@@ -24,7 +24,7 @@ import {
   NodeWithScore,
   VectorStoreIndex,
 } from "llamaindex";
-import { randomUUID } from "node:crypto";
+import { randomUUID, createHash } from "node:crypto";
 import { z } from 'zod/v3';
 import { toSourceEvent } from "../../utils";
 import {
@@ -579,10 +579,12 @@ const createResearchPlan = async (
 
   return {
     ...plan,
-    researchQuestions: plan.researchQuestions.map((question) => ({
-      questionId: randomUUID(),
-      question,
-    })),
+    researchQuestions: plan.researchQuestions
+      .sort() // Sort questions alphabetically for deterministic order
+      .map((question) => ({
+        questionId: createHash("sha256").update(question).digest("hex").substring(0, 8), // Deterministic ID based on question content
+        question,
+      })),
   };
 };
 
