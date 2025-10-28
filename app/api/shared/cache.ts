@@ -39,16 +39,6 @@ export class PostgresCache implements Cache {
       const hashedKey = this.hashKey(key);
       const hashTime = Date.now() - hashStartTime;
       
-      getLogger().info({
-        mode: this.mode,
-        type: 'cache_debug',
-        operation: 'get_attempt',
-        originalKey: key.substring(0, 100) + (key.length > 100 ? '...' : ''),
-        keyLength: key.length,
-        hashedKey: hashedKey.substring(0, 16),
-        fullHashedKey: hashedKey
-      }, 'Cache get attempt with key details');
-      
       const cacheTable = this.getCacheTable();
 
       const queryStartTime = Date.now();
@@ -58,15 +48,6 @@ export class PostgresCache implements Cache {
         .where(eq(cacheTable.promptHash, hashedKey))
         .limit(1);
       const queryTime = Date.now() - queryStartTime;
-
-      getLogger().info({
-        mode: this.mode,
-        type: 'cache_debug',
-        operation: 'query_result',
-        hashedKey: hashedKey.substring(0, 16),
-        resultCount: result.length,
-        queryTime
-      }, 'Database query completed');
 
       if (result.length > 0) {
         const updateStartTime = Date.now();
@@ -78,41 +59,15 @@ export class PostgresCache implements Cache {
         const updateTime = Date.now() - updateStartTime;
         const totalTime = Date.now() - startTime;
 
-        getLogger().info({
-          mode: this.mode,
-          type: 'cache_timing',
-          operation: 'get_hit',
-          hashTime,
-          queryTime,
-          updateTime,
-          totalTime,
-          hashedKey: hashedKey.substring(0, 8)
-        }, 'Cache get hit timing');
 
         return result[0].resultText;
       }
 
       const totalTime = Date.now() - startTime;
-      getLogger().info({
-        mode: this.mode,
-        type: 'cache_timing',
-        operation: 'get_miss',
-        hashTime,
-        queryTime,
-        totalTime,
-        hashedKey: hashedKey.substring(0, 8)
-      }, 'Cache get miss timing');
 
       return null;
     } catch (error) {
       const totalTime = Date.now() - startTime;
-      getLogger().error({
-        mode: this.mode,
-        type: 'cache_timing',
-        operation: 'get_error',
-        totalTime,
-        error: error instanceof Error ? error.message : 'Unknown error'
-      }, 'Cache get error timing');
       console.error("Cache get error:", error);
       return null;
     }
@@ -124,18 +79,6 @@ export class PostgresCache implements Cache {
       const hashStartTime = Date.now();
       const hashedKey = this.hashKey(key);
       const hashTime = Date.now() - hashStartTime;
-      
-      getLogger().info({
-        mode: this.mode,
-        type: 'cache_debug',
-        operation: 'set_attempt',
-        originalKey: key.substring(0, 100) + (key.length > 100 ? '...' : ''),
-        keyLength: key.length,
-        hashedKey: hashedKey.substring(0, 16),
-        fullHashedKey: hashedKey,
-        valueLength: value.length,
-        questionName
-      }, 'Cache set attempt with key details');
       
       const cacheTable = this.getCacheTable();
 
@@ -160,25 +103,8 @@ export class PostgresCache implements Cache {
       const insertTime = Date.now() - insertStartTime;
       const totalTime = Date.now() - startTime;
 
-      getLogger().info({
-        mode: this.mode,
-        type: 'cache_timing',
-        operation: 'set',
-        hashTime,
-        insertTime,
-        totalTime,
-        valueLength: value.length,
-        hashedKey: hashedKey.substring(0, 8)
-      }, 'Cache set timing');
     } catch (error) {
       const totalTime = Date.now() - startTime;
-      getLogger().error({
-        mode: this.mode,
-        type: 'cache_timing',
-        operation: 'set_error',
-        totalTime,
-        error: error instanceof Error ? error.message : 'Unknown error'
-      }, 'Cache set error timing');
       console.error("Cache set error:", error);
       // Don't throw - cache failures shouldn't break the application
     }
@@ -195,21 +121,7 @@ function makeLlmCacheKey(
   prompt: string,
   options: any,
 ): string {
-  const key = question + ":llm:" + JSON.stringify({ prompt, ...options });
-  
-  getLogger().info({
-    type: 'cache_debug',
-    operation: 'make_llm_cache_key',
-    question: question.substring(0, 50) + (question.length > 50 ? '...' : ''),
-    questionLength: question.length,
-    prompt: prompt.substring(0, 50) + (prompt.length > 50 ? '...' : ''),
-    promptLength: prompt.length,
-    options: JSON.stringify(options).substring(0, 100),
-    finalKey: key.substring(0, 100) + (key.length > 100 ? '...' : ''),
-    finalKeyLength: key.length
-  }, 'LLM cache key construction');
-  
-  return key;
+  return question + ":llm:" + JSON.stringify({ prompt, ...options });
 }
 interface ChatParamsNonStreaming extends LLMChatParamsNonStreaming {
   originalQuestion: string;
@@ -404,8 +316,7 @@ export class CachedLLM {
         originalQuestion,
         hashedKey,
         mode: this.mode,
-        type: 'complete',
-        cacheKey: key.substring(0, 100) + (key.length > 100 ? '...' : '')
+        type: 'complete'
       }, 'LLM cache hit');
       return { text: cached };
     }
@@ -414,8 +325,7 @@ export class CachedLLM {
       originalQuestion,
       hashedKey,
       mode: this.mode,
-      type: 'complete',
-      cacheKey: key.substring(0, 100) + (key.length > 100 ? '...' : '')
+      type: 'complete'
     }, 'LLM cache miss, generating new');
 
     if (

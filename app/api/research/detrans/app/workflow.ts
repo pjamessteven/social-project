@@ -145,14 +145,6 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       const logger = getLogger();
       const nodesKey = originalQuestion + ":nodes";
 
-      getLogger().info({
-        originalQuestion,
-        nodesKey,
-        keyLength: nodesKey.length,
-        mode: 'detrans',
-        type: 'cache_debug'
-      }, 'Looking for cached nodes with key');
-
       const nodesStartTime = Date.now();
       const cachedNodes = await cache.get(nodesKey);
       if (cachedNodes) {
@@ -259,16 +251,6 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
           state.userRequest,
           userIp,
         );
-        const planTime = Date.now() - planStartTime;
-        
-        getLogger().info({
-          originalQuestion,
-          mode: 'detrans',
-          type: 'workflow_timing',
-          step: 'create_research_plan',
-          planTime
-        }, 'Research plan creation completed');
-        
         decision = plan.decision;
         researchQuestions = plan.researchQuestions;
         cancelReason = plan.cancelReason;
@@ -342,12 +324,6 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
           });
         });
         
-        getLogger().info({
-          originalQuestion,
-          mode: 'detrans',
-          type: 'memory_debug',
-          sortedQuestionIds: sortedResults.map(r => r.questionId)
-        }, 'Added sorted research results to memory');
         
         return planResearchEvent.with({});
       }
@@ -393,26 +369,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
           question,
           originalQuestion,
         );
-        const answerTime = Date.now() - answerStartTime;
-        
-        getLogger().info({
-          originalQuestion,
-          questionId,
-          mode: 'detrans',
-          type: 'workflow_timing',
-          step: 'answer_question',
-          answerTime
-        }, 'Question answered');
-        
         state.researchResults.set(questionId, { questionId, question, answer });
-
-        // Don't add to memory here - we'll add all results in sorted order later
-        getLogger().info({
-          originalQuestion,
-          questionId,
-          mode: 'detrans',
-          type: 'research_debug'
-        }, 'Research result stored, will be added to memory in sorted order');
 
         sendEvent(
           uiEvent.with({
@@ -455,14 +412,6 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       const chatHistory = await state.memory.get();
       state.isReporting = true;
       
-      getLogger().info({
-        originalQuestion,
-        mode: 'detrans',
-        type: 'memory_debug',
-        memoryLength: chatHistory.length,
-        memoryContent: chatHistory.map((msg, i) => `${i}: ${msg.role}: ${String(msg.content).substring(0, 100)}`).join('\n')
-      }, 'Memory content before final report');
-      
       const messages = chatHistory.concat([
         {
           role: "system",
@@ -478,13 +427,6 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       let response = "";
       let stream;
 
-      getLogger().info({
-        originalQuestion,
-        questionLength: originalQuestion.length,
-        mode: 'detrans',
-        type: 'cache_debug'
-      }, 'Looking for cached final answer');
-
       const finalAnswerStartTime = Date.now();
       const cachedAnswer = await getCachedAnswer("detrans", originalQuestion);
       const cacheCheckTime = Date.now() - finalAnswerStartTime;
@@ -494,27 +436,11 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         stream = replayCached(cachedAnswer);
         const replaySetupTime = Date.now() - replayStartTime;
         
-        getLogger().info({
-          originalQuestion,
-          cacheKey: 'final_answer',
-          mode: 'detrans',
-          type: 'workflow_cache',
-          cacheCheckTime,
-          replaySetupTime
-        }, 'Workflow cache hit (final answer)');
       } else {
         const llmStartTime = Date.now();
         stream = await llm.chat({ messages, originalQuestion, stream: true });
         const llmSetupTime = Date.now() - llmStartTime;
         
-        getLogger().info({
-          originalQuestion,
-          cacheKey: 'final_answer',
-          mode: 'detrans',
-          type: 'workflow_cache',
-          cacheCheckTime,
-          llmSetupTime
-        }, 'Workflow cache miss, generating final answer');
       }
 
       for await (const chunk of stream) {
