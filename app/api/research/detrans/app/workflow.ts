@@ -329,6 +329,41 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         const events = await stream
           .until(() => state.researchResults.size === researchQuestions.length)
           .toArray();
+        
+        // Sort results by questionId to ensure deterministic order
+        const sortedResults = Array.from(state.researchResults.values())
+          .sort((a, b) => a.questionId.localeCompare(b.questionId));
+
+        // Clear memory of research results and add them back in sorted order
+        const baseMemoryMessages = await state.memory.get();
+        // Find the index where research results start (after "We need to find answers...")
+        const researchStartIndex = baseMemoryMessages.findIndex(msg => 
+          msg.role === "assistant" && 
+          String(msg.content).includes("We need to find answers to the following questions:")
+        );
+        
+        if (researchStartIndex !== -1) {
+          // Keep only messages before research results
+          const baseMessages = baseMemoryMessages.slice(0, researchStartIndex + 1);
+          state.memory = new Memory(baseMessages, {});
+          
+          // Add sorted research results
+          sortedResults.forEach(({ question, answer }) => {
+            state.memory.add({
+              role: "assistant",
+              content: `<Question>${question}</Question>\n<Answer>${answer}</Answer>`,
+            });
+          });
+          
+          getLogger().info({
+            originalQuestion,
+            mode: 'detrans',
+            type: 'memory_debug',
+            sortedQuestionIds: sortedResults.map(r => r.questionId),
+            researchStartIndex
+          }, 'Reordered memory with sorted research results');
+        }
+        
         return planResearchEvent.with({});
       }
       state.memory.add({
@@ -386,10 +421,13 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         
         state.researchResults.set(questionId, { questionId, question, answer });
 
-        state.memory.add({
-          role: "assistant",
-          content: `<Question>${question}</Question>\n<Answer>${answer}</Answer>`,
-        });
+        // Don't add to memory here - we'll add all results in sorted order later
+        getLogger().info({
+          originalQuestion,
+          questionId,
+          mode: 'detrans',
+          type: 'research_debug'
+        }, 'Research result stored, will be added to memory in sorted order');
 
         sendEvent(
           uiEvent.with({
@@ -431,6 +469,15 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       const { sendEvent, state } = context;
       const chatHistory = await state.memory.get();
       state.isReporting = true;
+      
+      getLogger().info({
+        originalQuestion,
+        mode: 'detrans',
+        type: 'memory_debug',
+        memoryLength: chatHistory.length,
+        memoryContent: chatHistory.map((msg, i) => `${i}: ${msg.role}: ${String(msg.content).substring(0, 100)}`).join('\n')
+      }, 'Memory content before final report');
+      
       const messages = chatHistory.concat([
         {
           role: "system",
