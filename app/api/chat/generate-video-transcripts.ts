@@ -58,6 +58,13 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
   const ytdlp = new YtDlp();
   
   try {
+    // Check if both yt-dlp and ffmpeg are installed
+    const isInstalled = await ytdlp.checkInstallationAsync({ ffmpeg: true });
+    if (!isInstalled) {
+      console.log('yt-dlp or ffmpeg not found, downloading ffmpeg...');
+      await ytdlp.downloadFFmpeg();
+    }
+
     // Use absolute paths and ensure directory exists
     const absoluteOutputDir = path.resolve(outputDir);
     await fs.mkdir(absoluteOutputDir, { recursive: true });
@@ -72,17 +79,17 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
     const outputTemplate = `${downloadsDir}/%(title)s.%(ext)s`;
     console.log('output template: ', outputTemplate);
     
-    // Use direct exec method with Android player client to bypass YouTube restrictions
-    const result = await ytdlp.exec([
-      videoUrl,
-      "-f", "bestaudio[ext=m4a]",
-      "--extractor-args", "youtube:player_client=android",
-      "-o", outputTemplate,
-      "--extract-audio",
-      "--audio-format", "mp3"
-    ]);
+    // Simple download with minimal options - let yt-dlp handle format selection
+    const result = await ytdlp.downloadAsync(videoUrl, {
+      output: outputTemplate,
+      onProgress: (progress) => {
+        if (progress.percentage && !isNaN(progress.percentage)) {
+          console.log(`Download progress: ${progress.percentage.toFixed(1)}%`);
+        }
+      }
+    });
 
-    console.log('yt-dlp exec result:', result);
+    console.log('yt-dlp result:', result);
 
     // Find the actual downloaded file since yt-dlp uses the video title
     const files = await fs.readdir(downloadsDir);
