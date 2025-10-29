@@ -23,6 +23,28 @@ type EventPart = {
   };
 };
 
+interface VideoMetadata {
+  sectionSummary: string;
+  title: string;
+  author: string;
+  startTime: number;
+  endTime: number;
+  url: string;
+  sex: string;
+  created: number;
+  link: string;
+  id: string;
+}
+
+interface VideoNode {
+  text: string;
+  metadata: VideoMetadata;
+}
+
+interface VideoResultItem {
+  node: VideoNode;
+}
+
 interface VideoData {
   text: string;
   summary: string;
@@ -91,8 +113,8 @@ export default function VideoQueryEventPart() {
   const results = useMemo(() => {
     if (!videoPart?.data?.result) return [];
     try {
-      const result = JSON.parse(videoPart.data.result);
-      return result.map((item: any) => ({
+      const result: VideoResultItem[] = JSON.parse(videoPart.data.result);
+      return result.map((item) => ({
         text: item.node.text,
         summary: item.node.metadata.sectionSummary,
         title: item.node.metadata.title,
