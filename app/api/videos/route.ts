@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/db';
 import { videos } from '@/db/schema';
-import { desc } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 
 export async function GET(request: NextRequest) {
   try {
     const allVideos = await db
       .select()
       .from(videos)
+      .where(eq(videos.processed, true))
       .orderBy(desc(videos.createdAt));
 
     return NextResponse.json({
