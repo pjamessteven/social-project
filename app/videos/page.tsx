@@ -1,6 +1,7 @@
 "use server";
 import { Metadata } from "next";
 import VideoList from "../components/VideoList";
+import VideoSubmitForm from "../components/VideoSubmitForm";
 
 const metadata: Metadata = {
   title: "detrans.ai | Watch Videos By Detransitioners",
@@ -30,9 +31,12 @@ export default async function VideosPage() {
       <p className="text-gray-600 dark:text-gray-400">
         Here's a selection of personal memoirs that have been uploaded to
         YouTube by detransitioners. There are countless stories like these on
-        the internet, this is just a small subset. Want your story on this page?
-        Send me the link through the contact form.
+        the internet, this is just a small subset.
       </p>
+
+      <div className="my-8">
+        <VideoSubmitForm />
+      </div>
 
       <VideoList />
     </div>
