@@ -17,7 +17,7 @@ import { ComponentDef } from "./custom/events/types";
 import { useChatStore } from "@/stores/chat-store";
 import { deslugify } from "@/app/lib/utils";
 
-export default function ChatSection() {
+export default function ChatSection({ conversationId }: { conversationId?: string }) {
   const deployment = getConfig("DEPLOYMENT") || "";
   const { setChatHandler } = useChatStore();
   const searchParams = useSearchParams();
@@ -40,6 +40,7 @@ export default function ChatSection() {
     }),
     onError: handleError,
     experimental_throttle: 100,
+    body: conversationId ? { conversationId } : undefined,
   });
 
   const handler = useChatHandler;
@@ -48,6 +49,27 @@ export default function ChatSection() {
   useEffect(() => {
     setChatHandler(useChatHandler);
   }, [setChatHandler]);
+
+  // Load existing conversation if conversationId is provided
+  useEffect(() => {
+    if (conversationId && useChatHandler.messages.length === 0) {
+      const loadConversation = async () => {
+        try {
+          const response = await fetch(`/api/chat/${conversationId}`);
+          if (response.ok) {
+            const data = await response.json();
+            // Set the messages directly using the setMessages function
+            useChatHandler.setMessages(data.messages);
+          } else {
+            console.error("Failed to load conversation:", response.statusText);
+          }
+        } catch (error) {
+          console.error("Error loading conversation:", error);
+        }
+      };
+      loadConversation();
+    }
+  }, [conversationId, useChatHandler]);
 
   // Handle pending chat message from sessionStorage
   useEffect(() => {
