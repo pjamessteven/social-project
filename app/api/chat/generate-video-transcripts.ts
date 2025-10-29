@@ -69,15 +69,19 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
     const absoluteOutputDir = path.resolve(outputDir);
     await fs.mkdir(absoluteOutputDir, { recursive: true });
     
-    // Create a specific filename
-    const outputFilename = `${videoId}.mp3`;
-    const outputPath = path.join(absoluteOutputDir, outputFilename);
+    // Create downloads subdirectory
+    const downloadsDir = path.join(absoluteOutputDir, 'downloads');
+    await fs.mkdir(downloadsDir, { recursive: true });
 
     console.log(`Downloading audio for ${videoUrl}`);
-    console.log('output path: ', outputPath)
+    
+    // Use yt-dlp template syntax - this will create files with actual video titles
+    const outputTemplate = `${downloadsDir}/%(title)s.%(ext)s`;
+    console.log('output template: ', outputTemplate);
+    
     // Simple download with minimal options - let yt-dlp handle format selection
     const result = await ytdlp.downloadAsync(videoUrl, {
-      output: `${absoluteOutputDir}/downloads/%(title)s.%(ext)s`,
+      output: outputTemplate,
       extractAudio: true,
       audioFormat: "mp3",
       onProgress: (progress) => {
@@ -87,10 +91,40 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
       }
     });
 
-    // Check if file was actually created
-    await fs.access(outputPath);
+    console.log('yt-dlp result:', result);
+
+    // Find the actual downloaded file since yt-dlp uses the video title
+    const files = await fs.readdir(downloadsDir);
+    console.log('Files in downloads directory:', files);
+    
+    // Look for mp3 files (since we're extracting audio)
+    const mp3Files = files.filter(f => f.endsWith('.mp3'));
+    console.log('MP3 files found:', mp3Files);
+    
+    if (mp3Files.length === 0) {
+      throw new Error(`No MP3 files found in ${downloadsDir} after download`);
+    }
+    
+    // Get the most recently created file (in case there are multiple)
+    let newestFile = mp3Files[0];
+    let newestTime = 0;
+    
+    for (const file of mp3Files) {
+      const filePath = path.join(downloadsDir, file);
+      const stats = await fs.stat(filePath);
+      if (stats.mtime.getTime() > newestTime) {
+        newestTime = stats.mtime.getTime();
+        newestFile = file;
+      }
+    }
+    
+    const finalPath = path.join(downloadsDir, newestFile);
+    console.log('Final downloaded file path:', finalPath);
+    
+    // Verify the file exists
+    await fs.access(finalPath);
     console.log(`Successfully downloaded audio for: ${videoUrl}`);
-    return outputPath;
+    return finalPath;
     
   } catch (error) {
     console.error(`Failed to download audio for ${videoUrl}:`, error);
