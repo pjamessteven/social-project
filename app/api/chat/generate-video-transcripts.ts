@@ -74,12 +74,13 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
     const mp3FileName = `video_${videoId}_%(title)s.%(ext)s`;
     const outputTemplate = path.join(downloadsDir, mp3FileName);
     
-    // Use yt-dlp to extract audio directly to MP3
+    // Use yt-dlp to extract audio directly to MP3 with low quality for voice
     const ytdlpCommand = [
       'yt-dlp',
       '--extract-audio',
       '--audio-format', 'mp3',
-      '--audio-quality', '128K',
+      '--audio-quality', '32K',
+      '--postprocessor-args', '-ac 1 -ar 16000',  // mono, 16kHz sample rate
       '--output', `"${outputTemplate}"`,
       `"${videoUrl}"`
     ].join(' ');
