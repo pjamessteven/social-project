@@ -14,6 +14,7 @@ import type {
   LLM,
   LLMChatParamsNonStreaming,
   LLMChatParamsStreaming,
+  ToolCallLLM,
 } from "llamaindex";
 import { getLogger } from "@/app/lib/logger";
 
@@ -133,12 +134,30 @@ interface ChatParamsStreaming extends LLMChatParamsStreaming {
   mode?: "detrans" | "affirm";
 }
 
-export class CachedLLM {
+export class CachedLLM implements ToolCallLLM {
   constructor(
-    private llm: LLM,
+    private llm: LLM & ToolCallLLM,
     private cache: Cache,
     private mode: "detrans" | "affirm",
   ) {}
+
+  // Add the missing ToolCallLLM properties
+  get supportToolCall() {
+    return (this.llm as ToolCallLLM).supportToolCall;
+  }
+
+  get metadata() {
+    return this.llm.metadata;
+  }
+
+  // Implement the missing methods
+  async exec(params: any) {
+    return (this.llm as ToolCallLLM).exec(params);
+  }
+
+  async streamExec(params: any) {
+    return (this.llm as ToolCallLLM).streamExec(params);
+  }
 
   /* ---------- chat ---------- */
   async chat(
