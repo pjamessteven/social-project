@@ -65,46 +65,35 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
       await ytdlp.downloadFFmpeg();
     }
 
-    // Use a simpler output template that works better with ytdlp-nodejs
-    const outputTemplate = path.join(outputDir, `${videoId}.%(ext)s`);
-
-    // First, try to get available formats to make a smarter choice
-    let availableFormats: string[] = [];
-    try {
-      console.log(`Checking available formats for ${videoUrl}`);
-      const formatInfo = await ytdlp.getVideoInfo(videoUrl);
-      if (formatInfo && formatInfo.formats) {
-        availableFormats = formatInfo.formats
-          .filter((f: any) => f.acodec && f.acodec !== 'none')
-          .map((f: any) => f.format_id);
-        console.log(`Found ${availableFormats.length} audio formats available`);
-      }
-    } catch (formatError) {
-      console.warn(`Could not get format info for ${videoUrl}:`, formatError);
-    }
+    // Use absolute paths and ensure directory exists
+    const absoluteOutputDir = path.resolve(outputDir);
+    await fs.mkdir(absoluteOutputDir, { recursive: true });
+    
+    // Create a specific filename instead of using template
+    const outputFilename = `${videoId}.mp3`;
+    const outputPath = path.join(absoluteOutputDir, outputFilename);
 
     // Try multiple format options as fallback, starting with more generic ones
     const formatOptions = [
       "bestaudio",
       "worstaudio", 
       "best[height<=480]",
-      "worst",
-      // If we have specific formats available, try some common ones
-      ...(availableFormats.length > 0 ? availableFormats.slice(0, 3) : [])
+      "worst"
     ];
 
-    let downloadedFile = null;
     let lastError = null;
 
     for (const format of formatOptions) {
       try {
         console.log(`Trying format: ${format} for ${videoUrl}`);
         
+        // Use a more explicit approach with direct output path
         const result = await ytdlp.downloadAsync(videoUrl, {
           format: format,
-          output: outputTemplate,
+          output: outputPath,
           extractAudio: true,
           audioFormat: "mp3",
+          audioQuality: "0", // Best quality
           onProgress: (progress) => {
             if (progress.percentage && !isNaN(progress.percentage)) {
               console.log(`Download progress: ${progress.percentage.toFixed(1)}%`);
@@ -112,13 +101,15 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
           }
         });
 
-        // Check if file was actually downloaded
-        const files = await fs.readdir(outputDir);
-        downloadedFile = files.find(f => f.startsWith(videoId.toString()));
-        
-        if (downloadedFile) {
+        // Check if file was actually created
+        try {
+          await fs.access(outputPath);
           console.log(`Successfully downloaded audio for: ${videoUrl} with format: ${format}`);
-          return path.join(outputDir, downloadedFile);
+          return outputPath;
+        } catch (accessError) {
+          // File doesn't exist, try next format
+          console.warn(`Output file ${outputPath} was not created for format ${format}`);
+          continue;
         }
       } catch (error) {
         console.warn(`Format ${format} failed for ${videoUrl}:`, error);
@@ -127,11 +118,13 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
       }
     }
 
-    // If all formats failed, try one last time with no format specification
+    // If all formats failed, try one last time with minimal options
     try {
-      console.log(`Trying download without format specification for ${videoUrl}`);
+      console.log(`Trying minimal download options for ${videoUrl}`);
+      
+      // Try with just the URL and output path, let yt-dlp choose everything else
       const result = await ytdlp.downloadAsync(videoUrl, {
-        output: outputTemplate,
+        output: outputPath,
         extractAudio: true,
         audioFormat: "mp3",
         onProgress: (progress) => {
@@ -141,20 +134,20 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
         }
       });
 
-      // Check if file was actually downloaded
-      const files = await fs.readdir(outputDir);
-      downloadedFile = files.find(f => f.startsWith(videoId.toString()));
-      
-      if (downloadedFile) {
-        console.log(`Successfully downloaded audio for: ${videoUrl} without format specification`);
-        return path.join(outputDir, downloadedFile);
+      // Check if file was actually created
+      try {
+        await fs.access(outputPath);
+        console.log(`Successfully downloaded audio for: ${videoUrl} with minimal options`);
+        return outputPath;
+      } catch (accessError) {
+        throw new Error(`Output file ${outputPath} was not created even with minimal options`);
       }
     } catch (error) {
-      console.warn(`Download without format specification failed for ${videoUrl}:`, error);
+      console.warn(`Minimal download failed for ${videoUrl}:`, error);
       lastError = error;
     }
 
-    // If all formats failed
+    // If all attempts failed
     throw new Error(`All download attempts failed for ${videoUrl}. Last error: ${lastError}`);
     
   } catch (error) {
