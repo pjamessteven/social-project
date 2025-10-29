@@ -295,12 +295,14 @@ async function generateDatasource() {
         5000 // Longer delay between retries
       );
 
-      // Save full transcript to database
-      const fullTranscript = segments.map(s => s.text).join(' ');
+      // Save full transcript response to database
+      const fullTranscriptText = segments.map(s => s.text).join(' ');
+      const fullTranscriptResponse = JSON.stringify(response, null, 2);
+      
       await db
         .update(videos)
         .set({ 
-          transcript: fullTranscript,
+          transcript: fullTranscriptResponse,
           updatedAt: new Date()
         })
         .where(eq(videos.id, video.id));
