@@ -118,35 +118,50 @@ async function transcribeAudio(audioPath: string): Promise<TranscriptSegment[]> 
   }
 }
 
-function chunkTranscript(segments: TranscriptSegment[], chunkDurationMinutes = 5): Array<{
+function chunkTranscript(segments: TranscriptSegment[], chunkDurationMinutes = 3): Array<{
   startTime: number;
   endTime: number;
   text: string;
 }> {
   const chunkDurationSeconds = chunkDurationMinutes * 60;
+  const overlapSeconds = 30; // 30 seconds overlap between chunks
   const chunks: Array<{ startTime: number; endTime: number; text: string }> = [];
   
-  let currentChunk: TranscriptSegment[] = [];
-  let chunkStartTime = 0;
+  let segmentIndex = 0;
   
-  for (const segment of segments) {
-    if (currentChunk.length === 0) {
-      chunkStartTime = segment.start;
+  while (segmentIndex < segments.length) {
+    const chunkStartTime = segments[segmentIndex].start;
+    const chunkEndTime = chunkStartTime + chunkDurationSeconds;
+    
+    // Collect segments for this chunk
+    const currentChunk: TranscriptSegment[] = [];
+    let currentIndex = segmentIndex;
+    
+    while (currentIndex < segments.length && segments[currentIndex].start < chunkEndTime) {
+      currentChunk.push(segments[currentIndex]);
+      currentIndex++;
     }
     
-    currentChunk.push(segment);
-    
-    // Check if we should end this chunk
-    const chunkDuration = segment.end - chunkStartTime;
-    if (chunkDuration >= chunkDurationSeconds || segment === segments[segments.length - 1]) {
+    if (currentChunk.length > 0) {
       const text = currentChunk.map(s => s.text).join(' ');
       chunks.push({
         startTime: chunkStartTime,
-        endTime: segment.end,
+        endTime: currentChunk[currentChunk.length - 1].end,
         text: text,
       });
-      
-      currentChunk = [];
+    }
+    
+    // Find the next starting point with overlap
+    const nextStartTime = chunkEndTime - overlapSeconds;
+    
+    // Find the segment that starts closest to the overlap point
+    while (segmentIndex < segments.length && segments[segmentIndex].start < nextStartTime) {
+      segmentIndex++;
+    }
+    
+    // If we didn't advance, move forward by at least one segment to avoid infinite loop
+    if (segmentIndex === currentIndex - currentChunk.length) {
+      segmentIndex++;
     }
   }
   
