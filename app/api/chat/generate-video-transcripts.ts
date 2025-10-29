@@ -74,10 +74,10 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
     const outputPath = path.join(absoluteOutputDir, outputFilename);
 
     console.log(`Downloading audio for ${videoUrl}`);
-    
+    console.log('output path: ', outputPath)
     // Simple download with minimal options - let yt-dlp handle format selection
     const result = await ytdlp.downloadAsync(videoUrl, {
-      output: outputPath,
+      output: `${absoluteOutputDir}/downloads/%(title)s.%(ext)s`,
       extractAudio: true,
       audioFormat: "mp3",
       onProgress: (progress) => {
