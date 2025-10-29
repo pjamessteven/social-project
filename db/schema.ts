@@ -241,6 +241,8 @@ export type TagType = z.infer<typeof tagTypeSchema>;
 export const videos = pgTable('videos', {
   id: serial('id').primaryKey(),
   title: varchar('title', { length: 500 }).notNull(),
+  author: varchar('author', { length: 255 }).notNull(),
+  sex: varchar('sex', { length: 1 }).notNull(), // 'm' or 'f'
   url: text('url').notNull().unique(),
   type: varchar('type', { length: 50 }).notNull().default('youtube'),
   processed: boolean('processed').default(false).notNull(),
@@ -255,11 +257,15 @@ export const videos = pgTable('videos', {
   typeIdx: index('idx_videos_type').on(table.type),
   processedIdx: index('idx_videos_processed').on(table.processed),
   dateIdx: index('idx_videos_date').on(table.date),
+  authorIdx: index('idx_videos_author').on(table.author),
+  sexIdx: index('idx_videos_sex').on(table.sex),
 }));
 
 export const videoSchema = z.object({
   id: z.number().int(),
   title: z.string().max(500),
+  author: z.string().max(255),
+  sex: z.enum(['m', 'f']),
   url: z.string(),
   type: z.string().max(50).default('youtube'),
   processed: z.boolean().default(false),
