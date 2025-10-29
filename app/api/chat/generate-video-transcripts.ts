@@ -56,6 +56,9 @@ interface TranscriptSegment {
 
 async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: number): Promise<string> {
   const ytdlp = new YtDlp();
+  const { spawn } = require('child_process');
+  const { promisify } = require('util');
+  const exec = promisify(require('child_process').exec);
   
   try {
     // Check if both yt-dlp and ffmpeg are installed
@@ -73,13 +76,13 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
     const downloadsDir = path.join(absoluteOutputDir, 'downloads');
     await fs.mkdir(downloadsDir, { recursive: true });
 
-    console.log(`Downloading audio for ${videoUrl}`);
+    console.log(`Downloading video for ${videoUrl}`);
     
     // Use yt-dlp template syntax - this will create files with actual video titles
     const outputTemplate = `${downloadsDir}/%(title)s.%(ext)s`;
     console.log('output template: ', outputTemplate);
     
-    // Simple download with minimal options - let yt-dlp handle format selection
+    // Download video (webm or other format) - let yt-dlp handle format selection
     const result = await ytdlp.downloadAsync(videoUrl, {
       output: outputTemplate,
       onProgress: (progress) => {
@@ -95,19 +98,21 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
     const files = await fs.readdir(downloadsDir);
     console.log('Files in downloads directory:', files);
     
-    // Look for mp3 files (since we're extracting audio)
-    const mp3Files = files.filter(f => f.endsWith('.mp3'));
-    console.log('MP3 files found:', mp3Files);
+    // Look for video files (webm, mp4, etc.)
+    const videoFiles = files.filter(f => 
+      f.endsWith('.webm') || f.endsWith('.mp4') || f.endsWith('.mkv') || f.endsWith('.m4a')
+    );
+    console.log('Video files found:', videoFiles);
     
-    if (mp3Files.length === 0) {
-      throw new Error(`No MP3 files found in ${downloadsDir} after download`);
+    if (videoFiles.length === 0) {
+      throw new Error(`No video files found in ${downloadsDir} after download`);
     }
     
     // Get the most recently created file (in case there are multiple)
-    let newestFile = mp3Files[0];
+    let newestFile = videoFiles[0];
     let newestTime = 0;
     
-    for (const file of mp3Files) {
+    for (const file of videoFiles) {
       const filePath = path.join(downloadsDir, file);
       const stats = await fs.stat(filePath);
       if (stats.mtime.getTime() > newestTime) {
@@ -116,16 +121,46 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
       }
     }
     
-    const finalPath = path.join(downloadsDir, newestFile);
-    console.log('Final downloaded file path:', finalPath);
+    const videoPath = path.join(downloadsDir, newestFile);
+    console.log('Downloaded video file path:', videoPath);
     
     // Verify the file exists
-    await fs.access(finalPath);
-    console.log(`Successfully downloaded audio for: ${videoUrl}`);
-    return finalPath;
+    await fs.access(videoPath);
+    
+    // Convert to MP3 using ffmpeg
+    const mp3FileName = path.basename(newestFile, path.extname(newestFile)) + '.mp3';
+    const mp3Path = path.join(downloadsDir, mp3FileName);
+    
+    console.log(`Converting ${videoPath} to ${mp3Path}`);
+    
+    // Use ffmpeg to extract audio and convert to mp3
+    const ffmpegCommand = `ffmpeg -i "${videoPath}" -vn -acodec mp3 -ab 128k -ar 44100 -y "${mp3Path}"`;
+    
+    try {
+      const { stdout, stderr } = await exec(ffmpegCommand);
+      console.log('ffmpeg stdout:', stdout);
+      if (stderr) console.log('ffmpeg stderr:', stderr);
+    } catch (ffmpegError) {
+      console.error('ffmpeg conversion failed:', ffmpegError);
+      throw new Error(`Failed to convert video to MP3: ${ffmpegError}`);
+    }
+    
+    // Verify the MP3 file was created
+    await fs.access(mp3Path);
+    
+    // Clean up the original video file
+    try {
+      await fs.unlink(videoPath);
+      console.log(`Cleaned up original video file: ${videoPath}`);
+    } catch (cleanupError) {
+      console.warn(`Failed to clean up video file ${videoPath}:`, cleanupError);
+    }
+    
+    console.log(`Successfully converted to MP3: ${mp3Path}`);
+    return mp3Path;
     
   } catch (error) {
-    console.error(`Failed to download audio for ${videoUrl}:`, error);
+    console.error(`Failed to download and convert audio for ${videoUrl}:`, error);
     throw error;
   }
 }
