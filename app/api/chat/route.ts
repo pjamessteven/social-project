@@ -35,6 +35,7 @@ export async function POST(req: NextRequest) {
 
     // Generate or use provided conversation UUID
     const chatUuid = conversationId || uuidv4();
+    console.log(`Using conversation UUID: ${chatUuid} (provided: ${conversationId})`);
 
     const chatHistory: ChatMessage[] = messages.map((message) => ({
       role: message.role as MessageType,
