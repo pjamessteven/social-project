@@ -7,6 +7,8 @@ import { z } from 'zod';
 const submitVideoSchema = z.object({
   url: z.string().url(),
   sex: z.enum(['m', 'f']),
+  title: z.string().optional(),
+  author: z.string().optional(),
 });
 
 // Function to extract video ID from YouTube URL
@@ -55,7 +57,7 @@ async function getYouTubeMetadata(videoId: string) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { url, sex } = submitVideoSchema.parse(body);
+    const { url, sex, title: providedTitle, author: providedAuthor } = submitVideoSchema.parse(body);
     
     // Extract video ID from URL
     const videoId = extractYouTubeVideoId(url);
@@ -80,8 +82,19 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // Get metadata from YouTube
-    const metadata = await getYouTubeMetadata(videoId);
+    // Use provided metadata if available, otherwise fetch from YouTube
+    let metadata;
+    if (providedTitle && providedAuthor) {
+      metadata = {
+        title: providedTitle,
+        author: providedAuthor,
+        description: '',
+        duration: null,
+        date: null,
+      };
+    } else {
+      metadata = await getYouTubeMetadata(videoId);
+    }
     
     // Insert video into database
     const [newVideo] = await db
