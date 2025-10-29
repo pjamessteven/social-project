@@ -68,7 +68,7 @@ async function migrateVideos() {
 }
 
 // Run the migration
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   migrateVideos().catch(console.error);
 }
 
