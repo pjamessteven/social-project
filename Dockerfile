@@ -35,8 +35,8 @@ RUN \
 FROM base AS runner
 WORKDIR /app
 
-# Install postgresql-client and netcat for database operations
-RUN apk add --no-cache postgresql-client netcat-openbsd
+# Install postgresql-client, netcat, and python3 for database operations and yt-dlp
+RUN apk add --no-cache postgresql-client netcat-openbsd python3
 
 ENV NODE_ENV=production
 # Uncomment the following line in case you want to disable telemetry during the build.
