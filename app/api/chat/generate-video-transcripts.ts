@@ -92,13 +92,11 @@ async function transcribeAudio(audioPath: string): Promise<TranscriptSegment[]> 
 
   try {
     const audioBuffer = await fs.readFile(audioPath);
-    const audioArrayBuffer = audioBuffer.buffer.slice(
-      audioBuffer.byteOffset,
-      audioBuffer.byteOffset + audioBuffer.byteLength
-    );
+    // Convert Buffer to Uint8Array to ensure compatibility
+    const audioUint8Array = new Uint8Array(audioBuffer);
     
     const response = await openai.audio.transcriptions.create({
-      file: new File([audioArrayBuffer], path.basename(audioPath), {
+      file: new File([audioUint8Array], path.basename(audioPath), {
         type: 'audio/mpeg'
       }),
       model: "whisper-1",
