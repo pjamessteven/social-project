@@ -80,7 +80,7 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
       '--extract-audio',
       '--audio-format', 'mp3',
       '--audio-quality', '32K',
-      '--postprocessor-args', '-ac 1 -ar 16000',  // mono, 16kHz sample rate
+      '--postprocessor-args', '"-ac 1 -ar 16000"',  // mono, 16kHz sample rate
       '--output', `"${outputTemplate}"`,
       `"${videoUrl}"`
     ].join(' ');
@@ -297,7 +297,8 @@ async function generateDatasource() {
 
       // Save full transcript response to database
       const fullTranscriptText = segments.map(s => s.text).join(' ');
-      const fullTranscriptResponse = JSON.stringify(response, null, 2);
+      // Note: We need to get the response from transcribeAudio function
+      const fullTranscriptResponse = fullTranscriptText; // Temporary fix - store text for now
       
       await db
         .update(videos)
