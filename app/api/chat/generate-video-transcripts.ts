@@ -139,12 +139,20 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
 async function transcribeAudio(audioPath: string): Promise<TranscriptSegment[]> {
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
+    timeout: 600000, // 10 minutes timeout
   });
 
   try {
+    console.log(`Reading audio file: ${audioPath}`);
     const audioBuffer = await fs.readFile(audioPath);
+    const fileSizeMB = audioBuffer.length / (1024 * 1024);
+    console.log(`File size: ${fileSizeMB.toFixed(2)}MB`);
+    
     // Convert Buffer to Uint8Array to ensure compatibility
     const audioUint8Array = new Uint8Array(audioBuffer);
+    
+    console.log(`Starting Whisper transcription...`);
+    const startTime = Date.now();
     
     const response = await openai.audio.transcriptions.create({
       file: new File([audioUint8Array], path.basename(audioPath), {
@@ -154,6 +162,9 @@ async function transcribeAudio(audioPath: string): Promise<TranscriptSegment[]> 
       response_format: "verbose_json",
       timestamp_granularities: ["segment"],
     });
+
+    const duration = (Date.now() - startTime) / 1000;
+    console.log(`Transcription completed in ${duration.toFixed(1)}s, ${response.segments?.length || 0} segments`);
 
     // Convert OpenAI response to our format
     const segments: TranscriptSegment[] = response.segments?.map(segment => ({
@@ -283,8 +294,8 @@ async function generateDatasource() {
       console.log(`Transcribing audio for: ${video.title}`);
       const segments = await fetchWithBackoff(
         () => transcribeAudio(fullAudioPath),
-        3,
-        2000
+        2, // Reduce retries since transcription takes long
+        5000 // Longer delay between retries
       );
 
       // Save full transcript to database
