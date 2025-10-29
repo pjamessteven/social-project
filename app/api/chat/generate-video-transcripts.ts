@@ -68,14 +68,29 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
     // Use a simpler output template that works better with ytdlp-nodejs
     const outputTemplate = path.join(outputDir, `${videoId}.%(ext)s`);
 
-    // Try multiple format options as fallback
+    // First, try to get available formats to make a smarter choice
+    let availableFormats: string[] = [];
+    try {
+      console.log(`Checking available formats for ${videoUrl}`);
+      const formatInfo = await ytdlp.getVideoInfo(videoUrl);
+      if (formatInfo && formatInfo.formats) {
+        availableFormats = formatInfo.formats
+          .filter((f: any) => f.acodec && f.acodec !== 'none')
+          .map((f: any) => f.format_id);
+        console.log(`Found ${availableFormats.length} audio formats available`);
+      }
+    } catch (formatError) {
+      console.warn(`Could not get format info for ${videoUrl}:`, formatError);
+    }
+
+    // Try multiple format options as fallback, starting with more generic ones
     const formatOptions = [
-      "bestaudio[ext=m4a]",
-      "bestaudio[ext=mp3]", 
-      "bestaudio[ext=webm]",
       "bestaudio",
-      "worst[ext=m4a]",
-      "worst"
+      "worstaudio", 
+      "best[height<=480]",
+      "worst",
+      // If we have specific formats available, try some common ones
+      ...(availableFormats.length > 0 ? availableFormats.slice(0, 3) : [])
     ];
 
     let downloadedFile = null;
@@ -112,8 +127,35 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
       }
     }
 
+    // If all formats failed, try one last time with no format specification
+    try {
+      console.log(`Trying download without format specification for ${videoUrl}`);
+      const result = await ytdlp.downloadAsync(videoUrl, {
+        output: outputTemplate,
+        extractAudio: true,
+        audioFormat: "mp3",
+        onProgress: (progress) => {
+          if (progress.percentage && !isNaN(progress.percentage)) {
+            console.log(`Download progress: ${progress.percentage.toFixed(1)}%`);
+          }
+        }
+      });
+
+      // Check if file was actually downloaded
+      const files = await fs.readdir(outputDir);
+      downloadedFile = files.find(f => f.startsWith(videoId.toString()));
+      
+      if (downloadedFile) {
+        console.log(`Successfully downloaded audio for: ${videoUrl} without format specification`);
+        return path.join(outputDir, downloadedFile);
+      }
+    } catch (error) {
+      console.warn(`Download without format specification failed for ${videoUrl}:`, error);
+      lastError = error;
+    }
+
     // If all formats failed
-    throw new Error(`All download formats failed for ${videoUrl}. Last error: ${lastError}`);
+    throw new Error(`All download attempts failed for ${videoUrl}. Last error: ${lastError}`);
     
   } catch (error) {
     console.error(`Failed to download audio for ${videoUrl}:`, error);
