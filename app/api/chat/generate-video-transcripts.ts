@@ -56,9 +56,9 @@ interface TranscriptSegment {
 
 async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: number): Promise<string> {
   const ytdlp = new YtDlp();
-  const { spawn } = require('child_process');
-  const { promisify } = require('util');
-  const exec = promisify(require('child_process').exec);
+  const { spawn, exec: execCallback } = await import('child_process');
+  const { promisify } = await import('util');
+  const exec = promisify(execCallback);
   
   try {
     // Check if both yt-dlp and ffmpeg are installed
