@@ -2,7 +2,7 @@
 
 import { usePart } from "@llamaindex/chat-ui";
 
-import { useMemo } from "react";
+import { useMemo, memo } from "react";
 import ReactPlayer from "react-player";
 
 type EventPart = {
@@ -70,10 +70,11 @@ function formatSeconds(seconds: number) {
   return `${minutes}:${formatted}`;
 }
 
-function VideoComponent({ video, isFirst }: VideoComponentProps) {
+const VideoComponent = memo(function VideoComponent({ video, isFirst }: VideoComponentProps) {
   return (
     <div className="not-prose mb-6 min-w-lg rounded-lg border">
       <ReactPlayer
+        key={`${video.id}-${video.startTime}`}
         src={video.url}
         autoPlay={isFirst}
         muted={isFirst}
@@ -97,7 +98,7 @@ function VideoComponent({ video, isFirst }: VideoComponentProps) {
       )}
     </div>
   );
-}
+});
 
 export default function VideoQueryEventPart() {
   // usePart returns data only if current part matches the type
