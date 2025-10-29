@@ -42,9 +42,12 @@ export default function ChatSection({ conversationId }: { conversationId?: strin
     fetch: async (url, options) => {
       const body = options?.body ? JSON.parse(options.body as string) : {};
       // Always include the current conversation ID if we have one
-      if (currentConversationId) {
-        body.conversationId = currentConversationId;
+      const activeConversationId = currentConversationId || conversationId;
+      if (activeConversationId) {
+        body.conversationId = activeConversationId;
       }
+      
+      console.log(`[CHAT] Sending request with conversationId: ${activeConversationId}`);
       
       return fetch(url, {
         ...options,
@@ -54,7 +57,8 @@ export default function ChatSection({ conversationId }: { conversationId?: strin
     onFinish: (message, { response }) => {
       // Extract conversation ID from response headers
       const conversationIdFromHeader = response?.headers.get('X-Conversation-Id');
-      if (conversationIdFromHeader) {
+      if (conversationIdFromHeader && conversationIdFromHeader !== currentConversationId) {
+        console.log(`[CHAT] Updating conversation ID from ${currentConversationId} to ${conversationIdFromHeader}`);
         setCurrentConversationId(conversationIdFromHeader);
       }
     },
@@ -70,6 +74,7 @@ export default function ChatSection({ conversationId }: { conversationId?: strin
   // Load existing conversation if conversationId is provided
   useEffect(() => {
     if (conversationId && useChatHandler.messages.length === 0) {
+      setCurrentConversationId(conversationId);
       const loadConversation = async () => {
         try {
           const response = await fetch(`/api/chat/${conversationId}`);
