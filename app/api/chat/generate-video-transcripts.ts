@@ -91,9 +91,16 @@ async function transcribeAudio(audioPath: string): Promise<TranscriptSegment[]> 
   });
 
   try {
-    const audioFile = await fs.readFile(audioPath);
+    const audioBuffer = await fs.readFile(audioPath);
+    const audioArrayBuffer = audioBuffer.buffer.slice(
+      audioBuffer.byteOffset,
+      audioBuffer.byteOffset + audioBuffer.byteLength
+    );
+    
     const response = await openai.audio.transcriptions.create({
-      file: new File([audioFile], path.basename(audioPath)),
+      file: new File([audioArrayBuffer], path.basename(audioPath), {
+        type: 'audio/mpeg'
+      }),
       model: "whisper-1",
       response_format: "verbose_json",
       timestamp_granularities: ["segment"],
