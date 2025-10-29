@@ -260,7 +260,6 @@ async function generateDatasource() {
         .update(videos)
         .set({ 
           transcript: fullTranscript,
-          processed: true,
           updatedAt: new Date()
         })
         .where(eq(videos.id, video.id));
@@ -307,13 +306,7 @@ async function generateDatasource() {
       // Clean up audio file
       await fs.unlink(fullAudioPath);
 
-      processedCount++;
-      console.log(`Processed ${processedCount}/${unprocessedVideos.length} videos`);
-
-    } catch (error) {
-      console.error(`Failed to process video ${video.title}:`, error);
-      
-      // Mark as processed even if failed to avoid reprocessing
+      // Mark as successfully processed only after everything completes
       await db
         .update(videos)
         .set({ 
@@ -321,6 +314,13 @@ async function generateDatasource() {
           updatedAt: new Date()
         })
         .where(eq(videos.id, video.id));
+
+      processedCount++;
+      console.log(`Processed ${processedCount}/${unprocessedVideos.length} videos`);
+
+    } catch (error) {
+      console.error(`Failed to process video ${video.title}:`, error);
+      // Don't mark as processed if it failed - let it retry next time
     }
   }
 
