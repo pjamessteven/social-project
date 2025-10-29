@@ -1,6 +1,9 @@
 import { createUIMessageStreamResponse, type UIMessage } from "ai";
 import { ChatMessage, type MessageType } from "llamaindex";
 import { NextRequest, NextResponse } from "next/server";
+import { v4 as uuidv4 } from "uuid";
+import { chatConversations, db } from "@/db";
+import { eq } from "drizzle-orm";
 
 // import chat utils
 import {
@@ -24,10 +27,14 @@ export async function POST(req: NextRequest) {
     const reqBody = await req.json();
     const suggestNextQuestions = process.env.SUGGEST_NEXT_QUESTIONS === "true";
 
-    const { messages, id: requestId } = reqBody as {
+    const { messages, id: requestId, conversationId } = reqBody as {
       messages: UIMessage[];
       id?: string;
+      conversationId?: string;
     };
+
+    // Generate or use provided conversation UUID
+    const chatUuid = conversationId || uuidv4();
 
     const chatHistory: ChatMessage[] = messages.map((message) => ({
       role: message.role as MessageType,
@@ -78,6 +85,10 @@ export async function POST(req: NextRequest) {
             role: "assistant" as MessageType,
             content: completion,
           });
+
+          // Save complete conversation to database
+          await saveConversation(chatUuid, messages, completion);
+
           if (suggestNextQuestions && false) {
             await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory);
           }
@@ -92,6 +103,7 @@ export async function POST(req: NextRequest) {
         "X-Vercel-AI-Data-Stream": "v1",
         "Cache-Control": "no-cache",
         "X-Accel-Buffering": "no",
+        "X-Conversation-Id": chatUuid, // Return the conversation ID in headers
       },
     });
   } catch (error) {
