@@ -22,6 +22,7 @@ export default function ChatSection({ conversationId }: { conversationId?: strin
   const { setChatHandler } = useChatStore();
   const searchParams = useSearchParams();
   const starterSentRef = useRef(false);
+  const [currentConversationId, setCurrentConversationId] = useState<string | undefined>(conversationId);
 
   const handleError = (error: unknown) => {
     if (!(error instanceof Error)) throw error;
@@ -35,15 +36,26 @@ export default function ChatSection({ conversationId }: { conversationId?: strin
   };
 
   const useChatHandler = useChat({
-    transport: new DefaultChatTransport({
-      api: "/api/chat",
-    }),
+    api: "/api/chat",
     onError: handleError,
     experimental_throttle: 100,
-    body: conversationId ? { conversationId } : undefined,
-    onFinish: (message, { finishReason }) => {
-      // Extract conversation ID from response headers if available
-      // This ensures we maintain the same conversation ID for subsequent messages
+    fetch: async (url, options) => {
+      const body = options?.body ? JSON.parse(options.body as string) : {};
+      if (currentConversationId) {
+        body.conversationId = currentConversationId;
+      }
+      
+      return fetch(url, {
+        ...options,
+        body: JSON.stringify(body),
+      });
+    },
+    onFinish: (message, { response }) => {
+      // Extract conversation ID from response headers
+      const conversationIdFromHeader = response?.headers.get('X-Conversation-Id');
+      if (conversationIdFromHeader && !currentConversationId) {
+        setCurrentConversationId(conversationIdFromHeader);
+      }
     },
   });
 
