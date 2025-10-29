@@ -70,27 +70,45 @@ function formatSeconds(seconds: number) {
   return `${minutes}:${formatted}`;
 }
 
-const VideoComponent = memo(function VideoComponent({ video, isFirst }: VideoComponentProps) {
-  const getVideoUrl = (url: string, startTime: number) => {
-    if (startTime > 0 && url.includes('youtube.com')) {
-      const separator = url.includes('?') ? '&' : '?';
-      return `${url}${separator}t=${Math.floor(startTime)}s`;
+function extractYouTubeVideoId(url: string): string | null {
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
+    /youtube\.com\/v\/([^&\n?#]+)/,
+  ];
+  
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match) {
+      return match[1];
     }
-    return url;
-  };
+  }
+  
+  return null;
+}
+
+const VideoComponent = memo(function VideoComponent({ video, isFirst }: VideoComponentProps) {
+  const videoId = extractYouTubeVideoId(video.url);
 
   return (
     <div className="not-prose mb-6 min-w-lg rounded-lg border">
-      <YouTube            videoId={}
- opts={{
-      height: '390',
-      width: '640',
-
-      playerVars: {
-        // https://developers.google.com/youtube/player_parameters
-        autoplay: isFirst? 1 : 0,
-      },
-    }}></YouTube>
+      {videoId ? (
+        <YouTube 
+          videoId={videoId}
+          opts={{
+            height: '390',
+            width: '640',
+            playerVars: {
+              // https://developers.google.com/youtube/player_parameters
+              autoplay: isFirst ? 1 : 0,
+              start: Math.floor(video.startTime),
+            },
+          }}
+        />
+      ) : (
+        <div className="p-4 text-center text-gray-500">
+          Invalid YouTube URL
+        </div>
+      )}
     {/*
       <ReactPlayer
         key={`${video.url}#t=${Math.floor(video.startTime)}`}
