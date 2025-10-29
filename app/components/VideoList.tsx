@@ -1,21 +1,61 @@
 "use client";
 
-import { useState } from "react";
-import { Video, videos } from "../lib/videos";
+import { useState, useEffect } from "react";
 
-
-interface VideoFiltersProps {
-  videos: Video[];
+interface Video {
+  id: number;
+  title: string;
+  author: string;
+  sex: "m" | "f";
+  url: string;
+  type: string;
 }
 
+export default function VideoList() {
+  const [filter, setFilter] = useState<"all" | "f" | "m">("all");
+  const [videos, setVideos] = useState<Video[]>([]);
+  const [loading, setLoading] = useState(true);
 
-export default function VideoFilters() {
-  const [filter, setFilter] = useState<"all" | "F" | "M">("all");
+  useEffect(() => {
+    async function fetchVideos() {
+      try {
+        const response = await fetch('/api/videos');
+        if (response.ok) {
+          const data = await response.json();
+          setVideos(data.videos || []);
+        }
+      } catch (error) {
+        console.error('Failed to fetch videos:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchVideos();
+  }, []);
 
   const filteredVideos = videos.filter((video) => {
     if (filter === "all") return true;
-    return video.type === filter;
+    return video.sex === filter;
   });
+
+  // Extract YouTube video ID from URL
+  const getYouTubeVideoId = (url: string): string => {
+    const patterns = [
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
+      /youtube\.com\/watch\?.*v=([^&\n?#]+)/
+    ];
+    
+    for (const pattern of patterns) {
+      const match = url.match(pattern);
+      if (match) return match[1];
+    }
+    return '';
+  };
+
+  if (loading) {
+    return <div className="text-center py-8">Loading videos...</div>;
+  }
 
   return (
     <>
@@ -32,9 +72,9 @@ export default function VideoFilters() {
             All Stories
           </button>
           <button
-            onClick={() => setFilter("F")}
+            onClick={() => setFilter("f")}
             className={`rounded px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
-              filter === "F"
+              filter === "f"
                 ? "bg-blue-600 text-white"
                 : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
             }`}
@@ -42,9 +82,9 @@ export default function VideoFilters() {
             Female Stories
           </button>
           <button
-            onClick={() => setFilter("M")}
+            onClick={() => setFilter("m")}
             className={`rounded px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
-              filter === "M"
+              filter === "m"
                 ? "bg-blue-600 text-white"
                 : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
             }`}
@@ -66,7 +106,7 @@ export default function VideoFilters() {
             <div className="flex h-full flex-col rounded-lg border p-4 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800">
               <div className="relative mb-3">
                 <img
-                  src={`https://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
+                  src={`https://img.youtube.com/vi/${getYouTubeVideoId(video.url)}/mqdefault.jpg`}
                   alt={`Thumbnail for ${video.title}`}
                   className="h-48 w-full rounded object-cover"
                 />
@@ -88,7 +128,7 @@ export default function VideoFilters() {
                 </h3>
                 <p className="mt-auto text-sm font-light text-gray-500 dark:text-gray-400">
                   by <b>{video.author}</b> (
-                  {video.type === "F" ? "Female" : "Male"})
+                  {video.sex === "f" ? "Female" : "Male"})
                 </p>
               </div>
             </div>
