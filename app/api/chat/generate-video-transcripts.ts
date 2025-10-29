@@ -77,10 +77,9 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
     
     // Simple download with minimal options - let yt-dlp handle format selection
     const result = await ytdlp.downloadAsync(videoUrl, {
-      format: {
-        filter: 'audioonly',
-      },
       output: outputPath,
+      extractAudio: true,
+      audioFormat: "mp3",
       onProgress: (progress) => {
         if (progress.percentage && !isNaN(progress.percentage)) {
           console.log(`Download progress: ${progress.percentage.toFixed(1)}%`);
