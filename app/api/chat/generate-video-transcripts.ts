@@ -69,11 +69,11 @@ async function downloadVideoAudio(videoUrl: string, outputPath: string): Promise
       format: {
         filter: "audioonly",
         type: "mp3",
-        quality: "highest"
+        quality: 10
       },
       output: outputPath,
       onProgress: (progress) => {
-        console.log(`Download progress: ${progress.percent}%`);
+        console.log(`Download progress: ${progress.percentage}%`);
       }
     });
 
