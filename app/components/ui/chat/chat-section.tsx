@@ -47,10 +47,14 @@ export default function ChatSection({ conversationId }: { conversationId?: strin
         body.conversationId = activeConversationId;
       }
       
-      console.log(`[CHAT] Sending request with conversationId: ${activeConversationId}`);
+      console.log(`[CHAT] Sending request with conversationId: ${activeConversationId}, body:`, body);
       
       return fetch(url, {
         ...options,
+        headers: {
+          'Content-Type': 'application/json',
+          ...options?.headers,
+        },
         body: JSON.stringify(body),
       });
     },
