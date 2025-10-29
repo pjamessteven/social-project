@@ -141,12 +141,12 @@ export default function VideoQueryEventPart() {
       {results.length > 0 ? (
         <div className="flex flex-row gap-4 space-y-6 overflow-x-auto">
           {results.map((video, index) => (
-            (index ===0) ? 
-            (<VideoComponent
+
+            <VideoComponent
               key={video.id || index}
               video={video}
               isFirst={index === 0}
-            />) :<></>
+            />
           ))}
         </div>
       ) : (
