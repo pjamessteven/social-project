@@ -5,9 +5,11 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 interface VideoSubmission {
   url: string;
   sex: 'm' | 'f';
+  title?: string;
+  author?: string;
 }
 
-async function submitVideo(video: VideoSubmission): Promise<boolean> {
+async function submitVideoWithMetadata(video: VideoSubmission & { title: string; author: string }): Promise<boolean> {
   try {
     const response = await fetch(`${API_BASE_URL}/api/videos/submit`, {
       method: 'POST',
@@ -20,14 +22,14 @@ async function submitVideo(video: VideoSubmission): Promise<boolean> {
     const data = await response.json();
 
     if (response.ok) {
-      console.log(`✅ Successfully submitted: ${video.url}`);
+      console.log(`✅ Successfully submitted: ${video.title} by ${video.author}`);
       return true;
     } else {
-      console.error(`❌ Failed to submit ${video.url}: ${data.error}`);
+      console.error(`❌ Failed to submit ${video.title}: ${data.error}`);
       return false;
     }
   } catch (error) {
-    console.error(`❌ Network error submitting ${video.url}:`, error);
+    console.error(`❌ Network error submitting ${video.title}:`, error);
     return false;
   }
 }
@@ -40,12 +42,14 @@ async function migrateVideos() {
 
   for (const video of videos) {
     // Convert the video format to match API expectations
-    const submission: VideoSubmission = {
+    const submission: VideoSubmission & { title: string; author: string } = {
       url: video.url,
       sex: video.type === 'M' ? 'm' : 'f',
+      title: video.title,
+      author: video.author,
     };
 
-    const success = await submitVideo(submission);
+    const success = await submitVideoWithMetadata(submission);
     
     if (success) {
       successCount++;
