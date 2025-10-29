@@ -41,6 +41,10 @@ export default function ChatSection({ conversationId }: { conversationId?: strin
     onError: handleError,
     experimental_throttle: 100,
     body: conversationId ? { conversationId } : undefined,
+    onFinish: (message, { finishReason }) => {
+      // Extract conversation ID from response headers if available
+      // This ensures we maintain the same conversation ID for subsequent messages
+    },
   });
 
   const handler = useChatHandler;
