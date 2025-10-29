@@ -1,4 +1,4 @@
-import { pgTable, varchar, integer, timestamp, text, index, serial, numeric } from 'drizzle-orm/pg-core';
+import { pgTable, varchar, integer, timestamp, text, index, serial, numeric, boolean } from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
 import { z } from 'zod/v3';
 
@@ -237,4 +237,39 @@ export type DetransUser = z.infer<typeof detransUserSchema>;
 export type DetransComment = z.infer<typeof detransCommentSchema>;
 export type Tag = z.infer<typeof tagSchema>;
 export type TagType = z.infer<typeof tagTypeSchema>;
+// Videos table
+export const videos = pgTable('videos', {
+  id: serial('id').primaryKey(),
+  title: varchar('title', { length: 500 }).notNull(),
+  url: text('url').notNull().unique(),
+  type: varchar('type', { length: 50 }).notNull().default('youtube'),
+  processed: boolean('processed').default(false).notNull(),
+  transcript: text('transcript'),
+  description: text('description'),
+  duration: integer('duration'), // duration in seconds
+  date: timestamp('date'), // date posted
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+}, (table) => ({
+  urlIdx: index('idx_videos_url').on(table.url),
+  typeIdx: index('idx_videos_type').on(table.type),
+  processedIdx: index('idx_videos_processed').on(table.processed),
+  dateIdx: index('idx_videos_date').on(table.date),
+}));
+
+export const videoSchema = z.object({
+  id: z.number().int(),
+  title: z.string().max(500),
+  url: z.string(),
+  type: z.string().max(50).default('youtube'),
+  processed: z.boolean().default(false),
+  transcript: z.string().nullable(),
+  description: z.string().nullable(),
+  duration: z.number().int().nullable(),
+  date: z.date().nullable(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+
+export type Video = z.infer<typeof videoSchema>;
 export type UserTag = z.infer<typeof userTagSchema>;
