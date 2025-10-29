@@ -59,7 +59,12 @@ async function downloadVideoAudio(videoUrl: string, outputPath: string): Promise
   
   try {
     // Check if yt-dlp is installed
-    const isInstalled = await ytdlp.checkInstallationAsync();
+    let isInstalled = await ytdlp.checkInstallationAsync();
+    if (!isInstalled) {
+      await ytdlp.downloadFFmpeg();
+    }
+    isInstalled = await ytdlp.checkInstallationAsync();
+
     if (!isInstalled) {
       throw new Error('yt-dlp is not installed');
     }
