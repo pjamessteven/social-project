@@ -138,7 +138,7 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
   }
 }
 
-async function transcribeAudio(audioPath: string): Promise<TranscriptSegment[]> {
+async function transcribeAudio(audioPath: string): Promise<{ segments: TranscriptSegment[], fullResponse: any }> {
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
     timeout: 600000, // 10 minutes timeout
@@ -170,7 +170,7 @@ async function transcribeAudio(audioPath: string): Promise<TranscriptSegment[]> 
       text: segment.text.trim(),
     })) || [];
 
-    return segments;
+    return { segments, fullResponse: response };
   } catch (error) {
     console.error(`Failed to transcribe audio ${audioPath}:`, error);
     throw error;
@@ -289,16 +289,14 @@ async function generateDatasource() {
       
       // Transcribe audio
       console.log(`Transcribing audio for: ${video.title}`);
-      const segments = await fetchWithBackoff(
+      const { segments, fullResponse } = await fetchWithBackoff(
         () => transcribeAudio(fullAudioPath),
         2, // Reduce retries since transcription takes long
         5000 // Longer delay between retries
       );
 
-      // Save full transcript response to database
-      const fullTranscriptText = segments.map(s => s.text).join(' ');
-      // Note: We need to get the response from transcribeAudio function
-      const fullTranscriptResponse = fullTranscriptText; // Temporary fix - store text for now
+      // Save full transcript response to database as JSON
+      const fullTranscriptResponse = JSON.stringify(fullResponse, null, 2);
       
       await db
         .update(videos)
