@@ -27,6 +27,8 @@ export async function POST(req: NextRequest) {
     const reqBody = await req.json();
     const suggestNextQuestions = process.env.SUGGEST_NEXT_QUESTIONS === "true";
 
+    console.log("[CHAT API] Request body:", JSON.stringify(reqBody, null, 2));
+    
     const { messages, id: requestId, conversationId } = reqBody as {
       messages: UIMessage[];
       id?: string;
@@ -35,7 +37,7 @@ export async function POST(req: NextRequest) {
 
     // Generate or use provided conversation UUID
     const chatUuid = conversationId || uuidv4();
-    console.log(`Using conversation UUID: ${chatUuid} (provided: ${conversationId})`);
+    console.log(`[CHAT API] Using conversation UUID: ${chatUuid} (provided: ${conversationId})`);
 
     const chatHistory: ChatMessage[] = messages.map((message) => ({
       role: message.role as MessageType,
