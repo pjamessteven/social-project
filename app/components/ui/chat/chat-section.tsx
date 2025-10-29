@@ -41,6 +41,7 @@ export default function ChatSection({ conversationId }: { conversationId?: strin
     experimental_throttle: 100,
     fetch: async (url, options) => {
       const body = options?.body ? JSON.parse(options.body as string) : {};
+      // Always include the current conversation ID if we have one
       if (currentConversationId) {
         body.conversationId = currentConversationId;
       }
@@ -53,7 +54,7 @@ export default function ChatSection({ conversationId }: { conversationId?: strin
     onFinish: (message, { response }) => {
       // Extract conversation ID from response headers
       const conversationIdFromHeader = response?.headers.get('X-Conversation-Id');
-      if (conversationIdFromHeader && !currentConversationId) {
+      if (conversationIdFromHeader) {
         setCurrentConversationId(conversationIdFromHeader);
       }
     },
