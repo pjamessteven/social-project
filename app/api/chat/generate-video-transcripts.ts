@@ -14,7 +14,8 @@ import {
 } from "llamaindex";
 import { initSettings } from "./app/settings";
 import { KeywordPrompt, questionPrompt, SummaryPrompt } from "./utils/prompts";
-import fs from "fs/promises";
+import fsp from "fs/promises";
+import fs from "fs";
 import path from "path";
 import OpenAI from "openai";
 
@@ -61,11 +62,11 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
   try {
     // Use absolute paths and ensure directory exists
     const absoluteOutputDir = path.resolve(outputDir);
-    await fs.mkdir(absoluteOutputDir, { recursive: true });
+    await fsp.mkdir(absoluteOutputDir, { recursive: true });
     
     // Create downloads subdirectory
     const downloadsDir = path.join(absoluteOutputDir, 'downloads');
-    await fs.mkdir(downloadsDir, { recursive: true });
+    await fsp.mkdir(downloadsDir, { recursive: true });
 
     console.log(`Downloading audio for ${videoUrl}`);
     
@@ -95,7 +96,7 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
     }
     
     // Find the downloaded MP3 file
-    const files = await fs.readdir(downloadsDir);
+    const files = await fsp.readdir(downloadsDir);
     console.log('Files in downloads directory:', files);
     
     // Look for MP3 files that match our pattern
@@ -114,7 +115,7 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
     
     for (const file of mp3Files) {
       const filePath = path.join(downloadsDir, file);
-      const stats = await fs.stat(filePath);
+      const stats = await fsp.stat(filePath);
       if (stats.mtime.getTime() > newestTime) {
         newestTime = stats.mtime.getTime();
         newestFile = file;
@@ -125,7 +126,7 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
     console.log('Downloaded MP3 file path:', mp3Path);
     
     // Verify the file exists
-    await fs.access(mp3Path);
+    await fsp.access(mp3Path);
     
     console.log(`Successfully downloaded MP3: ${mp3Path}`);
     return mp3Path;
@@ -144,20 +145,15 @@ async function transcribeAudio(audioPath: string): Promise<TranscriptSegment[]> 
 
   try {
     console.log(`Reading audio file: ${audioPath}`);
-    const audioBuffer = await fs.readFile(audioPath);
+    const audioBuffer = await fsp.readFile(audioPath);
     const fileSizeMB = audioBuffer.length / (1024 * 1024);
     console.log(`File size: ${fileSizeMB.toFixed(2)}MB`);
-    
-    // Convert Buffer to Uint8Array to ensure compatibility
-    const audioUint8Array = new Uint8Array(audioBuffer);
     
     console.log(`Starting Whisper transcription...`);
     const startTime = Date.now();
     
     const response = await openai.audio.transcriptions.create({
-      file: new File([audioUint8Array], path.basename(audioPath), {
-        type: 'audio/mpeg'
-      }),
+      file: fs.createReadStream(audioPath),  
       model: "whisper-1",
       response_format: "verbose_json",
       timestamp_granularities: ["segment"],
@@ -279,7 +275,7 @@ async function generateDatasource() {
 
   // Create temp directory for audio files
   const tempDir = path.join(process.cwd(), 'temp_audio');
-  await fs.mkdir(tempDir, { recursive: true });
+  await fsp.mkdir(tempDir, { recursive: true });
 
   let processedCount = 0;
 
@@ -349,7 +345,7 @@ async function generateDatasource() {
 
       // Clean up audio file
       try {
-        await fs.unlink(fullAudioPath);
+        await fsp.unlink(fullAudioPath);
       } catch (cleanupError) {
         console.warn(`Failed to clean up audio file ${fullAudioPath}:`, cleanupError);
       }
@@ -371,10 +367,10 @@ async function generateDatasource() {
       
       // Try to clean up any partial downloads
       try {
-        const files = await fs.readdir(tempDir);
+        const files = await fsp.readdir(tempDir);
         const partialFiles = files.filter(f => f.startsWith(video.id.toString()));
         for (const file of partialFiles) {
-          await fs.unlink(path.join(tempDir, file));
+          await fsp.unlink(path.join(tempDir, file));
         }
       } catch (cleanupError) {
         console.warn(`Failed to clean up partial downloads for video ${video.id}:`, cleanupError);
@@ -386,7 +382,7 @@ async function generateDatasource() {
 
   // Clean up temp directory
   try {
-    await fs.rmdir(tempDir);
+    await fsp.rmdir(tempDir);
   } catch (error) {
     console.warn(`Failed to remove temp directory: ${error}`);
   }
