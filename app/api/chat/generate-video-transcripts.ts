@@ -14,13 +14,10 @@ import {
 } from "llamaindex";
 import { initSettings } from "./app/settings";
 import { KeywordPrompt, questionPrompt, SummaryPrompt } from "./utils/prompts";
-import { exec } from "child_process";
-import { promisify } from "util";
 import fs from "fs/promises";
 import path from "path";
 import OpenAI from "openai";
-
-const execAsync = promisify(exec);
+import { YtDlp } from "ytdlp-nodejs";
 
 async function fetchWithBackoff<T>(
   fn: () => Promise<T>,
@@ -57,12 +54,31 @@ interface TranscriptSegment {
   text: string;
 }
 
-async function downloadVideoAudio(videoUrl: string, outputPath: string): Promise<void> {
-  const command = `yt-dlp -x --audio-format mp3 --audio-quality 0 -o "${outputPath}" "${videoUrl}"`;
+async function downloadVideoAudio(videoUrl: string, outputPath: string): Promise<string> {
+  const ytdlp = new YtDlp();
   
   try {
-    await execAsync(command);
+    // Check if yt-dlp is installed
+    const isInstalled = await ytdlp.checkInstallationAsync();
+    if (!isInstalled) {
+      throw new Error('yt-dlp is not installed');
+    }
+
+    // Download audio only in MP3 format
+    const result = await ytdlp.downloadAsync(videoUrl, {
+      format: {
+        filter: "audioonly",
+        type: "mp3",
+        quality: "highest"
+      },
+      output: outputPath,
+      onProgress: (progress) => {
+        console.log(`Download progress: ${progress.percent}%`);
+      }
+    });
+
     console.log(`Downloaded audio for: ${videoUrl}`);
+    return result;
   } catch (error) {
     console.error(`Failed to download audio for ${videoUrl}:`, error);
     throw error;
@@ -195,9 +211,9 @@ async function generateDatasource() {
       
       await downloadVideoAudio(video.url, audioPath);
       
-      // Find the actual downloaded file (yt-dlp adds extension)
+      // Find the actual downloaded file (ytdlp-nodejs adds extension)
       const files = await fs.readdir(tempDir);
-      const downloadedFile = files.find(f => f.startsWith(video.id.toString()));
+      const downloadedFile = files.find(f => f.startsWith(video.id.toString()) && f.endsWith('.mp3'));
       
       if (!downloadedFile) {
         throw new Error(`Downloaded audio file not found for video ${video.id}`);
