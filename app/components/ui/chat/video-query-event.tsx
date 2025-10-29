@@ -71,11 +71,19 @@ function formatSeconds(seconds: number) {
 }
 
 const VideoComponent = memo(function VideoComponent({ video, isFirst }: VideoComponentProps) {
+  const getVideoUrl = (url: string, startTime: number) => {
+    if (startTime > 0 && url.includes('youtube.com')) {
+      const separator = url.includes('?') ? '&' : '?';
+      return `${url}${separator}t=${Math.floor(startTime)}s`;
+    }
+    return url;
+  };
+
   return (
     <div className="not-prose mb-6 min-w-lg rounded-lg border">
       <ReactPlayer
-        key={`${video.id}-${video.startTime}`}
-        src={video.url}
+        key={`${video.url}#t=${Math.floor(video.startTime)}`}
+        src={getVideoUrl(video.url, video.startTime)}
         autoPlay={isFirst}
         muted={isFirst}
         controls
@@ -83,7 +91,6 @@ const VideoComponent = memo(function VideoComponent({ video, isFirst }: VideoCom
         height="315px"
         config={{
           youtube: {
-            start: Math.floor(video.startTime),
             color: "white",
           },
         }}
