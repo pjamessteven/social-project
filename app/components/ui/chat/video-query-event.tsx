@@ -3,7 +3,7 @@
 import { usePart } from "@llamaindex/chat-ui";
 
 import { useMemo, memo } from "react";
-import ReactPlayer from "react-player";
+import YouTube from 'react-youtube';
 
 type EventPart = {
   id?: string | undefined;
@@ -81,6 +81,17 @@ const VideoComponent = memo(function VideoComponent({ video, isFirst }: VideoCom
 
   return (
     <div className="not-prose mb-6 min-w-lg rounded-lg border">
+      <YouTube            videoId={}
+ opts={{
+      height: '390',
+      width: '640',
+
+      playerVars: {
+        // https://developers.google.com/youtube/player_parameters
+        autoplay: isFirst? 1 : 0,
+      },
+    }}></YouTube>
+    {/*
       <ReactPlayer
         key={`${video.url}#t=${Math.floor(video.startTime)}`}
         src={getVideoUrl(video.url, video.startTime)}
@@ -95,7 +106,7 @@ const VideoComponent = memo(function VideoComponent({ video, isFirst }: VideoCom
           },
         }}
       />
-
+ */}
       {video.summary && (
         <div className="p-3">
           <p className="text-sm text-gray-600">
