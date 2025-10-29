@@ -54,7 +54,7 @@ interface TranscriptSegment {
   text: string;
 }
 
-async function downloadVideoAudio(videoUrl: string, outputPath: string): Promise<string> {
+async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: number): Promise<string> {
   const ytdlp = new YtDlp();
   
   try {
@@ -65,43 +65,48 @@ async function downloadVideoAudio(videoUrl: string, outputPath: string): Promise
       await ytdlp.downloadFFmpeg();
     }
 
+    // Use a simpler output template that works better with ytdlp-nodejs
+    const outputTemplate = path.join(outputDir, `${videoId}.%(ext)s`);
+
     // Try multiple format options as fallback
     const formatOptions = [
-      {
-        filter: "audioonly",
-        type: "mp3",
-        quality: 10
-      },
-      {
-        filter: "audioonly",
-        type: "m4a",
-        quality: 10
-      },
       "bestaudio[ext=m4a]",
-      "bestaudio"
+      "bestaudio[ext=mp3]", 
+      "bestaudio[ext=webm]",
+      "bestaudio",
+      "worst[ext=m4a]",
+      "worst"
     ];
 
-    let result = null;
+    let downloadedFile = null;
     let lastError = null;
 
     for (const format of formatOptions) {
       try {
-        console.log(`Trying format: ${JSON.stringify(format)} for ${videoUrl}`);
+        console.log(`Trying format: ${format} for ${videoUrl}`);
         
-        result = await ytdlp.downloadAsync(videoUrl, {
+        const result = await ytdlp.downloadAsync(videoUrl, {
           format: format,
-          output: outputPath,
+          output: outputTemplate,
+          extractAudio: true,
+          audioFormat: "mp3",
           onProgress: (progress) => {
-            console.log(`Download progress: ${progress.percentage}%`);
+            if (progress.percentage && !isNaN(progress.percentage)) {
+              console.log(`Download progress: ${progress.percentage.toFixed(1)}%`);
+            }
           }
         });
 
-        if (result) {
-          console.log(`Successfully downloaded audio for: ${videoUrl} with format: ${JSON.stringify(format)}`);
-          return result;
+        // Check if file was actually downloaded
+        const files = await fs.readdir(outputDir);
+        downloadedFile = files.find(f => f.startsWith(videoId.toString()));
+        
+        if (downloadedFile) {
+          console.log(`Successfully downloaded audio for: ${videoUrl} with format: ${format}`);
+          return path.join(outputDir, downloadedFile);
         }
       } catch (error) {
-        console.warn(`Format ${JSON.stringify(format)} failed for ${videoUrl}:`, error);
+        console.warn(`Format ${format} failed for ${videoUrl}:`, error);
         lastError = error;
         continue;
       }
@@ -257,21 +262,7 @@ async function generateDatasource() {
       console.log(`Processing video: ${video.title}`);
       
       // Download audio
-      const audioFileName = `${video.id}.%(ext)s`;
-      const audioPath = path.join(tempDir, audioFileName);
-      
-      await downloadVideoAudio(video.url, audioPath);
-      
-      // Find the actual downloaded file (ytdlp-nodejs adds extension)
-      const files = await fs.readdir(tempDir);
-      const downloadedFile = files.find(f => f.startsWith(video.id.toString()) && (f.endsWith('.mp3') || f.endsWith('.m4a') || f.endsWith('.webm') || f.endsWith('.opus')));
-      
-      if (!downloadedFile) {
-        console.error(`Available files in temp directory:`, files);
-        throw new Error(`Downloaded audio file not found for video ${video.id}. Expected file starting with ${video.id}`);
-      }
-
-      const fullAudioPath = path.join(tempDir, downloadedFile);
+      const fullAudioPath = await downloadVideoAudio(video.url, tempDir, video.id);
       
       // Transcribe audio
       console.log(`Transcribing audio for: ${video.title}`);
@@ -331,7 +322,11 @@ async function generateDatasource() {
       }
 
       // Clean up audio file
-      await fs.unlink(fullAudioPath);
+      try {
+        await fs.unlink(fullAudioPath);
+      } catch (cleanupError) {
+        console.warn(`Failed to clean up audio file ${fullAudioPath}:`, cleanupError);
+      }
 
       // Mark as successfully processed only after everything completes
       await db
@@ -347,6 +342,18 @@ async function generateDatasource() {
 
     } catch (error) {
       console.error(`Failed to process video ${video.title}:`, error);
+      
+      // Try to clean up any partial downloads
+      try {
+        const files = await fs.readdir(tempDir);
+        const partialFiles = files.filter(f => f.startsWith(video.id.toString()));
+        for (const file of partialFiles) {
+          await fs.unlink(path.join(tempDir, file));
+        }
+      } catch (cleanupError) {
+        console.warn(`Failed to clean up partial downloads for video ${video.id}:`, cleanupError);
+      }
+      
       // Don't mark as processed if it failed - let it retry next time
     }
   }
