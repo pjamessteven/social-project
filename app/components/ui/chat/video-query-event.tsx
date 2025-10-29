@@ -3,6 +3,7 @@
 import { usePart } from "@llamaindex/chat-ui";
 import { Loader2 } from "lucide-react";
 import { useMemo } from "react";
+import ReactPlayer from "react-player/youtube";
 import CommentCard from "../../CommentCard";
 import {
   Accordion,
@@ -21,6 +22,66 @@ type EventPart = {
     status: string;
   };
 };
+
+interface VideoData {
+  text: string;
+  summary: string;
+  title: string;
+  author: string;
+  startTime: number;
+  endTime: number;
+  url: string;
+  sex: string;
+  created: number;
+  link: string;
+  id: string;
+}
+
+interface VideoComponentProps {
+  video: VideoData;
+  isFirst: boolean;
+}
+
+function VideoComponent({ video, isFirst }: VideoComponentProps) {
+  return (
+    <div className="mb-6 rounded-lg border p-4">
+      <div className="mb-3">
+        <h3 className="text-lg font-semibold">{video.title}</h3>
+        <p className="text-sm text-gray-600">by {video.author}</p>
+      </div>
+      
+      <div className="mb-3">
+        <ReactPlayer
+          url={video.url}
+          playing={isFirst}
+          muted={isFirst}
+          controls
+          width="100%"
+          height="315px"
+          config={{
+            youtube: {
+              playerVars: { 
+                start: Math.floor(video.startTime)
+              }
+            }
+          }}
+        />
+      </div>
+      
+      {video.summary && (
+        <div className="mb-2">
+          <p className="text-sm font-medium text-gray-700">Summary:</p>
+          <p className="text-sm text-gray-600">{video.summary}</p>
+        </div>
+      )}
+      
+      <div className="text-xs text-gray-500">
+        <p>Start: {Math.floor(video.startTime)}s | End: {Math.floor(video.endTime)}s</p>
+        <p>Created: {new Date(video.created).toLocaleDateString()}</p>
+      </div>
+    </div>
+  );
+}
 
 export default function VideoQueryEventPart() {
   // usePart returns data only if current part matches the type
@@ -53,6 +114,27 @@ export default function VideoQueryEventPart() {
   if (!videoPart) return null;
 
   return (
-<div className="flex row"> {results}</div>
+    <div className="space-y-4">
+      <div className="mb-4">
+        <h2 className="text-xl font-bold">{videoPart.data.title}</h2>
+        <p className="text-sm text-gray-600">Query: {videoPart.data.query}</p>
+      </div>
+      
+      {results.length > 0 ? (
+        <div className="space-y-6">
+          {results.map((video, index) => (
+            <VideoComponent 
+              key={video.id || index} 
+              video={video} 
+              isFirst={index === 0}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-8">
+          <p className="text-gray-500">No videos found</p>
+        </div>
+      )}
+    </div>
   );
 }
