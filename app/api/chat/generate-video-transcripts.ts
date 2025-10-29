@@ -58,12 +58,6 @@ async function downloadVideoAudio(videoUrl: string, outputDir: string, videoId: 
   const ytdlp = new YtDlp();
   
   try {
-    // Check if both yt-dlp and ffmpeg are installed
-    const isInstalled = await ytdlp.checkInstallationAsync({ ffmpeg: true });
-    if (!isInstalled) {
-      console.log('yt-dlp or ffmpeg not found, downloading ffmpeg...');
-      await ytdlp.downloadFFmpeg();
-    }
 
     // Use absolute paths and ensure directory exists
     const absoluteOutputDir = path.resolve(outputDir);
