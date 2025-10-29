@@ -4,6 +4,8 @@ import {
   affirmQuestions,
   db,
   detransCache,
+  detransChatCache,
+  detransChatQuestions,
   detransQuestions,
 } from "@/db";
 import { createHash } from "crypto";
@@ -19,14 +21,18 @@ import type {
 import { getLogger } from "@/app/lib/logger";
 
 export class PostgresCache implements Cache {
-  constructor(private mode: "detrans" | "affirm") {}
+  constructor(private mode: "detrans" | "affirm" | "detrans_chat") {}
 
   private getQuestionsTable() {
-    return this.mode === "detrans" ? detransQuestions : affirmQuestions;
+    if (this.mode === "detrans") return detransQuestions;
+    if (this.mode === "affirm") return affirmQuestions;
+    return detransChatQuestions;
   }
 
   private getCacheTable() {
-    return this.mode === "detrans" ? detransCache : affirmCache;
+    if (this.mode === "detrans") return detransCache;
+    if (this.mode === "affirm") return affirmCache;
+    return detransChatCache;
   }
 
   private hashKey(key: string): string {
@@ -126,19 +132,19 @@ function makeLlmCacheKey(
 }
 interface ChatParamsNonStreaming extends LLMChatParamsNonStreaming {
   originalQuestion: string;
-  mode?: "detrans" | "affirm";
+  mode?: "detrans" | "affirm" | "detrans_chat";
 }
 
 interface ChatParamsStreaming extends LLMChatParamsStreaming {
   originalQuestion: string;
-  mode?: "detrans" | "affirm";
+  mode?: "detrans" | "affirm" | "detrans_chat";
 }
 
 export class CachedLLM implements ToolCallLLM {
   constructor(
     private llm: LLM & ToolCallLLM,
     private cache: Cache,
-    private mode: "detrans" | "affirm",
+    private mode: "detrans" | "affirm" | "detrans_chat",
   ) {}
 
   // Add the missing ToolCallLLM properties

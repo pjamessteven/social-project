@@ -48,6 +48,43 @@ export const affirmCache = pgTable('affirm_cache', {
   createdIdx: index('idx_affirm_cache_created').on(table.createdAt),
 }));
 
+// Detrans chat tables
+export const detransChatQuestions = pgTable('detrans_chat_questions', {
+  name: varchar('name', { length: 255 }).primaryKey(),
+  viewsCount: integer('views_count').default(0).notNull(),
+  mostRecentlyAsked: timestamp('most_recently_asked').defaultNow().notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  finalResponse: text('final_response'),
+}, (table) => ({
+  nameIdx: index('idx_detrans_chat_questions_name').on(table.name),
+}));
+
+export const detransChatCache = pgTable('detrans_chat_cache', {
+  promptHash: varchar('prompt_hash', { length: 64 }).primaryKey(),
+  promptText: text('prompt_text').notNull(),
+  resultText: text('result_text').notNull(),
+  questionName: varchar('question_name', { length: 255 }).references(() => detransChatQuestions.name),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  lastAccessed: timestamp('last_accessed').defaultNow().notNull(),
+}, (table) => ({
+  questionIdx: index('idx_detrans_chat_cache_question').on(table.questionName),
+  createdIdx: index('idx_detrans_chat_cache_created').on(table.createdAt),
+}));
+
+// Chat conversations table
+export const chatConversations = pgTable('chat_conversations', {
+  uuid: varchar('uuid', { length: 36 }).primaryKey().default(sql`gen_random_uuid()`),
+  mode: varchar('mode', { length: 20 }).notNull(), // 'detrans_chat', 'detrans', 'affirm'
+  title: varchar('title', { length: 500 }),
+  messages: text('messages').notNull(), // JSON string of the conversation messages
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+}, (table) => ({
+  modeIdx: index('idx_chat_conversations_mode').on(table.mode),
+  createdIdx: index('idx_chat_conversations_created').on(table.createdAt),
+  updatedIdx: index('idx_chat_conversations_updated').on(table.updatedAt),
+}));
+
 
 // Tags table
 export const detransTags = pgTable('detrans_tags', {
@@ -230,11 +267,21 @@ export const detransCommentSchema = z.object({
   linkId: z.string().max(50).nullable(),
 });
 
+export const chatConversationSchema = z.object({
+  uuid: z.string(),
+  mode: z.string().max(20),
+  title: z.string().max(500).nullable(),
+  messages: z.string(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+
 export type Question = z.infer<typeof questionSchema>;
 export type Cache = z.infer<typeof cacheSchema>;
 export type DetransUserEvent = z.infer<typeof detransUserEventSchema>;
 export type DetransUser = z.infer<typeof detransUserSchema>;
 export type DetransComment = z.infer<typeof detransCommentSchema>;
+export type ChatConversation = z.infer<typeof chatConversationSchema>;
 export type Tag = z.infer<typeof tagSchema>;
 export type TagType = z.infer<typeof tagTypeSchema>;
 // Videos table
