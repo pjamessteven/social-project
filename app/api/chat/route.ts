@@ -116,3 +116,53 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+async function saveConversation(
+  uuid: string,
+  messages: UIMessage[],
+  finalAssistantMessage: string,
+): Promise<void> {
+  try {
+    // Create the complete conversation including the final assistant message
+    const completeMessages = [
+      ...messages,
+      {
+        id: uuidv4(),
+        role: "assistant" as const,
+        parts: [{ type: "text" as const, text: finalAssistantMessage }],
+        createdAt: new Date(),
+      },
+    ];
+
+    // Generate a title from the first user message (truncated)
+    const firstUserMessage = messages.find(m => m.role === "user");
+    const title = firstUserMessage?.parts[0]?.type === "text" 
+      ? firstUserMessage.parts[0].text.substring(0, 100) + (firstUserMessage.parts[0].text.length > 100 ? "..." : "")
+      : "Chat conversation";
+
+    // Save or update the conversation in the database
+    await db
+      .insert(chatConversations)
+      .values({
+        uuid,
+        mode: "detrans_chat",
+        title,
+        messages: JSON.stringify(completeMessages),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      })
+      .onConflictDoUpdate({
+        target: chatConversations.uuid,
+        set: {
+          title,
+          messages: JSON.stringify(completeMessages),
+          updatedAt: new Date(),
+        },
+      });
+
+    console.log(`Saved conversation ${uuid} with ${completeMessages.length} messages`);
+  } catch (error) {
+    console.error("Failed to save conversation:", error);
+    // Don't throw - conversation saving failures shouldn't break the chat
+  }
+}
