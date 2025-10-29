@@ -58,10 +58,17 @@ async function downloadVideoAudio(videoUrl: string, outputPath: string): Promise
   const ytdlp = new YtDlp();
   
   try {
-    // Check if yt-dlp is installed - the library should auto-download it
-    const isInstalled = await ytdlp.checkInstallationAsync();
+    // Check if both yt-dlp and ffmpeg are installed
+    const isInstalled = await ytdlp.checkInstallationAsync({ ffmpeg: true });
     if (!isInstalled) {
-      console.log('yt-dlp not found, the library should auto-download it on first use...');
+      console.log('yt-dlp or ffmpeg not found, downloading ffmpeg...');
+      await ytdlp.downloadFFmpeg();
+      
+      // Check again after downloading
+      const isNowInstalled = await ytdlp.checkInstallationAsync({ ffmpeg: true });
+      if (!isNowInstalled) {
+        throw new Error('Failed to install required dependencies (yt-dlp or ffmpeg)');
+      }
     }
 
     // Download audio only in MP3 format
