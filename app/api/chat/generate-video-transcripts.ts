@@ -65,21 +65,51 @@ async function downloadVideoAudio(videoUrl: string, outputPath: string): Promise
       await ytdlp.downloadFFmpeg();
     }
 
-    // Download audio only in MP3 format
-    const result = await ytdlp.downloadAsync(videoUrl, {
-      format: {
+    // Try multiple format options as fallback
+    const formatOptions = [
+      {
         filter: "audioonly",
         type: "mp3",
         quality: 10
       },
-      output: outputPath,
-      onProgress: (progress) => {
-        console.log(`Download progress: ${progress.percentage}%`);
-      }
-    });
+      {
+        filter: "audioonly",
+        type: "m4a",
+        quality: 10
+      },
+      "bestaudio[ext=m4a]",
+      "bestaudio"
+    ];
 
-    console.log(`Downloaded audio for: ${videoUrl}`);
-    return result;
+    let result = null;
+    let lastError = null;
+
+    for (const format of formatOptions) {
+      try {
+        console.log(`Trying format: ${JSON.stringify(format)} for ${videoUrl}`);
+        
+        result = await ytdlp.downloadAsync(videoUrl, {
+          format: format,
+          output: outputPath,
+          onProgress: (progress) => {
+            console.log(`Download progress: ${progress.percentage}%`);
+          }
+        });
+
+        if (result) {
+          console.log(`Successfully downloaded audio for: ${videoUrl} with format: ${JSON.stringify(format)}`);
+          return result;
+        }
+      } catch (error) {
+        console.warn(`Format ${JSON.stringify(format)} failed for ${videoUrl}:`, error);
+        lastError = error;
+        continue;
+      }
+    }
+
+    // If all formats failed
+    throw new Error(`All download formats failed for ${videoUrl}. Last error: ${lastError}`);
+    
   } catch (error) {
     console.error(`Failed to download audio for ${videoUrl}:`, error);
     throw error;
@@ -234,10 +264,11 @@ async function generateDatasource() {
       
       // Find the actual downloaded file (ytdlp-nodejs adds extension)
       const files = await fs.readdir(tempDir);
-      const downloadedFile = files.find(f => f.startsWith(video.id.toString()) && f.endsWith('.mp3'));
+      const downloadedFile = files.find(f => f.startsWith(video.id.toString()) && (f.endsWith('.mp3') || f.endsWith('.m4a') || f.endsWith('.webm') || f.endsWith('.opus')));
       
       if (!downloadedFile) {
-        throw new Error(`Downloaded audio file not found for video ${video.id}`);
+        console.error(`Available files in temp directory:`, files);
+        throw new Error(`Downloaded audio file not found for video ${video.id}. Expected file starting with ${video.id}`);
       }
 
       const fullAudioPath = path.join(tempDir, downloadedFile);
