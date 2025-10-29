@@ -156,12 +156,12 @@ export class CachedLLM implements ToolCallLLM {
     return this.llm.metadata;
   }
 
-  // Implement the missing methods
-  async exec(params: any) {
+  // Implement the missing methods with proper overloads
+  async exec(params: any): Promise<any> {
     return (this.llm as ToolCallLLM).exec(params);
   }
 
-  async streamExec(params: any) {
+  async streamExec(params: any): Promise<any> {
     return (this.llm as ToolCallLLM).streamExec(params);
   }
 
