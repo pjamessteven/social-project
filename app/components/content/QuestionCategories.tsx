@@ -25,14 +25,19 @@ export async function QuestionCategories({
 
   return (
     <>
+    <div>
       {questions.map((category, categoryIndex) => (
         <div key={categoryIndex} className="mb-8">
-          <h3 className="text-primary mb-2 text-2xl font-bold">
-            {category.title}
-          </h3>
-          <p className="text-muted-foreground mb-6 text-base">
-            {category.description}
-          </p>
+          {category.title && (
+            <>
+              <h3 className="text-primary mb-2 text-2xl font-bold">
+                {category.title}
+              </h3>
+              <p className="text-muted-foreground mb-6 text-base">
+                {category.description}
+              </p>
+            </>
+          )}
           <div className="grid gap-1">
             {category.questions.map(
               (question: string, questionIndex: number) => (
@@ -68,6 +73,7 @@ export async function QuestionCategories({
             <p className="text-muted-foreground mb-6 text-base">
               {category.description}
             </p>
+            
             <div className="grid gap-1">
               {category.questions.map(
                 (question: string, questionIndex: number) => (
@@ -92,6 +98,7 @@ export async function QuestionCategories({
             </div>
           </div>
         ))}
+        </div>
     </>
   );
 }

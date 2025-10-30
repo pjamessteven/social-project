@@ -7,6 +7,7 @@ import UserCard from "../components/UserCard";
 import UsersFilters from "../components/UsersFilters";
 import UsersPagination from "../components/UsersPagination";
 import { isBot } from "../lib/isBot";
+import Link from "next/link";
 
 interface User {
   username: string;

@@ -27,10 +27,10 @@ export default function UserCard({ user }: UserCardProps) {
       <div className="-mx-4 border-t pt-4 sm:hidden" />
       <Link
         href={`/stories/${encodeURIComponent(user.username)}`}
-        className="block transition-colors sm:rounded-lg sm:border sm:p-6 sm:pt-6 sm:hover:bg-gray-50 sm:dark:hover:bg-gray-800/80"
+        className="block  no-underline transition-colors sm:rounded-lg sm:border sm:p-6 sm:pt-6 sm:hover:bg-gray-50 sm:dark:hover:bg-gray-800/80"
       >
         <div className="flex w-full grow flex-row items-center justify-between">
-          <div className="mb-2 flex grow flex-col items-start justify-between sm:flex-row">
+          <div className="mb-2 flex grow flex-col items-start justify-between sm:flex-row no-wrap">
             <h3 className="text-lg font-semibold">
               /u/{user.username}
             </h3>

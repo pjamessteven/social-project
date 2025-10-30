@@ -124,7 +124,7 @@ export default function Component({ events }) {
 
   const thinkingStatus = useMemo(() => {
     if (isError) {
-      return "Deep analysis error";
+      return "Deep research error";
     } else if (retrieve?.state === "inprogress") {
       return "Retrieving detrans experiences...";
     } else if (
@@ -137,7 +137,7 @@ export default function Component({ events }) {
     } else if (!allAnswersComplete || isRunningAnalysis) {
       return "Finding answers to meta questions";
     } else {
-      return "Deep analysis completed";
+      return "Deep research completed";
     }
   }, [retrieve?.state, analyze?.state, answers, isRunningAnalysis]);
 

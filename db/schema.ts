@@ -48,28 +48,7 @@ export const affirmCache = pgTable('affirm_cache', {
   createdIdx: index('idx_affirm_cache_created').on(table.createdAt),
 }));
 
-// Detrans chat tables
-export const detransChatQuestions = pgTable('detrans_chat_questions', {
-  name: varchar('name', { length: 255 }).primaryKey(),
-  viewsCount: integer('views_count').default(0).notNull(),
-  mostRecentlyAsked: timestamp('most_recently_asked').defaultNow().notNull(),
-  createdAt: timestamp('created_at').defaultNow().notNull(),
-  finalResponse: text('final_response'),
-}, (table) => ({
-  nameIdx: index('idx_detrans_chat_questions_name').on(table.name),
-}));
 
-export const detransChatCache = pgTable('detrans_chat_cache', {
-  promptHash: varchar('prompt_hash', { length: 64 }).primaryKey(),
-  promptText: text('prompt_text').notNull(),
-  resultText: text('result_text').notNull(),
-  questionName: varchar('question_name', { length: 255 }).references(() => detransChatQuestions.name),
-  createdAt: timestamp('created_at').defaultNow().notNull(),
-  lastAccessed: timestamp('last_accessed').defaultNow().notNull(),
-}, (table) => ({
-  questionIdx: index('idx_detrans_chat_cache_question').on(table.questionName),
-  createdIdx: index('idx_detrans_chat_cache_created').on(table.createdAt),
-}));
 
 // Chat conversations table
 export const chatConversations = pgTable('chat_conversations', {

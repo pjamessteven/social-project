@@ -4,8 +4,6 @@ import {
   affirmQuestions,
   db,
   detransCache,
-  detransChatCache,
-  detransChatQuestions,
   detransQuestions,
 } from "@/db";
 import { createHash } from "crypto";
@@ -16,23 +14,18 @@ import type {
   LLM,
   LLMChatParamsNonStreaming,
   LLMChatParamsStreaming,
-  ToolCallLLM,
 } from "llamaindex";
 import { getLogger } from "@/app/lib/logger";
 
 export class PostgresCache implements Cache {
-  constructor(private mode: "detrans" | "affirm" | "detrans_chat") {}
+  constructor(private mode: "detrans" | "affirm") {}
 
   private getQuestionsTable() {
-    if (this.mode === "detrans") return detransQuestions;
-    if (this.mode === "affirm") return affirmQuestions;
-    return detransChatQuestions;
+    return this.mode === "detrans" ? detransQuestions : affirmQuestions;
   }
 
   private getCacheTable() {
-    if (this.mode === "detrans") return detransCache;
-    if (this.mode === "affirm") return affirmCache;
-    return detransChatCache;
+    return this.mode === "detrans" ? detransCache : affirmCache;
   }
 
   private hashKey(key: string): string {
@@ -132,38 +125,20 @@ function makeLlmCacheKey(
 }
 interface ChatParamsNonStreaming extends LLMChatParamsNonStreaming {
   originalQuestion: string;
-  mode?: "detrans" | "affirm" | "detrans_chat";
+  mode?: "detrans" | "affirm";
 }
 
 interface ChatParamsStreaming extends LLMChatParamsStreaming {
   originalQuestion: string;
-  mode?: "detrans" | "affirm" | "detrans_chat";
+  mode?: "detrans" | "affirm";
 }
 
-export class CachedLLM implements ToolCallLLM {
+export class CachedLLM {
   constructor(
-    private llm: LLM & ToolCallLLM,
+    private llm: LLM,
     private cache: Cache,
-    private mode: "detrans" | "affirm" | "detrans_chat",
+    private mode: "detrans" | "affirm",
   ) {}
-
-  // Add the missing ToolCallLLM properties
-  get supportToolCall() {
-    return (this.llm as ToolCallLLM).supportToolCall;
-  }
-
-  get metadata() {
-    return this.llm.metadata;
-  }
-
-  // Implement the missing methods with proper overloads
-  async exec(params: any): Promise<any> {
-    return (this.llm as ToolCallLLM).exec(params);
-  }
-
-  async streamExec(params: any): Promise<any> {
-    return (this.llm as ToolCallLLM).streamExec(params);
-  }
 
   /* ---------- chat ---------- */
   async chat(

@@ -1,19 +1,15 @@
 "use client";
 
-import { ChatMessage } from "@llamaindex/chat-ui";
-import { DynamicEvents } from "./custom/events/dynamic-events";
-import { ComponentDef } from "./custom/events/types";
-
 import { usePart } from "@llamaindex/chat-ui";
+import { Loader2 } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import UserCard from "../../UserCard";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "../accordion";
-import Link from "next/link";
-import UserCard from "../../UserCard";
-import { useEffect, useState, useMemo } from "react";
 
 type EventPart = {
   id?: string | undefined;
@@ -37,19 +33,20 @@ interface User {
   detransitionAge: number | null;
 }
 
-
 async function fetchUserByUsername(username: string): Promise<User | null> {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const response = await fetch(`${baseUrl}/api/users?username=${encodeURIComponent(username)}`);
-    
+    const response = await fetch(
+      `${baseUrl}/api/users?username=${encodeURIComponent(username)}`,
+    );
+
     if (!response.ok) {
       return null;
     }
-    
+
     const data = await response.json();
     const users = data.users || [];
-    
+
     // Should return exactly one user when username is specified
     return users.length > 0 ? users[0] : null;
   } catch (error) {
@@ -68,9 +65,9 @@ export default function StoryQueryEventPart() {
   const results = useMemo(() => {
     if (!eventPart?.data?.result) return [];
     try {
-      return JSON.parse(eventPart.data.result) as { 
-        username: string; 
-        story: string; 
+      return JSON.parse(eventPart.data.result) as {
+        username: string;
+        story: string;
       }[];
     } catch (error) {
       console.error("Error parsing event data:", error);
@@ -87,16 +84,17 @@ export default function StoryQueryEventPart() {
 
     const fetchUsers = async () => {
       setLoading(true);
-      const userPromises = results.map(({ username }) => 
-        fetchUserByUsername(username)
+      const userPromises = results.map(({ username }) =>
+        fetchUserByUsername(username),
       );
-      
+
       const fetchedUsers = await Promise.all(userPromises);
-      const validUsers = fetchedUsers.filter((user): user is User => user !== null);
+      const validUsers = fetchedUsers.filter(
+        (user): user is User => user !== null,
+      );
       setUsers(validUsers);
       setLoading(false);
     };
-    console.log('RESULTS', results)
 
     fetchUsers();
   }, [results]);
@@ -104,21 +102,39 @@ export default function StoryQueryEventPart() {
   if (!eventPart) return null;
 
   return (
-    <Accordion type="single" collapsible className="mt- mt-4 mb-4 w-full">
-      <AccordionItem value="disclaimer" className="overflow-hidden border-none">
+    <Accordion type="single" collapsible className=" w-full">
+      <AccordionItem
+        value="disclaimer"
+        className="text-muted-foreground overflow-hidden border-none"
+      >
         <AccordionTrigger
           indicatorStart
-          className="prose dark:prose-invert py-3 text-base !font-normal italic opacity-60 hover:no-underline"
+          hideIndicator={eventPart.data.title === "Querying user stories"}
+          className="text-muted-foreground pt-0 hover:no-underline"
         >
-          {eventPart.data.title}
+          <div className="flex flex-row items-center">
+            {eventPart.data.title === "Querying user stories" && (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin text-blue-500 dark:text-blue-100" />
+            )}
+            <div className="text-base font-normal italic">
+              {eventPart.data.title === "Queried user stories"
+                ? `Found relevant stories`
+                : "Looking for relevant stories..."}
+            </div>
+          </div>
         </AccordionTrigger>
-        <AccordionContent className="prose dark:prose-invert max-w-full pb-3 text-base">
-                        {JSON.stringify(results)}
+        <AccordionContent className="max-w-full pb-3 flex flex-col">
+          <p className="text-muted-foreground ml-6 pb-3 text-base italic">
+            query: <i>"{eventPart?.data?.query}"</i>
+          </p>
 
           {loading ? (
-            <p>Loading user...</p>
+            <div className="flex flex-row items-center mt-3">
+              <Loader2 className=" mr-2 ml-6 h-4 w-4 animate-spin text-blue-500 dark:text-blue-100" />
+              <div className="text-muted-foreground text-base italic">Loading user profiles...</div>
+            </div>
           ) : (
-            <div className="space-y-4">
+            <div className="text-primary mt-4 space-y-4">
               {users.map((user) => (
                 <UserCard key={user.username} user={user} />
               ))}
@@ -129,4 +145,3 @@ export default function StoryQueryEventPart() {
     </Accordion>
   );
 }
-

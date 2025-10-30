@@ -1,7 +1,7 @@
 export const questionCategories = [
   {
     title: "Featured Questions",
-    description: "The best questions to ask detrans people...",
+    description: "The best questions to ask detrans people.",
     questions: [
       "What does trans mean?",
       "Have trans people always existed?",
@@ -92,8 +92,8 @@ export const questionCategories = [
     description: "Health, procedures, and biological truths",
     questions: [
       "What physiological changes can hormones induce and what are their limits?",
-      "What is vaginal atrophy?",
       "What are the documented health risks of gender-affirming hormone therapy?",
+      "What is vaginal atrophy and what causes it?",
       "How should someone weigh continuing versus discontinuing hormones?",
       "What does vaginoplasty entail and what are typical outcomes?",
       "What does phalloplasty entail and what are typical outcomes?",
@@ -112,8 +112,9 @@ export const questionCategories = [
   },
   {
     title: "Society & Culture",
-    description: "How gender beleif systems affects us all",
+    description: "How gender belief systems affect us all",
     questions: [
+      "What are the links between BDSM and trans identities?",
       "Are there measurable differences in referral rates between males and females?",
       "How is gender dysphoria distinguished from mental illness in diagnostic manuals?",
       "What explanations exist for elevated suicide risk in trans populations?",

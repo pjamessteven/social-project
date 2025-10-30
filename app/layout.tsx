@@ -70,10 +70,10 @@ export default async function RootLayout({
             <Header mode={baseMode} />
             <main
               className={
-                "flex h-full min-h-0 flex-1 flex-row justify-center overflow-x-hidden overflow-y-auto"
+                "flex h-full min-h-0 flex-1 flex-row justify-center overflow-x-hidden  overflow-y-auto"
               }
             >
-              <div className="h-full w-full overflow-x-hidden overflow-x-visible overflow-y-visible p-4 md:w-3xl">
+              <div className="h-full w-full overflow-x-hidden overflow-x-visible  overflow-y-visible p-4 md:w-3xl">
                 {children}
               </div>
             </main>

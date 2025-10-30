@@ -60,7 +60,8 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
 
   // Update deep research state based on current path
   useEffect(() => {
-    setIsDeepResearch(path.includes("/research"));
+  // require user manually selects this mode in order to save costs
+  //  setIsDeepResearch(path.includes("/research"));
   }, [path, setIsDeepResearch]);
 
   // Fetch suggestions when value changes
@@ -103,6 +104,17 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
 
       return () => clearTimeout(timer);
     }
+
+    // add padding to the bottom of the main scroll container to account for chat input height
+    const container = document.querySelector("main");
+    if (!container) return;
+    
+    if (showChatInput) {
+      container.classList.add("pb-24");
+    } else {
+      container.classList.remove("pb-24");
+    }
+
   }, [isDesktop, showChatInput, path]);
 
   // Handle click outside to hide suggestions
@@ -134,9 +146,9 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
       setValue("");
       setShowSuggestions(false);
 
-      if (isDeepResearch) {
+      if (isDeepResearch || path.includes('/compare') || mode === 'affirm') {
         // Deep research mode - redirect to research routes
-        if (mode == "compare") {
+        if (path.includes("compare")) {
           redirect("/compare/research/" + slugify(val));
         } else if (mode == "affirm") {
           redirect("/affirm/research/" + slugify(val));
@@ -226,11 +238,14 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     setValue("");
   };
 
+  const showDeepResearch = !path.includes('/compare') && mode !== 'affirm'
+
   return (
     <div
+    style={{boxShadow:' rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px'}}
       className={cn(
-        "fixed bottom-0 z-50 w-full p-4 shadow-lg backdrop-blur-lg",
-        "supports-[backdrop-filter]:bg-accent/70 dark:supports-[backdrop-filter]:bg-gray-900/80",
+        "fixed bottom-0 z-50 w-full p-4 backdrop-blur-lg border-t border-white dark:border-white/5",
+        "supports-[backdrop-filter]:bg-accent/80 dark:supports-[backdrop-filter]:bg-gray-900/80",
         mode === "affirm" &&
           "bg-gradient-to-r from-[#5BCEFA]/20 via-[#FFFFFF]/20 to-[#F5A9B8]/20 dark:bg-gradient-to-r dark:from-[#5BCEFA]/20 dark:via-[#2D2D2D]/20 dark:to-[#F5A9B8]/20",
       )}
@@ -244,7 +259,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                 boxShadow: "rgba(0, 0, 0, 0.2) 0px 18px 50px -10px",
               }}
               size="lg"
-              className="!placeholder-opacity-100 relative z-20 flex grow rounded-full bg-white pr-32 sm:pr-40 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
+              className="!placeholder-opacity-100 relative border-slate z-20 flex grow rounded-full bg-white pr-32 sm:pr-40 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
               value={value}
               onChange={(event) => setValue(event.target.value)}
               onKeyDown={handleKeyDown}
@@ -253,16 +268,17 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
             />
 
             {/* Deep research toggle button */}
+            {showDeepResearch &&
             <Button
               variant='chatOutline'
               type="button"
               onClick={() => setIsDeepResearch(!isDeepResearch)}
               size={'xs'}
               className={cn(  
-                "absolute top-1/2 right-3 z-30 -translate-y-1/2 rounded-full py-0 px-0 transition-colors",
+                "absolute top-1/2 right-3 z-30 -translate-y-1/2 rounded-full py-0 px-0 transition-colors ",
                 isDeepResearch
-                  ? "bg-blue-100 !text-blue-500 border-blue-200 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-400 dark:hover:bg-blue-800"
-                  : "text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700",
+                  ? "bg-blue-100 !text-blue-400 border-blue-300 dark:border-blue-900 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-400 hover:dark:bg-blue-800"
+                  : "text-gray-500 hover:bg-gray-100 dark:text-gray-400 hover:dark:bg-gray-600 dark:bg-gray-700",
               )}
   
             >
@@ -270,8 +286,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                 <div className="flex flex-row mr-2 "><span className="hidden sm:inline">Deep&nbsp;</span>Research</div>
                 <UserSearch className="h-3 w-3 sm:h-4 sm:w-4" />
               </div>
-            </Button>
-
+            </Button>}
             {/* Clear button */}
             {value.trim() && (
               <button

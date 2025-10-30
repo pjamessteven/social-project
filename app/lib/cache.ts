@@ -1,16 +1,14 @@
 // lib/cache.ts
-import { affirmQuestions, db, detransChatQuestions, detransQuestions } from "@/db";
+import { affirmQuestions, db, detransQuestions } from "@/db";
 import { eq, sql } from "drizzle-orm";
 
 export async function getCachedAnswer(
-  mode: "detrans" | "affirm" | "detrans_chat",
+  mode: "detrans" | "affirm",
   question: string,
 ): Promise<string | undefined> {
   try {
     const questionsTable =
-      mode === "detrans" ? detransQuestions : 
-      mode === "affirm" ? affirmQuestions : 
-      detransChatQuestions;
+      mode === "detrans" ? detransQuestions : affirmQuestions;
 
     const result = await db
       .select({ finalResponse: questionsTable.finalResponse })
@@ -30,15 +28,13 @@ export async function getCachedAnswer(
 }
 
 export async function setCachedAnswer(
-  mode: "detrans" | "affirm" | "detrans_chat",
+  mode: "detrans" | "affirm",
   question: string,
   answer: string,
 ): Promise<void> {
   try {
     const questionsTable =
-      mode === "detrans" ? detransQuestions : 
-      mode === "affirm" ? affirmQuestions : 
-      detransChatQuestions;
+      mode === "detrans" ? detransQuestions : affirmQuestions;
 
     await db
       .insert(questionsTable)
@@ -63,14 +59,12 @@ export async function setCachedAnswer(
 }
 
 export async function incrementQuestionViews(
-  mode: "detrans" | "affirm" | "detrans_chat",
+  mode: "detrans" | "affirm",
   questionName: string,
 ): Promise<void> {
   try {
     const questionsTable =
-      mode === "detrans" ? detransQuestions : 
-      mode === "affirm" ? affirmQuestions : 
-      detransChatQuestions;
+      mode === "detrans" ? detransQuestions : affirmQuestions;
 
     await db.transaction(async (tx) => {
       // Insert or update question
