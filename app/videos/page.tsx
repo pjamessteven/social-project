@@ -29,12 +29,11 @@ export default async function VideosPage() {
       <h1 className="text-3xl font-bold">Transition & Detransition Videos</h1>
 
       <p className="text-muted-foreground">
-        Here's a selection of personal memoirs that have been uploaded to
-        YouTube by detransitioners. There are countless stories like these on
-        the internet, this is just a small subset.
+       This is an archive of personal memoirs that have been uploaded to
+        YouTube by detransitioners. Contribute and make your voice heard by sharing your own story!
       </p>
 
-      <div className="my-8">
+      <div className="my-4">
         <VideoSubmitForm />
       </div>
 
