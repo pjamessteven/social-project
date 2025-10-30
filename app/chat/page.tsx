@@ -1,17 +1,16 @@
 "use client";
 
-import { Loader2 } from "lucide-react";
-import dynamic from "next/dynamic";
-
-const ChatSection = dynamic(() => import("@/app/components/ui/chat/chat-section"), {
-  ssr: false,
-  loading: () => (
-    <div className="flex h-full w-full items-center justify-center">
-      <Loader2 className="text-muted-foreground animate-spin" />
-    </div>
-  ),
-});
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { uuidv4 } from "@/app/lib/utils";
 
 export default function Home() {
-  return <ChatSection conversationId={undefined} />;
+  const router = useRouter();
+
+  useEffect(() => {
+    const newConversationId = uuidv4();
+    router.replace(`/chat/${newConversationId}`);
+  }, [router]);
+
+  return null;
 }
