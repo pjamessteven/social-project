@@ -1,6 +1,6 @@
 "use client";
 import { slugify } from "@/app/lib/utils";
-import { NotebookPen, Send, UserSearch, X } from "lucide-react";
+import { NotebookPen, Send, Square, UserSearch, X } from "lucide-react";
 import Link from "next/link";
 import { redirect, usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -272,6 +272,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               onKeyDown={handleKeyDown}
               onFocus={handleFocus}
               placeholder={placeholder}
+              disabled={isLoading}
             />
 
             {/* Deep research toggle button */}
@@ -336,12 +337,17 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
             )}
           </div>
           <Button
-            type="submit"
+            type={isLoading ? "button" : "submit"}
             size="icon"
             className="h-14 w-14 flex-shrink-0 rounded-full"
-            disabled={!value.trim()}
+            disabled={!isLoading && !value.trim()}
+            onClick={isLoading ? stop : undefined}
           >
-            <Send className="h-6 w-6" />
+            {isLoading ? (
+              <Square className="h-6 w-6" />
+            ) : (
+              <Send className="h-6 w-6" />
+            )}
           </Button>
         </form>
       </div>
