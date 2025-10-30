@@ -1,8 +1,5 @@
+import { ChatHandler } from '@llamaindex/chat-ui'
 import { create } from 'zustand'
-
-interface ChatHandler {
-  sendMessage: (message: { text: string }) => void;
-}
 
 interface ChatState {
   isDeepResearch: boolean
