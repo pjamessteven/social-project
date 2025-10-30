@@ -16,7 +16,7 @@ interface CustomChatInputProps {
 export function CustomChatInput({ host }: CustomChatInputProps) {
   const path = usePathname();
   const router = useRouter();
-  const { chatHandler, isDeepResearch, setIsDeepResearch } = useChatStore();
+  const { chatHandler, chatStatus, isDeepResearch, setIsDeepResearch, setChatStatus } = useChatStore();
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
   const [value, setValue] = useState("");
@@ -66,6 +66,24 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   // require user manually selects this mode in order to save costs
   //  setIsDeepResearch(path.includes("/research"));
   }, [path, setIsDeepResearch]);
+
+  // Sync chat handler status with store
+  useEffect(() => {
+    if (chatHandler) {
+      setChatStatus(chatHandler.status);
+      
+      // Set up a polling mechanism to check status changes
+      const interval = setInterval(() => {
+        if (chatHandler.status !== chatStatus) {
+          setChatStatus(chatHandler.status);
+        }
+      }, 100);
+      
+      return () => clearInterval(interval);
+    } else {
+      setChatStatus(null);
+    }
+  }, [chatHandler, chatStatus, setChatStatus]);
 
   /*
   // Fetch suggestions when value changes
@@ -270,7 +288,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               onKeyDown={handleKeyDown}
               onFocus={handleFocus}
               placeholder={placeholder}
-              disabled={chatHandler?.status === 'streaming'}
+              disabled={chatStatus === 'streaming'}
             />
 
             {/* Deep research toggle button */}
@@ -334,15 +352,14 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               </div>
             )}
           </div>
-          {JSON.stringify(chatHandler?.status)}
           <Button
-            type={chatHandler?.status === 'streaming' ? "button" : "submit"}
+            type={chatStatus === 'streaming' ? "button" : "submit"}
             size="icon"
             className="h-14 w-14 flex-shrink-0 rounded-full"
-            disabled={chatHandler?.status !== 'streaming' && !value.trim()}
-            onClick={chatHandler?.status === 'streaming' && chatHandler.stop ?chatHandler.stop : undefined }
+            disabled={chatStatus !== 'streaming' && !value.trim()}
+            onClick={chatStatus === 'streaming' && chatHandler?.stop ? chatHandler.stop : undefined }
           >
-            {chatHandler?.status === 'streaming' ? (
+            {chatStatus === 'streaming' ? (
               <Square className="h-6 w-6" />
             ) : (
               <Send className="h-6 w-6" />
