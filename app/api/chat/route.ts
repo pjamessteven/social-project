@@ -39,6 +39,27 @@ export async function POST(req: NextRequest) {
     const chatUuid = conversationId || uuidv4();
     console.log(`[CHAT API] Using conversation UUID: ${chatUuid} (provided: ${conversationId})`);
 
+    // Check if conversation exists and is archived (older than 30 minutes)
+    if (conversationId) {
+      const existingConversation = await db
+        .select()
+        .from(chatConversations)
+        .where(eq(chatConversations.uuid, conversationId))
+        .limit(1);
+
+      if (existingConversation[0]) {
+        const thirtyMinutesAgo = Date.now() - (30 * 60 * 1000);
+        const lastUpdated = existingConversation[0].updatedAt.getTime();
+        
+        if (lastUpdated < thirtyMinutesAgo) {
+          return NextResponse.json(
+            { error: "This conversation has been archived and is no longer available for new messages." },
+            { status: 410 }
+          );
+        }
+      }
+    }
+
     const chatHistory: ChatMessage[] = messages.map((message) => ({
       role: message.role as MessageType,
       content: message.parts[0].type === "text" ? message.parts[0].text : "", // mmessage.parts[0]?

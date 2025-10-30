@@ -23,16 +23,33 @@ export default function ChatSection({
   const { setChatHandler } = useChatStore();
   const searchParams = useSearchParams();
   const starterSentRef = useRef(false);
+  const router = useRouter();
+  const [isArchived, setIsArchived] = useState(false);
 
   const handleError = (error: unknown) => {
     if (!(error instanceof Error)) throw error;
     let errorMessage: string;
     try {
-      errorMessage = JSON.parse(error.message).detail;
+      const parsedError = JSON.parse(error.message);
+      errorMessage = parsedError.detail || parsedError.error;
+      
+      // Check if this is an archived conversation error (status 410)
+      if (error.message.includes('"status":410') || error.message.includes('archived')) {
+        setIsArchived(true);
+        return; // Don't show alert for archived conversations
+      }
     } catch (e) {
       errorMessage = error.message;
     }
     alert(errorMessage);
+  };
+
+  const handleStartNewChat = () => {
+    const newConversationId = uuidv4();
+    const currentParams = new URLSearchParams(searchParams.toString());
+    const queryString = currentParams.toString();
+    const newUrl = `/chat/${newConversationId}${queryString ? `?${queryString}` : ''}`;
+    router.replace(newUrl);
   };
 
   const useChatHandler = useChat({
@@ -71,8 +88,10 @@ export default function ChatSection({
         console.error("Error loading conversation:", error);
       }
     };
-    loadConversation();
-  }, [currentConversationId, useChatHandler]);
+    if (conversationId) {
+      loadConversation();
+    }
+  }, [conversationId, useChatHandler]);
 
   // Handle pending chat message from sessionStorage
   useEffect(() => {
@@ -109,7 +128,7 @@ export default function ChatSection({
           className="relative flex min-h-0 flex-1 flex-row justify-center gap-4 !bg-transparent !p-0"
         >
           <ResizablePanelGroup direction="horizontal">
-            <ChatSectionPanel />
+            <ChatSectionPanel isArchived={isArchived} onStartNewChat={handleStartNewChat} />
             <ChatCanvasPanel />
           </ResizablePanelGroup>
         </ChatUI>
@@ -118,7 +137,13 @@ export default function ChatSection({
   );
 }
 
-function ChatSectionPanel() {
+function ChatSectionPanel({ 
+  isArchived, 
+  onStartNewChat 
+}: { 
+  isArchived: boolean; 
+  onStartNewChat: () => void; 
+}) {
   const [componentDefs, setComponentDefs] = useState<ComponentDef[]>([]);
   const [dynamicEventsErrors, setDynamicEventsErrors] = useState<string[]>([]); // contain all errors when rendering dynamic events from componentDir
 
@@ -144,6 +169,29 @@ function ChatSectionPanel() {
   return (
     <ResizablePanel defaultSize={40} minSize={30} className="w-full">
       <div className="flex h-full min-w-0 flex-1 flex-col gap-4">
+        {isArchived && (
+          <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mx-4 mt-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <span className="text-yellow-600 dark:text-yellow-400">📁</span>
+                <div>
+                  <h3 className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
+                    Conversation Archived
+                  </h3>
+                  <p className="text-xs text-yellow-700 dark:text-yellow-300">
+                    This conversation was archived after 30 minutes of inactivity. You can view the messages but cannot send new ones.
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={onStartNewChat}
+                className="px-3 py-1 bg-yellow-600 hover:bg-yellow-700 text-white text-xs rounded font-medium transition-colors"
+              >
+                Start New Chat
+              </button>
+            </div>
+          </div>
+        )}
         <DynamicEventsErrors
           errors={uniqueErrors}
           clearErrors={() => setDynamicEventsErrors([])}
