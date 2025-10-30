@@ -331,11 +331,11 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                       pathname === "/" && "bg-muted",
                     )}
                   >
-                    <Home className="h-4 w-4" />
+                    <Home className="h-6 w-6" />
 
                     <div className="ml-4 flex flex-col items-start">
-                      <div className="text-sm font-medium">Chat Portal</div>
-                      <div className="text-muted-foreground text-xs">
+                      <div className="text-base font-medium">Chat Portal</div>
+                      <div className="text-muted-foreground text-sm">
                         {mode === "detrans"
                           ? "Detrans AI Chat & Starter Questions"
                           : "GenderAffirming AI Chat"}
