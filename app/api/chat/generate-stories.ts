@@ -9,7 +9,7 @@ import {
   VectorStoreIndex,
   SentenceSplitter,
 } from "llamaindex";
-import { initSettings } from "./app/settings";
+import { initSettings } from "../../app/api/chat/app/settings";
 
 async function fetchWithBackoff<T>(
   fn: () => Promise<T>,

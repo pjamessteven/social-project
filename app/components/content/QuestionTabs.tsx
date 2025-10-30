@@ -1,6 +1,6 @@
 "use client";
 
-import { HistoryIcon, List, Star, TrendingUp } from "lucide-react";
+import { HistoryIcon, List, RefreshCw, TrendingUp } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
@@ -57,29 +57,28 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
       onValueChange={handleTabChange}
       className="w-full"
     >
-      <div className="relative sticky top-0 z-10 pb-1">
+      <div className="relative sticky top-0 z-10">
         <div className="bg-[linear-gradient(to_bottom,theme(colors.background)_0px,theme(colors.background)_3rem,transparent_5rem)] pointer-events-none absolute z-20 h-40 w-screen dark:bg-[linear-gradient(to_bottom,black_0px,black_3rem,transparent_5rem)]" />
 
         <TabsList
           id="question-tabs"
-          className="grid-cols- relative z-50 mb-6 grid h-12 grid-cols-4 gap-1 rounded-xl border sm:mb-6"
+          className="grid-cols- relative z-50 mb-4 grid h-12 grid-cols-4 gap-1 rounded-none px-3 sm:px-1 sm:rounded-xl border sm:mb-4  -mx-4 sm:mx-0 "
         >
           <TabsTrigger
             value="featured"
             className="flex-row items-center gap-2 rounded-lg py-2"
           >
-            <Star className="hidden h-4 w-4 sm:block" />
-            <span className="text-sm font-medium">Featured</span>
+            <List className="hidden h-4 w-4 sm:block" />
+
+            <span className="text-sm font-medium">Topics</span>
           </TabsTrigger>
 
           <TabsTrigger
             value="all"
             className="flex-row items-center gap-2 rounded-lg py-2"
           >
-            <List className="hidden h-4 w-4 sm:block" />
-            <span className="text-sm font-medium">
-    Generated
-            </span>
+            <RefreshCw className="hidden h-4 w-4 sm:block" />
+            <span className="text-sm font-medium">Generated</span>
           </TabsTrigger>
 
           <TabsTrigger
@@ -100,7 +99,9 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
         </TabsList>
       </div>
       <TabsContent value="featured">
-        <QuestionCategoriesClient mode={mode} />
+        <div className="-mt-2 sm:mt-0">
+          <QuestionCategoriesClient mode={mode} />
+        </div>
       </TabsContent>
 
       <TabsContent value="all">

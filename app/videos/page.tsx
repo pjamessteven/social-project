@@ -28,7 +28,7 @@ export default async function VideosPage() {
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
       <h1 className="text-3xl font-bold">Transition & Detransition Videos</h1>
 
-      <p className="text-gray-600 dark:text-gray-400">
+      <p className="text-muted-foreground">
         Here's a selection of personal memoirs that have been uploaded to
         YouTube by detransitioners. There are countless stories like these on
         the internet, this is just a small subset.

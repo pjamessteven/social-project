@@ -1,13 +1,12 @@
 import { QdrantVectorStore } from "@llamaindex/qdrant";
 import {
-  SimpleDocumentStore,
-  storageContextFromDefaults,
   VectorStoreIndex,
 } from "llamaindex";
 
 // Module-level cache for indexes
 let storiesIndexCache: VectorStoreIndex | null = null;
 let commentsIndexCache: VectorStoreIndex | null = null;
+let videosIndexCache: VectorStoreIndex | null = null;
 
 export async function getStoriesIndex(params?: any, tags?: string[]) {
   console.log('[STORIES INDEX] Called with params:', params, 'tags:', tags);
@@ -93,5 +92,49 @@ export async function getCommentsIndex(params?: any, tags?: string[]) {
   }
 
   return commentsIndexCache;
+}
+
+
+export async function getVideosIndex(params?: any, tags?: string[]) {
+  console.log('[VIDEOS INDEX] Called with params:', params, 'tags:', tags);
+  
+  if (!videosIndexCache) {
+    console.log('[VIDEOS INDEX] Creating new comments index (first time)');
+    
+    try {
+      const vectorStore = new QdrantVectorStore({
+        url: process.env.QDRANT_URL || "http://localhost:6333",
+        collectionName: "detrans_video_transcripts",
+      });
+
+      console.log('[VIDEOS INDEX] Vector store created successfully, building index...');
+      console.log('[VIDEOS INDEX] Qdrant URL:', process.env.QDRANT_URL || "http://localhost:6333");
+      console.log('[VIDEOS INDEX] Collection name: detrans_video_transcripts');
+      
+      videosIndexCache = await VectorStoreIndex.fromVectorStore(vectorStore);
+      console.log('[VIDEOS INDEX] Index created:', !!commentsIndexCache);
+      console.log('[VIDEOS INDEX] Index cached for future requests');
+      
+      // Test the index with a simple query
+      try {
+        const queryEngine = videosIndexCache.asQueryEngine();
+        if (queryEngine) {
+          //const testQuery = await queryEngine.query("test");
+         // console.log('[COMMENTS INDEX] Test query successful, response length:', testQuery.response?.length || 0);
+        } else {
+          console.warn('[VIDEOS INDEX] Query engine is undefined, index may be empty');
+        }
+      } catch (testError) {
+        console.error('[VIDEOS INDEX] Test query failed:', testError);
+      }
+    } catch (error) {
+      console.error('[VIDEOS INDEX] Failed to create index:', error);
+      throw error;
+    }
+  } else {
+    console.log('[VIDEOS INDEX] Using cached comments index');
+  }
+
+  return videosIndexCache;
 }
 

@@ -90,16 +90,16 @@ const VideoComponent = memo(function VideoComponent({ video, isFirst }: VideoCom
   const videoId = extractYouTubeVideoId(video.url);
 
   return (
-    <div className="not-prose mb-6 min-w-lg rounded-lg border">
+    <div className="not-prose mb-6  rounded-lg border">
       {videoId ? (
         <YouTube 
           videoId={videoId}
           opts={{
-            height: '390',
-            width: '640',
+            height: '270',
+            width: '480',
             playerVars: {
-              // https://developers.google.com/youtube/player_parameters
               autoplay: isFirst ? 1 : 0,
+              mute: isFirst ? 1 : 0, 
               start: Math.floor(video.startTime),
             },
           }}

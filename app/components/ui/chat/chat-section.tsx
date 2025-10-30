@@ -36,29 +36,16 @@ export default function ChatSection({ conversationId }: { conversationId?: strin
   };
 
   const useChatHandler = useChat({
+    transport: new DefaultChatTransport({
     api: "/api/chat",
+    body: {
+conversationId: currentConversationId || conversationId
+    },
+    }),
     onError: handleError,
     experimental_throttle: 100,
-    fetch: async (url, options) => {
-      const body = options?.body ? JSON.parse(options.body as string) : {};
-      // Always include the current conversation ID if we have one
-      const activeConversationId = currentConversationId || conversationId;
-      if (activeConversationId) {
-        body.conversationId = activeConversationId;
-      }
-      
-      console.log(`[CHAT] Sending request with conversationId: ${activeConversationId}, body:`, body);
-      
-      return fetch(url, {
-        ...options,
-        headers: {
-          'Content-Type': 'application/json',
-          ...options?.headers,
-        },
-        body: JSON.stringify(body),
-      });
-    },
-    onFinish: (message, { response }) => {
+
+    onFinish: ({ response }) => {
       // Extract conversation ID from response headers
       const conversationIdFromHeader = response?.headers.get('X-Conversation-Id');
       if (conversationIdFromHeader && conversationIdFromHeader !== currentConversationId) {

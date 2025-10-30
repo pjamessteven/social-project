@@ -1,18 +1,27 @@
 "use client";
 
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useState } from "react";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./ui/accordion";
+import { Alert, AlertDescription } from "./ui/alert";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 
 export default function VideoSubmitForm() {
-  const [url, setUrl] = useState('');
-  const [sex, setSex] = useState<'m' | 'f'>('f');
+  const [url, setUrl] = useState("");
+  const [sex, setSex] = useState<"m" | "f" | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [message, setMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,10 +29,10 @@ export default function VideoSubmitForm() {
     setMessage(null);
 
     try {
-      const response = await fetch('/api/videos/submit', {
-        method: 'POST',
+      const response = await fetch("/api/videos/submit", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ url, sex }),
       });
@@ -31,66 +40,83 @@ export default function VideoSubmitForm() {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage({ type: 'success', text: 'Video submitted successfully! It will be reviewed before appearing on the site.' });
-        setUrl('');
-        setSex('f');
+        setMessage({
+          type: "success",
+          text: "Video submitted successfully! It will be reviewed before appearing on the site.",
+        });
+        setUrl("");
+        setSex("f");
       } else {
-        setMessage({ type: 'error', text: data.error || 'Failed to submit video' });
+        setMessage({
+          type: "error",
+          text: data.error || "Failed to submit video",
+        });
       }
     } catch (error) {
-      setMessage({ type: 'error', text: 'Network error. Please try again.' });
+      setMessage({ type: "error", text: "Network error. Please try again." });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <Card className="w-full max-w-md">
-      <CardHeader>
-        <CardTitle>Submit a Video</CardTitle>
-        <CardDescription>
-          Share a YouTube video about transition or detransition experiences
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="url">YouTube URL</Label>
-            <Input
-              id="url"
-              type="url"
-              placeholder="https://www.youtube.com/watch?v=..."
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="space-y-3">
-            <Label>Author's Sex</Label>
-            <RadioGroup value={sex} onValueChange={(value) => setSex(value as 'm' | 'f')}>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="f" id="female" />
-                <Label htmlFor="female">Female</Label>
+    <>
+      <Accordion type="single" collapsible className="mt- mt-8 mb-8 pt-0 w-full">
+        <AccordionItem
+          value="disclaimer"
+          className="overflow-hidden rounded-xl border pt-0 mt-0 p-3 bg-secondary"
+        >
+          <AccordionTrigger className="w-full text-base !font-normal  hover:no-underline py-0 -mt-8  -mb-3 pt-0">
+            <div className="flex flex-col text-sm">
+              <div>Submit Video</div>
+              <div className="text-muted-foreground mt-1">
+                Share a YouTube video about transition or detransition
+                experiences
               </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="m" id="male" />
-                <Label htmlFor="male">Male</Label>
-              </div>
-            </RadioGroup>
-          </div>
+            </div>
+          </AccordionTrigger>
+          <AccordionContent className="prose dark:prose-invert max-w-full text-base text-muted-foreground">
+            <div className="space-y-3">
+              <p className="mt-6 pt-0 text-sm">
+                By submitting your story it will show on this page and in
+                relevant chats. <b>detrans.ai</b> uses speech-to-text to surface
+                relevant videos when people ask questions. All submissions are moderated, it might take a few days before it's visible. 
+              </p>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="url" className="text-sm">YouTube URL</Label>
+                  <Input
+                    id="url"
+                    type="url"
+                    placeholder="https://www.youtube.com/watch?v=..."
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
+                    required
+                  />
+                </div>
 
-          {message && (
-            <Alert variant={message.type === 'error' ? 'destructive' : 'default'}>
-              <AlertDescription>{message.text}</AlertDescription>
-            </Alert>
-          )}
+                {message && (
+                  <Alert
+                    variant={
+                      message.type === "error" ? "destructive" : "default"
+                    }
+                  >
+                    <AlertDescription>{message.text}</AlertDescription>
+                  </Alert>
+                )}
 
-          <Button type="submit" disabled={isSubmitting} className="w-full">
-            {isSubmitting ? 'Submitting...' : 'Submit Video'}
-          </Button>
-        </form>
-      </CardContent>
-    </Card>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full"
+                >
+                  {isSubmitting ? "Submitting..." : "Submit Video"}
+                </Button>
+              </form>
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </>
   );
 }

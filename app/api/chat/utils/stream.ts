@@ -1,5 +1,7 @@
 import {
   agentStreamEvent,
+  toolCallsEvent,
+  toolResultsEvent,
   type WorkflowEvent,
   type WorkflowEventData,
 } from "@llamaindex/workflow";
@@ -96,6 +98,49 @@ export function toDataStream(
             writer.write({
               type: "data-annotation",
               data: event.data,
+            });
+          }
+        } else {
+          // console.log('EEVENT" NON AGENTSTREAMEVENT', JSON.stringify(event))
+        }
+
+        if (toolCallsEvent.include(event)) {
+          for (const toolCall of event.data.toolCalls) {
+            writer.write({
+              type: toolCall.toolName === 'queryVideos' ? 'data-video-query-event' : toolCall.toolName === 'queryStories' ? 'data-story-query-event' : 'data-comment-query-event',
+              id: toolCall.toolId,
+              data: {
+                title:
+                  toolCall.toolName === "queryVideos"
+                    ? "Querying videos..."
+                    : toolCall.toolName === 'queryStories' ? "Querying user stories..." : "Querying user comments...",
+                query: toolCall.toolKwargs.query,
+              },
+            });
+          }
+        }
+        if (toolResultsEvent.include(event)) {
+          if (textId) {
+            writer.write({
+              type: "text-end",
+              id: textId,
+            });
+            textId = null;
+          }
+          for (const toolResult of event.data.results) {
+
+            writer.write({
+              type: toolResult.toolName === 'queryVideos' ? 'data-video-query-event' : toolResult.toolName === 'queryStories' ? 'data-story-query-event' : 'data-comment-query-event',
+              id: toolResult.toolId,
+              data: {
+                title:
+                  toolResult.toolName === "queryVideos"
+                    ? "Queried user videos" 
+                    : toolResult.toolName === "queryStories" ?  "Queried user stories" : "Queried user comments",
+                query: toolResult.toolKwargs.query,
+                result: toolResult.raw,
+                status: toolResult.toolOutput.isError ? "error" : "success",
+              },
             });
           }
         }

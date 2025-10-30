@@ -1,7 +1,8 @@
 "use client";
 
+import { cn } from "@/app/lib/utils";
 import { ChatMessage, ChatMessages, useChatUI } from "@llamaindex/chat-ui";
-import { ChatMessageAvatar } from "./chat-avatar";
+import { useEffect, useRef } from "react";
 import { ChatMessageContent } from "./chat-message-content";
 import { ChatStarter } from "./chat-starter";
 import { ComponentDef } from "./custom/events/types";
@@ -15,16 +16,39 @@ export default function CustomChatMessages({
 }) {
   const { messages } = useChatUI();
 
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  // Scroll to bottom every time messages update
+  useEffect(() => {
+    const container = document.querySelector("main");
+    if (!container) return;
+
+    const isAtBottom =
+      Math.abs(
+        container.scrollHeight - container.scrollTop - container.clientHeight,
+      ) < 50; // within 50px of bottom
+
+    if (isAtBottom) {
+      // only scroll if user was already at bottom
+      container.scrollTo({
+        top: container.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [messages]);
+
   return (
-    <ChatMessages>
-      <ChatMessages.List>
+    <ChatMessages className="!bg-transparent !p-0">
+      <ChatMessages.List className="!overflow-visible pb-28">
         {messages.map((message, index) => (
           <ChatMessage
             key={index}
             message={message}
             isLast={index === messages.length - 1}
+            className={cn(
+              "dark:prose-invert prose max-w-none",
+              message.role == "user" && "user-message mr-12 sm:mr-0",
+            )}
           >
-            <ChatMessageAvatar />
             <ChatMessageContent
               componentDefs={componentDefs}
               appendError={appendError}
@@ -32,6 +56,8 @@ export default function CustomChatMessages({
             <ChatMessage.Actions />
           </ChatMessage>
         ))}
+        {/* dummy div for scroll anchor */}
+        <div ref={messagesEndRef} />
         <ChatMessages.Empty
           heading="Hello there!"
           subheading="I'm here to help you with your questions."
