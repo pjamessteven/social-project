@@ -42,62 +42,55 @@ export default function CustomChatMessages({
     <ChatMessages className="!bg-transparent !p-0">
       <ChatMessages.List className="!overflow-visible pb-28">
         {messages.map((message, index) => {
-                    const isLast = index === messages.length - 1;
+          const isLast = index === messages.length - 1;
 
-         return <>
-            <ChatMessage
-              key={index}
-              message={message}
-              isLast={index === messages.length - 1}
-              className={cn(
-                "dark:prose-invert prose max-w-none",
-                message.role == "user" && "user-message mr-12 sm:mr-0",
-              )}
-            >
-              <ChatMessageContent
-                componentDefs={componentDefs}
-                appendError={appendError}
-              />
-              <ChatMessage.Actions />
-            </ChatMessage>
+          return (
+            <div key={index}>
+              <ChatMessage
+                message={message}
+                isLast={index === messages.length - 1}
+                className={cn(
+                  "dark:prose-invert prose max-w-none",
+                  message.role == "user" && "user-message mr-12 sm:mr-0",
+                )}
+              >
+                <ChatMessageContent
+                  componentDefs={componentDefs}
+                  appendError={appendError}
+                />
+                <ChatMessage.Actions />
+              </ChatMessage>
               {isLast && (
                 <>
-            <Link
-              key={index}
-              href={"/"}
-              className="mt-16 mb-4 ml-3 cursor-pointer font-semibold hover:underline"
-            >
-              <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base opacity-90 transition-colors sm:text-base">
-                <div className="mr-2 whitespace-nowrap">{"<-"}</div>
-                <div className="hover:underline">{"Back to Portal"}</div>
-              </div>
-            </Link>
-            <Link
-              key={index}
-              href={"/chat"}
-              className="mt-16 mb-4 ml-3 cursor-pointer font-semibold hover:underline"
-            >
-              <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base opacity-90 transition-colors sm:text-base">
-                <div className="mr-2 whitespace-nowrap">{"->"}</div>
-                <div className="hover:underline">{"New Conversation"}</div>
-              </div>
-            </Link>
+                  <Link
+                    href={"/"}
+                    className="mt-16 mb-4 ml-3 cursor-pointer font-semibold hover:underline"
+                  >
+                    <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base opacity-90 transition-colors sm:text-base">
+                      <div className="mr-2 whitespace-nowrap">{"<-"}</div>
+                      <div className="hover:underline">{"Back to Portal"}</div>
+                    </div>
+                  </Link>
+                  <Link
+                    href={"/chat"}
+                    className="mt-16 mb-4 ml-3 cursor-pointer font-semibold hover:underline"
+                  >
+                    <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base opacity-90 transition-colors sm:text-base">
+                      <div className="mr-2 whitespace-nowrap">{"->"}</div>
+                      <div className="hover:underline">{"New Conversation"}</div>
+                    </div>
+                  </Link>
 
-            {true && (
-              <div className="mt-4 mr-16 ml-4 sm:mx-0">
-                <DonationCard mode={"detrans"} />
-              </div>
-            )}
-            </>
-          )}
-        )
-
-        }
-          
-
-
-        
-
+                  {true && (
+                    <div className="mt-4 mr-16 ml-4 sm:mx-0">
+                      <DonationCard mode={"detrans"} />
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          );
+        })}
         {/* dummy div for scroll anchor */}
         <div ref={messagesEndRef} />
         <ChatMessages.Empty
