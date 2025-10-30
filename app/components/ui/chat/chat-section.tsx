@@ -3,26 +3,26 @@
 import { useChat } from "@ai-sdk/react";
 import { ChatSection as ChatUI } from "@llamaindex/chat-ui";
 import { DefaultChatTransport } from "ai";
-import { useEffect, useMemo, useState, useRef } from "react";
-import { useSearchParams } from "next/navigation";
-import { getConfig } from "../lib/utils";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ResizablePanel, ResizablePanelGroup } from "../resizable";
 import { ChatCanvasPanel } from "./canvas/panel";
 
-
+import { deslugify, uuidv4 } from "@/app/lib/utils";
+import { useChatStore } from "@/stores/chat-store";
 import CustomChatMessages from "./chat-messages";
 import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
 import { fetchComponentDefinitions } from "./custom/events/loader";
 import { ComponentDef } from "./custom/events/types";
-import { useChatStore } from "@/stores/chat-store";
-import { deslugify } from "@/app/lib/utils";
 
-export default function ChatSection({ conversationId }: { conversationId?: string }) {
-  const deployment = getConfig("DEPLOYMENT") || "";
+export default function ChatSection({
+  conversationId,
+}: {
+  conversationId?: string;
+}) {
   const { setChatHandler } = useChatStore();
   const searchParams = useSearchParams();
   const starterSentRef = useRef(false);
-  const [currentConversationId, setCurrentConversationId] = useState<string | undefined>(conversationId);
 
   const handleError = (error: unknown) => {
     if (!(error instanceof Error)) throw error;
@@ -37,23 +37,16 @@ export default function ChatSection({ conversationId }: { conversationId?: strin
 
   const useChatHandler = useChat({
     transport: new DefaultChatTransport({
-    api: "/api/chat",
-    body: {
-conversationId: currentConversationId || conversationId
-    },
+      api: "/api/chat",
+      body: {
+        conversationId,
+      },
     }),
     onError: handleError,
     experimental_throttle: 100,
-
-    onFinish: ({ response }) => {
-      // Extract conversation ID from response headers
-      const conversationIdFromHeader = response?.headers.get('X-Conversation-Id');
-      if (conversationIdFromHeader && conversationIdFromHeader !== currentConversationId) {
-        console.log(`[CHAT] Updating conversation ID from ${currentConversationId} to ${conversationIdFromHeader}`);
-        setCurrentConversationId(conversationIdFromHeader);
-      }
-    },
   });
+
+  //  const { requestData, sendMessage } = useChatUI(); REQUESTDATA? headerss??
 
   const handler = useChatHandler;
 
@@ -64,25 +57,22 @@ conversationId: currentConversationId || conversationId
 
   // Load existing conversation if conversationId is provided
   useEffect(() => {
-    if (conversationId && useChatHandler.messages.length === 0) {
-      setCurrentConversationId(conversationId);
-      const loadConversation = async () => {
-        try {
-          const response = await fetch(`/api/chat/${conversationId}`);
-          if (response.ok) {
-            const data = await response.json();
-            // Set the messages directly using the setMessages function
-            useChatHandler.setMessages(data.messages);
-          } else {
-            console.error("Failed to load conversation:", response.statusText);
-          }
-        } catch (error) {
-          console.error("Error loading conversation:", error);
+    const loadConversation = async () => {
+      try {
+        const response = await fetch(`/api/chat/${conversationId}`);
+        if (response.ok) {
+          const data = await response.json();
+          // Set the messages directly using the setMessages function
+          useChatHandler.setMessages(data.messages);
+        } else {
+          console.error("Failed to load conversation:", response.statusText);
         }
-      };
-      loadConversation();
-    }
-  }, [conversationId, useChatHandler]);
+      } catch (error) {
+        console.error("Error loading conversation:", error);
+      }
+    };
+    loadConversation();
+  }, [currentConversationId, useChatHandler]);
 
   // Handle pending chat message from sessionStorage
   useEffect(() => {
@@ -98,7 +88,11 @@ conversationId: currentConversationId || conversationId
   // Handle starter message from URL query parameter
   useEffect(() => {
     const starterParam = searchParams.get("starter");
-    if (starterParam && useChatHandler.messages.length === 0 && !starterSentRef.current) {
+    if (
+      starterParam &&
+      useChatHandler.messages.length === 0 &&
+      !starterSentRef.current
+    ) {
       starterSentRef.current = true;
       const starterMessage = deslugify(starterParam);
       useChatHandler.sendMessage({
@@ -109,19 +103,17 @@ conversationId: currentConversationId || conversationId
 
   return (
     <>
-        <div className="-mr-16 -ml-4 sm:mx-0">
+      <div className="-mr-16 -ml-4 sm:mx-0">
         <ChatUI
           handler={handler}
-            className="relative flex min-h-0 flex-1 flex-row justify-center gap-4 !bg-transparent !p-0"
+          className="relative flex min-h-0 flex-1 flex-row justify-center gap-4 !bg-transparent !p-0"
         >
           <ResizablePanelGroup direction="horizontal">
             <ChatSectionPanel />
             <ChatCanvasPanel />
           </ResizablePanelGroup>
-
         </ChatUI>
       </div>
-
     </>
   );
 }
