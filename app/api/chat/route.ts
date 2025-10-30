@@ -63,7 +63,7 @@ export async function POST(req: NextRequest) {
     );
 
     const context = await runWorkflow({
-      workflow: await workflowFactory(reqBody),
+      workflow: await workflowFactory(reqBody, userInput),
       input: { userInput: userInput, chatHistory },
       human: {
         snapshotId: requestId, // use requestId to restore snapshot
@@ -92,7 +92,7 @@ export async function POST(req: NextRequest) {
           // Save complete conversation to database
           await saveConversation(chatUuid, messages, completion);
 
-          if (suggestNextQuestions && false) {
+          if (suggestNextQuestions) {
             await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory);
           }
         },
