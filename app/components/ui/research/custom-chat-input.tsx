@@ -8,6 +8,7 @@ import { Button } from "../button";
 import { Input } from "../input";
 import { cn } from "../lib/utils";
 import { useChatStore } from "@/stores/chat-store";
+import { useChatUI } from "@llamaindex/chat-ui";
 
 interface CustomChatInputProps {
   host: string;
@@ -25,6 +26,10 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
   const containerRef = useRef<HTMLDivElement>(null);
 
+
+    const { stop, isLoading } = useChatUI();
+
+    
   const showChatInput =
     path == "/" ||
     path == "/compare" ||
@@ -64,6 +69,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   //  setIsDeepResearch(path.includes("/research"));
   }, [path, setIsDeepResearch]);
 
+  /*
   // Fetch suggestions when value changes
   useEffect(() => {
     const fetchSuggestions = async () => {
@@ -95,7 +101,8 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     return () => clearTimeout(debounceTimer);
   }, [value, mode]);
 
-  useEffect(() => {
+*/ 
+ useEffect(() => {
     if (isDesktop && showChatInput && inputRef.current) {
       // Small delay to ensure DOM is ready after navigation
       const timer = setTimeout(() => {
