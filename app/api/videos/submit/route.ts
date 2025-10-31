@@ -6,7 +6,7 @@ import { z } from 'zod';
 
 const submitVideoSchema = z.object({
   url: z.string().url(),
-  sex: z.enum(['m', 'f']).optional(),
+  sex: z.enum(['m', 'f']),
   title: z.string().optional(),
   author: z.string().optional(),
 });
