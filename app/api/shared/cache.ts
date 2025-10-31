@@ -20,10 +20,6 @@ import { getLogger } from "@/app/lib/logger";
 export class PostgresCache implements Cache {
   constructor(private mode: "detrans" | "affirm") {}
 
-  private getQuestionsTable() {
-    return this.mode === "detrans" ? detransQuestions : affirmQuestions;
-  }
-
   private getCacheTable() {
     return this.mode === "detrans" ? detransCache : affirmCache;
   }
