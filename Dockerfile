@@ -2,7 +2,7 @@
 FROM node:23-alpine AS base
 
 FROM base AS deps
-RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache libc6-compat python3 make g++ linux-headers
 # If you still run into build issue, go to "Problem #3: Making /app is read only.
 # in case you have permission issues.
 WORKDIR /app
