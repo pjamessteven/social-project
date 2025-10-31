@@ -88,36 +88,50 @@ export class PostgresCache implements Cache {
       const cacheTable = this.getCacheTable();
 
       const insertStartTime = Date.now();
+      
+      // Base values that all cache tables have
+      const baseValues = {
+        promptHash: hashedKey,
+        promptText: key,
+        resultText: value,
+        questionName: questionName || null,
+        totalCost: metadata?.totalCost?.toString() || null,
+        tokensPrompt: metadata?.tokensPrompt || null,
+        tokensCompletion: metadata?.tokensCompletion || null,
+        model: metadata?.model || null,
+        generationId: metadata?.generationId || null,
+        createdAt: new Date(),
+        lastAccessed: new Date(),
+      };
+
+      // Add conversationId only for detrans_chat mode
+      const values = this.mode === "detrans_chat" 
+        ? { ...baseValues, conversationId: metadata?.conversationId || null }
+        : baseValues;
+
+      const baseUpdateSet = {
+        resultText: value,
+        lastAccessed: new Date(),
+        ...(metadata && {
+          totalCost: metadata.totalCost?.toString() || null,
+          tokensPrompt: metadata.tokensPrompt || null,
+          tokensCompletion: metadata.tokensCompletion || null,
+          model: metadata.model || null,
+          generationId: metadata.generationId || null,
+        }),
+      };
+
+      // Add conversationId to update set only for detrans_chat mode
+      const updateSet = this.mode === "detrans_chat" && metadata
+        ? { ...baseUpdateSet, conversationId: metadata.conversationId || null }
+        : baseUpdateSet;
+
       await db
         .insert(cacheTable)
-        .values({
-          promptHash: hashedKey,
-          promptText: key,
-          resultText: value,
-          questionName: questionName || null,
-          conversationId: metadata?.conversationId || null,
-          totalCost: metadata?.totalCost?.toString() || null,
-          tokensPrompt: metadata?.tokensPrompt || null,
-          tokensCompletion: metadata?.tokensCompletion || null,
-          model: metadata?.model || null,
-          generationId: metadata?.generationId || null,
-          createdAt: new Date(),
-          lastAccessed: new Date(),
-        })
+        .values(values)
         .onConflictDoUpdate({
           target: cacheTable.promptHash,
-          set: {
-            resultText: value,
-            lastAccessed: new Date(),
-            ...(metadata && {
-              conversationId: metadata.conversationId || null,
-              totalCost: metadata.totalCost?.toString() || null,
-              tokensPrompt: metadata.tokensPrompt || null,
-              tokensCompletion: metadata.tokensCompletion || null,
-              model: metadata.model || null,
-              generationId: metadata.generationId || null,
-            }),
-          },
+          set: updateSet,
         });
       const insertTime = Date.now() - insertStartTime;
       const totalTime = Date.now() - startTime;
