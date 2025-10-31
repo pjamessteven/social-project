@@ -169,4 +169,297 @@ export function makeLlmCacheKey(
   return question + ":llm:" + JSON.stringify({ prompt, ...options });
 }
 
+import type {
+  ChatResponse,
+  ChatResponseChunk,
+  CompletionResponse,
+  LLMChatParamsNonStreaming,
+  LLMChatParamsStreaming,
+  LLMCompletionParamsNonStreaming,
+  LLMCompletionParamsStreaming,
+  MessageContent,
+} from "llamaindex";
+import { OpenAI } from "@llamaindex/openai";
+import { getLogger } from "@/app/lib/logger";
+import { rateLimiter } from "@/app/lib/rateLimit";
+
+interface ChatParamsNonStreaming extends LLMChatParamsNonStreaming {
+  originalQuestion?: string;
+  mode?: "detrans" | "affirm";
+}
+
+interface ChatParamsStreaming extends LLMChatParamsStreaming {
+  originalQuestion?: string;
+  mode?: "detrans" | "affirm";
+}
+
+export class CachedOpenAI extends OpenAI {
+  private cache: Cache;
+  private mode: "detrans" | "affirm" | "detrans_chat";
+
+  constructor(
+    init: ConstructorParameters<typeof OpenAI>[0] & {
+      cache: Cache;
+      mode: "detrans" | "affirm" | "detrans_chat";
+    }
+  ) {
+    const { cache, mode, ...openAIInit } = init;
+    super(openAIInit);
+    this.cache = cache;
+    this.mode = mode;
+  }
+
+  private hashKey(key: string): string {
+    return createHash("sha256").update(key).digest("hex");
+  }
+
+  private async extractGenerationMetadata(response: any): Promise<GenerationMetadata | null> {
+    try {
+      // Extract generation ID from response headers or response object
+      const generationId = response?.raw?.headers?.get?.('x-generation-id') || 
+                          response?.raw?.id ||
+                          response?.id;
+      
+      if (!generationId || !this.apiKey) {
+        return null;
+      }
+
+      // Fetch metadata from OpenRouter
+      return await fetchOpenRouterGenerationMetadata(generationId, this.apiKey);
+    } catch (error) {
+      console.error('Error extracting generation metadata:', error);
+      return null;
+    }
+  }
+
+  /* ---------- chat ---------- */
+  async chat(
+    params: LLMChatParamsStreaming & { originalQuestion?: string },
+  ): Promise<AsyncGenerator<ChatResponseChunk>>;
+  async chat(
+    params: LLMChatParamsNonStreaming & { originalQuestion?: string },
+  ): Promise<ChatResponse>;
+  async chat(
+    params: (LLMChatParamsStreaming | LLMChatParamsNonStreaming) & {
+      originalQuestion?: string;
+    },
+  ): Promise<ChatResponse | AsyncGenerator<ChatResponseChunk>> {
+    const { originalQuestion, messages, stream, ...options } = params;
+    const lastMessage = messages[messages.length - 1];
+    const questionForCache = originalQuestion || String(lastMessage.content).slice(0, 100);
+    // coerce content to string for the cache key
+    const key = makeLlmCacheKey(
+      questionForCache,
+      String(lastMessage.content),
+      options,
+    );
+    const hashedKey = this.hashKey(key);
+    const logger = getLogger();
+
+    /* --- Streaming mode --- */
+    if (stream) {
+      logger.info({
+        originalQuestion: questionForCache,
+        hashedKey,
+        mode: this.mode,
+        type: 'chat_streaming'
+      }, 'LLM cache generating new (streaming)');
+
+      // Call underlying LLM in streaming mode
+      const rawStream = await super.chat({
+        messages,
+        stream: true,
+        ...options,
+      });
+
+      const capture = async function* (
+        this: CachedOpenAI,
+      ): AsyncGenerator<ChatResponseChunk> {
+        let full = "";
+        for await (const chunk of rawStream as AsyncGenerator<ChatResponseChunk>) {
+          full += chunk.delta;
+          yield chunk;
+        }
+        const metadata = await this.extractGenerationMetadata(rawStream);
+        await this.cache.set(key, full, questionForCache, metadata);
+      }.bind(this);
+
+      return capture();
+    }
+
+    /* --- Non-streaming mode --- */
+    const cached = await this.cache.get(key);
+    if (cached) {
+      logger.info({
+        originalQuestion: questionForCache,
+        hashedKey,
+        mode: this.mode,
+        type: 'chat'
+      }, 'LLM cache hit');
+      
+      // Return a ChatResponse-like object with the cached content
+      return {
+        message: {
+          role: "assistant",
+          content: cached,
+        },
+        raw: null,
+      } as ChatResponse;
+    }
+
+    const response = await super.chat({ messages, ...options });
+    const text = String(response.message.content);
+    const metadata = await this.extractGenerationMetadata(response);
+    await this.cache.set(key, text, questionForCache, metadata);
+
+    logger.info({
+      originalQuestion: questionForCache,
+      hashedKey,
+      mode: this.mode,
+      type: 'chat'
+    }, 'LLM cache generating new');
+
+    return response;
+  }
+
+  /* ---------- complete ---------- */
+  async complete(
+    params: LLMCompletionParamsNonStreaming & {
+      originalQuestion?: string;
+      rateLimit?: {
+        userIp: string;
+        mode: string;
+      };
+    }
+  ): Promise<CompletionResponse>;
+  async complete(
+    params: LLMCompletionParamsStreaming & {
+      originalQuestion?: string;
+      rateLimit?: {
+        userIp: string;
+        mode: string;
+      };
+    }
+  ): Promise<AsyncIterable<CompletionResponse>>;
+  async complete(
+    params: (LLMCompletionParamsStreaming | LLMCompletionParamsNonStreaming) & {
+      originalQuestion?: string;
+      rateLimit?: {
+        userIp: string;
+        mode: string;
+      };
+    }
+  ): Promise<CompletionResponse | AsyncIterable<CompletionResponse>> {
+    const {
+      prompt,
+      originalQuestion,
+      responseFormat,
+      stream,
+      rateLimit,
+      ...options
+    } = params;
+    
+    // Convert MessageContent to string for caching
+    const promptString = typeof prompt === 'string' ? prompt : JSON.stringify(prompt);
+    const questionForCache = originalQuestion || promptString.slice(0, 100);
+    const key = makeLlmCacheKey(questionForCache, promptString, options);
+    const hashedKey = this.hashKey(key);
+    const logger = getLogger();
+
+    /* --- Streaming mode --- */
+    if (stream) {
+      const cached = await this.cache.get(key);
+      if (cached) {
+        logger.info({
+          originalQuestion: questionForCache,
+          hashedKey,
+          mode: this.mode,
+          type: 'complete_streaming'
+        }, 'LLM cache hit (streaming)');
+
+        // Replay cached result as a fake stream
+        const replayCached = async function* (
+          text: string,
+        ): AsyncIterable<CompletionResponse> {
+          yield { text, raw: null } as CompletionResponse;
+        };
+        return replayCached(cached);
+      }
+
+      logger.info({
+        originalQuestion: questionForCache,
+        hashedKey,
+        mode: this.mode,
+        type: 'complete_streaming'
+      }, 'LLM cache miss, generating new (streaming)');
+
+      if (
+        rateLimit &&
+        !(await rateLimiter(rateLimit.userIp, rateLimit.mode)).allowed
+      ) {
+        throw new Error("Rate limit exceeded");
+      }
+
+      // Call underlying LLM in streaming mode
+      const rawStream = await super.complete({
+        prompt,
+        responseFormat,
+        stream: true,
+        ...options,
+      });
+
+      const capture = async function* (
+        this: CachedOpenAI,
+      ): AsyncIterable<CompletionResponse> {
+        let full = "";
+        for await (const chunk of rawStream as AsyncIterable<CompletionResponse>) {
+          full += chunk.text || "";
+          yield chunk;
+        }
+        const metadata = await this.extractGenerationMetadata(rawStream);
+        await this.cache.set(key, full, questionForCache, metadata);
+      }.bind(this);
+
+      return capture();
+    }
+
+    /* --- Non-streaming mode --- */
+    const cached = await this.cache.get(key);
+    if (cached) {
+      logger.info({
+        originalQuestion: questionForCache,
+        hashedKey,
+        mode: this.mode,
+        type: 'complete'
+      }, 'LLM cache hit');
+      return { text: cached, raw: null } as CompletionResponse;
+    }
+
+    logger.info({
+      originalQuestion: questionForCache,
+      hashedKey,
+      mode: this.mode,
+      type: 'complete'
+    }, 'LLM cache miss, generating new');
+
+    if (
+      rateLimit &&
+      !(await rateLimiter(rateLimit.userIp, rateLimit.mode)).allowed
+    ) {
+      throw new Error("Rate limit exceeded");
+    }
+
+    const response = await super.complete({
+      prompt,
+      responseFormat,
+      ...options,
+    });
+    const text = String(response.text);
+    const metadata = await this.extractGenerationMetadata(response);
+    await this.cache.set(key, text, questionForCache, metadata);
+
+    return response;
+  }
+}
+
 
