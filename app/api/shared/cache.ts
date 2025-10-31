@@ -14,6 +14,7 @@ export interface Cache {
     tokensCompletion?: number;
     model?: string;
     generationId?: string;
+    conversationId?: string;
   }): Promise<void>;
 }
 
@@ -76,6 +77,7 @@ export class PostgresCache implements Cache {
     tokensCompletion?: number;
     model?: string;
     generationId?: string;
+    conversationId?: string;
   }): Promise<void> {
     const startTime = Date.now();
     try {
@@ -93,6 +95,7 @@ export class PostgresCache implements Cache {
           promptText: key,
           resultText: value,
           questionName: questionName || null,
+          conversationId: metadata?.conversationId || null,
           totalCost: metadata?.totalCost?.toString() || null,
           tokensPrompt: metadata?.tokensPrompt || null,
           tokensCompletion: metadata?.tokensCompletion || null,
@@ -107,6 +110,7 @@ export class PostgresCache implements Cache {
             resultText: value,
             lastAccessed: new Date(),
             ...(metadata && {
+              conversationId: metadata.conversationId || null,
               totalCost: metadata.totalCost?.toString() || null,
               tokensPrompt: metadata.tokensPrompt || null,
               tokensCompletion: metadata.tokensCompletion || null,
