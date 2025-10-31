@@ -15,6 +15,7 @@ import type {
   LLMChatParamsNonStreaming,
   LLMChatParamsStreaming,
 } from "llamaindex";
+import { OpenAI } from "@llamaindex/openai";
 import { getLogger } from "@/app/lib/logger";
 
 export class PostgresCache implements Cache {
@@ -129,22 +130,39 @@ interface ChatParamsStreaming extends LLMChatParamsStreaming {
   mode?: "detrans" | "affirm";
 }
 
-export class CachedLLM {
+export class CachedOpenAI extends OpenAI {
+  private cache: Cache;
+  private mode: "detrans" | "affirm";
+
   constructor(
-    private llm: LLM,
-    private cache: Cache,
-    private mode: "detrans" | "affirm",
-  ) {}
+    init: ConstructorParameters<typeof OpenAI>[0] & {
+      cache: Cache;
+      mode: "detrans" | "affirm";
+    }
+  ) {
+    const { cache, mode, ...openAIInit } = init;
+    super(openAIInit);
+    this.cache = cache;
+    this.mode = mode;
+  }
+
+  private hashKey(key: string): string {
+    return createHash("sha256").update(key).digest("hex");
+  }
 
   /* ---------- chat ---------- */
   async chat(
-    params: ChatParamsStreaming,
+    params: LLMChatParamsStreaming & { originalQuestion: string },
   ): Promise<AsyncGenerator<ChatResponseChunk>>;
-  async chat(params: ChatParamsNonStreaming): Promise<ChatResponse>;
   async chat(
-    params: ChatParamsStreaming | ChatParamsNonStreaming,
+    params: LLMChatParamsNonStreaming & { originalQuestion: string },
+  ): Promise<ChatResponse>;
+  async chat(
+    params: (LLMChatParamsStreaming | LLMChatParamsNonStreaming) & {
+      originalQuestion: string;
+    },
   ): Promise<ChatResponse | AsyncGenerator<ChatResponseChunk>> {
-    const { originalQuestion, messages, stream, mode, ...options } = params;
+    const { originalQuestion, messages, stream, ...options } = params;
     const lastMessage = messages[messages.length - 1];
     // coerce content to string for the cache key
     const key = makeLlmCacheKey(
@@ -152,8 +170,7 @@ export class CachedLLM {
       String(lastMessage.content),
       options,
     );
-    const hashedKey = this.cache instanceof PostgresCache ? 
-      (this.cache as any).hashKey(key) : createHash("sha256").update(key).digest("hex");
+    const hashedKey = this.hashKey(key);
     const logger = getLogger();
 
     /* --- Streaming mode --- */
@@ -166,14 +183,14 @@ export class CachedLLM {
       }, 'LLM cache generating new (streaming)');
 
       // Call underlying LLM in streaming mode
-      const rawStream = await this.llm.chat({
+      const rawStream = await super.chat({
         messages,
         stream: true,
         ...options,
       });
 
       const capture = async function* (
-        this: CachedLLM,
+        this: CachedOpenAI,
       ): AsyncGenerator<ChatResponseChunk> {
         let full = "";
         for await (const chunk of rawStream as AsyncGenerator<ChatResponseChunk>) {
@@ -185,7 +202,28 @@ export class CachedLLM {
 
       return capture();
     }
-    const response = await this.llm.chat({ messages, ...options });
+
+    /* --- Non-streaming mode --- */
+    const cached = await this.cache.get(key);
+    if (cached) {
+      logger.info({
+        originalQuestion,
+        hashedKey,
+        mode: this.mode,
+        type: 'chat'
+      }, 'LLM cache hit');
+      
+      // Return a ChatResponse-like object with the cached content
+      return {
+        message: {
+          role: "assistant",
+          content: cached,
+        },
+        raw: null,
+      } as ChatResponse;
+    }
+
+    const response = await super.chat({ messages, ...options });
     const text = String(response.message.content);
     await this.cache.set(key, text, originalQuestion);
 
@@ -203,7 +241,7 @@ export class CachedLLM {
   async complete(params: {
     originalQuestion: string;
     prompt: string;
-    responseFormat?: object; // <- allow object/ZodType or omit
+    responseFormat?: object;
     stream?: false;
     rateLimit?: {
       userIp: string;
@@ -214,7 +252,7 @@ export class CachedLLM {
   async complete(params: {
     originalQuestion: string;
     prompt: string;
-    responseFormat?: object; // <- allow object/ZodType or omit
+    responseFormat?: object;
     stream: true;
     rateLimit?: {
       userIp: string;
@@ -225,7 +263,7 @@ export class CachedLLM {
   async complete(params: {
     originalQuestion: string;
     prompt: string;
-    responseFormat?: object; // <- allow object/ZodType or omit
+    responseFormat?: object;
     stream?: boolean;
     rateLimit?: {
       userIp: string;
@@ -242,9 +280,7 @@ export class CachedLLM {
       ...options
     } = params;
     const key = makeLlmCacheKey(originalQuestion, prompt, options);
-
-    const hashedKey = this.cache instanceof PostgresCache ? 
-      (this.cache as any).hashKey(key) : createHash("sha256").update(key).digest("hex");
+    const hashedKey = this.hashKey(key);
     const logger = getLogger();
 
     /* --- Streaming mode --- */
@@ -282,7 +318,7 @@ export class CachedLLM {
       }
 
       // Call underlying LLM in streaming mode
-      const rawStream = await this.llm.complete({
+      const rawStream = await super.complete({
         prompt,
         responseFormat,
         stream: true,
@@ -290,7 +326,7 @@ export class CachedLLM {
       });
 
       const capture = async function* (
-        this: CachedLLM,
+        this: CachedOpenAI,
       ): AsyncGenerator<{ delta: string }> {
         let full = "";
         for await (const chunk of rawStream as AsyncGenerator<{
@@ -331,7 +367,7 @@ export class CachedLLM {
       throw new Error("Rate limit exceeded");
     }
 
-    const response = await this.llm.complete({
+    const response = await super.complete({
       prompt,
       responseFormat,
       ...options,
