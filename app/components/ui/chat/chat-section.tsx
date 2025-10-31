@@ -93,7 +93,7 @@ export default function ChatSection({
     timeoutRef.current = setTimeout(() => {
       setTimeoutError(true);
       handler.stop()
-    }, 60000); // 1 min
+    }, 120000); // 2 min
   };
   
   useEffect(() => {

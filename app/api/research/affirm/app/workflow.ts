@@ -1,8 +1,7 @@
-import { CachedLLM, PostgresCache } from "@/app/api/shared/cache";
+import {  PostgresCache } from "@/app/api/shared/cache";
 import { getCachedAnswer, setCachedAnswer } from "@/app/lib/cache";
 import { replayCached } from "@/app/lib/replayCached";
 import { getLogger } from "@/app/lib/logger";
-import { OpenAI } from "@llamaindex/openai";
 import {
   AgentInputData,
   agentStreamEvent,
@@ -24,7 +23,7 @@ import {
   NodeWithScore,
   VectorStoreIndex,
 } from "llamaindex";
-import { randomUUID, createHash } from "node:crypto";
+import {  createHash } from "node:crypto";
 import { z } from 'zod/v3';
 import { toSourceEvent } from "../../utils";
 import {
@@ -33,15 +32,17 @@ import {
   writeReportPrompt,
 } from "../prompts";
 import { getIndex } from "./data";
+import { CachedOpenAI } from "@/app/api/shared/llm";
 
-const openAi = new OpenAI({
+const cache = new PostgresCache("affirm");
+
+const llm = new CachedOpenAI({
+  cache,
+  mode: 'affirm',
   apiKey: process.env.OPENROUTER_KEY,
   baseURL: "https://openrouter.ai/api/v1",
   model: "deepseek/deepseek-chat-v3.1",
 });
-
-const cache = new PostgresCache("affirm");
-const llm = new CachedLLM(openAi, cache, "affirm");
 
 // workflow factory
 export const workflowFactory = async (

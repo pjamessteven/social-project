@@ -1,4 +1,4 @@
-import { CachedLLM, PostgresCache } from "@/app/api/shared/cache";
+import {  PostgresCache } from "@/app/api/shared/cache";
 import { getCachedAnswer, setCachedAnswer } from "@/app/lib/cache";
 import { replayCached } from "@/app/lib/replayCached";
 import { getLogger } from "@/app/lib/logger";
@@ -33,15 +33,18 @@ import {
   writeReportPrompt,
 } from "../prompts";
 import { getIndex } from "./data";
+import { CachedOpenAI } from "@/app/api/shared/llm";
 
-const kimi = new OpenAI({
+const cache = new PostgresCache("detrans");
+
+const llm = new CachedOpenAI({
+  cache,
+  mode: 'detrans',
   apiKey: process.env.OPENROUTER_KEY,
   baseURL: "https://openrouter.ai/api/v1",
   model: "moonshotai/kimi-k2",
 });
 
-const cache = new PostgresCache("detrans");
-const llm = new CachedLLM(kimi, cache, "detrans");
 
 // workflow factory
 export const workflowFactory = async (

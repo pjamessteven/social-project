@@ -73,7 +73,7 @@ export default function CustomChatMessages({
               </ChatMessage>
               {isLast && (
                 <div className="-mt-2 mb-4 ml-3 flex w-full flex-row justify-between pr-20 sm:mb-8 sm:pr-16">
-                  <div className="flex w-full grow flex-row justify-between border-t pt-8">
+                  <div className="flex w-full grow flex-row justify-between  pt-8">
                     <Link
                       href={"/"}
                       className="cursor-pointer font-semibold no-underline"
