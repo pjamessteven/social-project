@@ -54,26 +54,28 @@ function SuggestedQuestionsAnnotations({}: {}) {
   const questions = suggestedQuestionsData[0].data;
 
   return (
-    <div className="flex flex-col gap-2 sm:mt-8">
-      <div className="mb-2 text-base font-semibold md:text-lg">
-        Follow-up questions:
-      </div>
-      {questions.map((question, index) => (
-        <div
-          key={index}
-          onClick={() => sendMessage(question)}
-          className="cursor-pointer font-medium italic no-underline"
-        >
-          <div className={cn("flex flex-row items-center  pt-1 pb-2", index < questions.length -1 && 'border-b')}>
-            <div className="text-muted-foreground hover:text-foreground no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 transition-colors sm:text-base">
-              <div className="mr-2 whitespace-nowrap">{"->"}</div>
-              <div className="hover:underline">
-                {capitaliseFirstWord(question)}
+    <div className="animate-in slide-in-from-top-2 duration-500 ease-out overflow-hidden transition-all">
+      <div className="flex flex-col gap-2 sm:mt-8">
+        <div className="mb-2 text-base font-semibold md:text-lg">
+          Follow-up questions:
+        </div>
+        {questions.map((question, index) => (
+          <div
+            key={index}
+            onClick={() => sendMessage(question)}
+            className="cursor-pointer font-medium italic no-underline"
+          >
+            <div className={cn("flex flex-row items-center  pt-1 pb-2", index < questions.length -1 && 'border-b')}>
+              <div className="text-muted-foreground hover:text-foreground no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 transition-colors sm:text-base">
+                <div className="mr-2 whitespace-nowrap">{"->"}</div>
+                <div className="hover:underline">
+                  {capitaliseFirstWord(question)}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
