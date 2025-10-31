@@ -117,8 +117,14 @@ export default function ChatSection({
       useChatHandler.sendMessage({
         text: starterMessage,
       });
+      
+      // Remove the starter parameter from the URL to prevent loops
+      const newParams = new URLSearchParams(searchParams.toString());
+      newParams.delete("starter");
+      const newUrl = `${window.location.pathname}${newParams.toString() ? `?${newParams.toString()}` : ''}`;
+      router.replace(newUrl);
     }
-  }, [searchParams, useChatHandler]);
+  }, [searchParams, useChatHandler, router]);
 
   return (
     <>
