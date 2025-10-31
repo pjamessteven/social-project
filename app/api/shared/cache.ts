@@ -330,12 +330,10 @@ export class CachedOpenAI extends OpenAI {
 
       const capture = async function* (
         this: CachedOpenAI,
-      ): AsyncGenerator<{ delta: string }> {
+      ): AsyncIterable<CompletionResponse> {
         let full = "";
-        for await (const chunk of rawStream as AsyncGenerator<{
-          delta: string;
-        }>) {
-          full += chunk.delta;
+        for await (const chunk of rawStream as AsyncIterable<CompletionResponse>) {
+          full += chunk.text || "";
           yield chunk;
         }
         await this.cache.set(key, full, questionForCache);
