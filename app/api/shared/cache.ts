@@ -11,9 +11,13 @@ import { eq } from "drizzle-orm";
 import type {
   ChatResponse,
   ChatResponseChunk,
+  CompletionResponse,
   LLM,
   LLMChatParamsNonStreaming,
   LLMChatParamsStreaming,
+  LLMCompletionParamsNonStreaming,
+  LLMCompletionParamsStreaming,
+  MessageContent,
 } from "llamaindex";
 import { OpenAI } from "@llamaindex/openai";
 import { getLogger } from "@/app/lib/logger";
@@ -239,39 +243,33 @@ export class CachedOpenAI extends OpenAI {
   }
 
   /* ---------- complete ---------- */
-  async complete(params: {
-    originalQuestion?: string;
-    prompt: string;
-    responseFormat?: object;
-    stream?: false;
-    rateLimit?: {
-      userIp: string;
-      mode: string;
-    };
-    [key: string]: any;
-  }): Promise<{ text: string }>;
-  async complete(params: {
-    originalQuestion?: string;
-    prompt: string;
-    responseFormat?: object;
-    stream: true;
-    rateLimit?: {
-      userIp: string;
-      mode: string;
-    };
-    [key: string]: any;
-  }): Promise<AsyncGenerator<{ delta: string }>>;
-  async complete(params: {
-    originalQuestion?: string;
-    prompt: string;
-    responseFormat?: object;
-    stream?: boolean;
-    rateLimit?: {
-      userIp: string;
-      mode: string;
-    };
-    [key: string]: any;
-  }): Promise<{ text: string } | AsyncGenerator<{ delta: string }>> {
+  async complete(
+    params: LLMCompletionParamsNonStreaming & {
+      originalQuestion?: string;
+      rateLimit?: {
+        userIp: string;
+        mode: string;
+      };
+    }
+  ): Promise<CompletionResponse>;
+  async complete(
+    params: LLMCompletionParamsStreaming & {
+      originalQuestion?: string;
+      rateLimit?: {
+        userIp: string;
+        mode: string;
+      };
+    }
+  ): Promise<AsyncIterable<CompletionResponse>>;
+  async complete(
+    params: (LLMCompletionParamsStreaming | LLMCompletionParamsNonStreaming) & {
+      originalQuestion?: string;
+      rateLimit?: {
+        userIp: string;
+        mode: string;
+      };
+    }
+  ): Promise<CompletionResponse | AsyncIterable<CompletionResponse>> {
     const {
       prompt,
       originalQuestion,
@@ -280,8 +278,11 @@ export class CachedOpenAI extends OpenAI {
       rateLimit,
       ...options
     } = params;
-    const questionForCache = originalQuestion || prompt.slice(0, 100);
-    const key = makeLlmCacheKey(questionForCache, prompt, options);
+    
+    // Convert MessageContent to string for caching
+    const promptString = typeof prompt === 'string' ? prompt : JSON.stringify(prompt);
+    const questionForCache = originalQuestion || promptString.slice(0, 100);
+    const key = makeLlmCacheKey(questionForCache, promptString, options);
     const hashedKey = this.hashKey(key);
     const logger = getLogger();
 
@@ -299,8 +300,8 @@ export class CachedOpenAI extends OpenAI {
         // Replay cached result as a fake stream
         const replayCached = async function* (
           text: string,
-        ): AsyncGenerator<{ delta: string }> {
-          yield { delta: text };
+        ): AsyncIterable<CompletionResponse> {
+          yield { text, raw: null } as CompletionResponse;
         };
         return replayCached(cached);
       }
@@ -352,7 +353,7 @@ export class CachedOpenAI extends OpenAI {
         mode: this.mode,
         type: 'complete'
       }, 'LLM cache hit');
-      return { text: cached };
+      return { text: cached, raw: null } as CompletionResponse;
     }
 
     logger.info({
