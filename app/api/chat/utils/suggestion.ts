@@ -1,22 +1,39 @@
 import { getEnv } from "@llamaindex/env";
-import type {  UIMessageStreamWriter } from "ai";
+import type { UIMessageStreamWriter } from "ai";
 import { type ChatMessage, Settings } from "llamaindex";
+import { PostgresCache } from "../../shared/cache";
+import { CachedOpenAI } from "../../shared/llm";
 import { NEXT_QUESTION_PROMPT } from "./prompts";
 
 export const sendSuggestedQuestionsEvent = async (
   streamWriter: UIMessageStreamWriter,
   chatHistory: ChatMessage[] = [],
+  conversationId: string,
 ) => {
-  const questions = await generateNextQuestions(chatHistory);
+  const questions = await generateNextQuestions(chatHistory, conversationId);
   if (questions.length > 0) {
     streamWriter.write({
       type: "data-suggested_questions",
-      data: questions ,
+      data: questions,
     });
   }
 };
 
-export async function generateNextQuestions(conversation: ChatMessage[]) {
+export async function generateNextQuestions(
+  conversation: ChatMessage[],
+  conversationId: string,
+) {
+  const cache = new PostgresCache("detrans_chat");
+
+  const llm = new CachedOpenAI({
+    cache,
+    mode: "detrans_chat",
+    apiKey: process.env.OPENROUTER_KEY,
+    baseURL: "https://openrouter.ai/api/v1",
+    model: "moonshotai/kimi-k2-0905:exacto",
+    conversationId,
+  });
+
   const conversationText = conversation
     .map((message) => `${message.role}: ${message.content}`)
     .join("\n");
@@ -24,7 +41,7 @@ export async function generateNextQuestions(conversation: ChatMessage[]) {
   const message = promptTemplate.replace("{conversation}", conversationText);
 
   try {
-    const response = await Settings.llm.complete({ prompt: message });
+    const response = await llm.complete({ prompt: message });
     const questions = extractQuestions(response.text);
     return questions;
   } catch (error) {

@@ -39,11 +39,11 @@ export async function POST(req: NextRequest) {
     console.log(`[CHAT API] Using conversation UUID: ${chatUuid} (provided: ${conversationId})`);
 
     // Check if conversation exists and is archived (older than 30 minutes)
-    if (conversationId) {
+    if (chatUuid) {
       const existingConversation = await db
         .select()
         .from(chatConversations)
-        .where(eq(chatConversations.uuid, conversationId))
+        .where(eq(chatConversations.uuid, chatUuid))
         .limit(1);
 
       if (existingConversation[0]) {
@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
             console.log('3rocesstream')
 
       const context = await runWorkflow({
-        workflow: await workflowFactory(reqBody, userInput),
+        workflow: await workflowFactory(reqBody, userInput, chatUuid),
         input: { userInput: userInput, chatHistory },
         human: {
           snapshotId: requestId, // use requestId to restore snapshot
@@ -116,7 +116,7 @@ export async function POST(req: NextRequest) {
             await saveConversation(chatUuid, messages, completion);
 
             if (suggestNextQuestions) {
-              await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory);
+              await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory, chatUuid);
             }
           },
         },

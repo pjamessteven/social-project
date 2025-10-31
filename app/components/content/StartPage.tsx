@@ -187,8 +187,9 @@ export async function StartPage({
                 concepts and to promote holistic, non-medical approaches to
                 healing gender dysphoria.
               </p>
-              <p>Could you let me know how I can help?</p>
-
+              <p>
+              <span className="font-semibold">How can I help you today?</span>
+</p>
               <div className="grid gap-1">
                 <Link
                   prefetch={false}
@@ -206,7 +207,7 @@ export async function StartPage({
                     <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start italic transition-colors">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">
-                        Excuse my ignorance, but what's up with the lizards?
+                        Sorry, but what's up with the lizards?
                       </span>
                     </div>
                   </div>
@@ -590,7 +591,7 @@ export async function StartPage({
 
         {mode === "detrans" && (
           <div className="prose- sm:prose-base prose dark:prose-invert mt-8 max-w-full sm:mt-8">
-            <h3 className="">Deep Research Mode</h3>
+            <h3 className="font-">Deep Research Mode</h3>
             <p className="mb-0">
               Get a comprehensive answer from generated meta questions which
               approach a topic from different angles.

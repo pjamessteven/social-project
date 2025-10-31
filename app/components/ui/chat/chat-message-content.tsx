@@ -65,7 +65,7 @@ function SuggestedQuestionsAnnotations({}: {}) {
             onClick={() => sendMessage(question)}
             className="cursor-pointer font-medium italic no-underline"
           >
-            <div className={cn("flex flex-row items-center  pt-1 pb-2", index < questions.length -1 && 'border-b')}>
+            <div className={cn("flex flex-row items-center  pt-1 pb-2", index < questions.length -0 && 'border-b')}>
               <div className="text-muted-foreground hover:text-foreground no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 transition-colors sm:text-base">
                 <div className="mr-2 whitespace-nowrap">{"->"}</div>
                 <div className="hover:underline">

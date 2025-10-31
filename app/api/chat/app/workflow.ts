@@ -5,8 +5,10 @@ import z from "zod";
 import { agentPrompt } from "../utils";
 import { getCommentsIndex, getStoriesIndex, getVideosIndex } from "./data";
 import { initSettings } from "./settings";
+import { CachedOpenAI } from "../../shared/llm";
+import { PostgresCache } from "../../shared/cache";
 
-export const workflowFactory = async (reqBody: any, userInput: string) => {
+export const workflowFactory = async (reqBody: any, userInput: string, conversationId?: string) => {
   initSettings();
   const commentsIndex = await getCommentsIndex(reqBody?.data);
   const storiesIndex = await getStoriesIndex(reqBody?.data);
@@ -123,14 +125,28 @@ export const workflowFactory = async (reqBody: any, userInput: string) => {
     },
   );
 
-  const kimi = new OpenAI({
+  /*
+  const cache = new PostgresCache("detrans_chat");
+  
+  const llm = new CachedOpenAI({
+    cache,
+    mode: 'detrans_chat',
     apiKey: process.env.OPENROUTER_KEY,
     baseURL: "https://openrouter.ai/api/v1",
     model: "moonshotai/kimi-k2-0905:exacto",
+    conversationId
   });
+  */
+ 
+ const llm = new OpenAI({
+    apiKey: process.env.OPENROUTER_KEY,
+    baseURL: "https://openrouter.ai/api/v1",
+    model: "moonshotai/kimi-k2-0905:exacto",
+ })
+  
 
   return agent({
-    llm: kimi,
+    llm,
     tools: [queryCommentsTool, queryVideosTool],
     systemPrompt: agentPrompt,
     timeout: 30
