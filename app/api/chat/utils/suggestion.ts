@@ -1,47 +1,22 @@
 import { getEnv } from "@llamaindex/env";
-import { OpenAI } from "@llamaindex/openai";
-import type { DataStreamWriter } from "ai";
-import { type ChatMessage } from "llamaindex";
-import { PostgresCache } from "../../shared/cache";
-import { NEXT_QUESTION_PROMPT } from "../affirm/prompts";
+import type {  UIMessageStreamWriter } from "ai";
+import { type ChatMessage, Settings } from "llamaindex";
+import { NEXT_QUESTION_PROMPT } from "./prompts";
 
 export const sendSuggestedQuestionsEvent = async (
-  streamWriter: DataStreamWriter,
+  streamWriter: UIMessageStreamWriter,
   chatHistory: ChatMessage[] = [],
-  mode: "detrans" | "affirm",
-  originalQuestion: string,
 ) => {
-  const cache = new PostgresCache("detrans");
-  const cachedNextQuestions = await cache.get(
-    originalQuestion + ":suggested_questions",
-  );
-  let questions;
-  if (cachedNextQuestions) {
-    questions = JSON.parse(cachedNextQuestions);
-  } else {
-    questions = await generateNextQuestions(chatHistory);
-
-    await cache.set(
-      originalQuestion + ":suggested_questions",
-      JSON.stringify(questions),
-      originalQuestion,
-    );
-  }
-
+  const questions = await generateNextQuestions(chatHistory);
   if (questions.length > 0) {
-    streamWriter.writeMessageAnnotation({
-      type: "suggested_questions",
-      data: questions,
+    streamWriter.write({
+      type: "data-suggested_questions",
+      data: questions ,
     });
   }
 };
 
 export async function generateNextQuestions(conversation: ChatMessage[]) {
-  const kimi = new OpenAI({
-    apiKey: process.env.OPENROUTER_KEY,
-    baseURL: "https://openrouter.ai/api/v1",
-    model: "moonshotai/kimi-k2",
-  });
   const conversationText = conversation
     .map((message) => `${message.role}: ${message.content}`)
     .join("\n");
@@ -49,7 +24,7 @@ export async function generateNextQuestions(conversation: ChatMessage[]) {
   const message = promptTemplate.replace("{conversation}", conversationText);
 
   try {
-    const response = await kimi.complete({ prompt: message });
+    const response = await Settings.llm.complete({ prompt: message });
     const questions = extractQuestions(response.text);
     return questions;
   } catch (error) {

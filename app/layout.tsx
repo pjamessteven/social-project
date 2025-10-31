@@ -1,4 +1,3 @@
-"use server";
 
 import { Inter } from "next/font/google";
 import Script from "next/script";
@@ -11,8 +10,8 @@ import { Metadata, Viewport } from "next";
 import { ThemeProvider } from "next-themes";
 import { headers } from "next/headers";
 import ScrollRestoration from "./components/content/ScrollRestoration";
-import { CustomChatInput } from "./components/ui/chat/custom-chat-input";
-import Header from "./components/ui/chat/layout/header";
+import { CustomChatInput } from "./components/ui/custom-chat-input";
+import Header from "./components/ui/common/layout/header";
 import { ContentWarningDialog } from "./components/ui/content-warning-dialog";
 import "./globals.css";
 import { isBot } from "./lib/isBot";
@@ -71,7 +70,7 @@ export default async function RootLayout({
             <Header mode={baseMode} />
             <main
               className={
-                "flex h-full min-h-0 flex-1 flex-row justify-center overflow-x-hidden overflow-y-auto"
+                "flex h-full min-h-0 flex-1 flex-row justify-center overflow-x-hidden  overflow-y-auto"
               }
             >
               <div className="h-full w-full overflow-x-hidden overflow-x-visible overflow-y-visible p-4 md:w-3xl">

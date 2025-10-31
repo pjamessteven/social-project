@@ -1,13 +1,13 @@
 import { randomUUID } from "@llamaindex/env";
 import { workflowEvent } from "@llamaindex/workflow";
-import type { Message } from "ai";
+
 import {
+  MetadataMode,
   type ChatMessage,
   type Metadata,
   type NodeWithScore,
 } from "llamaindex";
 import { z } from "zod";
-import { getStoredFilePath } from "./file";
 import { getInlineAnnotations } from "./inline";
 
 // Events that appended to stream as annotations
@@ -54,8 +54,7 @@ export function toSourceEventNode(node: NodeWithScore<Metadata>) {
     url: `/api/files/${filePath}`,
     metadata: node.node.metadata,
     score: node.score ?? null,
-    // @ts-expect-error does exist
-    text: node.node.text,
+    text: node.node.getContent(MetadataMode.NONE),
   };
 }
 
@@ -239,42 +238,5 @@ export type ServerFile = FileAnnotation & {
   path: string;
 };
 
-/**
- * Extract file attachments from an user message.
- * @param message - The message to extract file attachments from.
- * @returns The file attachments.
- */
-export function extractFileAttachmentsFromMessage(
-  message: Message,
-): ServerFile[] {
-  const fileAttachments: ServerFile[] = [];
-  if (message.role === "user" && message.annotations) {
-    for (const annotation of message.annotations) {
-      if (documentFileAnnotationSchema.safeParse(annotation).success) {
-        const { data } = annotation as DocumentFileAnnotation;
-        for (const file of data.files) {
-          fileAttachments.push({
-            ...file,
-            path: getStoredFilePath({ id: file.id }),
-          });
-        }
-      }
-    }
-  }
-  return fileAttachments;
-}
 
-/**
- * Extract file attachments from all user messages.
- * @param messages - The messages to extract file attachments from.
- * @returns The file attachments.
- */
-export function extractFileAttachments(messages: Message[]): ServerFile[] {
-  const fileAttachments: ServerFile[] = [];
 
-  for (const message of messages) {
-    fileAttachments.push(...extractFileAttachmentsFromMessage(message));
-  }
-
-  return fileAttachments;
-}

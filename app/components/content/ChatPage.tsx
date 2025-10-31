@@ -10,7 +10,7 @@ interface ChatPageProps {
   starterQuestion?: string;
 }
 
-const ChatSection = dynamic(() => import("../ui/chat/chat-section"), {
+const ChatSection = dynamic(() => import("../ui/research/chat-section"), {
   ssr: false,
   loading: () => (
     <div className="text-foreground flex h-full w-full items-center justify-center">

@@ -54,13 +54,13 @@ function TopicNode({
     const slug = slugify(question);
     switch (mode) {
       case "detrans":
-        return "/chat/" + slug;
+        return "/research/" + slug;
       case "affirm":
-        return "/affirm/chat/" + slug;
+        return "/affirm/research/" + slug;
       case "compare":
-        return "/compare/chat/" + slug;
+        return "/compare/research/" + slug;
       default:
-        return "/chat/" + slug;
+        return "/research/" + slug;
     }
   };
 
@@ -276,19 +276,19 @@ export function DataQuestionCategories({
   return (
     <>
       {" "}
-      <h3 className="text-primary text-2xl font-bold sm:mb-2">
-        Generated Questions
+      <h3 className="text-primary hidden text-2xl font-bold sm:mb-2 hidden">
+        Generated Topics
       </h3>
-      <p className="text-muted-foreground mt-2 mb-2 max-w-2xl text-sm sm:text-base sm:mt-4">
+      <p className="text-muted-foreground hidden mt-2 mb-2 max-w-2xl text-sm sm:text-base ">
         These generated questions give an idea about the most discussed topics
         in /r/detrans.
       </p>
-      <Accordion type="single" collapsible className="mb-2 sm:mb-4 mt-4">
+      <Accordion type="single" collapsible className="mb-2 sm:mb-4 ">
         <AccordionItem value="info" className="border-t border-l border-r rounded-xl overflow-hidden">
-          <AccordionTrigger className="text-muted-foreground py-2 px-3 text-sm sm:text-base hover:no-underline">
+          <AccordionTrigger className="text-muted-foreground py-2 px-3 text-sm font-regular hover:no-underline">
             <div className="flex items-center gap-2">
               <Info className="h-4 w-4" />
-              Read more about generated questions
+              These topics and quesions are generated from the data.
             </div>
           </AccordionTrigger>
           <AccordionContent className="text-muted-foreground max-w-2xl space-y-3 p-3 ">

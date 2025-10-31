@@ -1,6 +1,5 @@
 import {
-  // @ts-expect-error something
-  withSnapshot,
+
   type Workflow,
   type WorkflowContext,
 } from "@llamaindex/workflow";
@@ -8,7 +7,7 @@ import { promises as fs } from "fs";
 import path from "path";
 
 // @llama-flow doesn't export snapshot types, we need to infer them from the functions
-export type SnapshotWorkflow = ReturnType<typeof withSnapshot<Workflow>>;
+export type SnapshotWorkflow = ReturnType<any>;
 export type SnapshotWorkflowContext = ReturnType<
   SnapshotWorkflow["createContext"]
 >;

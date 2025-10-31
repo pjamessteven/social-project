@@ -1,49 +1,57 @@
 "use client";
 
-import { capitaliseFirstWord, slugify } from "@/app/lib/utils";
+import { capitaliseFirstWord, cn } from "@/app/lib/utils";
+import { useChatStore } from "@/stores/chat-store";
 import {
   ChatMessage,
-  getAnnotationData,
-  MessageAnnotationType,
+  getParts,
+  SuggestionPart,
+  SuggestionPartType,
   useChatMessage,
-  useChatUI,
 } from "@llamaindex/chat-ui";
-import Link from "next/link";
+import CommentQueryEventPart from "./comment-query-event";
 import { DynamicEvents } from "./custom/events/dynamic-events";
 import { ComponentDef } from "./custom/events/types";
-import { ToolAnnotations } from "./tools/chat-tools";
+import StoryQueryEventPart from "./story-query-event";
+import VideoQueryEventPart from "./video-query-event";
 
-function SuggestedQuestionsAnnotations({
-  mode,
-}: {
-  mode: "detrans" | "affirm" | "compare";
-}) {
+type EventPart = {
+  id?: string | undefined;
+  type: "data-event";
+  data: {
+    title: string;
+    query: string;
+    result: any;
+    status: string;
+  };
+};
+
+interface User {
+  username: string;
+  activeSince: string;
+  sex: "m" | "f";
+  experienceSummary: string | null;
+  tags: string[];
+  commentCount: number;
+  transitionAge: number | null;
+  detransitionAge: number | null;
+}
+
+function SuggestedQuestionsAnnotations({}: {}) {
   const isDev = process.env.NODE_ENV === "development";
 
-  const { append, requestData } = useChatUI();
+  const { sendMessage } = useChatStore();
   const { message, isLast } = useChatMessage();
 
-  if (!isLast || !append) return null;
+  if (!isLast) return null;
 
-  const suggestedQuestionsData = getAnnotationData(
+  const suggestedQuestionsData = getParts<SuggestionPart>(
     message,
-    MessageAnnotationType.SUGGESTED_QUESTIONS,
+    SuggestionPartType,
   );
   if (suggestedQuestionsData.length === 0) return null;
 
-  const questions = suggestedQuestionsData[0] as string[];
-
-  const getQuestionUrl = (question: string) => {
-    let baseUrl;
-    if (mode == "affirm") {
-      baseUrl = "/affirm/chat/";
-    } else if (mode === "detrans") {
-      baseUrl = "/chat/";
-    } else if (mode === "compare") {
-      baseUrl = "/compare/chat/";
-    }
-    return baseUrl + slugify(question);
-  };
+  const questions = suggestedQuestionsData[0].data;
 
   return (
     <div className="flex flex-col gap-2 sm:mt-8">
@@ -51,21 +59,20 @@ function SuggestedQuestionsAnnotations({
         Follow-up questions:
       </div>
       {questions.map((question, index) => (
-        <Link
-          prefetch={false}
+        <div
           key={index}
-          href={getQuestionUrl(question)}
+          onClick={() => sendMessage(question)}
           className="cursor-pointer font-medium italic no-underline"
         >
-          <div className="flex flex-row items-center border-b pt-1 pb-2">
+          <div className={cn("flex flex-row items-center  pt-1 pb-2", index < questions.length -1 && 'border-b')}>
             <div className="text-muted-foreground hover:text-foreground no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 transition-colors sm:text-base">
               <div className="mr-2 whitespace-nowrap">{"->"}</div>
               <div className="hover:underline">
-                {capitaliseFirstWord(question)}`
+                {capitaliseFirstWord(question)}
               </div>
             </div>
           </div>
-        </Link>
+        </div>
       ))}
     </div>
   );
@@ -74,23 +81,24 @@ function SuggestedQuestionsAnnotations({
 export function ChatMessageContent({
   componentDefs,
   appendError,
-  mode,
 }: {
   componentDefs: ComponentDef[];
   appendError: (error: string) => void;
-  mode: "detrans" | "affirm" | "compare";
 }) {
   return (
-    <ChatMessage.Content>
-      <ChatMessage.Content.Event />
-      <ChatMessage.Content.AgentEvent />
-      <ToolAnnotations />
-      <ChatMessage.Content.Image />
-      <DynamicEvents componentDefs={componentDefs} appendError={appendError} />
-      <ChatMessage.Content.Markdown />
-      <ChatMessage.Content.DocumentFile />
-      <ChatMessage.Content.Source />
-      {mode !== "compare" && <SuggestedQuestionsAnnotations mode={mode} />}
-    </ChatMessage.Content>
+    <div className="flex w-full flex-col">
+      <ChatMessage.Content className="gap-8">
+        <DynamicEvents
+          componentDefs={componentDefs}
+          appendError={appendError}
+        />
+        <ChatMessage.Content.Markdown />
+        <ChatMessage.Content.Source />
+        <VideoQueryEventPart />
+        <StoryQueryEventPart />
+        <CommentQueryEventPart />
+      </ChatMessage.Content>
+      <SuggestedQuestionsAnnotations />
+    </div>
   );
 }

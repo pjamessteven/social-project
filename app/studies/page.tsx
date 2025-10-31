@@ -198,7 +198,7 @@ export default async function StudiesPage() {
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
       <h1 className="text-3xl font-bold">Selected Academic Articles</h1>
 
-      <div className="mb-6 not-prose">
+      <div className="mb-6 not-prose hidden">
         <a
           href="https://statsforgender.org/"
           target="_blank"

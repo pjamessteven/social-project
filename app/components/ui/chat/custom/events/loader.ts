@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import * as Babel from "@babel/standalone";
@@ -12,18 +13,14 @@ export type SourceComponentDef = {
   filename: string;
 };
 
-export async function fetchComponentDefinitions({
-  mode,
-}: {
-  mode: "detrans" | "affirm";
-}): Promise<{
+export async function fetchComponentDefinitions(): Promise<{
   components: ComponentDef[];
   errors: string[];
 }> {
   const endpoint =
     getConfig("COMPONENTS_API") ??
     (process.env.NEXT_PUBLIC_USE_COMPONENTS_DIR === "true"
-      ? "/api/components/" + (mode || "detrans")
+      ? "/api/components"
       : undefined);
   if (!endpoint) {
     console.warn("/api/components endpoint is not defined in config");
