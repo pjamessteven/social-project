@@ -17,6 +17,9 @@ const nextConfig = {
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },
+  experimental: {
+        optimizeCss: false, // disable LightningCSS
+  }
 };
 
 export default nextConfig;
