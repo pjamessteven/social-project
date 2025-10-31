@@ -8,21 +8,6 @@ export interface Video {
 
 export const videos: Video[] = [
   {
-    id: "dxlRQAj2iZE",
-    title: "Detrans: How I Ruined My Life",
-    author: "Max Wayfarer",
-    type: "M",
-    url: "https://www.youtube.com/watch?v=dxlRQAj2iZE",
-  },
-  {
-    id: "JxLAxhhZwGo",
-    title:
-      "Why Detransitioning After 25 Years Was the Most Healing Thing I Have Ever Done",
-    author: "Call me sam",
-    type: "M",
-    url: "https://www.youtube.com/watch?v=JxLAxhhZwGo",
-  },
-  {
     id: "tk7NX7iPr9k",
     title: "Doctors Pushed Me into Surgery",
     author: "Ritchie Herron",
@@ -57,13 +42,7 @@ export const videos: Video[] = [
     type: "F",
     url: "https://www.youtube.com/watch?v=GFeSifnxr-M",
   },
-  {
-    id: "T9UYDyqkH2E",
-    title: "My Journey of Transition and Detransition",
-    author: "placeswebreath",
-    type: "F",
-    url: "https://www.youtube.com/watch?v=T9UYDyqkH2E",
-  },
+
   {
     id: "8msAX8FyfXs",
     title: "My Penis Is Gone Forever",
@@ -99,13 +78,7 @@ export const videos: Video[] = [
     type: "M",
     url: "https://www.youtube.com/watch?v=CFqyW56P6-g",
   },
-  {
-    id: "zFDQ2OKVZnk",
-    title: "Detrans and Back - My Story",
-    author: "Max M",
-    type: "M",
-    url: "https://www.youtube.com/watch?v=zFDQ2OKVZnk",
-  },
+
   {
     id: "SaGaONkkEQs",
     title: "Detransitioning and Transhuman Dysphoria",
@@ -414,13 +387,7 @@ export const videos: Video[] = [
     type: "M",
     url: "https://www.youtube.com/watch?v=LnbL74RJoYQ",
   },
-  {
-    id: "Vj3EXt4xiWU",
-    title: "Confessions of a Woman Who Lived as a Man (A Detransition Story)",
-    author: "Maddie Durbin",
-    type: "F",
-    url: "https://www.youtube.com/watch?v=Vj3EXt4xiWU",
-  },
+
   {
     id: "B9krmEILsNQ",
     title: "Venus Rising with Mary: My Detransition Story",
@@ -436,10 +403,46 @@ export const videos: Video[] = [
     url: "https://www.youtube.com/watch?v=UT7GHTHl61M",
   },
   {
+    id: "Vj3EXt4xiWU",
+    title: "Confessions of a Woman Who Lived as a Man (A Detransition Story)",
+    author: "Maddie Durbin",
+    type: "F",
+    url: "https://www.youtube.com/watch?v=Vj3EXt4xiWU",
+  },
+  {
     id: "_aGZat6fF1I",
     title: "'I Regret Trusting' the Doctors Who Pushed Me to Transition Gender",
     author: "Ritchie Herron",
     type: "M",
     url: "https://www.youtube.com/watch?v=_aGZat6fF1I",
+  },
+  {
+    id: "zFDQ2OKVZnk",
+    title: "Detrans and Back - My Story",
+    author: "Max M",
+    type: "M",
+    url: "https://www.youtube.com/watch?v=zFDQ2OKVZnk",
+  },
+  {
+    id: "dxlRQAj2iZE",
+    title: "Detrans: How I Ruined My Life",
+    author: "Max Wayfarer",
+    type: "M",
+    url: "https://www.youtube.com/watch?v=dxlRQAj2iZE",
+  },
+  {
+    id: "JxLAxhhZwGo",
+    title:
+      "Why Detransitioning After 25 Years Was the Most Healing Thing I Have Ever Done",
+    author: "Call me sam",
+    type: "M",
+    url: "https://www.youtube.com/watch?v=JxLAxhhZwGo",
+  },
+  {
+    id: "T9UYDyqkH2E",
+    title: "My Journey of Transition and Detransition",
+    author: "placeswebreath",
+    type: "F",
+    url: "https://www.youtube.com/watch?v=T9UYDyqkH2E",
   },
 ];

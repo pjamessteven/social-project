@@ -10,7 +10,7 @@ import { Metadata, Viewport } from "next";
 import { ThemeProvider } from "next-themes";
 import { headers } from "next/headers";
 import ScrollRestoration from "./components/content/ScrollRestoration";
-import { CustomChatInput } from "./components/ui/research/custom-chat-input";
+import { CustomChatInput } from "./components/ui/custom-chat-input";
 import Header from "./components/ui/common/layout/header";
 import { ContentWarningDialog } from "./components/ui/content-warning-dialog";
 import "./globals.css";
@@ -73,7 +73,7 @@ export default async function RootLayout({
                 "flex h-full min-h-0 flex-1 flex-row justify-center overflow-x-hidden  overflow-y-auto"
               }
             >
-              <div className="h-full w-full overflow-x-hidden overflow-x-visible  overflow-y-visible p-4 md:w-3xl">
+              <div className="h-full w-full overflow-x-hidden overflow-x-visible overflow-y-visible p-4 md:w-3xl">
                 {children}
               </div>
             </main>

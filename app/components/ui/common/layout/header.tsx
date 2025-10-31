@@ -319,7 +319,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
             className="data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 !top-[56px] h-full w-full max-w-none translate-x-0 translate-y-0 rounded-none border-none p-0"
           >
             <div className="flex h-full flex-col justify-between overflow-y-auto p-4">
-              <div className="flex w-full flex-col space-y-2">
+              <div className="flex w-full flex-col space-y-0">
                 <Link
                   href={!devAffirm ? "/" : "/affirm"}
                   onClick={() => setIsOpen(false)}
@@ -351,11 +351,11 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                       pathname === "/compare" && "bg-muted",
                     )}
                   >
-                    <ArrowLeftRight className="h-4 w-4" />
+                    <ArrowLeftRight className="h-6 w-6" />
 
                     <div className="ml-4 flex flex-col items-start">
-                      <div className="text-sm font-medium">Compare Sides</div>
-                      <div className="text-muted-foreground text-xs">
+                      <div className="text-base font-medium">Compare Sides</div>
+                      <div className="text-muted-foreground text-sm">
                         Compare Trans & Detrans Perspectives
                       </div>
                     </div>
@@ -365,8 +365,8 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                 {/* Resources Section */}
                 {mode === "detrans" && (
 
-                    <div className="border-border  border-t py-2">
-                      <h3 className="text-muted-foreground pt-2 ml-1 text-sm font-medium">
+                    <div className="border-border  border-t">
+                      <h3 className="text-muted-foreground pt-4 ml-1 text-base font-medium">
                         Resources
                       </h3>
                       <div className="space-y-1">
@@ -381,12 +381,12 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                               pathname === "/support" && "bg-muted",
                             )}
                           >
-                            <Heart className="h-4 w-4" />
+                            <Heart className="h-6 w-6" />
                             <div className="ml-4 flex flex-col items-start">
-                              <div className="text-sm font-medium">
+                              <div className="text-base font-medium">
                                 Help & Support
                               </div>
-                              <div className="text-muted-foreground text-xs">
+                              <div className="text-muted-foreground text-sm">
                                 Find community and therapists
                               </div>
                             </div>
@@ -400,12 +400,12 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                               pathname === "/stories" && "bg-muted",
                             )}
                           >
-                            <Users className="h-4 w-4" />
+                            <Users className="h-6 w-6" />
                             <div className="ml-4 flex flex-col items-start">
-                              <div className="text-sm font-medium">
+                              <div className="text-base font-medium">
                                 Stories & Timelines
                               </div>
-                              <div className="text-muted-foreground text-xs">
+                              <div className="text-muted-foreground text-sm">
                                 From /r/detrans users
                               </div>
                             </div>
@@ -422,12 +422,12 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                               pathname === "/videos" && "bg-muted",
                             )}
                           >
-                            <Youtube className="h-4 w-4" />
+                            <Youtube className="h-6 w-6" />
                             <div className="ml-4 flex flex-col items-start">
-                              <div className="text-sm font-medium">
+                              <div className="text-base font-medium">
                                 Detransition Videos
                               </div>
-                              <div className="text-muted-foreground text-xs">
+                              <div className="text-muted-foreground text-sm">
                                 Personal memoirs
                               </div>
                             </div>
@@ -444,12 +444,12 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                               pathname === "/definitions" && "bg-muted",
                             )}
                           >
-                            <FileText className="h-4 w-4" />
+                            <FileText className="h-6 w-6" />
                             <div className="ml-4 flex flex-col items-start">
-                              <div className="text-sm font-medium">
+                              <div className="text-base font-medium">
                                 Definitions
                               </div>
-                              <div className="text-muted-foreground text-xs">
+                              <div className="text-muted-foreground text-sm">
                                 Key terms and concepts
                               </div>
                             </div>
@@ -467,12 +467,12 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                               pathname === "/studies" && "bg-muted",
                             )}
                           >
-                            <BookOpen className="h-4 w-4" />
+                            <BookOpen className="h-6 w-6" />
                             <div className="ml-4 flex flex-col items-start">
-                              <div className="text-sm font-medium">
+                              <div className="text-base font-medium">
                                 Peer-reviewed Studies
                               </div>
-                              <div className="text-muted-foreground text-xs">
+                              <div className="text-muted-foreground text-sm">
                                 Relevant academic research
                               </div>
                             </div>
@@ -486,12 +486,12 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                             )}
                           >
                             <div className="flex flex-row items-center">
-                              <ChartNoAxesCombined className="h-4 w-4" />
+                              <ChartNoAxesCombined className="h-6 w-6" />
                               <div className="ml-4 flex flex-col items-start">
-                                <div className="text-sm font-medium">
+                                <div className="text-base font-medium">
                                   Verified Statistics
                                 </div>
-                                <div className="text-muted-foreground text-xs">
+                                <div className="text-muted-foreground text-sm">
                                   statsforgender.org
                                 </div>
                               </div>
@@ -506,11 +506,11 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
 
                 {/* About Section */}
 
-                    <div className="border-border  border-t py-2">
-                      <h3 className="text-muted-foreground pt-2 ml-1 text-sm font-medium">
+                    <div className="border-border  border-t ">
+                      <h3 className="text-muted-foreground pt-4 ml-1 text-base font-medium">
                       About
                     </h3>
-                    <div className="space-y-1">
+                    <div className="">
                       {mode !== "affirm" && false && (
                         <Link href={"/about"} onClick={() => setIsOpen(false)}>
                           <Button
@@ -520,10 +520,10 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                               pathname === "/about" && "bg-muted",
                             )}
                           >
-                            <Scroll className="h-4 w-4" />
+                            <Scroll className="h-6 w-6" />
                             <div className="ml-4 flex flex-col items-start">
-                              <div className="text-sm font-medium">About</div>
-                              <div className="text-muted-foreground text-xs">
+                              <div className="text-base font-medium">About</div>
+                              <div className="text-muted-foreground text-sm">
                                 Understand why I built this
                               </div>
                             </div>
@@ -541,10 +541,10 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                             pathname === "/contact" && "bg-muted",
                           )}
                         >
-                          <Mail className="h-4 w-4" />
+                          <Mail className="h-6 w-6" />
                           <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">Contact</div>
-                            <div className="text-muted-foreground text-xs">
+                            <div className="text-base font-medium">Contact</div>
+                            <div className="text-muted-foreground text-sm">
                               Get in touch with me
                             </div>
                           </div>
@@ -561,12 +561,12 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                             pathname === "/prompts" && "bg-muted",
                           )}
                         >
-                          <Settings className="h-4 w-4" />
+                          <Settings className="h-6 w-6" />
                           <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">
+                            <div className="text-base font-medium">
                               How It Works
                             </div>
-                            <div className="text-muted-foreground text-xs">
+                            <div className="text-muted-foreground text-sm">
                               View the AI system prompts
                             </div>
                           </div>
@@ -583,10 +583,10 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                             pathname === "/terms" && "bg-muted",
                           )}
                         >
-                          <HelpCircle className="h-4 w-4" />
+                          <HelpCircle className="h-6 w-6" />
                           <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">Terms</div>
-                            <div className="text-muted-foreground text-xs">
+                            <div className="text-base font-medium">Terms</div>
+                            <div className="text-muted-foreground text-sm">
                               Privacy policy and terms
                             </div>
                           </div>

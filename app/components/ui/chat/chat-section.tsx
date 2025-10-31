@@ -10,6 +10,7 @@ import { ChatCanvasPanel } from "./canvas/panel";
 
 import { deslugify, uuidv4 } from "@/app/lib/utils";
 import { useChatStore } from "@/stores/chat-store";
+import { Loader2 } from "lucide-react";
 import CustomChatMessages from "./chat-messages";
 import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
 import { fetchComponentDefinitions } from "./custom/events/loader";
@@ -25,16 +26,19 @@ export default function ChatSection({
   const starterSentRef = useRef(false);
   const router = useRouter();
   const [isArchived, setIsArchived] = useState(false);
-
+  const [loading, setLoading] = useState(true);
   const handleError = (error: unknown) => {
     if (!(error instanceof Error)) throw error;
     let errorMessage: string;
     try {
       const parsedError = JSON.parse(error.message);
       errorMessage = parsedError.detail || parsedError.error;
-      
+
       // Check if this is an archived conversation error (status 410)
-      if (error.message.includes('"status":410') || error.message.includes('archived')) {
+      if (
+        error.message.includes('"status":410') ||
+        error.message.includes("archived")
+      ) {
         setIsArchived(true);
         return; // Don't show alert for archived conversations
       }
@@ -46,9 +50,7 @@ export default function ChatSection({
 
   const handleStartNewChat = () => {
     const newConversationId = uuidv4();
-    const currentParams = new URLSearchParams(searchParams.toString());
-    const queryString = currentParams.toString();
-    const newUrl = `/chat/${newConversationId}${queryString ? `?${queryString}` : ''}`;
+    const newUrl = `/chat/`+newConversationId;
     router.replace(newUrl);
   };
 
@@ -62,8 +64,6 @@ export default function ChatSection({
     onError: handleError,
     experimental_throttle: 100,
   });
-
-  //  const { requestData, sendMessage } = useChatUI(); REQUESTDATA? headerss??
 
   const handler = useChatHandler;
 
@@ -87,22 +87,12 @@ export default function ChatSection({
       } catch (error) {
         console.error("Error loading conversation:", error);
       }
+      setLoading(false);
     };
     if (conversationId) {
       loadConversation();
     }
   }, [conversationId]);
-
-  // Handle pending chat message from sessionStorage
-  useEffect(() => {
-    const pendingMessage = sessionStorage.getItem("pendingChatMessage");
-    if (pendingMessage) {
-      sessionStorage.removeItem("pendingChatMessage");
-      useChatHandler.sendMessage({
-        text: pendingMessage,
-      });
-    }
-  }, [useChatHandler]);
 
   // Handle starter message from URL query parameter
   useEffect(() => {
@@ -117,38 +107,51 @@ export default function ChatSection({
       useChatHandler.sendMessage({
         text: starterMessage,
       });
-      
+
       // Remove the starter parameter from the URL to prevent loops
       const newParams = new URLSearchParams(searchParams.toString());
       newParams.delete("starter");
-      const newUrl = `${window.location.pathname}${newParams.toString() ? `?${newParams.toString()}` : ''}`;
+      const newUrl = `${window.location.pathname}${newParams.toString() ? `?${newParams.toString()}` : ""}`;
       router.replace(newUrl);
     }
   }, [searchParams, useChatHandler, router]);
 
   return (
     <>
-      <div className="-mr-16 -ml-4 sm:mx-0">
-        <ChatUI
-          handler={handler}
-          className="relative flex min-h-0 flex-1 flex-row justify-center gap-4 !bg-transparent !p-0"
-        >
-          <ResizablePanelGroup direction="horizontal">
-            <ChatSectionPanel isArchived={isArchived} onStartNewChat={handleStartNewChat} />
-            <ChatCanvasPanel />
-          </ResizablePanelGroup>
-        </ChatUI>
-      </div>
+      {loading ? (
+        <>
+          <div className="flex h-full w-full items-center justify-center">
+            <Loader2 className="h-6 w-6 animate-spin opacity-80" />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="-mr-16 -ml-4 sm:mx-0">
+            <ChatUI
+              handler={handler}
+              className="relative flex min-h-0 flex-1 flex-row justify-center gap-4 !bg-transparent !p-0"
+            >
+              <ResizablePanelGroup direction="horizontal">
+                <ChatSectionPanel
+                  isArchived={isArchived}
+                  onStartNewChat={handleStartNewChat}
+                />
+                <ChatCanvasPanel />
+              </ResizablePanelGroup>
+            </ChatUI>
+          </div>
+        </>
+      )}
     </>
   );
 }
 
-function ChatSectionPanel({ 
-  isArchived, 
-  onStartNewChat 
-}: { 
-  isArchived: boolean; 
-  onStartNewChat: () => void; 
+function ChatSectionPanel({
+  isArchived,
+  onStartNewChat,
+}: {
+  isArchived: boolean;
+  onStartNewChat: () => void;
 }) {
   const [componentDefs, setComponentDefs] = useState<ComponentDef[]>([]);
   const [dynamicEventsErrors, setDynamicEventsErrors] = useState<string[]>([]); // contain all errors when rendering dynamic events from componentDir
@@ -176,25 +179,20 @@ function ChatSectionPanel({
     <ResizablePanel defaultSize={40} minSize={30} className="w-full">
       <div className="flex h-full min-w-0 flex-1 flex-col gap-4">
         {isArchived && (
-          <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mx-4 mt-4">
+          <div className="mx-4 mt-4 rounded-lg border border-yellow-200 bg-yellow-50 p-4 dark:border-yellow-800 dark:bg-yellow-900/20">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
-                <span className="text-yellow-600 dark:text-yellow-400">📁</span>
                 <div>
                   <h3 className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
                     Conversation Archived
                   </h3>
-                  <p className="text-xs text-yellow-700 dark:text-yellow-300">
-                    This conversation was archived after 30 minutes of inactivity. You can view the messages but cannot send new ones.
+                  <p className="text-xs mt-1 text-yellow-700 dark:text-yellow-300">
+                    This conversation was archived after 30 minutes of
+                    inactivity. You can view the messages but cannot send new
+                    ones.
                   </p>
                 </div>
               </div>
-              <button
-                onClick={onStartNewChat}
-                className="px-3 py-1 bg-yellow-600 hover:bg-yellow-700 text-white text-xs rounded font-medium transition-colors"
-              >
-                Start New Chat
-              </button>
             </div>
           </div>
         )}
@@ -206,6 +204,7 @@ function ChatSectionPanel({
           componentDefs={componentDefs}
           appendError={appendError}
         />
+
       </div>
     </ResizablePanel>
   );

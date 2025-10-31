@@ -16,7 +16,7 @@ interface CustomChatInputProps {
 export function CustomChatInput({ host }: CustomChatInputProps) {
   const path = usePathname();
   const router = useRouter();
-  const { chatHandler, chatStatus, isDeepResearch, setIsDeepResearch, setChatStatus } = useChatStore();
+  const { chatHandler, sendMessage, chatStatus, isDeepResearch, setIsDeepResearch, setChatStatus } = useChatStore();
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
   const [value, setValue] = useState("");
@@ -180,14 +180,13 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
         }
       } else {
         // Chat mode - use chat handler or navigate to chat
-        if (chatHandler && path === "/chat") {
+        if (chatHandler && path.includes("/chat")) {
           // We're on chat page and have handler, send message directly
-          chatHandler.sendMessage({ text: val });
+          sendMessage(val);
         } else {
           // Navigate to chat page
-          router.push("/chat");
+          router.push("/chat?starter="+slugify(val));
           // Store the message to send after navigation
-          sessionStorage.setItem("pendingChatMessage", val);
         }
       }
     }

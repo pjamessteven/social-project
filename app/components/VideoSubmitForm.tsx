@@ -61,23 +61,23 @@ export default function VideoSubmitForm() {
 
   return (
     <>
-      <Accordion type="single" collapsible className="mt- mt-8 mb-8 pt-0 w-full">
+      <Accordion type="single" collapsible className="mt-  mb-8 pt-0 w-full">
         <AccordionItem
           value="disclaimer"
           className="overflow-hidden rounded-xl border pt-0 mt-0 p-3 bg-secondary"
         >
           <AccordionTrigger className="w-full text-base !font-normal  hover:no-underline py-0 -mt-8  -mb-3 pt-0">
             <div className="flex flex-col text-sm">
-              <div>Submit Video</div>
+              <div className="font-semibold">Submit Your Story</div>
               <div className="text-muted-foreground mt-1">
                 Share a YouTube video about transition or detransition
                 experiences
               </div>
             </div>
           </AccordionTrigger>
-          <AccordionContent className="prose dark:prose-invert max-w-full text-base text-muted-foreground">
-            <div className="space-y-3">
-              <p className="mt-6 pt-0 text-sm">
+          <AccordionContent className="prose-sm dark:prose-invert max-w-full text-base text-muted-foreground">
+            <div className="space-y-3 pt-1">
+              <p className="mt-3 pt-3  border-t">
                 By submitting your story it will show on this page and in
                 relevant chats. <b>detrans.ai</b> uses speech-to-text to surface
                 relevant videos when people ask questions. All submissions are moderated, it might take a few days before it's visible. 

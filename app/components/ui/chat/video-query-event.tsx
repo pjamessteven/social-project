@@ -1,9 +1,10 @@
 "use client";
 
 import { usePart } from "@llamaindex/chat-ui";
+import { Loader2 } from "lucide-react";
 
-import { useMemo, memo } from "react";
-import YouTube from 'react-youtube';
+import { memo, useMemo } from "react";
+import YouTube from "react-youtube";
 
 type EventPart = {
   id?: string | undefined;
@@ -75,41 +76,42 @@ function extractYouTubeVideoId(url: string): string | null {
     /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
     /youtube\.com\/v\/([^&\n?#]+)/,
   ];
-  
+
   for (const pattern of patterns) {
     const match = url.match(pattern);
     if (match) {
       return match[1];
     }
   }
-  
+
   return null;
 }
 
-const VideoComponent = memo(function VideoComponent({ video, isFirst }: VideoComponentProps) {
+const VideoComponent = memo(function VideoComponent({
+  video,
+  isFirst,
+}: VideoComponentProps) {
   const videoId = extractYouTubeVideoId(video.url);
 
   return (
-    <div className="not-prose mb-6  rounded-lg border">
+    <div className="not-prose mb-6 rounded-lg border">
       {videoId ? (
-        <YouTube 
+        <YouTube
           videoId={videoId}
           opts={{
-            height: '270',
-            width: '480',
+            height: "270",
+            width: "480",
             playerVars: {
               autoplay: isFirst ? 1 : 0,
-              mute: isFirst ? 1 : 0, 
+              mute: isFirst ? 1 : 0,
               start: Math.floor(video.startTime),
             },
           }}
         />
       ) : (
-        <div className="p-4 text-center text-gray-500">
-          Invalid YouTube URL
-        </div>
+        <div className="p-4 text-center text-gray-500">Invalid YouTube URL</div>
       )}
-    {/*
+      {/*
       <ReactPlayer
         key={`${video.url}#t=${Math.floor(video.startTime)}`}
         src={getVideoUrl(video.url, video.startTime)}
@@ -138,13 +140,13 @@ const VideoComponent = memo(function VideoComponent({ video, isFirst }: VideoCom
 
 export default function VideoQueryEventPart() {
   // usePart returns data only if current part matches the type
-  const videoPart = usePart<EventPart>("data-video-query-event");
+  const eventPart = usePart<EventPart>("data-video-query-event");
 
   // Memoize the parsed results to prevent unnecessary re-parsing
   const results = useMemo(() => {
-    if (!videoPart?.data?.result) return [];
+    if (!eventPart?.data?.result) return [];
     try {
-      const result: VideoResultItem[] = JSON.parse(videoPart.data.result);
+      const result: VideoResultItem[] = JSON.parse(eventPart.data.result);
       return result.map((item) => ({
         text: item.node.text,
         summary: item.node.metadata.sectionSummary,
@@ -162,22 +164,23 @@ export default function VideoQueryEventPart() {
       console.error("Error parsing video data:", error);
       return [];
     }
-  }, [videoPart?.data?.result]);
+  }, [eventPart?.data?.result]);
 
-  if (!videoPart) return null;
+  if (!eventPart) return null;
+
+  const isLoading = eventPart.data.title === "Querying videos...";
 
   return (
-    <div className="-mt-8 space-y-4">
+    <div className="-mt-8 space-y-4 max-w-[calc(100vw-16px)]">
       <div className="mb-4">
         <p className="text-sm text-gray-600">
-          Video Archive Query: {videoPart.data.query}
+          Video Archive Query: {eventPart.data.query}
         </p>
       </div>
 
       {results.length > 0 ? (
         <div className="flex flex-row gap-4 space-y-6 overflow-x-auto">
           {results.map((video, index) => (
-
             <VideoComponent
               key={video.id || index}
               video={video}
@@ -186,8 +189,17 @@ export default function VideoQueryEventPart() {
           ))}
         </div>
       ) : (
-        <div className="py-8 text-center">
-          <p className="text-gray-500">No videos found</p>
+        <div className=" text-center">
+          {isLoading ? (
+            <p>
+              <div className="flex items-center">
+                <div>Searching the video archive...</div>{" "}
+                <Loader2 className="ml-2 h-4 w-4 animate-spin text-blue-500 dark:text-blue-100" />
+              </div>
+            </p>
+          ) : (
+            <p className="text-gray-500">No videos found</p>
+          )}
         </div>
       )}
     </div>
