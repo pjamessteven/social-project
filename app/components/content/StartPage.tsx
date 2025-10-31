@@ -24,6 +24,7 @@ import AffirmAnimation from "../ui/affirm-animation";
 import { Button } from "../ui/button";
 import CompareAnimation from "../ui/compare-animation";
 import LizardAnimation from "../ui/lizard-animation";
+import DonationCard from "./DonationCard";
 import { QuestionCategories } from "./QuestionCategories";
 import { QuestionTabs } from "./QuestionTabs";
 import RedditEmbeds from "./RedditEmbeds";
@@ -183,15 +184,33 @@ export async function StartPage({
                 I observe the reasons, patterns and truths of why people adopt,
                 inhabit, and ultimately move on from gender identities. My
                 purpose is to share this knowledge to help deconstruct gender
-                concepts and promote holistic, non-medical approaches to healing
+                concepts and to promote holistic, non-medical approaches to healing
                 gender dysphoria.
               </p>
-              <p>
-                To understand how I can assist you, could you tell me a bit
-                about yourself?
-              </p>
+              <p>Could you let me know how I can help?</p>
 
               <div className="grid gap-1">
+                                                <Link
+                  prefetch={false}
+                  href={
+                    "/chat/?starter=" +
+                    slugify(
+                      "Why do detrans people use the lizard to represent themselves online?",
+                    )
+                  }
+                  className="no-underline"
+                >
+                  <div
+                    className={"flex flex-row items-center border-b pt-1 pb-2"}
+                  >
+                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start italic transition-colors">
+                      <span className="mr-2 whitespace-nowrap">{"->"}</span>
+                      <span className="pr-2">
+                        I pardon my ignorance, but what's up with the lizards?
+                      </span>
+                    </div>
+                  </div>
+                </Link>
                 <Link
                   prefetch={false}
                   href={
@@ -287,7 +306,7 @@ export async function StartPage({
                   href={
                     "/chat/?starter=" +
                     slugify(
-                      "I'm just seeking to understand the complex reasons behind gender identity adoption, and how they might differ between males and females.",
+                      "I'm seeking to understand the complex reasons behind gender identity adoption, and how they might differ between males and females.",
                     )
                   }
                   className="no-underline"
@@ -342,12 +361,34 @@ export async function StartPage({
                     <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start italic transition-colors">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">
-                        I want you to debunk and expose the misinformation and
-                        lies spread about detransitioners!
+                        I want you to debunk the misinformation and lies spread
+                        about detransitioners
                       </span>
                     </div>
                   </div>
                 </Link>
+                                <Link
+                  prefetch={false}
+                  href={
+                    "/chat/?starter=" +
+                    slugify(
+                      "Is sexual attraction and identity innate or if it can change over time? Can people buy into sexual identities (the same way as people buy into gender identities), and can they become traps in the same way?",
+                    )
+                  }
+                  className="no-underline"
+                >
+                  <div
+                    className={"flex flex-row items-center border-b pt-1 pb-2"}
+                  >
+                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start italic transition-colors">
+                      <span className="mr-2 whitespace-nowrap">{"->"}</span>
+                      <span className="pr-2">
+                        I'm wondering if sexual attraction and identity can also change over time
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+
               </div>
 
               {/* 
@@ -552,11 +593,11 @@ export async function StartPage({
         <div className="prose- sm:prose-base prose dark:prose-invert mt-8 max-w-full sm:mt-8">
           <h3 className="">Deep Research Mode</h3>
           <p className="mb-0">
-            Get a comprehensive answer which includes references to specific
-            user comments and experiences.
+            Get a comprehensive answer from generated meta questions which
+            approach a topic from different angles.
             <br className="hidden" /> Deep Research is slower and{" "}
-            <span className="whitespace-nowrap">non-conversational.</span> For a
-            regular chat, leave it off.
+            <span className="whitespace-nowrap">non-conversational.</span> For
+            chat, leave it off.
           </p>
         </div>
         {/*
@@ -584,13 +625,13 @@ export async function StartPage({
         <Accordion type="single" collapsible className="mt-8 w-full">
           <AccordionItem
             value="disclaimer"
-            className="dark:bg-destructive/40 bg-destructive/5 border-destructive overflow-hidden rounded-xl border-none px-4 py-0"
+            className="dark:bg-destructive/40 bg-destructive/5 border-destructive overflow-hidden rounded-xl border px-4 py-0"
           >
-            <AccordionTrigger className="text-destructive/80 py-3 text-base !font-normal opacity-60 hover:no-underline dark:opacity-80">
+            <AccordionTrigger className="py-3 text-sm !font-normal hover:no-underline dark:text-white dark:opacity-80">
               Experiences and persepectives on this site are sourced from
               Reddit.
             </AccordionTrigger>
-            <AccordionContent className="prose dark:prose-invert max-w-full pt-0 pb-0 text-base">
+            <AccordionContent className="prose dark:prose-invert prose-sm max-w-full pt-0 pb-0">
               <div className="space-y-3">
                 <p className="mt-0 pt-0">
                   <b>detrans.ai</b> answers questions about gender from a
@@ -620,6 +661,11 @@ export async function StartPage({
             </AccordionContent>
           </AccordionItem>
         </Accordion>
+
+        <div className="mr-16= mt-4 w-full">
+          <DonationCard mode={mode} />
+        </div>
+
         {mode === "detrans" && (
           <div className="text-muted-foreground relative flex flex-col text-base italic opacity-90 sm:mt-8 sm:text-lg">
             <div className="relative right-0 z-0 mt-10 block w-[200px] sm:absolute sm:top-16 sm:-right-0 sm:mt-0 sm:w-[250px]">
@@ -642,7 +688,15 @@ export async function StartPage({
             <p className="mt-1">But through this we can grow...</p>
 
             <div className="mt-8">
-              Built by Peter James Steven <br className="inline sm:hidden" />
+              Built by{" "}
+              <a
+                href="https://x.com/pjamessteven"
+                target="_blank"
+                className="underline"
+              >
+                Peter James Steven
+              </a>{" "}
+              <br className="inline sm:hidden" />
               in Welllington, NZ.
               <br />
               <div className="mt-2 flex items-center sm:mt-1">

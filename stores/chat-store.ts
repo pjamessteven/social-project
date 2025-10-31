@@ -1,5 +1,6 @@
 import { ChatHandler } from '@llamaindex/chat-ui'
 import { create } from 'zustand'
+import { Message } from '@llamaindex/chat-ui'
 
 interface ChatState {
   isDeepResearch: boolean
@@ -21,7 +22,11 @@ export const useChatStore = create<ChatState>((set, get) => ({
   sendMessage: (message) => {
     const { chatHandler } = get()
     if (chatHandler) {
-      chatHandler.sendMessage({ text: message })
+      chatHandler.sendMessage({
+      id: `user-${Date.now()}`,
+      role: 'user',
+      parts: [{ type: 'text', text: message }]
+    })
     }
   }
 }))

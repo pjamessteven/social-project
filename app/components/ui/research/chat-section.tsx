@@ -2,14 +2,15 @@
 
 import { useChat } from "@ai-sdk/react";
 import { ChatSection as ChatUI } from "@llamaindex/chat-ui";
-import { useEffect, useMemo, useState, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
+import { useChatStore } from "@/stores/chat-store";
+import { DefaultChatTransport } from "ai";
 import { ChatLayout } from "../common/layout";
 import CustomChatMessages from "./chat-messages";
 import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
 import { fetchComponentDefinitions } from "./custom/events/loader";
 import { ComponentDef } from "./custom/events/types";
-import { DefaultChatTransport } from "ai";
 
 export default function ChatSection({
   onReset,
@@ -22,6 +23,8 @@ export default function ChatSection({
   mode: "detrans" | "affirm";
   showDonationMessage: boolean;
 }) {
+  const { setChatHandler } = useChatStore();
+
   const handleError = (error: unknown) => {
     if (!(error instanceof Error)) throw error;
     let errorMessage: string;
@@ -40,6 +43,11 @@ export default function ChatSection({
     onError: handleError,
     experimental_throttle: 100,
   });
+
+  // Set chat handler in Zustand store
+  useEffect(() => {
+    setChatHandler(useChatHandler);
+  }, [setChatHandler]);
 
   const hasStarterQuestionSent = useRef(false);
 

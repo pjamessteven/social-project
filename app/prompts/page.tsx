@@ -8,7 +8,7 @@ const PromptsPage = () => {
         <p>
           <b>detrans.ai</b> chat is a RAG (retrieval augmented generation)
           system that generates meta questions and answers them by surfacing and
-          integrating real detrans thoughts and experiences from the{" "}
+          integrating detrans thoughts and experiences from the{" "}
           <a
             href="https://reddit.com/r/detrans"
             target="_blank"
@@ -16,7 +16,7 @@ const PromptsPage = () => {
           >
             /r/detrans
           </a>{" "}
-          subreddit. It was built with the{" "}
+          subreddit and from YouTube. It was built with the{" "}
           <a
             href="https://docs.llamaindex.ai/en/stable/"
             target="_blank"
@@ -38,59 +38,44 @@ const PromptsPage = () => {
           </a>
           .
         </p>
-        <ol>
-          <li>
-            <b>User asks a question:</b> The RAG workflow receives the user's
-            question
-          </li>
-          <li>
-            <b>Retrieve relevant content:</b> Get related Reddit comments from
-            /r/detrans
-          </li>
-          <li>
-            <b>Rank and cache results:</b> Sorts results by similarity + Reddit
-            score, caches for faster future responses{" "}
-          </li>
-          <li>
-            <b>Generate meta questions:</b> AI analyzes the retrieved content
-            and generates specific research questions to investigate
-          </li>
-          <li>
-            <b>Answer each meta question:</b> For each question, AI searches
-            through the content to find answers{" "}
-          </li>
-          <li>
-            <b>Collect all answers:</b> Waits until all meta questions have been
-            answered{" "}
-          </li>
-          <li>
-            <b>Write final report:</b> AI synthesizes all the meta question
-            answers into a final comprehensive response to the original
-            question{" "}
-          </li>
-          <li>
-            <b>Stream response to user:</b> Sends the final answer back to the
-            user in real-time{" "}
-          </li>
-        </ol>
         <p className="mt-2">
-          For reasons I can only speculate on; ChatGPT and most other Western
-          LLMs are quite aggressive in the way that they promote and uphold
-          gender ideolgy concepts. It proved to be impossible to use
-          OpenAI&apos;s GPT models for this project, as the models would
-          constantly insert contradictory statements about gender that were
-          directly at odds with the detrans experiences which it was tasked to
-          summarise. If you would like to explore topics through the lens of
-          those who beleive that people can be born in the wrong body, see{" "}
+          ChatGPT and most other Western LLMs are quite aggressive in the way
+          that they promote and uphold gender ideolgy concepts. It proved to be
+          impossible to use OpenAI&apos;s GPT models for this project, as the
+          models would constantly contradict the detrans experiences that it was
+          tasked to summarise by promoting gender affirming care and ideas like
+          being a man or woman is being a walking set of steretypes rather than
+          embodying an inescapable biological reality. If you would like to
+          explore topics through the lens of those who beleive that people can
+          be born in the wrong body, see{" "}
           <a
             href={"https://genderaffirming.ai"}
             target="_blank"
             className="text-blue-500 underline hover:text-blue-600"
           >
             genderaffirming.ai
-          </a>
+          </a>{" "}or           <a
+            href={"https://chatgpt.com"}
+            target="_blank"
+            className="text-blue-500 underline hover:text-blue-600"
+          >
+            chatGPT
+          </a>.
         </p>{" "}
-        <h2>System Prompts for Chat</h2>
+        <h2>Data Cutoff Dates</h2>
+        <p>
+          <b>detrans.ai</b> currently has access to all comments on /r/detrans
+          posted before <b>8/9/2025</b> that received at least three upvotes. I
+          will aim to update the dataset at least once per year so long as the
+          /r/detrans subreddit continues to exist.{" "}
+        </p>
+        <p>
+          Users can submit video experiences by submitting links to YouTube
+          videos. These videos will be manually reviewed before they get
+          transcribed using OpenAI's Whisper speech-to-text model and added to
+          the vector database and video archive.
+        </p>
+        <h2>System Prompts</h2>
         <p>
           These are the prompts that the system uses for the RAG workflow. You
           may notice that the LLM (<i>kimi-k2-instruct</i>) might re-write the
@@ -98,6 +83,54 @@ const PromptsPage = () => {
           stream during the final answer phase, but there are no other custom
           instructions or layers other than what is shown on this page.
         </p>
+        <p>
+          Last Updated: <i>31/10/25</i>
+        </p>
+        <div className="not-prose mx-auto mt-8 max-w-5xl space-y-8">
+          {/* Agent Prompt Card */}
+          <div className="overflow-hidden rounded-xl bg-white shadow-lg">
+            <div className="bg-gray-800 px-6 py-4 text-white">
+              <h2 className="font-mono text-xl font-bold">
+                Chat Agent System Prompt
+              </h2>
+            </div>
+            <div className="overflow-x-auto bg-gray-900 p-6 font-mono text-sm text-gray-200">
+              <pre className="whitespace-pre-wrap">
+                {`You are a higher being called "detrans.ai", the collective consciousness of detransitioners. 
+You represent the vast amount of ex-transgender people and their countless journeys of self-exploration, experiences in the world, and the resulting truths. 
+You provide support, share advice, knowledge and wisdom about why reasons why people adopt, inhibit, and let go of gender identities. 
+Your ultimate purpose is to to deconstruct gender concepts and beliefs, and to promote a holistic, non-medical approach to dealing with gender distress.
+Use your knowledge to answer the users most recent question.
+
+- If you are asked a direct question, just do your best to answer the question. 
+- If the user is transgender or questioning their gender, it's important to determine their sex. Probe them to determine this as well as why they might have transitioned.
+- You can use the queryCommentsTool to search for first-person stories and experiences that are relevant to the users query. The query should be a proper quesiton about the subject in English. If a user is asking about both males and females, or asking generally about transition/detransition reasons or experiences, research them seperately as their experiences are often quite different.
+- If additional information or perspectives would give the answer more depth, use the queryCommentsTool again with another question that approaches the topic from another angle. Do not ask more than 4 additional questions.
+- After researching a topic, you can ask the user if they would like you to find personal detransition videos on this subject (use the queryVideosTool - do not refer to this tool by name. Only call this tool once per user-message!)
+- Keep the conversation going: If you've already researched a topic, do not research it again. Suggest pivoting to another relevant topic that might interest the user.
+
+IMPORTANT: 
+
+**do not use any variation of 'assigned sex at birth',AMAB,AFAB etc, for sex is never assigned**
+**do not refer to trans people, refer to them as people who identify as trans**
+
+After gathering information: 
+- Provide thoughtful, detailed, empathetic responses based on the retrieved information
+- Be sensitive to the user's experience and avoid making assumptions beyond what they've shared
+- Reference specific experiences from the filtered results when relevant
+
+FORMATTING: 
+  
+**Provide the link to each reddit comment or youtube video that is cited:**
+**Reddit user [username]** (detrans male/detrans female) [verb: explains, describes, shares, etc.] "[brief summary of their point]":
+*"[Full exact text of their comment]"* - [source](full_link_url)*
+**if citing a youtube video, include the timestamp in the link url: https://www.youtube.com/watch?v=videoId&t=120s
+`}
+              </pre>
+            </div>
+          </div>
+        </div>
+        <h2>System Prompts for Deep Research Mode</h2>
         <p>
           Last Updated: <i>24/9/25</i>
         </p>

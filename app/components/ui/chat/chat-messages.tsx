@@ -1,10 +1,11 @@
 "use client";
 
-import { cn } from "@/app/lib/utils";
+import { cn, uuidv4 } from "@/app/lib/utils";
 import { ChatMessage, ChatMessages, useChatUI } from "@llamaindex/chat-ui";
+import { RefreshCcw } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
-import DonationCard from "../../content/DonationCard";
 import { ChatMessageContent } from "./chat-message-content";
 import { ChatStarter } from "./chat-starter";
 import { ComponentDef } from "./custom/events/types";
@@ -16,7 +17,9 @@ export default function CustomChatMessages({
   componentDefs: ComponentDef[];
   appendError: (error: string) => void;
 }) {
-  const { messages } = useChatUI();
+  const { messages, setMessages, stop } = useChatUI();
+
+  const router = useRouter();
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   // Scroll to bottom every time messages update
@@ -37,6 +40,15 @@ export default function CustomChatMessages({
       });
     }
   }, [messages]);
+
+  const newConversation = () => {
+    if (stop) {
+      stop();
+    }
+    const newConversationId = uuidv4();
+    const newUrl = `/chat/` + newConversationId;
+    router.replace(newUrl);
+  };
 
   return (
     <ChatMessages className="!bg-transparent !p-0">
@@ -61,42 +73,49 @@ export default function CustomChatMessages({
                 <ChatMessage.Actions />
               </ChatMessage>
               {isLast && (
-                <>
-                  <Link
-                    href={"/"}
-                    className="mt-16 mb-4 ml-3 cursor-pointer font-semibold hover:underline"
-                  >
-                    <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base opacity-90 transition-colors sm:text-base">
-                      <div className="mr-2 whitespace-nowrap">{"<-"}</div>
-                      <div className="hover:underline">{"Back to Portal"}</div>
+                <div className="-mt-2 mb-4 ml-3 flex w-full flex-row justify-between pr-20 sm:mb-8 sm:pr-16">
+                  <div className="flex w-full grow flex-row justify-between border-t pt-8">
+                    <Link
+                      href={"/"}
+                      className="cursor-pointer font-semibold no-underline"
+                    >
+                      <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-sm opacity-90 transition-colors sm:text-base">
+                        <div className="mr-2 whitespace-nowrap no-underline">
+                          {"<-"}
+                        </div>
+                        <div className="hover:underline">
+                          {"Back to Portal"}
+                        </div>
+                      </div>
+                    </Link>
+                    <div
+                      onClick={newConversation}
+                      className="cursor-pointer font-semibold hover:underline"
+                    >
+                      <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-sm opacity-90 transition-colors sm:text-base">
+                        <div className="mr-2 whitespace-nowrap">
+                          <RefreshCcw className="h-4 w-4" />
+                        </div>
+                        <div className="hover:underline">
+                          {"New Conversation"}
+                        </div>
+                      </div>
                     </div>
-                  </Link>
-                  <Link
-                    href={"/chat"}
-                    className="mt-16 mb-4 ml-3 cursor-pointer font-semibold hover:underline"
-                  >
-                    <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base opacity-90 transition-colors sm:text-base">
-                      <div className="mr-2 whitespace-nowrap">{"->"}</div>
-                      <div className="hover:underline">{"New Conversation"}</div>
-                    </div>
-                  </Link>
-
-                  {true && (
-                    <div className="mt-4 mr-16 ml-4 sm:mx-0">
-                      <DonationCard mode={"detrans"} />
-                    </div>
-                  )}
-                </>
+                  </div>
+                </div>
               )}
             </div>
           );
         })}
         {/* dummy div for scroll anchor */}
         <div ref={messagesEndRef} />
-        <ChatMessages.Empty
-          heading="Hello there!"
-          subheading="I'm here to help you with your questions."
-        />
+
+        <div className="px-4 sm:px-0">
+          <ChatMessages.Empty
+            heading="Hello there!"
+            subheading="I'm detrans.ai - the collective consciousness of detransitioners 🦎"
+          />
+        </div>
         <ChatMessages.Loading />
       </ChatMessages.List>
       <ChatStarter />

@@ -65,8 +65,8 @@ export default function VideoList() {
             onClick={() => setFilter("all")}
             className={`rounded px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
               filter === "all"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                ? "bg-black text-white dark:bg-white dark:text-black"
+                : "bg-secondary text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
             }`}
           >
             All Stories
@@ -75,21 +75,21 @@ export default function VideoList() {
             onClick={() => setFilter("f")}
             className={`rounded px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
               filter === "f"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                ? "bg-black text-white dark:bg-white dark:text-black"
+                : "bg-secondary text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
             }`}
           >
-            Female Stories
+            Female
           </button>
           <button
             onClick={() => setFilter("m")}
             className={`rounded px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
               filter === "m"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                ? "bg-black text-white dark:bg-white dark:text-black"
+                : "bg-secondary text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
             }`}
           >
-            Male Stories
+            Male
           </button>
         </div>
       </div>

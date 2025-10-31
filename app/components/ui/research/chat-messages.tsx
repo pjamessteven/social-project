@@ -50,7 +50,7 @@ export default function CustomChatMessages({
     const isAtBottom =
       Math.abs(
         container.scrollHeight - container.scrollTop - container.clientHeight,
-      ) < 50; // within 50px of bottom
+      ) < 100; // within 50px of bottom
 
     if (isAtBottom) {
       // only scroll if user was already at bottom
