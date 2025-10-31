@@ -100,12 +100,12 @@ export async function POST(request: NextRequest) {
     const [newVideo] = await db
       .insert(videos)
       .values({
-        title: metadata.title,
-        author: metadata.author,
+        title: metadata.title || 'Untitled',
+        author: metadata.author || 'Unknown',
         sex,
         url,
         type: 'youtube',
-        description: metadata.description,
+        description: metadata.description || '',
         duration: metadata.duration,
         date: metadata.date,
       })
