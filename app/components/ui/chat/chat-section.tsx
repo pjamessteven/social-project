@@ -91,7 +91,7 @@ export default function ChatSection({
     if (conversationId) {
       loadConversation();
     }
-  }, [conversationId, useChatHandler]);
+  }, [conversationId]);
 
   // Handle pending chat message from sessionStorage
   useEffect(() => {
