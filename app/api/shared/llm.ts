@@ -19,12 +19,12 @@ import { Cache } from "./cache";
 
 export class CachedOpenAI extends OpenAI {
   private cache: Cache;
-  private mode: "detrans" | "affirm";
+  private mode: "detrans" | "affirm" | "detrans_chat";
 
   constructor(
     init: ConstructorParameters<typeof OpenAI>[0] & {
       cache: Cache;
-      mode: "detrans" | "affirm";
+      mode: "detrans" | "affirm" | "detrans_chat";
     }
   ) {
     const { cache, mode, ...openAIInit } = init;
@@ -35,6 +35,38 @@ export class CachedOpenAI extends OpenAI {
 
   private hashKey(key: string): string {
     return createHash("sha256").update(key).digest("hex");
+  }
+
+  private async fetchGenerationMetadata(generationId: string): Promise<{
+    totalCost?: number;
+    tokensPrompt?: number;
+    tokensCompletion?: number;
+    model?: string;
+  } | null> {
+    try {
+      const response = await fetch(`https://openrouter.ai/api/v1/generation?id=${generationId}`, {
+        headers: {
+          'Authorization': `Bearer ${this.apiKey}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        console.warn(`Failed to fetch generation metadata: ${response.status}`);
+        return null;
+      }
+
+      const data = await response.json();
+      return {
+        totalCost: data.total_cost,
+        tokensPrompt: data.usage?.prompt_tokens,
+        tokensCompletion: data.usage?.completion_tokens,
+        model: data.model,
+      };
+    } catch (error) {
+      console.warn('Error fetching generation metadata:', error);
+      return null;
+    }
   }
 
   /* ---------- chat ---------- */
@@ -81,11 +113,26 @@ export class CachedOpenAI extends OpenAI {
         this: CachedOpenAI,
       ): AsyncGenerator<ChatResponseChunk> {
         let full = "";
+        let generationId: string | undefined;
         for await (const chunk of rawStream as AsyncGenerator<ChatResponseChunk>) {
           full += chunk.delta;
+          // Extract generation ID from the first chunk if available
+          if (!generationId && chunk.raw?.id) {
+            generationId = chunk.raw.id;
+          }
           yield chunk;
         }
-        await this.cache.set(key, full, questionForCache);
+        
+        // Fetch metadata if we have a generation ID
+        let metadata;
+        if (generationId) {
+          metadata = await this.fetchGenerationMetadata(generationId);
+          if (metadata) {
+            metadata.generationId = generationId;
+          }
+        }
+        
+        await this.cache.set(key, full, questionForCache, metadata);
       }.bind(this);
 
       return capture();
@@ -113,7 +160,17 @@ export class CachedOpenAI extends OpenAI {
 
     const response = await super.chat({ messages, ...options });
     const text = String(response.message.content);
-    await this.cache.set(key, text, questionForCache);
+    
+    // Fetch metadata if we have a generation ID
+    let metadata;
+    if (response.raw?.id) {
+      metadata = await this.fetchGenerationMetadata(response.raw.id);
+      if (metadata) {
+        metadata.generationId = response.raw.id;
+      }
+    }
+    
+    await this.cache.set(key, text, questionForCache, metadata);
 
     logger.info({
       originalQuestion: questionForCache,
@@ -215,11 +272,26 @@ export class CachedOpenAI extends OpenAI {
         this: CachedOpenAI,
       ): AsyncIterable<CompletionResponse> {
         let full = "";
+        let generationId: string | undefined;
         for await (const chunk of rawStream as AsyncIterable<CompletionResponse>) {
           full += chunk.text || "";
+          // Extract generation ID from the first chunk if available
+          if (!generationId && chunk.raw?.id) {
+            generationId = chunk.raw.id;
+          }
           yield chunk;
         }
-        await this.cache.set(key, full, questionForCache);
+        
+        // Fetch metadata if we have a generation ID
+        let metadata;
+        if (generationId) {
+          metadata = await this.fetchGenerationMetadata(generationId);
+          if (metadata) {
+            metadata.generationId = generationId;
+          }
+        }
+        
+        await this.cache.set(key, full, questionForCache, metadata);
       }.bind(this);
 
       return capture();
@@ -257,7 +329,17 @@ export class CachedOpenAI extends OpenAI {
       ...options,
     });
     const text = String(response.text);
-    await this.cache.set(key, text, questionForCache);
+    
+    // Fetch metadata if we have a generation ID
+    let metadata;
+    if (response.raw?.id) {
+      metadata = await this.fetchGenerationMetadata(response.raw.id);
+      if (metadata) {
+        metadata.generationId = response.raw.id;
+      }
+    }
+    
+    await this.cache.set(key, text, questionForCache, metadata);
 
     return response;
   }
