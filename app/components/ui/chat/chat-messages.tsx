@@ -7,7 +7,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { ChatMessageContent } from "./chat-message-content";
-import { ChatStarter } from "./chat-starter";
 import { ComponentDef } from "./custom/events/types";
 
 export default function CustomChatMessages({
@@ -118,7 +117,7 @@ export default function CustomChatMessages({
         </div>
         <ChatMessages.Loading />
       </ChatMessages.List>
-      <ChatStarter />
+
     </ChatMessages>
   );
 }
