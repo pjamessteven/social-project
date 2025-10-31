@@ -121,12 +121,12 @@ function makeLlmCacheKey(
   return question + ":llm:" + JSON.stringify({ prompt, ...options });
 }
 interface ChatParamsNonStreaming extends LLMChatParamsNonStreaming {
-  originalQuestion: string;
+  originalQuestion?: string;
   mode?: "detrans" | "affirm";
 }
 
 interface ChatParamsStreaming extends LLMChatParamsStreaming {
-  originalQuestion: string;
+  originalQuestion?: string;
   mode?: "detrans" | "affirm";
 }
 
@@ -152,21 +152,22 @@ export class CachedOpenAI extends OpenAI {
 
   /* ---------- chat ---------- */
   async chat(
-    params: LLMChatParamsStreaming & { originalQuestion: string },
+    params: LLMChatParamsStreaming & { originalQuestion?: string },
   ): Promise<AsyncGenerator<ChatResponseChunk>>;
   async chat(
-    params: LLMChatParamsNonStreaming & { originalQuestion: string },
+    params: LLMChatParamsNonStreaming & { originalQuestion?: string },
   ): Promise<ChatResponse>;
   async chat(
     params: (LLMChatParamsStreaming | LLMChatParamsNonStreaming) & {
-      originalQuestion: string;
+      originalQuestion?: string;
     },
   ): Promise<ChatResponse | AsyncGenerator<ChatResponseChunk>> {
     const { originalQuestion, messages, stream, ...options } = params;
     const lastMessage = messages[messages.length - 1];
+    const questionForCache = originalQuestion || String(lastMessage.content).slice(0, 100);
     // coerce content to string for the cache key
     const key = makeLlmCacheKey(
-      originalQuestion,
+      questionForCache,
       String(lastMessage.content),
       options,
     );
@@ -176,7 +177,7 @@ export class CachedOpenAI extends OpenAI {
     /* --- Streaming mode --- */
     if (stream) {
       logger.info({
-        originalQuestion,
+        originalQuestion: questionForCache,
         hashedKey,
         mode: this.mode,
         type: 'chat_streaming'
@@ -197,7 +198,7 @@ export class CachedOpenAI extends OpenAI {
           full += chunk.delta;
           yield chunk;
         }
-        await this.cache.set(key, full, originalQuestion);
+        await this.cache.set(key, full, questionForCache);
       }.bind(this);
 
       return capture();
@@ -207,7 +208,7 @@ export class CachedOpenAI extends OpenAI {
     const cached = await this.cache.get(key);
     if (cached) {
       logger.info({
-        originalQuestion,
+        originalQuestion: questionForCache,
         hashedKey,
         mode: this.mode,
         type: 'chat'
@@ -225,10 +226,10 @@ export class CachedOpenAI extends OpenAI {
 
     const response = await super.chat({ messages, ...options });
     const text = String(response.message.content);
-    await this.cache.set(key, text, originalQuestion);
+    await this.cache.set(key, text, questionForCache);
 
     logger.info({
-      originalQuestion,
+      originalQuestion: questionForCache,
       hashedKey,
       mode: this.mode,
       type: 'chat'
@@ -239,7 +240,7 @@ export class CachedOpenAI extends OpenAI {
 
   /* ---------- complete ---------- */
   async complete(params: {
-    originalQuestion: string;
+    originalQuestion?: string;
     prompt: string;
     responseFormat?: object;
     stream?: false;
@@ -250,7 +251,7 @@ export class CachedOpenAI extends OpenAI {
     [key: string]: any;
   }): Promise<{ text: string }>;
   async complete(params: {
-    originalQuestion: string;
+    originalQuestion?: string;
     prompt: string;
     responseFormat?: object;
     stream: true;
@@ -261,7 +262,7 @@ export class CachedOpenAI extends OpenAI {
     [key: string]: any;
   }): Promise<AsyncGenerator<{ delta: string }>>;
   async complete(params: {
-    originalQuestion: string;
+    originalQuestion?: string;
     prompt: string;
     responseFormat?: object;
     stream?: boolean;
@@ -279,7 +280,8 @@ export class CachedOpenAI extends OpenAI {
       rateLimit,
       ...options
     } = params;
-    const key = makeLlmCacheKey(originalQuestion, prompt, options);
+    const questionForCache = originalQuestion || prompt.slice(0, 100);
+    const key = makeLlmCacheKey(questionForCache, prompt, options);
     const hashedKey = this.hashKey(key);
     const logger = getLogger();
 
@@ -288,7 +290,7 @@ export class CachedOpenAI extends OpenAI {
       const cached = await this.cache.get(key);
       if (cached) {
         logger.info({
-          originalQuestion,
+          originalQuestion: questionForCache,
           hashedKey,
           mode: this.mode,
           type: 'complete_streaming'
@@ -304,7 +306,7 @@ export class CachedOpenAI extends OpenAI {
       }
 
       logger.info({
-        originalQuestion,
+        originalQuestion: questionForCache,
         hashedKey,
         mode: this.mode,
         type: 'complete_streaming'
@@ -335,7 +337,7 @@ export class CachedOpenAI extends OpenAI {
           full += chunk.delta;
           yield chunk;
         }
-        await this.cache.set(key, full, originalQuestion);
+        await this.cache.set(key, full, questionForCache);
       }.bind(this);
 
       return capture();
@@ -345,7 +347,7 @@ export class CachedOpenAI extends OpenAI {
     const cached = await this.cache.get(key);
     if (cached) {
       logger.info({
-        originalQuestion,
+        originalQuestion: questionForCache,
         hashedKey,
         mode: this.mode,
         type: 'complete'
@@ -354,7 +356,7 @@ export class CachedOpenAI extends OpenAI {
     }
 
     logger.info({
-      originalQuestion,
+      originalQuestion: questionForCache,
       hashedKey,
       mode: this.mode,
       type: 'complete'
@@ -373,7 +375,7 @@ export class CachedOpenAI extends OpenAI {
       ...options,
     });
     const text = String(response.text);
-    await this.cache.set(key, text, originalQuestion);
+    await this.cache.set(key, text, questionForCache);
 
     return response;
   }
