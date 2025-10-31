@@ -149,8 +149,8 @@ export class CachedOpenAI extends OpenAI {
           full += chunk.delta;
           console.log("CHUNK", JSON.stringify(chunk));
           // Extract generation ID from the first chunk if available
-          if (!generationId && chunk.raw?.id) {
-            generationId = chunk.raw.id;
+          if (!generationId && chunk.raw && 'id' in chunk.raw) {
+            generationId = (chunk.raw as any).id;
           }
           yield chunk;
         }
@@ -200,12 +200,12 @@ export class CachedOpenAI extends OpenAI {
 
     // Fetch metadata if we have a generation ID
     let metadata;
-    if (response.raw?.id) {
-      metadata = (await this.fetchGenerationMetadata(response.raw.id)) as any;
+    if (response.raw && 'id' in response.raw) {
+      metadata = (await this.fetchGenerationMetadata((response.raw as any).id)) as any;
       if (!metadata) {
         metadata = {};
       }
-      metadata.generationId = response.raw.id;
+      metadata.generationId = (response.raw as any).id;
       metadata.conversationId = this.conversationId
       console.log("CHAT 180 generation ID", metadata.generationId);
     }
@@ -332,8 +332,8 @@ export class CachedOpenAI extends OpenAI {
         for await (const chunk of rawStream as AsyncIterable<CompletionResponse>) {
           full += chunk.text || "";
           // Extract generation ID from the first chunk if available
-          if (!generationId && chunk.raw.id) {
-            generationId = chunk.raw.id;
+          if (!generationId && chunk.raw && 'id' in chunk.raw) {
+            generationId = (chunk.raw as any).id;
           }
 
           yield chunk;
@@ -397,12 +397,12 @@ export class CachedOpenAI extends OpenAI {
 
     // Fetch metadata if we have a generation ID
     let metadata;
-    if (response.raw?.id) {
-      metadata = (await this.fetchGenerationMetadata(response.raw.id)) as any;
+    if (response.raw && 'id' in response.raw) {
+      metadata = (await this.fetchGenerationMetadata((response.raw as any).id)) as any;
       if (!metadata) {
         metadata = {}
       }
-      metadata.generationId = response.raw.id;
+      metadata.generationId = (response.raw as any).id;
       console.log("COMPLETE metadata355", metadata);
       metadata.conversationId = this.conversationId;
     }
