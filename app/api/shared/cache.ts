@@ -149,7 +149,11 @@ export function makeLlmCacheKey(
   question: string,
   prompt: string,
   options: any,
+  mode?: string
 ): string {
+  if (mode === 'detrans_chat') {
+    return JSON.stringify({ prompt, ...options })
+  }
   return question + ":llm:" + JSON.stringify({ prompt, ...options });
 }
 
