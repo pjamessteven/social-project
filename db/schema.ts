@@ -68,6 +68,7 @@ export const detransChatCache = pgTable('detrans_chat_cache', {
   promptText: text('prompt_text').notNull(),
   resultText: text('result_text').notNull(),
   questionName: varchar('question_name', { length: 255 }),
+  conversationId: varchar('conversation_id', { length: 36 }),
   totalCost: numeric('total_cost', { precision: 10, scale: 6 }),
   tokensPrompt: integer('tokens_prompt'),
   tokensCompletion: integer('tokens_completion'),
@@ -77,6 +78,7 @@ export const detransChatCache = pgTable('detrans_chat_cache', {
   lastAccessed: timestamp('last_accessed').defaultNow().notNull(),
 }, (table) => ({
   questionIdx: index('idx_detrans_chat_cache_question').on(table.questionName),
+  conversationIdx: index('idx_detrans_chat_cache_conversation').on(table.conversationId),
   createdIdx: index('idx_detrans_chat_cache_created').on(table.createdAt),
   modelIdx: index('idx_detrans_chat_cache_model').on(table.model),
   generationIdx: index('idx_detrans_chat_cache_generation').on(table.generationId),
