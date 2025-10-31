@@ -1,7 +1,7 @@
 "use client";
 
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import * as React from "react";
 import { cn } from "./lib/utils";
 
@@ -21,19 +21,29 @@ AccordionItem.displayName = "AccordionItem";
 
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
+    indicatorStart?: boolean;
+    hideIndicator?: boolean;
+  }
+>(({ className, children, indicatorStart, hideIndicator, ...props }, ref) => (
   <AccordionPrimitive.Header className="flex">
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "flex flex-1 items-center justify-between py-4 text-left text-sm font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180",
+        "flex flex-1 items-center py-4 text-left text-sm font-medium transition-all hover:underline ",
         className,
+        !indicatorStart && 'justify-between [&[data-state=open]>svg]:rotate-180',
+        indicatorStart && '[&[data-state=open]>svg]:rotate-90'
       )}
       {...props}
     >
+      {indicatorStart  && !hideIndicator && (
+        <ChevronRight className="mr-2 h-4 w-4 shrink-0 transition-transform duration-200" />
+      )}
       {children}
-      <ChevronDown className="mr-2 ml-1 h-4 w-4 shrink-0  transition-transform duration-200 " />
+      {!indicatorStart && !hideIndicator && (
+        <ChevronDown className="mr-2 ml-1 h-4 w-4 shrink-0 transition-transform duration-200" />
+      )}
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));

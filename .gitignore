@@ -5,7 +5,10 @@
 /postgres-data
 /redis-data
 /storage
-qdrant-storage.zip
+/postgres-data
+/qdrant-storage.zip
+# python env
+/env
 
 checkpoint*.json
 # dependencies

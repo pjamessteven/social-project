@@ -1,6 +1,6 @@
-import { pgTable, varchar, integer, timestamp, text, index, serial, numeric } from 'drizzle-orm/pg-core';
+import { pgTable, varchar, integer, timestamp, text, index, serial, numeric, boolean } from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
-import { z } from 'zod';
+import { z } from 'zod/v3';
 
 // Detrans tables
 export const detransQuestions = pgTable('detrans_questions', {
@@ -46,6 +46,22 @@ export const affirmCache = pgTable('affirm_cache', {
 }, (table) => ({
   questionIdx: index('idx_affirm_cache_question').on(table.questionName),
   createdIdx: index('idx_affirm_cache_created').on(table.createdAt),
+}));
+
+
+
+// Chat conversations table
+export const chatConversations = pgTable('chat_conversations', {
+  uuid: varchar('uuid', { length: 36 }).primaryKey().default(sql`gen_random_uuid()`),
+  mode: varchar('mode', { length: 20 }).notNull(), // 'detrans_chat', 'detrans', 'affirm'
+  title: varchar('title', { length: 500 }),
+  messages: text('messages').notNull(), // JSON string of the conversation messages
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+}, (table) => ({
+  modeIdx: index('idx_chat_conversations_mode').on(table.mode),
+  createdIdx: index('idx_chat_conversations_created').on(table.createdAt),
+  updatedIdx: index('idx_chat_conversations_updated').on(table.updatedAt),
 }));
 
 
@@ -230,11 +246,62 @@ export const detransCommentSchema = z.object({
   linkId: z.string().max(50).nullable(),
 });
 
+export const chatConversationSchema = z.object({
+  uuid: z.string(),
+  mode: z.string().max(20),
+  title: z.string().max(500).nullable(),
+  messages: z.string(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+
 export type Question = z.infer<typeof questionSchema>;
 export type Cache = z.infer<typeof cacheSchema>;
 export type DetransUserEvent = z.infer<typeof detransUserEventSchema>;
 export type DetransUser = z.infer<typeof detransUserSchema>;
 export type DetransComment = z.infer<typeof detransCommentSchema>;
+export type ChatConversation = z.infer<typeof chatConversationSchema>;
 export type Tag = z.infer<typeof tagSchema>;
 export type TagType = z.infer<typeof tagTypeSchema>;
+// Videos table
+export const videos = pgTable('videos', {
+  id: serial('id').primaryKey(),
+  title: varchar('title', { length: 500 }).notNull(),
+  author: varchar('author', { length: 255 }).notNull(),
+  sex: varchar('sex', { length: 1 }).notNull(), // 'm' or 'f'
+  url: text('url').notNull().unique(),
+  type: varchar('type', { length: 50 }).notNull().default('youtube'),
+  processed: boolean('processed').default(false).notNull(),
+  transcript: text('transcript'),
+  description: text('description'),
+  duration: integer('duration'), // duration in seconds
+  date: timestamp('date'), // date posted
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+}, (table) => ({
+  urlIdx: index('idx_videos_url').on(table.url),
+  typeIdx: index('idx_videos_type').on(table.type),
+  processedIdx: index('idx_videos_processed').on(table.processed),
+  dateIdx: index('idx_videos_date').on(table.date),
+  authorIdx: index('idx_videos_author').on(table.author),
+  sexIdx: index('idx_videos_sex').on(table.sex),
+}));
+
+export const videoSchema = z.object({
+  id: z.number().int(),
+  title: z.string().max(500),
+  author: z.string().max(255),
+  sex: z.enum(['m', 'f']),
+  url: z.string(),
+  type: z.string().max(50).default('youtube'),
+  processed: z.boolean().default(false),
+  transcript: z.string().nullable(),
+  description: z.string().nullable(),
+  duration: z.number().int().nullable(),
+  date: z.date().nullable(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+
+export type Video = z.infer<typeof videoSchema>;
 export type UserTag = z.infer<typeof userTagSchema>;

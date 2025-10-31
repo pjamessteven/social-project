@@ -15,6 +15,8 @@ export async function GET(request: NextRequest) {
     const tag = searchParams.get("tag");
     const minAge = searchParams.get("minAge");
     const maxAge = searchParams.get("maxAge");
+    const search = searchParams.get("search");
+    const username = searchParams.get("username");
     const page = parseInt(searchParams.get("page") || "1");
     const limit = parseInt(searchParams.get("limit") || "20");
 
@@ -47,6 +49,17 @@ export async function GET(request: NextRequest) {
           sql`(${detransUsers.detransitionAge} <= ${maxAgeNum} OR ${detransUsers.detransitionAge} IS NULL)`
         );
       }
+    }
+    
+    if (search && search.trim()) {
+      const searchTerm = `%${search.trim()}%`;
+      conditions.push(
+        sql`${detransUsers.experienceSummary} ILIKE ${searchTerm}`
+      );
+    }
+    
+    if (username && username.trim()) {
+      conditions.push(eq(detransUsers.username, username.trim()));
     }
     
     if (tag) {

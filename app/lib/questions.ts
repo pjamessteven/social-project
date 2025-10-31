@@ -1,7 +1,7 @@
 export const questionCategories = [
   {
     title: "Featured Questions",
-    description: "The best questions to ask detrans people...",
+    description: "The best questions to ask detrans people.",
     questions: [
       "What does trans mean?",
       "Have trans people always existed?",
@@ -72,11 +72,9 @@ export const questionCategories = [
       "What are pronouns and why are they significant to some?",
       "What do trans people mean when they talk about 'trans rights'?",
       "Why do some trans people say 'death before detransition'?",
-
       "What factors are thought to cause dysphoria?",
       "What is the 'gender dysphoria bible'?",
       "What strategies (medical or non-medical) help people manage dysphoria?",
-
       "Are intersex people automatically trans?",
       "What is gender fluidity?",
       "What do AFAB and AMAB mean?",
@@ -92,9 +90,12 @@ export const questionCategories = [
     title: "The Medical Reality",
     description: "Health, procedures, and biological truths",
     questions: [
+      "Are there measurable differences in referral rates between males and females?",
+      "What does brain-imaging research say about ‘male’ versus ‘female’ brains?",
+      "How is gender dysphoria distinguished from mental illness in diagnostic manuals?",
       "What physiological changes can hormones induce and what are their limits?",
-      "What is vaginal atrophy?",
       "What are the documented health risks of gender-affirming hormone therapy?",
+      "What is vaginal atrophy and what causes it?",
       "How should someone weigh continuing versus discontinuing hormones?",
       "What does vaginoplasty entail and what are typical outcomes?",
       "What does phalloplasty entail and what are typical outcomes?",
@@ -113,21 +114,18 @@ export const questionCategories = [
   },
   {
     title: "Society & Culture",
-    description: "How gender beleif systems affects us all",
+    description: "How gender beliefs affect us all",
     questions: [
-      "Are there measurable differences in referral rates between males and females?",
-      "How is gender dysphoria distinguished from mental illness in diagnostic manuals?",
+      "How has the concept of gender evolved historically?",
+      "What could explain the rise in non-binary identification?",
+      "How do repetitive mantras or slogans affect critical thinking in any community?",
       "What explanations exist for elevated suicide risk in trans populations?",
       "How does the perceived suicide risk affect public discourse around transition?",
-      "How do repetitive mantras or slogans affect critical thinking in any community?",
-      "How has the concept of gender evolved historically?",
-      "What does brain-imaging research say about ‘male’ versus ‘female’ brains?",
-      "Why might autistic people be over-represented in gender clinics?",
+      "What are the links between BDSM and trans identities?",
       "How does contemporary gender discourse intersect with gay and lesbian identities?",
       "What does ‘gender-critical’ mean and how does it differ from trans-exclusionary views?",
       "What are documented outcomes for children who socially transition early?",
       "How has trans activism interacted with earlier gay-rights activism?",
-      "What could explain the rise in non-binary identification?",
       "What is the ‘bathroom debate’ and what evidence exists for either harm or safety?",
       "What are the main arguments in the sports-participation controversy?",
       "How have schools handled gender-questioning pupils in different jurisdictions?",
@@ -140,6 +138,7 @@ export const questionCategories = [
     description: "Understanding the mental and emotional aspects",
     questions: [
       "What is the neurochemical cycle of validation?",
+      "Why might autistic people be over-represented in gender clinics?",
       "What is internalised misogyny and how might it relate to body distress?",
       "What is internalised homophobia?",
       "What is autogynephilia and how is it debated in the literature?",
@@ -195,6 +194,8 @@ export const questionCategories = [
       "What structural factors lead to under-representation of detransition stories in mainstream media?",
       "In what ways do gender belief systems resemble religions or cults?",
       "Are schools sidelining parents when children make choices about gender identity?",
+      "Why are there so many ladyboys in Thailand?",
+      "Why is Iran a global hub for sex-reassignment surgeries?",
     ],
   },
 ];

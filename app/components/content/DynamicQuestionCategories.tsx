@@ -104,25 +104,18 @@ export function DynamicQuestionCategories({
     const slug = slugify(question);
     switch (mode) {
       case "affirm":
-        return `/affirm/chat/${slug}`;
+        return `/affirm/research/${slug}`;
       case "compare":
-        return `/compare/chat/${slug}`;
+        return `/compare/research/${slug}`;
       default:
-        return `/chat/${slug}`;
+        return `/research/${slug}`;
     }
   };
 
   if (loading) {
     return (
       <div className="mb-8 min-h-[80vh]">
-        <h3 className="text-primary mb-2 text-2xl font-bold">
-          {questionMode === "top" ? "Top Questions" : "Recent Questions"}
-        </h3>
-        <p className="text-muted-foreground mb-6 text-sm">
-          {questionMode === "top"
-            ? "These are the top questions people have asked detrans.ai"
-            : "These are the most recent questions people have asked detrans.ai"}
-        </p>
+
         <div className="flex items-center justify-center py-8">
           <Loader2 className="h-6 w-6 animate-spin" />
           <span className="ml-2">Loading {questionMode} questions...</span>
@@ -134,14 +127,7 @@ export function DynamicQuestionCategories({
   if (error) {
     return (
       <div className="mb-8 min-h-[80vh]">
-        <h3 className="text-primary mb-2 text-2xl font-bold">
-          {questionMode === "top" ? "Top Questions" : "Recent Questions"}
-        </h3>
-        <p className="text-muted-foreground mb-6 text-sm sm:text-base">
-          {questionMode === "top"
-            ? "These are the top questions people have asked detrans.ai"
-            : "These are the most recent questions people have asked detrans.ai"}
-        </p>
+
         <div className="py-4 text-red-500">
           Error loading questions: {error}
         </div>
@@ -151,12 +137,11 @@ export function DynamicQuestionCategories({
 
   return (
     <>
-      <div className="mb-8 min-h-[80vh]">
-        <h3 className="text-primary mb-2 text-2xl font-bold">
-          {" "}
+      <div className="mb-8 min-h-[80vh] mt-4 sm:mt-6">
+        <h3 className="text-primary mb-2 text-2xl font-bold hidden">
           {questionMode === "top" ? "Top Questions" : "Recent Questions"}
         </h3>
-        <p className="text-muted-foreground mb-4 text-sm sm:mb-6">
+        <p className="text-muted-foreground mb-4 text-sm sm:text-base sm:mb-4 hidden">
           {questionMode === "top"
             ? "These are the top questions people have asked detrans.ai"
             : "These are the most recent questions people have asked detrans.ai"}
@@ -169,7 +154,7 @@ export function DynamicQuestionCategories({
               key={`${item.page}-${index}`}
             >
               <div className="flex flex-row items-center border-b pt-1 pb-2">
-                <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-base sm:text-lg italic opacity-90">
+                <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-lg italic opacity-90">
                   <div className="mr-2 whitespace-nowrap">{"->"}</div>
                   <div className="flex-1">{item.page}</div>
                   <div className="ml-2 text-xs sm:text-sm font-normal opacity-60">

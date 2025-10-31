@@ -1,0 +1,152 @@
+import {
+  agentStreamEvent,
+  type WorkflowEvent,
+  type WorkflowEventData,
+} from "@llamaindex/workflow";
+import {
+  createUIMessageStream,
+  type JSONValue,
+  type UIMessageStreamWriter,
+} from "ai";
+import { randomUUID } from "crypto";
+import type { ChatResponseChunk } from "llamaindex";
+import { humanInputEvent, type HumanResponseEventData } from "./hitl";
+
+/**
+ * Configuration options and helper callback methods for stream lifecycle events.
+ */
+export interface StreamCallbacks {
+  /** `onStart`: Called once when the stream is initialized. */
+  onStart?: (dataStreamWriter: UIMessageStreamWriter) => Promise<void> | void;
+
+  /** `onFinal`: Called once when the stream is closed with the final completion message. */
+  onFinal?: (
+    completion: string,
+    dataStreamWriter: UIMessageStreamWriter,
+  ) => Promise<void> | void;
+
+  /** `onText`: Called for each text chunk. */
+  onText?: (
+    text: string,
+    dataStreamWriter: UIMessageStreamWriter,
+  ) => Promise<void> | void;
+
+  /** `onPauseForHumanInput`: Called when human input event is emitted. */
+  onPauseForHumanInput?:
+    | ((event: WorkflowEvent<HumanResponseEventData>) => Promise<void> | void)
+    | undefined;
+}
+
+/**
+ * Convert a stream of WorkflowEventData to a Response object.
+ * @param stream - The input stream of WorkflowEventData.
+ * @param options - Optional options for stream lifecycle events.
+ * @returns A readable stream of data.
+ */
+export function toDataStream(
+  stream: AsyncIterable<WorkflowEventData<unknown>>,
+  options: {
+    callbacks?: StreamCallbacks;
+  } = {},
+) {
+  const { callbacks } = options;
+
+  let completionText = "";
+  let hasStarted = false;
+  let textId: string | null = null;
+
+  return createUIMessageStream({
+    async execute({ writer }) {
+      if (!hasStarted && callbacks?.onStart) {
+        await callbacks.onStart(writer);
+        hasStarted = true;
+      }
+
+      for await (const event of stream) {
+        if (agentStreamEvent.include(event) && event.data.delta) {
+          const content = event.data.delta;
+          if (content) {
+            // Start text block if not already started
+            if (!textId) {
+              textId = `text-${randomUUID()}`;
+              console.log("TEXTID", textId);
+              writer.write({
+                type: "text-start",
+                id: textId,
+              });
+            }
+
+            completionText += content;
+            writer.write({
+              type: "text-delta",
+              id: textId,
+              delta: content,
+            });
+
+            if (callbacks?.onText) {
+              await callbacks.onText(content, writer);
+            }
+          }
+        } 
+        
+        else if (humanInputEvent.include(event)) {
+          const { response, ...rest } = event.data;
+
+          writer.write({
+            type: "data-human-input",
+            data: rest,
+          });
+          if (callbacks?.onPauseForHumanInput) {
+            await callbacks.onPauseForHumanInput(response);
+            return; // stop the stream
+          }
+        } else if ((event.data as any).type === 'data-ui_event'){
+          writer.write(event.data as any);
+        }
+      }
+
+      // End text block if it was started
+      if (textId) {
+        writer.write({
+          type: "text-end",
+          id: textId,
+        });
+      }
+
+      // Call onFinal with the complete text when stream ends
+      if (callbacks?.onFinal) {
+        await callbacks.onFinal(completionText, writer);
+      }
+    },
+    onError: (error: unknown) => {
+      return error instanceof Error
+        ? error.message
+        : "An unknown error occurred during stream finalization";
+    },
+  });
+}
+
+export async function writeResponseToStream(
+  generator: AsyncIterable<ChatResponseChunk<object>>,
+  sendEvent: (event: WorkflowEventData<unknown>) => void,
+) {
+  let response = "";
+  if (generator) {
+    for await (const chunk of generator) {
+      if (typeof chunk.delta === "string") {
+        response += chunk.delta;
+      } else if (chunk.delta) {
+        response += JSON.stringify(chunk.delta);
+      }
+      sendEvent(
+        agentStreamEvent.with({
+          delta: chunk.delta,
+          response,
+          currentAgentName: "LLM",
+          raw: chunk.raw,
+        }),
+      );
+    }
+  }
+  return response;
+}

@@ -1,13 +1,23 @@
 "use client";
 
 import {
-  getAnnotationData,
+  ArtifactPartType,
+  EventPartType,
+  FilePartType,
+  getParts,
   JSONValue,
-  MessageAnnotation,
-  MessageAnnotationType,
+
+  MessagePart,
+
+  SourcesPartType,
+
+  SuggestionPartType,
+
+  TextPartType,
+
   useChatMessage,
 } from "@llamaindex/chat-ui";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { DynamicComponentErrorBoundary } from "./error-boundary";
 import { ComponentDef } from "./types";
 
@@ -16,7 +26,7 @@ type EventComponent = ComponentDef & {
 };
 
 // image, document_file, sources, events, suggested_questions, agent
-const BUILT_IN_CHATUI_COMPONENTS = Object.values(MessageAnnotationType);
+const BUILT_IN_CHATUI_COMPONENTS = [TextPartType, FilePartType, ArtifactPartType, EventPartType, SourcesPartType, SuggestionPartType]
 
 export const DynamicEvents = ({
   componentDefs,
@@ -25,24 +35,8 @@ export const DynamicEvents = ({
   componentDefs: ComponentDef[];
   appendError: (error: string) => void;
 }) => {
-  const { message, isLast } = useChatMessage();
-  const [debouncedMessage, setDebouncedMessage] = useState(message);
-
-  useEffect(() => {
-    if (isLast) {
-      setDebouncedMessage(message);
-      return;
-    }
-
-    const timer = setTimeout(() => {
-      setDebouncedMessage(message);
-    }, 500);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [message, isLast]);
-  const annotations = debouncedMessage.annotations;
+  const { message } = useChatMessage();
+  const parts = message.parts;
 
   const shownWarningsRef = useRef<Set<string>>(new Set()); // track warnings
   const [hasErrors, setHasErrors] = useState(false);
@@ -54,20 +48,20 @@ export const DynamicEvents = ({
 
   // Check for missing components in annotations
   useEffect(() => {
-    if (!annotations?.length) return;
+    if (!parts?.length) return;
 
     const availableComponents = new Set(componentDefs.map((comp) => comp.type));
 
-    annotations.forEach((item: JSONValue) => {
-      const annotation = item as MessageAnnotation;
-      const type = annotation.type;
+    parts.forEach((item: JSONValue) => {
+      const part = item as MessagePart;
+      const type = part.type;
       if (!type) return; // Skip if annotation doesn't have a type
 
-      const events = getAnnotationData<JSONValue>(debouncedMessage, type);
+      const events = getParts(message, type);
 
       // Skip if it's a built-in component or if we've already shown the warning
       if (
-        BUILT_IN_CHATUI_COMPONENTS.includes(type as MessageAnnotationType) ||
+        BUILT_IN_CHATUI_COMPONENTS.includes(type) ||
         shownWarningsRef.current.has(type)
       ) {
         return;
@@ -81,22 +75,15 @@ export const DynamicEvents = ({
         shownWarningsRef.current.add(type);
       }
     });
-  }, [annotations, componentDefs, debouncedMessage]);
+  }, [parts, componentDefs]);
 
-  const components: EventComponent[] = useMemo(
-    () =>
-      componentDefs
-        .map((comp) => {
-          const events = getAnnotationData<JSONValue>(
-            debouncedMessage,
-            comp.type,
-          );
-          if (!events?.length) return null;
-          return { ...comp, events };
-        })
-        .filter((comp) => comp !== null),
-    [componentDefs, debouncedMessage],
-  );
+  const components: EventComponent[] = componentDefs
+    .map((comp) => {
+      const events = getParts(message, comp.type);
+      if (!events?.length) return null;
+      return { ...comp, events };
+    })
+    .filter((comp) => comp !== null);
 
   if (components.length === 0) return null;
   if (hasErrors) return null;

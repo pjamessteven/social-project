@@ -61,6 +61,7 @@ export async function middleware(req: NextRequest) {
       // map the public path to the internal “/affirm/…” folder
       const rewriteMap: Record<string, string> = {
         "/": "/affirm",
+        "/research": "/affirm/research",
         "/chat": "/affirm/chat",
         "/prompts": "/affirm/prompts",
         "/terms": "/affirm/terms",
