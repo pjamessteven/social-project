@@ -103,6 +103,27 @@ export class CachedOpenAI extends OpenAI {
 
     /* --- Streaming mode --- */
     if (stream) {
+      const cached = await this.cache.get(key);
+      if (cached) {
+        logger.info(
+          {
+            originalQuestion: questionForCache,
+            hashedKey,
+            mode: this.mode,
+            type: "chat_streaming",
+          },
+          "LLM cache hit (streaming)",
+        );
+
+        // Replay cached result as a fake stream
+        const replayCached = async function* (
+          text: string,
+        ): AsyncGenerator<ChatResponseChunk> {
+          yield { delta: text, raw: null } as ChatResponseChunk;
+        };
+        return replayCached(cached);
+      }
+
       logger.info(
         {
           originalQuestion: questionForCache,
@@ -110,7 +131,7 @@ export class CachedOpenAI extends OpenAI {
           mode: this.mode,
           type: "chat_streaming",
         },
-        "LLM cache generating new (streaming)",
+        "LLM cache miss, generating new (streaming)",
       );
 
       // Call underlying LLM in streaming mode
