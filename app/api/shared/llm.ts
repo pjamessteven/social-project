@@ -95,8 +95,7 @@ export class CachedOpenAI extends OpenAI {
       options,
       this.mode,
     );
-    console.log('OPTIONS', JSON.stringify(options))
-    console.log('questionForCache', questionForCache)
+    console.log("CACHE KEY", key)
 
     const hashedKey = this.hashKey(key);
     const logger = getLogger();
@@ -273,6 +272,7 @@ export class CachedOpenAI extends OpenAI {
       options,
       this.mode,
     );
+    console.log("CACHE KEY", key)
     const hashedKey = this.hashKey(key);
     const logger = getLogger();
 
@@ -335,7 +335,6 @@ export class CachedOpenAI extends OpenAI {
           if (!generationId && chunk.raw.id) {
             generationId = chunk.raw.id;
           }
-          console.log(" COMPLETE GENID 293", generationId);
 
           yield chunk;
         }
