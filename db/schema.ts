@@ -18,11 +18,18 @@ export const detransCache = pgTable('detrans_cache', {
   promptText: text('prompt_text').notNull(),
   resultText: text('result_text').notNull(),
   questionName: varchar('question_name', { length: 255 }).references(() => detransQuestions.name),
+  totalCost: numeric('total_cost', { precision: 10, scale: 6 }),
+  tokensPrompt: integer('tokens_prompt'),
+  tokensCompletion: integer('tokens_completion'),
+  model: varchar('model', { length: 255 }),
+  generationId: varchar('generation_id', { length: 255 }),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   lastAccessed: timestamp('last_accessed').defaultNow().notNull(),
 }, (table) => ({
   questionIdx: index('idx_detrans_cache_question').on(table.questionName),
   createdIdx: index('idx_detrans_cache_created').on(table.createdAt),
+  modelIdx: index('idx_detrans_cache_model').on(table.model),
+  generationIdx: index('idx_detrans_cache_generation').on(table.generationId),
 }));
 
 // Affirm tables
@@ -41,14 +48,41 @@ export const affirmCache = pgTable('affirm_cache', {
   promptText: text('prompt_text').notNull(),
   resultText: text('result_text').notNull(),
   questionName: varchar('question_name', { length: 255 }).references(() => affirmQuestions.name),
+  totalCost: numeric('total_cost', { precision: 10, scale: 6 }),
+  tokensPrompt: integer('tokens_prompt'),
+  tokensCompletion: integer('tokens_completion'),
+  model: varchar('model', { length: 255 }),
+  generationId: varchar('generation_id', { length: 255 }),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   lastAccessed: timestamp('last_accessed').defaultNow().notNull(),
 }, (table) => ({
   questionIdx: index('idx_affirm_cache_question').on(table.questionName),
   createdIdx: index('idx_affirm_cache_created').on(table.createdAt),
+  modelIdx: index('idx_affirm_cache_model').on(table.model),
+  generationIdx: index('idx_affirm_cache_generation').on(table.generationId),
 }));
 
 
+
+// Detrans chat cache table
+export const detransChatCache = pgTable('detrans_chat_cache', {
+  promptHash: varchar('prompt_hash', { length: 64 }).primaryKey(),
+  promptText: text('prompt_text').notNull(),
+  resultText: text('result_text').notNull(),
+  questionName: varchar('question_name', { length: 255 }),
+  totalCost: numeric('total_cost', { precision: 10, scale: 6 }),
+  tokensPrompt: integer('tokens_prompt'),
+  tokensCompletion: integer('tokens_completion'),
+  model: varchar('model', { length: 255 }),
+  generationId: varchar('generation_id', { length: 255 }),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  lastAccessed: timestamp('last_accessed').defaultNow().notNull(),
+}, (table) => ({
+  questionIdx: index('idx_detrans_chat_cache_question').on(table.questionName),
+  createdIdx: index('idx_detrans_chat_cache_created').on(table.createdAt),
+  modelIdx: index('idx_detrans_chat_cache_model').on(table.model),
+  generationIdx: index('idx_detrans_chat_cache_generation').on(table.generationId),
+}));
 
 // Chat conversations table
 export const chatConversations = pgTable('chat_conversations', {
@@ -182,6 +216,11 @@ export const cacheSchema = z.object({
   promptText: z.string(),
   resultText: z.string(),
   questionName: z.string().max(255).nullable(),
+  totalCost: z.string().nullable(),
+  tokensPrompt: z.number().int().nullable(),
+  tokensCompletion: z.number().int().nullable(),
+  model: z.string().max(255).nullable(),
+  generationId: z.string().max(255).nullable(),
   createdAt: z.date(),
   lastAccessed: z.date(),
 });
