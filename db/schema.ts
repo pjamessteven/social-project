@@ -82,25 +82,6 @@ export const detransChatCache = pgTable('detrans_chat_cache', {
   generationIdx: index('idx_detrans_chat_cache_generation').on(table.generationId),
 }));
 
-export const detransChatCache = pgTable('detrans_chat_cache', {
-  promptHash: varchar('prompt_hash', { length: 64 }).primaryKey(),
-  promptText: text('prompt_text').notNull(),
-  resultText: text('result_text').notNull(),
-  questionName: varchar('question_name', { length: 255 }),
-  totalCost: numeric('total_cost', { precision: 10, scale: 6 }),
-  tokensPrompt: integer('tokens_prompt'),
-  tokensCompletion: integer('tokens_completion'),
-  model: varchar('model', { length: 255 }),
-  generationId: varchar('generation_id', { length: 255 }),
-  createdAt: timestamp('created_at').defaultNow().notNull(),
-  lastAccessed: timestamp('last_accessed').defaultNow().notNull(),
-}, (table) => ({
-  questionIdx: index('idx_detrans_chat_cache_question').on(table.questionName),
-  createdIdx: index('idx_detrans_chat_cache_created').on(table.createdAt),
-  modelIdx: index('idx_detrans_chat_cache_model').on(table.model),
-  generationIdx: index('idx_detrans_chat_cache_generation').on(table.generationId),
-}));
-
 // Chat conversations table
 export const chatConversations = pgTable('chat_conversations', {
   uuid: varchar('uuid', { length: 36 }).primaryKey().default(sql`gen_random_uuid()`),
