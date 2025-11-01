@@ -131,6 +131,19 @@ export default function Studies() {
 
             <section>
               <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
+                Participant Incentive
+              </h3>
+              <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+                <p className="text-sm text-yellow-800 dark:text-yellow-200">
+                  Participants will be entered into a drawing for a chance to
+                  win one of several cash prizes: <strong>1x $150</strong> and{" "}
+                  <strong>5x $50</strong>.
+                </p>
+              </div>
+            </section>
+
+            <section>
+              <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
                 Your Privacy & Rights
               </h3>
               <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4">
