@@ -157,6 +157,7 @@ const studies = [
     title:
       "Detransition-Related Needs and Support: A Cross-Sectional Online Survey",
     authors: "Vandenbussche, E.",
+    description: `This online survey of 237 detransitioners (92% female) found significant unmet needs. Key reasons for detransition included realizing dysphoria was related to other issues (70%), health concerns (62%), and transition not helping dysphoria (50%). Major needs included psychological support for comorbid conditions and regret, medical help for complications, and social connection with other detransitioners. Many reported a lack of support, negative experiences with healthcare providers, and rejection from the LGBT community.`,
     year: 2021,
     url: "https://www.tandfonline.com/doi/full/10.1080/00918369.2021.1919479",
     displayUrl: "www.tandfonline.com/doi/full/10.1080/00918369.2021.1919479",
