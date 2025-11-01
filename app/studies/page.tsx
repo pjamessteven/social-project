@@ -42,6 +42,7 @@ const studies = [
   {
     title: "The Detransition Rate is Unknown",
     authors: "Cohn, J.",
+    description: `This paper argues that the actual rates of detransition, discontinuation, and regret are unknown due to significant flaws in existing research. It critiques widely cited studies for issues like short follow-up periods (as regret can take years to surface), high loss-to-follow-up rates, and using samples that don't reflect the recent surge in adolescent cases. The author concludes that claims of very low regret rates are unreliable and that this uncertainty is critical for informed consent.`,
     year: 2023,
     url: "https://link.springer.com/article/10.1007/s10508-023-02623-5",
     displayUrl: "link.springer.com/article/10.1007/s10508-023-02623-5",
