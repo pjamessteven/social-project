@@ -71,6 +71,7 @@ const studies = [
     title:
       "Breastfeeding Grief After Chest Masculinising Mastectomy and Detransition",
     authors: "Gribble, K., Bewley, S. & H. Dahlen",
+    description: `This case study details the experience of a detransitioned woman who, after undergoing a chest masculinization mastectomy, became pregnant and experienced profound grief and psychological distress from her inability to breastfeed. The report highlights the lack of informed consent regarding the loss of breastfeeding function, the poor understanding from healthcare providers, and the emotional toll on the mother.`,
     year: 2023,
     url: "https://www.frontiersin.org/articles/10.3389/fgwh.2023.1073053/full",
     displayUrl: "www.frontiersin.org/articles/10.3389/fgwh.2023.1073053/full",
