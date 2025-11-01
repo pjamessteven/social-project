@@ -131,6 +131,7 @@ const studies = [
     title:
       "Individuals Treated for Gender Dysphoria with Medical and/or Surgical Transition Who Subsequently Detransitioned: A Survey of 100 Detransitioners",
     authors: "Littman, L.",
+    description: `This survey of 100 detransitioners (69% female) found varied reasons for detransition, including becoming more comfortable with their natal sex (60%), concerns about medical complications (49%), and realizing their dysphoria was linked to other issues like trauma or mental health conditions (38%). Notably, 23% cited homophobia or difficulty accepting same-sex attraction as a factor. A majority (55%) felt their initial evaluation for transition was inadequate, and only 24% had informed their clinicians of their detransition.`,
     year: 2021,
     url: "https://pubmed.ncbi.nlm.nih.gov/34665380/",
     displayUrl: "pubmed.ncbi.nlm.nih.gov/34665380/",
