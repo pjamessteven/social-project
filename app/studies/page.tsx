@@ -95,7 +95,8 @@ const studies = [
   {
     title:
       "Care of Transgender Patients: A General Practice Quality Improvement Approach",
-    authors: "Boyd, I., Hackett, T. & S, Bewley",
+    authors: "Boyd, I., Hackett, T. & S. Bewley",
+    description: `A UK primary care audit of 68 transgender patients that found no consistent national guidelines for monitoring, leading to substandard care for up to two-thirds of patients. The study revealed long waits for specialist services, high rates of co-occurring mental health conditions, and a 20% rate of hormone cessation, with over half of those stopping citing detransition or regret. The authors call for evidence-based primary care standards.`,
     year: 2022,
     url: "https://www.mdpi.com/2227-9032/10/1/121",
     displayUrl: "www.mdpi.com/2227-9032/10/1/121",
