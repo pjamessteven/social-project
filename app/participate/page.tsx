@@ -135,6 +135,110 @@ export default async function ParticipatePage() {
             </div>
           </div>
         </div>
+
+        <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-6 bg-white dark:bg-gray-900">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+            Study 2: Lived Experiences of Detransitioners
+          </h2>
+          
+          <div className="mb-6">
+            <h3 className="text-lg font-medium mb-2 text-gray-800 dark:text-gray-200">Study Overview</h3>
+            <p className="text-gray-700 dark:text-gray-300 italic">
+              "A transcendental phenomenological qualitative research study to better understand the lived experiences of people who have chosen to detransition"
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <h3 className="text-lg font-medium mb-3 text-gray-800 dark:text-gray-200">Who Can Participate</h3>
+              <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded">
+                <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span>
+                    18 years or older
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span>
+                    Have undergone gender transition (social, medical, or administrative)
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span>
+                    Started detransition at least 6 months before this study
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span>
+                    Comfortable participating in a 1-on-1 interview via Zoom
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-medium mb-3 text-gray-800 dark:text-gray-200">Why This Study Matters</h3>
+              <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded p-4">
+                <p className="text-sm text-blue-800 dark:text-blue-200">
+                  This study aims to understand the lived experience of individuals who have stopped or reversed their gender transition. The findings will contribute to a more nuanced understanding of gender identity, medical decision-making, and long-term outcomes of gender-related care.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mb-6">
+            <h3 className="text-lg font-medium mb-3 text-gray-800 dark:text-gray-200">What's Involved</h3>
+            <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded p-4">
+              <ul className="space-y-2 text-sm text-green-800 dark:text-green-200">
+                <li className="flex items-start">
+                  <span className="text-green-600 dark:text-green-400 mr-2">✓</span>
+                  Confidential interview lasting approximately 60-90 minutes
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-600 dark:text-green-400 mr-2">✓</span>
+                  Share your personal experience and thoughts on transition and detransition
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-600 dark:text-green-400 mr-2">✓</span>
+                  Conducted via Zoom for your convenience
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-600 dark:text-green-400 mr-2">✓</span>
+                  Screening questionnaire available for initial assessment
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mb-6">
+            <h3 className="text-lg font-medium mb-3 text-gray-800 dark:text-gray-200">Research Team & Ethics</h3>
+            <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded p-4">
+              <ul className="space-y-2 text-sm text-purple-800 dark:text-purple-200">
+                <li className="flex items-start">
+                  <span className="text-purple-600 dark:text-purple-400 mr-2">🔒</span>
+                  IRB approved by Colorado Christian University (IRB #IRB00012085)
+                </li>
+                <li className="flex items-start">
+                  <span className="text-purple-600 dark:text-purple-400 mr-2">🔒</span>
+                  Confidential interviews with experienced researchers
+                </li>
+                <li className="flex items-start">
+                  <span className="text-purple-600 dark:text-purple-400 mr-2">🔒</span>
+                  Qualitative methodology focused on understanding your experience
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg p-6">
+            <h3 className="text-xl font-semibold mb-3">Share Your Experience Through Interview</h3>
+            <p className="mb-4">
+              This study offers a unique opportunity to share your story in depth and contribute to academic understanding of detransition experiences.
+            </p>
+            <div className="space-y-2">
+              <p className="font-medium">Principal Researcher: <a href="mailto:ppablosebastian1@students.ccu.edu" className="underline hover:no-underline">Pedro Pablo (ppablosebastian1@students.ccu.edu)</a></p>
+              <p className="font-medium">Study Chair: <a href="mailto:sphilip@ccu.edu" className="underline hover:no-underline">Dr. Selin Philip (sphilip@ccu.edu)</a></p>
+              <p className="text-sm opacity-90 mt-3">Screening questionnaire available upon contact</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="mt-12 text-center">
