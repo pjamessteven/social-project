@@ -51,6 +51,7 @@ const studies = [
     title:
       "Gender dysphoria in young people is rising—and so is professional disagreement",
     authors: "Block, J",
+    description: `This investigative report highlights the growing international debate over medical transition for minors. While US medical bodies endorse 'gender-affirming care,' several European countries (Sweden, Finland, UK) are urging caution due to low-quality evidence. The article questions the claim of a medical consensus, pointing to systematic reviews that find the evidence for hormonal treatments in adolescents to be 'low' or 'very low' quality and noting the lack of long-term outcome data.`,
     year: 2023,
     url: "https://www.bmj.com/content/380/bmj.p382",
     displayUrl: "https://www.bmj.com/content/380/bmj.p382",
