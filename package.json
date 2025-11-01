@@ -27,7 +27,8 @@
     "@types/babel__standalone": "^7.1.9",
     "@types/babel__traverse": "^7.20.7",
     "@types/node": "^20",
-    "@types/react-dom": "^19.2.2",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "^15.1.3",
@@ -108,8 +109,6 @@
     "react-day-picker": "9.7.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.55.0",
-    "react-markdown": "^9.1.0",
-    "react-player": "^3.3.3",
     "react-resizable-panels": "^2.1.7",
     "react-youtube": "^10.1.0",
     "recharts": "^2.15.4",
@@ -117,14 +116,8 @@
     "sonner": "^2.0.3",
     "tailwind-merge": "^2.6.0",
     "vaul": "^1.1.2",
-    "ytdlp-nodejs": "^2.3.5",
     "zod": "^3.25.76",
     "zod-to-json-schema": "^3.23.3",
     "zustand": "^5.0.8"
-  },
-  "optionalDependencies": {
-    "lightningcss-linux-arm64-musl": "^1.30.2",
-    "lightningcss-linux-x64-gnu": "^1.30.2",
-    "lightningcss-linux-x64-musl": "^1.30.2"
   }
 }
