@@ -12,14 +12,14 @@ export default function Studies() {
     <Accordion type="single" collapsible className="w-full space-y-8 not-prose">
       <AccordionItem
         value="study-1"
-        className="border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900"
+        className="border bg-secondary border-gray-200 dark:border-gray-700 rounded-lg  dark:bg-gray-900"
       >
         <AccordionTrigger className="p-6 hover:no-underline">
           <div className="text-left">
-            <h2 className="text-2xl font-semibold mb-2 text-gray-900 dark:text-gray-100">
-              Study 1: Developmental Pathways of Desisters and Detransitioners
+            <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+              Developmental Pathways of Desisters and Detransitioners
             </h2>
-            <p className="text-sm text-gray-700 dark:text-gray-300 italic font-normal">
+            <p className="text-muted-foreground italic font-normal">
               "The developmental pathways of desisters and detransitioners: A
               mixed-methods study of biopsychosocial factors involved in gender
               transition, desistance, or detransition-related experiences among
@@ -28,28 +28,28 @@ export default function Studies() {
           </div>
         </AccordionTrigger>
         <AccordionContent className="p-6 pt-0">
-          <div className="space-y-8 pt-4">
+          <div className="space-y-8">
             <section>
               <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
                 Who Can Participate
               </h3>
               <div className="grid sm:grid-cols-2 gap-4">
-                <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border dark:border-gray-700">
+                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border dark:border-gray-700">
                   <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">
                     Desisters
                   </h4>
-                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                  <p className="text-sm text-gray-700 dark:text-gray-300 text-muted-foreground">
                     Individuals who once identified as transgender, non-binary or
                     other gender identities outside their birth sex, who socially
                     detransitioned and no longer identify outside their birth sex
                     identity. No medical/surgical treatments undertaken.
                   </p>
                 </div>
-                <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border dark:border-gray-700">
+                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border dark:border-gray-700">
                   <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">
                     Detransitioners
                   </h4>
-                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                  <p className="text-sm text-gray-700 dark:text-gray-300 text-muted-foreground">
                     Individuals who initiated medical and/or surgical transition
                     (puberty blockers, cross-sex hormones, mastectomy, etc.) and
                     later chose to stop or reverse their effects.
@@ -69,24 +69,20 @@ export default function Studies() {
               <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
                 Study Goals
               </h3>
-              <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border dark:border-gray-700">
+              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border dark:border-gray-700">
                 <ul className="space-y-3 text-sm text-gray-700 dark:text-gray-300">
-                  <li className="flex items-start">
-                    <span className="text-blue-500 mr-3 mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-current" />
-                    Examine pathways of individuals who previously identified as
+                  <li>
+                    - Examine pathways of individuals who previously identified as
                     transgender
                   </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-500 mr-3 mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-current" />
-                    Explore biopsychosocial factors in identity development
+                  <li>
+                    - Explore biopsychosocial factors in identity development
                   </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-500 mr-3 mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-current" />
-                    Understand current experiences and functioning
+                  <li>
+                    - Understand current experiences and functioning
                   </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-500 mr-3 mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-current" />
-                    Advance science-based healthcare for individuals
+                  <li>
+                    - Advance science-based healthcare for individuals
                   </li>
                 </ul>
               </div>
@@ -217,14 +213,14 @@ export default function Studies() {
 
       <AccordionItem
         value="study-2"
-        className="border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900"
+        className="border bg-secondary  border-gray-200 dark:border-gray-700 rounded-lg s dark:bg-gray-900"
       >
         <AccordionTrigger className="p-6 hover:no-underline">
           <div className="text-left">
             <h2 className="text-2xl font-semibold mb-2 text-gray-900 dark:text-gray-100">
-              Study 2: Lived Experiences of Detransitioners
+              Lived Experiences of Detransitioners
             </h2>
-            <p className="text-sm text-gray-700 dark:text-gray-300 italic font-normal">
+            <p className="text-muted-foreground italic font-normal">
               "A transcendental phenomenological qualitative research study to
               better understand the lived experiences of people who have chosen
               to detransition"
@@ -237,7 +233,7 @@ export default function Studies() {
               <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
                 Who Can Participate
               </h3>
-              <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border dark:border-gray-700">
+              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border dark:border-gray-700">
                 <ul className="space-y-3 text-sm text-gray-700 dark:text-gray-300 sm:columns-2">
                   <li className="flex items-start">
                     <span className="text-blue-500 mr-3 mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-current" />

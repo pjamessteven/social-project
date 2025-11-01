@@ -74,7 +74,7 @@ export async function StartPage({
 
 
 
-        <div className="mt-4 sm:mt-4 w-full">
+        <div className="mt-8 sm:mt-8 w-full">
           <div className="w-full border-t" />
           <div className="mt-1 w-full border-t" />
           <div className="mt-1 w-full border-t" />
@@ -538,7 +538,7 @@ export async function StartPage({
                 >
             <div className="group row relative mt-8 flex items-center justify-between overflow-hidden rounded-xl  border border-[#77b255]/40 dark:border-[#315b17]/30 bg-[#77b255]/20  sm:px-4 sm:py-3 px-3 py-3 text-[#315b17]  dark:text-lime-50 cursor-pointer transition-all duration-500 dark:bg-[#315b17]/30  hover:brightness-110">
               {/* shimmer overlay */}
-              <div className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r  from-[#77b255]/20 dark:[#315b17]/30 left-0 w-[300%] dark:via-white/10 via-white/20 to-transparent transition-transform duration-300 ease-in-out group-hover:translate-x-[0%]"></div>{" "}
+              <div className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r  from-white/20 dark:[#315b17]/30 left-0 w-[300%] dark:via-white/10 via-white/10 to-transparent transition-transform duration-500 ease-in-out group-hover:translate-x-[0%]"></div>{" "}
               <div className="flex flex-col z-10">
                 <div className="brightness-80 font-semibold text-sm sm:text-base">
                   Are you a detransitioner or a desister?
