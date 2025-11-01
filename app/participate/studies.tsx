@@ -5,11 +5,11 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
+} from "../components/ui/accordion";
 
 export default function Studies() {
   return (
-    <Accordion type="single" collapsible className="w-full space-y-8">
+    <Accordion type="single" collapsible className="w-full space-y-8 not-prose">
       <AccordionItem
         value="study-1"
         className="border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900"
