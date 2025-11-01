@@ -3,7 +3,7 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "es2020"
+      "es2023"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -29,6 +29,7 @@
     "target": "ES2022"
   },
   "include": [
+    "types/globals.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
@@ -36,6 +37,6 @@
     "../social-project/layout/header.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
   ]
 }
