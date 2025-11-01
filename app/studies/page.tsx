@@ -87,6 +87,7 @@ const studies = [
   {
     title: "Detransition Needs Further Understanding, Not Controversy",
     authors: "MacKinnon, K.R. & P. Expositos-Campos",
+    description: `This paper argues that detransition has been overlooked by researchers and clinicians, leading to unmet healthcare needs. The authors call for robust, non-politicized research to understand the diverse experiences of those who detransition, noting that current studies are limited by short follow-up times and selection bias. They emphasize that improving care for detransitioners is a necessary part of comprehensive gender care and will ultimately benefit all trans people by providing a better understanding of long-term outcomes.`,
     year: 2023,
     url: "https://www.bmj.com/content/381/bmj-2022-073584",
     displayUrl: "www.bmj.com/content/381/bmj-2022-073584",
