@@ -207,6 +207,7 @@ const studies = [
       "The pressing need for research and services for gender desisters /detransitioners",
     authors: "Butler, C. & Hutchinson, A.",
     year: 2020,
+    description: `This paper highlights the growing number of individuals seeking to desist or detransition from a gender transition. The authors argue that despite this trend, there is a significant lack of research, clinical guidance, and support for this population. They note that while extensive protocols exist for transitioning, there are none for those who detransition, and call for urgent attention to clinical and research needs for this cohort.`,
     url: "https://acamh.onlinelibrary.wiley.com/doi/abs/10.1111/camh.12361",
     displayUrl: "acamh.onlinelibrary.wiley.com/doi/abs/10.1111/camh.12361",
   },
