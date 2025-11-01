@@ -254,8 +254,9 @@ const studies = [
       "Trans-itory Identities: some psychoanalytic reflections on transgender identities",
     authors: "Lemma, A.",
     year: 2018,
-    url: "https://www.tandfonline.com/doi/full/10.1080/00207578.2018.1489710",
-    displayUrl: "www.tandfonline.com/doi/full/10.1080/00207578.2018.1489710",
+    description: `This paper argues that the 'transgender' identity can be prematurely embraced by some young people, hindering the psychological work needed to understand its personal meaning. The author, a psychoanalyst, discusses the challenge of exploring the 'why' of a transgender identity in a culture that may view such questions as pathologizing, and the need to balance curiosity with avoiding skepticism.`,
+    url: "https://pubmed.ncbi.nlm.nih.gov/33951791/",
+    displayUrl: "https://pubmed.ncbi.nlm.nih.gov/33951791/",
   },
 ];
 
