@@ -355,8 +355,16 @@ export default function Studies() {
                     Dr. Selin Philip (sphilip@ccu.edu)
                   </a>
                 </p>
-                <p className="text-sm opacity-90 mt-3">
-                  Screening questionnaire available upon contact
+                <p className="font-medium mt-3">
+                  Screening Questionnaire:{" "}
+                  <a
+                    href="https://www.surveymonkey.com/r/ZTWKRDT"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:no-underline"
+                  >
+                    Take the screening survey
+                  </a>
                 </p>
               </div>
             </div>
