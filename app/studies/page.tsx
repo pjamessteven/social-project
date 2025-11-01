@@ -34,6 +34,7 @@ const studies = [
     title:
       "Narratives of Adults Registered Female at Birth who Started a Medical Transition and Later Detransitioned",
     authors: "Lomax, J., & C.Butler",
+    description: `A qualitative study of six UK females (ages 21-32) who detransitioned after medical interventions. Four narrative themes emerged: limits of medical transition in resolving dysphoria, long-term health concerns about testosterone, social challenges of living as men, and detransition as an ongoing process. Participants reported unmet support needs and highlighted the importance of realistic expectations about transition outcomes.`,
     year: 2025,
     url: "https://link.springer.com/article/10.1007/s10508-025-03083-9#ref-CR61",
     displayUrl: "link.springer.com/article/10.1007/s10508-025-03083-9#ref-CR61",
@@ -272,6 +273,9 @@ export default async function StudiesPage() {
                 </>
               )}
             </p>
+            {study.description && (
+              <p className="mt-2 mb-2 text-sm">{study.description}</p>
+            )}
             <a
               href={study.url}
               target="_blank"
