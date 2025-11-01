@@ -7,7 +7,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ResizablePanel, ResizablePanelGroup } from "../resizable";
 import { ChatCanvasPanel } from "./canvas/panel";
-
 import { deslugify, uuidv4 } from "@/app/lib/utils";
 import { useChatStore } from "@/stores/chat-store";
 import { Loader2 } from "lucide-react";
@@ -36,8 +35,6 @@ export default function ChatSection({
       timeoutRef.current = null;
     }
   };
-
-
 
   const handleError = (error: unknown) => {
     clearTimeoutRef();
@@ -80,8 +77,6 @@ export default function ChatSection({
       clearTimeoutRef();
     },
   });
-
-
 
   const handler = useChatHandler;
   const messages = handler.messages
@@ -163,7 +158,6 @@ export default function ChatSection({
 
   return (
     <>
-
       {loading ? (
         <>
           <div className="flex h-full w-full items-center justify-center">

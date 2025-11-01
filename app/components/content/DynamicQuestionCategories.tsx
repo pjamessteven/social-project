@@ -154,7 +154,7 @@ export function DynamicQuestionCategories({
               key={`${item.page}-${index}`}
             >
               <div className="flex flex-row items-center border-b pt-1 pb-2">
-                <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-lg italic opacity-90">
+                <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-baseline text-lg italic opacity-90">
                   <div className="mr-2 whitespace-nowrap">{"->"}</div>
                   <div className="flex-1">{item.page}</div>
                   <div className="ml-2 text-xs sm:text-sm font-normal opacity-60">
