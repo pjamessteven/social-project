@@ -61,6 +61,7 @@ const studies = [
       "Shifts in Gender-Related Medical Requests by Transgender and Gender-Diverse Adolescents",
     authors:
       "Ariel Cohen, Veronica Gomez-Lobo, Laura Willing, David Call, Lauren F. Damle, Lawrence J. D'Angelo, Amber Song, John F. Strang,",
+    description: `This study of 68 adolescents at a gender clinic (47% autistic) found that nearly a third (29%) shifted their requests for medical transition. Shifts were more common among nonbinary youth and were considered a 'not uncommon' part of the gender discernment process. The most frequent pattern was withdrawing a request and later resuming it.`,
     year: 2023,
     url: "https://www.sciencedirect.com/science/article/abs/pii/S1054139X22007194",
     displayUrl:
