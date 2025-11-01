@@ -11,6 +11,11 @@ export default async function ParticipatePage() {
           By participating in these studies, you can help advance scientific understanding and contribute to better care for future generations. Your experiences are valuable and deserve to be heard.
         </p>
 
+        <div className="not-prose my-8 p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg text-center">
+          <p className="text-lg font-semibold text-yellow-800 dark:text-yellow-200">
+            Participate in a study for a chance to win a cash prize!
+          </p>
+        </div>
 
       <Studies />
 
