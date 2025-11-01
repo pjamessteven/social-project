@@ -233,6 +233,7 @@ const studies = [
       "Taking the Lid of the Box: The value of extended clinical assessment for adolescents presenting with gender identity difficulties",
     authors: "Churcher-Clarke, A. & Spiliadis, A.",
     year: 2019,
+    description: `This case review from the UK's GIDS examines adolescents with late-onset gender dysphoria who, during assessment, decided against medical transition. The authors analyze 12 such cases over 18 months, presenting two vignettes to illustrate how extended assessment allowed for different understandings of their distress, leading them to cease pursuing hormonal interventions.`,
     journal: "Clinical child psychology and psychiatry",
     url: "https://pubmed.ncbi.nlm.nih.gov/30722669/",
     displayUrl:
