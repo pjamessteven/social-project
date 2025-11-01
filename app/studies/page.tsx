@@ -215,6 +215,7 @@ const studies = [
     title: "The Man I'm Trying to be is not Me",
     authors: "D'Angelo, R.",
     year: 2020,
+    description: `This case study details the therapy of 'Josh,' a trans man whose life deteriorated post-transition. The author describes a therapeutic impasse rooted in deception and mystification. By working through this, the therapy was able to move beyond gender to address deeper issues of past trauma, authenticity, and loss, suggesting that transition did not resolve his underlying problems.`,
     url: "https://www.tandfonline.com/doi/abs/10.1080/00207578.2020.1810049",
     displayUrl: "www.tandfonline.com/doi/abs/10.1080/00207578.2020.1810049",
   },
