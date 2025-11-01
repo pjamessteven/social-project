@@ -115,7 +115,7 @@ export async function POST(req: NextRequest) {
             // Save complete conversation to database
             await saveConversation(chatUuid, messages);
 
-            if (suggestNextQuestions) {
+            if (suggestNextQuestions && completion.length > 500) {
               await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory, chatUuid);
             }
           },
