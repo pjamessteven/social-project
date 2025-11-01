@@ -234,12 +234,9 @@ const studies = [
     authors: "Churcher-Clarke, A. & Spiliadis, A.",
     year: 2019,
     journal: "Clinical child psychology and psychiatry",
-    volume: "24",
-    issue: "2",
-    pages: "338-352",
-    url: "https://www.icf-consultations.com/wp-content/uploads/2019/07/Taking-the-lid-off-the-box.pdf?amp;",
+    url: "https://pubmed.ncbi.nlm.nih.gov/30722669/",
     displayUrl:
-      "www.icf-consultations.com/wp-content/uploads/2019/07/Taking-the-lid-off-the-box.pdf?amp;",
+      "https://pubmed.ncbi.nlm.nih.gov/30722669/",
   },
   {
     title:
@@ -247,8 +244,6 @@ const studies = [
     authors: "Spiliadis, A.",
     year: 2019,
     journal: "Metalogos Systemic Therapy Journal",
-    volume: "35",
-    pages: "1-9",
     url: "http://www.researchgate.net/publication/334559847_Towards_a_Gender_Exploratory_Model_slowing_things_down_opening_things_up_and_exploring_identity_development",
     displayUrl:
       "www.researchgate.net/publication/334559847_Towards_a_Gender_Exploratory_Model_slowing_things_down_opening_things_up_and_exploring_identity_development",
