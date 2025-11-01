@@ -79,6 +79,7 @@ const studies = [
   {
     title: "Iatrogenic Harm in Gender Medicine",
     authors: "Jorgensen, S.",
+    description: `This commentary argues that the 'gender-affirmation model' is causing iatrogenic harm, as evidenced by a growing number of young detransitioners. The author critiques the model for insufficient psychological assessment, downplaying medical risks, and relying on weak evidence. It calls for recognizing detransitioners as survivors of medical harm and urges open debate and research into the long-term effects of youth transition, noting that many European countries are now adopting more cautious approaches.`,
     year: 2023,
     url: "https://www.tandfonline.com/doi/full/10.1080/0092623X.2023.2224320",
     displayUrl: "www.tandfonline.com/doi/full/10.1080/0092623X.2023.2224320",
