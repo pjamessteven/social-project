@@ -314,13 +314,6 @@ export default async function StudiesPage() {
                 <>
                   {" "}
                   <em>{study.journal}</em>
-                  {study.volume && (
-                    <>
-                      , <em>{study.volume}</em>
-                    </>
-                  )}
-                  {study.issue && <>({study.issue})</>}
-                  {study.pages && <>, {study.pages}</>}
                 </>
               )}
             </p>

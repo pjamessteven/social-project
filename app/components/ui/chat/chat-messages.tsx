@@ -6,6 +6,7 @@ import { RefreshCcw } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
+import { ChatMessageAvatar } from "./chat-avatar";
 import { ChatMessageContent } from "./chat-message-content";
 import { ComponentDef } from "./custom/events/types";
 
@@ -65,6 +66,9 @@ export default function CustomChatMessages({
                   message.role == "user" && "user-message mr-12 sm:mr-0",
                 )}
               >
+                <div className="hidden sm:block">
+                  <ChatMessageAvatar />
+                </div>
                 <ChatMessageContent
                   componentDefs={componentDefs}
                   appendError={appendError}
@@ -73,7 +77,7 @@ export default function CustomChatMessages({
               </ChatMessage>
               {isLast && (
                 <div className="-mt-2 mb-4 ml-3 flex w-full flex-row justify-between pr-20 sm:mb-8 sm:pr-16">
-                  <div className="flex w-full grow flex-row justify-between  pt-8">
+                  <div className="flex w-full grow flex-row justify-between pt-8">
                     <Link
                       href={"/"}
                       className="cursor-pointer font-semibold no-underline"
@@ -117,7 +121,6 @@ export default function CustomChatMessages({
         </div>
         <ChatMessages.Loading />
       </ChatMessages.List>
-
     </ChatMessages>
   );
 }

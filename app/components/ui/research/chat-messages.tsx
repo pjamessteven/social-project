@@ -77,6 +77,7 @@ export default function CustomChatMessages({
                   message.role == "user" && "user-message mr-12 sm:mr-0",
                 )}
               >
+    
                 <ChatMessageContent
                   componentDefs={componentDefs}
                   appendError={appendError}

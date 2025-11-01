@@ -204,7 +204,7 @@ export async function StartPage({
                   <div
                     className={"flex flex-row items-center border-b pt-1 pb-2"}
                   >
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start italic transition-colors">
+                    <div className="text-muted-foreground hover:text-primary flex font-normal cursor-pointer flex-row items-start italic transition-colors">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">
                         Sorry, but what's up with the lizards?
@@ -225,7 +225,7 @@ export async function StartPage({
                   <div
                     className={"flex flex-row items-center border-b pt-1 pb-2"}
                   >
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start italic transition-colors">
+                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row text-base font-normal items-start italic transition-colors">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">
                         I'm questioning my gender identity and I think I might
@@ -247,7 +247,7 @@ export async function StartPage({
                   <div
                     className={"flex flex-row items-center border-b pt-1 pb-2"}
                   >
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start italic transition-colors">
+                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row font-normal items-start italic transition-colors">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">
                         I currently identify as trans and I'm thinking about
@@ -269,7 +269,7 @@ export async function StartPage({
                   <div
                     className={"flex flex-row items-center border-b pt-1 pb-2"}
                   >
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start italic transition-colors">
+                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row font-normal items-start italic transition-colors">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">
                         I'm a parent, family member, or friend of someone who is
@@ -315,7 +315,7 @@ export async function StartPage({
                   <div
                     className={"flex flex-row items-center border-b pt-1 pb-2"}
                   >
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start italic transition-colors">
+                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row font-normal items-start italic transition-colors">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">
                         I'm seeking to understand the complex reasons behind
@@ -337,7 +337,7 @@ export async function StartPage({
                   <div
                     className={"flex flex-row items-center border-b pt-1 pb-2"}
                   >
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start italic transition-colors">
+                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row font-normal items-start italic transition-colors">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">
                         I want to learn about the struggles and challenges that
@@ -359,7 +359,7 @@ export async function StartPage({
                   <div
                     className={"flex flex-row items-center border-b pt-1 pb-2"}
                   >
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start italic transition-colors">
+                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row font-normal items-start italic transition-colors">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">
                         I want you to debunk the misinformation and lies spread
@@ -373,7 +373,7 @@ export async function StartPage({
                   href={
                     "/chat/?starter=" +
                     slugify(
-                      "Is sexual attraction and identity innate or if it can change over time? Can people buy into sexual identities (the same way as people buy into gender identities), and can they become traps in the same way?",
+                      "Can sexual orientation change over time, and can adopting a sexual identity label become a trap or limitation like gender identity can be?"
                     )
                   }
                   className="no-underline"
@@ -381,10 +381,10 @@ export async function StartPage({
                   <div
                     className={"flex flex-row items-center border-b pt-1 pb-2"}
                   >
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start italic transition-colors">
+                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row font-normal items-start italic transition-colors">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">
-                        I'm wondering if sexual attraction and identity can also
+                        I'm wondering if sexual orientation and identity can also
                         change over time
                       </span>
                     </div>
@@ -592,7 +592,7 @@ export async function StartPage({
         {mode === "detrans" && (
           <div className="prose- sm:prose-base prose dark:prose-invert mt-8 max-w-full sm:mt-8">
             <h3 className="font-">Deep Research Mode</h3>
-            <p className="mb-0">
+            <p className="mb-0 text-muted-foreground">
               Get a comprehensive answer from generated meta questions which
               approach a topic from different angles.
               <br className="hidden" /> Deep Research is slower and{" "}

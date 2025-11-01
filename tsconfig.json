@@ -14,7 +14,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "incremental": true,
     "plugins": [
       {
@@ -37,6 +37,6 @@
     "../social-project/layout/header.tsx"
   ],
   "exclude": [
-    "node_modules",
+    "node_modules"
   ]
 }
