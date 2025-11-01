@@ -5,6 +5,46 @@ import { Button } from "../components/ui/button";
 
 const studies = [
   {
+    title: "Sports Advantages Review",
+    authors: "Hilton & Lundberg",
+    description:
+      "Review of studies showing transgender women retain 9-31% advantages in muscle mass, strength, and hemoglobin post-hormone therapy, due to irreversible male puberty effects.",
+    year: 2021,
+    url: "https://www.insidethegames.biz/articles/1117938/ioc-transgender-framework-criticised",
+    displayUrl:
+      "www.insidethegames.biz/articles/1117938/ioc-transgender-framework-criticised",
+  },
+  {
+    title:
+      "Long-Term Follow-Up of Transsexual Persons Undergoing Sex Reassignment Surgery: Cohort Study in Sweden",
+    authors: "Dhejne et al",
+    url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3043071/",
+    year: 2003,
+    description:
+      "This study highlights physical health risks persisting post-transition, related to cross-sex hormone use. Following up on post-surgical transgender individuals, it reports 2-3 times higher overall mortality (e.g., from cardiovascular causes) vs. general population.",
+    displayUrl: "pmc.ncbi.nlm.nih.gov/articles/PMC3043071/",
+  },
+  {
+    title:
+      "Puberty Blocker and Aging Impact on Testicular Cell States and Function ",
+    authors: "Murugesh  et al",
+    url: "https://pubmed.ncbi.nlm.nih.gov/38585884/",
+    year: 2024,
+    description:
+      "Analysis of boys on puberty blockers, showing persistent damage to spermatogonial stem cells, suggesting irreversible infertility even after discontinuation.",
+    displayUrl: "pubmed.ncbi.nlm.nih.gov/38585884/",
+  },
+  {
+    title:
+      "Correction of a Key Study: No Evidence of “Gender-Affirming” Surgeries Improving Mental Health",
+    authors: "American Journal of Psychiatry",
+    url: "https://segm.org/ajp_correction_2020",
+    year: 2020,
+    description:
+      "Initial study claimed mental health benefits from surgery; 2020 correction found no reduction in treatment utilization or suicidality.",
+    displayUrl: "segm.org/ajp_correction_2020",
+  },
+  {
     title: "The Cass Review",
     authors: "Dr. Hilary Cass",
     description: `An independent systematic review commissioned by the UK's NHS England, evaluating over 100 studies on gender identity services for youth under 18. It represents a high-level critique of affirmative care models, emphasizing methodological flaws in existing research. It concluded that evidence for puberty blockers and cross-sex hormones is "remarkably weak" or low-quality, lacking randomized trials, with risks like bone density loss and uncertain mental health benefits. `,
