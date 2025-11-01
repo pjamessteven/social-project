@@ -113,7 +113,7 @@ export async function POST(req: NextRequest) {
             });
 
             // Save complete conversation to database
-            await saveConversation(chatUuid, messages, completion);
+            await saveConversation(chatUuid, messages);
 
             if (suggestNextQuestions) {
               await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory, chatUuid);
@@ -151,19 +151,10 @@ export async function POST(req: NextRequest) {
 async function saveConversation(
   uuid: string,
   messages: UIMessage[],
-  finalAssistantMessage: string,
 ): Promise<void> {
   try {
-    // Create the complete conversation including the final assistant message
-    const completeMessages = [
-      ...messages,
-      {
-        id: uuidv4(),
-        role: "assistant" as const,
-        parts: [{ type: "text" as const, text: finalAssistantMessage }],
-        createdAt: new Date(),
-      },
-    ];
+    // Use the existing messages - they already include the assistant response from streaming
+    const completeMessages = messages;
 
     // Generate a title from the first user message (truncated)
     const firstUserMessage = messages.find(m => m.role === "user");
