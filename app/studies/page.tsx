@@ -224,6 +224,7 @@ const studies = [
       "Reality check – Detransitioner's testimonies require us to rethink gender dysphoria",
     authors: "Entwistle, K.",
     year: 2020,
+    description: `Butler and Hutchinson's clarion call (Butler and Hutchinson, 2020) for empirical research on desistance and detransition deserves careful consideration. It formally documents the needs of the emerging cohort of detransitioners, many of whom are in their teens and early twenties. In the absence of specialist services, some detransitioners have been sharing their experiences in public forums. The anecdotal reports by detransitioners indicate that systematic long-term follow-up of those who have been prescribed medical interventions by NHS and private clinics is essential to understanding the gestalt. Decision-making on the basis of misinformation on the effectiveness and necessity of medical interventions for gender dysphoria is a problem, and detransitioners indicate that nonmedical interventions for gender dysphoria are sorely needed. Analysis of the political and organisational systems that have brought us to the current situation is required in order to prevent more young people from being prescribed unnecessary medical interventions for gender dysphoria.`,
     url: "https://acamh.onlinelibrary.wiley.com/doi/abs/10.1111/camh.12380",
     displayUrl: "acamh.onlinelibrary.wiley.com/doi/abs/10.1111/camh.12380",
   },
