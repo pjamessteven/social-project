@@ -149,6 +149,7 @@ const studies = [
     title: "Gender Detransition: A Case Study",
     authors: "Marchiano, L.",
     year: 2021,
+    description: `This case study of a young adult female who detransitioned highlights the complexity of gender identity development. The patient had a history of trauma, autism, and mental health comorbidities. The author emphasizes the need for thorough psychological assessment and a cautious, individualized approach for gender-dysphoric youth, allowing for identity exploration without premature medicalization.`,
     url: "https://onlinelibrary.wiley.com/doi/10.1111/1468-5922.12711",
     displayUrl: "onlinelibrary.wiley.com/doi/10.1111/1468-5922.12711",
   },
