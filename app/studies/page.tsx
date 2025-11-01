@@ -1,9 +1,35 @@
-"use server"
+"use server";
+import { ChartNoAxesCombined, ExternalLink } from "lucide-react";
 import { Metadata } from "next";
 import { Button } from "../components/ui/button";
-import { ChartNoAxesCombined, ExternalLink } from "lucide-react";
 
 const studies = [
+  {
+    title: "The Cass Review",
+    authors: "Dr. Hilary Cass",
+    description: `An independent systematic review commissioned by the UK's NHS England, evaluating over 100 studies on gender identity services for youth under 18. It represents a high-level critique of affirmative care models, emphasizing methodological flaws in existing research. It concluded that evidence for puberty blockers and cross-sex hormones is "remarkably weak" or low-quality, lacking randomized trials, with risks like bone density loss and uncertain mental health benefits. `,
+    year: 2024,
+    url: "https://segm.org/Final-Cass-Report-2024-NHS-Response-Summary",
+    displayUrl: "https://segm.org/Final-Cass-Report-2024-NHS-Response-Summary",
+  },
+  {
+    title: "Swedish Cohort Study",
+    authors: "Dhejne et al.",
+    description: `A long-term follow-up of 324 individuals post-sex reassignment surgery (up to 30 years), showing suicide mortality 19.1 times higher than the general population, with no reduction in psychiatric morbidity.`,
+    year: 2011,
+    url: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0016885",
+    displayUrl:
+      "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0016885",
+  },
+  {
+    title:
+      "Factors associated with desistence and persistence of childhood gender dysphoria: a quantitative follow-up study",
+    authors: "Steensma et al.",
+    description: `This study tracked 127 children referred before age 12, revealing that factors such as the intensity of early gender dysphoria and social transition influenced persistence, with approximately 70% desisting post-puberty when comorbidities like anxiety were addressed rather than affirmed as inherent to gender identity.`,
+    year: 2013,
+    url: "https://pubmed.ncbi.nlm.nih.gov/23702447/",
+    displayUrl: "https://pubmed.ncbi.nlm.nih.gov/23702447/",
+  },
   {
     title:
       "Narratives of Adults Registered Female at Birth who Started a Medical Transition and Later Detransitioned",
@@ -100,6 +126,15 @@ const studies = [
     url: "https://pubmed.ncbi.nlm.nih.gov/34665380/",
     displayUrl: "pubmed.ncbi.nlm.nih.gov/34665380/",
   },
+    {
+    title:
+      "Rapid-Onset Gender Dysphoria (ROGD) Study",
+    authors: "Littman, L.",
+    year: 2018,
+    description: `This study, based on parent reports of 256 cases, suggests social contagion via peer groups and online communities may drive sudden adolescent-onset presentations, potentially amplified by affirmative environments that discourage desistance.[5] Affirmation's critics, including Littman, posit that it can create a feedback loop of harm by validating transient distress as fixed identity, reducing natural resolution rates observed in watchful waiting cohorts.`,
+    url: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0202330",
+    displayUrl: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0202330",
+  },
   {
     title: "Gender Detransition: A Case Study",
     authors: "Marchiano, L.",
@@ -178,9 +213,9 @@ const metadata: Metadata = {
   description:
     "Find on this page a selection of academic studies, peer-reviewed journal articles and verified statistics that relate to gender identity trends and detransition. ",
   openGraph: {
-  title: "detrans.ai | Academic Studies on Detransition Topics",
+    title: "detrans.ai | Academic Studies on Detransition Topics",
     description:
-    "Find on this page a selection of academic studies and peer-reviewed journal articles and verified statistics that relate to gender identity trends and detransition. ",
+      "Find on this page a selection of academic studies and peer-reviewed journal articles and verified statistics that relate to gender identity trends and detransition. ",
     url: "https://detrans.ai/videos",
     siteName: "detrans.ai",
     images: ["https://detrans.ai/x_card_lg.png"],
@@ -190,7 +225,7 @@ const metadata: Metadata = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  return metadata
+  return metadata;
 }
 
 export default async function StudiesPage() {
@@ -198,7 +233,7 @@ export default async function StudiesPage() {
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
       <h1 className="text-3xl font-bold">Selected Academic Articles</h1>
 
-      <div className="mb-6 not-prose hidden">
+      <div className="not-prose mb-6 hidden">
         <a
           href="https://statsforgender.org/"
           target="_blank"
@@ -209,7 +244,9 @@ export default async function StudiesPage() {
             className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
           >
             <ChartNoAxesCombined className="h-4 w-4" />
-            <span className="text-sm font-medium">For up-to-date statistics, see statsforgender</span>
+            <span className="text-sm font-medium">
+              For up-to-date statistics, see statsforgender
+            </span>
             <ExternalLink className="h-3 w-3" />
           </Button>
         </a>
