@@ -105,6 +105,7 @@ const studies = [
     title:
       "Continuation of Gender Affirming Hormones Among Transgender Adolescents and Adults",
     authors: "Roberts, C.M, et al.",
+    description: `This study analyzed medical records from 952 transgender adolescents and adults in the US Military Healthcare System to assess hormone continuation rates. It found that approximately 70% of individuals continued gender-affirming hormones for at least four years. The continuation rate was higher for those who started as minors (74.4%) compared to adults (64.4%), and higher for transfeminine individuals (81.0%) than transmasculine individuals (64.4%). The authors suggest these findings may reassure those concerned about minors' ability to assent to treatment.`,
     year: 2022,
     url: "https://academic.oup.com/jcem/article/107/9/e3937/6572526",
     displayUrl: "academic.oup.com/jcem/article/107/9/e3937/6572526",
