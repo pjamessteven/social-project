@@ -62,15 +62,15 @@ export default async function AboutPage() {
         non-affirming therapists who might question <i>why</i> one feels like
         they're in the wrong body. In some places in the world this is even an
         illegal practice. This is due to cancel culture and how it has become
-        taboo to question gender identities, as the curious belief that gender
+        taboo to question gender identities, as the pseudo-scientific belief that  gender
         is innate and that people can be born in the wrong body has pervaded
         society (even though believers often claim that gender can also be
         'fluid'). The existence of detrans people and their stories debunks this
         myth, and I strongly disagree that promoting a lifetime of cross-sex
         hormones with dangerous side-effects and irreversible surgeries is
-        rational when for many - if not all - people gender dysphoria has
+        rational when for many - if not all - people, gender dysphoria has
         pathological roots. There is an acute lack of logic and reason in trans
-        'healthcare', and this is causing serious harm to people!
+        'healthcare', and this is causing serious harm to people.
       </p>
       <p>
         I am concerned about the recent surge in people being diagnosed with
@@ -105,10 +105,10 @@ export default async function AboutPage() {
         People who beleive in gender ideology think that they are progressive
         and liberating themselves from sexist steretypes and roles, but in
         reality it's the opposite as they depend on sexist steretypes and roles
-        in order to define themselves and others in the first place. Gender
-        ideology is oppressive and directly at-odds with the original goals of
-        feminism, but people who think for themselves and point this out are now
-        labeled as evil TERFs. A good thought experiment is to consider
+        in order to define themselves and others in the first place. This way of
+        thinking is oppressive and directly at-odds with the original goals of
+        feminism, but people who can think for themselves and point this out are
+        now labeled as evil TERFs. A good thought experiment is to consider
         non-binary identities, and why those exist today. If you're lazy,{" "}
         <a
           href={
@@ -123,12 +123,12 @@ export default async function AboutPage() {
       </p>
 
       <p>
-        I now see clearly how cancel culture has permeated every level of
-        society and every institution, how online echo chambers are affecting
-        the information that people are receiving, and how social media provides
+        I see clearly how cancel culture has permeated every level of society
+        and every institution, how online echo chambers are affecting the
+        information that people are receiving, and how social media provides
         endless affirmation and validation of people who are essentially in a
-        state of psychosis (another prime example of online communities causing
-        mass-psychosis is the{" "}
+        state of psychosis (another prime example of how online communities can
+        cause mass-psychosis is the{" "}
         <a
           target="_blank"
           className="underline"
@@ -139,8 +139,8 @@ export default async function AboutPage() {
         subreddit)
       </p>
       <p>
-        Trans-identified males who have entered a state of phychosis where they
-        truly beleive that they are biological women{" "}
+        Trans-identified males who have entered the state of phychosis where
+        they truly beleive that they are biological women{" "}
         <a
           target="_blank"
           className="underline"
@@ -157,7 +157,7 @@ export default async function AboutPage() {
         wrong and it needs to stop.
       </p>
       <p>
-        Detransitioners say that trans communities can be cult like, as if
+        Detransitioners say that trans communities can be cult like: if
         believers (who may or may not be trans themselves) sense any sign of
         dissident, they will threaten to 'cancel' you and cut you off from your
         friends and community by labelling you as either a <i>'transphobe'</i>,{" "}
@@ -186,12 +186,12 @@ export default async function AboutPage() {
         realisation that sexuality is not as black and white as society once
         told them it is. Those who identify as heterosexual or homosexual often
         stigmatise and delegitimise bisexual people - this is called bi-erasure.
-        People with a bisexual history may be told by some gay and straight
-        people that they are 'in the closet' because from their limited
-        experiences of sexuality and attraction they simply can't understand.
-        This is an opressive and cult-like tactic that can cause significant
-        stress and trauma to an individual. It mirrors the experience that many
-        detrans people have when trying to leave the community.
+        People with a bisexual history may have gay or straight people tell them
+        that they are 'gay and in the closet' and not living authentically, mostly due
+        to these people's own limited experiences with sexuality. This is an opressive
+        and cult-like tactic that can cause significant stress and trauma to an
+        individual. It mirrors the experience that many detrans people have when
+        trying to leave the community.
       </p>
       <p>
         People who promote and spread the lie that people 'can be born in the
@@ -203,7 +203,7 @@ export default async function AboutPage() {
         sexuality change over time are at direct odds with these beliefs. There
         are serious implications suggesting that these identities are innate and
         unchangeable. This belief system promotes and enforces hopelessness,
-        lack of self-agency and despair.
+        lack of self-agency and despair. 
       </p>
       <p>
         I think that we can do better for people who are experiencing gender
@@ -213,7 +213,7 @@ export default async function AboutPage() {
         people increase their self-awareness so that they can recognise that
         their desire to transition was likely not born from the existence of
         some kind of inner 'gender identity', but rather motivated by other
-        psychological factors. Detrans people show us that freedom can be found
+        psychological factors. People who have detransitioned demonstrate that freedom and liberation can be found
         by embracing biological reality and gender non-conformity instead of a
         fake identity. I think that one day we will look back at gender
         affirming care in horror, the same way we now look at how we used to

@@ -3,8 +3,7 @@
 export default async function TermsPage() {
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
-                      <h1 className="text-3xl font-bold">
-Privacy Policy</h1>
+      <h1 className="text-3xl font-bold">Privacy Policy</h1>
       <p>
         This Privacy Policy explains what information we collect, why we collect
         it, and how we keep it safe when you visit or use our service.
@@ -13,6 +12,12 @@ Privacy Policy</h1>
         <li>
           <b>Information We Collect </b>
           <ol type="a">
+            <li>
+              <b>Chat Messages: </b>
+              <br />
+              We preserve all chat records as well as the responses to all
+              questions asked in Deep Research mode. Chat records are not associated with your IP address or any data that could potentially be used to identify you. Chat records may analysed and used for research purposes in the future. Please avoid sharing any sensitive information.
+            </li>
             <li>
               <b>Cookies / Tracking Technologies: </b> <br />
               We do <em>not</em> use cookies, pixel tags, or any similar
@@ -55,7 +60,7 @@ Privacy Policy</h1>
         <li>
           <b>How Long We Keep Data </b>
           <br />
-          IP addresses used for rate limiting are automatically deleted within
+          All chat records will be preserved. IP addresses used for rate limiting are automatically deleted within
           minutes after the last request or at the end of the rate-limit window,
           whichever comes first. Voluntary information (e.g., support emails) is
           retained only as long as needed to resolve your inquiry or satisfy
@@ -65,7 +70,7 @@ Privacy Policy</h1>
         <li>
           <b>Third-Party Sharing </b>
           <br />
-          We do not sell, rent, or trade your information. We may disclose IP
+          We may choose to share anonymised chat records with academics and researchers who are looking to improve outcomes for people experiencing gender dysphoria. We may disclose IP
           addresses or other data only when required by law or to protect our
           rights, users, or the public (e.g., fraud prevention, court order).
         </li>

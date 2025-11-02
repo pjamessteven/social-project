@@ -1,6 +1,7 @@
 "use server";
 import { ChartNoAxesCombined, ExternalLink } from "lucide-react";
 import { Metadata } from "next";
+import ParticipateCard from "../components/content/ParticipateCard";
 import { Button } from "../components/ui/button";
 
 const studies = [
@@ -16,6 +17,16 @@ const studies = [
   },
   {
     title:
+      "Puberty Blocker and Aging Impact on Testicular Cell States and Function ",
+    authors: "Murugesh  et al",
+    url: "https://pubmed.ncbi.nlm.nih.gov/38585884/",
+    year: 2024,
+    description:
+      "Analysis of boys on puberty blockers, showing persistent damage to spermatogonial stem cells, suggesting irreversible infertility even after discontinuation.",
+    displayUrl: "pubmed.ncbi.nlm.nih.gov/38585884/",
+  },
+  {
+    title:
       "Long-Term Follow-Up of Transsexual Persons Undergoing Sex Reassignment Surgery: Cohort Study in Sweden",
     authors: "Dhejne et al",
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3043071/",
@@ -25,15 +36,14 @@ const studies = [
     displayUrl: "pmc.ncbi.nlm.nih.gov/articles/PMC3043071/",
   },
   {
-    title:
-      "Puberty Blocker and Aging Impact on Testicular Cell States and Function ",
-    authors: "Murugesh  et al",
-    url: "https://pubmed.ncbi.nlm.nih.gov/38585884/",
+    title: "The Cass Review",
+    authors: "Dr. Hilary Cass",
+    description: `An independent systematic review commissioned by the UK's NHS England, evaluating over 100 studies on gender identity services for youth under 18. It represents a high-level critique of affirmative care models, emphasizing methodological flaws in existing research. It concluded that evidence for puberty blockers and cross-sex hormones is "remarkably weak" or low-quality, lacking randomized trials, with risks like bone density loss and uncertain mental health benefits. `,
     year: 2024,
-    description:
-      "Analysis of boys on puberty blockers, showing persistent damage to spermatogonial stem cells, suggesting irreversible infertility even after discontinuation.",
-    displayUrl: "pubmed.ncbi.nlm.nih.gov/38585884/",
+    url: "https://segm.org/Final-Cass-Report-2024-NHS-Response-Summary",
+    displayUrl: "https://segm.org/Final-Cass-Report-2024-NHS-Response-Summary",
   },
+
   {
     title:
       "Correction of a Key Study: No Evidence of “Gender-Affirming” Surgeries Improving Mental Health",
@@ -45,12 +55,12 @@ const studies = [
     displayUrl: "segm.org/ajp_correction_2020",
   },
   {
-    title: "The Cass Review",
-    authors: "Dr. Hilary Cass",
-    description: `An independent systematic review commissioned by the UK's NHS England, evaluating over 100 studies on gender identity services for youth under 18. It represents a high-level critique of affirmative care models, emphasizing methodological flaws in existing research. It concluded that evidence for puberty blockers and cross-sex hormones is "remarkably weak" or low-quality, lacking randomized trials, with risks like bone density loss and uncertain mental health benefits. `,
-    year: 2024,
-    url: "https://segm.org/Final-Cass-Report-2024-NHS-Response-Summary",
-    displayUrl: "https://segm.org/Final-Cass-Report-2024-NHS-Response-Summary",
+    title: "The Detransition Rate is Unknown",
+    authors: "Cohn, J.",
+    description: `This paper argues that the actual rates of detransition, discontinuation, and regret are unknown due to significant flaws in existing research. It critiques widely cited studies for issues like short follow-up periods (as regret can take years to surface), high loss-to-follow-up rates, and using samples that don't reflect the recent surge in adolescent cases. The author concludes that claims of very low regret rates are unreliable and that this uncertainty is critical for informed consent.`,
+    year: 2023,
+    url: "https://link.springer.com/article/10.1007/s10508-023-02623-5",
+    displayUrl: "link.springer.com/article/10.1007/s10508-023-02623-5",
   },
   {
     title: "Swedish Cohort Study",
@@ -79,14 +89,7 @@ const studies = [
     url: "https://link.springer.com/article/10.1007/s10508-025-03083-9#ref-CR61",
     displayUrl: "link.springer.com/article/10.1007/s10508-025-03083-9#ref-CR61",
   },
-  {
-    title: "The Detransition Rate is Unknown",
-    authors: "Cohn, J.",
-    description: `This paper argues that the actual rates of detransition, discontinuation, and regret are unknown due to significant flaws in existing research. It critiques widely cited studies for issues like short follow-up periods (as regret can take years to surface), high loss-to-follow-up rates, and using samples that don't reflect the recent surge in adolescent cases. The author concludes that claims of very low regret rates are unreliable and that this uncertainty is critical for informed consent.`,
-    year: 2023,
-    url: "https://link.springer.com/article/10.1007/s10508-023-02623-5",
-    displayUrl: "link.springer.com/article/10.1007/s10508-023-02623-5",
-  },
+
   {
     title:
       "Gender dysphoria in young people is rising—and so is professional disagreement",
@@ -161,6 +164,8 @@ const studies = [
   {
     title:
       "Access to care and frequency of detransition among a cohort discharged by a UK national adult gender identity clinic: retrospective case-note review",
+    description:
+      "In 175 adults discharged from a UK gender clinic, only 56% finished the planned pathway; 59% got all desired treatments (94% hormones, 48% surgery). 22% dropped out, 19% soon re-referred. Neurodevelopmental conditions, childhood adversity, on-going mental-health or substance problems predicted worse outcomes. Authors urge more individualised, trauma-informed care.",
     authors: "Hall, R., Mitchell,L. & J. Sachdeva",
     year: 2021,
     url: "https://www.cambridge.org/core/journals/bjpsych-open/article/access-to-care-and-frequency-of-detransition-among-a-cohort-discharged-by-a-uk-national-adult-gender-identity-clinic-retrospective-casenote-review/3F5AC1315A49813922AAD76D9E28F5CB",
@@ -176,14 +181,14 @@ const studies = [
     url: "https://pubmed.ncbi.nlm.nih.gov/34665380/",
     displayUrl: "pubmed.ncbi.nlm.nih.gov/34665380/",
   },
-    {
-    title:
-      "Rapid-Onset Gender Dysphoria (ROGD) Study",
+  {
+    title: "Rapid-Onset Gender Dysphoria (ROGD) Study",
     authors: "Littman, L.",
     year: 2018,
     description: `This study, based on parent reports of 256 cases, suggests social contagion via peer groups and online communities may drive sudden adolescent-onset presentations, potentially amplified by affirmative environments that discourage desistance.[5] Affirmation's critics, including Littman, posit that it can create a feedback loop of harm by validating transient distress as fixed identity, reducing natural resolution rates observed in watchful waiting cohorts.`,
     url: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0202330",
-    displayUrl: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0202330",
+    displayUrl:
+      "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0202330",
   },
   {
     title: "Gender Detransition: A Case Study",
@@ -236,8 +241,7 @@ const studies = [
     description: `This case review from the UK's GIDS examines adolescents with late-onset gender dysphoria who, during assessment, decided against medical transition. The authors analyze 12 such cases over 18 months, presenting two vignettes to illustrate how extended assessment allowed for different understandings of their distress, leading them to cease pursuing hormonal interventions.`,
     journal: "Clinical child psychology and psychiatry",
     url: "https://pubmed.ncbi.nlm.nih.gov/30722669/",
-    displayUrl:
-      "https://pubmed.ncbi.nlm.nih.gov/30722669/",
+    displayUrl: "https://pubmed.ncbi.nlm.nih.gov/30722669/",
   },
   {
     title:
@@ -284,7 +288,11 @@ export default async function StudiesPage() {
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
       <h1 className="text-3xl font-bold">Selected Academic Articles</h1>
-
+      <p>
+        Academic studies, peer-reviewed research and journal articles on the subjects of gender identity, transition and de-transition. If you know of any relevant research that should be on this page, please
+        send it through to me using the contact form.
+      </p>
+      <ParticipateCard />
       <div className="not-prose mb-6 hidden">
         <a
           href="https://statsforgender.org/"
@@ -304,7 +312,7 @@ export default async function StudiesPage() {
         </a>
       </div>
 
-      <div className="space-y-4">
+      <div className="mt-8 space-y-4">
         {studies.map((study, index) => (
           <div key={index} className="mb-4">
             <p className="mb-0 font-semibold">{study.title}</p>
