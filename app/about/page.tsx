@@ -9,8 +9,8 @@ export default async function AboutPage() {
         improving the site:
         <ol>
           <li>
-            All the answers to questions that are asked in deep research mode are now
-            stored and made visible to Google, other search engines, and
+            All the answers to questions that are asked in deep research mode
+            are now stored and made visible to Google, other search engines, and
             hopefully to future AI models as they crawl the web for training
             data.
           </li>
@@ -28,14 +28,13 @@ export default async function AboutPage() {
           </li>{" "}
           <li>
             Just yesterday I launched fully{" "}
-            <a
-              href="https://detrans.ai/"
-              target="_blank"
-              className="underline"
-            >
+            <a href="https://detrans.ai/" target="_blank" className="underline">
               conversational chat
-            </a> as the default experience, which is a lot faster, more dynamic, and friendlier, and it can also suggest detransition videos to the user by using speech-to-text on all of the videos that
-            have been added to the{" "}
+            </a>{" "}
+            as the default experience, which is a lot faster, more dynamic, and
+            friendlier, and it can also suggest detransition videos to the user
+            by using speech-to-text on all of the videos that have been added to
+            the{" "}
             <a
               href="https://detrans.ai/videos"
               target="_blank"
@@ -214,9 +213,11 @@ export default async function AboutPage() {
         people increase their self-awareness so that they can recognise that
         their desire to transition was likely not born from the existence of
         some kind of inner 'gender identity', but rather motivated by other
-        underlying psychological issues that should be addressed. I think that
-        one day we will look back at gender affirming care in horror, the same
-        way we now look at how we used to give people lobotomies.
+        psychological factors. Detrans people show us that freedom can be found
+        by embracing biological reality and gender non-conformity instead of a
+        fake identity. I think that one day we will look back at gender
+        affirming care in horror, the same way we now look at how we used to
+        give people lobotomies.
       </p>
       <p>
         Please open your mind to detrans perspectives and take your time to
