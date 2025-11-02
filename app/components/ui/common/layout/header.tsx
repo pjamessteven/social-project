@@ -124,10 +124,10 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           <FileText className="mr-2 h-8 w-8" />
                           <div className="flex flex-col space-y-1">
                             <div className="text-sm leading-none font-medium">
-                              Definitions
+                              Terminology
                             </div>
                             <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                              Key terms and concepts
+                              Defining key terms/concepts
                             </p>
                           </div>
                         </Link>
@@ -163,7 +163,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                               Detransition Videos
                             </div>
                             <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                              Personal memoirs
+                              Personal memoir archive
                             </p>
                           </div>
                         </Link>
@@ -428,7 +428,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                                 Detransition Videos
                               </div>
                               <div className="text-muted-foreground text-xs">
-                                Personal memoirs
+                                Personal memoir archive
                               </div>
                             </div>
                           </Button>
@@ -447,10 +447,10 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                             <FileText className="h-4 w-4" />
                             <div className="ml-4 flex flex-col items-start">
                               <div className="text-sm font-medium">
-                                Definitions
+                                Terminology
                               </div>
                               <div className="text-muted-foreground text-xs">
-                                Key terms and concepts
+                                Defining key terms/concepts
                               </div>
                             </div>
                           </Button>

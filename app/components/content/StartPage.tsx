@@ -4,7 +4,6 @@ import { isBot } from "@/app/lib/isBot";
 import { slugify } from "@/app/lib/utils";
 import {
   BookOpen,
-  ChevronRight,
   ExternalLink,
   FileText,
   Heart,
@@ -26,6 +25,7 @@ import { Button } from "../ui/button";
 import CompareAnimation from "../ui/compare-animation";
 import LizardAnimation from "../ui/lizard-animation";
 import DonationCard from "./DonationCard";
+import ParticipateCard from "./ParticipateCard";
 import { QuestionCategories } from "./QuestionCategories";
 import { QuestionTabs } from "./QuestionTabs";
 import RedditEmbeds from "./RedditEmbeds";
@@ -72,9 +72,75 @@ export async function StartPage({
           }
         </h1>
 
+        {mode === "detrans" && (
+          <div className="mt-8 hidden sm:block">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
+              <Link href="/videos">
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
+                  <Youtube className="h-4 w-4" />
+                  <span className="text-sm font-medium">Personal Videos</span>
+                </Button>
+              </Link>
+              <Link href="/stories">
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
+                  <Users className="h-4 w-4" />
+                  <span className="text-sm font-medium">
+                    Stories
+                    <span className="hidden sm:inline"> & Timelines</span>
+                  </span>
+                </Button>
+              </Link>
+              <Link href="/support">
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
+                  <Heart className="h-4 w-4" />
+                  <span className="text-sm font-medium">Help & Support</span>
+                </Button>
+              </Link>
+              <Link href="/definitions">
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
+                  <FileText className="h-4 w-4" />
+                  <span className="text-sm font-medium">Terminology</span>
+                </Button>
+              </Link>
+              <Link href="/studies">
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
+                  <BookOpen className="h-4 w-4" />
+                  <span className="hidden text-sm font-medium sm:inline">
+                    Academic Studies
+                  </span>
+                  <span className="text-sm font-medium sm:hidden">Studies</span>
+                </Button>
+              </Link>
 
+              <Link href={mode == "detrans" ? "/prompts" : "/affirm/prompts"}>
+                <Button
+                  variant="secondary"
+                  className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+                >
+                  <Settings className="h-4 w-4" />
+                  <span className="text-sm font-medium">How It Works</span>
+                </Button>
+              </Link>
+            </div>
+          </div>
+        )}
 
-        <div className="mt-8 sm:mt-8 w-full">
+        <div className="mt-8 w-full sm:mt-8">
           <div className="w-full border-t" />
           <div className="mt-1 w-full border-t" />
           <div className="mt-1 w-full border-t" />
@@ -98,8 +164,6 @@ export async function StartPage({
             <div className="absolute inset-0 dark:bg-black/20"></div>
           </div>
         )}
-
-
 
         {mode === "detrans" ? (
           <div className="">
@@ -528,29 +592,7 @@ export async function StartPage({
         </div>
          */}
 
-        {mode === "detrans" && (
-                 <Link
-                  prefetch={false}
-                  href={
-                    "/participate"
-                  }
-                  className="no-underline"
-                >
-            <div className="group row relative mt-8 flex items-center justify-between overflow-hidden rounded-xl  border border-[#77b255]/40 dark:border-[#315b17]/30 bg-[#77b255]/20  sm:px-4 sm:py-3 px-3 py-3 text-[#315b17]  dark:text-lime-50 cursor-pointer transition-all duration-500 dark:bg-[#315b17]/30  hover:brightness-110">
-              {/* shimmer overlay */}
-              <div className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r  from-white/20 dark:[#315b17]/30 left-0 w-[300%] dark:via-white/10 via-white/10 to-transparent transition-transform duration-500 ease-in-out group-hover:translate-x-[0%]"></div>{" "}
-              <div className="flex flex-col z-10">
-                <div className="brightness-80 font-semibold text-sm sm:text-base">
-                  Are you a detransitioner or a desister?
-                </div>
-                <div className="opacity-80 dark:opacity-50 mt-1 text-xs sm:text-sm">
-                  Participate in international studies to help improve scientific understanding of transgender identities<span className="hidden sm:inline">, to improve outcomes for people experiencing gender dysphoria, and to win cash prizes!</span>
-                </div>
-              </div>
-              <ChevronRight className="text-[#3e721d] dark:text-white/40 dark:opacity-80 z-10 min-w-4 h-4 ml-3" />
-            </div>
-</Link>
-        )}
+        {mode === "detrans" && <ParticipateCard />}
 
         {mode === "detrans" && (
           <div className="prose- sm:prose-base prose dark:prose-invert mt-8 max-w-full sm:mt-8">
@@ -569,8 +611,6 @@ export async function StartPage({
           Start with a question below, or ask anything.
         </div>
  */}
-
-
 
         {mode == "detrans" ? (
           <>
@@ -664,7 +704,7 @@ export async function StartPage({
                 Peter James Steven
               </a>{" "}
               <br />
-              Te Whanganui-a-Tara (Wellington, NZ) 📍
+              In Te Whanganui-a-Tara (Wellington, NZ)
               <br />
               <div className="mt-2 flex items-center sm:mt-1">
                 <div>
@@ -683,8 +723,7 @@ export async function StartPage({
                 The code is published under an MIT license.
               </div>
               <div className="mt-1 flex items-center">
-                Translations
-                coming soon!
+                Translations coming soon!
               </div>
               <div className="mt-8 flex items-center">
                 Please donate if you can,

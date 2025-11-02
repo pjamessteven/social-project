@@ -7,8 +7,8 @@ const PromptsPage = () => {
         <h1 className="text-3xl font-bold">How does it work?</h1>
         <p>
           <b>detrans.ai</b> chat is a RAG (retrieval augmented generation)
-          system that generates meta questions and answers them by surfacing and
-          integrating detrans thoughts and experiences from the{" "}
+          powered agent that generates meta questions and answers them by
+          surfacing and integrating detrans thoughts and experiences from the{" "}
           <a
             href="https://reddit.com/r/detrans"
             target="_blank"
@@ -54,13 +54,16 @@ const PromptsPage = () => {
             className="text-blue-500 underline hover:text-blue-600"
           >
             genderaffirming.ai
-          </a>{" "}or           <a
+          </a>{" "}
+          or{" "}
+          <a
             href={"https://chatgpt.com"}
             target="_blank"
             className="text-blue-500 underline hover:text-blue-600"
           >
             chatGPT
-          </a>.
+          </a>
+          .
         </p>{" "}
         <h2>Data Cutoff Dates</h2>
         <p>
@@ -75,13 +78,25 @@ const PromptsPage = () => {
           transcribed using OpenAI's Whisper speech-to-text model and added to
           the vector database and video archive.
         </p>
+        <h2>Open Source</h2>
+        <p>
+          {" "}
+          The source code is also availble on{" "}
+          <a
+            href="https://github.com/pjamessteven/social-project"
+            target="_blank"
+            className="underline"
+          >
+            Github
+          </a>{" "}
+          under an MIT license if you would like to inspect or re-use any of the code
+          for your own project. This project also is built on top of many other open-source projects, such as Llamaindex, React, Next.js, Tailwind, Lucide, Qdrant, Postgres and the Vercel AI SDK. Many thanks to the contributors of these projects for providing a solid base to build on top of.
+        </p>
         <h2>System Prompts</h2>
         <p>
-          These are the prompts that the system uses for the RAG workflow. You
-          may notice that the LLM (<i>kimi-k2-instruct</i>) might re-write the
-          responses to be more compassionate or to fit the style guide as they
-          stream during the final answer phase, but there are no other custom
-          instructions or layers other than what is shown on this page.
+          These are the prompts that the system uses for the RAG workflow. There
+          are no other custom instructions or layers other than what is shown on
+          this page.
         </p>
         <p>
           Last Updated: <i>31/10/25</i>
