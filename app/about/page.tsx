@@ -62,16 +62,16 @@ export default async function AboutPage() {
         non-affirming therapists who might question <i>why</i> one feels like
         they're in the wrong body. In some places in the world this is even an
         illegal practice. This is due to cancel culture and how it has become
-        taboo to question gender identities, which itself is due of how pseudo-scientific
-        beliefs have become mainstream, such as the belief that everyone has an innate
-        gender-identity and that people can be born in the wrong body (even
-        though believers often contradict themselves by saying that gender is
-        also "fluid"). The existence of detrans people and their stories debunks
-        this myth, and I strongly disagree that promoting a lifetime of
-        cross-sex hormones with dangerous side-effects and irreversible
-        surgeries is rational when for many - if not all - people, gender
-        dysphoria has pathological roots. There is an acute lack of logic and
-        reason in trans 'healthcare', and this is causing serious harm to
+        taboo to question gender identities, which itself is due of how
+        pseudo-scientific beliefs have become mainstream, such as the belief
+        that everyone has an innate gender-identity and that people can be born
+        in the wrong body (even though believers often contradict themselves by
+        saying that gender is also "fluid"). The existence of detrans people and
+        their stories debunks this myth, and I strongly disagree that promoting
+        a lifetime of cross-sex hormones with dangerous side-effects and
+        irreversible surgeries is rational when for many - if not all - people,
+        gender dysphoria has pathological roots. There is an acute lack of logic
+        and reason in trans 'healthcare', and this is causing serious harm to
         people.
       </p>
       <p>
@@ -106,12 +106,12 @@ export default async function AboutPage() {
       <p>
         People who beleive in gender ideology think that they are being
         progressive and liberating themselves from sexist steretypes and roles,
-        but in reality it's the opposite as they depend on stereotypes in order to define themselves and others in the first place. This
-        way of thinking is oppressive and directly at-odds with the original
-        goals of feminism, but people who can think for themselves and point
-        this out are now labeled as evil TERFs. A good thought experiment is to
-        consider non-binary identities, and why those exist today. If you're
-        lazy,{" "}
+        but in reality it's the opposite as they depend on stereotypes in order
+        to define themselves and others in the first place. This way of thinking
+        is oppressive and directly at-odds with the original goals of feminism,
+        but people who can think for themselves and point this out are now
+        labeled as evil TERFs. A good thought experiment is to consider
+        non-binary identities, and why those exist today. If you're lazy,{" "}
         <a
           href={
             "https://detrans.ai/research/how-does-gender-ideology-create-non-binary-identities"
@@ -156,7 +156,8 @@ export default async function AboutPage() {
         themselves to female-only spaces, such as changing rooms, prisons,
         sports competitions and even rape crisis centers, which is causing
         significant harm to women and eroding their sex-based rights. This is
-        wrong and it needs to stop.
+        wrong and it needs to stop. People should have the freedom and right to do what
+        they want, but that freedom needs to end where others rights begin.
       </p>
       <p>
         Detransitioners say that trans communities can be cult like: if
