@@ -62,15 +62,17 @@ export default async function AboutPage() {
         non-affirming therapists who might question <i>why</i> one feels like
         they're in the wrong body. In some places in the world this is even an
         illegal practice. This is due to cancel culture and how it has become
-        taboo to question gender identities, as the pseudo-scientific belief that  gender
-        is innate and that people can be born in the wrong body has pervaded
-        society (even though believers often claim that gender can also be
-        'fluid'). The existence of detrans people and their stories debunks this
-        myth, and I strongly disagree that promoting a lifetime of cross-sex
-        hormones with dangerous side-effects and irreversible surgeries is
-        rational when for many - if not all - people, gender dysphoria has
-        pathological roots. There is an acute lack of logic and reason in trans
-        'healthcare', and this is causing serious harm to people.
+        taboo to question gender identities, which itself is due of how pseudo-scientific
+        beliefs have become mainstream, such as the belief that everyone has an innate
+        gender-identity and that people can be born in the wrong body (even
+        though believers often contradict themselves by saying that gender is
+        also "fluid"). The existence of detrans people and their stories debunks
+        this myth, and I strongly disagree that promoting a lifetime of
+        cross-sex hormones with dangerous side-effects and irreversible
+        surgeries is rational when for many - if not all - people, gender
+        dysphoria has pathological roots. There is an acute lack of logic and
+        reason in trans 'healthcare', and this is causing serious harm to
+        people.
       </p>
       <p>
         I am concerned about the recent surge in people being diagnosed with
@@ -102,14 +104,14 @@ export default async function AboutPage() {
         pipeline by misguided affirming doctors.
       </p>
       <p>
-        People who beleive in gender ideology think that they are progressive
-        and liberating themselves from sexist steretypes and roles, but in
-        reality it's the opposite as they depend on sexist steretypes and roles
-        in order to define themselves and others in the first place. This way of
-        thinking is oppressive and directly at-odds with the original goals of
-        feminism, but people who can think for themselves and point this out are
-        now labeled as evil TERFs. A good thought experiment is to consider
-        non-binary identities, and why those exist today. If you're lazy,{" "}
+        People who beleive in gender ideology think that they are being
+        progressive and liberating themselves from sexist steretypes and roles,
+        but in reality it's the opposite as they depend on stereotypes in order to define themselves and others in the first place. This
+        way of thinking is oppressive and directly at-odds with the original
+        goals of feminism, but people who can think for themselves and point
+        this out are now labeled as evil TERFs. A good thought experiment is to
+        consider non-binary identities, and why those exist today. If you're
+        lazy,{" "}
         <a
           href={
             "https://detrans.ai/research/how-does-gender-ideology-create-non-binary-identities"
@@ -187,11 +189,11 @@ export default async function AboutPage() {
         told them it is. Those who identify as heterosexual or homosexual often
         stigmatise and delegitimise bisexual people - this is called bi-erasure.
         People with a bisexual history may have gay or straight people tell them
-        that they are 'gay and in the closet' and not living authentically, mostly due
-        to these people's own limited experiences with sexuality. This is an opressive
-        and cult-like tactic that can cause significant stress and trauma to an
-        individual. It mirrors the experience that many detrans people have when
-        trying to leave the community.
+        that they are 'gay and in the closet' and not living authentically,
+        mostly due to these people's own limited experiences with sexuality.
+        This is an opressive and cult-like tactic that can cause significant
+        stress and trauma to an individual. It mirrors the experience that many
+        detrans people have when trying to leave the community.
       </p>
       <p>
         People who promote and spread the lie that people 'can be born in the
@@ -203,7 +205,7 @@ export default async function AboutPage() {
         sexuality change over time are at direct odds with these beliefs. There
         are serious implications suggesting that these identities are innate and
         unchangeable. This belief system promotes and enforces hopelessness,
-        lack of self-agency and despair. 
+        lack of self-agency and despair.
       </p>
       <p>
         I think that we can do better for people who are experiencing gender
@@ -213,18 +215,16 @@ export default async function AboutPage() {
         people increase their self-awareness so that they can recognise that
         their desire to transition was likely not born from the existence of
         some kind of inner 'gender identity', but rather motivated by other
-        psychological factors. People who have detransitioned demonstrate that freedom and liberation can be found
-        by embracing biological reality and gender non-conformity instead of a
-        fake identity. I think that one day we will look back at gender
-        affirming care in horror, the same way we now look at how we used to
-        give people lobotomies.
+        psychological factors. People who have detransitioned demonstrate that
+        freedom and liberation can be found by embracing biological reality and
+        gender non-conformity instead of a fake identity. I think that one day
+        we will look back at gender affirming care in horror, the same way we
+        now look at how we used to give people lobotomies.
       </p>
       <p>
         Please open your mind to detrans perspectives and take your time to
         explore the site.
       </p>
-
-      <p>Let the truth be known.</p>
 
       <p>- Peter James Steven</p>
 
