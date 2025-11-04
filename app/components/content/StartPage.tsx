@@ -370,28 +370,6 @@ export async function StartPage({
                     </div>
                   </div>
                 </Link>
-                <Link
-                  prefetch={false}
-                  href={
-                    "/chat/?starter=" +
-                    slugify(
-                      "Can sexual orientation change over time, and can adopting a sexual identity label become a trap or limitation like gender identity can be?",
-                    )
-                  }
-                  className="no-underline"
-                >
-                  <div
-                    className={"flex flex-row items-center border-b pt-1 pb-2"}
-                  >
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start font-normal italic transition-colors">
-                      <span className="mr-2 whitespace-nowrap">{"->"}</span>
-                      <span className="pr-2">
-                        I'm wondering if sexual orientation and identity can
-                        also change over time
-                      </span>
-                    </div>
-                  </div>
-                </Link>
               </div>
 
               {/* 

@@ -62,7 +62,7 @@ export default async function AboutPage() {
         non-affirming therapists who might question <i>why</i> one feels like
         they're in the wrong body. In some places in the world this is even an
         illegal practice. This is due to cancel culture and how it has become
-        taboo to question gender identities, which itself is due of how
+        taboo to question gender identities, which itself is due to how
         pseudo-scientific beliefs have become mainstream, such as the belief
         that everyone has an innate gender-identity and that people can be born
         in the wrong body (even though believers often contradict themselves by
