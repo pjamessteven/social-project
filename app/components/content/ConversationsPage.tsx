@@ -1,0 +1,138 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { formatDistanceToNow } from "date-fns";
+
+export interface ConversationSummary {
+  uuid: string;
+  title: string | null;
+  updatedAt: string;
+  mode: string;
+}
+
+interface ConversationsPageClientProps {
+  conversations: ConversationSummary[];
+}
+
+export default function ConversationsPageClient({
+  conversations,
+}: ConversationsPageClientProps) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  return (
+    <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
+      {/* Sidebar for larger screens */}
+      <div className="hidden lg:block bg-white dark:bg-gray-800 w-80 flex-shrink-0 border-r border-gray-200 dark:border-gray-700">
+        <div className="p-4 h-full overflow-y-auto">
+          <h2 className="text-xl font-bold mb-4">Conversations</h2>
+          <ul className="space-y-1">
+            {conversations.map((convo) => (
+              <li key={convo.uuid}>
+                <Link
+                  href={`/chat/${convo.uuid}`}
+                  className="block p-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                  <p className="font-semibold truncate text-sm">
+                    {convo.title || "Untitled Conversation"}
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    {convo.mode} - Updated{" "}
+                    {formatDistanceToNow(new Date(convo.updatedAt), {
+                      addSuffix: true,
+                    })}
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* Mobile sidebar */}
+      <div
+        className={`fixed inset-0 z-40 flex lg:hidden ${
+          sidebarOpen ? "pointer-events-auto" : "pointer-events-none"
+        }`}
+      >
+        {/* Overlay */}
+        <div
+          className={`fixed inset-0 bg-black transition-opacity ${
+            sidebarOpen ? "opacity-50" : "opacity-0"
+          }`}
+          onClick={() => setSidebarOpen(false)}
+        ></div>
+
+        {/* Sidebar panel */}
+        <div
+          className={`relative flex-1 flex flex-col max-w-xs w-full bg-white dark:bg-gray-800 transform transition-transform duration-300 ease-in-out ${
+            sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
+          <div className="p-4 h-full overflow-y-auto">
+            <h2 className="text-xl font-bold mb-4">Conversations</h2>
+            <ul className="space-y-1">
+              {conversations.map((convo) => (
+                <li key={convo.uuid}>
+                  <Link
+                    href={`/chat/${convo.uuid}`}
+                    className="block p-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    <p className="font-semibold truncate text-sm">
+                      {convo.title || "Untitled Conversation"}
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                      {convo.mode} - Updated{" "}
+                      {formatDistanceToNow(new Date(convo.updatedAt), {
+                        addSuffix: true,
+                      })}
+                    </p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Main content */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Header with sidebar toggle */}
+        <header className="bg-white dark:bg-gray-900 shadow-sm p-2 lg:hidden">
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="p-2 rounded-md text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
+          >
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+            <span className="sr-only">Open sidebar</span>
+          </button>
+        </header>
+
+        {/* Content area */}
+        <main className="flex-1 p-6 overflow-y-auto">
+          <div className="flex items-center justify-center h-full">
+            <div className="text-center">
+              <h1 className="text-2xl font-bold">Select a conversation</h1>
+              <p className="text-gray-500 mt-2">
+                Choose a conversation from the sidebar to view its contents.
+              </p>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+}
