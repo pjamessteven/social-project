@@ -3,6 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
+import FullWidthPage from "./FullWidthPage";
 
 export interface ConversationSummary {
   uuid: string;
@@ -12,16 +13,19 @@ export interface ConversationSummary {
   messages: string;
 }
 
-interface ConversationsPageClientProps {
-  conversations: {
+export interface ConversationsResponse { 
     items: ConversationSummary[];
     pagination: {
       page: number;
       limit: number;
       total: number;
       totalPages: number;
-    };
-  };
+}} 
+
+
+
+interface ConversationsPageClientProps {
+  conversations: ConversationsResponse | undefined
 }
 
 interface MessagePart {
@@ -95,15 +99,15 @@ export default function ConversationsPageClient({
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [conversationItems, setConversationItems] = useState<
     ConversationSummary[]
-  >(initialConversations.items);
-  const [pagination, setPagination] = useState(initialConversations.pagination);
+  >(initialConversations?.items || []);
+  const [pagination, setPagination] = useState(initialConversations?.pagination);
   const [loading, setLoading] = useState(false);
 
   const desktopSentinel = useRef<HTMLDivElement | null>(null);
   const mobileSentinel = useRef<HTMLDivElement | null>(null);
 
   const loadMoreConversations = useCallback(async () => {
-    if (loading || pagination.page >= pagination.totalPages) return;
+    if (loading || !pagination ||  pagination.page >= pagination.totalPages) return;
 
     setLoading(true);
     const nextPage = pagination.page + 1;
@@ -146,17 +150,17 @@ export default function ConversationsPageClient({
   }, [loadMoreConversations]);
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
+    <FullWidthPage>
       {/* Sidebar for larger screens */}
-      <div className="hidden lg:block bg-white dark:bg-gray-800 w-80 flex-shrink-0 border-r border-gray-200 dark:border-gray-700">
-        <div className="p-4 h-full overflow-y-auto">
-          <h2 className="text-xl font-bold mb-4">Conversations</h2>
-          <ul className="space-y-1">
+      <div className="hidden lg:block bg-white h-full dark:bg-gray-800 w-80 flex-shrink-0 border-r border-gray-200 dark:border-gray-700">
+        <div className="h-full ">
+          <h2 className="text-xl font-bold mb-4  bg-white dark:bg-black p-4" >Conversations</h2>
+          <ul className="space-y-1 px-4 h-full  overflow-y-auto ">
             {conversationItems.map((convo) => (
               <ConversationItem key={convo.uuid} convo={convo} />
             ))}
           </ul>
-          {pagination.page < pagination.totalPages && (
+          {pagination &&    pagination.page < pagination.totalPages && (
             <div ref={desktopSentinel} />
           )}
           {loading && <p className="text-center py-4">Loading...</p>}
@@ -194,7 +198,7 @@ export default function ConversationsPageClient({
                 />
               ))}
             </ul>
-            {pagination.page < pagination.totalPages && (
+            {pagination && pagination.page < pagination.totalPages && (
               <div ref={mobileSentinel} />
             )}
             {loading && <p className="text-center py-4">Loading...</p>}
@@ -203,7 +207,7 @@ export default function ConversationsPageClient({
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden hidden">
         {/* Header with sidebar toggle */}
         <header className="bg-white dark:bg-gray-900 shadow-sm p-2 lg:hidden">
           <button
@@ -239,6 +243,6 @@ export default function ConversationsPageClient({
           </div>
         </main>
       </div>
-    </div>
+    </FullWidthPage>
   );
 }
