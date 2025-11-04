@@ -93,7 +93,7 @@ export default function ConversationsPageClient({
         <div className="p-4 h-full overflow-y-auto">
           <h2 className="text-xl font-bold mb-4">Conversations</h2>
           <ul className="space-y-1">
-            {conversations.map((convo) => (
+            {conversations?.map((convo) => (
               <ConversationItem key={convo.uuid} convo={convo} />
             ))}
           </ul>
