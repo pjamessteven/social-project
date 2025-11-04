@@ -9,11 +9,77 @@ export interface ConversationSummary {
   title: string | null;
   updatedAt: string;
   mode: string;
+  messages: string;
 }
 
 interface ConversationsPageClientProps {
   conversations: ConversationSummary[];
 }
+
+interface MessagePart {
+  type: "text";
+  text: string;
+}
+
+interface Message {
+  parts: MessagePart[];
+  id: string;
+  role: "user" | "model";
+}
+
+const ConversationItem = ({
+  convo,
+  onClick,
+}: {
+  convo: ConversationSummary;
+  onClick?: () => void;
+}) => {
+  let userMessages: Message[] = [];
+  try {
+    if (convo.messages) {
+      const parsedMessages = JSON.parse(convo.messages);
+      if (Array.isArray(parsedMessages)) {
+        userMessages = parsedMessages.filter(
+          (msg: any) => msg.role === "user" && Array.isArray(msg.parts),
+        );
+      }
+    }
+  } catch (e) {
+    console.error("Failed to parse messages for convo", convo.uuid, e);
+  }
+
+  return (
+    <li>
+      <Link
+        href={`/chat/${convo.uuid}`}
+        className="block p-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+        onClick={onClick}
+      >
+        <p className="font-semibold truncate text-sm">
+          {convo.title || "Untitled Conversation"}
+        </p>
+        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+          {convo.mode} - Updated{" "}
+          {formatDistanceToNow(new Date(convo.updatedAt), {
+            addSuffix: true,
+          })}
+        </p>
+        <div className="mt-2 space-y-1">
+          {userMessages.map((msg) =>
+            msg.parts.map((part, partIndex) => (
+              <p
+                key={`${msg.id}-${partIndex}`}
+                className="text-xs text-gray-600 dark:text-gray-300 truncate"
+              >
+                - {part.text}
+              </p>
+            )),
+          )}
+        </div>
+      </Link>
+    </li>
+  );
+};
 
 export default function ConversationsPageClient({
   conversations,
@@ -28,22 +94,7 @@ export default function ConversationsPageClient({
           <h2 className="text-xl font-bold mb-4">Conversations</h2>
           <ul className="space-y-1">
             {conversations.map((convo) => (
-              <li key={convo.uuid}>
-                <Link
-                  href={`/chat/${convo.uuid}`}
-                  className="block p-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
-                >
-                  <p className="font-semibold truncate text-sm">
-                    {convo.title || "Untitled Conversation"}
-                  </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                    {convo.mode} - Updated{" "}
-                    {formatDistanceToNow(new Date(convo.updatedAt), {
-                      addSuffix: true,
-                    })}
-                  </p>
-                </Link>
-              </li>
+              <ConversationItem key={convo.uuid} convo={convo} />
             ))}
           </ul>
         </div>
@@ -73,23 +124,11 @@ export default function ConversationsPageClient({
             <h2 className="text-xl font-bold mb-4">Conversations</h2>
             <ul className="space-y-1">
               {conversations.map((convo) => (
-                <li key={convo.uuid}>
-                  <Link
-                    href={`/chat/${convo.uuid}`}
-                    className="block p-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
-                    onClick={() => setSidebarOpen(false)}
-                  >
-                    <p className="font-semibold truncate text-sm">
-                      {convo.title || "Untitled Conversation"}
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                      {convo.mode} - Updated{" "}
-                      {formatDistanceToNow(new Date(convo.updatedAt), {
-                        addSuffix: true,
-                      })}
-                    </p>
-                  </Link>
-                </li>
+                <ConversationItem
+                  key={convo.uuid}
+                  convo={convo}
+                  onClick={() => setSidebarOpen(false)}
+                />
               ))}
             </ul>
           </div>
