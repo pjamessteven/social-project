@@ -13,7 +13,10 @@ export interface ConversationSummary {
 }
 
 interface ConversationsPageClientProps {
-  conversations: ConversationSummary[];
+  conversations: {
+    items: ConversationSummary[];
+    pagination: any;
+  };
 }
 
 interface MessagePart {
@@ -85,6 +88,7 @@ export default function ConversationsPageClient({
   conversations,
 }: ConversationsPageClientProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const conversationItems = conversations?.items || [];
 
   return (
     <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
@@ -93,7 +97,7 @@ export default function ConversationsPageClient({
         <div className="p-4 h-full overflow-y-auto">
           <h2 className="text-xl font-bold mb-4">Conversations</h2>
           <ul className="space-y-1">
-            {conversations?.map((convo) => (
+            {conversationItems.map((convo) => (
               <ConversationItem key={convo.uuid} convo={convo} />
             ))}
           </ul>
@@ -123,7 +127,7 @@ export default function ConversationsPageClient({
           <div className="p-4 h-full overflow-y-auto">
             <h2 className="text-xl font-bold mb-4">Conversations</h2>
             <ul className="space-y-1">
-              {conversations.map((convo) => (
+              {conversationItems.map((convo) => (
                 <ConversationItem
                   key={convo.uuid}
                   convo={convo}
