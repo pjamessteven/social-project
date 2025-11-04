@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 
@@ -15,7 +15,12 @@ export interface ConversationSummary {
 interface ConversationsPageClientProps {
   conversations: {
     items: ConversationSummary[];
-    pagination: any;
+    pagination: {
+      page: number;
+      limit: number;
+      total: number;
+      totalPages: number;
+    };
   };
 }
 
@@ -85,10 +90,60 @@ const ConversationItem = ({
 };
 
 export default function ConversationsPageClient({
-  conversations,
+  conversations: initialConversations,
 }: ConversationsPageClientProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const conversationItems = conversations?.items || [];
+  const [conversationItems, setConversationItems] = useState<
+    ConversationSummary[]
+  >(initialConversations.items);
+  const [pagination, setPagination] = useState(initialConversations.pagination);
+  const [loading, setLoading] = useState(false);
+
+  const desktopSentinel = useRef<HTMLDivElement | null>(null);
+  const mobileSentinel = useRef<HTMLDivElement | null>(null);
+
+  const loadMoreConversations = useCallback(async () => {
+    if (loading || pagination.page >= pagination.totalPages) return;
+
+    setLoading(true);
+    const nextPage = pagination.page + 1;
+    try {
+      const response = await fetch(
+        `/api/chat/conversations?page=${nextPage}&limit=${pagination.limit}`,
+      );
+      const data = await response.json();
+      setConversationItems((prevItems) => [...prevItems, ...data.items]);
+      setPagination(data.pagination);
+    } catch (error) {
+      console.error("Failed to fetch more conversations:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [loading, pagination]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          loadMoreConversations();
+        }
+      },
+      {
+        rootMargin: "100px",
+      },
+    );
+
+    if (desktopSentinel.current) {
+      observer.observe(desktopSentinel.current);
+    }
+    if (mobileSentinel.current) {
+      observer.observe(mobileSentinel.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [loadMoreConversations]);
 
   return (
     <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
@@ -101,6 +156,10 @@ export default function ConversationsPageClient({
               <ConversationItem key={convo.uuid} convo={convo} />
             ))}
           </ul>
+          {pagination.page < pagination.totalPages && (
+            <div ref={desktopSentinel} />
+          )}
+          {loading && <p className="text-center py-4">Loading...</p>}
         </div>
       </div>
 
@@ -135,6 +194,10 @@ export default function ConversationsPageClient({
                 />
               ))}
             </ul>
+            {pagination.page < pagination.totalPages && (
+              <div ref={mobileSentinel} />
+            )}
+            {loading && <p className="text-center py-4">Loading...</p>}
           </div>
         </div>
       </div>
