@@ -1,8 +1,10 @@
 import ConversationsPageClient, {
+  ConversationsResponse,
   ConversationSummary,
 } from "@/app/components/content/ConversationsPage";
+import FullWidthPage from "../components/content/FullWidthPage";
 
-async function getConversations(): Promise<ConversationSummary[]> {
+async function getConversations(): Promise<ConversationsResponse | undefined> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
   const url = `${baseUrl}/api/chat/conversations`;
 
@@ -13,13 +15,13 @@ async function getConversations(): Promise<ConversationSummary[]> {
 
     if (!response.ok) {
       console.error("Failed to fetch conversations:", response.statusText);
-      return [];
+      return undefined;
     }
 
     return await response.json();
   } catch (error) {
     console.error("Error fetching conversations:", error);
-    return [];
+    return  undefined;
   }
 }
 

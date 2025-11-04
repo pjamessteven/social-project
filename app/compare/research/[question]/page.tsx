@@ -1,6 +1,7 @@
 "use client";
 
 import ChatPage from "@/app/components/content/ChatPage";
+import FullWidthPage from "@/app/components/content/FullWidthPage";
 import { ExternalLink } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -64,9 +65,8 @@ export default function Page({
     };
   }, []);
   return (
-    <div
-      ref={containerRef}
-      className="fixed top-0 left-0 z-0 mt-[56px] h-[calc(100vh-64px)] w-full snap-x snap-mandatory overflow-x-auto overflow-y-scroll md:w-full"
+    <FullWidthPage
+    ref={containerRef}
     >
       <div className="grid min-h-full w-[180vw] snap-start grid-cols-2 md:w-full">
         <div
@@ -117,6 +117,6 @@ export default function Page({
           />
         </div>
       </div>
-    </div>
+    </FullWidthPage>
   );
 }
