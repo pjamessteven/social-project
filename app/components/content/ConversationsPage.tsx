@@ -133,7 +133,7 @@ export default function ConversationsPageClient({
         }
       },
       {
-        rootMargin: "100px",
+        rootMargin: "0px",
       },
     );
 
