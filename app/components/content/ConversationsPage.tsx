@@ -2,7 +2,7 @@
 
 import { formatDistanceToNow } from "date-fns";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import ChatSection from "../ui/chat/chat-section";
 import FullWidthPage from "./FullWidthPage";
 
@@ -101,7 +101,10 @@ export default function ConversationsPageClient({
 }: ConversationsPageClientProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const [currentConversationId, setCurrentConversationId] = useState(initialConversationId);
+  const searchParams = useSearchParams();
+  const [currentConversationId, setCurrentConversationId] = useState(
+    initialConversationId || searchParams.get('conversationId') || undefined
+  );
   const [conversationItems, setConversationItems] = useState<ConversationSummary[]>([]);
   const [pagination, setPagination] = useState<any>(null);
   const [loading, setLoading] = useState(false);
@@ -134,13 +137,15 @@ export default function ConversationsPageClient({
 
   // Update currentConversationId when URL changes
   useEffect(() => {
-    setCurrentConversationId(initialConversationId);
-  }, [initialConversationId]);
+    const urlConversationId = searchParams.get('conversationId');
+    const newConversationId = initialConversationId || urlConversationId || undefined;
+    setCurrentConversationId(newConversationId);
+  }, [initialConversationId, searchParams]);
 
   const handleConversationClick = (conversationId: string) => {
     setCurrentConversationId(conversationId);
     setSidebarOpen(false); // Close mobile sidebar
-    router.push(`/conversations/${conversationId}`);
+    router.push(`/conversations?conversationId=${conversationId}`, { scroll: false });
   };
 
   const loadMoreConversations = useCallback(async () => {

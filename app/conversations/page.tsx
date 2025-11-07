@@ -1,5 +1,11 @@
 import ConversationsPageClient from "@/app/components/content/ConversationsPage";
 
-export default function ConversationsPage() {
-  return <ConversationsPageClient />;
+interface ConversationsPageProps {
+  searchParams: Promise<{ conversationId?: string }>;
+}
+
+export default async function ConversationsPage({ searchParams }: ConversationsPageProps) {
+  const { conversationId } = await searchParams;
+  
+  return <ConversationsPageClient currentConversationId={conversationId} />;
 }
