@@ -2,8 +2,7 @@
 
 import { formatDistanceToNow } from "date-fns";
 import { useCallback, useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import ChatSection from "../ui/chat/chat-section";
 import FullWidthPage from "./FullWidthPage";
 
@@ -26,7 +25,6 @@ export interface ConversationsResponse {
 }
 
 interface ConversationsPageClientProps {
-  conversations: ConversationsResponse | undefined;
   currentConversationId?: string;
 }
 
@@ -44,9 +42,11 @@ interface Message {
 const ConversationItem = ({
   convo,
   isActive,
+  onClick,
 }: {
   convo: ConversationSummary;
   isActive: boolean;
+  onClick: () => void;
 }) => {
   let userMessages: Message[] = [];
   try {
@@ -64,9 +64,9 @@ const ConversationItem = ({
 
   return (
     <li>
-      <Link
-        href={`/conversations/${convo.uuid}`}
-        className={`block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700 ${
+      <button
+        onClick={onClick}
+        className={`block w-full text-left rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700 ${
           isActive ? "bg-blue-50 border-l-4 border-blue-500 dark:bg-blue-900/20" : ""
         }`}
       >
@@ -91,27 +91,56 @@ const ConversationItem = ({
             )),
           )}
         </div>
-      </Link>
+      </button>
     </li>
   );
 };
 
 export default function ConversationsPageClient({
-  conversations: initialConversations,
-  currentConversationId,
+  currentConversationId: initialConversationId,
 }: ConversationsPageClientProps) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const router = useRouter();
   const pathname = usePathname();
-  const [conversationItems, setConversationItems] = useState<
-    ConversationSummary[]
-  >(initialConversations?.items || []);
-  const [pagination, setPagination] = useState(
-    initialConversations?.pagination,
-  );
+  const [currentConversationId, setCurrentConversationId] = useState(initialConversationId);
+  const [conversationItems, setConversationItems] = useState<ConversationSummary[]>([]);
+  const [pagination, setPagination] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const desktopSentinel = useRef<HTMLDivElement | null>(null);
   const mobileSentinel = useRef<HTMLDivElement | null>(null);
+
+  // Fetch conversations on mount
+  useEffect(() => {
+    const fetchConversations = async () => {
+      try {
+        const response = await fetch('/api/chat/conversations');
+        if (response.ok) {
+          const data = await response.json();
+          setConversationItems(data.items || []);
+          setPagination(data.pagination);
+        }
+      } catch (error) {
+        console.error('Failed to fetch conversations:', error);
+      } finally {
+        setInitialLoading(false);
+      }
+    };
+
+    fetchConversations();
+  }, []);
+
+  // Update currentConversationId when URL changes
+  useEffect(() => {
+    setCurrentConversationId(initialConversationId);
+  }, [initialConversationId]);
+
+  const handleConversationClick = (conversationId: string) => {
+    setCurrentConversationId(conversationId);
+    setSidebarOpen(false); // Close mobile sidebar
+    router.push(`/conversations/${conversationId}`);
+  };
 
   const loadMoreConversations = useCallback(async () => {
     if (loading || !pagination || pagination.page >= pagination.totalPages)
@@ -157,6 +186,16 @@ export default function ConversationsPageClient({
     };
   }, [loadMoreConversations]);
 
+  if (initialLoading) {
+    return (
+      <FullWidthPage>
+        <div className="flex items-center justify-center h-64">
+          <p>Loading conversations...</p>
+        </div>
+      </FullWidthPage>
+    );
+  }
+
   return (
     <FullWidthPage>
       <div className="no-wrap flex w-full flex-row">
@@ -172,6 +211,7 @@ export default function ConversationsPageClient({
                   key={convo.uuid}
                   convo={convo}
                   isActive={currentConversationId === convo.uuid}
+                  onClick={() => handleConversationClick(convo.uuid)}
                 />
               ))}
             </ul>
@@ -210,6 +250,7 @@ export default function ConversationsPageClient({
                     key={convo.uuid}
                     convo={convo}
                     isActive={currentConversationId === convo.uuid}
+                    onClick={() => handleConversationClick(convo.uuid)}
                   />
                 ))}
               </ul>
