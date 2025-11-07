@@ -2,6 +2,8 @@
 
 import { formatDistanceToNow } from "date-fns";
 import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import ChatSection from "../ui/chat/chat-section";
 import FullWidthPage from "./FullWidthPage";
 
@@ -25,6 +27,7 @@ export interface ConversationsResponse {
 
 interface ConversationsPageClientProps {
   conversations: ConversationsResponse | undefined;
+  currentConversationId?: string;
 }
 
 interface MessagePart {
@@ -40,10 +43,10 @@ interface Message {
 
 const ConversationItem = ({
   convo,
-  onClick,
+  isActive,
 }: {
   convo: ConversationSummary;
-  onClick: (conserationId: string) => void;
+  isActive: boolean;
 }) => {
   let userMessages: Message[] = [];
   try {
@@ -61,9 +64,11 @@ const ConversationItem = ({
 
   return (
     <li>
-      <div
-        className="block cursor-pointer rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-        onClick={() => onClick(convo.uuid)}
+      <Link
+        href={`/conversations/${convo.uuid}`}
+        className={`block rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700 ${
+          isActive ? "bg-blue-50 border-l-4 border-blue-500 dark:bg-blue-900/20" : ""
+        }`}
       >
         <p className="truncate text-sm font-semibold">
           {convo.title || "Untitled Conversation"}
@@ -86,18 +91,17 @@ const ConversationItem = ({
             )),
           )}
         </div>
-      </div>
+      </Link>
     </li>
   );
 };
 
 export default function ConversationsPageClient({
   conversations: initialConversations,
+  currentConversationId,
 }: ConversationsPageClientProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [currentConversationId, setCurrentConversationId] = useState<
-    string | null
-  >(null);
+  const pathname = usePathname();
   const [conversationItems, setConversationItems] = useState<
     ConversationSummary[]
   >(initialConversations?.items || []);
@@ -167,9 +171,7 @@ export default function ConversationsPageClient({
                 <ConversationItem
                   key={convo.uuid}
                   convo={convo}
-                  onClick={(conversationId) =>
-                    setCurrentConversationId(conversationId)
-                  }
+                  isActive={currentConversationId === convo.uuid}
                 />
               ))}
             </ul>
@@ -207,7 +209,7 @@ export default function ConversationsPageClient({
                   <ConversationItem
                     key={convo.uuid}
                     convo={convo}
-                    onClick={() => setSidebarOpen(false)}
+                    isActive={currentConversationId === convo.uuid}
                   />
                 ))}
               </ul>
