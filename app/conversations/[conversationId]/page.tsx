@@ -23,8 +23,13 @@ async function getConversations(): Promise<ConversationsResponse | undefined> {
   }
 }
 
-export default async function ConversationsPage() {
+interface ConversationPageProps {
+  params: Promise<{ conversationId: string }>;
+}
+
+export default async function ConversationPage({ params }: ConversationPageProps) {
+  const { conversationId } = await params;
   const conversations = await getConversations();
 
-  return <ConversationsPageClient conversations={conversations} />;
+  return <ConversationsPageClient conversations={conversations} currentConversationId={conversationId} />;
 }
