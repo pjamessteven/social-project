@@ -127,8 +127,9 @@ export default function ConversationsPageClient({
         setInitialLoading(false);
       }
     };
-
+    if (conversationItems.length === 0){
     fetchConversations();
+    }
   }, []);
 
   // Update currentConversationId when URL changes
