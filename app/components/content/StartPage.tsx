@@ -573,9 +573,9 @@ export async function StartPage({
         {mode === "detrans" && <ParticipateCard />}
 
         {mode === "detrans" && (
-          <div className="prose- sm:prose-base prose dark:prose-invert mt-8 max-w-full sm:mt-8">
+          <div className="sm:prose-base prose dark:prose-invert mt-8 max-w-full sm:mt-8">
             <h3 className="font-">Deep Research Mode</h3>
-            <p className="text-muted-foreground mb-0">
+            <p className="text-muted-foreground mb-0 prose-sm sm:prose-base">
               Get a comprehensive answer from generated meta questions which
               approach a topic from different angles.
               <br className="hidden" /> Deep Research is slower and{" "}

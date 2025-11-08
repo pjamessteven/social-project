@@ -204,9 +204,9 @@ export default function ConversationsPageClient({
 
   return (
     <FullWidthPage>
-      <div className="no-wrap flex w-full flex-row">
+      <div className="no-wrap h-full flex w-full flex-row">
         {/* Sidebar for larger screens */}
-        <div className="hidden h-full w-80 flex-shrink-0 border-r border-gray-200 bg-white lg:block dark:border-gray-700 dark:bg-gray-800">
+        <div className="hidden h-full w-md flex-shrink-0 border-r border-gray-200 bg-white lg:block dark:border-gray-700 dark:bg-gray-800">
           <div className="h-full">
             <h2 className="mb-4 bg-white p-4 text-xl font-bold dark:bg-black">
               Conversations

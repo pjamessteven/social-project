@@ -89,7 +89,7 @@ export function ChatMessageContent({
 }) {
   return (
     <div className="flex w-full flex-col">
-      <ChatMessage.Content className="gap-8">
+      <ChatMessage.Content className="gap-6">
         <DynamicEvents
           componentDefs={componentDefs}
           appendError={appendError}

@@ -13,9 +13,11 @@ import { ComponentDef } from "./custom/events/types";
 export default function CustomChatMessages({
   componentDefs,
   appendError,
+  hideControls,
 }: {
   componentDefs: ComponentDef[];
   appendError: (error: string) => void;
+  hideControls?: boolean;
 }) {
   const { messages, stop } = useChatUI();
 
@@ -52,6 +54,13 @@ export default function CustomChatMessages({
 
   return (
     <ChatMessages className="!bg-transparent !p-0">
+      <div className="border-b max-w-screen">
+        <div className="text-muted-foreground text-left text-sm sm:text-center pb-4 px-4 sm:px-0  ">
+          I can make mistakes, I'm not a replacement for a real therapist!{" "}
+          <br className="hidden sm:inline" /> Do not share any personal
+          information that could be used to identify you.{" "}
+        </div>
+      </div>
       <ChatMessages.List className="!overflow-visible pb-28">
         {messages.map((message, index) => {
           const isLast = index === messages.length - 1;
@@ -75,7 +84,8 @@ export default function CustomChatMessages({
                 />
                 <ChatMessage.Actions />
               </ChatMessage>
-              {isLast && (
+              {isLast && <ChatMessages.Loading className="mb-4 -ml-16 sm:mr-0" />}
+              {isLast && !hideControls && (
                 <div className="-mt-2 mb-4 ml-3 flex w-full flex-row justify-between pr-20 sm:mb-8 sm:pr-16">
                   <div className="flex w-full grow flex-row justify-between pt-8">
                     <Link
@@ -113,13 +123,16 @@ export default function CustomChatMessages({
         {/* dummy div for scroll anchor */}
         <div ref={messagesEndRef} />
 
-        <div className="px-4 sm:px-0">
-          <ChatMessages.Empty
-            heading="Hello there!"
-            subheading="I'm detrans.ai, the collective consciousness of detransitioners 🦎 "
-          />
+        <div className="px-4 h-full  flex items-center sm:px-0 max-w-screen ">
+          {messages.length === 0 && (
+            <div className="">
+              <h1 className="font-bold text-xl">Hello there!</h1>
+              <p className="text-muted-foreground">
+                I'm detrans.ai, the collective consciousness of detransitioners 🦎
+              </p>
+            </div>
+          )}
         </div>
-        <ChatMessages.Loading />
       </ChatMessages.List>
     </ChatMessages>
   );

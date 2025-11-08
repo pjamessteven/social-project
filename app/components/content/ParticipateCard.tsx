@@ -12,11 +12,10 @@ export default function ParticipateCard() {
             Are you a detransitioner or a desister?
           </div>
           <div className="mt-1 text-xs opacity-80 sm:text-sm dark:opacity-50">
-            Participate in international studies to help improve scientific
+            Participate in studies to help improve scientific
             understanding of transgender identities
             <span className="hidden sm:inline">
-              , to improve outcomes for people experiencing gender dysphoria,
-              and to win cash prizes!
+              {" "}and to improve outcomes for people experiencing gender dysphoria.
             </span>
           </div>
         </div>

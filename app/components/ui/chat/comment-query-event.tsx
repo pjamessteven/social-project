@@ -55,20 +55,20 @@ export default function CommentQueryEventPart() {
     <Accordion
       type="single"
       collapsible
-      className="comment-query not-prose  -mt-8  w-full"
+      className="comment-query not-prose  -mt-4  w-full"
     >
       <AccordionItem
         value="disclaimer"
-        className="text-muted-foreground overflow-hidden border-b"
+        className="text-muted-foreground overflow-hidden border-none "
       >
         <AccordionTrigger
           hideIndicator={isLoading}
           indicatorStart
-          className="text-muted-foreground pt-0 hover:no-underline !py-3"
+          className="text-muted-foreground pt-0 hover:no-underline   bg-secondary border rounded-lg p-2 sm:p-3"
         >
           <div className="flex flex-row items-center justify-between">
             <div className="no-wrap flex flex-row items-baseline justify-between pr-2">
-              <div className="text-base font-normal italic">
+              <div className="font-normal italic">
                 {commentPart?.data?.query
                   ? commentPart?.data?.query
                   : "Looking for relevant comments..."}
@@ -82,7 +82,7 @@ export default function CommentQueryEventPart() {
           </div>
         </AccordionTrigger>
         <AccordionContent className="flex max-w-full flex-col pb-3">
-          <div className="text-primary mt-4 space-y-4">
+          <div className="text-primary max-w-full mt-4 space-y-4">
             {isError && 'Error occurred, try again... Contact me if this keeps happening.'}
             {results.map((comment: any, index: number) => (
               <CommentCard key={index} comment={comment as any} />
