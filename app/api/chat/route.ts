@@ -1,16 +1,15 @@
+import { chatConversations, db } from "@/db";
 import { createUIMessageStreamResponse, type UIMessage } from "ai";
+import { eq } from "drizzle-orm";
 import { ChatMessage, type MessageType } from "llamaindex";
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
-import { chatConversations, db } from "@/db";
-import { eq } from "drizzle-orm";
 
 // import chat utils
 import {
   pauseForHumanInput,
   processWorkflowStream,
   runWorkflow,
-  sendSuggestedQuestionsEvent,
   toDataStream,
 } from "./utils";
 
@@ -27,8 +26,12 @@ export async function POST(req: NextRequest) {
     const suggestNextQuestions = process.env.SUGGEST_NEXT_QUESTIONS === "true";
 
     console.log("[CHAT API] Request body:", JSON.stringify(reqBody, null, 2));
-    
-    const { messages, id: requestId, conversationId } = reqBody as {
+
+    const {
+      messages,
+      id: requestId,
+      conversationId,
+    } = reqBody as {
       messages: UIMessage[];
       id?: string;
       conversationId?: string;
@@ -36,7 +39,9 @@ export async function POST(req: NextRequest) {
 
     // Generate or use provided conversation UUID
     const chatUuid = conversationId || uuidv4();
-    console.log(`[CHAT API] Using conversation UUID: ${chatUuid} (provided: ${conversationId})`);
+    console.log(
+      `[CHAT API] Using conversation UUID: ${chatUuid} (provided: ${conversationId})`,
+    );
 
     // Check if conversation exists and is archived (older than 30 minutes)
     if (chatUuid) {
@@ -47,13 +52,16 @@ export async function POST(req: NextRequest) {
         .limit(1);
 
       if (existingConversation[0]) {
-        const thirtyMinutesAgo = Date.now() - (30 * 60 * 1000);
+        const thirtyMinutesAgo = Date.now() - 30 * 60 * 1000;
         const lastUpdated = existingConversation[0].updatedAt.getTime();
-        
+
         if (lastUpdated < thirtyMinutesAgo) {
           return NextResponse.json(
-            { error: "This conversation has been archived and is no longer available for new messages." },
-            { status: 410 }
+            {
+              error:
+                "This conversation has been archived and is no longer available for new messages.",
+            },
+            { status: 410 },
           );
         }
       }
@@ -83,8 +91,6 @@ export async function POST(req: NextRequest) {
     );
 
     try {
-            console.log('3rocesstream')
-
       const context = await runWorkflow({
         workflow: await workflowFactory(reqBody, userInput, chatUuid),
         input: { userInput: userInput, chatHistory },
@@ -93,7 +99,6 @@ export async function POST(req: NextRequest) {
         },
       });
 
-
       // @ts-expect-error something
       const stream = processWorkflowStream(context.stream).until(
         // @ts-expect-error something
@@ -101,23 +106,17 @@ export async function POST(req: NextRequest) {
           abortController.signal.aborted || stopAgentEvent.include(event),
       );
 
-      const dataStream = toDataStream(stream, {
+      const dataStream = toDataStream(messages, stream, {
         callbacks: {
           onPauseForHumanInput: async (responseEvent) => {
             await pauseForHumanInput(context, responseEvent, requestId); // use requestId to save snapshot
           },
-          onFinal: async (completion, dataStreamWriter) => {
-            chatHistory.push({
-              role: "assistant" as MessageType,
-              content: completion,
-            });
-
-            // Save complete conversation to database
+          onFinal: async (messages: UIMessage[]) => {
             await saveConversation(chatUuid, messages);
-
+            /*
             if (suggestNextQuestions && completion.length > 500) {
               await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory, chatUuid);
-            }
+            }*/
           },
         },
       });
@@ -157,10 +156,12 @@ async function saveConversation(
     const completeMessages = messages;
 
     // Generate a title from the first user message (truncated)
-    const firstUserMessage = messages.find(m => m.role === "user");
-    const title = firstUserMessage?.parts[0]?.type === "text" 
-      ? firstUserMessage.parts[0].text.substring(0, 100) + (firstUserMessage.parts[0].text.length > 100 ? "..." : "")
-      : "Chat conversation";
+    const firstUserMessage = messages.find((m) => m.role === "user");
+    const title =
+      firstUserMessage?.parts[0]?.type === "text"
+        ? firstUserMessage.parts[0].text.substring(0, 100) +
+          (firstUserMessage.parts[0].text.length > 100 ? "..." : "")
+        : "Chat conversation";
 
     // Save or update the conversation in the database
     await db
@@ -182,7 +183,9 @@ async function saveConversation(
         },
       });
 
-    console.log(`Saved conversation ${uuid} with ${completeMessages.length} messages`);
+    console.log(
+      `Saved conversation ${uuid} with ${completeMessages.length} messages`,
+    );
   } catch (error) {
     console.error("Failed to save conversation:", error);
     // Don't throw - conversation saving failures shouldn't break the chat

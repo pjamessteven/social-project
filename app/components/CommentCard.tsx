@@ -49,7 +49,7 @@ export default function CommentCard({ comment }: CommentCardProps) {
   };
 
   return (
-    <div className="rounded-lg border bg-white dark:bg-gray-900">
+    <div className="rounded-lg overflow-hidden border bg-white dark:bg-gray-900">
       <div className="bg-secondary dark:bg-primary/5 flex flex-col">
         <div className="prose dark:prose-invert max-w-full px-4 pt-3 pb-3  font-semibold">
           {comment.summary}

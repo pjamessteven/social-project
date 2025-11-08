@@ -5,7 +5,7 @@ import {
   type WorkflowEvent,
   type WorkflowEventData,
 } from "@llamaindex/workflow";
-import { createUIMessageStream, UIMessageStreamWriter } from "ai";
+import { createUIMessageStream, UIMessage, UIMessageStreamWriter } from "ai";
 import { randomUUID } from "crypto";
 import type { ChatResponseChunk } from "llamaindex";
 import { humanInputEvent, type HumanResponseEventData } from "./hitl";
@@ -19,8 +19,7 @@ export interface StreamCallbacks {
 
   /** `onFinal`: Called once when the stream is closed with the final completion message. */
   onFinal?: (
-    completion: string,
-    dataStreamWriter: UIMessageStreamWriter,
+    messages: UIMessage[]
   ) => Promise<void> | void;
 
   /** `onText`: Called for each text chunk. */
@@ -42,6 +41,7 @@ export interface StreamCallbacks {
  * @returns A readable stream of data.
  */
 export function toDataStream(
+  originalMessages: UIMessage[],
   stream: AsyncIterable<WorkflowEventData<unknown>>,
   options: {
     callbacks?: StreamCallbacks;
@@ -54,6 +54,7 @@ export function toDataStream(
   let textId: string | null = null;
 
   return createUIMessageStream({
+    originalMessages,
     async execute({ writer }) {
       try {
         if (!hasStarted && callbacks?.onStart) {
@@ -154,10 +155,7 @@ export function toDataStream(
           id: textId,
         });
       }
-      // Call onFinal with the complete text when stream ends
-      if (callbacks?.onFinal) {
-        await callbacks.onFinal(completionText, writer);
-      }
+
       } catch (streamError) {
         console.error("Stream processing error:", streamError);
         
@@ -177,6 +175,12 @@ export function toDataStream(
         ? error.message
         : "An unknown error occurred during stream finalization";
     },
+    onFinish: async ({messages, isContinuation}) => {
+      // Call onFinal with the complete text when stream ends
+      if (callbacks?.onFinal && !isContinuation) {
+        await callbacks.onFinal(messages);
+      }
+    }
   });
 }
 

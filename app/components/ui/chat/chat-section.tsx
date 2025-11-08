@@ -17,8 +17,10 @@ import { ComponentDef } from "./custom/events/types";
 
 export default function ChatSection({
   conversationId,
+  readOnly
 }: {
   conversationId?: string;
+  readOnly?: boolean;
 }) {
   const { setChatHandler} = useChatStore();
   const searchParams = useSearchParams();
@@ -27,17 +29,9 @@ export default function ChatSection({
   const [isArchived, setIsArchived] = useState(false);
   const [loading, setLoading] = useState(true);
   const [timeoutError, setTimeoutError] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   
-  const clearTimeoutRef = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-  };
-
   const handleError = (error: unknown) => {
-    clearTimeoutRef();
+
     if (!(error instanceof Error)) throw error;
     let errorMessage: string;
     try {
@@ -73,31 +67,18 @@ export default function ChatSection({
     }),
     onError: handleError,
     experimental_throttle: 100,
-    onFinish: () => {
-      clearTimeoutRef();
-    },
+
   });
 
   const handler = useChatHandler;
   const messages = handler.messages
 
-  // if no response in 1 min we can assume out of credits
-  const startTimeout = () => {
-    clearTimeoutRef();
-    setTimeoutError(false);
-    timeoutRef.current = setTimeout(() => {
-      setTimeoutError(true);
-      handler.stop()
-    }, 120000); // 2 min
-  };
-  
+
   useEffect(() => {
     // if we just sent a message start the timeout
     // cause llamaindex agent has cooked error handling on the backend
     const lastMessage = messages[messages.length-1]
-    if (lastMessage?.role === 'user') {
-      startTimeout()
-    }
+
   }, [messages])
 
   // Set chat handler in Zustand store
@@ -114,9 +95,7 @@ export default function ChatSection({
           const data = await response.json();
           // Set the messages directly using the setMessages function
           useChatHandler.setMessages(data.messages);
-        } else {
-          console.error("Failed to load conversation:", response.statusText);
-        }
+        } 
       } catch (error) {
         console.error("Error loading conversation:", error);
       }
@@ -149,12 +128,6 @@ export default function ChatSection({
     }
   }, [searchParams, useChatHandler, router]);
 
-  // Cleanup timeout on unmount
-  useEffect(() => {
-    return () => {
-      clearTimeoutRef();
-    };
-  }, []);
 
   return (
     <>
@@ -173,7 +146,8 @@ export default function ChatSection({
             >
               <ResizablePanelGroup direction="horizontal">
                 <ChatSectionPanel
-                  isArchived={isArchived}
+                  isArchived={isArchived || !!readOnly}
+                  hideControls={!!readOnly}
                   onStartNewChat={handleStartNewChat}
                   timeoutError={timeoutError}
                 />
@@ -189,12 +163,14 @@ export default function ChatSection({
 
 function ChatSectionPanel({
   isArchived,
+  hideControls,
   onStartNewChat,
   timeoutError,
 }: {
   isArchived: boolean;
   onStartNewChat: () => void;
   timeoutError: boolean;
+  hideControls?: boolean;
 }) {
   const [componentDefs, setComponentDefs] = useState<ComponentDef[]>([]);
   const [dynamicEventsErrors, setDynamicEventsErrors] = useState<string[]>([]); // contain all errors when rendering dynamic events from componentDir
@@ -260,6 +236,7 @@ function ChatSectionPanel({
           clearErrors={() => setDynamicEventsErrors([])}
         />
         <CustomChatMessages
+          hideControls={hideControls}
           componentDefs={componentDefs}
           appendError={appendError}
         />
