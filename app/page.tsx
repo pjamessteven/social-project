@@ -7,11 +7,11 @@ import type { Metadata } from "next";
 const metadata: Metadata = {
   title: "detrans.ai | Talk to 50,000+ detransitioners",
   description:
-  "Detrans.ai is powered by real detrans perspectives and experiences. Use detrans.ai as a virtual gender therapist, for detransition help and advice, or simply as a research tool to understand why some people adopt, inhabit, and let go of gender identities.",
+  "Detrans.ai is a helpful and compassionate chatbot that promotes holistic, non-medical ways of healing gender dysphoria. Use detrans.ai as virtual gender-exploratory therapist, for transition or detransition support and advice, or simply as a research tool to understand why some people adopt, inhabit, and let go of gender identities.",
   openGraph: {
     title: "detrans.ai | Talk to 50,000+ detransitioners",
     description:
-      "Detrans.ai is powered by real detrans perspectives and experiences. Use detrans.ai as a virtual gender therapist, for detransition help and advice, or simply as a research tool to understand why some people adopt, inhabit, and let go of gender identities.",
+      "Detrans.ai is a helpful and compassionate chatbot that promotes holistic, non-medical ways of healing gender dysphoria. Use detrans.ai as virtual gender-exploratory therapist, for transition or detransition support and advice, or simply as a research tool to understand why some people adopt, inhabit, and let go of gender identities.",
     url: "https://detrans.ai/",
     images: ["https://detrans.ai/x_card_lg.png"],
     siteName: "detrans.ai",
@@ -23,7 +23,7 @@ const metadata: Metadata = {
     card: "summary_large_image",
     title: "detrans.ai | Talk to 50,000+ detransitioners",
     description:
-       "Detrans.ai is powered by real detrans perspectives and experiences. Use detrans.ai as a virtual gender therapist, for detransition help and advice, or simply as a research tool to understand why some people adopt, inhabit, and let go of gender identities.",
+      "Detrans.ai is a helpful and compassionate chatbot that promotes holistic, non-medical ways of healing gender dysphoria. Use detrans.ai as virtual gender therapist, for transition or detransition support and advice, or simply as a research tool to understand why some people adopt, inhabit, and let go of gender identities.",
   },
 };
 
