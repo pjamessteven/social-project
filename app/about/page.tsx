@@ -215,7 +215,7 @@ export default async function AboutPage() {
         believe that through detrans perspectives we can help trans-identified
         people increase their self-awareness so that they can recognise that
         their desire to transition was likely not born from the existence of
-        some kind of inner 'gender identity', but rather motivated by other
+        some kind of innate gender identity, but rather motivated by other
         psychological factors. People who have detransitioned demonstrate that
         freedom and liberation can be found by embracing biological reality and
         gender non-conformity instead of a fake identity. I think that one day

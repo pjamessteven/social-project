@@ -216,7 +216,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
 
                 <NavigationMenuContent>
                   <div className="grid w-68 gap-1 p-1">
-                    {mode !== "affirm" && (
+                    {mode !== "affirm" && false && (
                       <NavigationMenuLink asChild>
                         <Link
                           href={"/about"}
@@ -511,7 +511,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                       About
                     </h3>
                     <div className="space-y-1">
-                      {mode !== "affirm" && (
+                      {mode !== "affirm" && false && (
                         <Link href={"/about"} onClick={() => setIsOpen(false)}>
                           <Button
                             variant="ghost"
