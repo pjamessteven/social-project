@@ -13,6 +13,7 @@ import type {
   LLMCompletionParamsStreaming,
 } from "llamaindex";
 import { Cache, makeLlmCacheKey } from "./cache";
+import { replayCached } from "@/app/lib/replayCached";
 
 export class CachedOpenAI extends OpenAI {
   private cache: Cache;
@@ -131,8 +132,8 @@ export class CachedOpenAI extends OpenAI {
           cachedData = { text: cached };
         }
 
-        // Replay cached result as a fake stream
-        const replayCached = async function* (
+        // Replay cached result as a fake stream using replayCached
+        const replayCachedStream = async function* (
           data: { text: string; toolCalls?: any[] },
         ): AsyncGenerator<ChatResponseChunk> {
           // If there are tool calls, yield them first
@@ -143,14 +144,15 @@ export class CachedOpenAI extends OpenAI {
               options: { toolCall: data.toolCalls }
             } as ChatResponseChunk;
           }
-          // Yield the text content
-          yield { 
-            delta: data.text, 
-            raw: null,
-            options: data.toolCalls && data.toolCalls.length > 0 ? { toolCall: data.toolCalls } : {}
-          } as ChatResponseChunk;
+          // Yield the text content using replayCached
+          for await (const chunk of replayCached(data.text)) {
+            yield {
+              ...chunk,
+              options: data.toolCalls && data.toolCalls.length > 0 ? { toolCall: data.toolCalls } : {}
+            } as ChatResponseChunk;
+          }
         };
-        return replayCached(cachedData);
+        return replayCachedStream(cachedData);
       }
 
       console.log("Cache miss - generating new response");
@@ -366,13 +368,18 @@ export class CachedOpenAI extends OpenAI {
           "LLM cache hit (streaming)",
         );
 
-        // Replay cached result as a fake stream
-        const replayCached = async function* (
+        // Replay cached result as a fake stream using replayCached
+        const replayCachedStream = async function* (
           text: string,
         ): AsyncIterable<CompletionResponse> {
-          yield { text, raw: null } as CompletionResponse;
+          for await (const chunk of replayCached(text)) {
+            yield { 
+              text: chunk.delta, 
+              raw: null 
+            } as CompletionResponse;
+          }
         };
-        return replayCached(cached);
+        return replayCachedStream(cached);
       }
 
       console.log("Cache miss - generating new completion");
