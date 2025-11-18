@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function ParticipateCard() {
   return (
     <Link prefetch={false} href={"/participate"} className="no-underline">
-      <div className="group row relative mt-8 flex cursor-pointer items-center justify-between overflow-hidden rounded-xl border border-[#5577b2]/40 bg-[#5577b2]/20 px-3 py-3 text-[#17315b] transition-all duration-500 hover:brightness-110 sm:px-4 sm:py-3 dark:border-[#17315b]/30 dark:bg-[#17315b]/30 dark:text-blue-50">
+      <div className="group row bg-/20 relative mt-8 flex cursor-pointer items-center justify-between overflow-hidden rounded-xl border border-sky-400/30 bg-sky-400/20 px-3 py-3 text-[#17315b] transition-all duration-500 hover:brightness-110 sm:px-4 sm:py-3 dark:border-[#17315b]/30 dark:bg-[#17315b]/30 dark:text-blue-50">
         {/* shimmer overlay */}
         <div className="dark:[#17315b]/30 pointer-events-none absolute inset-0 left-0 w-[300%] translate-x-[-100%] bg-gradient-to-r from-white/20 via-white/10 to-transparent transition-transform duration-500 ease-in-out group-hover:translate-x-[0%] dark:via-white/10"></div>{" "}
         <div className="z-10 flex flex-col">
@@ -12,10 +12,11 @@ export default function ParticipateCard() {
             Are you a detransitioner or a desister?
           </div>
           <div className="mt-1 text-xs opacity-80 sm:text-sm dark:opacity-50">
-            Participate in studies to help improve scientific
-            understanding of transgender identities
+            Participate in studies to help improve scientific understanding of
+            transgender identities
             <span className="hidden sm:inline">
-              {" "}and to improve outcomes for people experiencing gender dysphoria.
+              {" "}
+              and to improve outcomes for people experiencing gender dysphoria.
             </span>
           </div>
         </div>
