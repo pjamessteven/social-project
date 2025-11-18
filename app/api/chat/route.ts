@@ -120,6 +120,7 @@ export async function POST(req: NextRequest) {
           },
         },
       });
+
       return createUIMessageStreamResponse({
         stream: dataStream,
         status: 200,
