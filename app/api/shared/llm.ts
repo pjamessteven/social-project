@@ -67,8 +67,8 @@ export class CachedOpenAI extends OpenAI {
 
       return {
         totalCost: data.data.total_cost,
-        tokensPrompt: data.data.usage?.tokens_prompt,
-        tokensCompletion: data.data.usage?.tokens_completion,
+        tokensPrompt: data.data.tokens_prompt,
+        tokensCompletion: data.data.tokens_completion,
         model: data.data.model,
       };
     } catch (error) {
@@ -473,7 +473,10 @@ export class CachedOpenAI extends OpenAI {
         if (!metadata) {
           metadata = {};
         }
-        console.log("Setting cache with metadata (completion streaming):", metadata);
+        console.log(
+          "Setting cache with metadata (completion streaming):",
+          metadata,
+        );
         await this.cache.set(key, full, questionForCache, metadata);
       }.bind(this);
 

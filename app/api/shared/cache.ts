@@ -1,21 +1,21 @@
-import {
-  affirmCache,
-  db,
-  detransCache,
-  detransChatCache,
-} from "@/db";
+import { affirmCache, db, detransCache, detransChatCache } from "@/db";
 import { createHash } from "crypto";
 import { eq } from "drizzle-orm";
 export interface Cache {
   get(key: string): Promise<string | null>;
-  set(key: string, value: string, questionName?: string, metadata?: {
-    totalCost?: number;
-    tokensPrompt?: number;
-    tokensCompletion?: number;
-    model?: string;
-    generationId?: string;
-    conversationId?: string;
-  }): Promise<void>;
+  set(
+    key: string,
+    value: string,
+    questionName?: string,
+    metadata?: {
+      totalCost?: number;
+      tokensPrompt?: number;
+      tokensCompletion?: number;
+      model?: string;
+      generationId?: string;
+      conversationId?: string;
+    },
+  ): Promise<void>;
 }
 
 export class PostgresCache implements Cache {
@@ -36,7 +36,7 @@ export class PostgresCache implements Cache {
       const hashStartTime = Date.now();
       const hashedKey = this.hashKey(key);
       const hashTime = Date.now() - hashStartTime;
-      
+
       const cacheTable = this.getCacheTable();
 
       const queryStartTime = Date.now();
@@ -57,7 +57,6 @@ export class PostgresCache implements Cache {
         const updateTime = Date.now() - updateStartTime;
         const totalTime = Date.now() - startTime;
 
-
         return result[0].resultText;
       }
 
@@ -71,24 +70,30 @@ export class PostgresCache implements Cache {
     }
   }
 
-  async set(key: string, value: string, questionName?: string, metadata?: {
-    totalCost?: number;
-    tokensPrompt?: number;
-    tokensCompletion?: number;
-    model?: string;
-    generationId?: string;
-    conversationId?: string;
-  }): Promise<void> {
+  async set(
+    key: string,
+    value: string,
+    questionName?: string,
+    metadata?: {
+      totalCost?: number;
+      tokensPrompt?: number;
+      tokensCompletion?: number;
+      model?: string;
+      generationId?: string;
+      conversationId?: string;
+    },
+  ): Promise<void> {
     const startTime = Date.now();
+    console.log("metadata", metadata);
     try {
       const hashStartTime = Date.now();
       const hashedKey = this.hashKey(key);
       const hashTime = Date.now() - hashStartTime;
-      
+
       const cacheTable = this.getCacheTable();
 
       const insertStartTime = Date.now();
-      
+
       // Base values that all cache tables have
       const baseValues = {
         promptHash: hashedKey,
@@ -105,9 +110,10 @@ export class PostgresCache implements Cache {
       };
 
       // Add conversationId only for detrans_chat mode
-      const values = this.mode === "detrans_chat" 
-        ? { ...baseValues, conversationId: metadata?.conversationId || null }
-        : baseValues;
+      const values =
+        this.mode === "detrans_chat"
+          ? { ...baseValues, conversationId: metadata?.conversationId || null }
+          : baseValues;
 
       const baseUpdateSet = {
         resultText: value,
@@ -122,20 +128,20 @@ export class PostgresCache implements Cache {
       };
 
       // Add conversationId to update set only for detrans_chat mode
-      const updateSet = this.mode === "detrans_chat" && metadata
-        ? { ...baseUpdateSet, conversationId: metadata.conversationId || null }
-        : baseUpdateSet;
+      const updateSet =
+        this.mode === "detrans_chat" && metadata
+          ? {
+              ...baseUpdateSet,
+              conversationId: metadata.conversationId || null,
+            }
+          : baseUpdateSet;
 
-      await db
-        .insert(cacheTable)
-        .values(values)
-        .onConflictDoUpdate({
-          target: cacheTable.promptHash,
-          set: updateSet,
-        });
+      await db.insert(cacheTable).values(values).onConflictDoUpdate({
+        target: cacheTable.promptHash,
+        set: updateSet,
+      });
       const insertTime = Date.now() - insertStartTime;
       const totalTime = Date.now() - startTime;
-
     } catch (error) {
       const totalTime = Date.now() - startTime;
       console.error("Cache set error:", error);
@@ -144,17 +150,14 @@ export class PostgresCache implements Cache {
   }
 }
 
-
 export function makeLlmCacheKey(
   question: string,
   prompt: string,
   options: any,
-  mode?: string
+  mode?: string,
 ): string {
-  if (mode === 'detrans_chat') {
-    return JSON.stringify({ prompt, ...options })
+  if (mode === "detrans_chat") {
+    return JSON.stringify({ prompt, ...options });
   }
   return question + ":llm:" + JSON.stringify({ prompt, ...options });
 }
-
-
