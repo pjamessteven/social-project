@@ -227,12 +227,14 @@ export class CachedOpenAI extends OpenAI {
 
     await this.cache.set(key, text, questionForCache, metadata);
 
+    console.log("Cache miss - generating new response");
     logger.info(
       {
         originalQuestion: questionForCache,
         hashedKey,
         mode: this.mode,
         type: "chat",
+        cacheKey: key,
       },
       "LLM cache generating new",
     );
