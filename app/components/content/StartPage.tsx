@@ -192,13 +192,13 @@ export async function StartPage({
               <p>
                 <span className="font-semibold">How can I help you today?</span>
               </p>
-              <div className="grid gap-1">
+              <div className="font grid gap-1">
                 <Link
                   prefetch={false}
                   href={
                     "/chat/?starter=" +
                     slugify(
-                      "Why do detrans people use the lizard to represent themselves online?",
+                      "Why do detransitioners use the lizard to represent themselves online?",
                     )
                   }
                   className="no-underline"
@@ -206,7 +206,7 @@ export async function StartPage({
                   <div
                     className={"flex flex-row items-center border-b pt-1 pb-2"}
                   >
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start font-normal italic transition-colors">
+                    <div className="hover:text-primary text-muted-foreground flex cursor-pointer flex-row items-start italic transition-colors">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">
                         Sorry, but what's up with the lizards?
@@ -227,7 +227,7 @@ export async function StartPage({
                   <div
                     className={"flex flex-row items-center border-b pt-1 pb-2"}
                   >
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start text-base font-normal italic transition-colors">
+                    <div className="hover:text-primary text-muted-foreground flex cursor-pointer flex-row items-start italic transition-colors">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">
                         I'm questioning my gender identity and I think I might
@@ -249,7 +249,7 @@ export async function StartPage({
                   <div
                     className={"flex flex-row items-center border-b pt-1 pb-2"}
                   >
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start font-normal italic transition-colors">
+                    <div className="hover:text-primary text-muted-foreground flex cursor-pointer flex-row items-start italic transition-colors">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">
                         I currently identify as trans and I'm thinking about
@@ -271,7 +271,7 @@ export async function StartPage({
                   <div
                     className={"flex flex-row items-center border-b pt-1 pb-2"}
                   >
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start font-normal italic transition-colors">
+                    <div className="hover:text-primary text-muted-foreground flex cursor-pointer flex-row items-start italic transition-colors">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">
                         I'm a parent, family member, or friend of someone who is
@@ -317,7 +317,7 @@ export async function StartPage({
                   <div
                     className={"flex flex-row items-center border-b pt-1 pb-2"}
                   >
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start font-normal italic transition-colors">
+                    <div className="hover:text-primary text-muted-foreground flex cursor-pointer flex-row items-start italic transition-colors">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">
                         I'm seeking to understand the complex reasons behind
@@ -339,7 +339,7 @@ export async function StartPage({
                   <div
                     className={"flex flex-row items-center border-b pt-1 pb-2"}
                   >
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start font-normal italic transition-colors">
+                    <div className="hover:text-primary text-muted-foreground flex cursor-pointer flex-row items-start italic transition-colors">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">
                         I want to learn about the struggles and challenges that
@@ -353,7 +353,7 @@ export async function StartPage({
                   href={
                     "/chat/?starter=" +
                     slugify(
-                      "I want you to debunk and expose all of the misinformation and lies that have been spread about detransitioners, in as much depth as possible.",
+                      "Please debunk and expose all of the misinformation and lies that have been spread about detransitioners, in as much depth as possible.",
                     )
                   }
                   className="no-underline"
@@ -361,7 +361,7 @@ export async function StartPage({
                   <div
                     className={"flex flex-row items-center border-b pt-1 pb-2"}
                   >
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start font-normal italic transition-colors">
+                    <div className="hover:text-primary text-muted-foreground flex cursor-pointer flex-row items-start italic transition-colors">
                       <span className="mr-2 whitespace-nowrap">{"->"}</span>
                       <span className="pr-2">
                         I want you to debunk the misinformation and lies spread
@@ -575,9 +575,9 @@ export async function StartPage({
         {mode === "detrans" && (
           <div className="sm:prose-base prose dark:prose-invert mt-8 max-w-full sm:mt-8">
             <h3 className="font-">Deep Research Mode</h3>
-            <p className="text-muted-foreground mb-0 prose-sm sm:prose-base">
-              Get a comprehensive answer from generated meta questions which
-              approach a topic from different angles.
+            <p className="text-muted-foreground prose-sm sm:prose-base mb-0">
+              Deep Research mode expands your question to give you an answer
+              that approachs the topic from different angles.
               <br className="hidden" /> Deep Research is slower and{" "}
               <span className="whitespace-nowrap">non-conversational.</span> For
               chat, leave it off.
