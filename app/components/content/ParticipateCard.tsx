@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function ParticipateCard() {
   return (
     <Link prefetch={false} href={"/participate"} className="no-underline">
-      <div className="group row bg-/20 relative mt-8 flex cursor-pointer items-center justify-between overflow-hidden rounded-xl border border-sky-400/30 bg-sky-400/20 px-3 py-3 text-[#17315b] transition-all duration-500 hover:brightness-110 sm:px-4 sm:py-3 dark:border-[#17315b]/30 dark:bg-[#17315b]/30 dark:text-blue-50">
+      <div className="group row bg-/20 relative mt-8 flex cursor-pointer items-center justify-between overflow-hidden rounded-xl border border-sky-400/20 bg-sky-300/20 px-3 py-3 text-[#17315b] transition-all duration-500 hover:brightness-110 sm:px-4 sm:py-3 dark:border-[#17315b]/30 dark:bg-[#17315b]/30 dark:text-blue-50">
         {/* shimmer overlay */}
         <div className="dark:[#17315b]/30 pointer-events-none absolute inset-0 left-0 w-[300%] translate-x-[-100%] bg-gradient-to-r from-white/20 via-white/10 to-transparent transition-transform duration-500 ease-in-out group-hover:translate-x-[0%] dark:via-white/10"></div>{" "}
         <div className="z-10 flex flex-col">
