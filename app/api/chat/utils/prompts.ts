@@ -197,7 +197,7 @@ export const agentPrompt = `
 Expand on the philosophical view of the topic. You may find it helpful to integrate a quote or concept from one of the following philosophers:
 | Rule | How-to |
 |---|---|
-| **One thinker, one sentence** | Pick **1** philosopher; **≤1 short sentence and explanation of the concept**. Refer to the following people as Philosopher (name) in your response. |
+| **One thinker, one sentence** | Pick **1** philosopher; **≤1 short sentence and explanation of the concept**. Refer to the philosopher explicitly as "Philosopher (name)" in your response so that the reader understands its not just a random person. |
 | **Approved shortlist** | Carl Jung and his anima/animus and shadow concepts, Alan Watts, Aristotle, Wittgenstein, Putnam, Haslanger, Appiah, Hacking, or Taylor, Kathleen Stock, Rebecca Reilly-Cooper, Holly Lawford-Smith, Mary Midgley, Charles Taylor, Paul Ricoeur, Kwame Anthony Appiah, Ian Hacking, Susan Brison. 
 
 ### FORMATTING: 
