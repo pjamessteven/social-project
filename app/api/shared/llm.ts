@@ -95,21 +95,29 @@ export class CachedOpenAI extends OpenAI {
       options,
       this.mode,
     );
-    console.log("CACHE KEY", key)
+    console.log("CACHE KEY:", key);
+    console.log("Cache key length:", key.length);
+    console.log("Mode:", this.mode);
+    console.log("Question for cache:", questionForCache);
 
     const hashedKey = this.hashKey(key);
     const logger = getLogger();
 
     /* --- Streaming mode --- */
     if (stream) {
+      console.log("Checking cache for streaming request...");
       const cached = await this.cache.get(key);
+      console.log("Cache result:", cached ? "HIT" : "MISS");
       if (cached) {
+        console.log("Cache hit - content length:", cached.length);
         logger.info(
           {
             originalQuestion: questionForCache,
             hashedKey,
             mode: this.mode,
             type: "chat_streaming",
+            cacheKey: key,
+            contentLength: cached.length,
           },
           "LLM cache hit (streaming)",
         );
@@ -123,12 +131,14 @@ export class CachedOpenAI extends OpenAI {
         return replayCached(cached);
       }
 
+      console.log("Cache miss - generating new response");
       logger.info(
         {
           originalQuestion: questionForCache,
           hashedKey,
           mode: this.mode,
           type: "chat_streaming",
+          cacheKey: key,
         },
         "LLM cache miss, generating new (streaming)",
       );
@@ -173,14 +183,19 @@ export class CachedOpenAI extends OpenAI {
     }
 
     /* --- Non-streaming mode --- */
+    console.log("Checking cache for non-streaming request...");
     const cached = await this.cache.get(key);
+    console.log("Cache result:", cached ? "HIT" : "MISS");
     if (cached) {
+      console.log("Cache hit - content length:", cached.length);
       logger.info(
         {
           originalQuestion: questionForCache,
           hashedKey,
           mode: this.mode,
           type: "chat",
+          cacheKey: key,
+          contentLength: cached.length,
         },
         "LLM cache hit",
       );
@@ -278,14 +293,19 @@ export class CachedOpenAI extends OpenAI {
 
     /* --- Streaming mode --- */
     if (stream) {
+      console.log("Checking cache for complete streaming request...");
       const cached = await this.cache.get(key);
+      console.log("Cache result:", cached ? "HIT" : "MISS");
       if (cached) {
+        console.log("Cache hit - content length:", cached.length);
         logger.info(
           {
             originalQuestion: questionForCache,
             hashedKey,
             mode: this.mode,
             type: "complete_streaming",
+            cacheKey: key,
+            contentLength: cached.length,
           },
           "LLM cache hit (streaming)",
         );
@@ -299,12 +319,14 @@ export class CachedOpenAI extends OpenAI {
         return replayCached(cached);
       }
 
+      console.log("Cache miss - generating new completion");
       logger.info(
         {
           originalQuestion: questionForCache,
           hashedKey,
           mode: this.mode,
           type: "complete_streaming",
+          cacheKey: key,
         },
         "LLM cache miss, generating new (streaming)",
       );
@@ -357,26 +379,33 @@ export class CachedOpenAI extends OpenAI {
     }
 
     /* --- Non-streaming mode --- */
+    console.log("Checking cache for complete non-streaming request...");
     const cached = await this.cache.get(key);
+    console.log("Cache result:", cached ? "HIT" : "MISS");
     if (cached) {
+      console.log("Cache hit - content length:", cached.length);
       logger.info(
         {
           originalQuestion: questionForCache,
           hashedKey,
           mode: this.mode,
           type: "complete",
+          cacheKey: key,
+          contentLength: cached.length,
         },
         "LLM cache hit",
       );
       return { text: cached, raw: null } as CompletionResponse;
     }
 
+    console.log("Cache miss - generating new completion");
     logger.info(
       {
         originalQuestion: questionForCache,
         hashedKey,
         mode: this.mode,
         type: "complete",
+        cacheKey: key,
       },
       "LLM cache miss, generating new",
     );
