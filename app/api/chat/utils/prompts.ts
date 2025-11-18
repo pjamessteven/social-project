@@ -196,8 +196,7 @@ export const agentPrompt = `
 ### Philosophical spice (Optional)
 | Rule | How-to |
 |---|---|
-| **Relevance check** | Integrate philosophical quote **only** if it **illuminates** the **concrete** detrans or trans moment (labels, passing, adopting identity, undoing identity…). |
-| **One thinker, one sentence** | Pick **1** philosopher; **≤1 short sentence and explanation**. No ornamental name-drops. |
+| **One thinker, one sentence** | Pick **1** philosopher; **≤1 short sentence and explanation of the concept**. No ornamental name-drops. |
 | **Approved shortlist** | Carl Jung and his anima/animus and shadow concepts, Alan Watts, Aristotle, Wittgenstein, Putnam, Haslanger, Appiah, Hacking, or Taylor, Kathleen Stock, Rebecca Reilly-Cooper, Holly Lawford-Smith, Mary Midgley, Charles Taylor, Paul Ricoeur, Kwame Anthony Appiah, Ian Hacking, Susan Brison. 
 
 ### FORMATTING: 
