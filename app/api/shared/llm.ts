@@ -122,13 +122,35 @@ export class CachedOpenAI extends OpenAI {
           "LLM cache hit (streaming)",
         );
 
+        // Parse cached response which may include tool calls
+        let cachedData: { text: string; toolCalls?: any[] };
+        try {
+          cachedData = JSON.parse(cached);
+        } catch (e) {
+          // Fallback to plain text for backward compatibility
+          cachedData = { text: cached };
+        }
+
         // Replay cached result as a fake stream
         const replayCached = async function* (
-          text: string,
+          data: { text: string; toolCalls?: any[] },
         ): AsyncGenerator<ChatResponseChunk> {
-          yield { delta: text, raw: null } as ChatResponseChunk;
+          // If there are tool calls, yield them first
+          if (data.toolCalls && data.toolCalls.length > 0) {
+            yield {
+              delta: "",
+              raw: null,
+              options: { toolCall: data.toolCalls }
+            } as ChatResponseChunk;
+          }
+          // Yield the text content
+          yield { 
+            delta: data.text, 
+            raw: null,
+            options: data.toolCalls && data.toolCalls.length > 0 ? { toolCall: data.toolCalls } : {}
+          } as ChatResponseChunk;
         };
-        return replayCached(cached);
+        return replayCached(cachedData);
       }
 
       console.log("Cache miss - generating new response");
@@ -154,16 +176,28 @@ export class CachedOpenAI extends OpenAI {
         this: CachedOpenAI,
       ): AsyncGenerator<ChatResponseChunk> {
         let full = "";
+        let toolCalls: any[] = [];
         let generationId: string | undefined;
         for await (const chunk of rawStream as AsyncGenerator<ChatResponseChunk>) {
           full += chunk.delta;
           console.log("CHUNK", JSON.stringify(chunk));
+          
+          // Collect tool calls if present
+          if (chunk.options?.toolCall) {
+            toolCalls = chunk.options.toolCall;
+          }
+          
           // Extract generation ID from the first chunk if available
           if (!generationId && chunk.raw && 'id' in chunk.raw) {
             generationId = (chunk.raw as any).id;
           }
           yield chunk;
         }
+
+        // Prepare data to cache (include both text and tool calls)
+        const dataToCache = toolCalls.length > 0 
+          ? JSON.stringify({ text: full, toolCalls })
+          : full;
 
         // Fetch metadata if we have a generation ID
         let metadata;
@@ -173,10 +207,10 @@ export class CachedOpenAI extends OpenAI {
             metadata = {};
           }
           metadata.generationId = generationId;
-            metadata.conversationId = this.conversationId;
+          metadata.conversationId = this.conversationId;
         }
 
-        await this.cache.set(key, full, questionForCache, metadata);
+        await this.cache.set(key, dataToCache, questionForCache, metadata);
       }.bind(this);
 
       return capture();
@@ -200,18 +234,38 @@ export class CachedOpenAI extends OpenAI {
         "LLM cache hit",
       );
 
+      // Parse cached response which may include tool calls
+      let text: string;
+      let toolCalls: any[] | undefined;
+      try {
+        const cachedData = JSON.parse(cached);
+        text = cachedData.text;
+        toolCalls = cachedData.toolCalls;
+      } catch (e) {
+        // Fallback to plain text for backward compatibility
+        text = cached;
+        toolCalls = undefined;
+      }
+
       // Return a ChatResponse-like object with the cached content
       return {
         message: {
           role: "assistant",
-          content: cached,
+          content: text,
         },
         raw: null,
+        options: toolCalls ? { toolCall: toolCalls } : undefined,
       } as ChatResponse;
     }
 
     const response = await super.chat({ messages, ...options });
     const text = String(response.message.content);
+    const toolCalls = response.options?.toolCall;
+
+    // Prepare data to cache (include both text and tool calls)
+    const dataToCache = toolCalls && toolCalls.length > 0 
+      ? JSON.stringify({ text, toolCalls })
+      : text;
 
     // Fetch metadata if we have a generation ID
     let metadata;
@@ -221,11 +275,11 @@ export class CachedOpenAI extends OpenAI {
         metadata = {};
       }
       metadata.generationId = (response.raw as any).id;
-      metadata.conversationId = this.conversationId
+      metadata.conversationId = this.conversationId;
       console.log("CHAT 180 generation ID", metadata.generationId);
     }
 
-    await this.cache.set(key, text, questionForCache, metadata);
+    await this.cache.set(key, dataToCache, questionForCache, metadata);
 
     console.log("Cache miss - generating new response");
     logger.info(
