@@ -141,17 +141,18 @@ export class CachedOpenAI extends OpenAI {
             yield {
               delta: "",
               raw: null,
-              options: { toolCall: data.toolCalls },
+              options: { toolCall: data.toolCalls } as object,
             } as ChatResponseChunk;
           }
           // Yield the text content using replayCached
           for await (const chunk of replayCached(data.text)) {
             yield {
               ...chunk,
-              options:
+              options: (
                 data.toolCalls && data.toolCalls.length > 0
                   ? { toolCall: data.toolCalls }
-                  : {},
+                  : {}
+              ) as object,
             } as ChatResponseChunk;
           }
         };
@@ -187,9 +188,11 @@ export class CachedOpenAI extends OpenAI {
           full += chunk.delta;
           console.log("CHUNK", JSON.stringify(chunk));
 
-          // Collect tool calls if present
-          if (chunk.options?.toolCall) {
-            toolCalls = chunk.options.toolCall;
+          // Collect tool calls if present - they might be on the options object
+          // Since options is typed as object, we need to cast it to access toolCall
+          const options = chunk.options as any;
+          if (options?.toolCall) {
+            toolCalls = options.toolCall;
           }
 
           // Extract generation ID from the first chunk if available
