@@ -49,7 +49,7 @@ export class CachedOpenAI extends OpenAI {
         `https://openrouter.ai/api/v1/generation?id=${generationId}`,
         {
           headers: {
-            Authorization: `Bearer ${this.apiKey}`,
+            Authorization: `Bearer ${process.env.OPENROUTER_KEY}`,
             "Content-Type": "application/json",
           },
         },
@@ -61,11 +61,12 @@ export class CachedOpenAI extends OpenAI {
       }
       console.log("OPENROUTER RESP", JSON.stringify(response));
       const data = await response.json();
+      console.log("OPENROUTER RESPDATA", data);
       return {
-        totalCost: data.total_cost,
-        tokensPrompt: data.usage?.prompt_tokens,
-        tokensCompletion: data.usage?.completion_tokens,
-        model: data.model,
+        totalCost: data.data.total_cost,
+        tokensPrompt: data.data.usage?.tokens_prompt,
+        tokensCompletion: data.data.usage?.tokens_completion,
+        model: data.data.model,
       };
     } catch (error) {
       console.warn("Error fetching generation metadata:", error);
@@ -148,11 +149,9 @@ export class CachedOpenAI extends OpenAI {
           for await (const chunk of replayCached(data.text)) {
             yield {
               ...chunk,
-              options: (
-                data.toolCalls && data.toolCalls.length > 0
-                  ? { toolCall: data.toolCalls }
-                  : {}
-              ) as object,
+              options: (data.toolCalls && data.toolCalls.length > 0
+                ? { toolCall: data.toolCalls }
+                : {}) as object,
             } as ChatResponseChunk;
           }
         };
@@ -186,8 +185,6 @@ export class CachedOpenAI extends OpenAI {
         let generationId: string | undefined;
         for await (const chunk of rawStream as AsyncGenerator<ChatResponseChunk>) {
           full += chunk.delta;
-          console.log("CHUNK", JSON.stringify(chunk));
-
           // Collect tool calls if present - they might be on the options object
           // Since options is typed as object, we need to cast it to access toolCall
           const options = chunk.options as any;
@@ -272,11 +269,11 @@ export class CachedOpenAI extends OpenAI {
 
     const response = await super.chat({ messages, ...options });
     const text = String(response.message.content);
-    
+
     // Check if the message has tool calls
     // In llamaindex, tool calls might be on the message itself
     const toolCalls = (response.message as any).toolCalls;
-    
+
     // Prepare data to cache (include both text and tool calls)
     const dataToCache =
       toolCalls && toolCalls.length > 0

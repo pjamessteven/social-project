@@ -289,7 +289,7 @@ export default async function StudiesPage() {
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
       <h1 className="text-3xl font-bold">Selected Academic Articles</h1>
       <p>
-        Academic studies, peer-reviewed research and journal articles on the subjects of gender identity, transition and de-transition. If you know of any relevant research that should be on this page, please
+        Academic studies, peer-reviewed research and journal articles on the subjects of gender identity, transition and de-transition. If you would like to submit a study, please
         send it through to me using the contact form.
       </p>
       <ParticipateCard />

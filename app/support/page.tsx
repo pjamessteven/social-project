@@ -90,12 +90,14 @@ const navigationItems = [
 
 function SupportSidebar() {
   return (
-    <Sidebar className="w-64 bg-gradient-to-b from-white to-secondary dark:from-black">
+    <Sidebar className="to-secondary w-64 bg-gradient-to-b from-white dark:from-black">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu className="gap-2 ">
-              <div className="font-semibold ml-2 mt-2 mb-1">Get Gender Support:</div>
+            <SidebarMenu className="gap-2">
+              <div className="mt-2 mb-1 ml-2 font-semibold">
+                Get Gender Support:
+              </div>
               {navigationItems.map((item) => (
                 <SidebarMenuItem key={item.href}>
                   {item.children ? (
@@ -138,11 +140,11 @@ function SupportSidebar() {
 const metadata: Metadata = {
   title: "detrans.ai | Get Gender Help and Support",
   description:
-    "Learn the difference between gender affirmming care and gender exploratory therapy. If you are experiencing gender dysphoria, one of the best ways to get support for is to talk to and understand the perspectives of people who have been there themselves and come out the other side.",
+    "Learn the difference between Gender Affirmming Care and Gender Exploratory Therapy. If you are experiencing gender dysphoria, one of the best ways to get support for is to talk to and understand the perspectives of people who have been there themselves and come out the other side.",
   openGraph: {
     title: "detrans.ai | Get Gender Help and Support",
     description:
-      "Learn the difference between gender affirmming care and gender exploratory therapy. If you are experiencing gender dysphoria, one of the best ways to get support for is to talk to and understand the perspectives of people who have been there themselves and come out the other side.",
+      "Learn the difference between Gender Affirmming Care and Gender Exploratory Therapy. If you are experiencing gender dysphoria, one of the best ways to get support for is to talk to and understand the perspectives of people who have been there themselves and come out the other side.",
     url: "https://detrans.ai/support",
     siteName: "detrans.ai",
     images: ["https://detrans.ai/x_card_lg.png"],
@@ -163,7 +165,7 @@ export default async function SupportPage() {
           <SupportSidebar />
         </div>
         <main className="w-full flex-1">
-          <div className="prose dark:prose-invert pb-16 lg:pt-8 w-full">
+          <div className="prose dark:prose-invert w-full pb-16 lg:pt-8">
             <h1 className="text-3xl font-bold">Get Gender Help & Support</h1>
             <MobileJumpToSection />
             <h2 id="online-support-groups">Online Support groups:</h2>
@@ -236,17 +238,18 @@ export default async function SupportPage() {
             </h2>
 
             <p>
-              Gender exploratory therapy simply means that your therapist
+              Gender Exploratory Therapy simply means that your therapist
               doesn't rush to affirm and medicalise you. Instead they will start
               by exploring concepts of gender and why you might feel this way.
+              Gender Exploratory Therapy is an approach without a specific,
+              predetermined agenda, and the outcomes of gender exploratory
+              therapy can vary depending on each individual person.
             </p>
             <p>
-              If you Google "gender exploratory therapy", you will find all
-              sorts of articles and studies published by gender activists who
-              compare it to gay conversion therapy (which is proven to be
-              ineffective) and they attempt to frame it as being evil and
-              inhumane. The truth is that gender exploratory therapy is very
-              different from gay conversion therapy:
+              If you Google "Gender Exploratory Therapy", you will find some
+              critiques which compare it to gay conversion therapy (which is
+              proven to be ineffective). The truth is that Gender Exploratory
+              Therapy is very different from gay conversion therapy:
             </p>
             <div className="overflow-x-auto">
               <table className="min-w-[600px]">
@@ -275,9 +278,10 @@ export default async function SupportPage() {
                       conditioning, prayer.<sup>1</sup>
                     </td>
                     <td>
-                      <strong>Method</strong>: Standard psychodynamic or
-                      humanistic techniques—open questions, curiosity, no
-                      pre-set end-point.
+                      <strong>Method</strong>: GET is compatible with a wide
+                      range of therapeutic modalities, such as standard
+                      psychodynamic or humanistic techniques—open questions,
+                      curiosity, no pre-set end-points.
                       <sup>3</sup>
                     </td>
                   </tr>
@@ -358,13 +362,13 @@ export default async function SupportPage() {
               >
                 trans woman
               </a>
-              . In her study she dramatically condemns the practice. It should
+              . In her study she compared Gender Exploratory Therapy to gay
+              conversion therapy and strongly condemns the practice. It should
               be recognised that people who identify as trans are motivated to
-              protect their identity and belief system, and studies published by
-              them should be treated with skepticism. They are gender activists,
-              pushing their gender agenda. This study is absolutely full of
-              logical fallacies, yet it was still published and used as
-              justification for the continued medicalisation of people who
+              protect their identity and beliefs, and this study is a perfect
+              example of this. The study is full of logical fallacies, yet it
+              was still published and is used as academic justification for
+              gender-affirming care to be the only option for people who
               experience gender dysphoria.
               <details className="mt-4 cursor-pointer">
                 <summary>
@@ -534,24 +538,29 @@ export default async function SupportPage() {
                 </div>
               </details>
               <p>
-                The notion that gender exploratory therapy is somehow evil and
-                wrong is predicated on the idea that gender (a social construct
-                made up of roles and stereotypes) is something innate within us,
-                but there is no evidence to support this belief, and the mere
-                existence of detrans people causes this theory to fall on its
-                head. Gender activists then fall back to saying that detrans
-                people were never 'real trans' people, but every single detrans
-                person tells us that they were true believers and were fully 'in
-                it', until one day they weren't any more.
+                The notion that Gender Exploratory Therapy is somehow evil and
+                wrong is predicated on the theory that everyone has an innate
+                and fixed gender identity, and that all trans-identified people
+                were "born this way". There is no compelling evidence to support
+                this belief, and it doesn't make sense when we consider that
+                gender is a social construct made up of roles and stereotypes.
+                The mere existence of detrans people and their stories also
+                causes this theory to fall on its head. Proponents of this
+                theory then fall back to saying that detrans people were never
+                'real trans' people, but every single detrans person tells us
+                that they were true believers and were fully "in it", until one
+                day they weren't any more.
               </p>
               <p>
-                It's also noteworthy that scientists are still yet to discover a
-                'gay gene', and many people who identified as gay or straight at
-                one point come to a realisation that sexuality is not as black
-                and white as society once told them it is. Bisexual people also
-                often face stigmatisation from lesbian, gay and heterosexual
-                identifying people - this is called bi-erasure. This parallels
-                the detrans experience.
+                Also noteworthy is the fact that scientists have yet to identify
+                a biological basis for same-sex attraction, and many
+                individuals’ understanding of their sexuality evolves over time,
+                often finding that sexuality is not as black and white as
+                society says it is. Bisexual individuals frequently encounter
+                marginalization from who identify as lesbian, gay, or
+                heterosexual, a phenomenon termed bi-erasure. This
+                marginalization shares thematic similarities with experiences of
+                detransitioning individuals.
               </p>
             </p>
             <h2>

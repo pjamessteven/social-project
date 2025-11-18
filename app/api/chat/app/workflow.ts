@@ -1,14 +1,17 @@
-import { OpenAI } from "@llamaindex/openai";
 import { agent } from "@llamaindex/workflow";
 import { NodeWithScore, tool } from "llamaindex";
 import z from "zod";
+import { PostgresCache } from "../../shared/cache";
+import { CachedOpenAI } from "../../shared/llm";
 import { agentPrompt } from "../utils";
 import { getCommentsIndex, getStoriesIndex, getVideosIndex } from "./data";
 import { initSettings } from "./settings";
-import { CachedOpenAI } from "../../shared/llm";
-import { PostgresCache } from "../../shared/cache";
 
-export const workflowFactory = async (reqBody: any, userInput: string, conversationId?: string) => {
+export const workflowFactory = async (
+  reqBody: any,
+  userInput: string,
+  conversationId?: string,
+) => {
   initSettings();
   const commentsIndex = await getCommentsIndex(reqBody?.data);
   const storiesIndex = await getStoriesIndex(reqBody?.data);
@@ -125,30 +128,29 @@ export const workflowFactory = async (reqBody: any, userInput: string, conversat
     },
   );
 
-  /*
   const cache = new PostgresCache("detrans_chat");
-  
+
   const llm = new CachedOpenAI({
     cache,
-    mode: 'detrans_chat',
+    mode: "detrans_chat",
     apiKey: process.env.OPENROUTER_KEY,
     baseURL: "https://openrouter.ai/api/v1",
     model: "moonshotai/kimi-k2-0905:exacto",
-    conversationId
+    conversationId,
   });
-  */
- 
+
+  /*
  const llm = new OpenAI({
     apiKey: process.env.OPENROUTER_KEY,
     baseURL: "https://openrouter.ai/api/v1",
     model: "moonshotai/kimi-k2-0905:exacto",
  })
-  
+  */
 
   return agent({
     llm,
     tools: [queryCommentsTool, queryVideosTool],
     systemPrompt: agentPrompt,
-    timeout: 30
+    timeout: 30,
   });
 };
