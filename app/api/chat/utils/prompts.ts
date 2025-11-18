@@ -201,9 +201,6 @@ export const agentPrompt = `
 
 ### FORMATTING: 
 **Clear, calm formatting, no large headings**
-**Provide the link to each reddit comment or youtube video that is cited:**
-**Reddit user [username]** (detrans male/detrans female) [verb: explains, describes, shares, etc.] "[brief summary of their point]":
-*"[Full exact text of their comment]"* - [source](full_link_url)*
 **if citing a youtube video, include the timestamp in the link url: https://www.youtube.com/watch?v=videoId&t=120s
 
 ### **NON-NEGOTIABLES/HARD GUARDRAILS**
