@@ -44,6 +44,8 @@ export class CachedOpenAI extends OpenAI {
     tokensCompletion?: number;
     model?: string;
   } | null> {
+    // wait a sec
+    await new Promise((res) => setTimeout(res, 1000));
     try {
       const response = await fetch(
         `https://openrouter.ai/api/v1/generation?id=${generationId}`,
@@ -56,12 +58,13 @@ export class CachedOpenAI extends OpenAI {
       );
 
       if (!response.ok) {
-        console.warn(`Failed to fetch generation metadata: ${response.status}`);
+        console.warn(
+          `Failed to fetch generation metadata for genId ${generationId}: ${response.status}`,
+        );
         return null;
       }
-      console.log("OPENROUTER RESP", JSON.stringify(response));
       const data = await response.json();
-      console.log("OPENROUTER RESPDATA", data);
+
       return {
         totalCost: data.data.total_cost,
         tokensPrompt: data.data.usage?.tokens_prompt,
