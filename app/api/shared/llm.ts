@@ -219,6 +219,13 @@ export class CachedOpenAI extends OpenAI {
           metadata.conversationId = this.conversationId;
         }
 
+        // If metadata doesn't exist yet, create it
+        if (!metadata) {
+          metadata = {};
+        }
+        // For streaming responses, we may not have usage information readily available
+        // The fetchGenerationMetadata should handle this
+        console.log("Setting cache with metadata (streaming):", metadata);
         await this.cache.set(key, dataToCache, questionForCache, metadata);
       }.bind(this);
 
@@ -297,6 +304,19 @@ export class CachedOpenAI extends OpenAI {
       console.log("CHAT 180 generation ID", metadata.generationId);
     }
 
+    // If metadata doesn't exist yet, create it
+    if (!metadata) {
+      metadata = {};
+    }
+    // Ensure token counts are always included if available in the response
+    if (response.raw && "usage" in response.raw) {
+      const usage = (response.raw as any).usage;
+      if (usage) {
+        metadata.tokensPrompt = usage.prompt_tokens;
+        metadata.tokensCompletion = usage.completion_tokens;
+      }
+    }
+    console.log("Setting cache with metadata:", metadata);
     await this.cache.set(key, dataToCache, questionForCache, metadata);
 
     console.log("Cache miss - generating new response");
@@ -449,6 +469,11 @@ export class CachedOpenAI extends OpenAI {
           metadata.conversationId = this.conversationId;
         }
 
+        // If metadata doesn't exist yet, create it
+        if (!metadata) {
+          metadata = {};
+        }
+        console.log("Setting cache with metadata (completion streaming):", metadata);
         await this.cache.set(key, full, questionForCache, metadata);
       }.bind(this);
 
@@ -509,10 +534,22 @@ export class CachedOpenAI extends OpenAI {
         metadata = {};
       }
       metadata.generationId = (response.raw as any).id;
-      console.log("COMPLETE metadata355", metadata);
       metadata.conversationId = this.conversationId;
     }
 
+    // If metadata doesn't exist yet, create it
+    if (!metadata) {
+      metadata = {};
+    }
+    // Ensure token counts are always included if available in the response
+    if (response.raw && "usage" in response.raw) {
+      const usage = (response.raw as any).usage;
+      if (usage) {
+        metadata.tokensPrompt = usage.prompt_tokens;
+        metadata.tokensCompletion = usage.completion_tokens;
+      }
+    }
+    console.log("Setting cache with metadata (completion):", metadata);
     await this.cache.set(key, text, questionForCache, metadata);
 
     return response;
