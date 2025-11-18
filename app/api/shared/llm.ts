@@ -253,20 +253,27 @@ export class CachedOpenAI extends OpenAI {
       }
 
       // Return a ChatResponse-like object with the cached content
+      // For non-streaming responses, tool calls should be on the message
+      const message: any = {
+        role: "assistant",
+        content: text,
+      };
+      if (toolCalls) {
+        message.toolCalls = toolCalls;
+      }
       return {
-        message: {
-          role: "assistant",
-          content: text,
-        },
+        message,
         raw: null,
-        options: toolCalls ? { toolCall: toolCalls } : undefined,
       } as ChatResponse;
     }
 
     const response = await super.chat({ messages, ...options });
     const text = String(response.message.content);
-    const toolCalls = response.options?.toolCall;
-
+    
+    // Check if the message has tool calls
+    // In llamaindex, tool calls might be on the message itself
+    const toolCalls = (response.message as any).toolCalls;
+    
     // Prepare data to cache (include both text and tool calls)
     const dataToCache =
       toolCalls && toolCalls.length > 0
