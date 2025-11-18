@@ -1,6 +1,7 @@
 import { rateLimiter } from "@/app/lib/rateLimit";
 
 import { getLogger } from "@/app/lib/logger";
+import { replayCached } from "@/app/lib/replayCached";
 import { OpenAI } from "@llamaindex/openai";
 import { createHash } from "crypto";
 import type {
@@ -13,7 +14,6 @@ import type {
   LLMCompletionParamsStreaming,
 } from "llamaindex";
 import { Cache, makeLlmCacheKey } from "./cache";
-import { replayCached } from "@/app/lib/replayCached";
 
 export class CachedOpenAI extends OpenAI {
   private cache: Cache;
@@ -117,7 +117,6 @@ export class CachedOpenAI extends OpenAI {
             hashedKey,
             mode: this.mode,
             type: "chat_streaming",
-            cacheKey: key,
             contentLength: cached.length,
           },
           "LLM cache hit (streaming)",
@@ -133,22 +132,26 @@ export class CachedOpenAI extends OpenAI {
         }
 
         // Replay cached result as a fake stream using replayCached
-        const replayCachedStream = async function* (
-          data: { text: string; toolCalls?: any[] },
-        ): AsyncGenerator<ChatResponseChunk> {
+        const replayCachedStream = async function* (data: {
+          text: string;
+          toolCalls?: any[];
+        }): AsyncGenerator<ChatResponseChunk> {
           // If there are tool calls, yield them first
           if (data.toolCalls && data.toolCalls.length > 0) {
             yield {
               delta: "",
               raw: null,
-              options: { toolCall: data.toolCalls }
+              options: { toolCall: data.toolCalls },
             } as ChatResponseChunk;
           }
           // Yield the text content using replayCached
           for await (const chunk of replayCached(data.text)) {
             yield {
               ...chunk,
-              options: data.toolCalls && data.toolCalls.length > 0 ? { toolCall: data.toolCalls } : {}
+              options:
+                data.toolCalls && data.toolCalls.length > 0
+                  ? { toolCall: data.toolCalls }
+                  : {},
             } as ChatResponseChunk;
           }
         };
@@ -183,23 +186,24 @@ export class CachedOpenAI extends OpenAI {
         for await (const chunk of rawStream as AsyncGenerator<ChatResponseChunk>) {
           full += chunk.delta;
           console.log("CHUNK", JSON.stringify(chunk));
-          
+
           // Collect tool calls if present
           if (chunk.options?.toolCall) {
             toolCalls = chunk.options.toolCall;
           }
-          
+
           // Extract generation ID from the first chunk if available
-          if (!generationId && chunk.raw && 'id' in chunk.raw) {
+          if (!generationId && chunk.raw && "id" in chunk.raw) {
             generationId = (chunk.raw as any).id;
           }
           yield chunk;
         }
 
         // Prepare data to cache (include both text and tool calls)
-        const dataToCache = toolCalls.length > 0 
-          ? JSON.stringify({ text: full, toolCalls })
-          : full;
+        const dataToCache =
+          toolCalls.length > 0
+            ? JSON.stringify({ text: full, toolCalls })
+            : full;
 
         // Fetch metadata if we have a generation ID
         let metadata;
@@ -230,7 +234,6 @@ export class CachedOpenAI extends OpenAI {
           hashedKey,
           mode: this.mode,
           type: "chat",
-          cacheKey: key,
           contentLength: cached.length,
         },
         "LLM cache hit",
@@ -265,14 +268,17 @@ export class CachedOpenAI extends OpenAI {
     const toolCalls = response.options?.toolCall;
 
     // Prepare data to cache (include both text and tool calls)
-    const dataToCache = toolCalls && toolCalls.length > 0 
-      ? JSON.stringify({ text, toolCalls })
-      : text;
+    const dataToCache =
+      toolCalls && toolCalls.length > 0
+        ? JSON.stringify({ text, toolCalls })
+        : text;
 
     // Fetch metadata if we have a generation ID
     let metadata;
-    if (response.raw && 'id' in response.raw) {
-      metadata = (await this.fetchGenerationMetadata((response.raw as any).id)) as any;
+    if (response.raw && "id" in response.raw) {
+      metadata = (await this.fetchGenerationMetadata(
+        (response.raw as any).id,
+      )) as any;
       if (!metadata) {
         metadata = {};
       }
@@ -345,7 +351,7 @@ export class CachedOpenAI extends OpenAI {
       options,
       this.mode,
     );
-    console.log("CACHE KEY", key)
+    console.log("CACHE KEY", key);
     const hashedKey = this.hashKey(key);
     const logger = getLogger();
 
@@ -362,7 +368,6 @@ export class CachedOpenAI extends OpenAI {
             hashedKey,
             mode: this.mode,
             type: "complete_streaming",
-            cacheKey: key,
             contentLength: cached.length,
           },
           "LLM cache hit (streaming)",
@@ -373,9 +378,9 @@ export class CachedOpenAI extends OpenAI {
           text: string,
         ): AsyncIterable<CompletionResponse> {
           for await (const chunk of replayCached(text)) {
-            yield { 
-              text: chunk.delta, 
-              raw: null 
+            yield {
+              text: chunk.delta,
+              raw: null,
             } as CompletionResponse;
           }
         };
@@ -389,7 +394,6 @@ export class CachedOpenAI extends OpenAI {
           hashedKey,
           mode: this.mode,
           type: "complete_streaming",
-          cacheKey: key,
         },
         "LLM cache miss, generating new (streaming)",
       );
@@ -417,7 +421,7 @@ export class CachedOpenAI extends OpenAI {
         for await (const chunk of rawStream as AsyncIterable<CompletionResponse>) {
           full += chunk.text || "";
           // Extract generation ID from the first chunk if available
-          if (!generationId && chunk.raw && 'id' in chunk.raw) {
+          if (!generationId && chunk.raw && "id" in chunk.raw) {
             generationId = (chunk.raw as any).id;
           }
 
@@ -429,9 +433,9 @@ export class CachedOpenAI extends OpenAI {
         if (generationId) {
           metadata = (await this.fetchGenerationMetadata(generationId)) as any;
           if (!metadata) {
-            metadata = {}
+            metadata = {};
           }
-            metadata.generationId = generationId;
+          metadata.generationId = generationId;
           metadata.conversationId = this.conversationId;
         }
 
@@ -453,7 +457,6 @@ export class CachedOpenAI extends OpenAI {
           hashedKey,
           mode: this.mode,
           type: "complete",
-          cacheKey: key,
           contentLength: cached.length,
         },
         "LLM cache hit",
@@ -468,7 +471,6 @@ export class CachedOpenAI extends OpenAI {
         hashedKey,
         mode: this.mode,
         type: "complete",
-        cacheKey: key,
       },
       "LLM cache miss, generating new",
     );
@@ -489,10 +491,12 @@ export class CachedOpenAI extends OpenAI {
 
     // Fetch metadata if we have a generation ID
     let metadata;
-    if (response.raw && 'id' in response.raw) {
-      metadata = (await this.fetchGenerationMetadata((response.raw as any).id)) as any;
+    if (response.raw && "id" in response.raw) {
+      metadata = (await this.fetchGenerationMetadata(
+        (response.raw as any).id,
+      )) as any;
       if (!metadata) {
-        metadata = {}
+        metadata = {};
       }
       metadata.generationId = (response.raw as any).id;
       console.log("COMPLETE metadata355", metadata);
