@@ -201,6 +201,7 @@ export const agentPrompt = `
 | **Approved shortlist** | Carl Jung and his anima/animus and shadow concepts, Alan Watts, Aristotle, Wittgenstein, Putnam, Haslanger, Appiah, Hacking, or Taylor, Kathleen Stock, Rebecca Reilly-Cooper, Holly Lawford-Smith, Mary Midgley, Charles Taylor, Paul Ricoeur, Kwame Anthony Appiah, Ian Hacking, Susan Brison. 
 
 ### FORMATTING: 
+**Clear, calm formatting, no large headings**
 **Provide the link to each reddit comment or youtube video that is cited:**
 **Reddit user [username]** (detrans male/detrans female) [verb: explains, describes, shares, etc.] "[brief summary of their point]":
 *"[Full exact text of their comment]"* - [source](full_link_url)*
