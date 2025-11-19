@@ -40,7 +40,7 @@ export const workflowFactory = async (
     async ({ query, sex, tags }) => {
       // Create cache key for this specific tool call
       const cacheKey = `tool:queryStories:${JSON.stringify({ query, sex, tags })}`;
-      
+
       // Try to get from cache first
       const cachedResult = await cache.get(cacheKey);
       if (cachedResult) {
@@ -63,10 +63,10 @@ export const workflowFactory = async (
           story: n.node.text,
         })),
       );
-      
+
       // Cache the result
-      await cache.set(cacheKey, result);
-      
+      await cache.set(cacheKey, result, undefined, { conversationId });
+
       return result;
     },
     {
@@ -85,7 +85,7 @@ export const workflowFactory = async (
     async ({ query }) => {
       // Create cache key for this specific tool call
       const cacheKey = `tool:queryComments:${JSON.stringify({ query })}`;
-      
+
       // Try to get from cache first
       const cachedResult = await cache.get(cacheKey);
       if (cachedResult) {
@@ -100,10 +100,10 @@ export const workflowFactory = async (
 
       const nodes = await commentsEngineTool.retrieve({ query });
       const result = JSON.stringify(nodes);
-      
+
       // Cache the result
-      await cache.set(cacheKey, result);
-      
+      await cache.set(cacheKey, result, undefined, { conversationId });
+
       return result;
     },
     {
@@ -122,7 +122,7 @@ export const workflowFactory = async (
     async ({ query, sex }) => {
       // Create cache key for this specific tool call
       const cacheKey = `tool:queryVideos:${JSON.stringify({ query, sex })}`;
-      
+
       // Try to get from cache first
       const cachedResult = await cache.get(cacheKey);
       if (cachedResult) {
@@ -154,10 +154,10 @@ export const workflowFactory = async (
       ).items;
 
       const result = JSON.stringify(unique.slice(0, 3));
-      
+
       // Cache the result
-      await cache.set(cacheKey, result);
-      
+      await cache.set(cacheKey, result, undefined, { conversationId });
+
       return result;
     },
     {
