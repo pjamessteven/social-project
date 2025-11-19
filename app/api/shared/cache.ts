@@ -158,15 +158,9 @@ export function makeLlmCacheKey(
 ): string {
   if (mode === "detrans_chat") {
     // Include conversation context and tool parameters
-    return JSON.stringify({ 
-      prompt, 
-      conversationId: options.conversationId,
+    return JSON.stringify({
+      prompt,
       tools: options.tools?.map((t: any) => t.name),
-      model: options.model,
-      temperature: options.temperature,
-      maxTokens: options.maxTokens,
-      // Include other relevant options that affect the response
-      ...options
     });
   }
   return question + ":llm:" + JSON.stringify({ prompt, ...options });
