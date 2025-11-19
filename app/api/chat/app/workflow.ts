@@ -38,6 +38,17 @@ export const workflowFactory = async (
 
   const queryStoriesTool = tool(
     async ({ query, sex, tags }) => {
+      // Create cache key for this specific tool call
+      const cacheKey = `tool:queryStories:${JSON.stringify({ query, sex, tags })}`;
+      
+      // Try to get from cache first
+      const cachedResult = await cache.get(cacheKey);
+      if (cachedResult) {
+        console.log("[CACHE HIT] queryStoriesTool");
+        return cachedResult;
+      }
+      console.log("[CACHE MISS] queryStoriesTool");
+
       // Build filters dynamically
       const filters = buildFilters({ sex, tags });
       const storiesEngineTool = storiesIndex.asRetriever({
@@ -46,12 +57,17 @@ export const workflowFactory = async (
       });
 
       const nodes = await storiesEngineTool.retrieve({ query });
-      return JSON.stringify(
+      const result = JSON.stringify(
         nodes.map((n: any) => ({
           username: n.node.metadata.username,
           story: n.node.text,
         })),
       );
+      
+      // Cache the result
+      await cache.set(cacheKey, result);
+      
+      return result;
     },
     {
       name: "queryStories",
@@ -67,12 +83,28 @@ export const workflowFactory = async (
   // define tool with zod validation
   const queryCommentsTool = tool(
     async ({ query }) => {
+      // Create cache key for this specific tool call
+      const cacheKey = `tool:queryComments:${JSON.stringify({ query })}`;
+      
+      // Try to get from cache first
+      const cachedResult = await cache.get(cacheKey);
+      if (cachedResult) {
+        console.log("[CACHE HIT] queryCommentsTool");
+        return cachedResult;
+      }
+      console.log("[CACHE MISS] queryCommentsTool");
+
       const commentsEngineTool = commentsIndex.asRetriever({
         similarityTopK: 15,
       });
 
       const nodes = await commentsEngineTool.retrieve({ query });
-      return JSON.stringify(nodes);
+      const result = JSON.stringify(nodes);
+      
+      // Cache the result
+      await cache.set(cacheKey, result);
+      
+      return result;
     },
     {
       name: "queryComments",
@@ -88,6 +120,17 @@ export const workflowFactory = async (
   // define tool with zod validation
   const queryVideosTool = tool(
     async ({ query, sex }) => {
+      // Create cache key for this specific tool call
+      const cacheKey = `tool:queryVideos:${JSON.stringify({ query, sex })}`;
+      
+      // Try to get from cache first
+      const cachedResult = await cache.get(cacheKey);
+      if (cachedResult) {
+        console.log("[CACHE HIT] queryVideosTool");
+        return cachedResult;
+      }
+      console.log("[CACHE MISS] queryVideosTool");
+
       const filters = buildFilters({ sex });
       const videosEngineTool = videosIndex.asRetriever({
         similarityTopK: 10,
@@ -110,7 +153,12 @@ export const workflowFactory = async (
         { seen: new Set<string>(), items: [] },
       ).items;
 
-      return JSON.stringify(unique.slice(0, 3));
+      const result = JSON.stringify(unique.slice(0, 3));
+      
+      // Cache the result
+      await cache.set(cacheKey, result);
+      
+      return result;
     },
     {
       name: "queryVideos",
