@@ -106,7 +106,7 @@ export async function POST(req: NextRequest) {
           abortController.signal.aborted || stopAgentEvent.include(event),
       );
 
-      const dataStream = toDataStream(messages, stream, {
+      const dataStream = toDataStream(messages, stream, chatUuid, {
         callbacks: {
           onPauseForHumanInput: async (responseEvent) => {
             await pauseForHumanInput(context, responseEvent, requestId); // use requestId to save snapshot
