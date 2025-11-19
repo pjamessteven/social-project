@@ -152,16 +152,16 @@ export class PostgresCache implements Cache {
 
 export function makeLlmCacheKey(
   question: string,
-  prompt: string,
+  messages: any[],
   options: any,
   mode?: string,
 ): string {
   if (mode === "detrans_chat") {
-    // Include conversation context and tool parameters
+    // Include entire conversation history and tool parameters
     return JSON.stringify({
-      prompt,
+      messages,
       tools: options.tools?.map((t: any) => t.name),
     });
   }
-  return question + ":llm:" + JSON.stringify({ prompt, ...options });
+  return question + ":llm:" + JSON.stringify({ messages, ...options });
 }
