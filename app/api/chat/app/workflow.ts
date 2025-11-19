@@ -68,7 +68,7 @@ export const workflowFactory = async (
   const queryCommentsTool = tool(
     async ({ query }) => {
       const commentsEngineTool = commentsIndex.asRetriever({
-        similarityTopK: 10,
+        similarityTopK: 15,
       });
 
       const nodes = await commentsEngineTool.retrieve({ query });
@@ -76,11 +76,11 @@ export const workflowFactory = async (
     },
     {
       name: "queryComments",
-      description: "Query Detransition Comments from Reddit /r/detrans",
+      description: "Query stories and experiences from real detransitioners",
       parameters: z.object({
         query: z.string({
           description:
-            "A question to find more specific information from Reddit comments. It should be a properly worded question in English.'",
+            "A question to find more specific information from real detransitioners. It should be a properly worded question in English.'",
         }),
       }),
     },
@@ -114,7 +114,8 @@ export const workflowFactory = async (
     },
     {
       name: "queryVideos",
-      description: "Query Youtube Video Transcripts",
+      description:
+        "Find relevant Youtube Videos by searching transcript content",
       parameters: z.object({
         query: z.string({
           description:
