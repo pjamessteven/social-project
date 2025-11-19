@@ -93,10 +93,10 @@ export class CachedOpenAI extends OpenAI {
     const lastMessage = messages[messages.length - 1];
     const questionForCache =
       originalQuestion || String(lastMessage.content).slice(0, 100);
-    // coerce content to string for the cache key
+    // Pass entire messages array for context-aware caching
     const key = makeLlmCacheKey(
       questionForCache,
-      String(lastMessage.content),
+      messages,
       options,
       this.mode,
     );
@@ -375,9 +375,12 @@ export class CachedOpenAI extends OpenAI {
     const promptString =
       typeof prompt === "string" ? prompt : JSON.stringify(prompt);
     const questionForCache = originalQuestion || promptString.slice(0, 100);
+    // For completion, we don't have messages, so use the prompt directly
+    // Convert to a messages-like structure for consistency
+    const messages = [{ role: "user", content: promptString }];
     const key = makeLlmCacheKey(
       questionForCache,
-      promptString,
+      messages,
       options,
       this.mode,
     );
