@@ -815,6 +815,14 @@ export default async function SupportPage() {
             </p>
             
             <div className="bg-muted/30 my-6 rounded-lg border p-4">
+              <div className="mb-4 rounded-md bg-green-50 p-3 dark:bg-green-900/20">
+                <p className="mb-1 font-semibold text-green-800 dark:text-green-300">
+                  Special Offer for detrans.ai visitors:
+                </p>
+                <p className="text-green-700 dark:text-green-400">
+                  Use coupon code <code className="rounded bg-green-100 px-2 py-1 font-mono font-bold dark:bg-green-800">DETRANSAI</code> to get <strong>50% off your first month</strong> of membership.
+                </p>
+              </div>
               <h4 className="mt-0">Your kid says they're "trans" — but you just want them to be healthy and safe.</h4>
               <p>
                 Your child's health and future are at stake, but your leverage and influence are limited. 
