@@ -5,7 +5,7 @@ import Link from "next/link";
 import { redirect, usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "./button";
-import { Input } from "./input";
+import { Textarea } from "./textarea";
 import { cn } from "./lib/utils";
 import { useChatStore } from "@/stores/chat-store";
 
@@ -17,7 +17,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   const path = usePathname();
   const router = useRouter();
   const { chatHandler, sendMessage, chatStatus, isDeepResearch, setIsDeepResearch, setChatStatus } = useChatStore();
-  const inputRef = useRef<HTMLInputElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -192,7 +192,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (showSuggestions && suggestions.length > 0) {
       if (e.key === "ArrowDown") {
         e.preventDefault();
@@ -223,6 +223,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
       }
     }
 
+    // Submit on Enter without Shift
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       if (showSuggestions && selectedSuggestion >= 0) {
@@ -239,7 +240,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     setValue(suggestion);
     setShowSuggestions(false);
     setSelectedSuggestion(-1);
-    inputRef.current?.focus();
+    textareaRef.current?.focus();
   };
 
   const handleFocus = () => {
@@ -252,7 +253,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     setShowSuggestions(false);
     setValue("");
     setSelectedSuggestion(-1);
-    inputRef.current?.focus();
+    textareaRef.current?.focus();
   };
 
   const handleClickSuggestion = () => {
@@ -275,19 +276,19 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
       <div className="z-10 flex items-center justify-center">
         <form onSubmit={handleSubmit} className="flex w-3xl items-center gap-2">
           <div ref={containerRef} className="relative flex-1 grow">
-            <Input
-              ref={inputRef}
+            <Textarea
+              ref={textareaRef}
               style={{
                 boxShadow: "rgba(0, 0, 0, 0.2) 0px 18px 50px -10px",
               }}
-              size="lg"
-              className="!placeholder-opacity-100 relative border-slate z-20 flex grow rounded-full bg-white pr-32 sm:pr-40 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
+              className="!placeholder-opacity-100 relative border-slate z-20 flex min-h-14 max-h-48 w-full rounded-2xl bg-white pr-32 sm:pr-40 py-3 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white resize-none overflow-hidden"
               value={value}
               onChange={(event) => setValue(event.target.value)}
               onKeyDown={handleKeyDown}
               onFocus={handleFocus}
               placeholder={placeholder}
               disabled={chatStatus === 'streaming'}
+              rows={1}
             />
 
             {/* Deep research toggle button */}
@@ -315,7 +316,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               <button
                 type="button"
                 onClick={handleClear}
-                className="absolute top-1/2 right-3 z-30 -translate-y-1/2 rounded-full hidden p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="absolute top-3 right-3 z-30 rounded-full hidden p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <X className="h-4 w-4 text-gray-500 dark:text-gray-400" />
               </button>
@@ -323,7 +324,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
 
             {/* Suggestions dropdown */}
             {showSuggestions && suggestions.length > 0 && (
-              <div className="animate-in fade-in-0 fade-out-0 absolute right-0 bottom-0 left-0 z-0 overflow-y-auto rounded-[32px] rounded-br-[32px] border bg-white pb-16 shadow-xl backdrop-blur-lg backdrop-filter duration-300 dark:border-slate-700 dark:bg-slate-800">
+              <div className="animate-in fade-in-0 fade-out-0 absolute right-0 bottom-full left-0 z-0 mb-2 overflow-y-auto rounded-[32px] rounded-br-[32px] border bg-white pb-4 shadow-xl backdrop-blur-lg backdrop-filter duration-300 dark:border-slate-700 dark:bg-slate-800">
                 <div className="px-5 pt-4 pb-2 font-semibold">Suggestions:</div>
                 {suggestions.map((question, index) => (
                   <Link
