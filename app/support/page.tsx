@@ -86,6 +86,16 @@ const navigationItems = [
       },
     ],
   },
+  {
+    title: "For Parents",
+    href: "#for-parents",
+    children: [
+      {
+        title: "Stephanie Winn's ROGD Repair Program",
+        href: "#roqd-repair",
+      },
+    ],
+  },
 ];
 
 function SupportSidebar() {
@@ -748,6 +758,106 @@ export default async function SupportPage() {
                 className="underline"
               >
                 <b>Visit the Detrans Foundation website {"->"}</b>
+              </a>
+            </p>
+            
+            <h2 id="for-parents">For Parents</h2>
+            <p>
+              If your child has recently come out as transgender, you may be feeling confused, 
+              worried, and unsure how to best support them while also protecting their long-term 
+              health and well-being. The following resource is specifically designed for parents 
+              in this situation.
+            </p>
+            
+            <a
+              href="https://roqdrepair.com"
+              target="_blank"
+              className="underline"
+            >
+              <h3 id="roqd-repair">
+                <b>Stephanie Winn's ROGD Repair Program</b>
+              </h3>
+            </a>
+            
+            <p>
+              <strong>What is ROGD Repair?</strong>
+            </p>
+            <p>
+              ROGD Repair is:
+            </p>
+            <ul>
+              <li>
+                A program that helps parents of trans-identified youth communicate in ways that 
+                promote desistance, critical thinking, health, and relational harmony
+              </li>
+              <li>
+                An interactive and ever-expanding toolkit of psychology concepts and communication 
+                skills honed through years as a Licensed Marriage and Family Therapist turned ROGD parent coach
+              </li>
+              <li>
+                A self-paced online course containing over 100 lessons, each containing a video, 
+                essay, and reflection questions designed to help participants personalize the content 
+                to their unique family situations, as well as discussion forums
+              </li>
+            </ul>
+            
+            <p>
+              <strong>New ROGD Repair memberships now come with unlimited access to RepairBot,</strong> 
+              the first and only AI tool designed specifically to help non-affirming parents of 
+              gender-distressed youth. RepairBot is trained on the entire ROGD Repair curriculum and 
+              serves as an excellent sounding board, homework buddy, and communication tool helper!
+            </p>
+            
+            <p>
+              I offer instant access to the whole program on a monthly subscription basis. Anyone can 
+              sign up at <a href="https://roqdrepair.com" target="_blank" className="underline">ROGDrepair.com</a>, 
+              and can cancel whenever they like. Most people stay for a few months.
+            </p>
+            
+            <div className="bg-muted/30 my-6 rounded-lg border p-4">
+              <h4 className="mt-0">Your kid says they're "trans" — but you just want them to be healthy and safe.</h4>
+              <p>
+                Your child's health and future are at stake, but your leverage and influence are limited. 
+                Perhaps they started black-market hormones behind your back, or storm out angrily when you 
+                "misgender" them, or are away at an "affirming" college. You need to communicate effectively 
+                in this tricky situation, before someone gets hurt. That's where ROGD Repair comes in.
+              </p>
+              <p>
+                ROGD Repair is a self-paced online course and community for parents that teaches the 
+                psychology concepts and communication tools you need in order to understand your child's 
+                mental state and how to reach them. Membership now includes RepairBot, your 24/7 AI 
+                assistant trained on the approach.
+              </p>
+              <p>
+                ROGD Repair and RepairBot were created by a Licensed Marriage and Family Therapist with 
+                over a decade of experience working with trans-identified youth and their families, who 
+                now exclusively guides parents that know there must be a better path than "affirmation."
+              </p>
+            </div>
+            
+            <p>
+              <strong>For Parents of Adolescents and Young Adults Alike</strong><br/>
+              Learn how to help the part of your son or daughter that wants out of distress.
+            </p>
+            
+            <p>
+              <strong>What sets ROGD Repair apart from other resources for concerned parents of gender-questioning youth?</strong><br/>
+              Our approaches work in low-leverage situations, such as adult children who communicate infrequently.
+            </p>
+            
+            <p>
+              This isn't about using control, coercion, or bribery — nor is it about hitting your kid over 
+              the head with a barrage of medical information. Our approach is rooted in developmental 
+              psychology, psychodynamic theory, and advanced mapping of family relational patterns.
+            </p>
+            
+            <p>
+              <a
+                href="https://roqdrepair.com"
+                target="_blank"
+                className="underline"
+              >
+                <b>Learn more and sign up for ROGD Repair {"->"}</b>
               </a>
             </p>
           </div>
