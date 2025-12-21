@@ -1,13 +1,13 @@
 "use client";
 import { slugify } from "@/app/lib/utils";
-import { NotebookPen, Send, Square, UserSearch, X } from "lucide-react";
+import { useChatStore } from "@/stores/chat-store";
+import { Send, Square, UserSearch, X } from "lucide-react";
 import Link from "next/link";
 import { redirect, usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "./button";
-import { Textarea } from "./textarea";
 import { cn } from "./lib/utils";
-import { useChatStore } from "@/stores/chat-store";
+import { Textarea } from "./textarea";
 
 interface CustomChatInputProps {
   host: string;
@@ -16,7 +16,14 @@ interface CustomChatInputProps {
 export function CustomChatInput({ host }: CustomChatInputProps) {
   const path = usePathname();
   const router = useRouter();
-  const { chatHandler, sendMessage, chatStatus, isDeepResearch, setIsDeepResearch, setChatStatus } = useChatStore();
+  const {
+    chatHandler,
+    sendMessage,
+    chatStatus,
+    isDeepResearch,
+    setIsDeepResearch,
+    setChatStatus,
+  } = useChatStore();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
   const [value, setValue] = useState("");
@@ -25,9 +32,6 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
   const containerRef = useRef<HTMLDivElement>(null);
 
-
-
-    
   const showChatInput =
     path == "/" ||
     path == "/compare" ||
@@ -63,22 +67,22 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
 
   // Update deep research state based on current path
   useEffect(() => {
-  // require user manually selects this mode in order to save costs
-  //  setIsDeepResearch(path.includes("/research"));
+    // require user manually selects this mode in order to save costs
+    //  setIsDeepResearch(path.includes("/research"));
   }, [path, setIsDeepResearch]);
 
   // Sync chat handler status with store
   useEffect(() => {
     if (chatHandler) {
       setChatStatus(chatHandler.status);
-      
+
       // Set up a polling mechanism to check status changes
       const interval = setInterval(() => {
         if (chatHandler.status !== chatStatus) {
           setChatStatus(chatHandler.status);
         }
       }, 100);
-      
+
       return () => clearInterval(interval);
     } else {
       setChatStatus(null);
@@ -117,19 +121,19 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     return () => clearTimeout(debounceTimer);
   }, [value, mode]);
 
-*/ 
+*/
   // Auto-expand textarea based on content
   useEffect(() => {
     const textarea = textareaRef.current;
     if (!textarea) return;
 
     // Reset height to auto to get the correct scrollHeight
-    textarea.style.height = 'auto';
+    textarea.style.height = "auto";
     // Calculate the new height (max 6 lines)
     const lineHeight = parseInt(getComputedStyle(textarea).lineHeight);
     const maxHeight = lineHeight * 6;
     const newHeight = Math.min(textarea.scrollHeight, maxHeight);
-    
+
     textarea.style.height = `${newHeight}px`;
   }, [value]);
 
@@ -146,13 +150,12 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     // add padding to the bottom of the main scroll container to account for chat input height
     const container = document.querySelector("main");
     if (!container) return;
-    
+
     if (showChatInput) {
       container.classList.add("pb-24");
     } else {
       container.classList.remove("pb-24");
     }
-
   }, [isDesktop, showChatInput, path]);
 
   // Handle click outside to hide suggestions
@@ -184,7 +187,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
       setValue("");
       setShowSuggestions(false);
 
-      if (isDeepResearch || path.includes('/compare') || mode === 'affirm') {
+      if (isDeepResearch || path.includes("/compare") || mode === "affirm") {
         // Deep research mode - redirect to research routes
         if (path.includes("compare")) {
           redirect("/compare/research/" + slugify(val));
@@ -200,7 +203,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
           sendMessage(val);
         } else {
           // Navigate to chat page
-          router.push("/chat?starter="+slugify(val));
+          router.push("/chat?starter=" + slugify(val));
           // Store the message to send after navigation
         }
       }
@@ -276,13 +279,16 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     setValue("");
   };
 
-  const showDeepResearch = !path.includes('/compare') && mode !== 'affirm'
+  const showDeepResearch = !path.includes("/compare") && mode !== "affirm";
 
   return (
     <div
-    style={{boxShadow:' rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px'}}
+      style={{
+        boxShadow:
+          " rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px",
+      }}
       className={cn(
-        "fixed bottom-0 z-50 w-full p-4 backdrop-blur-lg border-t border-white dark:border-white/5",
+        "fixed bottom-0 z-50 w-full border-t border-white p-4 backdrop-blur-lg dark:border-white/5",
         "supports-[backdrop-filter]:bg-accent/80 dark:supports-[backdrop-filter]:bg-gray-900/80",
         mode === "affirm" &&
           "bg-gradient-to-r from-[#5BCEFA]/20 via-[#FFFFFF]/20 to-[#F5A9B8]/20 dark:bg-gradient-to-r dark:from-[#5BCEFA]/20 dark:via-[#2D2D2D]/20 dark:to-[#F5A9B8]/20",
@@ -296,42 +302,44 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               style={{
                 boxShadow: "rgba(0, 0, 0, 0.2) 0px 18px 50px -10px",
               }}
-              className="!placeholder-opacity-100 relative border-slate z-20 flex min-h-14 max-h-48 w-full rounded-2xl bg-white pr-32 sm:pr-40 py-3 shadow-sm dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white resize-none overflow-hidden"
+              className="!placeholder-opacity-100 border-slate min-h- relative z-20 flex max-h-48 w-full resize-none overflow-hidden rounded-2xl bg-white py-3 pr-32 shadow-sm sm:pr-40 dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
               value={value}
               onChange={(event) => setValue(event.target.value)}
               onKeyDown={handleKeyDown}
               onFocus={handleFocus}
               placeholder={placeholder}
-              disabled={chatStatus === 'streaming'}
+              disabled={chatStatus === "streaming"}
               rows={1}
             />
 
             {/* Deep research toggle button */}
-            {showDeepResearch &&
-            <Button
-              variant='chatOutline'
-              type="button"
-              onClick={() => setIsDeepResearch(!isDeepResearch)}
-              size={'xs'}
-              className={cn(  
-                "absolute top-1/2 right-3 z-30 -translate-y-1/2 rounded-full py-0 px-0 transition-colors ",
-                isDeepResearch
-                  ? "bg-blue-100 !text-blue-400 border-blue-300 dark:border-blue-900 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-400 hover:dark:bg-blue-800"
-                  : "text-gray-500 hover:bg-gray-100 dark:text-gray-400 hover:dark:bg-gray-600 dark:bg-gray-700",
-              )}
-  
-            >
-              <div className="flex flex-row items-center px-3 text-xs">
-                <div className="flex flex-row mr-2 "><span className="hidden sm:inline">Deep&nbsp;</span>Research</div>
-                <UserSearch className="h-3 w-3 sm:h-4 sm:w-4" />
-              </div>
-            </Button>}
+            {showDeepResearch && (
+              <Button
+                variant="chatOutline"
+                type="button"
+                onClick={() => setIsDeepResearch(!isDeepResearch)}
+                size={"xs"}
+                className={cn(
+                  "absolute top-1/2 right-3 z-30 -translate-y-1/2 rounded-full px-0 py-0 transition-colors",
+                  isDeepResearch
+                    ? "border-blue-300 bg-blue-100 !text-blue-400 hover:bg-blue-200 dark:border-blue-900 dark:bg-blue-900 dark:text-blue-400 hover:dark:bg-blue-800"
+                    : "text-gray-500 hover:bg-gray-100 dark:bg-gray-700 dark:text-gray-400 hover:dark:bg-gray-600",
+                )}
+              >
+                <div className="flex flex-row items-center px-3 text-xs">
+                  <div className="mr-2 flex flex-row">
+                    <span className="hidden sm:inline">Deep&nbsp;</span>Research
+                  </div>
+                  <UserSearch className="h-3 w-3 sm:h-4 sm:w-4" />
+                </div>
+              </Button>
+            )}
             {/* Clear button */}
             {value.trim() && (
               <button
                 type="button"
                 onClick={handleClear}
-                className="absolute top-3 right-3 z-30 rounded-full hidden p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="absolute top-3 right-3 z-30 hidden rounded-full p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <X className="h-4 w-4 text-gray-500 dark:text-gray-400" />
               </button>
@@ -368,13 +376,17 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
             )}
           </div>
           <Button
-            type={chatStatus === 'streaming' ? "button" : "submit"}
+            type={chatStatus === "streaming" ? "button" : "submit"}
             size="icon"
             className="h-14 w-14 flex-shrink-0 rounded-full"
-            disabled={chatStatus !== 'streaming' && !value.trim()}
-            onClick={chatStatus === 'streaming' && chatHandler?.stop ? chatHandler.stop : undefined }
+            disabled={chatStatus !== "streaming" && !value.trim()}
+            onClick={
+              chatStatus === "streaming" && chatHandler?.stop
+                ? chatHandler.stop
+                : undefined
+            }
           >
-            {chatStatus === 'streaming' ? (
+            {chatStatus === "streaming" ? (
               <Square className="h-6 w-6" />
             ) : (
               <Send className="h-6 w-6" />
