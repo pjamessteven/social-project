@@ -118,11 +118,26 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   }, [value, mode]);
 
 */ 
- useEffect(() => {
-    if (isDesktop && showChatInput && inputRef.current) {
+  // Auto-expand textarea based on content
+  useEffect(() => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+
+    // Reset height to auto to get the correct scrollHeight
+    textarea.style.height = 'auto';
+    // Calculate the new height (max 6 lines)
+    const lineHeight = parseInt(getComputedStyle(textarea).lineHeight);
+    const maxHeight = lineHeight * 6;
+    const newHeight = Math.min(textarea.scrollHeight, maxHeight);
+    
+    textarea.style.height = `${newHeight}px`;
+  }, [value]);
+
+  useEffect(() => {
+    if (isDesktop && showChatInput && textareaRef.current) {
       // Small delay to ensure DOM is ready after navigation
       const timer = setTimeout(() => {
-        inputRef.current?.focus();
+        textareaRef.current?.focus();
       }, 100);
 
       return () => clearTimeout(timer);
