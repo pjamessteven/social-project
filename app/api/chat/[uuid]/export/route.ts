@@ -29,8 +29,7 @@ function extractMessageContent(message: any): string {
         const data = part.data || {};
         const title = data.title || "Query";
         const query = data.query || "";
-        // Wrap in RTF italic tags
-        content += `\n\n\\i ${title}: ${query}\\i0\n\n`;
+        content += `\\par{\\i ${title}: ${query}\\i0}\\par\\par\n`;
       } else if (part.type === "text-delta" && part.delta) {
         content += part.delta;
       }
