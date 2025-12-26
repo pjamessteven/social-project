@@ -2,7 +2,7 @@
 
 import { cn, uuidv4 } from "@/app/lib/utils";
 import { ChatMessage, ChatMessages, useChatUI } from "@llamaindex/chat-ui";
-import { RefreshCcw } from "lucide-react";
+import { Download, RefreshCcw } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
@@ -52,13 +52,38 @@ export default function CustomChatMessages({
     router.replace(newUrl);
   };
 
+  const handleDownloadRTF = () => {
+    // Get the current conversation UUID from the URL
+    const pathSegments = window.location.pathname.split('/');
+    const uuid = pathSegments[pathSegments.length - 1];
+    
+    if (!uuid) {
+      console.error("No conversation UUID found in URL");
+      return;
+    }
+    
+    // Trigger download
+    window.open(`/api/chat/${uuid}/export`, '_blank');
+  };
+
   return (
     <ChatMessages className="!bg-transparent !p-0">
       <div className="border-b max-w-screen">
-        <div className="text-muted-foreground text-left text-sm sm:text-center pb-4 px-4 sm:px-0  ">
-          I can make mistakes, I'm not a replacement for a real therapist!{" "}
-          <br className="hidden sm:inline" /> Do not share any personal
-          information that could be used to identify you.{" "}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-4 px-4 sm:px-0">
+          <div className="text-muted-foreground text-left text-sm sm:text-center">
+            I can make mistakes, I'm not a replacement for a real therapist!{" "}
+            <br className="hidden sm:inline" /> Do not share any personal
+            information that could be used to identify you.{" "}
+          </div>
+          {messages.length > 0 && (
+            <button
+              onClick={handleDownloadRTF}
+              className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium whitespace-nowrap"
+            >
+              <Download className="h-3 w-3" />
+              Download conversation
+            </button>
+          )}
         </div>
       </div>
       <ChatMessages.List className="!overflow-visible pb-28">
@@ -101,16 +126,31 @@ export default function CustomChatMessages({
                         </div>
                       </div>
                     </Link>
-                    <div
-                      onClick={newConversation}
-                      className="cursor-pointer font-semibold hover:underline"
-                    >
-                      <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-sm opacity-90 transition-colors sm:text-base">
-                        <div className="mr-2 whitespace-nowrap">
-                          <RefreshCcw className="h-4 w-4" />
+                    <div className="flex items-center gap-4">
+                      <div
+                        onClick={handleDownloadRTF}
+                        className="cursor-pointer font-semibold hover:underline"
+                      >
+                        <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-sm opacity-90 transition-colors sm:text-base">
+                          <div className="mr-2 whitespace-nowrap">
+                            <Download className="h-4 w-4" />
+                          </div>
+                          <div className="hover:underline">
+                            {"Download RTF"}
+                          </div>
                         </div>
-                        <div className="hover:underline">
-                          {"New Conversation"}
+                      </div>
+                      <div
+                        onClick={newConversation}
+                        className="cursor-pointer font-semibold hover:underline"
+                      >
+                        <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-sm opacity-90 transition-colors sm:text-base">
+                          <div className="mr-2 whitespace-nowrap">
+                            <RefreshCcw className="h-4 w-4" />
+                          </div>
+                          <div className="hover:underline">
+                            {"New Conversation"}
+                          </div>
                         </div>
                       </div>
                     </div>
