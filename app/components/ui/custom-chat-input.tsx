@@ -119,6 +119,14 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     textarea.style.height = `${newHeight}px`;
   }, [value]);
 
+  // Focus the input when chat status becomes 'ready'
+  useEffect(() => {
+    if (chatStatus === 'ready' && textareaRef.current) {
+      // Focus the textarea
+      textareaRef.current.focus();
+    }
+  }, [chatStatus]);
+
   useEffect(() => {
     if (isDesktop && showChatInput && textareaRef.current) {
       // Small delay to ensure DOM is ready after navigation
