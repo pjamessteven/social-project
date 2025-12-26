@@ -8,19 +8,19 @@ function escapeRtf(text: string): string {
   for (let i = 0; i < text.length; i++) {
     const char = text[i];
     const code = char.charCodeAt(0);
-    
+
     // Handle RTF special characters
-    if (char === '\\') {
+    if (char === "\\") {
       result += "\\\\";
-    } else if (char === '{') {
+    } else if (char === "{") {
       result += "\\{";
-    } else if (char === '}') {
+    } else if (char === "}") {
       result += "\\}";
-    } else if (char === '\n') {
+    } else if (char === "\n") {
       result += "\\par\n";
-    } else if (char === '\t') {
+    } else if (char === "\t") {
       result += "\\tab ";
-    } else if (char === '\r') {
+    } else if (char === "\r") {
       // Skip carriage returns
     } else if (code <= 127) {
       result += char;
@@ -35,17 +35,17 @@ function escapeRtf(text: string): string {
 // Helper function to convert markdown to RTF
 function markdownToRtf(markdown: string): string {
   // Process line by line to handle block-level elements
-  const lines = markdown.split('\n');
+  const lines = markdown.split("\n");
   const processedLines: string[] = [];
-  
-  for (let line of lines) {
+
+  for (const line of lines) {
     // Check for headers first (before escaping)
     const h2Match = line.match(/^##\s+(.+)$/);
     const h3Match = line.match(/^###\s+(.+)$/);
     const h4Match = line.match(/^####\s+(.+)$/);
     const bulletMatch = line.match(/^\s*[-*+]\s+(.+)$/);
     const numberedMatch = line.match(/^\s*(\d+)\.\s+(.+)$/);
-    
+
     if (h2Match) {
       const headerText = processInlineFormatting(h2Match[1]);
       processedLines.push(`{\\b\\fs28 ${headerText}}{\\b0\\fs24 }`);
@@ -68,18 +68,18 @@ function markdownToRtf(markdown: string): string {
       processedLines.push(processInlineFormatting(line));
     }
   }
-  
-  return processedLines.join('\\par\n');
+
+  return processedLines.join("\\par\n");
 }
 
 // Process inline formatting (bold, italic) within a line
 function processInlineFormatting(text: string): string {
   // We need to handle markdown inline formatting while escaping RTF special chars
   // Strategy: find markdown patterns, replace with placeholders, escape, then restore
-  
+
   const placeholders: { placeholder: string; rtf: string }[] = [];
   let placeholderIndex = 0;
-  
+
   // Process bold first (**text** or __text__)
   text = text.replace(/\*\*(.+?)\*\*/g, (match, content) => {
     const placeholder = `\x00BOLD${placeholderIndex++}\x00`;
@@ -91,7 +91,7 @@ function processInlineFormatting(text: string): string {
     placeholders.push({ placeholder, rtf: `{\\b ${escapeRtf(content)}}` });
     return placeholder;
   });
-  
+
   // Process italic (*text* or _text_) - but not if it's part of a word
   text = text.replace(/(?<!\w)\*([^*]+?)\*(?!\w)/g, (match, content) => {
     const placeholder = `\x00ITALIC${placeholderIndex++}\x00`;
@@ -103,17 +103,17 @@ function processInlineFormatting(text: string): string {
     placeholders.push({ placeholder, rtf: `{\\i ${escapeRtf(content)}}` });
     return placeholder;
   });
-  
+
   // Now escape the remaining text
   let result = escapeRtf(text);
-  
+
   // Restore placeholders with RTF formatting
   // The placeholders themselves got escaped, so we need to handle that
   for (const { placeholder, rtf } of placeholders) {
     // The null bytes would have been preserved since they're ASCII
     result = result.replace(placeholder, rtf);
   }
-  
+
   return result;
 }
 
@@ -135,7 +135,8 @@ function extractMessageContent(message: any): string {
         const title = data.title || "Query";
         const query = data.query || "";
         // Build RTF with italics properly using groups
-        rtfContent += "\\par{\\i " + escapeRtf(`${title}: ${query}`) + "}\\par\\par\n";
+        rtfContent +=
+          "\\par{\\i " + escapeRtf(`${title}: ${query}`) + "}\\par\\par\n";
       } else if (part.type === "text-delta" && part.delta) {
         rtfContent += markdownToRtf(part.delta);
       }
@@ -210,7 +211,8 @@ export async function GET(
 
     // Start RTF document with proper Unicode support
     // \ansicpg1252 for Windows-1252 codepage, \uc1 for Unicode support
-    let rtfContent = "{\\rtf1\\ansi\\ansicpg1252\\deff0{\\fonttbl{\\f0\\fswiss Arial;}}\n";
+    let rtfContent =
+      "{\\rtf1\\ansi\\ansicpg1252\\deff0{\\fonttbl{\\f0\\fswiss Arial;}}\n";
     rtfContent += "\\viewkind4\\uc1\\pard\\f0\\fs24\\lang1033\n";
 
     // Add header
