@@ -2,6 +2,59 @@ import { chatConversations, db } from "@/db";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
+// Helper function to escape RTF special characters
+function escapeRtf(text: string): string {
+  return text
+    .replace(/\\/g, "\\\\")       // Backslash
+    .replace(/{/g, "\\{")         // Opening brace
+    .replace(/}/g, "\\}")         // Closing brace
+    .replace(/\n/g, "\\par\n")    // New line
+    .replace(/\t/g, "\\tab ")     // Tab
+    .replace(/\r/g, "");          // Carriage return
+}
+
+// Helper to extract text content from message parts
+function extractMessageContent(message: any): string {
+  let content = "";
+  
+  // Handle message with parts
+  if (message.parts && Array.isArray(message.parts)) {
+    message.parts.forEach((part: any) => {
+      if (part.type === "text" && part.text) {
+        content += part.text + "\n";
+      } else if (
+        part.type === "data-comment-query-event" ||
+        part.type === "data-video-query-event"
+      ) {
+        const data = part.data || {};
+        const title = data.title || "Query";
+        const query = data.query || "";
+        content += `${title}: ${query}\n`;
+      } else if (part.type === "text-delta" && part.delta) {
+        content += part.delta;
+      }
+    });
+  } 
+  // Handle older message formats
+  else if (typeof message.content === "string") {
+    content = message.content;
+  } else if (message.content && typeof message.content === "object") {
+    if (message.content.text) {
+      content = message.content.text;
+    } else if (message.content.content) {
+      content = message.content.content;
+    } else {
+      content = JSON.stringify(message.content);
+    }
+  } else if (message.text) {
+    content = message.text;
+  } else if (message.delta) {
+    content = message.delta;
+  }
+  
+  return content;
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ uuid: string }> },
@@ -46,81 +99,42 @@ export async function GET(
 
     // Generate RTF content
     const now = new Date();
+    const dateStr = now.toLocaleDateString();
+    const timeStr = now.toLocaleTimeString();
+    
+    // Start RTF document
     let rtfContent = "{\\rtf1\\ansi\\deff0{\\fonttbl{\\f0 Arial;}}\n";
-    rtfContent += "\\viewkind4\\uc1\\pard\\f0\\fs24\n"; // Default font size 12pt
-
+    rtfContent += "\\viewkind4\\uc1\\pard\\f0\\fs24\n";
+    
     // Add header
-    rtfContent += `\\b Conversation with detrans.ai}\\b0\\par\n`;
-    rtfContent += `\\i Exported on ${now.toLocaleDateString()} at ${now.toLocaleTimeString()}\\i0\\par\\par\n`;
+    rtfContent += "\\b Conversation with detrans.ai\\b0\\par\n";
+    rtfContent += `\\i Exported on ${dateStr} at ${timeStr}\\i0\\par\\par\n`;
 
     // Process each message
     if (Array.isArray(messages)) {
-      messages.forEach((message: any) => {
+      for (const message of messages) {
         const role = message.role === "user" ? "User" : "detrans.ai";
-
-        // Format role in bold
-        rtfContent += `\\b ${role}:\\b0\\par `;
-
-        // Check if message has parts
-        if (message.parts && Array.isArray(message.parts)) {
-          // Process each part
-          message.parts.forEach((part: any) => {
-            if (part.type === "text") {
-              // Handle text parts
-              const textContent = part.text || "";
-              const escapedContent = textContent
-                .replace(/\\/g, "\\\\")
-                .replace(/{/g, "\\{")
-                .replace(/}/g, "\\}")
-                .replace(/\n/g, "\\par ");
-              rtfContent += escapedContent + "\\par ";
-            } else if (
-              part.type === "data-comment-query-event" ||
-              part.type === "data-video-query-event"
-            ) {
-              // Handle data query events - only include title and query
-              const data = part.data || {};
-              const title = data.title || "Query";
-              const query = data.query || "";
-
-              // Format the query event
-              rtfContent += `\\i ${title}:\\i0 ${query}\\par `;
-            } else {
-              // For other part types, include a placeholder
-              rtfContent += `\\i [${part.type} content]\\i0\\par `;
-            }
-          });
+        
+        // Add role in bold
+        rtfContent += `\\b ${role}:\\b0\\par\n`;
+        
+        // Get and escape content
+        const content = extractMessageContent(message);
+        if (content.trim()) {
+          const escapedContent = escapeRtf(content);
+          rtfContent += escapedContent + "\\par\n";
         } else {
-          // Fallback for older message format
-          let content = "";
-          if (typeof message.content === "string") {
-            content = message.content;
-          } else if (message.content && typeof message.content === "object") {
-            if (message.content.text) {
-              content = message.content.text;
-            } else if (message.content.content) {
-              content = message.content.content;
-            } else {
-              content = JSON.stringify(message.content);
-            }
-          } else if (message.text) {
-            content = message.text;
-          }
-
-          const escapedContent = content
-            .replace(/\\/g, "\\\\")
-            .replace(/{/g, "\\{")
-            .replace(/}/g, "\\}")
-            .replace(/\n/g, "\\par ");
-          rtfContent += escapedContent + "\\par ";
+          rtfContent += "[No text content]\\par\n";
         }
-
+        
+        // Add spacing between messages
         rtfContent += "\\par\n";
-      });
+      }
     } else {
       rtfContent += "\\i No messages found in conversation\\i0\\par\\par\n";
     }
 
+    // Close RTF document
     rtfContent += "}";
 
     // Create response with RTF headers
