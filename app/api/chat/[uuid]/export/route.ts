@@ -2,15 +2,34 @@ import { chatConversations, db } from "@/db";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
-// Helper function to escape RTF special characters in plain text
+// Helper function to escape RTF special characters and encode Unicode
 function escapeRtf(text: string): string {
-  return text
+  // First, escape RTF control characters
+  let escaped = text
     .replace(/\\/g, "\\\\") // Backslash
     .replace(/{/g, "\\{") // Opening brace
     .replace(/}/g, "\\}") // Closing brace
     .replace(/\n/g, "\\par\n") // New line
     .replace(/\t/g, "\\tab ") // Tab
     .replace(/\r/g, ""); // Carriage return
+  
+  // Convert to RTF Unicode escape sequences for non-ASCII characters
+  // RTF uses \uN? for Unicode characters, where N is the Unicode code point in decimal
+  // and ? is the replacement character for older readers (we'll use '?' as placeholder)
+  // We'll encode characters above 127 (non-ASCII)
+  let result = "";
+  for (let i = 0; i < escaped.length; i++) {
+    const char = escaped[i];
+    const code = char.charCodeAt(0);
+    if (code <= 127) {
+      result += char;
+    } else {
+      // RTF Unicode escape: \uN?
+      // Note: The ? is a placeholder character for old RTF readers
+      result += `\\u${code}?`;
+    }
+  }
+  return result;
 }
 
 // Helper function to convert markdown to RTF
@@ -58,11 +77,8 @@ function markdownToRtf(markdown: string): string {
   const processedLines = lines.map(line => {
     // If the line doesn't start with a backslash (RTF command), escape it
     if (!line.startsWith('\\')) {
-      // Check if the line contains any RTF commands we added
-      // For simplicity, escape the whole line if it doesn't start with \
-      // But this might not be perfect
-      // Let's escape the line and then re-add RTF commands? This is tricky
-      // For now, escape the line
+      // For lines that don't start with RTF commands, we need to ensure they're properly escaped
+      // But escapeRtf already handles all characters, so we can just use it
       return escapeRtf(line);
     }
     return line;
@@ -166,13 +182,17 @@ export async function GET(
     const dateStr = now.toLocaleDateString();
     const timeStr = now.toLocaleTimeString();
 
-    // Start RTF document
-    let rtfContent = "{\\rtf1\\ansi\\deff0{\\fonttbl{\\f0 Arial;}}\n";
-    rtfContent += "\\viewkind4\\uc1\\pard\\f0\\fs24\n";
+    // Start RTF document with proper Unicode support
+    // Use \ansicpg65001 for UTF-8, but not all readers support it
+    // Instead, use \ansicpg1252 and rely on \u escapes for Unicode
+    // \uc1 indicates we're using Unicode escapes (1 byte per character?)
+    // Actually, \uc1 means we support Unicode with the \uN? syntax
+    let rtfContent = "{\\rtf1\\ansi\\ansicpg1252\\deff0{\\fonttbl{\\f0\\fswiss Arial;}}\n";
+    rtfContent += "\\viewkind4\\uc1\\pard\\f0\\fs24\\lang1033\n";
 
-    // Add header
+    // Add header - make sure to escape the date and time strings
     rtfContent += "\\b Conversation with detrans.ai\\b0\\par\n";
-    rtfContent += `\\i Exported on ${dateStr} at ${timeStr}\\i0\\par\\par\n`;
+    rtfContent += `\\i Exported on ${escapeRtf(dateStr)} at ${escapeRtf(timeStr)}\\i0\\par\\par\n`;
 
     // Process each message
     if (Array.isArray(messages)) {
