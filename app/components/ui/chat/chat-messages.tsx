@@ -1,6 +1,7 @@
 "use client";
 
 import { cn, uuidv4 } from "@/app/lib/utils";
+import { useChatStore } from "@/stores/chat-store";
 import { ChatMessage, ChatMessages, useChatUI } from "@llamaindex/chat-ui";
 import { Download, RefreshCcw } from "lucide-react";
 import Link from "next/link";
@@ -22,7 +23,7 @@ export default function CustomChatMessages({
   conversationId?: string;
 }) {
   const { messages, stop } = useChatUI();
-
+  const { chatStatus } = useChatStore();
   const router = useRouter();
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -36,14 +37,14 @@ export default function CustomChatMessages({
         container.scrollHeight - container.scrollTop - container.clientHeight,
       ) < 100; // within 50px of bottom
 
-    if (isAtBottom) {
+    if (isAtBottom || chatStatus !== "ready") {
       // only scroll if user was already at bottom
       container.scrollTo({
         top: container.scrollHeight,
         behavior: "smooth",
       });
     }
-  }, [messages]);
+  }, [messages, chatStatus]);
 
   const newConversation = () => {
     if (stop) {
