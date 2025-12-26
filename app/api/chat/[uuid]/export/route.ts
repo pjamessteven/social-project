@@ -54,22 +54,42 @@ export async function GET(
     rtfContent += `\\i Exported on ${now.toLocaleDateString()} at ${now.toLocaleTimeString()}\\i0\\par\\par\n`;
 
     // Process each message
-    messages.forEach((message: any) => {
-      const role = message.role === "user" ? "User" : "detrans.ai";
-      const content = message.content || "";
-      
-      // Format role in bold
-      rtfContent += `\\b ${role}:\\b0\\par `;
-      
-      // Escape RTF special characters and handle line breaks
-      const escapedContent = content
-        .replace(/\\/g, "\\\\")
-        .replace(/{/g, "\\{")
-        .replace(/}/g, "\\}")
-        .replace(/\n/g, "\\par ");
-      
-      rtfContent += escapedContent + "\\par\\par\n";
-    });
+    if (Array.isArray(messages)) {
+      messages.forEach((message: any) => {
+        // Handle different message structures
+        const role = message.role === "user" ? "User" : "detrans.ai";
+        // Get content - it could be in different fields
+        let content = "";
+        if (typeof message.content === 'string') {
+          content = message.content;
+        } else if (message.content && typeof message.content === 'object') {
+          // Handle if content is an object with text or other properties
+          if (message.content.text) {
+            content = message.content.text;
+          } else if (message.content.content) {
+            content = message.content.content;
+          } else {
+            content = JSON.stringify(message.content);
+          }
+        } else if (message.text) {
+          content = message.text;
+        }
+        
+        // Format role in bold
+        rtfContent += `\\b ${role}:\\b0\\par `;
+        
+        // Escape RTF special characters and handle line breaks
+        const escapedContent = content
+          .replace(/\\/g, "\\\\")
+          .replace(/{/g, "\\{")
+          .replace(/}/g, "\\}")
+          .replace(/\n/g, "\\par ");
+        
+        rtfContent += escapedContent + "\\par\\par\n";
+      });
+    } else {
+      rtfContent += "\\i No messages found in conversation\\i0\\par\\par\n";
+    }
 
     rtfContent += "}";
 
