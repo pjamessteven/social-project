@@ -119,13 +119,13 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     textarea.style.height = `${newHeight}px`;
   }, [value]);
 
-  // Focus the input when chat status becomes 'ready'
+  // Focus the input when chat status becomes 'ready' - only on desktop to prevent soft keyboard
   useEffect(() => {
-    if (chatStatus === "ready" && textareaRef.current) {
+    if (isDesktop && chatStatus === "ready" && textareaRef.current) {
       // Focus the textarea
       textareaRef.current.focus();
     }
-  }, [chatStatus]);
+  }, [chatStatus, isDesktop]);
 
   useEffect(() => {
     if (isDesktop && showChatInput && textareaRef.current) {
