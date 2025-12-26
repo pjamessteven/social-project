@@ -69,12 +69,21 @@ export default function CustomChatMessages({
   return (
     <ChatMessages className="!bg-transparent !p-0">
       <div className="max-w-screen border-b">
-        <div className="flex flex-col items-center justify-center gap-2 px-4 pb-4 sm:flex-row sm:px-0">
-          <div className="text-muted-foreground text-center text-sm sm:text-center">
+        <div className="flex flex-col items-start justify-between gap-2 px-4 pb-4 sm:flex-row sm:items-center sm:px-0">
+          <div className="text-muted-foreground text-left text-sm sm:text-center">
             I can make mistakes, I'm not a replacement for a real therapist!{" "}
             <br className="hidden sm:inline" /> Do not share any personal
             information that could be used to identify you.{" "}
           </div>
+          {messages.length > 0 && (
+            <button
+              onClick={handleDownloadRTF}
+              className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium whitespace-nowrap"
+            >
+              <Download className="h-3 w-3" />
+              Download conversation
+            </button>
+          )}
         </div>
       </div>
       <ChatMessages.List className="!overflow-visible pb-28">
@@ -120,19 +129,21 @@ export default function CustomChatMessages({
                       </div>
                     </Link>
                     <div className="flex items-center gap-4">
-                      <div
-                        onClick={handleDownloadRTF}
-                        className="cursor-pointer font-semibold hover:underline"
-                      >
-                        <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-sm opacity-90 transition-colors sm:text-base">
-                          <div className="mr-2 whitespace-nowrap">
-                            <Download className="h-4 w-4" />
-                          </div>
-                          <div className="hover:underline">
-                            {"Download RTF"}
+                      {messages.length > 0 && (
+                        <div
+                          onClick={handleDownloadRTF}
+                          className="cursor-pointer font-semibold hover:underline"
+                        >
+                          <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-sm opacity-90 transition-colors sm:text-base">
+                            <div className="mr-2 whitespace-nowrap">
+                              <Download className="h-4 w-4" />
+                            </div>
+                            <div className="hover:underline">
+                              {"Download RTF"}
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      )}
                       <div
                         onClick={newConversation}
                         className="cursor-pointer font-semibold hover:underline"
