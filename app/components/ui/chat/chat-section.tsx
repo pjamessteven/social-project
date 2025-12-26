@@ -1,15 +1,15 @@
 "use client";
 
+import { deslugify, uuidv4 } from "@/app/lib/utils";
+import { useChatStore } from "@/stores/chat-store";
 import { useChat } from "@ai-sdk/react";
 import { ChatSection as ChatUI } from "@llamaindex/chat-ui";
 import { DefaultChatTransport } from "ai";
+import { Loader2 } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ResizablePanel, ResizablePanelGroup } from "../resizable";
 import { ChatCanvasPanel } from "./canvas/panel";
-import { deslugify, uuidv4 } from "@/app/lib/utils";
-import { useChatStore } from "@/stores/chat-store";
-import { Loader2 } from "lucide-react";
 import CustomChatMessages from "./chat-messages";
 import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
 import { fetchComponentDefinitions } from "./custom/events/loader";
@@ -17,21 +17,20 @@ import { ComponentDef } from "./custom/events/types";
 
 export default function ChatSection({
   conversationId,
-  readOnly
+  readOnly,
 }: {
   conversationId?: string;
   readOnly?: boolean;
 }) {
-  const { setChatHandler} = useChatStore();
+  const { setChatHandler, setChatStatus } = useChatStore();
   const searchParams = useSearchParams();
   const starterSentRef = useRef(false);
   const router = useRouter();
   const [isArchived, setIsArchived] = useState(false);
   const [loading, setLoading] = useState(true);
   const [timeoutError, setTimeoutError] = useState(false);
-  
-  const handleError = (error: unknown) => {
 
+  const handleError = (error: unknown) => {
     if (!(error instanceof Error)) throw error;
     let errorMessage: string;
     try {
@@ -54,7 +53,7 @@ export default function ChatSection({
 
   const handleStartNewChat = () => {
     const newConversationId = uuidv4();
-    const newUrl = `/chat/`+newConversationId;
+    const newUrl = `/chat/` + newConversationId;
     router.replace(newUrl);
   };
 
@@ -67,19 +66,21 @@ export default function ChatSection({
     }),
     onError: handleError,
     experimental_throttle: 100,
-
   });
 
   const handler = useChatHandler;
-  const messages = handler.messages
+  const messages = handler.messages;
+  const status = handler.status;
 
+  useEffect(() => {
+    setChatStatus(status);
+  }, [status]);
 
   useEffect(() => {
     // if we just sent a message start the timeout
     // cause llamaindex agent has cooked error handling on the backend
-    const lastMessage = messages[messages.length-1]
-
-  }, [messages])
+    const lastMessage = messages[messages.length - 1];
+  }, [messages]);
 
   // Set chat handler in Zustand store
   useEffect(() => {
@@ -95,7 +96,7 @@ export default function ChatSection({
           const data = await response.json();
           // Set the messages directly using the setMessages function
           useChatHandler.setMessages(data.messages);
-        } 
+        }
       } catch (error) {
         console.error("Error loading conversation:", error);
       }
@@ -128,7 +129,6 @@ export default function ChatSection({
     }
   }, [searchParams, useChatHandler, router]);
 
-
   return (
     <>
       {loading ? (
@@ -150,6 +150,7 @@ export default function ChatSection({
                   hideControls={!!readOnly}
                   onStartNewChat={handleStartNewChat}
                   timeoutError={timeoutError}
+                  conversationId={conversationId}
                 />
                 <ChatCanvasPanel />
               </ResizablePanelGroup>
@@ -166,11 +167,13 @@ function ChatSectionPanel({
   hideControls,
   onStartNewChat,
   timeoutError,
+  conversationId,
 }: {
   isArchived: boolean;
   onStartNewChat: () => void;
   timeoutError: boolean;
   hideControls?: boolean;
+  conversationId?: string;
 }) {
   const [componentDefs, setComponentDefs] = useState<ComponentDef[]>([]);
   const [dynamicEventsErrors, setDynamicEventsErrors] = useState<string[]>([]); // contain all errors when rendering dynamic events from componentDir
@@ -205,7 +208,7 @@ function ChatSectionPanel({
                   <h3 className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
                     Conversation Archived
                   </h3>
-                  <p className="text-xs mt-1 text-yellow-700 dark:text-yellow-300">
+                  <p className="mt-1 text-xs text-yellow-700 dark:text-yellow-300">
                     This conversation was archived after 30 minutes of
                     inactivity. You can view the messages but cannot send new
                     ones.
@@ -223,8 +226,13 @@ function ChatSectionPanel({
                   <h3 className="text-sm font-medium text-red-800 dark:text-red-200">
                     Request Timeout
                   </h3>
-                  <p className="text-xs mt-1 text-red-700 dark:text-red-300">
-                    I've ran out of credits to pay for the <i>kimi-k2-instruct</i> model through OpenRouter. If you can, please donate so I can keep the service running. For now, you can still ask any of the Deep Research questions listed in the portal, as the responses are cached. Please try again later or reah out to me on X: @pjamessteven
+                  <p className="mt-1 text-xs text-red-700 dark:text-red-300">
+                    I've ran out of credits to pay for the{" "}
+                    <i>kimi-k2-instruct</i> model through OpenRouter. If you
+                    can, please donate so I can keep the service running. For
+                    now, you can still ask any of the Deep Research questions
+                    listed in the portal, as the responses are cached. Please
+                    try again later or reah out to me on X: @pjamessteven
                   </p>
                 </div>
               </div>
@@ -239,8 +247,8 @@ function ChatSectionPanel({
           hideControls={hideControls}
           componentDefs={componentDefs}
           appendError={appendError}
+          conversationId={conversationId}
         />
-
       </div>
     </ResizablePanel>
   );

@@ -71,24 +71,6 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     //  setIsDeepResearch(path.includes("/research"));
   }, [path, setIsDeepResearch]);
 
-  // Sync chat handler status with store
-  useEffect(() => {
-    if (chatHandler) {
-      setChatStatus(chatHandler.status);
-
-      // Set up a polling mechanism to check status changes
-      const interval = setInterval(() => {
-        if (chatHandler.status !== chatStatus) {
-          setChatStatus(chatHandler.status);
-        }
-      }, 100);
-
-      return () => clearInterval(interval);
-    } else {
-      setChatStatus(null);
-    }
-  }, [chatHandler, chatStatus, setChatStatus]);
-
   /*
   // Fetch suggestions when value changes
   useEffect(() => {
@@ -302,13 +284,16 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               style={{
                 boxShadow: "rgba(0, 0, 0, 0.2) 0px 18px 50px -10px",
               }}
-              className="!placeholder-opacity-100 border-slate min-h- relative z-20 flex max-h-48 w-full resize-none overflow-hidden rounded-2xl bg-white py-3 pr-32 shadow-sm sm:pr-40 dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white"
+              className={cn(
+                "!placeholder-opacity-100 border-slate relative z-20 flex max-h-48 min-h-12 w-full cursor-text resize-none overflow-hidden rounded-2xl bg-white py-4 pl-4 shadow-sm disabled:cursor-default sm:pr-40 dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white",
+                value.length === 0 ? "pr-32" : "pr-16",
+              )}
               value={value}
               onChange={(event) => setValue(event.target.value)}
               onKeyDown={handleKeyDown}
               onFocus={handleFocus}
               placeholder={placeholder}
-              disabled={chatStatus === "streaming"}
+              disabled={chatStatus !== "ready"}
               rows={1}
             />
 
@@ -320,16 +305,19 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                 onClick={() => setIsDeepResearch(!isDeepResearch)}
                 size={"xs"}
                 className={cn(
-                  "absolute top-1/2 right-3 z-30 -translate-y-1/2 rounded-full px-0 py-0 transition-colors",
+                  "absolute top-1/2 right-3 z-30 -translate-y-1/2 rounded-xl px-0 py-0 transition-colors",
                   isDeepResearch
                     ? "border-blue-300 bg-blue-100 !text-blue-400 hover:bg-blue-200 dark:border-blue-900 dark:bg-blue-900 dark:text-blue-400 hover:dark:bg-blue-800"
                     : "text-gray-500 hover:bg-gray-100 dark:bg-gray-700 dark:text-gray-400 hover:dark:bg-gray-600",
                 )}
               >
                 <div className="flex flex-row items-center px-3 text-xs">
-                  <div className="mr-2 flex flex-row">
-                    <span className="hidden sm:inline">Deep&nbsp;</span>Research
-                  </div>
+                  {value.length === 0 && (
+                    <div className="mr-2 flex flex-row">
+                      <span className="hidden sm:inline">Deep&nbsp;</span>
+                      Research
+                    </div>
+                  )}
                   <UserSearch className="h-3 w-3 sm:h-4 sm:w-4" />
                 </div>
               </Button>
@@ -379,14 +367,13 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
             type={chatStatus === "streaming" ? "button" : "submit"}
             size="icon"
             className="h-14 w-14 flex-shrink-0 rounded-full"
-            disabled={chatStatus !== "streaming" && !value.trim()}
             onClick={
-              chatStatus === "streaming" && chatHandler?.stop
+              chatStatus !== "ready" && chatHandler?.stop
                 ? chatHandler.stop
                 : undefined
             }
           >
-            {chatStatus === "streaming" ? (
+            {chatStatus !== "ready" ? (
               <Square className="h-6 w-6" />
             ) : (
               <Send className="h-6 w-6" />

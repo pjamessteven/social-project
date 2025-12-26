@@ -40,12 +40,10 @@ const PromptsPage = () => {
         </p>
         <p className="mt-2">
           ChatGPT and most other Western LLMs are quite aggressive in the way
-          that they promote and uphold gender ideolgy concepts. It proved to be
+          that they promote and uphold gender identity beliefs. It proved to be
           impossible to use OpenAI&apos;s GPT models for this project, as the
-          models would constantly contradict the detrans experiences that it was
-          tasked to summarise by promoting gender affirming care and ideas like
-          being a man or woman is being a walking set of steretypes rather than
-          embodying an inescapable biological reality. If you would like to
+          models would constantly undermine and contradict the detrans
+          experiences that it was tasked to summarise. If you would like to
           explore topics through the lens of those who beleive that people can
           be born in the wrong body, see{" "}
           <a
