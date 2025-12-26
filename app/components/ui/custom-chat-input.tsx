@@ -121,7 +121,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
 
   // Focus the input when chat status becomes 'ready'
   useEffect(() => {
-    if (chatStatus === 'ready' && textareaRef.current) {
+    if (chatStatus === "ready" && textareaRef.current) {
       // Focus the textarea
       textareaRef.current.focus();
     }
@@ -294,7 +294,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               }}
               className={cn(
                 "!placeholder-opacity-100 border-slate relative z-20 flex max-h-48 min-h-12 w-full cursor-text resize-none overflow-hidden rounded-2xl bg-white py-4 pl-4 shadow-sm disabled:cursor-default sm:pr-40 dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white",
-                value.length === 0 ? "pr-32" : "pr-16",
+                value.length === 0 ? "pr-20 sm:pr-32" : "pr-16",
               )}
               value={value}
               onChange={(event) => setValue(event.target.value)}
