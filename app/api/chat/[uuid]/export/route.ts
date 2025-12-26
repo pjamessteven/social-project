@@ -4,28 +4,28 @@ import { NextRequest, NextResponse } from "next/server";
 
 // Helper function to escape RTF special characters and encode Unicode
 function escapeRtf(text: string): string {
-  // First, escape RTF control characters
-  let escaped = text
-    .replace(/\\/g, "\\\\") // Backslash
-    .replace(/{/g, "\\{") // Opening brace
-    .replace(/}/g, "\\}") // Closing brace
-    .replace(/\n/g, "\\par\n") // New line
-    .replace(/\t/g, "\\tab ") // Tab
-    .replace(/\r/g, ""); // Carriage return
-  
-  // Convert to RTF Unicode escape sequences for non-ASCII characters
-  // RTF uses \uN? for Unicode characters, where N is the Unicode code point in decimal
-  // and ? is the replacement character for older readers (we'll use '?' as placeholder)
-  // We'll encode characters above 127 (non-ASCII)
   let result = "";
-  for (let i = 0; i < escaped.length; i++) {
-    const char = escaped[i];
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
     const code = char.charCodeAt(0);
-    if (code <= 127) {
+    
+    // Handle RTF special characters
+    if (char === '\\') {
+      result += "\\\\";
+    } else if (char === '{') {
+      result += "\\{";
+    } else if (char === '}') {
+      result += "\\}";
+    } else if (char === '\n') {
+      result += "\\par\n";
+    } else if (char === '\t') {
+      result += "\\tab ";
+    } else if (char === '\r') {
+      // Skip carriage returns
+    } else if (code <= 127) {
       result += char;
     } else {
-      // RTF Unicode escape: \uN?
-      // Note: The ? is a placeholder character for old RTF readers
+      // RTF Unicode escape: \uN? where N is decimal code point
       result += `\\u${code}?`;
     }
   }
@@ -34,60 +34,87 @@ function escapeRtf(text: string): string {
 
 // Helper function to convert markdown to RTF
 function markdownToRtf(markdown: string): string {
-  // Process headers first
-  let rtf = markdown.replace(/^##\s+(.+)$/gm, (match, headerText) => {
-    return `\\b\\fs28 ${escapeRtf(headerText)}\\b0\\fs24`;
-  });
-  rtf = rtf.replace(/^###\s+(.+)$/gm, (match, headerText) => {
-    return `\\b\\fs26 ${escapeRtf(headerText)}\\b0\\fs24`;
-  });
-  rtf = rtf.replace(/^####\s+(.+)$/gm, (match, headerText) => {
-    return `\\b\\fs24 ${escapeRtf(headerText)}\\b0\\fs24`;
-  });
+  // Process line by line to handle block-level elements
+  const lines = markdown.split('\n');
+  const processedLines: string[] = [];
   
-  // Process bold (**text**)
-  rtf = rtf.replace(/\*\*(.+?)\*\*/g, (match, boldText) => {
-    return `\\b ${escapeRtf(boldText)}\\b0`;
-  });
-  rtf = rtf.replace(/__(.+?)__/g, (match, boldText) => {
-    return `\\b ${escapeRtf(boldText)}\\b0`;
-  });
-  
-  // Process italic (*text*)
-  rtf = rtf.replace(/\*(.+?)\*/g, (match, italicText) => {
-    return `\\i ${escapeRtf(italicText)}\\i0`;
-  });
-  rtf = rtf.replace(/_(.+?)_/g, (match, italicText) => {
-    return `\\i ${escapeRtf(italicText)}\\i0`;
-  });
-  
-  // Process bullet points
-  rtf = rtf.replace(/^\s*[-*+]\s+(.+)$/gm, (match, itemText) => {
-    return `\\bullet ${escapeRtf(itemText)}`;
-  });
-  
-  // Process numbered lists
-  rtf = rtf.replace(/^\s*\d+\.\s+(.+)$/gm, (match, itemText) => {
-    return `\\tab ${escapeRtf(itemText)}`;
-  });
-  
-  // Escape any remaining text that hasn't been processed
-  // Split by lines to handle properly
-  const lines = rtf.split('\n');
-  const processedLines = lines.map(line => {
-    // If the line doesn't start with a backslash (RTF command), escape it
-    if (!line.startsWith('\\')) {
-      // For lines that don't start with RTF commands, we need to ensure they're properly escaped
-      // But escapeRtf already handles all characters, so we can just use it
-      return escapeRtf(line);
+  for (let line of lines) {
+    // Check for headers first (before escaping)
+    const h2Match = line.match(/^##\s+(.+)$/);
+    const h3Match = line.match(/^###\s+(.+)$/);
+    const h4Match = line.match(/^####\s+(.+)$/);
+    const bulletMatch = line.match(/^\s*[-*+]\s+(.+)$/);
+    const numberedMatch = line.match(/^\s*(\d+)\.\s+(.+)$/);
+    
+    if (h2Match) {
+      const headerText = processInlineFormatting(h2Match[1]);
+      processedLines.push(`{\\b\\fs28 ${headerText}}{\\b0\\fs24 }`);
+    } else if (h3Match) {
+      const headerText = processInlineFormatting(h3Match[1]);
+      processedLines.push(`{\\b\\fs26 ${headerText}}{\\b0\\fs24 }`);
+    } else if (h4Match) {
+      const headerText = processInlineFormatting(h4Match[1]);
+      processedLines.push(`{\\b\\fs24 ${headerText}}{\\b0\\fs24 }`);
+    } else if (bulletMatch) {
+      const itemText = processInlineFormatting(bulletMatch[1]);
+      // Use proper RTF bullet: \bullet followed by tab
+      processedLines.push(`{\\pntext\\bullet\\tab}${itemText}`);
+    } else if (numberedMatch) {
+      const num = numberedMatch[1];
+      const itemText = processInlineFormatting(numberedMatch[2]);
+      processedLines.push(`{\\pntext ${escapeRtf(num)}.\\tab}${itemText}`);
+    } else {
+      // Regular line - process inline formatting
+      processedLines.push(processInlineFormatting(line));
     }
-    return line;
+  }
+  
+  return processedLines.join('\\par\n');
+}
+
+// Process inline formatting (bold, italic) within a line
+function processInlineFormatting(text: string): string {
+  // We need to handle markdown inline formatting while escaping RTF special chars
+  // Strategy: find markdown patterns, replace with placeholders, escape, then restore
+  
+  const placeholders: { placeholder: string; rtf: string }[] = [];
+  let placeholderIndex = 0;
+  
+  // Process bold first (**text** or __text__)
+  text = text.replace(/\*\*(.+?)\*\*/g, (match, content) => {
+    const placeholder = `\x00BOLD${placeholderIndex++}\x00`;
+    placeholders.push({ placeholder, rtf: `{\\b ${escapeRtf(content)}}` });
+    return placeholder;
+  });
+  text = text.replace(/__(.+?)__/g, (match, content) => {
+    const placeholder = `\x00BOLD${placeholderIndex++}\x00`;
+    placeholders.push({ placeholder, rtf: `{\\b ${escapeRtf(content)}}` });
+    return placeholder;
   });
   
-  // Join lines back
-  rtf = processedLines.join('\\par\n');
+  // Process italic (*text* or _text_) - but not if it's part of a word
+  text = text.replace(/(?<!\w)\*([^*]+?)\*(?!\w)/g, (match, content) => {
+    const placeholder = `\x00ITALIC${placeholderIndex++}\x00`;
+    placeholders.push({ placeholder, rtf: `{\\i ${escapeRtf(content)}}` });
+    return placeholder;
+  });
+  text = text.replace(/(?<!\w)_([^_]+?)_(?!\w)/g, (match, content) => {
+    const placeholder = `\x00ITALIC${placeholderIndex++}\x00`;
+    placeholders.push({ placeholder, rtf: `{\\i ${escapeRtf(content)}}` });
+    return placeholder;
+  });
   
-  return rtf;
+  // Now escape the remaining text
+  let result = escapeRtf(text);
+  
+  // Restore placeholders with RTF formatting
+  // The placeholders themselves got escaped, so we need to handle that
+  for (const { placeholder, rtf } of placeholders) {
+    // The null bytes would have been preserved since they're ASCII
+    result = result.replace(placeholder, rtf);
+  }
+  
+  return result;
 }
 
 // Helper to extract RTF content from message parts
@@ -107,9 +134,8 @@ function extractMessageContent(message: any): string {
         const data = part.data || {};
         const title = data.title || "Query";
         const query = data.query || "";
-        // Build RTF with italics properly
-        // Note: In RTF, {\i text} makes text italic
-        rtfContent += "\\par{\\i " + escapeRtf(`${title}: ${query}`) + "\\i0}\\par\\par\n";
+        // Build RTF with italics properly using groups
+        rtfContent += "\\par{\\i " + escapeRtf(`${title}: ${query}`) + "}\\par\\par\n";
       } else if (part.type === "text-delta" && part.delta) {
         rtfContent += markdownToRtf(part.delta);
       }
@@ -183,38 +209,35 @@ export async function GET(
     const timeStr = now.toLocaleTimeString();
 
     // Start RTF document with proper Unicode support
-    // Use \ansicpg65001 for UTF-8, but not all readers support it
-    // Instead, use \ansicpg1252 and rely on \u escapes for Unicode
-    // \uc1 indicates we're using Unicode escapes (1 byte per character?)
-    // Actually, \uc1 means we support Unicode with the \uN? syntax
+    // \ansicpg1252 for Windows-1252 codepage, \uc1 for Unicode support
     let rtfContent = "{\\rtf1\\ansi\\ansicpg1252\\deff0{\\fonttbl{\\f0\\fswiss Arial;}}\n";
     rtfContent += "\\viewkind4\\uc1\\pard\\f0\\fs24\\lang1033\n";
 
-    // Add header - make sure to escape the date and time strings
-    rtfContent += "\\b Conversation with detrans.ai\\b0\\par\n";
-    rtfContent += `\\i Exported on ${escapeRtf(dateStr)} at ${escapeRtf(timeStr)}\\i0\\par\\par\n`;
+    // Add header
+    rtfContent += "{\\b Conversation with detrans.ai}\\par\n";
+    rtfContent += `{\\i Exported on ${escapeRtf(dateStr)} at ${escapeRtf(timeStr)}}\\par\\par\n`;
 
     // Process each message
     if (Array.isArray(messages)) {
       for (const message of messages) {
         const role = message.role === "user" ? "User" : "detrans.ai";
 
-        // Add role in bold
-        rtfContent += `\\b ${role}:\\b0\\par\n`;
+        // Add role in bold using group
+        rtfContent += `{\\b ${escapeRtf(role)}:}\\par\n`;
 
         // Get RTF content (already properly formatted and escaped)
         const content = extractMessageContent(message);
         if (content.trim()) {
           rtfContent += content;
         } else {
-          rtfContent += "[No text content]\\par\n";
+          rtfContent += "{\\i [No text content]}\\par\n";
         }
 
         // Add spacing between messages
         rtfContent += "\\par\n";
       }
     } else {
-      rtfContent += "\\i No messages found in conversation\\i0\\par\\par\n";
+      rtfContent += "{\\i No messages found in conversation}\\par\\par\n";
     }
 
     // Close RTF document
