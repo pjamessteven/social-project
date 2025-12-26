@@ -87,7 +87,7 @@ const navigationItems = [
     ],
   },
   {
-    title: "For Parents",
+    title: "Resources For Parents",
     href: "#for-parents",
     children: [
       {
@@ -761,7 +761,7 @@ export default async function SupportPage() {
               </a>
             </p>
 
-            <h2 id="for-parents">For Parents</h2>
+            <h2 id="for-parents">Resources For Parents</h2>
             <p>
               If your child has recently come out as transgender, you may be
               feeling confused, worried, and unsure how to best support them
@@ -812,8 +812,8 @@ export default async function SupportPage() {
 
             <div className="bg-muted/30 my-6 rounded-lg border p-4">
               <h4 className="mt-0">
-                Your kid says they're "trans" — but you just want them to be
-                healthy and safe.
+                Your kid says they're "trans", but you just want them healthy
+                and safe.
               </h4>
               <p>
                 Your child's health and future are at stake, but your leverage
@@ -839,35 +839,33 @@ export default async function SupportPage() {
               </p>
             </div>
 
-            <div className="no-prose mb-8 rounded-lg border border-green-300 bg-green-50 p-6 text-green-700 dark:bg-green-900/20 dark:text-green-400">
-              <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-center">
-                <div className="flex-1">
-                  <p className="mb-2 text-lg font-semibold text-green-800 dark:text-green-300">
-                    Special Offer for detrans.ai Visitors
-                  </p>
-                  <p className="mb-0">
-                    Use the coupon code below to get{" "}
-                    <strong className="text-green-800 dark:text-green-300">
-                      50% off your first month
-                    </strong>{" "}
-                    of ROGD Repair membership.
-                  </p>
-                </div>
-                <div className="w-full lg:w-auto">
-                  <div className="rounded-lg border-2 border-green-400 bg-white p-4 text-center dark:bg-green-950/30">
-                    <div className="mb-1 text-sm font-medium text-green-700 dark:text-green-300">
-                      Coupon Code
-                    </div>
-                    <code className="block text-3xl font-bold tracking-wider text-green-800 dark:text-green-200">
-                      DETRANSAI
-                    </code>
-                    <div className="mt-2 text-xs text-green-600 dark:text-green-400">
-                      50% off first month
+            <a
+              href="https://course.rogdrepair.com/p/rogd-repair?affcode=2068800_ck1ajvgj"
+              target="_blank"
+              className="no-underline"
+            >
+              <div className="no-prose mb-8 rounded-lg border border-green-300 bg-green-50 p-6 text-green-700 dark:bg-green-900/20 dark:text-green-400">
+                <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-center">
+                  <div className="flex-1">
+                    <p className="mt-0 mb-0">
+                      Use this coupon code to get{" "}
+                      <strong className="text-green-800 dark:text-green-300">
+                        50% off your first month
+                      </strong>{" "}
+                      of ROGD Repair membership.
+                    </p>
+                  </div>
+
+                  <div className="w-full lg:w-auto">
+                    <div className="rounded-lg border-2 border-green-400 bg-white p-4 text-center dark:bg-green-950/30">
+                      <div className="block text-3xl font-bold tracking-wider text-green-800 dark:text-green-200">
+                        DETRANSAI
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
 
             <p>
               <a

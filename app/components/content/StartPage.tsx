@@ -183,13 +183,13 @@ export async function StartPage({
                 transgender and may have reversed aspects of their transition.
               </p>
               <p>
-                I observe the reasons, patterns and truths of why people adopt,
-                inhabit, and ultimately move on from gender identities. My
-                purpose is to share this knowledge to help deconstruct gender
-                concepts and to promote holistic, non-medical approaches to
-                healing gender dysphoria.
+                I observe the reasons, patterns and truths of why some people
+                adopt, inhabit and move on from gender identities. My purpose is
+                to share this knowledge in order to deconstruct gender and to
+                recognise and promote holistic, embodied, non-medical approaches
+                to overcoming distress.
               </p>
-              <p>
+              <p className="mt-">
                 <span className="font-semibold">How can I help you today?</span>
               </p>
               <div className="font grid gap-1">
@@ -673,7 +673,15 @@ export async function StartPage({
             <p className="mt-1">But through this we can grow...</p>
 
             <div className="mt-8">
-              Built by{" "}
+              An{" "}
+              <a
+                href="https://github.com/pjamessteven/social-project"
+                target="_blank"
+                className="underline"
+              >
+                open-source
+              </a>{" "}
+              project by{" "}
               <a
                 href="https://x.com/pjamessteven"
                 target="_blank"
@@ -681,27 +689,8 @@ export async function StartPage({
               >
                 Peter James Steven
               </a>{" "}
-              <br />
-              In Te Whanganui-a-Tara (Wellington, NZ)
-              <br />
-              <div className="mt-2 flex items-center sm:mt-1">
-                <div>
-                  This is an{" "}
-                  <a
-                    href="https://github.com/pjamessteven/social-project"
-                    target="_blank"
-                    className="underline"
-                  >
-                    open-source project
-                  </a>
-                  .
-                </div>
-              </div>
               <div className="mt-1 flex items-center">
-                The code is published under an MIT license.
-              </div>
-              <div className="mt-1 flex items-center">
-                Translations coming soon!
+                Made with love in Te Whanganui-a-Tara (Wellington, NZ)
               </div>
               <div className="mt-8 flex items-center">
                 Please donate if you can,

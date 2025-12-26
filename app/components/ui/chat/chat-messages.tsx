@@ -14,10 +14,12 @@ export default function CustomChatMessages({
   componentDefs,
   appendError,
   hideControls,
+  conversationId,
 }: {
   componentDefs: ComponentDef[];
   appendError: (error: string) => void;
   hideControls?: boolean;
+  conversationId?: string;
 }) {
   const { messages, stop } = useChatUI();
 
@@ -54,36 +56,25 @@ export default function CustomChatMessages({
 
   const handleDownloadRTF = () => {
     // Get the current conversation UUID from the URL
-    const pathSegments = window.location.pathname.split("/");
-    const uuid = pathSegments[pathSegments.length - 1];
 
-    if (!uuid) {
-      console.error("No conversation UUID found in URL");
+    if (!conversationId) {
+      console.error("No conversation found in URL");
       return;
     }
 
     // Trigger download
-    window.open(`/api/chat/${uuid}/export`, "_blank");
+    window.open(`/api/chat/${conversationId}/export`, "_blank");
   };
 
   return (
     <ChatMessages className="!bg-transparent !p-0">
       <div className="max-w-screen border-b">
-        <div className="flex flex-col items-start justify-between gap-2 px-4 pb-4 sm:flex-row sm:items-center sm:px-0">
+        <div className="flex flex-col items-center justify-center gap-2 px-4 pb-4 sm:flex-row sm:items-center sm:px-0">
           <div className="text-muted-foreground text-left text-sm sm:text-center">
             I can make mistakes, I'm not a replacement for a real therapist!{" "}
             <br className="hidden sm:inline" /> Do not share any personal
             information that could be used to identify you.{" "}
           </div>
-          {messages.length > 0 && (
-            <button
-              onClick={handleDownloadRTF}
-              className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium whitespace-nowrap"
-            >
-              <Download className="h-3 w-3" />
-              Download conversation
-            </button>
-          )}
         </div>
       </div>
       <ChatMessages.List className="!overflow-visible pb-28">
@@ -113,7 +104,7 @@ export default function CustomChatMessages({
                 <ChatMessages.Loading className="mb-4 -ml-16 sm:mr-0" />
               )}
               {isLast && !hideControls && (
-                <div className="-mt-2 mb-4 ml-3 flex w-full flex-row justify-between pr-20 sm:mb-8 sm:pr-16">
+                <div className="-mt-2 mb-4 ml-3 flex w-full flex-row justify-between pr-20 sm:mb-8 sm:pr-4">
                   <div className="flex w-full grow flex-row justify-between pt-8">
                     <Link
                       href={"/"}
@@ -132,14 +123,11 @@ export default function CustomChatMessages({
                       {messages.length > 0 && (
                         <div
                           onClick={handleDownloadRTF}
-                          className="cursor-pointer font-semibold hover:underline"
+                          className="cursor-pointer border-r pr-2 font-semibold hover:underline"
                         >
                           <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-sm opacity-90 transition-colors sm:text-base">
                             <div className="mr-2 whitespace-nowrap">
                               <Download className="h-4 w-4" />
-                            </div>
-                            <div className="hover:underline">
-                              {"Download RTF"}
                             </div>
                           </div>
                         </div>
@@ -159,6 +147,23 @@ export default function CustomChatMessages({
                       </div>
                     </div>
                   </div>
+                </div>
+              )}
+              {isLast && hideControls && (
+                <div className="flex justify-end">
+                  {messages.length > 0 && (
+                    <div
+                      onClick={handleDownloadRTF}
+                      className="cursor-pointer pr-2 font-semibold hover:underline"
+                    >
+                      <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-sm opacity-90 transition-colors sm:text-base">
+                        Download Conversation
+                        <div className="mx-2 whitespace-nowrap">
+                          <Download className="h-4 w-4" />
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

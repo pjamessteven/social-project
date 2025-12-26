@@ -3,7 +3,11 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
-export default function DonationCard({ mode }: { mode: "detrans" | "affirm" | 'compare' }) {
+export default function DonationCard({
+  mode,
+}: {
+  mode: "detrans" | "affirm" | "compare";
+}) {
   return (
     <Card
       className={
@@ -25,11 +29,11 @@ export default function DonationCard({ mode }: { mode: "detrans" | "affirm" | 'c
             }
           ></div>
         </div>
-        <CardDescription className="mt-2 text-foreground dark:text-primary/80 brightness-50 hover:underline dark:brightness-150">
-          If you beleive in the cause please make a donation from the{" "}
-          <Link href={"/donate"}>donation page.</Link> The site will be run in
-          cache-only mode if I run out of money, with no ability to ask your own
-          questions.
+        <CardDescription className="text-foreground dark:text-primary/80 mt-2 brightness-50 hover:underline dark:brightness-150">
+          If you appreciate this free service please consider making a donation.
+          <br className="hidden md:inline" />
+          The site will be run in cache-only mode if I run out of money, with no
+          ability to ask your own questions.
         </CardDescription>
 
         <Link href={"/donate"} className="mt-2">
