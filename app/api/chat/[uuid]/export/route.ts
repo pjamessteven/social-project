@@ -5,18 +5,18 @@ import { NextRequest, NextResponse } from "next/server";
 // Helper function to escape RTF special characters
 function escapeRtf(text: string): string {
   return text
-    .replace(/\\/g, "\\\\")       // Backslash
-    .replace(/{/g, "\\{")         // Opening brace
-    .replace(/}/g, "\\}")         // Closing brace
-    .replace(/\n/g, "\\par\n")    // New line
-    .replace(/\t/g, "\\tab ")     // Tab
-    .replace(/\r/g, "");          // Carriage return
+    .replace(/\\/g, "\\\\") // Backslash
+    .replace(/{/g, "\\{") // Opening brace
+    .replace(/}/g, "\\}") // Closing brace
+    .replace(/\n/g, "\\par\n") // New line
+    .replace(/\t/g, "\\tab ") // Tab
+    .replace(/\r/g, ""); // Carriage return
 }
 
 // Helper to extract text content from message parts
 function extractMessageContent(message: any): string {
   let content = "";
-  
+
   // Handle message with parts
   if (message.parts && Array.isArray(message.parts)) {
     message.parts.forEach((part: any) => {
@@ -29,12 +29,12 @@ function extractMessageContent(message: any): string {
         const data = part.data || {};
         const title = data.title || "Query";
         const query = data.query || "";
-        content += `${title}: ${query}\n`;
+        content += `\n\n${title}: ${query}\n\n`;
       } else if (part.type === "text-delta" && part.delta) {
         content += part.delta;
       }
     });
-  } 
+  }
   // Handle older message formats
   else if (typeof message.content === "string") {
     content = message.content;
@@ -51,7 +51,7 @@ function extractMessageContent(message: any): string {
   } else if (message.delta) {
     content = message.delta;
   }
-  
+
   return content;
 }
 
@@ -101,11 +101,11 @@ export async function GET(
     const now = new Date();
     const dateStr = now.toLocaleDateString();
     const timeStr = now.toLocaleTimeString();
-    
+
     // Start RTF document
     let rtfContent = "{\\rtf1\\ansi\\deff0{\\fonttbl{\\f0 Arial;}}\n";
     rtfContent += "\\viewkind4\\uc1\\pard\\f0\\fs24\n";
-    
+
     // Add header
     rtfContent += "\\b Conversation with detrans.ai\\b0\\par\n";
     rtfContent += `\\i Exported on ${dateStr} at ${timeStr}\\i0\\par\\par\n`;
@@ -114,10 +114,10 @@ export async function GET(
     if (Array.isArray(messages)) {
       for (const message of messages) {
         const role = message.role === "user" ? "User" : "detrans.ai";
-        
+
         // Add role in bold
         rtfContent += `\\b ${role}:\\b0\\par\n`;
-        
+
         // Get and escape content
         const content = extractMessageContent(message);
         if (content.trim()) {
@@ -126,7 +126,7 @@ export async function GET(
         } else {
           rtfContent += "[No text content]\\par\n";
         }
-        
+
         // Add spacing between messages
         rtfContent += "\\par\n";
       }
