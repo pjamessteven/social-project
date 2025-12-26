@@ -56,36 +56,63 @@ export async function GET(
     // Process each message
     if (Array.isArray(messages)) {
       messages.forEach((message: any) => {
-        // Handle different message structures
         const role = message.role === "user" ? "User" : "detrans.ai";
-        // Get content - it could be in different fields
-        let content = "";
-        if (typeof message.content === 'string') {
-          content = message.content;
-        } else if (message.content && typeof message.content === 'object') {
-          // Handle if content is an object with text or other properties
-          if (message.content.text) {
-            content = message.content.text;
-          } else if (message.content.content) {
-            content = message.content.content;
-          } else {
-            content = JSON.stringify(message.content);
-          }
-        } else if (message.text) {
-          content = message.text;
-        }
         
         // Format role in bold
         rtfContent += `\\b ${role}:\\b0\\par `;
         
-        // Escape RTF special characters and handle line breaks
-        const escapedContent = content
-          .replace(/\\/g, "\\\\")
-          .replace(/{/g, "\\{")
-          .replace(/}/g, "\\}")
-          .replace(/\n/g, "\\par ");
+        // Check if message has parts
+        if (message.parts && Array.isArray(message.parts)) {
+          // Process each part
+          message.parts.forEach((part: any) => {
+            if (part.type === 'text') {
+              // Handle text parts
+              const textContent = part.text || '';
+              const escapedContent = textContent
+                .replace(/\\/g, "\\\\")
+                .replace(/{/g, "\\{")
+                .replace(/}/g, "\\}")
+                .replace(/\n/g, "\\par ");
+              rtfContent += escapedContent + "\\par ";
+            } else if (part.type === 'data-comment-query-event' || part.type === 'data-video-query-event') {
+              // Handle data query events - only include title and query
+              const data = part.data || {};
+              const title = data.title || 'Query';
+              const query = data.query || '';
+              
+              // Format the query event
+              rtfContent += `\\i ${title}:\\i0 ${query}\\par `;
+            } else {
+              // For other part types, include a placeholder
+              rtfContent += `\\i [${part.type} content]\\i0\\par `;
+            }
+          });
+        } else {
+          // Fallback for older message format
+          let content = '';
+          if (typeof message.content === 'string') {
+            content = message.content;
+          } else if (message.content && typeof message.content === 'object') {
+            if (message.content.text) {
+              content = message.content.text;
+            } else if (message.content.content) {
+              content = message.content.content;
+            } else {
+              content = JSON.stringify(message.content);
+            }
+          } else if (message.text) {
+            content = message.text;
+          }
+          
+          const escapedContent = content
+            .replace(/\\/g, "\\\\")
+            .replace(/{/g, "\\{")
+            .replace(/}/g, "\\}")
+            .replace(/\n/g, "\\par ");
+          rtfContent += escapedContent + "\\par ";
+        }
         
-        rtfContent += escapedContent + "\\par\\par\n";
+        rtfContent += "\\par\n";
       });
     } else {
       rtfContent += "\\i No messages found in conversation\\i0\\par\\par\n";
