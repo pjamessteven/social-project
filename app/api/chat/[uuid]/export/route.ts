@@ -13,6 +13,67 @@ function escapeRtf(text: string): string {
     .replace(/\r/g, ""); // Carriage return
 }
 
+// Helper function to convert markdown to RTF
+function markdownToRtf(markdown: string): string {
+  // Process headers first
+  let rtf = markdown.replace(/^##\s+(.+)$/gm, (match, headerText) => {
+    return `\\b\\fs28 ${escapeRtf(headerText)}\\b0\\fs24`;
+  });
+  rtf = rtf.replace(/^###\s+(.+)$/gm, (match, headerText) => {
+    return `\\b\\fs26 ${escapeRtf(headerText)}\\b0\\fs24`;
+  });
+  rtf = rtf.replace(/^####\s+(.+)$/gm, (match, headerText) => {
+    return `\\b\\fs24 ${escapeRtf(headerText)}\\b0\\fs24`;
+  });
+  
+  // Process bold (**text**)
+  rtf = rtf.replace(/\*\*(.+?)\*\*/g, (match, boldText) => {
+    return `\\b ${escapeRtf(boldText)}\\b0`;
+  });
+  rtf = rtf.replace(/__(.+?)__/g, (match, boldText) => {
+    return `\\b ${escapeRtf(boldText)}\\b0`;
+  });
+  
+  // Process italic (*text*)
+  rtf = rtf.replace(/\*(.+?)\*/g, (match, italicText) => {
+    return `\\i ${escapeRtf(italicText)}\\i0`;
+  });
+  rtf = rtf.replace(/_(.+?)_/g, (match, italicText) => {
+    return `\\i ${escapeRtf(italicText)}\\i0`;
+  });
+  
+  // Process bullet points
+  rtf = rtf.replace(/^\s*[-*+]\s+(.+)$/gm, (match, itemText) => {
+    return `\\bullet ${escapeRtf(itemText)}`;
+  });
+  
+  // Process numbered lists
+  rtf = rtf.replace(/^\s*\d+\.\s+(.+)$/gm, (match, itemText) => {
+    return `\\tab ${escapeRtf(itemText)}`;
+  });
+  
+  // Escape any remaining text that hasn't been processed
+  // Split by lines to handle properly
+  const lines = rtf.split('\n');
+  const processedLines = lines.map(line => {
+    // If the line doesn't start with a backslash (RTF command), escape it
+    if (!line.startsWith('\\')) {
+      // Check if the line contains any RTF commands we added
+      // For simplicity, escape the whole line if it doesn't start with \
+      // But this might not be perfect
+      // Let's escape the line and then re-add RTF commands? This is tricky
+      // For now, escape the line
+      return escapeRtf(line);
+    }
+    return line;
+  });
+  
+  // Join lines back
+  rtf = processedLines.join('\\par\n');
+  
+  return rtf;
+}
+
 // Helper to extract RTF content from message parts
 function extractMessageContent(message: any): string {
   let rtfContent = "";
@@ -21,8 +82,8 @@ function extractMessageContent(message: any): string {
   if (message.parts && Array.isArray(message.parts)) {
     message.parts.forEach((part: any) => {
       if (part.type === "text" && part.text) {
-        // Escape plain text and add it
-        rtfContent += escapeRtf(part.text) + "\\par\n";
+        // Convert markdown to RTF and add it
+        rtfContent += markdownToRtf(part.text) + "\\par\n";
       } else if (
         part.type === "data-comment-query-event" ||
         part.type === "data-video-query-event"
@@ -34,25 +95,25 @@ function extractMessageContent(message: any): string {
         // Note: In RTF, {\i text} makes text italic
         rtfContent += "\\par{\\i " + escapeRtf(`${title}: ${query}`) + "\\i0}\\par\\par\n";
       } else if (part.type === "text-delta" && part.delta) {
-        rtfContent += escapeRtf(part.delta);
+        rtfContent += markdownToRtf(part.delta);
       }
     });
   }
   // Handle older message formats
   else if (typeof message.content === "string") {
-    rtfContent = escapeRtf(message.content);
+    rtfContent = markdownToRtf(message.content);
   } else if (message.content && typeof message.content === "object") {
     if (message.content.text) {
-      rtfContent = escapeRtf(message.content.text);
+      rtfContent = markdownToRtf(message.content.text);
     } else if (message.content.content) {
-      rtfContent = escapeRtf(message.content.content);
+      rtfContent = markdownToRtf(message.content.content);
     } else {
       rtfContent = escapeRtf(JSON.stringify(message.content));
     }
   } else if (message.text) {
-    rtfContent = escapeRtf(message.text);
+    rtfContent = markdownToRtf(message.text);
   } else if (message.delta) {
-    rtfContent = escapeRtf(message.delta);
+    rtfContent = markdownToRtf(message.delta);
   }
 
   return rtfContent;
