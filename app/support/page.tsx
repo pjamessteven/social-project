@@ -839,16 +839,34 @@ export default async function SupportPage() {
               </p>
             </div>
 
-            <div className="no-prose mb-4 rounded-md border-1 border-green-300 bg-green-50 p-4 text-green-700 dark:bg-green-900/20 dark:text-green-400">
-              Use the coupon code{" "}
-              <code className="rounded bg-green-100 px-2 py-1 font-mono font-bold dark:bg-green-800">
-                DETRANSAI
-              </code>{" "}
-              to get{" "}
-              <strong className="text-green-800">
-                50% off your first month
-              </strong>{" "}
-              of membership.
+            <div className="no-prose mb-8 rounded-lg border border-green-300 bg-green-50 p-6 text-green-700 dark:bg-green-900/20 dark:text-green-400">
+              <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-center">
+                <div className="flex-1">
+                  <p className="mb-2 text-lg font-semibold text-green-800 dark:text-green-300">
+                    Special Offer for detrans.ai Visitors
+                  </p>
+                  <p className="mb-0">
+                    Use the coupon code below to get{" "}
+                    <strong className="text-green-800 dark:text-green-300">
+                      50% off your first month
+                    </strong>{" "}
+                    of ROGD Repair membership.
+                  </p>
+                </div>
+                <div className="w-full lg:w-auto">
+                  <div className="rounded-lg border-2 border-green-400 bg-white p-4 text-center dark:bg-green-950/30">
+                    <div className="mb-1 text-sm font-medium text-green-700 dark:text-green-300">
+                      Coupon Code
+                    </div>
+                    <code className="block text-3xl font-bold tracking-wider text-green-800 dark:text-green-200">
+                      DETRANSAI
+                    </code>
+                    <div className="mt-2 text-xs text-green-600 dark:text-green-400">
+                      50% off first month
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <p>
