@@ -35,9 +35,9 @@ export default function CustomChatMessages({
     const isAtBottom =
       Math.abs(
         container.scrollHeight - container.scrollTop - container.clientHeight,
-      ) < 100; // within 50px of bottom
+      ) < 100; // within 70px of bottom
 
-    if (isAtBottom || chatStatus !== "ready") {
+    if (isAtBottom || chatStatus === "submitted") {
       // only scroll if user was already at bottom
       container.scrollTo({
         top: container.scrollHeight,
@@ -115,8 +115,11 @@ export default function CustomChatMessages({
                         <div className="mr-2 whitespace-nowrap no-underline">
                           {"<-"}
                         </div>
-                        <div className="hover:underline">
+                        <div className="hidden hover:underline sm:block">
                           {"Back to Portal"}
+                        </div>
+                        <div className="hover:underline sm:hidden">
+                          {"Back"}
                         </div>
                       </div>
                     </Link>
