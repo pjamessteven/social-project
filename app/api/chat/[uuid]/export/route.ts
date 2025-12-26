@@ -2,7 +2,7 @@ import { chatConversations, db } from "@/db";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
-// Helper function to escape RTF special characters
+// Helper function to escape RTF special characters in plain text
 function escapeRtf(text: string): string {
   return text
     .replace(/\\/g, "\\\\") // Backslash
@@ -13,15 +13,16 @@ function escapeRtf(text: string): string {
     .replace(/\r/g, ""); // Carriage return
 }
 
-// Helper to extract text content from message parts
+// Helper to extract RTF content from message parts
 function extractMessageContent(message: any): string {
-  let content = "";
+  let rtfContent = "";
 
   // Handle message with parts
   if (message.parts && Array.isArray(message.parts)) {
     message.parts.forEach((part: any) => {
       if (part.type === "text" && part.text) {
-        content += part.text + "\n";
+        // Escape plain text and add it
+        rtfContent += escapeRtf(part.text) + "\\par\n";
       } else if (
         part.type === "data-comment-query-event" ||
         part.type === "data-video-query-event"
@@ -29,30 +30,32 @@ function extractMessageContent(message: any): string {
         const data = part.data || {};
         const title = data.title || "Query";
         const query = data.query || "";
-        content += `\\par{\\i ${title}: ${query}\\i0}\\par\\par\n`;
+        // Build RTF with italics properly
+        // Note: In RTF, {\i text} makes text italic
+        rtfContent += "\\par{\\i " + escapeRtf(`${title}: ${query}`) + "\\i0}\\par\\par\n";
       } else if (part.type === "text-delta" && part.delta) {
-        content += part.delta;
+        rtfContent += escapeRtf(part.delta);
       }
     });
   }
   // Handle older message formats
   else if (typeof message.content === "string") {
-    content = message.content;
+    rtfContent = escapeRtf(message.content);
   } else if (message.content && typeof message.content === "object") {
     if (message.content.text) {
-      content = message.content.text;
+      rtfContent = escapeRtf(message.content.text);
     } else if (message.content.content) {
-      content = message.content.content;
+      rtfContent = escapeRtf(message.content.content);
     } else {
-      content = JSON.stringify(message.content);
+      rtfContent = escapeRtf(JSON.stringify(message.content));
     }
   } else if (message.text) {
-    content = message.text;
+    rtfContent = escapeRtf(message.text);
   } else if (message.delta) {
-    content = message.delta;
+    rtfContent = escapeRtf(message.delta);
   }
 
-  return content;
+  return rtfContent;
 }
 
 export async function GET(
@@ -118,11 +121,10 @@ export async function GET(
         // Add role in bold
         rtfContent += `\\b ${role}:\\b0\\par\n`;
 
-        // Get and escape content
+        // Get RTF content (already properly formatted and escaped)
         const content = extractMessageContent(message);
         if (content.trim()) {
-          const escapedContent = escapeRtf(content);
-          rtfContent += escapedContent + "\\par\n";
+          rtfContent += content;
         } else {
           rtfContent += "[No text content]\\par\n";
         }
