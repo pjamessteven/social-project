@@ -19,6 +19,8 @@ elif [ -f package-lock.json ]; then
   npm run db:migrate
 elif [ -f pnpm-lock.yaml ]; then
   corepack enable pnpm && pnpm run db:migrate
+else
+  npm run db:migrate
 fi
 
 # Start the app
