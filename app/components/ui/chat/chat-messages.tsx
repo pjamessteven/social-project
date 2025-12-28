@@ -6,10 +6,22 @@ import { ChatMessage, ChatMessages, useChatUI } from "@llamaindex/chat-ui";
 import { Download, RefreshCcw } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChatMessageAvatar } from "./chat-avatar";
 import { ChatMessageContent } from "./chat-message-content";
 import { ComponentDef } from "./custom/events/types";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/app/components/ui/dialog";
+import { Button } from "@/app/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/app/components/ui/radio-group";
+import { Label } from "@/app/components/ui/label";
 
 export default function CustomChatMessages({
   componentDefs,
@@ -55,28 +67,28 @@ export default function CustomChatMessages({
     router.replace(newUrl);
   };
 
-  const handleDownloadRTF = () => {
-    // Get the current conversation UUID from the URL
+  const [isDownloadDialogOpen, setIsDownloadDialogOpen] = useState(false);
+  const [selectedFormat, setSelectedFormat] = useState<"pdf" | "rtf">("pdf");
 
+  const handleDownload = () => {
     if (!conversationId) {
       console.error("No conversation found in URL");
       return;
     }
 
-    // Trigger download
-    window.open(`/api/chat/${conversationId}/export-rtf`, "_blank");
+    // Close the dialog
+    setIsDownloadDialogOpen(false);
+    
+    // Trigger download based on selected format
+    if (selectedFormat === "pdf") {
+      window.open(`/api/chat/${conversationId}/export-pdf`, "_blank");
+    } else {
+      window.open(`/api/chat/${conversationId}/export-rtf`, "_blank");
+    }
   };
 
-  const handleDownloadPDF = () => {
-    // Get the current conversation UUID from the URL
-
-    if (!conversationId) {
-      console.error("No conversation found in URL");
-      return;
-    }
-
-    // Trigger download
-    window.open(`/api/chat/${conversationId}/export-pdf`, "_blank");
+  const handleDownloadClick = () => {
+    setIsDownloadDialogOpen(true);
   };
 
   return (
@@ -137,16 +149,60 @@ export default function CustomChatMessages({
                     </Link>
                     <div className="flex items-center gap-4">
                       {messages.length > 0 && (
-                        <div
-                          onClick={handleDownloadRTF}
-                          className="cursor-pointer border-r pr-2 font-semibold hover:underline"
-                        >
-                          <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-sm opacity-90 transition-colors sm:text-base">
-                            <div className="mr-2 whitespace-nowrap">
-                              <Download className="h-4 w-4" />
+                        <>
+                          <div
+                            onClick={handleDownloadClick}
+                            className="cursor-pointer border-r pr-2 font-semibold hover:underline"
+                          >
+                            <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-sm opacity-90 transition-colors sm:text-base">
+                              <div className="mr-2 whitespace-nowrap">
+                                <Download className="h-4 w-4" />
+                              </div>
                             </div>
                           </div>
-                        </div>
+                          <Dialog open={isDownloadDialogOpen} onOpenChange={setIsDownloadDialogOpen}>
+                            <DialogContent className="sm:max-w-[425px]">
+                              <DialogHeader>
+                                <DialogTitle>File Format</DialogTitle>
+                                <DialogDescription>
+                                  Choose the format you want to download the conversation in.
+                                </DialogDescription>
+                              </DialogHeader>
+                              <div className="py-4">
+                                <RadioGroup
+                                  value={selectedFormat}
+                                  onValueChange={(value) => setSelectedFormat(value as "pdf" | "rtf")}
+                                  className="space-y-3"
+                                >
+                                  <div className="flex items-center space-x-2">
+                                    <RadioGroupItem value="pdf" id="pdf" />
+                                    <Label htmlFor="pdf" className="cursor-pointer">
+                                      PDF Document
+                                    </Label>
+                                  </div>
+                                  <div className="flex items-center space-x-2">
+                                    <RadioGroupItem value="rtf" id="rtf" />
+                                    <Label htmlFor="rtf" className="cursor-pointer">
+                                      RTF (Rich Text Format)
+                                    </Label>
+                                  </div>
+                                </RadioGroup>
+                              </div>
+                              <DialogFooter>
+                                <Button
+                                  type="button"
+                                  variant="outline"
+                                  onClick={() => setIsDownloadDialogOpen(false)}
+                                >
+                                  Cancel
+                                </Button>
+                                <Button type="button" onClick={handleDownload}>
+                                  Download
+                                </Button>
+                              </DialogFooter>
+                            </DialogContent>
+                          </Dialog>
+                        </>
                       )}
                       <div
                         onClick={newConversation}
@@ -168,17 +224,61 @@ export default function CustomChatMessages({
               {isLast && hideControls && (
                 <div className="flex justify-end">
                   {messages.length > 0 && (
-                    <div
-                      onClick={handleDownloadRTF}
-                      className="cursor-pointer pr-2 font-semibold hover:underline"
-                    >
-                      <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-sm opacity-90 transition-colors sm:text-base">
-                        Download Conversation
-                        <div className="mx-2 whitespace-nowrap">
-                          <Download className="h-4 w-4" />
+                    <>
+                      <div
+                        onClick={handleDownloadClick}
+                        className="cursor-pointer pr-2 font-semibold hover:underline"
+                      >
+                        <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-sm opacity-90 transition-colors sm:text-base">
+                          Download Conversation
+                          <div className="mx-2 whitespace-nowrap">
+                            <Download className="h-4 w-4" />
+                          </div>
                         </div>
                       </div>
-                    </div>
+                      <Dialog open={isDownloadDialogOpen} onOpenChange={setIsDownloadDialogOpen}>
+                        <DialogContent className="sm:max-w-[425px]">
+                          <DialogHeader>
+                            <DialogTitle>File Format</DialogTitle>
+                            <DialogDescription>
+                              Choose the format you want to download the conversation in.
+                            </DialogDescription>
+                          </DialogHeader>
+                          <div className="py-4">
+                            <RadioGroup
+                              value={selectedFormat}
+                              onValueChange={(value) => setSelectedFormat(value as "pdf" | "rtf")}
+                              className="space-y-3"
+                            >
+                              <div className="flex items-center space-x-2">
+                                <RadioGroupItem value="pdf" id="pdf" />
+                                <Label htmlFor="pdf" className="cursor-pointer">
+                                  PDF Document
+                                </Label>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <RadioGroupItem value="rtf" id="rtf" />
+                                <Label htmlFor="rtf" className="cursor-pointer">
+                                  RTF (Rich Text Format)
+                                </Label>
+                              </div>
+                            </RadioGroup>
+                          </div>
+                          <DialogFooter>
+                            <Button
+                              type="button"
+                              variant="outline"
+                              onClick={() => setIsDownloadDialogOpen(false)}
+                            >
+                              Cancel
+                            </Button>
+                            <Button type="button" onClick={handleDownload}>
+                              Download
+                            </Button>
+                          </DialogFooter>
+                        </DialogContent>
+                      </Dialog>
+                    </>
                   )}
                 </div>
               )}
