@@ -64,7 +64,19 @@ export default function CustomChatMessages({
     }
 
     // Trigger download
-    window.open(`/api/chat/${conversationId}/export`, "_blank");
+    window.open(`/api/chat/${conversationId}/export-rtf`, "_blank");
+  };
+
+  const handleDownloadPDF = () => {
+    // Get the current conversation UUID from the URL
+
+    if (!conversationId) {
+      console.error("No conversation found in URL");
+      return;
+    }
+
+    // Trigger download
+    window.open(`/api/chat/${conversationId}/export-pdf`, "_blank");
   };
 
   return (
