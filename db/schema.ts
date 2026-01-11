@@ -120,6 +120,28 @@ export const detransChatCache = pgTable(
   }),
 );
 
+// Users table for authentication
+export const users = pgTable(
+  "users",
+  {
+    id: serial("id").primaryKey(),
+    username: varchar("username", { length: 255 }).notNull().unique(),
+    email: varchar("email", { length: 255 }).notNull().unique(),
+    passwordHash: varchar("password_hash", { length: 255 }).notNull(),
+    role: varchar("role", { length: 50 }).notNull().default("user"), // 'admin', 'moderator', 'user'
+    isActive: boolean("is_active").default(true).notNull(),
+    lastLogin: timestamp("last_login"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    usernameIdx: index("idx_users_username").on(table.username),
+    emailIdx: index("idx_users_email").on(table.email),
+    roleIdx: index("idx_users_role").on(table.role),
+    isActiveIdx: index("idx_users_is_active").on(table.isActive),
+  }),
+);
+
 // Chat conversations table
 export const chatConversations = pgTable(
   "chat_conversations",
@@ -129,6 +151,11 @@ export const chatConversations = pgTable(
       .default(sql`gen_random_uuid()`),
     mode: varchar("mode", { length: 20 }).notNull(), // 'detrans_chat', 'detrans', 'affirm'
     title: varchar("title", { length: 500 }),
+    featured: boolean("featured").default(false).notNull(),
+    archived: boolean("archived").default(false).notNull(),
+    conversationSummary: text("conversation_summary"),
+    country: varchar("country", { length: 100 }), // Country from IP geolocation
+    ipAddress: varchar("ip_address", { length: 45 }), // IPv4 (max 15) or IPv6 (max 45)
     messages: text("messages").notNull(), // JSON string of the conversation messages
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
@@ -137,6 +164,8 @@ export const chatConversations = pgTable(
     modeIdx: index("idx_chat_conversations_mode").on(table.mode),
     createdIdx: index("idx_chat_conversations_created").on(table.createdAt),
     updatedIdx: index("idx_chat_conversations_updated").on(table.updatedAt),
+    featuredIdx: index("idx_chat_conversations_featured").on(table.featured),
+    archivedIdx: index("idx_chat_conversations_archived").on(table.archived),
   }),
 );
 
@@ -380,11 +409,28 @@ export const detransCommentSchema = z.object({
   linkId: z.string().max(50).nullable(),
 });
 
+export const userSchema = z.object({
+  id: z.number().int(),
+  username: z.string().max(255),
+  email: z.string().max(255),
+  passwordHash: z.string().max(255),
+  role: z.string().max(50),
+  isActive: z.boolean(),
+  lastLogin: z.date().nullable(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+
 export const chatConversationSchema = z.object({
   uuid: z.string(),
   mode: z.string().max(20),
   title: z.string().max(500).nullable(),
   messages: z.string(),
+  featured: z.boolean(),
+  archived: z.boolean(),
+  conversationSummary: z.string().nullable(),
+  country: z.string().max(100).nullable(), // Country from IP geolocation
+  ipAddress: z.string().max(45).nullable(), // IPv4 (max 15) or IPv6 (max 45)
   createdAt: z.date(),
   updatedAt: z.date(),
 });
@@ -394,6 +440,7 @@ export type Cache = z.infer<typeof cacheSchema>;
 export type DetransUserEvent = z.infer<typeof detransUserEventSchema>;
 export type DetransUser = z.infer<typeof detransUserSchema>;
 export type DetransComment = z.infer<typeof detransCommentSchema>;
+export type User = z.infer<typeof userSchema>;
 export type ChatConversation = z.infer<typeof chatConversationSchema>;
 export type Tag = z.infer<typeof tagSchema>;
 export type TagType = z.infer<typeof tagTypeSchema>;

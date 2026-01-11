@@ -16,7 +16,11 @@ export default async function TermsPage() {
               <b>Chat Messages: </b>
               <br />
               We preserve all chat records as well as the responses to all
-              questions asked in Deep Research mode. Chat records are not associated with your IP address or any data that could potentially be used to identify you. Chat records may analysed and used for research purposes in the future. Please avoid sharing any sensitive information.
+              questions asked in Deep Research mode. Chat records are not
+              associated with your IP address or any data that could potentially
+              be used to identify you. Chat records may analysed and used for
+              research purposes in the future. Please avoid sharing any
+              sensitive information.
             </li>
             <li>
               <b>Cookies / Tracking Technologies: </b> <br />
@@ -26,9 +30,8 @@ export default async function TermsPage() {
             <li>
               <b>IP Addresses: </b>
               <br />
-              When you make a request to our servers we temporarily receive and
-              store your IP address in volatile memory (typically for a day)
-              solely to count requests and enforce rate limits that prevent
+              When you make a request to our servers we store your IP address in
+              order to count requests and enforce rate limits that prevent
               abuse.
             </li>
             <li>
@@ -60,19 +63,21 @@ export default async function TermsPage() {
         <li>
           <b>How Long We Keep Data </b>
           <br />
-          All chat records will be preserved. IP addresses used for rate limiting are automatically deleted within
-          minutes after the last request or at the end of the rate-limit window,
-          whichever comes first. Voluntary information (e.g., support emails) is
-          retained only as long as needed to resolve your inquiry or satisfy
-          legal obligations.
+          All chat records will be preserved. IP addresses used for rate
+          limiting are automatically deleted within minutes after the last
+          request or at the end of the rate-limit window, whichever comes first.
+          Voluntary information (e.g., support emails) is retained only as long
+          as needed to resolve your inquiry or satisfy legal obligations.
         </li>
 
         <li>
           <b>Third-Party Sharing </b>
           <br />
-          We may choose to share anonymised chat records with academics and researchers who are looking to improve outcomes for people experiencing gender dysphoria. We may disclose IP
-          addresses or other data only when required by law or to protect our
-          rights, users, or the public (e.g., fraud prevention, court order).
+          We may choose to share anonymised chat records with academics and
+          researchers who are looking to improve outcomes for people
+          experiencing gender dysphoria. We may disclose IP addresses or other
+          data only when required by law or to protect our rights, users, or the
+          public (e.g., fraud prevention, court order).
         </li>
 
         <li>

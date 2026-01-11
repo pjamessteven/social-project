@@ -5,8 +5,13 @@ import {
 } from "@/app/lib/questions";
 import { slugify } from "@/app/lib/utils";
 import { db } from "@/db";
-import { detransUsers, detransQuestions, affirmQuestions } from "@/db/schema";
-import { desc } from "drizzle-orm";
+import {
+  affirmQuestions,
+  chatConversations,
+  detransQuestions,
+  detransUsers,
+} from "@/db/schema";
+import { and, desc, eq, or } from "drizzle-orm";
 import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -34,6 +39,28 @@ export async function GET(request: NextRequest) {
     .select({ name: questionsTable.name })
     .from(questionsTable)
     .orderBy(desc(questionsTable.viewsCount))
+    .limit(1000);
+
+  // Fetch featured conversations (limit to 1000 for sitemap)
+  // Filter by mode: 'affirm' for affirm site, 'detrans' or 'detrans_chat' for detrans site
+  const featuredConversations = await db
+    .select({ uuid: chatConversations.uuid })
+    .from(chatConversations)
+    .where(
+      isAffirm
+        ? and(
+            eq(chatConversations.featured, true),
+            eq(chatConversations.mode, "affirm"),
+          )
+        : and(
+            eq(chatConversations.featured, true),
+            or(
+              eq(chatConversations.mode, "detrans"),
+              eq(chatConversations.mode, "detrans_chat"),
+            ),
+          ),
+    )
+    .orderBy(desc(chatConversations.updatedAt))
     .limit(1000);
 
   const baseRoutes = [
@@ -109,6 +136,12 @@ export async function GET(request: NextRequest) {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/conversations`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
   ];
 
   const affirmRoutes = [
@@ -147,6 +180,12 @@ export async function GET(request: NextRequest) {
       lastModified: new Date().toISOString(),
       changeFrequency: "monthly",
       priority: 0.4,
+    },
+    {
+      url: `${baseUrl}/conversations`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
+      priority: 0.8,
     },
   ];
 
@@ -199,7 +238,7 @@ export async function GET(request: NextRequest) {
 
   // Generate chat routes for top questions from database
   const topQuestionResearchRoutes = topQuestions.map((question) => ({
-    url: isAffirm 
+    url: isAffirm
       ? `${baseUrl}/affirm/research/${slugify(question.name)}`
       : `${baseUrl}/research/${slugify(question.name)}`,
     lastModified: new Date().toISOString(),
@@ -207,10 +246,21 @@ export async function GET(request: NextRequest) {
     priority: 0.8,
   }));
 
+  // Generate routes for featured conversations
+  const featuredConversationRoutes = featuredConversations.map(
+    (conversation) => ({
+      url: `${baseUrl}/chat/${conversation.uuid}`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    }),
+  );
+
   const allRoutes = [
     ...(isAffirm ? affirmRoutes : baseRoutes),
     ...(isAffirm ? affirmResearchRoutes : researchRoutes),
     ...topQuestionResearchRoutes,
+    ...featuredConversationRoutes,
     ...(isAffirm ? [] : userRoutes),
     ...(isAffirm ? [] : tagRoutes),
     ...(isAffirm ? [] : sexRoutes),

@@ -1,7 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
-import { chatConversations } from "@/db/schema";
-import { desc, count } from "drizzle-orm";
+import { isAdmin } from "@/app/lib/auth/auth";
 import { db } from "@/db";
+import { chatConversations } from "@/db/schema";
+import { count, desc, eq } from "drizzle-orm";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   try {
@@ -10,24 +11,51 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get("limit") || "20", 10);
     const offset = (page - 1) * limit;
 
-    const conversationsPromise = db
+    const featuredParam = searchParams.get("featured");
+    const isFeatured = featuredParam === "true";
+
+    // Check if user is trying to access all conversations without being an admin
+    if (!isFeatured) {
+      const adminCheck = await isAdmin();
+      if (!adminCheck) {
+        return NextResponse.json(
+          {
+            error:
+              "Unauthorized: Admin access required to view all conversations",
+          },
+          { status: 403 },
+        );
+      }
+    }
+
+    // Build conversations query with conditional where clause
+    const conversationsQuery = db
       .select({
         uuid: chatConversations.uuid,
         title: chatConversations.title,
         updatedAt: chatConversations.updatedAt,
         mode: chatConversations.mode,
         messages: chatConversations.messages,
+        featured: chatConversations.featured,
+        archived: chatConversations.archived,
+        conversationSummary: chatConversations.conversationSummary,
       })
       .from(chatConversations)
       .orderBy(desc(chatConversations.updatedAt))
       .limit(limit)
       .offset(offset);
 
-    const totalPromise = db.select({ value: count() }).from(chatConversations);
+    // Build count query with conditional where clause
+    const countQuery = db.select({ value: count() }).from(chatConversations);
 
+    // Execute queries with conditional where clauses
     const [conversations, totalResult] = await Promise.all([
-      conversationsPromise,
-      totalPromise,
+      isFeatured
+        ? conversationsQuery.where(eq(chatConversations.featured, true))
+        : conversationsQuery,
+      isFeatured
+        ? countQuery.where(eq(chatConversations.featured, true))
+        : countQuery,
     ]);
 
     const total = totalResult[0].value;
