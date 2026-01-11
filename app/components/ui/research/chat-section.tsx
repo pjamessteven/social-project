@@ -24,12 +24,23 @@ export default function ChatSection({
   showDonationMessage: boolean;
 }) {
   const { setChatHandler } = useChatStore();
+  const [isArchived, setIsArchived] = useState(false);
 
   const handleError = (error: unknown) => {
     if (!(error instanceof Error)) throw error;
     let errorMessage: string;
     try {
-      errorMessage = JSON.parse(error.message).detail;
+      const parsedError = JSON.parse(error.message);
+      errorMessage = parsedError.detail || parsedError.error;
+
+      // Check if this is an archived conversation error (status 410)
+      if (
+        error.message.includes('"status":410') ||
+        error.message.includes("archived")
+      ) {
+        setIsArchived(true);
+        return; // Don't show alert for archived conversations
+      }
     } catch (e) {
       errorMessage = error.message;
     }
@@ -72,6 +83,7 @@ export default function ChatSection({
               onReset={onReset}
               mode={mode}
               showDonationMessage={showDonationMessage}
+              isArchived={isArchived}
             />
           </ChatUI>
         </div>
@@ -84,10 +96,12 @@ function ChatSectionPanel({
   onReset,
   mode,
   showDonationMessage,
+  isArchived,
 }: {
   onReset: () => void;
   mode: "detrans" | "affirm";
   showDonationMessage: boolean;
+  isArchived: boolean;
 }) {
   const [componentDefs, setComponentDefs] = useState<ComponentDef[]>([]);
   const [dynamicEventsErrors, setDynamicEventsErrors] = useState<string[]>([]); // contain all errors when rendering dynamic events from componentDir
@@ -117,12 +131,28 @@ function ChatSectionPanel({
         errors={uniqueErrors}
         clearErrors={() => setDynamicEventsErrors([])}
       />
+      {isArchived && (
+        <div className="mx-4 mt-4 rounded-lg border border-yellow-200 bg-yellow-50 p-4 dark:border-yellow-800 dark:bg-yellow-900/20">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
+                Conversation Archived
+              </h3>
+              <p className="mt-1 text-xs text-yellow-700 dark:text-yellow-300">
+                This conversation was archived after 30 minutes of inactivity.
+                You can view the messages but cannot send new ones.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
       <CustomChatMessages
         showDonationMessage={showDonationMessage}
         componentDefs={componentDefs}
         appendError={appendError}
         onReset={onReset}
         mode={mode}
+        isArchived={isArchived}
       />
     </div>
   );

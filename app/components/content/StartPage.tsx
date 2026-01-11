@@ -1,7 +1,6 @@
 "use server";
 
 import { isBot } from "@/app/lib/isBot";
-import { slugify } from "@/app/lib/utils";
 import {
   BookOpen,
   ExternalLink,
@@ -24,7 +23,10 @@ import AffirmAnimation from "../ui/affirm-animation";
 import { Button } from "../ui/button";
 import CompareAnimation from "../ui/compare-animation";
 import LizardAnimation from "../ui/lizard-animation";
+import ChatBubbleButton from "./ChatBubbleButton";
+import DisclaimerMessage from "./DisclaimerMessage";
 import DonationCard from "./DonationCard";
+import { FeaturedConversations } from "./FeaturedConversations/FeaturedConversations";
 import ParticipateCard from "./ParticipateCard";
 import { QuestionCategories } from "./QuestionCategories";
 import { QuestionTabs } from "./QuestionTabs";
@@ -44,9 +46,55 @@ export async function StartPage({
   const ua = (await headers()).get("user-agent");
   const bot = isBot(ua);
 
+  const detransStarters = [
+    {
+      display: "Sorry, but what's up with the lizards?",
+      full: "Why do detransitioners use the lizard to represent themselves online?",
+    },
+    {
+      display:
+        "I'm questioning my gender identity and I think I might be trans",
+      full: "I'm questioning my gender identity and I think I might be trans",
+    },
+    {
+      display:
+        "I currently identify as trans and I'm thinking about detransitioning",
+      full: "I currently identify as trans and I'm thinking about detransitioning",
+    },
+    {
+      display:
+        "I'm a parent, family member, or friend of someone who is transitioning",
+      full: "I'm a parent, family member, or friend of someone who is transitioning",
+    },
+    {
+      display:
+        "I'm a researcher studying gender identity and detransition experiences",
+      full: "I'm a researcher studying gender identity and detransition experiences",
+    },
+    {
+      display:
+        "I want to learn about the struggles and challenges that detransitioners face",
+      full: "I want to learn about the struggles and challenges that detransitioners face",
+    },
+    {
+      display:
+        "I'm seeking to understand the complex reasons behind gender identity adoption",
+      full: "I'm seeking to understand the complex reasons behind gender identity adoption, and how they might differ between males and females.",
+    },
+
+    {
+      display:
+        "I want you to debunk misinformation and commonly held beliefs about detransition",
+      full: "Please debunk all of the misinformation and commonly held beliefs about detransitioners, in as much depth as possible.",
+    },
+  ];
+
   return (
     <>
       <div className="relative flex flex-col pb-[88px]">
+        <div className="border-muted-foreground/50 -mx-4 -mt-1 hidden border-b sm:mx-4 sm:mt-0 sm:rounded-xl sm:border sm:pt-4">
+          <DisclaimerMessage />
+        </div>
         <h1 className="z-10 mt-[20vh] text-3xl font-bold sm:text-4xl">
           <div className="text-muted-foreground opacity-30 dark:opacity-80">
             {mode === "detrans"
@@ -169,7 +217,7 @@ export async function StartPage({
           <div className="">
             <div className="prose dark:prose-invert prose-base border- z-10 mt-4 max-w-full pt-4">
               <div className="flex w-full justify-end">
-                <div className="text-background mb-0 max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white">
+                <div className="text-background mb-0 max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 font-medium sm:max-w-lg dark:bg-white">
                   Hello! What's a detransitioner?
                 </div>
               </div>
@@ -192,241 +240,20 @@ export async function StartPage({
               <p className="mt-">
                 <span className="font-semibold">How can I help you today?</span>
               </p>
-              <div className="font grid gap-1">
-                <Link
-                  prefetch={false}
-                  href={
-                    "/chat/?starter=" +
-                    slugify(
-                      "Why do detransitioners use the lizard to represent themselves online?",
-                    )
-                  }
-                  className="no-underline"
-                >
-                  <div
-                    className={"flex flex-row items-center border-b pt-1 pb-2"}
-                  >
-                    <div className="hover:text-primary text-muted-foreground flex cursor-pointer flex-row items-start italic transition-colors">
-                      <span className="mr-2 whitespace-nowrap">{"->"}</span>
-                      <span className="pr-2">
-                        Sorry, but what's up with the lizards?
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-                <Link
-                  prefetch={false}
-                  href={
-                    "/chat/?starter=" +
-                    slugify(
-                      "I'm questioning my gender identity and I think I might be trans",
-                    )
-                  }
-                  className="no-underline"
-                >
-                  <div
-                    className={"flex flex-row items-center border-b pt-1 pb-2"}
-                  >
-                    <div className="hover:text-primary text-muted-foreground flex cursor-pointer flex-row items-start italic transition-colors">
-                      <span className="mr-2 whitespace-nowrap">{"->"}</span>
-                      <span className="pr-2">
-                        I'm questioning my gender identity and I think I might
-                        be trans
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-                <Link
-                  prefetch={false}
-                  href={
-                    "/chat/?starter=" +
-                    slugify(
-                      "I currently identify as trans and I'm thinking about detransitioning",
-                    )
-                  }
-                  className="no-underline"
-                >
-                  <div
-                    className={"flex flex-row items-center border-b pt-1 pb-2"}
-                  >
-                    <div className="hover:text-primary text-muted-foreground flex cursor-pointer flex-row items-start italic transition-colors">
-                      <span className="mr-2 whitespace-nowrap">{"->"}</span>
-                      <span className="pr-2">
-                        I currently identify as trans and I'm thinking about
-                        detransitioning
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-                <Link
-                  prefetch={false}
-                  href={
-                    "/chat/?starter=" +
-                    slugify(
-                      "I'm a parent, family member, or friend of someone who is transitioning",
-                    )
-                  }
-                  className="no-underline"
-                >
-                  <div
-                    className={"flex flex-row items-center border-b pt-1 pb-2"}
-                  >
-                    <div className="hover:text-primary text-muted-foreground flex cursor-pointer flex-row items-start italic transition-colors">
-                      <span className="mr-2 whitespace-nowrap">{"->"}</span>
-                      <span className="pr-2">
-                        I'm a parent, family member, or friend of someone who is
-                        transitioning
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-                {/*
-                <Link
-                  prefetch={false}
-                  href={
-                    "/chat/?starter=" +
-                    slugify(
-                      "I'm a researcher studying gender identity and detransition experiences",
-                    )
-                  }
-                  className="no-underline"
-                >
-                  <div
-                    className={"flex flex-row items-center border-b pt-1 pb-2"}
-                  >
-                    <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start italic transition-colors">
-                      <span className="mr-2 whitespace-nowrap">{"->"}</span>
-                      <span className="pr-2">
-                        I'm a researcher studying gender identity and
-                        detransition experiences
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-                 */}
-                <Link
-                  prefetch={false}
-                  href={
-                    "/chat/?starter=" +
-                    slugify(
-                      "I'm seeking to understand the complex reasons behind gender identity adoption, and how they might differ between males and females.",
-                    )
-                  }
-                  className="no-underline"
-                >
-                  <div
-                    className={"flex flex-row items-center border-b pt-1 pb-2"}
-                  >
-                    <div className="hover:text-primary text-muted-foreground flex cursor-pointer flex-row items-start italic transition-colors">
-                      <span className="mr-2 whitespace-nowrap">{"->"}</span>
-                      <span className="pr-2">
-                        I'm seeking to understand the complex reasons behind
-                        gender identity adoption
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-                <Link
-                  prefetch={false}
-                  href={
-                    "/chat/?starter=" +
-                    slugify(
-                      "I want to learn about the struggles and challenges that detransitioners face",
-                    )
-                  }
-                  className="no-underline"
-                >
-                  <div
-                    className={"flex flex-row items-center border-b pt-1 pb-2"}
-                  >
-                    <div className="hover:text-primary text-muted-foreground flex cursor-pointer flex-row items-start italic transition-colors">
-                      <span className="mr-2 whitespace-nowrap">{"->"}</span>
-                      <span className="pr-2">
-                        I want to learn about the struggles and challenges that
-                        detransitioners face
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-                <Link
-                  prefetch={false}
-                  href={
-                    "/chat/?starter=" +
-                    slugify(
-                      "Please debunk and expose all of the misinformation and lies that have been spread about detransitioners, in as much depth as possible.",
-                    )
-                  }
-                  className="no-underline"
-                >
-                  <div
-                    className={"flex flex-row items-center border-b pt-1 pb-2"}
-                  >
-                    <div className="hover:text-primary text-muted-foreground flex cursor-pointer flex-row items-start italic transition-colors">
-                      <span className="mr-2 whitespace-nowrap">{"->"}</span>
-                      <span className="pr-2">
-                        I want you to debunk the misinformation and lies spread
-                        about detransitioners
-                      </span>
-                    </div>
-                  </div>
-                </Link>
+              <div className="flex w-full flex-col gap-3 sm:items-end">
+                {detransStarters.map((starter, index) => (
+                  <ChatBubbleButton
+                    key={index}
+                    message={starter}
+                    isLink={true}
+                  />
+                ))}
               </div>
-
-              {/* 
-              <p>
-                A detransitioner is someone who used to identify as transgender.
-                Since 2011, gender dysphoria diagnosises{" "}
-                <a
-                  href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12320607/"
-                  target="_blank"
-                  className="underline"
-                >
-                  are up 50-fold
-                </a>{" "}
-                (5000%) in the UK. Young women are increasingly overrepresented
-                in these statistics. Meanwhile, a growing
-                number of people are healing,
-                detransitioning and sharing their experiences. These people call
-                themselves detrans, and they use the lizard emoji as a symbol of regeneration and healing.
-              </p>
-              <div className="flex w-full justify-end pt-2">
-                <div className="text-background max-w-xs rounded-tl-xl rounded-br-xl rounded-bl-xl bg-black px-4 py-2 sm:max-w-lg dark:bg-white">
-                  What is detrans.ai and what is it good for?
-                </div>
+              <div className="mt-8 mb-6 w-full">
+                <div className="w-full border-t" />
+                <div className="mt-1 w-full border-t" />
+                <div className="mt-1 w-full border-t" />
               </div>
-              <p>
-                <b>detrans.ai</b> answers questions about gender from a detrans
-                perspective by finding relevant experiences from the
-                <span>
-                  {" "}
-                  <a
-                    href="https://reddit.com/r/detrans"
-                    target="_blank"
-                    className="underline"
-                  >
-                    /r/detrans
-                  </a>{" "}
-                  community on Reddit.{" "}
-                </span>
-                This produces helpful and insightful responses that help users
-                understand why some people adopt, inhabit, and let go of gender
-                identities, and how these experiences shape one’s relationship
-                with self, body and the world. 
-              </p>
-              <p>
-                Use <b>detrans.ai</b> if you are thinking about transitioning, as a
-                virtual gender therapist, for detransition help and advice,  or simply as a research tool. You can
-                also compare trans and detrans perspectives on the{" "}
-                <Link prefetch={false} href={"/compare"} className="underline">
-                  compare
-                </Link>{" "}
-                page.
-                <br className="hidden " /> If this website helped you,{" "}
-                <Link prefetch={false} href={"/contact"} className="underline">
-                  please let me know!
-                </Link>
-              </p>
-              */}
             </div>
           </div>
         ) : mode === "affirm" ? (
@@ -546,32 +373,24 @@ export async function StartPage({
             </p>
           </div>
         )}
-        {/*
-        <div className="prose dark:prose-invert max-w-full">
-          <details className="mb- mt-5 cursor-pointer sm:mt-6">
-            <summary className="text-m sm:text-base">
-              <i>
-                Disclaimer: All experiences and perspectives are sourced from
-                Reddit and processed by AI.
-              </i>
-            </summary>
-            <div className="p-0 py-0 py-3">
-              While Reddit is a platform where real people share personal
-              stories, it may also contain bot-generated or misleading content.
-              You are encouraged to inspect the original Reddit posts to verify
-              the source and context. Please note that{" "}
-              {mode === "affirm"
-                ? "/r/mtf and /r/ftm are heavily moderated subreddits"
-                : "/r/detrans is a heavily moderated subreddit"}
-              , but moderation does not guarantee the accuracy or authenticity
-              of every post.
-            </div>
-          </details>
-        </div>
-         */}
 
-        {mode === "detrans" && <ParticipateCard />}
-
+        {mode === "detrans" && <FeaturedConversations />}
+        {bot && mode === "detrans" && (
+          <div className="mt-4 text-center">
+            <Link href="/conversations">
+              <button className="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
+                Browse all Conversations
+              </button>
+            </Link>
+          </div>
+        )}
+        {mode === "detrans" && (
+          <div className="mt-8 w-full sm:mt-0">
+            <div className="w-full border-t" />
+            <div className="mt-1 w-full border-t" />
+            <div className="mt-1 w-full border-t" />
+          </div>
+        )}
         {mode === "detrans" && (
           <div className="sm:prose-base prose dark:prose-invert mt-8 max-w-full sm:mt-8">
             <h3 className="font-">Deep Research Mode</h3>
@@ -649,6 +468,9 @@ export async function StartPage({
 
         <div className="mr-16= mt-4 w-full">
           <DonationCard mode={mode} />
+        </div>
+        <div className="mt-4 w-full">
+          {mode === "detrans" && <ParticipateCard />}
         </div>
 
         {mode === "detrans" && (

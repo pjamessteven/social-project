@@ -1,16 +1,14 @@
 import { chatConversations, db } from "@/db";
-import { eq } from "drizzle-orm";
-import { NextRequest, NextResponse } from "next/server";
-import {
+import ReactPDF, {
   Document,
   Page,
+  StyleSheet,
   Text,
   View,
-  StyleSheet,
-  Font,
-  PDFViewer,
 } from "@react-pdf/renderer";
-import ReactPDF from "@react-pdf/renderer";
+import { eq } from "drizzle-orm";
+import { NextRequest, NextResponse } from "next/server";
+import React from "react";
 
 // Register fonts if needed (optional)
 // Font.register({ family: 'Inter', src: '/fonts/Inter-Regular.ttf' });
@@ -129,38 +127,49 @@ function extractPlainText(message: any): string {
 function parseMarkdownToElements(text: string): React.ReactElement[] {
   const elements: React.ReactElement[] = [];
   const lines = text.split("\n");
-  
+
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    
+
     // Check for headers
     if (line.startsWith("## ")) {
       elements.push(
-        <Text key={i} style={{ fontSize: 18, fontWeight: "bold", marginVertical: 5 }}>
+        <Text
+          key={i}
+          style={{ fontSize: 18, fontWeight: "bold", marginVertical: 5 }}
+        >
           {line.substring(3)}
-        </Text>
+        </Text>,
       );
     } else if (line.startsWith("### ")) {
       elements.push(
-        <Text key={i} style={{ fontSize: 16, fontWeight: "bold", marginVertical: 4 }}>
+        <Text
+          key={i}
+          style={{ fontSize: 16, fontWeight: "bold", marginVertical: 4 }}
+        >
           {line.substring(4)}
-        </Text>
+        </Text>,
       );
     } else if (line.startsWith("#### ")) {
       elements.push(
-        <Text key={i} style={{ fontSize: 14, fontWeight: "bold", marginVertical: 3 }}>
+        <Text
+          key={i}
+          style={{ fontSize: 14, fontWeight: "bold", marginVertical: 3 }}
+        >
           {line.substring(5)}
-        </Text>
+        </Text>,
       );
-    } 
+    }
     // Check for bullet points
     else if (line.match(/^\s*[-*+]\s/)) {
       const bulletText = line.replace(/^\s*[-*+]\s+/, "");
       elements.push(
         <View key={i} style={styles.bullet}>
           <Text style={styles.bulletPoint}>•</Text>
-          <Text style={styles.bulletText}>{parseInlineMarkdown(bulletText)}</Text>
-        </View>
+          <Text style={styles.bulletText}>
+            {parseInlineMarkdown(bulletText)}
+          </Text>
+        </View>,
       );
     }
     // Check for numbered lists
@@ -171,8 +180,10 @@ function parseMarkdownToElements(text: string): React.ReactElement[] {
         elements.push(
           <View key={i} style={styles.bullet}>
             <Text style={styles.bulletPoint}>{num}.</Text>
-            <Text style={styles.bulletText}>{parseInlineMarkdown(bulletText)}</Text>
-          </View>
+            <Text style={styles.bulletText}>
+              {parseInlineMarkdown(bulletText)}
+            </Text>
+          </View>,
         );
       }
     }
@@ -188,7 +199,7 @@ function parseMarkdownToElements(text: string): React.ReactElement[] {
       elements.push(
         <Text key={`code-${i}`} style={styles.codeBlock}>
           {codeLines.join("\n")}
-        </Text>
+        </Text>,
       );
     }
     // Regular paragraph
@@ -196,14 +207,18 @@ function parseMarkdownToElements(text: string): React.ReactElement[] {
       elements.push(
         <Text key={i} style={styles.content}>
           {parseInlineMarkdown(line)}
-        </Text>
+        </Text>,
       );
     } else {
       // Empty line
-      elements.push(<Text key={i} style={{ marginBottom: 10 }}>{"\n"}</Text>);
+      elements.push(
+        <Text key={i} style={{ marginBottom: 10 }}>
+          {"\n"}
+        </Text>,
+      );
     }
   }
-  
+
   return elements;
 }
 
@@ -213,7 +228,7 @@ function parseInlineMarkdown(text: string): React.ReactElement | string {
   const parts: (string | React.ReactElement)[] = [];
   let currentText = "";
   let i = 0;
-  
+
   while (i < text.length) {
     // Check for bold **text**
     if (text.substring(i, i + 2) === "**") {
@@ -224,22 +239,39 @@ function parseInlineMarkdown(text: string): React.ReactElement | string {
       const endIndex = text.indexOf("**", i + 2);
       if (endIndex !== -1) {
         const boldText = text.substring(i + 2, endIndex);
-        parts.push(<Text key={i} style={styles.bold}>{boldText}</Text>);
+        parts.push(
+          <Text key={i} style={styles.bold}>
+            {boldText}
+          </Text>,
+        );
         i = endIndex + 2;
         continue;
       }
     }
     // Check for italic *text*
-    else if (text[i] === "*" && (i === 0 || text[i-1] === " " || text[i-1] === "\n") && 
-             i + 1 < text.length && text[i+1] !== "*") {
+    else if (
+      text[i] === "*" &&
+      (i === 0 || text[i - 1] === " " || text[i - 1] === "\n") &&
+      i + 1 < text.length &&
+      text[i + 1] !== "*"
+    ) {
       const endIndex = text.indexOf("*", i + 1);
-      if (endIndex !== -1 && (endIndex === text.length - 1 || text[endIndex+1] === " " || text[endIndex+1] === "\n")) {
+      if (
+        endIndex !== -1 &&
+        (endIndex === text.length - 1 ||
+          text[endIndex + 1] === " " ||
+          text[endIndex + 1] === "\n")
+      ) {
         if (currentText) {
           parts.push(currentText);
           currentText = "";
         }
         const italicText = text.substring(i + 1, endIndex);
-        parts.push(<Text key={i} style={styles.italic}>{italicText}</Text>);
+        parts.push(
+          <Text key={i} style={styles.italic}>
+            {italicText}
+          </Text>,
+        );
         i = endIndex + 1;
         continue;
       }
@@ -253,32 +285,40 @@ function parseInlineMarkdown(text: string): React.ReactElement | string {
           currentText = "";
         }
         const codeText = text.substring(i + 1, endIndex);
-        parts.push(<Text key={i} style={styles.inlineCode}>{codeText}</Text>);
+        parts.push(
+          <Text key={i} style={styles.inlineCode}>
+            {codeText}
+          </Text>,
+        );
         i = endIndex + 1;
         continue;
       }
     }
-    
+
     currentText += text[i];
     i++;
   }
-  
+
   if (currentText) {
     parts.push(currentText);
   }
-  
+
   if (parts.length === 1 && typeof parts[0] === "string") {
     return parts[0] as string;
   }
-  
+
   return <Text>{parts}</Text>;
 }
 
 // Create PDF Document component
-function ConversationPDF({ messages, dateStr, timeStr }: { 
-  messages: any[], 
-  dateStr: string, 
-  timeStr: string 
+function ConversationPDF({
+  messages,
+  dateStr,
+  timeStr,
+}: {
+  messages: any[];
+  dateStr: string;
+  timeStr: string;
 }) {
   return (
     <Document>
@@ -289,11 +329,11 @@ function ConversationPDF({ messages, dateStr, timeStr }: {
             Exported on {dateStr} at {timeStr}
           </Text>
         </View>
-        
+
         {messages.map((message, index) => {
           const role = message.role === "user" ? "User" : "detrans.ai";
           const content = extractPlainText(message);
-          
+
           return (
             <View key={index} style={styles.messageContainer} wrap={false}>
               <Text style={styles.role}>{role}:</Text>
@@ -362,10 +402,10 @@ export async function GET(
 
     // Create PDF
     const pdfDoc = (
-      <ConversationPDF 
-        messages={messages} 
-        dateStr={dateStr} 
-        timeStr={timeStr} 
+      <ConversationPDF
+        messages={messages}
+        dateStr={dateStr}
+        timeStr={timeStr}
       />
     );
 
@@ -375,7 +415,7 @@ export async function GET(
     // Create response with PDF headers
     const filename = `detrans-conversation-${uuid}-${now.toISOString().split("T")[0]}.pdf`;
 
-    return new NextResponse(pdfBuffer, {
+    return new NextResponse(new Uint8Array(pdfBuffer), {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",

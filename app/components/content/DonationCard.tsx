@@ -29,7 +29,7 @@ export default function DonationCard({
             }
           ></div>
         </div>
-        <CardDescription className="text-foreground dark:text-primary/80 mt-2 brightness-50 hover:underline dark:brightness-150">
+        <CardDescription className="mt-2">
           If you appreciate this free service please consider making a donation.
           <br className="hidden md:inline" />
           The site will be run in cache-only mode if I run out of money, with no

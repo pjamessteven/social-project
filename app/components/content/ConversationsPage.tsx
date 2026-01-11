@@ -1,9 +1,12 @@
 "use client";
 
-import { formatDistanceToNow } from "date-fns";
+import { List, Star } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import ChatSection from "../ui/chat/chat-section";
+import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
+import AdminPanel from "./AdminPanel";
+import { ConversationCard } from "./ConversationCard/ConversationCard";
 import FullWidthPage from "./FullWidthPage";
 
 export interface ConversationSummary {
@@ -12,6 +15,9 @@ export interface ConversationSummary {
   updatedAt: string;
   mode: string;
   messages: string;
+  featured: boolean;
+  conversationSummary: string | null;
+  country: string | null;
 }
 
 export interface ConversationsResponse {
@@ -39,63 +45,6 @@ interface Message {
   role: "user" | "model";
 }
 
-const ConversationItem = ({
-  convo,
-  isActive,
-  onClick,
-}: {
-  convo: ConversationSummary;
-  isActive: boolean;
-  onClick: () => void;
-}) => {
-  let userMessages: Message[] = [];
-  try {
-    if (convo.messages) {
-      const parsedMessages = JSON.parse(convo.messages);
-      if (Array.isArray(parsedMessages)) {
-        userMessages = parsedMessages.filter(
-          (msg: any) => msg.role === "user" && Array.isArray(msg.parts),
-        );
-      }
-    }
-  } catch (e) {
-    console.error("Failed to parse messages for convo", convo.uuid, e);
-  }
-
-  return (
-    <li>
-      <button
-        onClick={onClick}
-        className={`block w-full text-left rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-700 ${
-          isActive ? "bg-blue-50 border-l-4 border-blue-500 dark:bg-blue-900/20" : ""
-        }`}
-      >
-        <p className="truncate text-sm font-semibold">
-          {convo.title || "Untitled Conversation"}
-        </p>
-        <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-          {convo.mode} - Updated{" "}
-          {formatDistanceToNow(new Date(convo.updatedAt), {
-            addSuffix: true,
-          })}
-        </p>
-        <div className="mt-2 space-y-1">
-          {userMessages.map((msg) =>
-            msg.parts.map((part, partIndex) => (
-              <p
-                key={`${msg.id}-${partIndex}`}
-                className="truncate text-xs text-gray-600 dark:text-gray-300"
-              >
-                - {part.text}
-              </p>
-            )),
-          )}
-        </div>
-      </button>
-    </li>
-  );
-};
-
 export default function ConversationsPageClient({
   currentConversationId: initialConversationId,
 }: ConversationsPageClientProps) {
@@ -103,49 +52,180 @@ export default function ConversationsPageClient({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [currentConversationId, setCurrentConversationId] = useState(
-    initialConversationId || searchParams.get('conversationId') || undefined
+    initialConversationId || searchParams.get("conversationId") || undefined,
   );
-  const [conversationItems, setConversationItems] = useState<ConversationSummary[]>([]);
+  const [conversationItems, setConversationItems] = useState<
+    ConversationSummary[]
+  >([]);
   const [pagination, setPagination] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isAdminUser, setIsAdminUser] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
+  const [togglingFeaturedUuid, setTogglingFeaturedUuid] = useState<
+    string | null
+  >(null);
+  const isFeaturedView = searchParams.get("featured") === "true";
 
   const desktopSentinel = useRef<HTMLDivElement | null>(null);
   const mobileSentinel = useRef<HTMLDivElement | null>(null);
 
-  // Fetch conversations on mount
-  useEffect(() => {
-    const fetchConversations = async () => {
-      try {
-        const response = await fetch('/api/chat/conversations');
-        if (response.ok) {
-          const data = await response.json();
-          setConversationItems(data.items || []);
-          setPagination(data.pagination);
-        }
-      } catch (error) {
-        console.error('Failed to fetch conversations:', error);
-      } finally {
-        setInitialLoading(false);
+  // Check admin status on mount
+  const checkAdminStatus = useCallback(async () => {
+    try {
+      const response = await fetch("/api/auth/me");
+      if (response.ok) {
+        const data = await response.json();
+        setIsAdminUser(data.user?.role === "admin");
       }
-    };
-    if (conversationItems.length === 0){
-    fetchConversations();
+    } catch (error) {
+      console.error("Failed to check admin status:", error);
+    } finally {
+      setAuthChecked(true);
     }
   }, []);
 
+  useEffect(() => {
+    checkAdminStatus();
+  }, [checkAdminStatus]);
+
+  // Fetch conversations on mount and when tab changes
+  const fetchConversations = useCallback(
+    async (page = 1) => {
+      try {
+        const params = new URLSearchParams();
+        params.set("page", page.toString());
+        params.set("limit", "20");
+        if (isFeaturedView) {
+          params.set("featured", "true");
+        }
+
+        const response = await fetch(`/api/chat?${params.toString()}`);
+        if (response.ok) {
+          const data = await response.json();
+          if (page === 1) {
+            setConversationItems(data.items || []);
+          } else {
+            setConversationItems((prevItems) => [...prevItems, ...data.items]);
+          }
+          setPagination(data.pagination);
+        }
+      } catch (error) {
+        console.error("Failed to fetch conversations:", error);
+      } finally {
+        if (page === 1) {
+          setInitialLoading(false);
+        }
+        setLoading(false);
+      }
+    },
+    [isFeaturedView],
+  );
+
+  // Initial fetch
+  useEffect(() => {
+    if (conversationItems.length === 0) {
+      fetchConversations(1);
+    }
+  }, [fetchConversations, conversationItems.length]);
+
+  // Reset and refetch when tab changes
+  useEffect(() => {
+    setConversationItems([]);
+    setPagination(null);
+    setInitialLoading(true);
+    fetchConversations(1);
+  }, [isFeaturedView, fetchConversations]);
+
+  // Redirect non-admin users from All tab to Featured tab
+  useEffect(() => {
+    if (authChecked && !isAdminUser && !isFeaturedView) {
+      // Non-admin user trying to view All tab, redirect to Featured
+      const params = new URLSearchParams(searchParams);
+      params.set("featured", "true");
+      router.push(`/conversations?${params.toString()}`, { scroll: false });
+    }
+  }, [authChecked, isAdminUser, isFeaturedView, router, searchParams]);
+
   // Update currentConversationId when URL changes
   useEffect(() => {
-    const urlConversationId = searchParams.get('conversationId');
-    const newConversationId = initialConversationId || urlConversationId || undefined;
+    const urlConversationId = searchParams.get("conversationId");
+    const newConversationId =
+      initialConversationId || urlConversationId || undefined;
     setCurrentConversationId(newConversationId);
   }, [initialConversationId, searchParams]);
 
   const handleConversationClick = (conversationId: string) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("conversationId", conversationId);
+    router.push(`/conversations?${params.toString()}`, {
+      scroll: false,
+    });
     setCurrentConversationId(conversationId);
     setSidebarOpen(false); // Close mobile sidebar
-    router.push(`/conversations?conversationId=${conversationId}`, { scroll: false });
+  };
+
+  const switchToFeatured = () => {
+    const params = new URLSearchParams(searchParams);
+    params.set("featured", "true");
+    router.push(`/conversations?${params.toString()}`, { scroll: false });
+    setSidebarOpen(false);
+  };
+
+  const switchToAll = () => {
+    const params = new URLSearchParams(searchParams);
+    params.delete("featured");
+    router.push(`/conversations?${params.toString()}`, { scroll: false });
+    setSidebarOpen(false);
+  };
+
+  const handleToggleFeatured = async (
+    uuid: string,
+    currentFeatured: boolean,
+  ) => {
+    setTogglingFeaturedUuid(uuid);
+    try {
+      const response = await fetch(`/api/chat/${uuid}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          featured: !currentFeatured,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        // Update the conversation in the local state
+        setConversationItems((prevItems) =>
+          prevItems.map((item) =>
+            item.uuid === uuid
+              ? {
+                  ...item,
+                  featured: data.conversation.featured,
+                  conversationSummary: data.conversation.conversationSummary,
+                }
+              : item,
+          ),
+        );
+
+        // If we're in featured view and we just unfeatured a conversation, remove it from the list
+        if (isFeaturedView && !data.conversation.featured) {
+          setConversationItems((prevItems) =>
+            prevItems.filter((item) => item.uuid !== uuid),
+          );
+        }
+      } else {
+        console.error("Failed to toggle featured status");
+      }
+    } catch (error) {
+      console.error("Error toggling featured status:", error);
+    } finally {
+      setTogglingFeaturedUuid(null);
+    }
   };
 
   const loadMoreConversations = useCallback(async () => {
@@ -154,19 +234,8 @@ export default function ConversationsPageClient({
 
     setLoading(true);
     const nextPage = pagination.page + 1;
-    try {
-      const response = await fetch(
-        `/api/chat/conversations?page=${nextPage}&limit=${pagination.limit}`,
-      );
-      const data = await response.json();
-      setConversationItems((prevItems) => [...prevItems, ...data.items]);
-      setPagination(data.pagination);
-    } catch (error) {
-      console.error("Failed to fetch more conversations:", error);
-    } finally {
-      setLoading(false);
-    }
-  }, [loading, pagination]);
+    await fetchConversations(nextPage);
+  }, [loading, pagination, fetchConversations]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -192,10 +261,10 @@ export default function ConversationsPageClient({
     };
   }, [loadMoreConversations]);
 
-  if (initialLoading) {
+  if (initialLoading || !authChecked) {
     return (
       <FullWidthPage>
-        <div className="flex items-center justify-center h-64">
+        <div className="flex h-64 items-center justify-center">
           <p>Loading conversations...</p>
         </div>
       </FullWidthPage>
@@ -204,23 +273,101 @@ export default function ConversationsPageClient({
 
   return (
     <FullWidthPage>
-      <div className="no-wrap h-full flex w-full flex-row">
+      <div className="no-wrap flex h-full w-full flex-row">
         {/* Sidebar for larger screens */}
-        <div className="hidden h-full w-md flex-shrink-0 border-r border-gray-200 bg-white lg:block dark:border-gray-700 dark:bg-gray-800">
-          <div className="h-full">
-            <h2 className="mb-4 bg-white p-4 text-xl font-bold dark:bg-black">
-              Conversations
-            </h2>
-            <ul className="h-full space-y-1 overflow-y-auto px-4">
-              {conversationItems.map((convo) => (
-                <ConversationItem
-                  key={convo.uuid}
-                  convo={convo}
-                  isActive={currentConversationId === convo.uuid}
-                  onClick={() => handleConversationClick(convo.uuid)}
+        <div
+          className={`hidden h-full ${currentConversationId ? "w-md shrink-0" : "w-full max-w-lg"} border-r border-gray-200 bg-white lg:block dark:border-gray-700 dark:bg-gray-800`}
+        >
+          <div
+            className={`h-full ${currentConversationId ? "" : "mx-auto max-w-4xl"}`}
+          >
+            <div className="border-b border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-black">
+              <h2
+                className={`mb-2 ${currentConversationId ? "" : "text-center"} text-xl font-bold`}
+              >
+                Conversations
+              </h2>
+              <div
+                className={`flex ${currentConversationId ? "" : "justify-center"} space-x-1`}
+              >
+                <div className="mb-4 w-full">
+                  <Tabs
+                    value={isFeaturedView ? "featured" : "all"}
+                    onValueChange={(value: string) => {
+                      if (value === "featured") {
+                        switchToFeatured();
+                      } else if (value === "all") {
+                        switchToAll();
+                      }
+                      setSidebarOpen(false);
+                    }}
+                    className="w-full"
+                  >
+                    <TabsList className="grid h-12 grid-cols-2 gap-1 rounded-xl border">
+                      <TabsTrigger
+                        value="featured"
+                        className="flex-row items-center gap-2 rounded-lg py-2"
+                      >
+                        <Star className="hidden h-4 w-4 sm:block" />
+                        <span className="text-sm font-medium">Featured</span>
+                      </TabsTrigger>
+                      {isAdminUser && (
+                        <TabsTrigger
+                          value="all"
+                          className="flex-row items-center gap-2 rounded-lg py-2"
+                        >
+                          <List className="hidden h-4 w-4 sm:block" />
+                          <span className="text-sm font-medium">All</span>
+                        </TabsTrigger>
+                      )}
+                    </TabsList>
+                  </Tabs>
+                </div>
+              </div>
+            </div>
+            {isAdminUser && (
+              <div
+                className={`border-b border-gray-200 p-4 ${currentConversationId ? "" : "text-center"} dark:border-gray-700`}
+              >
+                <AdminPanel
+                  onLogin={() => {
+                    setIsAdminUser(true);
+                    checkAdminStatus();
+                  }}
+                  onLogout={() => {
+                    setIsAdminUser(false);
+                    checkAdminStatus();
+                  }}
                 />
-              ))}
-            </ul>
+              </div>
+            )}
+            <div className="h-full overflow-y-auto px-4">
+              <div
+                className={`grid ${currentConversationId ? "grid-cols-1" : "grid-cols-1 gap-2 lg:grid-cols-1"}`}
+              >
+                {conversationItems.map((convo) => (
+                  <ConversationCard
+                    key={convo.uuid}
+                    uuid={convo.uuid}
+                    title={convo.title}
+                    updatedAt={convo.updatedAt}
+                    mode={convo.mode}
+                    featured={convo.featured}
+                    conversationSummary={convo.conversationSummary}
+                    country={convo.country}
+                    showFeaturedStar={false}
+                    layout={currentConversationId ? "list" : "grid"}
+                    onClick={() => handleConversationClick(convo.uuid)}
+                    isActive={convo.uuid === currentConversationId}
+                    isAdminUser={isAdminUser}
+                    onToggleFeatured={handleToggleFeatured}
+                    isTogglingFeatured={togglingFeaturedUuid === convo.uuid}
+                  >
+                    {convo.messages}
+                  </ConversationCard>
+                ))}
+              </div>
+            </div>
             {pagination && pagination.page < pagination.totalPages && (
               <div ref={desktopSentinel} />
             )}
@@ -249,17 +396,76 @@ export default function ConversationsPageClient({
             }`}
           >
             <div className="h-full overflow-y-auto p-4">
-              <h2 className="mb-4 text-xl font-bold">Conversations</h2>
-              <ul className="space-y-1">
+              <div className="border-b border-gray-200 p-4 dark:border-gray-700">
+                <h2 className="mb-4 text-xl font-bold">Conversations</h2>
+                <Tabs
+                  value={isFeaturedView ? "featured" : "all"}
+                  onValueChange={(value: string) => {
+                    if (value === "featured") {
+                      switchToFeatured();
+                    } else if (value === "all") {
+                      switchToAll();
+                    }
+                  }}
+                  className="w-full"
+                >
+                  <TabsList className="grid h-12 grid-cols-2 gap-1 rounded-xl border">
+                    <TabsTrigger
+                      value="featured"
+                      className="flex-row items-center gap-2 rounded-lg py-2"
+                    >
+                      <Star className="hidden h-4 w-4 sm:block" />
+                      <span className="text-sm font-medium">Featured</span>
+                    </TabsTrigger>
+                    {isAdminUser && (
+                      <TabsTrigger
+                        value="all"
+                        className="flex-row items-center gap-2 rounded-lg py-2"
+                      >
+                        <List className="hidden h-4 w-4 sm:block" />
+                        <span className="text-sm font-medium">All</span>
+                      </TabsTrigger>
+                    )}
+                  </TabsList>
+                </Tabs>
+              </div>
+              <div className="mb-4">
+                <AdminPanel
+                  onLogin={() => {
+                    setIsAdminUser(true);
+                    checkAdminStatus();
+                  }}
+                  onLogout={() => {
+                    setIsAdminUser(false);
+                    checkAdminStatus();
+                  }}
+                />
+              </div>
+              <div
+                className={`grid ${currentConversationId ? "grid-cols-1" : "grid-cols-1 gap-2 lg:grid-cols-2"}`}
+              >
                 {conversationItems.map((convo) => (
-                  <ConversationItem
+                  <ConversationCard
                     key={convo.uuid}
-                    convo={convo}
-                    isActive={currentConversationId === convo.uuid}
+                    uuid={convo.uuid}
+                    title={convo.title}
+                    updatedAt={convo.updatedAt}
+                    mode={convo.mode}
+                    featured={convo.featured}
+                    conversationSummary={convo.conversationSummary}
+                    country={convo.country}
+                    showFeaturedStar={false}
+                    layout={currentConversationId ? "list" : "grid"}
                     onClick={() => handleConversationClick(convo.uuid)}
-                  />
+                    isActive={convo.uuid === currentConversationId}
+                    isAdminUser={isAdminUser}
+                    onToggleFeatured={handleToggleFeatured}
+                    isTogglingFeatured={togglingFeaturedUuid === convo.uuid}
+                  >
+                    {convo.messages}
+                  </ConversationCard>
                 ))}
-              </ul>
+              </div>
               {pagination && pagination.page < pagination.totalPages && (
                 <div ref={mobileSentinel} />
               )}
@@ -269,42 +475,33 @@ export default function ConversationsPageClient({
         </div>
 
         {/* Main content */}
-        <div className="flex flex-1 flex-col overflow-hidden">
-          {/* Header with sidebar toggle */}
-          <header className="bg-white p-2 shadow-sm lg:hidden dark:bg-gray-900">
-            <button
-              onClick={() => setSidebarOpen(true)}
-              className="rounded-md p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
-            >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+        {currentConversationId && (
+          <div className="flex flex-1 flex-col overflow-hidden">
+            {/* Header with sidebar toggle */}
+            <header className="bg-white p-2 shadow-sm lg:hidden dark:bg-gray-900">
+              <button
+                onClick={() => setSidebarOpen(true)}
+                className="rounded-md p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-              <span className="sr-only">Open sidebar</span>
-            </button>
-          </header>
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+                <span className="sr-only">Open sidebar</span>
+              </button>
+            </header>
 
-          {/* Content area */}
-          <main className="flex-1 overflow-y-auto p-6">
-            {!currentConversationId ? (
-              <div className="flex h-full items-center justify-center">
-                <div className="text-center">
-                  <h1 className="text-2xl font-bold">Select a conversation</h1>
-                  <p className="mt-2 text-gray-500">
-                    Choose a conversation from the sidebar to view its contents.
-                  </p>
-                </div>
-              </div>
-            ) : (
+            {/* Content area */}
+            <main className="flex-1 overflow-y-auto p-6">
               <div className="flex items-center justify-center">
                 <div className="max-w-3xl">
                   <ChatSection
@@ -314,9 +511,9 @@ export default function ConversationsPageClient({
                   />
                 </div>
               </div>
-            )}
-          </main>
-        </div>
+            </main>
+          </div>
+        )}
       </div>
     </FullWidthPage>
   );

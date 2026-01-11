@@ -22,12 +22,14 @@ export default function CustomChatMessages({
   onReset,
   mode,
   showDonationMessage,
+  isArchived,
 }: {
   componentDefs: ComponentDef[];
   appendError: (error: string) => void;
   onReset: () => void;
   mode: "detrans" | "affirm" | "compare";
   showDonationMessage: boolean;
+  isArchived: boolean;
 }) {
   const isDev = process.env.NODE_ENV === "development";
   const path = usePathname();
@@ -77,7 +79,6 @@ export default function CustomChatMessages({
                   message.role == "user" && "user-message mr-12 sm:mr-0",
                 )}
               >
-    
                 <ChatMessageContent
                   componentDefs={componentDefs}
                   appendError={appendError}

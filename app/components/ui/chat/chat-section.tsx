@@ -8,6 +8,7 @@ import { DefaultChatTransport } from "ai";
 import { Loader2 } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
+import DisclaimerMessage from "../../content/DisclaimerMessage";
 import { ResizablePanel, ResizablePanelGroup } from "../resizable";
 import { ChatCanvasPanel } from "./canvas/panel";
 import CustomChatMessages from "./chat-messages";
@@ -29,6 +30,8 @@ export default function ChatSection({
   const [isArchived, setIsArchived] = useState(false);
   const [loading, setLoading] = useState(true);
   const [timeoutError, setTimeoutError] = useState(false);
+  const [title, setTitle] = useState(undefined);
+  const [summary, setSummary] = useState(undefined);
 
   const handleError = (error: unknown) => {
     if (!(error instanceof Error)) throw error;
@@ -96,6 +99,9 @@ export default function ChatSection({
           const data = await response.json();
           // Set the messages directly using the setMessages function
           useChatHandler.setMessages(data.messages);
+          setIsArchived(data.archived);
+          setSummary(data.conversationSummary);
+          setTitle(data.title);
         }
       } catch (error) {
         console.error("Error loading conversation:", error);
@@ -151,6 +157,8 @@ export default function ChatSection({
                   onStartNewChat={handleStartNewChat}
                   timeoutError={timeoutError}
                   conversationId={conversationId}
+                  title={title}
+                  summary={summary}
                 />
                 <ChatCanvasPanel />
               </ResizablePanelGroup>
@@ -168,12 +176,18 @@ function ChatSectionPanel({
   onStartNewChat,
   timeoutError,
   conversationId,
+  title,
+  summary,
+  showHeader = false,
 }: {
   isArchived: boolean;
   onStartNewChat: () => void;
   timeoutError: boolean;
   hideControls?: boolean;
   conversationId?: string;
+  title?: string;
+  summary?: string;
+  showHeader?: boolean;
 }) {
   const [componentDefs, setComponentDefs] = useState<ComponentDef[]>([]);
   const [dynamicEventsErrors, setDynamicEventsErrors] = useState<string[]>([]); // contain all errors when rendering dynamic events from componentDir
@@ -199,25 +213,7 @@ function ChatSectionPanel({
 
   return (
     <ResizablePanel defaultSize={40} minSize={30} className="w-full">
-      <div className="flex h-full min-w-0 flex-1 flex-col gap-4">
-        {isArchived && (
-          <div className="mx-4 mt-4 rounded-lg border border-yellow-200 bg-yellow-50 p-4 dark:border-yellow-800 dark:bg-yellow-900/20">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <div>
-                  <h3 className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
-                    Conversation Archived
-                  </h3>
-                  <p className="mt-1 text-xs text-yellow-700 dark:text-yellow-300">
-                    This conversation was archived after 30 minutes of
-                    inactivity. You can view the messages but cannot send new
-                    ones.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+      <div className="flex h-full w-full min-w-0 flex-1 flex-col gap-4">
         {timeoutError && (
           <div className="mx-4 mt-4 rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-900/20">
             <div className="flex items-center justify-between">
@@ -243,12 +239,44 @@ function ChatSectionPanel({
           errors={uniqueErrors}
           clearErrors={() => setDynamicEventsErrors([])}
         />
+
+        {showHeader && (
+          <div className="w-screen border-b p-4 sm:w-auto">
+            {!isArchived && <DisclaimerMessage />}
+            {title && <h3 className="text-xl font-semibold">{title}</h3>}
+            {summary && (
+              <h3 className="text-muted-foreground mt-4 mb-4">{summary}</h3>
+            )}
+          </div>
+        )}
+
         <CustomChatMessages
           hideControls={hideControls}
           componentDefs={componentDefs}
           appendError={appendError}
           conversationId={conversationId}
         />
+
+        {isArchived && (
+          <div className="-mt-24 w-screen px-4 sm:w-auto">
+            <div className="mb-32 rounded-lg border border-yellow-200 bg-yellow-50 p-4 sm:mx-0 dark:border-yellow-800 dark:bg-yellow-900/20">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <div>
+                    <h3 className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
+                      Conversation Archived
+                    </h3>
+                    <p className="mt-1 text-xs text-yellow-700 dark:text-yellow-300">
+                      This conversation was archived after 30 minutes of
+                      inactivity. You can view the messages but cannot send new
+                      ones.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </ResizablePanel>
   );

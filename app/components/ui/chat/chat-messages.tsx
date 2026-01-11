@@ -1,5 +1,15 @@
 "use client";
 
+import { Button } from "@/app/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/app/components/ui/dialog";
+import { Label } from "@/app/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/app/components/ui/radio-group";
 import { cn, uuidv4 } from "@/app/lib/utils";
 import { useChatStore } from "@/stores/chat-store";
 import { ChatMessage, ChatMessages, useChatUI } from "@llamaindex/chat-ui";
@@ -10,18 +20,6 @@ import { useEffect, useRef, useState } from "react";
 import { ChatMessageAvatar } from "./chat-avatar";
 import { ChatMessageContent } from "./chat-message-content";
 import { ComponentDef } from "./custom/events/types";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/app/components/ui/dialog";
-import { Button } from "@/app/components/ui/button";
-import { RadioGroup, RadioGroupItem } from "@/app/components/ui/radio-group";
-import { Label } from "@/app/components/ui/label";
 
 export default function CustomChatMessages({
   componentDefs,
@@ -78,7 +76,7 @@ export default function CustomChatMessages({
 
     // Close the dialog
     setIsDownloadDialogOpen(false);
-    
+
     // Trigger download based on selected format
     if (selectedFormat === "pdf") {
       window.open(`/api/chat/${conversationId}/export-pdf`, "_blank");
@@ -93,15 +91,6 @@ export default function CustomChatMessages({
 
   return (
     <ChatMessages className="!bg-transparent !p-0">
-      <div className="max-w-screen border-b">
-        <div className="flex flex-col items-center justify-center gap-2 px-4 pb-4 sm:flex-row sm:items-center sm:px-0">
-          <div className="text-muted-foreground text-left text-sm sm:text-center">
-            I can make mistakes, I'm not a replacement for a real therapist!{" "}
-            <br className="hidden sm:inline" /> Do not share any personal
-            information that could be used to identify you.{" "}
-          </div>
-        </div>
-      </div>
       <ChatMessages.List className="!overflow-visible pb-28">
         {messages.map((message, index) => {
           const isLast = index === messages.length - 1;
@@ -160,48 +149,6 @@ export default function CustomChatMessages({
                               </div>
                             </div>
                           </div>
-                          <Dialog open={isDownloadDialogOpen} onOpenChange={setIsDownloadDialogOpen}>
-                            <DialogContent className="sm:max-w-[425px]">
-                              <DialogHeader>
-                                <DialogTitle>File Format</DialogTitle>
-                                <DialogDescription>
-                                  Choose the format you want to download the conversation in.
-                                </DialogDescription>
-                              </DialogHeader>
-                              <div className="py-4">
-                                <RadioGroup
-                                  value={selectedFormat}
-                                  onValueChange={(value) => setSelectedFormat(value as "pdf" | "rtf")}
-                                  className="space-y-3"
-                                >
-                                  <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="pdf" id="pdf" />
-                                    <Label htmlFor="pdf" className="cursor-pointer">
-                                      PDF Document
-                                    </Label>
-                                  </div>
-                                  <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="rtf" id="rtf" />
-                                    <Label htmlFor="rtf" className="cursor-pointer">
-                                      RTF (Rich Text Format)
-                                    </Label>
-                                  </div>
-                                </RadioGroup>
-                              </div>
-                              <DialogFooter>
-                                <Button
-                                  type="button"
-                                  variant="outline"
-                                  onClick={() => setIsDownloadDialogOpen(false)}
-                                >
-                                  Cancel
-                                </Button>
-                                <Button type="button" onClick={handleDownload}>
-                                  Download
-                                </Button>
-                              </DialogFooter>
-                            </DialogContent>
-                          </Dialog>
                         </>
                       )}
                       <div
@@ -227,7 +174,7 @@ export default function CustomChatMessages({
                     <>
                       <div
                         onClick={handleDownloadClick}
-                        className="cursor-pointer pr-2 font-semibold hover:underline"
+                        className="mr-16 cursor-pointer pr-2 font-semibold hover:underline sm:mr-0"
                       >
                         <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-sm opacity-90 transition-colors sm:text-base">
                           Download Conversation
@@ -236,48 +183,6 @@ export default function CustomChatMessages({
                           </div>
                         </div>
                       </div>
-                      <Dialog open={isDownloadDialogOpen} onOpenChange={setIsDownloadDialogOpen}>
-                        <DialogContent className="sm:max-w-[425px]">
-                          <DialogHeader>
-                            <DialogTitle>File Format</DialogTitle>
-                            <DialogDescription>
-                              Choose the format you want to download the conversation in.
-                            </DialogDescription>
-                          </DialogHeader>
-                          <div className="py-4">
-                            <RadioGroup
-                              value={selectedFormat}
-                              onValueChange={(value) => setSelectedFormat(value as "pdf" | "rtf")}
-                              className="space-y-3"
-                            >
-                              <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="pdf" id="pdf" />
-                                <Label htmlFor="pdf" className="cursor-pointer">
-                                  PDF Document
-                                </Label>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="rtf" id="rtf" />
-                                <Label htmlFor="rtf" className="cursor-pointer">
-                                  RTF (Rich Text Format)
-                                </Label>
-                              </div>
-                            </RadioGroup>
-                          </div>
-                          <DialogFooter>
-                            <Button
-                              type="button"
-                              variant="outline"
-                              onClick={() => setIsDownloadDialogOpen(false)}
-                            >
-                              Cancel
-                            </Button>
-                            <Button type="button" onClick={handleDownload}>
-                              Download
-                            </Button>
-                          </DialogFooter>
-                        </DialogContent>
-                      </Dialog>
                     </>
                   )}
                 </div>
@@ -285,6 +190,50 @@ export default function CustomChatMessages({
             </div>
           );
         })}
+        <Dialog
+          open={isDownloadDialogOpen}
+          onOpenChange={setIsDownloadDialogOpen}
+        >
+          <DialogContent className="min-w-80 sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Choose File Format</DialogTitle>
+            </DialogHeader>
+            <div className="py-4">
+              <RadioGroup
+                value={selectedFormat}
+                onValueChange={(value) =>
+                  setSelectedFormat(value as "pdf" | "rtf")
+                }
+                className="space-y-3"
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="pdf" id="pdf" />
+                  <Label htmlFor="pdf" className="cursor-pointer">
+                    PDF Document
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="rtf" id="rtf" />
+                  <Label htmlFor="rtf" className="cursor-pointer">
+                    RTF (Rich Text Format)
+                  </Label>
+                </div>
+              </RadioGroup>
+            </div>
+            <DialogFooter>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setIsDownloadDialogOpen(false)}
+              >
+                Cancel
+              </Button>
+              <Button type="button" onClick={handleDownload}>
+                Download
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
         {/* dummy div for scroll anchor */}
         <div ref={messagesEndRef} />
 

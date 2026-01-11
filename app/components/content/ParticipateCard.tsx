@@ -1,27 +1,34 @@
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, MessageCircleQuestion } from "lucide-react";
 import Link from "next/link";
+import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
 export default function ParticipateCard() {
   return (
     <Link prefetch={false} href={"/participate"} className="no-underline">
-      <div className="group row bg-/20 bg-lizard-500/30 border-lizard-300 relative mt-8 flex cursor-pointer items-center justify-between overflow-hidden rounded-xl border px-3 py-3 text-[#17315b] transition-all duration-500 hover:brightness-110 sm:px-4 sm:py-3 dark:border-[#17315b]/30 dark:bg-[#17315b]/30 dark:text-blue-50">
-        {/* shimmer overlay */}
-        <div className="dark:[#17315b]/30 pointer-events-none absolute inset-0 left-0 w-[300%] translate-x-[-100%] bg-gradient-to-r from-white/20 via-white/10 to-transparent transition-transform duration-500 ease-in-out group-hover:translate-x-[0%] dark:via-white/10"></div>{" "}
-        <div className="z-10 flex flex-col">
-          <div className="text-sm font-semibold brightness-80 sm:text-base">
-            Are you a detransitioner or a desister?
+      <Card className="group bg-lizard-200/30 border-lizard-400 dark:border-lizard-600 dark:bg-lizard-900/70 relative cursor-pointer overflow-hidden rounded-xl border transition-all duration-500 hover:brightness-110">
+        <div className="dark:[#17315b]/30 pointer-events-none absolute inset-0 left-0 w-[300%] translate-x-[-100%] bg-gradient-to-r from-white/20 via-white/10 to-transparent transition-transform duration-500 ease-in-out group-hover:translate-x-[0%] dark:via-white/10"></div>
+        <CardHeader className="z-10">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <MessageCircleQuestion className="text-foreground mr-2 h-5 w-5" />
+              <CardTitle className="text-foreground dark:text-white">
+                Are you a detransitioner or a desister?
+              </CardTitle>
+            </div>
+            <div className="flex items-center space-x-1">
+              <ChevronRight className="h-4 min-w-4 text-[#1d3e72] dark:text-white/40 dark:opacity-80" />
+            </div>
           </div>
-          <div className="mt-1 text-xs opacity-80 sm:text-sm dark:opacity-50">
+          <CardDescription className="z-10 mt-2">
             Participate in studies to help improve scientific understanding of
             transgender identities
             <span className="hidden sm:inline">
               {" "}
               and to improve outcomes for people experiencing gender dysphoria.
             </span>
-          </div>
-        </div>
-        <ChevronRight className="z-10 ml-3 h-4 min-w-4 text-[#1d3e72] dark:text-white/40 dark:opacity-80" />
-      </div>
+          </CardDescription>
+        </CardHeader>
+      </Card>
     </Link>
   );
 }

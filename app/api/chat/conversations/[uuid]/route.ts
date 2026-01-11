@@ -4,12 +4,11 @@ import { OpenAI } from "@llamaindex/openai";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { initSettings } from "../app/settings";
+import { initSettings } from "../../app/settings";
 
 // Schema for the update request
 const updateConversationSchema = z.object({
   featured: z.boolean().optional(),
-  archived: z.boolean().optional(),
   // We could add other fields here in the future
 });
 
@@ -49,19 +48,21 @@ async function generateConversationTitleAndSummary(
 
     // Create a prompt for generating both title and summary
     const titleAndSummaryPrompt = `
+    ### Context
+    - You are summarising conversations with "detrans.ai", which represents detransitioner perspectives.
 
     ### Task
-    1. Generate a concise, descriptive title for this archived conversation (max 10-12 words)
-    2. Generate a 2-3 sentence summary of this archived conversation
+    1. Generate a concise, descriptive title for this conversation (max 10-12 words)
+    2. Generate a 2-3 sentence summary of the conversation
 
     ### IMPORTANT GUIDELINES:
     **For both title and summary:**
-    - Focus on the user and the key points detrans.ai helped with.
-    - Always refer to detrans.ai as **detrans.ai**, not as 'the chatbot, 'the assistant', 'the bot', etc.
     - Do not use any variation of 'assigned sex at birth', AMAB, AFAB etc
     - Do not use the term 'gender dysphoria', use 'gender distress'
     - Do not refer to trans people, use "trans-identified people"
-    - Try to capture the intention of detrans.ai
+    - Keep language respectful and factual
+    - Always refer to the system messages as 'detrans.ai'
+    - Never refer to 'the user', intead refer to 'a person'/'a man'/'a woman'/'a trans-identified person'/'a trans identified male'/'a trans identified female'
 
     ### Format your response as:
     TITLE: [Your generated title here]
@@ -187,7 +188,7 @@ export async function PUT(
       );
     }
 
-    const { featured, archived } = validationResult.data;
+    const { featured } = validationResult.data;
 
     // Check if conversation exists
     const existingConversation = await db
@@ -227,11 +228,6 @@ export async function PUT(
           // Continue without title/summary if generation fails
         }
       }
-    }
-
-    // Update archived flag if provided
-    if (archived !== undefined) {
-      updateData.archived = archived;
     }
 
     // Do not update timestamp for featured/summary operations
@@ -306,9 +302,6 @@ export async function GET(
       mode: chatData.mode,
       title: chatData.title,
       messages,
-      featured: chatData.featured,
-      archived: chatData.archived,
-      conversationSummary: chatData.conversationSummary,
       createdAt: chatData.createdAt,
       updatedAt: chatData.updatedAt,
     });
@@ -372,7 +365,7 @@ export async function POST(
       .set({
         title: generatedTitle,
         conversationSummary: summary,
-        updatedAt: new Date(),
+        // Do not update timestamp when generating summary
       })
       .where(eq(chatConversations.uuid, uuid))
       .returning();
