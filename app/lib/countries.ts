@@ -288,7 +288,7 @@ export function getCountryByCode(code: string): CountryData | undefined {
   }
 
   // Check regular countries
-  return COUNTRIES.find(country => country.code === normalizedCode);
+  return COUNTRIES.find((country) => country.code === normalizedCode);
 }
 
 /**
@@ -303,13 +303,13 @@ export function getCountryByName(name: string): CountryData | undefined {
 
   // Check special cases first
   const specialEntry = Object.values(SPECIAL_COUNTRIES).find(
-    country => country.name.toLowerCase() === normalizedName
+    (country) => country.name.toLowerCase() === normalizedName,
   );
   if (specialEntry) return specialEntry;
 
   // Check regular countries (exact or partial match)
-  return COUNTRIES.find(country =>
-    country.name.toLowerCase().includes(normalizedName)
+  return COUNTRIES.find((country) =>
+    country.name.toLowerCase().includes(normalizedName),
   );
 }
 
@@ -318,11 +318,74 @@ export function getCountryByName(name: string): CountryData | undefined {
  * @param code - Country code
  * @returns Formatted string like "🇺🇸 United States" or "🌐 Unknown" if not found
  */
-export function formatCountryDisplay(code: string): string {
-  const country = getCountryByCode(code);
-  if (!country) return `${SPECIAL_COUNTRIES.Unknown.emoji} ${SPECIAL_COUNTRIES.Unknown.name}`;
+export function parseCountryCode(input: string): string | null {
+  if (!input) return null;
 
-  return `${country.emoji} ${country.name}`;
+  // First, check if it's already a country code
+  const normalizedInput = input.toUpperCase();
+  if (getCountryByCode(normalizedInput)) {
+    return normalizedInput;
+  }
+
+  // Check special countries
+  if (SPECIAL_COUNTRIES[normalizedInput]) {
+    return normalizedInput;
+  }
+
+  // Check if input contains special country names
+  for (const [code, data] of Object.entries(SPECIAL_COUNTRIES)) {
+    if (input.includes(data.name)) {
+      return code;
+    }
+  }
+
+  // Try to find country by name (exact or partial match)
+  const countryByName = getCountryByName(input);
+  if (countryByName) {
+    return countryByName.code;
+  }
+
+  // Check if it's a formatted string like "🇺🇸 United States"
+  // Try to extract country name from the formatted string
+  const parts = input.trim().split(" ");
+  if (parts.length >= 2) {
+    // The first part might be an emoji, try without it
+    const possibleName = parts.slice(1).join(" ");
+    const countryWithoutEmoji = getCountryByName(possibleName);
+    if (countryWithoutEmoji) {
+      return countryWithoutEmoji.code;
+    }
+
+    // Also try with the full string (in case there's no emoji)
+    const fullName = parts.join(" ");
+    const countryWithFullName = getCountryByName(fullName);
+    if (countryWithFullName) {
+      return countryWithFullName.code;
+    }
+  }
+
+  // Final fallback: check if the string contains any country name
+  for (const country of COUNTRIES) {
+    if (input.includes(country.name)) {
+      return country.code;
+    }
+  }
+
+  return null;
+}
+
+export function formatCountryDisplay(code: string): string {
+  // First try to parse the input to get a valid country code
+  const parsedCode = parseCountryCode(code);
+  if (parsedCode) {
+    const country = getCountryByCode(parsedCode);
+    if (country) {
+      return `${country.emoji} ${country.name}`;
+    }
+  }
+
+  // If we can't parse it, return unknown
+  return `${SPECIAL_COUNTRIES.Unknown.emoji} ${SPECIAL_COUNTRIES.Unknown.name}`;
 }
 
 /**
@@ -354,7 +417,7 @@ export function formatCountryName(code: string): string {
  * @returns Array of all country codes
  */
 export function getAllCountryCodes(): string[] {
-  return COUNTRIES.map(country => country.code);
+  return COUNTRIES.map((country) => country.code);
 }
 
 /**
@@ -362,7 +425,7 @@ export function getAllCountryCodes(): string[] {
  * @returns Array of all country names
  */
 export function getAllCountryNames(): string[] {
-  return COUNTRIES.map(country => country.name);
+  return COUNTRIES.map((country) => country.name);
 }
 
 /**
@@ -375,9 +438,10 @@ export function searchCountries(query: string): CountryData[] {
 
   const normalizedQuery = query.toLowerCase().trim();
 
-  return COUNTRIES.filter(country =>
-    country.name.toLowerCase().includes(normalizedQuery) ||
-    country.code.toLowerCase().includes(normalizedQuery)
+  return COUNTRIES.filter(
+    (country) =>
+      country.name.toLowerCase().includes(normalizedQuery) ||
+      country.code.toLowerCase().includes(normalizedQuery),
   );
 }
 
@@ -389,7 +453,7 @@ export const COUNTRY_MAP: Record<string, CountryData> = COUNTRIES.reduce(
     map[country.code] = country;
     return map;
   },
-  {} as Record<string, CountryData>
+  {} as Record<string, CountryData>,
 );
 
 // Export all special countries in the map as well

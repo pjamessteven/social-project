@@ -1,5 +1,6 @@
 "use client";
 
+import { useUserStore } from "@/stores/user-store";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -11,9 +12,8 @@ interface AdminPanelProps {
 export default function AdminPanel({ onLogin, onLogout }: AdminPanelProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [username, setUsername] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { user, isAuthenticated, isLoading, logout, checkAuth } =
+    useUserStore();
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [loginData, setLoginData] = useState({
     username: "",
@@ -21,30 +21,10 @@ export default function AdminPanel({ onLogin, onLogout }: AdminPanelProps) {
   });
   const [loginError, setLoginError] = useState("");
 
-  // Check admin status on mount
+  // Check auth status on mount
   useEffect(() => {
-    checkAdminStatus();
-  }, []);
-
-  const checkAdminStatus = async () => {
-    try {
-      const response = await fetch("/api/auth/me");
-      if (response.ok) {
-        const data = await response.json();
-        setIsAdmin(data.user?.role === "admin");
-        setUsername(data.user?.username || null);
-      } else {
-        setIsAdmin(false);
-        setUsername(null);
-      }
-    } catch (error) {
-      console.error("Failed to check admin status:", error);
-      setIsAdmin(false);
-      setUsername(null);
-    } finally {
-      setLoading(false);
-    }
-  };
+    checkAuth();
+  }, [checkAuth]);
 
   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -70,14 +50,18 @@ export default function AdminPanel({ onLogin, onLogout }: AdminPanelProps) {
       const data = await response.json();
 
       if (data.success) {
-        setIsAdmin(true);
-        setUsername(data.user.username);
+        // Update user store with the logged-in user
+        useUserStore.getState().setUser({
+          id: data.user.id,
+          username: data.user.username,
+          email: data.user.email,
+          role: data.user.role,
+        });
+
         setShowLoginForm(false);
         setLoginData({ username: "", password: "" });
         onLogin?.();
         router.refresh();
-        // Refresh the page to update UI state
-        window.location.reload();
       } else {
         setLoginError(data.error || "Login failed");
       }
@@ -89,22 +73,15 @@ export default function AdminPanel({ onLogin, onLogout }: AdminPanelProps) {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("/api/auth/logout", {
-        method: "POST",
-      });
-
-      if (response.ok) {
-        setIsAdmin(false);
-        setUsername(null);
-        onLogout?.();
-        router.refresh();
-      }
+      await logout();
+      onLogout?.();
+      router.refresh();
     } catch (error) {
       console.error("Logout error:", error);
     }
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
         <div className="flex items-center justify-center">
@@ -115,7 +92,7 @@ export default function AdminPanel({ onLogin, onLogout }: AdminPanelProps) {
     );
   }
 
-  if (isAdmin) {
+  if (user?.role === "admin") {
     return (
       <div className="rounded-lg border border-green-200 bg-green-50 p-4 dark:border-green-800 dark:bg-green-900/20">
         <div className="flex items-center justify-between">
@@ -125,7 +102,7 @@ export default function AdminPanel({ onLogin, onLogout }: AdminPanelProps) {
                 Admin Mode
               </span>
               <span className="ml-2 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:bg-green-800 dark:text-green-200">
-                {username}
+                {user.username}
               </span>
             </div>
             <p className="mt-1 text-xs text-green-600 dark:text-green-400">

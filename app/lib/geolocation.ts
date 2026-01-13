@@ -1,5 +1,4 @@
 // social-project/app/lib/geolocation.ts
-import { formatCountryDisplay } from "./countries";
 
 /**
  * Get country from IP address using ipapi.co
@@ -40,7 +39,7 @@ export async function getCountryFromIP(ip: string): Promise<string | null> {
     // Return formatted country display if country code is available
     const countryCode = data.country_code;
     if (countryCode) {
-      return formatCountryDisplay(countryCode);
+      return countryCode;
     }
     return null;
   } catch (error) {
