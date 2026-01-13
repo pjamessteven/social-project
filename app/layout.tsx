@@ -1,4 +1,3 @@
-
 import { Inter } from "next/font/google";
 import Script from "next/script";
 
@@ -6,13 +5,14 @@ import "@llamaindex/chat-ui/styles/editor.css";
 import "@llamaindex/chat-ui/styles/markdown.css";
 import "@llamaindex/chat-ui/styles/pdf.css";
 import { clsx } from "clsx";
-import { Metadata, Viewport } from "next";
+import { Viewport } from "next";
 import { ThemeProvider } from "next-themes";
 import { headers } from "next/headers";
+import { AuthInitializer } from "./components/auth/AuthInitializer";
 import ScrollRestoration from "./components/content/ScrollRestoration";
-import { CustomChatInput } from "./components/ui/custom-chat-input";
 import Header from "./components/ui/common/layout/header";
 import { ContentWarningDialog } from "./components/ui/content-warning-dialog";
+import { CustomChatInput } from "./components/ui/custom-chat-input";
 import "./globals.css";
 import { isBot } from "./lib/isBot";
 
@@ -20,13 +20,13 @@ const inter = Inter({ subsets: ["latin"] });
 
 const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
-}
+};
 
 export async function generateViewport(): Promise<Viewport> {
-  return viewport
+  return viewport;
 }
 
 export default async function RootLayout({
@@ -64,13 +64,14 @@ export default async function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <AuthInitializer />
           <ScrollRestoration />
           {!bot && <ContentWarningDialog host={host} />}
           <div className="relative flex h-[100dvh] flex-col">
             <Header mode={baseMode} />
             <main
               className={
-                "flex h-full min-h-0 flex-1 flex-row justify-center overflow-x-hidden  overflow-y-auto"
+                "flex h-full min-h-0 flex-1 flex-row justify-center overflow-x-hidden overflow-y-auto"
               }
             >
               <div className="h-full w-full overflow-x-hidden overflow-x-visible overflow-y-visible p-4 md:w-3xl">

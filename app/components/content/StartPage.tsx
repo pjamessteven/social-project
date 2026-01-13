@@ -240,7 +240,7 @@ export async function StartPage({
               <p className="mt-">
                 <span className="font-semibold">How can I help you today?</span>
               </p>
-              <div className="flex w-full flex-col gap-3 sm:items-end">
+              <div className="mb-8 flex w-full flex-col gap-3 sm:items-end md:mb-16">
                 {detransStarters.map((starter, index) => (
                   <ChatBubbleButton
                     key={index}
@@ -248,11 +248,6 @@ export async function StartPage({
                     isLink={true}
                   />
                 ))}
-              </div>
-              <div className="mt-8 mb-6 w-full">
-                <div className="w-full border-t" />
-                <div className="mt-1 w-full border-t" />
-                <div className="mt-1 w-full border-t" />
               </div>
             </div>
           </div>
@@ -384,13 +379,7 @@ export async function StartPage({
             </Link>
           </div>
         )}
-        {mode === "detrans" && (
-          <div className="mt-8 w-full sm:mt-0">
-            <div className="w-full border-t" />
-            <div className="mt-1 w-full border-t" />
-            <div className="mt-1 w-full border-t" />
-          </div>
-        )}
+
         {mode === "detrans" && (
           <div className="sm:prose-base prose dark:prose-invert mt-8 max-w-full sm:mt-8">
             <h3 className="font-">Deep Research Mode</h3>

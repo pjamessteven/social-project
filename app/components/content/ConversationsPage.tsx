@@ -1,5 +1,6 @@
 "use client";
 
+import { useUserStore } from "@/stores/user-store";
 import { List, Star } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -48,6 +49,13 @@ interface Message {
 export default function ConversationsPageClient({
   currentConversationId: initialConversationId,
 }: ConversationsPageClientProps) {
+  const { isAuthenticated, user, isLoading: authLoading } = useUserStore();
+  const [favoritedConversations, setFavoritedConversations] = useState<
+    Set<string>
+  >(new Set());
+  const [togglingFavoriteUuid, setTogglingFavoriteUuid] = useState<
+    string | null
+  >(null);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -61,7 +69,6 @@ export default function ConversationsPageClient({
   const [loading, setLoading] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [isAdminUser, setIsAdminUser] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
   const [togglingFeaturedUuid, setTogglingFeaturedUuid] = useState<
     string | null
@@ -71,24 +78,23 @@ export default function ConversationsPageClient({
   const desktopSentinel = useRef<HTMLDivElement | null>(null);
   const mobileSentinel = useRef<HTMLDivElement | null>(null);
 
-  // Check admin status on mount
-  const checkAdminStatus = useCallback(async () => {
+  // Check auth status on mount
+  const checkAuthStatus = useCallback(async () => {
     try {
-      const response = await fetch("/api/auth/me");
-      if (response.ok) {
-        const data = await response.json();
-        setIsAdminUser(data.user?.role === "admin");
-      }
+      // Wait for auth to be checked by AuthInitializer
+      // Just set authChecked to true after a short delay
+      setTimeout(() => {
+        setAuthChecked(true);
+      }, 100);
     } catch (error) {
-      console.error("Failed to check admin status:", error);
-    } finally {
+      console.error("Failed to check auth status:", error);
       setAuthChecked(true);
     }
   }, []);
 
   useEffect(() => {
-    checkAdminStatus();
-  }, [checkAdminStatus]);
+    checkAuthStatus();
+  }, [checkAuthStatus]);
 
   // Fetch conversations on mount and when tab changes
   const fetchConversations = useCallback(
@@ -140,13 +146,13 @@ export default function ConversationsPageClient({
 
   // Redirect non-admin users from All tab to Featured tab
   useEffect(() => {
-    if (authChecked && !isAdminUser && !isFeaturedView) {
+    if (authChecked && user?.role !== "admin" && !isFeaturedView) {
       // Non-admin user trying to view All tab, redirect to Featured
       const params = new URLSearchParams(searchParams);
       params.set("featured", "true");
       router.push(`/conversations?${params.toString()}`, { scroll: false });
     }
-  }, [authChecked, isAdminUser, isFeaturedView, router, searchParams]);
+  }, [authChecked, user, isFeaturedView, router, searchParams]);
 
   // Update currentConversationId when URL changes
   useEffect(() => {
@@ -227,6 +233,74 @@ export default function ConversationsPageClient({
       setTogglingFeaturedUuid(null);
     }
   };
+
+  const handleToggleFavorite = useCallback(
+    async (uuid: string, currentFavorited: boolean) => {
+      if (!isAuthenticated) return;
+
+      setTogglingFavoriteUuid(uuid);
+      try {
+        // Toggle favorite in localStorage
+        const storageKey = `favorites`;
+        const storedFavorites = localStorage.getItem(storageKey);
+        let favoritesList: string[] = storedFavorites
+          ? JSON.parse(storedFavorites)
+          : [];
+
+        if (currentFavorited) {
+          // Remove from favorites
+          favoritesList = favoritesList.filter((favUuid) => favUuid !== uuid);
+        } else {
+          // Add to favorites
+          favoritesList.push(uuid);
+        }
+
+        // Save to localStorage
+        localStorage.setItem(storageKey, JSON.stringify(favoritesList));
+
+        // Update the local state
+        setFavoritedConversations((prev) => {
+          const newSet = new Set(prev);
+          if (!currentFavorited) {
+            newSet.add(uuid);
+          } else {
+            newSet.delete(uuid);
+          }
+          return newSet;
+        });
+      } catch (error) {
+        console.error("Error toggling favorite:", error);
+      } finally {
+        setTogglingFavoriteUuid(null);
+      }
+    },
+    [isAuthenticated],
+  );
+
+  // Load favorites when component mounts and when authentication changes
+  useEffect(() => {
+    const loadFavorites = () => {
+      if (isAuthenticated) {
+        try {
+          const storageKey = `favorites`;
+          const storedFavorites = localStorage.getItem(storageKey);
+          if (storedFavorites) {
+            const favoritesList: string[] = JSON.parse(storedFavorites);
+            setFavoritedConversations(new Set(favoritesList));
+          } else {
+            setFavoritedConversations(new Set());
+          }
+        } catch (error) {
+          console.error("Error loading favorites:", error);
+          setFavoritedConversations(new Set());
+        }
+      } else {
+        setFavoritedConversations(new Set());
+      }
+    };
+
+    loadFavorites();
+  }, [isAuthenticated]);
 
   const loadMoreConversations = useCallback(async () => {
     if (loading || !pagination || pagination.page >= pagination.totalPages)
@@ -311,7 +385,7 @@ export default function ConversationsPageClient({
                         <Star className="hidden h-4 w-4 sm:block" />
                         <span className="text-sm font-medium">Featured</span>
                       </TabsTrigger>
-                      {isAdminUser && (
+                      {user?.role === "admin" && (
                         <TabsTrigger
                           value="all"
                           className="flex-row items-center gap-2 rounded-lg py-2"
@@ -325,18 +399,16 @@ export default function ConversationsPageClient({
                 </div>
               </div>
             </div>
-            {isAdminUser && (
+            {user?.role === "admin" && (
               <div
                 className={`border-b border-gray-200 p-4 ${currentConversationId ? "" : "text-center"} dark:border-gray-700`}
               >
                 <AdminPanel
                   onLogin={() => {
-                    setIsAdminUser(true);
-                    checkAdminStatus();
+                    // Auth state will be updated by AuthInitializer
                   }}
                   onLogout={() => {
-                    setIsAdminUser(false);
-                    checkAdminStatus();
+                    // Auth state will be updated by AuthInitializer
                   }}
                 />
               </div>
@@ -359,9 +431,12 @@ export default function ConversationsPageClient({
                     layout={currentConversationId ? "list" : "grid"}
                     onClick={() => handleConversationClick(convo.uuid)}
                     isActive={convo.uuid === currentConversationId}
-                    isAdminUser={isAdminUser}
+                    isAdminUser={user?.role === "admin"}
                     onToggleFeatured={handleToggleFeatured}
                     isTogglingFeatured={togglingFeaturedUuid === convo.uuid}
+                    isFavorited={favoritedConversations.has(convo.uuid)}
+                    onToggleFavorite={handleToggleFavorite}
+                    isTogglingFavorite={togglingFavoriteUuid === convo.uuid}
                   >
                     {convo.messages}
                   </ConversationCard>
@@ -417,7 +492,7 @@ export default function ConversationsPageClient({
                       <Star className="hidden h-4 w-4 sm:block" />
                       <span className="text-sm font-medium">Featured</span>
                     </TabsTrigger>
-                    {isAdminUser && (
+                    {user?.role === "admin" && (
                       <TabsTrigger
                         value="all"
                         className="flex-row items-center gap-2 rounded-lg py-2"
@@ -432,12 +507,10 @@ export default function ConversationsPageClient({
               <div className="mb-4">
                 <AdminPanel
                   onLogin={() => {
-                    setIsAdminUser(true);
-                    checkAdminStatus();
+                    // Auth state will be updated by AuthInitializer
                   }}
                   onLogout={() => {
-                    setIsAdminUser(false);
-                    checkAdminStatus();
+                    // Auth state will be updated by AuthInitializer
                   }}
                 />
               </div>
@@ -455,12 +528,15 @@ export default function ConversationsPageClient({
                     conversationSummary={convo.conversationSummary}
                     country={convo.country}
                     showFeaturedStar={false}
-                    layout={currentConversationId ? "list" : "grid"}
+                    layout="grid"
                     onClick={() => handleConversationClick(convo.uuid)}
                     isActive={convo.uuid === currentConversationId}
-                    isAdminUser={isAdminUser}
+                    isAdminUser={user?.role === "admin"}
                     onToggleFeatured={handleToggleFeatured}
                     isTogglingFeatured={togglingFeaturedUuid === convo.uuid}
+                    isFavorited={favoritedConversations.has(convo.uuid)}
+                    onToggleFavorite={handleToggleFavorite}
+                    isTogglingFavorite={togglingFavoriteUuid === convo.uuid}
                   >
                     {convo.messages}
                   </ConversationCard>
