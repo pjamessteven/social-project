@@ -267,7 +267,7 @@ export const COUNTRIES: CountryData[] = [
  */
 export const SPECIAL_COUNTRIES: Record<string, CountryData> = {
   Local: { code: "LOCAL", name: "Local", emoji: "🏠" },
-  Unknown: { code: "UNKNOWN", name: "Unknown", emoji: "🌐" },
+  Unknown: { code: "UNKNOWN", name: "Somewhere", emoji: "🌐" },
   EU: { code: "EU", name: "European Union", emoji: "🇪🇺" },
   UN: { code: "UN", name: "United Nations", emoji: "🇺🇳" },
 };

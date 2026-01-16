@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/app/lib/utils";
+import { cn, toggleFeaturedAPI } from "@/app/lib/utils";
 import { useUserStore } from "@/stores/user-store";
 import { History, List, Loader2, MessageSquare, Star } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -39,7 +39,7 @@ function useIsMediumScreen() {
 }
 
 export function FeaturedConversations() {
-  const { isAuthenticated } = useUserStore();
+  const { isAuthenticated, user } = useUserStore();
   const [conversations, setConversations] = useState<FeaturedConversation[]>(
     [],
   );
@@ -48,10 +48,7 @@ export function FeaturedConversations() {
   const [error, setError] = useState<string | null>(null);
   const [currentTab, setCurrentTab] = useState<"featured" | "all">("featured");
   const [showAllMobile, setShowAllMobile] = useState(false);
-  const [favoritedConversations, setFavoritedConversations] = useState<
-    Set<string>
-  >(new Set());
-  const [togglingFavoriteUuid, setTogglingFavoriteUuid] = useState<
+  const [togglingFeaturedUuid, setTogglingFeaturedUuid] = useState<
     string | null
   >(null);
   const [pagination, setPagination] = useState<{
@@ -66,73 +63,42 @@ export function FeaturedConversations() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const isMediumScreen = useIsMediumScreen();
 
-  const handleToggleFavorite = async (
+  const handleToggleFeatured = async (
     uuid: string,
-    currentFavorited: boolean,
+    currentFeatured: boolean,
   ) => {
-    if (!isAuthenticated) return;
+    if (user?.role !== "admin") return;
 
-    setTogglingFavoriteUuid(uuid);
+    setTogglingFeaturedUuid(uuid);
     try {
-      // Toggle favorite in localStorage
-      const storageKey = `favorites`;
-      const storedFavorites = localStorage.getItem(storageKey);
-      let favoritesList: string[] = storedFavorites
-        ? JSON.parse(storedFavorites)
-        : [];
+      const data = await toggleFeaturedAPI(uuid, currentFeatured);
 
-      if (currentFavorited) {
-        // Remove from favorites
-        favoritesList = favoritesList.filter((favUuid) => favUuid !== uuid);
-      } else {
-        // Add to favorites
-        favoritesList.push(uuid);
+      // Update the conversation in the local state
+      setConversations((prevConversations) =>
+        prevConversations.map((convo) =>
+          convo.uuid === uuid
+            ? {
+                ...convo,
+                featured: data.conversation.featured,
+                title: data.conversation.title,
+                conversationSummary: data.conversation.conversationSummary,
+              }
+            : convo,
+        ),
+      );
+
+      // If we're in featured view and we just unfeatured a conversation, remove it from the list
+      if (currentTab === "featured" && !data.conversation.featured) {
+        setConversations((prevConversations) =>
+          prevConversations.filter((convo) => convo.uuid !== uuid),
+        );
       }
-
-      // Save to localStorage
-      localStorage.setItem(storageKey, JSON.stringify(favoritesList));
-
-      // Update the local state
-      setFavoritedConversations((prev) => {
-        const newSet = new Set(prev);
-        if (!currentFavorited) {
-          newSet.add(uuid);
-        } else {
-          newSet.delete(uuid);
-        }
-        return newSet;
-      });
     } catch (error) {
-      console.error("Error toggling favorite:", error);
+      console.error("Error toggling featured status:", error);
     } finally {
-      setTogglingFavoriteUuid(null);
+      setTogglingFeaturedUuid(null);
     }
   };
-
-  // Load favorites when component mounts and when authentication changes
-  useEffect(() => {
-    const loadFavorites = () => {
-      if (isAuthenticated) {
-        try {
-          const storageKey = `favorites`;
-          const storedFavorites = localStorage.getItem(storageKey);
-          if (storedFavorites) {
-            const favoritesList: string[] = JSON.parse(storedFavorites);
-            setFavoritedConversations(new Set(favoritesList));
-          } else {
-            setFavoritedConversations(new Set());
-          }
-        } catch (error) {
-          console.error("Error loading favorites:", error);
-          setFavoritedConversations(new Set());
-        }
-      } else {
-        setFavoritedConversations(new Set());
-      }
-    };
-
-    loadFavorites();
-  }, [isAuthenticated]);
 
   // Generate random heights for loading skeletons between h-32 and h-80
   const generateRandomHeights = (count: number): string[] => {
@@ -273,8 +239,8 @@ export function FeaturedConversations() {
 
   return (
     <div className="relative mb-8">
-      <div className="bg-secondary/60 absolute -left-full z-0 h-full w-[10000px]" />
-      <div className="relative z-20 py-8 sm:px-8 md:-mx-48 md:py-8">
+      <div className="bg-secondary/50 dark:bg-secondary/60 absolute -left-full z-0 h-full w-[10000px] border-t border-b" />
+      <div className="relative z-20 py-8 lg:-mx-48 lg:px-8 lg:py-8">
         <Tabs
           value={currentTab}
           onValueChange={(value: string) =>
@@ -282,19 +248,21 @@ export function FeaturedConversations() {
           }
           className="w-full"
         >
-          <div className="sm:prose-base prose dark:prose-invert md:items-between md:no-wrap mb-4 w-full flex-col md:flex-row">
-            <div className="mt-2 flex items-center justify-start gap-2">
-              <History className="mx-2 h-6 w-6 text-black dark:text-white" />
+          <div className="lg:no-wrap mb-4 flex w-full flex-col lg:flex-row lg:items-center lg:justify-between">
+            <div className="lg:prose-base prose dark:prose-invert flex flex-col">
+              <div className="mt-2 flex items-center justify-start gap-2">
+                <History className="mx-2 h-6 w-6 text-black dark:text-white" />
 
-              <h3 className="my-0! py-0! text-xl font-bold">
-                Recent Conversations
-              </h3>
+                <h3 className="my-0! py-0! text-xl font-bold">
+                  Recent Conversations
+                </h3>
+              </div>
+              <div className="mt-2 mb-6 text-gray-500">
+                See for yourself how detrans.ai is helping people from around
+                the world.
+              </div>
             </div>
-            <div className="mt-2 mb-6 text-gray-500">
-              See for yourself how detrans.ai is helping people from around the
-              world.
-            </div>
-            <TabsList className="mb-4 grid h-12 grid-cols-2 gap-1 rounded-xl border md:w-1/3">
+            <TabsList className="mb-4 grid h-12 grid-cols-2 gap-1 rounded-xl border lg:mb-0 lg:w-1/3">
               <TabsTrigger
                 value="featured"
                 className="flex-row items-center gap-2 rounded-lg py-2"
@@ -505,9 +473,9 @@ export function FeaturedConversations() {
                           setSelectedConversationId(convo.uuid);
                           setDialogOpen(true);
                         }}
-                        isFavorited={favoritedConversations.has(convo.uuid)}
-                        onToggleFavorite={handleToggleFavorite}
-                        isTogglingFavorite={togglingFavoriteUuid === convo.uuid}
+                        isAdminUser={user?.role === "admin"}
+                        onToggleFeatured={handleToggleFeatured}
+                        isTogglingFeatured={togglingFeaturedUuid === convo.uuid}
                       >
                         {convo.messages}
                       </ConversationCard>
@@ -517,7 +485,7 @@ export function FeaturedConversations() {
               </div>
 
               {/* Desktop: Responsive columns */}
-              <div className="hidden grid-cols-1 gap-3 sm:grid sm:grid-cols-2 md:mt-8 md:grid-cols-3">
+              <div className="hidden grid-cols-1 gap-3 sm:grid sm:grid-cols-2 lg:mt-8 lg:grid-cols-3 lg:gap-4">
                 {/* First column - indices 0, 3, 6, ... */}
                 <div className="flex flex-col">
                   {conversations
@@ -527,7 +495,8 @@ export function FeaturedConversations() {
                         <div
                           className={cn(
                             "flex h-full flex-col",
-                            filteredIndex <= filteredArray.length / 2 && "mb-3",
+                            filteredIndex <= filteredArray.length / 2 &&
+                              "mb-3 lg:mb-4",
                           )}
                         >
                           <ConversationCard
@@ -544,10 +513,10 @@ export function FeaturedConversations() {
                               setSelectedConversationId(convo.uuid);
                               setDialogOpen(true);
                             }}
-                            isFavorited={favoritedConversations.has(convo.uuid)}
-                            onToggleFavorite={handleToggleFavorite}
-                            isTogglingFavorite={
-                              togglingFavoriteUuid === convo.uuid
+                            isAdminUser={user?.role === "admin"}
+                            onToggleFeatured={handleToggleFeatured}
+                            isTogglingFeatured={
+                              togglingFeaturedUuid === convo.uuid
                             }
                           >
                             {convo.messages}
@@ -566,7 +535,8 @@ export function FeaturedConversations() {
                         <div
                           className={cn(
                             "flex h-full flex-col",
-                            filteredIndex <= filteredArray.length / 2 && "mb-3",
+                            filteredIndex <= filteredArray.length / 2 &&
+                              "mb-3 lg:mb-4",
                           )}
                         >
                           <ConversationCard
@@ -583,10 +553,10 @@ export function FeaturedConversations() {
                               setSelectedConversationId(convo.uuid);
                               setDialogOpen(true);
                             }}
-                            isFavorited={favoritedConversations.has(convo.uuid)}
-                            onToggleFavorite={handleToggleFavorite}
-                            isTogglingFavorite={
-                              togglingFavoriteUuid === convo.uuid
+                            isAdminUser={user?.role === "admin"}
+                            onToggleFeatured={handleToggleFeatured}
+                            isTogglingFeatured={
+                              togglingFeaturedUuid === convo.uuid
                             }
                           >
                             {convo.messages}
@@ -605,7 +575,8 @@ export function FeaturedConversations() {
                         <div
                           className={cn(
                             "flex h-full flex-col",
-                            filteredIndex <= filteredArray.length / 2 && "mb-3",
+                            filteredIndex <= filteredArray.length / 2 &&
+                              "mb-3 lg:mb-4",
                           )}
                         >
                           <ConversationCard
@@ -622,10 +593,10 @@ export function FeaturedConversations() {
                               setSelectedConversationId(convo.uuid);
                               setDialogOpen(true);
                             }}
-                            isFavorited={favoritedConversations.has(convo.uuid)}
-                            onToggleFavorite={handleToggleFavorite}
-                            isTogglingFavorite={
-                              togglingFavoriteUuid === convo.uuid
+                            isAdminUser={user?.role === "admin"}
+                            onToggleFeatured={handleToggleFeatured}
+                            isTogglingFeatured={
+                              togglingFeaturedUuid === convo.uuid
                             }
                           >
                             {convo.messages}
@@ -716,11 +687,11 @@ export function FeaturedConversations() {
                       : pagination.totalPages;
 
                   return currentPage < totalPages ? (
-                    <div className="mt-8 hidden sm:block md:mt-12">
+                    <div className="mt-8 hidden w-full items-center justify-center sm:flex md:mt-12">
                       <button
                         onClick={handleLoadMore}
                         disabled={loadingMore}
-                        className="dark:text-primary dark:bg-secondary dark:border-muted-foreground/20 flex w-full items-center justify-center gap-2 rounded-lg border bg-white px-4 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:opacity-50"
+                        className="dark:text-primary dark:bg-secondary dark:border-muted-foreground/20 flex w-full max-w-[740px] items-center justify-center gap-2 rounded-lg border bg-white px-4 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:opacity-50"
                       >
                         {loadingMore ? (
                           <>

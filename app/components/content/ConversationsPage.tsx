@@ -1,5 +1,6 @@
 "use client";
 
+import { toggleFeaturedAPI } from "@/app/lib/utils";
 import { useUserStore } from "@/stores/user-store";
 import { List, Star } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -50,12 +51,6 @@ export default function ConversationsPageClient({
   currentConversationId: initialConversationId,
 }: ConversationsPageClientProps) {
   const { isAuthenticated, user, isLoading: authLoading } = useUserStore();
-  const [favoritedConversations, setFavoritedConversations] = useState<
-    Set<string>
-  >(new Set());
-  const [togglingFavoriteUuid, setTogglingFavoriteUuid] = useState<
-    string | null
-  >(null);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -192,40 +187,27 @@ export default function ConversationsPageClient({
   ) => {
     setTogglingFeaturedUuid(uuid);
     try {
-      const response = await fetch(`/api/chat/${uuid}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          featured: !currentFeatured,
-        }),
-      });
+      const data = await toggleFeaturedAPI(uuid, currentFeatured);
 
-      if (response.ok) {
-        const data = await response.json();
+      // Update the conversation in the local state
+      setConversationItems((prevItems) =>
+        prevItems.map((item) =>
+          item.uuid === uuid
+            ? {
+                ...item,
+                featured: data.conversation.featured,
+                title: data.conversation.title,
+                conversationSummary: data.conversation.conversationSummary,
+              }
+            : item,
+        ),
+      );
 
-        // Update the conversation in the local state
+      // If we're in featured view and we just unfeatured a conversation, remove it from the list
+      if (isFeaturedView && !data.conversation.featured) {
         setConversationItems((prevItems) =>
-          prevItems.map((item) =>
-            item.uuid === uuid
-              ? {
-                  ...item,
-                  featured: data.conversation.featured,
-                  conversationSummary: data.conversation.conversationSummary,
-                }
-              : item,
-          ),
+          prevItems.filter((item) => item.uuid !== uuid),
         );
-
-        // If we're in featured view and we just unfeatured a conversation, remove it from the list
-        if (isFeaturedView && !data.conversation.featured) {
-          setConversationItems((prevItems) =>
-            prevItems.filter((item) => item.uuid !== uuid),
-          );
-        }
-      } else {
-        console.error("Failed to toggle featured status");
       }
     } catch (error) {
       console.error("Error toggling featured status:", error);
@@ -233,74 +215,6 @@ export default function ConversationsPageClient({
       setTogglingFeaturedUuid(null);
     }
   };
-
-  const handleToggleFavorite = useCallback(
-    async (uuid: string, currentFavorited: boolean) => {
-      if (!isAuthenticated) return;
-
-      setTogglingFavoriteUuid(uuid);
-      try {
-        // Toggle favorite in localStorage
-        const storageKey = `favorites`;
-        const storedFavorites = localStorage.getItem(storageKey);
-        let favoritesList: string[] = storedFavorites
-          ? JSON.parse(storedFavorites)
-          : [];
-
-        if (currentFavorited) {
-          // Remove from favorites
-          favoritesList = favoritesList.filter((favUuid) => favUuid !== uuid);
-        } else {
-          // Add to favorites
-          favoritesList.push(uuid);
-        }
-
-        // Save to localStorage
-        localStorage.setItem(storageKey, JSON.stringify(favoritesList));
-
-        // Update the local state
-        setFavoritedConversations((prev) => {
-          const newSet = new Set(prev);
-          if (!currentFavorited) {
-            newSet.add(uuid);
-          } else {
-            newSet.delete(uuid);
-          }
-          return newSet;
-        });
-      } catch (error) {
-        console.error("Error toggling favorite:", error);
-      } finally {
-        setTogglingFavoriteUuid(null);
-      }
-    },
-    [isAuthenticated],
-  );
-
-  // Load favorites when component mounts and when authentication changes
-  useEffect(() => {
-    const loadFavorites = () => {
-      if (isAuthenticated) {
-        try {
-          const storageKey = `favorites`;
-          const storedFavorites = localStorage.getItem(storageKey);
-          if (storedFavorites) {
-            const favoritesList: string[] = JSON.parse(storedFavorites);
-            setFavoritedConversations(new Set(favoritesList));
-          } else {
-            setFavoritedConversations(new Set());
-          }
-        } catch (error) {
-          console.error("Error loading favorites:", error);
-          setFavoritedConversations(new Set());
-        }
-      } else {
-        setFavoritedConversations(new Set());
-      }
-    };
-
-    loadFavorites();
-  }, [isAuthenticated]);
 
   const loadMoreConversations = useCallback(async () => {
     if (loading || !pagination || pagination.page >= pagination.totalPages)
@@ -434,9 +348,6 @@ export default function ConversationsPageClient({
                     isAdminUser={user?.role === "admin"}
                     onToggleFeatured={handleToggleFeatured}
                     isTogglingFeatured={togglingFeaturedUuid === convo.uuid}
-                    isFavorited={favoritedConversations.has(convo.uuid)}
-                    onToggleFavorite={handleToggleFavorite}
-                    isTogglingFavorite={togglingFavoriteUuid === convo.uuid}
                   >
                     {convo.messages}
                   </ConversationCard>
@@ -534,9 +445,6 @@ export default function ConversationsPageClient({
                     isAdminUser={user?.role === "admin"}
                     onToggleFeatured={handleToggleFeatured}
                     isTogglingFeatured={togglingFeaturedUuid === convo.uuid}
-                    isFavorited={favoritedConversations.has(convo.uuid)}
-                    onToggleFavorite={handleToggleFavorite}
-                    isTogglingFavorite={togglingFavoriteUuid === convo.uuid}
                   >
                     {convo.messages}
                   </ConversationCard>
