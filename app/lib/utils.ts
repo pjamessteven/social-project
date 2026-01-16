@@ -81,3 +81,24 @@ export function formatDate(dateString: string): string {
     });
   }
 }
+
+export async function toggleFeaturedAPI(
+  uuid: string,
+  currentFeatured: boolean,
+) {
+  const response = await fetch(`/api/chat/${uuid}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      featured: !currentFeatured,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to toggle featured status");
+  }
+
+  return await response.json();
+}
