@@ -44,7 +44,6 @@ export async function GET(request: NextRequest) {
         archived: chatConversations.archived,
         conversationSummary: chatConversations.conversationSummary,
         country: chatConversations.country,
-        ipAddress: chatConversations.ipAddress,
       })
       .from(chatConversations)
       .orderBy(desc(chatConversations.updatedAt))

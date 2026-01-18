@@ -202,7 +202,6 @@ export async function GET(request: NextRequest) {
         featured: chatConversations.featured,
         conversationSummary: chatConversations.conversationSummary,
         country: chatConversations.country,
-        ipAddress: chatConversations.ipAddress,
       })
       .from(chatConversations)
       .orderBy(desc(chatConversations.updatedAt))
