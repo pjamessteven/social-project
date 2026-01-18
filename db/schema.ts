@@ -488,5 +488,30 @@ export const videoSchema = z.object({
   updatedAt: z.date(),
 });
 
+export const bannedUsers = pgTable(
+  "banned_users",
+  {
+    id: serial("id").primaryKey(),
+    ipAddress: varchar("ip_address", { length: 45 }).notNull(),
+    reason: text("reason"),
+    bannedBy: varchar("banned_by", { length: 255 }),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    ipAddressIdx: index("idx_banned_users_ip_address").on(table.ipAddress),
+    createdIdx: index("idx_banned_users_created").on(table.createdAt),
+  }),
+);
+
+export const bannedUserSchema = z.object({
+  id: z.number(),
+  ipAddress: z.string(),
+  reason: z.string().optional(),
+  bannedBy: z.string().optional(),
+  createdAt: z.date(),
+});
+
+export type BannedUser = z.infer<typeof bannedUserSchema>;
+
 export type Video = z.infer<typeof videoSchema>;
 export type UserTag = z.infer<typeof userTagSchema>;

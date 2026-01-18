@@ -1,4 +1,3 @@
-import { toUIMessageStream } from "@ai-sdk/llamaindex";
 import { createUIMessageStreamResponse, type UIMessage } from "ai";
 import { ChatMessage, type MessageType } from "llamaindex";
 import { NextRequest, NextResponse } from "next/server";
@@ -9,6 +8,9 @@ import {
   sendSuggestedQuestionsEvent,
   toDataStream,
 } from "../utils";
+
+// import IP ban checking utility
+import { checkIpBan } from "@/app/lib/ipBan";
 
 // import workflow factory and settings from local file
 import { incrementQuestionViews } from "@/app/lib/cache";
@@ -21,6 +23,9 @@ initSettings();
 
 export async function POST(req: NextRequest) {
   try {
+    // Check if IP is banned before processing request
+    await checkIpBan(req);
+
     const userIp = getIP(req);
     const reqBody = await req.json();
     const suggestNextQuestions = process.env.SUGGEST_NEXT_QUESTIONS === "true";

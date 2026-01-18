@@ -2,9 +2,9 @@
 
 import { formatCountryDisplay } from "@/app/lib/countries";
 import { formatDate } from "@/app/lib/utils";
-import { Clock, Star } from "lucide-react";
+import { Ban, Clock, MoreVertical, Star, Trash2 } from "lucide-react";
 import Link from "next/link";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import ChatBubbleButton from "../ChatBubbleButton";
 export interface ConversationCardProps {
   uuid: string;
@@ -22,6 +22,9 @@ export interface ConversationCardProps {
   isAdminUser?: boolean;
   onToggleFeatured?: (uuid: string, currentFeatured: boolean) => Promise<void>;
   isTogglingFeatured?: boolean;
+  onDeleteConversation?: (uuid: string) => Promise<void>;
+  onBanUser?: (uuid: string, ipAddress: string | null) => Promise<void>;
+  ipAddress?: string | null;
 }
 
 export function ConversationCard({
@@ -40,7 +43,13 @@ export function ConversationCard({
   isAdminUser = false,
   onToggleFeatured,
   isTogglingFeatured = false,
+  onDeleteConversation,
+  onBanUser,
+  ipAddress,
 }: ConversationCardProps) {
+  const [showAdminMenu, setShowAdminMenu] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isBanning, setIsBanning] = useState(false);
   // Parse messages to extract user messages for summary fallback
   let userMessages: string[] = [];
   if (children) {
@@ -100,19 +109,75 @@ export function ConversationCard({
                   <Star className="h-4 w-4 shrink-0 fill-yellow-400 text-yellow-400" />
                 )}
                 {isAdminUser && (
-                  <Star
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      if (!isTogglingFeatured && onToggleFeatured) {
-                        onToggleFeatured(uuid, featured);
-                      }
-                    }}
-                    className={`h-4 w-4 shrink-0 ${
-                      featured
-                        ? "fill-yellow-400 text-yellow-400"
-                        : "text-gray-400"
-                    }`}
-                  />
+                  <>
+                    <Star
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (!isTogglingFeatured && onToggleFeatured) {
+                          onToggleFeatured(uuid, featured);
+                        }
+                      }}
+                      className={`h-4 w-4 shrink-0 ${
+                        featured
+                          ? "fill-yellow-400 text-yellow-400"
+                          : "text-gray-400"
+                      }`}
+                    />
+                    <div className="relative">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setShowAdminMenu(!showAdminMenu);
+                        }}
+                        className="flex h-6 w-6 items-center justify-center rounded-md hover:bg-gray-100"
+                      >
+                        <MoreVertical className="h-4 w-4 text-gray-500" />
+                      </button>
+
+                      {showAdminMenu && (
+                        <div className="absolute top-full right-0 z-10 mt-1 w-48 rounded-md border border-gray-200 bg-white py-1 shadow-lg">
+                          <button
+                            onClick={async (e) => {
+                              e.stopPropagation();
+                              if (onDeleteConversation && !isDeleting) {
+                                setIsDeleting(true);
+                                try {
+                                  await onDeleteConversation(uuid);
+                                } finally {
+                                  setIsDeleting(false);
+                                  setShowAdminMenu(false);
+                                }
+                              }
+                            }}
+                            disabled={isDeleting}
+                            className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-red-600 hover:bg-gray-100 disabled:opacity-50"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                            {isDeleting ? "Deleting..." : "Delete Conversation"}
+                          </button>
+                          <button
+                            onClick={async (e) => {
+                              e.stopPropagation();
+                              if (onBanUser && !isBanning && ipAddress) {
+                                setIsBanning(true);
+                                try {
+                                  await onBanUser(uuid, ipAddress);
+                                } finally {
+                                  setIsBanning(false);
+                                  setShowAdminMenu(false);
+                                }
+                              }
+                            }}
+                            disabled={isBanning || !ipAddress}
+                            className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-red-600 hover:bg-gray-100 disabled:opacity-50"
+                          >
+                            <Ban className="h-4 w-4" />
+                            {isBanning ? "Banning..." : "Ban User (IP)"}
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </>
                 )}
               </div>
             </div>

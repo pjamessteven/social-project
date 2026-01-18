@@ -1,5 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
 import { loginUser, setSessionCookie } from "@/app/lib/auth/auth";
+import { checkIpBan } from "@/app/lib/ipBan";
+import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 // Schema for login request
@@ -10,6 +11,9 @@ const loginSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if IP is banned before processing request
+    await checkIpBan(request);
+
     // Parse and validate request body
     const body = await request.json();
     const validationResult = loginSchema.safeParse(body);
@@ -21,7 +25,7 @@ export async function POST(request: NextRequest) {
           error: "Invalid request data",
           details: validationResult.error.format(),
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -36,7 +40,7 @@ export async function POST(request: NextRequest) {
           success: false,
           error: result.error || "Login failed",
         },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -60,7 +64,7 @@ export async function POST(request: NextRequest) {
         success: false,
         error: "Internal server error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

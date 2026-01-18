@@ -1,4 +1,5 @@
 import { isAdmin } from "@/app/lib/auth/auth";
+import { checkIpBan } from "@/app/lib/ipBan";
 import { db } from "@/db";
 import { chatConversations } from "@/db/schema";
 import { count, desc, eq } from "drizzle-orm";
@@ -6,6 +7,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   try {
+    // Check if IP is banned before processing request
+    await checkIpBan(request);
+
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get("page") || "1", 10);
     const limit = parseInt(searchParams.get("limit") || "20", 10);
@@ -39,6 +43,8 @@ export async function GET(request: NextRequest) {
         featured: chatConversations.featured,
         archived: chatConversations.archived,
         conversationSummary: chatConversations.conversationSummary,
+        country: chatConversations.country,
+        ipAddress: chatConversations.ipAddress,
       })
       .from(chatConversations)
       .orderBy(desc(chatConversations.updatedAt))

@@ -9,6 +9,9 @@ import {
   toDataStream,
 } from "../utils";
 
+// import IP ban checking utility
+import { checkIpBan } from "@/app/lib/ipBan";
+
 // import workflow factory and settings from local file
 import { incrementQuestionViews } from "@/app/lib/cache";
 import { getIP } from "@/app/lib/getIp";
@@ -20,6 +23,9 @@ initSettings();
 
 export async function POST(req: NextRequest) {
   try {
+    // Check if IP is banned before processing request
+    await checkIpBan(req);
+
     const userIp = getIP(req);
     const reqBody = await req.json();
     const suggestNextQuestions = process.env.SUGGEST_NEXT_QUESTIONS === "true";
@@ -60,7 +66,7 @@ export async function POST(req: NextRequest) {
       },
       human: {
         snapshotId: requestId, // use requestId to restore snapshot
-        responses: []
+        responses: [],
       },
     });
     incrementQuestionViews("detrans", userInput);
