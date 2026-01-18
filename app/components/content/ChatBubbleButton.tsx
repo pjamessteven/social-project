@@ -35,7 +35,7 @@ export default function ChatBubbleButton({
     >
       <div className="flex w-full items-baseline">
         <div>{isLink && <span>{"->"}&nbsp;&nbsp;</span>}</div>
-        <div>{message.display}</div>
+        <div className="line-clamp-6">{message.display}</div>
       </div>
     </Button>
   );
