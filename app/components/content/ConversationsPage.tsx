@@ -20,7 +20,6 @@ export interface ConversationSummary {
   featured: boolean;
   conversationSummary: string | null;
   country: string | null;
-  ipAddress: string | null;
 }
 
 export interface ConversationsResponse {
@@ -242,8 +241,6 @@ export default function ConversationsPageClient({
       setConversationItems((prevItems) =>
         prevItems.filter((item) => item.uuid !== uuid),
       );
-
-      alert("Conversation deleted successfully");
     } catch (error) {
       console.error("Error deleting conversation:", error);
       alert(
@@ -252,17 +249,12 @@ export default function ConversationsPageClient({
     }
   };
 
-  const handleBanUser = async (uuid: string, ipAddress: string | null) => {
+  const handleBanUser = async (uuid: string) => {
     if (user?.role !== "admin") return;
-
-    if (!ipAddress) {
-      alert("No IP address associated with this conversation");
-      return;
-    }
 
     if (
       !confirm(
-        `Are you sure you want to ban the user with IP address ${ipAddress}? This will prevent them from creating new conversations.`,
+        `Are you sure you want to ban the user associated with this conversation? This will prevent them from creating new conversations.`,
       )
     ) {
       return;
@@ -427,7 +419,6 @@ export default function ConversationsPageClient({
                     isTogglingFeatured={togglingFeaturedUuid === convo.uuid}
                     onDeleteConversation={handleDeleteConversation}
                     onBanUser={handleBanUser}
-                    ipAddress={convo.ipAddress}
                   >
                     {convo.messages}
                   </ConversationCard>
@@ -527,7 +518,6 @@ export default function ConversationsPageClient({
                     isTogglingFeatured={togglingFeaturedUuid === convo.uuid}
                     onDeleteConversation={handleDeleteConversation}
                     onBanUser={handleBanUser}
-                    ipAddress={convo.ipAddress}
                   >
                     {convo.messages}
                   </ConversationCard>

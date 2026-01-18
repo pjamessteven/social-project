@@ -192,7 +192,19 @@ export async function PUT(
 
     // Check if conversation exists
     const existingConversation = await db
-      .select()
+      .select({
+        uuid: chatConversations.uuid,
+        mode: chatConversations.mode,
+        title: chatConversations.title,
+        messages: chatConversations.messages,
+        featured: chatConversations.featured,
+        archived: chatConversations.archived,
+        conversationSummary: chatConversations.conversationSummary,
+        createdAt: chatConversations.createdAt,
+        updatedAt: chatConversations.updatedAt,
+        country: chatConversations.country,
+        ipAddress: chatConversations.ipAddress,
+      })
       .from(chatConversations)
       .where(eq(chatConversations.uuid, uuid))
       .limit(1);
@@ -243,7 +255,18 @@ export async function PUT(
       .update(chatConversations)
       .set(updateData)
       .where(eq(chatConversations.uuid, uuid))
-      .returning();
+      .returning({
+        uuid: chatConversations.uuid,
+        mode: chatConversations.mode,
+        title: chatConversations.title,
+        messages: chatConversations.messages,
+        featured: chatConversations.featured,
+        archived: chatConversations.archived,
+        conversationSummary: chatConversations.conversationSummary,
+        createdAt: chatConversations.createdAt,
+        updatedAt: chatConversations.updatedAt,
+        country: chatConversations.country,
+      });
 
     return NextResponse.json({
       success: true,
@@ -279,7 +302,18 @@ export async function GET(
 
     // Retrieve the conversation from the database
     const conversation = await db
-      .select()
+      .select({
+        uuid: chatConversations.uuid,
+        mode: chatConversations.mode,
+        title: chatConversations.title,
+        messages: chatConversations.messages,
+        featured: chatConversations.featured,
+        archived: chatConversations.archived,
+        conversationSummary: chatConversations.conversationSummary,
+        createdAt: chatConversations.createdAt,
+        updatedAt: chatConversations.updatedAt,
+        country: chatConversations.country,
+      })
       .from(chatConversations)
       .where(eq(chatConversations.uuid, uuid))
       .limit(1);
@@ -352,7 +386,19 @@ export async function POST(
 
     // Check if conversation exists
     const existingConversation = await db
-      .select()
+      .select({
+        uuid: chatConversations.uuid,
+        mode: chatConversations.mode,
+        title: chatConversations.title,
+        messages: chatConversations.messages,
+        featured: chatConversations.featured,
+        archived: chatConversations.archived,
+        conversationSummary: chatConversations.conversationSummary,
+        createdAt: chatConversations.createdAt,
+        updatedAt: chatConversations.updatedAt,
+        country: chatConversations.country,
+        ipAddress: chatConversations.ipAddress,
+      })
       .from(chatConversations)
       .where(eq(chatConversations.uuid, uuid))
       .limit(1);
@@ -379,7 +425,18 @@ export async function POST(
         updatedAt: new Date(),
       })
       .where(eq(chatConversations.uuid, uuid))
-      .returning();
+      .returning({
+        uuid: chatConversations.uuid,
+        mode: chatConversations.mode,
+        title: chatConversations.title,
+        messages: chatConversations.messages,
+        featured: chatConversations.featured,
+        archived: chatConversations.archived,
+        conversationSummary: chatConversations.conversationSummary,
+        createdAt: chatConversations.createdAt,
+        updatedAt: chatConversations.updatedAt,
+        country: chatConversations.country,
+      });
 
     return NextResponse.json({
       success: true,
@@ -422,7 +479,19 @@ export async function DELETE(
 
     // Check if conversation exists
     const existingConversation = await db
-      .select()
+      .select({
+        uuid: chatConversations.uuid,
+        mode: chatConversations.mode,
+        title: chatConversations.title,
+        messages: chatConversations.messages,
+        featured: chatConversations.featured,
+        archived: chatConversations.archived,
+        conversationSummary: chatConversations.conversationSummary,
+        createdAt: chatConversations.createdAt,
+        updatedAt: chatConversations.updatedAt,
+        country: chatConversations.country,
+        ipAddress: chatConversations.ipAddress,
+      })
       .from(chatConversations)
       .where(eq(chatConversations.uuid, uuid))
       .limit(1);
@@ -477,7 +546,19 @@ export async function PATCH(
 
     // Check if conversation exists
     const existingConversation = await db
-      .select()
+      .select({
+        uuid: chatConversations.uuid,
+        mode: chatConversations.mode,
+        title: chatConversations.title,
+        messages: chatConversations.messages,
+        featured: chatConversations.featured,
+        archived: chatConversations.archived,
+        conversationSummary: chatConversations.conversationSummary,
+        createdAt: chatConversations.createdAt,
+        updatedAt: chatConversations.updatedAt,
+        country: chatConversations.country,
+        ipAddress: chatConversations.ipAddress,
+      })
       .from(chatConversations)
       .where(eq(chatConversations.uuid, uuid))
       .limit(1);

@@ -23,8 +23,7 @@ export interface ConversationCardProps {
   onToggleFeatured?: (uuid: string, currentFeatured: boolean) => Promise<void>;
   isTogglingFeatured?: boolean;
   onDeleteConversation?: (uuid: string) => Promise<void>;
-  onBanUser?: (uuid: string, ipAddress: string | null) => Promise<void>;
-  ipAddress?: string | null;
+  onBanUser?: (uuid: string) => Promise<void>;
 }
 
 export function ConversationCard({
@@ -45,7 +44,6 @@ export function ConversationCard({
   isTogglingFeatured = false,
   onDeleteConversation,
   onBanUser,
-  ipAddress,
 }: ConversationCardProps) {
   const [showAdminMenu, setShowAdminMenu] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -158,17 +156,17 @@ export function ConversationCard({
                           <button
                             onClick={async (e) => {
                               e.stopPropagation();
-                              if (onBanUser && !isBanning && ipAddress) {
+                              if (onBanUser && !isBanning) {
                                 setIsBanning(true);
                                 try {
-                                  await onBanUser(uuid, ipAddress);
+                                  await onBanUser(uuid);
                                 } finally {
                                   setIsBanning(false);
                                   setShowAdminMenu(false);
                                 }
                               }
                             }}
-                            disabled={isBanning || !ipAddress}
+                            disabled={isBanning}
                             className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-red-600 hover:bg-gray-100 disabled:opacity-50"
                           >
                             <Ban className="h-4 w-4" />

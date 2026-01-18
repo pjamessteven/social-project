@@ -17,7 +17,6 @@ interface FeaturedConversation {
   featured: boolean;
   conversationSummary: string | null;
   country: string | null; // Country from IP geolocation
-  ipAddress: string | null; // IP address for admin banning
 }
 
 // Custom hook to detect medium screens (md: 768px and larger)
@@ -126,8 +125,6 @@ export function FeaturedConversations() {
       setConversations((prevConversations) =>
         prevConversations.filter((convo) => convo.uuid !== uuid),
       );
-
-      alert("Conversation deleted successfully");
     } catch (error) {
       console.error("Error deleting conversation:", error);
       alert(
@@ -136,17 +133,12 @@ export function FeaturedConversations() {
     }
   };
 
-  const handleBanUser = async (uuid: string, ipAddress: string | null) => {
+  const handleBanUser = async (uuid: string) => {
     if (user?.role !== "admin") return;
-
-    if (!ipAddress) {
-      alert("No IP address associated with this conversation");
-      return;
-    }
 
     if (
       !confirm(
-        `Are you sure you want to ban the user with IP address ${ipAddress}? This will prevent them from creating new conversations.`,
+        `Are you sure you want to ban the user associated with this conversation? This will prevent them from creating new conversations.`,
       )
     ) {
       return;
@@ -385,13 +377,13 @@ export function FeaturedConversations() {
                         {/* Title loading line */}
                         <div className="mb-4 h-4 w-3/4 rounded bg-gray-200"></div>
 
+                        {/* Footer loading lines */}
+                        <div className="mb-2 h-2 w-1/2 rounded bg-gray-600"></div>
+                        <div className="mb-2 h-2 w-full rounded bg-gray-600"></div>
+                        <div className="mb-4 h-2 w-full rounded bg-gray-600"></div>
+
                         {/* Chat bubbles section */}
                         {renderChatBubbles(`mobile-${i}`)}
-
-                        {/* Footer loading lines */}
-                        <div className="mb-3 h-2 w-1/2 rounded bg-gray-600"></div>
-                        <div className="mb-2 h-2 w-full rounded bg-gray-600"></div>
-                        <div className="mb-2 h-2 w-full rounded bg-gray-600"></div>
                       </div>
                     </div>
                   );
@@ -422,13 +414,12 @@ export function FeaturedConversations() {
                             {/* Title loading line */}
                             <div className="mb-4 h-4 w-3/4 rounded bg-gray-200"></div>
 
+                            {/* Footer loading lines */}
+                            <div className="mb-2 h-2 w-1/2 rounded bg-gray-600"></div>
+                            <div className="mb-2 h-2 w-full rounded bg-gray-600"></div>
+                            <div className="mb-4 h-2 w-full rounded bg-gray-600"></div>
                             {/* Chat bubbles section */}
                             {renderChatBubbles(`col1-${i}`)}
-
-                            {/* Footer loading lines */}
-                            <div className="mb-3 h-2 w-1/2 rounded bg-gray-600"></div>
-                            <div className="mb-2 h-2 w-full rounded bg-gray-600"></div>
-                            <div className="mb-2 h-2 w-full rounded bg-gray-600"></div>
                           </div>
                         </div>
                       </div>
@@ -458,13 +449,13 @@ export function FeaturedConversations() {
                             {/* Title loading line */}
                             <div className="mb-4 h-4 w-3/4 rounded bg-gray-200"></div>
 
+                            {/* Footer loading lines */}
+                            <div className="mb-2 h-2 w-1/2 rounded bg-gray-600"></div>
+                            <div className="mb-2 h-2 w-full rounded bg-gray-600"></div>
+                            <div className="mb-4 h-2 w-full rounded bg-gray-600"></div>
+
                             {/* Chat bubbles section */}
                             {renderChatBubbles(`col2-${i}`)}
-
-                            {/* Footer loading lines */}
-                            <div className="mb-3 h-2 w-1/2 rounded bg-gray-600"></div>
-                            <div className="mb-2 h-2 w-full rounded bg-gray-600"></div>
-                            <div className="mb-2 h-2 w-full rounded bg-gray-600"></div>
                           </div>
                         </div>
                       </div>
@@ -495,13 +486,13 @@ export function FeaturedConversations() {
                               {/* Title loading line */}
                               <div className="mb-4 h-4 w-3/4 rounded bg-gray-200"></div>
 
+                              {/* Footer loading lines */}
+                              <div className="mb-2 h-2 w-1/2 rounded bg-gray-600"></div>
+                              <div className="mb-2 h-2 w-full rounded bg-gray-600"></div>
+                              <div className="mb-4 h-2 w-full rounded bg-gray-600"></div>
+
                               {/* Chat bubbles section */}
                               {renderChatBubbles(`col3-${i}`)}
-
-                              {/* Footer loading lines */}
-                              <div className="mb-3 h-2 w-1/2 rounded bg-gray-600"></div>
-                              <div className="mb-2 h-2 w-full rounded bg-gray-600"></div>
-                              <div className="mb-2 h-2 w-full rounded bg-gray-600"></div>
                             </div>
                           </div>
                         </div>
@@ -562,7 +553,6 @@ export function FeaturedConversations() {
                         isTogglingFeatured={togglingFeaturedUuid === convo.uuid}
                         onDeleteConversation={handleDeleteConversation}
                         onBanUser={handleBanUser}
-                        ipAddress={convo.ipAddress}
                       >
                         {convo.messages}
                       </ConversationCard>
@@ -599,7 +589,6 @@ export function FeaturedConversations() {
                           }
                           onDeleteConversation={handleDeleteConversation}
                           onBanUser={handleBanUser}
-                          ipAddress={convo.ipAddress}
                         >
                           {convo.messages}
                         </ConversationCard>
@@ -634,7 +623,6 @@ export function FeaturedConversations() {
                           }
                           onDeleteConversation={handleDeleteConversation}
                           onBanUser={handleBanUser}
-                          ipAddress={convo.ipAddress}
                         >
                           {convo.messages}
                         </ConversationCard>
@@ -672,7 +660,6 @@ export function FeaturedConversations() {
                             }
                             onDeleteConversation={handleDeleteConversation}
                             onBanUser={handleBanUser}
-                            ipAddress={convo.ipAddress}
                           >
                             {convo.messages}
                           </ConversationCard>
@@ -766,7 +753,7 @@ export function FeaturedConversations() {
                     <div
                       className={cn(
                         "relative col-span-full hidden sm:block",
-                        currentPage === 1 && "mt-[-500px]",
+                        currentPage === 1 && "mt-[-700px]",
                       )}
                     >
                       <div

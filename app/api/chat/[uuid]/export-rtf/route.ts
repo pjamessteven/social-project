@@ -178,7 +178,18 @@ export async function GET(
 
     // Retrieve the conversation from the database
     const conversation = await db
-      .select()
+      .select({
+        uuid: chatConversations.uuid,
+        mode: chatConversations.mode,
+        title: chatConversations.title,
+        messages: chatConversations.messages,
+        featured: chatConversations.featured,
+        archived: chatConversations.archived,
+        conversationSummary: chatConversations.conversationSummary,
+        createdAt: chatConversations.createdAt,
+        updatedAt: chatConversations.updatedAt,
+        country: chatConversations.country,
+      })
       .from(chatConversations)
       .where(eq(chatConversations.uuid, uuid))
       .limit(1);
