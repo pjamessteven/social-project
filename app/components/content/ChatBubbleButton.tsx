@@ -22,7 +22,7 @@ export default function ChatBubbleButton({
     <Button
       variant="secondary"
       className={cn(
-        "h-auto w-full justify-start gap-2 rounded-xl rounded-tr-none text-left whitespace-normal transition-colors duration-300 sm:w-auto",
+        "h-auto w-auto justify-start gap-2 rounded-xl rounded-tr-none text-left whitespace-normal transition-colors duration-300 sm:w-auto",
         size === "sm"
           ? "px-3 py-2 !text-sm font-normal"
           : "px-4 py-3 text-base font-medium",
