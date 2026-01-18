@@ -201,7 +201,7 @@ export function ConversationCard({
         {conversationSummary && (
           <div
             className={`dark:border-muted-foreground/30 dark:from-secondary-foreground/10 from-secondary/50 text-muted-foreground bg-gradient-to- borde mt-0 border-b to-transparent pb-2 text-sm ${
-              layout === "grid" ? "line-clamp-6" : "line-clamp-6"
+              layout === "grid" ? "" : ""
             }`}
           >
             {conversationSummary}
