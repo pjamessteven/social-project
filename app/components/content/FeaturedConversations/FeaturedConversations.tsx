@@ -753,7 +753,7 @@ export function FeaturedConversations() {
                     <div
                       className={cn(
                         "relative col-span-full hidden sm:block",
-                        currentPage === 1 && "mt-[-700px]",
+                        currentPage === 1 && "mt-[-600px]",
                       )}
                     >
                       <div
