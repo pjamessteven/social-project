@@ -1,3 +1,4 @@
+import { checkIpBan } from "@/app/lib/ipBan";
 import { NextRequest, NextResponse } from "next/server";
 import { ZohoMailer } from "../../lib/mailer";
 
@@ -11,6 +12,9 @@ const mailer = new ZohoMailer({
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if IP is banned before processing request
+    await checkIpBan(request);
+
     const { name, email, subject, message, site } = await request.json();
 
     const ok = await mailer.sendMail({

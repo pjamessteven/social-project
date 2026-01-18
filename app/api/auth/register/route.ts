@@ -1,5 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
 import { registerUser, setSessionCookie } from "@/app/lib/auth/auth";
+import { checkIpBan } from "@/app/lib/ipBan";
+import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 // Schema for registration request
@@ -11,6 +12,9 @@ const registerSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if IP is banned before processing request
+    await checkIpBan(request);
+
     // Parse and validate request body
     const body = await request.json();
     const validationResult = registerSchema.safeParse(body);
@@ -22,7 +26,7 @@ export async function POST(request: NextRequest) {
           error: "Invalid request data",
           details: validationResult.error.format(),
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -37,7 +41,7 @@ export async function POST(request: NextRequest) {
           success: false,
           error: result.error || "Registration failed",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -61,7 +65,7 @@ export async function POST(request: NextRequest) {
         success: false,
         error: "Internal server error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

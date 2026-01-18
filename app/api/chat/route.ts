@@ -1,4 +1,5 @@
 import { getCountryFromIP } from "@/app/lib/geolocation";
+import { checkIpBan, getIpFromRequest } from "@/app/lib/ipBan";
 import { db } from "@/db";
 import { chatConversations } from "@/db/schema";
 import { createUIMessageStreamResponse, type UIMessage } from "ai";
@@ -24,6 +25,9 @@ initSettings();
 
 export async function POST(req: NextRequest) {
   try {
+    // Check if IP is banned before processing request
+    await checkIpBan(req);
+
     const reqBody = await req.json();
     const suggestNextQuestions = process.env.SUGGEST_NEXT_QUESTIONS === "true";
 
@@ -39,18 +43,7 @@ export async function POST(req: NextRequest) {
       conversationId?: string;
     };
 
-    const forwardedFor = req.headers.get("x-forwarded-for");
-    const realIp = req.headers.get("x-real-ip");
-    const forwardedHeader = req.headers.get("forwarded");
-    const ipAddress =
-      forwardedFor?.split(",")[0].trim() ||
-      realIp ||
-      forwardedHeader
-        ?.split(";")
-        .find((part) => part.trim().toLowerCase().startsWith("for="))
-        ?.split("=")[1]
-        ?.replace(/"/g, "") ||
-      null;
+    const ipAddress = getIpFromRequest(req);
 
     // Generate or use provided conversation UUID
     const chatUuid = conversationId || uuidv4();
@@ -209,6 +202,7 @@ export async function GET(request: NextRequest) {
         featured: chatConversations.featured,
         conversationSummary: chatConversations.conversationSummary,
         country: chatConversations.country,
+        ipAddress: chatConversations.ipAddress,
       })
       .from(chatConversations)
       .orderBy(desc(chatConversations.updatedAt))

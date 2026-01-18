@@ -1,3 +1,4 @@
+import { checkIpBan } from "@/app/lib/ipBan";
 import { db } from "@/db";
 import { videos } from "@/db/schema";
 import { eq } from "drizzle-orm";
@@ -55,6 +56,9 @@ async function getYouTubeMetadata(videoId: string) {
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if IP is banned before processing request
+    await checkIpBan(request);
+
     const body = await request.json();
     const {
       url,

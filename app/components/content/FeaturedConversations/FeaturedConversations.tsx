@@ -17,6 +17,7 @@ interface FeaturedConversation {
   featured: boolean;
   conversationSummary: string | null;
   country: string | null; // Country from IP geolocation
+  ipAddress: string | null; // IP address for admin banning
 }
 
 // Custom hook to detect medium screens (md: 768px and larger)
@@ -97,6 +98,82 @@ export function FeaturedConversations() {
       console.error("Error toggling featured status:", error);
     } finally {
       setTogglingFeaturedUuid(null);
+    }
+  };
+
+  const handleDeleteConversation = async (uuid: string) => {
+    if (user?.role !== "admin") return;
+
+    if (
+      !confirm(
+        "Are you sure you want to delete this conversation? This action cannot be undone.",
+      )
+    ) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/chat/${uuid}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to delete conversation");
+      }
+
+      // Remove the conversation from the local state
+      setConversations((prevConversations) =>
+        prevConversations.filter((convo) => convo.uuid !== uuid),
+      );
+
+      alert("Conversation deleted successfully");
+    } catch (error) {
+      console.error("Error deleting conversation:", error);
+      alert(
+        `Failed to delete conversation: ${error instanceof Error ? error.message : "Unknown error"}`,
+      );
+    }
+  };
+
+  const handleBanUser = async (uuid: string, ipAddress: string | null) => {
+    if (user?.role !== "admin") return;
+
+    if (!ipAddress) {
+      alert("No IP address associated with this conversation");
+      return;
+    }
+
+    if (
+      !confirm(
+        `Are you sure you want to ban the user with IP address ${ipAddress}? This will prevent them from creating new conversations.`,
+      )
+    ) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/chat/${uuid}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          reason: "Banned by admin",
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to ban user");
+      }
+
+      alert("User banned successfully");
+    } catch (error) {
+      console.error("Error banning user:", error);
+      alert(
+        `Failed to ban user: ${error instanceof Error ? error.message : "Unknown error"}`,
+      );
     }
   };
 
@@ -483,6 +560,9 @@ export function FeaturedConversations() {
                         isAdminUser={user?.role === "admin"}
                         onToggleFeatured={handleToggleFeatured}
                         isTogglingFeatured={togglingFeaturedUuid === convo.uuid}
+                        onDeleteConversation={handleDeleteConversation}
+                        onBanUser={handleBanUser}
+                        ipAddress={convo.ipAddress}
                       >
                         {convo.messages}
                       </ConversationCard>
@@ -517,6 +597,9 @@ export function FeaturedConversations() {
                           isTogglingFeatured={
                             togglingFeaturedUuid === convo.uuid
                           }
+                          onDeleteConversation={handleDeleteConversation}
+                          onBanUser={handleBanUser}
+                          ipAddress={convo.ipAddress}
                         >
                           {convo.messages}
                         </ConversationCard>
@@ -549,6 +632,9 @@ export function FeaturedConversations() {
                           isTogglingFeatured={
                             togglingFeaturedUuid === convo.uuid
                           }
+                          onDeleteConversation={handleDeleteConversation}
+                          onBanUser={handleBanUser}
+                          ipAddress={convo.ipAddress}
                         >
                           {convo.messages}
                         </ConversationCard>
@@ -584,6 +670,9 @@ export function FeaturedConversations() {
                             isTogglingFeatured={
                               togglingFeaturedUuid === convo.uuid
                             }
+                            onDeleteConversation={handleDeleteConversation}
+                            onBanUser={handleBanUser}
+                            ipAddress={convo.ipAddress}
                           >
                             {convo.messages}
                           </ConversationCard>
