@@ -237,10 +237,17 @@ export function FeaturedConversations() {
     return typeof total === "string" ? parseInt(total, 10) : total;
   };
 
+  // Helper to distribute items across columns based on screen size
+  const getItemsForColumn = (columnIndex: number, totalColumns: number) => {
+    return conversations.filter(
+      (_, index) => index % totalColumns === columnIndex,
+    );
+  };
+
   return (
     <div className="relative mb-8">
       <div className="bg-secondary/50 dark:bg-secondary/60 absolute -left-full z-0 h-full w-[10000px] border-t border-b" />
-      <div className="relative z-20 py-8 lg:-mx-48 lg:px-8 lg:py-8">
+      <div className="relative z-20 overflow-y-hidden border-t border-b py-8 sm:pb-0 lg:-mx-48 lg:px-8 lg:pt-8">
         <Tabs
           value={currentTab}
           onValueChange={(value: string) =>
@@ -315,7 +322,7 @@ export function FeaturedConversations() {
               </div>
 
               {/* Desktop loading skeletons - responsive columns */}
-              <div className="hidden grid-cols-1 gap-3 sm:grid sm:grid-cols-2 md:mt-8 md:grid-cols-3">
+              <div className="hidden grid-cols-1 gap-3 sm:grid sm:grid-cols-2 md:mt-8 md:grid-cols-3 lg:gap-4">
                 {/* First column loading skeletons */}
                 <div className="flex flex-col">
                   {[...Array(4)].map((_, i) => {
@@ -485,19 +492,78 @@ export function FeaturedConversations() {
               </div>
 
               {/* Desktop: Responsive columns */}
-              <div className="hidden grid-cols-1 gap-3 sm:grid sm:grid-cols-2 lg:mt-8 lg:grid-cols-3 lg:gap-4">
-                {/* First column - indices 0, 3, 6, ... */}
+              <div className="relative hidden grid-cols-1 gap-3 sm:grid sm:grid-cols-2 md:mt-8 md:grid-cols-3 lg:gap-4">
+                {/* First column */}
                 <div className="flex flex-col">
-                  {conversations
-                    .filter((_, index) => index % 3 === 0)
-                    .map((convo, filteredIndex, filteredArray) => (
+                  {getItemsForColumn(0, isMediumScreen ? 3 : 2).map((convo) => (
+                    <div key={convo.uuid} className="break-inside-avoid">
+                      <div className={cn("mb-3 flex h-full flex-col lg:mb-4")}>
+                        <ConversationCard
+                          uuid={convo.uuid}
+                          title={convo.title}
+                          updatedAt={convo.updatedAt}
+                          mode={convo.mode}
+                          featured={convo.featured}
+                          conversationSummary={convo.conversationSummary}
+                          country={convo.country}
+                          showFeaturedStar={true}
+                          layout="grid"
+                          onClick={() => {
+                            setSelectedConversationId(convo.uuid);
+                            setDialogOpen(true);
+                          }}
+                          isAdminUser={user?.role === "admin"}
+                          onToggleFeatured={handleToggleFeatured}
+                          isTogglingFeatured={
+                            togglingFeaturedUuid === convo.uuid
+                          }
+                        >
+                          {convo.messages}
+                        </ConversationCard>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Second column */}
+                <div className="flex flex-col">
+                  {getItemsForColumn(1, isMediumScreen ? 3 : 2).map((convo) => (
+                    <div key={convo.uuid} className="break-inside-avoid">
+                      <div className={cn("mb-3 flex h-full flex-col lg:mb-4")}>
+                        <ConversationCard
+                          uuid={convo.uuid}
+                          title={convo.title}
+                          updatedAt={convo.updatedAt}
+                          mode={convo.mode}
+                          featured={convo.featured}
+                          conversationSummary={convo.conversationSummary}
+                          country={convo.country}
+                          showFeaturedStar={true}
+                          layout="grid"
+                          onClick={() => {
+                            setSelectedConversationId(convo.uuid);
+                            setDialogOpen(true);
+                          }}
+                          isAdminUser={user?.role === "admin"}
+                          onToggleFeatured={handleToggleFeatured}
+                          isTogglingFeatured={
+                            togglingFeaturedUuid === convo.uuid
+                          }
+                        >
+                          {convo.messages}
+                        </ConversationCard>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Third column - only for medium+ screens */}
+                {isMediumScreen && (
+                  <div className="flex flex-col">
+                    {getItemsForColumn(2, 3).map((convo) => (
                       <div key={convo.uuid} className="break-inside-avoid">
                         <div
-                          className={cn(
-                            "flex h-full flex-col",
-                            filteredIndex <= filteredArray.length / 2 &&
-                              "mb-3 lg:mb-4",
-                          )}
+                          className={cn("mb-3 flex h-full flex-col lg:mb-4")}
                         >
                           <ConversationCard
                             uuid={convo.uuid}
@@ -524,87 +590,8 @@ export function FeaturedConversations() {
                         </div>
                       </div>
                     ))}
-                </div>
-
-                {/* Second column - indices 1, 4, 7, ... */}
-                <div className="flex flex-col">
-                  {conversations
-                    .filter((_, index) => index % 3 === 1)
-                    .map((convo, filteredIndex, filteredArray) => (
-                      <div key={convo.uuid} className="break-inside-avoid">
-                        <div
-                          className={cn(
-                            "flex h-full flex-col",
-                            filteredIndex <= filteredArray.length / 2 &&
-                              "mb-3 lg:mb-4",
-                          )}
-                        >
-                          <ConversationCard
-                            uuid={convo.uuid}
-                            title={convo.title}
-                            updatedAt={convo.updatedAt}
-                            mode={convo.mode}
-                            featured={convo.featured}
-                            conversationSummary={convo.conversationSummary}
-                            country={convo.country}
-                            showFeaturedStar={true}
-                            layout="grid"
-                            onClick={() => {
-                              setSelectedConversationId(convo.uuid);
-                              setDialogOpen(true);
-                            }}
-                            isAdminUser={user?.role === "admin"}
-                            onToggleFeatured={handleToggleFeatured}
-                            isTogglingFeatured={
-                              togglingFeaturedUuid === convo.uuid
-                            }
-                          >
-                            {convo.messages}
-                          </ConversationCard>
-                        </div>
-                      </div>
-                    ))}{" "}
-                </div>
-
-                {/* Third column - indices 2, 5, 8, ... */}
-                <div className="flex flex-col">
-                  {conversations
-                    .filter((_, index) => index % 3 === 2)
-                    .map((convo, filteredIndex, filteredArray) => (
-                      <div key={convo.uuid} className="break-inside-avoid">
-                        <div
-                          className={cn(
-                            "flex h-full flex-col",
-                            filteredIndex <= filteredArray.length / 2 &&
-                              "mb-3 lg:mb-4",
-                          )}
-                        >
-                          <ConversationCard
-                            uuid={convo.uuid}
-                            title={convo.title}
-                            updatedAt={convo.updatedAt}
-                            mode={convo.mode}
-                            featured={convo.featured}
-                            conversationSummary={convo.conversationSummary}
-                            country={convo.country}
-                            showFeaturedStar={true}
-                            layout="grid"
-                            onClick={() => {
-                              setSelectedConversationId(convo.uuid);
-                              setDialogOpen(true);
-                            }}
-                            isAdminUser={user?.role === "admin"}
-                            onToggleFeatured={handleToggleFeatured}
-                            isTogglingFeatured={
-                              togglingFeaturedUuid === convo.uuid
-                            }
-                          >
-                            {convo.messages}
-                          </ConversationCard>
-                        </div>
-                      </div>
-                    ))}
-                </div>
+                  </div>
+                )}
               </div>
               {/* Combined mobile button - shows more OR loads more */}
               {(() => {
@@ -687,24 +674,47 @@ export function FeaturedConversations() {
                       : pagination.totalPages;
 
                   return currentPage < totalPages ? (
-                    <div className="mt-8 hidden w-full items-center justify-center sm:flex md:mt-12">
-                      <button
-                        onClick={handleLoadMore}
-                        disabled={loadingMore}
-                        className="dark:text-primary dark:bg-secondary dark:border-muted-foreground/20 flex w-full max-w-[740px] items-center justify-center gap-2 rounded-lg border bg-white px-4 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:opacity-50"
-                      >
-                        {loadingMore ? (
-                          <>
-                            <Loader2 className="h-4 w-4 animate-spin" />
-                            Loading...
-                          </>
-                        ) : (
-                          <>
-                            <MessageSquare className="h-4 w-4" />
-                            Load More Conversations
-                          </>
+                    <div
+                      className={cn(
+                        "relative col-span-full hidden sm:block",
+                        currentPage === 1 && "mt-[-500px]",
+                      )}
+                    >
+                      <div
+                        className={cn(
+                          "relative",
+                          currentPage === 1 ? "pt-32" : "pt-16",
                         )}
-                      </button>
+                      >
+                        {/* Gradient fade overlay */}
+                        {currentPage === 1 && (
+                          <div className="pointer-events-none absolute inset-x-0 top-0 -mx-8 h-full bg-linear-to-b from-transparent via-[#f8fafc] to-[#f8fafc] dark:via-[#090e19] dark:to-[#090e19]"></div>
+                        )}
+                        {/* Button container */}
+                        <div
+                          className={cn(
+                            "relative flex items-center justify-center px-4 pb-8",
+                          )}
+                        >
+                          <button
+                            onClick={handleLoadMore}
+                            disabled={loadingMore}
+                            className="dark:text-primary dark:bg-secondary dark:border-muted-foreground/20 flex w-full max-w-[740px] items-center justify-center gap-2 rounded-lg border bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-lg transition-colors hover:bg-gray-50 disabled:opacity-50 dark:shadow-gray-800/20"
+                          >
+                            {loadingMore ? (
+                              <>
+                                <Loader2 className="h-4 w-4 animate-spin" />
+                                Loading...
+                              </>
+                            ) : (
+                              <>
+                                <MessageSquare className="h-4 w-4" />
+                                Load More Conversations
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   ) : null;
                 })()}
