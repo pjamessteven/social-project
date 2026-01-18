@@ -3,7 +3,7 @@
 import { cn, toggleFeaturedAPI } from "@/app/lib/utils";
 import { useUserStore } from "@/stores/user-store";
 import { History, List, Loader2, MessageSquare, Star } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "../../ui/tabs";
 import { ConversationCard } from "../ConversationCard/ConversationCard";
 import { ConversationDialog } from "../ConversationDialog/ConversationDialog";
@@ -28,10 +28,10 @@ function useIsMediumScreen() {
   useEffect(() => {
     const mql = window.matchMedia("(min-width: 768px)");
     const onChange = () => {
-      setIsMediumScreen(window.innerWidth >= 768);
+      setIsMediumScreen(mql.matches);
     };
     mql.addEventListener("change", onChange);
-    setIsMediumScreen(window.innerWidth >= 768);
+    setIsMediumScreen(mql.matches);
     return () => mql.removeEventListener("change", onChange);
   }, []);
 
@@ -62,6 +62,7 @@ export function FeaturedConversations() {
   >(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const isMediumScreen = useIsMediumScreen();
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   const handleToggleFeatured = async (
     uuid: string,
@@ -215,77 +216,112 @@ export function FeaturedConversations() {
     );
   };
 
-  const fetchConversations = async (page = 1, append = false) => {
-    try {
-      if (page === 1) {
-        setLoading(true);
-      } else {
-        setLoadingMore(true);
-      }
-
-      const isFeatured = currentTab === "featured";
-      // Use limit=12 for medium screens and larger, limit=8 for smaller screens
-      const limit = isMediumScreen ? 12 : 8;
-      const response = await fetch(
-        `/api/chat?featured=${isFeatured}&limit=${limit}&page=${page}`,
-      );
-
-      if (!response.ok) {
-        if (response.status === 403) {
-          // If unauthorized for all conversations, fall back to featured
-          if (!isFeatured) {
-            setCurrentTab("featured");
-            setError("Showing featured conversations only");
-            return;
-          }
+  const fetchConversations = useCallback(
+    async (page = 1, append = false) => {
+      try {
+        // Only cancel pending fetch when not appending (i.e., not loading more)
+        if (!append && abortControllerRef.current) {
+          abortControllerRef.current.abort();
         }
-        throw new Error(`Failed to fetch conversations: ${response.status}`);
-      }
 
-      const data = await response.json();
-      console.log(
-        "API Response for tab",
-        currentTab,
-        "featured=",
-        isFeatured,
-        "URL:",
-        `/api/chat?featured=${isFeatured}&limit=${limit}&page=${page}`,
-        "Response:",
-        data,
-      );
-      console.log("Number of items:", data.items?.length || 0);
-      if (data.items && data.items.length > 0) {
-        console.log("First item featured value:", data.items[0].featured);
-        console.log(
-          "All items featured values:",
-          data.items.map((item: any) => item.featured),
+        // Create new AbortController for this fetch
+        const abortController = new AbortController();
+        abortControllerRef.current = abortController;
+
+        if (page === 1) {
+          setLoading(true);
+        } else {
+          setLoadingMore(true);
+        }
+
+        const isFeatured = currentTab === "featured";
+        // Use limit=12 for medium screens and larger, limit=8 for smaller screens
+        const limit = isMediumScreen ? 12 : 8;
+        const response = await fetch(
+          `/api/chat?featured=${isFeatured}&limit=${limit}&page=${page}`,
+          { signal: abortController.signal },
         );
-      }
 
-      if (append) {
-        setConversations((prev) => [...prev, ...data.items]);
-      } else {
-        setConversations(data.items || []);
-      }
+        if (!response.ok) {
+          if (response.status === 403) {
+            // If unauthorized for all conversations, fall back to featured
+            if (!isFeatured) {
+              setCurrentTab("featured");
+              setError("Showing featured conversations only");
+              return;
+            }
+          }
+          throw new Error(`Failed to fetch conversations: ${response.status}`);
+        }
 
-      setPagination(data.pagination || null);
-      setError(null);
-    } catch (err) {
-      console.error("Error fetching conversations:", err);
-      setError(
-        err instanceof Error ? err.message : "Failed to load conversations",
-      );
-    } finally {
-      setLoading(false);
-      setLoadingMore(false);
-    }
-  };
+        const data = await response.json();
+        console.log(
+          "API Response for tab",
+          currentTab,
+          "featured=",
+          isFeatured,
+          "URL:",
+          `/api/chat?featured=${isFeatured}&limit=${limit}&page=${page}`,
+          "Response:",
+          data,
+        );
+        console.log("Number of items:", data.items?.length || 0);
+        if (data.items && data.items.length > 0) {
+          console.log("First item featured value:", data.items[0].featured);
+          console.log(
+            "All items featured values:",
+            data.items.map((item: any) => item.featured),
+          );
+        }
+
+        if (append) {
+          setConversations((prev) => [...prev, ...data.items]);
+        } else {
+          setConversations(data.items || []);
+        }
+
+        setPagination(data.pagination || null);
+        setError(null);
+      } catch (err) {
+        // Don't set error if fetch was aborted
+        if (err instanceof DOMException && err.name === "AbortError") {
+          console.log("Fetch aborted");
+          return;
+        }
+        console.error("Error fetching conversations:", err);
+        setError(
+          err instanceof Error ? err.message : "Failed to load conversations",
+        );
+      } finally {
+        setLoading(false);
+        setLoadingMore(false);
+      }
+    },
+    [
+      currentTab,
+      isMediumScreen,
+      setCurrentTab,
+      setError,
+      setLoading,
+      setLoadingMore,
+      setConversations,
+      setPagination,
+    ],
+  );
 
   useEffect(() => {
     fetchConversations(1);
     setShowAllMobile(false); // Reset show all state when tab changes
     setLoadingMore(false); // Reset loading more state when tab changes
-  }, [currentTab, isMediumScreen]);
+
+    // Cleanup function to abort fetch when component unmounts or dependencies change
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+        abortControllerRef.current = null;
+      }
+    };
+  }, [fetchConversations]);
 
   const handleLoadMore = () => {
     if (!loadingMore && pagination) {
