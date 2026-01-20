@@ -15,9 +15,7 @@ import {
   VectorStoreIndex,
 } from "llamaindex";
 import OpenAI from "openai";
-import { db } from "../db";
-import { videos } from "../db/schema";
-
+import os from "os";
 import path from "path";
 import { initSettings } from "../app/api/chat/app/settings";
 import {
@@ -25,6 +23,8 @@ import {
   questionPrompt,
   SummaryPrompt,
 } from "../app/api/chat/utils/prompts";
+import { db } from "../db";
+import { videos } from "../db/schema";
 
 async function fetchWithBackoff<T>(
   fn: () => Promise<T>,
@@ -362,7 +362,8 @@ async function processVideos() {
   }
 
   // Create temp directory for audio files
-  const tempDir = path.join(process.cwd(), "temp_audio");
+  // Use system temp directory for cross-platform compatibility
+  const tempDir = path.join(os.tmpdir(), "temp_audio");
   await fsp.mkdir(tempDir, { recursive: true });
 
   let processedCount = 0;
@@ -497,7 +498,7 @@ async function processVideos() {
 
   // Clean up temp directory
   try {
-    await fsp.rmdir(tempDir);
+    await fsp.rm(tempDir, { recursive: true, force: true });
   } catch (error) {
     console.warn(`Failed to remove temp directory: ${error}`);
   }
