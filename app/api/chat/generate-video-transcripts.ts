@@ -1,5 +1,6 @@
 import { db } from "@/db";
 import { videos } from "@/db/schema";
+import { OpenAI as LlamaIndexOpenAI } from "@llamaindex/openai";
 import { QdrantVectorStore } from "@llamaindex/qdrant";
 import "dotenv/config";
 import { eq } from "drizzle-orm";
@@ -14,6 +15,7 @@ import {
   VectorStoreIndex,
 } from "llamaindex";
 import OpenAI from "openai";
+
 import path from "path";
 import { initSettings } from "./app/settings";
 import { KeywordPrompt, questionPrompt, SummaryPrompt } from "./utils/prompts";
@@ -194,7 +196,7 @@ async function generateVideoSummary(
   transcript: string,
 ): Promise<string> {
   // Create Kimi AI client using OpenRouter
-  const kimi = new OpenAI({
+  const kimi = new LlamaIndexOpenAI({
     apiKey: process.env.OPENROUTER_KEY,
     baseURL: "https://openrouter.ai/api/v1",
     model: "moonshotai/kimi-k2-0905:exacto",
