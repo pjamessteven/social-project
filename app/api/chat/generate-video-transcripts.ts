@@ -222,18 +222,17 @@ Instructions:
 
 Summary:`;
 
-    const response = await kimi.chat.completions.create({
+    const response = await kimi.chat({
       messages: [
         {
           role: "user",
           content: prompt,
         },
       ],
-      temperature: 0.3,
-      max_tokens: 500,
+      stream: false,
     });
 
-    const summary = response.choices[0]?.message?.content?.trim() || "";
+    const summary = response.message.content?.toString().trim() || "";
 
     if (!summary) {
       throw new Error(
