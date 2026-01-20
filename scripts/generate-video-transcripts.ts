@@ -1,5 +1,5 @@
-import { db } from "@/db";
-import { videos } from "@/db/schema";
+#!/usr/bin/env tsx
+
 import { OpenAI as LlamaIndexOpenAI } from "@llamaindex/openai";
 import { QdrantVectorStore } from "@llamaindex/qdrant";
 import "dotenv/config";
@@ -15,14 +15,16 @@ import {
   VectorStoreIndex,
 } from "llamaindex";
 import OpenAI from "openai";
+import { db } from "../db";
+import { videos } from "../db/schema";
 
-import { initSettings } from "@/app/api/chat/app/settings";
+import path from "path";
+import { initSettings } from "../app/api/chat/app/settings";
 import {
   KeywordPrompt,
   questionPrompt,
   SummaryPrompt,
-} from "@/app/api/chat/utils/prompts";
-import path from "path";
+} from "../app/api/chat/utils/prompts";
 
 async function fetchWithBackoff<T>(
   fn: () => Promise<T>,

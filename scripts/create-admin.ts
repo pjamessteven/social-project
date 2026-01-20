@@ -1,10 +1,10 @@
 #!/usr/bin/env tsx
 
-import { db } from "@/db";
-import { users } from "@/db/schema";
-import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import "dotenv/config";
+import { eq } from "drizzle-orm";
+import { db } from "../db";
+import { users } from "../db/schema";
 
 async function createAdminUser() {
   console.log("🔧 Starting admin user setup...");
