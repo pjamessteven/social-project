@@ -98,6 +98,8 @@ async function downloadVideoAudio(
       "--output",
       `"${outputTemplate}"`,
       `"${videoUrl}"`,
+      "--cookies",
+      "/tmp/cookies.txt",
     ].join(" ");
 
     console.log("Running yt-dlp command:", ytdlpCommand);
