@@ -16,9 +16,13 @@ import {
 } from "llamaindex";
 import OpenAI from "openai";
 
+import { initSettings } from "@app/api/chat/app/settings";
+import {
+  KeywordPrompt,
+  questionPrompt,
+  SummaryPrompt,
+} from "@app/api/chat/utils/prompts";
 import path from "path";
-import { initSettings } from "./app/settings";
-import { KeywordPrompt, questionPrompt, SummaryPrompt } from "./utils/prompts";
 
 async function fetchWithBackoff<T>(
   fn: () => Promise<T>,
