@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface Video {
   id: number;
@@ -9,6 +9,7 @@ interface Video {
   sex: "m" | "f";
   url: string;
   type: string;
+  description: string | null;
 }
 
 export default function VideoList() {
@@ -19,13 +20,13 @@ export default function VideoList() {
   useEffect(() => {
     async function fetchVideos() {
       try {
-        const response = await fetch('/api/videos');
+        const response = await fetch("/api/videos");
         if (response.ok) {
           const data = await response.json();
           setVideos(data.videos || []);
         }
       } catch (error) {
-        console.error('Failed to fetch videos:', error);
+        console.error("Failed to fetch videos:", error);
       } finally {
         setLoading(false);
       }
@@ -43,97 +44,109 @@ export default function VideoList() {
   const getYouTubeVideoId = (url: string): string => {
     const patterns = [
       /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
-      /youtube\.com\/watch\?.*v=([^&\n?#]+)/
+      /youtube\.com\/watch\?.*v=([^&\n?#]+)/,
     ];
-    
+
     for (const pattern of patterns) {
       const match = url.match(pattern);
       if (match) return match[1];
     }
-    return '';
+    return "";
   };
 
   if (loading) {
-    return <div className="text-center py-8">Loading videos...</div>;
+    return <div className="py-8 text-center">Loading videos...</div>;
   }
 
   return (
     <>
-      <div className="not-prose mt-8 mb-6 overflow-x-auto">
-        <div className="flex min-w-max gap-2">
-          <button
-            onClick={() => setFilter("all")}
-            className={`rounded px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
-              filter === "all"
-                ? "bg-black text-white dark:bg-white dark:text-black"
-                : "bg-secondary text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
-            }`}
-          >
-            All Stories
-          </button>
-          <button
-            onClick={() => setFilter("f")}
-            className={`rounded px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
-              filter === "f"
-                ? "bg-black text-white dark:bg-white dark:text-black"
-                : "bg-secondary text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
-            }`}
-          >
-            Female
-          </button>
-          <button
-            onClick={() => setFilter("m")}
-            className={`rounded px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
-              filter === "m"
-                ? "bg-black text-white dark:bg-white dark:text-black"
-                : "bg-secondary text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
-            }`}
-          >
-            Male
-          </button>
+      <div className="flex flex-col border-t lg:-mx-48">
+        <div className="not-prose mt-4 mb-4 overflow-x-auto">
+          <div className="flex min-w-max gap-2">
+            <button
+              onClick={() => setFilter("all")}
+              className={`rounded px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
+                filter === "all"
+                  ? "bg-black text-white dark:bg-white dark:text-black"
+                  : "bg-secondary text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+              }`}
+            >
+              All Stories
+            </button>
+            <button
+              onClick={() => setFilter("f")}
+              className={`rounded px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
+                filter === "f"
+                  ? "bg-black text-white dark:bg-white dark:text-black"
+                  : "bg-secondary text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+              }`}
+            >
+              Female
+            </button>
+            <button
+              onClick={() => setFilter("m")}
+              className={`rounded px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
+                filter === "m"
+                  ? "bg-black text-white dark:bg-white dark:text-black"
+                  : "bg-secondary text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+              }`}
+            >
+              Male
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div className="not-prose grid grid-cols-1 gap-6 md:grid-cols-2">
-        {filteredVideos.map((video) => (
-          <a
-            href={video.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            key={video.id}
-            className="group block"
-          >
-            <div className="flex h-full flex-col rounded-lg border p-4 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800">
-              <div className="relative mb-3">
-                <img
-                  src={`https://img.youtube.com/vi/${getYouTubeVideoId(video.url)}/mqdefault.jpg`}
-                  alt={`Thumbnail for ${video.title}`}
-                  className="h-48 w-full rounded object-cover"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-opacity-50 group-hover:bg-opacity-80 flex h-16 w-16 items-center justify-center rounded-full bg-black/50 transition-all">
-                    <svg
-                      className="ml-1 h-8 w-8 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
+        <div className="not-prose grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {filteredVideos.map((video) => (
+            <a
+              href={video.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              key={video.id}
+              className="group block"
+            >
+              <div className="flex h-full flex-col rounded-lg border p-4 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800">
+                <div className="relative mb-3">
+                  <img
+                    src={`https://img.youtube.com/vi/${getYouTubeVideoId(video.url)}/mqdefault.jpg`}
+                    alt={`Thumbnail for ${video.title}`}
+                    className="h-48 w-full rounded object-cover"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-opacity-50 group-hover:bg-opacity-80 flex h-16 w-16 items-center justify-center rounded-full bg-black/50 transition-all">
+                      <svg
+                        className="ml-1 h-8 w-8 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
+                <div className="flex flex-1 flex-col">
+                  <h3 className="mb-2 text-base font-medium text-blue-600 group-hover:text-blue-800 dark:text-blue-400 dark:group-hover:text-blue-300">
+                    {video.title}
+                  </h3>
+
+                  {/* Video Description */}
+                  {video.description && (
+                    <div className="mb-3 flex-1">
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
+                        {video.description}
+                      </p>
+                    </div>
+                  )}
+
+                  <p className="mt-auto text-sm font-light text-gray-500 dark:text-gray-400">
+                    by <b>{video.author}</b> (
+                    {video.sex === "f" ? "Female" : "Male"})
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-1 flex-col">
-                <h3 className="mb-2 text-base font-medium text-blue-600 group-hover:text-blue-800 dark:text-blue-400 dark:group-hover:text-blue-300">
-                  {video.title}
-                </h3>
-                <p className="mt-auto text-sm font-light text-gray-500 dark:text-gray-400">
-                  by <b>{video.author}</b> (
-                  {video.sex === "f" ? "Female" : "Male"})
-                </p>
-              </div>
-            </div>
-          </a>
-        ))}
+            </a>
+          ))}
+        </div>
       </div>
     </>
   );

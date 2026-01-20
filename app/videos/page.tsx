@@ -25,15 +25,16 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function VideosPage() {
   return (
-    <div className="prose dark:prose-invert pb-16 lg:pt-8">
+    <div className="prose dark:prose-invert pb-16 lg:max-w-none lg:pt-8">
       <h1 className="text-3xl font-bold">Transition & Detransition Videos</h1>
 
-      <p className="text-muted-foreground">
-       This is an archive of personal memoirs that have been uploaded to
-        YouTube by detransitioners. Contribute and make your voice heard by sharing your own story!
+      <p className="text-muted-foreground max-w-3xl">
+        This is an archive of personal memoirs that have been uploaded to
+        YouTube by detransitioners. Contribute and make your voice heard by
+        sharing your own story!
       </p>
 
-      <div className="my-4">
+      <div className="my-4 max-w-3xl">
         <VideoSubmitForm />
       </div>
 

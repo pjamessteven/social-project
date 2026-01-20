@@ -182,9 +182,9 @@ export const workflowFactory = async (
   const llm = new CachedOpenAI({
     cache,
     mode: "detrans_chat",
-    apiKey: process.env.OPENROUTER_KEY,
-    baseURL: "https://openrouter.ai/api/v1",
-    model: "moonshotai/kimi-k2-0905:exacto",
+    apiKey: process.env.KIMI_KEY,
+    baseURL: "https://api.moonshot.ai/v1",
+    model: "kimi-k2-thinking",
     conversationId,
   });
 
