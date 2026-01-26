@@ -65,7 +65,7 @@ export default function VideoList() {
   return (
     <>
       <div className="flex flex-col border-t">
-        <div className="not-prose mt-4 mb-4 overflow-x-auto">
+        <div className="not-prose my-4 overflow-x-auto sm:my-8">
           <Tabs
             value={filter}
             onValueChange={(value: string) =>
@@ -106,7 +106,7 @@ export default function VideoList() {
           </Tabs>
         </div>
 
-        <div className="not-prose grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="not-prose grid grid-cols-1 gap-6 md:grid-cols-2 lg:-mx-48 lg:grid-cols-3">
           {filteredVideos.map((video) => {
             const videoSlug = generateVideoSlug(video.id, video.title);
             return (

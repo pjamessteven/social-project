@@ -34,15 +34,14 @@ export default async function VideosPage() {
     return <SeoVideosList />;
   }
   return (
-    <div className="prose dark:prose-invert pb-16 lg:-mx-48 lg:max-w-none lg:pt-8">
+    <div className="prose dark:prose-invert pb-16 lg:max-w-none lg:pt-8">
       <h1 className="text-3xl font-bold">Transition & Detransition Videos</h1>
 
       <p className="text-muted-foreground max-w-3xl">
-        This page aims to be the best archive of detransition videos that have
-        been uploaded to the internet.
-        <br />
-        Using speech-to-text, detrans.ai can integrate these experiences into
-        chat conversations.
+        This page aims to be the best archive of detransition videos on the
+        internet.
+        <br className="hidden md:inline" /> Using speech-to-text, detrans.ai
+        integrates these experiences into chat conversations.
         <br className="hidden md:inline" /> YouTube videos only for now, TikTok
         coming soon?!
       </p>
