@@ -2,12 +2,6 @@
 
 import { useState } from "react";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "./ui/accordion";
 import { Alert, AlertDescription } from "./ui/alert";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -59,65 +53,49 @@ export default function VideoSubmitForm() {
   };
 
   return (
-    <>
-      <Accordion type="single" collapsible className="mt- mb-8 w-full pt-0">
-        <AccordionItem
-          value="disclaimer"
-          className="bg-secondary mt-0 overflow-hidden rounded-xl border p-3 pt-0"
-        >
-          <AccordionTrigger className="-mt-8 -mb-3 w-full py-0 pt-0 text-base !font-normal hover:no-underline">
-            <div className="align-center flex flex-col justify-center pt-3 text-sm">
-              <div className="font-semibold">Submit Your Story</div>
-              <div className="text-muted-foreground mt-1">
-                Share a YouTube video about your detransition experience
-              </div>
+    <div className="text-muted-foreground">
+      <details className="mb-4 cursor-pointer">
+        <summary className="text-muted-foreground">
+          Submit Your Detransition Video
+        </summary>
+        <div className="space-y-3 pt-1">
+          <p className="mt-3 border-t pt-3">
+            By submitting your video it will show on this page and in relevant
+            chats.
+            <br className="hidden md:inline" /> It could be your video, or it
+            could just be one you found online that's missing from this page.
+            <br className="hidden md:inline" /> All submissions are moderated,
+            it might take a few days before it appears.
+          </p>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="url" className="text-sm">
+                YouTube URL
+              </Label>
+              <Input
+                id="url"
+                type="url"
+                placeholder="https://www.youtube.com/watch?v=..."
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                required
+              />
             </div>
-          </AccordionTrigger>
-          <AccordionContent className="prose-sm dark:prose-invert text-muted-foreground max-w-full text-base">
-            <div className="space-y-3 pt-1">
-              <p className="mt-3 border-t pt-3">
-                By submitting your story it will show on this page and in
-                relevant chats. <b>detrans.ai</b> uses speech-to-text to surface
-                relevant videos when people ask questions. All submissions are
-                moderated, it might take a few days before it's visible.
-              </p>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="url" className="text-sm">
-                    YouTube URL
-                  </Label>
-                  <Input
-                    id="url"
-                    type="url"
-                    placeholder="https://www.youtube.com/watch?v=..."
-                    value={url}
-                    onChange={(e) => setUrl(e.target.value)}
-                    required
-                  />
-                </div>
 
-                {message && (
-                  <Alert
-                    variant={
-                      message.type === "error" ? "destructive" : "default"
-                    }
-                  >
-                    <AlertDescription>{message.text}</AlertDescription>
-                  </Alert>
-                )}
+            {message && (
+              <Alert
+                variant={message.type === "error" ? "destructive" : "default"}
+              >
+                <AlertDescription>{message.text}</AlertDescription>
+              </Alert>
+            )}
 
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full"
-                >
-                  {isSubmitting ? "Submitting..." : "Submit Video"}
-                </Button>
-              </form>
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    </>
+            <Button type="submit" disabled={isSubmitting} className="w-">
+              {isSubmitting ? "Submitting..." : "Submit Video"}
+            </Button>
+          </form>
+        </div>
+      </details>
+    </div>
   );
 }

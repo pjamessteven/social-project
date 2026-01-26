@@ -457,6 +457,8 @@ export const videos = pgTable(
     processed: boolean("processed").default(false).notNull(),
     transcript: text("transcript"),
     description: text("description"),
+    summary: text("summary"),
+    bite: text("bite"),
     duration: integer("duration"), // duration in seconds
     date: timestamp("date"), // date posted
     createdAt: timestamp("created_at").defaultNow().notNull(),
