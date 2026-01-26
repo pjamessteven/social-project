@@ -1,6 +1,7 @@
 "use client";
 
 import { generateVideoSlug } from "@/app/lib/video-utils";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 
@@ -109,7 +110,7 @@ export default function VideoList() {
           {filteredVideos.map((video) => {
             const videoSlug = generateVideoSlug(video.id, video.title);
             return (
-              <a
+              <Link
                 href={`/videos/${videoSlug}`}
                 key={video.id}
                 className="group block"
@@ -153,7 +154,7 @@ export default function VideoList() {
                     </p>
                   </div>
                 </div>
-              </a>
+              </Link>
             );
           })}
         </div>
