@@ -362,14 +362,14 @@ export function FeaturedConversations() {
         >
           <div className="lg:no-wrap mb-4 flex w-full flex-col lg:flex-row lg:items-center lg:justify-between">
             <div className="lg:prose-base prose dark:prose-invert flex flex-col">
-              <div className="mt-2 flex items-center justify-start gap-2">
+              <div className="flex items-center justify-start gap-2 lg:mt-2">
                 <History className="mx-2 h-6 w-6 text-black dark:text-white" />
 
                 <h3 className="my-0! py-0! text-xl font-bold">
                   Recent Conversations
                 </h3>
               </div>
-              <div className="mt-2 mb-6 text-gray-500">
+              <div className="mt-4 mb-6 text-gray-500 lg:mt-2">
                 See for yourself how detrans.ai is helping people from around
                 the world.
               </div>
@@ -392,7 +392,7 @@ export function FeaturedConversations() {
             </TabsList>
           </div>
 
-          {loading ? (
+          {loading || conversations.length === 0 ? (
             <>
               {/* Mobile loading skeletons - single column */}
               <div className="flex flex-col sm:hidden">
@@ -542,20 +542,6 @@ export function FeaturedConversations() {
             <div className="rounded-lg border border-red-200 bg-red-50 p-4">
               <p className="text-sm text-red-600">
                 Error loading conversations: {error}
-              </p>
-            </div>
-          ) : conversations.length === 0 ? (
-            <div className="rounded-lg border p-6 text-center">
-              <MessageSquare className="mx-auto mb-2 h-8 w-8 text-gray-400" />
-              <p className="text-gray-500">
-                {currentTab === "featured"
-                  ? "No featured conversations yet"
-                  : "No conversations found"}
-              </p>
-              <p className="mt-1 text-sm text-gray-400">
-                {currentTab === "featured"
-                  ? "Check back later for highlighted conversations"
-                  : "Try viewing featured conversations instead"}
               </p>
             </div>
           ) : (
