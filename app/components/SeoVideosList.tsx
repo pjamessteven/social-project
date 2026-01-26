@@ -4,6 +4,7 @@ import { generateVideoSlug } from "@/app/lib/video-utils";
 import { db } from "@/db";
 import { videos } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
+import Link from "next/link";
 
 interface Video {
   id: number;
@@ -51,7 +52,7 @@ export default async function SeoVideosList() {
         {allVideos.map((video) => {
           const videoSlug = generateVideoSlug(video.id, video.title);
           return (
-            <a
+            <Link
               href={`/videos/${videoSlug}`}
               key={video.id}
               className="group block"
@@ -96,7 +97,7 @@ export default async function SeoVideosList() {
                   </p>
                 </div>
               </div>
-            </a>
+            </Link>
           );
         })}
       </div>

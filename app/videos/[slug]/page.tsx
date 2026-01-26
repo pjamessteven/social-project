@@ -9,6 +9,7 @@ import { db } from "@/db";
 import { videos } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface VideoPageProps {
@@ -104,12 +105,12 @@ export default async function VideoPage({ params }: VideoPageProps) {
   return (
     <div className="prose dark:prose-invert pb-16 lg:max-w-none lg:pt-8">
       <div className="mb-8">
-        <a
+        <Link
           href="/videos"
           className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
         >
           &larr; Back to all detransition videos
-        </a>
+        </Link>
       </div>
 
       <h1 className="mb-0 text-3xl font-bold">{video.title}</h1>
@@ -168,12 +169,12 @@ export default async function VideoPage({ params }: VideoPageProps) {
       <div className="mt-12 border-t border-gray-200 pt-8 dark:border-gray-700">
         <h2 className="mb-6 text-2xl font-bold">More Videos</h2>
         <p className="text-gray-600 dark:text-gray-400">
-          <a
+          <Link
             href="/videos"
             className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
           >
             Browse all detransition videos →
-          </a>
+          </Link>
         </p>
       </div>
     </div>
