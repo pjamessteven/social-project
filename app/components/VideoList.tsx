@@ -12,6 +12,7 @@ interface Video {
   url: string;
   type: string;
   description: string | null;
+  summary: string | null;
 }
 
 export default function VideoList() {
