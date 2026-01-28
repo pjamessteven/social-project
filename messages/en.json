@@ -75,7 +75,20 @@
     "donate": {
       "title": "Support Our Work",
       "description": "Help us keep this resource available for those who need it most.",
-      "button": "Donate"
+      "button": "Donate",
+      "card": {
+        "title": "Donations needed to keep {site} alive!",
+        "description": "If you appreciate this free service please consider making a donation.",
+        "description2": "The site will be run in cache-only mode if I run out of money, with no ability to ask your own questions.",
+        "button": "Make a donation"
+      }
+    },
+    "participate": {
+      "card": {
+        "title": "Are you a detransitioner or a desister?",
+        "description": "Participate in studies to help improve scientific understanding of transgender identities",
+        "description2": "and to improve outcomes for people experiencing gender dysphoria."
+      }
     },
     "participate": {
       "title": "Share Your Story",

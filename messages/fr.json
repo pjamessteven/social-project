@@ -75,7 +75,20 @@
     "donate": {
       "title": "Soutenez Notre Travail",
       "description": "Aidez-nous à garder cette ressource disponible pour ceux qui en ont le plus besoin.",
-      "button": "Faire un Don"
+      "button": "Faire un Don",
+      "card": {
+        "title": "Des dons sont nécessaires pour maintenir {site} en vie !",
+        "description": "Si vous appréciez ce service gratuit, veuillez envisager de faire un don.",
+        "description2": "Le site fonctionnera en mode cache uniquement si je manque d'argent, sans possibilité de poser vos propres questions.",
+        "button": "Faire un don"
+      }
+    },
+    "participate": {
+      "card": {
+        "title": "Êtes-vous une personne ayant fait une déstransition ou ayant désisté ?",
+        "description": "Participez à des études pour aider à améliorer la compréhension scientifique des identités transgenres",
+        "description2": "et pour améliorer les résultats pour les personnes souffrant de dysphorie de genre."
+      }
     },
     "participate": {
       "title": "Partagez Votre Histoire",
