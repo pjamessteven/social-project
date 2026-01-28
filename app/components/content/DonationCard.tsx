@@ -1,9 +1,10 @@
+import { useTranslations } from "next-intl";
 import { ExternalLink, HandCoins } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
-export default function DonationCard({
+export default function DonationCard({ 
   mode,
 }: {
   mode: "detrans" | "affirm" | "compare";
@@ -19,26 +20,21 @@ export default function DonationCard({
           <div className="flex items-center space-x-2">
             <HandCoins className="text-foreground mr-2 h-5 w-5" />
             <CardTitle className="text-foreground dark:text-white">
-              Donations needed to keep{" "}
-              {mode === "affirm" ? "genderaffirming.ai" : "detrans.ai"} alive!
+              {t("donate.card.title", {
+                site: mode === "affirm" ? "genderaffirming.ai" : "detrans.ai",
+              })}
             </CardTitle>
           </div>
-          <div
-            className={
-              "text-destructive flex items-center space-x-1 no-underline"
-            }
-          ></div>
         </div>
         <CardDescription className="mt-2">
-          If you appreciate this free service please consider making a donation.
+          {t("donate.card.description")}
           <br className="hidden md:inline" />
-          The site will be run in cache-only mode if I run out of money, with no
-          ability to ask your own questions.
+          {t("donate.card.description2")}
         </CardDescription>
 
         <Link href={"/donate"} className="mt-2">
           <Button variant={"destructive"}>
-            Make a donation <ExternalLink className="ml-2 h-4" />
+            {t("donate.card.button")} <ExternalLink className="ml-2 h-4" />
           </Button>
         </Link>
       </CardHeader>
