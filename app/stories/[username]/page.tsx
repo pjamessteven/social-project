@@ -137,12 +137,12 @@ export default async function UserPage({
         </Button>
       </Link>
 
-      <div className="prose dark:prose-invert space-y-6 max-w-full">
+      <div className="prose dark:prose-invert max-w-full space-y-6">
         {/* Header */}
         <div>
           <div className="mb-6 flex flex-col items-baseline justify-between sm:mb-4 sm:flex-row">
             <div className="mb-4 flex flex-col sm:mb-0">
-              <h1 className="mb-2 !text-2xl font-bold sm:mb-2">
+              <h1 className="mb-2 text-2xl! font-bold sm:mb-2">
                 Reddit user{" "}
                 <span className="whitespace-nowrap">/u/{user.username}'s</span>{" "}
                 Detransition Story
@@ -191,11 +191,10 @@ export default async function UserPage({
         <details className="mb-4 cursor-pointer text-sm sm:text-base">
           <summary className="text-muted-foreground">
             <i>
-              This story is from the comments listed
-              below, summarised by AI.
+              This story is from the comments listed below, summarised by AI.
             </i>
           </summary>
-          <div className="mt-2 mb-8 py-3 text-gray-600  dark:text-gray-400">
+          <div className="mt-2 mb-8 py-3 text-gray-600 dark:text-gray-400">
             On Reddit, people often share their experiences across multiple
             comments or posts. To make this information more accessible, our AI
             gathers all of those scattered pieces into a single, easy-to-read
@@ -209,7 +208,7 @@ export default async function UserPage({
         </details>
         {/* Red Flags Report */}
         {user.redFlagsReport && (
-          <details className="cursor-pointer  text-sm sm:text-base">
+          <details className="cursor-pointer text-sm sm:text-base">
             <summary className="text-muted-foreground">
               <i>
                 Authenticity Assessment:{" "}
@@ -222,7 +221,7 @@ export default async function UserPage({
               dangerouslySetInnerHTML={{
                 __html: marked.parse(user.redFlagsReport || ""),
               }}
-              className="mt-2 mb-8  text-gray-600  dark:text-gray-400"
+              className="mt-2 mb-8 text-gray-600 dark:text-gray-400"
             ></div>
           </details>
         )}

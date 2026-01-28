@@ -2,7 +2,6 @@
 
 import DonationCard from "@/app/components/content/DonationCard";
 import {
-  ArrowLeftRight,
   BookOpen,
   ChartNoAxesCombined,
   ExternalLink,
@@ -10,7 +9,6 @@ import {
   Heart,
   HelpCircle,
   Home,
-  List,
   Mail,
   Menu,
   MessageCircleHeart,
@@ -84,11 +82,10 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
         </div>
       </Link>
 
-      <div className="flex items-center gap-2"> 
+      <div className="flex items-center gap-2">
         {/* Desktop Navigation - hidden on mobile */}
         <div className="hidden items-center justify-end gap-0.5 p-1 md:flex">
           <NavLink href={!devAffirm ? "/" : "/affirm"} label="Home" />
-          <NavLink href={"/compare"} label="Compare" />
 
           <NavigationMenu className="ml-2">
             <NavigationMenuList>
@@ -343,257 +340,227 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     </div>
                   </Button>
                 </Link>
-                <Link href={"/compare"} onClick={() => setIsOpen(false)}>
-                  <Button
-                    variant="ghost"
-                    className={cn(
-                      "h-auto w-full flex-row items-center justify-start py-3",
-                      pathname === "/compare" && "bg-muted",
-                    )}
-                  >
-                    <ArrowLeftRight className="h-4 w-4" />
-
-                    <div className="ml-4 flex flex-col items-start">
-                      <div className="text-sm font-medium">Compare Sides</div>
-                      <div className="text-muted-foreground text-xs">
-                        Compare Trans & Detrans Perspectives
-                      </div>
-                    </div>
-                  </Button>
-                </Link>
 
                 {/* Resources Section */}
                 {mode === "detrans" && (
+                  <div className="border-border border-t py-2">
+                    <h3 className="text-muted-foreground ml-1 pt-2 text-sm font-medium">
+                      Resources
+                    </h3>
+                    <div className="space-y-1">
+                      <Link href={"/support"} onClick={() => setIsOpen(false)}>
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-row items-center justify-start py-3",
+                            pathname === "/support" && "bg-muted",
+                          )}
+                        >
+                          <Heart className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">
+                              Help & Support
+                            </div>
+                            <div className="text-muted-foreground text-xs">
+                              Find community and therapists
+                            </div>
+                          </div>
+                        </Button>
+                      </Link>
+                      <Link href={"/stories"} onClick={() => setIsOpen(false)}>
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-row items-center justify-start py-3",
+                            pathname === "/stories" && "bg-muted",
+                          )}
+                        >
+                          <Users className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">
+                              Stories & Timelines
+                            </div>
+                            <div className="text-muted-foreground text-xs">
+                              From /r/detrans users
+                            </div>
+                          </div>
+                        </Button>
+                      </Link>
+                      <Link href={"/videos"} onClick={() => setIsOpen(false)}>
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-row items-center justify-start py-3",
+                            pathname === "/videos" && "bg-muted",
+                          )}
+                        >
+                          <Youtube className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">
+                              Detransition Videos
+                            </div>
+                            <div className="text-muted-foreground text-xs">
+                              Personal memoir archive
+                            </div>
+                          </div>
+                        </Button>
+                      </Link>
+                      <Link
+                        href={"/definitions"}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-row items-center justify-start py-3",
+                            pathname === "/definitions" && "bg-muted",
+                          )}
+                        >
+                          <FileText className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">
+                              Terminology
+                            </div>
+                            <div className="text-muted-foreground text-xs">
+                              Defining key terms/concepts
+                            </div>
+                          </div>
+                        </Button>
+                      </Link>
 
-                    <div className="border-border  border-t py-2">
-                      <h3 className="text-muted-foreground pt-2 ml-1 text-sm font-medium">
-                        Resources
-                      </h3>
-                      <div className="space-y-1">
-                        <Link
-                          href={"/support"}
-                          onClick={() => setIsOpen(false)}
+                      <Link href={"/studies"} onClick={() => setIsOpen(false)}>
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-row items-center justify-start py-3",
+                            pathname === "/studies" && "bg-muted",
+                          )}
                         >
-                          <Button
-                            variant="ghost"
-                            className={cn(
-                              "h-auto w-full flex-row items-center justify-start py-3",
-                              pathname === "/support" && "bg-muted",
-                            )}
-                          >
-                            <Heart className="h-4 w-4" />
-                            <div className="ml-4 flex flex-col items-start">
-                              <div className="text-sm font-medium">
-                                Help & Support
-                              </div>
-                              <div className="text-muted-foreground text-xs">
-                                Find community and therapists
-                              </div>
+                          <BookOpen className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">
+                              Peer-reviewed Studies
                             </div>
-                          </Button>
-                        </Link>
-                        <Link href={"/stories"} onClick={() => setIsOpen(false)}>
-                          <Button
-                            variant="ghost"
-                            className={cn(
-                              "h-auto w-full flex-row items-center justify-start py-3",
-                              pathname === "/stories" && "bg-muted",
-                            )}
-                          >
-                            <Users className="h-4 w-4" />
-                            <div className="ml-4 flex flex-col items-start">
-                              <div className="text-sm font-medium">
-                                Stories & Timelines
-                              </div>
-                              <div className="text-muted-foreground text-xs">
-                                From /r/detrans users
-                              </div>
+                            <div className="text-muted-foreground text-xs">
+                              Relevant academic research
                             </div>
-                          </Button>
-                        </Link>
-                        <Link
-                          href={"/videos"}
-                          onClick={() => setIsOpen(false)}
+                          </div>
+                        </Button>
+                      </Link>
+                      <a href="https://statsforgender.org/" target="_blank">
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "h-auto w-full flex-row items-center justify-between py-3",
+                          )}
                         >
-                          <Button
-                            variant="ghost"
-                            className={cn(
-                              "h-auto w-full flex-row items-center justify-start py-3",
-                              pathname === "/videos" && "bg-muted",
-                            )}
-                          >
-                            <Youtube className="h-4 w-4" />
+                          <div className="flex flex-row items-center">
+                            <ChartNoAxesCombined className="h-4 w-4" />
                             <div className="ml-4 flex flex-col items-start">
                               <div className="text-sm font-medium">
-                                Detransition Videos
+                                Verified Statistics
                               </div>
                               <div className="text-muted-foreground text-xs">
-                                Personal memoir archive
+                                statsforgender.org
                               </div>
                             </div>
-                          </Button>
-                        </Link>
-                        <Link
-                          href={"/definitions"}
-                          onClick={() => setIsOpen(false)}
-                        >
-                          <Button
-                            variant="ghost"
-                            className={cn(
-                              "h-auto w-full flex-row items-center justify-start py-3",
-                              pathname === "/definitions" && "bg-muted",
-                            )}
-                          >
-                            <FileText className="h-4 w-4" />
-                            <div className="ml-4 flex flex-col items-start">
-                              <div className="text-sm font-medium">
-                                Terminology
-                              </div>
-                              <div className="text-muted-foreground text-xs">
-                                Defining key terms/concepts
-                              </div>
-                            </div>
-                          </Button>
-                        </Link>
-
-                        <Link
-                          href={"/studies"}
-                          onClick={() => setIsOpen(false)}
-                        >
-                          <Button
-                            variant="ghost"
-                            className={cn(
-                              "h-auto w-full flex-row items-center justify-start py-3",
-                              pathname === "/studies" && "bg-muted",
-                            )}
-                          >
-                            <BookOpen className="h-4 w-4" />
-                            <div className="ml-4 flex flex-col items-start">
-                              <div className="text-sm font-medium">
-                                Peer-reviewed Studies
-                              </div>
-                              <div className="text-muted-foreground text-xs">
-                                Relevant academic research
-                              </div>
-                            </div>
-                          </Button>
-                        </Link>
-                        <a href="https://statsforgender.org/" target="_blank">
-                          <Button
-                            variant="ghost"
-                            className={cn(
-                              "h-auto w-full flex-row items-center justify-between py-3",
-                            )}
-                          >
-                            <div className="flex flex-row items-center">
-                              <ChartNoAxesCombined className="h-4 w-4" />
-                              <div className="ml-4 flex flex-col items-start">
-                                <div className="text-sm font-medium">
-                                  Verified Statistics
-                                </div>
-                                <div className="text-muted-foreground text-xs">
-                                  statsforgender.org
-                                </div>
-                              </div>
-                            </div>
-                            <ExternalLink className="ml-2 h-4" />
-                          </Button>
-                        </a>
-                      </div>
+                          </div>
+                          <ExternalLink className="ml-2 h-4" />
+                        </Button>
+                      </a>
                     </div>
-
+                  </div>
                 )}
 
                 {/* About Section */}
 
-                    <div className="border-border  border-t py-2">
-                      <h3 className="text-muted-foreground pt-2 ml-1 text-sm font-medium">
-                      About
-                    </h3>
-                    <div className="space-y-1">
-                      {mode !== "affirm" && false && (
-                        <Link href={"/about"} onClick={() => setIsOpen(false)}>
-                          <Button
-                            variant="ghost"
-                            className={cn(
-                              "h-auto w-full flex-row items-center justify-start py-3",
-                              pathname === "/about" && "bg-muted",
-                            )}
-                          >
-                            <Scroll className="h-4 w-4" />
-                            <div className="ml-4 flex flex-col items-start">
-                              <div className="text-sm font-medium">Manifesto</div>
-                              <div className="text-muted-foreground text-xs">
-                                Understand why I built this
-                              </div>
-                            </div>
-                          </Button>
-                        </Link>
-                      )}
-                      <Link
-                        href={!devAffirm ? "/contact" : "/affirm/contact"}
-                        onClick={() => setIsOpen(false)}
-                      >
+                <div className="border-border border-t py-2">
+                  <h3 className="text-muted-foreground ml-1 pt-2 text-sm font-medium">
+                    About
+                  </h3>
+                  <div className="space-y-1">
+                    {mode !== "affirm" && false && (
+                      <Link href={"/about"} onClick={() => setIsOpen(false)}>
                         <Button
                           variant="ghost"
                           className={cn(
                             "h-auto w-full flex-row items-center justify-start py-3",
-                            pathname === "/contact" && "bg-muted",
+                            pathname === "/about" && "bg-muted",
                           )}
                         >
-                          <Mail className="h-4 w-4" />
+                          <Scroll className="h-4 w-4" />
                           <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">Contact</div>
+                            <div className="text-sm font-medium">Manifesto</div>
                             <div className="text-muted-foreground text-xs">
-                              Get in touch with me
+                              Understand why I built this
                             </div>
                           </div>
                         </Button>
                       </Link>
-                      <Link
-                        href={!devAffirm ? "/prompts" : "/affirm/prompts"}
-                        onClick={() => setIsOpen(false)}
+                    )}
+                    <Link
+                      href={!devAffirm ? "/contact" : "/affirm/contact"}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Button
+                        variant="ghost"
+                        className={cn(
+                          "h-auto w-full flex-row items-center justify-start py-3",
+                          pathname === "/contact" && "bg-muted",
+                        )}
                       >
-                        <Button
-                          variant="ghost"
-                          className={cn(
-                            "h-auto w-full flex-row items-center justify-start py-3",
-                            pathname === "/prompts" && "bg-muted",
-                          )}
-                        >
-                          <Settings className="h-4 w-4" />
-                          <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">
-                              How It Works
-                            </div>
-                            <div className="text-muted-foreground text-xs">
-                              View the AI system prompts
-                            </div>
+                        <Mail className="h-4 w-4" />
+                        <div className="ml-4 flex flex-col items-start">
+                          <div className="text-sm font-medium">Contact</div>
+                          <div className="text-muted-foreground text-xs">
+                            Get in touch with me
                           </div>
-                        </Button>
-                      </Link>
-                      <Link
-                        href={!devAffirm ? "/terms" : "/affirm/terms"}
-                        onClick={() => setIsOpen(false)}
+                        </div>
+                      </Button>
+                    </Link>
+                    <Link
+                      href={!devAffirm ? "/prompts" : "/affirm/prompts"}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Button
+                        variant="ghost"
+                        className={cn(
+                          "h-auto w-full flex-row items-center justify-start py-3",
+                          pathname === "/prompts" && "bg-muted",
+                        )}
                       >
-                        <Button
-                          variant="ghost"
-                          className={cn(
-                            "h-auto w-full flex-row items-center justify-start py-3",
-                            pathname === "/terms" && "bg-muted",
-                          )}
-                        >
-                          <HelpCircle className="h-4 w-4" />
-                          <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">Terms</div>
-                            <div className="text-muted-foreground text-xs">
-                              Privacy policy and terms
-                            </div>
+                        <Settings className="h-4 w-4" />
+                        <div className="ml-4 flex flex-col items-start">
+                          <div className="text-sm font-medium">
+                            How It Works
                           </div>
-                        </Button>
-                      </Link>
-                    </div>
-
+                          <div className="text-muted-foreground text-xs">
+                            View the AI system prompts
+                          </div>
+                        </div>
+                      </Button>
+                    </Link>
+                    <Link
+                      href={!devAffirm ? "/terms" : "/affirm/terms"}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Button
+                        variant="ghost"
+                        className={cn(
+                          "h-auto w-full flex-row items-center justify-start py-3",
+                          pathname === "/terms" && "bg-muted",
+                        )}
+                      >
+                        <HelpCircle className="h-4 w-4" />
+                        <div className="ml-4 flex flex-col items-start">
+                          <div className="text-sm font-medium">Terms</div>
+                          <div className="text-muted-foreground text-xs">
+                            Privacy policy and terms
+                          </div>
+                        </div>
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </div>
               <div className="mt-4 pb-16" onClick={() => setIsOpen(false)}>

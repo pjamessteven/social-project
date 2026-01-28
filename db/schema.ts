@@ -50,44 +50,6 @@ export const detransCache = pgTable(
   }),
 );
 
-// Affirm tables
-export const affirmQuestions = pgTable(
-  "affirm_questions",
-  {
-    name: varchar("name", { length: 255 }).primaryKey(),
-    viewsCount: integer("views_count").default(0).notNull(),
-    mostRecentlyAsked: timestamp("most_recently_asked").defaultNow().notNull(),
-    createdAt: timestamp("created_at").defaultNow().notNull(),
-    finalResponse: text("final_response"),
-  },
-  (table) => ({
-    nameIdx: index("idx_affirm_questions_name").on(table.name),
-  }),
-);
-
-export const affirmCache = pgTable(
-  "affirm_cache",
-  {
-    promptHash: varchar("prompt_hash", { length: 64 }).primaryKey(),
-    promptText: text("prompt_text").notNull(),
-    resultText: text("result_text").notNull(),
-    questionName: varchar("question_name", { length: 255 }),
-    totalCost: numeric("total_cost", { precision: 10, scale: 6 }),
-    tokensPrompt: integer("tokens_prompt"),
-    tokensCompletion: integer("tokens_completion"),
-    model: varchar("model", { length: 255 }),
-    generationId: varchar("generation_id", { length: 255 }),
-    createdAt: timestamp("created_at").defaultNow().notNull(),
-    lastAccessed: timestamp("last_accessed").defaultNow().notNull(),
-  },
-  (table) => ({
-    questionIdx: index("idx_affirm_cache_question").on(table.questionName),
-    createdIdx: index("idx_affirm_cache_created").on(table.createdAt),
-    modelIdx: index("idx_affirm_cache_model").on(table.model),
-    generationIdx: index("idx_affirm_cache_generation").on(table.generationId),
-  }),
-);
-
 // Detrans chat cache table
 export const detransChatCache = pgTable(
   "detrans_chat_cache",
@@ -149,7 +111,7 @@ export const chatConversations = pgTable(
     uuid: varchar("uuid", { length: 36 })
       .primaryKey()
       .default(sql`gen_random_uuid()`),
-    mode: varchar("mode", { length: 20 }).notNull(), // 'detrans_chat', 'detrans', 'affirm'
+    mode: varchar("mode", { length: 20 }).notNull(), // 'detrans_chat', 'detrans'
     title: varchar("title", { length: 500 }),
     featured: boolean("featured").default(false).notNull(),
     archived: boolean("archived").default(false).notNull(),

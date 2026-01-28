@@ -351,7 +351,7 @@ export function FeaturedConversations() {
 
   return (
     <div className="relative mb-8">
-      <div className="bg-secondary/50 dark:bg-secondary/60 absolute -left-full z-0 h-full w-[10000px] border-t border-b" />
+      <div className="bg-secondary/50 dark:bg-secondary/60 absolute -left-[5000px] z-0 h-full w-[10000px] border-t border-b" />
       <div className="relative z-20 overflow-y-hidden border-t border-b py-8 sm:pb-0 lg:-mx-48 lg:px-8 lg:pt-8">
         <Tabs
           value={currentTab}
@@ -369,7 +369,7 @@ export function FeaturedConversations() {
                   Recent Conversations
                 </h3>
               </div>
-              <div className="mt-4 mb-6 text-gray-500 lg:mt-2">
+              <div className="mt-4 mb-6 text-base text-gray-500 lg:mt-4">
                 See for yourself how detrans.ai is helping people from around
                 the world.
               </div>
