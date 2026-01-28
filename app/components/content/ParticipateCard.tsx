@@ -1,10 +1,10 @@
-import { useTranslations } from "next-intl";
 import { ChevronRight, MessageCircleQuestion } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
 export default function ParticipateCard() {
-  const t = useTranslations();
+  const t = useTranslations("participate.card");
   return (
     <Link prefetch={false} href={"/participate"} className="no-underline">
       <Card className="group bg-lizard-200/30 border-lizard-400 dark:border-lizard-600 dark:bg-lizard-900/70 relative cursor-pointer overflow-hidden rounded-xl border transition-all duration-500 hover:brightness-110">
@@ -14,7 +14,7 @@ export default function ParticipateCard() {
             <div className="flex items-center space-x-2">
               <MessageCircleQuestion className="text-foreground mr-2 h-5 w-5" />
               <CardTitle className="text-foreground dark:text-white">
-                {t("participate.card.title")}
+                {t("title")}
               </CardTitle>
             </div>
             <div className="flex items-center space-x-1">
@@ -22,11 +22,8 @@ export default function ParticipateCard() {
             </div>
           </div>
           <CardDescription className="z-10 mt-2">
-            {t("participate.card.description")}
-            <span className="hidden sm:inline">
-              {" "}
-              {t("participate.card.description2")}
-            </span>
+            {t("description")}
+            <span className="hidden sm:inline"> {t("description2")}</span>
           </CardDescription>
         </CardHeader>
       </Card>
