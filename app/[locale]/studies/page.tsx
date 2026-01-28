@@ -6,6 +6,14 @@ import { Button } from "../../components/ui/button";
 
 const studies = [
   {
+    title: "50-Fold Increase in Gender Dysphoria/Incongruence in English Youth (2011-2021)",
+    authors: "Jarvis et al.",
+    description: `This large-scale study of English primary care records found a 50-fold (5000%) increase in recorded gender dysphoria/incongruence among children and young people aged 0-18 between 2011 and 2021. Prevalence increased from 0.16 to 8.3 per 10,000 persons, with the rise being most pronounced in birth-registered females after 2014. The study also found high rates of co-occurring mental health conditions - 52.7% had records of anxiety, depression or self-harm. Medical interventions were relatively uncommon, with 4.7% prescribed puberty blockers and 8.0% prescribed cross-sex hormones. The authors note the urgent need for better mental health support for this population.`,
+    year: 2025,
+    url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12320607/",
+    displayUrl: "pmc.ncbi.nlm.nih.gov/articles/PMC12320607/",
+  },
+  {
     title: "The Detransition Rate is Unknown",
     authors: "Cohn, J.",
     description: `This paper argues that the actual rates of detransition, discontinuation, and regret are unknown due to significant flaws in existing research. It critiques widely cited studies for issues like short follow-up periods (as regret can take years to surface), high loss-to-follow-up rates, and using samples that don't reflect the recent surge in adolescent cases. The author concludes that claims of very low regret rates are unreliable and that this uncertainty is critical for informed consent.`,
