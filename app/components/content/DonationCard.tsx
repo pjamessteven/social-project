@@ -1,14 +1,16 @@
-import { useTranslations } from "next-intl";
+import { createTranslator } from "next-intl";
 import { ExternalLink, HandCoins } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
-export default function DonationCard({ 
+export default async function DonationCard({ 
   mode,
 }: {
   mode: "detrans" | "affirm" | "compare";
 }) {
+  const t = await getTranslations("donate.card");
   return (
     <Card
       className={
