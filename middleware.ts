@@ -46,7 +46,7 @@ export async function middleware(req: NextRequest) {
   try {
     res = NextResponse.next();
 
-    const allowedHosts = ["detrans.ai", "genderaffirming.ai"];
+    const allowedHosts = ["detrans.ai"];
 
     if (host && !allowedHosts.includes(host) && !isDev) {
       const url = req.nextUrl.clone();
@@ -57,39 +57,6 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(url.toString(), 301);
     }
 
-    if (host === "genderaffirming.ai") {
-      // map the public path to the internal “/affirm/…” folder
-      const rewriteMap: Record<string, string> = {
-        "/": "/affirm",
-        "/research": "/affirm/research",
-        "/chat": "/affirm/chat",
-        "/prompts": "/affirm/prompts",
-        "/terms": "/affirm/terms",
-        "/contact": "/affirm/contact",
-      };
-
-      const internal = rewriteMap[pathname];
-      if (internal) {
-        const url = req.nextUrl.clone();
-        url.pathname = internal;
-        return NextResponse.redirect(url);
-      }
-    }
-
-    /*
-    const ip = getIP(req);
-
-    const slug =
-      req.nextUrl.hostname === "detrans.ai"
-        ? "detrans:general-req"
-        : "affirm:general-req";
-
-    // 100 page loads per day allowed
-    const { allowed, remaining } = await rateLimiter(ip, slug, 200);
-    // limit is for fresh LLM content which is controlled by CachedLLM in workflow
-    res.headers.set("X-RateLimit-Remaining", String(remaining));
-    res.headers.set("X-RateLimit-Limit", "10");
-    */
     res.headers.set("x-pathname", req.nextUrl.pathname);
 
     // Log the response

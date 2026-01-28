@@ -1,15 +1,13 @@
 import { availableTags } from "@/app/lib/availableTags";
-import {
-  affirmingQuestionCategories,
-  questionCategories,
-} from "@/app/lib/questions";
+import { questionCategories } from "@/app/lib/questions";
 import { slugify } from "@/app/lib/utils";
+import { generateVideoSlug } from "@/app/lib/video-utils";
 import { db } from "@/db";
 import {
-  affirmQuestions,
   chatConversations,
   detransQuestions,
   detransUsers,
+  videos,
 } from "@/db/schema";
 import { and, desc, eq, or } from "drizzle-orm";
 import { NextRequest } from "next/server";
@@ -18,13 +16,9 @@ export async function GET(request: NextRequest) {
   const host = request.headers.get("host") || "detrans.ai";
   const protocol = request.headers.get("x-forwarded-proto") || "https";
   const baseUrl = `${protocol}://${host}`;
-  const isAffirm = !!host.includes("genderaffirming.ai");
 
   // Extract all questions from question categories
   const allQuestions = questionCategories.flatMap(
-    (category) => category.questions,
-  );
-  const allAffirmingQuestions = affirmingQuestionCategories.flatMap(
     (category) => category.questions,
   );
 
@@ -34,7 +28,7 @@ export async function GET(request: NextRequest) {
     .from(detransUsers);
 
   // Fetch top 1000 questions from database based on mode
-  const questionsTable = isAffirm ? affirmQuestions : detransQuestions;
+  const questionsTable = detransQuestions;
   const topQuestions = await db
     .select({ name: questionsTable.name })
     .from(questionsTable)
@@ -42,26 +36,26 @@ export async function GET(request: NextRequest) {
     .limit(1000);
 
   // Fetch featured conversations (limit to 1000 for sitemap)
-  // Filter by mode: 'affirm' for affirm site, 'detrans' or 'detrans_chat' for detrans site
   const featuredConversations = await db
     .select({ uuid: chatConversations.uuid })
     .from(chatConversations)
     .where(
-      isAffirm
-        ? and(
-            eq(chatConversations.featured, true),
-            eq(chatConversations.mode, "affirm"),
-          )
-        : and(
-            eq(chatConversations.featured, true),
-            or(
-              eq(chatConversations.mode, "detrans"),
-              eq(chatConversations.mode, "detrans_chat"),
-            ),
-          ),
+      and(
+        eq(chatConversations.featured, true),
+        or(
+          eq(chatConversations.mode, "detrans"),
+          eq(chatConversations.mode, "detrans_chat"),
+        ),
+      ),
     )
     .orderBy(desc(chatConversations.updatedAt))
     .limit(1000);
+
+  // Fetch all processed videos for sitemap
+  const allVideos = await db
+    .select({ id: videos.id, title: videos.title })
+    .from(videos)
+    .where(eq(videos.processed, true));
 
   const baseRoutes = [
     {
@@ -144,51 +138,6 @@ export async function GET(request: NextRequest) {
     },
   ];
 
-  const affirmRoutes = [
-    {
-      url: `${baseUrl}/affirm`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "daily",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/affirm/contact`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/affirm/donate`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/affirm/terms`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/affirm/studies`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "weekly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/affirm/prompts`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "monthly",
-      priority: 0.4,
-    },
-    {
-      url: `${baseUrl}/conversations`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "daily",
-      priority: 0.8,
-    },
-  ];
-
   // Generate tag routes for stories
   const tagRoutes = availableTags.map((tag) => ({
     url: `${baseUrl}/stories?tag=${encodeURIComponent(tag)}`,
@@ -229,18 +178,9 @@ export async function GET(request: NextRequest) {
     priority: 0.7,
   }));
 
-  const affirmResearchRoutes = allAffirmingQuestions.map((question) => ({
-    url: `${baseUrl}/affirm/research/${slugify(question)}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "weekly",
-    priority: 0.6,
-  }));
-
   // Generate chat routes for top questions from database
   const topQuestionResearchRoutes = topQuestions.map((question) => ({
-    url: isAffirm
-      ? `${baseUrl}/affirm/research/${slugify(question.name)}`
-      : `${baseUrl}/research/${slugify(question.name)}`,
+    url: `${baseUrl}/research/${slugify(question.name)}`,
     lastModified: new Date().toISOString(),
     changeFrequency: "weekly",
     priority: 0.8,
@@ -256,14 +196,23 @@ export async function GET(request: NextRequest) {
     }),
   );
 
+  // Generate routes for all videos
+  const videoRoutes = allVideos.map((video) => ({
+    url: `${baseUrl}/videos/${generateVideoSlug(video.id, video.title)}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: "weekly",
+    priority: 0.7,
+  }));
+
   const allRoutes = [
-    ...(isAffirm ? affirmRoutes : baseRoutes),
-    ...(isAffirm ? affirmResearchRoutes : researchRoutes),
+    ...baseRoutes,
+    ...researchRoutes,
     ...topQuestionResearchRoutes,
     ...featuredConversationRoutes,
-    ...(isAffirm ? [] : userRoutes),
-    ...(isAffirm ? [] : tagRoutes),
-    ...(isAffirm ? [] : sexRoutes),
+    ...userRoutes,
+    ...tagRoutes,
+    ...sexRoutes,
+    ...videoRoutes,
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

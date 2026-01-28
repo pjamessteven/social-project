@@ -40,7 +40,7 @@ export default async function Home({
   return (
     <>
       <div className="pb-16">
-        <StartPage mode="detrans" searchParams={resolvedSearchParams} />
+        <StartPage searchParams={resolvedSearchParams} />
       </div>
     </>
   );
