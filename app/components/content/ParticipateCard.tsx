@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
 export default function ParticipateCard() {
-  const t = useTranslations("participate.card");
+  const t = useTranslations("participate");
   return (
     <Link prefetch={false} href={"/participate"} className="no-underline">
       <Card className="group bg-lizard-200/30 border-lizard-400 dark:border-lizard-600 dark:bg-lizard-900/70 relative cursor-pointer overflow-hidden rounded-xl border transition-all duration-500 hover:brightness-110">
