@@ -25,18 +25,12 @@ const PromptsPage = () => {
             LlamaIndex
           </a>{" "}
           framework and the open-source Chinese{" "}
-          <span className="whitespace-nowrap">
-            <i>kimi-k2-instruct</i>{" "}
-          </span>
-          model to reduce Western political bias. You can{" "}
-          <a
-            href="https://www.kimi.com/chat/d2v1aq2i59734bfka5qg"
-            target="_blank"
-            className="text-blue-500 underline hover:text-blue-600"
-          >
-            chat directly with kimi here
+          <a href="https://www.kimi.com/blog/kimi-k2-5.html" target="_blank">
+            <span className="whitespace-nowrap text-blue-500 underline hover:text-blue-600">
+              kimi-k2.5{" "}
+            </span>
           </a>
-          .
+          model by Moonshot AI to reduce Western political bias.
         </p>
         <p className="mt-2">
           ChatGPT and most other Western LLMs are quite aggressive in the way
