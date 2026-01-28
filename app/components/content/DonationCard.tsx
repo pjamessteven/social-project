@@ -11,7 +11,7 @@ export default function DonationCard({
 }: {
   mode: "detrans" | "affirm" | "compare";
 }) {
-  const t = useTranslations("donate.card");
+  const t = useTranslations("donate");
   return (
     <Card
       className={
