@@ -158,7 +158,7 @@ const studies = [
     title:
       "Continuation of Gender Affirming Hormones Among Transgender Adolescents and Adults",
     authors: "Roberts, C.M, et al.",
-    description: `This study analyzed medical records from 952 transgender adolescents and adults in the US Military Healthcare System to assess hormone continuation rates. It found that approximately 70% of individuals continued gender-affirming hormones for at least four years. The continuation rate was higher for those who started as minors (74.4%) compared to adults (64.4%), and higher for transfeminine individuals (81.0%) than transmasculine individuals (64.4%). The authors suggest these findings may reassure those concerned about minors' ability to assent to treatment.`,
+    description: `This study of 952 individuals in the US Military Healthcare System tracked continuation/discontinuation rates of cross-sex hormones. While approximately 70% continued hormone use for at least 4 years, the discontinuation rate (desistance) was 30% - substantially higher for transmasculine individuals (35.6% discontinuation) compared to transfeminine (19%). Adults who started hormones after age 18 had a 35.6% discontinuation rate. Notably, nearly 26% (1 in 4) of those who started as minors stopped treatment. These findings suggest desistance rates may be higher than typically cited in the literature and reveal important differences by gender and age at initiation.`,
     year: 2022,
     url: "https://academic.oup.com/jcem/article/107/9/e3937/6572526",
     displayUrl: "academic.oup.com/jcem/article/107/9/e3937/6572526",
