@@ -86,11 +86,9 @@
     "participate": {
       "card": {
         "title": "Are you a detransitioner or a desister?",
-        "description": "Participate in studies to help improve scientific understanding of transgender identities",
+        "description": "Participate in studies to help improve scientific understanding of transgender identities", 
         "description2": "and to improve outcomes for people experiencing gender dysphoria."
-      }
-    },
-    "participate": {
+      },
       "title": "Share Your Story",
       "description": "Your experience can help others understand the complexities of gender identity.",
       "button": "Participate"
