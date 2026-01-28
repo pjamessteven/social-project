@@ -13,7 +13,6 @@ import type {
   LLMCompletionParamsNonStreaming,
   LLMCompletionParamsStreaming,
 } from "llamaindex";
-
 import { Cache, makeLlmCacheKey } from "./cache";
 
 export class CachedOpenAI extends OpenAI {

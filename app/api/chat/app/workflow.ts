@@ -184,8 +184,16 @@ export const workflowFactory = async (
     mode: "detrans_chat",
     apiKey: process.env.KIMI_KEY,
     baseURL: "https://api.moonshot.ai/v1",
-    model: "kimi-k2-turbo-preview",
+    model: "kimi-k2.5",
     conversationId,
+    temperature: 0.6,
+    topP: 0.95,
+    additionalSessionOptions: {
+      thinking: { type: "disabled" },
+    } as any,
+    additionalChatOptions: {
+      thinking: { type: "disabled" },
+    } as any,
   });
 
   /*

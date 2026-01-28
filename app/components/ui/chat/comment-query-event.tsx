@@ -1,8 +1,8 @@
 "use client";
 
-import { usePart } from "@llamaindex/chat-ui";
-import { AlertCircle, CheckCircle, Loader2 } from "lucide-react";
-import { useMemo } from "react";
+import { useChatUI, usePart } from "@llamaindex/chat-ui";
+import { AlertCircle, Loader2 } from "lucide-react";
+import { useEffect, useMemo } from "react";
 import CommentCard from "../../CommentCard";
 import {
   Accordion,
@@ -26,6 +26,37 @@ export default function CommentQueryEventPart() {
   // usePart returns data only if current part matches the type
   const commentPart = usePart<EventPart>("data-comment-query-event");
 
+  const { isLoading: loadingGlobal, status, messages } = useChatUI();
+
+  useEffect(() => {
+    console.log(
+      "loading: " + loadingGlobal + " status:  " + status,
+      "commentPart",
+      commentPart,
+      "messages: ",
+      messages,
+    );
+  });
+
+  const isThinking = useMemo(() => {
+    const latestResponse = [...messages]
+      .reverse()
+      .find((m) => m.role === "assistant");
+    const lastPart: any =
+      latestResponse?.parts?.[latestResponse.parts.length - 1];
+    const secondLastPart =
+      latestResponse?.parts?.[latestResponse.parts.length - 2];
+    if (!commentPart || !lastPart) {
+      return false;
+    }
+    if (
+      lastPart.id === commentPart.id ||
+      (secondLastPart === commentPart.id && lastPart.text === "")
+    ) {
+      return true;
+    }
+  }, [messages, commentPart]);
+
   // Memoize the parsed results to prevent unnecessary re-parsing
   const results = useMemo(() => {
     if (!commentPart?.data?.result) return [];
@@ -48,49 +79,54 @@ export default function CommentQueryEventPart() {
 
   if (!commentPart) return null;
 
-  const isLoading = commentPart.data.title === "Querying user comments" ;
-  const isError = commentPart.data.status === 'error'
+  const isLoading = commentPart.data.title === "Querying user comments...";
+  const isError = commentPart.data.status === "error";
   return (
-    
-    <Accordion
-      type="single"
-      collapsible
-      className="comment-query not-prose  -mt-4  w-full"
-    >
-      <AccordionItem
-        value="disclaimer"
-        className="text-muted-foreground overflow-hidden border-none "
+    <>
+      <Accordion
+        type="single"
+        collapsible
+        className="comment-query not-prose -mt-2 w-full"
       >
-        <AccordionTrigger
-          hideIndicator={isLoading}
-          indicatorStart
-          className="text-muted-foreground pt-0 hover:no-underline   bg-secondary border rounded-lg p-2 sm:p-3"
+        <AccordionItem
+          value="disclaimer"
+          className="text-muted-foreground overflow-hidden border-none"
         >
-          <div className="flex flex-row items-center justify-between">
-            <div className="no-wrap flex flex-row items-baseline justify-between pr-2">
-              <div className="font-normal italic">
-                {commentPart?.data?.query
-                  ? commentPart?.data?.query
-                  : "Looking for relevant comments..."}
+          <AccordionTrigger
+            hideIndicator={isLoading}
+            indicatorStart
+            className="text-muted-foreground bg-secondary rounded-lg border p-3 hover:no-underline sm:p-3"
+          >
+            <div className="flex flex-row items-center justify-between">
+              <div className="no-wrap flex flex-row items-baseline justify-between pr-2">
+                <div className="text-muted-foreground text-base font-normal italic">
+                  {commentPart?.data?.query
+                    ? commentPart?.data?.query
+                    : "Looking for relevant comments..."}
+                </div>
               </div>
+              {isError && (
+                <AlertCircle className="mr-2 ml-2 h-4 min-w-4 text-red-500" />
+              )}
             </div>
-            {isLoading ? (
-              <Loader2 className="mr-2 h-4 min-w-4 animate-spin text-blue-500 dark:text-blue-100" />
-            ) : isError ?  (<AlertCircle className="ml-2 mr-2 h-4 min-w-4 text-red-500" />) :  (
-              <CheckCircle className="ml-2  mr-2 h-4 min-w-4 text-green-500" />
-            )}
-          </div>
-        </AccordionTrigger>
-        <AccordionContent className="flex max-w-full flex-col pb-3">
-          <div className="text-primary max-w-full mt-4 space-y-4">
-            {isError && 'Error occurred, try again... Contact me if this keeps happening.'}
-            {results.map((comment: any, index: number) => (
-              <CommentCard key={index} comment={comment as any} />
-            ))}
-          </div>
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
-
+          </AccordionTrigger>
+          <AccordionContent className="flex max-w-full flex-col pb-3">
+            <div className="text-primary mt-4 max-w-full space-y-4">
+              {isError &&
+                "Error occurred, try again... Contact me if this keeps happening."}
+              {results.map((comment: any, index: number) => (
+                <CommentCard key={index} comment={comment as any} />
+              ))}
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+      {isThinking && !isError && (
+        <div className="flex w-full items-center justify-start pb-2">
+          <span>Analysing Detransition Experiences</span>
+          <Loader2 className="ml-2 h-4 w-4 animate-spin text-black dark:text-white" />
+        </div>
+      )}
+    </>
   );
 }

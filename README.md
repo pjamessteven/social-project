@@ -1,13 +1,8 @@
 ## About
 
-This repository powers two companion projects:
+**[detrans.ai](https://detrans.ai)** is the collective consciousness of detransitioners. It's primarly a chatbot which uses RAG (retrieval augmented generation) techniques to integrate detransition experiences posted on the /r/detrans subreddit and on YouTube into chat responses. The services aims to help users understand how people adopt, inhabit, or move away from gender identities, and how those experiences shape one’s relationship with self, body and the world.
 
-- **[detrans.ai](https://detrans.ai)** – a research and self-guided therapy tool that generates meta-questions and answers them by surfacing real-world experiences and perspectives on gender from the /r/detrans subreddit.  
-- **[genderaffirming.ai](https://genderaffirming.ai)** – a digital companion that offers a safe space to affirm your gender identity. It draws on insights from /r/mtf and /r/ftm and can be used as a personal, gender-affirming AI therapist or simply to explore concepts from a trans perspective. Content is limited to gender-affirming viewpoints shared by MTF and FTM users, but explicit external links to https://detrans.ai encourage users to explore detrans perspectives on the topic they are viewing.
-
-Both services aim to help users understand how people adopt, inhabit, or move away from gender identities, and how those experiences shape one’s relationship with self, body and the world.
-
-Built with [LlamaIndex](https://www.llamaindex.ai), [Next.js](https://nextjs.org), and many other open-source npm packages.
+This project is built on top of many other open-source projects, such as Llamaindex, React, Next.js, Tailwind, Lucide, Qdrant, Postgres and the Vercel AI SDK. Many thanks to the contributors of these projects for providing a solid base to build on top of.
 ## License
 
 MIT License  

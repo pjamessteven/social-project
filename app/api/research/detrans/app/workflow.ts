@@ -1,8 +1,8 @@
-import {  PostgresCache } from "@/app/api/shared/cache";
+import { PostgresCache } from "@/app/api/shared/cache";
+import { CachedOpenAI } from "@/app/api/shared/llm";
 import { getCachedAnswer, setCachedAnswer } from "@/app/lib/cache";
-import { replayCached } from "@/app/lib/replayCached";
 import { getLogger } from "@/app/lib/logger";
-import { OpenAI } from "@llamaindex/openai";
+import { replayCached } from "@/app/lib/replayCached";
 import {
   AgentInputData,
   agentStreamEvent,
@@ -24,8 +24,8 @@ import {
   NodeWithScore,
   VectorStoreIndex,
 } from "llamaindex";
-import { randomUUID, createHash } from "node:crypto";
-import { z } from 'zod/v3';
+import { createHash } from "node:crypto";
+import { z } from "zod/v3";
 import { toSourceEvent } from "../../utils";
 import {
   createPlanResearchPrompt,
@@ -33,18 +33,16 @@ import {
   writeReportPrompt,
 } from "../prompts";
 import { getIndex } from "./data";
-import { CachedOpenAI } from "@/app/api/shared/llm";
 
 const cache = new PostgresCache("detrans");
 
 const llm = new CachedOpenAI({
   cache,
-  mode: 'detrans',
+  mode: "detrans",
   apiKey: process.env.OPENROUTER_KEY,
   baseURL: "https://openrouter.ai/api/v1",
-  model: "moonshotai/kimi-k2",
+  model: "moonshotai/kimi-k2.5",
 });
-
 
 // workflow factory
 export const workflowFactory = async (
@@ -155,38 +153,40 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         nodes = JSON.parse(cachedNodes);
         const parseTime = Date.now() - parseStartTime;
         const totalTime = Date.now() - nodesStartTime;
-        logger.info({
-          originalQuestion,
-          cacheKey: 'nodes',
-          mode: 'detrans',
-          type: 'workflow_cache',
-          cacheRetrievalTime: nodesStartTime,
-          parseTime,
-          totalTime
-        }, 'Workflow cache hit (nodes)');
+        logger.info(
+          {
+            originalQuestion,
+            cacheKey: "nodes",
+            mode: "detrans",
+            type: "workflow_cache",
+            cacheRetrievalTime: nodesStartTime,
+            parseTime,
+            totalTime,
+          },
+          "Workflow cache hit (nodes)",
+        );
       } else {
         const retrievalStartTime = Date.now();
         nodes = await retriever.retrieve({ query: originalQuestion });
         const retrievalTime = Date.now() - retrievalStartTime;
-        
+
         const cacheSetStartTime = Date.now();
-        await cache.set(
-          nodesKey,
-          JSON.stringify(nodes),
-          originalQuestion,
-        );
+        await cache.set(nodesKey, JSON.stringify(nodes), originalQuestion);
         const cacheSetTime = Date.now() - cacheSetStartTime;
         const totalTime = Date.now() - nodesStartTime;
-        
-        logger.info({
-          originalQuestion,
-          cacheKey: 'nodes',
-          mode: 'detrans',
-          type: 'workflow_cache',
-          retrievalTime,
-          cacheSetTime,
-          totalTime
-        }, 'Workflow cache miss, retrieving nodes');
+
+        logger.info(
+          {
+            originalQuestion,
+            cacheKey: "nodes",
+            mode: "detrans",
+            type: "workflow_cache",
+            retrievalTime,
+            cacheSetTime,
+            totalTime,
+          },
+          "Workflow cache miss, retrieving nodes",
+        );
       }
 
       // experiment with ranking nodes by reddit score
@@ -314,10 +314,11 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         const events = await stream
           .until(() => state.researchResults.size === researchQuestions.length)
           .toArray();
-        
+
         // Sort results by questionId to ensure deterministic order
-        const sortedResults = Array.from(state.researchResults.values())
-          .sort((a, b) => a.questionId.localeCompare(b.questionId));
+        const sortedResults = Array.from(state.researchResults.values()).sort(
+          (a, b) => a.questionId.localeCompare(b.questionId),
+        );
 
         // Add sorted research results to memory
         sortedResults.forEach(({ question, answer }) => {
@@ -326,8 +327,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
             content: `<Question>${question}</Question>\n<Answer>${answer}</Answer>`,
           });
         });
-        
-        
+
         return planResearchEvent.with({});
       }
       state.memory.add({
@@ -414,7 +414,7 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
       const { sendEvent, state } = context;
       const chatHistory = await state.memory.get();
       state.isReporting = true;
-      
+
       const messages = chatHistory.concat([
         {
           role: "system",
@@ -438,12 +438,10 @@ export function getWorkflow(index: VectorStoreIndex, userIp: string) {
         const replayStartTime = Date.now();
         stream = replayCached(cachedAnswer);
         const replaySetupTime = Date.now() - replayStartTime;
-        
       } else {
         const llmStartTime = Date.now();
         stream = await llm.chat({ messages, originalQuestion, stream: true });
         const llmSetupTime = Date.now() - llmStartTime;
-        
       }
 
       for await (const chunk of stream) {
@@ -511,7 +509,10 @@ const createResearchPlan = async (
     researchQuestions: plan.researchQuestions
       .sort() // Sort questions alphabetically for deterministic order
       .map((question) => ({
-        questionId: createHash("sha256").update(question).digest("hex").substring(0, 8), // Deterministic ID based on question content
+        questionId: createHash("sha256")
+          .update(question)
+          .digest("hex")
+          .substring(0, 8), // Deterministic ID based on question content
         question,
       })),
   };

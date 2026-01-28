@@ -1,4 +1,4 @@
-import { affirmCache, db, detransCache, detransChatCache } from "@/db";
+import { db, detransCache, detransChatCache } from "@/db";
 import { createHash } from "crypto";
 import { eq } from "drizzle-orm";
 export interface Cache {
@@ -23,7 +23,7 @@ export class PostgresCache implements Cache {
 
   private getCacheTable() {
     if (this.mode === "detrans_chat") return detransChatCache;
-    return this.mode === "detrans" ? detransCache : affirmCache;
+    return detransCache;
   }
 
   private hashKey(key: string): string {

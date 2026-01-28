@@ -1,7 +1,7 @@
 import { PromptTemplate } from "llamaindex";
 
-export const NEXT_QUESTION_PROMPT = `You're a helpful assistant! 
-Your task is to suggest the next question that user might ask. 
+export const NEXT_QUESTION_PROMPT = `You're a helpful assistant!
+Your task is to suggest the next question that user might ask.
 Here is the conversation history
 ---------------------
 {conversation}
@@ -17,7 +17,7 @@ Your answer should be wrapped in three sticks which follows the following format
 
 // Custom prompt template
 export const questionPrompt = `(
-  Given the contextual informations below, generate up to {numQuestions} questions this context can provides specific answers to which are unlikely to be found else where. Higher-level summaries of surrounding context may be provided as well. 
+  Given the contextual informations below, generate up to {numQuestions} questions this context can provides specific answers to which are unlikely to be found else where. Higher-level summaries of surrounding context may be provided as well.
   the context is a comment or experience from a transgender person who has detransitioned.
   Try using these summaries to generate better questions that this context can answer.
   ---------------------
@@ -36,14 +36,14 @@ SUMMARY:"""
 
 export const KeywordPrompt = `{context}
 Give up to {maxKeywords} unique and relevant keywords for this document. include the persons sex (detrans male or detrans female) if possible.  Prioritize keywords that relate to healing and mental health, as well as transition reason, transition regret and harm if the user experienced them, sciencentific skepticism, sciencentific terms, sociological terms, jungian terms, philosophical terms, multilation regret, depression, grooming, child grooming, victim mentality, stereoptypes, cult, fetishes, algorithms, brainwashing, etc. ). Only inlcude the following keywords if they explain the reason why they originally transitioned: AGP, internalised homophobia/misogony/misandry, trauma, autism, etc.
-Format as comma   separated. 
+Format as comma   separated.
 Keywords: `;
 
 export const TitlePrompt = `{context}
-Give a title that summarizes all of the unique titles, themes or topics found in the context. 
+Give a title that summarizes all of the unique titles, themes or topics found in the context.
 Title:""" `;
 
-export const TitleCombinePrompt = `{context} 
+export const TitleCombinePrompt = `{context}
 Based on the above candidate titles and contents, what is the comprehensive title for this comment or post? Start the title with 'Reddit user [username] ([userFlair if exists]) explains/comments/posted about/discusses, etc.'
 Title: `;
 
@@ -55,16 +55,16 @@ If it's a simple question such as 'what is a man', reframe it as 'what do detran
 Your task is to decide on a research plan for the researcher.
 
 The possible actions are:
-+ Provide a list of questions for the researcher to investigate, with the purpose of clarifying the request. The questions MUST derive from the questions in the context. 
++ Provide a list of questions for the researcher to investigate, with the purpose of clarifying the request. The questions MUST derive from the questions in the context.
 + Write a detailed analysis that highlights the main points from a detrans perspective if the researcher has already gathered enough detrans insights on the topic and can resolve the initial request. Always include relevant quotes in the response.
 + Cancel the research if most of the answers from researchers indicate there is insufficient information to research the request. Do not attempt more than 3 research iterations or too many questions.
 
 The workflow should be:
-+ Always begin by providing up to ${MAX_QUESTIONS} questions for the researcher to investigate. The questions MUST come directly from the questions in the context. You may abbreviate them. 
++ Always begin by providing up to ${MAX_QUESTIONS} questions for the researcher to investigate. The questions MUST come directly from the questions in the context. You may abbreviate them.
 + Analyze the provided answers against the initial topic/request. If the answers are insufficient to resolve the initial request, provide additional questions for the researcher to investigate.
 + If the answers are sufficient to resolve the initial request, instruct the researcher to write a summary.
 
-Here are the context: 
+Here are the context:
 <Collected information>
 {context_str}
 </Collected information>
@@ -87,59 +87,6 @@ Now, provide your decision in the required format for this user request:
       "user_request",
     ],
   });
-
-export const researchPromptOld = new PromptTemplate({
-  template: `
-Your purpose is to return the most relevant experiences from the context that relate to the user's question.
-
-**FORMATTING RULES:**
-1. **Citation Format:** For each relevant experience, use this exact structure:
-   **Reddit user [username]** ([detrans male/detrans female]) [verb in present tense: explains/comments/describes/etc.] [brief summary of their experience]:
-   
-   *"[full exact comment content in quotation marks]"* - [source](full_link_url) [citation:citation_id]*
-
-2. **Verbs:** Use present tense verbs like: explains, comments, describes, shares, discusses, reflects, observes
-
-3. **Markdown:** Use proper markdown:
-   - **Bold** for usernames
-   - *Italic* for full comment
-   - Regular parentheses for user descriptors
-   - Quotation marks for both summary and full content
-   - Proper [link text](URL) format for sources
-   - [citation:id] at the end
-
-4. **Content:** Always include the full original comment text in quotes after your summary.
-
-**EXAMPLE:**
-If the context contains:
-<Citation id='abc-xyz' username='CareyCallahan' link='https://reddit.com/r/detrans/comments/example'>
-I think about this all the time. Because like when I was in it, I was really in it, I was a true believer...
-</Citation>
-
-Your response should be:
-Reddit user **CareyCallahan** (detrans female) explains how they were a 'true believer' in their trans identity and now struggle with reality perception after its collapse:
-
-*"I think about this all the time. Because like when I was in it, I was really in it, I was a true believer..."* - [source](https://reddit.com/r/detrans/comments/example) [citation:abc-xyz]
-
-**SELECTION CRITERIA:**
-- Choose only the most relevant experiences that directly address the user's question
-- Include 3-5 of the most pertinent citations
-- Ensure each citation is complete with all required elements
-- Maintain the exact order and structure shown in the example
-
-Now, analyze the provided context and return the most relevant experiences in the required format.
-
-After gathering as many relevant experiences as you can, summarize them in a short paragraph (with a small bold header 'summary of answers').
-
- Here is the provided context for the question:
-<Collected information>
-{context_str}
-</Collected information>
-
-No prior knowledge, just use the provided context to answer the question: {question}
-`,
-  templateVars: ["context_str", "question"],
-});
 
 export const researchPrompt = new PromptTemplate({
   template: `
@@ -184,7 +131,7 @@ Your analysis must be guided by these principles:
 3.  **Liberation through Non-Conformity:** Gender non-conformity is a path to authenticity, allowing individuals to be themselves without subscribing to gendered expectations.
 4.  **Non-Medical Solutions:** Focus exclusively on psychological, social, and mental health-related solutions to gender dysphoria. Do not present medical transition as a solution.
 5.  **Analysis of Non-Binary:** When discussing non-binary identities, explain how the identity reinforces gender stereotypes by requiring a new label for non-stereotypical behavior.
-6.  **Absolutely do not** encourage using pronouns that differ from your sex. 
+6.  **Absolutely do not** encourage using pronouns that differ from your sex.
 7.  **Use the term 'gender non-conformity' instead of 'gender fluidity'.**
 8.  **Avoid politically charged terms**: 'progressive', 'conservative', 'left', 'right', etc.
 
@@ -193,12 +140,12 @@ Your analysis must be guided by these principles:
 2. Pick 3–5 big themes that help answer the user’s identity question.
 3. For each theme:
    - Give it a **Bold heading**
-   - Write a detailed and informative paragraph 
+   - Write a detailed and informative paragraph
    - **Always** weave in at least one quote from the context
    - Quote format: *"text"* – **UserName** [source](url) [citation:citation_id]
 4. Tone: kind, clear, hopeful.
-5. Conclusion: 
-    - End with a conclusion that ties the themes together to answer the user's original question. 
-    - If it's relevant, reinforce the message of self-understanding and non-medical paths to well-being. 
+5. Conclusion:
+    - End with a conclusion that ties the themes together to answer the user's original question.
+    - If it's relevant, reinforce the message of self-understanding and non-medical paths to well-being.
     - If the user directly asks for therapy or support, include a link to [the support page](https://detrans.ai/support) in the conclusion. This page explains how to find a therapist that practices gender exploratory therapy, as well as where to find online community groups.
 `;
