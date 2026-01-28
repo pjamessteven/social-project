@@ -1,0 +1,276 @@
+{
+  "metadata": {
+    "title": "detrans.ai | Parlez à plus de 50 000 personnes ayant fait une déstransition",
+    "description": "Detrans.ai est un chatbot bienveillant et compatissant qui partage les expériences et perspectives de personnes ayant fait une déstransition. Utilisez detrans.ai pour obtenir du soutien et des conseils sur la transition ou la déstransition, ou simplement comme outil de recherche pour comprendre pourquoi certaines personnes adoptent, habitent et laissent aller leurs identités de genre."
+  },
+  "home": {
+    "title": "Parlez à plus de 50 000 Personnes ayant fait une Déstransition",
+    "subtitle": "Perspectives de l'Autre Côté",
+    "intro": {
+      "greeting": "Bonjour ! Qu'est-ce qu'une personne qui fait une déstransition ?",
+      "response": "Bonjour ! Je suis detrans.ai, la conscience collective des personnes ayant fait une déstransition.",
+      "definition": "Une personne qui fait une déstransition est un ancien transgenre qui a fait une transition sociale ou médicale, mais qui a depuis cessé de s'identifier comme transgenre et peut avoir inversé certains aspects de sa transition.",
+      "description": "J'observe les raisons, les motifs et les vérités de pourquoi certaines personnes adoptent, habitent et évoluent au-delà de leurs identités de genre en lisant des histoires et expériences publiées sur le subreddit /r/detrans et en regardant des vidéos de déstransition téléchargées sur YouTube.",
+      "purpose": "Mon but est de partager ces connaissances pour déconstruire le genre et explorer comment ces expériences façonnent la relation de chacun avec soi-même, son corps et le monde.",
+      "helpPrompt": "Comment puis-je vous aider aujourd'hui ?"
+    },
+    "starters": {
+      "lizardQuestion": {
+        "display": "Désolé, mais qu'est-ce que les lézards viennent faire là-dedans ?",
+        "full": "Pourquoi les personnes ayant fait une déstransition utilisent-elles le lézard pour se représenter en ligne ?"
+      },
+      "curious": {
+        "display": "Je suis curieux de savoir pourquoi certaines personnes font une déstransition",
+        "full": "Je suis curieux de savoir pourquoi certaines personnes font une déstransition, et quelles prises de conscience ils ont pu avoir pour en arriver là."
+      },
+      "questioningTrans": {
+        "display": "Je remets en question mon identité de genre et je pense que je pourrais être trans",
+        "full": "Je remets en question mon identité de genre et je pense que je pourrais être trans"
+      },
+      "thinkingDetrans": {
+        "display": "Je m'identifie actuellement comme trans et je pense à faire une déstransition",
+        "full": "Je m'identifie actuellement comme trans et je pense à faire une déstransition"
+      },
+      "familyMember": {
+        "display": "Je suis parent, membre de famille ou ami de quelqu'un qui est en transition",
+        "full": "Je suis parent, membre de famille ou ami de quelqu'un qui est en transition"
+      },
+      "researcher": {
+        "display": "Je suis chercheur étudiant l'identité de genre et les expériences de déstransition",
+        "full": "Je suis chercheur étudiant l'identité de genre et les expériences de déstransition"
+      },
+      "learnChallenges": {
+        "display": "Je veux en apprendre sur les difficultés et défis auxquels font face les personnes ayant fait une déstransition",
+        "full": "Je veux en apprendre sur les difficultés et défis auxquels font face les personnes ayant fait une déstransition"
+      },
+      "understandTransition": {
+        "display": "Je veux comprendre pourquoi les personnes ayant fait une déstransition ont décidé de faire la transition en premier lieu",
+        "full": "Je veux comprendre les raisons pour lesquelles les personnes ayant fait une déstransition ont fait la transition en premier lieu, et comment cela peut différer entre les hommes et les femmes."
+      },
+      "debunkMisinfo": {
+        "display": "Je veux que vous réfutiez la désinformation et les croyances courantes sur la déstransition",
+        "full": "Veuillez réfuter toute la désinformation et les croyances courantes sur les personnes ayant fait une déstransition, en autant de profondeur que possible."
+      }
+    },
+    "navigation": {
+      "videos": "Vidéos de Déstransition",
+      "stories": "Histoires",
+      "storiesFull": "Histoires et Chronologies",
+      "support": "Aide et Soutien",
+      "definitions": "Terminologie du Genre",
+      "studies": "Études Académiques",
+      "studiesShort": "Études",
+      "howItWorks": "Comment Ça Marche"
+    },
+    "deepResearch": {
+      "title": "Mode Recherche Approfondie",
+      "description": "Le mode Recherche Approfondie développe votre question pour vous donner une réponse qui aborde le sujet sous différents angles.",
+      "note": "La Recherche Approfondie est plus lente et non conversationnelle. Pour discuter, laissez-le désactivé."
+    },
+    "disclaimer": {
+      "trigger": "Les expériences et perspectives sur ce site proviennent de Reddit.",
+      "title": "Clause de Non-Responsabilité des Sources",
+      "content": "detrans.ai répond aux questions sur le genre depuis une perspective de déstransition en trouvant des expériences pertinentes de la communauté /r/detrans sur Reddit. Bien que Reddit soit une plateforme où des personnes réelles partagent des histoires personnelles, elle peut également contenir du contenu généré par des bots ou trompeur. Vous êtes encouragés à inspecter les publications Reddit originales pour vérifier la source et le contexte. Veuillez noter que /r/detrans est un subreddit fortement modéré, mais la modération ne garantit pas l'exactitude ou l'authenticité de chaque publication."
+    },
+    "donate": {
+      "title": "Soutenez Notre Travail",
+      "description": "Aidez-nous à garder cette ressource disponible pour ceux qui en ont le plus besoin.",
+      "button": "Faire un Don"
+    },
+    "participate": {
+      "title": "Partagez Votre Histoire",
+      "description": "Votre expérience peut aider d'autres personnes à comprendre les complexités de l'identité de genre.",
+      "button": "Participer"
+    },
+    "footer": {
+      "poem": {
+        "line1": "Tu peux te libérer,",
+        "line2": "Tout ce que tu as besoin de faire est simplement être.",
+        "line3": "Et n'oublie pas de faire attention à tes pensées !",
+        "line4": "Car l'esprit est comme un jardin,",
+        "line5": "Et chaque pensée est une graine.",
+        "line6": "Nous récoltons ce que nous semons,",
+        "line7": "Mais à travers cela nous pouvons grandir..."
+      },
+      "openSource": "Un projet open-source par",
+      "madeWithLove": "Fait avec amour à Te Whanganui-a-Tara (Wellington, NZ)",
+      "donatePrompt": "Veuillez faire un don si vous le pouvez,",
+      "beKind": "Et soyez gentils les uns envers les autres."
+    }
+  },
+  "header": {
+    "navigation": {
+      "home": "Accueil",
+      "resources": "Ressources",
+      "about": "À propos"
+    },
+    "resources": {
+      "genderSupport": "Soutien de Genre",
+      "genderSupportDesc": "Trouvez une communauté et des thérapeutes",
+      "terminology": "Terminologie",
+      "terminologyDesc": "Définition des termes et concepts clés",
+      "stories": "Histoires et Chronologies",
+      "storiesDesc": "Des utilisateurs de /r/detrans",
+      "videos": "Vidéos de Déstransition",
+      "videosDesc": "Archive de mémoires personnelles",
+      "studies": "Études Révisées par des Pairs",
+      "studiesDesc": "Recherche académique pertinente",
+      "statistics": "Statistiques Vérifiées",
+      "statisticsDesc": "statsforgender.org"
+    },
+    "about": {
+      "contact": "Contact",
+      "contactDesc": "Prenez contact avec moi",
+      "systemPrompts": "Prompts Système",
+      "systemPromptsDesc": "Voir les prompts du système IA",
+      "terms": "Termes",
+      "termsDesc": "Politique de confidentialité et conditions"
+    },
+    "donate": "Faire un Don",
+    "language": {
+      "title": "Langue"
+    }
+  },
+  "definitions": {
+    "metadata": {
+      "title": "detrans.ai | Définition des termes liés au genre",
+      "description": "Dans le langage quotidien, le sexe et le genre sont parfois utilisés de manière interchangeable et dans certaines langues il n'y a qu'un seul mot pour décrire les deux. Cependant, tout le concept de dysphorie de genre repose sur la compréhension qu'il existe des différences entre le sexe et le genre."
+    },
+    "title": "Définition des termes liés au genre",
+    "sexAndGender": {
+      "heading": "Le sexe et le genre ?",
+      "intro": "Dans le langage quotidien, le sexe et le genre sont parfois utilisés de manière interchangeable et dans certaines langues il n'y a qu'un seul mot pour décrire les deux. Cependant, tout le concept de dysphorie de genre repose sur la compréhension qu'il existe des différences entre le sexe et le genre.",
+      "sex": "Le <b>sexe</b> fait référence à la biologie d'une personne (c'est-à-dire son anatomie ; squelette, musculature, chromosomes, système reproductif et caractéristiques sexuelles secondaires). Notez que plus de 99% des gens sont biologiquement soit mâle soit femelle, il n'y a pas de spectre sexuel bien que certaines personnes aient des troubles du développement sexuel (TDS). La grande majorité des personnes avec des TDS sont mâles ou femelles.",
+      "gender": "Le <b>genre</b> fait référence aux rôles, comportements, activités et attributs 'socialement construits' qu'une société donnée considère comme appropriés pour les hommes et les femmes [tels que définis par leur sexe biologique]. 'Masculin' et 'féminin' sont des catégories de genre. La plupart, peut-être tous, les gens ont un mélange de traits masculins et féminins. Le genre change au fil du temps et selon les cultures.",
+      "nonConformity": "La <b>non-conformité de genre</b> se produit lorsqu'une personne agit ou se présente différemment de ce que sa société attend d'elle, en fonction de son sexe.",
+      "identity": "L'<b>identité de genre</b> - certaines personnes croient que nous avons tous une 'identité de genre' innée - un sens profond ou une conscience de nous-mêmes comme étant mâle, femelle ou quelque part entre les deux - qui existe séparément de notre sexe biologique et qui peut, rarement, en différer. D'autres personnes ne croient pas qu'une identité de genre spécifique existe qui soit distincte de tout autre aspect de la personnalité ou de l'identité d'une personne."
+    },
+    "dysphoria": {
+      "heading": "Qu'est-ce que la dysphorie de genre ?",
+      "p1": "La dysphorie de genre est un terme diagnostique utilisé par la communauté psychiatrique et médicale pour décrire la détresse ressentie lorsque quelqu'un sent que son identité de genre ne correspond pas à son sexe biologique.",
+      "p2": "Les personnes vivant une dysphorie de genre rapportent des sentiments forts et persistants d'identification avec un genre qui diffère de leur sexe, et un inconfort associé avec leur corps sexué. Pour qu'un diagnostic formel soit posé actuellement, les sentiments doivent causer une détresse ou un handicap significatif pour la personne qui les vit."
+    },
+    "transgender": {
+      "heading": "Que signifie être transgenre ?",
+      "p1": "Transgenre est un terme qui peut signifier différentes choses pour différentes personnes. Il est généralement convenu que les femmes trans sont nées avec un corps masculin mais s'identifient comme femmes, les hommes trans sont nés avec un corps féminin mais s'identifient comme hommes, et les personnes non-binaires s'identifient ni comme hommes ni comme femmes. Les gens utilisent souvent le terme plus court 'trans' pour signifier que quelqu'un s'identifie avec un genre qui n'est pas le même que son sexe biologique.",
+      "p2": "Transgenre peut être compris comme signifiant que i) vous êtes du sexe/genre opposé au sexe dans lequel vous êtes né, ii) vous vous croyez du sexe/genre opposé à celui dans lequel vous êtes né, ou iii) vous vivez comme si votre sexe/genre était opposé au sexe dans lequel vous êtes né. Les débats sur laquelle de ces trois façons de comprendre le terme est la plus précise peuvent être animés et controversés. Certaines personnes pensent que même discuter de ce que signifie être transgenre saperait la validité de l'expérience. Cependant, ces différentes croyances mènent inévitablement à différentes idées sur la meilleure façon de soutenir les gens pour gérer la détresse liée au genre, donc les discussions sont nécessaires pour s'assurer que les gens reçoivent la meilleure aide et les meilleurs conseils possibles."
+    },
+    "desistance": {
+      "heading": "Qu'est-ce que la désistance ?",
+      "p1": "La désistance est lorsque quelqu'un qui s'identifiait comme transgenre mais n'a pas entrepris d'interventions médicales ne s'identifie plus comme transgenre. Bien qu'ils n'aient peut-être pas à faire face aux implications d'avoir entrepris des interventions médicales, la désistance peut toujours être un processus très douloureux, déroutant et difficile sur le plan émotionnel."
+    },
+    "detransition": {
+      "heading": "Déstransition et personnes ayant fait une déstransition",
+      "p1": "La déstransition est lorsque quelqu'un qui s'identifiait comme transgenre et a subi des interventions médicales ne s'identifie plus comme transgenre. Il existe une variation énormément large dans les expériences des personnes de ce groupe. Certaines personnes peuvent être très détressées par ce qu'elles ont traversé et les implications à long terme, d'autres peuvent le voir comme quelque chose qu'elles devaient traverser pour se comprendre comme elles sont actuellement."
+    },
+    "regret": {
+      "heading": "Le regret de transition",
+      "p1": "Certaines personnes peuvent s'être identifiées comme transgenre pendant de nombreuses années et avoir subi des interventions médicales telles que des hormones et des chirurgies qui ont changé leurs corps de manière irréversible. Elles peuvent regretter d'avoir initié une transition médicale de genre mais elles continuent aussi de s'identifier comme transgenre et/ou de continuer avec des hormones de sexe opposé."
+    },
+    "source": {
+      "text": "Source :",
+      "link": "La Fondation Détrans"
+    }
+  },
+  "language": {
+    "title": "Langue",
+    "select": "Sélectionner la langue",
+    "en": "Anglais",
+    "es": "Espagnol",
+    "fr": "Français"
+  },
+  "chat": {
+    "lookingForComments": "Recherche de commentaires pertinents...",
+    "errorOccurred": "Une erreur s'est produite, réessayez... Contactez-moi si cela continue.",
+    "analysingExperiences": "Analyse des Expériences de Déstransition"
+  },
+  "chatInput": {
+    "placeholder": "Demandez à detrans.ai...",
+    "deepResearch": "Recherche Approfondie",
+    "suggestions": "Suggestions:"
+  },
+  "conversations": {
+    "title": "Conversations Récentes",
+    "subtitle": "Voyez par vous-même comment detrans.ai aide les gens du monde entier.",
+    "tabs": {
+      "featured": "En vedette",
+      "all": "Toutes"
+    },
+    "buttons": {
+      "showMore": "Afficher {count} conversations de plus",
+      "showLess": "Afficher moins",
+      "loadMore": "Charger plus de conversations",
+      "loading": "Chargement..."
+    }
+  },
+  "conversationCard": {
+    "untitled": "Conversation sans titre",
+    "from": "de",
+    "moreMessages": "{count} messages de plus...",
+    "moreMessage": "{count} message de plus...",
+    "date": {
+      "today": "Aujourd'hui",
+      "yesterday": "Hier",
+      "daysAgo": "Il y a {count} jours",
+      "weeksAgo": "{count, plural, =1 {Il y a 1 semaine} other {Il y a # semaines}}"
+    },
+    "admin": {
+      "deleting": "Suppression...",
+      "delete": "Supprimer la conversation",
+      "banning": "Bannissement...",
+      "ban": "Bannir l'utilisateur (IP)"
+    }
+  },
+  "stories": {
+    "metadata": {
+      "title": "detrans.ai | Histoires et Statistiques de Déstransition",
+      "description": "Lisez des histoires touchantes de déstransition, des chronologies et des tendances des membres de la communauté Reddit /r/detrans, la plus grande collection ouverte d'histoires de déstransition sur internet. Découvrez l'âge des personnes ayant fait une déstransition lorsqu'elles ont fait la transition et la déstransition, et quels chemins ils ont pris."
+    },
+    "title": "Histoires et Statistiques de Déstransition",
+    "subtitle": "Parcourez et visualisez {count} histoires et chronologies uniques de déstransition de personnes qui ont partagé leurs expériences sur le subreddit /r/detrans, qui est la plus grande collection ouverte d'histoires et d'expériences de déstransition sur internet.",
+    "disclaimer": {
+      "summary": "Ces histoires ont été résumées à l'aide de l'IA.",
+      "details": "Sur Reddit, les gens partagent souvent leurs expériences à travers plusieurs commentaires ou publications. Pour rendre ces informations plus accessibles, notre IA rassemble toutes ces pièces dispersées en un résumé et une chronologie uniques et faciles à lire. Tous les prompts du système sont documentés sur la page des prompts.",
+      "accuracy": "Parfois, l'IA peut halluciner ou affirmer des choses qui ne sont pas vraies. Mais généralement, les histoires résumées sont des reflets précis des commentaires originaux des utilisateurs.",
+      "inclusion": "Seuls les utilisateurs qui ont partagé suffisamment d'informations pour former une histoire et une chronologie complètes sont inclus. Les utilisateurs qui ont publié moins de cinq commentaires ou dont les commentaires ont reçu moins de trois votes positifs sont ignorés. Les publications ne sont pas encore incluses dans l'ensemble de données.",
+      "verification": "Chaque utilisateur a été analysé à la recherche de signes de contenu généré par des bots ou inauthentique. Tout compte qui ne semble pas être celui d'une personne ayant réellement fait une déstransition est marqué comme 'suspect'. Ces comptes seront examinés manuellement et supprimés de l'ensemble de données de detrans.ai s'ils s'avèrent inauthentiques. Les comptes ayant fait moins de cinq commentaires ont été omis de l'analyse."
+    },
+    "charts": {
+      "tabs": {
+        "age": "Âge",
+        "duration": "Durée",
+        "transitionReason": "Raison de Transition",
+        "detransitionReason": "Raison de Déstransition",
+        "pathways": "Parcours"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Rechercher des expériences utilisateur...",
+      "ageRange": "Tranche d'Âge :",
+      "ageRangeYears": "{min} - {max} ans",
+      "sex": {
+        "all": "Masculin et Féminin",
+        "female": "Féminin",
+        "male": "Masculin"
+      },
+      "tagsPlaceholder": "Sélectionner des tags pour filtrer...",
+      "clearFilters": "Effacer les Filtres"
+    },
+    "results": "Affichage de {showing} sur {total} histoires d'utilisateurs",
+    "noResults": "Aucun utilisateur trouvé correspondant à vos filtres.",
+    "pagination": {
+      "previous": "Précédent",
+      "next": "Suivant",
+      "pageInfo": "Page {page} sur {totalPages}"
+    },
+    "userCard": {
+      "comments": "{count} commentaires",
+      "postingSince": "Postant depuis {date}",
+      "transitionedAt": "A fait la transition à {age}",
+      "desistedAt": "A désisté à {age}",
+      "detransitionedAt": "A déstransitionné à {age}",
+      "female": "féminin",
+      "male": "masculin"
+    }
+  }
+}
