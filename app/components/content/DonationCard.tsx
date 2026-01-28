@@ -1,16 +1,17 @@
-import { createTranslator } from "next-intl";
+"use client";
+
 import { ExternalLink, HandCoins } from "lucide-react";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
-export default async function DonationCard({ 
+export default function DonationCard({
   mode,
 }: {
   mode: "detrans" | "affirm" | "compare";
 }) {
-  const t = await getTranslations("donate.card");
+  const t = useTranslations("donate.card");
   return (
     <Card
       className={
@@ -23,7 +24,7 @@ export default async function DonationCard({
             <HandCoins className="text-foreground mr-2 h-5 w-5" />
             <CardTitle className="text-foreground dark:text-white">
               {t("title", {
-                site: mode === "affirm" ? "genderaffirming.ai" : "detrans.ai",
+                site: "detrans.ai",
               })}
             </CardTitle>
           </div>
