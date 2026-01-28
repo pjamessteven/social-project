@@ -1,4 +1,4 @@
-import { db, detransQuestions, affirmQuestions } from "@/db";
+import { db, detransQuestions } from "@/db";
 import { desc } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Select the appropriate table based on mode
-    const questionsTable = mode === "detrans" ? detransQuestions : affirmQuestions;
+    const questionsTable = detransQuestions;
 
     // Calculate offset for pagination
     const offset = (page - 1) * limit;
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
       .offset(offset);
 
     // Format the response
-    const items = results.map(result => ({
+    const items = results.map((result) => ({
       page: result.name,
       score: result.viewsCount,
       mostRecentlyAsked: result.mostRecentlyAsked,

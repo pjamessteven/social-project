@@ -1,4 +1,4 @@
-import { db, detransQuestions, affirmQuestions } from "@/db";
+import { db, detransQuestions } from "@/db";
 import { desc, like } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -23,15 +23,16 @@ export async function GET(request: NextRequest) {
     }
 
     // Select the appropriate table based on mode
-    const questionsTable = mode === "detrans" ? detransQuestions : affirmQuestions;
+    const questionsTable = detransQuestions;
 
     // Calculate offset for pagination
     const offset = (page - 1) * limit;
 
     // Build queries with conditional where clause
-    const whereCondition = query && query.trim() 
-      ? like(questionsTable.name, `%${query.trim()}%`) 
-      : undefined;
+    const whereCondition =
+      query && query.trim()
+        ? like(questionsTable.name, `%${query.trim()}%`)
+        : undefined;
 
     // Get total count
     const totalResult = whereCondition
@@ -39,9 +40,7 @@ export async function GET(request: NextRequest) {
           .select({ count: questionsTable.name })
           .from(questionsTable)
           .where(whereCondition)
-      : await db
-          .select({ count: questionsTable.name })
-          .from(questionsTable);
+      : await db.select({ count: questionsTable.name }).from(questionsTable);
 
     const total = totalResult.length;
 
@@ -70,7 +69,7 @@ export async function GET(request: NextRequest) {
           .offset(offset);
 
     // Format the response
-    const items = results.map(result => ({
+    const items = results.map((result) => ({
       page: result.name,
       score: result.viewsCount,
       mostRecentlyAsked: result.mostRecentlyAsked,

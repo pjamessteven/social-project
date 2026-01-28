@@ -1,5 +1,5 @@
 // lib/cache.ts
-import { affirmQuestions, db, detransQuestions } from "@/db";
+import { db, detransQuestions } from "@/db";
 import { eq, sql } from "drizzle-orm";
 
 export async function getCachedAnswer(
@@ -7,8 +7,7 @@ export async function getCachedAnswer(
   question: string,
 ): Promise<string | undefined> {
   try {
-    const questionsTable =
-      mode === "detrans" ? detransQuestions : affirmQuestions;
+    const questionsTable = detransQuestions;
 
     const result = await db
       .select({ finalResponse: questionsTable.finalResponse })
@@ -33,8 +32,7 @@ export async function setCachedAnswer(
   answer: string,
 ): Promise<void> {
   try {
-    const questionsTable =
-      mode === "detrans" ? detransQuestions : affirmQuestions;
+    const questionsTable = detransQuestions;
 
     await db
       .insert(questionsTable)
@@ -63,8 +61,7 @@ export async function incrementQuestionViews(
   questionName: string,
 ): Promise<void> {
   try {
-    const questionsTable =
-      mode === "detrans" ? detransQuestions : affirmQuestions;
+    const questionsTable = detransQuestions;
 
     await db.transaction(async (tx) => {
       // Insert or update question

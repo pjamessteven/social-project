@@ -249,7 +249,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
-                        href={!devAffirm ? "/prompts" : "/affirm/prompts"}
+                        href={"/prompts"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
                         <Settings className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
