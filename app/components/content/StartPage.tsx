@@ -48,7 +48,7 @@ export async function StartPage({
     },
     {
       display: "I'm curious about why some people detransition",
-      full: "I'm seeking to understand the complex reasons behind gender identity adoption, and how they might differ between males and females.",
+      full: "I'm curious about why some people detransition, and what realisations they might have had to reach that point.",
     },
     {
       display:
@@ -78,7 +78,7 @@ export async function StartPage({
     {
       display:
         "I want to understand why detransitioners decided to transition in the first place",
-      full: "I want to understand why these people transitioned in the first place, and how they might differ between males and females.",
+      full: "I want to understand the reasons why detransitioners transitioned in the first place, and how it might differ between males and females.",
     },
 
     {
