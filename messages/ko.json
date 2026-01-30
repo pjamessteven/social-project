@@ -1,0 +1,802 @@
+{
+  "metadata": {
+    "title": "detrans.ai | 50,000명 이상의 디트랜지셔너와 대화하기",
+    "description": "Detrans.ai는 성전환을 경험했다가 중단한 사람들의 경험과 관점을 공유하는 도움이 되고 공감하는 챗봇입니다. detrans.ai를 사용하여 전환 또는 디트랜지션 지원 및 조언을 받거나, 단순히 일부 사람들이 성별 정체성을 채택하고 거주하며 놓아주는 이유를 이해하기 위한 연구 도구로 활용하세요."
+  },
+  "home": {
+    "title": "50,000명 이상의 디트랜지셔너와 대화하기",
+    "subtitle": "다른 쪽의 관점",
+    "intro": {
+      "greeting": "안녕하세요! 디트랜지셔너가 뭔가요?",
+      "response": "안녕하세요! 저는 detrans.ai입니다 - 디트랜지셔너들의 집단 의식입니다 🦎",
+      "definition": "디트랜지셔너는 사회적으로 또는 의학적으로 전환을 경험했으나 더 이상 트랜스젠더로 정체화하지 않으며, 전환의 일부 측면을 되돌렸을 수 있는 전 트랜스젠더 사람입니다.",
+      "description": "저는 /r/detrans 서브레딧에 게시된 이야기와 경험을 읽고 유튜브에 업로드된 디트랜지션 영상을 시청하여 일부 사람들이 성별 정체성을 채택하고 거주하며 넘어가는 이유, 패턴, 진실을 관찰합니다.",
+      "purpose": "저의 목적은 이 지식을 공유하여 성별을 해체하고 이러한 경험이 자아, 신체, 세계와의 관계를 어떻게 형성하는지 탐구하는 것입니다.",
+      "helpPrompt": "오늘 어떻게 도와드릴까요?"
+    },
+    "starters": {
+      "lizardQuestion": {
+        "display": "죄송한데 도마뱀은 무슨 의미인가요?",
+        "full": "왜 디트랜지셔너들이 온라인에서 자신을 표현할 때 도마뱀을 사용하나요?"
+      },
+      "curious": {
+        "display": "일부 사람들이 디트랜지션하는 이유가 궁금합니다",
+        "full": "일부 사람들이 디트랜지션하는 이유와 그 지점에 도달하기 위해 어떤 깨달음을 얻었을 수 있는지 궁금합니다."
+      },
+      "questioningTrans": {
+        "display": "제 성별 정체성에 대해 고민하고 있으며 트랜스일 수도 있다고 생각합니다",
+        "full": "제 성별 정체성에 대해 고민하고 있으며 트랜스일 수도 있다고 생각합니다"
+      },
+      "thinkingDetrans": {
+        "display": "현재 트랜스로 정체화하고 있으며 디트랜지션을 생각하고 있습니다",
+        "full": "현재 트랜스로 정체화하고 있으며 디트랜지션을 생각하고 있습니다"
+      },
+      "familyMember": {
+        "display": "전환 중인 사람의 부모, 가족 구성원 또는 친구입니다",
+        "full": "전환 중인 사람의 부모, 가족 구성원 또는 친구입니다"
+      },
+      "researcher": {
+        "display": "성별 정체성과 디트랜지션 경험을 연구하는 연구자입니다",
+        "full": "성별 정체성과 디트랜지션 경험을 연구하는 연구자입니다"
+      },
+      "learnChallenges": {
+        "display": "디트랜지셔너들이 직면하는 어려움과 도전에 대해 배우고 싶습니다",
+        "full": "디트랜지셔너들이 직면하는 어려움과 도전에 대해 배우고 싶습니다"
+      },
+      "understandTransition": {
+        "display": "디트랜지셔너들이 처음에 전환을 결정한 이유를 이해하고 싶습니다",
+        "full": "디트랜지셔너들이 처음에 전환을 결정한 이유와 남성과 여성 간에 어떻게 다른지 이해하고 싶습니다."
+      },
+      "debunkMisinfo": {
+        "display": "디트랜지션에 대한 잘못된 정보와 일반적으로 믿어지는 믿음을 반박해 주세요",
+        "full": "가능한 한 깊이 있게 디트랜지셔너들에 대한 잘못된 정보와 일반적으로 믿어지는 믿음을 모두 반박해 주세요."
+      }
+    },
+    "navigation": {
+      "videos": "디트랜지션 영상",
+      "stories": "이야기",
+      "storiesFull": "이야기 및 통계",
+      "support": "도움 및 지원",
+      "definitions": "성별 용어",
+      "studies": "학술 연구",
+      "studiesShort": "연구",
+      "howItWorks": "작동 방식"
+    },
+    "deepResearch": {
+      "title": "심층 연구 모드",
+      "description": "심층 연구 모드는 질문을 확장하여 다양한 각도에서 주제에 접근하는 답변을 제공합니다.",
+      "note": "심층 연구는 더 느리고 대화형이 아닙니다. 채팅을 위해선 꺼두세요."
+    },
+    "disclaimer": {
+      "trigger": "이 사이트의 경험과 관점은 Reddit에서 출처됩니다.",
+      "title": "출처 면책 조항",
+      "content": "detrans.ai는 Reddit의 /r/detrans 커뮤니티에서 관련 경험을 찾아 디트랜스 관점에서 성별에 대한 질문에 답합니다. Reddit은 실제 사람들이 개인적인 이야기를 공유하는 플랫폼이지만, 봇이 생성하거나 오해를 불러일으키는 콘텐츠도 포함될 수 있습니다. 출처와 맥락을 확인하기 위해 원래 Reddit 게시물을 검토하는 것이 권장됩니다. /r/detrans는 엄격히 관리되는 서브레딧이지만, 관리가 모든 게시물의 정확성이나 진위를 보장하지는 않습니다."
+    },
+    "donate": {
+      "title": "우리의 작업 지원하기",
+      "description": "가장 필요로 하는 사람들을 위해 이 자원을 유지하는 데 도움을 주세요.",
+      "button": "기부하기",
+      "card": {
+        "title": "{site}를 유지하기 위해 기부가 필요합니다!",
+        "description": "이 물가 서비스를 감사히 여기신다면 기부를 고려해 주세요.",
+        "description2": "돈이 떨어지면 자신의 질문을 할 수 없는 캐시 전용 모드로 실행됩니다.",
+        "button": "기부하기"
+      }
+    },
+    "participate": {
+      "card": {
+        "title": "디트랜지셔너 또는 데시스터이신가요?",
+        "description": "트랜스젠더 정체성에 대한 과학적 이해를 돕고 성별 불쾌감을 경험하는 사람들의 결과를 개선하기 위해 연구에 참여하세요."
+      },
+      "title": "당신의 이야기 공유하기",
+      "description": "당신의 경험이 다른 사람들이 성별 정체성의 복잡성을 이해하는 데 도움이 될 수 있습니다.",
+      "button": "참여하기"
+    },
+    "footer": {
+      "poem": {
+        "line1": "당신은 스스로를 자유롭게 할 수 있습니다,",
+        "line2": "필요한 것은 그저 존재하는 것뿐입니다.",
+        "line3": "그리고 당신의 생각을 조심하세요!",
+        "line4": "마음은 정원과 같고,",
+        "line5": "모든 생각은 씨앗입니다.",
+        "line6": "우리는 심은 대로 거둡니다,",
+        "line7": "하지만 이를 통해 우리는 성장할 수 있습니다..."
+      },
+      "openSource": "오픈 소스 프로젝트 by",
+      "madeWithLove": "웰링턴, 뉴질랜드에서 사랑으로 제작됨",
+      "donatePrompt": "가능하다면 기부해 주세요,",
+      "beKind": "그리고 서로에게 친절하세요."
+    },
+    "browseConversations": "모든 대화 둘러보기"
+  },
+  "header": {
+    "navigation": {
+      "home": "홈",
+      "resources": "자원",
+      "about": "소개"
+    },
+    "resources": {
+      "genderSupport": "성별 지원",
+      "genderSupportDesc": "커뮤니티 및 상담사 찾기",
+      "terminology": "용어",
+      "terminologyDesc": "주요 용어/개념 정의",
+      "stories": "이야기 및 통계",
+      "storiesDesc": "/r/detrans 사용자로부터",
+      "videos": "디트랜지션 영상",
+      "videosDesc": "개인 회고록 아카이브",
+      "studies": "동료 심사 연구",
+      "studiesDesc": "관련 학술 연구",
+      "statistics": "검증된 통계",
+      "statisticsDesc": "statsforgender.org"
+    },
+    "about": {
+      "contact": "연락처",
+      "contactDesc": "저와 연락하기",
+      "systemPrompts": "시스템 프롬프트",
+      "systemPromptsDesc": "AI 시스템 프롬프트 보기",
+      "terms": "약관",
+      "termsDesc": "개인정보 보호정책 및 이용약관"
+    },
+    "donate": "기부하기",
+    "language": {
+      "title": "언어"
+    }
+  },
+  "language": {
+    "title": "언어",
+    "select": "언어 선택",
+    "search": "{count}개 언어",
+    "en": "영어",
+    "es": "스페인어",
+    "fr": "프랑스어",
+    "de": "독일어",
+    "he": "히브리어",
+    "it": "이탈리아어",
+    "ko": "한국어"
+  },
+  "settings": {
+    "title": "설정"
+  },
+  "theme": {
+    "title": "모양",
+    "darkMode": "다크 모드",
+    "light": "밝음",
+    "dark": "어두움"
+  },
+  "definitions": {
+    "metadata": {
+      "title": "detrans.ai | 성별 관련 용어 정의",
+      "description": "일상적인 대화에서 성과 성별은 때로는 교환하여 사용되고 일부 언어에서는 둘을 설명하는 단어가 하나만 있습니다. 그러나 성별 불쾌감의 전체 개념은 성과 성별 사이에 차이가 있다는 이해에 의존합니다."
+    },
+    "title": "성별 관련 용어 정의",
+    "sexAndGender": {
+      "heading": "성과 성별?",
+      "intro": "일상적인 대화에서 성과 성별은 때로는 교환하여 사용되고 일부 언어에서는 둘을 설명하는 단어가 하나만 있습니다. 그러나 성별 불쾌감의 전체 개념은 성과 성별 사이에 차이가 있다는 이해에 의존합니다.",
+      "sex": "<b>성</b>은 사람의 생물학을 의미합니다(예: 해부학; 골격, 근육, 염색체, 생식 시스템 및 이차 성 특성). 99% 이상의 사람들이 생물학적으로 남성이거나 여성이라는 점에 유의하세요. 성 스펙트럼은 없지만 일부 사람들은 성 발달 장애(DSD)를 가지고 있습니다. DSD를 가진 대다수의 사람들은 남성이거나 여성입니다.",
+      "gender": "<b>성별</b>은 주어진 사회가 남성과 여성에게 적절하다고 간주하는 '사회적으로 구성된' 역할, 행동, 활동, 특성을 의미합니다[생물학적 성별로 정의됨]. '남성적'과 '여성적'은 성별 범주입니다. 대부분, 아마도 모든 사람들은 남성적이고 여성적인 특성을 혼합하여 가지고 있습니다. 성별은 시간이 지남에 따라 문화에 따라 변합니다.",
+      "nonConformity": "<b>성별 비순응</b>은 사람이 자신의 성별을 기반으로 사회가 기대하는 방식과 다르게 행동하거나 표현할 때 발생합니다.",
+      "identity": "<b>성별 정체성</b> - 일부 사람들은 우리 모두가 타고난 '성별 정체성'을 가지고 있다고 믿습니다 - 남성, 여성 또는 그 사이 어딘가로 자신을 인식하는 깊은 감각이나 인식 - 이는 생물학적 성별과 별개로 존재하며 드물게는 이와 다를 수 있습니다. 다른 사람들은 다른 어떤 성격이나 정체성 측면과 구별되는 특정 성별 정체성이 존재한다고 믿지 않습니다."
+    },
+    "dysphoria": {
+      "heading": "성별 불쾌감이란 무엇인가?",
+      "p1": "성별 불쾌감은 정신과 및 의료 커뮤니티에서 누군가가 자신의 성별 정체성이 생물학적 성별과 일치하지 않는다고 느낄 때 경험하는 고통을 설명하는 진단 용어입니다.",
+      "p2": "성별 불쾌감을 경험하는 사람들은 자신의 성별과 다른 성별에 대한 강하고 지속적인 동일시 감정과 자신의 성별 신체에 대한 관련 불편함을 보고합니다. 현재 공식적인 진단을 받으려면 이러한 감정이 경험하는 사람에게 상당한 고통이나 손상을 일으켜야 합니다."
+    },
+    "transgender": {
+      "heading": "트랜스젠더가 된다는 것은 무엇을 의미하나?",
+      "p1": "트랜스젠더는 사람마다 다르게 의미할 수 있는 용어입니다. 일반적으로 트랜스 여성은 남성 몸으로 태어났지만 여성으로 정체화하고, 트랜스 남성은 여성 몸으로 태어났지만 남성으로 정체화하며, 논바이너리 사람들은 남성도 여성도 아니라고 정체화한다는 것에 동의합니다. 사람들은 누군가가 자신의 생물학적 성별과 동일하지 않은 성별로 정체화함을 나타내기 위해 더 짧은 용어 '트랜스'를 자주 사용합니다.",
+      "p2": "트랜스젠더는 i) 당신이 태어난 성의 반대 성/성별이다, ii) 당신이 태어난 성의 반대 성/성별이라고 믿는다, 또는 iii) 당신이 태어난 성의 반대 성/성별인 것처럼 살고 있다는 것을 의미하는 것으로 이해될 수 있습니다. 이 세 가지 이해 방식 중 어떤 것이 가장 정확한지에 대한 논쟁은 격렬하고 논란이 될 수 있습니다. 일부 사람들은 트랜스젠더가 무엇을 의미하는지에 대한 논의조차 경험의 타당성을 훼손한다고 느낍니다. 그러나 이러한 다른 믿음은 불가피하게 성별 관련 고통을 관리하는 사람들을 지원하는 가장 좋은 방법에 대한 다른 아이디어로 이어지므로 사람들이 가능한 한 최고의 도움과 조언을 받도록 보장하기 위해 논의가 필요합니다."
+    },
+    "desistance": {
+      "heading": "데시스턴스란 무엇인가?",
+      "p1": "데시스턴스는 트랜스젠더로 정체화했지만 의학적 개입을 하지 않은 사람이 더 이상 트랜스젠더로 정체화하지 않을 때입니다. 의학적 개입을 한 의미에 대해 다루지 않아도 되지만 사람들에게 데시스턴스는 여전히 매우 감정적으로 고통스럽고 혼란스럽고 어려운 과정이 될 수 있습니다."
+    },
+    "detransition": {
+      "heading": "디트랜지션과 디트랜지셔너",
+      "p1": "디트랜지션은 트랜스젠더로 정체화하고 의학적 개입을 받은 사람이 더 이상 트랜스젠더로 정체화하지 않을 때입니다. 이 그룹 내에서 사람들의 경험에는 엄청난 다양성이 있습니다. 일부 사람들은 자신이 겪은 것과 장기적인 영향에 대해 매우 고통스러워할 수 있고, 다른 사람들은 현재 자신을 이해하기 위해 거쳐야 했던 과정으로 볼 수 있습니다."
+    },
+    "regret": {
+      "heading": "전환 후회",
+      "p1": "일부 사람들은 수년간 트랜스젠더로 정체화했으며 호르몬과 수술과 같은 의학적 개입을 받아 신체를 되돌릴 수 없게 변경했습니다. 그들은 의학적 성별 전환을 시작한 것을 후회한다고 느낄 수 있지만, 동시에 트랜스젠더로 계속 정체화하거나 교차 성별 호르몬을 계속 사용할 수도 있습니다."
+    },
+    "source": {
+      "text": "출처:",
+      "link": "디트랜스 재단"
+    }
+  },
+  "chat": {
+    "lookingForComments": "관련 댓글 찾는 중...",
+    "errorOccurred": "오류가 발생했습니다, 다시 시도하세요... 계속 발생하면 저에게 연락하세요.",
+    "analysingExperiences": "경험 분석 중",
+    "detransPerspective": "-> 이 주제에 대한 디트랜스 관점은 무엇인가?",
+    "transPerspective": "-> 이 주제에 대한 트랜스 관점은 무엇인가?",
+    "backToPortal": "<- 포털로 돌아가기"
+  },
+  "chatInput": {
+    "placeholder": "detrans.ai에게 질문하세요...",
+    "deepResearch": "심층 연구",
+    "suggestions": "제안:"
+  },
+  "deepResearchEvents": {
+    "errorTitle": "심층 연구 오류",
+    "retrieving": "디트랜스 경험 검색 중...",
+    "generatingQuestions": "메타 질문 생성 중...",
+    "findingAnswers": "메타 질문에 대한 답변 찾는 중",
+    "completed": "심층 연구 완료",
+    "retrieveError": "디트랜스 경험 검색 오류!",
+    "analyzeError": "디트랜스 경험을 분석하고 질문에 답하는 AI 비용을 지불할 돈이 떨어졌습니다. 가능하다면 서비스를 유지하기 위해 기부해 주세요. 나중에 다시 시도하세요. 지금은 포털의 질문을 시도할 수 있습니다.",
+    "generatingAnswer": "답변 생성 중...",
+    "waitingForAnswer": "답변 대기 중",
+    "questionsAnswered": "{total}개 중 {answered}개 메타 질문 답변됨",
+    "generatingSummary": "답변 요약 생성 중"
+  },
+  "questionTabs": {
+    "topics": "주제",
+    "generated": "생성됨",
+    "recent": "최근",
+    "top": "상위"
+  },
+  "conversations": {
+    "title": "최근 대화",
+    "subtitle": "전 세계 사람들에게 detrans.ai가 어떻게 도움이 되는지 직접 확인하세요.",
+    "tabs": {
+      "featured": "추천",
+      "all": "전체"
+    },
+    "buttons": {
+      "showMore": "{count}개 더 많은 대화 표시",
+      "showLess": "더 적게 표시",
+      "loadMore": "더 많은 대화 불러오기",
+      "loading": "불러오는 중..."
+    }
+  },
+  "conversationCard": {
+    "untitled": "제목 없는 대화",
+    "from": "부터",
+    "moreMessages": "{count}개의 추가 메시지...",
+    "moreMessage": "{count}개의 추가 메시지...",
+    "date": {
+      "today": "오늘",
+      "yesterday": "어제",
+      "daysAgo": "{count}일 전",
+      "weeksAgo": "{count, plural, =1 {1주일 전} other {#주일 전}}"
+    },
+    "admin": {
+      "deleting": "삭제 중...",
+      "delete": "대화 삭제",
+      "banning": "차단 중...",
+      "ban": "사용자 차단 (IP)"
+    }
+  },
+  "stories": {
+    "metadata": {
+      "title": "detrans.ai | 디트랜지션 이야기 및 통계",
+      "description": "인터넷에서 가장 큰 개방형 디트랜지션 이야기 컬렉션인 /r/detrans Reddit 커뮤니티 회원들의 진심 어린 디트랜지션 이야기, 타임라인 및 추세를 읽어보세요. 디트랜지셔너들이 전환 및 디트랜지션을 결정한 나이와 어떤 경로를 거쳤는지 알아보세요."
+    },
+    "title": "디트랜지션 이야기 및 통계",
+    "subtitle": "인터넷에서 가장 큰 개방형 디트랜지션 이야기 및 경험 컬렉션인 /r/detrans 서브레딧에서 경험을 공유한 {count}명의 고유한 디트랜지션 이야기 및 통계를 검색하고 시각화하세요.",
+    "disclaimer": {
+      "summary": "이 이야기는 AI를 사용하여 요약되었습니다.",
+      "details": "Reddit에서 사람들은 종종 여러 댓글이나 게시물에 걸쳐 경험을 공유합니다. 이 정보를 더 쉽게 접근할 수 있도록 하기 위해 AI가 흩어진 모든 조각을 하나의 읽기 쉬운 요약 및 타임라인으로 수집합니다. 모든 시스템 프롬프트는 프롬프트 페이지에 표시됩니다.",
+      "accuracy": "때로는 AI가 환각하거나 사실이 아닌 것을 말할 수 있습니다. 그러나 일반적으로 요약된 이야기는 사용자의 원래 댓글의 정확한 반영입니다.",
+      "inclusion": "전체 이야기와 타임라인을 구성할 수 있는 충분한 정보를 공유한 사용자만 포함됩니다. 5개 미만의 댓글을 게시했거나 댓글이 3개 미만의 추천을 받은 사용자는 무시됩니다. 게시물은 아직 데이터 세트에 포함되지 않았습니다.",
+      "verification": "모든 사용자는 봇이 생성했거나 진짜가 아닌 콘텐츠의 징후에 대해 분석되었습니다. 진짜 디트랜지셔너로 보이지 않는 계정은 '의심스러움'으로 표시됩니다. 이러한 계정은 수동으로 검토되고 진짜가 아닌 것으로 확인되면 detrans.ai 데이터 세트에서 제거됩니다. 5개 미만의 댓글을 작성한 계정은 분석에서 제외되었습니다."
+    },
+    "charts": {
+      "tabs": {
+        "age": "나이",
+        "duration": "기간",
+        "transitionReason": "전환 이유",
+        "detransitionReason": "디트랜지션 이유",
+        "pathways": "경로"
+      },
+      "loading": "차트 데이터 불러오는 중...",
+      "error": "오류: {message}",
+      "retry": "재시도",
+      "noData": "선택한 필터에 사용 가능한 {mode} 이유 데이터 없음",
+      "reasonChart": {
+        "title": "디트랜지셔너들이 왜 {mode, select, detransition {디트랜지션} other {전환}}했다고 말하나요?",
+        "subtitle": "Reddit 사용자 {mode} 타임라인의 데이터 ({totalReasonCount}명 총 사용자, {totalUsers}개의 서로 다른 이유.)",
+        "mentions": "{count}회 언급 ({percentage}%)"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "사용자 경험 검색...",
+      "ageRange": "나이 범위:",
+      "ageRangeYears": "{min} - {max}세",
+      "sex": {
+        "all": "남성 및 여성",
+        "female": "여성",
+        "male": "남성"
+      },
+      "tagsPlaceholder": "필터링할 태그 선택...",
+      "clearFilters": "필터 지우기"
+    },
+    "results": "{total}개의 사용자 이야기 중 {showing}개 표시",
+    "noResults": "필터와 일치하는 사용자가 없습니다.",
+    "pagination": {
+      "previous": "이전",
+      "next": "다음",
+      "pageInfo": "{page} / {totalPages} 페이지"
+    },
+    "userCard": {
+      "comments": "{count}개 댓글",
+      "postingSince": "{date}부터 게시",
+      "transitionedAt": "{age}세에 전환",
+      "desistedAt": "{age}세에 데시스트",
+      "detransitionedAt": "{age}세에 디트랜지션",
+      "female": "여성",
+      "male": "남성"
+    }
+  },
+  "prompts": {
+    "metadata": {
+      "title": "어떻게 작동하나요? | 시스템 프롬프트",
+      "description": "detrans.ai의 작동 방식, 시스템 프롬프트, 데이터 마감일, 오픈 소스 정보를 알아보세요."
+    },
+    "title": "어떻게 작동하나요?",
+    "intro": {
+      "paragraph1": "<bold>detrans.ai</bold> 채팅은 RAG(검색 증강 생성) 기반 에이전트로, 메타 질문을 생성하고 Reddit의 <reddit>/r/detrans</reddit> 서브레딧과 유튜브에서 디트랜스 생각과 경험을 표면화하고 통합하여 답변합니다. LlamaIndex 프레임워크와 Moonshot AI의 오픈 소스 중국어 <kimi>kimi-k2.5</kimi> 모델을 사용하여 서양의 정치적 편견을 줄였습니다.",
+      "paragraph2": "ChatGPT 및 대부분의 다른 서양 LLM은 성별 믿음을 홍보하고 유지하는 방식이 꽤 공격적입니다. OpenAI의 GPT 모델을 이 프로젝트에 사용하는 것은 불가능했는데, 모델이 요약하라는 디트랜스 경험을 끊임없이 훼손하고 모순시켰기 때문입니다. 더 확정적인 경험을 원하신다면 <chatgpt>ChatGPT</chatgpt>를 참조하세요."
+    },
+    "dataCutoff": {
+      "title": "데이터 마감일",
+      "paragraph1": "<bold>detrans.ai</bold>는 현재 최소 3개의 추천을 받은 2025년 9월 8일 이전에 /r/detrans에 게시된 모든 댓글에 접근할 수 있습니다. /r/detrans 서브레딧이 계속 존재하는 한 데이터 세트를 최소한 매년 업데이트할 계획입니다.",
+      "paragraph2": "사용자는 유튜브 비디오 링크를 제출하여 비디오 경험을 제출할 수 있습니다. 이러한 비디오는 OpenAI의 Whisper 음성-텍스트 모델을 사용하여 전사되고 벡터 데이터베이스 및 비디오 아카이브에 추가되기 전에 수동으로 검토됩니다."
+    },
+    "openSource": {
+      "title": "오픈 소스",
+      "paragraph": "소스 코드는 MIT 라이선스 아래 <github>Github</github>에서도 사용할 수 있으므로 자신의 프로젝트를 위해 코드를 검사하거나 재사용하려는 경우 확인할 수 있습니다. 이 프로젝트는 또한 Llamaindex, React, Next.js, Tailwind, Lucide, Qdrant, Postgres 및 Vercel AI SDK와 같은 많은 다른 오픈 소스 프로젝트 위에 구축되었습니다. 이러한 프로젝트의 기여자들에게 견고한 기반을 제공해 주셔서 대단히 감사합니다."
+    },
+    "systemPrompts": {
+      "title": "시스템 프롬프트",
+      "description": "이것은 시스템이 RAG 워크플로에 사용하는 프롬프트입니다. 이 페이지에 표시된 것 외에 다른 사용자 정의 지침이나 레이어는 없습니다.",
+      "lastUpdated": "마지막 업데이트",
+      "chatAgentTitle": "채팅 에이전트 시스템 프롬프트",
+      "researchModeTitle": "심층 연구 모드용 시스템 프롬프트",
+      "researchAgentTitle": "연구 에이전트 프롬프트",
+      "experienceExtractionTitle": "경험 추출 프롬프트",
+      "finalAnswerTitle": "최종 답변 프롬프트"
+    },
+    "userSummaries": {
+      "title": "사용자 요약용 시스템 프롬프트",
+      "description": "이것은 생성된 사용자 요약을 위한 시스템 프롬프트입니다.",
+      "lastUpdated": "마지막 업데이트",
+      "experienceReportTitle": "사용자 경험 보고서",
+      "experienceSummaryTitle": "사용자 경험 요약",
+      "generateTagsTitle": "태그 생성",
+      "extractAgesTitle": "나이 추출",
+      "determineBirthSexTitle": "출생 성별 결정",
+      "redFlagReportTitle": "레드 플래그 보고서"
+    }
+  },
+  "donatePage": {
+    "title": "Detrans.AI 운영 유지",
+    "description1": "이 사이트에 제가 투입한 작업을 감사히 여기시거나 이 무료 서비스가 도움이 되셨다면 <b>detrans.ai</b>를 온라인으로 유지하기 위해 일회성 또는 정기 기부를 고려해 주세요.",
+    "description2": "당신의 지원 없이는 이러한 자원 집약적인 서비스를 운영할 수 없습니다. 현재 제 주요 수입원은 정부 복지이며, 이 글을 쓰는 시점에서 제 은행 계좌에 1000달러 미만이 있습니다. 이 사이트가 인기를 끌면 수천 달러의 청구서를 받을 수 있습니다. 돈이 떨어지면 자신의 질문을 하고 후속 질문을 통해 주제를 더 깊이 탐구하는 기능이 비활성화되고 포털의 질문에 대해서만 캐시된 응답을 제공할 것입니다.",
+    "description3": "월간 기부를 고려해 주세요. 아래 페이팔을 사용하거나 뉴질랜드 은행 계좌로 직접 또는 BTC로 기부할 수 있습니다.",
+    "bankAccount": "뉴질랜드 은행 계좌",
+    "accountName": "이름",
+    "accountNumber": "계좌",
+    "swiftCode": "SWIFT/BIC 코드",
+    "bitcoin": "비트코인 주소",
+    "paypal": "페이팔 기부"
+  },
+  "terms": {
+    "metadata": {
+      "title": "개인정보 보호정책 | detrans.ai",
+      "description": "개인정보 보호정책, 데이터 수집 관행 및 정보 보호 방법에 대해 알아보세요."
+    },
+    "title": "개인정보 보호정책",
+    "intro": "이 개인정보 보호정책은 당사 서비스를 방문하거나 사용할 때 수집하는 정보, 수집 이유, 그리고 이를 안전하게 보관하는 방법을 설명합니다.",
+    "sections": {
+      "informationWeCollect": {
+        "title": "수집하는 정보",
+        "chatMessages": {
+          "title": "채팅 메시지:",
+          "content": "모든 채팅 기록과 심층 연구 모드의 모든 질문에 대한 응답을 보존합니다. 채팅 기록은 IP 주소나 귀하를 식별하는 데 사용할 수 있는 데이터와 연결되지 않습니다. 채팅 기록은 향후 연구 목적으로 분석되고 사용될 수 있습니다. 민감한 정보 공유를 피하세요."
+        },
+        "cookies": {
+          "title": "쿠키 / 추적 기술:",
+          "content": "쿠키, 픽셀 태그 또는 유사한 클라이언트 측 추적 메커니즘을 사용하지 <em>않습니다</em>."
+        },
+        "ipAddresses": {
+          "title": "IP 주소:",
+          "content": "서버에 요청을 할 때 남용을 방지하는 비율 제한을 집행하고 요청을 계산하기 위해 IP 주소를 저장합니다."
+        },
+        "optionalData": {
+          "title": "선택적 데이터:",
+          "content": "당사에 연락하기로 선택한 경우, 자발적으로 제공한 정보(예: 이메일 주소, 이름)를 수집할 수 있습니다. 이 정보 제공은 명시적으로 명시되지 않는 한 선택 사항입니다."
+        }
+      },
+      "legalBases": {
+        "title": "처리의 법적 근거(EU/EEA 방문자)",
+        "item1": "비율 제한 처리는 GDPR 제6조(1)(f)에 따른 <em>정당한 이익</em>을 위해 필요합니다 - 특히 서비스 가용성 및 보안 유지를 위해.",
+        "item2": "추가 처리(예: 계정 생성)는 해당하는 경우 귀하의 <em>동의</em> 또는 <em>계약상 필요성</em>에 기반합니다."
+      },
+      "dataRetention": {
+        "title": "데이터 보관 기간",
+        "content": "모든 채팅 기록은 보존됩니다. 비율 제한에 사용되는 IP 주소는 마지막 요청 후 또는 비율 제한 기간이 끝날 때까지 몇 분 내에 자동으로 삭제됩니다. 자발적 정보(예: 지원 이메일)는 문의를 해결하거나 법적 의무를 충족하는 데 필요한 기간 동안만 보관됩니다."
+      },
+      "thirdPartySharing": {
+        "title": "제3자 공유",
+        "content": "성별 불쾌감을 경험하는 사람들의 결과를 개선하기 위해 찾는 학자 및 연구자와 익명화된 채팅 기록을 공유할 수 있습니다. IP 주소 또는 기타 데이터는 법률에 따라 필요하거나 권리, 사용자 또는 대중을 보호하기 위해(예: 사기 방지, 법원 명령)만 공개할 수 있습니다."
+      },
+      "security": {
+        "title": "보안",
+        "content": "전송 중 및 저장 시 데이터를 보호하기 위해 업계 표준 기술 및 조직적 조치(TLS 암호화, 액세스 제어, 최소 권한 설계)를 사용합니다."
+      },
+      "internationalTransfers": {
+        "title": "국제 전송",
+        "content": "서버는 미국에 있습니다. 미국 외부에서 서비스에 액세스하는 경우 IP 주소가 미국으로 전송되고 처리됨을 이해합니다."
+      },
+      "childrensPrivacy": {
+        "title": "어린이 개인정보",
+        "content": "서비스는 13세 미만 어릭를 대상으로 하지 않으며, 의도적으로 그들의 개인정보를 수집하지 않습니다. 부주의하게 그러한 데이터를 수집했다고 믿으시면 즉시 삭제를 위해 연락해 주세요."
+      },
+      "changes": {
+        "title": "이 정책의 변경",
+        "content": "시간이 지남에 따라 이 정책을 업데이트할 수 있습니다. 상단의 '효력 발생일'이 변경되고 중요한 변경 사항은 두드러지게 게시됩니다."
+      },
+      "contact": {
+        "title": "연락처",
+        "content": "질문, 우려 사항 또는 불만이 있는 경우 연락처 양식을 사용하거나 <email>peter@detrans.ai</email>로 이메일을 보내세요."
+      }
+    }
+  },
+  "videos": {
+    "metadata": {
+      "title": "detrans.ai | 디트랜지셔너의 영상 보기",
+      "description": "전환을 경험했다가 디트랜지션을 결심한 사람들이 유튜브에 업로드한 개인 비디오 회고록 선택입니다. 인터넷에는 이러한 이야기가 무수히 많으며, 이는 그중 일부분입니다."
+    },
+    "title": "전환 및 디트랜지션 영상",
+    "description": {
+      "line1": "이 페이지는 인터넷에서 최고의 디트랜지션 비디오 아카이브가 되는 것을 목표로 합니다.",
+      "line2": "음성-텍스트를 사용하여 detrans.ai는 이러한 경험을 채팅 대화에 통합합니다.",
+      "line3": "현재는 유튜브 비디오만, 곧 틱톡도?"
+    },
+    "female": "여성",
+    "male": "남성",
+    "backToAll": "전체로 돌아가기",
+    "overview": "개요",
+    "fullSummary": "전체 비디오 요약",
+    "watchOnYouTube": "유튜브에서 보기",
+    "moreVideos": "더 많은 영상",
+    "browseAll": "모든 디트랜지션 영상 둘러보기",
+    "metadataWatchDescription": "{author}의 {title}을(를) 시청하세요, {sex} 디트랜지셔너가 자신의 이야기를 공유합니다.",
+    "metadataThumbnailAlt": "{title}의 썸네일"
+  },
+  "videoList": {
+    "loading": "영상 불러오는 중...",
+    "filters": {
+      "all": "모든 이야기",
+      "female": "여성",
+      "male": "남성",
+      "detransitioners": "디트랜지셔너"
+    },
+    "thumbnailAlt": "{title}의 썸네일",
+    "by": "by",
+    "female": "여성",
+    "male": "남성"
+  },
+  "videoSubmitForm": {
+    "submitTitle": "디트랜지션 비디오 제출",
+    "description": {
+      "line1": "비디오를 제출하면 이 페이지와 관련 채팅에 표시됩니다.",
+      "line2": "당신의 비디오일 수도 있고, 온라인에서 찾은 이 페이지에 없는 비디오일 수도 있습니다.",
+      "line3": "모든 제출은 검토되며, 나타나기까지 며칠이 걸릴 수 있습니다."
+    },
+    "urlLabel": "유튜브 URL",
+    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "submitButton": "비디오 제출",
+    "submitting": "제출 중...",
+    "submitSuccess": "비디오가 성공적으로 제출되었습니다! 사이트에 나타나기 전에 검토됩니다.",
+    "submitError": "비디오 제출 실패",
+    "networkError": "네트워크 오류. 다시 시도하세요."
+  },
+  "studySubmitForm": {
+    "submitTitle": "연구 제출",
+    "description": {
+      "line1": "누락된 관련 학술 연구나 동료 심사 기사를 알고 있나요?",
+      "line2": "URL을 제출하고 선택적으로 제목을 제안하세요.",
+      "line3": "모든 제출은 사이트에 나타나기 전에 검토됩니다."
+    },
+    "urlLabel": "연구 URL",
+    "urlPlaceholder": "https://...",
+    "titleLabel": "제안된 제목",
+    "titlePlaceholder": "연구의 선택적 헤드라인 또는 제목",
+    "titleHelp": "선택 사항: 이 연구에 대한 간단한 제목 또는 헤드라인 제안",
+    "submitButton": "연구 제출",
+    "submitting": "제출 중...",
+    "submitSuccess": "연구가 성공적으로 제출되었습니다! 사이트에 나타나기 전에 검토됩니다.",
+    "submitError": "연구 제출 실패",
+    "networkError": "네트워크 오류. 다시 시도하세요."
+  },
+  "studiesPage": {
+    "metadata": {
+      "title": "detrans.ai | 디트랜지션 주제에 대한 학술 연구",
+      "description": "성별 정체성 추세 및 디트랜지션과 관련된 학술 연구, 동료 심사 저널 기사 및 검증된 통계 선택을 이 페이지에서 찾으세요.",
+      "ogTitle": "detrans.ai | 디트랜지션 주제에 대한 학술 연구",
+      "ogDescription": "성별 정체성 추세 및 디트랜지션과 관련된 학술 연구 및 동료 심사 저널 기사 및 검증된 통계 선택을 이 페이지에서 찾으세요."
+    },
+    "title": "선택된 학술 기사",
+    "description": "성별 정체성, 전환 및 디트랜지션 주제에 대한 학술 연구, 동료 심사 연구 및 저널 기사."
+  },
+  "contentWarning": {
+    "title": "콘텐츠 경고:",
+    "description": {
+      "line1": "이 웹사이트에는 전 트랜스젠더 사람들의 이야기, 경험 및 관점이 포함되어 있습니다.",
+      "line2": "주제는 전환 후회, 의학적 합병증 및 불쾌감에 대한 전체론적 관점을 포함합니다.",
+      "line3": "이 정보는 성별 정체성 및 전환에 대한 일반적으로 믿어지는 믿음에 도전할 수 있습니다."
+    },
+    "buttons": {
+      "exit": "여기서 나가기!",
+      "continue": "계속"
+    }
+  },
+  "supportPage": {
+    "metadata": {
+      "title": "detrans.ai | 성별 도움 및 지원 받기",
+      "description": "성별 확정적 치료와 성별 탐구적 치료의 차이점을 알아보세요. 성별 불쾌감을 경험하고 있다면 지원을 받는 가장 좋은 방법 중 하나는 스스로 그곳에 있었고 다른 쪽으로 나온 사람들의 관점을 이해하는 것입니다."
+    },
+    "title": "성별 도움 및 지원 받기",
+    "navigation": {
+      "jumpTo": "건너뛰기:",
+      "getGenderSupport": "성별 지원 받기:"
+    },
+    "sections": {
+      "onlineSupport": {
+        "title": "온라인 지원 그룹",
+        "description": "성별 불쾌감을 경험하고 있다면 지원을 받는 가장 좋은 방법 중 하나는 스스로 그곳에 있었고 다른 쪽으로 나온 사람들과 이야기하고 그들의 관점을 이해하는 것입니다.",
+        "links": {
+          "redditCommunity": "Reddit의 디트랜스 커뮤니티",
+          "redditWiki": "Reddit의 디트랜스 위키",
+          "discordServer": "공식 /r/detrans 디스코드 서버",
+          "askDetransAI": "detrans.ai로 50,000명 이상의 디트랜스 사람들에게 물어보기"
+        }
+      },
+      "genderAffirmingCare": {
+        "title": "성별 확정적 치료: 무엇인가?",
+        "description": "성별 확정적 치료는 현재 서양의 의료 제공자가 제공하는 성별 불쾌감에 대한 표준(그리고 종종 유일한) 치료 옵션입니다. 성별 확정적 치료는 본질적으로 사회의 성별화된 기대를 인식한 다음 환자를 그에 적응시킵니다. 사회적 전환(이름, 대명사, 의류)으로 시작하여 호르몬 치료로 이어지고, 일부에게는 되돌릴 수 없는 수술 절차로 이어지는 단계별 접근 방식입니다. 성별 확정적 치료는 성별 불쾌감에 대한 완화를 제공할 수 있지만 심각한 건강 위험이 있으며 종종 영구적인 부작용이 따릅니다. 극도로 주의하고",
+        "watchTestimonies": "증언을 보세요"
+      },
+      "genderExploratoryTherapy": {
+        "title": "성별 탐구적 치료: 무엇인가?",
+        "description1": "성별 탐구적 치료는 단순히 치료사가 당신을 확인하고 의학화하는 것을 서두르지 않는다는 것을 의미합니다. 대신 그들은 성별의 개념과 왜 이런 방식으로 느끼는지 탐구하는 것부터 시작할 것입니다. 성별 탐구적 치료는 특정한, 미리 결정된 계획 없이 접근하며, 성별 탐구적 치료의 결과는 각 개인에 따라 다를 수 있습니다.",
+        "description2": "'성별 탐구적 치료'를 구글에 검색하면 게이 전환 치료(효과가 없음이 입증됨)와 비교하는 비판을 찾을 수 있습니다. 진실은 성별 탐구적 치료가 게이 전환 치료와 매우 다르다는 것입니다:",
+        "references": {
+          "title": "참고문헌",
+          "ref1": "U.S. Dept. of Health & Human Services (2025). 소아 성별 불쾌감 및 성별 전환 시도에 대한 보고서.",
+          "ref2": "D'Angelo, R. (2025). '성별 불쾌감이 있는 젊은이의 자율성 지원: 심리치료는 전환 치료가 아니다.' Journal of Medical Ethics, 51(1).",
+          "ref3": "Lemma, A. & Schmidt, L. (2024). '성별 불쾌감을 위한 정신역동적 심리치료는 전환 치료가 아니다.' Frontiers in Psychology.",
+          "ref4": "Korte, A. et al. (2021). '일률적인 것은 없다: 성별 불쾌감을 위한 심리치료 지지.' Archives of Sexual Behavior."
+        },
+        "florenceAshley": {
+          "title": "플로렌스 애슐리 연구",
+          "description": "이 분야의 학술 연구는 종종 편향되어 있습니다. 가장 영향력 있는 연구 중 하나(Interrogating Gender-Exploratory Therapy)는 트랜스 여성인 플로렌스 애슐리가 2022년에 발표했습니다. 그녀의 연구에서 그녀는 성별 탐구적 치료를 게이 전환 치료와 비교하고 이 관행을 강력히 규탄했습니다. 트랜스로 정체화하는 사람들이 자신의 정체성과 믿음을 보호하려는 동기가 있다는 점을 인식해야 하며, 이 연구는 이의 완벽한 예입니다. 이 연구는 논리적 오류로 가득 차 있지만 여전히 발표되었고 성별 불쾌감을 경험하는 사람들을 위한 유일한 옵션이 성별 확정적 치료가 되어야 한다는 학술적 정당성으로 사용됩니다.",
+          "showFallacies": "플로렌스 애슐리 연구의 모든 논리적 오류 보기"
+        }
+      },
+      "findTherapist": {
+        "title": "성별 탐구적 치료를 실시하는 치료사를 어디서 찾을 수 있나요?",
+        "languageNotice": "대부분 나열된 치료사는 영어만 구사하지만, 여전히 귀하의 언어를 구사하는 사람을 찾기 위해 연락해 볼 수 있습니다. 귀하의 언어를 구사하는 자격을 갖춘 치료사를 알고 있다면",
+        "contactForm": "연락처 양식",
+        "organizations": {
+          "justTherapy": {
+            "name": "Just Therapy",
+            "description": "Just Therapy는 치료가 효과적이고 윤리적이며 이데올로기로부터 자유로워야 한다는 열망에서 탄생했습니다. 공통된 윤리와 원칙에 의해 연합된 치료사 및 상담사 협회입니다. Just Therapy는 심리치료 및 상담 세계의 많은 부분이 활동가들과 이데올로기에 의해 점령되어 클라이언트의 정신 건강을 해치는 위험이 있다는 점을 인식합니다. 다양한 분야와 전문 분야에서 온 회원들은 행동 강령에 서명했습니다.",
+            "directory": "Just Therapy 치료사 디렉토리",
+            "codeOfConduct": "Just Therapy 행동 강령"
+          },
+          "therapyFirst": {
+            "name": "Therapy First",
+            "description": "Therapy First는 성별 고민을 가진 클라이언트들이 되돌릴 수 없는 의학적 조치 전에 무의식적이고 맥락적 요인을 탐구하는 개방적이고 증거 기반의 심리치료를 받을 자격이 있다고 믿는 정신 건강 전문가들을 단합시킵니다. 그들은 전환 관행과 '확인만' 모델 모두를 거부하고, 클라이언트 자율성을 존중하며, 아동/청소년 의학적 전환을 실험적인 것으로 보면서도 성인의 신체 자율권과 지속적인 치료적 탐구를 지지합니다.",
+            "directory": "Therapy First 치료사 디렉토리",
+            "about": "Therapy First 소개"
+          },
+          "beyondTrans": {
+            "name": "Beyond Trans",
+            "description": "스텔라 오말리는 2020년 3월 성별 고민을 가진 아동들에게 편견 없는 도움을 주기 위해 성별 불쾌감 지원 네트워크를 시작했습니다. 이는 빠르게 글로벌 커뮤니티로 성장하여 2021년 비의학적 치료를 옹호하는 Genspect의 창립으로 이어졌습니다. 증가하는 전환 후회를 인식하여 그룹은 2022년 Beyond Trans를 시작했고 2025년 6월 GDSN과 합병하여 가족, 개인 및 디트랜지셔너를 위한 통합된 증거 기반 지원 네트워크를 형성했습니다.",
+            "directory": "Beyond Trans 치료사 디렉토리",
+            "supportGroups": "Beyond Trans 지원 그룹",
+            "about": "Beyond Trans 소개"
+          },
+          "detransFoundation": {
+            "name": "디트랜스 재단",
+            "description": "디트랜스 재단은 디트랜지션 경험을 이해하는 자격을 갖춘 치료사에 대한 접근을 포함하여 디트랜지셔너를 위한 자원과 지원을 제공합니다. 다음 치료사들은 디트랜스 재단의 일부입니다:",
+            "drEntwistle": "은 리즈의 18세 미만 NHS 성별 정체성 발달 서비스에서 이전에 근무한 임상 심리학자입니다. 영국 보건 전문가 협의회(HCPC)에 등록되어 있으며 안전한 화상 통화로 온라인 상담을 제공합니다.",
+            "anastassisSpiliadis": "은 타비스톡의 성별 정체성 발달 서비스에서 4년간 근무한 가족 치료 및 상담 서비스를 이끈 체계적 및 가족 심리치료사입니다. 성별 정체성 어려움을 이해하는 치료 모델의 부족에 동의하지 않아 타비스톡을 사임했습니다. 그는 성별 탐구 모델을 개발했으며 성별 질문을 가진 개인 및 디트랜지셔너와 함께 광범위한 경험을 가지고 있습니다.",
+            "visitWebsite": "디트랜스 재단 웹사이트 방문"
+          }
+        }
+      },
+      "forParents": {
+        "title": "부모를 위한 자원",
+        "intro": "귀하의 자녀가 최근 트랜스젠더로 커밍아웃했다면 혼란스럽고 걱정되며 장기적인 건강과 안녕을 보호하면서도 그들을 가장 잘 지원하는 방법을 잘 모르겠을 수 있습니다.",
+        "rogdRepair": {
+          "name": "스테파니 윈의 ROGD 리페어 프로그램",
+          "whatIs": "ROGD 리페어는 무엇인가?",
+          "description1": "ROGD 리페어는:",
+          "bullet1": "트랜스 정체화 청소년의 부모가 데시스턴스, 비판적 사고, 건강 및 관계적 조화를 촉진하는 방식으로 의사소통하는 데 도움을 주는 프로그램",
+          "bullet2": "수년간의 자격을 갖춘 결혼 및 가족 치료사이자 ROGD 부모 코치로서 다듬어진 심리학 개념 및 의사소통 기술의 상호작용적이고 끊임없이 확장되는 도구 키트",
+          "bullet3": "참가자들이 고유한 가족 상황에 콘텐츠를 개인화하는 데 도움이 되도록 설계된 100개 이상의 레슨이 포함된 자기 주도식 온라인 코스로, 각 레슨에는 비디오, 에세이 및 성찰 질문이 포함되어 있으며 토론 포럼도 있습니다",
+          "description2": "새로운 ROGD 리페어 멤버십에는 이제 RepairBot에 대한 무제한 액세스가 포함됩니다. RepairBot은 성별 고민 청소년의 비확정적 부모를 돕기 위해 특별히 설계된 최초이자 유일한 AI 도구입니다. RepairBot은 전체 ROGD 리페어 커리큘럼에 대해 훈련되었으며 훌륭한 공감대, 숙제 도우미 및 의사소통 도구 도우미 역할을 합니다!",
+          "ctaBox": {
+            "title": "귀하의 아이가 '트랜스'라고 말하지만 귀하는 그들이 건강하고 안전하기를 바랍니다.",
+            "description1": "귀하 자녀의 건강과 미래가 걸려 있지만 귀하의 영향력은 제한적입니다. 아마도 그들이 귀하 뒤에서 암시장 호르몬을 시작했거나, 귀하가 '성별을 잘못 지칭'할 때 화내며 폭풍처럼 나가거나, '확정적' 대학에 떨어져 있을 수 있습니다. 누군가 다치기 전에 이 까다로운 상황에서 효과적으로 의사소통해야 합니다. 거기에 ROGD 리페어가 있습니다.",
+            "description2": "ROGD 리페어는 자녀의 정신 상태를 이해하고 그들에게 접근하는 데 필요한 심리학 개념 및 의사소통 도구를 가르치는 부모를 위한 자기 주도식 온라인 코스 및 커뮤니티입니다. 멤버십에는 이제 접근 방식에 대해 훈련된 24/7 AI 어시스턴트인 RepairBot이 포함됩니다.",
+            "description3": "ROGD 리페어 및 RepairBot은 트랜스 정체화 청소년 및 가족과 10년 이상의 경험을 가진 자격을 갖춘 결혼 및 가족 치료사가 만들었으며, 현재 '확정'보다 더 나은 길이 있어야 한다는 것을 아는 부모들만을 안내합니다."
+          },
+          "coupon": "이 쿠폰 코드를 사용하여",
+          "couponCode": "DETRANSAI",
+          "learnMore": "ROGD 리페어에 대해 자세히 알아보고 가입하기"
+        }
+      }
+    },
+    "table": {
+      "gayConversion": "게이 전환 치료",
+      "genderExploratory": "성별 탐구적 치료",
+      "goal": "목표",
+      "goalConversion": "병리학적으로 간주되기 때문에 성적 지향을 변경합니다.",
+      "goalExploratory": "불쾌감의 의미를 이해합니다. 결과는 전환, 비전환 또는 부분적 사회적 전환이 될 수 있습니다.",
+      "method": "방법",
+      "methodConversion": "수치심, 혐오, 행동 조건, 기도.",
+      "methodExploratory": "GET은 표준 정신역동적 또는 인본주의적 기법과 같은 광범위한 치료 모달리티와 호환됩니다 - 개방형 질문, 호기심, 미리 설정된 종료점 없음.",
+      "evidence": "증거 기반",
+      "evidenceConversion": "일관되게 해로움을 보여줍니다. 모든 주요 의료 기관이 규탄합니다.",
+      "evidenceExploratory": "아직 무작위 대조군 연구는 없지만, 불안, 우울증, 자해를 줄이는 치료와 유사합니다. 체계적인 해로움을 보여주는 데이터는 없습니다.",
+      "ethics": "윤리",
+      "ethicsConversion": "이성애 정체성을 유일한 올바른 선택으로 밀어붙임으로써 자율성을 침해합니다.",
+      "ethicsExploratory": "되돌릴 수 없는 조치 전에 청소년(및 가족)이 모든 옵션을 이해하도록 보장하여 자율성을 확장하려고 합니다."
+    },
+    "fallacies": {
+      "title": "플로렌스 애슐리 연구의 논리적 오류",
+      "name": "오류 이름",
+      "explanation": "간단한 설명",
+      "example": "논문의 예"
+    }
+  },
+  "charts": {
+    "ageDistribution": {
+      "title": "디트랜지셔너들은 전환 및 디트랜지션을 결정했을 때 몇 살이었나요?",
+      "subtitle": "Reddit 사용자 전환 타임라인의 데이터",
+      "loading": "차트 데이터 불러오는 중...",
+      "fetchError": "연령 분포 데이터를 가져오는 데 실패했습니다",
+      "genericError": "오류가 발생했습니다",
+      "errorPrefix": "오류:",
+      "noData": "선택한 연령 범위에 사용 가능한 데이터 없음",
+      "tooltip": {
+        "age": "나이: {age}",
+        "transitioned": "전환: {count}명 사용자",
+        "detransitioned": "디트랜지션: {count}명 사용자"
+      },
+      "axis": {
+        "age": "나이",
+        "users": "사용자 수"
+      },
+      "legend": {
+        "transition": "전환 나이",
+        "detransition": "디트랜지션 나이"
+      }
+    },
+    "transitionDuration": {
+      "title": "전환 기간: 전환 나이 vs 디트랜지션 나이",
+      "description": {
+        "line1": "각 점은 전환 나이(X)와 디트랜지션 나이(Y)를 보여줍니다.",
+        "line2": "더 크고 불투명한 점은 더 많은 사용자를 나타냅니다."
+      },
+      "loading": "차트 데이터 불러오는 중...",
+      "noData": "선택한 연령 범위에 사용 가능한 데이터 없음",
+      "axis": {
+        "transitionAge": "전환 나이",
+        "detransitionAge": "디트랜지션 나이"
+      },
+      "tooltip": {
+        "transitionAge": "전환 나이",
+        "detransitionAge": "디트랜지션 나이",
+        "duration": "기간",
+        "years": "년"
+      },
+      "male": "남성",
+      "female": "여성",
+      "yearsAvg": "년 평균",
+      "user": "사용자",
+      "users": "사용자"
+    },
+    "pathways": {
+      "title": "디트랜지션 경로 흐름",
+      "subtitle": "/r/detrans Reddit 사용자 인구 통계에서 디트랜지션 결과로의 흐름",
+      "loading": "경로 데이터 불러오는 중...",
+      "fetchError": "태그 분포 데이터를 가져오는 데 실패했습니다",
+      "genericError": "오류가 발생했습니다",
+      "error": "오류",
+      "users": "{count}명 사용자",
+      "percentageOfTotal": "총계의 {percentage}%",
+      "totalUsers": "총 사용자",
+      "flowConnections": "흐름 연결",
+      "male": "남성",
+      "female": "여성",
+      "noData": "선택한 필터에 사용 가능한 경로 데이터 없음"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "연락처 | detrans.ai",
+      "description": "저희와 연락하세요. 생각, 제안 또는 피드백을 보내주세요."
+    },
+    "title": "연락처 양식",
+    "intro": "생각, 제안이 있거나 이 무료 서비스가 귀하, 귀하의 가족 또는 친구에게 도움이 되었다면 듣고 싶습니다. 아래에 메시지를 남겨주세요!",
+    "form": {
+      "to": "수신자",
+      "name": "이름",
+      "namePlaceholder": "귀하의 이름",
+      "email": "이메일",
+      "emailPlaceholder": "you@example.com",
+      "subject": "제목",
+      "subjectPlaceholder": "제목",
+      "message": "메시지",
+      "messagePlaceholder": "메시지를 작성하세요...",
+      "sendButton": "메시지 보내기",
+      "sending": "보내는 중...",
+      "success": "✅ 메시지가 전송되었습니다!",
+      "error": "❌ 전송 실패."
+    }
+  },
+  "seo": {
+    "conversations": {
+      "title": "대화 아카이브",
+      "description": "성별 정체성, 디트랜지션, 성별 확정적 치료 및 확정에 대한 대화를 둘러보세요.",
+      "conversations": "대화",
+      "featuredConversations": "추천 대화",
+      "allConversations": "모든 대화",
+      "untitled": "제목 없는 대화",
+      "noSummary": "요약 없음",
+      "noConversations": "사용 가능한 대화가 없습니다.",
+      "mode": "모드",
+      "updated": "업데이트됨",
+      "featured": "추천",
+      "conversationSummary": "대화 요약",
+      "noSummaryAvailable": "이 대화에 사용 가능한 요약이 없습니다.",
+      "conversation": "대화",
+      "unableToParse": "대화 메시지를 구문 분석할 수 없습니다.",
+      "archiveNote": "이것은 아카이브의 대화입니다. 전체 대화를 보고 토론에 참여하려면 이 페이지의 대화형 버전을 방문하세요.",
+      "welcomeTitle": "대화 아카이브에 오신 것을 환영합니다",
+      "welcomeDescription": "사이드바에서 대화를 선택하여 세부 정보를 봅니다. 이 아카이브에는 성별 정체성, 디트랜지션 경험 및 확정 여정에 대한 토론이 포함되어 있습니다.",
+      "featuredDescription": "커뮤니티에 의해 표시된 강조된 토론",
+      "allDescription": "사용 가능한 모든 토론 둘러보기",
+      "footer": "이 페이지는 검색 엔진 및 봇을 위한 SEO 친화적인 콘텐츠를 제공합니다. 전체 대화형 경험을 위해 최신 웹 브라우저로 방문하세요.",
+      "user": "사용자"
+    },
+    "chat": {
+      "subtitle": "성별 정체성에 대해 고민하는 사람들을 위한 질문과 답변.",
+      "freedomMessage": "진실은 성별 비순응이 우리 모두를 자유롭게 할 것이라는 것입니다!",
+      "moreQuestions": ""{question}"와(과) 관련된 더 많은 질문"
+    },
+    "videos": {
+      "title": "전환 및 디트랜지션 영상",
+      "description": "인터넷에 업로드된 개인 디트랜지션 영상의 아카이브입니다. 자신의 목소리를 내며 자신의 이야기를 공유하세요!",
+      "thumbnailAlt": "썸네일",
+      "by": "by",
+      "female": "여성",
+      "male": "남성"
+    }
+  },
+  "routes": {
+    "home": "/",
+    "about": "/about",
+    "contact": "/contact",
+    "support": "/support",
+    "videos": "/videos",
+    "stories": "/stories",
+    "studies": "/studies",
+    "definitions": "/definitions",
+    "donate": "/donate",
+    "terms": "/terms",
+    "prompts": "/prompts",
+    "participate": "/participate",
+    "conversations": "/conversations",
+    "research": "/research",
+    "chat": "/chat",
+    "login": "/login"
+  }
+}

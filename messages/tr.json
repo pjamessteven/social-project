@@ -1,0 +1,804 @@
+{
+  "metadata": {
+    "title": "detrans.ai | 50.000'den fazla detransitioner ile konuşun",
+    "description": "Detrans.ai, geçiş sürecini sonlandıran insanların deneyimlerini ve bakış açılarını paylaşan yardımsever ve şefkatli bir chatbot'tur. Detrans.ai'yi geçiş veya detransisyon desteği ve tavsiyesi için veya bazı insanların neden cinsiyet kimlikleri benimsediği, yaşadığı ve bıraktığını anlamak için bir araştırma aracı olarak kullanın."
+  },
+  "home": {
+    "title": "50.000'den Fazla Detransitioner ile Konuşun",
+    "subtitle": "Diğer Taraftan Bakış Açıları",
+    "intro": {
+      "greeting": "Merhaba! Detransitioner nedir?",
+      "response": "Merhaba! Ben detrans.ai - detransitioner'ların toplu bilinci 🦎",
+      "definition": "Detransitioner, sosyal veya tıbbi olarak geçiş yapmış ancak artık kendini transgender olarak tanımlamayan ve geçişinin bazı yönlerini geri almış olabilecek eski bir transgender kişidir.",
+      "description": "Neden bazı insanların cinsiyet kimlikleri benimsediğini, yaşadığını ve devam ettiğini, /r/detrans altreddit'inde paylaşılan hikayeleri ve deneyimleri okuyarak ve YouTube'a yüklenen detransisyon videolarını izleyerek gözlemliyorum.",
+      "purpose": "Amacım, cinsiyeti yapıbozuma uğratmak ve bu deneyimlerin kişinin kendi, bedeni ve dünya ile olan ilişkisini nasıl şekillendirdiğini keşfetmek için bu bilgiyi paylaşmaktır.",
+      "helpPrompt": "Bugün size nasıl yardımcı olabilirim?"
+    },
+    "starters": {
+      "lizardQuestion": {
+        "display": "Özür dilerim, ama kertenkele meselesi nedir?",
+        "full": "Detransitioner'lar neden kendilerini çevrimiçi temsil etmek için kertenkeleyi kullanıyor?"
+      },
+      "curious": {
+        "display": "Bazı insanların neden detransisyon yaptığını merak ediyorum",
+        "full": "Bazı insanların neden detransisyon yaptığını ve bu noktaya ulaşmak için hangi farkındalıklara sahip olmaları gerektiğini merak ediyorum."
+      },
+      "questioningTrans": {
+        "display": "Cinsiyet kimliğimi sorguluyorum ve kendimi trans hissediyor olabilirim",
+        "full": "Cinsiyet kimliğimi sorguluyorum ve kendimi trans hissediyor olabilirim"
+      },
+      "thinkingDetrans": {
+        "display": "Şu anda kendimi trans olarak tanımlıyorum ve detransisyon düşünüyorum",
+        "full": "Şu anda kendimi trans olarak tanımlıyorum ve detransisyon düşünüyorum"
+      },
+      "familyMember": {
+        "display": "Geçiş yapan birinin ebeveyni, aile üyesi veya arkadaşıyım",
+        "full": "Geçiş yapan birinin ebeveyni, aile üyesi veya arkadaşıyım"
+      },
+      "researcher": {
+        "display": "Cinsiyet kimliği ve detransisyon deneyimleri üzerine çalışan bir araştırmacıyım",
+        "full": "Cinsiyet kimliği ve detransisyon deneyimleri üzerine çalışan bir araştırmacıyım"
+      },
+      "learnChallenges": {
+        "display": "Detransitioner'ların karşılaştığı zorluklar ve mücadeleler hakkında bilgi edinmek istiyorum",
+        "full": "Detransitioner'ların karşılaştığı zorluklar ve mücadeleler hakkında bilgi edinmek istiyorum"
+      },
+      "understandTransition": {
+        "display": "Detransitioner'ların neden ilk etapta geçiş yapmaya karar verdiklerini anlamak istiyorum",
+        "full": "Detransitioner'ların neden ilk etapta geçiş yapmaya karar verdiklerini ve bunun kadınlar ve erkekler arasında nasıl farklılık gösterebileceğini anlamak istiyorum."
+      },
+      "debunkMisinfo": {
+        "display": "Detransisyon hakkındaki yanlış bilgileri ve yaygın inançları çürütmenizi istiyorum",
+        "full": "Detransisyon hakkındaki tüm yanlış bilgileri ve yaygın inançları, mümkün olduğunca ayrıntılı bir şekilde çürütün lütfen."
+      }
+    },
+    "navigation": {
+      "videos": "Detransisyon Videoları",
+      "stories": "Hikayeler",
+      "storiesFull": "Hikayeler ve İstatistikler",
+      "support": "Yardım ve Destek",
+      "definitions": "Cinsiyet Terminolojisi",
+      "studies": "Akademik Çalışmalar",
+      "studiesShort": "Çalışmalar",
+      "howItWorks": "Nasıl Çalışır"
+    },
+    "deepResearch": {
+      "title": "Derin Araştırma Modu",
+      "description": "Derin Araştırma modu, konuya farklı açılardan yaklaşan bir yanıt vermek için sorunuzu genişletir.",
+      "note": "Derin Araştırma daha yavaştır ve konuşma odaklı değildir. Sohbet için kapalı bırakın."
+    },
+    "disclaimer": {
+      "trigger": "Bu sitedeki deneyimler ve bakış açıları Reddit'ten alınmıştır.",
+      "title": "Kaynak Sorumluluk Reddi",
+      "content": "detrans.ai, Reddit'teki /r/detrans topluluğundan ilgili deneyimleri bularak detrans perspektifinden cinsiyet hakkında soruları yanıtlar. Reddit, gerçek insanların kişisel hikayelerini paylaştığı bir platform olsa da, bot tarafından oluşturulan veya yanıltıcı içerikler de içerebilir. Kaynağı ve bağlamı doğrulamak için orijinal Reddit gönderilerini incelemeniz önerilir. Lütfen /r/detrans'ın yoğun bir şekilde moderasyonu yapılan bir altreddit olduğunu unutmayın, ancak moderasyon her gönderinin doğruluğunu veya özgünlüğünü garanti etmez."
+    },
+    "donate": {
+      "title": "Çalışmamızı Destekleyin",
+      "description": "Bu kaynağın en çok ihtiyacı olanlar için kullanılabilir durumda kalmasına yardımcı olun.",
+      "button": "Bağış Yap",
+      "card": {
+        "title": "{site}'i ayakta tutmak için bağışlara ihtiyaç var!",
+        "description": "Bu ücretsiz hizmeti takdir ediyorsanız lütfen bağış yapmayı düşünün.",
+        "description2": "Param biterse site önbellek-only modunda çalıştırılacak ve kendi sorularınızı sorma imkanı olmayacak.",
+        "button": "Bağış yap"
+      }
+    },
+    "participate": {
+      "card": {
+        "title": "Detransitioner veya desister misiniz?",
+        "description": "Transgender kimliklerin bilimsel anlayışını geliştirmeye yardımcı olmak için çalışmalara katılın",
+        "description2": "ve cinsiyet disforisi yaşayan insanlar için sonuçları iyileştirmek."
+      },
+      "title": "Hikayenizi Paylaşın",
+      "description": "Deneyiminiz, başkalarının cinsiyet kimliğinin karmaşıklıklarını anlamasına yardımcı olabilir.",
+      "button": "Katıl"
+    },
+    "footer": {
+      "poem": {
+        "line1": "Kendini özgür bırakabilirsin,",
+        "line2": "Tek yapman gereken sadece olmak.",
+        "line3": "Ve düşüncelerine dikkat et!",
+        "line4": "Çünkü zihin bir bahçe gibidir,",
+        "line5": "Ve her düşünce bir tohumdur.",
+        "line6": "Ektiğimizi biçeriz,",
+        "line7": "Ama bunun aracılığıyla büyüyebiliriz..."
+      },
+      "openSource": "Açık kaynak projesi:",
+      "madeWithLove": "Wellington, NZ'de sevgiyle yapıldı",
+      "donatePrompt": "Eğer yapabiliyorsanız lütfen bağış yapın,",
+      "beKind": "Ve birbirinize nazik olun."
+    },
+    "browseConversations": "Tüm Konuşmaları Göz At"
+  },
+  "header": {
+    "navigation": {
+      "home": "Ana Sayfa",
+      "resources": "Kaynaklar",
+      "about": "Hakkında"
+    },
+    "resources": {
+      "genderSupport": "Cinsiyet Desteği",
+      "genderSupportDesc": "Topluluk ve terapist bulun",
+      "terminology": "Terminoloji",
+      "terminologyDesc": "Anahtar terimlerin/kavramların tanımlanması",
+      "stories": "Hikayeler ve İstatistikler",
+      "storiesDesc": "/r/detrans kullanıcılarından",
+      "videos": "Detransisyon Videoları",
+      "videosDesc": "Kişisel anı arşivi",
+      "studies": "Hakemli Çalışmalar",
+      "studiesDesc": "İlgili akademik araştırma",
+      "statistics": "Doğrulanmış İstatistikler",
+      "statisticsDesc": "statsforgender.org"
+    },
+    "about": {
+      "contact": "İletişim",
+      "contactDesc": "Benimle iletişime geçin",
+      "systemPrompts": "Sistem İstemleri",
+      "systemPromptsDesc": "AI sistem istemlerini görüntüleyin",
+      "terms": "Şartlar",
+      "termsDesc": "Gizlilik politikası ve koşullar"
+    },
+    "donate": "Bağış Yap",
+    "language": {
+      "title": "Dil"
+    }
+  },
+  "language": {
+    "title": "Dil",
+    "select": "Dil seçin",
+    "search": "{count} dil",
+    "en": "İngilizce",
+    "es": "İspanyolca",
+    "fr": "Fransızca",
+    "de": "Almanca",
+    "he": "İbranice",
+    "it": "İtalyanca",
+    "nl": "Felemenkçe",
+    "tr": "Türkçe"
+  },
+  "settings": {
+    "title": "Ayarlar"
+  },
+  "theme": {
+    "title": "Görünüm",
+    "darkMode": "Karanlık mod",
+    "light": "Açık",
+    "dark": "Koyu"
+  },
+  "definitions": {
+    "metadata": {
+      "title": "detrans.ai | Cinsiyetle İlgili Terimleri Tanımlama",
+      "description": "Günlük konuşmalarda cinsiyet (sex) ve toplumsal cinsiyet (gender) bazen birbirinin yerine kullanılır ve bazı dillerde ikisini tanımlamak için tek bir kelime vardır. Ancak, cinsiyet disforisi kavramının tamamı, cinsiyet ve toplumsal cinsiyet arasında farklar olduğunu anlamaya dayanır."
+    },
+    "title": "Cinsiyetle İlgili Terimleri Tanımlama",
+    "sexAndGender": {
+      "heading": "Cinsiyet ve toplumsal cinsiyet?",
+      "intro": "Günlük konuşmalarda cinsiyet (sex) ve toplumsal cinsiyet (gender) bazen birbirinin yerine kullanılır ve bazı dillerde ikisini tanımlamak için tek bir kelime vardır. Ancak, cinsiyet disforisi kavramının tamamı, cinsiyet ve toplumsal cinsiyet arasında farklar olduğunu anlamaya dayanır.",
+      "sex": "<b>Cinsiyet (Sex)</b>, bir kişinin biyolojisine (yani anatomisine; iskelet, kas yapısı, kromozomlar, üreme sistemi ve ikincil cinsiyet özellikleri) atıfta bulunur. Nüfusun %99'undan fazlasının biyolojik olarak ya erkek ya da kadın olduğunu unutmayın, cinsiyet bir spektrum değildir, ancak bazı insanlar cinsel gelişim bozukluklarına (DSD'ler) sahiptir. DSD'li insanların büyük çoğunluğu erkek veya kadındır.",
+      "gender": "<b>Toplumsal Cinsiyet (Gender)</b>, belirli bir toplumun biyolojik cinsiyetlerine uygun gördüğü 'toplumsal olarak inşa edilmiş' rolleri, davranışları, faaliyetleri ve nitelikleri ifade eder. 'Eril' ve 'dişil' toplumsal cinsiyet kategorileridir. Çoğu, belki de tüm insanlar eril ve dişil özelliklerin bir karışımına sahiptir. Toplumsal cinsiyet zamanla ve kültürler arasında değişir.",
+      "nonConformity": "<b>Cinsiyet uygunsuzluğu</b>, bir kişinin cinsiyetine dayanarak toplumun ondan beklediği şekilde davranmadığında veya sunmadığında ortaya çıkar.",
+      "identity": "<b>Cinsiyet Kimliği</b> - bazı insanlar, hepimizin doğuştan gelen bir 'cinsiyet kimliğine' sahip olduğuna - kendimizi erkek, kadın veya arada bir yerde olarak derinden hissettiğimiz veya farkında olduğumuz, biyolojik cinsiyetimizden ayrı olarak var olan ve nadiren ondan farklı olabilen bir duygu - inanır. Diğer insanlar, biyolojik cinsiyetten ayrı olarak var olan belirli bir cinsiyet kimliğinin var olduğuna inanmazlar."
+    },
+    "dysphoria": {
+      "heading": "Cinsiyet disforisi nedir?",
+      "p1": "Cinsiyet disforisi, birinin cinsiyet kimliğinin biyolojik cinsiyetiyle eşleşmediğini hissettiğinde yaşadığı sıkıntıyı tanımlamak için psikiyatri ve tıp topluluğu tarafından kullanılan bir tanı terimidir.",
+      "p2": "Cinsiyet disforisi yaşayan insanlar, cinsiyetinden farklı bir cinsiyetle güçlü, kalıcı özdeşleşme hisleri ve cinsiyetli bedenleriyle ilişkili rahatsızlık bildirirler. Şu anda resmi bir tanı konması için, bu hislerin bunları yaşayan kişide önemli sıkıntıya veya işlev bozukluğuna neden olması gerekir."
+    },
+    "transgender": {
+      "heading": "Transgender olmak ne anlama gelir?",
+      "p1": "Transgender, farklı insanlar için farklı şeyler ifade edebilen bir terimdir. Genel olarak trans kadınların erkek bedeniyle doğduğu ancak kendini kadın olarak tanımladığı, trans erkeklerin kadın bedeniyle doğduğu ancak kendini erkek olarak tanımladığı ve non-binary kişilerin kendini ne erkek ne de kadın olarak tanımladığı konusunda hemfikir olunduğu söylenir. İnsanlar genellikle birinin kendini doğduğu cinsiyetle aynı olmayan bir cinsiyetle özdeşleştirdiğini belirtmek için daha kısa 'trans' terimini kullanır.",
+      "p2": "Transgender şu anlama gelebilir: i) doğduğunuz cinsiyetin/zıt cinsiyet olduğunuz, ii) kendinizi doğduğunuz cinsiyetin/zıt cinsiyet olarak gördüğünüz, veya iii) cinsiyetinizin/cinsiyetinizin doğduğunuz cinsiyetin zıttıymış gibi yaşadığınız. Bu üç anlama gelme şeklinden hangisinin en doğru olduğu konusundaki tartışmalar hararetli ve tartışmalı olabilir. Bazı insanlar, transgender olmanın ne anlama geldiği konusunda tartışma yapmanın bile deneyimin geçerliliğini zayıflattığını hissediyor. Ancak, bu farklı inançlar kaçınılmaz olarak cinsiyetle ilgili sıkıntıyı yönetmek için insanlara nasıl en iyi yardım ve tavsiye verileceğine dair farklı fikirlere yol açar, bu nedenle insanların mümkün olan en iyi yardım ve tavsiyeyi almasını sağlamak için tartışmalar gerekir."
+    },
+    "desistance": {
+      "heading": "Desistance nedir?",
+      "p1": "Desistance, kendini transgender olarak tanımlayan ancak tıbbi müdahalelerde bulunmayan birinin artık kendini transgender olarak tanımlamamasıdır. Tıbbi müdahalelerin etkileriyle uğraşmak zorunda olmasalar da, desistance yine de çok duygusal olarak acı verici, kafa karıştırıcı ve zorlu bir süreç olabilir."
+    },
+    "detransition": {
+      "heading": "Detransisyon ve detransitioner'lar",
+      "p1": "Detransisyon, kendini transgender olarak tanımlayan ve tıbbi müdahalelerde bulunan birinin artık kendini transgender olarak tanımlamamasıdır. Bu gruptaki insanların deneyimlerinde son derece geniş bir çeşitlilik vardır. Bazı insanlar yaşadıkları şeyden ve uzun vadeli etkilerden çok sıkıntı duyabilir, diğerleri bunu şu anki kendilerini anlamak için geçmeleri gereken bir şey olarak görebilir."
+    },
+    "regret": {
+      "heading": "Geçiş pişmanlığı",
+      "p1": "Bazı insanlar uzun yıllar kendini transgender olarak tanımlamış olabilir ve vücutlarını geri alınamaz şekilde değiştiren hormonlar ve ameliyatlar gibi tıbbi müdahalelerden geçmiş olabilir. Tıbbi cinsiyet geçişini başlatmaktan pişmanlık duyduklarını hissetseler de, yine de kendini transgender olarak tanımlamaya devam edebilir ve/veya karşıt cinsiyet hormonlarını kullanmaya devam edebilirler."
+    },
+    "source": {
+      "text": "Kaynak:",
+      "link": "The Detrans Foundation"
+    }
+  },
+  "chat": {
+    "lookingForComments": "İlgili yorumlar aranıyor...",
+    "errorOccurred": "Hata oluştu, tekrar deneyin... Bu sürekli oluyorsa benimle iletişime geçin.",
+    "analysingExperiences": "Deneyimler Analiz Ediliyor",
+    "detransPerspective": "-> Bu konuda detrans bakış açıları nedir?",
+    "transPerspective": "-> Bu konuda trans bakış açıları nedir?",
+    "backToPortal": "<- Portala Geri Dön"
+  },
+  "chatInput": {
+    "placeholder": "detrans.ai'ye sorun...",
+    "deepResearch": "Derin Araştırma",
+    "suggestions": "Öneriler:"
+  },
+  "deepResearchEvents": {
+    "errorTitle": "Derin araştırma hatası",
+    "retrieving": "Detrans deneyimleri alınıyor...",
+    "generatingQuestions": "Meta sorular oluşturuluyor...",
+    "findingAnswers": "Meta sorulara yanıtlar bulunuyor",
+    "completed": "Derin araştırma tamamlandı",
+    "retrieveError": "Detrans deneyimleri alınırken hata oluştu!",
+    "analyzeError": "Detrans deneyimlerini analiz eden ve soruları yanıtlayan AI için ödeme yapacak paramız kalmadı. Eğer yapabiliyorsanız, hizmeti ayakta tutmamıza yardımcı olmak için lütfen bağış yapın. Lütfen daha sonra tekrar deneyin. Şimdilik, portaldaki soruları deneyebilirsiniz.",
+    "generatingAnswer": "Yanıt oluşturuluyor...",
+    "waitingForAnswer": "Yanıt bekleniyor",
+    "questionsAnswered": "{answered} / {total} meta soru yanıtlandı",
+    "generatingSummary": "Yanıtların özeti oluşturuluyor"
+  },
+  "questionTabs": {
+    "topics": "Konular",
+    "generated": "Oluşturulan",
+    "recent": "Son",
+    "top": "En İyi"
+  },
+  "conversations": {
+    "title": "Son Konuşmalar",
+    "subtitle": "Detrans.ai'nin dünyanın dört bir yanından gelen insanlara nasıl yardımcı olduğunu kendiniz görün.",
+    "tabs": {
+      "featured": "Öne Çıkan",
+      "all": "Tümü"
+    },
+    "buttons": {
+      "showMore": "{count} Konuşma Daha Göster",
+      "showLess": "Daha Az Göster",
+      "loadMore": "Daha Fazla Konuşma Yükle",
+      "loading": "Yükleniyor..."
+    }
+  },
+  "conversationCard": {
+    "untitled": "Başlıksız Konuşma",
+    "from": "kaynak",
+    "moreMessages": "{count} mesaj daha...",
+    "moreMessage": "{count} mesaj daha...",
+    "date": {
+      "today": "Bugün",
+      "yesterday": "Dün",
+      "daysAgo": "{count} gün önce",
+      "weeksAgo": "{count, plural, =1 {1 hafta önce} other {# hafta önce}}"
+    },
+    "admin": {
+      "deleting": "Siliniyor...",
+      "delete": "Konuşmayı Sil",
+      "banning": "Yasaklanıyor...",
+      "ban": "Kullanıcıyı Yasakla (IP)"
+    }
+  },
+  "stories": {
+    "metadata": {
+      "title": "detrans.ai | Detransisyon Hikayeleri ve İstatistikleri",
+      "description": "/r/detrans Reddit topluluğu üyelerinden samimi detransisyon hikayeleri, zaman çizelgeleri ve trendler okuyun, internetteki en büyük açık detransisyon hikayeleri koleksiyonu. Detransitioner'ların geçiş yaptıkları ve detransisyon yaptıkları yaşları ve hangi yolları izlediklerini öğrenin."
+    },
+    "title": "Detransisyon Hikayeleri ve İstatistikleri",
+    "subtitle": "İnternetteki en büyük açık detransisyon hikayeleri ve deneyimleri koleksiyonu olan /r/detrans altreddit'inde deneyimlerini paylaşan {count} benzersiz detransisyon hikayesi ve istatistiğine göz atın ve görselleştirin.",
+    "disclaimer": {
+      "summary": "Bu hikayeler AI kullanılarak özetlenmiştir.",
+      "details": "Reddit'te insanlar genellikle deneyimlerini birden fazla yorum veya gönderide paylaşır. Bu bilgileri daha erişilebilir hale getirmek için, AI'mız dağınık olan tüm parçaları tek, okunması kolay bir özet ve zaman çizelgesine toplar. Tüm sistem istemleri istemler sayfasında not edilmiştir.",
+      "accuracy": "Bazen AI halüsinasyon görebilir veya doğru olmayan şeyler söyleyebilir. Ancak genel olarak, özetlenen hikayeler kullanıcıların orijinal yorumlarının doğru yansımalarıdır.",
+      "inclusion": "Yalnızca tam bir hikaye ve zaman çizelgesi oluşturmak için yeterli bilgi paylaşan kullanıcılar dahil edilir. Beşten az yorum yapmış veya yorumları üçten az beğeni almış kullanıcılar dikkate alınmaz. Gönderiler henüz veri setine dahil edilmemiştir.",
+      "verification": "Her kullanıcı bot tarafından oluşturulan veya sahte içerik işaretleri açısından analiz edilmiştir. Gerçek bir detransitioner gibi görünmeyen herhangi bir hesap 'şüpheli' olarak işaretlenir. Bu hesaplar manuel olarak incelenecek ve sahte bulunurlarsa detrans.ai veri setinden kaldırılacaktır. Beşten az yorum yapmış hesaplar analizden çıkarılmıştır."
+    },
+    "charts": {
+      "tabs": {
+        "age": "Yaş",
+        "duration": "Süre",
+        "transitionReason": "Geçiş Nedeni",
+        "detransitionReason": "Detransisyon Nedeni",
+        "pathways": "Yollar"
+      },
+      "loading": "Grafik verileri yükleniyor...",
+      "error": "Hata: {message}",
+      "retry": "Tekrar Dene",
+      "noData": "Seçilen filtreler için {mode} nedeni verisi mevcut değil",
+      "reasonChart": {
+        "title": "Detransitioner'lar neden {mode, select, detransition {detransisyon yaptıklarını} other {geçiş yaptıklarını}} söylüyor?",
+        "subtitle": "Reddit kullanıcısı {mode} zaman çizelgelerinden veriler ({totalReasonCount} toplam kullanıcı, {totalUsers} farklı neden.)",
+        "mentions": "{count} bahis ({percentage}%)"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Kullanıcı deneyimlerinde ara...",
+      "ageRange": "Yaş Aralığı:",
+      "ageRangeYears": "{min} - {max} yaş",
+      "sex": {
+        "all": "Erkek ve Kadın",
+        "female": "Kadın",
+        "male": "Erkek"
+      },
+      "tagsPlaceholder": "Filtrelemek için etiketler seçin...",
+      "clearFilters": "Filtreleri Temizle"
+    },
+    "results": "{showing} / {total} kullanıcı hikayesi gösteriliyor",
+    "noResults": "Filtrelerinizle eşleşen kullanıcı bulunamadı.",
+    "pagination": {
+      "previous": "Önceki",
+      "next": "Sonraki",
+      "pageInfo": "Sayfa {page} / {totalPages}"
+    },
+    "userCard": {
+      "comments": "{count} yorum",
+      "postingSince": "{date} tarihinden beri gönderi yapıyor",
+      "transitionedAt": "{age} yaşında geçiş yaptı",
+      "desistedAt": "{age} yaşında desist etti",
+      "detransitionedAt": "{age} yaşında detransisyon yaptı",
+      "female": "kadın",
+      "male": "erkek"
+    }
+  },
+  "prompts": {
+    "metadata": {
+      "title": "Nasıl çalışır? | Sistem İstemleri",
+      "description": "Detrans.ai'nin nasıl çalıştığını, sistem istemlerini, veri kesim tarihlerini ve açık kaynak bilgilerini öğrenin."
+    },
+    "title": "Nasıl çalışır?",
+    "intro": {
+      "paragraph1": "<bold>detrans.ai</bold> sohbeti, meta sorular oluşturan ve bunları <reddit>/r/detrans</reddit> altreddit'inden ve YouTube'dan detrans düşüncelerini ve deneyimlerini ortaya çıkararak ve entegre ederek yanıtlayan RAG (retrieval augmented generation) destekli bir ajandır. <llamaIndex>LlamaIndex</llamaIndex> çerçevesi ve Moonshot AI tarafından Batı politik önyargısını azaltmak için oluşturulan açık kaynaklı Çince <kimi>kimi-k2.5</kimi> modeli ile inşa edilmiştir.",
+      "paragraph2": "ChatGPT ve diğer çoğu Batı LLM'si, cinsiyet inançlarını teşvik ve sürdürme konusunda oldukça agresiftir. OpenAI'nin GPT modellerini bu proje için kullanmak imkansız oldu, çünkü modeller sürekli olarak özetlemeleri görevlendirilen detrans deneyimlerini zayıflatıyor ve çelişkili hale getiriyordu. Daha onaylayıcı bir deneyim isterseniz, <chatgpt>ChatGPT</chatgpt>'ye bakın."
+    },
+    "dataCutoff": {
+      "title": "Veri Kesim Tarihleri",
+      "paragraph1": "<bold>detrans.ai</bold> şu anda en az üç beğeni almış ve <date>8/9/2025</date> tarihinden önce /r/detrans'a gönderilen tüm yorumlara erişimi var. /r/detrans altreddit'i var olduğu sürece veri setini yılda en az bir kez güncellemeyi hedefleyeceğim.",
+      "paragraph2": "Kullanıcılar video deneyimlerini YouTube video bağlantılarını göndererek paylaşabilir. Bu videolar, vektör veritabanına ve video arşivine eklenmeden önce OpenAI'nin Whisper konuşma-metin modeli kullanılarak transkripsiyonu yapılmadan önce manuel olarak incelenecektir."
+    },
+    "openSource": {
+      "title": "Açık Kaynak",
+      "paragraph": "Kaynak kodu ayrıca, kendi projeniz için herhangi bir kodu incelemek veya yeniden kullanmak isterseniz <github>Github</github>'da MIT lisansı altında mevcuttur. Bu proje ayrıca Llamaindex, React, Next.js, Tailwind, Lucide, Qrvant, Postgres ve Vercel AI SDK gibi birçok diğer açık kaynak projesinin üzerine inşa edilmiştir. Bu projelere katkıda bulunanlara üzerine inşa etmek için sağlam bir temel sağladıkları için çok teşekkürler."
+    },
+    "systemPrompts": {
+      "title": "Sistem İstemleri",
+      "description": "Bunlar, sistem tarafından RAG iş akışı için kullanılan istemlerdir. Bu sayfada gösterilenler dışında başka özel talimat veya katman yoktur.",
+      "lastUpdated": "Son Güncelleme",
+      "chatAgentTitle": "Sohbet Ajanı Sistem İstemi",
+      "researchModeTitle": "Derin Araştırma Modu için Sistem İstemleri",
+      "researchAgentTitle": "Araştırma Ajanı İstemi",
+      "experienceExtractionTitle": "Deneyim Çıkarma İstemi",
+      "finalAnswerTitle": "Son Yanıt İstemi"
+    },
+    "userSummaries": {
+      "title": "Kullanıcı Özetleri için Sistem İstemleri",
+      "description": "Bunlar, oluşturulan kullanıcı özetleri için sistem istemleridir.",
+      "lastUpdated": "Son Güncelleme",
+      "experienceReportTitle": "Kullanıcı Deneyim Raporu",
+      "experienceSummaryTitle": "Kullanıcı Deneyim Özeti",
+      "generateTagsTitle": "Etiket Oluştur",
+      "extractAgesTitle": "Yaşları Çıkar",
+      "determineBirthSexTitle": "Doğum Cinsiyetini Belirle",
+      "redFlagReportTitle": "Kırmızı Bayrak Raporu"
+    }
+  },
+  "donatePage": {
+    "title": "Detrans.AI'yi Çalışır Durumda Tutun",
+    "description1": "Bu siteye koyduğum emeği takdir ediyorsanız veya bu ücretsiz hizmet size yardımcı olduysa, lütfen <b>detrans.ai</b>'yi çevrimiçi tutmak için tek seferlik veya düzenli bir bağış yapmayı düşünün.",
+    "description2": "Desteğiniz olmadan bu tür kaynak yoğun bir hizmeti karşılayamam. Şu anki ana gelir kaynağım hükümet yardımı ve bunu yazdığımda banka hesabımda 1000 dolardan az param var. Eğer bu site patlarsa binlerce dolarlık faturalar alabilirim. Param biterse, kendi sorularınızı sorma ve takip soruları aracılığıyla konuları daha derinlemesine keşfetme yeteneği devre dışı bırakılacak ve portaldaki sorulara yalnızca önbelleğe alınmış yanıtlar sunacağım.",
+    "description3": "Lütfen aylık bir bağış yapmayı düşünün. Aşağıdaki paypal kullanarak, doğrudan Yeni Zelanda banka hesabıma veya BTC ile bağış yapabilirsiniz.",
+    "bankAccount": "Yeni Zelanda Banka Hesabı",
+    "accountName": "İsim",
+    "accountNumber": "Hesap",
+    "swiftCode": "SWIFT/BIC kodu",
+    "bitcoin": "Bitcoin Adresi",
+    "paypal": "Paypal Bağışı"
+  },
+  "terms": {
+    "metadata": {
+      "title": "Gizlilik Politikası | detrans.ai",
+      "description": "Gizlilik politikamız, veri toplama uygulamalarımız ve bilgilerinizi nasıl koruduğumuz hakkında bilgi edinin."
+    },
+    "title": "Gizlilik Politikası",
+    "intro": "Bu Gizlilik Politikası, hizmetimizi ziyaret ettiğinizde veya kullandığınızda hangi bilgileri topladığımızı, neden topladığımızı ve bunları nasıl güvende tuttuğumuzu açıklar.",
+    "sections": {
+      "informationWeCollect": {
+        "title": "Topladığımız Bilgiler",
+        "chatMessages": {
+          "title": "Sohbet Mesajları:",
+          "content": "Tüm sohbet kayıtlarını ve Derin Araştırma modundaki tüm sorulara verilen yanıtları saklarız. Sohbet kayıtları IP adresiniz veya sizi tanımlamak için kullanılabilecek herhangi bir veri ile ilişkilendirilmez. Sohbet kayıtları gelecekte araştırma amaçları için analiz edilebilir ve kullanılabilir. Lütfen hassas bilgiler paylaşmaktan kaçının."
+        },
+        "cookies": {
+          "title": "Çerezler / İzleme Teknolojileri:",
+          "content": "Çerezleri, piksel etiketlerini veya benzer istemci tarafı izleme mekanizmalarını <em>kullanmıyoruz</em>."
+        },
+        "ipAddresses": {
+          "title": "IP Adresleri:",
+          "content": "Sunucularımıza bir istek yaptığınızda, istekleri saymak ve kötüye kullanımı önleyen hız sınırlamalarını uygulamak için IP adresinizi saklarız."
+        },
+        "optionalData": {
+          "title": "İsteğe Bağlı Veriler:",
+          "content": "Bizimle iletişime geçmeyi seçerseniz, gönüllü olarak verdiğiniz bilgileri (örneğin e-posta adresi, isim) toplayabiliriz. Bu bilgileri sağlamak isteğe bağlıdır, açıkça belirtilmediği sürece."
+        }
+      },
+      "legalBases": {
+        "title": "İşleme için Yasal Dayanaklar (AB/EEA ziyaretçileri)",
+        "item1": "Hız sınırlama işlemi, hizmet kullanılabilirliğini ve güvenliğini sürdürmek gibi <em>meşru menfaatlerimiz</em> için gerekli olup GDPR Madde 6(1)(f) kapsamındadır.",
+        "item2": "Herhangi bir ek işleme (örneğin hesap oluşturma), uygulanabilir olduğu şekilde <em>onayınıza</em> veya <em>sözleşmesel gerekliliğe</em> dayanır."
+      },
+      "dataRetention": {
+        "title": "Verileri Ne Kadar Saklıyoruz",
+        "content": "Tüm sohbet kayıtları saklanacaktır. Hız sınırlama için kullanılan IP adresleri, son istekten sonra dakikalar içinde veya hız sınırı penceresinin sonunda, hangisi önce gelirse, otomatik olarak silinir. Gönüllü bilgiler (örneğin destek e-postaları) yalnızca sorgunuzu çözmek veya yasal yükümlülükleri karşılamak için gerekli olduğu sürece saklanır."
+      },
+      "thirdPartySharing": {
+        "title": "Üçüncü Taraf Paylaşımı",
+        "content": "Cinsiyet disforisi yaşayan insanlar için sonuçları iyileştirmek isteyen akademisyenler ve araştırmacılarla anonimleştirilmiş sohbet kayıtlarını paylaşmayı seçebiliriz. IP adreslerini veya diğer verileri yalnızca yasalar gerektiğinde veya haklarımızı, kullanıcılarımızı veya kamuoyunu korumak için (örneğin dolandırıcılık önleme, mahkeme kararı) açıklayabiliriz."
+      },
+      "security": {
+        "title": "Güvenlik",
+        "content": "Taşınır ve dinlenme durumundaki verileri korumak için endüstri standardı teknik ve organizasyonel önlemler (TLS şifreleme, erişim kontrolleri, en az ayrıcalık tasarımı) kullanıyoruz."
+      },
+      "internationalTransfers": {
+        "title": "Uluslararası Transferler",
+        "content": "Sunucularımız Amerika Birleşik Devletleri'nde bulunmaktadır. Hizmete ABD dışından erişirseniz, IP adresinizin ABD'ye iletileceğini ve ABD'de işleneceğini anlarsınız."
+      },
+      "childrensPrivacy": {
+        "title": "Çocukların Gizliliği",
+        "content": "Hizmetimiz 13 yaşın altındaki çocuklara yönelik değildir ve onlardan bilerek kişisel bilgi toplamayız. Yanlışlıkla bu tür veriler topladığımızı düşünürseniz, lütfen hemen silinmesi için bizimle iletişime geçin."
+      },
+      "changes": {
+        "title": "Bu Politikadaki Değişiklikler",
+        "content": "Bu politikayı zaman zaman güncelleyebiliriz. Üstteki 'Yürürlük Tarihi' değişecek ve önemli değişiklikler öne çıkarılacaktır."
+      },
+      "contact": {
+        "title": "Bizimle İletişime Geçin",
+        "content": "Sorularınız, endişeleriniz veya şikayetleriniz varsa, iletişim formunu kullanın veya <email>peter@detrans.ai</email> adresine e-posta gönderin."
+      }
+    }
+  },
+  "videos": {
+    "metadata": {
+      "title": "detrans.ai | Detransitioner'lar Tarafından Videolar İzleyin",
+      "description": "İşte geçiş yapmış ve ardından detransisyona yol açan bir farkındalığa gelen insanlar tarafından YouTube'a yüklenen kişisel video anılarından bir seçki. İnternette bu tür sayısız hikaye var, bu sadece küçük bir alt küme."
+    },
+    "title": "Geçiş ve Detransisyon Videoları",
+    "description": {
+      "line1": "Bu sayfa, internetteki en iyi detransisyon video arşivi olmayı amaçlar.",
+      "line2": "Konuşma-metin kullanarak, detrans.ai bu deneyimleri sohbet konuşmalarına entegre eder.",
+      "line3": "Şimdilik sadece YouTube videoları, yakında TikTok mu?!"
+    },
+    "female": "kadın",
+    "male": "erkek",
+    "backToAll": "Tümüne geri dön",
+    "overview": "Genel Bakış",
+    "fullSummary": "Tam Video Özeti",
+    "watchOnYouTube": "YouTube'da İzle",
+    "moreVideos": "Daha Fazla Video",
+    "browseAll": "Tüm detransisyon videolarına göz at",
+    "metadataWatchDescription": "{author} tarafından {title} izleyin, hikayesini paylaşan bir {sex} detransitioner.",
+    "metadataThumbnailAlt": "{title} için küçük resim"
+  },
+  "videoList": {
+    "loading": "Videolar yükleniyor...",
+    "filters": {
+      "all": "Tüm Hikayeler",
+      "female": "Kadın",
+      "male": "Erkek",
+      "detransitioners": "Detransitioner'lar"
+    },
+    "thumbnailAlt": "{title} için küçük resim",
+    "by": "tarafından",
+    "female": "Kadın",
+    "male": "Erkek"
+  },
+  "videoSubmitForm": {
+    "submitTitle": "Detransisyon Videonuzu Gönderin",
+    "description": {
+      "line1": "Videonuzu göndererek bu sayfada ve ilgili sohbetlerde görünmesini sağlayın.",
+      "line2": "Sizin videonuz olabilir veya çevrimiçi bulduğunuz ve bu sayfada eksik olan bir video olabilir.",
+      "line3": "Tüm gönderiler moderasyonlu, görünmeden önce birkaç gün sürebilir."
+    },
+    "urlLabel": "YouTube URL'si",
+    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "submitButton": "Video Gönder",
+    "submitting": "Gönderiliyor...",
+    "submitSuccess": "Video başarıyla gönderildi! Sitede görünmeden önce incelenecek.",
+    "submitError": "Video gönderilemedi",
+    "networkError": "Ağ hatası. Lütfen tekrar deneyin."
+  },
+  "studySubmitForm": {
+    "submitTitle": "Bir Çalışma Gönderin",
+    "description": {
+      "line1": "Eksik olan ilgili bir akademik çalışma veya hakemli makale biliyor musunuz?",
+      "line2": "URL'yi gönderin ve isteğe bağlı olarak başlık önerin.",
+      "line3": "Tüm gönderiler sitede görünmeden önce moderasyonlu."
+    },
+    "urlLabel": "Çalışma URL'si",
+    "urlPlaceholder": "https://...",
+    "titleLabel": "Önerilen Başlık",
+    "titlePlaceholder": "Çalışma için isteğe bağlı başlık",
+    "titleHelp": "İsteğe bağlı: Bu çalışma için kısa bir başlık veya başlık önerin",
+    "submitButton": "Çalışma Gönder",
+    "submitting": "Gönderiliyor...",
+    "submitSuccess": "Çalışma başarıyla gönderildi! Sitede görünmeden önce incelenecek.",
+    "submitError": "Çalışma gönderilemedi",
+    "networkError": "Ağ hatası. Lütfen tekrar deneyin."
+  },
+  "studiesPage": {
+    "metadata": {
+      "title": "detrans.ai | Detransisyon Konularında Akademik Çalışmalar",
+      "description": "Bu sayfada cinsiyet kimliği trendleri ve detransisyonla ilgili akademik çalışmaların, hakemli dergi makalelerinin ve doğrulanmış istatistiklerin bir seçkisini bulun.",
+      "ogTitle": "detrans.ai | Detransisyon Konularında Akademik Çalışmalar",
+      "ogDescription": "Bu sayfada cinsiyet kimliği trendleri ve detransisyonla ilgili akademik çalışmalar ve hakemli dergi makaleleri ile doğrulanmış istatistiklerin bir seçkisini bulun."
+    },
+    "title": "Seçilmiş Akademik Makaleler",
+    "description": "Cinsiyet kimliği, geçiş ve detransisyon konularında akademik çalışmalar, hakemli araştırma ve dergi makaleleri."
+  },
+  "contentWarning": {
+    "title": "İçerik Uyarısı:",
+    "description": {
+      "line1": "Bu web sitesi eski transgender kişilerden hikayeler, deneyimler ve bakış açıları içerir.",
+      "line2": "Konular arasında geçiş pişmanlığı, tıbbi komplikasyonlar ve disforinin bütünsel görünümleri bulunur.",
+      "line3": "Bu bilgiler cinsiyet kimliği ve geçiş hakkında yaygın olarak tutulan inançları zorlayabilir."
+    },
+    "buttons": {
+      "exit": "Beni buradan çıkar!",
+      "continue": "Devam Et"
+    }
+  },
+  "supportPage": {
+    "metadata": {
+      "title": "detrans.ai | Cinsiyet Yardımı ve Desteği Alın",
+      "description": "Cinsiyet Onaylayıcı Bakım ve Cinsiyet Keşifsel Terapi arasındaki farkı öğrenin. Cinsiyet disforisi yaşıyorsanız, destek almanın en iyi yollarından biri, orada bulunmuş ve diğer taraftan çıkmış insanların bakış açılarını konuşmak ve anlamaktır."
+    },
+    "title": "Cinsiyet Yardımı ve Desteği Alın",
+    "navigation": {
+      "jumpTo": "Atla:",
+      "getGenderSupport": "Cinsiyet Desteği Alın:"
+    },
+    "sections": {
+      "onlineSupport": {
+        "title": "Çevrimiçi Destek Grupları",
+        "description": "Cinsiyet disforisi yaşıyorsanız, destek almanın en iyi yollarından biri, orada bulunmuş ve diğer taraftan çıkmış insanların bakış açılarını konuşmak ve anlamaktır.",
+        "links": {
+          "redditCommunity": "Reddit'te Detrans Topluluğu",
+          "redditWiki": "Reddit'te Detrans Wiki",
+          "discordServer": "Resmi /r/detrans Discord Sunucusu",
+          "askDetransAI": "detrans.ai ile 50.000'den fazla detrans kişiye sorun"
+        }
+      },
+      "genderAffirmingCare": {
+        "title": "Cinsiyet Onaylayıcı Bakım: Nedir?",
+        "description": "Cinsiyet onaylayıcı bakım, şu anda Batı dünyasında sağlık hizmeti sağlayıcıları tarafından sunulan cinsiyet disforisi için standart (ve genellikle tek) tedavi seçeneğidir. Cinsiyet onaylayıcı bakım esasen toplumun cinsiyetle ilgili beklentilerini tanır ve ardından hastayı bunlara uyarlar. Toplumsal geçiş (isim, zamirler, kıyafet), ardından hormon tedavisi ve ardından bazıları için geri alınamaz cerrahi prosedürlerle başlayan aşamalı bir yaklaşımdır. Cinsiyet onaylayıcı bakım cinsiyet disforisine rahatlama sağlayabilir ancak ciddi sağlık riskleri ve genellikle kalıcı yan etkileri vardır. Aşırı dikkatle ilerleyin ve",
+        "watchTestimonies": "bazı tanıklıkları izlediğinizden emin olun"
+      },
+      "genderExploratoryTherapy": {
+        "title": "Cinsiyet Keşifsel Terapi: Nedir?",
+        "description1": "Cinsiyet Keşifsel Terapi, terapistinizi hemen onaylamaya ve sizi tıbbileştirmeye acele ettirmediği anlamına gelir. Bunun yerine cinsiyet kavramlarını ve neden böyle hissedebileceğinizi keşfetmeye başlayacaklar. Cinsiyet Keşifsel Terapi, belirli, önceden belirlenmiş bir gündemi olmayan bir yaklaşımdır ve cinsiyet keşifsel terapisinin sonuçları her bireye göre değişebilir.",
+        "description2": "Google'da 'Cinsiyet Keşifsel Terapi' aratırsanız, bazı eleştiriler bulacaksınız ki bunlar bunu eşcinsel dönüştürme terapisiyle (etkisiz olduğu kanıtlanmıştır) karşılaştırır. Gerçek şu ki Cinsiyet Keşifsel Terapi eşcinsel dönüştürme terapisinden çok farklıdır:",
+        "references": {
+          "title": "Kaynaklar",
+          "ref1": "U.S. Dept. of Health & Human Services (2025). Report on Pediatric Gender Dysphoria and Gender Conversion Efforts.",
+          "ref2": "D'Angelo, R. (2025). 'Supporting autonomy in young people with gender dysphoria: psychotherapy is not conversion therapy.' Journal of Medical Ethics, 51(1).",
+          "ref3": "Lemma, A. & Schmidt, L. (2024). 'Psychodynamic Psychotherapy for Gender Dysphoria is not Conversion Therapy.' Frontiers in Psychology.",
+          "ref4": "Korte, A. et al. (2021). 'One Size Does Not Fit All: In Support of Psychotherapy for Gender Dysphoria.' Archives of Sexual Behavior."
+        },
+        "florenceAshley": {
+          "title": "Florence Ashley Çalışması",
+          "description": "Bu alandaki akademik araştırma genellikle önyargılıdır. En etkili çalışmalardan biri (Interrogating Gender-Exploratory Therapy), 2022'de trans bir kadın olan Florence Ashley tarafından yayınlandı. Çalışmasında Cinsiyet Keşifsel Terapi'yi eşcinsel dönüştürme terapisiyle karşılaştırdı ve uygulamayı şiddetle kınadı. Kendini trans olarak tanımlayan insanların kimlik ve inançlarını korumaya motive olduğunu ve bu çalışmanın bunun mükemmel bir örneği olduğunu kabul etmek gerekir. Çalışma mantık hatalarıyla doludur, ancak yine de yayınlandı ve cinsiyet onaylayıcı bakımın cinsiyet disforisi yaşayan insanlar için tek seçenek olması için akademik gerekçe olarak kullanılıyor.",
+          "showFallacies": "Florence Ashley'nin çalışmasındaki tüm mantık hatalarını görün"
+        }
+      },
+      "findTherapist": {
+        "title": "Cinsiyet keşifsel terapi uygulayan bir terapisti nerede bulabilirim?",
+        "languageNotice": "Listelenen çoğu terapist yalnızca İngilizce konuşuyor, ancak yine de dilinizi konuşan birini bulmak için onlarla iletişime geçmeyi deneyebilirsiniz. Eğer dilinizi konuşan lisanslı bir terapist biliyorsanız,",
+        "contactForm": "iletişim formu",
+        "organizations": {
+          "justTherapy": {
+            "name": "Just Therapy",
+            "description": "Just Therapy, terapinin olması gerektiği şeye - etkili, etik ve ideolojiden arınmış - geri dönme arzusundan doğdu. Ortak etik ve ilkelerle uyumlu terapistler ve danışmanlar birliğidir. Just Therapy, psikoterapi ve danışmanlık dünyasının büyük ölçüde aktivistler ve ideolojiler tarafından ele geçirildiğini, bunların müşterilerin zihinsel sağlığını desteklemek yerine zarar verme riski taşıdığını kabul eder. Üyeleri, geniş bir disiplin ve uzmanlık yelpazesinden gelir ve bir Davranış Kodu imzalamışlardır.",
+            "directory": "Just Therapy Terapist Dizini",
+            "codeOfConduct": "Just Therapy Davranış Kodu"
+          },
+          "therapyFirst": {
+            "name": "Therapy First",
+            "description": "Therapy First, cinsiyet sıkıntılı müşterilerin geri alınamaz tıbbi adımlar öncesinde bilinçsiz ve bağlamsal faktörleri keşfeden açık uçlu, kanıta dayalı psikoterapiyi hak ettiğine inanan ruh sağlığı profesyonellerini bir araya getirir; hem dönüştürme uygulamalarını hem de 'yalnızca onayla' modelini reddeder, müşteri özerkliğini korur ve çocuk/ergen tıbbi geçişini deneysel olarak görür, aynı zamanda yetişkinlerin beden özerkliği hakkını ve sürekli terapötik keşfi destekler.",
+            "directory": "Therapy First Terapist Dizini",
+            "about": "Therapy First Hakkında"
+          },
+          "beyondTrans": {
+            "name": "Beyond Trans",
+            "description": "Stella O'Malley, Mart 2020'de cinsiyet sıkıntılı çocuklara önyargısız yardım vermek için Cinsiyet Disforisi Destek Ağı'nı başlattı; hızla küresel bir topluluğa dönüştü ve 2021'de tıbbileştirilmemiş bakım savunucusu Genspect'in oluşumunu tetikledi. Artan geçiş pişmanlığını fark ederek grup, 2022'de Beyond Trans'i başlattı ve Haziran 2025'te aileler, bireyler ve detransitioner'lar için entegre, kanıta dayalı bir destek ağı oluşturmak üzere GDSN ile birleşti.",
+            "directory": "Beyond Trans Terapist Dizini",
+            "supportGroups": "Beyond Trans Destek Grupları",
+            "about": "Beyond Trans Hakkında"
+          },
+          "detransFoundation": {
+            "name": "The Detrans Foundation",
+            "description": "Detrans Foundation, detransitioner'lara yönelik kaynaklar ve destek sağlar, detransisyon deneyimlerini anlayan nitelikli terapistlere erişim dahil. Aşağıdaki terapistler Detrans Foundation'ın bir parçasıdır:",
+            "drEntwistle": "önceden Leeds'te 18 yaş altı için NHS cinsiyet kimliği gelişim hizmetinde çalışmış bir Klinik Psikologdur. İngiltere Sağlık Profesyonelleri Konseyi (HCPC) ile kayıtlıdır ve güvenli video görüşmesi ile çevrimiçi konsültasyonlar sunar.",
+            "anastassisSpiliadis": "Sistemik ve Aile Psikoterapistidir ve Tavistock'taki Cinsiyet Kimliği Gelişim Hizmetinde dört yıl çalışmış, burada Aile Terapisi ve Konsültasyon Hizmetine liderlik etmiştir. Cinsiyet kimliği zorluklarını anlamada terapötik bir model eksikliğine katılmadığı için Tavistock'tan istifa etti. Cinsiyet Keşifsel Modeli'ni geliştirdi ve cinsiyet sorgulayan bireyler ve detransitioner'larla çalışma konusunda kapsamlı deneyime sahiptir.",
+            "visitWebsite": "Detrans Foundation web sitesini ziyaret edin"
+          }
+        }
+      },
+      "forParents": {
+        "title": "Ebeveynler İçin Kaynaklar",
+        "intro": "Çocuğunuz yakın zamanda trans olarak açıldıysa, kafanız karışmış, endişeli ve onları desteklerken aynı zamanda uzun vadeli sağlıklarını ve esenliklerini koruyabileceğiniz en iyi yol konusunda emin olamayabilirsiniz.",
+        "rogdRepair": {
+          "name": "Stephanie Winn'in ROGD Repair Programı",
+          "whatIs": "ROGD Repair nedir?",
+          "description1": "ROGD Repair şunlardır:",
+          "bullet1": "Trans özdeşleşen gençlerin ebeveynlerine desistance, eleştirel düşünme, sağlık ve ilişkisel uyum teşvik eden iletişim yolları öğreten bir program",
+          "bullet2": "Lisanslı Evlilik ve Aile Terapisti olarak yılların ve ardından ROGD ebeveyn koçu olarak kazanılan psikoloji konseptleri ve iletişim becerilerinin harmanlanmasından oluşan etkileşimli ve sürekli genişleyen bir araç seti",
+          "bullet3": "Her biri bir video, makale ve katılımcıların içeriği benzersiz aile durumlarına kişiselleştirmelerine yardımcı olmak için tasarlanmış yansıma soruları içeren, tartışma forumları da dahil olmak üzere 100'den fazla ders içeren kendi hızında ilerleyen bir çevrimiçi kurs",
+          "description2": "Yeni ROGD Repair üyelikleri artık RepairBot'a sınırsız erişim ile geliyor, bu da cinsiyet sıkıntılı gençlerin onaylamayan ebeveynlerine yardımcı olmak için tasarlanmış ilk ve tek AI aracıdır. RepairBot, tüm ROGD Repair müfredatı üzerinde eğitilmiştir ve mükemmel bir ses tahtası, ödev yardımcısı ve iletişim aracı yardımcısı olarak hizmet eder!",
+          "ctaBox": {
+            "title": "Çocuğunuz 'trans' olduğunu söylüyor, ama siz sadece sağlıklı ve güvende olmalarını istiyorsunuz.",
+            "description1": "Çocuğunuzun sağlığı ve geleceği tehlikede, ancak nüfuz ve etkiniz sınırlı. Belki arkanızdan karaborsa hormonlarına başladılar, veya 'cinsiyetini yanlış belirtmeniz' konusuna öfkeli bir şekilde fırladılar veya 'onaylayıcı' bir kolejde uzaktalar. Birinin yaralanmadan önce bu zor durumda etkili bir şekilde iletişim kurmanız gerekir. İşte burada ROGD Repair devreye giriyor.",
+            "description2": "ROGD Repair, çocuğunuzun zihinsel durumunu anlamak ve onlara nasıl ulaşacağınızı öğrenmek için ihtiyaç duyduğunuz psikoloji konseptleri ve iletişim araçlarını öğreten ebeveynler için kendi hızında ilerleyen bir çevrimiçi kurs ve topluluktur. Üyelik artık yaklaşım üzerinde eğitilmiş 7/24 AI asistanınız RepairBot'u içeriyor.",
+            "description3": "ROGD Repair ve RepairBot, on yılı aşkın süredir trans özdeşleşen gençler ve aileleriyle çalışan ve artık yalnızca 'onaylama'dan daha iyi bir yol olduğunu bilen ebeveynleri yönlendiren bir Lisanslı Evlilik ve Aile Terapisti tarafından oluşturuldu."
+          },
+          "coupon": "Şu kupon kodunu kullanarak şu indirimden yararlanın:",
+          "couponCode": "DETRANSAI",
+          "learnMore": "ROGD Repair hakkında daha fazla bilgi edinin ve kaydolun"
+        }
+      }
+    },
+    "table": {
+      "gayConversion": "Eşcinsel dönüştürme terapisi",
+      "genderExploratory": "Cinsiyet keşifsel terapi",
+      "goal": "Amaç",
+      "goalConversion": "Patolojik olarak görüldüğü için cinsel yönelimi değiştirmek.",
+      "goalExploratory": "Disforinin anlamını anlamak; sonuç geçiş, geçişsizlik veya kısmi toplumsal geçiş olabilir.",
+      "method": "Yöntem",
+      "methodConversion": "Utanç, tiksinti, davranışsal koşullandırma, dua.",
+      "methodExploratory": "GET, standart psikodinamik veya hümanist teknikler gibi geniş bir terapötik yelpazeyle uyumludur—açık sorular, merak, önceden belirlenmiş bitiş noktası yok.",
+      "evidence": "Kanıt tabanı",
+      "evidenceConversion": "Sürekli zarar gösteriyor; her büyük tıp kuruluşu bunu kınar.",
+      "evidenceExploratory": "Henüz RCT yok, ancak kaygı, depresyon, kendine zarar vermeyi azaltan terapilere paralellikler; sistematik zarar gösteren veri yok.",
+      "ethics": "Etik",
+      "ethicsConversion": "Özerkliği ihlal eder, heteroseksüel kimliği tek doğru seçenek olarak dayatır.",
+      "ethicsExploratory": "Genç ve aile geri alınamaz adımlar öncesinde tüm seçenekleri anlamasını sağlayarak özerkliği genişletmeyi amaçlar."
+    },
+    "fallacies": {
+      "title": "Florence Ashley'nin Çalışmasındaki Mantık Hataları",
+      "name": "Hata Adı",
+      "explanation": "Basit Açıklama",
+      "example": "Makaleden Örnek"
+    }
+  },
+  "charts": {
+    "ageDistribution": {
+      "title": "Detransitioner'lar geçiş ve detransisyon yaptıklarında kaç yaşındaydı?",
+      "subtitle": "Reddit kullanıcı geçiş zaman çizelgelerinden veriler",
+      "loading": "Grafik verileri yükleniyor...",
+      "fetchError": "Yaş dağılım verileri alınamadı",
+      "genericError": "Bir hata oluştu",
+      "errorPrefix": "Hata:",
+      "noData": "Seçilen yaş aralığı için veri yok",
+      "tooltip": {
+        "age": "Yaş: {age}",
+        "transitioned": "Geçiş yapan: {count} kullanıcı",
+        "detransitioned": "Detransisyon yapan: {count} kullanıcı"
+      },
+      "axis": {
+        "age": "Yaş",
+        "users": "Kullanıcı Sayısı"
+      },
+      "legend": {
+        "transition": "Geçiş Yaşı",
+        "detransition": "Detransisyon Yaşı"
+      }
+    },
+    "transitionDuration": {
+      "title": "Geçiş Süresi: Geçiş Yaşı vs Detransisyon Yaşı",
+      "description": {
+        "line1": "Her nokta geçiş yaşını (X) ve detransisyon yaşını (Y) gösterir.",
+        "line2": "Daha büyük, daha opak noktalar daha fazla kullanıcıyı temsil eder."
+      },
+      "loading": "Grafik verileri yükleniyor...",
+      "noData": "Seçilen yaş aralığı için veri yok",
+      "axis": {
+        "transitionAge": "Geçiş Yaşı",
+        "detransitionAge": "Detransisyon Yaşı"
+      },
+      "tooltip": {
+        "transitionAge": "Geçiş Yaşı",
+        "detransitionAge": "Detransisyon Yaşı",
+        "duration": "Süre",
+        "years": "yıl"
+      },
+      "male": "Erkek",
+      "female": "Kadın",
+      "yearsAvg": "yıl ort.",
+      "user": "kullanıcı",
+      "users": "kullanıcı"
+    },
+    "pathways": {
+      "title": "Detransisyon Yolları Akışı",
+      "subtitle": "/r/detrans Reddit kullanıcı demografilerinden detransisyon sonuçlarına akış",
+      "loading": "Yol verileri yükleniyor...",
+      "fetchError": "Etiket dağılım verileri alınamadı",
+      "genericError": "Bir hata oluştu",
+      "error": "Hata",
+      "users": "{count} kullanıcı",
+      "percentageOfTotal": "Toplamın %{percentage}'si",
+      "totalUsers": "Toplam kullanıcı",
+      "flowConnections": "Akış bağlantıları",
+      "male": "Erkek",
+      "female": "Kadın",
+      "noData": "Seçilen filtreler için yol verisi mevcut değil"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "İletişim | detrans.ai",
+      "description": "Bizimle iletişime geçin. Düşüncelerinizi, önerilerinizi veya geri bildiriminizi bize gönderin."
+    },
+    "title": "İletişim Formu",
+    "intro": "Herhangi bir düşünceniz, öneriniz varsa veya bu ücretsiz hizmet size, ailenize veya arkadaşınıza yardımcı olduysa, sizden haber almak isterim. Aşağıya bir mesaj bırakın!",
+    "form": {
+      "to": "Kime",
+      "name": "İsim",
+      "namePlaceholder": "Adınız",
+      "email": "E-posta",
+      "emailPlaceholder": "siz@ornek.com",
+      "subject": "Konu",
+      "subjectPlaceholder": "Konu",
+      "message": "Mesaj",
+      "messagePlaceholder": "Mesajınızı yazın...",
+      "sendButton": "Mesaj Gönder",
+      "sending": "Gönderiliyor...",
+      "success": "✅ Mesaj gönderildi!",
+      "error": "❌ Gönderilemedi."
+    }
+  },
+  "seo": {
+    "conversations": {
+      "title": "Konuşma Arşivi",
+      "description": "Cinsiyet kimliği, detransisyon, cinsiyet onaylayıcı bakım ve onaylama hakkındaki konuşmalara göz atın.",
+      "conversations": "Konuşmalar",
+      "featuredConversations": "Öne Çıkan Konuşmalar",
+      "allConversations": "Tüm Konuşmalar",
+      "untitled": "Başlıksız Konuşma",
+      "noSummary": "Özet mevcut değil",
+      "noConversations": "Konuşma mevcut değil.",
+      "mode": "Mod",
+      "updated": "Güncellendi",
+      "featured": "Öne Çıkan",
+      "conversationSummary": "Konuşma Özeti",
+      "noSummaryAvailable": "Bu konuşma için özet mevcut değil.",
+      "conversation": "Konuşma",
+      "unableToParse": "Konuşma mesajları ayrıştırılamıyor.",
+      "archiveNote": "Bu arşivimizden bir konuşmadır. Tam konuşmayı görüntülemek ve tartışmalara katılmak için lütfen bu sayfanın etkileşimli sürümünü ziyaret edin.",
+      "welcomeTitle": "Konuşma Arşivine Hoş Geldiniz",
+      "welcomeDescription": "Detaylarını görüntülemek için kenar çubuğundan bir konuşma seçin. Bu arşiv, cinsiyet kimliği, detransisyon deneyimleri ve onaylama yolculukları hakkındaki tartışmaları içerir.",
+      "featuredDescription": "Topluluğumuz tarafından işaretlenen vurgulanmış tartışmalar",
+      "allDescription": "Mevcut tüm tartışmalara göz atın",
+      "footer": "Bu sayfa, arama motorları ve botlar için SEO dostu içerik sağlar. Tam etkileşimli deneyim için lütfen modern bir web tarayıcısı ile ziyaret edin.",
+      "user": "Kullanıcı"
+    },
+    "chat": {
+      "subtitle": "Cinsiyet kimliğini sorgulayan insanlar için sorular ve yanıtlar.",
+      "freedomMessage": "Gerçek şu ki cinsiyet uygunsuzluğu hepimizi özgür kılacak!",
+      "moreQuestions": "\"{question}\" ile ilgili daha fazla soru"
+    },
+    "videos": {
+      "title": "Geçiş ve Detransisyon Videoları",
+      "description": "Bu, internete yüklenmiş kişisel detransisyon videolarının bir arşividir. Kendi sesinizi duyurmak için kendi hikayenizi katkıda bulunarak ve paylaşarak yapın!",
+      "thumbnailAlt": "Küçük resim için",
+      "by": "tarafından",
+      "female": "Kadın",
+      "male": "Erkek"
+    }
+  },
+  "routes": {
+    "home": "/",
+    "about": "/about",
+    "contact": "/contact",
+    "support": "/support",
+    "videos": "/videos",
+    "stories": "/stories",
+    "studies": "/studies",
+    "definitions": "/definitions",
+    "donate": "/donate",
+    "terms": "/terms",
+    "prompts": "/prompts",
+    "participate": "/participate",
+    "conversations": "/conversations",
+    "research": "/research",
+    "chat": "/chat",
+    "login": "/login"
+  }
+}
