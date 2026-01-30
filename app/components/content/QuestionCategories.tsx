@@ -70,6 +70,12 @@ import {
   questionCategories as questionCategoriesRu,
 } from "@/app/lib/questions.ru";
 import {
+  questionCategories as questionCategoriesSl,
+} from "@/app/lib/questions.sl";
+import {
+  questionCategories as questionCategoriesSv,
+} from "@/app/lib/questions.sv";
+import {
   questionCategories as questionCategoriesTh,
 } from "@/app/lib/questions.th";
 import {
@@ -78,6 +84,15 @@ import {
 import {
   questionCategories as questionCategoriesUk,
 } from "@/app/lib/questions.uk";
+import {
+  questionCategories as questionCategoriesVi,
+} from "@/app/lib/questions.vi";
+import {
+  questionCategories as questionCategoriesZhCn,
+} from "@/app/lib/questions.zh-cn";
+import {
+  questionCategories as questionCategoriesZhTw,
+} from "@/app/lib/questions.zh-tw";
 import { slugify } from "@/app/lib/utils";
 import { Link } from "@/i18n/routing";
 
@@ -107,9 +122,14 @@ const questionCategoriesMap: Record<string, typeof questionCategoriesEn> = {
   pt: questionCategoriesPt,
   ro: questionCategoriesRo,
   ru: questionCategoriesRu,
+  sl: questionCategoriesSl,
+  sv: questionCategoriesSv,
   th: questionCategoriesTh,
   tr: questionCategoriesTr,
   uk: questionCategoriesUk,
+  vi: questionCategoriesVi,
+  "zh-cn": questionCategoriesZhCn,
+  "zh-tw": questionCategoriesZhTw,
 };
 
 export async function QuestionCategories({
