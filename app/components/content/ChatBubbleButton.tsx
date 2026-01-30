@@ -82,7 +82,7 @@ export default function ChatBubbleButton({
     return (
       <Link
         prefetch={false}
-        href={"/chat/?starter=" + slugify(message.full || message.display)}
+        href={"/chat/?starter=" + slugify(message.full || message.display) as any}
         className="w-full no-underline sm:w-auto"
       >
         {button}

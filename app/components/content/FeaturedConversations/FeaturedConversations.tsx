@@ -177,12 +177,12 @@ export function FeaturedConversations() {
   };
 
   // Generate random heights for loading skeletons between h-32 and h-80
-  const generateRandomHeights = (count: number): string[] => {
+  const generateRandomHeights = (count: number, seed: number = 0): string[] => {
     const heights = [];
     for (let i = 0; i < count; i++) {
-      // Generate random number between 32 and 80 (inclusive)
-      const randomHeight = Math.floor(Math.random() * (80 - 32 + 1)) + 32;
-      heights.push(`h-${randomHeight}`);
+      // Use deterministic height based on seed and index
+      const deterministicHeight = (seed + i) % (80 - 32 + 1) + 32;
+      heights.push(`h-${deterministicHeight}`);
     }
 
     return heights;
@@ -190,34 +190,40 @@ export function FeaturedConversations() {
 
   // Generate 1-3 chat bubbles with text loading lines
   const renderChatBubbles = (keyPrefix: string) => {
-    const bubbleCount = Math.floor(Math.random() * 3) + 1;
+    // Use deterministic values based on keyPrefix to avoid hydration mismatch
+    const hash = keyPrefix.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const bubbleCount = (hash % 3) + 1;
     return (
       <div className="mb-4 space-y-3">
-        {[...Array(bubbleCount)].map((_, bubbleIndex) => (
-          <div key={`${keyPrefix}-bubble-${bubbleIndex}`} className="flex">
-            {/* Chat bubble with rounded-tr-none style */}
-            <div className="flex-1 rounded-xl rounded-tr-none border bg-gray-100 p-3">
-              {/* Text loading lines within bubble */}
-              <div className="space-y-2">
-                {[...Array(Math.floor(Math.random() * 3) + 1)].map(
-                  (_, lineIndex) => (
-                    <div
-                      key={`${keyPrefix}-bubble-line-${bubbleIndex}-${lineIndex}`}
-                      className={cn(
-                        "bg-gray-300",
-                        lineIndex === 0
-                          ? "h-3 w-full"
-                          : lineIndex === 1
-                            ? "h-3 w-5/6"
-                            : "h-3 w-4/6",
-                      )}
-                    ></div>
-                  ),
-                )}
+        {[...Array(bubbleCount)].map((_, bubbleIndex) => {
+          // Use deterministic line count based on bubble index and hash
+          const lineCount = ((hash + bubbleIndex) % 3) + 1;
+          return (
+            <div key={`${keyPrefix}-bubble-${bubbleIndex}`} className="flex">
+              {/* Chat bubble with rounded-tr-none style */}
+              <div className="flex-1 rounded-xl rounded-tr-none border bg-gray-100 p-3">
+                {/* Text loading lines within bubble */}
+                <div className="space-y-2">
+                  {[...Array(lineCount)].map(
+                    (_, lineIndex) => (
+                      <div
+                        key={`${keyPrefix}-bubble-line-${bubbleIndex}-${lineIndex}`}
+                        className={cn(
+                          "bg-gray-300",
+                          lineIndex === 0
+                            ? "h-3 w-full"
+                            : lineIndex === 1
+                              ? "h-3 w-5/6"
+                              : "h-3 w-4/6",
+                        )}
+                      ></div>
+                    ),
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     );
   };
@@ -402,7 +408,7 @@ export function FeaturedConversations() {
               {/* Mobile loading skeletons - single column */}
               <div className="flex flex-col sm:hidden">
                 {[...Array(4)].map((_, i) => {
-                  const randomHeights = generateRandomHeights(4);
+                  const randomHeights = generateRandomHeights(4, i * 100);
 
                   return (
                     <div
@@ -436,7 +442,7 @@ export function FeaturedConversations() {
                 {/* First column loading skeletons */}
                 <div className="flex flex-col">
                   {[...Array(4)].map((_, i) => {
-                    const randomHeights = generateRandomHeights(4);
+                    const randomHeights = generateRandomHeights(4, 1000 + i * 100);
 
                     return (
                       <div key={`col1-${i}`} className="break-inside-avoid">
@@ -471,7 +477,7 @@ export function FeaturedConversations() {
                 {/* Second column loading skeletons */}
                 <div className="flex flex-col">
                   {[...Array(4)].map((_, i) => {
-                    const randomHeights = generateRandomHeights(4);
+                    const randomHeights = generateRandomHeights(4, 2000 + i * 100);
 
                     return (
                       <div key={`col2-${i}`} className="break-inside-avoid">
@@ -508,7 +514,7 @@ export function FeaturedConversations() {
                 {isMediumScreen && (
                   <div className="flex flex-col">
                     {[...Array(4)].map((_, i) => {
-                      const randomHeights = generateRandomHeights(4);
+                      const randomHeights = generateRandomHeights(4, 3000 + i * 100);
 
                       return (
                         <div key={`col3-${i}`} className="break-inside-avoid">

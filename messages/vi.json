@@ -164,7 +164,8 @@
     "title": "Giao Diện",
     "darkMode": "Chế độ tối",
     "light": "Sáng",
-    "dark": "Tối"
+    "dark": "Tối",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

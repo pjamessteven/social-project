@@ -164,7 +164,8 @@
     "title": "Išvaizda",
     "darkMode": "Tamsus režimas",
     "light": "Šviesus",
-    "dark": "Tamsus"
+    "dark": "Tamsus",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

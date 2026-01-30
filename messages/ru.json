@@ -162,7 +162,8 @@
     "title": "Внешний вид",
     "darkMode": "Тёмный режим",
     "light": "Светлый",
-    "dark": "Тёмный"
+    "dark": "Тёмный",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

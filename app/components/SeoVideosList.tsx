@@ -91,7 +91,7 @@ export default async function SeoVideosList({ locale }: SeoVideosListProps) {
           const videoSlug = generateVideoSlug(video.id, video.title ?? "");
           return (
             <Link
-              href={`/videos/${videoSlug}`}
+              href={`/videos/${videoSlug}` as any}
               key={video.id}
               className="group block"
             >

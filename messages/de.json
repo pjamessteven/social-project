@@ -160,7 +160,8 @@
     "title": "Erscheinungsbild",
     "darkMode": "Dunkelmodus",
     "light": "Hell",
-    "dark": "Dunkel"
+    "dark": "Dunkel",
+    "auto": "Auto"
   },
   "definitions": {
     "metadata": {

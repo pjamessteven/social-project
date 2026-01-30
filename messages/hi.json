@@ -163,7 +163,8 @@
     "title": "रूप",
     "darkMode": "डार्क मोड",
     "light": "लाइट",
-    "dark": "डार्क"
+    "dark": "डार्क",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

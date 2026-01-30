@@ -61,7 +61,7 @@ export default function CommentCard({ comment }: CommentCardProps) {
             </span>
             •<span>{formatCommentDate(comment.created)}</span>
           </div>
-          <Link
+          <a
             href={`https://reddit.com${comment.link}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -69,7 +69,7 @@ export default function CommentCard({ comment }: CommentCardProps) {
           >
             <div>View on Reddit</div>
             <ExternalLink className="ml- h-3" />
-          </Link>
+          </a>
         </div>
       </div>
       <div

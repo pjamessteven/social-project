@@ -162,7 +162,8 @@
     "title": "Weergave",
     "darkMode": "Donkere modus",
     "light": "Licht",
-    "dark": "Donker"
+    "dark": "Donker",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

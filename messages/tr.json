@@ -163,7 +163,8 @@
     "title": "Görünüm",
     "darkMode": "Karanlık mod",
     "light": "Açık",
-    "dark": "Koyu"
+    "dark": "Koyu",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

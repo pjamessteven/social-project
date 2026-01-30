@@ -180,15 +180,15 @@ export function ConversationCard({
                       }`}
                     />
                     <div className="relative">
-                      <button
+                      <div
                         onClick={(e) => {
                           e.stopPropagation();
                           setShowAdminMenu(!showAdminMenu);
                         }}
-                        className="flex h-6 w-6 items-center justify-center rounded-md hover:bg-gray-100"
+                        className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-md hover:bg-gray-100"
                       >
                         <MoreVertical className="h-4 w-4 text-gray-500" />
-                      </button>
+                      </div>
 
                       {showAdminMenu && (
                         <div className="absolute top-full right-0 z-10 mt-1 w-48 rounded-md border border-gray-200 bg-white py-1 shadow-lg">
@@ -301,14 +301,14 @@ export function ConversationCard({
 
   if (onClick) {
     return (
-      <button onClick={onClick} className="w-full text-left">
+      <div onClick={onClick} className="w-full cursor-pointer text-left">
         {content}
-      </button>
+      </div>
     );
   }
 
   return (
-    <Link href={`/chat/${uuid}`} className="block">
+    <Link href={`/chat/${uuid}` as any} className="block">
       {content}
     </Link>
   );

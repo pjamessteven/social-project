@@ -116,7 +116,7 @@ export default function VideosList() {
             const videoSlug = generateVideoSlug(video.id, video.title);
             return (
               <Link
-                href={`/videos/${videoSlug}`}
+                href={`/videos/${videoSlug}` as any}
                 key={video.id}
                 className="group block"
               >

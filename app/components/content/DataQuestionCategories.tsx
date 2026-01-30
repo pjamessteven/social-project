@@ -121,7 +121,7 @@ function TopicNode({
                 (question: string, questionIndex: number) => (
                   <Link
                     prefetch={false}
-                    href={getHref(question)}
+                    href={getHref(question) as any}
                     key={questionIndex}
                   >
                     <div className="ml-0 pl-2 flex flex-row items-center border-b pt-1 pb-2">
@@ -137,7 +137,7 @@ function TopicNode({
           )}
           <Link
             prefetch={false}
-            href={getTopicHref(topic.topic_id as number, topic.title)}
+            href={getTopicHref(topic.topic_id as number, topic.title) as any}
           >
             <div className="-mt-2 ml-0 pl-2 flex flex-row items-center border-b pb-2">
               <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 sm:text-lg">

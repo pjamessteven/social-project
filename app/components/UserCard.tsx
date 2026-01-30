@@ -72,7 +72,7 @@ export default function UserCard({ user }: UserCardProps) {
     <>
       <div className="-mx-4 border-t pt-4 sm:hidden" />
       <Link
-        href={`/stories/${encodeURIComponent(user.username)}`}
+        href={`/stories/${encodeURIComponent(user.username)}` as any}
         className="block no-underline transition-colors sm:rounded-lg sm:border sm:p-6 sm:pt-6 sm:hover:bg-gray-50 sm:dark:hover:bg-gray-800/80"
       >
         <div className="flex w-full grow flex-row items-center justify-between">

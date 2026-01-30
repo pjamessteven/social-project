@@ -230,7 +230,7 @@ export default function TopicPage({
 
   const getHref = (question: string) => {
     const slug = slugify(question);
-    return "/research/" + slug;
+    return ("/research/" + slug) as any;
   };
 
   if (loading) {

@@ -161,7 +161,8 @@
     "title": "外観",
     "darkMode": "ダークモード",
     "light": "ライト",
-    "dark": "ダーク"
+    "dark": "ダーク",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

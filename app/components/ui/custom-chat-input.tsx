@@ -170,15 +170,15 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
 
       if (path.includes("/research") && !path.includes("/chat")) {
         // Research page - navigate to new research URL
-        router.push("/research/" + slugify(val));
+        router.push(("/research/" + slugify(val)) as any);
       } else if (isResearch || path.includes("/compare") || mode === "affirm") {
         // Research mode - redirect to research routes
         if (path.includes("compare")) {
-          redirect("/compare/research/" + slugify(val));
+          redirect(("/compare/research/" + slugify(val)) as any);
         } else if (mode == "affirm") {
-          redirect("/affirm/research/" + slugify(val));
+          redirect(("/affirm/research/" + slugify(val)) as any);
         } else {
-          redirect("/research/" + slugify(val));
+          redirect(("/research/" + slugify(val)) as any);
         }
       } else {
         // Chat mode - use chat handler or navigate to chat
@@ -187,7 +187,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
           sendMessage(val);
         } else {
           // Navigate to chat page
-          router.push("/chat?starter=" + slugify(val));
+          router.push(("/chat?starter=" + slugify(val)) as any);
           // Store the message to send after navigation
         }
       }
@@ -348,11 +348,11 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                     onClick={handleClickSuggestion}
                     prefetch={false}
                     href={
-                      mode === "detrans"
+                      (mode === "detrans"
                         ? "/research/" + slugify(question)
                         : mode === "affirm"
                           ? "/affirm/research/" + slugify(question)
-                          : "/compare/research/" + slugify(question)
+                          : "/compare/research/" + slugify(question)) as any
                     }
                     key={index}
                   >
