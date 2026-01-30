@@ -158,13 +158,6 @@
   "settings": {
     "title": "Configuración"
   },
-  "theme": {
-    "title": "Apariencia",
-    "darkMode": "Modo oscuro",
-    "light": "Claro",
-    "dark": "Oscuro",
-    "auto": "Auto"
-  },
   "definitions": {
     "metadata": {
       "title": "detrans.ai | Definiendo Términos Relacionados con el Género",

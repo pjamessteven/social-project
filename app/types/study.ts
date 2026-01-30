@@ -1,5 +1,5 @@
 export interface Study {
-  id: string;
+  id?: string;
   headline: string;
   title: string;
   authors: string;

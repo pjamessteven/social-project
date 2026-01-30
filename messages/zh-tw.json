@@ -1,0 +1,805 @@
+{
+  "metadata": {
+    "title": "detrans.ai | 與50,000+位去過渡者交流",
+    "description": "Detrans.ai是一個友善且富有同理心的聊天機器人，分享那些曾去過渡的人的經歷和觀點。使用detrans.ai獲取過渡或去過渡的支持和建議，或作為研究工具了解為什麼有些人會接受、經歷並放下性別認同。"
+  },
+  "home": {
+    "title": "與50,000+位去過渡者交流",
+    "subtitle": "來自另一面的視角",
+    "intro": {
+      "greeting": "你好！什麼是去過渡者？",
+      "response": "你好！我是detrans.ai —— 去過渡者的集體意識🦎",
+      "definition": "去過渡者是曾經的跨性別者，他們曾進行社會或醫學過渡，但已不再認同為跨性別者，並可能已經逆轉了過渡的某些方面。",
+      "description": "我透過閱讀/r/detrans subreddit上發布的故事和經歷，以及觀看上傳到YouTube的去過渡影片，來觀察為什麼有些人會接受、經歷並放下性別認同的原因、模式和真相。",
+      "purpose": "我的目的是分享這些知識，以解構性別，並探索這些經歷如何塑造一個人與自我、身體和世界的關係。",
+      "helpPrompt": "今天我能如何幫助你？"
+    },
+    "starters": {
+      "lizardQuestion": {
+        "display": "抱歉，但那隻蜥蜴是怎麼回事？",
+        "full": "為什麼去過渡者在網上用蜥蜴來代表自己？"
+      },
+      "curious": {
+        "display": "我很好奇為什麼有些人會去過渡",
+        "full": "我很好奇為什麼有些人會去過渡，以及他們可能需要什麼樣的領悟才能達到那個階段。"
+      },
+      "questioningTrans": {
+        "display": "我正在質疑自己的性別認同，我覺得我可能跨性別",
+        "full": "我正在質疑自己的性別認同，我覺得我可能跨性別"
+      },
+      "thinkingDetrans": {
+        "display": "我目前認同為跨性別者，正在考慮去過渡",
+        "full": "我目前認同為跨性別者，正在考慮去過渡"
+      },
+      "familyMember": {
+        "display": "我是某個正在過渡者的父母、家人或朋友",
+        "full": "我是某個正在過渡者的父母、家人或朋友"
+      },
+      "researcher": {
+        "display": "我是研究性別認同和去過渡經歷的學者",
+        "full": "我是研究性別認同和去過渡經歷的學者"
+      },
+      "learnChallenges": {
+        "display": "我想了解去過渡者面臨的掙扎和挑戰",
+        "full": "我想了解去過渡者面臨的掙扎和挑戰"
+      },
+      "understandTransition": {
+        "display": "我想了解為什麼去過渡者最初決定過渡",
+        "full": "我想了解為什麼去過渡者最初決定過渡，以及男性和女性之間可能有什麼不同。"
+      },
+      "debunkMisinfo": {
+        "display": "我想讓你揭穿關於去過渡的誤解和常見錯誤觀念",
+        "full": "請盡可能詳細地揭穿所有關於去過渡者的誤解和常見錯誤觀念。"
+      }
+    },
+    "navigation": {
+      "videos": "去過渡影片",
+      "stories": "故事",
+      "storiesFull": "故事與統計",
+      "support": "幫助與支援",
+      "definitions": "性別術語",
+      "studies": "學術研究",
+      "studiesShort": "研究",
+      "howItWorks": "運作原理"
+    },
+    "deepResearch": {
+      "title": "深度研究模式",
+      "description": "深度研究模式會擴展你的問題，從不同角度給出答案。",
+      "note": "深度研究速度較慢且非對話式。如需聊天，請保持關閉。"
+    },
+    "disclaimer": {
+      "trigger": "本網站上的經歷和觀點來自Reddit。",
+      "title": "來源聲明",
+      "content": "detrans.ai透過從Reddit上的/r/detrans社群尋找相關經歷，以去過渡者的視角回答關於性別的問題。雖然Reddit是真實人們分享個人故事的平台，但也可能包含機器人生成或誤導性內容。建議你查看原始Reddit貼文以驗證來源和背景。請注意，/r/detrans是一個經過嚴格審核的subreddit，但審核並不能保證每個貼文的準確性或真實性。"
+    },
+    "donate": {
+      "title": "支援我們的工作",
+      "description": "幫助我們保持這個資源的可用性，服務於最需要的人。",
+      "button": "捐款",
+      "card": {
+        "title": "需要捐款來維持{site}的運作！",
+        "description": "如果你欣賞這個免費服務，請考慮捐款。",
+        "description2": "如果資金耗盡，網站將僅以快取模式運作，無法提出自己的問題。",
+        "button": "進行捐款"
+      }
+    },
+    "participate": {
+      "card": {
+        "title": "你是去過渡者或停止者嗎？",
+        "description": "參與研究，幫助提高對跨性別認同的科學理解",
+        "description2": "並改善經歷性別焦慮的人的 outcomes。"
+      },
+      "title": "分享你的故事",
+      "description": "你的經歷可以幫助他人理解性別認同的複雜性。",
+      "button": "參與"
+    },
+    "footer": {
+      "poem": {
+        "line1": "你可以讓自己自由，",
+        "line2": "你所需要做的就是做自己。",
+        "line3": "並注意你的思想！",
+        "line4": "因為心靈就像一個花園，",
+        "line5": "每一個思想都是一顆種子。",
+        "line6": "我們種什麼就收什麼，",
+        "line7": "但透過這些我們可以成長..."
+      },
+      "openSource": "一個開源專案，由",
+      "madeWithLove": "在紐西蘭威靈頓用愛製作",
+      "donatePrompt": "如果可以的話請捐款，",
+      "beKind": "並善待彼此。"
+    },
+    "browseConversations": "瀏覽所有對話"
+  },
+  "header": {
+    "navigation": {
+      "home": "首頁",
+      "resources": "資源",
+      "about": "關於"
+    },
+    "resources": {
+      "genderSupport": "性別支援",
+      "genderSupportDesc": "尋找社群和治療師",
+      "terminology": "術語",
+      "terminologyDesc": "定義關鍵術語/概念",
+      "stories": "故事與統計",
+      "storiesDesc": "來自/r/detrans用戶",
+      "videos": "去過渡影片",
+      "videosDesc": "個人回憶錄檔案",
+      "studies": "同行評審研究",
+      "studiesDesc": "相關學術研究",
+      "statistics": "已驗證統計",
+      "statisticsDesc": "statsforgender.org"
+    },
+    "about": {
+      "contact": "聯絡我們",
+      "contactDesc": "與我取得聯繫",
+      "systemPrompts": "系統提示詞",
+      "systemPromptsDesc": "查看AI系統提示詞",
+      "terms": "條款",
+      "termsDesc": "隱私政策和使用條款"
+    },
+    "donate": "捐款",
+    "language": {
+      "title": "語言"
+    }
+  },
+  "language": {
+    "title": "語言",
+    "select": "選擇語言",
+    "search": "{count}種語言",
+    "en": "英文",
+    "es": "西班牙文",
+    "fr": "法文",
+    "de": "德文",
+    "he": "希伯來文",
+    "it": "義大利文",
+    "nl": "荷蘭文",
+    "zh-cn": "簡體中文",
+    "zh-tw": "繁體中文"
+  },
+  "settings": {
+    "title": "設定"
+  },
+  "theme": {
+    "title": "外觀",
+    "darkMode": "深色模式",
+    "light": "淺色",
+    "dark": "深色"
+  },
+  "definitions": {
+    "metadata": {
+      "title": "detrans.ai | 定義性別相關術語",
+      "description": "在日常用語中，生理性別和性別有時可以互換使用，在某些語言中只有一個詞來描述這兩者。然而，性別焦慮的整個概念依賴於理解生理性別和性別之間存在差異。"
+    },
+    "title": "定義性別相關術語",
+    "sexAndGender": {
+      "heading": "生理性別和性別？",
+      "intro": "在日常用語中，生理性別和性別有時可以互換使用，在某些語言中只有一個詞來描述這兩者。然而，性別焦慮的整個概念依賴於理解生理性別和性別之間存在差異。",
+      "sex": "<b>生理性別</b>指的是一個人的生物學特徵（即他們的解剖結構；骨骼、肌肉、染色體、生殖系統和第二性徵）。請注意，超過99%的人在生物學上要么是男性要么是女性，不存在性別光譜，儘管有些人確實有性發育障礙（DSDs）。絕大多數有DSDs的人是男性或女性。",
+      "gender": "<b>性別</b>指的是特定社會認為適合男性和女性[由他們的生理性別定義]的'社會建構'的角色、行為、活動和屬性。'男性化'和'女性化'是性別類別。大多數人，也許是所有人，都有男性和女性特質的混合。性別隨時間和文化而變化。",
+      "nonConformity": "<b>性別不一致</b>發生在一個人的行為或表現與其社會基於其性別的期望不同時。",
+      "identity": "<b>性別認同</b> - 有些人相信我們都有一種天生的'性別認同'——一種深刻的自我意識或作為男性、女性或介於兩者之間的感覺——這與我們的生理性別分開存在，在極少數情況下可能與之不同。其他人則不認為存在一種與其他人格或認同方面不同的特定性別認同。"
+    },
+    "dysphoria": {
+      "heading": "什麼是性別焦慮？",
+      "p1": "性別焦慮是精神科和醫學界使用的一個診斷術語，用於描述當某人感覺其性別認同與生理性別不匹配時所經歷的困擾。",
+      "p2": "經歷性別焦慮的人報告說，他們有強烈、持續的認同感，認同與其性別不同的性別，並對其性別化身體感到不適。目前，要做出正式診斷，這些感受必須對經歷它們的人造成重大困擾或損害。"
+    },
+    "transgender": {
+      "heading": "跨性別是什麼意思？",
+      "p1": "跨性別是一個對不同人可能意味著不同事物的術語。人們普遍認為，跨性別女性是出生時為男性身體但認同為女性的人，跨性別男性是出生時為女性身體但認同為男性的人，非二元性別者則既不認同為男性也不認同為女性。人們經常使用較短的術語'跨性別'來表示某人認同的性別與其生理性別不同。",
+      "p2": "跨性別可以被理解為意味著i）你是與你出生性別相反的性別，ii）你認為自己是與你出生時相反的性別，或iii）你的生活表現如同你的性別與你出生時的性別相反。關於這三種理解方式哪一種最準確的爭論可能會很激烈且有爭議。有些人覺得即使是討論跨性別意味著什麼也是在削弱這種經歷的有效性。然而，這些不同的信念不可避免地導致關於如何最好地支持人們管理性別相關困擾的不同想法，因此討論是必要的，以確保人們獲得最好的幫助和建議。"
+    },
+    "desistance": {
+      "heading": "什麼是停止？",
+      "p1": "停止是指那些曾經認同為跨性別者但未進行醫學干預的人不再認同為跨性別者。儘管他們可能不必處理已經進行醫學干預的影響，但停止仍然可能是一個非常情感痛苦、困惑和困難的過程。"
+    },
+    "detransition": {
+      "heading": "去過渡和去過渡者",
+      "p1": "去過渡是指那些曾經認同為跨性別者並接受了醫學干預的人不再認同為跨性別者。在這個群體內，人們的經歷存在巨大的差異。有些人可能對他們所經歷的和長期影響感到非常痛苦，其他人可能將其視為他們必須經歷的過程，以了解他們現在的自己。"
+    },
+    "regret": {
+      "heading": "過渡後悔",
+      "p1": "有些人可能已經認同為跨性別者多年，並接受了激素和手術等醫學干預，這些干預不可逆地改變了他們的身體。他們可能覺得後悔開始醫學性別過渡，但他們也繼續認同為跨性別者和/或繼續使用跨性別激素。"
+    },
+    "source": {
+      "text": "來源：",
+      "link": "去過渡基金會"
+    }
+  },
+  "chat": {
+    "lookingForComments": "正在尋找相關評論...",
+    "errorOccurred": "發生錯誤，請重試...如果這種情況持續發生，請聯絡我。",
+    "analysingExperiences": "正在分析經歷",
+    "detransPerspective": "-> 去過渡者對這個話題有什麼看法？",
+    "transPerspective": "-> 跨性別者對這個話題有什麼看法？",
+    "backToPortal": "<- 返回入口"
+  },
+  "chatInput": {
+    "placeholder": "詢問detrans.ai...",
+    "deepResearch": "深度研究",
+    "suggestions": "建議："
+  },
+  "deepResearchEvents": {
+    "errorTitle": "深度研究錯誤",
+    "retrieving": "正在檢索去過渡經歷...",
+    "generatingQuestions": "正在生成元問題...",
+    "findingAnswers": "正在尋找元問題的答案",
+    "completed": "深度研究完成",
+    "retrieveError": "檢索去過渡經歷時出錯！",
+    "analyzeError": "我們已經用完了支付分析去過渡經歷和回答問題的AI的費用。如果可以的話，請捐款以幫助我們保持服務運作。請稍後再試。目前，你仍然可以嘗試入口中的問題。",
+    "generatingAnswer": "正在生成答案...",
+    "waitingForAnswer": "等待答案",
+    "questionsAnswered": "已回答{answered}個，共{total}個元問題",
+    "generatingSummary": "正在生成答案摘要"
+  },
+  "questionTabs": {
+    "topics": "話題",
+    "generated": "生成的",
+    "recent": "最近的",
+    "top": "熱門"
+  },
+  "conversations": {
+    "title": "最近對話",
+    "subtitle": "看看detrans.ai如何幫助來自世界各地的人們。",
+    "tabs": {
+      "featured": "精選",
+      "all": "全部"
+    },
+    "buttons": {
+      "showMore": "顯示{count}個更多對話",
+      "showLess": "顯示較少",
+      "loadMore": "載入更多對話",
+      "loading": "載入中..."
+    }
+  },
+  "conversationCard": {
+    "untitled": "未命名對話",
+    "from": "來自",
+    "moreMessages": "還有{count}條訊息...",
+    "moreMessage": "還有{count}條訊息...",
+    "date": {
+      "today": "今天",
+      "yesterday": "昨天",
+      "daysAgo": "{count}天前",
+      "weeksAgo": "{count, plural, =1 {1週前} other {#週前}}"
+    },
+    "admin": {
+      "deleting": "正在刪除...",
+      "delete": "刪除對話",
+      "banning": "正在封鎖...",
+      "ban": "封鎖用戶(IP)"
+    }
+  },
+  "stories": {
+    "metadata": {
+      "title": "detrans.ai | 去過渡故事與統計",
+      "description": "閱讀/r/detrans Reddit社群成員分享的真摯去過渡故事、時間線和趨勢，這是網際網路上最大的開放式去過渡故事合集。了解去過渡者在過渡和去過渡時的年齡以及他們走過的道路。"
+    },
+    "title": "去過渡故事與統計",
+    "subtitle": "瀏覽和視覺化{count}個獨特的去過渡故事和統計，這些故事來自在/r/detrans subreddit上分享經歷的人，這是網際網路上最大的開放式去過渡故事和經歷合集。",
+    "disclaimer": {
+      "summary": "這些故事已使用AI進行摘要。",
+      "details": "在Reddit上，人們經常在多個評論或貼文中分享他們的經歷。為了使這些資訊更易於訪問，我們的AI將所有這些分散的片段收集到一個易於閱讀的摘要和時間線中。所有系統提示詞都在提示詞頁面上註明。",
+      "accuracy": "有時AI可能會產生幻覺或陳述不真實的內容。但一般來說，摘要故事是用戶原始評論的準確反映。",
+      "inclusion": "只有分享了足夠內容以構成完整故事和時間線的用戶才會被納入。發布了少於五條評論或其評論獲得少於三個讚的用戶被忽略。貼文尚未包含在資料集中。",
+      "verification": "每個用戶都經過了機器人生成或非真實內容的分析。任何看起來不像是真實去過渡者的帳號都被標記為'可疑'。這些帳號將被人工審核，如果發現是非真實的，將從detrans.ai資料集中刪除。發表少於五條評論的帳號已從分析中省略。"
+    },
+    "charts": {
+      "tabs": {
+        "age": "年齡",
+        "duration": "持續時間",
+        "transitionReason": "過渡原因",
+        "detransitionReason": "去過渡原因",
+        "pathways": "路徑"
+      },
+      "loading": "正在載入圖表資料...",
+      "error": "錯誤：{message}",
+      "retry": "重試",
+      "noData": "所選篩選條件沒有可用的{mode}原因資料",
+      "reasonChart": {
+        "title": "去過渡者說他們為什麼{mode, select, detransition {去過渡} other {過渡}}？",
+        "subtitle": "來自Reddit用戶{mode}時間線的資料（共{totalReasonCount}個用戶，{totalUsers}個不同原因。）",
+        "mentions": "{count}次提及（{percentage}%）"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "搜尋用戶經歷...",
+      "ageRange": "年齡範圍：",
+      "ageRangeYears": "{min} - {max}歲",
+      "sex": {
+        "all": "男性和女性",
+        "female": "女性",
+        "male": "男性"
+      },
+      "tagsPlaceholder": "選擇標籤進行篩選...",
+      "clearFilters": "清除篩選"
+    },
+    "results": "顯示{showing}個，共{total}個用戶故事",
+    "noResults": "沒有找到符合篩選條件的用戶。",
+    "pagination": {
+      "previous": "上一頁",
+      "next": "下一頁",
+      "pageInfo": "第{page}頁，共{totalPages}頁"
+    },
+    "userCard": {
+      "comments": "{count}條評論",
+      "postingSince": "自{date}開始發布",
+      "transitionedAt": "在{age}歲時過渡",
+      "desistedAt": "在{age}歲時停止",
+      "detransitionedAt": "在{age}歲時去過渡",
+      "female": "女性",
+      "male": "男性"
+    }
+  },
+  "prompts": {
+    "metadata": {
+      "title": "它是如何運作的？ | 系統提示詞",
+      "description": "了解detrans.ai的運作原理，包括系統提示詞、資料截止日期和開源資訊。"
+    },
+    "title": "它是如何運作的？",
+    "intro": {
+      "paragraph1": "<bold>detrans.ai</bold>聊天是一個由RAG（檢索增強生成）驅動的智慧體，它生成元問題並透過從<reddit>/r/detrans</reddit> subreddit和YouTube中提取和整合去過渡者的想法和經驗來回答它們。它是用<llamaIndex>LlamaIndex</llamaIndex>框架和Moonshot AI的開源中文<kimi>kimi-k2.5</kimi>模型構建的，以減少西方政治偏見。",
+      "paragraph2": "ChatGPT和大多數其他西方大型語言模型在推廣和維護性別觀念方面相當激進。事實證明，無法在這個專案中使用OpenAI的GPT模型，因為這些模型會不斷削弱和反駁被要求總結的去過渡經歷。如果你想要一個更加肯定的經歷，請參見<chatgpt>ChatGPT</chatgpt>。"
+    },
+    "dataCutoff": {
+      "title": "資料截止日期",
+      "paragraph1": "<bold>detrans.ai</bold>目前可以訪問/r/detrans上在<date>2025/9/8</date>之前發布的所有獲得至少三個讚的評論。只要/r/detrans subreddit繼續存在，我將爭取每年至少更新一次資料集。",
+      "paragraph2": "用戶可以透過提交YouTube影片連結來提交影片經歷。這些影片將在被轉錄並新增到向量資料庫和影片檔案之前進行人工審核，使用OpenAI的Whisper語音轉文字模型。"
+    },
+    "openSource": {
+      "title": "開源",
+      "paragraph": "原始碼也可以在<github>Github</github>上獲得，採用MIT授權條款，如果你想檢查或重用任何程式碼用於你自己的專案。這個專案也建立在許多其他開源專案之上，如Llamaindex、React、Next.js、Tailwind、Lucide、Qdrant、Postgres和Vercel AI SDK。非常感謝這些專案的貢獻者提供了堅實的基礎。"
+    },
+    "systemPrompts": {
+      "title": "系統提示詞",
+      "description": "這些是系統用於RAG工作流的提示詞。除了此頁面上顯示的內容外，沒有其他自訂指令或層。",
+      "lastUpdated": "最後更新",
+      "chatAgentTitle": "聊天智慧體系統提示詞",
+      "researchModeTitle": "深度研究模式的系統提示詞",
+      "researchAgentTitle": "研究智慧體提示詞",
+      "experienceExtractionTitle": "經歷提取提示詞",
+      "finalAnswerTitle": "最終答案提示詞"
+    },
+    "userSummaries": {
+      "title": "用戶摘要的系統提示詞",
+      "description": "這些是生成用戶摘要的系統提示詞。",
+      "lastUpdated": "最後更新",
+      "experienceReportTitle": "用戶經歷報告",
+      "experienceSummaryTitle": "用戶經歷摘要",
+      "generateTagsTitle": "生成標籤",
+      "extractAgesTitle": "提取年齡",
+      "determineBirthSexTitle": "確定出生性別",
+      "redFlagReportTitle": "紅旗報告"
+    }
+  },
+  "donatePage": {
+    "title": "保持Detrans.AI運作",
+    "description1": "如果你欣賞我投入這個網站的工作，或者這個免費服務幫助了你，請考慮一次性或定期捐款以保持<b>detrans.ai</b>線上。",
+    "description2": "沒有你的支持，我無法負擔運行這樣一個資源密集型服務。我目前的主要收入來源是政府福利，截至撰寫本文時，我的銀行帳戶裡不到1000美元。如果這個網站爆紅，我可能會收到數千美元的帳單。如果我資金耗盡，提出自己的問題和透過後續問題深入探索話題的功能將被禁用，我將只提供對入口中問題的快取回覆。",
+    "description3": "請考慮每月捐款。你可以使用下面的PayPal直接捐款到我的紐西蘭銀行帳戶或使用BTC。",
+    "bankAccount": "紐西蘭銀行帳戶",
+    "accountName": "姓名",
+    "accountNumber": "帳號",
+    "swiftCode": "SWIFT/BIC代碼",
+    "bitcoin": "比特幣地址",
+    "paypal": "PayPal捐款"
+  },
+  "terms": {
+    "metadata": {
+      "title": "隱私政策 | detrans.ai",
+      "description": "了解我們的隱私政策、資料收集實踐以及我們如何保護你的資訊。"
+    },
+    "title": "隱私政策",
+    "intro": "本隱私政策解釋了我們收集什麼資訊、為什麼收集它，以及當你訪問或使用我們的服務時我們如何保證它的安全。",
+    "sections": {
+      "informationWeCollect": {
+        "title": "我們收集的資訊",
+        "chatMessages": {
+          "title": "聊天訊息：",
+          "content": "我們儲存所有聊天記錄以及深度研究模式下所有問題的回覆。聊天記錄不會與你的IP位址或任何可能用於識別你的資料相關聯。聊天記錄將來可能會被分析並用於研究目的。請避免分享任何敏感資訊。"
+        },
+        "cookies": {
+          "title": "Cookies/追蹤技術：",
+          "content": "我們<em>不</em>使用cookies、像素標籤或任何類似的客戶端追蹤機制。"
+        },
+        "ipAddresses": {
+          "title": "IP位址：",
+          "content": "當你向我們的伺服器發出請求時，我們會儲存你的IP位址以計算請求並執行防止濫用的速率限制。"
+        },
+        "optionalData": {
+          "title": "可選資料：",
+          "content": "如果你選擇聯絡我們，我們可能會收集你自願提供的資訊（例如，電子郵件地址、姓名）。除非明確說明，否則提供這些資訊是可選的。"
+        }
+      },
+      "legalBases": {
+        "title": "處理的法律依據（歐盟/歐洲經濟區訪客）",
+        "item1": "速率限制處理對於我們的<em>合法利益</em>是必要的，根據GDPR第6(1)(f)條——特別是維護服務可用性和安全性。",
+        "item2": "任何額外的處理（例如，帳號建立）基於你的<em>同意</em>或<em>合同必要性</em>，視情況而定。"
+      },
+      "dataRetention": {
+        "title": "我們保留資料的時間",
+        "content": "所有聊天記錄將被保留。用於速率限制的IP位址在最後一次請求後的幾分鐘內自動刪除，或在速率限制視窗結束時，以先到者為準。自願資訊（例如，支援郵件）僅保留到解決你的詢問或滿足法律義務所需的時間。"
+      },
+      "thirdPartySharing": {
+        "title": "第三方共享",
+        "content": "我們可能會選擇與研究性別焦慮以改善 outcomes 的學者和研究人員分享匿名聊天記錄。我們僅在法律要求或為了保護我們的權利、用戶或公眾（例如，詐欺預防、法院命令）時才會揭露IP位址或其他資料。"
+      },
+      "security": {
+        "title": "安全",
+        "content": "我們使用業界標準的技術和組織措施（TLS加密、存取控制、最小權限設計）來保護傳輸中和靜止時的資料。"
+      },
+      "internationalTransfers": {
+        "title": "國際傳輸",
+        "content": "我們的伺服器位於美國。如果你從美國以外訪問服務，你理解你的IP位址將被傳輸到美國並在那裡處理。"
+      },
+      "childrensPrivacy": {
+        "title": "兒童隱私",
+        "content": "我們的服務不面向13歲以下的兒童，我們不會有意收集他們的個人資訊。如果你認為我們無意中收集了此類資料，請聯絡我們立即刪除。"
+      },
+      "changes": {
+        "title": "本政策的變更",
+        "content": "我們可能會不時更新本政策。頂部的\"生效日期\"會改變，重大變更將顯著發布。"
+      },
+      "contact": {
+        "title": "聯絡我們",
+        "content": "如果你有問題、擔憂或投訴，請使用聯絡表格，或發送郵件至<email>peter@detrans.ai</email>。"
+      }
+    }
+  },
+  "videos": {
+    "metadata": {
+      "title": "detrans.ai | 觀看去過渡者的影片",
+      "description": "這裡有一些由那些過渡後又因某種領悟而去過渡的人上傳到YouTube的個人影片回憶錄。網路上有無數這樣的故事，這只是其中一小部分。"
+    },
+    "title": "過渡與去過渡影片",
+    "description": {
+      "line1": "本頁面旨在成為網際網路上最好的去過渡影片檔案。",
+      "line2": "使用語音轉文字，detrans.ai將這些經歷整合到聊天對話中。",
+      "line3": "目前僅限YouTube影片，TikTok即將推出？！"
+    },
+    "female": "女性",
+    "male": "男性",
+    "backToAll": "返回全部",
+    "overview": "概述",
+    "fullSummary": "完整影片摘要",
+    "watchOnYouTube": "在YouTube上觀看",
+    "moreVideos": "更多影片",
+    "browseAll": "瀏覽所有去過渡影片",
+    "metadataWatchDescription": "觀看{author}的{title}，一位分享他們故事的{sex}去過渡者。",
+    "metadataThumbnailAlt": "{title}的縮圖"
+  },
+  "videoList": {
+    "loading": "正在載入影片...",
+    "filters": {
+      "all": "所有故事",
+      "female": "女性",
+      "male": "男性",
+      "detransitioners": "去過渡者"
+    },
+    "thumbnailAlt": "{title}的縮圖",
+    "by": "作者",
+    "female": "女性",
+    "male": "男性"
+  },
+  "videoSubmitForm": {
+    "submitTitle": "提交你的去過渡影片",
+    "description": {
+      "line1": "透過提交你的影片，它將顯示在本頁面和相關聊天中。",
+      "line2": "可以是你的影片，也可以只是你在網路上發現的缺少的影片。",
+      "line3": "所有提交都經過審核，可能需要幾天時間才會出現。"
+    },
+    "urlLabel": "YouTube URL",
+    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "submitButton": "提交影片",
+    "submitting": "正在提交...",
+    "submitSuccess": "影片提交成功！它將在出現在網站上之前進行審核。",
+    "submitError": "提交影片失敗",
+    "networkError": "網路錯誤。請重試。"
+  },
+  "studySubmitForm": {
+    "submitTitle": "提交研究",
+    "description": {
+      "line1": "知道缺少的相關學術研究或同行評審文章？",
+      "line2": "提交URL並可選建議一個標題。",
+      "line3": "所有提交在出現在網站上之前都經過審核。"
+    },
+    "urlLabel": "研究URL",
+    "urlPlaceholder": "https://...",
+    "titleLabel": "建議標題",
+    "titlePlaceholder": "可選的標題或標題",
+    "titleHelp": "可選：為此研究建議一個簡短的標題或標題",
+    "submitButton": "提交研究",
+    "submitting": "正在提交...",
+    "submitSuccess": "研究提交成功！它將在出現在網站上之前進行審核。",
+    "submitError": "提交研究失敗",
+    "networkError": "網路錯誤。請重試。"
+  },
+  "studiesPage": {
+    "metadata": {
+      "title": "detrans.ai | 關於去過渡話題的學術研究",
+      "description": "在本頁查找與性別認同趨勢和去過渡相關的學術研究、同行評審期刊文章和已驗證統計的選擇。",
+      "ogTitle": "detrans.ai | 關於去過渡話題的學術研究",
+      "ogDescription": "在本頁查找與性別認同趨勢和去過渡相關的學術研究和同行評審期刊文章以及已驗證統計的選擇。"
+    },
+    "title": "精選學術文章",
+    "description": "關於性別認同、過渡和去過渡主題的學術研究、同行評審研究和期刊文章。"
+  },
+  "contentWarning": {
+    "title": "內容警告：",
+    "description": {
+      "line1": "本網站包含來自前跨性別者的故事、經歷和觀點。",
+      "line2": "主題包括過渡後悔、醫療併發症，以及對焦慮的整體看法。",
+      "line3": "這些資訊可能會挑戰關於性別認同和過渡的普遍持有的信念。"
+    },
+    "buttons": {
+      "exit": "帶我離開這裡！",
+      "continue": "繼續"
+    }
+  },
+  "supportPage": {
+    "metadata": {
+      "title": "detrans.ai | 獲取性別幫助和支援",
+      "description": "了解性別肯定護理和性別探索性治療之間的區別。如果你正在經歷性別焦慮，獲得支援的最佳方式之一是交談並理解那些自己經歷過並從另一邊走出來的人的觀點。"
+    },
+    "title": "獲取性別幫助與支援",
+    "navigation": {
+      "jumpTo": "跳轉到：",
+      "getGenderSupport": "獲取性別支援："
+    },
+    "sections": {
+      "onlineSupport": {
+        "title": "線上支援小組",
+        "description": "如果你正在經歷性別焦慮，獲得支援的最佳方式之一是交談並理解那些自己經歷過並從另一邊走出來的人的觀點。",
+        "links": {
+          "redditCommunity": "Reddit上的去過渡社群",
+          "redditWiki": "Reddit上的去過渡維基",
+          "discordServer": "官方/r/detrans Discord伺服器",
+          "askDetransAI": "透過detrans.ai詢問50,000+位去過渡者"
+        }
+      },
+      "genderAffirmingCare": {
+        "title": "性別肯定護理：是什麼？",
+        "description": "性別肯定護理目前是世界範圍內醫療保健提供者為性別焦慮提供的標準（而且往往是唯一）治療選擇。性別肯定護理本質上承認社會的性別期望，然後使患者適應它們。這是一種分階段的方法，從社會過渡（姓名、代名詞、服裝）開始，然後是激素治療，然後對於一些人來說是不可逆的手術程序。性別肯定護理可以緩解性別焦慮，但確實存在嚴重的健康風險和通常是永久性的副作用。極其謹慎地繼續，並確保你",
+        "watchTestimonies": "觀看一些證詞"
+      },
+      "genderExploratoryTherapy": {
+        "title": "性別探索性治療：是什麼？",
+        "description1": "性別探索性治療簡單地意味著你的治療師不會急於肯定你並讓你接受醫學治療。相反，他們會從探索性別概念以及你為什麼可能有這種感覺開始。性別探索性治療是一種沒有特定預定議程的方法，性別探索性治療的結果可能因每個人而異。",
+        "description2": "如果你在谷歌上搜尋'性別探索性治療'，你會發現一些批評將其與同性戀轉化治療（已被證明無效）進行比較。事實是，性別探索性治療與同性戀轉化治療非常不同：",
+        "references": {
+          "title": "參考文獻",
+          "ref1": "美國衛生與公眾服務部（2025）。關於兒童性別焦慮和性別轉化努力的報告。",
+          "ref2": "D'Angelo, R.（2025）。'支援性別焦慮年輕人的自主性：心理治療不是轉化治療。'醫學倫理學雜誌，51(1)。",
+          "ref3": "Lemma, A. & Schmidt, L.（2024）。'性別焦慮的精神動力學心理治療不是轉化治療。'心理學前沿。",
+          "ref4": "Korte, A.等（2021）。'一種尺寸並不適合所有人：支援性別焦慮的心理治療。'性行為檔案。"
+        },
+        "florenceAshley": {
+          "title": "Florence Ashley研究",
+          "description": "該領域的學術研究通常存在偏見。最有影響力的研究之一（審問性別探索性治療）由跨性別女性Florence Ashley於2022年發表。在她的研究中，她將性別探索性治療與同性戀轉化治療進行了比較，並強烈譴責了這種做法。應該認識到，認同為跨性別者有動力保護他們的身份和信仰，這項研究就是一個完美的例子。這項研究充滿了邏輯謬誤，但它仍然被發表，並被用作學術依據，使性別肯定護理成為經歷性別焦慮者的唯一選擇。",
+          "showFallacies": "查看Florence Ashley研究中的所有邏輯謬誤"
+        }
+      },
+      "findTherapist": {
+        "title": "在哪裡可以找到實踐性別探索性治療的治療師？",
+        "languageNotice": "大多數列出的治療師只說英語，但你仍然可以嘗試聯繫他們以找到會說你語言的人。如果你知道會說你語言的持證治療師，你可以建議透過",
+        "contactForm": "聯絡表單",
+        "organizations": {
+          "justTherapy": {
+            "name": "Just Therapy",
+            "description": "Just Therapy誕生於回歸治療本質的願望——有效、道德、不受意識形態影響。它是一個由治療師和諮詢師組成的協會，透過共同的道德和原則保持一致。Just Therapy認識到，心理治療和諮詢的世界已經被活動家和意識形態接管，這有可能傷害而不是支援客戶的心理健康。其成員來自廣泛的學科和專業，已簽署行為準則。",
+            "directory": "Just Therapy治療師目錄",
+            "codeOfConduct": "Just Therapy行為準則"
+          },
+          "therapyFirst": {
+            "name": "Therapy First",
+            "description": "Therapy First團結相信性別困擾的客戶應該得到開放式的、基於證據的心理治療的精神健康專業人員，這種治療在任何不可逆的醫療步驟之前探索無意識和情境因素；他們拒絕轉化實踐和'僅肯定'模式，維護客戶自主權，並將兒童/青少年醫學過渡視為實驗性的，同時仍然支援成年人的身體自主權和治療探索權。",
+            "directory": "Therapy First治療師目錄",
+            "about": "關於Therapy First"
+          },
+          "beyondTrans": {
+            "name": "Beyond Trans",
+            "description": "Stella O'Malley於2020年3月推出了性別焦慮支援網路，為父母提供關於性別困擾兒童的無偏見幫助；它迅速發展成為全球社群，推動了2021年Genspect的創建，這是一個倡導非醫療化護理的組織。認識到過渡後悔的增加，該組織於2022年啟動了Beyond Trans，並於2025年6月將其與GDSN合併，形成一個綜合的、基於證據的支援網路，服務於家庭、個人和去過渡者。",
+            "directory": "Beyond Trans治療師目錄",
+            "supportGroups": "Beyond Trans支援小組",
+            "about": "關於Beyond Trans"
+          },
+          "detransFoundation": {
+            "name": "去過渡基金會",
+            "description": "去過渡基金會為去過渡者提供資源和支援，包括接觸了解去過渡經歷的合格治療師。以下治療師是去過渡基金會的一部分：",
+            "drEntwistle": "是一位臨床心理學家，曾在利茲的NHS性別認同發展服務機構為18歲以下人群工作。她在英國健康與護理專業委員會（HCPC）註冊，透過安全視訊通話提供線上諮詢。",
+            "anastassisSpiliadis": "是一位系統與家庭心理治療師，曾在Tavistock的性別認同發展服務機構工作四年，領導家庭治療與諮詢服務。他因不同意在理解性別認同困難方面缺乏治療模式而辭去Tavistock的職務。他開發了性別探索模型，在性別質疑個人和去過渡者方面擁有豐富的經驗。",
+            "visitWebsite": "訪問去過渡基金會網站"
+          }
+        }
+      },
+      "forParents": {
+        "title": "父母資源",
+        "intro": "如果你的孩子最近出櫃為跨性別者，你可能會感到困惑、擔憂，不確定如何最好地支援他們，同時保護他們的長期健康和福祉。",
+        "rogdRepair": {
+          "name": "Stephanie Winn的ROGD修復計劃",
+          "whatIs": "什麼是ROGD修復？",
+          "description1": "ROGD修復是：",
+          "bullet1": "一個幫助跨性別認同青少年的父母以促進停止、批判性思維、健康和關係和諧的方式進行溝通的計劃",
+          "bullet2": "一個互動且不斷擴展的心理學概念和溝通技能工具包，由多年作為持證婚姻和家庭治療師轉為ROGD父母教練的經驗磨練而成",
+          "bullet3": "一個自定進度的線上課程，包含100多節課，每節課包含一個影片、一篇文章和反思問題，旨在幫助參與者將內容個性化到他們獨特的家庭情況，以及討論論壇",
+          "description2": "新的ROGD修復會員現在附帶無限訪問RepairBot，這是第一個也是唯一一個專門設計用於幫助性別困擾青少年非肯定父母的AI工具。RepairBot在整個ROGD修復課程上進行了訓練，是一個非常出色的交流板、作業夥伴和溝通工具助手！",
+          "ctaBox": {
+            "title": "你的孩子說他們是'跨性別'，但你只想讓他們健康和安全。",
+            "description1": "你孩子的健康和未來岌岌可危，但你的槓桿和影響力有限。也許他們在你背後開始黑市激素，或者當你'錯誤性別'他們時憤怒地衝出去，或者在一所'肯定'的大學裡。你需要在這種情況下有效溝通，以免有人受傷。這就是ROGD修復的用武之地。",
+            "description2": "ROGD修復是一個為父母提供的自定進度線上課程和社群，教授你需要的心理學概念和溝通工具，以了解你孩子的心理狀態以及如何接觸他們。會員現在包括RepairBot，你的24/7 AI助手，在該方法上進行了訓練。",
+            "description3": "ROGD修復和RepairBot由一位持證婚姻和家庭治療師創建，他有十多年與跨性別認同青少年及其家庭合作的經驗，現在專門指導那些知道一定有比'肯定'更好的方法的父母。"
+          },
+          "coupon": "使用此優惠券代碼可獲得",
+          "couponCode": "DETRANSAI",
+          "learnMore": "了解更多並註冊ROGD修復"
+        }
+      }
+    },
+    "table": {
+      "gayConversion": "同性戀轉化治療",
+      "genderExploratory": "性別探索性治療",
+      "goal": "目標",
+      "goalConversion": "改變性取向，因為它被視為病態。",
+      "goalExploratory": "理解焦慮的意義；結果可以是過渡、不過渡或部分社會過渡。",
+      "method": "方法",
+      "methodConversion": "羞恥、厭惡、行為條件反射、祈禱。",
+      "methodExploratory": "GET相容廣泛的治療模式，如標準的精神動力學或人本主義技術——開放式問題、好奇心、沒有預設終點。",
+      "evidence": "證據基礎",
+      "evidenceConversion": "持續顯示危害；每個主要醫療機構都譴責它。",
+      "evidenceExploratory": "目前還沒有隨機對照試驗，但與減少焦慮、憂鬱、自殘的治療有相似之處；沒有資料顯示系統性危害。",
+      "ethics": "倫理",
+      "ethicsConversion": "透過將異性戀身份作為唯一正確選擇來侵犯自主權。",
+      "ethicsExploratory": "透過在不可逆步驟之前確保青少年（和家庭）理解所有選項來尋求擴大自主權。"
+    },
+    "fallacies": {
+      "title": "Florence Ashley研究中的邏輯謬誤",
+      "name": "謬誤名稱",
+      "explanation": "簡單解釋",
+      "example": "論文中的例子"
+    }
+  },
+  "charts": {
+    "ageDistribution": {
+      "title": "去過渡者在過渡和去過渡時的年齡是多大？",
+      "subtitle": "來自Reddit用戶過渡時間線的資料",
+      "loading": "正在載入圖表資料...",
+      "fetchError": "獲取年齡分佈資料失敗",
+      "genericError": "發生錯誤",
+      "errorPrefix": "錯誤：",
+      "noData": "所選年齡範圍沒有可用資料",
+      "tooltip": {
+        "age": "年齡：{age}",
+        "transitioned": "過渡：{count}位用戶",
+        "detransitioned": "去過渡：{count}位用戶"
+      },
+      "axis": {
+        "age": "年齡",
+        "users": "用戶數量"
+      },
+      "legend": {
+        "transition": "過渡年齡",
+        "detransition": "去過渡年齡"
+      }
+    },
+    "transitionDuration": {
+      "title": "過渡持續時間：過渡年齡與去過渡年齡",
+      "description": {
+        "line1": "每個點顯示過渡年齡（X）與去過渡年齡（Y）。",
+        "line2": "更大、更不透明的點代表更多用戶。"
+      },
+      "loading": "正在載入圖表資料...",
+      "noData": "所選年齡範圍沒有可用資料",
+      "axis": {
+        "transitionAge": "過渡年齡",
+        "detransitionAge": "去過渡年齡"
+      },
+      "tooltip": {
+        "transitionAge": "過渡年齡",
+        "detransitionAge": "去過渡年齡",
+        "duration": "持續時間",
+        "years": "年"
+      },
+      "male": "男性",
+      "female": "女性",
+      "yearsAvg": "年平均",
+      "user": "用戶",
+      "users": "用戶"
+    },
+    "pathways": {
+      "title": "去過渡路徑流程",
+      "subtitle": "/r/detrans Reddit用戶人口統計流向去過渡結果的流程",
+      "loading": "正在載入路徑資料...",
+      "fetchError": "獲取標籤分佈資料失敗",
+      "genericError": "發生錯誤",
+      "error": "錯誤",
+      "users": "{count}位用戶",
+      "percentageOfTotal": "佔總數的{percentage}%",
+      "totalUsers": "總用戶",
+      "flowConnections": "流程連接",
+      "male": "男性",
+      "female": "女性",
+      "noData": "所選篩選條件沒有可用的路徑資料"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "聯絡 | detrans.ai",
+      "description": "與我們聯繫。向我們發送你的想法、建議或回饋。"
+    },
+    "title": "聯絡表單",
+    "intro": "如果你有任何想法、建議，或者這個免費服務幫助了你、你的家人或你的朋友，我很想聽到你的聲音。在下面給我留言！",
+    "form": {
+      "to": "傳送至",
+      "name": "姓名",
+      "namePlaceholder": "你的姓名",
+      "email": "電子郵件",
+      "emailPlaceholder": "you@example.com",
+      "subject": "主題",
+      "subjectPlaceholder": "主題",
+      "message": "訊息",
+      "messagePlaceholder": "寫下你的訊息...",
+      "sendButton": "傳送訊息",
+      "sending": "正在傳送...",
+      "success": "✅ 訊息已傳送！",
+      "error": "❌ 傳送失敗。"
+    }
+  },
+  "seo": {
+    "conversations": {
+      "title": "對話檔案",
+      "description": "瀏覽關於性別認同、去過渡、性別肯定護理和肯定的對話。",
+      "conversations": "對話",
+      "featuredConversations": "精選對話",
+      "allConversations": "所有對話",
+      "untitled": "未命名對話",
+      "noSummary": "沒有摘要可用",
+      "noConversations": "沒有可用對話。",
+      "mode": "模式",
+      "updated": "更新於",
+      "featured": "精選",
+      "conversationSummary": "對話摘要",
+      "noSummaryAvailable": "此對話沒有可用的摘要。",
+      "conversation": "對話",
+      "unableToParse": "無法解析對話訊息。",
+      "archiveNote": "這是我們檔案中的對話。要查看完整對話並參與討論，請訪問此頁面的互動式版本。",
+      "welcomeTitle": "歡迎使用對話檔案",
+      "welcomeDescription": "從側邊欄選擇對話以查看其詳細資訊。此檔案包含關於性別認同、去過渡經歷和肯定旅程的討論。",
+      "featuredDescription": "我們社群標記的突出討論",
+      "allDescription": "瀏覽所有可用討論",
+      "footer": "此頁面為搜尋引擎和機器人提供SEO友好的內容。要獲得完整的互動式體驗，請使用現代網路瀏覽器訪問。",
+      "user": "用戶"
+    },
+    "chat": {
+      "subtitle": "為質疑性別認同的人提供問答。",
+      "freedomMessage": "事實是，性別不一致將使我們所有人自由！",
+      "moreQuestions": "更多與\"{question}\"相關的問題"
+    },
+    "videos": {
+      "title": "過渡與去過渡影片",
+      "description": "這是上傳到網際網路的個人去過渡影片檔案。透過貢獻和分享你自己的故事來讓你的聲音被聽到！",
+      "thumbnailAlt": "縮圖",
+      "by": "作者",
+      "female": "女性",
+      "male": "男性"
+    }
+  },
+  "routes": {
+    "home": "/",
+    "about": "/about",
+    "contact": "/contact",
+    "support": "/support",
+    "videos": "/videos",
+    "stories": "/stories",
+    "studies": "/studies",
+    "definitions": "/definitions",
+    "donate": "/donate",
+    "terms": "/terms",
+    "prompts": "/prompts",
+    "participate": "/participate",
+    "conversations": "/conversations",
+    "research": "/research",
+    "chat": "/chat",
+    "login": "/login"
+  }
+}

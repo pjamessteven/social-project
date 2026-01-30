@@ -153,7 +153,9 @@
     "de": "German",
     "he": "Hebrew",
     "it": "Italian",
-    "nl": "Dutch"
+    "lt": "Lithuanian",
+    "nl": "Dutch",
+    "tr": "Turkish"
   },
   "settings": {
     "title": "Settings"

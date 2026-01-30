@@ -1,0 +1,805 @@
+{
+  "metadata": {
+    "title": "detrans.ai | Beszélj 50 000+ detransitionálóval",
+    "description": "A detrans.ai egy segítőkész és együttérző chatbot, amely megosztja azoknak az embereknek a tapasztalatait és nézőpontjait, akik detransitionáltak. Használd a detrans.ai-t a transition vagy detransition támogatásához és tanácsadásához, vagy egyszerűen kutatási eszközként annak megértéséhez, hogy miért fogadnak el, élik meg és engedik el egyesek a nemi identitásokat."
+  },
+  "home": {
+    "title": "Beszélj 50 000+ Detransitionálóval",
+    "subtitle": "Nézőpontok A Másik Oldalról",
+    "intro": {
+      "greeting": "Helló! Mi az a detransitionáló?",
+      "response": "Szia! Én vagyok a detrans.ai – a detransitionálók kollektív tudata",
+      "definition": "Egy detransitionáló egy volt transznemű személy, aki társadalmilag vagy orvosilag transitionált, de azóta nem azonosítja magát transzneműként, és esetleg visszafordította transitionje bizonyos vonásait.",
+      "description": "Azt figyelem, hogy miért, milyen minták és igazságok vezetnek ahhoz, hogy egyesek elfogadnak, megélnek és továbblépnek a nemi identitásokból, az /r/detrans subredditen közzétett történetek és tapasztalatok olvasásával, valamint a YouTube-ra feltöltött detransition videók nézésével.",
+      "purpose": "A célom az, hogy ezt a tudást megosszam annak érdekében, hogy dekonstruáljam a nemet, és feltárjam, hogyan formálják ezek a tapasztalatok az ember viszonyát önmagához, a testéhez és a világhoz.",
+      "helpPrompt": "Hogyan segíthetek ma?"
+    },
+    "starters": {
+      "lizardQuestion": {
+        "display": "Bocs, de miért vannak itt gyíkok?",
+        "full": "Miért használják a detransitionálók a gyíkot, hogy képviseljék magukat az interneten?"
+      },
+      "curious": {
+        "display": "Kíváncsi vagyok, hogy miért detransitionálnak egyesek",
+        "full": "Kíváncsi vagyok, hogy miért detransitionálnak egyesek, és milyen felismerésekre juthattak ahhoz, hogy elérjék ezt a pontot."
+      },
+      "questioningTrans": {
+        "display": "A nemi identitásomat kérdőjelezem meg, és azt gondolom, hogy transznemű lehetek",
+        "full": "A nemi identitásomat kérdőjelezem meg, és azt gondolom, hogy transznemű lehetek"
+      },
+      "thinkingDetrans": {
+        "display": "Jelenleg transzneműként azonosítom magam, és a detransitionon gondolkodom",
+        "full": "Jelenleg transzneműként azonosítom magam, és a detransitionon gondolkodom"
+      },
+      "familyMember": {
+        "display": "Szülő, családtag vagy barát vagyok valakinek, aki transitionál",
+        "full": "Szülő, családtag vagy barát vagyok valakinek, aki transitionál"
+      },
+      "researcher": {
+        "display": "Kutató vagyok, aki a nemi identitást és a detransition tapasztalatokat tanulmányozza",
+        "full": "Kutató vagyok, aki a nemi identitást és a detransition tapasztalatokat tanulmányozza"
+      },
+      "learnChallenges": {
+        "display": "Szeretnék többet megtudni a detransitionálók által viselt küzdelmekről és kihívásokról",
+        "full": "Szeretnék többet megtudni a detransitionálók által viselt küzdelmekről és kihívásokról"
+      },
+      "understandTransition": {
+        "display": "Meg szeretném érteni, miért döntöttek a detransitionálók a transition mellett",
+        "full": "Meg szeretném érteni az okokat, amelyek miatt a detransitionálók először transitionáltak, és hogyan különbözhet ez a férfiak és nők között."
+      },
+      "debunkMisinfo": {
+        "display": "Szeretném, hogy cáfold a téves információkat és a detransitionről szóló gyakran ismételt tévhiteket",
+        "full": "Kérlek, cáfold a téves információkat és a detransitionálókról szóló gyakran ismételt tévhiteket, a lehető legnagyobb mélységben."
+      }
+    },
+    "navigation": {
+      "videos": "Detransition Videók",
+      "stories": "Történetek",
+      "storiesFull": "Történetek és Statisztikák",
+      "support": "Segítség és Támogatás",
+      "definitions": "Nemi Terminológia",
+      "studies": "Akadémiai Tanulmányok",
+      "studiesShort": "Tanulmányok",
+      "howItWorks": "Hogyan Működik"
+    },
+    "deepResearch": {
+      "title": "Mélykutatás Mód",
+      "description": "A Mélykutatás mód kibővíti a kérdésed, hogy választ adjon, amely a témát különböző szögekből közelíti meg.",
+      "note": "A Mélykutatás lassabb és nem beszélgetési jellegű. Csevegéshez hagyd ki."
+    },
+    "disclaimer": {
+      "trigger": "A tapasztalatok és nézőpontok ezen az oldalon a Redditről származnak.",
+      "title": "Forrás Jogi Nyilatkozat",
+      "content": "A detrans.ai a detrans perspektívából válaszol a nemi kérdésekre a Redditen lévő /r/detrans közösségéből származó releváns tapasztalatok megtalálásával. Bár a Reddit egy platform, ahol valódi emberek osztanak meg személyes történeteket, bot által generált vagy félrevezető tartalom is előfordulhat. Ösztönözzük a felhasználókat, hogy nézzék meg az eredeti Reddit bejegyzéseket a forrás és a kontextus ellenőrzéséhez. Kérjük, vegye figyelembe, hogy az /r/detrans erősen moderált subreddit, de a moderálás nem garantálja minden bejegyzés pontosságát vagy hitelességét."
+    },
+    "donate": {
+      "title": "Támogasd a Munkánkat",
+      "description": "Segíts nekünk fenntartani ezt az erőforrást azok számára, akiknek a legnagyobb szükségük van rá.",
+      "button": "Adományozás",
+      "card": {
+        "title": "Adományok szükségesek a {site} fenntartásához!",
+        "description": "Ha értékeled ezt az ingyenes szolgáltatást, kérlek, fontold meg egy adomány elküldését.",
+        "description2": "Az oldal gyorsítótár-üzemmódban fog futni, ha elfogy a pénzem, saját kérdések feltételének lehetősége nélkül.",
+        "button": "Adományozás"
+      }
+    },
+    "participate": {
+      "card": {
+        "title": "Detransitionáló vagy deszisztáló vagy?",
+        "description": "Vegyél részt kutatásokban, hogy segíts javítani a transznemű identitások tudományos megértését",
+        "description2": "és javítsd a nemi diszfóriát tapasztaló emberek eredményeit."
+      },
+      "title": "Oszd Meg a Történeted",
+      "description": "A tapasztalatod segíthet másoknak megérteni a nemi identitás összetettségét.",
+      "button": "Részvétel"
+    },
+    "footer": {
+      "poem": {
+        "line1": "Felszabadíthatod magad,",
+        "line2": "Csak annyit kell tenned, hogy légy.",
+        "line3": "És figyelj a gondolataidra!",
+        "line4": "Mert az elme olyan, mint egy kert,",
+        "line5": "És minden gondolat egy mag.",
+        "line6": "Amit vetünk, azt aratjuk,",
+        "line7": "De ezen keresztül növekedhetünk..."
+      },
+      "openSource": "Egy nyílt forráskódú projekt",
+      "madeWithLove": "Szeretettel készült Wellingtonban, Új-Zélandon",
+      "donatePrompt": "Kérlek, adományozz, ha tudsz,",
+      "beKind": "És légy kedves egymáshoz."
+    },
+    "browseConversations": "Összes Beszélgetés Böngészése"
+  },
+  "header": {
+    "navigation": {
+      "home": "Kezdőlap",
+      "resources": "Erőforrások",
+      "about": "Rólunk"
+    },
+    "resources": {
+      "genderSupport": "Nemi Támogatás",
+      "genderSupportDesc": "Találj közösséget és terapeutákat",
+      "terminology": "Terminológia",
+      "terminologyDesc": "Kulcsfogalmak meghatározása",
+      "stories": "Történetek és Statisztikák",
+      "storiesDesc": "Az /r/detrans felhasználóitól",
+      "videos": "Detransition Videók",
+      "videosDesc": "Személyes emlékirat archívum",
+      "studies": "Szakértői Áttekintésű Tanulmányok",
+      "studiesDesc": "Releváns akadémiai kutatás",
+      "statistics": "Ellenőrzött Statisztikák",
+      "statisticsDesc": "statsforgender.org"
+    },
+    "about": {
+      "contact": "Kapcsolat",
+      "contactDesc": "Vedd fel velem a kapcsolatot",
+      "systemPrompts": "Rendszer Promptok",
+      "systemPromptsDesc": "Nézd meg az AI rendszer promptokat",
+      "terms": "Feltételek",
+      "termsDesc": "Adatvédelmi szabályzat és feltételek"
+    },
+    "donate": "Adományozás",
+    "language": {
+      "title": "Nyelv"
+    }
+  },
+  "language": {
+    "title": "Nyelv",
+    "select": "Válassz nyelvet",
+    "search": "{count} nyelv",
+    "en": "Angol",
+    "es": "Spanyol",
+    "fr": "Francia",
+    "de": "Német",
+    "he": "Héber",
+    "it": "Olasz",
+    "nl": "Holland",
+    "tr": "Török",
+    "hu": "Magyar"
+  },
+  "settings": {
+    "title": "Beállítások"
+  },
+  "theme": {
+    "title": "Megjelenés",
+    "darkMode": "Sötét mód",
+    "light": "Világos",
+    "dark": "Sötét"
+  },
+  "definitions": {
+    "metadata": {
+      "title": "detrans.ai | Nemi Kifejezések Meghatározása",
+      "description": "A mindennapi beszédben a nem (sex) és a gender néha felcserélhetően használatos, és egyes nyelvekben csak egy szó van a kettő leírására. Azonban az egész nemi diszfória fogalma arra támaszkodik, hogy megértjük a különbségeket a nem és a gender között."
+    },
+    "title": "Nemi Kifejezések Meghatározása",
+    "sexAndGender": {
+      "heading": "Nem és gender?",
+      "intro": "A mindennapi beszédben a nem (sex) és a gender néha felcserélhetően használatos, és egyes nyelvekben csak egy szó van a kettő leírására. Azonban az egész nemi diszfória fogalma arra támaszkodik, hogy megértjük a különbségeket a nem és a gender között.",
+      "sex": "<b>A nem (sex)</b> egy személy biológiájára utal (azaz az anatómiájára; csontváz, izomzat, kromoszómák, reproduktív rendszer és másodlagos nemi jellemzők). Vegye figyelembe, hogy a lakosság több mint 99%-a biológiailag vagy férfi vagy nő, nincs nemi spektrum, bár egyeseknek vannak nemi fejlődési zavarai (DSD-k). A DSD-s emberek túlnyomó többsége férfi vagy nő.",
+      "gender": "<b>A gender</b> a társadalmilag konstruált szerepekre, viselkedésekre, tevékenységekre és tulajdonságokra utal, amelyeket egy adott társadalom megfelelőnek tart a férfiak és nők számára [biológiai nemük alapján]. A 'férfias' és 'nőies' gender kategóriák. A legtöbb, talán minden ember keveréke a férfias és nőies vonásoknak. A gender változik az idővel és a kultúrák között.",
+      "nonConformity": "<b>A nem-konformitás</b> akkor következik be, amikor egy személy másképp cselekszik vagy mutatkozik be, mint ahogy a társadalom elvárja tőle, a neme alapján.",
+      "identity": "<b>A nemi identitás</b> – egyesek úgy gondolják, hogy mindannyian rendelkezünk veleszületett 'nemi identitással' – egy mély érzés vagy tudatosság önmagunkról mint férfiről, nőről vagy valahol a kettő között – amely különálló biológiai nemünktől, és amely ritka esetekben eltérhet attól. Mások nem hiszik, hogy létezik egy specifikus nemi identitás, amely eltérne egy személy egyéb személyiség vagy identitás vonásaitól."
+    },
+    "dysphoria": {
+      "heading": "Mi az a nemi diszfória?",
+      "p1": "A nemi diszfória egy diagnosztikai kifejezés, amelyet a pszichiátriai és orvosi közösség használ annak a distressznek a leírására, amelyet valaki akkor él meg, amikor úgy érzi, hogy nemi identitása nem egyezik biológiai nemével.",
+      "p2": "A nemi diszfóriát tapasztaló emberek erős, tartós azonosulási érzéseket jelentenek be egy olyan genderrel, amely eltér a nemüktől, és ehhez kapcsolódó kényelmetlenséget a nemi testükkel. Jelenleg formális diagnózis felállításához az érzéseknek jelentős distresszt vagy funkciózavart kell okozniuk az azt tapasztaló személy számára."
+    },
+    "transgender": {
+      "heading": "Mit jelent transzneműnek lenni?",
+      "p1": "A transznemű egy olyan kifejezés, amely különböző dolgokat jelenthet különböző embereknek. Általánosan elfogadott, hogy a transz nők férfi testben születnek, de nőként azonosítják magukat, a transz férfiak női testben születnek, de férfiként azonosítják magukat, és a nem-bináris emberek sem férfiként, sem nőként nem azonosítják magukat. Az emberek gyakran használják a rövidebb 'trans' kifejezést, hogy jelezzék, valaki olyan genderrel azonosítja magát, amely nem ugyanaz, mint a biológiai neme.",
+      "p2": "A transznemű úgy érthető meg, hogy i) te a születési nemmel ellentétes nem/gender vagy, ii) úgy hiszed magad, hogy a születési nemmel ellentétes nem/gender vagy, vagy iii) úgy élsz, mintha a nem/gender ellentétes lenne a születési nemmel. Viták arról, hogy e három értelmezési mód közül melyik a legpontosabb, hevesek és vitatottak lehetnek. Egyesek úgy érzik, hogy még a transzneműnek lenni jelentéséről szóló vita is aláássa a tapasztalat érvényességét. Azonban ezek az eltérő meggyőződések elkerülhetetlenül különböző ötletekhez vezetnek a legjobb támogatási módszerekről a nemi distressz kezelésében, így a megbeszélések szükségesek annak biztosítására, hogy az emberek a lehető legjobb segítséget és tanácsot kapják."
+    },
+    "desistance": {
+      "heading": "Mi az a deszisztencia?",
+      "p1": "A deszisztencia akkor következik be, amikor valaki, aki transzneműként azonosította magát, de nem végzett orvosi beavatkozásokat, már nem azonosítja magát transzneműként. Bár lehet, hogy nem kell szembenézniük az orvosi beavatkozások következményeivel, a deszisztencia még mindig nagyon érzelmileg fájdalmas, zavaros és nehéz folyamat lehet."
+    },
+    "detransition": {
+      "heading": "Detransition és detransitionálók",
+      "p1": "A detransition akkor következik be, amikor valaki, aki transzneműként azonosította magát és orvosi beavatkozásokon esett át, már nem azonosítja magát transzneműként. Ennek a csoportnak a tapasztalataiban hatalmas változatosság van. Egyesek rendkívül nyugtalanok lehetnek attól, amin keresztülmentek és a hosszú távú következményektől, mások úgy láthatják, mint valamit, amin át kellett menniük ahhoz, hogy megértsék magukat jelenlegi állapotukban."
+    },
+    "regret": {
+      "heading": "Transition megbánása",
+      "p1": "Egyesek évekig azonosíthatták magukat transzneműként, és olyan orvosi beavatkozásokon estek át, mint a hormonok és műtétek, amelyek visszafordíthatatlanul megváltoztatták a testüket. Úgy érezhetik, hogy megbánták az orvosi gender transition megkezdését, de továbbra is transzneműként azonosítják magukat és/vagy folytatják a másik nem hormonjait."
+    },
+    "source": {
+      "text": "Forrás:",
+      "link": "A Detrans Alapítvány"
+    }
+  },
+  "chat": {
+    "lookingForComments": "Releváns hozzászólások keresése...",
+    "errorOccurred": "Hiba történt, próbáld újra... Vedd fel velem a kapcsolatot, ha ez továbbra is előfordul.",
+    "analysingExperiences": "Tapasztalatok Elemzése",
+    "detransPerspective": "-> Mik a detrans nézőpontok erről a témáról?",
+    "transPerspective": "-> Mik a transz nézőpontok erről a témáról?",
+    "backToPortal": "<- Vissza a Portálra"
+  },
+  "chatInput": {
+    "placeholder": "Kérdezd a detrans.ai-t...",
+    "deepResearch": "Mélykutatás",
+    "suggestions": "Javaslatok:"
+  },
+  "deepResearchEvents": {
+    "errorTitle": "Mélykutatás hiba",
+    "retrieving": "Detrans tapasztalatok lekérése...",
+    "generatingQuestions": "Meta kérdések generálása...",
+    "findingAnswers": "Válaszok keresése a meta kérdésekre",
+    "completed": "Mélykutatás befejezve",
+    "retrieveError": "Hiba a detrans tapasztalatok lekérésekor!",
+    "analyzeError": "Elfogyott a pénzünk az AI fizetésére, amely elemzi a detrans tapasztalatokat és válaszol a kérdésekre. Ha tudsz, kérlek adományozz, hogy fenntarthassuk a szolgáltatást. Kérlek, próbáld újra később. Egyelőre még mindig kipróbálhatod a kérdéseket a portálban.",
+    "generatingAnswer": "Válasz generálása...",
+    "waitingForAnswer": "Várakozás a válaszra",
+    "questionsAnswered": "{answered} / {total} meta kérdés megválaszolva",
+    "generatingSummary": "A válaszok összefoglalásának generálása"
+  },
+  "questionTabs": {
+    "topics": "Témák",
+    "generated": "Generált",
+    "recent": "Friss",
+    "top": "Legnépszerűbb"
+  },
+  "conversations": {
+    "title": "Legfrissebb Beszélgetések",
+    "subtitle": "Lásd saját szemmel, hogyan segít a detrans.ai az embereknek a világ minden tájáról.",
+    "tabs": {
+      "featured": "Kiemelt",
+      "all": "Összes"
+    },
+    "buttons": {
+      "showMore": "{count} További Beszélgetés Mutatása",
+      "showLess": "Kevesebb Mutatása",
+      "loadMore": "További Beszélgetések Betöltése",
+      "loading": "Betöltés..."
+    }
+  },
+  "conversationCard": {
+    "untitled": "Névtelen Beszélgetés",
+    "from": "innen",
+    "moreMessages": "{count} további üzenet...",
+    "moreMessage": "{count} további üzenet...",
+    "date": {
+      "today": "Ma",
+      "yesterday": "Tegnap",
+      "daysAgo": "{count} nappal ezelőtt",
+      "weeksAgo": "{count, plural, =1 {1 hete} other {# hete}}"
+    },
+    "admin": {
+      "deleting": "Törlés...",
+      "delete": "Beszélgetés Törlése",
+      "banning": "Kitiltás...",
+      "ban": "Felhasználó Kitiltása (IP)"
+    }
+  },
+  "stories": {
+    "metadata": {
+      "title": "detrans.ai | Detransition Történetek és Statisztikák",
+      "description": "Olvass szívbemarkoló detransition történeteket, idővonalakat és trendeket az /r/detrans Reddit közösség tagjaitól, a legnagyobb nyílt detransition történetgyűjteményről az interneten. Tudj meg, hogy hány évesek voltak a detransitionálók, amikor transitionáltak és detransitionáltak, és milyen útvonalakat jártak be."
+    },
+    "title": "Detransition Történetek és Statisztikák",
+    "subtitle": "Böngészés és vizualizáció {count} egyedi detransition történet és statisztika között azoktól az emberektől, akik megosztották tapasztalataikat az /r/detrans subredditen, amely a legnagyobb nyílt detransition történet- és tapasztalatgyűjtemény az interneten.",
+    "disclaimer": {
+      "summary": "Ezek a történetek AI segítségével lettek összefoglalva.",
+      "details": "A Redditen az emberek gyakran több hozzászólásban vagy bejegyzésben osztják meg tapasztalataikat. Hogy ezt az információt könnyebben elérhetővé tegyük, az AI összegyűjti ezeket a szétszórt darabokat egyetlen, könnyen olvasható összefoglalóba és idővonalba. Minden rendszer prompt fel van tüntetve a promptok oldalon.",
+      "accuracy": "Néha az AI hallucinálhat vagy olyan dolgokat állíthat, amelyek nem igazak. De általában az összefoglalt történetek pontos tükrözői az eredeti felhasználói hozzászólásoknak.",
+      "inclusion": "Csak azok a felhasználók szerepelnek, akik elég információt osztottak meg ahhoz, hogy teljes történetet és idővonalat lehessen összeállítani. Azok a felhasználók, akik ötnél kevesebb hozzászólást tettek közzé, vagy hozzászólásaik kevesebb mint három upvote-ot kaptak, nem szerepelnek az adatkészletben.",
+      "verification": "Minden felhasználót elemeztek a bot által generált vagy nem hiteles tartalom jeleire. Minden fiók, amely nem tűnik valódi detransitionálónak, 'gyanús' jelzést kap. Ezeket a fiókokat manuálisan felülvizsgálják, és eltávolítják a detrans.ai adatkészletéből, ha nem hitelesnek találják őket. Azok a fiókok, amelyek ötnél kevesebb hozzászólást tettek, el lettek távolítva az elemzésből."
+    },
+    "charts": {
+      "tabs": {
+        "age": "Kor",
+        "duration": "Időtartam",
+        "transitionReason": "Transition Oka",
+        "detransitionReason": "Detransition Oka",
+        "pathways": "Útvonalak"
+      },
+      "loading": "Grafikon adatok betöltése...",
+      "error": "Hiba: {message}",
+      "retry": "Újrapróbálkozás",
+      "noData": "Nincs {mode} ok adat a kiválasztott szűrőkhöz",
+      "reasonChart": {
+        "title": "Miért mondják a detransitionálók, hogy {mode, select, detransition {detransitionáltak} other {transitionáltak}}?",
+        "subtitle": "Adatok a Reddit felhasználói {mode} idővonalairól ({totalReasonCount} összes felhasználó, {totalUsers} különböző ok.)",
+        "mentions": "{count} említés ({percentage}%)"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Felhasználói tapasztalatok keresése...",
+      "ageRange": "Kor Tartomány:",
+      "ageRangeYears": "{min} - {max} év",
+      "sex": {
+        "all": "Férfi és Nő",
+        "female": "Nő",
+        "male": "Férfi"
+      },
+      "tagsPlaceholder": "Válassz címkéket szűréshez...",
+      "clearFilters": "Szűrők Törlése"
+    },
+    "results": "{showing} / {total} felhasználói történet megjelenítve",
+    "noResults": "Nincs a szűrőknek megfelelő felhasználó.",
+    "pagination": {
+      "previous": "Előző",
+      "next": "Következő",
+      "pageInfo": "{page}. oldal / {totalPages}"
+    },
+    "userCard": {
+      "comments": "{count} hozzászólás",
+      "postingSince": "{date} óta ír",
+      "transitionedAt": "{age} évesen transitionált",
+      "desistedAt": "{age} évesen deszisztált",
+      "detransitionedAt": "{age} évesen detransitionált",
+      "female": "nő",
+      "male": "férfi"
+    }
+  },
+  "prompts": {
+    "metadata": {
+      "title": "Hogyan működik? | Rendszer Promptok",
+      "description": "Ismerd meg, hogyan működik a detrans.ai, beleértve a rendszer promptokat, az adatok levágási dátumait és a nyílt forráskódú információkat."
+    },
+    "title": "Hogyan működik?",
+    "intro": {
+      "paragraph1": "A <bold>detrans.ai</bold> chat egy RAG (retrieval augmented generation) alapú ügynök, amely meta kérdéseket generál és válaszol rájuk azzal, hogy felhozza és integrálja a detrans gondolatokat és tapasztalatokat az <reddit>/r/detrans</reddit> subredditről és a YouTube-ról. A <llamaIndex>LlamaIndex</llamaIndex> keretrendszerrel és a nyílt forráskódú kínai <kimi>kimi-k2.5</kimi> modellel készült a Moonshot AI-tól a nyugati politikai elfogultság csökkentésére.",
+      "paragraph2": "A ChatGPT és a legtöbb más nyugati LLM meglehetősen agresszív módon promotálja és fenntartja a nemi meggyőződéseket. Kiderült, hogy lehetetlen az OpenAI GPT modelljeit használni ehhez a projekthez, mivel a modellek folyamatosan aláásni és ellentmondani fogtak azoknak a detrans tapasztalatoknak, amelyeket összefoglalni kellett volna. Ha pozitívabb megerősítő élményt szeretnél, lásd a <chatgpt>ChatGPT</chatgpt>-t."
+    },
+    "dataCutoff": {
+      "title": "Adat Levágási Dátumok",
+      "paragraph1": "A <bold>detrans.ai</bold> jelenleg hozzáfér az /r/detrans összes olyan hozzászólásához, amelyet <date>2025. 09. 08.</date> előtt tettek közzé, és legalább három upvote-ot kaptak. Célom, hogy legalább évente egyszer frissítsem az adatkészletet, amennyiben az /r/detrans subreddit továbbra is létezik.",
+      "paragraph2": "A felhasználók videó tapasztalatokat nyújthatnak be YouTube videók linkjeinek beküldésével. Ezeket a videókat manuálisan felülvizsgálják, mielőtt az OpenAI Whisper beszéd-szöveg modelljével átírásra kerülnek, és hozzáadásra kerülnek a vektor adatbázishoz és a videó archívumhoz."
+    },
+    "openSource": {
+      "title": "Nyílt Forráskód",
+      "paragraph": "A forráskód elérhető a <github>Github</github>-on MIT licenc alatt, ha szeretnéd megvizsgálni vagy újra felhasználni a kódot a saját projektedhez. Ez a projekt számos más nyílt forráskódú projektre épül, mint például a Llamaindex, React, Next.js, Tailwind, Lucide, Qdrant, Postgres és a Vercel AI SDK. Köszönet a projektek hozzájárulóinak a szilárd alap biztosításáért."
+    },
+    "systemPrompts": {
+      "title": "Rendszer Promptok",
+      "description": "Ezek azok a promptok, amelyeket a rendszer a RAG munkafolyamathoz használ. Nincsenek más egyedi utasítások vagy rétegek, mint amit ezen az oldalon látsz.",
+      "lastUpdated": "Utoljára Frissítve",
+      "chatAgentTitle": "Chat Ügynök Rendszer Prompt",
+      "researchModeTitle": "Rendszer Promptok a Mélykutatás Módhoz",
+      "researchAgentTitle": "Kutató Ügynök Prompt",
+      "experienceExtractionTitle": "Tapasztalat Kinyerő Prompt",
+      "finalAnswerTitle": "Végső Válasz Prompt"
+    },
+    "userSummaries": {
+      "title": "Rendszer Promptok a Felhasználói Összefoglalókhoz",
+      "description": "Ezek a rendszer promptok a generált felhasználói összefoglalókhoz.",
+      "lastUpdated": "Utoljára Frissítve",
+      "experienceReportTitle": "Felhasználói Tapasztalat Jelentés",
+      "experienceSummaryTitle": "Felhasználói Tapasztalat Összefoglaló",
+      "generateTagsTitle": "Címkék Generálása",
+      "extractAgesTitle": "Korok Kinyerése",
+      "determineBirthSexTitle": "Születési Nem Megállapítása",
+      "redFlagReportTitle": "Vörös Zászló Jelentés"
+    }
+  },
+  "donatePage": {
+    "title": "Tartsd Életben a Detrans.AI-t",
+    "description1": "Ha értékled a munkát, amit ebbe az oldalba fektettem, vagy ha ez az ingyenes szolgáltatás segített neked, kérlek, fontold meg egy egyszeri vagy rendszeres adomány elküldését, hogy a <b>detrans.ai</b> online maradjon.",
+    "description2": "Nem engedhetem meg magamnak, hogy ilyen erőforrás-igényes szolgáltatást tartsak fenn a támogatásod nélkül. A fő jövedelmi forrásom jelenleg az állami jóléti ellátás, és írás pillanatában kevesebb mint 1000 dollár van a bankszámlámon. Ha ez az oldal berobban, ezrek dolláros számlákat kaphatok. Ha elfogy a pénzem, a saját kérdések feltételének és a témák mélyebb megismerésének a következő kérdések révén történő lehetősége le lesz tiltva, és csak gyorsítótárazott válaszokat szolgálok ki a portálban található kérdésekre.",
+    "description3": "Kérlek, fontold meg a havi adományozást. Az alábbi paypalon keresztül, közvetlenül az új-zélandi bankszámlámra vagy BTC-vel adományozhatsz.",
+    "bankAccount": "Új-Zélandi Bankszámla",
+    "accountName": "Név",
+    "accountNumber": "Számla",
+    "swiftCode": "SWIFT/BIC kód",
+    "bitcoin": "Bitcoin Cím",
+    "paypal": "Paypal Adományozás"
+  },
+  "terms": {
+    "metadata": {
+      "title": "Adatvédelmi Szabályzat | detrans.ai",
+      "description": "Tájékozódj adatvédelmi szabályzatunkról, adatgyűjtési gyakorlatainkról és arról, hogyan védjük az információidat."
+    },
+    "title": "Adatvédelmi Szabályzat",
+    "intro": "Ez az Adatvédelmi Szabályzat elmagyarázza, milyen információkat gyűjtünk, miért gyűjtjük őket, és hogyan tartjuk biztonságban, amikor felkeresed vagy használod a szolgáltatásunkat.",
+    "sections": {
+      "informationWeCollect": {
+        "title": "Milyen Információkat Gyűjtünk",
+        "chatMessages": {
+          "title": "Chat Üzenetek:",
+          "content": "Megőrizzük az összes chat rekordot, valamint a Mélykutatás módban feltett összes kérdésre adott válaszokat. A chat rekordok nem kapcsolódnak az IP címedhez vagy bármely olyan adathoz, amelyet potenciálisan fel lehetne használni a személyazonosságod megállapítására. A chat rekordokat később elemezhetik és használhatják kutatási célokra. Kérlek, kerüld minden érzékeny információ megosztását."
+        },
+        "cookies": {
+          "title": "Sütik / Követési Technológiák:",
+          "content": "Nem használunk sütiket, pixeleket vagy hasonló kliensoldali követési mechanizmusokat."
+        },
+        "ipAddresses": {
+          "title": "IP Címek:",
+          "content": "Amikor kérést küldesz a szervereinknek, eltároljuk az IP címed, hogy megszámoljuk a kéréseket és érvényesítsük a visszaélést megelőző korlátozásokat."
+        },
+        "optionalData": {
+          "title": "Opcionális Adatok:",
+          "content": "Ha úgy döntesz, hogy kapcsolatba lépsz velünk, gyűjthetjük az önként megadott információkat (pl. email cím, név). Ezen információk megadása opcionális, kivéve, ha kifejezetten másként jelezzük."
+        }
+      },
+      "legalBases": {
+        "title": "Feldolgozás Jogi Alapjai (EU/EGT látogatók)",
+        "item1": "A korlátozási feldolgozás szükséges a <em>jogos érdekeink</em> számára a GDPR 6(1)(f) cikke alatt – konkrétan a szolgáltatás rendelkezésre állásának és biztonságának fenntartása.",
+        "item2": "Minden további feldolgozás (pl. fiók létrehozása) a <em>hozzájárulásodon</em> vagy <em>szerződéses szükségességen</em> alapul, ha alkalmazható."
+      },
+      "dataRetention": {
+        "title": "Mennyi Ideig Őrzünk Adatokat",
+        "content": "Minden chat rekordot megőrzünk. A korlátozáshoz használt IP címek automatikusan törlésre kerülnek perceken belül az utolsó kérés után vagy a korlátozási időszak végén, amelyik hamarabb bekövetkezik. Az önkéntes információkat (pl. támogatási email-ek) csak addig őrizzük meg, amíg szükséges a kérdésed megoldásához vagy jogi kötelezettségek teljesítéséhez."
+      },
+      "thirdPartySharing": {
+        "title": "Harmadik Féllel Történő Megosztás",
+        "content": "Anonimizált chat rekordokat megoszthatunk akadémikusokkal és kutatókkal, akik a nemi diszfóriát tapasztaló emberek eredményeinek javítására törekszenek. IP címeket vagy más adatokat csak törvény által megkövetelt esetekben vagy jogaink, felhasználóink vagy a nyilvánosság védelme érdekében (pl. csalás megelőzése, bírósági végzés) hozhatunk nyilvánosságra."
+      },
+      "security": {
+        "title": "Biztonság",
+        "content": "Iparági szabvány technikai és szervezési intézkedéseket (TLS titkosítás, hozzáférési ellenőrzések, legkisebb jogosultság elve) használunk az adatok védelmére átvitel és tárolás közben."
+      },
+      "internationalTransfers": {
+        "title": "Nemzetközi Átadások",
+        "content": "Szervereink az Egyesült Államokban találhatók. Ha a szolgáltatást az Egyesült Államokon kívülről éred el, megérted, hogy az IP címed átvitelre és feldolgozásra kerül az Egyesült Államokban."
+      },
+      "childrensPrivacy": {
+        "title": "Gyermekek Adatvédelme",
+        "content": "Szolgáltatásunk nem 13 év alatti gyermekeknek szól, és nem gyűjtünk tudatosan személyes információkat tőlük. Ha úgy gondolod, hogy véletlenül gyűjtöttünk ilyen adatot, kérlek, vedd fel velünk a kapcsolatot az azonnali törlés érdekében."
+      },
+      "changes": {
+        "title": "Változások ebben a Szabályzatban",
+        "content": "Időről időre frissíthetjük ezt a szabályzatot. A fenti 'Hatályos Dátum' változni fog, és a jelentős változások kiemelten megjelennek."
+      },
+      "contact": {
+        "title": "Kapcsolat",
+        "content": "Ha kérdéseid, aggályaid vagy panaszaid vannak, használd a kapcsolatfelvételi űrlapot, vagy írj email-t a következő címre: <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "videos": {
+    "metadata": {
+      "title": "detrans.ai | Nézz Videókat Detransitionálóktól",
+      "description": "Itt egy személyes videó emlékirat válogatás található, amelyet az internetre töltöttek fel olyan emberek, akik transitionáltak, majd rájöttek valamire, ami miatt detransitionáltak. Számtalan ilyen történet van az interneten, ez csak egy kis része."
+    },
+    "title": "Transition és Detransition Videók",
+    "description": {
+      "line1": "Ez az oldal a legjobb detransition videó archívumává kíván válni az interneten.",
+      "line2": "Beszéd-szöveg technológia segítségével a detrans.ai integrálja ezeket a tapasztalatokat a chat beszélgetésekbe.",
+      "line3": "Egyelőre csak YouTube videók, hamarosan TikTok?!"
+    },
+    "female": "nő",
+    "male": "férfi",
+    "backToAll": "Vissza az összeshoz",
+    "overview": "Áttekintés",
+    "fullSummary": "Teljes Videó Összefoglaló",
+    "watchOnYouTube": "Megtekintés YouTube-on",
+    "moreVideos": "További Videók",
+    "browseAll": "Összes detransition videó böngészése",
+    "metadataWatchDescription": "Nézd meg {title} című videót {author} készítette, egy {sex} detransitionáló, aki megosztja történetét.",
+    "metadataThumbnailAlt": "Bélyegkép ehhez: {title}"
+  },
+  "videoList": {
+    "loading": "Videók betöltése...",
+    "filters": {
+      "all": "Összes Történet",
+      "female": "Nő",
+      "male": "Férfi",
+      "detransitioners": "Detransitionálók"
+    },
+    "thumbnailAlt": "Bélyegkép ehhez: {title}",
+    "by": "készítette",
+    "female": "Nő",
+    "male": "Férfi"
+  },
+  "videoSubmitForm": {
+    "submitTitle": "Add Hozzá a Detransition Videódat",
+    "description": {
+      "line1": "A videód beküldésével megjelenik ezen az oldalon és a releváns chat-ekben.",
+      "line2": "Lehet a te videód, vagy csak egy, amit online találtál és hiányzik erről az oldalról.",
+      "line3": "Minden beküldést moderálnak, néhány napig tarthat, mielőtt megjelenik."
+    },
+    "urlLabel": "YouTube URL",
+    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "submitButton": "Videó Beküldése",
+    "submitting": "Beküldés...",
+    "submitSuccess": "Videó sikeresen beküldve! Felülvizsgálat után jelenik meg az oldalon.",
+    "submitError": "Nem sikerült a videót beküldeni",
+    "networkError": "Hálózati hiba. Kérlek, próbáld újra."
+  },
+  "studySubmitForm": {
+    "submitTitle": "Tanulmány Beküldése",
+    "description": {
+      "line1": "Ismersz egy releváns akadémiai tanulmányt vagy szakértői áttekintésű cikket, amely hiányzik?",
+      "line2": "Add meg az URL-t és opcionálisan javasolj egy címet hozzá.",
+      "line3": "Minden beküldést moderálnak, mielőtt megjelenik az oldalon."
+    },
+    "urlLabel": "Tanulmány URL",
+    "urlPlaceholder": "https://...",
+    "titleLabel": "Javasolt Cím",
+    "titlePlaceholder": "Opcionális címsor vagy cím a tanulmányhoz",
+    "titleHelp": "Opcionális: Javasolj egy rövid címet vagy címsort ehhez a tanulmányhoz",
+    "submitButton": "Tanulmány Beküldése",
+    "submitting": "Beküldés...",
+    "submitSuccess": "Tanulmány sikeresen beküldve! Felülvizsgálat után jelenik meg az oldalon.",
+    "submitError": "Nem sikerült a tanulmányt beküldeni",
+    "networkError": "Hálózati hiba. Kérlek, próbáld újra."
+  },
+  "studiesPage": {
+    "metadata": {
+      "title": "detrans.ai | Akadémiai Tanulmányok Detransition Témákban",
+      "description": "Találj ezen az oldalon akadémiai tanulmányok, szakértői áttekintésű folyóiratcikkek és ellenőrzött statisztikák válogatását, amelyek a nemi identitás trendekhez és a detransitionhoz kapcsolódnak.",
+      "ogTitle": "detrans.ai | Akadémiai Tanulmányok Detransition Témákban",
+      "ogDescription": "Találj ezen az oldalon akadémiai tanulmányok és szakértői áttekintésű folyóiratcikkek és ellenőrzött statisztikák válogatását, amelyek a nemi identitás trendekhez és a detransitionhoz kapcsolódnak."
+    },
+    "title": "Kiválasztott Akadémiai Cikkek",
+    "description": "Akadémiai tanulmányok, szakértői áttekintésű kutatások és folyóiratcikkek a nemi identitás, transition és detransition témákban."
+  },
+  "contentWarning": {
+    "title": "Tartalmi Figyelmeztetés:",
+    "description": {
+      "line1": "Ez a weboldal történeteket, tapasztalatokat és nézőpontokat tartalmaz volt transznemű emberektől.",
+      "line2": "A témák közé tartozik a transition megbánása, orvosi szövődmények és a diszfória holisztikus nézetei.",
+      "line3": "Ez az információ kihívhatja a nemi identitásról és a transitionről alkotott széles körben elfogadott meggyőződéseket."
+    },
+    "buttons": {
+      "exit": "Vigyél ki innen!",
+      "continue": "Folytatás"
+    }
+  },
+  "supportPage": {
+    "metadata": {
+      "title": "detrans.ai | Szerezz Nemi Segítséget és Támogatást",
+      "description": "Ismerd meg a különbséget a Gender Affirming Care (Nemi Megerősítő Ellátás) és a Gender Exploratory Therapy (Nemi Felfedező Terápia) között. Ha nemi diszfóriát tapasztalsz, az egyik legjobb mód a támogatás megszerzésére, ha beszélsz és megérted azoknak a nézőpontjait, akik már jártak ott és jöttek ki a másik oldalon."
+    },
+    "title": "Szerezz Nemi Segítséget és Támogatást",
+    "navigation": {
+      "jumpTo": "Ugrás:",
+      "getGenderSupport": "Szerezz Nemi Támogatást:"
+    },
+    "sections": {
+      "onlineSupport": {
+        "title": "Online Támogató Csoportok",
+        "description": "Ha nemi diszfóriát tapasztalsz, az egyik legjobb mód a támogatás megszerzésére, ha beszélsz és megérted azoknak a nézőpontjait, akik már jártak ott és jöttek ki a másik oldalon.",
+        "links": {
+          "redditCommunity": "Detrans Közösség a Redditen",
+          "redditWiki": "Detrans Wiki a Redditen",
+          "discordServer": "Hivatalos /r/detrans Discord Szerver",
+          "askDetransAI": "Kérdezz 50 000+ detrans embert a detrans.ai-vel"
+        }
+      },
+      "genderAffirmingCare": {
+        "title": "Gender Affirming Care: Mi ez?",
+        "description": "A gender affirming care jelenleg a szabványos (és gyakran az egyetlen) kezelési lehetőség a nemi diszfóriára a nyugati világ egészségügyi szolgáltatói által kínálva. A gender affirming care lényegében felismeri a társadalom gender elvárásait, majd alkalmazkodik hozzájuk a páciens. Ez egy szakaszos megközelítés, amely a társadalmi transitionnel kezdődik (név, névmások, öltözködés), majd hormonterápiával folytatódik, és aztán egyeseknél visszafordíthatatlan sebészeti beavatkozásokkal. A gender affirming care enyhülést nyújthat a nemi diszfóriára, de komoly egészségügyi kockázatokkal és gyakran végleges mellékhatásokkal jár. Rendkívüli óvatossággal haladj, és győződj meg róla, hogy",
+        "watchTestimonies": "nézz meg néhány tanúságtételt"
+      },
+      "genderExploratoryTherapy": {
+        "title": "Gender Exploratory Therapy: Mi ez?",
+        "description1": "A Gender Exploratory Therapy egyszerűen azt jelenti, hogy a terapeutád nem siet el a megerősítéssel és a medicalizálással. Ehelyett azzal kezdik, hogy feltárják a gender fogalmát és miért érezheted így magad. A Gender Exploratory Therapy egy megközelítés konkrét, előre meghatározott menetrend nélkül, és a gender exploratory terápia kimenetelei változhatnak az egyes személyektől függően.",
+        "description2": "Ha rákeresel a 'Gender Exploratory Therapy'-ra a Google-ben, találsz néhány kritikát, amelyek összehasonlítják a meleg konverziós terápiával (amelyről bebizonyosodott, hogy hatástalan). Az igazság az, hogy a Gender Exploratory Therapy nagyon különbözik a meleg konverziós terápiától:",
+        "references": {
+          "title": "Hivatkozások",
+          "ref1": "U.S. Dept. of Health & Human Services (2025). Report on Pediatric Gender Dysphoria and Gender Conversion Efforts.",
+          "ref2": "D'Angelo, R. (2025). 'Supporting autonomy in young people with gender dysphoria: psychotherapy is not conversion therapy.' Journal of Medical Ethics, 51(1).",
+          "ref3": "Lemma, A. & Schmidt, L. (2024). 'Psychodynamic Psychotherapy for Gender Dysphoria is not Conversion Therapy.' Frontiers in Psychology.",
+          "ref4": "Korte, A. et al. (2021). 'One Size Does Not Fit All: In Support of Psychotherapy for Gender Dysphoria.' Archives of Sexual Behavior."
+        },
+        "florenceAshley": {
+          "title": "Florence Ashley Tanulmány",
+          "description": "Az akadémiai kutatás ezen a területen gyakran elfogult. Az egyik legbefolyásosabb tanulmány (Interrogating Gender-Exploratory Therapy) 2022-ben jelent meg Florence Ashley-től, egy transz nőtől. Tanulmányában összehasonlította a Gender Exploratory Therapy-t a meleg konverziós terápiával, és erősen elítélte a gyakorlatot. Fel kell ismerni, hogy azok az emberek, akik transzneműként azonosítják magukat, motiváltak az identitásuk és meggyőződéseik védelmére, és ez a tanulmány ennek tökéletes példája. A tanulmány tele van logikai hibákkal, mégis megjelent és akadémiai indoklásként szolgál arra, hogy a gender-affirming care legyen az egyetlen lehetőség a nemi diszfóriát tapasztaló emberek számára.",
+          "showFallacies": "Lásd Florence Ashley tanulmányának összes logikai hibáját"
+        }
+      },
+      "findTherapist": {
+        "title": "Hol találok olyan terapeutát, aki gender exploratory terápiát gyakorol?",
+        "languageNotice": "A felsorolt terapeuták többsége csak angolul beszél, de megpróbálhatod felvenni velük a kapcsolatot, hogy találj valakit, aki beszéli a nyelvedet. Ha ismersz egy licencelt terapeutát, aki beszéli a nyelvedet, javasolhatod a hozzáadását ehhez az oldalhoz a",
+        "contactForm": "kapcsolatfelvételi űrlapon",
+        "organizations": {
+          "justTherapy": {
+            "name": "Just Therapy",
+            "description": "A Just Therapy abból a vágyból született, hogy visszatérjen ahhoz, aminek a terápiának kellene lennie – hatékony, etikus és mentes az ideológiától. Terapeuták és tanácsadók szövetsége, amelyek közös etikával és elvekkel igazodnak. A Just Therapy felismeri, hogy a pszichoterápia és tanácsadás világának nagy részét aktivisták és ideológiák vették át, amelyek veszélyeztethetik, ahelyett, hogy támogatnák a kliensek mentális jólétét. Tagjai, akik széles körű diszciplínákból és szakterületekből származnak, aláírtak egy Magatartási Kódexet.",
+            "directory": "Just Therapy Terapeuta Könyvtár",
+            "codeOfConduct": "Just Therapy Magatartási Kódex"
+          },
+          "therapyFirst": {
+            "name": "Therapy First",
+            "description": "A Therapy First egyesíti azokat a mentális egészségügyi szakembereket, akik úgy gondolják, hogy a nemi distresszel küzdő kliensek megérdemlik a nyitott, bizonyítékon alapuló pszichoterápiát, amely feltárja a tudattalan és kontextuális tényezőket bármilyen visszafordíthatatlan orvosi lépés előtt; elutasítják mind a konverziós gyakorlatokat, mind a 'csak-megerősítés' modellt, tiszteletben tartják a kliens autonómiáját, és a gyermek/tini orvosi transitiont kísérletinek tekintik, miközben továbbra is támogatják a felnőttek testi autonómiához való jogát és a folyamatos terápiás felfedezést.",
+            "directory": "Therapy First Terapeuta Könyvtár",
+            "about": "A Therapy First-ról"
+          },
+          "beyondTrans": {
+            "name": "Beyond Trans",
+            "description": "Stella O'Malley 2020 márciusában indította el a Gender Dysphoria Support Network-et, hogy szülőknek elfogulatlan segítséget nyújtson nemi distresszel küzdő gyermekekkel; gyorsan globális közösséggé nőtte ki magát, ami 2021-ben a Genspect létrehozását eredményezte, egy nem orvosi ellátásért küzdő szervezetet. Felismerve a növekvő transition megbánást, a csoport 2022-ben elindította a Beyond Trans-t, és 2025 júniusában egyesítette a GDSN-nel, hogy egy integrált, bizonyítékon alapuló támogató hálózatot alkosson családoknak, egyéneknek és detransitionálóknak.",
+            "directory": "Beyond Trans Terapeuta Könyvtár",
+            "supportGroups": "Beyond Trans Támogató Csoportok",
+            "about": "A Beyond Trans-ról"
+          },
+          "detransFoundation": {
+            "name": "A Detrans Alapítvány",
+            "description": "A Detrans Alapítvány forrásokat és támogatást nyújt a detransitionálóknak, beleértve a képzett terapeutákhoz való hozzáférést, akik megértik a detransition tapasztalatokat. A következő terapeuták a Detrans alapítvány tagjai:",
+            "drEntwistle": "klinikai pszichológus, aki korábban az NHS gender identity development service-ben dolgozott 18 év alattiak számára Leedsben. Regisztrálva van az UK Health Care Professions Council (HCPC)-nál, és online konzultációkat kínál biztonságos videohíváson keresztül.",
+            "anastassisSpiliadis": "rendszeres és családi pszichoterapeuta, aki négy évig dolgozott a Gender Identity Development Service-nél a Tavistock-nál, ahol a Családi Terápia és Konzultációs Szolgálatot vezette. Kilépett a Tavistock-ból, mivel nem értett egyet a gender identitás nehézségeinek megértésében alkalmazott terápiás modell hiányával. Kidolgozta a Gender Exploratory Model-t, és széleskörű tapasztalattal rendelkezik a nemi kérdéseket feltevő egyénekkel és detransitionálókkal való munkában.",
+            "visitWebsite": "Látogasd meg a Detrans Alapítvány weboldalát"
+          }
+        }
+      },
+      "forParents": {
+        "title": "Források Szülőknek",
+        "intro": "Ha a gyermeked nemrég jött ki transzneműként, lehet, hogy zavarban érzed magad, aggódsz, és bizonytalan vagy abban, hogyan támogathatod a legjobban, miközben véded hosszú távú egészségét és jólétét.",
+        "rogdRepair": {
+          "name": "Stephanie Winn ROGD Repair Programja",
+          "whatIs": "Mi az a ROGD Repair?",
+          "description1": "A ROGD Repair:",
+          "bullet1": "Egy program, amely segít a transz-azonosult fiatalok szüleinek olyan kommunikációban, amely elősegíti a deszisztenciát, a kritikai gondolkodást, az egészséget és a kapcsolati harmóniát",
+          "bullet2": "Egy interaktív és folyamatosan bővülő eszköztár pszichológiai koncepciókból és kommunikációs készségekből, amelyeket évekig tartó licencelt házassági és családi terapeuta tapasztalattal, majd ROGD szülői coachként finomítottak",
+          "bullet3": "Egy önálló tempóban végezhető online kurzus, amely több mint 100 leckét tartalmaz, mindegyik videóval, esszével és reflexiós kérdésekkel, amelyek segítenek a résztvevőknek személyre szabni a tartalmat az egyedi családi helyzetekhez, valamint fórumokkal",
+          "description2": "Az új ROGD Repair tagságok most már korlátlan hozzáférést biztosítanak a RepairBot-hoz, az első és egyetlen AI eszközhöz, amelyet kifejezetten a nemi distresszel küzdő fiatalok nem-megerősítő szüleinek terveztek. A RepairBot a teljes ROGD Repair tantervre van kiképezve, és kiváló hangulati táblaként, házi feladat segítőként és kommunikációs eszköz segítőként szolgál!",
+          "ctaBox": {
+            "title": "A gyereked azt mondja, hogy 'transz', de te csak azt akarod, hogy egészséges és biztonságban legyen.",
+            "description1": "A gyermeked egészsége és jövője a tét, de a befolyásod és befolyásod korlátozott. Talán háttérbe szorult hormonokat kezdett szedni a hátad mögött, vagy dühösen kirohan, amikor 'eltéveszted a nemi megnevezését', vagy egy 'megerősítő' főiskolán van. Hatékonyan kell kommunikálnod ebben a trükkös helyzetben, mielőtt valaki megsérül. Itt jön be a ROGD Repair.",
+            "description2": "A ROGD Repair egy önálló tempóban végezhető online kurzus és közösség szülőknek, amely megtanítja a pszichológiai koncepciókat és kommunikációs eszközöket, amelyekre szükséged van ahhoz, hogy megértsd a gyermeked mentális állapotát és hogyan érd el őket. A tagság mostantól tartalmazza a RepairBot-ot, a 24/7 AI asszisztensedet, amelyet a megközelítésre képeztek ki.",
+            "description3": "A ROGD Repair-t és a RepairBot-ot egy licencelt házassági és családi terapeuta készítette, aki több mint egy évtizedes tapasztalattal rendelkezik transz-azonosult fiatalokkal és családjaikkal, és most kizárólag olyan szülőket irányít, akik tudják, hogy kell lennie egy jobb útnak, mint a 'megerősítés.'"
+          },
+          "coupon": "Használd ezt a kuponkódot",
+          "couponCode": "DETRANSAI",
+          "learnMore": "Tudj meg többet és iratkozz fel a ROGD Repair-re"
+        }
+      }
+    },
+    "table": {
+      "gayConversion": "Meleg-konverziós terápia",
+      "genderExploratory": "Gender-felfedező terápia",
+      "goal": "Cél",
+      "goalConversion": "A szexuális orientáció megváltoztatása, mert patológiásnak tekintik.",
+      "goalExploratory": "A diszfória jelentésének megértése; a kimenetel lehet transition, nincs transition vagy részleges társadalmi transition.",
+      "method": "Módszer",
+      "methodConversion": "Szégyen, averzió, viselkedési kondicionálás, imádság.",
+      "methodExploratory": "A GET kompatibilis széles körű terápiás módszerekkel, mint a szabványos pszichodinamikus vagy humanisztikus technikák – nyitott kérdések, kíváncsiság, nincs előre meghatározott végpont.",
+      "evidence": "Bizonyítékok alapja",
+      "evidenceConversion": "Következetesen károsnak mutat; minden nagy orvosi testület elítéli.",
+      "evidenceExploratory": "Még nincs RCT, de párhuzamok azokkal a terápiákkal, amelyek csökkentik a szorongást, depressziót, önsebzést; nincs adat a rendszeres károsodásról.",
+      "ethics": "Etika",
+      "ethicsConversion": "Sérti az autonómiát azzal, hogy a heteroszexuális identitást tolja, mint az egyetlen helyes lehetőséget.",
+      "ethicsExploratory": "Megpróbálja kiterjeszteni az autonómiát, biztosítva, hogy a kamasz (és a család) megértse az összes lehetőséget a visszafordíthatatlan lépések előtt."
+    },
+    "fallacies": {
+      "title": "Logikai Hibák Florence Ashley Tanulmányában",
+      "name": "Hiba Neve",
+      "explanation": "Egyszerű Magyarázat",
+      "example": "Példa a Cikkből"
+    }
+  },
+  "charts": {
+    "ageDistribution": {
+      "title": "Hány évesek voltak a detransitionálók, amikor transitionáltak és detransitionáltak?",
+      "subtitle": "Adatok a Reddit felhasználók transition idővonalaiból",
+      "loading": "Grafikon adatok betöltése...",
+      "fetchError": "Nem sikerült lekérni a kor eloszlási adatokat",
+      "genericError": "Hiba történt",
+      "errorPrefix": "Hiba:",
+      "noData": "Nincs adat a kiválasztott kor tartományhoz",
+      "tooltip": {
+        "age": "Kor: {age}",
+        "transitioned": "Transitionált: {count} felhasználó",
+        "detransitioned": "Detransitionált: {count} felhasználó"
+      },
+      "axis": {
+        "age": "Kor",
+        "users": "Felhasználók Száma"
+      },
+      "legend": {
+        "transition": "Transition Kor",
+        "detransition": "Detransition Kor"
+      }
+    },
+    "transitionDuration": {
+      "title": "Transition Időtartam: Transition Kor vs Detransition Kor",
+      "description": {
+        "line1": "Minden pont mutatja a transition kort (X) vs detransition kort (Y).",
+        "line2": "A nagyobb, átlátszóbb pontok több felhasználót jelképeznek."
+      },
+      "loading": "Grafikon adatok betöltése...",
+      "noData": "Nincs adat a kiválasztott kor tartományhoz",
+      "axis": {
+        "transitionAge": "Transition Kor",
+        "detransitionAge": "Detransition Kor"
+      },
+      "tooltip": {
+        "transitionAge": "Transition Kor",
+        "detransitionAge": "Detransition Kor",
+        "duration": "Időtartam",
+        "years": "év"
+      },
+      "male": "Férfi",
+      "female": "Nő",
+      "yearsAvg": "év átlag",
+      "user": "felhasználó",
+      "users": "felhasználó"
+    },
+    "pathways": {
+      "title": "Detransition Útvonalak Folyamata",
+      "subtitle": "Az /r/detrans Reddit felhasználói demográfiai adatainak folyamata a detransition kimenetelekig",
+      "loading": "Útvonal adatok betöltése...",
+      "fetchError": "Nem sikerült lekérni a címke eloszlási adatokat",
+      "genericError": "Hiba történt",
+      "error": "Hiba",
+      "users": "{count} felhasználó",
+      "percentageOfTotal": "{percentage}% az összesből",
+      "totalUsers": "Összes felhasználó",
+      "flowConnections": "Folyamat kapcsolatok",
+      "male": "Férfi",
+      "female": "Nő",
+      "noData": "Nincs útvonal adat a kiválasztott szűrőkhöz"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Kapcsolat | detrans.ai",
+      "description": "Vedd fel velünk a kapcsolatot. Küldd el gondolataidat, javaslataidat vagy visszajelzésedet."
+    },
+    "title": "Kapcsolatfelvételi Űrlap",
+    "intro": "Ha bármilyen gondolatod, javaslatod van, vagy ha ez az ingyenes szolgáltatás segített neked, a családodnak vagy a barátodnak, szeretnék hallani felőled. Írj egy üzenetet alább!",
+    "form": {
+      "to": "Címzett",
+      "name": "Név",
+      "namePlaceholder": "A Neved",
+      "email": "Email",
+      "emailPlaceholder": "te@pelda.hu",
+      "subject": "Tárgy",
+      "subjectPlaceholder": "Tárgy",
+      "message": "Üzenet",
+      "messagePlaceholder": "Írd meg az üzeneted...",
+      "sendButton": "Üzenet Küldése",
+      "sending": "Küldés...",
+      "success": "✅ Üzenet elküldve!",
+      "error": "❌ Nem sikerült elküldeni."
+    }
+  },
+  "seo": {
+    "conversations": {
+      "title": "Beszélgetések Archívuma",
+      "description": "Böngéssz a nemi identitásról, detransitionálásról, gender-affirming ellátásról és megerősítésről szóló beszélgetések között.",
+      "conversations": "Beszélgetések",
+      "featuredConversations": "Kiemelt Beszélgetések",
+      "allConversations": "Összes Beszélgetés",
+      "untitled": "Névtelen Beszélgetés",
+      "noSummary": "Nincs elérhető összefoglaló",
+      "noConversations": "Nincs elérhető beszélgetés.",
+      "mode": "Mód",
+      "updated": "Frissítve",
+      "featured": "Kiemelt",
+      "conversationSummary": "Beszélgetés Összefoglaló",
+      "noSummaryAvailable": "Nincs elérhető összefoglaló ehhez a beszélgetéshez.",
+      "conversation": "Beszélgetés",
+      "unableToParse": "Nem sikerül elemezni a beszélgetés üzeneteit.",
+      "archiveNote": "Ez egy beszélgetés az archívumunkból. A teljes beszélgetés megtekintéséhez és a vitákban való részvételhez kérlek, látogasd meg az oldal interaktív verzióját.",
+      "welcomeTitle": "Üdvözöljük a Beszélgetések Archívumában",
+      "welcomeDescription": "Válassz egy beszélgetést az oldalsávban a részleteinek megtekintéséhez. Ez az archívum nemi identitásról, detransition tapasztalatokról és megerősítő utakról szóló vitákat tartalmaz.",
+      "featuredDescription": "Közösségünk által kiemelt viták",
+      "allDescription": "Böngéssz az összes elérhető beszélgetés között",
+      "footer": "Ez az oldal SEO-barát tartalmat biztosít a keresőmotoroknak és botoknak. A teljes interaktív élményhez kérlek, látogasd meg egy modern webböngészővel.",
+      "user": "Felhasználó"
+    },
+    "chat": {
+      "subtitle": "Kérdések és válaszok azoknak, akik a nemi identitásukat kérdőjelezik meg.",
+      "freedomMessage": "Az igazság az, hogy a nem-konformitás mindannyiunkat felszabadít!",
+      "moreQuestions": "További kérdések ehhez: \"{question}\""
+    },
+    "videos": {
+      "title": "Transition és Detransition Videók",
+      "description": "Ez egy archívuma a személyes detransition videóknak, amelyeket feltöltöttek az internetre. Hallasd a hangod saját történeted megosztásával!",
+      "thumbnailAlt": "Bélyegkép ehhez:",
+      "by": "készítette",
+      "female": "Nő",
+      "male": "Férfi"
+    }
+  },
+  "routes": {
+    "home": "/",
+    "about": "/about",
+    "contact": "/contact",
+    "support": "/support",
+    "videos": "/videos",
+    "stories": "/stories",
+    "studies": "/studies",
+    "definitions": "/definitions",
+    "donate": "/donate",
+    "terms": "/terms",
+    "prompts": "/prompts",
+    "participate": "/participate",
+    "conversations": "/conversations",
+    "research": "/research",
+    "chat": "/chat",
+    "login": "/login"
+  }
+}

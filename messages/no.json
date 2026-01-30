@@ -1,0 +1,805 @@
+{
+  "metadata": {
+    "title": "detrans.ai | Snakk med 50 000+ detransisjonerte",
+    "description": "Detrans.ai er en hjelpsom og medfølende chatbot som deler erfaringer og perspektiver fra personer som har detransisjonert. Bruk detrans.ai for støtte og råd om kjønnsovergang eller detransisjon, eller som et forskningsverktøy for å forstå hvorfor noen mennesker tar til seg, lever med og slipper taket på kjønnsidentiteter."
+  },
+  "home": {
+    "title": "Snakk med 50 000+ detransisjonerte",
+    "subtitle": "Perspektiver fra den andre siden",
+    "intro": {
+      "greeting": "Hei! Hva er en detransisjonert?",
+      "response": "Hei! Jeg er detrans.ai – det kollektive bevisstheten til detransisjonerte 🦎",
+      "definition": "En detransisjonert er en tidligere transperson som har gjennomgått sosial eller medisinsk kjønnsovergang, men som siden har sluttet å identifisere seg som transperson og kan ha reversert deler av overgangen.",
+      "description": "Jeg observerer årsakene, mønstrene og sannhetene om hvorfor noen mennesker tar til seg, lever med og går videre fra kjønnsidentiteter ved å lese historier og erfaringer som har blitt delt på /r/detrans-subredditen og ved å se på detransisjonsvideoer som er lastet opp til YouTube.",
+      "purpose": "Mitt formål er å dele denne kunnskapen for å dekonstruere kjønn og utforske hvordan disse erfaringene former ens forhold til selvet, kroppen og verden.",
+      "helpPrompt": "Hvordan kan jeg hjelpe deg i dag?"
+    },
+    "starters": {
+      "lizardQuestion": {
+        "display": "Unnskyld, men hva er greia med øglene?",
+        "full": "Hvorfor bruker detransisjonerte øgler for å representere seg selv på nettet?"
+      },
+      "curious": {
+        "display": "Jeg er nysgjerrig på hvorfor noen detransisjonerer",
+        "full": "Jeg er nysgjerrig på hvorfor noen detransisjonerer, og hvilke erkjennelser de kan ha kommet fram til for å nå det punktet."
+      },
+      "questioningTrans": {
+        "display": "Jeg stiller spørsmål ved min kjønnsidentitet og tror jeg kan være trans",
+        "full": "Jeg stiller spørsmål ved min kjønnsidentitet og tror jeg kan være trans"
+      },
+      "thinkingDetrans": {
+        "display": "Jeg identifiserer meg for øyeblikket som trans og vurderer å detransisjonere",
+        "full": "Jeg identifiserer meg for øyeblikket som trans og vurderer å detransisjonere"
+      },
+      "familyMember": {
+        "display": "Jeg er en forelder, familiemedlem eller venn av noen som er i kjønnsovergang",
+        "full": "Jeg er en forelder, familiemedlem eller venn av noen som er i kjønnsovergang"
+      },
+      "researcher": {
+        "display": "Jeg er en forsker som studerer kjønnsidentitet og detransisjonsopplevelser",
+        "full": "Jeg er en forsker som studerer kjønnsidentitet og detransisjonsopplevelser"
+      },
+      "learnChallenges": {
+        "display": "Jeg vil lære om kampene og utfordringene detransisjonerte står overfor",
+        "full": "Jeg vil lære om kampene og utfordringene detransisjonerte står overfor"
+      },
+      "understandTransition": {
+        "display": "Jeg vil forstå hvorfor detransisjonerte bestemte seg for å gjennomgå kjønnsovergang i utgangspunktet",
+        "full": "Jeg vil forstå årsakene til at detransisjonerte gjennomgikk kjønnsovergang i utgangspunktet, og hvordan det kan være forskjellig mellom menn og kvinner."
+      },
+      "debunkMisinfo": {
+        "display": "Jeg vil at du skal avkrefte feilinformasjon og vanlige oppfatninger om detransisjon",
+        "full": "Vennligst avkreft all feilinformasjon og vanlige oppfatninger om detransisjonerte, så grundig som mulig."
+      }
+    },
+    "navigation": {
+      "videos": "Detransisjonsvideoer",
+      "stories": "Historier",
+      "storiesFull": "Historier og statistikk",
+      "support": "Hjelp og støtte",
+      "definitions": "Kjønnsbegreper",
+      "studies": "Akademiske studier",
+      "studiesShort": "Studier",
+      "howItWorks": "Hvordan det fungerer"
+    },
+    "deepResearch": {
+      "title": "Dyp forskningsmodus",
+      "description": "Dyp forskningsmodus utvider spørsmålet ditt for å gi deg et svar som nærmer seg temaet fra ulike vinkler.",
+      "note": "Dyp forskning er tregere og ikke samtalebasert. For chat, la den være av."
+    },
+    "disclaimer": {
+      "trigger": "Erfaringer og perspektiver på dette nettstedet er hentet fra Reddit.",
+      "title": "Kildeansvarsfraskrivelse",
+      "content": "detrans.ai besvarer spørsmål om kjønn fra et detransisjonsperspektiv ved å finne relevante erfaringer fra /r/detrans-fellesskapet på Reddit. Selv om Reddit er en plattform hvor ekte mennesker deler personlige historier, kan den også inneholde bot-generert eller villedende innhold. Du oppfordres til å undersøke de opprinnelige Reddit-innleggene for å verifisere kilden og konteksten. Vennligst merk at /r/detrans er en strengt moderert subreddit, men moderering garanterer ikke nøyaktigheten eller ektheten til hvert innlegg."
+    },
+    "donate": {
+      "title": "Støtt arbeidet vårt",
+      "description": "Hjelp oss å holde denne ressursen tilgjengelig for dem som trenger den mest.",
+      "button": "Doner",
+      "card": {
+        "title": "Donasjoner trengs for å holde {site} i live!",
+        "description": "Hvis du setter pris på denne gratis tjenesten, vurder å donere.",
+        "description2": "Nettstedet vil gå i kun hurtigbuffer-modus hvis jeg går tom for penger, uten mulighet til å stille egne spørsmål.",
+        "button": "Gi en donasjon"
+      }
+    },
+    "participate": {
+      "card": {
+        "title": "Er du detransisjonert eller desistent?",
+        "description": "Delta i studier for å bidra til å forbedre den vitenskapelige forståelsen av transkjønnsidentiteter",
+        "description2": "og for å forbedre resultatene for personer som opplever kjønnsdysfori."
+      },
+      "title": "Del historien din",
+      "description": "Din erfaring kan hjelpe andre å forstå kompleksiteten ved kjønnsidentitet.",
+      "button": "Delta"
+    },
+    "footer": {
+      "poem": {
+        "line1": "Du kan sette deg selv fri,",
+        "line2": "Alt du trenger å gjøre er å bare være.",
+        "line3": "Og pass på tankene dine!",
+        "line4": "For sinnet er som en hage,",
+        "line5": "Og hver tanke er et frø.",
+        "line6": "Vi høster det vi sår,",
+        "line7": "Men gjennom dette kan vi vokse..."
+      },
+      "openSource": "Et åpen kildekode-prosjekt av",
+      "madeWithLove": "Laget med kjærlighet i Wellington, New Zealand",
+      "donatePrompt": "Vennligst doner hvis du kan,",
+      "beKind": "Og vær snille mot hverandre."
+    },
+    "browseConversations": "Bla gjennom alle samtaler"
+  },
+  "header": {
+    "navigation": {
+      "home": "Hjem",
+      "resources": "Ressurser",
+      "about": "Om"
+    },
+    "resources": {
+      "genderSupport": "Kjønnsstøtte",
+      "genderSupportDesc": "Finn fellesskap og terapeuter",
+      "terminology": "Terminologi",
+      "terminologyDesc": "Definisjon av nøkkelbegreper",
+      "stories": "Historier og statistikk",
+      "storiesDesc": "Fra /r/detrans-brukere",
+      "videos": "Detransisjonsvideoer",
+      "videosDesc": "Personlige memoarer",
+      "studies": "Fagfellevurderte studier",
+      "studiesDesc": "Relevant akademisk forskning",
+      "statistics": "Verifisert statistikk",
+      "statisticsDesc": "statsforgender.org"
+    },
+    "about": {
+      "contact": "Kontakt",
+      "contactDesc": "Ta kontakt med meg",
+      "systemPrompts": "Systemspørringer",
+      "systemPromptsDesc": "Se AI-systemspørringene",
+      "terms": "Vilkår",
+      "termsDesc": "Personvernpolicy og vilkår"
+    },
+    "donate": "Doner",
+    "language": {
+      "title": "Språk"
+    }
+  },
+  "language": {
+    "title": "Språk",
+    "select": "Velg språk",
+    "search": "{count} språk",
+    "en": "Engelsk",
+    "es": "Spansk",
+    "fr": "Fransk",
+    "de": "Tysk",
+    "he": "Hebraisk",
+    "it": "Italiensk",
+    "nl": "Nederlandsk",
+    "tr": "Tyrkisk",
+    "no": "Norsk"
+  },
+  "settings": {
+    "title": "Innstillinger"
+  },
+  "theme": {
+    "title": "Utseende",
+    "darkMode": "Mørk modus",
+    "light": "Lys",
+    "dark": "Mørk"
+  },
+  "definitions": {
+    "metadata": {
+      "title": "detrans.ai | Definisjon av kjønnsrelaterte begreper",
+      "description": "I dagligtale brukes kjønn og gender noen ganger om hverandre, og på noen språk er det bare ett ord som beskriver de to. Hele konseptet med kjønnsdysfori er imidlertid avhengig av forståelsen av at det er forskjeller mellom kjønn og gender."
+    },
+    "title": "Definisjon av kjønnsrelaterte begreper",
+    "sexAndGender": {
+      "heading": "Kjønn og gender?",
+      "intro": "I dagligtale brukes kjønn og gender noen ganger om hverandre, og på noen språk er det bare ett ord som beskriver de to. Hele konseptet med kjønnsdysfori er imidlertid avhengig av forståelsen av at det er forskjeller mellom kjønn og gender.",
+      "sex": "<b>Kjønn</b> refererer til en persons biologi (dvs. deres anatomi; skjelett, muskulatur, kromosomer, reproduksjonssystem og sekundære kjønnskarakteristika). Merk at over 99 % av menneskene biologisk sett enten er mann eller kvinne, det finnes ikke noe kjønnsspekter, selv om noen mennesker har forstyrrelser i seksuell utvikling (DSD-er). De aller fleste mennesker med DSD-er er mann eller kvinne.",
+      "gender": "<b>Gender</b> refererer til de 'sosialt konstruerte' rollene, atferdene, aktivitetene og egenskapene som et gitt samfunn anser som passende for menn og kvinner [som definert av deres biologiske kjønn]. 'Maskulint' og 'feminint' er genderkategorier. De fleste, kanskje alle, mennesker har en blanding av maskuline og feminine trekk. Gender endrer seg over tid og mellom kulturer.",
+      "nonConformity": "<b>Kjønnsavvik</b> oppstår når en person handler eller presenterer seg annerledes enn det samfunnet forventer basert på deres kjønn.",
+      "identity": "<b>Kjønnsidentitet</b> – noen mennesker tror at vi alle har en medfødt 'kjønnsidentitet' – en dyp følelse eller bevissthet om oss selv som enten mann, kvinne eller et sted imellom – som eksisterer separat fra vårt biologiske kjønn og som i sjeldne tilfeller kan avvike fra det. Andre mennesker tror ikke at en spesifikk kjønnsidentitet eksisterer som er distinkt fra andre aspekter ved en persons personlighet eller identitet."
+    },
+    "dysphoria": {
+      "heading": "Hva er kjønnsdysfori?",
+      "p1": "Kjønnsdysfori er en diagnostisk term brukt av det psykiatriske og medisinske miljøet for å beskrive nøden man opplever når man føler at ens kjønnsidentitet ikke stemmer overens med ens biologiske kjønn.",
+      "p2": "Mennesker som opplever kjønnsdysfori rapporterer om sterke, vedvarende følelser av identifikasjon med et kjønn som avviker fra sitt kjønn, og tilhørende ubehag med sin kjønnsbestemte kropp. For en formell diagnose må følelsene for øyeblikket forårsake betydelig nød eller funksjonshemming for personen som opplever dem."
+    },
+    "transgender": {
+      "heading": "Hva betyr det å være transperson?",
+      "p1": "Transperson er en term som kan bety forskjellige ting for forskjellige mennesker. Det er generelt enighet om at transkvinner er født med en mannskropp men identifiserer seg som kvinne, transmenn er født med en kvinnelig kropp men identifiserer seg som mann, og ikke-binære personer identifiserer seg verken som mann eller kvinne. Mennesker bruker ofte den kortere termen 'trans' for å betegne at noen identifiserer seg med et kjønn som ikke er det samme som deres biologiske kjønn.",
+      "p2": "Transperson kan forstås å bety at i) du er det motsatte kjønn/gender av det kjønnet du ble født som, ii) du tror du er det motsatte kjønn/gender av det du ble født som, eller iii) du lever som om ditt kjønn/gender er motsatt av det kjønnet du ble født som. Debatter om hvilken av disse tre måtene å forstå termen på som er mest nøyaktig, kan bli opphetede og kontroversielle. Noen mennesker føler at selv å diskutere hva det betyr å være transperson undergraver gyldigheten av opplevelsen. Imidlertid fører disse forskjellige overbevisningene uunngåelig til forskjellige ideer om hvordan man best kan støtte mennesker til å håndtere kjønnsrelatert nød, så diskusjoner er nødvendige for å sikre at mennesker får best mulig hjelp og råd."
+    },
+    "desistance": {
+      "heading": "Hva er desistens?",
+      "p1": "Desistens er når noen som identifiserte seg som transperson men ikke gjennomgikk medisinske intervensjoner ikke lenger identifiserer seg som transperson. Selv om de kanskje ikke trenger å håndtere konsekvensene av å ha gjennomgått medisinske intervensjoner, kan desistens fortsatt være en svært smertefull, forvirrende og vanskelig prosess."
+    },
+    "detransition": {
+      "heading": "Detransisjon og detransisjonerte",
+      "p1": "Detransisjon er når noen som identifiserte seg som transperson og gjennomgikk medisinske intervensjoner ikke lenger identifiserer seg som transperson. Det er en enormt bred variasjon i menneskers erfaringer innenfor denne gruppen. Noen mennesker kan være svært fortvilet over det de har vært gjennom og de langsiktige implikasjonene, andre kan se det som noe de måtte gjennomgå for å forstå seg selv slik de er i dag."
+    },
+    "regret": {
+      "heading": "Anger over kjønnsovergang",
+      "p1": "Noen mennesker kan ha identifisert seg som transperson i mange år og ha gjennomgått medisinske intervensjoner som hormoner og operasjoner som har endret kroppene deres irreversibelt. De kan føle at de angrer på å ha igangsatt en medisinsk kjønnsovergang, men de fortsetter også å identifisere seg som transperson og/eller fortsetter med kjønnskontrære hormoner."
+    },
+    "source": {
+      "text": "Kilde:",
+      "link": "The Detrans Foundation"
+    }
+  },
+  "chat": {
+    "lookingForComments": "Leter etter relevante kommentarer...",
+    "errorOccurred": "Det oppsto en feil, prøv igjen... Kontakt meg hvis dette fortsetter å skje.",
+    "analysingExperiences": "Analyserer erfaringer",
+    "detransPerspective": "-> Hva er detransisjonerte perspektiver på dette temaet?",
+    "transPerspective": "-> Hva er transpersoners perspektiver på dette temaet?",
+    "backToPortal": "<- Tilbake til portalen"
+  },
+  "chatInput": {
+    "placeholder": "Spør detrans.ai...",
+    "deepResearch": "Dyp forskning",
+    "suggestions": "Forslag:"
+  },
+  "deepResearchEvents": {
+    "errorTitle": "Dyp forskningsfeil",
+    "retrieving": "Henter detransisjonserfaringer...",
+    "generatingQuestions": "Genererer meta-spørsmål...",
+    "findingAnswers": "Finner svar på meta-spørsmål",
+    "completed": "Dyp forskning fullført",
+    "retrieveError": "Feil ved henting av detransisjonserfaringer!",
+    "analyzeError": "Vi har gått tom for penger til å betale for AI-en som analyserer detransisjonserfaringer og besvarer spørsmål. Hvis du kan, vennligst doner slik at vi kan holde tjenesten i drift. Prøv igjen senere. For nå kan du fortsatt prøve spørsmålene i portalen.",
+    "generatingAnswer": "Genererer svar...",
+    "waitingForAnswer": "Venter på svar",
+    "questionsAnswered": "{answered} av {total} meta-spørsmål besvart",
+    "generatingSummary": "Genererer oppsummering av svar"
+  },
+  "questionTabs": {
+    "topics": "Emner",
+    "generated": "Generert",
+    "recent": "Nylig",
+    "top": "Topp"
+  },
+  "conversations": {
+    "title": "Nylige samtaler",
+    "subtitle": "Se selv hvordan detrans.ai hjelper mennesker fra hele verden.",
+    "tabs": {
+      "featured": "Fremhevet",
+      "all": "Alle"
+    },
+    "buttons": {
+      "showMore": "Vis {count} flere samtaler",
+      "showLess": "Vis færre",
+      "loadMore": "Last flere samtaler",
+      "loading": "Laster..."
+    }
+  },
+  "conversationCard": {
+    "untitled": "Samtale uten tittel",
+    "from": "fra",
+    "moreMessages": "{count} flere meldinger...",
+    "moreMessage": "{count} melding til...",
+    "date": {
+      "today": "I dag",
+      "yesterday": "I går",
+      "daysAgo": "{count} dager siden",
+      "weeksAgo": "{count, plural, =1 {1 uke siden} other {# uker siden}}"
+    },
+    "admin": {
+      "deleting": "Sletter...",
+      "delete": "Slett samtale",
+      "banning": "Utestenger...",
+      "ban": "Utesteng bruker (IP)"
+    }
+  },
+  "stories": {
+    "metadata": {
+      "title": "detrans.ai | Detransisjonshistorier og statistikk",
+      "description": "Les hjerteskjærende detransisjonshistorier, tidslinjer og trender fra medlemmene av /r/detrans Reddit-fellesskapet, den største åpne samlingen av detransisjonshistorier på internett. Finn ut hvor gamle detransisjonerte var da de gjennomgikk kjønnsovergang og detransisjonerte, og hvilke veier de tok."
+    },
+    "title": "Detransisjonshistorier og statistikk",
+    "subtitle": "Bla gjennom og visualiser {count} unike detransisjonshistorier og statistikk fra personer som har delt sine erfaringer i /r/detrans-subredditen, som er den største åpne samlingen av detransisjonshistorier og erfaringer på internett.",
+    "disclaimer": {
+      "summary": "Disse historiene er oppsummert ved hjelp av AI.",
+      "details": "På Reddit deler mennesker ofte sine erfaringer på tvers av flere kommentarer eller innlegg. For å gjøre denne informasjonen mer tilgjengelig, samler AI-en vår alle disse spredte delene i en enkelt, lettlest oppsummering og tidslinje. Alle systemspørringer er notert på spørringssiden.",
+      "accuracy": "Noen ganger kan AI hallusinere eller uttale seg om ting som ikke er sanne. Men generelt er de oppsummerte historiene nøyaktige gjenspeilinger av brukernes opprinnelige kommentarer.",
+      "inclusion": "Bare brukere som har delt nok til å sette sammen en fullstendig historie og tidslinje er inkludert. Brukere som har postet færre enn fem kommentarer eller deres kommentarer som fikk færre enn tre upvotes, blir oversett. Innlegg er ennå ikke inkludert i datasettet.",
+      "verification": "Hver bruker er analysert for tegn på bot-generert eller uekte innhold. Enhver konto som ikke ser ut til å være en ekte detransisjonert, blir merket 'mistenksom'. Disse kontoene vil bli manuelt gjennomgått og fjernet fra detrans.ai-datasettet hvis de viser seg å være uekte. Kontoer som har gjort færre enn fem kommentarer er utelatt fra analysen."
+    },
+    "charts": {
+      "tabs": {
+        "age": "Alder",
+        "duration": "Varighet",
+        "transitionReason": "Årsak til kjønnsovergang",
+        "detransitionReason": "Årsak til detransisjon",
+        "pathways": "Veer"
+      },
+      "loading": "Laster diagramdata...",
+      "error": "Feil: {message}",
+      "retry": "Prøv igjen",
+      "noData": "Ingen {mode}-årsaksdata tilgjengelig for de valgte filtrene",
+      "reasonChart": {
+        "title": "Hvorfor sier detransisjonerte at de {mode, select, detransition {detransisjonerte} other {gikk gjennom kjønnsovergang}}?",
+        "subtitle": "Data fra Reddit-brukeres {mode}-tidslinjer ({totalReasonCount} totalt antall brukere, {totalUsers} distinkte årsaker.)",
+        "mentions": "{count} nevnelser ({percentage}%)"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Søk i brukererfaringer...",
+      "ageRange": "Aldersspenn:",
+      "ageRangeYears": "{min} - {max} år",
+      "sex": {
+        "all": "Mann og kvinne",
+        "female": "Kvinne",
+        "male": "Mann"
+      },
+      "tagsPlaceholder": "Velg merker å filtrere etter...",
+      "clearFilters": "Tøm filtre"
+    },
+    "results": "Viser {showing} av {total} brukerhistorier",
+    "noResults": "Ingen brukere funnet som matcher filtrene dine.",
+    "pagination": {
+      "previous": "Forrige",
+      "next": "Neste",
+      "pageInfo": "Side {page} av {totalPages}"
+    },
+    "userCard": {
+      "comments": "{count} kommentarer",
+      "postingSince": "Poster siden {date}",
+      "transitionedAt": "Gikk gjennom kjønnsovergang ved {age}",
+      "desistedAt": "Desisterte ved {age}",
+      "detransitionedAt": "Detransisjonerte ved {age}",
+      "female": "kvinne",
+      "male": "mann"
+    }
+  },
+  "prompts": {
+    "metadata": {
+      "title": "Hvordan fungerer det? | Systemspørringer",
+      "description": "Lær hvordan detrans.ai fungerer, inkludert systemspørringer, data-avslutningsdatoer og åpen kildekode-informasjon."
+    },
+    "title": "Hvordan fungerer det?",
+    "intro": {
+      "paragraph1": "<bold>detrans.ai</bold>-chatten er en RAG (retrieval augmented generation) drevet agent som genererer meta-spørsmål og besvarer dem ved å bringe fram og integrere detrans-tanker og erfaringer fra <reddit>/r/detrans</reddit>-subredditen og fra YouTube. Den ble bygget med <llamaIndex>LlamaIndex</llamaIndex>-rammeverket og den åpen kildekode-kinesiske <kimi>kimi-k2.5</kimi>-modellen av Moonshot AI for å redusere vestlig politisk skjevhet.",
+      "paragraph2": "ChatGPT og de fleste andre vestlige språkmodeller er ganske aggressive i måten de promoterer og opprettholder kjønnsopfatninger på. Det viste seg å være umulig å bruke OpenAIs GPT-modeller for dette prosjektet, ettersom modellene stadig ville undergrave og motsige de detransisjonserfaringene de var bedt om å oppsummere. Hvis du ønsker en mer bekreftende opplevelse, se <chatgpt>ChatGPT</chatgpt>."
+    },
+    "dataCutoff": {
+      "title": "Data-avslutningsdatoer",
+      "paragraph1": "<bold>detrans.ai</bold> har for øyeblikket tilgang til alle kommentarer på /r/detrans postet før <date>8/9/2025</date> som fikk minst tre upvotes. Jeg vil sikte på å oppdatere datasettet minst en gang per år så lenge /r/detrans-subredditen fortsetter å eksistere.",
+      "paragraph2": "Brukere kan sende inn videoerfaringer ved å sende inn lenker til YouTube-videoer. Disse videoene vil bli manuelt gjennomgått før de blir transkribert ved hjelp av OpenAIs Whisper tale-til-tekst-modell og lagt til i vektordatabasen og videoarkivet."
+    },
+    "openSource": {
+      "title": "Åpen kildekode",
+      "paragraph": "Kildekoden er også tilgjengelig på <github>Github</github> under en MIT-lisens hvis du ønsker å undersøke eller gjenbruke noe av koden for ditt eget prosjekt. Dette prosjektet er også bygget på toppen av mange andre åpen kildekode-prosjekter, som Llamaindex, React, Next.js, Tailwind, Lucide, Qdrant, Postgres og Vercel AI SDK. Mange takk til bidragsyterne til disse prosjektene for å tilby et solid fundament å bygge på."
+    },
+    "systemPrompts": {
+      "title": "Systemspørringer",
+      "description": "Dette er spørringene som systemet bruker for RAG-arbeidsflyten. Det finnes ingen andre egendefinerte instruksjoner eller lag enn det som vises på denne siden.",
+      "lastUpdated": "Sist oppdatert",
+      "chatAgentTitle": "Systemspørring for chat-agent",
+      "researchModeTitle": "Systemspørringer for dyp forskningsmodus",
+      "researchAgentTitle": "Forskningsagentspørring",
+      "experienceExtractionTitle": "Erfaringsuttrekkspørring",
+      "finalAnswerTitle": "Endelig svarspørring"
+    },
+    "userSummaries": {
+      "title": "Systemspørringer for brukeroppsummeringer",
+      "description": "Dette er systemspørringene for de genererte brukeroppsummeringene.",
+      "lastUpdated": "Sist oppdatert",
+      "experienceReportTitle": "Brukererfarringsrapport",
+      "experienceSummaryTitle": "Brukererfaring-oppsummering",
+      "generateTagsTitle": "Generer merker",
+      "extractAgesTitle": "Trekk ut aldre",
+      "determineBirthSexTitle": "Bestem fødselskjønn",
+      "redFlagReportTitle": "Rødt flagg-rapport"
+    }
+  },
+  "donatePage": {
+    "title": "Hold Detrans.AI i drift",
+    "description1": "Hvis du setter pris på arbeidet jeg har lagt i dette nettstedet, eller hvis denne gratis tjenesten har hjulpet deg, vurder å gi en engangs- eller regelmessig donasjon for å holde <b>detrans.ai</b> på nett.",
+    "description2": "Jeg har ikke råd til å drive en ressurskrevende tjeneste som dette uten din støtte. Min hovedinntektskilde for øyeblikket er statlig velferd, og per nå har jeg mindre enn $1000 på bankkontoen min. Hvis dette nettstedet blir populært kan jeg få regninger på tusenvis av dollar. Hvis jeg går tom for penger, vil muligheten til å stille egne spørsmål og utforske temaer dypere gjennom oppfølgingsspørsmål bli deaktivert, og jeg vil bare betjente hurtigbufrede svar på spørsmålene i portalen.",
+    "description3": "Vurder en månedlig donasjon. Du kan donere via paypal nedenfor, direkte til min newzealandske bankkonto eller med BTC.",
+    "bankAccount": "Newzealandsk bankkonto",
+    "accountName": "Navn",
+    "accountNumber": "Konto",
+    "swiftCode": "SWIFT/BIC-kode",
+    "bitcoin": "Bitcoin-adresse",
+    "paypal": "Paypal-donasjon"
+  },
+  "terms": {
+    "metadata": {
+      "title": "Personvernpolicy | detrans.ai",
+      "description": "Lær om vår personvernpolicy, datainnsamlingspraksis og hvordan vi beskytter din informasjon."
+    },
+    "title": "Personvernpolicy",
+    "intro": "Denne personvernpolicyen forklarer hvilken informasjon vi samler inn, hvorfor vi samler den inn, og hvordan vi holder den sikker når du besøker eller bruker tjenesten vår.",
+    "sections": {
+      "informationWeCollect": {
+        "title": "Informasjon vi samler inn",
+        "chatMessages": {
+          "title": "Chatmeldinger:",
+          "content": "Vi bevarer alle chatopptak så vel som svarene på alle spørsmål stilt i dyp forskningsmodus. Chatopptak er ikke tilknyttet din IP-adresse eller data som potensielt kunne blitt brukt til å identifisere deg. Chatopptak kan analyseres og brukes til forskningsformål i fremtiden. Vennligst unngå å dele sensitiv informasjon."
+        },
+        "cookies": {
+          "title": "Informasjonskapsler / Sporingsteknologier:",
+          "content": "Vi bruker <em>ikke</em> informasjonskapsler, pikseltagger eller lignende klientsidige sporingsmekanismer."
+        },
+        "ipAddresses": {
+          "title": "IP-adresser:",
+          "content": "Når du gjør en forespørsel til serverne våre, lagrer vi din IP-adresse for å telle forespørsler og håndheve hastighetsbegrensninger som forhindrer misbruk."
+        },
+        "optionalData": {
+          "title": "Valgfri data:",
+          "content": "Hvis du velger å kontakte oss, kan vi samle inn informasjonen du frivillig oppgir (f.eks. e-postadresse, navn). Å gi denne informasjonen er valgfritt med mindre det uttrykkelig er angitt."
+        }
+      },
+      "legalBases": {
+        "title": "Juridiske grunnlag for behandling (EU/EØS-besøkende)",
+        "item1": "Hastighetsbegrensningsbehandling er nødvendig for våre <em>berettigede interesser</em> under GDPR art. 6(1)(f) – spesifikt for å opprettholde tjenestetilgjengelighet og sikkerhet.",
+        "item2": "Eventuell ytterligere behandling (f.eks. kontobruk) er basert på ditt <em>samtykke</em> eller <em>kontraktsmessig nødvendighet</em>, som aktuelt."
+      },
+      "dataRetention": {
+        "title": "Hvor lenge vi beholder data",
+        "content": "Alle chatopptak vil bli bevart. IP-adresser brukt til hastighetsbegrensning slettes automatisk innen minutter etter siste forespørsel eller ved slutten av hastighetsbegrensningsvinduet, avhengig av hva som kommer først. Frivillig informasjon (f.eks. støtte-e-poster) beholdes bare så lenge som nødvendig for å løse din henvendelse eller tilfredsstille juridiske forpliktelser."
+      },
+      "thirdPartySharing": {
+        "title": "Tredjepartsdeling",
+        "content": "Vi kan velge å dele anonymiserte chatopptak med akademikere og forskere som ser etter å forbedre resultatene for mennesker som opplever kjønnsdysfori. Vi kan avsløre IP-adresser eller annen data bare når det kreves ved lov eller for å beskytte våre rettigheter, brukere eller offentligheten (f.eks. svindelforebygging, rettsbeslutning)."
+      },
+      "security": {
+        "title": "Sikkerhet",
+        "content": "Vi bruker bransjestandard tekniske og organisatoriske tiltak (TLS-kryptering, tilgangskontroller, minst-privilegium-design) for å beskytte data under overføring og i hvile."
+      },
+      "internationalTransfers": {
+        "title": "Internasjonale overføringer",
+        "content": "Serverne våre er lokalisert i USA. Hvis du får tilgang til tjenesten fra utenfor USA, forstår du at din IP-adresse vil bli overført til og behandlet i USA."
+      },
+      "childrensPrivacy": {
+        "title": "Barns personvern",
+        "content": "Tjenesten vår er ikke rettet mot barn under 13 år, og vi samler ikke bevisst inn personlig informasjon fra dem. Hvis du tror vi ved et uhell har samlet inn slike data, vennligst kontakt oss for umiddelbar sletting."
+      },
+      "changes": {
+        "title": "Endringer i denne policyen",
+        "content": "Vi kan oppdatere denne policyen fra tid til annen. 'Effektiv dato' øverst vil endre seg, og betydelige endringer vil bli postet fremtredende."
+      },
+      "contact": {
+        "title": "Kontakt oss",
+        "content": "Hvis du har spørsmål, bekymringer eller klager, bruk enten kontaktskjemaet, eller send e-post til <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "videos": {
+    "metadata": {
+      "title": "detrans.ai | Se videoer av detransisjonerte",
+      "description": "Her er et utvalg av personlige video-memoarer som er lastet opp til YouTube av personer som har gjennomgått kjønnsovergang og siden kom til en erkjennelse som fikk dem til å detransisjonere. Det finnes utallige slike historier på internett; dette er bare et lite utvalg."
+    },
+    "title": "Kjønnsovergangs- og detransisjonsvideoer",
+    "description": {
+      "line1": "Denne siden sikter på å være det beste arkivet av detransisjonsvideoer på internett.",
+      "line2": "Ved hjelp av tale-til-tekst integrerer detrans.ai disse erfaringene i chat-samtaler.",
+      "line3": "Foreløpig bare YouTube-videoer, TikTok kommer snart?!"
+    },
+    "female": "kvinne",
+    "male": "mann",
+    "backToAll": "Tilbake til alle",
+    "overview": "Oversikt",
+    "fullSummary": "Full videooppsummering",
+    "watchOnYouTube": "Se på YouTube",
+    "moreVideos": "Flere videoer",
+    "browseAll": "Bla gjennom alle detransisjonsvideoer",
+    "metadataWatchDescription": "Se {title} av {author}, en {sex} detransisjonert som deler sin historie.",
+    "metadataThumbnailAlt": "Miniatyrbilde for {title}"
+  },
+  "videoList": {
+    "loading": "Laster videoer...",
+    "filters": {
+      "all": "Alle historier",
+      "female": "Kvinne",
+      "male": "Mann",
+      "detransitioners": "Detransisjonerte"
+    },
+    "thumbnailAlt": "Miniatyrbilde for {title}",
+    "by": "av",
+    "female": "Kvinne",
+    "male": "Mann"
+  },
+  "videoSubmitForm": {
+    "submitTitle": "Send inn din detransisjonsvideo",
+    "description": {
+      "line1": "Ved å sende inn videoen din vil den vises på denne siden og i relevante chatter.",
+      "line2": "Det kan være din video, eller det kan bare være en du fant på nettet som mangler fra denne siden.",
+      "line3": "Alle innsendinger modereres, det kan ta noen dager før den vises."
+    },
+    "urlLabel": "YouTube-URL",
+    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "submitButton": "Send inn video",
+    "submitting": "Sender inn...",
+    "submitSuccess": "Video sendt inn! Den vil bli gjennomgått før den vises på nettstedet.",
+    "submitError": "Kunne ikke sende inn video",
+    "networkError": "Nettverksfeil. Vennligst prøv igjen."
+  },
+  "studySubmitForm": {
+    "submitTitle": "Send inn en studie",
+    "description": {
+      "line1": "Kjenner du til en relevant akademisk studie eller fagfellevurdert artikkel som mangler?",
+      "line2": "Send inn URL-en og foreslå eventuelt en tittel for den.",
+      "line3": "Alle innsendinger modereres før de vises på nettstedet."
+    },
+    "urlLabel": "Studie-URL",
+    "urlPlaceholder": "https://...",
+    "titleLabel": "Foreslått tittel",
+    "titlePlaceholder": "Valgfri overskrift eller tittel for studien",
+    "titleHelp": "Valgfritt: Foreslå en kort tittel eller overskrift for denne studien",
+    "submitButton": "Send inn studie",
+    "submitting": "Sender inn...",
+    "submitSuccess": "Studie sendt inn! Den vil bli gjennomgått før den vises på nettstedet.",
+    "submitError": "Kunne ikke sende inn studie",
+    "networkError": "Nettverksfeil. Vennligst prøv igjen."
+  },
+  "studiesPage": {
+    "metadata": {
+      "title": "detrans.ai | Akademiske studier om detransisjon",
+      "description": "Finn på denne siden et utvalg av akademiske studier, fagfellevurderte tidsskriftartikler og verifisert statistikk som er relatert til kjønnsidentitetstrender og detransisjon.",
+      "ogTitle": "detrans.ai | Akademiske studier om detransisjon",
+      "ogDescription": "Finn på denne siden et utvalg av akademiske studier og fagfellevurderte tidsskriftartikler og verifisert statistikk som er relatert til kjønnsidentitetstrender og detransisjon."
+    },
+    "title": "Utvalgte akademiske artikler",
+    "description": "Akademiske studier, fagfellevurdert forskning og tidsskriftartikler om emnene kjønnsidentitet, kjønnsovergang og detransisjon."
+  },
+  "contentWarning": {
+    "title": "Innholdsadvarsel:",
+    "description": {
+      "line1": "Dette nettstedet inneholder historier, erfaringer og perspektiver fra tidligere transpersoner.",
+      "line2": "Emner inkluderer anger over kjønnsovergang, medisinske komplikasjoner, og helhetlige syn på dysfori.",
+      "line3": "Denne informasjonen kan utfordre vanlige oppfatninger om kjønnsidentitet og kjønnsovergang."
+    },
+    "buttons": {
+      "exit": "Få meg ut herfra!",
+      "continue": "Fortsett"
+    }
+  },
+  "supportPage": {
+    "metadata": {
+      "title": "detrans.ai | Få kjønnshjelp og støtte",
+      "description": "Lær forskjellen mellom kjønnsbekreftende behandling og kjønnsutforskende terapi. Hvis du opplever kjønnsdysfori, er en av de beste måtene å få støtte på å snakke med og forstå perspektivene til personer som har vært der selv og kommet ut på den andre siden."
+    },
+    "title": "Få kjønnshjelp og støtte",
+    "navigation": {
+      "jumpTo": "Hopp til:",
+      "getGenderSupport": "Få kjønnsstøtte:"
+    },
+    "sections": {
+      "onlineSupport": {
+        "title": "Nettbaserte støttegrupper",
+        "description": "Hvis du opplever kjønnsdysfori, er en av de beste måtene å få støtte på å snakke med og forstå perspektivene til personer som har vært der selv og kommet ut på den andre siden.",
+        "links": {
+          "redditCommunity": "Detrans-fellesskapet på Reddit",
+          "redditWiki": "Detrans Wiki på Reddit",
+          "discordServer": "Offisiell /r/detrans Discord-server",
+          "askDetransAI": "Spør 50 000+ detrans-personer med detrans.ai"
+        }
+      },
+      "genderAffirmingCare": {
+        "title": "Kjønnsbekreftende behandling: Hva er det?",
+        "description": "Kjønnsbekreftende behandling er for øyeblikket standarden (og ofte den eneste) behandlingsmuligheten for kjønnsdysfori som tilbys av helsepersonell i den vestlige verden. Kjønnsbekreftende behandling gjenkjenner i essens samfunnets kjønnede forventninger og tilpasser deretter pasienten til dem. Det er en trinnvis tilnærming som begynner med sosial kjønnsovergang (navn, pronomen, klær), deretter hormonterapi, og så for noen, irreversible kirurgiske inngrep. Kjønnsbekreftende behandling kan gi lindring for kjønnsdysfori, men det medfører alvorlige helserisikoer og ofte permanente bivirkninger. Gå fram med ekstrem forsiktighet, og sørg for at du",
+        "watchTestimonies": "ser noen vitnesbyrd"
+      },
+      "genderExploratoryTherapy": {
+        "title": "Kjønnsutforskende terapi: Hva er det?",
+        "description1": "Kjønnsutforskende terapi betyr ganske enkelt at terapeuten din ikke skynder seg å bekrefte og medikalisere deg. I stedet vil de begynne med å utforske konsepter om kjønn og hvorfor du kan føle deg slik. Kjønnsutforskende terapi er en tilnærming uten en spesifikk, forhåndsbestemt agenda, og resultatene av kjønnsutforskende terapi kan variere avhengig av hver enkelt person.",
+        "description2": "Hvis du Googler 'Kjønnsutforskende terapi', vil du finne noen kritikker som sammenligner det med homofil konverteringsterapi (som er bevist å være ineffektivt). Sannheten er at kjønnsutforskende terapi er veldig forskjellig fra homofil konverteringsterapi:",
+        "references": {
+          "title": "Referanser",
+          "ref1": "U.S. Dept. of Health & Human Services (2025). Report on Pediatric Gender Dysphoria and Gender Conversion Efforts.",
+          "ref2": "D'Angelo, R. (2025). 'Supporting autonomy in young people with gender dysphoria: psychotherapy is not conversion therapy.' Journal of Medical Ethics, 51(1).",
+          "ref3": "Lemma, A. & Schmidt, L. (2024). 'Psychodynamic Psychotherapy for Gender Dysphoria is not Conversion Therapy.' Frontiers in Psychology.",
+          "ref4": "Korte, A. et al. (2021). 'One Size Does Not Fit All: In Support of Psychotherapy for Gender Dysphoria.' Archives of Sexual Behavior."
+        },
+        "florenceAshley": {
+          "title": "Florence Ashley-studien",
+          "description": "Akademisk forskning på dette feltet er ofte skjev. En av de mest innflytelsesrike studiene (Interrogating Gender-Exploratory Therapy) ble publisert i 2022 av Florence Ashley, en transkvinne. I sin studie sammenlignet hun kjønnsutforskende terapi med homofil konverteringsterapi og fordømte sterkt praksisen. Det bør erkjennes at personer som identifiserer seg som trans har motivasjon for å beskytte sin identitet og overbevisninger, og denne studien er et perfekt eksempel på dette. Studien er full av logiske feilslutninger, men den ble likevel publisert og brukes som akademisk begrunnelse for at kjønnsbekreftende behandling skal være det eneste alternativet for personer som opplever kjønnsdysfori.",
+          "showFallacies": "Se alle de logiske feilslutningene i Florence Ashleys studie"
+        }
+      },
+      "findTherapist": {
+        "title": "Hvor kan jeg finne en terapeut som praktiserer kjønnsutforskende terapi?",
+        "languageNotice": "De fleste terapeuter som er oppført, snakker bare engelsk, men du kan fortsatt prøve å kontakte dem for å finne noen som snakker ditt språk. Hvis du kjenner til en lisensiert terapeut som snakker ditt språk, kan du foreslå å legge dem til på denne siden via",
+        "contactForm": "kontaktskjemaet",
+        "organizations": {
+          "justTherapy": {
+            "name": "Just Therapy",
+            "description": "Just Therapy er født ut av et ønske om å gå tilbake til det terapi bør være – effektivt, etisk og fritt fra ideologi. Det er en sammenslutning av terapeuter og rådgivere som er samlet av felles etikk og prinsipper. Just Therapy erkjenner at mye av verden av psykoterapi og rådgivning har blitt tatt over av aktivister og ideologier, som risikerer å skade, heller enn å støtte, den mentale velværen til klienter. Dets medlemmer, som kommer fra et bredt spekter av disipliner og spesialiteter, har signert en etisk kodeks.",
+            "directory": "Just Therapy terapeutkatalog",
+            "codeOfConduct": "Just Therapy etisk kodeks"
+          },
+          "therapyFirst": {
+            "name": "Therapy First",
+            "description": "Therapy First forener psykisk helsepersonell som mener at klienter med kjønnsnød fortjener åpen, evidensbasert psykoterapi som utforsker bevisstløse og kontekstuelle faktorer før eventuelle irreversible medisinske skritt; de avviser både konverteringspraksiser og 'bekreft-bare'-modellen, opprettholder klientautonomi, og ser på medisinsk kjønnsovergang for barn/unge som eksperimentell, samtidig som de fortsatt støtter voksnes rett til kroppslig autonomi og fortsatt terapeutisk utforskning.",
+            "directory": "Therapy First terapeutkatalog",
+            "about": "Om Therapy First"
+          },
+          "beyondTrans": {
+            "name": "Beyond Trans",
+            "description": "Stella O'Malley lanserte Gender Dysphoria Support Network i mars 2020 for å gi foreldre uvildig hjelp med kjønnsnødlidende barn; det vokste raskt til et globalt fellesskap, og inspirerte til opprettelsen av Genspect i 2021, en talsmann for ikke-medikalisert omsorg. Erkjennelsen av økende angst over kjønnsovergang førte til at gruppen startet Beyond Trans i 2022, og i juni 2025 slo de det sammen med GDSN for å danne ett integrert, evidensbasert støttenettverk for familier, individer og detransisjonerte.",
+            "directory": "Beyond Trans terapeutkatalog",
+            "supportGroups": "Beyond Trans støttegrupper",
+            "about": "Om Beyond Trans"
+          },
+          "detransFoundation": {
+            "name": "The Detrans Foundation",
+            "description": "The Detrans Foundation gir ressurser og støtte til detransisjonerte, inkludert tilgang til kvalifiserte terapeuter som forstår detransisjonserfaringer. Følgende terapeuter er en del av Detrans Foundation:",
+            "drEntwistle": "er klinisk psykolog som tidligere jobbet ved NHSs tjeneste for kjønnsidentitetsutvikling for under 18 år i Leeds. Hun er registrert hos UK Health Care Professions Council (HCPC) og tilbyr nettkonsultasjoner via sikker videosamtale.",
+            "anastassisSpiliadis": "er systemisk og familieterapeut som jobbet i fire år ved Gender Identity Development Service ved Tavistock, hvor han ledet Family Therapy & Consultation Service. Han sa opp ved Tavistock da han var uenig i mangelen på en terapeutisk modell i forståelsen av kjønnsidentitetsvansker. Han utviklet den kjønnsutforskende modellen og har omfattende erfaring med å jobbe med kjønnsusikre individer og detransisjonerte.",
+            "visitWebsite": "Besøk Detrans Foundation-nettstedet"
+          }
+        }
+      },
+      "forParents": {
+        "title": "Ressurser for foreldre",
+        "intro": "Hvis barnet ditt nylig har kommet ut som transperson, kan du føle deg forvirret, bekymret og usikker på hvordan du best kan støtte dem samtidig som du beskytter deres langsiktige helse og velvære.",
+        "rogdRepair": {
+          "name": "Stephanie Winns ROGD Repair-program",
+          "whatIs": "Hva er ROGD Repair?",
+          "description1": "ROGD Repair er:",
+          "bullet1": "Et program som hjelper foreldre til transidentifiserte ungdommer å kommunisere på måter som fremmer desistens, kritisk tenkning, helse og relasjonell harmoni",
+          "bullet2": "Et interaktivt og stadig utvidende verktøysett av psykologikonsepter og kommunikasjonsferdigheter som er finslipt gjennom år som lisensiert ektefelle- og familieterapeut, nå ROGD-foreldrecoach",
+          "bullet3": "Et selvstudiobasert nettkurs med over 100 leksjoner, hver med en video, essay og refleksjonsspørsmål designet for å hjelpe deltakere med å personliggjøre innholdet til deres unike familiesituasjoner, samt diskusjonsforum",
+          "description2": "Nye ROGD Repair-medlemskap kommer nå med ubegrenset tilgang til RepairBot, det første og eneste AI-verktøyet designet spesifikt for å hjelpe ikke-bekreftende foreldre til kjønnsnødlidende ungdommer. RepairBot er trent på hele ROGD Repair-læreplanen og fungerer som en utmerket diskusjonspartner, leksehjelper og kommunikasjonsverktøy-hjelper!",
+          "ctaBox": {
+            "title": "Barnet ditt sier de er 'trans', men du vil bare at de skal være friske og trygge.",
+            "description1": "Barnets helse og fremtid står på spill, men din innflytelse og påvirkning er begrenset. Kanskje de startet med svartemarkedshormoner bak ryggen din, eller stormer ut sint når du 'misgenderer' dem, eller er borte på et 'bekreftende' universitet. Du trenger å kommunisere effektivt i denne vanskelige situasjonen, før noen blir skadet. Det er her ROGD Repair kommer inn.",
+            "description2": "ROGD Repair er et selvstudiobasert nettkurs og fellesskap for foreldre som lærer psykologikonsepter og kommunikasjonsverktøyene du trenger for å forstå barnets mentale tilstand og hvordan du når dem. Medlemskap inkluderer nå RepairBot, din døgnåpne AI-assistent trent på tilnærmingen.",
+            "description3": "ROGD Repair og RepairBot ble laget av en lisensiert ektefelle- og familieterapeut med over ti års erfaring med å jobbe med transidentifiserte ungdommer og deres familier, som nå eksklusivt veileder foreldre som vet at det må finnes en bedre vei enn 'bekreftelse.'"
+          },
+          "coupon": "Bruk denne kupongkoden for å få",
+          "couponCode": "DETRANSAI",
+          "learnMore": "Lær mer og meld deg på ROGD Repair"
+        }
+      }
+    },
+    "table": {
+      "gayConversion": "Homofil konverteringsterapi",
+      "genderExploratory": "Kjønnsutforskende terapi",
+      "goal": "Mål",
+      "goalConversion": "Endre seksuell orientering fordi den anses som patologisk.",
+      "goalExploratory": "Forstå betydningen av dysforien; utfallet kan være kjønnsovergang, ingen kjønnsovergang, eller delvis sosial kjønnsovergang.",
+      "method": "Metode",
+      "methodConversion": "Skam, aversjon, atferdskondisjonering, bønn.",
+      "methodExploratory": "GET er kompatibel med et bredt spekter av terapeutiske modaliteter, som standard psykodynamiske eller humanistiske teknikker – åpne spørsmål, nysgjerrighet, ingen forhåndsbestemte endepunkter.",
+      "evidence": "Evidensgrunnlag",
+      "evidenceConversion": "Viser konsekvent skade; alle store medisinske organer fordømmer det.",
+      "evidenceExploratory": "Ingen RCT-er ennå, men paralleller til terapier som reduserer angst, depresjon, selvskading; ingen data som viser systematisk skade.",
+      "ethics": "Etikk",
+      "ethicsConversion": "Krenker autonomi ved å presse heteroseksuell identitet som det eneste rette alternativet.",
+      "ethicsExploratory": "Søker å utvide autonomi ved å sikre at den unge (og familien) forstår alle alternativer før irreversible skritt."
+    },
+    "fallacies": {
+      "title": "Logiske feilslutninger i Florence Ashleys studie",
+      "name": "Navn på feilslutning",
+      "explanation": "Enkel forklaring",
+      "example": "Eksempel fra artikkelen"
+    }
+  },
+  "charts": {
+    "ageDistribution": {
+      "title": "Hvor gamle var detransisjonerte da de gikk gjennom kjønnsovergang og detransisjonerte?",
+      "subtitle": "Data fra Reddit-brukeres kjønnsovergangstidslinjer",
+      "loading": "Laster diagramdata...",
+      "fetchError": "Kunne ikke hente aldersfordelingsdata",
+      "genericError": "Det oppsto en feil",
+      "errorPrefix": "Feil:",
+      "noData": "Ingen data tilgjengelig for det valgte aldersspennet",
+      "tooltip": {
+        "age": "Alder: {age}",
+        "transitioned": "Gikk gjennom kjønnsovergang: {count} brukere",
+        "detransitioned": "Detransisjonerte: {count} brukere"
+      },
+      "axis": {
+        "age": "Alder",
+        "users": "Antall brukere"
+      },
+      "legend": {
+        "transition": "Kjønnsovergangsalder",
+        "detransition": "Detransisjonsalder"
+      }
+    },
+    "transitionDuration": {
+      "title": "Kjønnsovergangsvarighet: Alder ved kjønnsovergang vs alder ved detransisjon",
+      "description": {
+        "line1": "Hvert punkt viser kjønnsovergangsalder (X) vs detransisjonsalder (Y).",
+        "line2": "Større, mer ugjennomsiktige punkter representerer flere brukere."
+      },
+      "loading": "Laster diagramdata...",
+      "noData": "Ingen data tilgjengelig for det valgte aldersspennet",
+      "axis": {
+        "transitionAge": "Alder ved kjønnsovergang",
+        "detransitionAge": "Alder ved detransisjon"
+      },
+      "tooltip": {
+        "transitionAge": "Kjønnsovergangsalder",
+        "detransitionAge": "Detransisjonsalder",
+        "duration": "Varighet",
+        "years": "år"
+      },
+      "male": "Mann",
+      "female": "Kvinne",
+      "yearsAvg": "år gjennomsnitt",
+      "user": "bruker",
+      "users": "brukere"
+    },
+    "pathways": {
+      "title": "Detransisjonsveier Flyt",
+      "subtitle": "Flyt av /r/detrans Reddit-brukerdemografi gjennom til detransisjonsutfall",
+      "loading": "Laster veidata...",
+      "fetchError": "Kunne ikke hente merkefordelingsdata",
+      "genericError": "Det oppsto en feil",
+      "error": "Feil",
+      "users": "{count} brukere",
+      "percentageOfTotal": "{percentage}% av totalen",
+      "totalUsers": "Totalt antall brukere",
+      "flowConnections": "Flytforbindelser",
+      "male": "Mann",
+      "female": "Kvinne",
+      "noData": "Ingen veidata tilgjengelig for de valgte filtrene"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Kontakt | detrans.ai",
+      "description": "Ta kontakt med oss. Send oss dine tanker, forslag eller tilbakemeldinger."
+    },
+    "title": "Kontaktskjema",
+    "intro": "Hvis du har noen tanker, forslag, eller hvis denne gratis tjenesten har hjulpet deg, din familie eller din venn, vil jeg gjerne høre fra deg. Send meg en melding nedenfor!",
+    "form": {
+      "to": "Til",
+      "name": "Navn",
+      "namePlaceholder": "Ditt navn",
+      "email": "E-post",
+      "emailPlaceholder": "deg@eksempel.com",
+      "subject": "Emne",
+      "subjectPlaceholder": "Emne",
+      "message": "Melding",
+      "messagePlaceholder": "Skriv meldingen din...",
+      "sendButton": "Send melding",
+      "sending": "Sender...",
+      "success": "Melding sendt!",
+      "error": "Kunne ikke sende."
+    }
+  },
+  "seo": {
+    "conversations": {
+      "title": "Samtalearkiv",
+      "description": "Bla gjennom samtaler om kjønnsidentitet, detransisjonering, kjønnsbekreftende omsorg og bekreftelse.",
+      "conversations": "Samtaler",
+      "featuredConversations": "Fremhevede samtaler",
+      "allConversations": "Alle samtaler",
+      "untitled": "Samtale uten tittel",
+      "noSummary": "Ingen oppsummering tilgjengelig",
+      "noConversations": "Ingen samtaler tilgjengelig.",
+      "mode": "Modus",
+      "updated": "Oppdatert",
+      "featured": "Fremhevet",
+      "conversationSummary": "Samtaleoppsummering",
+      "noSummaryAvailable": "Ingen oppsummering tilgjengelig for denne samtalen.",
+      "conversation": "Samtale",
+      "unableToParse": "Kunne ikke analysere samtalemeldinger.",
+      "archiveNote": "Dette er en samtale fra arkivet vårt. For å se den fullstendige samtalen og delta i diskusjoner, vennligst besøk den interaktive versjonen av denne siden.",
+      "welcomeTitle": "Velkommen til Samtalearkivet",
+      "welcomeDescription": "Velg en samtale fra sidefeltet for å se detaljene. Dette arkivet inneholder diskusjoner om kjønnsidentitet, detransisjonsopplevelser og bekreftelsesreiser.",
+      "featuredDescription": "Fremhevede diskusjoner markert av fellesskapet vårt",
+      "allDescription": "Bla gjennom alle tilgjengelige diskusjoner",
+      "footer": "Denne siden gir SEO-vennlig innhold for søkemotorer og roboter. For den fullstendige interaktive opplevelsen, vennligst besøk med en moderne nettleser.",
+      "user": "Bruker"
+    },
+    "chat": {
+      "subtitle": "Spørsmål og svar for personer som stiller spørsmål ved sin kjønnsidentitet.",
+      "freedomMessage": "Sannheten er at kjønnsavvik vil sette oss alle fri!",
+      "moreQuestions": "Flere spørsmål relatert til \"{question}\""
+    },
+    "videos": {
+      "title": "Kjønnsovergangs- og detransisjonsvideoer",
+      "description": "Dette er et arkiv av personlige detransisjonsvideoer som har blitt lastet opp til internett. La stemmen din bli hørt ved å bidra og dele din egen historie!",
+      "thumbnailAlt": "Miniatyrbilde for",
+      "by": "av",
+      "female": "Kvinne",
+      "male": "Mann"
+    }
+  },
+  "routes": {
+    "home": "/",
+    "about": "/om",
+    "contact": "/kontakt",
+    "support": "/stotte",
+    "videos": "/videoer",
+    "stories": "/historier",
+    "studies": "/studier",
+    "definitions": "/definisjoner",
+    "donate": "/doner",
+    "terms": "/vilkar",
+    "prompts": "/sporring",
+    "participate": "/delta",
+    "conversations": "/samtaler",
+    "research": "/forskning",
+    "chat": "/chat",
+    "login": "/logg-inn"
+  }
+}
