@@ -3,7 +3,7 @@
 import { useChatUI, usePart } from "@llamaindex/chat-ui";
 import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import CommentCard from "../../CommentCard";
 import {
   Accordion,
@@ -29,16 +29,6 @@ export default function CommentQueryEventPart() {
   const t = useTranslations("chat");
 
   const { isLoading: loadingGlobal, status, messages } = useChatUI();
-
-  useEffect(() => {
-    console.log(
-      "loading: " + loadingGlobal + " status:  " + status,
-      "commentPart",
-      commentPart,
-      "messages: ",
-      messages,
-    );
-  });
 
   const isThinking = useMemo(() => {
     const latestResponse = [...messages]
