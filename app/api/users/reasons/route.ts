@@ -81,13 +81,14 @@ export async function GET(request: NextRequest) {
       .select({
         id: detransTags.id,
         name: detransTags.name,
+        nameTranslation: detransTags.nameTranslation,
         userCount: sql<number>`COALESCE(COUNT(DISTINCT CASE WHEN ${reasonField} = ${detransTags.id} AND ${userFilterCondition} THEN ${detransUsers.username} END), 0)`,
       })
       .from(detransTags)
       .innerJoin(detransTagTypes, eq(detransTags.id, detransTagTypes.tagId))
       .leftJoin(detransUsers, sql`1=1`)
       .where(and(...tagConditions))
-      .groupBy(detransTags.id, detransTags.name)
+      .groupBy(detransTags.id, detransTags.name, detransTags.nameTranslation)
       .orderBy(sql`COALESCE(COUNT(DISTINCT CASE WHEN ${reasonField} = ${detransTags.id} AND ${userFilterCondition} THEN ${detransUsers.username} END), 0) DESC`);
 
     return NextResponse.json({ 

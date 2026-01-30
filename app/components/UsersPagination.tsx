@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "./ui/button";
 
@@ -15,13 +16,14 @@ interface UsersPaginationProps {
 }
 
 export default function UsersPagination({ pagination }: UsersPaginationProps) {
+  const t = useTranslations("stories.pagination");
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const navigateToPage = (page: number) => {
     const params = new URLSearchParams(searchParams);
     params.set("page", page.toString());
-    
+
     const queryString = params.toString();
     router.push(`/stories?${queryString}`);
   };
@@ -31,25 +33,28 @@ export default function UsersPagination({ pagination }: UsersPaginationProps) {
   }
 
   return (
-    <div className="flex justify-center gap-2 mt-8">
+    <div className="mt-8 flex justify-center gap-2">
       <Button
         variant="outline"
         disabled={!pagination.hasPrev}
         onClick={() => navigateToPage(pagination.page - 1)}
       >
-        Previous
+        {t("previous")}
       </Button>
-      
+
       <span className="flex items-center px-4">
-        Page {pagination.page} of {pagination.totalPages}
+        {t("pageInfo", {
+          page: pagination.page,
+          totalPages: pagination.totalPages,
+        })}
       </span>
-      
+
       <Button
         variant="outline"
         disabled={!pagination.hasNext}
         onClick={() => navigateToPage(pagination.page + 1)}
       >
-        Next
+        {t("next")}
       </Button>
     </div>
   );

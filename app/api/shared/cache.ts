@@ -1,9 +1,9 @@
-import { db, detransCache, detransChatCache } from "@/db";
-import { createHash } from "crypto";
+import { db, detransChatCache, detransResearchCache } from "@/db";
 import { eq } from "drizzle-orm";
 export interface Cache {
-  get(key: string): Promise<string | null>;
+  get(hashedKey: string): Promise<string | null>;
   set(
+    hashedKey: string,
     key: string,
     value: string,
     questionName?: string,
@@ -19,24 +19,15 @@ export interface Cache {
 }
 
 export class PostgresCache implements Cache {
-  constructor(private mode: "detrans" | "affirm" | "detrans_chat") {}
+  constructor(private mode: "detrans_chat" | "deep_research") {}
 
   private getCacheTable() {
     if (this.mode === "detrans_chat") return detransChatCache;
-    return detransCache;
+    return detransResearchCache;
   }
 
-  private hashKey(key: string): string {
-    return createHash("sha256").update(key).digest("hex");
-  }
-
-  async get(key: string): Promise<string | null> {
-    const startTime = Date.now();
+  async get(hashedKey: string): Promise<string | null> {
     try {
-      const hashStartTime = Date.now();
-      const hashedKey = this.hashKey(key);
-      const hashTime = Date.now() - hashStartTime;
-
       const cacheTable = this.getCacheTable();
 
       const queryStartTime = Date.now();
@@ -54,23 +45,19 @@ export class PostgresCache implements Cache {
           .update(cacheTable)
           .set({ lastAccessed: new Date() })
           .where(eq(cacheTable.promptHash, hashedKey));
-        const updateTime = Date.now() - updateStartTime;
-        const totalTime = Date.now() - startTime;
 
         return result[0].resultText;
       }
 
-      const totalTime = Date.now() - startTime;
-
       return null;
     } catch (error) {
-      const totalTime = Date.now() - startTime;
       console.error("Cache get error:", error);
       return null;
     }
   }
 
   async set(
+    hashedKey: string,
     key: string,
     value: string,
     questionName?: string,
@@ -83,17 +70,8 @@ export class PostgresCache implements Cache {
       conversationId?: string;
     },
   ): Promise<void> {
-    const startTime = Date.now();
-    console.log("metadata", metadata);
     try {
-      const hashStartTime = Date.now();
-      const hashedKey = this.hashKey(key);
-      const hashTime = Date.now() - hashStartTime;
-
       const cacheTable = this.getCacheTable();
-
-      const insertStartTime = Date.now();
-
       // Base values that all cache tables have
       const baseValues = {
         promptHash: hashedKey,
@@ -109,10 +87,13 @@ export class PostgresCache implements Cache {
         lastAccessed: new Date(),
       };
 
-      // Add conversationId only for detrans_chat mode
+      // Add conversationId  for detrans_chat
       const values =
         this.mode === "detrans_chat"
-          ? { ...baseValues, conversationId: metadata?.conversationId || null }
+          ? {
+              ...baseValues,
+              conversationId: metadata?.conversationId || null,
+            }
           : baseValues;
 
       const baseUpdateSet = {
@@ -127,7 +108,7 @@ export class PostgresCache implements Cache {
         }),
       };
 
-      // Add conversationId to update set only for detrans_chat mode
+      // Add conversationId to update set only for detrans_chat
       const updateSet =
         this.mode === "detrans_chat" && metadata
           ? {
@@ -140,28 +121,28 @@ export class PostgresCache implements Cache {
         target: cacheTable.promptHash,
         set: updateSet,
       });
-      const insertTime = Date.now() - insertStartTime;
-      const totalTime = Date.now() - startTime;
     } catch (error) {
-      const totalTime = Date.now() - startTime;
       console.error("Cache set error:", error);
       // Don't throw - cache failures shouldn't break the application
     }
   }
 }
 
-export function makeLlmCacheKey(
-  question: string,
+import { createHash } from "crypto";
+
+export function makeCacheKey(
   messages: any[],
   options: any,
   mode?: string,
 ): string {
-  if (mode === "detrans_chat") {
-    // Include entire conversation history and tool parameters
-    return JSON.stringify({
-      messages,
-      tools: options.tools?.map((t: any) => t.name),
-    });
-  }
-  return question + ":llm:" + JSON.stringify({ messages, ...options });
+  return mode === "detrans_chat" || mode === "deep_research"
+    ? JSON.stringify({
+        messages,
+        tools: options.tools?.map((t: any) => t.name),
+      })
+    : JSON.stringify({ messages, ...options });
+}
+
+export function makeHashedKey(key: string): string {
+  return createHash("sha256").update(key).digest("hex");
 }

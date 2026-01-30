@@ -1,6 +1,7 @@
 "use client";
 
 import { HistoryIcon, List, RefreshCw, TrendingUp } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
@@ -13,6 +14,7 @@ interface QuestionTabsProps {
 }
 
 export function QuestionTabs({ mode }: QuestionTabsProps) {
+  const t = useTranslations("questionTabs");
   const searchParams = useSearchParams();
   const router = useRouter();
   const tabsRef = useRef<HTMLDivElement>(null);
@@ -70,7 +72,7 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
           >
             <List className="hidden h-4 w-4 sm:block" />
 
-            <span className="text-sm font-medium">Topics</span>
+            <span className="text-sm font-medium">{t("topics")}</span>
           </TabsTrigger>
 
           <TabsTrigger
@@ -78,7 +80,7 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
             className="flex-row items-center gap-2 rounded-lg py-2"
           >
             <RefreshCw className="hidden h-4 w-4 sm:block" />
-            <span className="text-sm font-medium">Generated</span>
+            <span className="text-sm font-medium">{t("generated")}</span>
           </TabsTrigger>
 
           <TabsTrigger
@@ -86,7 +88,7 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
             className="flex-row items-center gap-2 rounded-lg py-2"
           >
             <HistoryIcon className="hidden h-4 w-4 sm:block" />
-            <span className="text-sm font-medium">Recent</span>
+            <span className="text-sm font-medium">{t("recent")}</span>
           </TabsTrigger>
 
           <TabsTrigger
@@ -94,7 +96,7 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
             className="flex-row items-center gap-2 rounded-lg py-2"
           >
             <TrendingUp className="hidden h-4 w-4 sm:block" />
-            <span className="text-sm font-medium">Top</span>
+            <span className="text-sm font-medium">{t("top")}</span>
           </TabsTrigger>
         </TabsList>
       </div>

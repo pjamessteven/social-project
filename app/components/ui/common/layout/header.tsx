@@ -1,6 +1,8 @@
 "use client";
 
 import DonationCard from "@/app/components/content/DonationCard";
+import { Link } from "@/i18n/routing";
+import { clsx } from "clsx";
 import {
   BookOpen,
   ChartNoAxesCombined,
@@ -18,7 +20,7 @@ import {
   X,
   Youtube,
 } from "lucide-react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Button } from "../../button";
@@ -32,6 +34,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "../../navigation-menu";
+import { SettingsMenu } from "./SettingsMenu";
 
 function NavLink({ href, label }: { href: string; label: string }) {
   const pathname = usePathname();
@@ -43,7 +46,7 @@ function NavLink({ href, label }: { href: string; label: string }) {
         size="sm"
         variant="ghost"
         className={cn(
-          "ml-2 rounded-full px-4 transition-all",
+          "ms-2 rounded-full px-4 transition-all",
           isActive && "bg-accent",
         )}
       >
@@ -53,11 +56,18 @@ function NavLink({ href, label }: { href: string; label: string }) {
   );
 }
 
-export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
+export default function Header({
+  mode,
+  locale,
+}: {
+  mode: "detrans" | "affirm";
+  locale?: string;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const isDev = process.env.NODE_ENV === "development";
   const devAffirm = isDev && mode === "affirm";
+  const t = useTranslations("header");
   return (
     <div
       className={cn(
@@ -85,15 +95,18 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
       <div className="flex items-center gap-2">
         {/* Desktop Navigation - hidden on mobile */}
         <div className="hidden items-center justify-end gap-0.5 p-1 md:flex">
-          <NavLink href={!devAffirm ? "/" : "/affirm"} label="Home" />
+          <NavLink
+            href={!devAffirm ? "/" : "/affirm"}
+            label={t("navigation.home")}
+          />
 
-          <NavigationMenu className="ml-2">
+          <NavigationMenu className="ms-2">
             <NavigationMenuList>
               {/* Resources Menu */}
               {mode === "detrans" && (
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="rounded-full bg-transparent px-4 text-sm font-medium">
-                    Resources
+                    {t("navigation.resources")}
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <div className="grid w-68 gap-1 p-1">
@@ -102,13 +115,13 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           href={"/support"}
                           className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                         >
-                          <Heart className="mr-2 h-6 w-6" />
+                          <Heart className="me-2 h-6 w-6" />
                           <div className="flex flex-col space-y-1">
                             <div className="text-sm leading-none font-medium">
-                              Gender Support
+                              {t("resources.genderSupport")}
                             </div>
                             <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                              Find community and therapists
+                              {t("resources.genderSupportDesc")}
                             </p>
                           </div>
                         </Link>
@@ -118,13 +131,13 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           href={"/definitions"}
                           className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                         >
-                          <FileText className="mr-2 h-8 w-8" />
+                          <FileText className="me-2 h-8 w-8" />
                           <div className="flex flex-col space-y-1">
                             <div className="text-sm leading-none font-medium">
-                              Terminology
+                              {t("resources.terminology")}
                             </div>
                             <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                              Defining key terms/concepts
+                              {t("resources.terminologyDesc")}
                             </p>
                           </div>
                         </Link>
@@ -135,14 +148,14 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                         >
                           <div>
-                            <Users className="mr-2 h-6 w-6" />
+                            <Users className="me-2 h-6 w-6" />
                           </div>
                           <div className="flex flex-col space-y-1">
                             <div className="text-sm leading-none font-medium">
-                              Stories & Timelines
+                              {t("resources.stories")}
                             </div>
                             <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                              From /r/detrans users
+                              {t("resources.storiesDesc")}
                             </p>
                           </div>
                         </Link>
@@ -153,14 +166,14 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                         >
                           <div>
-                            <Youtube className="mr-2 h-6 w-6" />
+                            <Youtube className="me-2 h-6 w-6" />
                           </div>
                           <div className="flex flex-col space-y-1">
                             <div className="text-sm leading-none font-medium">
-                              Detransition Videos
+                              {t("resources.videos")}
                             </div>
                             <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                              Personal memoir archive
+                              {t("resources.videosDesc")}
                             </p>
                           </div>
                         </Link>
@@ -170,13 +183,13 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           href={"/studies"}
                           className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                         >
-                          <BookOpen className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
+                          <BookOpen className="me-2 mt-0.5 h-4 w-4 flex-shrink-0" />
                           <div className="flex flex-col space-y-1">
                             <div className="text-sm leading-none font-medium">
-                              Peer-reviewed Studies
+                              {t("resources.studies")}
                             </div>
                             <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                              Relevant academic research
+                              {t("resources.studiesDesc")}
                             </p>
                           </div>
                         </Link>
@@ -188,17 +201,17 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center justify-between gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                         >
                           <div className="flex flex-row items-center">
-                            <ChartNoAxesCombined className="mt-0.5 mr-5 h-4 w-4 flex-shrink-0" />
+                            <ChartNoAxesCombined className="me-5 mt-0.5 h-4 w-4 flex-shrink-0" />
                             <div className="flex flex-col space-y-1">
                               <div className="text-sm leading-none font-medium">
-                                Verified Statistics
+                                {t("resources.statistics")}
                               </div>
                               <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                                statsforgender.org
+                                {t("resources.statisticsDesc")}
                               </p>
                             </div>
                           </div>
-                          <ExternalLink className="ml-2 h-4" />
+                          <ExternalLink className="ms-2 h-4" />
                         </a>
                       </NavigationMenuLink>
                     </div>
@@ -208,7 +221,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
               {/* About Menu */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="rounded-full bg-transparent px-4 text-sm font-medium">
-                  About
+                  {t("navigation.about")}
                 </NavigationMenuTrigger>
 
                 <NavigationMenuContent>
@@ -219,7 +232,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           href={"/about"}
                           className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                         >
-                          <Scroll className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
+                          <Scroll className="me-2 mt-0.5 h-4 w-4 flex-shrink-0" />
                           <div className="flex flex-col space-y-1">
                             <div className="text-sm leading-none font-medium">
                               Manifesto
@@ -236,13 +249,13 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         href={!devAffirm ? "/contact" : "/affirm/contact"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <Mail className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
+                        <Mail className="me-2 mt-0.5 h-4 w-4 flex-shrink-0" />
                         <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
-                            Contact
+                            {t("about.contact")}
                           </div>
                           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            Get in touch with me
+                            {t("about.contactDesc")}
                           </p>
                         </div>
                       </Link>
@@ -252,13 +265,13 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         href={"/prompts"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <Settings className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
+                        <Settings className="me-2 mt-0.5 h-4 w-4 flex-shrink-0" />
                         <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
-                            System Prompts
+                            {t("about.systemPrompts")}
                           </div>
                           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            View the AI system prompts
+                            {t("about.systemPromptsDesc")}
                           </p>
                         </div>
                       </Link>
@@ -268,13 +281,13 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         href={!devAffirm ? "/terms" : "/affirm/terms"}
                         className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                       >
-                        <HelpCircle className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0" />
+                        <HelpCircle className="me-2 mt-0.5 h-4 w-4 flex-shrink-0" />
                         <div className="flex flex-col space-y-1">
                           <div className="text-sm leading-none font-medium">
-                            Terms
+                            {t("about.terms")}
                           </div>
                           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            Privacy policy and terms
+                            {t("about.termsDesc")}
                           </p>
                         </div>
                       </Link>
@@ -285,13 +298,23 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        {/* Donate Button - Always visible */}
+
+        {/* Settings Menu */}
+        <div
+          className={clsx("mr-3", "hidden md:block")}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <SettingsMenu />
+        </div>
+
+        {/* Donate Button  */}
         <Link
-          href={!devAffirm ? "/donate" : "/affirm/donate"}
-          className={isOpen ? "block" : "hidden md:block"}
+          href="/donate"
+          className={"hidden md:block"}
+          onClick={(e) => e.stopPropagation()}
         >
           <Button size={"sm"} variant={"destructive"}>
-            Donate
+            {t("donate")}
           </Button>
         </Link>
 
@@ -315,12 +338,18 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
             showOverlay={false}
             className="data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 !top-[56px] h-full w-full max-w-none translate-x-0 translate-y-0 rounded-none border-none p-0"
           >
-            <div className="flex h-full flex-col justify-between overflow-y-auto p-4">
-              <div className="flex w-full flex-col space-y-2">
-                <Link
-                  href={!devAffirm ? "/" : "/affirm"}
-                  onClick={() => setIsOpen(false)}
-                >
+            <div className="flex h-full flex-col justify-between overflow-y-auto px-4 pb-4">
+              {/* Mobile Header Actions Row */}
+              <div className="border- sticky top-0 -mx-4 flex items-center justify-between gap-2 border-b bg-white px-4 pt-4 pb-4 shadow-md md:hidden dark:bg-black">
+                <SettingsMenu />
+                <Link href="/donate" onClick={() => setIsOpen(false)}>
+                  <Button size="sm" variant="destructive">
+                    {t("donate")}
+                  </Button>
+                </Link>
+              </div>
+              <div className="flex w-full flex-col space-y-2 pt-3">
+                <Link href={"/"} onClick={() => setIsOpen(false)}>
                   <Button
                     variant="ghost"
                     className={cn(
@@ -331,7 +360,9 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                     <Home className="h-4 w-4" />
 
                     <div className="ml-4 flex flex-col items-start">
-                      <div className="text-sm font-medium">Chat Portal</div>
+                      <div className="text-sm font-medium">
+                        {t("navigation.home")}
+                      </div>
                       <div className="text-muted-foreground text-xs">
                         {mode === "detrans"
                           ? "Detrans AI Chat & Starter Questions"
@@ -345,10 +376,10 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                 {mode === "detrans" && (
                   <div className="border-border border-t py-2">
                     <h3 className="text-muted-foreground ml-1 pt-2 text-sm font-medium">
-                      Resources
+                      {t("navigation.resources")}
                     </h3>
                     <div className="space-y-1">
-                      <Link href={"/support"} onClick={() => setIsOpen(false)}>
+                      <Link href="/support" onClick={() => setIsOpen(false)}>
                         <Button
                           variant="ghost"
                           className={cn(
@@ -359,15 +390,15 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           <Heart className="h-4 w-4" />
                           <div className="ml-4 flex flex-col items-start">
                             <div className="text-sm font-medium">
-                              Help & Support
+                              {t("resources.genderSupport")}
                             </div>
                             <div className="text-muted-foreground text-xs">
-                              Find community and therapists
+                              {t("resources.genderSupportDesc")}
                             </div>
                           </div>
                         </Button>
                       </Link>
-                      <Link href={"/stories"} onClick={() => setIsOpen(false)}>
+                      <Link href="/stories" onClick={() => setIsOpen(false)}>
                         <Button
                           variant="ghost"
                           className={cn(
@@ -378,15 +409,15 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           <Users className="h-4 w-4" />
                           <div className="ml-4 flex flex-col items-start">
                             <div className="text-sm font-medium">
-                              Stories & Timelines
+                              {t("resources.stories")}
                             </div>
                             <div className="text-muted-foreground text-xs">
-                              From /r/detrans users
+                              {t("resources.storiesDesc")}
                             </div>
                           </div>
                         </Button>
                       </Link>
-                      <Link href={"/videos"} onClick={() => setIsOpen(false)}>
+                      <Link href="/videos" onClick={() => setIsOpen(false)}>
                         <Button
                           variant="ghost"
                           className={cn(
@@ -397,16 +428,16 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           <Youtube className="h-4 w-4" />
                           <div className="ml-4 flex flex-col items-start">
                             <div className="text-sm font-medium">
-                              Detransition Videos
+                              {t("resources.videos")}
                             </div>
                             <div className="text-muted-foreground text-xs">
-                              Personal memoir archive
+                              {t("resources.videosDesc")}
                             </div>
                           </div>
                         </Button>
                       </Link>
                       <Link
-                        href={"/definitions"}
+                        href="/definitions"
                         onClick={() => setIsOpen(false)}
                       >
                         <Button
@@ -419,16 +450,16 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           <FileText className="h-4 w-4" />
                           <div className="ml-4 flex flex-col items-start">
                             <div className="text-sm font-medium">
-                              Terminology
+                              {t("resources.terminology")}
                             </div>
                             <div className="text-muted-foreground text-xs">
-                              Defining key terms/concepts
+                              {t("resources.terminologyDesc")}
                             </div>
                           </div>
                         </Button>
                       </Link>
 
-                      <Link href={"/studies"} onClick={() => setIsOpen(false)}>
+                      <Link href="/studies" onClick={() => setIsOpen(false)}>
                         <Button
                           variant="ghost"
                           className={cn(
@@ -439,10 +470,10 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                           <BookOpen className="h-4 w-4" />
                           <div className="ml-4 flex flex-col items-start">
                             <div className="text-sm font-medium">
-                              Peer-reviewed Studies
+                              {t("resources.studies")}
                             </div>
                             <div className="text-muted-foreground text-xs">
-                              Relevant academic research
+                              {t("resources.studiesDesc")}
                             </div>
                           </div>
                         </Button>
@@ -458,14 +489,14 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                             <ChartNoAxesCombined className="h-4 w-4" />
                             <div className="ml-4 flex flex-col items-start">
                               <div className="text-sm font-medium">
-                                Verified Statistics
+                                {t("resources.statistics")}
                               </div>
                               <div className="text-muted-foreground text-xs">
-                                statsforgender.org
+                                {t("resources.statisticsDesc")}
                               </div>
                             </div>
                           </div>
-                          <ExternalLink className="ml-2 h-4" />
+                          <ExternalLink className="ms-2 h-4" />
                         </Button>
                       </a>
                     </div>
@@ -476,11 +507,11 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
 
                 <div className="border-border border-t py-2">
                   <h3 className="text-muted-foreground ml-1 pt-2 text-sm font-medium">
-                    About
+                    {t("navigation.about")}
                   </h3>
                   <div className="space-y-1">
                     {mode !== "affirm" && false && (
-                      <Link href={"/about"} onClick={() => setIsOpen(false)}>
+                      <Link href="/about" onClick={() => setIsOpen(false)}>
                         <Button
                           variant="ghost"
                           className={cn(
@@ -498,10 +529,7 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         </Button>
                       </Link>
                     )}
-                    <Link
-                      href={!devAffirm ? "/contact" : "/affirm/contact"}
-                      onClick={() => setIsOpen(false)}
-                    >
+                    <Link href="/contact" onClick={() => setIsOpen(false)}>
                       <Button
                         variant="ghost"
                         className={cn(
@@ -511,17 +539,16 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                       >
                         <Mail className="h-4 w-4" />
                         <div className="ml-4 flex flex-col items-start">
-                          <div className="text-sm font-medium">Contact</div>
+                          <div className="text-sm font-medium">
+                            {t("about.contact")}
+                          </div>
                           <div className="text-muted-foreground text-xs">
-                            Get in touch with me
+                            {t("about.contactDesc")}
                           </div>
                         </div>
                       </Button>
                     </Link>
-                    <Link
-                      href={!devAffirm ? "/prompts" : "/affirm/prompts"}
-                      onClick={() => setIsOpen(false)}
-                    >
+                    <Link href="/prompts" onClick={() => setIsOpen(false)}>
                       <Button
                         variant="ghost"
                         className={cn(
@@ -532,10 +559,10 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                         <Settings className="h-4 w-4" />
                         <div className="ml-4 flex flex-col items-start">
                           <div className="text-sm font-medium">
-                            How It Works
+                            {t("about.systemPrompts")}
                           </div>
                           <div className="text-muted-foreground text-xs">
-                            View the AI system prompts
+                            {t("about.systemPromptsDesc")}
                           </div>
                         </div>
                       </Button>
@@ -553,9 +580,11 @@ export default function Header({ mode }: { mode: "detrans" | "affirm" }) {
                       >
                         <HelpCircle className="h-4 w-4" />
                         <div className="ml-4 flex flex-col items-start">
-                          <div className="text-sm font-medium">Terms</div>
+                          <div className="text-sm font-medium">
+                            {t("about.terms")}
+                          </div>
                           <div className="text-muted-foreground text-xs">
-                            Privacy policy and terms
+                            {t("about.termsDesc")}
                           </div>
                         </div>
                       </Button>

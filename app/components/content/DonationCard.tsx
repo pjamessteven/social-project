@@ -2,7 +2,7 @@
 
 import { ExternalLink, HandCoins } from "lucide-react";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Button } from "../ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
@@ -11,7 +11,7 @@ export default function DonationCard({
 }: {
   mode: "detrans" | "affirm" | "compare";
 }) {
-  const t = useTranslations("donate");
+  const t = useTranslations("home.donate.card");
   return (
     <Card
       className={
@@ -35,7 +35,7 @@ export default function DonationCard({
           {t("description2")}
         </CardDescription>
 
-        <Link href={"/donate"} className="mt-2">
+        <Link href="/donate" className="mt-2">
           <Button variant={"destructive"}>
             {t("button")} <ExternalLink className="ml-2 h-4" />
           </Button>

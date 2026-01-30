@@ -1,47 +1,73 @@
 import { agent } from "@llamaindex/workflow";
 import { NodeWithScore, tool } from "llamaindex";
 import z from "zod";
-import { PostgresCache } from "../../shared/cache";
+import { PostgresCache, makeHashedKey } from "../../shared/cache";
 import { CachedOpenAI } from "../../shared/llm";
 import { agentPrompt } from "../utils";
 import { getCommentsIndex, getStoriesIndex, getVideosIndex } from "./data";
 import { initSettings } from "./settings";
 
+type FilterConfig = {
+  sex?: string;
+  tags?: string[];
+  locale?: string;
+};
+
+type MetadataFilter = {
+  key: string;
+  value: string;
+  operator: "==";
+};
+
 export const workflowFactory = async (
   reqBody: any,
   userInput: string,
   conversationId?: string,
+  locale?: string,
 ) => {
   initSettings();
-  const commentsIndex = await getCommentsIndex(reqBody?.data);
-  const storiesIndex = await getStoriesIndex(reqBody?.data);
-  const videosIndex = await getVideosIndex(reqBody?.data);
+
+  // Initialize cache first since it's used by tools
+  const cache = new PostgresCache("detrans_chat");
+
+  const commentsIndex = await getCommentsIndex(reqBody?.data, locale);
+  const storiesIndex = await getStoriesIndex(reqBody?.data, locale);
+  const videosIndex = await getVideosIndex(reqBody?.data, locale);
 
   console.log("[WORKFLOW] Creating query tools...");
 
-  const buildFilters = ({ sex, tags }: { sex?: string; tags?: string[] }) => {
-    const filters: any[] = [];
+  const buildFilters = ({ sex, tags, locale: filterLocale }: FilterConfig) => {
+    const filters: MetadataFilter[] = [];
 
     if (sex) {
       filters.push({ key: "sex", value: sex, operator: "==" });
     }
 
     if (tags && tags.length > 0) {
-      // Each tag is required → multiple == conditions
       for (const tag of tags) {
         filters.push({ key: "tags", value: tag, operator: "==" });
       }
+    }
+
+    if (filterLocale) {
+      filters.push({ key: "locale", value: filterLocale, operator: "==" });
     }
 
     return filters.length > 0 ? { filters } : undefined;
   };
 
   const queryStoriesTool = tool(
-    async ({ query, sex, tags }) => {
-      // Create cache key for this specific tool call
+    async ({
+      query,
+      sex,
+      tags,
+    }: {
+      query: string;
+      sex?: string;
+      tags?: string[];
+    }) => {
       const cacheKey = `tool:queryStories:${JSON.stringify({ query, sex, tags })}`;
 
-      // Try to get from cache first
       const cachedResult = await cache.get(cacheKey);
       if (cachedResult) {
         console.log("[CACHE HIT] queryStoriesTool");
@@ -49,7 +75,6 @@ export const workflowFactory = async (
       }
       console.log("[CACHE MISS] queryStoriesTool");
 
-      // Build filters dynamically
       const filters = buildFilters({ sex, tags });
       const storiesEngineTool = storiesIndex.asRetriever({
         similarityTopK: 10,
@@ -64,8 +89,8 @@ export const workflowFactory = async (
         })),
       );
 
-      // Cache the result
-      await cache.set(cacheKey, result, undefined, { conversationId });
+      const hashedKey = makeHashedKey(cacheKey);
+      await cache.set(hashedKey, cacheKey, result, undefined, { conversationId });
 
       return result;
     },
@@ -74,20 +99,19 @@ export const workflowFactory = async (
       description: "Query relevant stories",
       parameters: z.object({
         query: z.string(),
-        //     sex: z.enum(["m", "f"]).optional(),
-        //    tags: z.array(z.enum(["", ...availableTags]).optional()),
+        sex: z.enum(["m", "f"]).optional(),
+        tags: z.array(z.string()).optional(),
       }),
     },
   );
 
-  // define tool with zod validation
   const queryCommentsTool = tool(
-    async ({ query }) => {
-      // Create cache key for this specific tool call
+    async ({ query }: { query: string }) => {
+      console.log("queryCommentsToolQuery", query);
       const cacheKey = `tool:queryComments:${JSON.stringify({ query })}`;
+      const hashedKey = makeHashedKey(cacheKey);
+      const cachedResult = await cache.get(hashedKey);
 
-      // Try to get from cache first
-      const cachedResult = await cache.get(cacheKey);
       if (cachedResult) {
         console.log("[CACHE HIT] queryCommentsTool");
         return cachedResult;
@@ -101,30 +125,31 @@ export const workflowFactory = async (
       const nodes = await commentsEngineTool.retrieve({ query });
       const result = JSON.stringify(nodes);
 
-      // Cache the result
-      await cache.set(cacheKey, result, undefined, { conversationId });
+      await cache.set(hashedKey, cacheKey, result, userInput, {
+        conversationId,
+      });
 
       return result;
     },
     {
       name: "queryComments",
-      description: "Query stories and experiences from real detransitioners",
+      description:
+        "Query stories and experiences from real detransitioners. **Ask your question in the users native language**.",
       parameters: z.object({
         query: z.string({
           description:
-            "A question to find more specific information from real detransitioners. It should be a properly worded question in English.'",
+            "A question to find more specific information from real detransitioners. **Ask your question in the users native language**.'",
         }),
       }),
     },
   );
-  // define tool with zod validation
-  const queryVideosTool = tool(
-    async ({ query, sex }) => {
-      // Create cache key for this specific tool call
-      const cacheKey = `tool:queryVideos:${JSON.stringify({ query, sex })}`;
 
-      // Try to get from cache first
-      const cachedResult = await cache.get(cacheKey);
+  const queryVideosTool = tool(
+    async ({ query, sex }: { query: string; sex?: "m" | "f" }) => {
+      const cacheKey = `tool:queryComments:${JSON.stringify({ query })}`;
+      const hashedKey = makeHashedKey(cacheKey);
+      const cachedResult = await cache.get(hashedKey);
+
       if (cachedResult) {
         console.log("[CACHE HIT] queryVideosTool");
         return cachedResult;
@@ -136,7 +161,7 @@ export const workflowFactory = async (
         similarityTopK: 10,
         filters,
       });
-      // 3. Safely access the query, handling the optional 'params'
+
       const nodes = await videosEngineTool.retrieve({ query });
       const unique = nodes.reduce<{
         seen: Set<string>;
@@ -155,19 +180,20 @@ export const workflowFactory = async (
 
       const result = JSON.stringify(unique.slice(0, 3));
 
-      // Cache the result
-      await cache.set(cacheKey, result, undefined, { conversationId });
+      await cache.set(hashedKey, cacheKey, result, userInput, {
+        conversationId,
+      });
 
       return result;
     },
     {
       name: "queryVideos",
       description:
-        "Find relevant Youtube Videos by searching transcript content",
+        "Find relevant Youtube Videos by searching transcript content. **Ask your question in the users native language.**",
       parameters: z.object({
         query: z.string({
           description:
-            "A clear question to find more specific information from personal Youtube video transcripts. It should be a properly worded question in English.'",
+            "A clear question to find more specific information from personal Youtube video transcripts. **Ask your question in the users native language**'",
         }),
         sex: z
           .enum(["m", "f"])
@@ -176,8 +202,6 @@ export const workflowFactory = async (
       }),
     },
   );
-
-  const cache = new PostgresCache("detrans_chat");
 
   const llm = new CachedOpenAI({
     cache,
@@ -195,14 +219,6 @@ export const workflowFactory = async (
       thinking: { type: "disabled" },
     } as any,
   });
-
-  /*
- const llm = new OpenAI({
-    apiKey: process.env.OPENROUTER_KEY,
-    baseURL: "https://openrouter.ai/api/v1",
-    model: "moonshotai/kimi-k2-0905:exacto",
- })
-  */
 
   return agent({
     llm,

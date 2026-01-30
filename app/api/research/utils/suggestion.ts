@@ -1,33 +1,16 @@
 import { getEnv } from "@llamaindex/env";
-import { OpenAI } from "@llamaindex/openai";
 import type { UIMessageStreamWriter } from "ai";
 import { type ChatMessage } from "llamaindex";
 import { PostgresCache } from "../../shared/cache";
-import { NEXT_QUESTION_PROMPT } from "../detrans/prompts";
+import { CachedOpenAI } from "../../shared/llm";
+import { NEXT_QUESTION_PROMPT } from "./prompts";
 
 export const sendSuggestedQuestionsEvent = async (
   streamWriter: UIMessageStreamWriter,
   chatHistory: ChatMessage[] = [],
-  mode: "detrans" | "affirm",
-  originalQuestion: string,
+  conversationId: string,
 ) => {
-  const cache = new PostgresCache("detrans");
-  const cachedNextQuestions = await cache.get(
-    originalQuestion + ":suggested_questions",
-  );
-  let questions;
-  if (cachedNextQuestions) {
-    questions = JSON.parse(cachedNextQuestions);
-  } else {
-    questions = await generateNextQuestions(chatHistory);
-
-    await cache.set(
-      originalQuestion + ":suggested_questions",
-      JSON.stringify(questions),
-      originalQuestion,
-    );
-  }
-
+  const questions = await generateNextQuestions(chatHistory, conversationId);
   if (questions.length > 0) {
     streamWriter.write({
       type: "data-suggested_questions",
@@ -36,12 +19,21 @@ export const sendSuggestedQuestionsEvent = async (
   }
 };
 
-export async function generateNextQuestions(conversation: ChatMessage[]) {
-  const kimi = new OpenAI({
+export async function generateNextQuestions(
+  conversation: ChatMessage[],
+  conversationId: string,
+) {
+  const cache = new PostgresCache("deep_research");
+
+  const llm = new CachedOpenAI({
+    cache,
+    mode: "detrans_chat",
     apiKey: process.env.OPENROUTER_KEY,
     baseURL: "https://openrouter.ai/api/v1",
-    model: "moonshotai/kimi-k2",
+    model: "moonshotai/kimi-k2-0905:exacto",
+    conversationId,
   });
+
   const conversationText = conversation
     .map((message) => `${message.role}: ${message.content}`)
     .join("\n");
@@ -49,7 +41,7 @@ export async function generateNextQuestions(conversation: ChatMessage[]) {
   const message = promptTemplate.replace("{conversation}", conversationText);
 
   try {
-    const response = await kimi.complete({ prompt: message });
+    const response = await llm.complete({ prompt: message });
     const questions = extractQuestions(response.text);
     return questions;
   } catch (error) {

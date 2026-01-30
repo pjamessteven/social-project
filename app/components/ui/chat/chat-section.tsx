@@ -19,9 +19,15 @@ import { ComponentDef } from "./custom/events/types";
 export default function ChatSection({
   conversationId,
   readOnly,
+  locale,
+  starterQuestion,
+  apiEndpoint = "/api/chat",
 }: {
   conversationId?: string;
   readOnly?: boolean;
+  locale?: string;
+  starterQuestion?: string;
+  apiEndpoint?: string;
 }) {
   const { setChatHandler, setChatStatus } = useChatStore();
   const searchParams = useSearchParams();
@@ -62,9 +68,10 @@ export default function ChatSection({
 
   const useChatHandler = useChat({
     transport: new DefaultChatTransport({
-      api: "/api/chat",
+      api: apiEndpoint,
       body: {
         conversationId,
+        locale,
       },
     }),
     onError: handleError,
@@ -100,7 +107,19 @@ export default function ChatSection({
           // Set the messages directly using the setMessages function
           useChatHandler.setMessages(data.messages);
           setIsArchived(data.archived);
-          setSummary(data.conversationSummary);
+          
+          // Handle summary translation
+          let localizedSummary = data.conversationSummary;
+          if (data.conversationSummaryTranslation) {
+            try {
+              const translations = JSON.parse(data.conversationSummaryTranslation) as Record<string, string>;
+              const locale = navigator.language.split('-')[0];
+              localizedSummary = translations[locale] || data.conversationSummary;
+            } catch {
+              localizedSummary = data.conversationSummary;
+            }
+          }
+          setSummary(localizedSummary);
           setTitle(data.title);
         }
       } catch (error) {
@@ -110,30 +129,37 @@ export default function ChatSection({
     };
     if (conversationId) {
       loadConversation();
+    } else {
+      // No conversationId means new chat - no loading needed
+      setLoading(false);
     }
   }, [conversationId]);
 
-  // Handle starter message from URL query parameter
+  // Handle starter message from URL query parameter or prop
   useEffect(() => {
-    const starterParam = searchParams.get("starter");
+    // Priority: prop > URL query param
+    const starterMessage = starterQuestion || searchParams.get("starter");
+    
     if (
-      starterParam &&
+      starterMessage &&
       useChatHandler.messages.length === 0 &&
       !starterSentRef.current
     ) {
       starterSentRef.current = true;
-      const starterMessage = deslugify(starterParam);
+      const messageText = starterQuestion || deslugify(starterMessage);
       useChatHandler.sendMessage({
-        text: starterMessage,
+        text: messageText,
       });
 
-      // Remove the starter parameter from the URL to prevent loops
-      const newParams = new URLSearchParams(searchParams.toString());
-      newParams.delete("starter");
-      const newUrl = `${window.location.pathname}${newParams.toString() ? `?${newParams.toString()}` : ""}`;
-      router.replace(newUrl);
+      // Remove the starter parameter from the URL to prevent loops (only if from URL)
+      if (!starterQuestion && typeof window !== "undefined") {
+        const newParams = new URLSearchParams(searchParams.toString());
+        newParams.delete("starter");
+        const newUrl = `${window.location.pathname}${newParams.toString() ? `?${newParams.toString()}` : ""}`;
+        router.replace(newUrl);
+      }
     }
-  }, [searchParams, useChatHandler, router]);
+  }, [searchParams, useChatHandler, router, starterQuestion]);
 
   return (
     <>

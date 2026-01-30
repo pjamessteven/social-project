@@ -37,10 +37,12 @@ export async function POST(req: NextRequest) {
       messages,
       id: requestId,
       conversationId,
+      locale,
     } = reqBody as {
       messages: UIMessage[];
       id?: string;
       conversationId?: string;
+      locale?: string;
     };
 
     const ipAddress = getIpFromRequest(req);
@@ -120,7 +122,7 @@ export async function POST(req: NextRequest) {
 
     try {
       const context = await runWorkflow({
-        workflow: await workflowFactory(reqBody, userInput, chatUuid),
+        workflow: await workflowFactory(reqBody, userInput, chatUuid, locale),
         input: { userInput: userInput, chatHistory },
         human: {
           snapshotId: requestId, // use requestId to restore snapshot
@@ -139,12 +141,12 @@ export async function POST(req: NextRequest) {
           onPauseForHumanInput: async (responseEvent) => {
             await pauseForHumanInput(context, responseEvent, requestId); // use requestId to save snapshot
           },
-          onFinal: async (messages: UIMessage[]) => {
+          onFinal: async (messages: UIMessage[], dataStreamWriter) => {
             await saveConversation(chatUuid, messages, ipAddress);
             /*
-            if (suggestNextQuestions && completion.length > 500) {
+            if (suggestNextQuestions) {
               await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory, chatUuid);
-            }*/
+            } */
           },
         },
       });
@@ -176,17 +178,41 @@ export async function POST(req: NextRequest) {
   }
 }
 
+// Helper function to get localized field
+function getLocalizedField(
+  defaultValue: string | null,
+  translationsJson: string | null,
+  locale: string,
+): string | null {
+  if (!translationsJson) return defaultValue;
+
+  try {
+    const translations = JSON.parse(translationsJson) as Record<string, string>;
+    return translations[locale] || defaultValue;
+  } catch {
+    return defaultValue;
+  }
+}
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get("page") || "1", 10);
     const limit = parseInt(searchParams.get("limit") || "20", 10);
     const offset = (page - 1) * limit;
+    const locale = searchParams.get("locale") || "en";
 
     const featuredParam = searchParams.get("featured");
     const isFeatured = featuredParam === "true";
 
-    console.log("API GET:", { featuredParam, isFeatured, page, limit, offset });
+    console.log("API GET:", {
+      featuredParam,
+      isFeatured,
+      page,
+      limit,
+      offset,
+      locale,
+    });
 
     // Allow all users to access all conversations
     // Removed admin check for unauthenticated users
@@ -196,11 +222,14 @@ export async function GET(request: NextRequest) {
       .select({
         uuid: chatConversations.uuid,
         title: chatConversations.title,
+        titleTranslation: chatConversations.titleTranslation,
         updatedAt: chatConversations.updatedAt,
         mode: chatConversations.mode,
         messages: chatConversations.messages,
         featured: chatConversations.featured,
         conversationSummary: chatConversations.conversationSummary,
+        conversationSummaryTranslation:
+          chatConversations.conversationSummaryTranslation,
         country: chatConversations.country,
       })
       .from(chatConversations)
@@ -230,11 +259,22 @@ export async function GET(request: NextRequest) {
       total: totalResult[0].value,
     });
 
+    // Localize conversations based on requested locale
+    const localizedConversations = conversations.map((convo) => ({
+      ...convo,
+      title: getLocalizedField(convo.title, convo.titleTranslation, locale),
+      conversationSummary: getLocalizedField(
+        convo.conversationSummary,
+        convo.conversationSummaryTranslation,
+        locale,
+      ),
+    }));
+
     const total = totalResult[0].value;
     const totalPages = Math.ceil(total / limit);
 
     return NextResponse.json({
-      items: conversations,
+      items: localizedConversations,
       pagination: {
         page,
         limit,

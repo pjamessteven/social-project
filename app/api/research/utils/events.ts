@@ -1,11 +1,13 @@
 import { randomUUID } from "@llamaindex/env";
 import { workflowEvent } from "@llamaindex/workflow";
+
 import {
+  MetadataMode,
   type ChatMessage,
   type Metadata,
   type NodeWithScore,
 } from "llamaindex";
-import { z } from 'zod/v3';
+import { z } from "zod";
 import { getInlineAnnotations } from "./inline";
 
 // Events that appended to stream as annotations
@@ -52,8 +54,7 @@ export function toSourceEventNode(node: NodeWithScore<Metadata>) {
     url: `/api/files/${filePath}`,
     metadata: node.node.metadata,
     score: node.score ?? null,
-    // @ts-expect-error does exist
-    text: node.node.text,
+    text: node.node.getContent(MetadataMode.NONE),
   };
 }
 

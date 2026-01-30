@@ -2,7 +2,7 @@
 
 import { ExternalLink } from "lucide-react";
 import { marked } from "marked";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 interface Comment {
   id: string;

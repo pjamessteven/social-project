@@ -1,3 +1,24 @@
+/**
+ * English question categories and featured questions for detrans.ai
+ *
+ * Gender-Related Terminology Notes:
+ * - "Sex" = biological sex (anatomy, chromosomes, reproduction, immutable characteristics)
+ * - "Gender" = social gender (roles, behaviors, attributes that society considers appropriate
+ *   for men and women based on their biological sex)
+ * - "Gender identity" = internal sense of being male, female, or somewhere in between
+ * - "Gender non-conformity (GNC)" = when a person acts/presents differently from societal
+ *   expectations based on their biological sex
+ * - "AFAB/AMAB" = assigned female/male at birth (based on observed biological sex)
+ * - "Transgender/trans" = identifying with a gender that differs from one's biological sex
+ * - "Detransition" = ceasing to identify as transgender and/or reversing transition steps
+ * - "Desist" = when someone who identified as trans (without medical interventions) no longer
+ *   identifies as trans
+ *
+ * Important distinction: Gender dysphoria as a concept relies on understanding that biological
+ * sex and social gender are different. Gender non-conformity (not fitting stereotypes) is
+ * different from having a gender identity that differs from one's biological sex.
+ */
+
 export const questionCategories = [
   {
     title: "Featured Questions",
@@ -207,161 +228,6 @@ export const questionCategories = [
       "Are schools sidelining parents when children make choices about gender identity?",
       "Why are there so many ladyboys in Thailand?",
       "Why is Iran a global hub for sex-reassignment surgeries?",
-    ],
-  },
-];
-export const affirmingQuestionCategories = [
-  {
-    title: "Am I valid?",
-    description: "Quick reassurance when you are doubting",
-    questions: [
-      "What's an egg?",
-      "What causes dysphoria?",
-      "What does it mean to be a woman?",
-      "What does it mean to be a man?",
-      "What does it mean to be a non-binary?",
-      "Was I born in the wrong body?",
-      "Are there male brains and female brains?",
-      "How long will it take before I pass?",
-      "Will I be happy once I pass?",
-      "Am I trans enough if I do not have dysphoria every day?",
-      "Can my identity shift over time?",
-      "Do I need to prove anything to anyone?",
-      "Are trans tomboys valid?",
-      "Are trans femboys valid?",
-      "Can trans women become biological females?",
-      "Can trans men become biological males?",
-      "What if I only feel dysphoric in certain situations?",
-      "Is it okay to explore labels privately before telling anyone?",
-      "What are the transition rates for trans men vs trans women?",
-      "How can I overcome dysphoria?",
-      "How do I know if I'm transgender and not just gender non-conforming?",
-    ],
-  },
-  {
-    title: "Names, pronouns and everyday life",
-    description: "Practical tools for getting through the week",
-    questions: [
-      "How do I pick a name that still feels like me?",
-      "What is the safest way to test pronouns online first?",
-      "How do I correct people misgendering me without ruining the mood?",
-      "How can I practice my voice without triggering dysphoria?",
-      "What apps help me track gender euphoria moments?",
-    ],
-  },
-  {
-    title: "Dysphoria and mental health hacks",
-    description: "Coping with feeling uncomfortable in your body",
-    questions: [
-      "I've always been a feminine man, am I trans?",
-      "What are five minute grounding exercises for body dysphoria?",
-      "How do I tell the difference between dysphoria and ordinary body image bad days?",
-      "Can hormones or surgery be one tool but not the whole toolbox?",
-      "What do I do if my dysphoria spikes after starting HRT?",
-      "How can meditation help dysphoria?",
-      "Where can I find free, trans competent crisis lines?",
-    ],
-  },
-  {
-    title: "Medical roadmap, no pressure",
-    description: "Consider your options before making big decisions.",
-    questions: [
-      "What are the health effects and risks of HRT?",
-      "At what age should I start HRT?",
-      "What is the usual order of steps if I want hormones in my country?",
-      "What are the reversible versus irreversible changes of HRT with a timeline chart?",
-      "How do I check whether my insurance covers blockers or HRT?",
-      "What questions should I ask the endocrinologist at the first consult?",
-      "What is the actual regret rate cited by major studies with citations?",
-      "Can I bank sperm or eggs on a tight budget?",
-      "I'm non-binary, should I get nullifcation surgery?",
-      "Should I get phaloplasty surgery?",
-      "How do I find a good surgeon for phalloplasty surgery?",
-      "Should I get vaginoplasty?",
-      "What are the different types of vaginoplasty surgery?",
-      "How do I find a good surgeon for vaginoplasty surgery?",
-      "Is it a good idea to get vaginoplasty?",
-      "Is it a good idea to get phalloplasty?",
-      "What are the least invasive ways to deal with facial hair?",
-      "What is the real scoop on puberty blocker reversibility in 2024?",
-    ],
-  },
-  {
-    title: "Family, dating and coming out",
-    description: "Scripts and safety plans",
-    questions: [
-      "How do I come out to a partner who says they are super straight?",
-      "How do I protect my privacy if I am not ready to tell my parents?",
-      "What are red flags that a therapist is not gender affirming?",
-      "How can I find local trans meet ups that are not Facebook based?",
-      "What are my rights at school or work in my state or country?",
-    ],
-  },
-  {
-    title: "Trans Sex Life & Intimacy Guide",
-    description:
-      "Safer sex, dysphoria hacks and pleasure tips for trans, non-binary and post-op bodies",
-    questions: [
-      "What are safe sex toys for trans women with bottom dysphoria?",
-      "What is the best dilator schedule after trans vaginoplasty surgery?",
-      "How can I ask my partner for trans affirming dirty talk?",
-      "What are the contraception options available for trans men on testosterone?",
-      "Why are my top surgery scars are sensitive during sex?",
-      "What erection aids are there for trans women on HRT?",
-      "Is it normal for your orgasm to change after starting testosterone?",
-      "How to navigate hookup apps safely as a trans person?",
-      "Why am I so horny after starting testosterone?",
-      "How can I disclose my trans identity to a casual partner?",
-      "Dealing with bottom dysphoria during sex trans tips",
-      "What lube ingredients should I avoid post vaginoplasty as a trans woman",
-      "Which sex positions minimise hip dysphoria for trans women?",
-      "How to maintain anal health after phalloplasty?",
-      "How to find trans friendly STI testing clinics?",
-      "How to find low cost viagra or cialis for trans women?",
-    ],
-  },
-];
-
-export const affirmingDetransQuestions = [
-  {
-    title: "De-transitioning and Re-transitioning",
-    description:
-      "Explore the sensitive topics of de-transition and re-transition from a detrans perspective to make sure you're informed.",
-    questions: [
-      "Why do some people de-transition?",
-      "How many people de-transition?",
-      "Why do some people re-transition after de-transitioning?",
-    ],
-  },
-];
-
-export const compareQuestions = [
-  {
-    title: "Featured Compare Questions",
-    description: "Spicy questions to ask both trans and detrans people...",
-    questions: [
-      "What is a man?",
-      "What is a woman?",
-      "Are trans men biological males?",
-      "Are trans women biological women?",
-      "What is gender affirming care?",
-      "What is gender exploratory therapy?",
-      "Can people be born in the wrong body?",
-      "Why do some people de-transition?",
-      "How many people de-transition?",
-      "Why do some people re-transition after de-transitioning?",
-      "What's an egg?",
-      "What's the closet?",
-      "What is feminism?",
-      "What is non-binary identity?",
-      "Does transition ever end?",
-      "Why do some women hate their breasts?",
-      "Why do some people de-transition?",
-      "Were detrans people real trans people?",
-      "Why do people identify as queer now?",
-      "Is gender-affirming care based on science?",
-      "Why are the rates of people who identify as trans increasing?",
-      "Why is gender dysphoria no longer treated as a mental health issue?",
     ],
   },
 ];

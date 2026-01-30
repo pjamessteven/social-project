@@ -13,17 +13,17 @@ import type {
   LLMCompletionParamsNonStreaming,
   LLMCompletionParamsStreaming,
 } from "llamaindex";
-import { Cache, makeLlmCacheKey } from "./cache";
+import { Cache, makeCacheKey } from "./cache";
 
 export class CachedOpenAI extends OpenAI {
   private cache: Cache;
-  private mode: "detrans" | "affirm" | "detrans_chat";
+  private mode: "deep_research" | "detrans_chat";
   private conversationId: string | undefined;
 
   constructor(
     init: ConstructorParameters<typeof OpenAI>[0] & {
       cache: Cache;
-      mode: "detrans" | "affirm" | "detrans_chat";
+      mode: "deep_research" | "detrans_chat";
       conversationId?: string;
     },
   ) {
@@ -95,7 +95,7 @@ export class CachedOpenAI extends OpenAI {
     const questionForCache =
       originalQuestion || String(lastMessage.content).slice(0, 100);
     // Pass entire messages array for context-aware caching
-    const key = makeLlmCacheKey(questionForCache, messages, options, this.mode);
+    const key = makeCacheKey(messages, options, this.mode);
 
     const hashedKey = this.hashKey(key);
     const logger = getLogger();
@@ -367,7 +367,7 @@ export class CachedOpenAI extends OpenAI {
     // For completion, we don't have messages, so use the prompt directly
     // Convert to a messages-like structure for consistency
     const messages = [{ role: "user", content: promptString }];
-    const key = makeLlmCacheKey(questionForCache, messages, options, this.mode);
+    const key = makeCacheKey(messages, options, this.mode);
     const hashedKey = this.hashKey(key);
     const logger = getLogger();
 

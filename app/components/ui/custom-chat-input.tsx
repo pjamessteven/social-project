@@ -1,9 +1,10 @@
 "use client";
 import { slugify } from "@/app/lib/utils";
+import { locales, redirect, usePathname, useRouter } from "@/i18n/routing";
 import { useChatStore } from "@/stores/chat-store";
 import { Send, Square, UserSearch, X } from "lucide-react";
-import Link from "next/link";
-import { redirect, usePathname, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "./button";
 import { cn } from "./lib/utils";
@@ -14,14 +15,15 @@ interface CustomChatInputProps {
 }
 
 export function CustomChatInput({ host }: CustomChatInputProps) {
+  const t = useTranslations("chatInput");
   const path = usePathname();
   const router = useRouter();
   const {
     chatHandler,
     sendMessage,
     chatStatus,
-    isDeepResearch,
-    setIsDeepResearch,
+    isResearch,
+    setIsResearch,
     setChatStatus,
   } = useChatStore();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -34,24 +36,13 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
 
   const showChatInput =
     path == "/" ||
-    path == "/compare" ||
-    path == "/affirm" ||
+    locales.some((locale) => path == `/${locale}`) ||
     path.includes("/chat") ||
     path.includes("/research");
 
-  const mode =
-    host.includes("genderaffirming.ai") || path.includes("/affirm")
-      ? "affirm"
-      : path.includes("/compare")
-        ? "compare"
-        : "detrans";
+  const mode = "detrans" as "detrans" | "affirm";
 
-  const placeholder =
-    mode === "detrans"
-      ? "Ask detrans.ai..."
-      : mode === "compare"
-        ? "Compare trans and detrans perspectives"
-        : "Ask 600,000+ trans people";
+  const placeholder = t("placeholder");
 
   useEffect(() => {
     const checkIsDesktop = () => {
@@ -65,11 +56,11 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     return () => window.removeEventListener("resize", checkIsDesktop);
   }, []);
 
-  // Update deep research state based on current path
+  // Update research state based on current path
   useEffect(() => {
     // require user manually selects this mode in order to save costs
-    //  setIsDeepResearch(path.includes("/research"));
-  }, [path, setIsDeepResearch]);
+    //  setIsResearch(path.includes("/research"));
+  }, [path, setIsResearch]);
 
   /*
   // Fetch suggestions when value changes
@@ -177,8 +168,11 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
       setValue("");
       setShowSuggestions(false);
 
-      if (isDeepResearch || path.includes("/compare") || mode === "affirm") {
-        // Deep research mode - redirect to research routes
+      if (path.includes("/research") && !path.includes("/chat")) {
+        // Research page - navigate to new research URL
+        router.push("/research/" + slugify(val));
+      } else if (isResearch || path.includes("/compare") || mode === "affirm") {
+        // Research mode - redirect to research routes
         if (path.includes("compare")) {
           redirect("/compare/research/" + slugify(val));
         } else if (mode == "affirm") {
@@ -269,7 +263,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     setValue("");
   };
 
-  const showDeepResearch = !path.includes("/compare") && mode !== "affirm";
+  const showResearch = true;
 
   return (
     <div
@@ -301,20 +295,20 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               onKeyDown={handleKeyDown}
               onFocus={handleFocus}
               placeholder={placeholder}
-              disabled={chatStatus !== "ready"}
+              disabled={(path.includes("/chat") || path.includes("/research")) && chatStatus !== "ready"}
               rows={1}
             />
 
-            {/* Deep research toggle button */}
-            {showDeepResearch && (
+            {/* Research toggle button */}
+            {showResearch && (
               <Button
                 variant="chatOutline"
                 type="button"
-                onClick={() => setIsDeepResearch(!isDeepResearch)}
+                onClick={() => setIsResearch(!isResearch)}
                 size={"xs"}
                 className={cn(
                   "absolute top-1/2 right-3 z-30 -translate-y-1/2 rounded-xl px-0 py-0 transition-colors",
-                  isDeepResearch
+                  isResearch
                     ? "border-blue-300 bg-blue-100 !text-blue-400 hover:bg-blue-200 dark:border-blue-900 dark:bg-blue-900 dark:text-blue-400 hover:dark:bg-blue-800"
                     : "text-gray-500 hover:bg-gray-100 dark:bg-gray-700 dark:text-gray-400 hover:dark:bg-gray-600",
                 )}
@@ -322,8 +316,10 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                 <div className="flex flex-row items-center px-3 text-xs">
                   {value.length === 0 && (
                     <div className="mr-2 flex flex-row">
-                      <span className="hidden sm:inline">Deep&nbsp;</span>
-                      Research
+                      <span className="hidden sm:inline">
+                        {t("deepResearch").split(" ")[0]}&nbsp;
+                      </span>
+                      {t("deepResearch").split(" ")[1] || ""}
                     </div>
                   )}
                   <UserSearch className="h-3 w-3 sm:h-4 sm:w-4" />
@@ -344,7 +340,9 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
             {/* Suggestions dropdown */}
             {showSuggestions && suggestions.length > 0 && (
               <div className="animate-in fade-in-0 fade-out-0 absolute right-0 bottom-full left-0 z-0 mb-2 overflow-y-auto rounded-[32px] rounded-br-[32px] border bg-white pb-4 shadow-xl backdrop-blur-lg backdrop-filter duration-300 dark:border-slate-700 dark:bg-slate-800">
-                <div className="px-5 pt-4 pb-2 font-semibold">Suggestions:</div>
+                <div className="px-5 pt-4 pb-2 font-semibold">
+                  {t("suggestions")}
+                </div>
                 {suggestions.map((question, index) => (
                   <Link
                     onClick={handleClickSuggestion}

@@ -1,5 +1,7 @@
 "use server";
 
+import type { Locale } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
 import { marked } from "marked";
 import { QuestionCategories } from "./QuestionCategories";
 
@@ -7,21 +9,27 @@ interface SeoPageProps {
   mode: "detrans" | "affirm";
   question?: string;
   answer?: string;
+  locale?: string;
 }
 
 export default async function SeoChatPage({
   mode,
   question,
   answer,
+  locale = "en",
 }: SeoPageProps) {
+  const t = await getTranslations({
+    locale: locale as Locale,
+    namespace: "seo.chat",
+  });
+
   return (
     <>
       <h1 className="text-3xl font-bold capitalize">{question}</h1>
       <br />
 
       <h2>
-        Questions and answers for people who are questioning their gender
-        identity.
+        {t("subtitle")}
       </h2>
       <br />
       {answer && (
@@ -31,15 +39,15 @@ export default async function SeoChatPage({
         />
       )}
       <h2 className="mt-4">
-        The truth is that gender non-conformity will set us all free!
+        {t("freedomMessage")}
       </h2>
 
       <h1 className="mt-16 text-3xl font-bold">
-        More questions related to &quot;{question}&quot;
+        {t("moreQuestions", { question: question ?? "" })}
       </h1>
       <br />
       <div className="my-16">
-        <QuestionCategories mode={mode} />
+        <QuestionCategories mode={mode} locale={locale} />
       </div>
     </>
   );

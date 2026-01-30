@@ -16,7 +16,7 @@ import { z } from "zod/v3";
 export const detransQuestions = pgTable(
   "detrans_questions",
   {
-    name: varchar("name", { length: 255 }).primaryKey(),
+    name: text("name").primaryKey(),
     viewsCount: integer("views_count").default(0).notNull(),
     mostRecentlyAsked: timestamp("most_recently_asked").defaultNow().notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -27,8 +27,8 @@ export const detransQuestions = pgTable(
   }),
 );
 
-export const detransCache = pgTable(
-  "detrans_cache",
+export const detransResearchCache = pgTable(
+  "detrans_research_cache",
   {
     promptHash: varchar("prompt_hash", { length: 64 }).primaryKey(),
     promptText: text("prompt_text").notNull(),
@@ -43,10 +43,14 @@ export const detransCache = pgTable(
     lastAccessed: timestamp("last_accessed").defaultNow().notNull(),
   },
   (table) => ({
-    questionIdx: index("idx_detrans_cache_question").on(table.questionName),
-    createdIdx: index("idx_detrans_cache_created").on(table.createdAt),
-    modelIdx: index("idx_detrans_cache_model").on(table.model),
-    generationIdx: index("idx_detrans_cache_generation").on(table.generationId),
+    questionIdx: index("idx_detrans_research_cache_question").on(
+      table.questionName,
+    ),
+    createdIdx: index("idx_detrans_research_cache_created").on(table.createdAt),
+    modelIdx: index("idx_detrans_research_cache_model").on(table.model),
+    generationIdx: index("idx_detrans_research_cache_generation").on(
+      table.generationId,
+    ),
   }),
 );
 
@@ -59,6 +63,7 @@ export const detransChatCache = pgTable(
     resultText: text("result_text").notNull(),
     questionName: varchar("question_name", { length: 255 }),
     conversationId: varchar("conversation_id", { length: 36 }),
+    deepResearch: boolean("deep_research").default(false).notNull(),
     totalCost: numeric("total_cost", { precision: 10, scale: 6 }),
     tokensPrompt: integer("tokens_prompt"),
     tokensCompletion: integer("tokens_completion"),
@@ -73,6 +78,9 @@ export const detransChatCache = pgTable(
     ),
     conversationIdx: index("idx_detrans_chat_cache_conversation").on(
       table.conversationId,
+    ),
+    deepResearchIdx: index("idx_detrans_chat_cache_deep_research").on(
+      table.deepResearch,
     ),
     createdIdx: index("idx_detrans_chat_cache_created").on(table.createdAt),
     modelIdx: index("idx_detrans_chat_cache_model").on(table.model),
@@ -116,6 +124,8 @@ export const chatConversations = pgTable(
     featured: boolean("featured").default(false).notNull(),
     archived: boolean("archived").default(false).notNull(),
     conversationSummary: text("conversation_summary"),
+    conversationSummaryTranslation: text("conversation_summary_translation"), // JSON object with translations
+    titleTranslation: text("title_translation"), // JSON object with translations
     country: varchar("country", { length: 100 }), // Country from IP geolocation
     ipAddress: varchar("ip_address", { length: 45 }), // IPv4 (max 15) or IPv6 (max 45)
     messages: text("messages").notNull(), // JSON string of the conversation messages
@@ -137,6 +147,7 @@ export const detransTags = pgTable(
   {
     id: serial("id").primaryKey(),
     name: varchar("name", { length: 255 }).notNull().unique(),
+    nameTranslation: text("name_translation"), // JSON object with translations
     createdAt: timestamp("created_at").defaultNow().notNull(),
   },
   (table) => ({
@@ -206,6 +217,9 @@ export const detransUsers = pgTable(
     experienceSummary: text("experience_summary"),
     experience: text("experience"),
     redFlagsReport: text("red_flags_report"),
+    experienceTranslation: text("experience_translation"), // JSON object with translations
+    experienceSummaryTranslation: text("experience_summary_translation"), // JSON object with translations
+    redFlagsReportTranslation: text("red_flags_report_translation"), // JSON object with translations
     transitionAge: integer("transition_age"),
     detransitionAge: integer("detransition_age"),
     hormonesAge: integer("hormones_age"),
@@ -290,7 +304,7 @@ export const transComments = pgTable(
 
 // Zod schemas
 export const questionSchema = z.object({
-  name: z.string().max(255),
+  name: z.string(),
   viewsCount: z.number().int().min(0).default(0),
   mostRecentlyAsked: z.date(),
   createdAt: z.date(),
@@ -321,6 +335,7 @@ export const detransUserEventSchema = z.object({
 export const tagSchema = z.object({
   id: z.number().int(),
   name: z.string().max(255),
+  nameTranslation: z.string().nullable(), // JSON object with translations
   createdAt: z.date(),
 });
 
@@ -345,6 +360,9 @@ export const detransUserSchema = z.object({
   experienceSummary: z.string().nullable(),
   experience: z.string().nullable(),
   redFlagsReport: z.string().nullable(),
+  experienceTranslation: z.string().nullable(), // JSON object with translations
+  experienceSummaryTranslation: z.string().nullable(), // JSON object with translations
+  redFlagsReportTranslation: z.string().nullable(), // JSON object with translations
   transitionAge: z.number().int().nullable(),
   detransitionAge: z.number().int().nullable(),
   hormonesAge: z.number().int().nullable(),
@@ -391,6 +409,8 @@ export const chatConversationSchema = z.object({
   featured: z.boolean(),
   archived: z.boolean(),
   conversationSummary: z.string().nullable(),
+  conversationSummaryTranslation: z.string().nullable(), // JSON object with translations
+  titleTranslation: z.string().nullable(), // JSON object with translations
   country: z.string().max(100).nullable(), // Country from IP geolocation
   ipAddress: z.string().max(45).nullable(), // IPv4 (max 15) or IPv6 (max 45)
   createdAt: z.date(),
@@ -423,6 +443,10 @@ export const videos = pgTable(
     bite: text("bite"),
     duration: integer("duration"), // duration in seconds
     date: timestamp("date"), // date posted
+    descriptionTranslation: text("description_translation"), // JSON object with translations
+    summaryTranslation: text("summary_translation"), // JSON object with translations
+    biteTranslation: text("bite_translation"), // JSON object with translations
+    titleTranslation: text("title_translation"), // JSON object with translations
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
   },
@@ -446,8 +470,14 @@ export const videoSchema = z.object({
   processed: z.boolean().default(false),
   transcript: z.string().nullable(),
   description: z.string().nullable(),
+  summary: z.string().nullable(),
+  bite: z.string().nullable(),
   duration: z.number().int().nullable(),
   date: z.date().nullable(),
+  descriptionTranslation: z.string().nullable(), // JSON object with translations
+  summaryTranslation: z.string().nullable(), // JSON object with translations
+  biteTranslation: z.string().nullable(), // JSON object with translations
+  titleTranslation: z.string().nullable(), // JSON object with translations
   createdAt: z.date(),
   updatedAt: z.date(),
 });
@@ -476,6 +506,52 @@ export const bannedUserSchema = z.object({
 });
 
 export type BannedUser = z.infer<typeof bannedUserSchema>;
+
+// Studies table
+export const studies = pgTable(
+  "studies",
+  {
+    id: serial("id").primaryKey(),
+    headline: varchar("headline", { length: 500 }),
+    title: varchar("title", { length: 1000 }),
+    authors: varchar("authors", { length: 500 }),
+    description: text("description"),
+    year: integer("year"),
+    url: text("url").notNull(),
+    displayUrl: text("display_url").notNull(),
+    // Translation columns (JSON objects)
+    headlineTranslation: text("headline_translation"),
+    titleTranslation: text("title_translation"),
+    descriptionTranslation: text("description_translation"),
+    processed: boolean("processed").default(false).notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    yearIdx: index("idx_studies_year").on(table.year),
+    createdIdx: index("idx_studies_created").on(table.createdAt),
+    processedIdx: index("idx_studies_processed").on(table.processed),
+  }),
+);
+
+export const studySchema = z.object({
+  id: z.number().int(),
+  headline: z.string().max(500).nullable(),
+  title: z.string().max(1000).nullable(),
+  authors: z.string().max(500).nullable(),
+  description: z.string().nullable(),
+  year: z.number().int().nullable(),
+  url: z.string(),
+  displayUrl: z.string(),
+  headlineTranslation: z.string().nullable(),
+  titleTranslation: z.string().nullable(),
+  descriptionTranslation: z.string().nullable(),
+  processed: z.boolean().default(false),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+
+export type Study = z.infer<typeof studySchema>;
 
 export type Video = z.infer<typeof videoSchema>;
 export type UserTag = z.infer<typeof userTagSchema>;

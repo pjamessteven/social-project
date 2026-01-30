@@ -1,6 +1,7 @@
 "use client";
 
 import { Card, CardContent } from "@/app/components/ui/card";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import AgeDistributionChart from "./AgeDistributionChart";
 
@@ -19,6 +20,7 @@ interface StoriesChartsProps {
 export default function StoriesCharts({
   resolvedSearchParams,
 }: StoriesChartsProps) {
+  const t = useTranslations("stories.charts.tabs");
   const [activeTab, setActiveTab] = useState<
     | "age"
     | "duration"
@@ -38,7 +40,7 @@ export default function StoriesCharts({
           }`}
           onClick={() => setActiveTab("age")}
         >
-          <div className="whitespace-nowrap">Age</div>
+          <div className="whitespace-nowrap">{t("age")}</div>
         </div>
         <div
           className={`hover:text-foreground cursor-pointer border-r p-4 text-sm sm:px-6 ${
@@ -48,7 +50,7 @@ export default function StoriesCharts({
           }`}
           onClick={() => setActiveTab("duration")}
         >
-          <div className="whitespace-nowrap">Duration</div>
+          <div className="whitespace-nowrap">{t("duration")}</div>
         </div>
         <div
           className={`hover:text-foreground cursor-pointer border-r p-4 text-sm sm:px-6 ${
@@ -58,7 +60,7 @@ export default function StoriesCharts({
           }`}
           onClick={() => setActiveTab("transitionReasons")}
         >
-          <div className="whitespace-nowrap">Transition Reason</div>
+          <div className="whitespace-nowrap">{t("transitionReason")}</div>
         </div>
         <div
           className={`hover:text-foreground cursor-pointer border-r p-4 text-sm sm:px-6 ${
@@ -68,7 +70,7 @@ export default function StoriesCharts({
           }`}
           onClick={() => setActiveTab("detransitionReasons")}
         >
-          <div className="whitespace-nowrap">De-transition Reason</div>
+          <div className="whitespace-nowrap">{t("detransitionReason")}</div>
         </div>
         <div
           className={`hover:text-foreground cursor-pointer p-4 text-sm sm:px-6 ${
@@ -78,7 +80,7 @@ export default function StoriesCharts({
           }`}
           onClick={() => setActiveTab("pathways")}
         >
-          <div className="whitespace-nowrap">Pathways</div>
+          <div className="whitespace-nowrap">{t("pathways")}</div>
         </div>
       </div>
       <CardContent className="overflow-x-auto overflow-y-hidden p-0">

@@ -1,13 +1,22 @@
+"use client";
+
 import { ChevronRight } from "lucide-react";
-import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import { Badge } from "./ui/badge";
+
+interface Tag {
+  name: string;
+  nameTranslation: string | null;
+}
 
 interface User {
   username: string;
   activeSince: string;
   sex: "m" | "f";
   experienceSummary: string | null;
-  tags: string[];
+  experienceSummaryTranslation: string | null;
+  tags: Tag[];
   commentCount: number;
   transitionAge: number | null;
   detransitionAge: number | null;
@@ -17,27 +26,62 @@ interface UserCardProps {
   user: User;
 }
 
-function formatDate(dateString: string) {
-  return new Date(dateString).toLocaleDateString();
+function getLocalizedField(
+  defaultValue: string | null,
+  translationsJson: string | null,
+  locale: string
+): string | null {
+  if (!translationsJson) return defaultValue;
+
+  try {
+    const translations = JSON.parse(translationsJson) as Record<string, string>;
+    return translations[locale] || defaultValue;
+  } catch {
+    return defaultValue;
+  }
+}
+
+function getLocalizedTagName(
+  tag: Tag,
+  locale: string
+): string {
+  if (!tag.nameTranslation) return tag.name;
+
+  try {
+    const translations = JSON.parse(tag.nameTranslation) as Record<string, string>;
+    return translations[locale] || tag.name;
+  } catch {
+    return tag.name;
+  }
 }
 
 export default function UserCard({ user }: UserCardProps) {
+  const t = useTranslations("stories.userCard");
+  const locale = useLocale();
+
+  function formatDate(dateString: string) {
+    return new Date(dateString).toLocaleDateString(locale);
+  }
+
+  const localizedExperienceSummary = getLocalizedField(
+    user.experienceSummary,
+    user.experienceSummaryTranslation,
+    locale
+  );
   return (
     <>
       <div className="-mx-4 border-t pt-4 sm:hidden" />
       <Link
         href={`/stories/${encodeURIComponent(user.username)}`}
-        className="block  no-underline transition-colors sm:rounded-lg sm:border sm:p-6 sm:pt-6 sm:hover:bg-gray-50 sm:dark:hover:bg-gray-800/80"
+        className="block no-underline transition-colors sm:rounded-lg sm:border sm:p-6 sm:pt-6 sm:hover:bg-gray-50 sm:dark:hover:bg-gray-800/80"
       >
         <div className="flex w-full grow flex-row items-center justify-between">
-          <div className="mb-2 flex grow flex-col items-start justify-between sm:flex-row no-wrap">
-            <h3 className="text-lg font-semibold">
-              /u/{user.username}
-            </h3>
+          <div className="no-wrap mb-2 flex grow flex-col items-start justify-between sm:flex-row">
+            <h3 className="text-lg font-semibold">/u/{user.username}</h3>
             <div className="flex items-center gap-2">
               <span className="text-sm text-gray-500">
-                {user.commentCount} comments • Posting since{" "}
-                {formatDate(user.activeSince)}
+                {t("comments", { count: user.commentCount })} •{" "}
+                {t("postingSince", { date: formatDate(user.activeSince) })}
               </span>
             </div>
           </div>
@@ -45,34 +89,32 @@ export default function UserCard({ user }: UserCardProps) {
         </div>
         <div className="mt-4 mb-2 font-medium text-gray-700 sm:mt-2 dark:text-gray-300">
           {user.transitionAge &&
-            "Transitioned at " + user.transitionAge}
+            t("transitionedAt", { age: user.transitionAge })}
           {user.detransitionAge && user.transitionAge && " -> "}
           {user.detransitionAge &&
-            (user.tags.includes("only transitioned socially")
-              ? "Desisted at "
-              : "Detransitioned at ") + user.detransitionAge}
+            (user.tags.some((tag) => tag.name === "only transitioned socially")
+              ? t("desistedAt", { age: user.detransitionAge })
+              : t("detransitionedAt", { age: user.detransitionAge }))}
         </div>
-        {user.experienceSummary && (
+        {localizedExperienceSummary && (
           <p className="prose-base mb-4 text-gray-700 dark:text-gray-300">
-            {user.experienceSummary}
+            {localizedExperienceSummary}
           </p>
         )}
 
         {user.tags.length > 0 && (
           <div className="flex flex-wrap gap-2">
             <Badge variant={"inverted"}>
-              {user.sex === "f" ? "female" : "male"}
+              {user.sex === "f" ? t("female") : t("male")}
             </Badge>
             {user.tags.map((tag) => (
               <Badge
-                key={tag}
+                key={tag.name}
                 variant={
-                  tag === "suspicious account"
-                    ? "destructive"
-                    : "inverted"
+                  tag.name === "suspicious account" ? "destructive" : "inverted"
                 }
               >
-                {tag}
+                {getLocalizedTagName(tag, locale)}
               </Badge>
             ))}
           </div>

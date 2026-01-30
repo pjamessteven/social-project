@@ -23,6 +23,9 @@ export async function GET(
         experienceSummary: detransUsers.experienceSummary,
         experience: detransUsers.experience,
         redFlagsReport: detransUsers.redFlagsReport,
+        experienceTranslation: detransUsers.experienceTranslation,
+        experienceSummaryTranslation: detransUsers.experienceSummaryTranslation,
+        redFlagsReportTranslation: detransUsers.redFlagsReportTranslation,
         transitionAge: detransUsers.transitionAge,
         detransitionAge: detransUsers.detransitionAge,
         commentCount: sql<number>`COALESCE(COUNT(DISTINCT ${detransComments.id}), 0)`,
@@ -36,7 +39,10 @@ export async function GET(
         detransUsers.sex,
         detransUsers.experienceSummary,
         detransUsers.experience,
-        detransUsers.redFlagsReport
+        detransUsers.redFlagsReport,
+        detransUsers.experienceTranslation,
+        detransUsers.experienceSummaryTranslation,
+        detransUsers.redFlagsReportTranslation
       )
       .limit(1);
 
@@ -47,10 +53,11 @@ export async function GET(
       );
     }
 
-    // Get user tags
+    // Get user tags with translations
     const userTagsResult = await db
       .select({
         tagName: detransTags.name,
+        tagTranslation: detransTags.nameTranslation,
       })
       .from(detransUserTags)
       .innerJoin(detransTags, eq(detransUserTags.tagId, detransTags.id))
@@ -58,7 +65,10 @@ export async function GET(
 
     const userWithTags = {
       ...user[0],
-      tags: userTagsResult.map(t => t.tagName),
+      tags: userTagsResult.map(t => ({
+        name: t.tagName,
+        nameTranslation: t.tagTranslation,
+      })),
       commentCount: Number(user[0].commentCount)
     };
 

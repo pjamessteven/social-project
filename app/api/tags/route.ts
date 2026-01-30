@@ -14,11 +14,12 @@ export async function GET(request: NextRequest) {
       .select({
         id: detransTags.id,
         name: detransTags.name,
+        nameTranslation: detransTags.nameTranslation,
         userCount: sql<number>`COALESCE(COUNT(${detransUserTags.username}), 0)`,
       })
       .from(detransTags)
       .leftJoin(detransUserTags, sql`${detransTags.id} = ${detransUserTags.tagId}`)
-      .groupBy(detransTags.id, detransTags.name)
+      .groupBy(detransTags.id, detransTags.name, detransTags.nameTranslation)
       .orderBy(sql`COALESCE(COUNT(${detransUserTags.username}), 0) DESC`);
 
     const tagsWithParsedCounts = tagsWithCounts.map(tag => ({
