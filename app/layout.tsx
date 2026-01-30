@@ -79,7 +79,7 @@ export default async function RootLayout({
             __html: themeScript,
           }}
         />
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange disableScript>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
       </body>
