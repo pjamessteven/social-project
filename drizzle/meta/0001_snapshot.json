@@ -49,8 +49,8 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "public.detrans_cache": {
-      "name": "detrans_cache",
+    "public.detrans_research_cache": {
+      "name": "detrans_research_cache",
       "schema": "",
       "columns": {
         "prompt_hash": {
@@ -93,15 +93,15 @@
         }
       },
       "indexes": {
-        "idx_detrans_cache_question": {
-          "name": "idx_detrans_cache_question",
+        "idx_detrans_research_cache_question": {
+          "name": "idx_detrans_research_cache_question",
           "columns": [
             "question_name"
           ],
           "isUnique": false
         },
-        "idx_detrans_cache_created": {
-          "name": "idx_detrans_cache_created",
+        "idx_detrans_research_cache_created": {
+          "name": "idx_detrans_research_cache_created",
           "columns": [
             "created_at"
           ],
@@ -109,9 +109,9 @@
         }
       },
       "foreignKeys": {
-        "detrans_cache_question_name_detrans_questions_name_fk": {
-          "name": "detrans_cache_question_name_detrans_questions_name_fk",
-          "tableFrom": "detrans_cache",
+        "detrans_research_cache_question_name_detrans_questions_name_fk": {
+          "name": "detrans_research_cache_question_name_detrans_questions_name_fk",
+          "tableFrom": "detrans_research_cache",
           "tableTo": "detrans_questions",
           "columnsFrom": [
             "question_name"

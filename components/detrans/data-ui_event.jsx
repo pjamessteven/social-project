@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { useChatUI } from "@llamaindex/chat-ui";
 import { Markdown } from "@llamaindex/chat-ui/widgets";
 import { AlertCircle, CheckCircle, Clock, Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { useMemo } from "react";
 
@@ -60,6 +61,7 @@ const aggregateEvents = (events) => {
 };
 
 export default function Component({ events }) {
+  const t = useTranslations("deepResearchEvents");
 
   const aggregatedEvents = useMemo(() => aggregateEvents(events), [events]);
 
@@ -116,33 +118,33 @@ export default function Component({ events }) {
 
   const isError = useMemo(() => {
     if (retrieve?.state === "error") {
-      return "Error retrieving detrans experiences!";
+      return t("retrieveError");
     } else if (analyze?.state === "error") {
-      return "We’ve run out of money to pay for the AI that analyses detrans experiences and answers questions. If you can, please donate so we can keep the service running. Please try again later. For now, you can still try the questions in the portal.";
+      return t("analyzeError");
     }
-  }, [retrieve, analyze]);
+  }, [retrieve, analyze, t]);
 
   const thinkingStatus = useMemo(() => {
     if (isError) {
-      return "Deep research error";
+      return t("errorTitle");
     } else if (retrieve?.state === "inprogress") {
-      return "Retrieving detrans experiences...";
+      return t("retrieving");
     } else if (
       analyze?.state === "inprogress" &&
       (!answers ||
         answers?.length === 0 ||
         (answers?.length > 0 && !allAnswersComplete))
     ) {
-      return "Generating meta questions...";
+      return t("generatingQuestions");
     } else if (!allAnswersComplete || isRunningAnalysis) {
-      return "Finding answers to meta questions";
+      return t("findingAnswers");
     } else {
-      return "Deep research completed";
+      return t("completed");
     }
-  }, [retrieve?.state, analyze?.state, answers, isRunningAnalysis]);
+  }, [retrieve?.state, analyze?.state, answers, isRunningAnalysis, t, isError]);
 
   return (
-    <div className="not-prose text-foreground mx-auto w-full max-w-4xl space-y-4 mb-8 rounded-xl transition-colors duration-300">
+    <div className="not-prose text-foreground mx-auto mb-8 w-full max-w-4xl space-y-4 rounded-xl transition-colors duration-300">
       {/* Header */}
       <div className="-mx-4 -mt-4 mb-2 flex items-center justify-start rounded-tl-xl rounded-tr-xl px-4 pt-2 md:-mt-0">
         <h1 className="text-foreground text-base font-semibold md:text-lg">
@@ -168,12 +170,12 @@ export default function Component({ events }) {
                 value={answer.id}
                 className={cn("border-border border-b duration-300")}
               >
-                <AccordionTrigger className="py-2 !no-underline !hover:no-underline transition-colors duration-300 sm:py-3">
+                <AccordionTrigger className="!hover:no-underline py-2 !no-underline transition-colors duration-300 sm:py-3">
                   <div className="relative flex grow items-center justify-between space-x-3 text-left">
                     <div className="flex-1 pr-2">
                       <p
                         className={cn(
-                          "text-muted-foreground no-underline hover:text-foreground pr-2 text-base font-medium italic transition-colors transition-opacity",
+                          "text-muted-foreground hover:text-foreground pr-2 text-base font-medium italic no-underline transition-colors transition-opacity",
                           answer.state === "inprogress"
                             ? "opacity-50"
                             : "opacity-100",
@@ -215,10 +217,10 @@ export default function Component({ events }) {
                         {answer.state === "inprogress" ? (
                           <div className="flex items-center space-x-2">
                             <Loader2 className="h-4 w-4 animate-spin text-blue-500 dark:text-blue-100" />
-                            <span>Generating answer...</span>
+                            <span>{t("generatingAnswer")}</span>
                           </div>
                         ) : (
-                          <span>Waiting for answer</span>
+                          <span>{t("waitingForAnswer")}</span>
                         )}
                       </div>
                     )}
@@ -231,13 +233,15 @@ export default function Component({ events }) {
             <div className="text-muted-foreground flex items-center text-sm">
               {isLoading && !isRunningAnalysis ? (
                 <>
-                  <div>Generating summary of answers</div>
+                  <div>{t("generatingSummary")}</div>
                   <Loader2 className="ml-2 h-4 w-4 animate-spin text-blue-500 dark:text-blue-100" />
                 </>
               ) : (
                 <div>
-                  {answers.filter((a) => a.state === "done").length} of{" "}
-                  {answers.length} meta questions answered{" "}
+                  {t("questionsAnswered", {
+                    answered: answers.filter((a) => a.state === "done").length,
+                    total: answers.length,
+                  })}
                 </div>
               )}
             </div>

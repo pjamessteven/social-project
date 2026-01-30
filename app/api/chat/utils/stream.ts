@@ -19,7 +19,7 @@ export interface StreamCallbacks {
   onStart?: (dataStreamWriter: UIMessageStreamWriter) => Promise<void> | void;
 
   /** `onFinal`: Called once when the stream is closed with the final completion message. */
-  onFinal?: (messages: UIMessage[]) => Promise<void> | void;
+  onFinal?: (messages: UIMessage[], dataStreamWriter: UIMessageStreamWriter) => Promise<void> | void;
 
   /** `onText`: Called for each text chunk. */
   onText?: (
@@ -52,11 +52,13 @@ export function toDataStream(
   let completionText = "";
   let hasStarted = false;
   let textId: string | null = null;
+  let streamWriter: UIMessageStreamWriter | null = null;
 
   return createUIMessageStream({
     originalMessages,
     async execute({ writer }) {
       try {
+        streamWriter = writer;
         if (!hasStarted && callbacks?.onStart) {
           await callbacks.onStart(writer);
           hasStarted = true;
@@ -230,8 +232,8 @@ export function toDataStream(
     },
     onFinish: async ({ messages, isContinuation }) => {
       // Call onFinal with the complete text when stream ends
-      if (callbacks?.onFinal && !isContinuation) {
-        await callbacks.onFinal(messages);
+      if (callbacks?.onFinal && !isContinuation && streamWriter) {
+        await callbacks.onFinal(messages, streamWriter);
       }
     },
   });

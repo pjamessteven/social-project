@@ -120,6 +120,7 @@ export async function GET(request: NextRequest) {
         transitionAge: detransUsers.transitionAge,
         detransitionAge: detransUsers.detransitionAge,
         experienceSummary: detransUsers.experienceSummary,
+        experienceSummaryTranslation: detransUsers.experienceSummaryTranslation,
         commentCount: sql<number>`COALESCE(COUNT(DISTINCT ${detransComments.id}), 0)`,
       })
       .from(detransUsers)
@@ -129,7 +130,8 @@ export async function GET(request: NextRequest) {
         detransUsers.username,
         detransUsers.activeSince,
         detransUsers.sex,
-        detransUsers.experienceSummary
+        detransUsers.experienceSummary,
+        detransUsers.experienceSummaryTranslation
       )
       .orderBy(sql`COALESCE(COUNT(DISTINCT ${detransComments.id}), 0) DESC`)
       .limit(limit)
@@ -141,17 +143,21 @@ export async function GET(request: NextRequest) {
       .select({
         username: detransUserTags.username,
         tagName: detransTags.name,
+        tagTranslation: detransTags.nameTranslation,
       })
       .from(detransUserTags)
       .innerJoin(detransTags, eq(detransUserTags.tagId, detransTags.id))
       .where(inArray(detransUserTags.username, usernames)) : [];
 
     // Group tags by username
-    const tagsByUsername = allUserTags.reduce((acc, { username, tagName }) => {
+    const tagsByUsername = allUserTags.reduce((acc, { username, tagName, tagTranslation }) => {
       if (!acc[username]) acc[username] = [];
-      acc[username].push(tagName);
+      acc[username].push({
+        name: tagName,
+        nameTranslation: tagTranslation,
+      });
       return acc;
-    }, {} as Record<string, string[]>);
+    }, {} as Record<string, { name: string; nameTranslation: string | null }[]>);
 
     // Combine users with their tags
     const usersWithTags = users.map(user => ({

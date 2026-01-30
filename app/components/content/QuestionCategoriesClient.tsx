@@ -1,13 +1,40 @@
 "use client";
-import {
-  affirmingDetransQuestions,
-  affirmingQuestionCategories,
-  compareQuestions,
-  questionCategories,
-} from "@/app/lib/questions";
+import { useIsRtl } from "@/app/hooks/useIsRtl";
+import { questionCategories as questionCategoriesEn } from "@/app/lib/questions";
+import { questionCategories as questionCategoriesBg } from "@/app/lib/questions.bg";
+import { questionCategories as questionCategoriesCz } from "@/app/lib/questions.cz";
+import { questionCategories as questionCategoriesDa } from "@/app/lib/questions.da";
+import { questionCategories as questionCategoriesDe } from "@/app/lib/questions.de";
+import { questionCategories as questionCategoriesEl } from "@/app/lib/questions.el";
+import { questionCategories as questionCategoriesEs } from "@/app/lib/questions.es";
+import { questionCategories as questionCategoriesFa } from "@/app/lib/questions.fa";
+import { questionCategories as questionCategoriesFi } from "@/app/lib/questions.fi";
+import { questionCategories as questionCategoriesFr } from "@/app/lib/questions.fr";
+import { questionCategories as questionCategoriesHe } from "@/app/lib/questions.he";
+import { questionCategories as questionCategoriesHi } from "@/app/lib/questions.hi";
+import { questionCategories as questionCategoriesHu } from "@/app/lib/questions.hu";
+import { questionCategories as questionCategoriesId } from "@/app/lib/questions.id";
+import { questionCategories as questionCategoriesIt } from "@/app/lib/questions.it";
+import { questionCategories as questionCategoriesJa } from "@/app/lib/questions.ja";
+import { questionCategories as questionCategoriesKo } from "@/app/lib/questions.ko";
+import { questionCategories as questionCategoriesLt } from "@/app/lib/questions.lt";
+import { questionCategories as questionCategoriesNl } from "@/app/lib/questions.nl";
+import { questionCategories as questionCategoriesNo } from "@/app/lib/questions.no";
+import { questionCategories as questionCategoriesPl } from "@/app/lib/questions.pl";
+import { questionCategories as questionCategoriesPt } from "@/app/lib/questions.pt";
+import { questionCategories as questionCategoriesRo } from "@/app/lib/questions.ro";
+import { questionCategories as questionCategoriesRu } from "@/app/lib/questions.ru";
+import { questionCategories as questionCategoriesSl } from "@/app/lib/questions.sl";
+import { questionCategories as questionCategoriesSv } from "@/app/lib/questions.sv";
+import { questionCategories as questionCategoriesTh } from "@/app/lib/questions.th";
+import { questionCategories as questionCategoriesVi } from "@/app/lib/questions.vi";
+import { questionCategories as questionCategoriesTr } from "@/app/lib/questions.tr";
+import { questionCategories as questionCategoriesUk } from "@/app/lib/questions.uk";
+import { questionCategories as questionCategoriesZhCn } from "@/app/lib/questions.zh-cn";
+import { questionCategories as questionCategoriesZhTw } from "@/app/lib/questions.zh-tw";
 import { cn, slugify } from "@/app/lib/utils";
-import { ExternalLink } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useLocale } from "next-intl";
 import {
   Accordion,
   AccordionContent,
@@ -15,19 +42,53 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 
+const questionCategoriesMap: Record<string, typeof questionCategoriesEn> = {
+  en: questionCategoriesEn,
+  bg: questionCategoriesBg,
+  cz: questionCategoriesCz,
+  da: questionCategoriesDa,
+  de: questionCategoriesDe,
+  el: questionCategoriesEl,
+  es: questionCategoriesEs,
+  fa: questionCategoriesFa,
+  fi: questionCategoriesFi,
+  fr: questionCategoriesFr,
+  he: questionCategoriesHe,
+  hi: questionCategoriesHi,
+  hu: questionCategoriesHu,
+  id: questionCategoriesId,
+  it: questionCategoriesIt,
+  ja: questionCategoriesJa,
+  ko: questionCategoriesKo,
+  lt: questionCategoriesLt,
+  nl: questionCategoriesNl,
+  no: questionCategoriesNo,
+  pl: questionCategoriesPl,
+  pt: questionCategoriesPt,
+  ro: questionCategoriesRo,
+  ru: questionCategoriesRu,
+  sl: questionCategoriesSl,
+  sv: questionCategoriesSv,
+  th: questionCategoriesTh,
+  tr: questionCategoriesTr,
+  vi: questionCategoriesVi,
+  uk: questionCategoriesUk,
+  "zh-cn": questionCategoriesZhCn,
+  "zh-tw": questionCategoriesZhTw,
+};
+
 export function QuestionCategoriesClient({
   mode,
 }: {
-  mode: "affirm" | "detrans" | "compare";
+  mode?: "detrans" | "affirm" | "compare";
 }) {
-  const isDev = process.env.NODE_ENV === "development";
+  const locale = useLocale();
+  const isRtl = useIsRtl();
 
-  const questions =
-    mode === "detrans"
-      ? questionCategories
-      : mode === "affirm"
-        ? affirmingQuestionCategories
-        : [...compareQuestions, ...affirmingQuestionCategories];
+  // Select the appropriate question set based on locale, fallback to English
+  const questionCategories = questionCategoriesMap[locale] || questionCategoriesEn;
+
+  const questions = questionCategories;
 
   return (
     <>
@@ -36,16 +97,15 @@ export function QuestionCategoriesClient({
           key={categoryIndex}
           type="single"
           collapsible
-          className="w-full border-b "
+          dir={isRtl ? "rtl" : "ltr"}
+          className="w-full border-b"
         >
           <AccordionItem
             value="disclaimer"
-            className="overflow-hidden border-none "
+            className="overflow-hidden border-none"
           >
-            <AccordionTrigger
-              className=" py-3 text-base !font-normal hover:no-underline"
-            >
-              <div>
+            <AccordionTrigger isRtl={isRtl} className="py-3 text-base !font-normal hover:no-underline">
+              <div className={isRtl ? "text-right" : "text-left"}>
                 <h3 className="text-primary mb-1 text-lg font-semibold">
                   {category.title}
                 </h3>
@@ -54,25 +114,36 @@ export function QuestionCategoriesClient({
                 </p>
               </div>
             </AccordionTrigger>
-            <AccordionContent className=" max-w-full mt-1 pb-3 text-base no-underline">
+            <AccordionContent className="mt-1 max-w-full pb-3 text-base no-underline">
               <div className="grid gap-1">
                 {category.questions.map(
                   (question: string, questionIndex: number) => (
                     <Link
                       prefetch={false}
-                      href={
-                        mode === "detrans"
-                          ? "/research/" + slugify(question)
-                          : mode === "affirm"
-                            ? "/affirm/research/" + slugify(question)
-                            : "/compare/research/" + slugify(question)
-                      }
+                      href={"/research/" + slugify(question)}
                       key={questionIndex}
                     >
-                      <div className={cn("flex flex-row items-center  pt-1  ", questionIndex < category.questions.length -1 && 'border-b pb-2')}>
-                        <div className="text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start text-lg italic opacity-90 transition-colors">
-                          <span className="mr-2 whitespace-nowrap ">{"->"}</span>
-                          <span className="pr-2">{question}</span>
+                      <div
+                        className={cn(
+                          "flex flex-row items-center pt-1",
+                          questionIndex < category.questions.length - 1 &&
+                            "border-b pb-2",
+                        )}
+                      >
+                        <div className={cn(
+                          "text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start text-lg italic opacity-90 transition-colors",
+                          isRtl && "flex-row-reverse"
+                        )}>
+                          <span className={cn(
+                            "whitespace-nowrap",
+                            isRtl ? "ml-2" : "mr-2"
+                          )}>
+                            {isRtl ? "<-" : "->"}
+                          </span>
+                          <span className={cn(
+                            isRtl ? "pl-2" : "pr-2",
+                            isRtl && "text-right"
+                          )}>{question}</span>
                         </div>
                       </div>
                     </Link>
@@ -83,38 +154,6 @@ export function QuestionCategoriesClient({
           </AccordionItem>
         </Accordion>
       ))}
-      {mode === "affirm" &&
-        affirmingDetransQuestions.map((category, categoryIndex) => (
-          <div key={categoryIndex} className="mb-12">
-            <h3 className="text-primary mb-4 text-2xl font-bold">
-              {category.title}
-            </h3>
-            <p className="text-muted-foreground mb-4 text-base sm:mb-6">
-              {category.description}
-            </p>
-            <div className="grid gap-1">
-              {category.questions.map(
-                (question: string, questionIndex: number) => (
-                  <div className="flex items-center" key={questionIndex}>
-                    <Link
-                      prefetch={false}
-                      href={
-                        (isDev
-                          ? "/research/"
-                          : "https://detrans.ai/research/") + slugify(question)
-                      }
-                    >
-                      <p className="text-muted-foreground hover:text-primary cursor-pointer text-lg italic opacity-90 transition-colors">
-                        {"->"} {question}
-                      </p>
-                    </Link>
-                    <ExternalLink className="ml-2 h-4" />
-                  </div>
-                ),
-              )}
-            </div>
-          </div>
-        ))}
     </>
   );
 }

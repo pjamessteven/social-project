@@ -4,6 +4,7 @@ import { toggleFeaturedAPI } from "@/app/lib/utils";
 import { useUserStore } from "@/stores/user-store";
 import { List, Star } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useLocale } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
 import ChatSection from "../ui/chat/chat-section";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
@@ -19,6 +20,8 @@ export interface ConversationSummary {
   messages: string;
   featured: boolean;
   conversationSummary: string | null;
+  conversationSummaryTranslation: string | null;
+  titleTranslation: string | null;
   country: string | null;
 }
 
@@ -54,6 +57,7 @@ export default function ConversationsPageClient({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const locale = useLocale();
   const [currentConversationId, setCurrentConversationId] = useState(
     initialConversationId || searchParams.get("conversationId") || undefined,
   );
@@ -98,6 +102,7 @@ export default function ConversationsPageClient({
         const params = new URLSearchParams();
         params.set("page", page.toString());
         params.set("limit", "20");
+        params.set("locale", locale);
         if (isFeaturedView) {
           params.set("featured", "true");
         }
@@ -197,7 +202,9 @@ export default function ConversationsPageClient({
                 ...item,
                 featured: data.conversation.featured,
                 title: data.conversation.title,
+                titleTranslation: data.conversation.titleTranslation,
                 conversationSummary: data.conversation.conversationSummary,
+                conversationSummaryTranslation: data.conversation.conversationSummaryTranslation,
               }
             : item,
         ),
@@ -409,6 +416,8 @@ export default function ConversationsPageClient({
                     mode={convo.mode}
                     featured={convo.featured}
                     conversationSummary={convo.conversationSummary}
+                    conversationSummaryTranslation={convo.conversationSummaryTranslation}
+                    titleTranslation={convo.titleTranslation}
                     country={convo.country}
                     showFeaturedStar={false}
                     layout={currentConversationId ? "list" : "grid"}
@@ -508,6 +517,8 @@ export default function ConversationsPageClient({
                     mode={convo.mode}
                     featured={convo.featured}
                     conversationSummary={convo.conversationSummary}
+                    conversationSummaryTranslation={convo.conversationSummaryTranslation}
+                    titleTranslation={convo.titleTranslation}
                     country={convo.country}
                     showFeaturedStar={false}
                     layout="grid"

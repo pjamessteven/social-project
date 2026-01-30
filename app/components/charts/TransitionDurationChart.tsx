@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
@@ -31,6 +32,7 @@ export default function TransitionDurationChart({
   minAge,
   maxAge,
 }: TransitionDurationChartProps) {
+  const t = useTranslations("charts.transitionDuration");
   const searchParams = useSearchParams();
   const [data, setData] = useState<TransitionDurationData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -85,10 +87,10 @@ export default function TransitionDurationChart({
       const data = payload[0].payload;
       return (
         <div className="rounded border border-gray-300 bg-white p-3 shadow-lg">
-          <p className="font-medium text-black">{`Transition Age: ${data.transitionAge}`}</p>
-          <p className="font-medium text-black">{`Detransition Age: ${data.detransitionAge}`}</p>
-          <p className="font-medium text-blue-600">{`Duration: ${data.duration} years`}</p>
-          <p className="text-sm text-gray-600">{`${data.count} user${data.count !== 1 ? "s" : ""}`}</p>
+          <p className="font-medium text-black">{`${t("tooltip.transitionAge")}: ${data.transitionAge}`}</p>
+          <p className="font-medium text-black">{`${t("tooltip.detransitionAge")}: ${data.detransitionAge}`}</p>
+          <p className="font-medium text-blue-600">{`${t("tooltip.duration")}: ${data.duration} ${t("years")}`}</p>
+          <p className="text-sm text-gray-600">{`${data.count} ${data.count !== 1 ? t("users") : t("user")}`}</p>
         </div>
       );
     }
@@ -103,18 +105,15 @@ export default function TransitionDurationChart({
     <>
       {loading ? (
         <div className="flex h-96 items-center justify-center">
-          <div className="text-gray-500">Loading chart data...</div>
+          <div className="text-gray-500">{t("loading")}</div>
         </div>
       ) : (
         <>
           <div className="p-4">
-            <h3 className="font-semibold">
-              Transition Duration: Age at Transition vs Age at Detransition
-            </h3>
+            <h3 className="font-semibold">{t("title")}</h3>
             <p className="text-sm text-gray-600">
-              Each point shows transition age (X) vs detransition age (Y).{" "}
-              <br className="hidden sm:inline" />
-              Larger, more opaque points represent more users.
+              {t("description.line1")} <br className="hidden sm:inline" />
+              {t("description.line2")}
             </p>
           </div>
           <div className={`w-full ${className}`}>
@@ -132,7 +131,7 @@ export default function TransitionDurationChart({
                   dataKey="transitionAge"
                   domain={[minAge, maxAge]}
                   label={{
-                    value: "Age at Transition",
+                    value: t("axis.transitionAge"),
                     position: "bottom",
                     offset: 5,
                   }}
@@ -141,7 +140,7 @@ export default function TransitionDurationChart({
                   type="number"
                   domain={[minAge, maxAge]}
                   label={{
-                    value: "Age at Detransition",
+                    value: t("axis.detransitionAge"),
                     angle: -90,
                     position: "left",
                     offset: 5,
@@ -171,7 +170,9 @@ export default function TransitionDurationChart({
 
                     // Calculate size based on count (min 3, max 15)
                     const maxCount = Math.max(
-                      ...data.filter((d) => d.sex === "m").map((d) => Number(d.count)),
+                      ...data
+                        .filter((d) => d.sex === "m")
+                        .map((d) => Number(d.count)),
                     );
                     const minSize = 3;
                     const maxSize = 15;
@@ -184,7 +185,8 @@ export default function TransitionDurationChart({
                     const maxOpacity = 0.8;
                     const opacity =
                       minOpacity +
-                      (Number(payload.count) / maxCount) * (maxOpacity - minOpacity);
+                      (Number(payload.count) / maxCount) *
+                        (maxOpacity - minOpacity);
 
                     return (
                       <circle
@@ -212,7 +214,9 @@ export default function TransitionDurationChart({
 
                     // Calculate size based on count (min 3, max 15)
                     const maxCount = Math.max(
-                      ...data.filter((d) => d.sex === "f").map((d) => Number(d.count)),
+                      ...data
+                        .filter((d) => d.sex === "f")
+                        .map((d) => Number(d.count)),
                     );
                     const minSize = 3;
                     const maxSize = 15;
@@ -225,7 +229,8 @@ export default function TransitionDurationChart({
                     const maxOpacity = 0.8;
                     const opacity =
                       minOpacity +
-                      (Number(payload.count) / maxCount) * (maxOpacity - minOpacity);
+                      (Number(payload.count) / maxCount) *
+                        (maxOpacity - minOpacity);
 
                     return (
                       <circle
@@ -245,28 +250,48 @@ export default function TransitionDurationChart({
             <div className="flex items-center gap-4 p-4 pl-6">
               <div className="flex items-center gap-1">
                 <div className="h-3 w-3 rounded-full bg-blue-500"></div>
-                <span>Male</span>
+                <span>{t("male")}</span>
                 {(() => {
                   const maleData = data.filter((d) => d.sex === "m");
                   if (maleData.length > 0) {
-                    const totalWeightedDuration = maleData.reduce((sum, d) => sum + d.duration * Number(d.count), 0);
-                    const totalCount = maleData.reduce((sum, d) => sum + Number(d.count), 0);
+                    const totalWeightedDuration = maleData.reduce(
+                      (sum, d) => sum + d.duration * Number(d.count),
+                      0,
+                    );
+                    const totalCount = maleData.reduce(
+                      (sum, d) => sum + Number(d.count),
+                      0,
+                    );
                     const avgDuration = totalWeightedDuration / totalCount;
-                    return <span className="text-sm text-gray-600">({avgDuration.toFixed(1)} years avg)</span>;
+                    return (
+                      <span className="text-sm text-gray-600">
+                        ({avgDuration.toFixed(1)} {t("yearsAvg")})
+                      </span>
+                    );
                   }
                   return null;
                 })()}
               </div>
               <div className="flex items-center gap-1">
                 <div className="h-3 w-3 rounded-full bg-red-500"></div>
-                <span>Female</span>
+                <span>{t("female")}</span>
                 {(() => {
                   const femaleData = data.filter((d) => d.sex === "f");
                   if (femaleData.length > 0) {
-                    const totalWeightedDuration = femaleData.reduce((sum, d) => sum + d.duration * Number(d.count), 0);
-                    const totalCount = femaleData.reduce((sum, d) => sum + Number(d.count), 0);
+                    const totalWeightedDuration = femaleData.reduce(
+                      (sum, d) => sum + d.duration * Number(d.count),
+                      0,
+                    );
+                    const totalCount = femaleData.reduce(
+                      (sum, d) => sum + Number(d.count),
+                      0,
+                    );
                     const avgDuration = totalWeightedDuration / totalCount;
-                    return <span className="text-sm text-gray-600">({avgDuration.toFixed(1)} years avg)</span>;
+                    return (
+                      <span className="text-sm text-gray-600">
+                        ({avgDuration.toFixed(1)} {t("yearsAvg")})
+                      </span>
+                    );
                   }
                   return null;
                 })()}
@@ -277,9 +302,7 @@ export default function TransitionDurationChart({
       )}
 
       {!loading && data.length === 0 && (
-        <div className="py-8 text-center text-gray-500">
-          No data available for the selected age range
-        </div>
+        <div className="py-8 text-center text-gray-500">{t("noData")}</div>
       )}
     </>
   );

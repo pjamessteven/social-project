@@ -1,12 +1,12 @@
 import { ChevronRight, MessageCircleQuestion } from "lucide-react";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
 export default function ParticipateCard() {
-  const t = useTranslations("participate");
+  const t = useTranslations("home.participate.card");
   return (
-    <Link prefetch={false} href={"/participate"} className="no-underline">
+    <Link prefetch={false} href="/participate" className="no-underline">
       <Card className="group bg-lizard-200/30 border-lizard-400 dark:border-lizard-600 dark:bg-lizard-900/70 relative cursor-pointer overflow-hidden rounded-xl border transition-all duration-500 hover:brightness-110">
         <div className="dark:[#17315b]/30 pointer-events-none absolute inset-0 left-0 w-[300%] translate-x-[-100%] bg-gradient-to-r from-white/20 via-white/10 to-transparent transition-transform duration-500 ease-in-out group-hover:translate-x-[0%] dark:via-white/10"></div>
         <CardHeader className="z-10">

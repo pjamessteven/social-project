@@ -3,6 +3,7 @@
 import { cn, toggleFeaturedAPI } from "@/app/lib/utils";
 import { useUserStore } from "@/stores/user-store";
 import { History, List, Loader2, MessageSquare, Star } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "../../ui/tabs";
 import { ConversationCard } from "../ConversationCard/ConversationCard";
@@ -16,6 +17,8 @@ interface FeaturedConversation {
   messages: string;
   featured: boolean;
   conversationSummary: string | null;
+  conversationSummaryTranslation: string | null;
+  titleTranslation: string | null;
   country: string | null; // Country from IP geolocation
 }
 
@@ -63,6 +66,8 @@ export function FeaturedConversations() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const isMediumScreen = useIsMediumScreen();
   const abortControllerRef = useRef<AbortController | null>(null);
+  const t = useTranslations("conversations");
+  const locale = useLocale();
 
   const handleToggleFeatured = async (
     uuid: string,
@@ -83,6 +88,7 @@ export function FeaturedConversations() {
                 featured: data.conversation.featured,
                 title: data.conversation.title,
                 conversationSummary: data.conversation.conversationSummary,
+                conversationSummaryTranslation: data.conversation.conversationSummaryTranslation,
               }
             : convo,
         ),
@@ -238,7 +244,7 @@ export function FeaturedConversations() {
         // Use limit=12 for medium screens and larger, limit=8 for smaller screens
         const limit = isMediumScreen ? 12 : 8;
         const response = await fetch(
-          `/api/chat?featured=${isFeatured}&limit=${limit}&page=${page}`,
+          `/api/chat?featured=${isFeatured}&limit=${limit}&page=${page}&locale=${locale}`,
           { signal: abortController.signal },
         );
 
@@ -365,13 +371,10 @@ export function FeaturedConversations() {
               <div className="flex items-center justify-start gap-2 lg:mt-2">
                 <History className="mx-2 h-6 w-6 text-black dark:text-white" />
 
-                <h3 className="my-0! py-0! text-xl font-bold">
-                  Recent Conversations
-                </h3>
+                <h3 className="my-0! py-0! text-xl font-bold">{t("title")}</h3>
               </div>
               <div className="mt-4 mb-6 text-base text-gray-500 lg:mt-4">
-                See for yourself how detrans.ai is helping people from around
-                the world.
+                {t("subtitle")}
               </div>
             </div>
             <TabsList className="mb-4 grid h-12 grid-cols-2 gap-1 rounded-xl border lg:mb-0 lg:w-1/3">
@@ -380,14 +383,16 @@ export function FeaturedConversations() {
                 className="flex-row items-center gap-2 rounded-lg py-2"
               >
                 <Star className="hidden h-4 w-4 sm:block" />
-                <span className="text-sm font-medium">Featured</span>
+                <span className="text-sm font-medium">
+                  {t("tabs.featured")}
+                </span>
               </TabsTrigger>
               <TabsTrigger
                 value="all"
                 className="flex-row items-center gap-2 rounded-lg py-2"
               >
                 <List className="hidden h-4 w-4 sm:block" />
-                <span className="text-sm font-medium">All</span>
+                <span className="text-sm font-medium">{t("tabs.all")}</span>
               </TabsTrigger>
             </TabsList>
           </div>
@@ -563,6 +568,8 @@ export function FeaturedConversations() {
                         mode={convo.mode}
                         featured={convo.featured}
                         conversationSummary={convo.conversationSummary}
+                        conversationSummaryTranslation={convo.conversationSummaryTranslation}
+                        titleTranslation={convo.titleTranslation}
                         country={convo.country}
                         showFeaturedStar={true}
                         layout="grid"
@@ -597,6 +604,8 @@ export function FeaturedConversations() {
                           mode={convo.mode}
                           featured={convo.featured}
                           conversationSummary={convo.conversationSummary}
+                          conversationSummaryTranslation={convo.conversationSummaryTranslation}
+                          titleTranslation={convo.titleTranslation}
                           country={convo.country}
                           showFeaturedStar={true}
                           layout="grid"
@@ -631,6 +640,8 @@ export function FeaturedConversations() {
                           mode={convo.mode}
                           featured={convo.featured}
                           conversationSummary={convo.conversationSummary}
+                          conversationSummaryTranslation={convo.conversationSummaryTranslation}
+                          titleTranslation={convo.titleTranslation}
                           country={convo.country}
                           showFeaturedStar={true}
                           layout="grid"
@@ -668,6 +679,8 @@ export function FeaturedConversations() {
                             mode={convo.mode}
                             featured={convo.featured}
                             conversationSummary={convo.conversationSummary}
+                            conversationSummaryTranslation={convo.conversationSummaryTranslation}
+                            titleTranslation={convo.titleTranslation}
                             country={convo.country}
                             showFeaturedStar={true}
                             layout="grid"
@@ -714,7 +727,9 @@ export function FeaturedConversations() {
                         className="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
                       >
                         <MessageSquare className="h-4 w-4" />
-                        Show {conversations.length - 4} More Conversations
+                        {t("buttons.showMore", {
+                          count: conversations.length - 4,
+                        })}
                       </button>
                     ) : (
                       pagination &&
@@ -734,12 +749,12 @@ export function FeaturedConversations() {
                             {loadingMore ? (
                               <>
                                 <Loader2 className="h-4 w-4 animate-spin" />
-                                Loading...
+                                {t("buttons.loading")}
                               </>
                             ) : (
                               <>
                                 <MessageSquare className="h-4 w-4" />
-                                Load More Conversations
+                                {t("buttons.loadMore")}
                               </>
                             )}
                           </button>
@@ -757,7 +772,7 @@ export function FeaturedConversations() {
                     onClick={() => setShowAllMobile(false)}
                     className="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
                   >
-                    Show Less
+                    {t("buttons.showLess")}
                   </button>
                 </div>
               )}
@@ -802,12 +817,12 @@ export function FeaturedConversations() {
                             {loadingMore ? (
                               <>
                                 <Loader2 className="h-4 w-4 animate-spin" />
-                                Loading...
+                                {t("buttons.loading")}
                               </>
                             ) : (
                               <>
                                 <MessageSquare className="h-4 w-4" />
-                                Load More Conversations
+                                {t("buttons.loadMore")}
                               </>
                             )}
                           </button>
@@ -847,6 +862,12 @@ export function FeaturedConversations() {
             selectedConversationId
               ? conversations.find((c) => c.uuid === selectedConversationId)
                   ?.conversationSummary
+              : undefined
+          }
+          conversationSummaryTranslation={
+            selectedConversationId
+              ? conversations.find((c) => c.uuid === selectedConversationId)
+                  ?.conversationSummaryTranslation
               : undefined
           }
         />

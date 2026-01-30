@@ -2,20 +2,20 @@ import { ChatHandler } from "@llamaindex/chat-ui";
 import { create } from "zustand";
 
 interface ChatState {
-  isDeepResearch: boolean;
+  isResearch: boolean;
   chatHandler: ChatHandler | null;
   chatStatus: string | null;
-  setIsDeepResearch: (value: boolean) => void;
+  setIsResearch: (value: boolean) => void;
   setChatHandler: (handler: ChatHandler | null) => void;
   setChatStatus: (status: string | null) => void;
   sendMessage: (message: string) => void;
 }
 
 export const useChatStore = create<ChatState>((set, get) => ({
-  isDeepResearch: false,
+  isResearch: false,
   chatHandler: null,
   chatStatus: "ready",
-  setIsDeepResearch: (value) => set({ isDeepResearch: value }),
+  setIsResearch: (value) => set({ isResearch: value }),
   setChatHandler: (handler) => set({ chatHandler: handler }),
   setChatStatus: (status) => set({ chatStatus: status }),
   sendMessage: (message) => {

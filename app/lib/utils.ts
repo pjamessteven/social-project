@@ -59,7 +59,10 @@ export function markdownToPlainText(md?: string) {
   }
 }
 
-export function formatDate(dateString: string): string {
+export function formatDate(
+  dateString: string,
+  locale: string = "en-US",
+): string {
   const date = new Date(dateString);
   const now = new Date();
   const diffTime = Math.abs(now.getTime() - date.getTime());
@@ -75,7 +78,7 @@ export function formatDate(dateString: string): string {
     const weeks = Math.floor(diffDays / 7);
     return `${weeks} week${weeks > 1 ? "s" : ""} ago`;
   } else {
-    return date.toLocaleDateString("en-US", {
+    return date.toLocaleDateString(locale, {
       month: "short",
       day: "numeric",
     });

@@ -30,6 +30,7 @@ interface ConversationDialogProps {
   updatedAt?: string;
   country?: string | null;
   conversationSummary?: string | null;
+  conversationSummaryTranslation?: string | null;
 }
 
 export function ConversationDialog({
@@ -40,11 +41,29 @@ export function ConversationDialog({
   updatedAt,
   country,
   conversationSummary,
+  conversationSummaryTranslation,
 }: ConversationDialogProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [internalOpen, setInternalOpen] = useState(open);
   const [showId, setShowId] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [localizedSummary, setLocalizedSummary] = useState<string | null>(null);
+
+  // Get localized summary based on current locale
+  useEffect(() => {
+    if (!conversationSummaryTranslation) {
+      setLocalizedSummary(conversationSummary ?? null);
+      return;
+    }
+
+    try {
+      const translations = JSON.parse(conversationSummaryTranslation) as Record<string, string>;
+      const locale = navigator.language.split('-')[0]; // Get primary language code
+      setLocalizedSummary(translations[locale] || conversationSummary || null);
+    } catch {
+      setLocalizedSummary(conversationSummary ?? null);
+    }
+  }, [conversationSummary, conversationSummaryTranslation]);
 
   // Sync internal state with props
   useEffect(() => {
@@ -203,19 +222,19 @@ export function ConversationDialog({
               </div>
             ) : conversationId ? (
               <div className="h-full pb-4">
-                {conversationSummary && (
+                {localizedSummary && (
                   <div className="text-muted-foreground bg-primary-foreground px-4 pb-4">
-                    {conversationSummary}
+                    {localizedSummary}
                   </div>
                 )}
-                {conversationSummary && (
+                {localizedSummary && (
                   <div className="border-primary sticky top-0 z-20 w-full border-t p-4"></div>
                 )}
-                {!conversationSummary && <div className="mt-4" />}
+                {!localizedSummary && <div className="mt-4" />}
                 <div
                   className={cn(
                     "z-10 overflow-x-hidden px-4 sm:px-0",
-                    conversationSummary ? "-mt-4" : "",
+                    localizedSummary ? "-mt-4" : "",
                   )}
                 >
                   <ChatSection

@@ -8,7 +8,8 @@ import {
   useChatUI,
 } from "@llamaindex/chat-ui";
 import { ExternalLink } from "lucide-react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useRef } from "react";
 import DonationCard from "../../content/DonationCard";

@@ -1,11 +1,14 @@
 "use server";
 
+import type { Locale } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
 import { ConversationSummary } from "./ConversationsPage";
 
 interface SeoConversationsPageProps {
   conversations?: ConversationSummary[];
   featuredConversations?: ConversationSummary[];
   currentConversationId?: string;
+  locale?: string;
 }
 
 interface MessagePart {
@@ -29,7 +32,7 @@ function parseMessages(messagesString: string): Message[] {
   }
 }
 
-function renderMessage(message: Message) {
+function renderMessage(message: Message, t: (key: string) => string) {
   const text = message.parts?.[0]?.text || "";
   const isUser = message.role === "user";
 
@@ -54,7 +57,7 @@ function renderMessage(message: Message) {
         </div>
         <div className="flex-1">
           <div className="mb-1 text-sm font-medium">
-            {isUser ? "User" : "detrans.ai"}
+            {isUser ? t("user") : "detrans.ai"}
           </div>
           <div className="prose dark:prose-invert max-w-none">
             {text.split("\n").map((line, i) => (
@@ -73,7 +76,13 @@ export default async function SeoConversationsPage({
   conversations = [],
   featuredConversations = [],
   currentConversationId,
+  locale = "en",
 }: SeoConversationsPageProps) {
+  const t = await getTranslations({
+    locale: locale as Locale,
+    namespace: "seo.conversations",
+  });
+
   const allConversations = [...conversations, ...featuredConversations];
   const currentConversation = allConversations.find(
     (conv) => conv.uuid === currentConversationId,
@@ -83,11 +92,10 @@ export default async function SeoConversationsPage({
     <div className="container mx-auto px-4 py-8">
       <header className="mb-8">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-          Conversations Archive
+          {t("title")}
         </h1>
         <p className="mt-2 text-lg text-gray-600 dark:text-gray-300">
-          Browse through conversations about gender identity, detransitioning,
-          gender-affirming care, and affirmation.
+          {t("description")}
         </p>
       </header>
 
@@ -96,13 +104,13 @@ export default async function SeoConversationsPage({
         <aside className="lg:col-span-1">
           <div className="rounded-lg bg-white p-6 shadow dark:bg-gray-800">
             <h2 className="mb-4 text-2xl font-semibold text-gray-900 dark:text-white">
-              Conversations
+              {t("conversations")}
             </h2>
 
             {featuredConversations.length > 0 && (
               <div className="mb-6">
                 <h3 className="mb-2 flex items-center text-lg font-medium text-gray-900 dark:text-white">
-                  <span className="mr-2">⭐</span> Featured Conversations
+                  <span className="mr-2">⭐</span> {t("featuredConversations")}
                 </h3>
                 <ul className="space-y-2">
                   {featuredConversations.map((conversation) => (
@@ -112,11 +120,11 @@ export default async function SeoConversationsPage({
                         className="block rounded-lg bg-yellow-50 p-3 transition-colors hover:bg-yellow-100 dark:bg-yellow-900/20 dark:hover:bg-yellow-900/30"
                       >
                         <h4 className="font-medium text-gray-900 dark:text-white">
-                          {conversation.title || "Untitled Conversation"}
+                          {conversation.title || t("untitled")}
                         </h4>
                         <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
                           {conversation.conversationSummary ||
-                            "No summary available"}
+                            t("noSummary")}
                         </p>
                         <div className="mt-2 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
                           <span>{conversation.mode}</span>
@@ -134,7 +142,7 @@ export default async function SeoConversationsPage({
             )}
 
             <h3 className="mb-2 text-lg font-medium text-gray-900 dark:text-white">
-              All Conversations
+              {t("allConversations")}
             </h3>
             {conversations.length > 0 ? (
               <ul className="space-y-2">
@@ -145,11 +153,11 @@ export default async function SeoConversationsPage({
                       className="block rounded-lg bg-gray-50 p-3 transition-colors hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600"
                     >
                       <h4 className="font-medium text-gray-900 dark:text-white">
-                        {conversation.title || "Untitled Conversation"}
+                        {conversation.title || t("untitled")}
                       </h4>
                       <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
                         {conversation.conversationSummary ||
-                          "No summary available"}
+                          t("noSummary")}
                       </p>
                       <div className="mt-2 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
                         <span>{conversation.mode}</span>
@@ -165,7 +173,7 @@ export default async function SeoConversationsPage({
               </ul>
             ) : (
               <p className="text-gray-500 italic dark:text-gray-400">
-                No conversations available.
+                {t("noConversations")}
               </p>
             )}
           </div>
@@ -178,36 +186,36 @@ export default async function SeoConversationsPage({
               <article>
                 <header className="mb-6">
                   <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-                    {currentConversation.title || "Untitled Conversation"}
+                    {currentConversation.title || t("untitled")}
                   </h2>
                   <div className="mt-2 flex items-center text-sm text-gray-600 dark:text-gray-300">
                     <span className="mr-4">
-                      Mode: {currentConversation.mode}
+                      {t("mode")}: {currentConversation.mode}
                     </span>
                     <time dateTime={currentConversation.updatedAt}>
-                      Updated:{" "}
+                      {t("updated")}:{" "}
                       {new Date(
                         currentConversation.updatedAt,
                       ).toLocaleDateString()}
                     </time>
                     {currentConversation.featured && (
                       <span className="ml-4 rounded-full bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
-                        Featured
+                        {t("featured")}
                       </span>
                     )}
                   </div>
                 </header>
 
                 <div className="prose dark:prose-invert max-w-none">
-                  <h3>Conversation Summary</h3>
+                  <h3>{t("conversationSummary")}</h3>
                   <p className="text-lg">
                     {currentConversation.conversationSummary ||
-                      "No summary available for this conversation."}
+                      t("noSummaryAvailable")}
                   </p>
 
                   {currentConversation.messages && (
                     <>
-                      <h3 className="mt-8">Conversation</h3>
+                      <h3 className="mt-8">{t("conversation")}</h3>
                       <div className="mt-4 space-y-4">
                         {(() => {
                           const messages = parseMessages(
@@ -217,12 +225,12 @@ export default async function SeoConversationsPage({
                             return (
                               <div className="rounded-lg bg-gray-50 p-4 dark:bg-gray-700">
                                 <p className="text-gray-600 italic dark:text-gray-300">
-                                  Unable to parse conversation messages.
+                                  {t("unableToParse")}
                                 </p>
                               </div>
                             );
                           }
-                          return messages.map(renderMessage);
+                          return messages.map((message) => renderMessage(message, t));
                         })()}
                       </div>
                     </>
@@ -231,9 +239,7 @@ export default async function SeoConversationsPage({
 
                 <div className="mt-8 border-t border-gray-200 pt-6 dark:border-gray-700">
                   <p className="text-gray-600 dark:text-gray-300">
-                    This is a conversation from our archive. To view the full
-                    conversation and participate in discussions, please visit
-                    the interactive version of this page.
+                    {t("archiveNote")}
                   </p>
                 </div>
               </article>
@@ -241,28 +247,26 @@ export default async function SeoConversationsPage({
           ) : (
             <div className="rounded-lg bg-white p-8 text-center shadow dark:bg-gray-800">
               <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-                Welcome to Conversations Archive
+                {t("welcomeTitle")}
               </h2>
               <p className="mb-6 text-gray-600 dark:text-gray-300">
-                Select a conversation from the sidebar to view its details. This
-                archive contains discussions about gender identity,
-                detransitioning experiences, and affirmation journeys.
+                {t("welcomeDescription")}
               </p>
               <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div className="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
                   <h3 className="font-semibold text-blue-900 dark:text-blue-200">
-                    Featured Conversations
+                    {t("featuredConversations")}
                   </h3>
                   <p className="mt-1 text-sm text-blue-700 dark:text-blue-300">
-                    Highlighted discussions marked by our community
+                    {t("featuredDescription")}
                   </p>
                 </div>
                 <div className="rounded-lg bg-green-50 p-4 dark:bg-green-900/20">
                   <h3 className="font-semibold text-green-900 dark:text-green-200">
-                    All Conversations
+                    {t("allConversations")}
                   </h3>
                   <p className="mt-1 text-sm text-green-700 dark:text-green-300">
-                    Browse through all available discussions
+                    {t("allDescription")}
                   </p>
                 </div>
               </div>
@@ -273,9 +277,7 @@ export default async function SeoConversationsPage({
 
       <footer className="mt-12 border-t border-gray-200 pt-8 dark:border-gray-700">
         <p className="text-center text-gray-600 dark:text-gray-400">
-          This page provides SEO-friendly content for search engines and bots.
-          For the full interactive experience, please visit with a modern web
-          browser.
+          {t("footer")}
         </p>
       </footer>
     </div>

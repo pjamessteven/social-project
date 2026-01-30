@@ -1,9 +1,9 @@
 "use client";
 
 import { formatCountryDisplay } from "@/app/lib/countries";
-import { formatDate } from "@/app/lib/utils";
 import { Ban, Clock, MoreVertical, Star, Trash2 } from "lucide-react";
-import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import { ReactNode, useState } from "react";
 import ChatBubbleButton from "../ChatBubbleButton";
 export interface ConversationCardProps {
@@ -13,6 +13,8 @@ export interface ConversationCardProps {
   mode: string;
   featured: boolean;
   conversationSummary: string | null;
+  conversationSummaryTranslation: string | null;
+  titleTranslation: string | null;
   country: string | null;
   showFeaturedStar?: boolean;
   layout?: "grid" | "list";
@@ -33,6 +35,8 @@ export function ConversationCard({
   mode,
   featured,
   conversationSummary,
+  conversationSummaryTranslation,
+  titleTranslation,
   country,
   showFeaturedStar = true,
   layout = "grid",
@@ -45,7 +49,61 @@ export function ConversationCard({
   onDeleteConversation,
   onBanUser,
 }: ConversationCardProps) {
+  const t = useTranslations("conversationCard");
+  const locale = useLocale();
   const [showAdminMenu, setShowAdminMenu] = useState(false);
+
+  // Get localized conversation summary
+  const getLocalizedSummary = (): string | null => {
+    if (!conversationSummaryTranslation) return conversationSummary;
+    
+    try {
+      const translations = JSON.parse(conversationSummaryTranslation) as Record<string, string>;
+      return translations[locale] || conversationSummary;
+    } catch {
+      return conversationSummary;
+    }
+  };
+
+  const localizedSummary = getLocalizedSummary();
+
+  // Get localized title
+  const getLocalizedTitle = (): string | null => {
+    if (!titleTranslation) return title;
+    
+    try {
+      const translations = JSON.parse(titleTranslation) as Record<string, string>;
+      return translations[locale] || title;
+    } catch {
+      return title;
+    }
+  };
+
+  const localizedTitle = getLocalizedTitle();
+
+  // Format relative date using translations
+  const formatRelativeDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffTime = Math.abs(now.getTime() - date.getTime());
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays === 0) {
+      return t("date.today");
+    } else if (diffDays === 1) {
+      return t("date.yesterday");
+    } else if (diffDays < 7) {
+      return t("date.daysAgo", { count: diffDays });
+    } else if (diffDays < 30) {
+      const weeks = Math.floor(diffDays / 7);
+      return t("date.weeksAgo", { count: weeks });
+    } else {
+      return date.toLocaleDateString(locale, {
+        month: "short",
+        day: "numeric",
+      });
+    }
+  };
   const [isDeleting, setIsDeleting] = useState(false);
   const [isBanning, setIsBanning] = useState(false);
   // Parse messages to extract user messages for summary fallback
@@ -100,7 +158,7 @@ export function ConversationCard({
                     : "line-clamp-2 text-sm font-semibold"
                 }`}
               >
-                {title || "Untitled Conversation"}
+                {localizedTitle || t("untitled")}
               </h4>
               <div className="flex items-center gap-2">
                 {!isAdminUser && showFeaturedStar && featured && (
@@ -151,7 +209,9 @@ export function ConversationCard({
                             className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-red-600 hover:bg-gray-100 disabled:opacity-50"
                           >
                             <Trash2 className="h-4 w-4" />
-                            {isDeleting ? "Deleting..." : "Delete Conversation"}
+                            {isDeleting
+                              ? t("admin.deleting")
+                              : t("admin.delete")}
                           </button>
                           <button
                             onClick={async (e) => {
@@ -170,7 +230,7 @@ export function ConversationCard({
                             className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-red-600 hover:bg-gray-100 disabled:opacity-50"
                           >
                             <Ban className="h-4 w-4" />
-                            {isBanning ? "Banning..." : "Ban User (IP)"}
+                            {isBanning ? t("admin.banning") : t("admin.ban")}
                           </button>
                         </div>
                       )}
@@ -182,8 +242,8 @@ export function ConversationCard({
             <div className="mt-1 flex items-center gap-2">
               <div className="text-muted-foreground flex items-center gap-1 text-xs">
                 <Clock className="h-3 w-3" />
-                <span>{formatDate(updatedAt)}</span>
-                {layout === "grid" && " from "}
+                <span>{formatRelativeDate(updatedAt)}</span>
+                {layout === "grid" && <span> {t("from")} </span>}
                 {layout === "grid" && (
                   <span>{formatCountryDisplay(country || "")}</span>
                 )}
@@ -198,13 +258,13 @@ export function ConversationCard({
           </div>
         </div>
 
-        {conversationSummary && (
+        {localizedSummary && (
           <div
             className={`dark:border-muted-foreground/30 dark:from-secondary-foreground/10 from-secondary/50 text-muted-foreground bg-gradient-to- borde mt-0 border-b to-transparent pb-2 text-sm ${
               layout === "grid" ? "" : ""
             }`}
           >
-            {conversationSummary}
+            {localizedSummary}
           </div>
         )}
 
@@ -224,8 +284,8 @@ export function ConversationCard({
               message={{
                 display:
                   userMessages.length - 3 > 1
-                    ? userMessages.length - 3 + " more messages..."
-                    : userMessages.length + " more message...",
+                    ? t("moreMessages", { count: userMessages.length - 3 })
+                    : t("moreMessage", { count: userMessages.length }),
               }}
             ></ChatBubbleButton>
           )}

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { Alert, AlertDescription } from "./ui/alert";
@@ -8,6 +9,7 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
 export default function VideoSubmitForm() {
+  const t = useTranslations("videoSubmitForm");
   const [url, setUrl] = useState("");
   const [sex, setSex] = useState<"m" | "f" | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -35,18 +37,18 @@ export default function VideoSubmitForm() {
       if (response.ok) {
         setMessage({
           type: "success",
-          text: "Video submitted successfully! It will be reviewed before appearing on the site.",
+          text: t("submitSuccess"),
         });
         setUrl("");
         setSex("f");
       } else {
         setMessage({
           type: "error",
-          text: data.error || "Failed to submit video",
+          text: data.error || t("submitError"),
         });
       }
     } catch (error) {
-      setMessage({ type: "error", text: "Network error. Please try again." });
+      setMessage({ type: "error", text: t("networkError") });
     } finally {
       setIsSubmitting(false);
     }
@@ -56,26 +58,23 @@ export default function VideoSubmitForm() {
     <div className="text-muted-foreground">
       <details className="mb-4 cursor-pointer">
         <summary className="text-muted-foreground">
-          Submit Your Detransition Video
+          {t("submitTitle")}
         </summary>
         <div className="space-y-3 pt-1">
           <p className="mt-3 border-t pt-3">
-            By submitting your video it will show on this page and in relevant
-            chats.
-            <br className="hidden md:inline" /> It could be your video, or it
-            could just be one you found online that's missing from this page.
-            <br className="hidden md:inline" /> All submissions are moderated,
-            it might take a few days before it appears.
+            {t("description.line1")}
+            <br className="hidden md:inline" /> {t("description.line2")}
+            <br className="hidden md:inline" /> {t("description.line3")}
           </p>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="url" className="text-sm">
-                YouTube URL
+                {t("urlLabel")}
               </Label>
               <Input
                 id="url"
                 type="url"
-                placeholder="https://www.youtube.com/watch?v=..."
+                placeholder={t("urlPlaceholder")}
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 required
@@ -91,7 +90,7 @@ export default function VideoSubmitForm() {
             )}
 
             <Button type="submit" disabled={isSubmitting} className="w-">
-              {isSubmitting ? "Submitting..." : "Submit Video"}
+              {isSubmitting ? t("submitting") : t("submitButton")}
             </Button>
           </form>
         </div>

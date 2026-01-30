@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ResponsiveContainer, Sankey, Tooltip } from "recharts";
@@ -10,14 +11,14 @@ function useDarkMode() {
 
   useEffect(() => {
     const checkDarkMode = () => {
-      setIsDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
+      setIsDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches);
     };
 
     checkDarkMode();
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    mediaQuery.addEventListener('change', checkDarkMode);
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    mediaQuery.addEventListener("change", checkDarkMode);
 
-    return () => mediaQuery.removeEventListener('change', checkDarkMode);
+    return () => mediaQuery.removeEventListener("change", checkDarkMode);
   }, []);
 
   return isDarkMode;
@@ -68,6 +69,7 @@ export default function TransitionPathwaysChart({
   minAge,
   maxAge,
 }: TransitionPathwaysChartProps) {
+  const t = useTranslations("charts.pathways");
   const searchParams = useSearchParams();
   const [data, setData] = useState<SankeyData>({ nodes: [], links: [] });
   const [loading, setLoading] = useState(true);
@@ -100,14 +102,14 @@ export default function TransitionPathwaysChart({
       );
 
       if (!response.ok) {
-        throw new Error("Failed to fetch tag distribution data");
+        throw new Error(t("fetchError"));
       }
 
       const result = await response.json();
       setData(result.data);
       setError(null);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
+      setError(err instanceof Error ? err.message : t("genericError"));
       setData({ nodes: [], links: [] });
     } finally {
       setLoading(false);
@@ -117,6 +119,16 @@ export default function TransitionPathwaysChart({
   useEffect(() => {
     fetchData(minAge, maxAge);
   }, [minAge, maxAge, searchParams]);
+
+  // Helper function to translate node labels
+  const translateNodeLabel = (label: string): string => {
+    // Try to get translation for the label, fallback to original if not found
+    try {
+      return t(`labels.${label}`);
+    } catch {
+      return label;
+    }
+  };
 
   // Transform data for Recharts format
   const transformDataForRecharts = (sankeyData: SankeyData): RechartsData => {
@@ -137,11 +149,12 @@ export default function TransitionPathwaysChart({
       nodeIdToIndex.set(node.id, index);
     });
 
-    // Transform nodes to Recharts format with better labels
+    // Transform nodes to Recharts format with translated labels
     const rechartsNodes: RechartsNode[] = connectedNodes.map((node) => ({
-      name:
+      name: translateNodeLabel(
         node.label ||
         node.id.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase()),
+      ),
     }));
 
     // Transform links to use indices instead of IDs, filter out invalid links
@@ -182,19 +195,30 @@ export default function TransitionPathwaysChart({
       ) {
         const sourceNode = rechartsData.nodes[data.source];
         const targetNode = rechartsData.nodes[data.target];
-        const sexLabel = data.sex ? ` (${data.sex})` : '';
+        const sexLabel = data.sex ? ` (${data.sex})` : "";
         return (
-          <div className={`rounded border p-3 shadow-lg ${
-            isDarkMode 
-              ? 'border-gray-600 bg-gray-800' 
-              : 'border-gray-300 bg-white'
-          }`}>
-            <p className={`font-medium ${isDarkMode ? 'text-white' : 'text-black'}`}>
-              {sourceNode?.name} → {targetNode?.name}{sexLabel}
+          <div
+            className={`rounded border p-3 shadow-lg ${
+              isDarkMode
+                ? "border-gray-600 bg-gray-800"
+                : "border-gray-300 bg-white"
+            }`}
+          >
+            <p
+              className={`font-medium ${isDarkMode ? "text-white" : "text-black"}`}
+            >
+              {sourceNode?.name} → {targetNode?.name}
+              {sexLabel}
             </p>
-            <p className="font-medium text-blue-600">{data.value} users</p>
-            <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-              {((data.value / totalUsers) * 100).toFixed(1)}% of total
+            <p className="font-medium text-blue-600">
+              {t("users", { count: data.value })}
+            </p>
+            <p
+              className={`text-sm ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
+            >
+              {t("percentageOfTotal", {
+                percentage: ((data.value / totalUsers) * 100).toFixed(1),
+              })}
             </p>
           </div>
         );
@@ -216,17 +240,29 @@ export default function TransitionPathwaysChart({
         const nodeFlow = Math.max(incomingFlow, outgoingFlow);
 
         return (
-          <div className={`rounded border p-3 shadow-lg ${
-            isDarkMode 
-              ? 'border-gray-600 bg-gray-800' 
-              : 'border-gray-300 bg-white'
-          }`}>
-            <p className={`font-medium ${isDarkMode ? 'text-white' : 'text-black'}`}>{data.name}</p>
+          <div
+            className={`rounded border p-3 shadow-lg ${
+              isDarkMode
+                ? "border-gray-600 bg-gray-800"
+                : "border-gray-300 bg-white"
+            }`}
+          >
+            <p
+              className={`font-medium ${isDarkMode ? "text-white" : "text-black"}`}
+            >
+              {data.name}
+            </p>
             {nodeFlow > 0 && (
               <>
-                <p className="font-medium text-blue-600">{nodeFlow} users</p>
-                <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  {((nodeFlow / totalUsers) * 100).toFixed(1)}% of total
+                <p className="font-medium text-blue-600">
+                  {t("users", { count: nodeFlow })}
+                </p>
+                <p
+                  className={`text-sm ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
+                >
+                  {t("percentageOfTotal", {
+                    percentage: ((nodeFlow / totalUsers) * 100).toFixed(1),
+                  })}
                 </p>
               </>
             )}
@@ -238,25 +274,24 @@ export default function TransitionPathwaysChart({
   };
 
   if (error) {
-    return <div className="py-8 text-center text-red-500">Error: {error}</div>;
+    return (
+      <div className="py-8 text-center text-red-500">
+        {t("error")}: {error}
+      </div>
+    );
   }
 
   return (
     <>
       {loading ? (
         <div className="flex h-96 items-center justify-center">
-          <div className="text-gray-500">Loading pathway data...</div>
+          <div className="text-gray-500">{t("loading")}</div>
         </div>
       ) : (
         <>
           <div className="p-4">
-            <h3 className="font-semibold">
-              Detransition Pathways Flow
-            </h3>
-            <p className="text-sm text-gray-600">
-              Flow of /r/detrans Reddit user demographics through to
-              detransition outcomes
-            </p>
+            <h3 className="font-semibold">{t("title")}</h3>
+            <p className="text-sm text-gray-600">{t("subtitle")}</p>
           </div>
           <div className={`w-full ${className}`}>
             <div className="h-96 w-full rounded-lg border">
@@ -313,13 +348,22 @@ export default function TransitionPathwaysChart({
                         >
                           {labelText}
                         </text>
-
                       </g>
                     );
                   }}
                   link={(props: any) => {
-                    const { sourceX, sourceY, targetX, targetY, sourceControlX, targetControlX, payload, sourceRelativeValue, targetRelativeValue } = props;
-                    
+                    const {
+                      sourceX,
+                      sourceY,
+                      targetX,
+                      targetY,
+                      sourceControlX,
+                      targetControlX,
+                      payload,
+                      sourceRelativeValue,
+                      targetRelativeValue,
+                    } = props;
+
                     // Color based on sex
                     let stroke = "#94a3b8"; // default gray
                     if (payload?.sex === "male") {
@@ -327,7 +371,7 @@ export default function TransitionPathwaysChart({
                     } else if (payload?.sex === "female") {
                       stroke = "#ef4444"; // red for female (matches AgeDistributionChart)
                     }
-                    
+
                     // Calculate stroke width based on the link's proportion of total flow
                     // This should match the visual thickness represented by node heights
                     const proportion = payload?.value / totalUsers;
@@ -335,7 +379,7 @@ export default function TransitionPathwaysChart({
                     const strokeWidth = Math.max(2, proportion * maxNodeHeight);
 
                     const path = `M${sourceX},${sourceY}C${sourceControlX},${sourceY} ${targetControlX},${targetY} ${targetX},${targetY}`;
-                    
+
                     return (
                       <path
                         d={path}
@@ -354,21 +398,20 @@ export default function TransitionPathwaysChart({
 
             <div className="p-4 text-sm text-gray-600">
               <p>
-                <strong>Total users:</strong> {totalUsers}
+                <strong>{t("totalUsers")}:</strong> {totalUsers}
               </p>
               <p>
-                <strong>Flow connections:</strong> {data.links.length}
+                <strong>{t("flowConnections")}:</strong> {data.links.length}
               </p>
               <div className="mt-2 flex items-center gap-4">
                 <div className="flex items-center gap-1">
                   <div className="h-3 w-3 rounded-full bg-blue-500"></div>
-                  <span>Male</span>
+                  <span>{t("male")}</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <div className="h-3 w-3 rounded-full bg-red-500"></div>
-                  <span>Female</span>
+                  <span>{t("female")}</span>
                 </div>
-
               </div>
             </div>
           </div>
@@ -376,9 +419,7 @@ export default function TransitionPathwaysChart({
       )}
 
       {!loading && data.nodes.length === 0 && (
-        <div className="py-8 text-center text-gray-500">
-          No pathway data available for the selected filters
-        </div>
+        <div className="py-8 text-center text-gray-500">{t("noData")}</div>
       )}
     </>
   );

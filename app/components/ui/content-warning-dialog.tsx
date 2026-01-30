@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { Button } from "./button";
 import {
@@ -15,6 +16,7 @@ interface ContentWarningDialogProps {
   host: string;
 }
 export function ContentWarningDialog({ host }: ContentWarningDialogProps) {
+  const t = useTranslations("contentWarning");
   const [isOpen, setIsOpen] = useState(false);
   const path = usePathname();
 
@@ -54,27 +56,24 @@ export function ContentWarningDialog({ host }: ContentWarningDialogProps) {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Content Warning:</DialogTitle>
+          <DialogTitle>{t("title")}</DialogTitle>
           <DialogDescription className="prose dark:prose-invert mt-2 text-base">
             <p className="mb-3">
-              This website contains stories, experiences and perspectives from
-              ex-transgender people.
+              {t("description.line1")}
             </p>
             <p>
-              Topics include transition regret, medical complications, and
-              holistic views of dysphoria.
+              {t("description.line2")}
             </p>
 
             <p>
-              This information may challenge commonly held
-              beliefs about gender identity and transition.
+              {t("description.line3")}
             </p>
           </DialogDescription>
         </DialogHeader>
         <div className="mt-2 flex justify-end gap-2">
-          <Button onClick={handleExit}>Get me out of here!</Button>
+          <Button onClick={handleExit}>{t("buttons.exit")}</Button>
 
-          <Button onClick={handleAccept}>Continue</Button>
+          <Button onClick={handleAccept}>{t("buttons.continue")}</Button>
         </div>
       </DialogContent>
     </Dialog>

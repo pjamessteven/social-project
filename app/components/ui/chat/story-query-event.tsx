@@ -22,12 +22,18 @@ type EventPart = {
   };
 };
 
+interface Tag {
+  name: string;
+  nameTranslation: string | null;
+}
+
 interface User {
   username: string;
   activeSince: string;
   sex: "m" | "f";
   experienceSummary: string | null;
-  tags: string[];
+  experienceSummaryTranslation: string | null;
+  tags: Tag[];
   commentCount: number;
   transitionAge: number | null;
   detransitionAge: number | null;

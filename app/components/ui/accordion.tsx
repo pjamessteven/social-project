@@ -24,13 +24,18 @@ const AccordionTrigger = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
     indicatorStart?: boolean;
     hideIndicator?: boolean;
+    isRtl?: boolean;
   }
->(({ className, children, indicatorStart, hideIndicator, ...props }, ref) => (
+>(({ className, children, indicatorStart, hideIndicator, disabled, isRtl, ...props }, ref) => (
   <AccordionPrimitive.Header className="flex">
     <AccordionPrimitive.Trigger
       ref={ref}
+      disabled={disabled}
       className={cn(
-        "flex flex-1 items-center py-4 text-left text-sm font-medium transition-all hover:underline ",
+        "flex flex-1 items-center py-4 text-sm font-medium transition-all hover:underline",
+        disabled && "cursor-not-allowed opacity-50",
+        !isRtl && "text-left",
+        isRtl && "text-right",
         className,
         !indicatorStart && 'justify-between [&[data-state=open]>svg]:rotate-180',
         indicatorStart && '[&[data-state=open]>svg]:rotate-90'
@@ -38,11 +43,18 @@ const AccordionTrigger = React.forwardRef<
       {...props}
     >
       {indicatorStart  && !hideIndicator && (
-        <ChevronRight className="mr-2 h-4 w-4 shrink-0 transition-transform duration-200" />
+        <ChevronRight className={cn(
+          "h-4 w-4 shrink-0 transition-transform duration-200",
+          isRtl ? "ml-2" : "mr-2"
+        )} />
       )}
       {children}
       {!indicatorStart && !hideIndicator && (
-        <ChevronDown className="mr-2 ml-1 h-4 w-4 shrink-0 transition-transform duration-200" />
+        <ChevronDown className={cn(
+          "h-4 w-4 shrink-0 transition-transform duration-200",
+          isRtl ? "ml-1 mr-2" : "mr-2 ml-1",
+          isRtl && "order-first"
+        )} />
       )}
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>

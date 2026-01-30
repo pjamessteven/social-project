@@ -1,0 +1,240 @@
+/**
+ * Romanian question categories and featured questions for detrans.ai
+ * Categorii și întrebări în limba română pentru detrans.ai
+ *
+ * Gender-Related Terminology Notes / Note despre terminologia legată de gen:
+ * - "Sex/Sexul" = sex biologic (anatomie, cromozomi, reproducere, caracteristici imuabile)
+ * - "Gen" = gen social (roluri, comportamente, atribute pe care societatea le consideră adecvate
+ *   pentru bărbați și femei pe baza sexului biologic)
+ * - "Identitate de gen" = simț intern de a fi bărbat, femeie sau undeva între ele
+ * - "Non-conformitate de gen (GNC)" = când o persoană acționează/se prezintă diferit față de așteptările
+ *   societății pe baza sexului biologic
+ * - "AFAB/AMAB" = assigned female/male at birth = desemnat femeie/bărbat la naștere (pe baza sexului biologic observat)
+ * - "Transgender/trans" = identificarea cu un gen care diferă de sexul biologic
+ * - "Detransiție" = încetarea identificării ca transgender și/sau inversarea pașilor tranziției
+ * - "Desistare" = când cineva care s-a identificat ca trans (fără intervenții medicale) nu se mai identifică ca trans
+ *
+ * Important distinction / Distingere importantă: Conceptul de disforie de gen se bazează pe înțelegerea că
+ * sexul biologic și genul social sunt diferite. Non-conformitatea de gen (nepotrivirea stereotipurilor) este
+ * diferită de a avea o identitate de gen care diferă de sexul biologic.
+ *
+ * Romanian Gender Notes / Note despre genul în limba română:
+ * - Romanian is a gendered language with masculine, feminine, and neuter genders
+ * - Limba română este o limbă cu genuri: masculin, feminin și neutru
+ * - "Bărbat" (man) = masculine, "Femeie" (woman) = feminine
+ * - "Masculin" = masculine, "Feminin" = feminine
+ * - Adjectives and articles must agree with the gender of the noun they modify
+ */
+
+export const questionCategories = [
+  {
+    title: "Întrebări Recomandate",
+    description: "Cele mai bune întrebări de pus oamenilor detrans.",
+    questions: [
+      "Ce înseamnă trans?",
+      "Au existat întotdeauna oameni trans?",
+      "Este adevărat că doar 1% fac detransiție?",
+      "Sunt blocantele pubertății reversibile?",
+      "Ce dovezi există pentru protocoalele medicale de afirmare a genului?",
+      "Ce înseamnă termenul 'ou' în comunitățile trans?",
+      "Care sunt implicațiile narativului 'născut așa'?",
+      "Cum etichetele non-binare întăresc stereotipurile tradiționale de gen?",
+      "Care este diferența dintre sex și gen?",
+      "Ce este disforia de gen și ce o poate cauza?",
+      "De ce unii oameni decid să facă detransiție?",
+      "Cum pot prietenii sau familia să sprijine pe cineva care vrea să facă tranziție?",
+      "Cum pot prietenii sau familia să sprijine pe cineva care vrea să facă detransiție?",
+      "Este comun ca detransitionerii să regrete că au făcut tranziție?",
+      "De ce unii oameni decid să retranziționeze după detransiție?",
+      "Ce pot învăța poveștile detrans de la mine, chiar dacă tranziția mea merge bine până acum?",
+      "Cum aș ști dacă îndoielile sunt doar emoții sau un semn că ar trebui să mă opresc?",
+      "De ce narativele trans despre de ce oamenii fac detransiție diferă de cele ale celor care au făcut efectiv detransiție?",
+      "Cred oamenii detrans că tranziția în sine este rea?",
+      "Care sunt unele afirmații false făcute despre oamenii transgender?",
+      "Care sunt unele afirmații false făcute despre oamenii care au făcut detransiție?",
+      "Care sunt semnele timpurii pe care detransiționerii doresc să le fi observat mai devreme?",
+      "Este genul o construcție socială? Ce înseamnă asta?",
+      "Cum au văzut mișcările feministe istoric conceptul de gen?",
+      "Cum poate non-conformitatea de gen reduce presiunea de a se conforma rolurilor de gen?",
+      "Cum descriu oamenii detrans senzația de a fi 'născut în corpul greșit'?",
+      "Ce este îngrijirea afirmativă de gen și care sunt obiectivele ei?",
+      "De ce este îngrijirea afirmativă de gen de obicei singura opțiune în majoritatea regiunilor?",
+      "Cum diferă terapia exploratorie de gen de îngrijirea afirmativă de gen?",
+      "De ce unii oameni nu agreează conceptul de terapie exploratorie de gen și de ce este interzisă în unele locuri?",
+      "Cred oamenii detrans că îngrijirea afirmativă de gen și hormonii ar trebui interziși?",
+      "Regretă detransitionerii de obicei pașii medicali, pașii sociali sau ambii?",
+      "Ce este o capcană a identității și cum își dau oamenii de obicei seama că sunt într-una?",
+      "Unde poate căuta cineva un terapeut care oferă explorare deschisă, non-directivă de gen? La ce steaguri roșii ar trebui să fiu atent?",
+      "Întrebarea despre pronume ajută sau împiedică oamenii non-conformiști de gen?",
+      "Dacă o fată tânără cu păr scurt este constant întrebată despre pronumele ei, care este implicația și cum ar face-o asta să se simtă?",
+      "Ce este cultura anulării și ce efecte are asupra discursului public despre sănătate?",
+      "Văd oamenii detrans tranziția ca având un punct final sau ca un proces continuu?",
+      "De ce unele adolescente ar putea experimenta suferință legată de dezvoltarea sânilor?",
+      "Cum pot camerele de ecou online influența formarea identității?",
+      "De ce detransitionerii raportează adesea că se simt ca și cum poveștile și vocile lor sunt reduse la tăcere atât în spațiile trans, cât și în cele mainstream?",
+      "Ce tipare demografice sunt vizibile în trimiterile la clinicile de gen?",
+      "Cum diferă identitățile queer contemporane de mișcarea LGB anterioară?",
+      "Ce spune cercetarea actuală despre suprapunerea dintre trăsăturile spectrului autist, disforia de gen și identitățile transgender?",
+      "De ce disforia de gen nu mai este clasificată ca tulburare mentală în DSM-5?",
+      "Cum a prevalența trans s-a schimbat în timpurile recente și ce ar putea explica asta?",
+    ],
+  },
+  {
+    title: "Termeni Generali",
+    description: "Înțelegerea conceptelor fundamentale",
+    questions: [
+      "Ce este un bărbat?",
+      "Ce este o femeie?",
+      "Ce este genul?",
+      "Ce este disforia de gen?",
+      "Ce este identitatea transgender?",
+      "Ce este transfobia?",
+      "Ce este cultura anulării?",
+      "Ce este identitatea non-binară?",
+      "Ce este identitatea queer?",
+      "Ce este teoria queer?",
+      "Ce este personalitatea?",
+      "Cum diferă personalitatea de identitatea de gen?",
+      "Ce este non-conformitatea de gen (GNC)?",
+      "Ce este conformitatea de gen?",
+      "Ce este detransiția?",
+      "Ce este desistarea?",
+      "Ce sunt pronumele și de ce sunt semnificative pentru unii?",
+      "Ce înseamnă oamenii trans când vorbesc despre 'drepturile trans'?",
+      "De ce unii oameni trans spun 'moartea înainte de detransiție'?",
+      "Ce factori se presupune că cauzează disforia?",
+      "Ce este 'biblia disforiei de gen'?",
+      "Ce strategii (medicale sau non-medicale) ajută oamenii să gestioneze disforia?",
+      "Sunt oamenii intersex automat trans?",
+      "Ce este fluiditatea de gen?",
+      "Ce înseamnă AFAB și AMAB?",
+      "Ce este un TERF?",
+      "Ce este deadnaming-ul?",
+      "Ce este misgendering-ul?",
+      "Ce este o persoană cisgender?",
+      "Ce se înțelege prin sex biologic?",
+      "Care este diferența dintre tranziția socială și cea medicală?",
+    ],
+  },
+  {
+    title: "Realitatea Medicală",
+    description: "Sănătate, proceduri și adevăruri biologice",
+    questions: [
+      "Care sunt efectele adverse ale utilizării testosteronului la femei?",
+      "Care sunt efectele adverse ale utilizării estrogenului la bărbați?",
+      "Ce schimbări fiziologice poate induce testosteronul la femei și care sunt limitele?",
+      "Ce schimbări fiziologice poate induce estrogenul la bărbați și care sunt limitele?",
+      "Ce implică faloplastia și care sunt rezultatele tipice?",
+      "Ce implică vaginoplastia și care sunt rezultatele tipice?",
+      "Care sunt diferitele tipuri de chirurgie vaginoplastică?",
+      "Cum ar trebui cineva să cântărească continuarea versus întreruperea hormonilor?",
+      "Există diferențe măsurabile în ratele de diagnosticare a disforiei de gen între bărbați și femei?",
+      "Ce spune cercetarea prin imagistică cerebrală despre creierurile 'masculine' versus 'feminine'?",
+      "Cum este disforia de gen distinsă de boala mentală în manualele diagnostice?",
+      "Ce este atrofia vaginală și ce o cauzează?",
+      "Ce opțiuni de revizie chirurgicală există pentru vaginoplastie sau faloplastie?",
+      "Cum reglementează diferite țări finanțarea publică pentru chirurgiile de gen?",
+      "Ce opțiuni există pentru reconstrucția toracică după mastectomie?",
+      "Ce sunt blocantele pubertății și chiar doar suspendă pubertatea?",
+      "Este adevărat că blocantele pubertății sunt același medicament folosit pentru castrarea chimică a infractorilor sexuali?",
+      "Ce date de urmărire pe termen lung există pentru utilizarea hormonilor de sex opus?",
+      "Ce sunt Standardele de Îngrijire WPATH și cum sunt dezvoltate?",
+      "Ce este Protocolul Olandez?",
+      "Ce este disforia de gen cu debut rapid (ROGD) și cum este studiată?",
+      "Care sunt ratele de regret raportate pentru diverse chirurgii de gen?",
+      "Cum arată terapia exploratorie de gen în practică?",
+    ],
+  },
+  {
+    title: "Societate și Cultură",
+    description: "Cum interacționează credințele de gen cu lumea",
+    questions: [
+      "Care sunt implicațiile narativului 'născut așa'?",
+      "Reambalează și întăresc identitățile de gen stereotipurile sexiste?",
+      "Cum s-a schimbat feminismul mainstream de-a lungul timpului pentru a acomoda identitățile transgender?",
+      "Cum poate cultura pronumelor duce la supra-medicalizarea copiilor?",
+      "Care sunt rezultatele documentate pentru copiii care fac tranziție socială devreme?",
+      "Care sunt legăturile dintre BDSM și identitățile trans?",
+      "Cum a evoluat conceptul de gen istoric?",
+      "Cum a interacționat activismul trans cu activismul anterior pentru drepturile gay?",
+      "Cum afectează mantras repetitive sau sloganuri gândirea critică în orice comunitate?",
+      "Cum intersectează discursul contemporan despre gen cu identitățile gay și lesbiene?",
+      "Ce ar putea explica creșterea identificării non-binare?",
+      "Ce explicații există pentru riscul crescut de sinucidere în populațiile trans?",
+      "Cum afectează riscul perceput de sinucidere discursul public în jurul tranziției?",
+      "Ce înseamnă 'critic de gen' și cum diferă de vederile de excludere trans?",
+      "Care este 'dezbaterea despre băi' și ce dovezi există pentru fiecare dintre prejudiciu sau siguranță?",
+      "Care sunt principalele argumente în controversa participării la sport?",
+      "Cum au gestionat școlile elevii care se îndoiesc de gen în diferite jurisdicții?",
+      "Ce cred oamenii detrans despre povestirea poveștilor de către drag queen?",
+      "Ce înseamnă fraza 'medicalizarea copiilor non-conformiști de gen' pentru critici și pentru avocați?",
+    ],
+  },
+  {
+    title: "Psihologie și Identitate",
+    description: "Înțelegerea aspectelor mentale și emoționale",
+    questions: [
+      "Poate cineva să fie femeie fără să fie feminină, sau bărbat fără să fie masculin?",
+      "Ce rol joacă social media în adoptarea identităților de gen de către oameni?",
+      "Care este ciclul neurochimic al validării?",
+      "De ce ar putea fi oamenii autiști supra-reprezentați în clinicile de gen?",
+      "Ce este misoginia internalizată și cum ar putea fi legată de suferința corporală?",
+      "Ce este homofobia internalizată?",
+      "Ce este autoginefilia și cum este dezbătută în literatură?",
+      "Ce este euforia de gen?",
+      "Poate adoptarea unei identități trans amplifica disforia în loc să o ușureze?",
+      "De ce este validarea externă importantă pentru unii oameni trans?",
+      "Care este diferența dintre tulburarea dismorfică corporală și disforia de gen?",
+      "Ce paralele fac clinicienii între disforia de gen și tulburările alimentare?",
+      "Cum ar putea istoricul de traume interacționa cu disforia de gen?",
+      "Ce opțiuni non-medicale există pentru gestionarea disforiei?",
+      "Ce înseamnă 'a trece' și de ce poate deveni o obsesie pentru unii oameni?",
+      "Cum se raportează conceptele jungiene de anima/animus la identitatea de gen?",
+      "Ce este munca cu umbra și poate fi folosită în terapie?",
+    ],
+  },
+  {
+    title: "Călătoria Detransiției",
+    description: "Vindecare, suport și găsirea drumului înapoi",
+    questions: [
+      "Cum pot face pace cu schimbările permanente pe care le-am făcut corpului meu?",
+      "Simt că unii oameni cred că doar m-am 'întors în dulap' și că nu trăiesc autentic",
+      "Este adevărat că majoritatea oamenilor detrans ajung să retranziționeze?",
+      "Cum pot tranziția și detransiția să facă parte din aceeași călătorie de vindecare?",
+      "Unde poate găsi cineva terapeuți cu experiență în suportul detransiției?",
+      "Înseamnă detransiția că tranziția originală a fost un eșec?",
+      "Au ajutat CBT sau DBT oamenii detrans în gestionarea disforiei?",
+      "De ce unele comunități trans descurajează citirea narativelor de detransiție?",
+      "Ce grupuri de suport există specific pentru detransitioneri?",
+      "Cum poate cineva să iasă (din nou) familiei ca făcând detransiție?",
+      "Care sunt etapele comune ale doliului raportate în timpul detransiției?",
+      "Ce rol au jucat drogurile psihedelice în unele povești detrans?",
+    ],
+  },
+  {
+    title: "Bias Academic și de Cercetare",
+    description: "Punerea la îndoială a narativului în instituții",
+    questions: [
+      "Ce preocupări metodologice au fost ridicate despre sondajele majore de detransiție?",
+      "De ce cercetătorii raportează dificultăți în asigurarea finanțării pentru studiile de detransiție?",
+      "Au cercetătorii care se identifică în prezent ca trans un conflict de interese?",
+      "Ce a fost Revizuirea Cass și ce recomandări a produs?",
+      "Ce s-a întâmplat cu studiul lui Lisa Littman din 2018 despre ROGD?",
+      "Ce este revizuirea clinicii Tavistock și de ce a fost comandată?",
+      "Cum a fost reclasificată disforia de gen între DSM-IV și DSM-5?",
+    ],
+  },
+  {
+    title: "Perspective Controversate",
+    description:
+      "Perspective detrans pe care activiștii de gen nu vor cu adevărat să le auzi",
+    questions: [
+      "Cine câștigă bani din îngrijirea afirmativă de gen?",
+      "Ce factori structurali duc la sub-reprezentarea poveștilor de detransiție în media mainstream?",
+      "În ce feluri sistemele de credință de gen seamănă cu religiile sau cultele?",
+      "Îi marginalizează școlile pe părinți când copiii fac alegeri despre identitatea de gen?",
+      "De ce există atât de multe ladyboys în Thailanda?",
+      "De ce este Iran un centru global pentru chirurgiile de schimbare a sexului?",
+    ],
+  },
+];

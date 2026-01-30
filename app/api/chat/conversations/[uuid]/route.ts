@@ -12,10 +12,16 @@ const updateConversationSchema = z.object({
   // We could add other fields here in the future
 });
 
+// Use locales from i18n routing configuration
+import { locales, getLanguageName } from "@/i18n/routing";
+
+const LOCALES = locales;
+type Locale = (typeof LOCALES)[number];
+
 // Function to generate AI summary of a conversation
 async function generateConversationTitleAndSummary(
   messages: string,
-): Promise<{ title: string; summary: string }> {
+): Promise<{ title: string; summary: string; titleTranslations: Record<Locale, string>; summaryTranslations: Record<Locale, string> }> {
   try {
     // Parse the messages JSON
     const parsedMessages = JSON.parse(messages);
@@ -30,9 +36,19 @@ async function generateConversationTitleAndSummary(
       .join("\n\n");
 
     if (!conversationText.trim()) {
+      const noContentTitle = "Untitled Conversation";
+      const noContentSummary = "No conversation content to summarize.";
+      const noContentTitleTranslations = {} as Record<Locale, string>;
+      const noContentSummaryTranslations = {} as Record<Locale, string>;
+      LOCALES.forEach((locale) => {
+        noContentTitleTranslations[locale] = noContentTitle;
+        noContentSummaryTranslations[locale] = noContentSummary;
+      });
       return {
-        title: "Untitled Conversation",
-        summary: "No conversation content to summarize.",
+        title: noContentTitle,
+        summary: noContentSummary,
+        titleTranslations: noContentTitleTranslations,
+        summaryTranslations: noContentSummaryTranslations,
       };
     }
 
@@ -121,7 +137,71 @@ async function generateConversationTitleAndSummary(
       }
     }
 
-    return { title, summary };
+    // Generate translations for all locales
+    const defaultLocale = "en";
+    const titleTranslations = {} as Record<Locale, string>;
+    const summaryTranslations = {} as Record<Locale, string>;
+    
+    // Set the default locale title and summary
+    titleTranslations[defaultLocale as Locale] = title;
+    summaryTranslations[defaultLocale as Locale] = summary;
+
+    // Generate translations for all non-default locales
+    const localesToTranslate = LOCALES.filter((locale) => locale !== defaultLocale);
+    
+    for (const locale of localesToTranslate) {
+      try {
+        const languageName = getLanguageName(locale);
+        
+        // Translate title
+        const titleTranslationPrompt = `
+Translate the following conversation title to ${languageName}. 
+Maintain the same meaning and tone. Only return the translated text, nothing else.
+
+Title to translate:
+${title}
+
+Translation:`;
+
+        const titleTranslationResponse = await llm.complete({
+          prompt: titleTranslationPrompt,
+        });
+
+        const translatedTitle = titleTranslationResponse.text.trim();
+        if (translatedTitle && translatedTitle.length > 3) {
+          titleTranslations[locale] = translatedTitle;
+        } else {
+          titleTranslations[locale] = title;
+        }
+
+        // Translate summary
+        const summaryTranslationPrompt = `
+Translate the following conversation summary to ${languageName}. 
+Maintain the same meaning and tone. Only return the translated text, nothing else.
+
+Summary to translate:
+${summary}
+
+Translation:`;
+
+        const summaryTranslationResponse = await llm.complete({
+          prompt: summaryTranslationPrompt,
+        });
+
+        const translatedSummary = summaryTranslationResponse.text.trim();
+        if (translatedSummary && translatedSummary.length > 5) {
+          summaryTranslations[locale] = translatedSummary;
+        } else {
+          summaryTranslations[locale] = summary;
+        }
+      } catch (translationError) {
+        console.error(`Error generating ${locale} translation:`, translationError);
+        titleTranslations[locale] = title;
+        summaryTranslations[locale] = summary;
+      }
+    }
+
+    return { title, summary, titleTranslations, summaryTranslations };
   } catch (error) {
     console.error("Error generating conversation title and summary:", error);
 
@@ -134,18 +214,38 @@ async function generateConversationTitleAndSummary(
 
       if (firstUserMessage) {
         const text = firstUserMessage.parts[0].text;
+        const fallbackTitle = `Discussion: ${text.substring(0, 60)}${text.length > 60 ? "..." : ""}`;
+        const fallbackSummary = `Discussion about: ${text.substring(0, 100)}${text.length > 100 ? "..." : ""}`;
+        const fallbackTitleTranslations = {} as Record<Locale, string>;
+        const fallbackSummaryTranslations = {} as Record<Locale, string>;
+        LOCALES.forEach((locale) => {
+          fallbackTitleTranslations[locale] = fallbackTitle;
+          fallbackSummaryTranslations[locale] = fallbackSummary;
+        });
         return {
-          title: `Discussion: ${text.substring(0, 60)}${text.length > 60 ? "..." : ""}`,
-          summary: `Discussion about: ${text.substring(0, 100)}${text.length > 100 ? "..." : ""}`,
+          title: fallbackTitle,
+          summary: fallbackSummary,
+          titleTranslations: fallbackTitleTranslations,
+          summaryTranslations: fallbackSummaryTranslations,
         };
       }
     } catch (e) {
       // Ignore fallback errors
     }
 
+    const fallbackTitle = "Untitled Conversation";
+    const fallbackSummary = "AI-generated conversation summary";
+    const fallbackTitleTranslations = {} as Record<Locale, string>;
+    const fallbackSummaryTranslations = {} as Record<Locale, string>;
+    LOCALES.forEach((locale) => {
+      fallbackTitleTranslations[locale] = fallbackTitle;
+      fallbackSummaryTranslations[locale] = fallbackSummary;
+    });
     return {
-      title: "Untitled Conversation",
-      summary: "AI-generated conversation summary",
+      title: fallbackTitle,
+      summary: fallbackSummary,
+      titleTranslations: fallbackTitleTranslations,
+      summaryTranslations: fallbackSummaryTranslations,
     };
   }
 }
@@ -200,6 +300,8 @@ export async function PUT(
         featured: chatConversations.featured,
         archived: chatConversations.archived,
         conversationSummary: chatConversations.conversationSummary,
+        conversationSummaryTranslation: chatConversations.conversationSummaryTranslation,
+        titleTranslation: chatConversations.titleTranslation,
         createdAt: chatConversations.createdAt,
         updatedAt: chatConversations.updatedAt,
         country: chatConversations.country,
@@ -228,10 +330,12 @@ export async function PUT(
       // This ensures that if a conversation is unfeatured then re-featured, a fresh summary is generated
       if (featured === true) {
         try {
-          const { title: generatedTitle, summary } =
+          const { title: generatedTitle, summary, titleTranslations, summaryTranslations } =
             await generateConversationTitleAndSummary(conversation.messages);
           updateData.title = generatedTitle;
           updateData.conversationSummary = summary;
+          updateData.titleTranslation = JSON.stringify(titleTranslations);
+          updateData.conversationSummaryTranslation = JSON.stringify(summaryTranslations);
         } catch (error) {
           console.error(
             "Failed to generate conversation title and summary:",
@@ -254,10 +358,12 @@ export async function PUT(
         uuid: chatConversations.uuid,
         mode: chatConversations.mode,
         title: chatConversations.title,
+        titleTranslation: chatConversations.titleTranslation,
         messages: chatConversations.messages,
         featured: chatConversations.featured,
         archived: chatConversations.archived,
         conversationSummary: chatConversations.conversationSummary,
+        conversationSummaryTranslation: chatConversations.conversationSummaryTranslation,
         createdAt: chatConversations.createdAt,
         updatedAt: chatConversations.updatedAt,
         country: chatConversations.country,
@@ -276,6 +382,22 @@ export async function PUT(
   }
 }
 
+// Helper function to get localized field
+function getLocalizedField(
+  defaultValue: string | null,
+  translationsJson: string | null,
+  locale: string
+): string | null {
+  if (!translationsJson) return defaultValue;
+  
+  try {
+    const translations = JSON.parse(translationsJson) as Record<string, string>;
+    return translations[locale] || defaultValue;
+  } catch {
+    return defaultValue;
+  }
+}
+
 // Also support GET for retrieving a single conversation
 
 export async function GET(
@@ -284,6 +406,10 @@ export async function GET(
 ) {
   try {
     const { uuid } = await params;
+    
+    // Get locale from query parameter, default to "en"
+    const { searchParams } = new URL(request.url);
+    const locale = searchParams.get("locale") || "en";
 
     if (!uuid) {
       return NextResponse.json(
@@ -302,6 +428,8 @@ export async function GET(
         featured: chatConversations.featured,
         archived: chatConversations.archived,
         conversationSummary: chatConversations.conversationSummary,
+        conversationSummaryTranslation: chatConversations.conversationSummaryTranslation,
+        titleTranslation: chatConversations.titleTranslation,
         createdAt: chatConversations.createdAt,
         updatedAt: chatConversations.updatedAt,
         country: chatConversations.country,
@@ -331,13 +459,32 @@ export async function GET(
       );
     }
 
+    // Get localized title and summary based on the requested locale
+    const localizedTitle = getLocalizedField(
+      chatData.title,
+      chatData.titleTranslation,
+      locale
+    );
+    
+    const localizedSummary = getLocalizedField(
+      chatData.conversationSummary,
+      chatData.conversationSummaryTranslation,
+      locale
+    );
+
     return NextResponse.json({
       uuid: chatData.uuid,
       mode: chatData.mode,
-      title: chatData.title,
+      title: localizedTitle,
+      titleTranslation: chatData.titleTranslation,
       messages,
+      featured: chatData.featured,
+      archived: chatData.archived,
+      conversationSummary: localizedSummary,
+      conversationSummaryTranslation: chatData.conversationSummaryTranslation,
       createdAt: chatData.createdAt,
       updatedAt: chatData.updatedAt,
+      country: chatData.country,
     });
   } catch (error) {
     console.error("Failed to retrieve conversation:", error);
@@ -383,6 +530,8 @@ export async function POST(
         featured: chatConversations.featured,
         archived: chatConversations.archived,
         conversationSummary: chatConversations.conversationSummary,
+        conversationSummaryTranslation: chatConversations.conversationSummaryTranslation,
+        titleTranslation: chatConversations.titleTranslation,
         createdAt: chatConversations.createdAt,
         updatedAt: chatConversations.updatedAt,
         country: chatConversations.country,
@@ -402,7 +551,7 @@ export async function POST(
     const conversation = existingConversation[0];
 
     // Generate AI title and summary
-    const { title: generatedTitle, summary } =
+    const { title: generatedTitle, summary, titleTranslations, summaryTranslations } =
       await generateConversationTitleAndSummary(conversation.messages);
 
     // Update the conversation with the new title and summary
@@ -411,6 +560,8 @@ export async function POST(
       .set({
         title: generatedTitle,
         conversationSummary: summary,
+        titleTranslation: JSON.stringify(titleTranslations),
+        conversationSummaryTranslation: JSON.stringify(summaryTranslations),
         // Do not update timestamp when generating summary
       })
       .where(eq(chatConversations.uuid, uuid))
@@ -418,10 +569,12 @@ export async function POST(
         uuid: chatConversations.uuid,
         mode: chatConversations.mode,
         title: chatConversations.title,
+        titleTranslation: chatConversations.titleTranslation,
         messages: chatConversations.messages,
         featured: chatConversations.featured,
         archived: chatConversations.archived,
         conversationSummary: chatConversations.conversationSummary,
+        conversationSummaryTranslation: chatConversations.conversationSummaryTranslation,
         createdAt: chatConversations.createdAt,
         updatedAt: chatConversations.updatedAt,
         country: chatConversations.country,

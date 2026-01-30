@@ -43,6 +43,7 @@ export async function GET(request: NextRequest) {
         featured: chatConversations.featured,
         archived: chatConversations.archived,
         conversationSummary: chatConversations.conversationSummary,
+        conversationSummaryTranslation: chatConversations.conversationSummaryTranslation,
         country: chatConversations.country,
       })
       .from(chatConversations)

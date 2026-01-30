@@ -8,8 +8,8 @@ let storiesIndexCache: VectorStoreIndex | null = null;
 let commentsIndexCache: VectorStoreIndex | null = null;
 let videosIndexCache: VectorStoreIndex | null = null;
 
-export async function getStoriesIndex(params?: any, tags?: string[]) {
-  console.log('[STORIES INDEX] Called with params:', params, 'tags:', tags);
+export async function getStoriesIndex(params?: any, locale?: string, tags?: string[]) {
+  console.log('[STORIES INDEX] Called with params:', params, 'locale:', locale, 'tags:', tags);
   
   if (!storiesIndexCache) {
     console.log('[STORIES INDEX] Creating new stories index (first time)');
@@ -51,8 +51,8 @@ export async function getStoriesIndex(params?: any, tags?: string[]) {
   return storiesIndexCache;
 }
 
-export async function getCommentsIndex(params?: any, tags?: string[]) {
-  console.log('[COMMENTS INDEX] Called with params:', params, 'tags:', tags);
+export async function getCommentsIndex(params?: any, locale?: string, tags?: string[]) {
+  console.log('[COMMENTS INDEX] Called with params:', params, 'locale:', locale, 'tags:', tags);
   
   if (!commentsIndexCache) {
     console.log('[COMMENTS INDEX] Creating new comments index (first time)');
@@ -95,8 +95,8 @@ export async function getCommentsIndex(params?: any, tags?: string[]) {
 }
 
 
-export async function getVideosIndex(params?: any, tags?: string[]) {
-  console.log('[VIDEOS INDEX] Called with params:', params, 'tags:', tags);
+export async function getVideosIndex(params?: any, locale?: string, tags?: string[]) {
+  console.log('[VIDEOS INDEX] Called with params:', params, 'locale:', locale, 'tags:', tags);
   
   if (!videosIndexCache) {
     console.log('[VIDEOS INDEX] Creating new comments index (first time)');

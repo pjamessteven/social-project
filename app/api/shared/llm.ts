@@ -1,9 +1,7 @@
-import { rateLimiter } from "@/app/lib/rateLimit";
-
 import { getLogger } from "@/app/lib/logger";
+import { rateLimiter } from "@/app/lib/rateLimit";
 import { replayCached } from "@/app/lib/replayCached";
 import { OpenAI } from "@llamaindex/openai";
-import { createHash } from "crypto";
 import type {
   ChatResponse,
   ChatResponseChunk,
@@ -13,18 +11,17 @@ import type {
   LLMCompletionParamsNonStreaming,
   LLMCompletionParamsStreaming,
 } from "llamaindex";
-
-import { Cache, makeLlmCacheKey } from "./cache";
+import { Cache, makeCacheKey, makeHashedKey } from "./cache";
 
 export class CachedOpenAI extends OpenAI {
   private cache: Cache;
-  private mode: "detrans" | "affirm" | "detrans_chat";
+  private mode: "detrans_chat" | "deep_research";
   private conversationId: string | undefined;
 
   constructor(
     init: ConstructorParameters<typeof OpenAI>[0] & {
       cache: Cache;
-      mode: "detrans" | "affirm" | "detrans_chat";
+      mode: "detrans_chat" | "deep_research";
       conversationId?: string;
     },
   ) {
@@ -35,18 +32,15 @@ export class CachedOpenAI extends OpenAI {
     this.conversationId = conversationId;
   }
 
-  private hashKey(key: string): string {
-    return createHash("sha256").update(key).digest("hex");
-  }
-
   private async fetchGenerationMetadata(generationId: string): Promise<{
     totalCost?: number;
     tokensPrompt?: number;
     tokensCompletion?: number;
     model?: string;
   } | null> {
-    // wait a sec
+    // Wait a bit for OpenRouter to process the generation
     await new Promise((res) => setTimeout(res, 1000));
+
     try {
       const response = await fetch(
         `https://openrouter.ai/api/v1/generation?id=${generationId}`,
@@ -64,8 +58,8 @@ export class CachedOpenAI extends OpenAI {
         );
         return null;
       }
-      const data = await response.json();
 
+      const data = await response.json();
       return {
         totalCost: data.data.total_cost,
         tokensPrompt: data.data.tokens_prompt,
@@ -80,37 +74,31 @@ export class CachedOpenAI extends OpenAI {
 
   /* ---------- chat ---------- */
   async chat(
-    params: LLMChatParamsStreaming & { originalQuestion?: string },
+    params: LLMChatParamsStreaming,
   ): Promise<AsyncGenerator<ChatResponseChunk>>;
+  async chat(params: LLMChatParamsNonStreaming): Promise<ChatResponse>;
   async chat(
-    params: LLMChatParamsNonStreaming & { originalQuestion?: string },
-  ): Promise<ChatResponse>;
-  async chat(
-    params: (LLMChatParamsStreaming | LLMChatParamsNonStreaming) & {
-      originalQuestion?: string;
-    },
+    params: LLMChatParamsStreaming | LLMChatParamsNonStreaming,
   ): Promise<ChatResponse | AsyncGenerator<ChatResponseChunk>> {
-    const { originalQuestion, messages, stream, ...options } = params;
+    const { messages, stream, ...options } = params;
     const lastMessage = messages[messages.length - 1];
-    console.log("KIMI TEST", messages);
-    const questionForCache =
-      originalQuestion || String(lastMessage.content).slice(0, 100);
-    // Pass entire messages array for context-aware caching
-    const key = makeLlmCacheKey(questionForCache, messages, options, this.mode);
+    const lastUserMessage = String(lastMessage.content).slice(0, 100);
 
-    const hashedKey = this.hashKey(key);
+    // Create cache key from messages and options
+    const key = makeCacheKey(messages, options, this.mode);
+    const hashedKey = makeHashedKey(key);
+
     const logger = getLogger();
 
     /* --- Streaming mode --- */
     if (stream) {
-      console.log("Checking cache for streaming request...");
-      const cached = await this.cache.get(key);
-      console.log("Cache result:", cached ? "HIT" : "MISS");
+      // Check cache first
+      const cached = await this.cache.get(hashedKey);
+
       if (cached) {
-        console.log("Cache hit - content length:", cached.length);
         logger.info(
           {
-            originalQuestion: questionForCache,
+            lastUserMessage,
             hashedKey,
             mode: this.mode,
             type: "chat_streaming",
@@ -119,47 +107,28 @@ export class CachedOpenAI extends OpenAI {
           "LLM cache hit (streaming)",
         );
 
-        // Parse cached response which may include tool calls
-        let cachedData: { text: string; toolCalls?: any[] };
-        try {
-          cachedData = JSON.parse(cached);
-        } catch (e) {
-          // Fallback to plain text for backward compatibility
-          cachedData = { text: cached };
-        }
+        // Parse the cached full response object
+        const cachedResponse = JSON.parse(cached) as ChatResponse;
+        const content = cachedResponse.message?.content;
+        const text =
+          typeof content === "string" ? content : JSON.stringify(content);
 
-        // Replay cached result as a fake stream using replayCached
-        const replayCachedStream = async function* (data: {
-          text: string;
-          toolCalls?: any[];
-        }): AsyncGenerator<ChatResponseChunk> {
-          // If there are tool calls, yield them first
-          if (data.toolCalls && data.toolCalls.length > 0) {
-            yield {
-              delta: "",
-              raw: null,
-              options: { toolCall: data.toolCalls } as object,
-            } as ChatResponseChunk;
-          }
-          // Yield the text content using replayCached
-          for await (const chunk of replayCached(data.text)) {
-            yield {
-              ...chunk,
-              options: (data.toolCalls && data.toolCalls.length > 0
-                ? { toolCall: data.toolCalls }
-                : {}) as object,
-            } as ChatResponseChunk;
-          }
-        };
-        return replayCachedStream(cachedData);
+        // Replay the cached text as a stream
+        const replayStream =
+          async function* (): AsyncGenerator<ChatResponseChunk> {
+            for await (const chunk of replayCached(text)) {
+              yield {
+                ...chunk,
+                options: cachedResponse.message?.options || {},
+              } as ChatResponseChunk;
+            }
+          };
+
+        return replayStream();
       }
 
-      console.log("Cache miss - generating new response");
       logger.info(
-        {
-          hashedKey,
-          type: "chat_streaming",
-        },
+        { hashedKey, type: "chat_streaming" },
         "LLM cache miss, generating new (streaming)",
       );
 
@@ -170,67 +139,82 @@ export class CachedOpenAI extends OpenAI {
         ...options,
       });
 
-      const capture = async function* (
+      // Capture the stream and build a full response object
+      const captureStream = async function* (
         this: CachedOpenAI,
       ): AsyncGenerator<ChatResponseChunk> {
-        let full = "";
-        let toolCalls: any[] = [];
+        let fullText = "";
+        const toolCalls: any[] = [];
         let generationId: string | undefined;
+        let lastChunk: ChatResponseChunk | undefined;
+        const seenToolCallIds = new Set<string>();
+
         for await (const chunk of rawStream as AsyncGenerator<ChatResponseChunk>) {
-          full += chunk.delta;
-          // Collect tool calls if present - they might be on the options object
-          // Since options is typed as object, we need to cast it to access toolCall
-          const options = chunk.options as any;
-          if (options?.toolCall) {
-            toolCalls = options.toolCall;
+          fullText += chunk.delta;
+
+          // Collect tool calls if present
+          const chunkOptions = chunk.options as any;
+          if (chunkOptions?.toolCall) {
+            // Handle both single tool call and array of tool calls (flatten nested arrays)
+            const calls = Array.isArray(chunkOptions.toolCall)
+              ? chunkOptions.toolCall.flat()
+              : [chunkOptions.toolCall];
+
+            for (const call of calls) {
+              // Check if we've already seen this tool call ID to avoid duplicates
+              const toolCallId = call.id;
+              if (toolCallId && !seenToolCallIds.has(toolCallId)) {
+                seenToolCallIds.add(toolCallId);
+                toolCalls.push(call);
+              }
+            }
           }
 
-          // Extract generation ID from the first chunk if available
+          // Extract generation ID if available
           if (!generationId && chunk.raw && "id" in chunk.raw) {
             generationId = (chunk.raw as any).id;
           }
+
+          lastChunk = chunk;
           yield chunk;
         }
+        console.log("TOOLA CALLS: ", JSON.stringify(toolCalls));
+        // Build the complete response object
+        const response: ChatResponse = {
+          message: {
+            role: "assistant",
+            content: fullText,
+            ...(toolCalls.length > 0
+              ? { options: { toolCall: toolCalls } }
+              : {}),
+          },
+          raw: lastChunk?.raw || null,
+        };
 
-        // Prepare data to cache (include both text and tool calls)
-        const dataToCache =
-          toolCalls.length > 0
-            ? JSON.stringify({ text: full, toolCalls })
-            : full;
+        // Fetch and store metadata
+        const metadata = await this.prepareMetadata(generationId, response);
 
-        // Fetch metadata if we have a generation ID
-        let metadata;
-        if (generationId) {
-          metadata = (await this.fetchGenerationMetadata(generationId)) as any;
-          if (!metadata) {
-            metadata = {};
-          }
-          metadata.generationId = generationId;
-          metadata.conversationId = this.conversationId;
-        }
-
-        // If metadata doesn't exist yet, create it
-        if (!metadata) {
-          metadata = {};
-        }
-        // For streaming responses, we may not have usage information readily available
-        // The fetchGenerationMetadata should handle this
-        console.log("Setting cache with metadata (streaming):", metadata);
-        await this.cache.set(key, dataToCache, questionForCache, metadata);
+        // Cache the full response object
+        await this.cache.set(
+          hashedKey,
+          key,
+          JSON.stringify(response),
+          lastUserMessage,
+          metadata,
+        );
       }.bind(this);
 
-      return capture();
+      return captureStream();
     }
 
     /* --- Non-streaming mode --- */
-    console.log("Checking cache for non-streaming request...");
-    const cached = await this.cache.get(key);
-    console.log("Cache result:", cached ? "HIT" : "MISS");
+    // Check cache first
+    const cached = await this.cache.get(hashedKey);
+
     if (cached) {
-      console.log("Cache hit - content length:", cached.length);
       logger.info(
         {
-          originalQuestion: questionForCache,
+          lastUserMessage,
           hashedKey,
           mode: this.mode,
           type: "chat",
@@ -239,85 +223,32 @@ export class CachedOpenAI extends OpenAI {
         "LLM cache hit",
       );
 
-      // Parse cached response which may include tool calls
-      let text: string;
-      let toolCalls: any[] | undefined;
-      try {
-        const cachedData = JSON.parse(cached);
-        text = cachedData.text;
-        toolCalls = cachedData.toolCalls;
-      } catch (e) {
-        // Fallback to plain text for backward compatibility
-        text = cached;
-        toolCalls = undefined;
-      }
-
-      // Return a ChatResponse-like object with the cached content
-      // For non-streaming responses, tool calls should be on the message
-      const message: any = {
-        role: "assistant",
-        content: text,
-      };
-      if (toolCalls) {
-        message.toolCalls = toolCalls;
-      }
-      return {
-        message,
-        raw: null,
-      } as ChatResponse;
+      // Return the cached full response object
+      return JSON.parse(cached) as ChatResponse;
     }
 
+    // Generate new response
     const response = await super.chat({ messages, ...options });
-    const text = String(response.message.content);
 
-    // Check if the message has tool calls
-    // In llamaindex, tool calls might be on the message itself
-    const toolCalls = (response.message as any).toolCalls;
+    // Fetch and store metadata
+    const metadata = await this.prepareMetadata(
+      response.raw && "id" in response.raw
+        ? (response.raw as any).id
+        : undefined,
+      response,
+    );
 
-    // Prepare data to cache (include both text and tool calls)
-    const dataToCache =
-      toolCalls && toolCalls.length > 0
-        ? JSON.stringify({ text, toolCalls })
-        : text;
+    // Cache the full response object
+    await this.cache.set(
+      hashedKey,
+      key,
+      JSON.stringify(response),
+      lastUserMessage,
+      metadata,
+    );
 
-    // Fetch metadata if we have a generation ID
-    let metadata;
-    if (response.raw && "id" in response.raw) {
-      metadata = (await this.fetchGenerationMetadata(
-        (response.raw as any).id,
-      )) as any;
-      if (!metadata) {
-        metadata = {};
-      }
-      metadata.generationId = (response.raw as any).id;
-      metadata.conversationId = this.conversationId;
-      console.log("CHAT 180 generation ID", metadata.generationId);
-    }
-
-    // If metadata doesn't exist yet, create it
-    if (!metadata) {
-      metadata = {};
-    }
-    // Ensure token counts are always included if available in the response
-    if (response.raw && "usage" in response.raw) {
-      const usage = (response.raw as any).usage;
-      if (usage) {
-        metadata.tokensPrompt = usage.prompt_tokens;
-        metadata.tokensCompletion = usage.completion_tokens;
-      }
-    }
-    console.log("Setting cache with metadata:", metadata);
-    await this.cache.set(key, dataToCache, questionForCache, metadata);
-
-    console.log("Cache miss - generating new response");
     logger.info(
-      {
-        originalQuestion: questionForCache,
-        hashedKey,
-        mode: this.mode,
-        type: "chat",
-        cacheKey: key,
-      },
+      { lastUserMessage, hashedKey, mode: this.mode, type: "chat" },
       "LLM cache generating new",
     );
 
@@ -327,61 +258,51 @@ export class CachedOpenAI extends OpenAI {
   /* ---------- complete ---------- */
   async complete(
     params: LLMCompletionParamsNonStreaming & {
-      originalQuestion?: string;
-      rateLimit?: {
-        userIp: string;
-        mode: string;
-      };
+      rateLimit?: { userIp: string; mode: string };
     },
   ): Promise<CompletionResponse>;
   async complete(
     params: LLMCompletionParamsStreaming & {
-      originalQuestion?: string;
-      rateLimit?: {
-        userIp: string;
-        mode: string;
-      };
+      rateLimit?: { userIp: string; mode: string };
     },
   ): Promise<AsyncIterable<CompletionResponse>>;
   async complete(
     params: (LLMCompletionParamsStreaming | LLMCompletionParamsNonStreaming) & {
-      originalQuestion?: string;
-      rateLimit?: {
-        userIp: string;
-        mode: string;
-      };
+      rateLimit?: { userIp: string; mode: string };
     },
   ): Promise<CompletionResponse | AsyncIterable<CompletionResponse>> {
-    const {
-      prompt,
-      originalQuestion,
-      responseFormat,
-      stream,
-      rateLimit,
-      ...options
-    } = params;
+    const { prompt, responseFormat, stream, rateLimit, ...options } = params;
 
-    // Convert MessageContent to string for caching
+    // Convert prompt to string for caching
     const promptString =
       typeof prompt === "string" ? prompt : JSON.stringify(prompt);
-    const questionForCache = originalQuestion || promptString.slice(0, 100);
-    // For completion, we don't have messages, so use the prompt directly
-    // Convert to a messages-like structure for consistency
+    const lastUserMessage = promptString.slice(0, 100);
+
+    // Create messages-like structure for consistent caching
     const messages = [{ role: "user", content: promptString }];
-    const key = makeLlmCacheKey(questionForCache, messages, options, this.mode);
-    const hashedKey = this.hashKey(key);
+
+    const key = makeCacheKey(messages, options, this.mode);
+    const hashedKey = makeHashedKey(key);
+
     const logger = getLogger();
+
+    // Check rate limit if specified
+    if (
+      rateLimit &&
+      !(await rateLimiter(rateLimit.userIp, rateLimit.mode)).allowed
+    ) {
+      throw new Error("Rate limit exceeded");
+    }
 
     /* --- Streaming mode --- */
     if (stream) {
-      console.log("Checking cache for complete streaming request...");
-      const cached = await this.cache.get(key);
-      console.log("Cache result:", cached ? "HIT" : "MISS");
+      // Check cache first
+      const cached = await this.cache.get(hashedKey);
+
       if (cached) {
-        console.log("Cache hit - content length:", cached.length);
         logger.info(
           {
-            originalQuestion: questionForCache,
+            lastUserMessage,
             hashedKey,
             mode: this.mode,
             type: "complete_streaming",
@@ -390,35 +311,28 @@ export class CachedOpenAI extends OpenAI {
           "LLM cache hit (streaming)",
         );
 
-        // Replay cached result as a fake stream using replayCached
-        const replayCachedStream = async function* (
-          text: string,
-        ): AsyncIterable<CompletionResponse> {
-          for await (const chunk of replayCached(text)) {
-            yield {
-              text: chunk.delta,
-              raw: null,
-            } as CompletionResponse;
-          }
-        };
-        return replayCachedStream(cached);
+        // Parse the cached full response object
+        const cachedResponse = JSON.parse(cached) as CompletionResponse;
+        const text = cachedResponse.text || "";
+
+        // Replay the cached text as a stream
+        const replayStream =
+          async function* (): AsyncIterable<CompletionResponse> {
+            for await (const chunk of replayCached(text)) {
+              yield {
+                text: chunk.delta,
+                raw: null,
+              } as CompletionResponse;
+            }
+          };
+
+        return replayStream();
       }
 
-      console.log("Cache miss - generating new completion");
       logger.info(
-        {
-          hashedKey,
-          type: "complete_streaming",
-        },
+        { hashedKey, type: "complete_streaming" },
         "LLM cache miss, generating new (streaming)",
       );
-
-      if (
-        rateLimit &&
-        !(await rateLimiter(rateLimit.userIp, rateLimit.mode)).allowed
-      ) {
-        throw new Error("Rate limit exceeded");
-      }
 
       // Call underlying LLM in streaming mode
       const rawStream = await super.complete({
@@ -428,55 +342,56 @@ export class CachedOpenAI extends OpenAI {
         ...options,
       });
 
-      const capture = async function* (
+      // Capture the stream and build a full response object
+      const captureStream = async function* (
         this: CachedOpenAI,
       ): AsyncIterable<CompletionResponse> {
-        let full = "";
+        let fullText = "";
         let generationId: string | undefined;
+        let lastChunk: CompletionResponse | undefined;
+
         for await (const chunk of rawStream as AsyncIterable<CompletionResponse>) {
-          full += chunk.text || "";
-          // Extract generation ID from the first chunk if available
+          fullText += chunk.text || "";
+
+          // Extract generation ID if available
           if (!generationId && chunk.raw && "id" in chunk.raw) {
             generationId = (chunk.raw as any).id;
           }
 
+          lastChunk = chunk;
           yield chunk;
         }
 
-        // Fetch metadata if we have a generation ID
-        let metadata;
-        if (generationId) {
-          metadata = (await this.fetchGenerationMetadata(generationId)) as any;
-          if (!metadata) {
-            metadata = {};
-          }
-          metadata.generationId = generationId;
-          metadata.conversationId = this.conversationId;
-        }
+        // Build the complete response object
+        const response: CompletionResponse = {
+          text: fullText,
+          raw: lastChunk?.raw || null,
+        };
 
-        // If metadata doesn't exist yet, create it
-        if (!metadata) {
-          metadata = {};
-        }
-        console.log(
-          "Setting cache with metadata (completion streaming):",
+        // Fetch and store metadata
+        const metadata = await this.prepareMetadata(generationId, response);
+
+        // Cache the full response object
+        await this.cache.set(
+          hashedKey,
+          key,
+          JSON.stringify(response),
+          lastUserMessage,
           metadata,
         );
-        await this.cache.set(key, full, questionForCache, metadata);
       }.bind(this);
 
-      return capture();
+      return captureStream();
     }
 
     /* --- Non-streaming mode --- */
-    console.log("Checking cache for complete non-streaming request...");
-    const cached = await this.cache.get(key);
-    console.log("Cache result:", cached ? "HIT" : "MISS");
+    // Check cache first
+    const cached = await this.cache.get(hashedKey);
+
     if (cached) {
-      console.log("Cache hit - content length:", cached.length);
       logger.info(
         {
-          originalQuestion: questionForCache,
+          lastUserMessage,
           hashedKey,
           mode: this.mode,
           type: "complete",
@@ -484,50 +399,71 @@ export class CachedOpenAI extends OpenAI {
         },
         "LLM cache hit",
       );
-      return { text: cached, raw: null } as CompletionResponse;
+
+      // Return the cached full response object
+      return JSON.parse(cached) as CompletionResponse;
     }
 
-    console.log("Cache miss - generating new completion");
     logger.info(
-      {
-        hashedKey,
-        type: "complete",
-      },
+      { hashedKey, type: "complete" },
       "LLM cache miss, generating new",
     );
 
-    if (
-      rateLimit &&
-      !(await rateLimiter(rateLimit.userIp, rateLimit.mode)).allowed
-    ) {
-      throw new Error("Rate limit exceeded");
-    }
-
+    // Generate new response
     const response = await super.complete({
       prompt,
       responseFormat,
       ...options,
     });
-    const text = String(response.text);
 
-    // Fetch metadata if we have a generation ID
-    let metadata;
-    if (response.raw && "id" in response.raw) {
-      metadata = (await this.fetchGenerationMetadata(
-        (response.raw as any).id,
-      )) as any;
-      if (!metadata) {
-        metadata = {};
-      }
-      metadata.generationId = (response.raw as any).id;
+    // Fetch and store metadata
+    const metadata = await this.prepareMetadata(
+      response.raw && "id" in response.raw
+        ? (response.raw as any).id
+        : undefined,
+      response,
+    );
+
+    // Cache the full response object
+    await this.cache.set(
+      hashedKey,
+      key,
+      JSON.stringify(response),
+      lastUserMessage,
+      metadata,
+    );
+
+    return response;
+  }
+
+  /* ---------- Helper methods ---------- */
+  private async prepareMetadata(
+    generationId: string | undefined,
+    response: ChatResponse | CompletionResponse,
+  ): Promise<{
+    totalCost?: number;
+    tokensPrompt?: number;
+    tokensCompletion?: number;
+    model?: string;
+    generationId?: string;
+    conversationId?: string;
+  }> {
+    const metadata: any = {};
+
+    // Add generation ID if available
+    if (generationId) {
+      metadata.generationId = generationId;
       metadata.conversationId = this.conversationId;
+
+      // Fetch metadata from OpenRouter
+      const generationMetadata =
+        await this.fetchGenerationMetadata(generationId);
+      if (generationMetadata) {
+        Object.assign(metadata, generationMetadata);
+      }
     }
 
-    // If metadata doesn't exist yet, create it
-    if (!metadata) {
-      metadata = {};
-    }
-    // Ensure token counts are always included if available in the response
+    // Add token counts from response if available
     if (response.raw && "usage" in response.raw) {
       const usage = (response.raw as any).usage;
       if (usage) {
@@ -535,9 +471,7 @@ export class CachedOpenAI extends OpenAI {
         metadata.tokensCompletion = usage.completion_tokens;
       }
     }
-    console.log("Setting cache with metadata (completion):", metadata);
-    await this.cache.set(key, text, questionForCache, metadata);
 
-    return response;
+    return metadata;
   }
 }

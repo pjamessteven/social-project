@@ -3,7 +3,7 @@
 import topicsHierarchy from "@/app/lib/topics_hierarchy.json";
 import { slugify } from "@/app/lib/utils";
 import { Info } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import {

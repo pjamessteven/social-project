@@ -1,8 +1,9 @@
 // @ts-check
-
 /**
  * @type {import('next').NextConfig}
  */
+
+import createNextIntlPlugin from "next-intl/plugin";
 
 const securityHeaders = [
   { key: "X-Frame-Options", value: "DENY" },
@@ -11,15 +12,15 @@ const securityHeaders = [
 ];
 
 const nextConfig = {
-  output: "standalone",
   reactStrictMode: true,
   productionBrowserSourceMaps: true,
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },
   experimental: {
-        optimizeCss: false, // disable LightningCSS
-  }
+    optimizeCss: false, // disable LightningCSS
+  },
 };
 
-export default nextConfig;
+const withNextIntl = createNextIntlPlugin();
+export default withNextIntl(nextConfig);

@@ -1,6 +1,7 @@
 "use client";
 
 import { capitaliseFirstWord, slugify } from "@/app/lib/utils";
+import { Link } from "@/i18n/routing";
 import {
   ChatMessage,
   getParts,
@@ -9,7 +10,6 @@ import {
   useChatMessage,
   useChatUI,
 } from "@llamaindex/chat-ui";
-import Link from "next/link";
 import { DynamicEvents } from "./custom/events/dynamic-events";
 import { ComponentDef } from "./custom/events/types";
 
@@ -35,12 +35,8 @@ function SuggestedQuestionsAnnotations({
 
   const getQuestionUrl = (question: string) => {
     let baseUrl;
-    if (mode == "affirm") {
-      baseUrl = "/affirm/research/";
-    } else if (mode === "detrans") {
+    if (mode === "detrans") {
       baseUrl = "/research/";
-    } else if (mode === "compare") {
-      baseUrl = "/compare/research/";
     }
     return baseUrl + slugify(question);
   };
@@ -80,6 +76,8 @@ export function ChatMessageContent({
   appendError: (error: string) => void;
   mode: "detrans" | "affirm" | "compare";
 }) {
+  const { message, isLast } = useChatMessage();
+
   return (
     <div className="flex w-full flex-col">
       <DynamicEvents componentDefs={componentDefs} appendError={appendError} />
@@ -90,7 +88,7 @@ export function ChatMessageContent({
         <ChatMessage.Part.Source />
       </ChatMessage.Content>
 
-      {mode !== "compare" && <SuggestedQuestionsAnnotations mode={mode} />}
+      {<SuggestedQuestionsAnnotations mode={mode} />}
     </div>
   );
 }

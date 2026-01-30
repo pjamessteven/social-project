@@ -14,7 +14,7 @@ import { cn, uuidv4 } from "@/app/lib/utils";
 import { useChatStore } from "@/stores/chat-store";
 import { ChatMessage, ChatMessages, useChatUI } from "@llamaindex/chat-ui";
 import { Download, RefreshCcw } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ChatMessageAvatar } from "./chat-avatar";

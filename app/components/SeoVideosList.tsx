@@ -4,7 +4,9 @@ import { generateVideoSlug } from "@/app/lib/video-utils";
 import { db } from "@/db";
 import { videos } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
-import Link from "next/link";
+import type { Locale } from "@/i18n/routing";
+import { Link } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
 
 interface Video {
   id: number;
@@ -14,15 +16,53 @@ interface Video {
   url: string;
   type: string;
   description: string | null;
+  summary: string | null;
+  bite: string | null;
+  descriptionTranslation: string | null;
+  summaryTranslation: string | null;
+  biteTranslation: string | null;
+  titleTranslation: string | null;
 }
 
-export default async function SeoVideosList() {
+function getLocalizedField(
+  defaultValue: string | null,
+  translationsJson: string | null,
+  locale: string
+): string | null {
+  if (!translationsJson) return defaultValue;
+
+  try {
+    const translations = JSON.parse(translationsJson) as Record<string, string>;
+    return translations[locale] || defaultValue;
+  } catch {
+    return defaultValue;
+  }
+}
+
+interface SeoVideosListProps {
+  locale: string;
+}
+
+export default async function SeoVideosList({ locale }: SeoVideosListProps) {
+  const t = await getTranslations({
+    locale: locale as Locale,
+    namespace: "seo.videos",
+  });
+
   // Fetch videos directly from database for SEO
   const allVideos = await db
     .select()
     .from(videos)
     .where(eq(videos.processed, true))
     .orderBy(desc(videos.createdAt));
+
+  const localizedVideos = (allVideos as Video[]).map((video) => ({
+    ...video,
+    title: getLocalizedField(video.title, video.titleTranslation, locale),
+    description: getLocalizedField(video.description, video.descriptionTranslation, locale),
+    summary: getLocalizedField(video.summary, video.summaryTranslation, locale),
+    bite: getLocalizedField(video.bite, video.biteTranslation, locale),
+  }));
 
   // Extract YouTube video ID from URL
   const getYouTubeVideoId = (url: string): string => {
@@ -40,17 +80,15 @@ export default async function SeoVideosList() {
 
   return (
     <div className="prose dark:prose-invert pb-16 lg:max-w-none lg:pt-8">
-      <h1 className="text-3xl font-bold">Transition & Detransition Videos</h1>
+      <h1 className="text-3xl font-bold">{t("title")}</h1>
 
       <p className="text-muted-foreground max-w-3xl">
-        This is an archive of personal detransition videos that have been
-        uploaded to the internet. Make your voice heard by contributing and
-        sharing your own story!
+        {t("description")}
       </p>
 
       <div className="not-prose grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {allVideos.map((video) => {
-          const videoSlug = generateVideoSlug(video.id, video.title);
+        {localizedVideos.map((video) => {
+          const videoSlug = generateVideoSlug(video.id, video.title ?? "");
           return (
             <Link
               href={`/videos/${videoSlug}`}
@@ -61,7 +99,7 @@ export default async function SeoVideosList() {
                 <div className="relative mb-3">
                   <img
                     src={`https://img.youtube.com/vi/${getYouTubeVideoId(video.url)}/mqdefault.jpg`}
-                    alt={`Thumbnail for ${video.title}`}
+                    alt={`${t("thumbnailAlt")} ${video.title ?? ""}`}
                     className="h-48 w-full rounded object-cover"
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -92,8 +130,8 @@ export default async function SeoVideosList() {
                   </h3>
 
                   <p className="mt-auto text-sm font-light text-gray-500 dark:text-gray-400">
-                    by <b>{video.author}</b> (
-                    {video.sex === "f" ? "Female" : "Male"})
+                    {t("by")} <b>{video.author}</b> (
+                    {video.sex === "f" ? t("female") : t("male")})
                   </p>
                 </div>
               </div>

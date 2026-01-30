@@ -1,5 +1,6 @@
 "use client";
 
+import { useLocale, useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
@@ -14,7 +15,9 @@ import {
 interface TransitionReasonData {
   id: number;
   name: string;
+  nameTranslation: string | null;
   userCount: number;
+  displayName: string;
 }
 
 interface TransitionReasonChartProps {
@@ -44,6 +47,8 @@ export default function TransitionReasonChart({
   maxAge,
   mode,
 }: TransitionReasonChartProps) {
+  const t = useTranslations("stories.charts");
+  const locale = useLocale();
   const searchParams = useSearchParams();
   const [data, setData] = useState<TransitionReasonData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -75,16 +80,11 @@ export default function TransitionReasonChart({
       // set mode 'transition reason' or 'detransition reason'
       params.set("mode", mode);
 
-      console.log(
-        `Fetching ${mode} reasons with params:`,
-        params.toString(),
-      );
+      console.log(`Fetching ${mode} reasons with params:`, params.toString());
 
-      const apiRoute = "/api/users/reasons" 
+      const apiRoute = "/api/users/reasons";
 
-      const response = await fetch(
-        `${apiRoute}?${params.toString()}`,
-      );
+      const response = await fetch(`${apiRoute}?${params.toString()}`);
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -102,17 +102,38 @@ export default function TransitionReasonChart({
 
       setTotalUsers(result.total);
 
-      // Convert userCount to numbers and filter out reasons with 0 users for cleaner visualization
+      // Convert userCount to numbers, parse translations, and filter out reasons with 0 users
       const processedData = result.data
-        .map((item: any) => ({
-          ...item,
-          userCount: parseInt(item.userCount, 10),
-        }))
+        .map((item: any) => {
+          const userCount = parseInt(item.userCount, 10);
+          let displayName = item.name;
+          
+          // Parse nameTranslation if available
+          if (item.nameTranslation) {
+            try {
+              const translations = JSON.parse(item.nameTranslation);
+              if (translations[locale]) {
+                displayName = translations[locale];
+              }
+            } catch (e) {
+              console.warn(`Failed to parse nameTranslation for ${item.name}:`, e);
+            }
+          }
+          
+          return {
+            ...item,
+            userCount,
+            displayName,
+          };
+        })
         .filter((item: TransitionReasonData) => item.userCount > 0);
       console.log(`Filtered ${mode} reasons data:`, processedData);
 
       // Calculate total reason count (sum of all individual reason counts)
-      const totalCount = processedData.reduce((sum: any, item: { userCount: any; }) => sum + item.userCount, 0);
+      const totalCount = processedData.reduce(
+        (sum: any, item: { userCount: any }) => sum + item.userCount,
+        0,
+      );
       setTotalReasonCount(totalCount);
 
       setData(processedData);
@@ -133,11 +154,15 @@ export default function TransitionReasonChart({
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
+      const percentage = (
+        (data.userCount / payload[0].payload.totalReasonCount) *
+        100
+      ).toFixed(1);
       return (
         <div className="rounded border border-gray-300 bg-white p-3 shadow-lg">
-          <p className="font-medium text-black">{data.name}</p>
+          <p className="font-medium text-black">{data.displayName}</p>
           <p className="text-sm text-gray-600">
-            {`${data.userCount} mentions (${((data.userCount / payload[0].payload.totalReasonCount) * 100).toFixed(1)}%)`}
+            {t("reasonChart.mentions", { count: data.userCount, percentage })}
           </p>
         </div>
       );
@@ -177,25 +202,29 @@ export default function TransitionReasonChart({
   };
 
   // Calculate total for percentage calculations and limit legend entries
-  const dataWithTotal = data.map((item) => ({ ...item, total: totalUsers, totalReasonCount }));
-  
+  const dataWithTotal = data.map((item) => ({
+    ...item,
+    total: totalUsers,
+    totalReasonCount,
+  }));
+
   // Create custom payload for legend showing only top 16 values
   const legendPayload = dataWithTotal.slice(0, 16).map((item, index) => ({
-    value: item.name,
-    type: 'square' as const,
+    value: item.displayName,
+    type: "square" as const,
     id: `legend-${index}`,
     color: COLORS[index % COLORS.length],
     payload: {
-      strokeDasharray: '',
+      strokeDasharray: "",
       value: item.userCount,
-      ...item
-    }
+      ...item,
+    },
   }));
 
   if (loading) {
     return (
       <div className="flex h-96 items-center justify-center">
-        <div className="text-gray-500">Loading chart data...</div>
+        <div className="text-gray-500">{t("loading")}</div>
       </div>
     );
   }
@@ -203,12 +232,14 @@ export default function TransitionReasonChart({
   if (error) {
     return (
       <div className="py-8 text-center">
-        <div className="mb-2 text-red-500">Error: {error}</div>
+        <div className="mb-2 text-red-500">
+          {t("error", { message: error })}
+        </div>
         <button
           onClick={fetchData}
           className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
         >
-          Retry
+          {t("retry")}
         </button>
       </div>
     );
@@ -217,7 +248,7 @@ export default function TransitionReasonChart({
   if (data.length === 0) {
     return (
       <div className="py-8 text-center text-gray-500">
-        No {mode} reason data available for the selected filters
+        {t("noData", { mode })}
       </div>
     );
   }
@@ -225,11 +256,13 @@ export default function TransitionReasonChart({
   return (
     <>
       <div className="p-4">
-        <h3 className="font-semibold">
-          Why do detransitioners say they {mode === "detransition" ? "de-transitioned" : "transitioned"}?
-        </h3>
+        <h3 className="font-semibold">{t("reasonChart.title", { mode })}</h3>
         <p className="text-sm text-gray-600">
-          Data from Reddit user {mode} timelines ({totalReasonCount} total users, {totalUsers} distinct reasons.)
+          {t("reasonChart.subtitle", {
+            mode,
+            totalReasonCount: totalReasonCount.toString(),
+            totalUsers: (totalUsers ?? 0).toString(),
+          })}
         </p>
       </div>
       <div className={`w-full ${className}`}>
@@ -264,7 +297,7 @@ export default function TransitionReasonChart({
               height={68}
               payload={legendPayload}
               wrapperStyle={{ marginTop: "-20px" }}
-              formatter={(value, entry:any) => {
+              formatter={(value, entry: any) => {
                 return (
                   <span style={{ color: entry.color }}>
                     {value} ({entry.payload?.userCount || 0})

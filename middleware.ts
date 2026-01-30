@@ -1,8 +1,10 @@
-// middleware.ts
-
-import type { NextRequest } from "next/server";
-import { NextResponse } from "next/server";
+import createMiddleware from "next-intl/middleware";
+import { NextRequest, NextResponse } from "next/server";
 import { getLogger } from "./app/lib/logger";
+import { detectBrowserLocale } from "./i18n/detect-locale";
+import { locales, defaultLocale, routing } from "./i18n/routing";
+
+const intlMiddleware = createMiddleware(routing);
 
 function getIP(req: NextRequest): string {
   return (
@@ -14,7 +16,6 @@ function getIP(req: NextRequest): string {
 
 export async function middleware(req: NextRequest) {
   const { pathname, searchParams } = req.nextUrl;
-
   const isDev = process.env.NODE_ENV === "development";
   const host = req.headers.get("host");
   const ip = getIP(req);
@@ -41,13 +42,9 @@ export async function middleware(req: NextRequest) {
     "Request received",
   );
 
-  let res: NextResponse;
-
   try {
-    res = NextResponse.next();
-
+    // Handle host redirect for production
     const allowedHosts = ["detrans.ai"];
-
     if (host && !allowedHosts.includes(host) && !isDev) {
       const url = req.nextUrl.clone();
       url.hostname = "detrans.ai";
@@ -57,21 +54,55 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(url.toString(), 301);
     }
 
-    res.headers.set("x-pathname", req.nextUrl.pathname);
+    // Check if pathname starts with a locale
+    const pathnameHasLocale = locales.some(
+      (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
+    );
+
+    // If no locale in pathname, detect from browser and redirect
+    if (!pathnameHasLocale && pathname !== "/") {
+      const acceptLanguage = req.headers.get("accept-language");
+      const detectedLocale = detectBrowserLocale(
+        acceptLanguage,
+        locales,
+        defaultLocale,
+      );
+
+      const url = req.nextUrl.clone();
+      url.pathname = `/${detectedLocale}${pathname}`;
+
+      logger.info(
+        {
+          detectedLocale,
+          acceptLanguage,
+          originalPath: pathname,
+          newPath: url.pathname,
+        },
+        "Locale detection redirect",
+      );
+
+      return NextResponse.redirect(url.toString(), 302);
+    }
+
+    // Run next-intl middleware
+    const response = intlMiddleware(req);
+
+    // Add custom headers
+    response.headers.set("x-pathname", pathname);
 
     // Log the response
     logger.info(
       {
         method: req.method,
         pathname,
-        status: res.status,
+        status: response.status,
         duration: Date.now() - startTime,
         ip,
       },
       "Request completed",
     );
 
-    return res;
+    return response;
   } catch (error) {
     const duration = Date.now() - startTime;
 
@@ -87,12 +118,15 @@ export async function middleware(req: NextRequest) {
       "Request failed",
     );
 
-    // Re-throw the error to maintain normal error handling
     throw error;
   }
 }
 
 export const config = {
-  // run on every page request, skip static/_next/api routes
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  // Match all pathnames except for
+  // - /api routes
+  // - /_next (Next.js internals)
+  // - /_vercel (Vercel internals)
+  // - all root files inside /public (e.g. /favicon.ico)
+  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
 };
