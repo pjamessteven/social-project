@@ -1,5 +1,367 @@
 # Changelog
 
+## [2026-01-31] - Add Lithuanian (LT) Translation File
+
+### Translation Updates
+- **Lithuanian Translation File**: Added complete Lithuanian translation file `messages/lt.json`
+  - Full translation of all UI strings, navigation, forms, and content (800+ lines)
+  - Careful attention to gender terminology in Lithuanian, a grammatically gendered Baltic language with masculine and feminine forms:
+    - "Detransitioner" → "detranzicionierius" (masculine) / "detranzicionierė" (feminine) - using descriptive Lithuanian noun formation
+    - "Transgender" → "translytis" (masculine) / "translytė" (feminine) - standard Lithuanian medical/social term
+    - "Male/Female" → "vyras/moteris" (for people), "vyriškas/moteriškas" (adjectival forms)
+    - "Sex" → "lytis" (biological), "Gender" → "genderis" (social construct distinction)
+  - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
+
+### Gender Terminology Notes (Lithuanian)
+Lithuanian translations carefully handle the language's grammatical gender system:
+- **"Detranzicionierius/detranzicionierė"** (detransitioner) - masculine/feminine noun forms adapted from international terminology
+- **"Translytis/translytė"** (transgender person) - descriptive Lithuanian term using "lytis" (sex/gender)
+- **"Translyčio/translytės"** (transgender - genitive case) - grammatical agreement for case
+- **"Vyras/moteris"** (male/female) - standard terms for biological sex and social gender
+- **"Lytis"** (sex) - biological sex, "genderis" (gender) - social construct (loanword)
+- **"Genderinė disforija"** (gender dysphoria) - descriptive compound term using loanword "genderinis"
+- **"Genderinė tapatybė"** (gender identity) - descriptive term combining gender and identity
+- **"Detranzicija"** (detransition) - clear, descriptive translation using international terminology
+- **"Pasitraukimas"** (desistance) - standard Lithuanian term for ceasing/withdrawal
+- **"Genderinis nesilaikymas"** (gender non-conformity) - descriptive translation
+- **"Genderį patvirtinanti priežiūra"** (gender-affirming care) - medical terminology using descriptive phrasing
+- **"Genderinė tyrinėjamoji terapija"** (gender-exploratory therapy) - clinical term
+- **"Nebinarinis/nebinarinė"** (non-binary) - standard Lithuanian gender-neutral term
+- **"Trans moteris/trans vyras"** (trans woman/trans man) - standard Lithuanian phrasing with gender agreement
+- **"Translyčiai"** (transgender people - plural) - masculine plural form as default in Lithuanian
+- Lithuanian requires grammatical agreement (masculine/feminine) for adjectives, nouns, participles, and past tense verbs
+- The masculine form often serves as the "unmarked" or generic form when gender is unknown or unspecified
+
+### Technical Details
+- Lithuanian locale (lt) integrated into existing language system via `i18n/locales.ts`
+- Translation follows standard Lithuanian conventions (Lithuania)
+- All gender-related medical and psychological terms use appropriate Lithuanian terminology
+- Lithuanian is a highly inflected language with 7 grammatical cases, requiring careful handling of noun and adjective declension
+- Routes preserved (not translated) for URL consistency
+- Character encoding supports Lithuanian Latin alphabet with diacritics (UTF-8)
+
+## [2026-01-31] - Add Slovenian (SL) Translation File
+
+### Translation Updates
+- **Slovenian Translation File**: Added complete Slovenian translation file `messages/sl.json`
+  - Full translation of all UI strings, navigation, forms, and content (800+ lines)
+  - Careful attention to gender terminology in Slovenian, a grammatically gendered Slavic language with masculine, feminine, and neuter forms:
+    - "Detransitioner" → "detranzicionar" (masculine) / "detranzicionarka" (feminine) - contextually adapted
+    - "Transgender" → "transgender" (loanword, widely used in Slovenia)
+    - "Male/Female" → "moški/ženska" (for people), "moški/ženski" (adjectival forms)
+    - "Sex" → "spol" (biological), "Gender" → "družbeni spol" (social construct distinction)
+  - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
+
+### Gender Terminology Notes (Slovenian)
+Slovenian translations carefully handle the language's grammatical gender system:
+- **"Detranzicionar/detranzicionarka"** (detransitioner) - masculine/feminine forms used contextually
+- **"Transgender"** (transgender) - standard loanword used in Slovenia
+- **"Moški/ženska"** (male/female) - terms for biological sex and social gender
+- **"Spol"** (sex) - biological sex, "družbeni spol" (gender) - social construct distinction
+- **"Spolno nelagodje"** (gender dysphoria) - descriptive translation for medical terminology
+- **"Spolna identiteta"** (gender identity) - widely understood term in Slovenian
+- **"Detranzicija"** (detransition) - clear, descriptive translation
+- **"Desistance"** (desistance) → "prenehanje" - adapted Slovenian term
+- **"Neujemanje s pričakovanji družbenega spola"** (gender non-conformity) - descriptive translation
+- **"Potrjevalna oskrba spola"** (gender-affirming care) - medical terminology
+- **"Raziskovalna terapija spola"** (gender-exploratory therapy) - clinical term
+- **"Nebinaren"** (non-binary) - commonly used term
+- **"Trans ženska/trans moški"** (trans woman/trans man) - standard Slovenian phrasing
+- Slovenian requires grammatical agreement (masculine/feminine/neuter) for adjectives, nouns, and past tense verbs
+
+### Technical Details
+- Slovenian locale (sl) integrated into existing language system
+- Translation follows standard Slovenian conventions (Slovenia)
+- All gender-related medical and psychological terms use appropriate Slovenian terminology
+- Slovenian is a grammatically gendered language (masculine/feminine/neuter), requiring careful handling of adjective and noun agreement
+- Routes preserved (not translated) for URL consistency
+- Character encoding supports Slovenian Latin alphabet with diacritics (UTF-8)
+
+## [2026-01-31] - Add Ukrainian (UK) Translation File
+
+### Translation Updates
+- **Ukrainian Translation File**: Added complete Ukrainian translation file `messages/uk.json`
+  - Full translation of all UI strings, navigation, forms, and content (800+ lines)
+  - Careful attention to gender terminology in Ukrainian, a highly gendered language with masculine/feminine/neuter grammatical forms:
+    - "Detransitioner" → "детранзішнер" (gender-neutral term)
+    - "Transgender" → "трансгендерний/-а" (gendered based on grammatical context)
+    - "Male/Female" → "чоловік/жінка" (used for biological sex and social gender)
+    - "Sex" → "стать" (biological sex)
+    - "Gender" → "гендер" (social construct)
+  - Ukrainian grammatical gender notes:
+    - Adjectives and past tense verbs agree with gender
+    - Three grammatical genders: masculine, feminine, neuter
+    - Gender agreement handled carefully in translations
+    - Gendered forms marked with "/" notation (e.g., "пройшов/ла") where appropriate
+  - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
+
+### Gender Terminology Notes (Ukrainian)
+Ukrainian translations carefully handle grammatical gender agreement throughout:
+- **"детранзішнер"** (detransitioner) - gender-neutral noun
+- **"трансгендерний/-а"** (transgender) - gendered adjective forms
+- **"чоловік/жінка"** (male/female) - distinct terms for biological sex
+- **"стать"** (sex) - biological sex
+- **"гендер"** (gender) - social construct
+- **"гендерна ідентичність"** (gender identity) - internal sense of gender
+- **"гендерна дисфорія"** (gender dysphoria) - medical terminology
+- **"гендерна нонконформність"** (gender non-conformity) - descriptive translation
+- **"детранзішн"** (detransition) - clear descriptive term
+- **"дезистенція"** (desistance) - cessation of identification
+- **"Gender Affirming Care"** → "гендерно-підтверджувальна допомога" (Ukrainian medical terminology)
+- **"Gender Exploratory Therapy"** → "гендерно-дослідницька терапія" (clinical term)
+- **"небінарний"** (non-binary) - descriptive translation
+- Ukrainian uses gendered verb forms in past tense (e.g., "пройшов/ла" for "transitioned")
+- Gendered pronouns used based on grammatical context
+
+### Technical Details
+- Ukrainian locale (uk) integrated into existing language system
+- Translation follows standard Ukrainian conventions
+- All gender-related medical and psychological terms use appropriate Ukrainian terminology
+- Ukrainian has complex grammatical gender system (masculine/feminine/neuter) with case declensions
+- Routes preserved (not translated) for URL consistency
+- Character encoding supports Cyrillic script (UTF-8)
+- Added Ukrainian to i18n/locales.ts configuration
+- Added Ukrainian pathnames to i18n/routing.ts for localized routes
+- Updated next-intl.config.ts to include Ukrainian locale
+
+## [2026-01-31] - Add Bulgarian (BG) Translation File
+
+### Translation Updates
+- **Bulgarian Translation File**: Added complete Bulgarian translation file `messages/bg.json`
+  - Full translation of all UI strings, navigation, forms, and content (800+ lines)
+  - Careful attention to gender terminology in Bulgarian, a grammatically gendered Slavic language with masculine, feminine, and neuter forms:
+    - "Detransitioner" → "детрансишънър" (masculine) / "детрансишънърка" (feminine) - used contextually
+    - "Transgender" → "трансджендър" (transliteration, widely used)
+    - "Male/Female" → "мъж/жена" (for people), "мъжки/женски" (adjectival forms)
+    - "Sex" → "пол" (biological), "Gender" → "полова принадлежност" (social construct)
+  - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
+
+### Gender Terminology Notes (Bulgarian)
+Bulgarian translations carefully handle the language's grammatical gender system:
+- **"Детрансишънър/детрансишънърка"** (detransitioner) - masculine/feminine forms where contextually appropriate
+- **"Трансджендър"** (transgender) - standard transliteration used in Bulgaria
+- **"Мъж/жена"** (male/female) - terms for biological sex and social gender
+- **"Пол"** (sex) - biological sex, "полова принадлежност" (gender) - social construct distinction
+- **"Полова дисфория"** (gender dysphoria) - standard Bulgarian medical terminology
+- **"Полова идентичност"** (gender identity) - widely understood term in Bulgarian
+- **"Детранзиция"** (detransition) - descriptive translation
+- **"Десистиране"** (desistance) - adapted psychological term
+- **"Несъответствие с половата принадлежност"** (gender non-conformity) - descriptive translation
+- **"Полова утвърждаваща грижа"** (gender-affirming care) - medical terminology
+- **"Полова изследователска терапия"** (gender-exploratory therapy) - clinical term
+- **"Небинарен"** (non-binary) - descriptive translation
+- **"Транс жена/транс мъж"** (trans woman/trans man) - standard Bulgarian phrasing
+- Bulgarian requires grammatical agreement (masculine/feminine/neuter) for adjectives, nouns, and past tense verbs
+
+### Technical Details
+- Bulgarian locale (bg) integrated into existing language system
+- Translation follows standard Bulgarian conventions (Bulgaria)
+- All gender-related medical and psychological terms use appropriate Bulgarian terminology
+- Bulgarian is a grammatically gendered language (masculine/feminine/neuter), requiring careful handling of adjective and noun agreement
+- Routes preserved (not translated) for URL consistency
+- Character encoding supports Bulgarian Cyrillic alphabet (UTF-8)
+
+## [2026-01-31] - Add Thai (TH) Translation File
+
+### Translation Updates
+- **Thai Translation File**: Added complete Thai translation file `messages/th.json`
+  - Full translation of all UI strings, navigation, forms, and content (800+ lines)
+  - Careful attention to gender terminology in Thai, which is a gender-neutral language grammatically:
+    - "Detransitioner" → "ผู้เลิกเปลี่ยนเพศ" (gender-neutral term)
+    - "Transgender" → "คนข้ามเพศ" (gender-neutral term)
+    - "Male/Female" → "ชาย/หญิง" (used for biological sex and social gender)
+    - "Sex" → "เพศ" (context-dependent, can mean both biological and social)
+  - Thai language notes:
+    - Thai does not distinguish "he/she" in pronouns (uses "เขา"/khao for both, or context)
+    - Gendered terms use appropriate Thai vocabulary with respectful and professional tone
+    - Honorifics (ครับ/ค่ะ - khrap/kha) used appropriately based on formality
+  - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
+
+### Gender Terminology Notes (Thai)
+Thai translations carefully handle gender concepts throughout:
+- **"ผู้เลิกเปลี่ยนเพศ"** (detransitioner) - gender-neutral descriptive term
+- **"คนข้ามเพศ"** (transgender) - standard Thai term
+- **"ชาย/หญิง"** (male/female) - used for both biological sex and social gender contexts
+- **"เพศ"** (sex/gender) - context determines specific meaning
+- **"เพศชีวภาพ"** (biological sex) - when distinction is needed
+- **"เพศภาวะ"** (gender/social gender) - social construct distinction
+- **"ตัวตนทางเพศ"** (gender identity) - internal sense of gender
+- **"ภาวะความไม่สบายใจทางเพศ"** (gender dysphoria) - medical terminology
+- **"การไม่ปฏิบัติตามเพศภาวะ"** (gender non-conformity) - descriptive translation
+- **"การเลิกเปลี่ยนเพศ"** (detransition) - clear descriptive term
+- **"การหยุดปรับตัวตน"** (desistance) - cessation of identification
+- **"Gender Affirming Care"** → "การดูแลสนับสนุนเพศ" (Thai medical terminology)
+- **"Gender Exploratory Therapy"** → "การบำบัดสำรวจเพศ" (clinical term)
+- **"ไม่ใช่สองเพศ"** (non-binary) - descriptive translation
+- Thai uses polite particles (ครับ/ค่ะ) at the end of sentences based on speaker's gender
+
+### Technical Details
+- Thai locale (th) integrated into existing language system
+- Translation follows standard Thai conventions (Thailand)
+- All gender-related medical and psychological terms use appropriate Thai terminology
+- Thai is a grammatically gender-neutral language (no "he/she" pronoun distinction), making translation straightforward
+- Routes preserved (not translated) for URL consistency
+- Character encoding supports Thai script (UTF-8)
+
+## [2026-01-31] - Add Hebrew (HE) Translation File
+
+### Translation Updates
+- **Hebrew Translation File**: Added complete Hebrew translation file `messages/he.json`
+  - Full translation of all UI strings, navigation, forms, and content (800+ lines)
+  - Careful attention to gender terminology in Hebrew, a highly gendered language with masculine/feminine grammatical forms:
+    - "Detransitioner" → "מדטרנזישנר/ית" (detransitioner, with male/female forms where applicable)
+    - "Transgender" → "טרנסג'נדר" (transliteration, widely used in Hebrew)
+    - "Male/Female" → "זכר/נקבה" (for biological sex), "גבר/אישה" (for social gender)
+    - "Sex" → "מין" (biological), "Gender" → "מגדר" (social construct)
+  - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
+
+### Gender Terminology Notes (Hebrew)
+Hebrew translations carefully handle the language's grammatical gender system:
+- **"מדטרנזישנר/ית"** (detransitioner) - transliteration with Hebrew suffixes for male/female forms where contextually appropriate
+- **"טרנסג'נדר"** (transgender) - standard transliteration used in Israel
+- **"זכר/נקבה"** (male/female) - terms for biological sex
+- **"מין"** (sex) - biological sex, "מגדר" (gender) - social construct distinction
+- **"דיספוריה מגדרית"** (gender dysphoria) - descriptive translation for medical terminology
+- **"זהות מגדרית"** (gender identity) - widely understood term in Hebrew
+- **"דטרנזישן"** (detransition) - transliteration, clear and direct
+- **"דיזיסטנס"** (desistance) - transliteration of psychological term
+- **"אי-התאמה מגדרית"** (gender non-conformity) - descriptive translation
+- **"טיפול מאשר מגדר"** (gender-affirming care) - medical terminology
+- **"טיפול חוקר מגדר"** (gender-exploratory therapy) - clinical term
+- **"לא בינארי"** (non-binary) - descriptive translation
+- **"אישה טרנסית/גבר טרנסי"** (trans woman/trans man) - standard Hebrew phrasing with grammatical gender agreement
+- Hebrew requires verb and adjective agreement with grammatical gender throughout
+
+### Technical Details
+- Hebrew locale (he) integrated into existing language system
+- Translation follows standard Hebrew conventions (Israel)
+- All gender-related medical and psychological terms use appropriate Hebrew terminology
+- Hebrew is a grammatically gendered language (masculine/feminine), requiring careful handling of verb and adjective agreement
+- Hebrew is written right-to-left (RTL) - proper support already implemented in the application
+- Routes preserved (not translated) for URL consistency
+- Character encoding supports Hebrew alphabet (UTF-8)
+
+## [2026-01-31] - Add Traditional Chinese (zh-tw) Translation File
+
+### Translation Updates
+- **Traditional Chinese Translation File**: Added complete Traditional Chinese translation file `messages/zh-tw.json`
+  - Full translation of all UI strings, navigation, forms, and content (800+ lines)
+  - Based on Simplified Chinese (zh-cn) translation with character conversion and Taiwan/Hong Kong terminology adaptation:
+    - "Detransitioner" → "去過渡者" (traditional character form)
+    - "Transgender" → "跨性別" (standard term in Taiwan/Hong Kong)
+    - "Male/Female" → "男性/女性" (maintained distinction)
+  - Key vocabulary differences from Simplified Chinese:
+    - 视频/影片 (video)
+    - 支持/支援 (support)
+    - 网络/網路 (network/internet)
+    - 信息/資訊 (information)
+    - 联系/聯繫 (contact)
+    - 账户/帳號 (account)
+    - 反馈/回饋 (feedback)
+    - 通过/透過 (through/via)
+  - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
+
+### Gender Terminology Notes (Traditional Chinese)
+Traditional Chinese translations maintain the same gender concepts as Simplified Chinese:
+- **"去過渡者"** (detransitioner) - neutral term without grammatical gender
+- **"跨性別"** (transgender) - standard term used in Taiwan and Hong Kong
+- **"男性/女性"** (male/female) - used for biological sex
+- **"性別"** (gender/sex) - context determines meaning
+- **"生理性別"** (biological sex) - anatomical/biological distinction
+- **"社會性別"** (social gender) - social construct distinction
+- **"性別認同"** (gender identity) - internal sense of gender
+- **"性別焦慮"** (gender dysphoria) - distress from gender/sex mismatch
+- **"性別不一致"** (gender non-conformity) - not conforming to stereotypes
+- **"去過渡"** (detransition) - descriptive term
+- **"停止"** (desistance) - cessation of identification
+- **"性別肯定護理"** (gender-affirming care)
+- **"性別探索性治療"** (gender-exploratory therapy)
+- **"非二元"** (non-binary)
+- **"順性別"** (cisgender)
+
+### Technical Details
+- Traditional Chinese locale (zh-tw) ready for integration into language selector
+- Translation follows Taiwan/Hong Kong conventions using traditional characters
+- All gender-related medical and psychological terms use appropriate terminology
+- Chinese (both simplified and traditional) is a gender-neutral language grammatically
+- Routes preserved (not translated) for URL consistency
+- Character encoding supports traditional Chinese characters (UTF-8)
+
+## [2026-01-31] - Add Hindi (HI) Translation File
+
+### Translation Updates
+- **Hindi Translation File**: Added complete Hindi translation file `messages/hi.json`
+  - Full translation of all UI strings, navigation, forms, and content (800+ lines)
+  - Careful attention to gender terminology in Hindi, which is a grammatically gendered language:
+    - "Detransitioner" → "डीट्रांजिशनर" (transliteration with gender-neutral phrasing)
+    - "Transgender" → "ट्रांसजेंडर" (transliteration, widely used)
+    - "Male/Female" → "पुरुष/महिला" (used for biological sex)
+    - "Sex" → "लिंग" (biological), "Gender" → "लिंग" (social construct - context dependent in Hindi)
+  - Used Devanagari script throughout for Hindi speakers
+  - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
+
+### Gender Terminology Notes (Hindi)
+Hindi translations carefully handle the language's grammatical gender system:
+- **"डीट्रांजिशनर"** (detransitioner) - gender-neutral usage with appropriate verb agreement
+- **"ट्रांसजेंडर"** (transgender) - standard transliteration used in India
+- **"पुरुष/महिला"** (male/female) - terms for biological sex
+- **"लिंग"** (sex/gender) - context determines meaning; biological vs social distinction explained
+- **"लिंग असंतोष"** (gender dysphoria) - descriptive translation for medical terminology
+- **"लिंग पहचान"** (gender identity) - widely understood term in Hindi
+- **"डीट्रांजिशन"** (detransition) - transliteration, clear and direct
+- **"डीसिस्टेंस"** (desistance) - transliteration of psychological term
+- **"लिंग असहमति"** (gender non-conformity) - descriptive translation
+- **"लिंग पुष्टिकर देखभाल"** (gender-affirming care) - medical terminology
+- **"लिंग एक्सप्लोरेटरी थेरेपी"** (gender-exploratory therapy) - clinical term
+- **"गैर-द्विआधारी"** (non-binary) - descriptive translation
+- **"ट्रांस महिला/ट्रांस पुरुष"** (trans woman/trans man) - standard Hindi phrasing
+
+### Technical Details
+- Hindi locale (hi) integrated into existing language system
+- Translation follows standard Hindi conventions (India)
+- All gender-related medical and psychological terms use appropriate Hindi terminology
+- Hindi is a grammatically gendered language (masculine/feminine), requiring careful handling of verb and adjective agreement
+- Routes preserved (not translated) for URL consistency
+- Character encoding supports Devanagari script (UTF-8)
+
+## [2026-01-31] - Add Danish (DA) Translation File
+
+### Translation Updates
+- **Danish Translation File**: Added complete Danish translation file `messages/da.json`
+  - Full translation of all UI strings, navigation, forms, and content (800+ lines)
+  - Careful attention to gender terminology in Danish:
+    - "Detransitioner" → "detransitioner" (direct loanword, widely understood)
+    - "Transgender" → "transkønnet" (standard Danish term)
+    - "Male/Female" → "mand/kvinde" (for people), "hankøn/hunkøn" (biological distinction)
+    - "Sex/Gender" → "køn/gender" (Danes use "køn" for biological sex, "gender" for social construct)
+  - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
+
+### Gender Terminology Notes (Danish)
+Danish translations carefully handle the language's approach to gender:
+- **"Detransitioner"** - direct loanword, gender-neutral, commonly used in Danish discourse
+- **"Transkønnet"** (transgender) - standard Danish term, widely recognized
+- **"Mand/Kvinde"** (male/female) - used for people, with "hankøn/hunkøn" for biological classification
+- **"Køn"** (sex/biological sex) - primarily refers to biological sex
+- **"Gender"** (gender) - loanword used for social construct, distinct from "køn"
+- **"Kønsidentitet"** (gender identity) - widely understood academic/medical term
+- **"Kønsdysfori"** (gender dysphoria) - standard Danish medical terminology
+- **"Detransition"** (detransition) - loanword, clear and direct
+- **"Desistance"** (desistance) → "desistere" - adapted Danish verb form
+- **"Kønsnon-konformitet"** (gender non-conformity) - descriptive translation
+- **"Kønsbekræftende behandling"** (gender-affirming care) - medical terminology
+- **"Kønseksplorativ terapi"** (gender-exploratory therapy) - clinical term
+- **"Ikke-binær"** (non-binary) - commonly used Danish term
+- Danish uses common gender (n-words) and neuter gender (t-words), but these are grammatical genders, not biological
+- No grammatical gender agreement required for adjectives describing people (unlike Romance languages)
+
+### Technical Details
+- Danish locale (da) integrated into existing language system
+- Translation follows standard Danish conventions (Denmark)
+- All gender-related medical and psychological terms use appropriate Danish terminology
+- Danish has natural gender in pronouns (han/hun) but no grammatical gender affecting adjectives
+- Routes translated for SEO-friendly Danish URLs (e.g., /stotte, /videoer, /historier)
+- Character encoding supports Danish characters (æ, ø, å) (UTF-8)
+
 ## [2026-01-31] - Add Korean (KO) Translation File
 
 ### Translation Updates

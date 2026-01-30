@@ -1,0 +1,805 @@
+{
+  "metadata": {
+    "title": "detrans.ai | Trò chuyện với 50,000+ ngưởi chuyển giới trở lại",
+    "description": "Detrans.ai là một chatbot hữu ích và đầy cảm thông, chia sẻ kinh nghiệm và quan điểm của những ngưởi đã chuyển giới trở lại. Sử dụng detrans.ai để được hỗ trợ và tư vấn về chuyển giới hoặc chuyển giới trở lại, hoặc đơn giản là như một công cụ nghiên cứu để hiểu tại sao một số ngưởi tiếp nhận, duy trì và buông bỏ bản dạng giới."
+  },
+  "home": {
+    "title": "Trò chuyện với 50,000+ Ngưởi Chuyển Giới Trở Lại",
+    "subtitle": "Quan Điểm Từ Phía Bên Kia",
+    "intro": {
+      "greeting": "Xin chào! Ngưởi chuyển giới trở lại là gì?",
+      "response": "Chào bạn! Tôi là detrans.ai - ý thức tập thể của những ngưởi chuyển giới trở lại 🦎",
+      "definition": "Ngưởi chuyển giới trở lại là ngưởi từng là ngưởi chuyển giới, đã chuyển đổi xã hội hoặc y tế, nhưng từ đó không còn nhận dạng là ngưởi chuyển giới và có thể đã đảo ngược một số khía cạnh của quá trình chuyển đổi.",
+      "description": "Tôi quan sát các lý do, khuôn mẫu và sự thật về tại sao một số ngưởi tiếp nhận, duy trì và vượt qua bản dạng giới bằng cách đọc các câu chuyện và kinh nghiệm được đăng trong subreddit /r/detrans và xem các video chuyển giới trở lại được tải lên YouTube.",
+      "purpose": "Mục đích của tôi là chia sẻ kiến thức này để phân tích giới tính và khám phá những trải nghiệm này định hình mối quan hệ với bản thân, cơ thể và thế giới như thế nào.",
+      "helpPrompt": "Tôi có thể giúp gì cho bạn hôm nay?"
+    },
+    "starters": {
+      "lizardQuestion": {
+        "display": "Xin lỗi, nhưng tại sao lại có con thằn lằn?",
+        "full": "Tại sao những ngưởi chuyển giới trở lại lại sử dụng thằn lằn để đại diện cho họ trực tuyến?"
+      },
+      "curious": {
+        "display": "Tôi tò mò về tại sao một số ngưởi chuyển giới trở lại",
+        "full": "Tôi tò mò về tại sao một số ngưởi chuyển giới trở lại, và những nhận thức gì họ có thể đã đạt được để đến được điểm đó."
+      },
+      "questioningTrans": {
+        "display": "Tôi đang đặt câu hỏi về bản dạng giới của mình và nghĩ rằng mình có thể là ngưởi chuyển giới",
+        "full": "Tôi đang đặt câu hỏi về bản dạng giới của mình và nghĩ rằng mình có thể là ngưởi chuyển giới"
+      },
+      "thinkingDetrans": {
+        "display": "Hiện tại tôi nhận dạng là ngưởi chuyển giới và đang nghĩ đến việc chuyển giới trở lại",
+        "full": "Hiện tại tôi nhận dạng là ngưởi chuyển giới và đang nghĩ đến việc chuyển giới trở lại"
+      },
+      "familyMember": {
+        "display": "Tôi là cha mẹ, ngưởi thân hoặc bạn bè của ngưởi đang chuyển giới",
+        "full": "Tôi là cha mẹ, ngưởi thân hoặc bạn bè của ngưởi đang chuyển giới"
+      },
+      "researcher": {
+        "display": "Tôi là nhà nghiên cứu nghiên cứu bản dạng giới và kinh nghiệm chuyển giới trở lại",
+        "full": "Tôi là nhà nghiên cứu nghiên cứu bản dạng giới và kinh nghiệm chuyển giới trở lại"
+      },
+      "learnChallenges": {
+        "display": "Tôi muốn tìm hiểu về những khó khăn và thử thách mà ngưởi chuyển giới trở lại phải đối mặt",
+        "full": "Tôi muốn tìm hiểu về những khó khăn và thử thách mà ngưởi chuyển giới trở lại phải đối mặt"
+      },
+      "understandTransition": {
+        "display": "Tôi muốn hiểu tại sao ngưởi chuyển giới trở lại quyết định chuyển giới ngay từ đầu",
+        "full": "Tôi muốn hiểu lý do tại sao ngưởi chuyển giới trở lại đã chuyển giới ngay từ đầu, và điều này có thể khác nhau như thế nào giữa nam và nữ."
+      },
+      "debunkMisinfo": {
+        "display": "Tôi muốn bạn phơi bày thông tin sai lệch và niềm tin phổ biến về chuyển giới trở lại",
+        "full": "Vui lòng phơi bày tất cả thông tin sai lệch và niềm tin phổ biến về ngưởi chuyển giới trở lại, với độ sâu nhất có thể."
+      }
+    },
+    "navigation": {
+      "videos": "Video Chuyển Giới Trở Lại",
+      "stories": "Câu Chuyện",
+      "storiesFull": "Câu Chuyện & Thống Kê",
+      "support": "Giúp Đỡ & Hỗ Trợ",
+      "definitions": "Thuật Ngữ Giới Tính",
+      "studies": "Nghiên Cứu Học Thuật",
+      "studiesShort": "Nghiên Cứu",
+      "howItWorks": "Cách Hoạt Động"
+    },
+    "deepResearch": {
+      "title": "Chế Độ Nghiên Cứu Sâu",
+      "description": "Chế độ Nghiên Cứu Sâu mở rộng câu hỏi của bạn để đưa ra câu trả lời tiếp cận chủ đề từ các góc độ khác nhau.",
+      "note": "Nghiên Cứu Sâu chậm hơn và không mang tính đối thoại. Để trò chuyện, hãy tắt tính năng này."
+    },
+    "disclaimer": {
+      "trigger": "Kinh nghiệm và quan điểm trên trang này được lấy từ Reddit.",
+      "title": "Tuyên Bố Từ Chối Trách Nhiệm Về Nguồn",
+      "content": "detrans.ai trả lời các câu hỏi về giới tính từ góc nhìn của ngưởi chuyển giới trở lại bằng cách tìm kiếm những kinh nghiệm liên quan từ cộng đồng /r/detrans trên Reddit. Mặc dù Reddit là nền tảng nơi ngưởi thật chia sẻ câu chuyện cá nhân, nhưng nó cũng có thể chứa nội dung do bot tạo ra hoặc gây hiểu nhầm. Bạn được khuyến khích kiểm tra các bài đăng Reddit gốc để xác minh nguồn và bối cảnh. Xin lưu ý rằng /r/detrans là một subreddit được kiểm duyệt nghiêm ngặt, nhưng việc kiểm duyệt không đảm bảo độ chính xác hoặc tính xác thực của mọi bài đăng."
+    },
+    "donate": {
+      "title": "Ủng Hộ Công Việc Của Chúng Tôi",
+      "description": "Giúp chúng tôi duy trì tài nguyên này cho những ngưởi cần nó nhất.",
+      "button": "Quyên Góp",
+      "card": {
+        "title": "Cần quyên góp để duy trì {site}!",
+        "description": "Nếu bạn đánh giá cao dịch vụ miễn phí này, vui lòng cân nhắc quyên góp.",
+        "description2": "Trang web sẽ chạy ở chế độ chỉ bộ nhớ đệm nếu tôi hết tiền, không có khả năng đặt câu hỏi của riêng bạn.",
+        "button": "Quyên góp"
+      }
+    },
+    "participate": {
+      "card": {
+        "title": "Bạn là ngưởi chuyển giới trở lại hoặc ngưởi từ bỏ?",
+        "description": "Tham gia các nghiên cứu để giúp cải thiện sự hiểu biết khoa học về bản dạng giới",
+        "description2": "và cải thiện kết quả cho ngưởi trải qua khủng hoảng giới tính."
+      },
+      "title": "Chia Sẻ Câu Chuyện Của Bạn",
+      "description": "Kinh nghiệm của bạn có thể giúp ngưởi khác hiểu về sự phức tạp của bản dạng giới.",
+      "button": "Tham Gia"
+    },
+    "footer": {
+      "poem": {
+        "line1": "Bạn có thể tự giải phóng mình,",
+        "line2": "Tất cả những gì bạn cần làm là cứ là chính mình.",
+        "line3": "Và hãy chú ý đến suy nghĩ của bạn!",
+        "line4": "Vì tâm trí như một khu vườn,",
+        "line5": "Và mỗi suy nghĩ là một hạt giống.",
+        "line6": "Chúng ta gặt những gì chúng ta gieo,",
+        "line7": "Nhưng qua điều này chúng ta có thể trưởng thành..."
+      },
+      "openSource": "Dự án mã nguồn mở của",
+      "madeWithLove": "Được tạo với tình yêu tại Wellington, New Zealand",
+      "donatePrompt": "Vui lòng quyên góp nếu bạn có thể,",
+      "beKind": "Và hãy tử tế với nhau."
+    },
+    "browseConversations": "Duyệt Tất Cả Cuộc Trò Chuyện"
+  },
+  "header": {
+    "navigation": {
+      "home": "Trang Chủ",
+      "resources": "Tài Nguyên",
+      "about": "Giới Thiệu"
+    },
+    "resources": {
+      "genderSupport": "Hỗ Trợ Giới Tính",
+      "genderSupportDesc": "Tìm cộng đồng và nhà trị liệu",
+      "terminology": "Thuật Ngữ",
+      "terminologyDesc": "Định nghĩa các thuật ngữ/khái niệm chính",
+      "stories": "Câu Chuyện & Thống Kê",
+      "storiesDesc": "Từ ngưởi dùng /r/detrans",
+      "videos": "Video Chuyển Giới Trở Lại",
+      "videosDesc": "Lưu trữ hồi ký cá nhân",
+      "studies": "Nghiên Cứu Đã Được Bình Duyệt",
+      "studiesDesc": "Nghiên cứu học thuật liên quan",
+      "statistics": "Thống Kê Đã Được Xác Minh",
+      "statisticsDesc": "statsforgender.org"
+    },
+    "about": {
+      "contact": "Liên Hệ",
+      "contactDesc": "Liên lạc với tôi",
+      "systemPrompts": "Lệnh Hệ Thống",
+      "systemPromptsDesc": "Xem lệnh hệ thống AI",
+      "terms": "Điều Khoản",
+      "termsDesc": "Chính sách riêng tư và điều khoản"
+    },
+    "donate": "Quyên Góp",
+    "language": {
+      "title": "Ngôn Ngữ"
+    }
+  },
+  "language": {
+    "title": "Ngôn Ngữ",
+    "select": "Chọn ngôn ngữ",
+    "search": "{count} ngôn ngữ",
+    "en": "Tiếng Anh",
+    "es": "Tiếng Tây Ban Nha",
+    "fr": "Tiếng Pháp",
+    "de": "Tiếng Đức",
+    "he": "Tiếng Do Thái",
+    "it": "Tiếng Ý",
+    "nl": "Tiếng Hà Lan",
+    "tr": "Tiếng Thổ Nhĩ Kỳ",
+    "vi": "Tiếng Việt"
+  },
+  "settings": {
+    "title": "Cài Đặt"
+  },
+  "theme": {
+    "title": "Giao Diện",
+    "darkMode": "Chế độ tối",
+    "light": "Sáng",
+    "dark": "Tối"
+  },
+  "definitions": {
+    "metadata": {
+      "title": "detrans.ai | Định Nghĩa Các Thuật Ngữ Liên Quan Đến Giới Tính",
+      "description": "Trong giao tiếp hàng ngày, giới tính và giới đôi khi được sử dụng thay thế cho nhau và trong một số ngôn ngữ chỉ có một từ để mô tả cả hai. Tuy nhiên, toàn bộ khái niệm khủng hoảng giới tính dựa trên việc hiểu rằng có sự khác biệt giữa giới tính và giới."
+    },
+    "title": "Định Nghĩa Các Thuật Ngữ Liên Quan Đến Giới Tính",
+    "sexAndGender": {
+      "heading": "Giới tính và giới?",
+      "intro": "Trong giao tiếp hàng ngày, giới tính và giới đôi khi được sử dụng thay thế cho nhau và trong một số ngôn ngữ chỉ có một từ để mô tả cả hai. Tuy nhiên, toàn bộ khái niệm khủng hoảng giới tính dựa trên việc hiểu rằng có sự khác biệt giữa giới tính và giới.",
+      "sex": "<b>Giới tính</b> đề cập đến sinh học của một ngưởi (tức là cơ thể của họ; bộ xương, cơ bắp, nhiễm sắc thể, hệ thống sinh sản và đặc điểm giới tính thứ cấp). Lưu ý rằng hơn 99% ngưởi là nam hoặc nữ về sinh học, không có phổ giới tính mặc dù một số ngưởi có rối loạn phát triển giới tính (DSD). Đại đa số ngưởi có DSD là nam hoặc nữ.",
+      "gender": "<b>Giới</b> đề cập đến các vai trò, hành vi, hoạt động và thuộc tính 'được xã hội xây dựng' mà một xã hội cho là phù hợp cho nam và nữ [theo định nghĩa của giới tính sinh học của họ]. 'Nam tính' và 'nữ tính' là các danh mục giới. Hầu hết, có thể là tất cả, mọi ngưởi đều có sự kết hợp của các đặc điểm nam tính và nữ tính. Giới thay đổi theo thời gian và giữa các nền văn hóa.",
+      "nonConformity": "<b>Không tuân thủ giới</b> xảy ra khi một ngưởi hành động hoặc thể hiện khác với những gì xã hội mong đợi họ, dựa trên giới tính của họ.",
+      "identity": "<b>Bản Dạng Giới</b> - một số ngưởi tin rằng tất cả chúng ta đều có một 'bản dạng giới' bẩm sinh - một cảm giác hoặc nhận thức sâu sắc về bản thân là nam, nữ hoặc ở giữa - tồn tại riêng biệt với giới tính sinh học của chúng ta và có thể, trong những trường hợp hiếm, khác với nó. Những ngưởi khác không tin rằng tồn tại một bản dạng giới cụ thể khác biệt với bất kỳ khía cạnh nào khác của tính cách hoặc bản sắc của một ngưởi."
+    },
+    "dysphoria": {
+      "heading": "Khủng hoảng giới tính là gì?",
+      "p1": "Khủng hoảng giới tính là một thuật ngữ chẩn đoán được cộng đồng tâm thần học và y tế sử dụng để mô tả sự đau khổ mà ai đó cảm thấy khi họ cảm thấy bản dạng giới của họ không khớp với giới tính sinh học của họ.",
+      "p2": "Ngưởi trải qua khủng hoảng giới tính báo cáo cảm giác nhận dạng mạnh mẽ, dai dẳng với một giới khác với giới tính của họ, và sự khó chịu liên quan với cơ thể có giới tính của họ. Để có chẩn đoán chính thức vào thời điểm hiện tại, những cảm giác này phải gây ra sự đau khổ đáng kể hoặc suy giảm chức năng cho ngưởi trải qua chúng."
+    },
+    "transgender": {
+      "heading": "Là ngưởi chuyển giới có nghĩa là gì?",
+      "p1": "Chuyển giới là một thuật ngữ có thể có nghĩa khác nhau đối với những ngưởi khác nhau. Ngưởi ta thường đồng ý rằng phụ nữ chuyển giới sinh ra với cơ thể nam nhưng nhận dạng là nữ, đàn ông chuyển giới sinh ra với cơ thể nữ nhưng nhận dạng là nam, và ngưởi phi nhị giới nhận dạng là không phải nam cũng không phải nữ. Ngưởi ta thường sử dụng thuật ngữ ngắn gọn hơn 'chuyển giới' để biểu thị rằng ai đó nhận dạng với một giới không giống với giới tính sinh học của họ.",
+      "p2": "Chuyển giới có thể được hiểu là i) bạn là giới tính/giới ngược lại với giới tính bạn sinh ra, ii) bạn tin rằng mình là giới tính/giới ngược lại với giới tính bạn sinh ra, hoặc iii) bạn đang sống như thể giới tính/giới của bạn ngược lại với giới tính bạn sinh ra. Các cuộc tranh luận về cách hiểu nào trong ba cách này là chính xác nhất có thể gay gắt và gây tranh cãi. Một số ngưởi cảm thấy rằng ngay cả việc thảo luận về điều đó có nghĩa là là ngưởi chuyển giới cũng đang làm suy yếu tính hợp lệ của trải nghiệm. Tuy nhiên, những niềm tin khác nhau này dẫn đến những ý tưởng khác nhau về cách tốt nhất để hỗ trợ ngưởi quản lý sự đau khổ liên quan đến giới nên các cuộc thảo luận là cần thiết để đảm bảo rằng ngưởi nhận được sự giúp đỡ và lời khuyên tốt nhất có thể."
+    },
+    "desistance": {
+      "heading": "Từ bỏ là gì?",
+      "p1": "Từ bỏ là khi ai đó từng nhận dạng là ngưởi chuyển giới nhưng không thực hiện can thiệp y tế không còn nhận dạng là ngưởi chuyển giới nữa. Mặc dù họ có thể không phải đối mặt với hệ quả của việc đã thực hiện can thiệp y tế, nhưng việc từ bỏ vẫn có thể là một quá trình đau đớn, gây nhầm lẫn và khó khăn về mặt cảm xúc."
+    },
+    "detransition": {
+      "heading": "Chuyển giới trở lại và ngưởi chuyển giới trở lại",
+      "p1": "Chuyển giới trở lại là khi ai đó từng nhận dạng là ngưởi chuyển giới và đã trải qua can thiệp y tế không còn nhận dạng là ngưởi chuyển giới nữa. Có sự khác biệt rất lớn trong trải nghiệm của những ngưởi trong nhóm này. Một số ngưởi có thể rất đau khổ vì những gì họ đã trải qua và hệ quả lâu dài, những ngưởi khác có thể xem đó là điều họ phải trải qua để hiểu bản thân họ hiện tại."
+    },
+    "regret": {
+      "heading": "Hối hận về chuyển giới",
+      "p1": "Một số ngưởi có thể đã nhận dạng là ngưởi chuyển giới trong nhiều năm và đã trải qua các can thiệp y tế như hormone và phẫu thuật đã thay đổi cơ thể họ không thể đảo ngược. Họ có thể cảm thấy hối hận về việc bắt đầu chuyển đổi giới y tế nhưng họ cũng tiếp tục nhận dạng là ngưởi chuyển giới và/hoặc tiếp tục sử dụng hormone chéo giới."
+    },
+    "source": {
+      "text": "Nguồn:",
+      "link": "The Detrans Foundation"
+    }
+  },
+  "chat": {
+    "lookingForComments": "Đang tìm bình luận liên quan...",
+    "errorOccurred": "Đã xảy ra lỗi, hãy thử lại... Liên hệ với tôi nếu điều này tiếp tục xảy ra.",
+    "analysingExperiences": "Đang Phân Tích Kinh Nghiệm",
+    "detransPerspective": "-> Quan điểm của ngưởi chuyển giới trở lại về chủ đề này là gì?",
+    "transPerspective": "-> Quan điểm của ngưởi chuyển giới về chủ đề này là gì?",
+    "backToPortal": "<- Quay lại Cổng Thông Tin"
+  },
+  "chatInput": {
+    "placeholder": "Hỏi detrans.ai...",
+    "deepResearch": "Nghiên Cứu Sâu",
+    "suggestions": "Gợi ý:"
+  },
+  "deepResearchEvents": {
+    "errorTitle": "Lỗi nghiên cứu sâu",
+    "retrieving": "Đang truy xuất kinh nghiệm chuyển giới trở lại...",
+    "generatingQuestions": "Đang tạo câu hỏi meta...",
+    "findingAnswers": "Đang tìm câu trả lời cho các câu hỏi meta",
+    "completed": "Nghiên cứu sâu đã hoàn thành",
+    "retrieveError": "Lỗi truy xuất kinh nghiệm chuyển giới trở lại!",
+    "analyzeError": "Chúng tôi đã hết tiền để trả cho AI phân tích kinh nghiệm chuyển giới trở lại và trả lời câu hỏi. Nếu bạn có thể, vui lòng quyên góp để chúng tôi có thể duy trì dịch vụ. Vui lòng thử lại sau. Hiện tại, bạn vẫn có thể thử các câu hỏi trong cổng thông tin.",
+    "generatingAnswer": "Đang tạo câu trả lời...",
+    "waitingForAnswer": "Đang chờ câu trả lời",
+    "questionsAnswered": "Đã trả lời {answered} trong số {total} câu hỏi meta",
+    "generatingSummary": "Đang tạo tóm tắt câu trả lời"
+  },
+  "questionTabs": {
+    "topics": "Chủ Đề",
+    "generated": "Được Tạo",
+    "recent": "Gần Đây",
+    "top": "Hàng Đầu"
+  },
+  "conversations": {
+    "title": "Cuộc Trò Chuyện Gần Đây",
+    "subtitle": "Xem detrans.ai đang giúp đỡ mọi ngưởi từ khắp nơi trên thế giới như thế nào.",
+    "tabs": {
+      "featured": "Nổi Bật",
+      "all": "Tất Cả"
+    },
+    "buttons": {
+      "showMore": "Hiển Thị Thêm {count} Cuộc Trò Chuyện",
+      "showLess": "Hiển Thị Ít Hơn",
+      "loadMore": "Tải Thêm Cuộc Trò Chuyện",
+      "loading": "Đang tải..."
+    }
+  },
+  "conversationCard": {
+    "untitled": "Cuộc Trò Chuyện Không Có Tiêu Đề",
+    "from": "từ",
+    "moreMessages": "{count} tin nhắn khác...",
+    "moreMessage": "{count} tin nhắn khác...",
+    "date": {
+      "today": "Hôm nay",
+      "yesterday": "Hôm qua",
+      "daysAgo": "{count} ngày trước",
+      "weeksAgo": "{count, plural, =1 {1 tuần trước} other {# tuần trước}}"
+    },
+    "admin": {
+      "deleting": "Đang xóa...",
+      "delete": "Xóa Cuộc Trò Chuyện",
+      "banning": "Đang cấm...",
+      "ban": "Cấm Ngưởi Dùng (IP)"
+    }
+  },
+  "stories": {
+    "metadata": {
+      "title": "detrans.ai | Câu Chuyện & Thống Kê Chuyển Giới Trở Lại",
+      "description": "Đọc những câu chuyện chuyển giới trở lại chân thành, dòng thời gian và xu hướng từ các thành viên của cộng đồng Reddit /r/detrans, bộ sưu tập câu chuyện chuyển giới trở lại mở lớn nhất trên internet. Tìm hiểu ngưởi chuyển giới trở lại bao nhiêu tuổi khi họ chuyển giới và chuyển giới trở lại và những con đường họ đã đi."
+    },
+    "title": "Câu Chuyện & Thống Kê Chuyển Giới Trở Lại",
+    "subtitle": "Duyệt và trực quan hóa {count} câu chuyện và thống kê chuyển giới trở lại độc đáo của những ngưởi đã chia sẻ kinh nghiệm của họ trong subreddit /r/detrans, là bộ sưu tập câu chuyện và kinh nghiệm chuyển giới trở lại mở lớn nhất trên internet.",
+    "disclaimer": {
+      "summary": "Những câu chuyện này đã được tóm tắt bằng AI.",
+      "details": "Trên Reddit, ngưởi thường chia sẻ kinh nghiệm của họ qua nhiều bình luận hoặc bài đăng. Để làm cho thông tin này dễ tiếp cận hơn, AI của chúng tôi thu thập tất cả những mảnh thông tin rải rác đó thành một bản tóm tắt và dòng thời gian dễ đọc. Tất cả lệnh hệ thống được ghi chú trên trang lệnh.",
+      "accuracy": "Đôi khi AI có thể ảo giác hoặc nói những điều không đúng sự thật. Nhưng nhìn chung, các câu chuyện tóm tắt phản ánh chính xác các bình luận gốc của ngưởi dùng.",
+      "inclusion": "Chỉ những ngưởi dùng đã chia sẻ đủ để tạo thành một câu chuyện và dòng thời gian đầy đủ mới được đưa vào. Ngưởi dùng đã đăng ít hơn năm bình luận hoặc các bình luận của họ nhận được ít hơn ba lượt upvote sẽ bị bỏ qua. Các bài đăng chưa được đưa vào tập dữ liệu.",
+      "verification": "Mỗi ngưởi dùng đã được phân tích để tìm dấu hiệu của nội dung do bot tạo ra hoặc không xác thực. Bất kỳ tài khoản nào không có vẻ là ngưởi chuyển giới trở lại thực sự sẽ được gắn cờ 'đáng ngờ'. Các tài khoản này sẽ được xem xét thủ công và loại bỏ khỏi tập dữ liệu detrans.ai nếu được tìm thấy là không xác thực. Các tài khoản đã đăng ít hơn năm bình luận đã bị loại khỏi phân tích."
+    },
+    "charts": {
+      "tabs": {
+        "age": "Tuổi",
+        "duration": "Thời Lượng",
+        "transitionReason": "Lý Do Chuyển Giới",
+        "detransitionReason": "Lý Do Chuyển Giới Trở Lại",
+        "pathways": "Con Đường"
+      },
+      "loading": "Đang tải dữ liệu biểu đồ...",
+      "error": "Lỗi: {message}",
+      "retry": "Thử lại",
+      "noData": "Không có dữ liệu lý do {mode} cho các bộ lọc đã chọn",
+      "reasonChart": {
+        "title": "Tại sao ngưởi chuyển giới trở lại nói rằng họ {mode, select, detransition {đã chuyển giới trở lại} other {đã chuyển giới}}?",
+        "subtitle": "Dữ liệu từ dòng thời gian {mode} của ngưởi dùng Reddit ({totalReasonCount} ngưởi dùng tổng cộng, {totalUsers} lý do khác nhau.)",
+        "mentions": "{count} lần nhắc đến ({percentage}%)"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Tìm kiếm kinh nghiệm ngưởi dùng...",
+      "ageRange": "Khoảng Tuổi:",
+      "ageRangeYears": "{min} - {max} tuổi",
+      "sex": {
+        "all": "Nam và Nữ",
+        "female": "Nữ",
+        "male": "Nam"
+      },
+      "tagsPlaceholder": "Chọn thẻ để lọc...",
+      "clearFilters": "Xóa Bộ Lọc"
+    },
+    "results": "Hiển thị {showing} trong số {total} câu chuyện ngưởi dùng",
+    "noResults": "Không tìm thấy ngưởi dùng phù hợp với bộ lọc của bạn.",
+    "pagination": {
+      "previous": "Trước",
+      "next": "Tiếp",
+      "pageInfo": "Trang {page} trong số {totalPages}"
+    },
+    "userCard": {
+      "comments": "{count} bình luận",
+      "postingSince": "Đăng bài từ {date}",
+      "transitionedAt": "Chuyển giới ở tuổi {age}",
+      "desistedAt": "Từ bỏ ở tuổi {age}",
+      "detransitionedAt": "Chuyển giới trở lại ở tuổi {age}",
+      "female": "nữ",
+      "male": "nam"
+    }
+  },
+  "prompts": {
+    "metadata": {
+      "title": "Cách hoạt động? | Lệnh Hệ Thống",
+      "description": "Tìm hiểu detrans.ai hoạt động như thế nào, bao gồm lệnh hệ thống, ngày cắt dữ liệu và thông tin mã nguồn mở."
+    },
+    "title": "Cách hoạt động?",
+    "intro": {
+      "paragraph1": "<bold>detrans.ai</bold> chat là một tác nhân được cung cấp bởi RAG (tạo sinh tăng cường truy xuất) tạo câu hỏi meta và trả lời chúng bằng cách hiển thị và tích hợp suy nghĩ và kinh nghiệm của ngưởi chuyển giới trở lại từ subreddit <reddit>/r/detrans</reddit> và từ YouTube. Nó được xây dựng với khung <llamaIndex>LlamaIndex</llamaIndex> và mô hình <kimi>kimi-k2.5</kimi> mã nguồn mở của Moonshot AI để giảm thiên kiến chính trị phương Tây.",
+      "paragraph2": "ChatGPT và hầu hết các LLM phương Tây khác khá quyết liệt trong cách họ quảng bá và duy trì các niềm tin về giới. Việc sử dụng các mô hình GPT của OpenAI cho dự án này đã chứng minh là không thể, vì các mô hình liên tục phá hoại và mâu thuẫn với các kinh nghiệm chuyển giới trở lại mà chúng được giao tóm tắt. Nếu bạn muốn có trải nghiệm khẳng định hơn, hãy xem <chatgpt>ChatGPT</chatgpt>."
+    },
+    "dataCutoff": {
+      "title": "Ngày Cắt Dữ Liệu",
+      "paragraph1": "<bold>detrans.ai</bold> hiện có quyền truy cập vào tất cả các bình luận trên /r/detrans được đăng trước <date>8/9/2025</date> nhận được ít nhất ba lượt upvote. Tôi sẽ cố gắng cập nhật tập dữ liệu ít nhất một lần mỗi năm miễn là subreddit /r/detrans tiếp tục tồn tại.",
+      "paragraph2": "Ngưởi dùng có thể gửi kinh nghiệm video bằng cách gửi liên kết đến video YouTube. Các video này sẽ được xem xét thủ công trước khi được phiên âm bằng mô hình chuyển giọng nói thành văn bản Whisper của OpenAI và thêm vào cơ sở dữ liệu vector và lưu trữ video."
+    },
+    "openSource": {
+      "title": "Mã Nguồn Mở",
+      "paragraph": "Mã nguồn cũng có sẵn trên <github>Github</github> theo giấy phép MIT nếu bạn muốn kiểm tra hoặc tái sử dụng bất kỳ mã nào cho dự án của riêng bạn. Dự án này cũng được xây dựng dựa trên nhiều dự án mã nguồn mở khác, chẳng hạn như Llamaindex, React, Next.js, Tailwind, Lucide, Qdrant, Postgres và Vercel AI SDK. Cảm ơn nhiều đến các đóng góp viên của những dự án này đã cung cấp một nền tảng vững chắc để xây dựng."
+    },
+    "systemPrompts": {
+      "title": "Lệnh Hệ Thống",
+      "description": "Đây là các lệnh mà hệ thống sử dụng cho quy trình RAG. Không có lệnh tùy chỉnh hoặc lớp nào khác ngoài những gì được hiển thị trên trang này.",
+      "lastUpdated": "Cập Nhật Lần Cuối",
+      "chatAgentTitle": "Lệnh Hệ Thống Tác Nhân Trò Chuyện",
+      "researchModeTitle": "Lệnh Hệ Thống cho Chế Độ Nghiên Cứu Sâu",
+      "researchAgentTitle": "Lệnh Tác Nhân Nghiên Cứu",
+      "experienceExtractionTitle": "Lệnh Trích Xuất Kinh Nghiệm",
+      "finalAnswerTitle": "Lệnh Câu Trả Lời Cuối Cùng"
+    },
+    "userSummaries": {
+      "title": "Lệnh Hệ Thống cho Tóm Tắt Ngưởi Dùng",
+      "description": "Đây là các lệnh hệ thống cho các tóm tắt ngưởi dùng được tạo.",
+      "lastUpdated": "Cập Nhật Lần Cuối",
+      "experienceReportTitle": "Báo Cáo Kinh Nghiệm Ngưởi Dùng",
+      "experienceSummaryTitle": "Tóm Tắt Kinh Nghiệm Ngưởi Dùng",
+      "generateTagsTitle": "Tạo Thẻ",
+      "extractAgesTitle": "Trích Xuất Tuổi",
+      "determineBirthSexTitle": "Xác Định Giới Tính Khi Sinh",
+      "redFlagReportTitle": "Báo Cáo Cờ Đỏ"
+    }
+  },
+  "donatePage": {
+    "title": "Duy Trì Detrans.AI Hoạt Động",
+    "description1": "Nếu bạn đánh giá cao công việc tôi đã bỏ ra cho trang web này hoặc nếu dịch vụ miễn phí này đã giúp ích cho bạn, vui lòng cân nhắc quyên góp một lần hoặc định kỳ để duy trì <b>detrans.ai</b> trực tuyến.",
+    "description2": "Tôi không thể chi trả cho một dịch vụ tốn nhiều tài nguyên như thế này nếu không có sự hỗ trợ của bạn. Nguồn thu nhập chính của tôi vào lúc này là phúc lợi chính phủ và tính đến thời điểm viết bài này tôi có ít hơn $1000 trong tài khoản ngân hàng của mình. Nếu trang web này bùng nổ, tôi có thể nhận hóa đơn hàng nghìn đô la. Nếu tôi hết tiền, khả năng đặt câu hỏi của riêng bạn và khám phá các chủ đề sâu hơn thông qua các câu hỏi tiếp theo sẽ bị vô hiệu hóa và tôi sẽ chỉ phục vụ các phản hồi đã lưu trong bộ nhớ cache cho các câu hỏi trong cổng thông tin.",
+    "description3": "Vui lòng cân nhắc quyên góp hàng tháng. Bạn có thể quyên góp bằng paypal bên dưới, trực tiếp vào tài khoản ngân hàng New Zealand của tôi hoặc bằng BTC.",
+    "bankAccount": "Tài Khoản Ngân Hàng New Zealand",
+    "accountName": "Tên",
+    "accountNumber": "Tài Khoản",
+    "swiftCode": "Mã SWIFT/BIC",
+    "bitcoin": "Địa Chỉ Bitcoin",
+    "paypal": "Quyên Góp Paypal"
+  },
+  "terms": {
+    "metadata": {
+      "title": "Chính Sách Riêng Tư | detrans.ai",
+      "description": "Tìm hiểu về chính sách riêng tư, thực hành thu thập dữ liệu và cách chúng tôi bảo vệ thông tin của bạn."
+    },
+    "title": "Chính Sách Riêng Tư",
+    "intro": "Chính Sách Riêng Tư này giải thích thông tin nào chúng tôi thu thập, tại sao chúng tôi thu thập và cách chúng tôi giữ an toàn khi bạn truy cập hoặc sử dụng dịch vụ của chúng tôi.",
+    "sections": {
+      "informationWeCollect": {
+        "title": "Thông Tin Chúng Tôi Thu Thập",
+        "chatMessages": {
+          "title": "Tin Nhắn Trò Chuyện:",
+          "content": "Chúng tôi lưu giữ tất cả hồ sơ trò chuyện cũng như các câu trả lời cho tất cả các câu hỏi được đặt trong chế độ Nghiên Cứu Sâu. Hồ sơ trò chuyện không được liên kết với địa chỉ IP của bạn hoặc bất kỳ dữ liệu nào có thể được sử dụng để xác định bạn. Hồ sơ trò chuyện có thể được phân tích và sử dụng cho mục đích nghiên cứu trong tương lai. Vui lòng tránh chia sẻ bất kỳ thông tin nhạy cảm nào."
+        },
+        "cookies": {
+          "title": "Cookie / Công Nghệ Theo Dõi:",
+          "content": "Chúng tôi <em>không</em> sử dụng cookie, thẻ pixel hoặc bất kỳ cơ chế theo dõi phía máy khách tương tự."
+        },
+        "ipAddresses": {
+          "title": "Địa Chỉ IP:",
+          "content": "Khi bạn gửi yêu cầu đến máy chủ của chúng tôi, chúng tôi lưu trữ địa chỉ IP của bạn để đếm số yêu cầu và thực thi giới hạn tốc độ ngăn chặn lạm dụng."
+        },
+        "optionalData": {
+          "title": "Dữ Liệu Tùy Chọn:",
+          "content": "Nếu bạn chọn liên hệ với chúng tôi, chúng tôi có thể thu thập thông tin bạn tự nguyện cung cấp (ví dụ: địa chỉ email, tên). Việc cung cấp thông tin này là tùy chọn trừ khi được nêu rõ ràng."
+        }
+      },
+      "legalBases": {
+        "title": "Cơ Sở Pháp Lý cho Xử Lý (khách truy cập EU/EEA)",
+        "item1": "Xử lý giới hạn tốc độ là cần thiết cho <em>lợi ích hợp pháp</em> của chúng tôi theo GDPR Điều 6(1)(f) - cụ thể là, duy trì tính khả dụng và bảo mật của dịch vụ.",
+        "item2": "Bất kỳ xử lý bổ sung nào (ví dụ: tạo tài khoản) dựa trên <em>sự đồng ý</em> hoặc <em>yêu cầu hợp đồng</em> của bạn, tùy điều kiện."
+      },
+      "dataRetention": {
+        "title": "Chúng Tôi Giữ Dữ Liệu Trong Bao Lâu",
+        "content": "Tất cả hồ sơ trò chuyện sẽ được lưu giữ. Địa chỉ IP được sử dụng để giới hạn tốc độ tự động bị xóa trong vòng vài phút sau yêu cầu cuối cùng hoặc vào cuối cửa sổ giới hạn tốc độ, tùy điều kiện nào đến trước. Thông tin tự nguyện (ví dụ: email hỗ trợ) chỉ được giữ chừng nào cần thiết để giải quyết yêu cầu của bạn hoặc thỏa mãn các nghĩa vụ pháp lý."
+      },
+      "thirdPartySharing": {
+        "title": "Chia Sẻ Bên Thứ Ba",
+        "content": "Chúng tôi có thể chọn chia sẻ hồ sơ trò chuyện ẩn danh với các nhà học thuật và nhà nghiên cứu đang tìm cách cải thiện kết quả cho ngưởi trải qua khủng hoảng giới tính. Chúng tôi chỉ tiết lộ địa chỉ IP hoặc dữ liệu khác khi được pháp luật yêu cầu hoặc để bảo vệ quyền, ngưởi dùng hoặc công chúng của chúng tôi (ví dụ: ngăn chặn gian lận, lệnh của tòa án)."
+      },
+      "security": {
+        "title": "Bảo Mật",
+        "content": "Chúng tôi sử dụng các biện pháp kỹ thuật và tổ chức theo tiêu chuẩn ngành (mã hóa TLS, kiểm soát truy cập, thiết kế đặc quyền tối thiểu) để bảo vệ dữ liệu khi truyền và lưu trữ."
+      },
+      "internationalTransfers": {
+        "title": "Chuyển Giao Quốc Tế",
+        "content": "Máy chủ của chúng tôi đặt tại Hoa Kỳ. Nếu bạn truy cập dịch vụ từ bên ngoài Hoa Kỳ, bạn hiểu rằng địa chỉ IP của bạn sẽ được truyền đến và xử lý tại Hoa Kỳ."
+      },
+      "childrensPrivacy": {
+        "title": "Riêng Tư Trẻ Em",
+        "content": "Dịch vụ của chúng tôi không hướng đến trẻ em dưới 13 tuổi và chúng tôi không cố ý thu thập thông tin cá nhân từ họ. Nếu bạn tin rằng chúng tôi đã vô tình thu thập dữ liệu như vậy, vui lòng liên hệ với chúng tôi để xóa ngay lập tức."
+      },
+      "changes": {
+        "title": "Thay Đổi Chính Sách Này",
+        "content": "Chúng tôi có thể cập nhật chính sách này theo thời gian. 'Ngày Có Hiệu Lực' ở trên sẽ thay đổi và các thay đổi quan trọng sẽ được đăng nổi bật."
+      },
+      "contact": {
+        "title": "Liên Hệ Với Chúng Tôi",
+        "content": "Nếu bạn có câu hỏi, lo ngại hoặc khiếu nại, hãy sử dụng biểu mẫu liên hệ hoặc email <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "videos": {
+    "metadata": {
+      "title": "detrans.ai | Xem Video Của Ngưởi Chuyển Giới Trở Lại",
+      "description": "Đây là một lựa chọn các hồi ký video cá nhân được tải lên YouTube bởi những ngưởi đã chuyển giới và sau đó nhận ra điều gì đó khiến họ chuyển giới trở lại. Có vô số câu chuyện như thế này trên internet, đây chỉ là một tập hợp nhỏ."
+    },
+    "title": "Video Chuyển Giới & Chuyển Giới Trở Lại",
+    "description": {
+      "line1": "Trang này nhằm mục đích là kho lưu trữ video chuyển giới trở lại tốt nhất trên internet.",
+      "line2": "Sử dụng chuyển giọng nói thành văn bản, detrans.ai tích hợp những kinh nghiệm này vào các cuộc trò chuyện.",
+      "line3": "Chỉ YouTube hiện tại, TikTok sắp tới?!"
+    },
+    "female": "nữ",
+    "male": "nam",
+    "backToAll": "Quay lại tất cả",
+    "overview": "Tổng Quan",
+    "fullSummary": "Tóm Tắt Video Đầy Đủ",
+    "watchOnYouTube": "Xem trên YouTube",
+    "moreVideos": "Thêm Video",
+    "browseAll": "Duyệt tất cả video chuyển giới trở lại",
+    "metadataWatchDescription": "Xem {title} của {author}, một ngưởi chuyển giới trở lại {sex} chia sẻ câu chuyện của họ.",
+    "metadataThumbnailAlt": "Hình thu nhỏ cho {title}"
+  },
+  "videoList": {
+    "loading": "Đang tải video...",
+    "filters": {
+      "all": "Tất Cả Câu Chuyện",
+      "female": "Nữ",
+      "male": "Nam",
+      "detransitioners": "Ngưởi Chuyển Giới Trở Lại"
+    },
+    "thumbnailAlt": "Hình thu nhỏ cho {title}",
+    "by": "bởi",
+    "female": "Nữ",
+    "male": "Nam"
+  },
+  "videoSubmitForm": {
+    "submitTitle": "Gửi Video Chuyển Giới Trở Lại Của Bạn",
+    "description": {
+      "line1": "Bằng cách gửi video của bạn, nó sẽ hiển thị trên trang này và trong các cuộc trò chuyện liên quan.",
+      "line2": "Nó có thể là video của bạn hoặc chỉ là một video bạn tìm thấy trực tuyến còn thiếu trên trang này.",
+      "line3": "Tất cả các bài gửi đều được kiểm duyệt, có thể mất vài ngày trước khi nó xuất hiện."
+    },
+    "urlLabel": "URL YouTube",
+    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "submitButton": "Gửi Video",
+    "submitting": "Đang gửi...",
+    "submitSuccess": "Video đã được gửi thành công! Nó sẽ được xem xét trước khi xuất hiện trên trang web.",
+    "submitError": "Gửi video thất bại",
+    "networkError": "Lỗi mạng. Vui lòng thử lại."
+  },
+  "studySubmitForm": {
+    "submitTitle": "Gửi Một Nghiên Cứu",
+    "description": {
+      "line1": "Bạn có biết một nghiên cứu học thuật hoặc bài báo đã được bình duyệt nào còn thiếu không?",
+      "line2": "Gửi URL và tùy chọn đề xuất tiêu đề cho nó.",
+      "line3": "Tất cả các bài gửi đều được kiểm duyệt trước khi xuất hiện trên trang web."
+    },
+    "urlLabel": "URL Nghiên Cứu",
+    "urlPlaceholder": "https://...",
+    "titleLabel": "Tiêu Đề Đề Xuất",
+    "titlePlaceholder": "Tiêu đề tùy chọn cho nghiên cứu",
+    "titleHelp": "Tùy chọn: Đề xuất tiêu đề ngắn gọn cho nghiên cứu này",
+    "submitButton": "Gửi Nghiên Cứu",
+    "submitting": "Đang gửi...",
+    "submitSuccess": "Nghiên cứu đã được gửi thành công! Nó sẽ được xem xét trước khi xuất hiện trên trang web.",
+    "submitError": "Gửi nghiên cứu thất bại",
+    "networkError": "Lỗi mạng. Vui lòng thử lại."
+  },
+  "studiesPage": {
+    "metadata": {
+      "title": "detrans.ai | Các Nghiên Cứu Học Thuật Về Chủ Đề Chuyển Giới Trở Lại",
+      "description": "Tìm trên trang này một lựa chọn các nghiên cứu học thuật, bài báo tạp chí đã được bình duyệt và thống kê đã được xác minh liên quan đến xu hướng bản dạng giới và chuyển giới trở lại.",
+      "ogTitle": "detrans.ai | Các Nghiên Cứu Học Thuật Về Chủ Đề Chuyển Giới Trở Lại",
+      "ogDescription": "Tìm trên trang này một lựa chọn các nghiên cứu học thuật, bài báo tạp chí đã được bình duyệt và thống kê đã được xác minh liên quan đến xu hướng bản dạng giới và chuyển giới trở lại."
+    },
+    "title": "Các Bài Báo Học Thuật Được Chọn",
+    "description": "Các nghiên cứu học thuật, nghiên cứu đã được bình duyệt và bài báo tạp chí về các chủ đề bản dạng giới, chuyển giới và chuyển giới trở lại."
+  },
+  "contentWarning": {
+    "title": "Cảnh Báo Nội Dung:",
+    "description": {
+      "line1": "Trang web này chứa các câu chuyện, kinh nghiệm và quan điểm từ những ngưởi từng là ngưởi chuyển giới.",
+      "line2": "Các chủ đề bao gồm hối hận về chuyển giới, biến chứng y tế và quan điểm toàn diện về khủng hoảng giới tính.",
+      "line3": "Thông tin này có thể thách thức các niềm tin phổ biến về bản dạng giới và chuyển giới."
+    },
+    "buttons": {
+      "exit": "Đưa tôi ra khỏi đây!",
+      "continue": "Tiếp Tục"
+    }
+  },
+  "supportPage": {
+    "metadata": {
+      "title": "detrans.ai | Nhận Trợ Giúp và Hỗ Trợ Giới Tính",
+      "description": "Tìm hiểu sự khác biệt giữa Chăm Sóc Khẳng Định Giới và Liệu Pháp Khám Phá Giới. Nếu bạn đang trải qua khủng hoảng giới tính, một trong những cách tốt nhất để nhận được hỗ trợ là nói chuyện và hiểu quan điểm của những ngưởi đã từng ở đó và vượt qua."
+    },
+    "title": "Nhận Trợ Giúp & Hỗ Trợ Giới Tính",
+    "navigation": {
+      "jumpTo": "Chuyển đến:",
+      "getGenderSupport": "Nhận Hỗ Trợ Giới Tính:"
+    },
+    "sections": {
+      "onlineSupport": {
+        "title": "Nhóm Hỗ Trợ Trực Tuyến",
+        "description": "Nếu bạn đang trải qua khủng hoảng giới tính, một trong những cách tốt nhất để nhận được hỗ trợ là nói chuyện và hiểu quan điểm của những ngưởi đã từng ở đó và vượt qua.",
+        "links": {
+          "redditCommunity": "Cộng Đồng Detrans trên Reddit",
+          "redditWiki": "Wiki Detrans trên Reddit",
+          "discordServer": "Máy Chủ Discord Chính Thức /r/detrans",
+          "askDetransAI": "Hỏi 50,000+ ngưởi chuyển giới trở lại với detrans.ai"
+        }
+      },
+      "genderAffirmingCare": {
+        "title": "Chăm Sóc Khẳng Định Giới: Nó là gì?",
+        "description": "Chăm sóc khẳng định giới hiện là tiêu chuẩn (và thường là lựa chọn duy nhất) cho điều trị khủng hoảng giới được cung cấp bởi các nhà cung cấp dịch vụ chăm sóc sức khỏe trên thế giới phương Tây. Chăm sóc khẳng định giới về cơ bản công nhận các kỳ vọng mang tính giới của xã hội và sau đó thích ứng bệnh nhân với chúng. Đó là một cách tiếp cận theo giai đoạn bắt đầu bằng chuyển đổi xã hội (tên, đại từ, trang phục), sau đó là liệu pháp hormone, và sau đó đối với một số ngưởi, các thủ thuật phẫu thuật không thể đảo ngược. Chăm sóc khẳng định giới có thể cung cấp sự giảm nhẹ cho khủng hoảng giới tính nhưng nó đi kèm với các rủi ro sức khỏe nghiêm trọng và thường là các tác dụng phụ vĩnh viễn. Tiến hành với sự thận trọng cực độ và đảm bảo bạn",
+        "watchTestimonies": "xem một số lời chứng thực"
+      },
+      "genderExploratoryTherapy": {
+        "title": "Liệu Pháp Khám Phá Giới: Nó là gì?",
+        "description1": "Liệu Pháp Khám Phá Giới đơn giản có nghĩa là nhà trị liệu của bạn không vội vàng khẳng định và y tế hóa bạn. Thay vào đó họ sẽ bắt đầu bằng cách khám phá các khái niệm về giới và tại sao bạn có thể cảm thấy như vậy. Liệu Pháp Khám Phá Giới là một cách tiếp cận không có chương trình nghị sự cụ thể, định trước, và kết quả của liệu pháp khám phá giới có thể khác nhau tùy thuộc vào từng cá nhân.",
+        "description2": "Nếu bạn Google 'Liệu Pháp Khám Phá Giới', bạn sẽ tìm thấy một số phê bình so sánh nó với liệu pháp chuyển đổi đồng tính (được chứng minh là không hiệu quả). Sự thật là Liệu Pháp Khám Phá Giới rất khác với liệu pháp chuyển đổi đồng tính:",
+        "references": {
+          "title": "Tài Liệu Tham Khảo",
+          "ref1": "U.S. Dept. of Health & Human Services (2025). Report on Pediatric Gender Dysphoria and Gender Conversion Efforts.",
+          "ref2": "D'Angelo, R. (2025). 'Supporting autonomy in young people with gender dysphoria: psychotherapy is not conversion therapy.' Journal of Medical Ethics, 51(1).",
+          "ref3": "Lemma, A. & Schmidt, L. (2024). 'Psychodynamic Psychotherapy for Gender Dysphoria is not Conversion Therapy.' Frontiers in Psychology.",
+          "ref4": "Korte, A. et al. (2021). 'One Size Does Not Fit All: In Support of Psychotherapy for Gender Dysphoria.' Archives of Sexual Behavior."
+        },
+        "florenceAshley": {
+          "title": "Nghiên Cứu Florence Ashley",
+          "description": "Nghiên cứu học thuật trong lĩnh vực này thường có thiên kiến. Một trong những nghiên cứu có ảnh hưởng nhất (Interrogating Gender-Exploratory Therapy) được công bố vào năm 2022 bởi Florence Ashley, một phụ nữ chuyển giới. Trong nghiên cứu của cô ấy, cô ấy đã so sánh Liệu Pháp Khám Phá Giới với liệu pháp chuyển đổi đồng tính và lên án mạnh mẽ thực hành này. Cần phải nhận ra rằng những ngưởi nhận dạng là chuyển giới có động lực để bảo vệ bản sắc và niềm tin của họ, và nghiên cứu này là một ví dụ hoàn hảo về điều này. Nghiên cứu đầy các lỗi logic, nhưng nó vẫn được công bố và được sử dụng làm cơ sở học thuật để chăm sóc khẳng định giới là lựa chọn duy nhất cho ngưởi trải qua khủng hoảng giới tính.",
+          "showFallacies": "Xem tất cả các lỗi logic trong nghiên cứu của Florence Ashley"
+        }
+      },
+      "findTherapist": {
+        "title": "Tôi có thể tìm nhà trị liệu thực hành liệu pháp khám phá giới ở đâu?",
+        "languageNotice": "Hầu hết các nhà trị liệu được liệt kê chỉ nói tiếng Anh, nhưng bạn vẫn có thể thử liên hệ với họ để tìm ngưởi nói ngôn ngữ của bạn. Nếu bạn biết một nhà trị liệu được cấp phép nói ngôn ngữ của bạn, bạn có thể đề xuất thêm họ vào trang này thông qua",
+        "contactForm": "biểu mẫu liên hệ",
+        "organizations": {
+          "justTherapy": {
+            "name": "Just Therapy",
+            "description": "Just Therapy ra đời từ mong muốn quay lại những gì trị liệu nên là - hiệu quả, đạo đức và không bị ảnh hưởng bởi ý thức hệ. Đó là một hiệp hội các nhà trị liệu và cố vấn được thống nhất bởi các đạo đức và nguyên tắc chung. Just Therapy nhận ra rằng phần lớn thế giới trị liệu tâm lý và tư vấn đã bị những ngưởi hoạt động và ý thức hệ chiếm lĩnh, có nguy cơ gây hại hơn là hỗ trợ sức khỏe tâm thần của khách hàng. Các thành viên của nó, đến từ nhiều chuyên ngành và lĩnh vực khác nhau, đã ký Bộ Quy Tắc Ứng Xử.",
+            "directory": "Danh Bạ Nhà Trị Liệu Just Therapy",
+            "codeOfConduct": "Bộ Quy Tắc Ứng Xử Just Therapy"
+          },
+          "therapyFirst": {
+            "name": "Therapy First",
+            "description": "Therapy First thống nhất các chuyên gia sức khỏe tâm thần tin rằng khách hàng có sự đau khổ về giới xứng đáng được điều trị tâm lý mở, dựa trên bằng chứng khám phá các yếu tố vô thức và bối cảnh trước bất kỳ bước y tế không thể đảo ngược nào; họ từ chối cả thực hành chuyển đổi và mô hình 'chỉ khẳng định', duy trì quyền tự chủ của khách hàng, và coi việc chuyển giới y tế ở trẻ em/thanh thiếu niên là thử nghiệm, trong khi vẫn hỗ trợ quyền tự chủ cơ thể của ngưởi trưởng thành và tiếp tục khám phá trị liệu.",
+            "directory": "Danh Bạ Nhà Trị Liệu Therapy First",
+            "about": "Giới Thiệu Therapy First"
+          },
+          "beyondTrans": {
+            "name": "Beyond Trans",
+            "description": "Stella O'Malley đã khởi xướng Mạng Lưới Hỗ Trợ Khủng Hoảng Giới Tính vào tháng 3 năm 2020 để giúp đỡ cha mẹ không thiên vị với trẻ em có sự đau khổ về giới; nó nhanh chóng phát triển thành một cộng đồng toàn cầu, thúc đẩy việc tạo ra Genspect vào năm 2021, một ngưởi ủng hộ chăm sóc không y tế hóa. Nhận ra sự gia tăng của hối hận về chuyển giới, nhóm đã bắt đầu Beyond Trans vào năm 2022, và vào tháng 6 năm 2025 sáp nhập nó với GDSN để tạo thành một mạng lưới hỗ trợ tích hợp, dựa trên bằng chứng cho gia đình, cá nhân và ngưởi chuyển giới trở lại.",
+            "directory": "Danh Bạ Nhà Trị Liệu Beyond Trans",
+            "supportGroups": "Nhóm Hỗ Trợ Beyond Trans",
+            "about": "Giới Thiệu Beyond Trans"
+          },
+          "detransFoundation": {
+            "name": "The Detrans Foundation",
+            "description": "The Detrans Foundation cung cấp tài nguyên và hỗ trợ cho ngưởi chuyển giới trở lại, bao gồm quyền truy cập vào các nhà trị liệu đủ trình độ hiểu về kinh nghiệm chuyển giới trở lại. Các nhà trị liệu sau là một phần của Detrans foundation:",
+            "drEntwistle": "là Nhà Tâm Lý Học Lâm Sàng từng làm việc tại dịch vụ phát triển bản dạng giới NHS cho ngưởi dưới 18 tuổi ở Leeds. Cô ấy được đăng ký với Hội Đồng Nghề Nghiệp Chăm Sóc Sức Khỏe Vương Quốc Anh (HCPC) và cung cấp tư vấn trực tuyến qua cuộc gọi video an toàn.",
+            "anastassisSpiliadis": "là Nhà Trị Liệu Hệ Thống & Gia Đình từng làm việc bốn năm tại Dịch Vụ Phát Triển Bản Dạng Giới tại Tavistock, nơi anh ấy lãnh đạo Dịch Vụ Trị Liệu Gia Đình & Tư Vấn. Anh ấy từ chức khỏi Tavistock vì anh ấy không đồng ý với việc thiếu mô hình trị liệu trong việc hiểu các khó khăn về bản dạng giới. Anh ấy đã phát triển Mô Hình Khám Phá Giới và có kinh nghiệm rộng rãi làm việc với các cá nhân đặt câu hỏi về giới và ngưởi chuyển giới trở lại.",
+            "visitWebsite": "Truy cập trang web Detrans Foundation"
+          }
+        }
+      },
+      "forParents": {
+        "title": "Tài Nguyên Cho Cha Mẹ",
+        "intro": "Nếu con bạn vừa công khai là ngưởi chuyển giới, bạn có thể cảm thấy bối rối, lo lắng và không chắc chắn cách hỗ trợ họ tốt nhất trong khi cũng bảo vệ sức khỏe và phúc lợi lâu dài của họ.",
+        "rogdRepair": {
+          "name": "Chương Trình ROGD Repair của Stephanie Winn",
+          "whatIs": "ROGD Repair là gì?",
+          "description1": "ROGD Repair là:",
+          "bullet1": "Một chương trình giúp cha mẹ của thanh thiếu niên nhận dạng là chuyển giới giao tiếp theo cách thúc đẩy sự từ bỏ, tư duy phản biện, sức khỏe và hòa hợp quan hệ",
+          "bullet2": "Một bộ công cụ tâm lý và kỹ năng giao tiếp tương tác và không ngừng mở rộng được trau dồi qua nhiều năm với tư cách là Nhà Trị Liệu Hôn Nhân và Gia Đình được Cấp Phép trở thành huấn luyện viên cha mẹ ROGD",
+          "bullet3": "Một khóa học trực tuyến tự điều chỉnh tốc độ chứa hơn 100 bài học, mỗi bài chứa video, bài luận và câu hỏi suy ngẫm được thiết kế để giúp ngưởi tham gia cá nhân hóa nội dung cho tình huống gia đình độc đáo của họ, cũng như các diễn đàn thảo luận",
+          "description2": "Các thành viên ROGD Repair mới hiện đi kèm với quyền truy cập không giới hạn vào RepairBot, công cụ AI đầu tiên và duy nhất được thiết kế đặc biệt để giúp cha mẹ không khẳng định của thanh thiếu niên có sự đau khổ về giới. RepairBot được đào tạo trên toàn bộ chương trình giảng dạy ROGD Repair và đóng vai trò là một nguồn tham khảo tuyệt vời, ngưởi bạn học tập và trợ giúp công cụ giao tiếp!",
+          "ctaBox": {
+            "title": "Con bạn nói họ 'chuyển giới', nhưng bạn chỉ muốn họ khỏe mạnh và an toàn.",
+            "description1": "Sức khỏe và tương lai của con bạn đang bị đe dọa, nhưng khả năng và ảnh hưởng của bạn có hạn. Có lẽ chúng đã bắt đầu hormone chợ đen sau lưng bạn, hoặc bỏ đi trong tức giận khi bạn 'gọi sai giới', hoặc đang ở xa tại một trường đại học 'khẳng định'. Bạn cần giao tiếp hiệu quả trong tình huống khó khăn này, trước khi ai đó bị tổn thương. Đó là nơi ROGD Repair xuất hiện.",
+            "description2": "ROGD Repair là một khóa học trực tuyến tự điều chỉnh tốc độ và cộng đồng cho cha mẹ dạy các khái niệm tâm lý và công cụ giao tiếp bạn cần để hiểu trạng thái tâm thần của con bạn và cách tiếp cận chúng. Thành viên hiện bao gồm RepairBot, trợ lý AI 24/7 của bạn được đào tạo trên cách tiếp cận.",
+            "description3": "ROGD Repair và RepairBot được tạo ra bởi một Nhà Trị Liệu Hôn Nhân và Gia Đình được Cấp Phép với hơn một thập kỷ kinh nghiệm làm việc với thanh thiếu niên nhận dạng là chuyển giới và gia đình của họ, ngưởi hiện chỉ hướng dẫn cha mẹ biết rằng phải có một con đường tốt hơn 'khẳng định.'"
+          },
+          "coupon": "Sử dụng mã giảm giá này để được",
+          "couponCode": "DETRANSAI",
+          "learnMore": "Tìm hiểu thêm và đăng ký ROGD Repair"
+        }
+      }
+    },
+    "table": {
+      "gayConversion": "Liệu pháp chuyển đổi đồng tính",
+      "genderExploratory": "Liệu pháp khám phá giới",
+      "goal": "Mục tiêu",
+      "goalConversion": "Thay đổi xu hướng tính dục vì nó được xem là bệnh lý.",
+      "goalExploratory": "Hiểu ý nghĩa của sự đau khổ về giới; kết quả có thể là chuyển giới, không chuyển giới hoặc chuyển đổi xã hội một phần.",
+      "method": "Phương pháp",
+      "methodConversion": "Xấu hổ, ác cảm, điều kiện hóa hành vi, cầu nguyện.",
+      "methodExploratory": "GET tương thích với nhiều phương thức trị liệu khác nhau, chẳng hạn như các kỹ thuật tâm lý động hoặc nhân văn tiêu chuẩn - câu hỏi mở, tò mò, không có điểm kết thúc định trước.",
+      "evidence": "Cơ sở bằng chứng",
+      "evidenceConversion": "Liên tục cho thấy hại; mọi cơ quan y tế lớn đều lên án nó.",
+      "evidenceExploratory": "Chưa có RCT nào, nhưng tương đồng với các liệu pháp làm giảm lo âu, trầm cảm, tự hại; không có dữ liệu cho thấy hại có hệ thống.",
+      "ethics": "Đạo đức",
+      "ethicsConversion": "Vi phạm quyền tự chủ bằng cách thúc đẩy bản sắc dị tính là lựa chọn đúng duy nhất.",
+      "ethicsExploratory": "Tìm cách mở rộng quyền tự chủ bằng cách đảm bảo thanh thiếu niên (và gia đình) hiểu tất cả các lựa chọn trước các bước không thể đảo ngược."
+    },
+    "fallacies": {
+      "title": "Các Lỗi Logic Trong Nghiên Cứu Của Florence Ashley",
+      "name": "Tên Lỗi",
+      "explanation": "Giải Thích Đơn Giản",
+      "example": "Ví Dụ Từ Bài Báo"
+    }
+  },
+  "charts": {
+    "ageDistribution": {
+      "title": "Ngưởi chuyển giới trở lại bao nhiêu tuổi khi họ chuyển giới và chuyển giới trở lại?",
+      "subtitle": "Dữ liệu từ dòng thời gian chuyển giới của ngưởi dùng Reddit",
+      "loading": "Đang tải dữ liệu biểu đồ...",
+      "fetchError": "Không thể tải dữ liệu phân phối tuổi",
+      "genericError": "Đã xảy ra lỗi",
+      "errorPrefix": "Lỗi:",
+      "noData": "Không có dữ liệu cho khoảng tuổi đã chọn",
+      "tooltip": {
+        "age": "Tuổi: {age}",
+        "transitioned": "Đã chuyển giới: {count} ngưởi dùng",
+        "detransitioned": "Đã chuyển giới trở lại: {count} ngưởi dùng"
+      },
+      "axis": {
+        "age": "Tuổi",
+        "users": "Số Ngưởi Dùng"
+      },
+      "legend": {
+        "transition": "Tuổi Chuyển Giới",
+        "detransition": "Tuổi Chuyển Giới Trở Lại"
+      }
+    },
+    "transitionDuration": {
+      "title": "Thời Lượng Chuyển Giới: Tuổi Khi Chuyển Giới vs Tuổi Khi Chuyển Giới Trở Lại",
+      "description": {
+        "line1": "Mỗi điểm hiển thị tuổi chuyển giới (X) so với tuổi chuyển giới trở lại (Y).",
+        "line2": "Các điểm lớn hơn, mờ hơn đại diện cho nhiều ngưởi dùng hơn."
+      },
+      "loading": "Đang tải dữ liệu biểu đồ...",
+      "noData": "Không có dữ liệu cho khoảng tuổi đã chọn",
+      "axis": {
+        "transitionAge": "Tuổi Khi Chuyển Giới",
+        "detransitionAge": "Tuổi Khi Chuyển Giới Trở Lại"
+      },
+      "tooltip": {
+        "transitionAge": "Tuổi Chuyển Giới",
+        "detransitionAge": "Tuổi Chuyển Giới Trở Lại",
+        "duration": "Thời Lượng",
+        "years": "năm"
+      },
+      "male": "Nam",
+      "female": "Nữ",
+      "yearsAvg": "năm TB",
+      "user": "ngưởi dùng",
+      "users": "ngưởi dùng"
+    },
+    "pathways": {
+      "title": "Dòng Chảy Các Con Đường Chuyển Giới Trở Lại",
+      "subtitle": "Dòng chảy nhân khẩu học ngưởi dùng Reddit /r/detrans đến kết quả chuyển giới trở lại",
+      "loading": "Đang tải dữ liệu đường...",
+      "fetchError": "Không thể tải dữ liệu phân phối thẻ",
+      "genericError": "Đã xảy ra lỗi",
+      "error": "Lỗi",
+      "users": "{count} ngưởi dùng",
+      "percentageOfTotal": "{percentage}% tổng",
+      "totalUsers": "Tổng ngưởi dùng",
+      "flowConnections": "Kết nối dòng chảy",
+      "male": "Nam",
+      "female": "Nữ",
+      "noData": "Không có dữ liệu đường cho các bộ lọc đã chọn"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Liên Hệ | detrans.ai",
+      "description": "Liên lạc với chúng tôi. Gửi suy nghĩ, đề xuất hoặc phản hồi của bạn."
+    },
+    "title": "Biểu Mẫu Liên Hệ",
+    "intro": "Nếu bạn có bất kỳ suy nghĩ, đề xuất nào, hoặc nếu dịch vụ miễn phí này đã giúp ích cho bạn, gia đình hoặc bạn bè của bạn, tôi rất muốn được nghe từ bạn. Hãy gửi tin nhắn cho tôi bên dưới!",
+    "form": {
+      "to": "Đến",
+      "name": "Họ tên",
+      "namePlaceholder": "Tên của bạn",
+      "email": "Email",
+      "emailPlaceholder": "ban@example.com",
+      "subject": "Tiêu đề",
+      "subjectPlaceholder": "Tiêu đề",
+      "message": "Tin nhắn",
+      "messagePlaceholder": "Viết tin nhắn của bạn...",
+      "sendButton": "Gửi Tin Nhắn",
+      "sending": "Đang gửi...",
+      "success": "Đã gửi tin nhắn!",
+      "error": "Gửi thất bại."
+    }
+  },
+  "seo": {
+    "conversations": {
+      "title": "Lưu Trữ Cuộc Trò Chuyện",
+      "description": "Duyệt qua các cuộc trò chuyện về bản dạng giới, chuyển giới trở lại, chăm sóc khẳng định giới và sự khẳng định.",
+      "conversations": "Các Cuộc Trò Chuyện",
+      "featuredConversations": "Các Cuộc Trò Chuyện Nổi Bật",
+      "allConversations": "Tất Cả Các Cuộc Trò Chuyện",
+      "untitled": "Cuộc Trò Chuyện Không Có Tiêu Đề",
+      "noSummary": "Không có tóm tắt",
+      "noConversations": "Không có cuộc trò chuyện nào.",
+      "mode": "Chế Độ",
+      "updated": "Cập Nhật",
+      "featured": "Nổi Bật",
+      "conversationSummary": "Tóm Tắt Cuộc Trò Chuyện",
+      "noSummaryAvailable": "Không có tóm tắt cho cuộc trò chuyện này.",
+      "conversation": "Cuộc Trò Chuyện",
+      "unableToParse": "Không thể phân tích tin nhắn cuộc trò chuyện.",
+      "archiveNote": "Đây là một cuộc trò chuyện từ lưu trữ của chúng tôi. Để xem cuộc trò chuyện đầy đủ và tham gia thảo luận, vui lòng truy cập phiên bản tương tác của trang này.",
+      "welcomeTitle": "Chào Mừng Đến Với Lưu Trữ Cuộc Trò Chuyện",
+      "welcomeDescription": "Chọn một cuộc trò chuyện từ thanh bên để xem chi tiết. Lưu trữ này chứa các cuộc thảo luận về bản dạng giới, kinh nghiệm chuyển giới trở lại và hành trình khẳng định.",
+      "featuredDescription": "Các cuộc thảo luận được đánh dấu bởi cộng đồng của chúng tôi",
+      "allDescription": "Duyệt qua tất cả các cuộc thảo luận có sẵn",
+      "footer": "Trang này cung cấp nội dung thân thiện với SEO cho công cụ tìm kiếm và bot. Để có trải nghiệm tương tác đầy đủ, vui lòng truy cập bằng trình duyệt web hiện đại.",
+      "user": "Ngưởi Dùng"
+    },
+    "chat": {
+      "subtitle": "Câu hỏi và câu trả lời cho ngưởi đang đặt câu hỏi về bản dạng giới của họ.",
+      "freedomMessage": "Sự thật là không tuân thủ giới sẽ giải phóng tất cả chúng ta!",
+      "moreQuestions": "Thêm câu hỏi liên quan đến \"{question}\""
+    },
+    "videos": {
+      "title": "Video Chuyển Giới & Chuyển Giới Trở Lại",
+      "description": "Đây là một kho lưu trữ các video chuyển giới trở lại cá nhân được tải lên internet. Hãy lên tiếng bằng cách đóng góp và chia sẻ câu chuyện của chính bạn!",
+      "thumbnailAlt": "Hình thu nhỏ cho",
+      "by": "bởi",
+      "female": "Nữ",
+      "male": "Nam"
+    }
+  },
+  "routes": {
+    "home": "/",
+    "about": "/gioi-thieu",
+    "contact": "/lien-he",
+    "support": "/ho-tro",
+    "videos": "/video",
+    "stories": "/cau-chuyen",
+    "studies": "/nghien-cuu",
+    "definitions": "/dinh-nghia",
+    "donate": "/quyen-gop",
+    "terms": "/dieu-khoan",
+    "prompts": "/lenh",
+    "participate": "/tham-gia",
+    "conversations": "/cuoc-tro-chuyen",
+    "research": "/nghien-cuu",
+    "chat": "/tro-chuyen",
+    "login": "/dang-nhap"
+  }
+}

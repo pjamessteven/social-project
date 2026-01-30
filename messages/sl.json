@@ -1,0 +1,805 @@
+{
+  "metadata": {
+    "title": "detrans.ai | Pogovor z več kot 50.000 detranzicionarji",
+    "description": "Detrans.ai je koristen in sočuten klepetalni robot, ki deli izkušnje in perspektive ljudi, ki so se detranzicionirali. Uporabite detrans.ai za podporo pri tranziciji ali detranziciji ter nasvete, ali pa preprosto kot raziskovalno orodje za razumevanje, zakaj nekateri ljudje sprejmejo, živijo in se odpovedo spolnim identitetam."
+  },
+  "home": {
+    "title": "Pogovor z več kot 50.000 detranzicionarji",
+    "subtitle": "Perspektive z druge strani",
+    "intro": {
+      "greeting": "Pozdravljeni! Kaj je detranzicionar?",
+      "response": "Pozdravljeni! Jaz sem detrans.ai – kolektivna zavest detranzicionarjev 🦎",
+      "definition": "Detranzicionar je bivši transgender oseba, ki je družbeno ali medicinsko prešla v drugi spol, vendar se več ne identificira kot transgender in je morda povrnila nekatere vidike svoje tranzicije.",
+      "description": "Opazujem razloge, vzorce in resnice, zakaj nekateri ljudje sprejmejo, živijo in se premaknejo naprej od spolnih identitet, tako da berem zgodbe in izkušnje, objavljene v podreddit-u /r/detrans, in gledam videe o detranziciji, naložene na YouTube.",
+      "purpose": "Moj namen je deliti to znanje, da bi dekonstruirali spol ter raziskali, kako te izkušnje oblikujejo odnos človeka s samim seboj, s svojim telesom in s svetom.",
+      "helpPrompt": "Kako vam lahko danes pomagam?"
+    },
+    "starters": {
+      "lizardQuestion": {
+        "display": "Oprosite, ampak kaj je s kuščarji?",
+        "full": "Zakaj detranzicionarji uporabljajo kuščarje, da bi se predstavili na spletu?"
+      },
+      "curious": {
+        "display": "Radoveden/-a sem, zakaj se nekateri ljudje detranzicionirajo",
+        "full": "Radoveden/-a sem, zakaj se nekateri ljudje detranzicionirajo in kakšne spoznave so morali doseči, da so prišli do te točke."
+      },
+      "questioningTrans": {
+        "display": "Raziskujem svojo spolno identiteto in mislim, da bi lahko bil/-a trans",
+        "full": "Raziskujem svojo spolno identiteto in mislim, da bi lahko bil/-a trans"
+      },
+      "thinkingDetrans": {
+        "display": "Trenutno se identificiram kot trans in razmišljam o detranziciji",
+        "full": "Trenutno se identificiram kot trans in razmišljam o detranziciji"
+      },
+      "familyMember": {
+        "display": "Sem starš, družinski član ali prijatelj/-ica nekoga, ki prehaja v drugi spol",
+        "full": "Sem starš, družinski član ali prijatelj/-ica nekoga, ki prehaja v drugi spol"
+      },
+      "researcher": {
+        "display": "Sem raziskovalec/-ka, ki preučuje spolno identiteto in izkušnje detranzicije",
+        "full": "Sem raziskovalec/-ka, ki preučuje spolno identiteto in izkušnje detranzicije"
+      },
+      "learnChallenges": {
+        "display": "Želim izvedeti o težavah in izzivih, s katerimi se soočajo detranzicionarji",
+        "full": "Želim izvedeti o težavah in izzivih, s katerimi se soočajo detranzicionarji"
+      },
+      "understandTransition": {
+        "display": "Želim razumeti, zakaj so se detranzicionarji odločili za tranzicijo",
+        "full": "Želim razumeti razloge, zakaj so se detranzicionarji odločili za tranzicijo, in kako se ti razlogi razlikujejo med moškimi in ženskami."
+      },
+      "debunkMisinfo": {
+        "display": "Želim, da ovržete napačne informacije in pogosto zmotna prepričanja o detranziciji",
+        "full": "Prosim, ovrzite vse napačne informacije in pogosto zmotna prepričanja o detranzicionarjih, čim podrobneje."
+      }
+    },
+    "navigation": {
+      "videos": "Videi o detranziciji",
+      "stories": "Zgodbe",
+      "storiesFull": "Zgodbe in statistika",
+      "support": "Pomoč in podpora",
+      "definitions": "Spolna terminologija",
+      "studies": "Akademske študije",
+      "studiesShort": "Študije",
+      "howItWorks": "Kako deluje"
+    },
+    "deepResearch": {
+      "title": "Način globoke raziskave",
+      "description": "Način globoke raziskave razširi vaše vprašanje, da vam da odgovor, ki pristopa k temi z različnih zornih kotov.",
+      "note": "Globoka raziskava je počasnejša in ni pogovorne narave. Za klepet jo izklopite."
+    },
+    "disclaimer": {
+      "trigger": "Izkušnje in perspektive na tem spletnem mestu so črpane z Reddita.",
+      "title": "Zavrnitev odgovornosti glede virov",
+      "content": "Detrans.ai odgovarja na vprašanja o spolu z detranz perspektivo, tako da poišče relevantne izkušnje iz skupnosti /r/detrans na Redditu. Čeprav je Reddit platforma, kjer resnični ljudje delijo osebne zgodbe, lahko vsebuje tudi vsebino, ustvarjeno s strani botov ali zavajajočo vsebino. Priporočamo vam, da si ogledate izvirne objave na Redditu, da preverite vir in kontekst. Upoštevajte, da je /r/detrans močno moderiran podreddit, vendar moderiranje ne zagotavlja točnosti ali pristnosti vsake objave."
+    },
+    "donate": {
+      "title": "Podprite naše delo",
+      "description": "Pomagajte nam ohraniti ta vir na voljo tistim, ki ga najbolj potrebujejo.",
+      "button": "Donirajte",
+      "card": {
+        "title": "Potrebne so donacije, da {site} ostane živ!",
+        "description": "Če cenite to brezplačno storitev, razmislite o donaciji.",
+        "description2": "Spletno mesto bo delovalo v načinu samo predpomnjenja, če mi zmanjka denarja, brez možnosti zastavljanja lastnih vprašanj.",
+        "button": "Naredite donacijo"
+      }
+    },
+    "participate": {
+      "card": {
+        "title": "Ste detranzicionar ali desister?",
+        "description": "Sodelujte v študijah, da bi pomagali izboljšati znanstveno razumevanje transgender identitet",
+        "description2": "in izboljšati rezultate za ljudi, ki doživljajo spolno nelagodje."
+      },
+      "title": "Delite svojo zgodbo",
+      "description": "Vaša izkušnja lahko pomaga drugim razumeti zapletenost spolne identitete.",
+      "button": "Sodelujte"
+    },
+    "footer": {
+      "poem": {
+        "line1": "Svoboden/-a si lahko postaneš,",
+        "line2": "Vse, kar moraš storiti, je preprosto biti.",
+        "line3": "In pazi na svoje misli!",
+        "line4": "Ker je um kot vrt,",
+        "line5": "In vsaka misel je seme.",
+        "line6": "Žanjemo, kar sejemo,",
+        "line7": "Toda skozi to lahko rastemo..."
+      },
+      "openSource": "Odprtokodni projekt avtorja",
+      "madeWithLove": "Narejeno z ljubeznijo v Wellingtonu, Nova Zelandija",
+      "donatePrompt": "Prosim, donirajte, če lahko,",
+      "beKind": "In bodite prijazni med seboj."
+    },
+    "browseConversations": "Brskajte po vseh pogovorih"
+  },
+  "header": {
+    "navigation": {
+      "home": "Domov",
+      "resources": "Viri",
+      "about": "O nas"
+    },
+    "resources": {
+      "genderSupport": "Spolna podpora",
+      "genderSupportDesc": "Poiščite skupnost in terapevte",
+      "terminology": "Terminologija",
+      "terminologyDesc": "Opredelitev ključnih izrazov/konceptov",
+      "stories": "Zgodbe in statistika",
+      "storiesDesc": "Od uporabnikov /r/detrans",
+      "videos": "Videi o detranziciji",
+      "videosDesc": "Arhiv osebnih spominov",
+      "studies": "Recenzirane študije",
+      "studiesDesc": "Relevantne akademske raziskave",
+      "statistics": "Preverjena statistika",
+      "statisticsDesc": "statsforgender.org"
+    },
+    "about": {
+      "contact": "Kontakt",
+      "contactDesc": "Stopite v stik z mano",
+      "systemPrompts": "Sistemski pozivi",
+      "systemPromptsDesc": "Oglejte si sistemske pozive umetne inteligence",
+      "terms": "Pogoji",
+      "termsDesc": "Politika zasebnosti in pogoji"
+    },
+    "donate": "Donirajte",
+    "language": {
+      "title": "Jezik"
+    }
+  },
+  "language": {
+    "title": "Jezik",
+    "select": "Izberite jezik",
+    "search": "{count} jezikov",
+    "en": "Angleščina",
+    "es": "Španščina",
+    "fr": "Francoščina",
+    "de": "Nemščina",
+    "he": "Hebrejščina",
+    "it": "Italijanščina",
+    "nl": "Nizozemščina",
+    "tr": "Turščina",
+    "sl": "Slovenščina"
+  },
+  "settings": {
+    "title": "Nastavitve"
+  },
+  "theme": {
+    "title": "Videz",
+    "darkMode": "Temni način",
+    "light": "Svetlo",
+    "dark": "Temno"
+  },
+  "definitions": {
+    "metadata": {
+      "title": "detrans.ai | Opredelitev izrazov, povezanih s spolom",
+      "description": "V vsakdanji govorici se spol in družbeni spol včasih uporabljata izmenično, v nekaterih jezikih pa obstaja samo ena beseda za opis obeh. Vendar celoten koncept spolnega nelagodja temelji na razumevanju, da obstajajo razlike med spolom in družbenim spolom."
+    },
+    "title": "Opredelitev izrazov, povezanih s spolom",
+    "sexAndGender": {
+      "heading": "Spol in družbeni spol?",
+      "intro": "V vsakdanji govorici se spol in družbeni spol včasih uporabljata izmenično, v nekaterih jezikih pa obstaja samo ena beseda za opis obeh. Vendar celoten koncept spolnega nelagodja temelji na razumevanju, da obstajajo razlike med spolom in družbenim spolom.",
+      "sex": "<b>Spol</b> se nanaša na biologijo osebe (tj. njihovo anatomijo; okostje, mišičje, kromosome, reproduktivni sistem in sekundarne spolne značilnosti). Upoštevajte, da je več kot 99 % ljudi biološko moških ali žensk, ni pa spektra spolov, čeprav imajo nekateri ljudje motnje spolnega razvoja (MSR). Velika večina ljudi z MSR je moških ali žensk.",
+      "gender": "<b>Družbeni spol</b> se nanaša na 'družbeno konstruirane' vloge, vedenja, dejavnosti in lastnosti, ki jih dana družba šteje za primerne za moške in ženske [kot jih določa njihov biološki spol]. 'Moško' in 'žensko' sta kategoriji družbenega spola. Večina, morda vsi ljudje, imajo mešanico moških in ženskih lastnosti. Družbeni spol se spreminja skozi čas in med kulturami.",
+      "nonConformity": "<b>Neujemanje s pričakovanji družbenega spola</b> se zgodi, ko se oseba obnaša ali predstavlja drugače, kot pričakuje njihova družba na podlagi njihovega spola.",
+      "identity": "<b>Spolna identiteta</b> – nekateri ljudje verjamejo, da imamo vsi prirojeno 'spolno identiteto' – globok občutek ali zavedanje samega sebe kot moškega, ženskega ali nekje vmes – ki obstaja ločeno od našega biološkega spola in se lahko v redkih primerih razlikuje od njega. Drugi ljudje ne verjamejo, da obstaja specifična spolna identiteta, ki je ločena od kateregakoli drugega vidika osebnosti ali identitete osebe."
+    },
+    "dysphoria": {
+      "heading": "Kaj je spolno nelagodje?",
+      "p1": "Spolno nelagodje je diagnostični izraz, ki ga uporabljata psihiatrična in medicinska skupnost za opis stiske, ki jo doživi nekdo, ko čuti, da se njegova spolna identiteta ne ujema z njegovim biološkim spolom.",
+      "p2": "Ljudje, ki doživljajo spolno nelagodje, poročajo o močnih, vztrajnih občutkih identifikacije s spolom, ki se razlikuje od njihovega spola, in povezanem nelagodju s svojim telesom določenega spola. Za formalno diagnozo se trenutno morajo občutki povzročati znatno stisko ali oslabitev osebe, ki jih doživlja."
+    },
+    "transgender": {
+      "heading": "Kaj pomeni biti transgender?",
+      "p1": "Transgender je izraz, ki lahko pomeni različne stvari različnim ljudem. Splošno se strinjajo, da so trans ženske rojene v moškem telesu, vendar se identificirajo kot ženske, trans moški so rojeni v ženskem telesu, vendar se identificirajo kot moški, in nebinarne osebe se ne identificirajo niti kot moške niti kot ženske. Ljudje pogosto uporabljajo krajši izraz 'trans', da označijo, da se nekdo identificira s spolom, ki ni enak njegovemu biološkemu spolu.",
+      "p2": "Transgender se lahko razume tako, da i) si spol/družbeni spol nasproten spolu, v katerem si bil rojen, ii) verjameš, da si spol/družbeni spol nasproten tistemu, v katerem si bil rojen, ali iii) živiš tako, kot da je tvoj spol/družbeni spol nasproten spolu, v katerem si bil rojen. Razprave o tem, kateri od teh treh načinov razumevanja izraza je najbolj točen, lahko postanejo burne in kontroverzne. Nekateri ljudje čutijo, da že sama razprava o tem, kaj pomeni biti transgender, podriva veljavnost izkušnje. Vendar pa ta različna prepričanja neizogibno vodijo do različnih idej, kako najbolje podpirati ljudi pri obvladovanju stiske, povezane s spolom, zato so razprave potrebne, da zagotovimo, da ljudje dobijo najboljšo možno pomoč in nasvet."
+    },
+    "desistance": {
+      "heading": "Kaj je desistance (prenehanje)?",
+      "p1": "Desistance je, ko se nekdo, ki se je identificiral kot transgender, vendar ni podvržen medicinskim posegom, več ne identificira kot transgender. Čeprav morda ne bo moral/-a obravnavati posledic medicinskih posegov, lahko desistance še vedno zelo čustveno boleč, zmeden in težaven proces."
+    },
+    "detransition": {
+      "heading": "Detranzicija in detranzicionarji",
+      "p1": "Detranzicija je, ko se nekdo, ki se je identificiral kot transgender in je bil podvržen medicinskim posegom, več ne identificira kot transgender. V tej skupini je ogromno raznolikost izkušenj. Nekateri ljudje so lahko močno prizadeti zaradi tega, kar so prestali, in dolgoročnih posledic, drugi pa to lahko vidijo kot nekaj, skozi kar so morali iti, da bi razumeli sebe, kot so trenutno."
+    },
+    "regret": {
+      "heading": "Obžalovanje tranzicije",
+      "p1": "Nekateri ljudje so se lahko identificirali kot transgender več let in so podvrženi medicinskim posegom, kot so hormoni in operacije, ki so nepovratno spremenile njihova telesa. Morda čutijo, da obžalujejo začetek medicinske spolne tranzicije, vendar se še naprej identificirajo kot transgender in/ali nadaljujejo s hormoni nasprotnega spola."
+    },
+    "source": {
+      "text": "Vir:",
+      "link": "Detrans Foundation"
+    }
+  },
+  "chat": {
+    "lookingForComments": "Iščem relevantne komentarje...",
+    "errorOccurred": "Prišlo je do napake, poskusite znova... Stopite v stik z mano, če se to še naprej dogaja.",
+    "analysingExperiences": "Analiziranje izkušenj",
+    "detransPerspective": "-> Kakšne so detranz perspektive o tej temi?",
+    "transPerspective": "-> Kakšne so trans perspektive o tej temi?",
+    "backToPortal": "<- Nazaj na portal"
+  },
+  "chatInput": {
+    "placeholder": "Vprašajte detrans.ai...",
+    "deepResearch": "Globoka raziskava",
+    "suggestions": "Predlogi:"
+  },
+  "deepResearchEvents": {
+    "errorTitle": "Napaka globoke raziskave",
+    "retrieving": "Pridobivanje detranz izkušenj...",
+    "generatingQuestions": "Generiranje meta vprašanj...",
+    "findingAnswers": "Iskanje odgovorov na meta vprašanja",
+    "completed": "Globoka raziskava zaključena",
+    "retrieveError": "Napaka pri pridobivanju detranz izkušenj!",
+    "analyzeError": "Zmanjkalo nam je denarja za plačilo umetne inteligence, ki analizira detranz izkušnje in odgovarja na vprašanja. Če lahko, prosimo, donirajte, da lahko ohranimo storitev v teku. Poskusite znova pozneje. Zaenkrat lahko še vedno poskusite vprašanja v portalu.",
+    "generatingAnswer": "Generiranje odgovora...",
+    "waitingForAnswer": "Čakanje na odgovor",
+    "questionsAnswered": "{answered} od {total} meta vprašanj odgovorjenih",
+    "generatingSummary": "Generiranje povzetka odgovorov"
+  },
+  "questionTabs": {
+    "topics": "Teme",
+    "generated": "Generirano",
+    "recent": "Nedavno",
+    "top": "Najboljše"
+  },
+  "conversations": {
+    "title": "Nedavni pogovori",
+    "subtitle": "Prepričajte se sami, kako detrans.ai pomaga ljudem po vsem svetu.",
+    "tabs": {
+      "featured": "Izpostavljeno",
+      "all": "Vsi"
+    },
+    "buttons": {
+      "showMore": "Prikaži še {count} pogovorov",
+      "showLess": "Prikaži manj",
+      "loadMore": "Naloži več pogovorov",
+      "loading": "Nalaganje..."
+    }
+  },
+  "conversationCard": {
+    "untitled": "Pogovor brez naslova",
+    "from": "od",
+    "moreMessages": "še {count} sporočil...",
+    "moreMessage": "še {count} sporočilo...",
+    "date": {
+      "today": "Danes",
+      "yesterday": "Včeraj",
+      "daysAgo": "pred {count} dnevi",
+      "weeksAgo": "{count, plural, =1 {pred 1 tednom} other {pred # tedni}}"
+    },
+    "admin": {
+      "deleting": "Brisanje...",
+      "delete": "Izbriši pogovor",
+      "banning": "Prepovedovanje...",
+      "ban": "Prepovej uporabnika (IP)"
+    }
+  },
+  "stories": {
+    "metadata": {
+      "title": "detrans.ai | Zgodbe in statistika o detranziciji",
+      "description": "Preberite srčne zgodbe o detranziciji, časovnice in trende od članov skupnosti /r/detrans na Redditu, največje odprte zbirke zgodb o detranziciji na internetu. Izvedite, koliko so bili stari detranzicionarji, ko so prešli v drugi spol in se detranzicionirali ter katere poti so izbrali."
+    },
+    "title": "Zgodbe in statistika o detranziciji",
+    "subtitle": "Brskajte in vizualizirajte {count} edinstvenih zgodb in statistiko o detranziciji ljudi, ki so delili svoje izkušnje v podreddit-u /r/detrans, kar je največja odprta zbirka zgodb in izkušenj o detranziciji na internetu.",
+    "disclaimer": {
+      "summary": "Te zgodbe so bile povzete z uporabo umetne inteligence.",
+      "details": "Na Redditu ljudje pogosto delijo svoje izkušnje v več komentarjih ali objavah. Da bi te informacije naredili bolj dostopne, naša umetna inteligenca zbere vse te razpršene dele v enoten, enostaven za branje povzetek in časovnico. Vsi sistemski pozivi so navedeni na strani s pozivi.",
+      "accuracy": "Včasih lahko umetna inteligenca halucinira ali navaja stvari, ki niso resnične. Toda na splošno so povzete zgodbe točne odsevi izvirnih komentarjev uporabnikov.",
+      "inclusion": "Vključeni so samo uporabniki, ki so delili dovolj, da se sestavi celotna zgodba in časovnica. Uporabniki, ki so objavili manj kot pet komentarjev, ali njihovi komentarji, ki so prejeli manj kot tri pozitivne ocene, so prezrti. Objave še niso vključene v nabor podatkov.",
+      "verification": "Vsak uporabnik je bil analiziran glede na znake vsebine, ustvarjene s strani botov ali neavtentične vsebine. Vsak račun, ki se ne zdi pristen detranzicionar, je označen kot 'sumljiv'. Ti računi bodo ročno pregledani in odstranjeni iz nabora podatkov detrans.ai, če se ugotovi, da niso pristni. Računi, ki so naredili manj kot pet komentarjev, so izključeni iz analize."
+    },
+    "charts": {
+      "tabs": {
+        "age": "Starost",
+        "duration": "Trajanje",
+        "transitionReason": "Razlog za tranzicijo",
+        "detransitionReason": "Razlog za detranzicijo",
+        "pathways": "Poti"
+      },
+      "loading": "Nalaganje podatkov grafov...",
+      "error": "Napaka: {message}",
+      "retry": "Poskusi znova",
+      "noData": "Za izbrane filtre ni na voljo podatkov o razlogih za {mode}",
+      "reasonChart": {
+        "title": "Zakaj pravijo detranzicionarji, da so {mode, select, detransition {se detranzicionirali} other {prešli v drugi spol}}?",
+        "subtitle": "Podatki iz časovnic {mode} uporabnikov Reddita ({totalReasonCount} skupnih uporabnikov, {totalUsers} različni razlogi.)",
+        "mentions": "{count} omemb ({percentage}%)"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Iskanje uporabniških izkušenj...",
+      "ageRange": "Razpon starosti:",
+      "ageRangeYears": "{min} - {max} let",
+      "sex": {
+        "all": "Moški in ženske",
+        "female": "Ženske",
+        "male": "Moški"
+      },
+      "tagsPlaceholder": "Izberite oznake za filtriranje...",
+      "clearFilters": "Počisti filtre"
+    },
+    "results": "Prikazujem {showing} od {total} uporabniških zgodb",
+    "noResults": "Nobenih uporabnikov ne ustreza vašim filtrom.",
+    "pagination": {
+      "previous": "Prejšnja",
+      "next": "Naslednja",
+      "pageInfo": "Stran {page} od {totalPages}"
+    },
+    "userCard": {
+      "comments": "{count} komentarjev",
+      "postingSince": "Objavlja od {date}",
+      "transitionedAt": "Prešel/-la v drugi spol pri {age}",
+      "desistedAt": "Prenehal/-la pri {age}",
+      "detransitionedAt": "Detranzicioniral/-la pri {age}",
+      "female": "ženska",
+      "male": "moški"
+    }
+  },
+  "prompts": {
+    "metadata": {
+      "title": "Kako deluje? | Sistemski pozivi",
+      "description": "Spoznajte, kako deluje detrans.ai, vključno s sistemskimi pozivi, datumi prenehanja podatkov in informacijami o odprti kodi."
+    },
+    "title": "Kako deluje?",
+    "intro": {
+      "paragraph1": "<bold>detrans.ai</bold> klepet je agent, pogonjen z RAG (okrepljeno generiranje z iskanjem), ki generira meta vprašanja in nanje odgovarja tako, da površno predstavi in integrira detranz misli in izkušnje iz podreddita <reddit>/r/detrans</reddit> na Redditu in iz YouTuba. Zgrajen je bil z ogrodjem <llamaIndex>LlamaIndex</llamaIndex> in odprtokodnim kitajskim modelom <kimi>kimi-k2.5</kimi> podjetja Moonshot AI za zmanjšanje zahodne politične pristranskosti.",
+      "paragraph2": "ChatGPT in večina drugih zahodnih LLMjev so precej agresivni v načinu, kako promovirajo in vzdržujejo prepričanja o spolu. Izkaže se, da je bilo nemogoče uporabiti OpenAI-jeve GPT modele za ta projekt, saj bi modeli nenehno podrivali in nasprotovali detranz izkušnjam, ki jih je bilo treba povzeti. Če želite bolj potrjevalno izkušnjo, glejte <chatgpt>ChatGPT</chatgpt>."
+    },
+    "dataCutoff": {
+      "title": "Datumi prenehanja podatkov",
+      "paragraph1": "<bold>detrans.ai</bold> trenutno ima dostop do vseh komentarjev na /r/detrans, objavljenih pred <date>8. 9. 2025</date>, ki so prejeli vsaj tri pozitivne ocene. Trudil se bom, da bom posodobil nabor podatkov vsaj enkrat na leto, dokler podreddit /r/detrans obstaja.",
+      "paragraph2": "Uporabniki lahko predložijo video izkušnje s predložitvijo povezav do YouTuba. Ti videi bodo ročno pregledani, preden se prepišejo z uporabo OpenAI-jevega modela za pretvorbo govora v besedilo Whisper in dodani v vektorsko bazo podatkov in video arhiv."
+    },
+    "openSource": {
+      "title": "Odprta koda",
+      "paragraph": "Izvorna koda je na voljo tudi na <github>Github</github> pod licenco MIT, če želite pregledati ali ponovno uporabiti katerokoli kodo za svoj projekt. Ta projekt je zgrajen tudi na vrhu mnogih drugih odprtokodnih projektov, kot so Llamaindex, React, Next.js, Tailwind, Lucide, Qdrant, Postgres in Vercel AI SDK. Velika zahvala sodelavcem teh projektov za zagotovitev trdne podlage, na kateri se lahko gradi."
+    },
+    "systemPrompts": {
+      "title": "Sistemski pozivi",
+      "description": "To so pozivi, ki jih sistem uporablja za RAG delovni tok. Ni drugih navodil ali plasti poleg tega, kar je prikazano na tej strani.",
+      "lastUpdated": "Nazadnje posodobljeno",
+      "chatAgentTitle": "Sistemski poziv klepetalnega agenta",
+      "researchModeTitle": "Sistemski pozivi za način globoke raziskave",
+      "researchAgentTitle": "Poziv raziskovalnega agenta",
+      "experienceExtractionTitle": "Poziv za ekstrakcijo izkušenj",
+      "finalAnswerTitle": "Končni poziv za odgovor"
+    },
+    "userSummaries": {
+      "title": "Sistemski pozivi za povzetke uporabnikov",
+      "description": "To so sistemski pozivi za generirane povzetke uporabnikov.",
+      "lastUpdated": "Nazadnje posodobljeno",
+      "experienceReportTitle": "Poročilo o uporabniških izkušnjah",
+      "experienceSummaryTitle": "Povzetek uporabniških izkušenj",
+      "generateTagsTitle": "Generiraj oznake",
+      "extractAgesTitle": "Ekstrahiraj starosti",
+      "determineBirthSexTitle": "Določi rojstni spol",
+      "redFlagReportTitle": "Poročilo o rdečih zastavicah"
+    }
+  },
+  "donatePage": {
+    "title": "Ohranite Detrans.AI v teku",
+    "description1": "Če cenite delo, ki sem ga vložil v to spletno mesto, ali če vam je ta brezplačna storitev pomagala, prosimo, razmislite o enkratni ali redni donaciji, da ohranite <b>detrans.ai</b> na spletu.",
+    "description2": "Ne morem si privoščiti voditi vire intenzivne storitve, kot je ta, brez vaše podpore. Moj glavni vir dohodka trenutno je državna pomoč in v času pisanja tega imam manj kot 1000 $ na svojem bančnem računu. Če to spletno mesto eksplodira, bi lahko dobil račune v višini tisočev dolarjev. Če mi zmanjka denarja, bo možnost zastavljanja lastnih vprašanj in raziskovanja tem globlje s slednjimi vprašanji onemogočena in bom ponujal samo predpomnjene odgovore na vprašanja v portalu.",
+    "description3": "Prosim, razmislite o mesečni donaciji. Lahko donirate z uporabo PayPala spodaj, neposredno na moj novozelandski bančni račun ali z BTC.",
+    "bankAccount": "Novozelandski bančni račun",
+    "accountName": "Ime",
+    "accountNumber": "Račun",
+    "swiftCode": "SWIFT/BIC koda",
+    "bitcoin": "Naslov Bitcoin",
+    "paypal": "Donacija PayPal"
+  },
+  "terms": {
+    "metadata": {
+      "title": "Politika zasebnosti | detrans.ai",
+      "description": "Spoznajte našo politiko zasebnosti, prakse zbiranja podatkov in kako ščitimo vaše informacije."
+    },
+    "title": "Politika zasebnosti",
+    "intro": "Ta politika zasebnosti razlaga, katere informacije zbiramo, zakaj jih zbiramo in kako jih varujemo, ko obiščete ali uporabljate našo storitev.",
+    "sections": {
+      "informationWeCollect": {
+        "title": "Informacije, ki jih zbiramo",
+        "chatMessages": {
+          "title": "Sporočila klepeta:",
+          "content": "Ohranjamo vse zapise klepeta ter odgovore na vsa vprašanja, zastavljena v načinu globoke raziskave. Zapisi klepeta niso povezani z vašim naslovom IP ali kakršnimikoli podatki, ki bi jih bilo mogoče uporabiti za vašo identifikacijo. Zapisi klepeta so lahko analizirani in uporabljeni za raziskovalne namene v prihodnosti. Prosimo, izogibajte se deljenju občutljivih informacij."
+        },
+        "cookies": {
+          "title": "Piškotki / Sledilne tehnologije:",
+          "content": "Piškotkov, slikovnih oznak ali kakršnihkoli podobnih mehanizmov za sledenje na strani odjemalca <em>ne</em> uporabljamo."
+        },
+        "ipAddresses": {
+          "title": "Naslovi IP:",
+          "content": "Ko naredite zahtevek našim strežnikom, shranimo vaš naslov IP, da štejemo zahtevke in uveljavljamo omejitve hitrosti, ki preprečujejo zlorabo."
+        },
+        "optionalData": {
+          "title": "Neobvezni podatki:",
+          "content": "Če se odločite stopiti v stik z nami, lahko zbiramo informacije, ki jih prostovoljno posredujete (npr. e-poštni naslov, ime). Zagotovitev teh informacij je neobvezna, razen če je izrecno navedeno."
+        }
+      },
+      "legalBases": {
+        "title": "Pravne podlage za obdelavo (obiskovalci EU/EGP)",
+        "item1": "Obdelava omejevanja hitrosti je potrebna za naše <em>upravičene interese</em> v skladu s GDPR člen 6(1)(f) – natančneje, za ohranjanje razpoložljivosti in varnosti storitve.",
+        "item2": "Kakršnakoli dodatna obdelava (npr. ustvarjanje računa) temelji na vaši <em>soglasju</em> ali <em>pogodbeni nujnosti</em>, kot je primerno."
+      },
+      "dataRetention": {
+        "title": "Kako dolgo hranimo podatke",
+        "content": "Vsi zapisi klepeta bodo ohranjeni. Naslovi IP, uporabljeni za omejevanje hitrosti, se samodejno izbrišejo v nekaj minutah po zadnjem zahtevku ali ob koncu okna omejevanja hitrosti, kar nastopi prej. Prostovoljne informacije (npr. e-poštna sporočila za podporo) se hranijo samo tako dolgo, kot je potrebno za rešitev vaše poizvedbe ali izpolnitev zakonskih obveznosti."
+      },
+      "thirdPartySharing": {
+        "title": "Deljenje s tretjimi osebami",
+        "content": "Lahko izberemo deljenje anonimiziranih zapisov klepeta z akademiki in raziskovalci, ki želijo izboljšati rezultate za ljudi, ki doživljajo spolno nelagodje. Naslove IP ali druge podatke lahko razkrijemo samo, kadar to zahteva zakon ali za zaščito naših pravic, uporabnikov ali javnosti (npr. preprečevanje goljufij, sodni nalog)."
+      },
+      "security": {
+        "title": "Varnost",
+        "content": "Uporabljamo industrijsko standardne tehnične in organizacijske ukrepe (TLS šifriranje, nadzor dostopa, načelo najmanjših privilegijev) za zaščito podatkov med prenosom in v mirovanju."
+      },
+      "internationalTransfers": {
+        "title": "Mednarodni prenosi",
+        "content": "Naši strežniki se nahajajo v Združenih državah Amerike. Če dostopate do storitve izven ZDA, razumete, da bo vaš naslov IP poslan in obdelan v Združenih državah Amerike."
+      },
+      "childrensPrivacy": {
+        "title": "Zasebnost otrok",
+        "content": "Naša storitev ni namenjena otrokom pod 13 letom in zavestno ne zbiramo osebnih informacij od njih. Če verjamete, da smo naključno zbrali takšne podatke, stopite v stik z nami za takojšnje brisanje."
+      },
+      "changes": {
+        "title": "Spremembe te politike",
+        "content": "To politiko lahko občasno posodobimo. 'Datum učinkovanja' na vrhu se bo spremenil, pomembne spremembe pa bodo vidno objavljene."
+      },
+      "contact": {
+        "title": "Stopite v stik z nami",
+        "content": "Če imate vprašanja, pomisleke ali pritožbe, uporabite kontaktni obrazec ali pošljite e-pošto na <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "videos": {
+    "metadata": {
+      "title": "detrans.ai | Oglejte si videe detranzicionarjev",
+      "description": "Tukaj je izbor osebnih video spominov, ki so jih naložili na YouTube ljudje, ki so prešli v drugi spol, nato pa doživeli spoznavo, zaradi katere so se detranzicionirali. Na internetu je nešteto takšnih zgodb, to je le majhen del."
+    },
+    "title": "Videi o tranziciji in detranziciji",
+    "description": {
+      "line1": "Ta stran si prizadeva biti najboljši arhiv videov o detranziciji na internetu.",
+      "line2": "S pretvorbo govora v besedilo detrans.ai integrira te izkušnje v pogovore klepeta.",
+      "line3": "Zaenkrat samo YouTube videi, TikTok kmalu?!"
+    },
+    "female": "ženska",
+    "male": "moški",
+    "backToAll": "Nazaj na vse",
+    "overview": "Pregled",
+    "fullSummary": "Poln povzetek videa",
+    "watchOnYouTube": "Oglejte si na YouTubu",
+    "moreVideos": "Več videov",
+    "browseAll": "Brskajte po vseh videih o detranziciji",
+    "metadataWatchDescription": "Oglejte si {title} od {author}, {sex} detranzicionarja/-ke, ki deli svojo zgodbo.",
+    "metadataThumbnailAlt": "Sličica za {title}"
+  },
+  "videoList": {
+    "loading": "Nalaganje videov...",
+    "filters": {
+      "all": "Vse zgodbe",
+      "female": "Ženske",
+      "male": "Moški",
+      "detransitioners": "Detranzicionarji"
+    },
+    "thumbnailAlt": "Sličica za {title}",
+    "by": "od",
+    "female": "Ženska",
+    "male": "Moški"
+  },
+  "videoSubmitForm": {
+    "submitTitle": "Predložite svoj video o detranziciji",
+    "description": {
+      "line1": "S predložitvijo vašega videa bo prikazan na tej strani in v relevantnih klepetih.",
+      "line2": "Lahko je vaš video ali pa ste ga samo našli na spletu in manjka na tej strani.",
+      "line3": "Vse predložitve so moderirane, lahko traja nekaj dni, preden se prikažejo."
+    },
+    "urlLabel": "URL YouTuba",
+    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "submitButton": "Predloži video",
+    "submitting": "Predložitev...",
+    "submitSuccess": "Video uspešno predložen! Preden se prikaže na spletnem mestu, bo pregledan.",
+    "submitError": "Predložitev videa ni uspela",
+    "networkError": "Napaka v omrežju. Prosimo, poskusite znova."
+  },
+  "studySubmitForm": {
+    "submitTitle": "Predložite študijo",
+    "description": {
+      "line1": "Poznate relevantno akademsko študijo ali članek, ki ga recenzirajo vrstniki in manjka?",
+      "line2": "Predložite URL in po želji predlagajte naslov zanj.",
+      "line3": "Vse predložitve so moderirane, preden se prikažejo na spletnem mestu."
+    },
+    "urlLabel": "URL študije",
+    "urlPlaceholder": "https://...",
+    "titleLabel": "Predlagani naslov",
+    "titlePlaceholder": "Neobvezen naslov ali naslovnica študije",
+    "titleHelp": "Neobvezno: Predlagajte kratek naslov ali naslovnico za to študijo",
+    "submitButton": "Predloži študijo",
+    "submitting": "Predložitev...",
+    "submitSuccess": "Študija uspešno predložena! Preden se prikaže na spletnem mestu, bo pregledana.",
+    "submitError": "Predložitev študije ni uspela",
+    "networkError": "Napaka v omrežju. Prosimo, poskusite znova."
+  },
+  "studiesPage": {
+    "metadata": {
+      "title": "detrans.ai | Akademske študije o temah detranzicije",
+      "description": "Na tej strani poiščite izbor akademskih študij, člankov iz revij, ki jih recenzirajo vrstniki, in preverjene statistike, ki se nanašajo na trende spolne identitete in detranzicijo.",
+      "ogTitle": "detrans.ai | Akademske študije o temah detranzicije",
+      "ogDescription": "Na tej strani poiščite izbor akademskih študij in člankov iz revij, ki jih recenzirajo vrstniki, ter preverjene statistike, ki se nanašajo na trende spolne identitete in detranzicijo."
+    },
+    "title": "Izbrane akademske članke",
+    "description": "Akademske študije, raziskave, ki jih recenzirajo vrstniki, in članki iz revij o temah spolne identitete, tranzicije in detranzicije."
+  },
+  "contentWarning": {
+    "title": "Opozorilo o vsebini:",
+    "description": {
+      "line1": "To spletno mesto vsebuje zgodbe, izkušnje in perspektive od bivših transgender oseb.",
+      "line2": "Teme vključujejo obžalovanje tranzicije, medicinske zaplete in celovite poglede na spolno nelagodje.",
+      "line3": "Te informacije lahko izzovejo pogosto zastopana prepričanja o spolni identiteti in tranziciji."
+    },
+    "buttons": {
+      "exit": "Spravi me ven od tod!",
+      "continue": "Nadaljuj"
+    }
+  },
+  "supportPage": {
+    "metadata": {
+      "title": "detrans.ai | Pridobite spolno pomoč in podporo",
+      "description": "Spoznajte razliko med potrjevalno oskrbo spola in raziskovalno terapijo spola. Če doživljate spolno nelagodje, je eden najboljših načinov za pridobitev podpore pogovor z razumevanjem perspektiv ljudi, ki so bili tam sami in prišli na drugo stran."
+    },
+    "title": "Pridobite spolno pomoč in podporo",
+    "navigation": {
+      "jumpTo": "Skoči na:",
+      "getGenderSupport": "Pridobite spolno podporo:"
+    },
+    "sections": {
+      "onlineSupport": {
+        "title": "Spletne skupine za podporo",
+        "description": "Če doživljate spolno nelagodje, je eden najboljših načinov za pridobitev podpore pogovor z razumevanjem perspektiv ljudi, ki so bili tam sami in prišli na drugo stran.",
+        "links": {
+          "redditCommunity": "Skupnost Detrans na Redditu",
+          "redditWiki": "Detrans Wiki na Redditu",
+          "discordServer": "Uradni /r/detrans Discord strežnik",
+          "askDetransAI": "Vprašajte 50.000+ detranz ljudi z detrans.ai"
+        }
+      },
+      "genderAffirmingCare": {
+        "title": "Potrjevalna oskrba spola: Kaj je to?",
+        "description": "Potrjevalna oskrba spola je trenutno standardna (in pogosto edina) možnost zdravljenja za spolno nelagodje, ki jo ponujajo zdravstveni ponudniki v zahodnem svetu. Potrjevalna oskrba spola v bistvu priznava družbena pričakovanja glede spola in nato pacienta prilagodi temu. To je stopnjevan pristop, ki se začne s družbeno tranzicijo (ime, zaimki, oblačila), nato hormonsko terapijo in nato za nekatere nepovratne kirurške posege. Potrjevalna oskrba spola lahko zagotovi olajšanje za spolno nelagodje, vendar prinaša resna zdravstvena tveganja in pogosto trajne stranske učinke. Nadaljujte s skrajno previdnostjo in se prepričajte, da",
+        "watchTestimonies": "ogledate si nekatere pričevanja"
+      },
+      "genderExploratoryTherapy": {
+        "title": "Raziskovalna terapija spola: Kaj je to?",
+        "description1": "Raziskovalna terapija spola preprosto pomeni, da vaš terapevt ne hiti s potrjevanjem in medicinskim posegom. Namesto tega bo začel z raziskovanjem konceptov spola in zakaj se tako počutite. Raziskovalna terapija spola je pristop brez specifičnega, vnaprej določenega dnevnega reda, rezultati raziskovalne terapije spola pa se lahko razlikujejo glede na posameznika.",
+        "description2": "Če Googlate 'Raziskovalna terapija spola', boste našli nekaj kritik, ki jo primerjajo s terapijo za spreobrnitev homoseksualcev (ki je dokazano neučinkovita). Resnica je, da se raziskovalna terapija spola zelo razlikuje od terapije za spreobrnitev homoseksualcev:",
+        "references": {
+          "title": "Reference",
+          "ref1": "Ameriško ministrstvo za zdravje in socialne zadeve (2025). Poročilo o pediatričnem spolnem nelagodju in prizadevanjih za spremembo spola.",
+          "ref2": "D'Angelo, R. (2025). 'Podpiranje avtonomije pri mladih s spolnim nelagodjem: psihoterapija ni terapija za spreobrnitev.' Journal of Medical Ethics, 51(1).",
+          "ref3": "Lemma, A. in Schmidt, L. (2024). 'Psihodinamična psihoterapija za spolno nelagodje ni terapija za spreobrnitev.' Frontiers in Psychology.",
+          "ref4": "Korte, A. et al. (2021). 'Ena velikost ne ustreza vsem: V podporo psihoterapiji za spolno nelagodje.' Archives of Sexual Behavior."
+        },
+        "florenceAshley": {
+          "title": "Študija Florence Ashley",
+          "description": "Akademske raziskave na tem področju so pogosto pristranske. Ena najvplivnejših študij (Preiskovanje raziskovalne terapije spola) je bila objavljena leta 2022 od Florence Ashley, trans ženske. V svoji študiji je primerjala raziskovalno terapijo spola s terapijo za spreobrnitev homoseksualcev in močno obsodila prakso. Treba je priznati, da so ljudje, ki se identificirajo kot trans, motivirani za zaščito svoje identitete in prepričanj, in ta študija je popoln primer tega. Študija je polna logičnih zmot, vendar je bila še vedno objavljena in se uporablja kot akademsko upravičenje, da je potrjevalna oskrba spola edina možnost za ljudi, ki doživljajo spolno nelagodje.",
+          "showFallacies": "Oglejte si vse logične zmote v študiji Florence Ashley"
+        }
+      },
+      "findTherapist": {
+        "title": "Kje lahko najdem terapevta, ki izvaja raziskovalno terapijo spola?",
+        "languageNotice": "Večina navedenih terapevtov govori samo angleško, vendar jih lahko še vedno kontaktirate, da poiščete nekoga, ki govori vaš jezik. Če poznate licenciranega terapevta, ki govori vaš jezik, ga lahko predlagate za dodajanje na to stran preko",
+        "contactForm": "kontaktnega obrazca",
+        "organizations": {
+          "justTherapy": {
+            "name": "Just Therapy",
+            "description": "Just Therapy je nastal iz želje, da se vrnemo k temu, kar bi morala biti terapija – učinkovita, etična in svobodna ideologije. To je združenje terapevtov in svetovalcev, združenih s skupno etiko in načeli. Just Therapy priznava, da je velik del sveta psihoterapije in svetovanja prevzela aktivista in ideologije, ki tvegajo škodo, namesto podpore, duševnemu zdravju strank. Njihovi člani, ki prihajajo iz širokega razpona disciplin in specialnosti, so podpisali kodeks ravnanja.",
+            "directory": "Imenik terapevtov Just Therapy",
+            "codeOfConduct": "Kodeks ravnanja Just Therapy"
+          },
+          "therapyFirst": {
+            "name": "Therapy First",
+            "description": "Therapy First združuje strokovnjake za duševno zdravje, ki verjamejo, da si klienti s spolno stisko zaslužijo odprto psihoterapijo, ki temelji na dokazih in raziskuje nezavedne in kontekstualne dejavnike, preden se naredijo kakršnikoli nepovratni medicinski koraki; zavračajo tako prakse spreobrnitve kot model 'samo potrjevanja', vzdržujejo avtonomijo strank in vidijo medicinsko tranzicijo otrok/mladostnikov kot eksperimentalno, hkrati pa še vedno podpirajo pravico odraslih do telesne avtonomije in nadaljnje terapevtske raziskave.",
+            "directory": "Imenik terapevtov Therapy First",
+            "about": "O Therapy First"
+          },
+          "beyondTrans": {
+            "name": "Beyond Trans",
+            "description": "Stella O'Malley je marca 2020 zagnala Mrežo za podporo spolnemu nelagodju, da bi staršem nudila nepristransko pomoč pri otrocih s spolno stisko; hitro je zrasla v globalno skupnost, kar je leta 2021 spodbudilo ustanovitev Genspect, zagovornika za ne-medicinsko oskrbo. Prepoznavši naraščajoče obžalovanje tranzicije, je skupina leta 2022 ustanovila Beyond Trans, junija 2025 pa ga združila z GDSN v eno integrirano, na dokazih temelječo podporno mrežo za družine, posameznike in detranzicionarje.",
+            "directory": "Imenik terapevtov Beyond Trans",
+            "supportGroups": "Skupine za podporo Beyond Trans",
+            "about": "O Beyond Trans"
+          },
+          "detransFoundation": {
+            "name": "Detrans Foundation",
+            "description": "Detrans Foundation zagotavlja vire in podporo za detranzicionarje, vključno z dostopom do usposobljenih terapevtov, ki razumejo izkušnje detranzicije. Naslednji terapevti so del Detrans Foundation:",
+            "drEntwistle": "je klinična psihologinja, ki je prej delala na NHS storitvi za razvoj spolne identitete za mladoletnike v Leedsu. Registrirana je pri UK Health Care Professions Council (HCPC) in ponuja spletne posvete preko varnega video klica.",
+            "anastassisSpiliadis": "je sistemski in družinski psihoterapevt, ki je štiri leta delal na Storitvi za razvoj spolne identitete v Tavistocku, kjer je vodil Storitev za družinsko terapijo in posvetovanje. Odstopil je iz Tavistocka, ker se ni strinjal z pomanjkanjem terapevtskega modela pri razumevanju težav s spolno identiteto. Razvil je model raziskovalnega spola in ima obsežne izkušnje pri delu z ljudmi, ki raziskujejo spol, in detranzicionarji.",
+            "visitWebsite": "Obiščite spletno mesto Detrans Foundation"
+          }
+        }
+      },
+      "forParents": {
+        "title": "Viri za starše",
+        "intro": "Če se je vaš otrok nedavno izpostavil/-a kot transgender, se morda počutite zmedene, zaskrbljene in ne veste, kako ga/-jo najbolje podpreti, hkrati pa zaščititi njegovo/-njo dolgoročno zdravje in dobro počutje.",
+        "rogdRepair": {
+          "name": "Program ROGD Repair Stephanie Winn",
+          "whatIs": "Kaj je ROGD Repair?",
+          "description1": "ROGD Repair je:",
+          "bullet1": "Program, ki pomaga staršem trans-identificiranih mladostnikov komunicirati na načine, ki spodbujajo prenehanje, kritično razmišljanje, zdravje in harmonične odnose",
+          "bullet2": "Interaktivni in vedno bolj obsežen nabor orodij psiholoških konceptov in komunikacijskih veščin, izpopolnjenih skozi leta kot licencirana zakonska in družinska terapevtka, ki je postala trenerka za starše z ROGD",
+          "bullet3": "Spletni tečaj po lastnem tempu, ki vsebuje več kot 100 lekcij, od katerih vsaka vsebuje video, esej in vprašanja za razmislek, zasnovana tako, da udeležencem pomagajo prilagoditi vsebino svojim edinstvenim družinskim situacijam, pa tudi forumi za razpravo",
+          "description2": "Nove članstva ROGD Repair zdaj prihajajo z neomejenim dostopom do RepairBota, prvega in edinega orodja umetne inteligence, zasnovanega posebej za pomoč ne-potrjujočim staršem spolno stiskanih mladostnikov. RepairBot je usposobljen na celotnem kurikulumu ROGD Repair in služi kot odličen zvočnik, pomočnik pri domači nalogi in pripomoček za komunikacijo!",
+          "ctaBox": {
+            "title": "Vaš otrok pravi, da je 'trans', vi pa si ga želite zdravega in varnega.",
+            "description1": "Zdravje in prihodnost vašega otroka sta v nevarnosti, vendar sta vaša vzvoda in vpliv omejena. Morda je začel/-a s hormoni na črnem trgu za vašim hrbtom, ali jezen/-a odhaja, ko ga/-jo 'napačno označite za spol', ali pa je na 'potrjujočem' fakulteti. Učinkovito morate komunicirati v tej zapleteni situaciji, preden se kdo poškoduje. Tu pride ROGD Repair.",
+            "description2": "ROGD Repair je spletni tečaj in skupnost za starše po lastnem tempu, ki uči psihološke koncepte in komunikacijska orodja, ki jih potrebujete, da razumete duševno stanje vašega otroka in kako ga doseči. Članstvo zdaj vključuje RepairBota, vašega asistenta umetne inteligence 24/7, usposobljenega na tem pristopu.",
+            "description3": "ROGD Repair in RepairBot sta ustvarila licencirana zakonska in družinska terapevtka z več kot desetletjem izkušenj pri delu s trans-identificiranimi mladostniki in njihovimi družinami, ki zdaj izključno vodi starše, ki vedo, da mora obstajati boljša pot od 'potrjevanja.'"
+          },
+          "coupon": "Uporabite to kodo kupona, da dobite",
+          "couponCode": "DETRANSAI",
+          "learnMore": "Izvedite več in se prijavite za ROGD Repair"
+        }
+      }
+    },
+    "table": {
+      "gayConversion": "Terapija za spreobrnitev homoseksualcev",
+      "genderExploratory": "Raziskovalna terapija spola",
+      "goal": "Cilj",
+      "goalConversion": "Spremeniti spolno usmerjenost, ker se šteje za patološko.",
+      "goalExploratory": "Razumeti pomen nelagodja; rezultat lahko je tranzicija, ni tranzicije ali delna družbena tranzicija.",
+      "method": "Metoda",
+      "methodConversion": "Sramota, odpor, vedenjsko pogojevanje, molitev.",
+      "methodExploratory": "Raziskovalna terapija spola je združljiva s širokim razponom terapevtskih modalitet, kot so standardne psihodinamične ali humanistične tehnike – odprta vprašanja, radovednost, brez vnaprej določenih končnih točk.",
+      "evidence": "Dokazna baza",
+      "evidenceConversion": "Konsistentno kaže škodo; vsaka večja medicinska institucija jo obsoja.",
+      "evidenceExploratory": "Še ni RCTjev, vendar vzporednice s terapijami, ki zmanjšujejo tesnobo, depresijo, samopoškodovanje; nobenih podatkov, ki bi sistematično kazali škodo.",
+      "ethics": "Etika",
+      "ethicsConversion": "Krši avtonomijo s potiskanjem heteroseksualne identitete kot edine pravilne možnosti.",
+      "ethicsExploratory": "Skuša razširiti avtonomijo z zagotavljanjem, da mladostnik (in družina) razumeta vse možnosti, preden se naredijo nepovratni koraki."
+    },
+    "fallacies": {
+      "title": "Logične zmote v študiji Florence Ashley",
+      "name": "Ime zmote",
+      "explanation": "Enostavna razlaga",
+      "example": "Primer iz članka"
+    }
+  },
+  "charts": {
+    "ageDistribution": {
+      "title": "Koliko so bili stari detranzicionarji, ko so prešli v drugi spol in se detranzicionirali?",
+      "subtitle": "Podatki iz časovnic tranzicije uporabnikov Reddita",
+      "loading": "Nalaganje podatkov grafov...",
+      "fetchError": "Pridobivanje podatkov o porazdelitvi starosti ni uspelo",
+      "genericError": "Prišlo je do napake",
+      "errorPrefix": "Napaka:",
+      "noData": "Za izbrani razpon starosti ni na voljo podatkov",
+      "tooltip": {
+        "age": "Starost: {age}",
+        "transitioned": "Prešel/-la v drugi spol: {count} uporabnikov",
+        "detransitioned": "Detranzicioniral/-la: {count} uporabnikov"
+      },
+      "axis": {
+        "age": "Starost",
+        "users": "Število uporabnikov"
+      },
+      "legend": {
+        "transition": "Starost tranzicije",
+        "detransition": "Starost detranzicije"
+      }
+    },
+    "transitionDuration": {
+      "title": "Trajanje tranzicije: Starost ob tranziciji proti starosti ob detranziciji",
+      "description": {
+        "line1": "Vsaka točka prikazuje starost ob tranziciji (X) proti starosti ob detranziciji (Y).",
+        "line2": "Večje, bolj neprosojne točke predstavljajo več uporabnikov."
+      },
+      "loading": "Nalaganje podatkov grafov...",
+      "noData": "Za izbrani razpon starosti ni na voljo podatkov",
+      "axis": {
+        "transitionAge": "Starost ob tranziciji",
+        "detransitionAge": "Starost ob detranziciji"
+      },
+      "tooltip": {
+        "transitionAge": "Starost tranzicije",
+        "detransitionAge": "Starost detranzicije",
+        "duration": "Trajanje",
+        "years": "let"
+      },
+      "male": "Moški",
+      "female": "Ženske",
+      "yearsAvg": "let povprečno",
+      "user": "uporabnik",
+      "users": "uporabniki"
+    },
+    "pathways": {
+      "title": "Tok poti detranzicije",
+      "subtitle": "Tok demografije uporabnikov Reddita /r/detrans do rezultatov detranzicije",
+      "loading": "Nalaganje podatkov o poteh...",
+      "fetchError": "Pridobivanje podatkov o porazdelitvi oznak ni uspelo",
+      "genericError": "Prišlo je do napake",
+      "error": "Napaka",
+      "users": "{count} uporabnikov",
+      "percentageOfTotal": "{percentage}% od skupnega",
+      "totalUsers": "Skupno uporabnikov",
+      "flowConnections": "Povezave toka",
+      "male": "Moški",
+      "female": "Ženske",
+      "noData": "Za izbrane filtre ni na voljo podatkov o poteh"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Kontakt | detrans.ai",
+      "description": "Stopite v stik z nami. Pošljite nam svoje misli, predloge ali povratne informacije."
+    },
+    "title": "Kontaktni obrazec",
+    "intro": "Če imate kakršnekoli misli, predloge, ali če vam je ta brezplačna storitev pomagala, vam, vaši družini ali prijatelju, rad bi slišal od vas. Pustite mi sporočilo spodaj!",
+    "form": {
+      "to": "Za",
+      "name": "Ime",
+      "namePlaceholder": "Vaše ime",
+      "email": "E-pošta",
+      "emailPlaceholder": "vi@primer.com",
+      "subject": "Zadeva",
+      "subjectPlaceholder": "Zadeva",
+      "message": "Sporočilo",
+      "messagePlaceholder": "Napišite svoje sporočilo...",
+      "sendButton": "Pošlji sporočilo",
+      "sending": "Pošiljanje...",
+      "success": "✅ Sporočilo poslano!",
+      "error": "❌ Pošiljanje ni uspelo."
+    }
+  },
+  "seo": {
+    "conversations": {
+      "title": "Arhiv pogovorov",
+      "description": "Brskajte po pogovorih o spolni identiteti, detranziciji, potrjujoči oskrbi spola in potrjevanju.",
+      "conversations": "Pogovori",
+      "featuredConversations": "Izpostavljeni pogovori",
+      "allConversations": "Vsi pogovori",
+      "untitled": "Pogovor brez naslova",
+      "noSummary": "Povzetek ni na voljo",
+      "noConversations": "Pogovori niso na voljo.",
+      "mode": "Način",
+      "updated": "Posodobljeno",
+      "featured": "Izpostavljeno",
+      "conversationSummary": "Povzetek pogovora",
+      "noSummaryAvailable": "Za ta pogovor ni na voljo povzetka.",
+      "conversation": "Pogovor",
+      "unableToParse": "Sporočil pogovora ni mogoče razčleniti.",
+      "archiveNote": "To je pogovor iz našega arhiva. Če si želite ogledati celoten pogovor in sodelovati v razpravah, obiščite interaktivno različico te strani.",
+      "welcomeTitle": "Dobrodošli v arhivu pogovorov",
+      "welcomeDescription": "Izberite pogovor iz stranske vrstice, da si ogledate njegove podrobnosti. Ta arhiv vsebuje razprave o spolni identiteti, izkušnjah detranzicije in potovanjih potrjevanja.",
+      "featuredDescription": "Poudarjene razprave, označene s strani naše skupnosti",
+      "allDescription": "Brskajte po vseh razpoložljivih razpravah",
+      "footer": "Ta stran zagotavlja vsebino, prijazno za iskalnike in bote. Za polno interaktivno izkušnjo obiščite s sodobnim spletnim brskalnikom.",
+      "user": "Uporabnik"
+    },
+    "chat": {
+      "subtitle": "Vprašanja in odgovori za ljudi, ki raziskujejo svojo spolno identiteto.",
+      "freedomMessage": "Resnica je, da nas bo neujemanje s pričakovanji družbenega spola osvobodilo vse!",
+      "moreQuestions": "Več vprašanj, povezanih z \"{question}\""
+    },
+    "videos": {
+      "title": "Videi o tranziciji in detranziciji",
+      "description": "To je arhiv osebnih videov o detranziciji, ki so bili naloženi na internet. Dajte svoj glas na glas s prispevanjem in deljenjem svoje zgodbe!",
+      "thumbnailAlt": "Sličica za",
+      "by": "od",
+      "female": "Ženske",
+      "male": "Moški"
+    }
+  },
+  "routes": {
+    "home": "/",
+    "about": "/about",
+    "contact": "/contact",
+    "support": "/support",
+    "videos": "/videos",
+    "stories": "/stories",
+    "studies": "/studies",
+    "definitions": "/definitions",
+    "donate": "/donate",
+    "terms": "/terms",
+    "prompts": "/prompts",
+    "participate": "/participate",
+    "conversations": "/conversations",
+    "research": "/research",
+    "chat": "/chat",
+    "login": "/login"
+  }
+}

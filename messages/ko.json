@@ -770,7 +770,7 @@
     "chat": {
       "subtitle": "성별 정체성에 대해 고민하는 사람들을 위한 질문과 답변.",
       "freedomMessage": "진실은 성별 비순응이 우리 모두를 자유롭게 할 것이라는 것입니다!",
-      "moreQuestions": ""{question}"와(과) 관련된 더 많은 질문"
+      "moreQuestions": "\"{question}\"와(과) 관련된 더 많은 질문"
     },
     "videos": {
       "title": "전환 및 디트랜지션 영상",

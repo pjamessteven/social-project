@@ -1,0 +1,805 @@
+{
+  "metadata": {
+    "title": "detrans.ai | Vorbește cu peste 50.000 de persoane care au făcut detransiție",
+    "description": "Detrans.ai este un chatbot util și empatic care împărtășește experiențele și perspectivele persoanelor care au făcut detransiție. Folosește detrans.ai pentru sprijin și sfaturi privind tranziția sau detransiția, sau pur și simplu ca instrument de cercetare pentru a înțelege de ce unele persoane adoptă, îmbrățișează și renunță la identitățile de gen."
+  },
+  "home": {
+    "title": "Vorbește cu peste 50.000 de persoane care au făcut detransiție",
+    "subtitle": "Perspective de pe cealaltă parte",
+    "intro": {
+      "greeting": "Bună! Ce înseamnă o persoană care a făcut detransiție?",
+      "response": "Salut! Sunt detrans.ai - conștiința colectivă a persoanelor care au făcut detransiție 🦎",
+      "definition": "O persoană care a făcut detransiție este o fostă persoană transgender care a făcut tranziție socială sau medicală, dar care între timp nu se mai identifică ca transgender și poate a inversat anumite aspecte ale tranziției.",
+      "description": "Observ motivele, tiparele și adevărurile despre de ce unele persoane adoptă, îmbrățișează și merg mai departe de la identitățile de gen citind povești și experiențe postate în subredditul /r/detrans și urmărind videoclipuri despre detransiție încărcate pe YouTube.",
+      "purpose": "Scopul meu este să împărtășesc aceste cunoștințe pentru a deconstrui genul și pentru a explora cum aceste experiențe modelează relația cu sine, cu corpul și cu lumea.",
+      "helpPrompt": "Cum te pot ajuta astăzi?"
+    },
+    "starters": {
+      "lizardQuestion": {
+        "display": "Scuze, dar care e treaba cu șopârlele?",
+        "full": "De ce persoanele care au făcut detransiția folosesc șopârla pentru a se reprezenta online?"
+      },
+      "curious": {
+        "display": "Sunt curios/curioasă de ce unele persoane fac detransiția",
+        "full": "Sunt curios/curioasă de ce unele persoane fac detransiția și ce realizări ar fi putut avea pentru a ajunge în acel punct."
+      },
+      "questioningTrans": {
+        "display": "Mă questionez asupra identității mele de gen și cred că aș putea fi transgender",
+        "full": "Mă questionez asupra identității mele de gen și cred că aș putea fi transgender"
+      },
+      "thinkingDetrans": {
+        "display": "Mă identific în prezent ca transgender și mă gândesc la detransiție",
+        "full": "Mă identific în prezent ca transgender și mă gândesc să fac detransiția"
+      },
+      "familyMember": {
+        "display": "Sunt părinte, membru al familiei sau prieten/prietenă cu cineva care face tranziția",
+        "full": "Sunt părinte, membru al familiei sau prieten/prietenă cu cineva care face tranziția"
+      },
+      "researcher": {
+        "display": "Sunt cercetător/cercetătoare care studiază identitatea de gen și experiențele de detransiție",
+        "full": "Sunt cercetător/cercetătoare care studiază identitatea de gen și experiențele de detransiție"
+      },
+      "learnChallenges": {
+        "display": "Vreau să aflu despre dificultățile și provocările cu care se confruntă persoanele care au făcut detransiția",
+        "full": "Vreau să aflu despre dificultățile și provocările cu care se confruntă persoanele care au făcut detransiția"
+      },
+      "understandTransition": {
+        "display": "Vreau să înțeleg de ce persoanele care au făcut detransiția au decis inițial să facă tranziția",
+        "full": "Vreau să înțeleg motivele pentru care persoanele care au făcut detransiția au decis inițial să facă tranziția și cum ar putea diferi între persoanele de sex masculin și feminin."
+      },
+      "debunkMisinfo": {
+        "display": "Vreau să demontezi dezinformările și credințele comune despre detransiție",
+        "full": "Te rog să demontezi toate dezinformările și credințele comune despre persoanele care au făcut detransiția, cu cât mai multe detalii posibil."
+      }
+    },
+    "navigation": {
+      "videos": "Videoclipuri despre Detransiție",
+      "stories": "Povești",
+      "storiesFull": "Povești și Statistici",
+      "support": "Ajutor și Sprijin",
+      "definitions": "Terminologie de Gen",
+      "studies": "Studii Academice",
+      "studiesShort": "Studii",
+      "howItWorks": "Cum Funcționează"
+    },
+    "deepResearch": {
+      "title": "Modul Cercetare Profundă",
+      "description": "Modul Cercetare Profundă îți extinde întrebarea pentru a-ți oferi un răspuns care abordează subiectul din diferite unghiuri.",
+      "note": "Cercetarea Profundă este mai lentă și non-conversațională. Pentru chat, lasă-l dezactivat."
+    },
+    "disclaimer": {
+      "trigger": "Experiențele și perspectivele de pe acest site sunt preluate de pe Reddit.",
+      "title": "Disclaimer Sursă",
+      "content": "detrans.ai răspunde la întrebări despre gen din perspectiva detrans, găsind experiențe relevante din comunitatea /r/detrans de pe Reddit. Deși Reddit este o platformă unde oameni reali împărtășesc povești personale, poate conține și conținut generat de roboți sau înșelător. Ești încurajat/ă să inspectezi postările originale de pe Reddit pentru a verifica sursa și contextul. Te rugăm să reții că /r/detrans este un subreddit puternic moderat, dar moderarea nu garantează acuratețea sau autenticitatea fiecărei postări."
+    },
+    "donate": {
+      "title": "Sprijină Munca Noastră",
+      "description": "Ajută-ne să păstrăm această resursă disponibilă pentru cei care au cea mai mare nevoie de ea.",
+      "button": "Donează",
+      "card": {
+        "title": "Sunt necesare donații pentru a menține {site} activ!",
+        "description": "Dacă apreciezi acest serviciu gratuit, te rugăm să iei în considerare să faci o donație.",
+        "description2": "Site-ul va funcționa în modul doar-cache dacă rămân fără bani, fără posibilitatea de a pune propriile întrebări.",
+        "button": "Fă o donație"
+      }
+    },
+    "participate": {
+      "card": {
+        "title": "Ești o persoană care a făcut detransiția sau desistența?",
+        "description": "Participă la studii pentru a ajuta la îmbunătățirea înțelegerii științifice a identităților transgender",
+        "description2": "și pentru a îmbunătăți rezultatele pentru persoanele care experimentează disforie de gen."
+      },
+      "title": "Împărtășește-ți Povestea",
+      "description": "Experiența ta poate ajuta alții să înțeleagă complexitățile identității de gen.",
+      "button": "Participă"
+    },
+    "footer": {
+      "poem": {
+        "line1": "Te poți elibera,",
+        "line2": "Tot ce trebuie să faci este să fii.",
+        "line3": "Și ai grijă la gândurile tale!",
+        "line4": "Pentru că mintea este ca o grădină,",
+        "line5": "Și fiecare gând este o sămânță.",
+        "line6": "Culegem ceea ce semănăm,",
+        "line7": "Dar prin aceasta putem crește..."
+      },
+      "openSource": "Un proiect open-source de",
+      "madeWithLove": "Făcut cu drag în Wellington, Noua Zeelandă",
+      "donatePrompt": "Te rugăm să donezi dacă poți,",
+      "beKind": "Și să fii bun/bună cu ceilalți."
+    },
+    "browseConversations": "Răsfoiește toate Conversațiile"
+  },
+  "header": {
+    "navigation": {
+      "home": "Acasă",
+      "resources": "Resurse",
+      "about": "Despre"
+    },
+    "resources": {
+      "genderSupport": "Sprijin pentru Gen",
+      "genderSupportDesc": "Găsește comunitate și terapeuți",
+      "terminology": "Terminologie",
+      "terminologyDesc": "Definirea termenilor și conceptelor cheie",
+      "stories": "Povești și Statistici",
+      "storiesDesc": "De la utilizatorii /r/detrans",
+      "videos": "Videoclipuri despre Detransiție",
+      "videosDesc": "Arhivă de memorii personale",
+      "studies": "Studii Recenzate de Pari",
+      "studiesDesc": "Cercetare academică relevantă",
+      "statistics": "Statistici Verificate",
+      "statisticsDesc": "statsforgender.org"
+    },
+    "about": {
+      "contact": "Contact",
+      "contactDesc": "Ia legătura cu mine",
+      "systemPrompts": "Prompt-uri de Sistem",
+      "systemPromptsDesc": "Vezi prompt-urile AI de sistem",
+      "terms": "Termeni",
+      "termsDesc": "Politica de confidențialitate și termeni"
+    },
+    "donate": "Donează",
+    "language": {
+      "title": "Limbă"
+    }
+  },
+  "language": {
+    "title": "Limbă",
+    "select": "Selectează limba",
+    "search": "{count} limbi",
+    "en": "Engleză",
+    "es": "Spaniolă",
+    "fr": "Franceză",
+    "de": "Germană",
+    "he": "Ebraică",
+    "it": "Italiană",
+    "nl": "Olandeză",
+    "tr": "Turcă",
+    "ro": "Română"
+  },
+  "settings": {
+    "title": "Setări"
+  },
+  "theme": {
+    "title": "Aspect",
+    "darkMode": "Mod întunecat",
+    "light": "Luminos",
+    "dark": "Întunecat"
+  },
+  "definitions": {
+    "metadata": {
+      "title": "detrans.ai | Definirea Termenilor Relaționați cu Genul",
+      "description": "În vorbirea de zi cu zi, sexul și genul sunt uneori folosite interșanjabil și în unele limbi există doar un cuvânt pentru a descrie cele două. Cu toate acestea, întregul concept de disforie de gen se bazează pe înțelegerea că există diferențe între sex și gen."
+    },
+    "title": "Definirea Termenilor Relaționați cu Genul",
+    "sexAndGender": {
+      "heading": "Sex și gen?",
+      "intro": "În vorbirea de zi cu zi, sexul și genul sunt uneori folosite interșanjabil și în unele limbi există doar un cuvânt pentru a descrie cele două. Cu toate acestea, întregul concept de disforie de gen se bazează pe înțelegerea că există diferențe între sex și gen.",
+      "sex": "<b>Sexul</b> se referă la biologia unei persoane (adică anatomia sa; schelet, musculatură, cromozomi, sistemul reproductiv și caracteristicile sexuale secundare). Reține că peste 99% din oameni sunt biologic fie masculini, fie femei, nu există un spectru al sexului, deși unele persoane au tulburări de dezvoltare sexuală (TDS). Marea majoritate a persoanelor cu TDS sunt masculini sau femei.",
+      "gender": "<b>Genul</b> se referă la rolurile, comportamentele, activitățile și atributele 'construite social' pe care o societate dată le consideră adecvate pentru bărbați și femei [așa cum sunt definiți de sexul lor biologic]. 'Masculin' și 'feminin' sunt categorii de gen. Majoritatea, poate toți oamenii, au un amestec de trăsături masculine și feminine. Genul se schimbă în timp și între culturi.",
+      "nonConformity": "<b>Non-conformitatea de gen</b> are loc atunci când o persoană acționează sau se prezintă diferit față de modul în care societatea se așteaptă să o facă, pe baza sexului său.",
+      "identity": "<b>Identitatea de Gen</b> - unii oameni cred că toți avem o 'identitate de gen' innascută - un sentiment profund sau conștientizare de noi înșine ca masculin, feminin sau undeva între - care există separat de sexul nostru biologic și care poate, în cazuri rare, să difere de acesta. Alți oameni nu cred că există o identitate de gen specifică distinctă de orice alt aspect al personalității sau identității unei persoane."
+    },
+    "dysphoria": {
+      "heading": "Ce este disforia de gen?",
+      "p1": "Disforia de gen este un termen diagnostic folosit de comunitatea psihiatrică și medicală pentru a descrie suferința experimentată atunci când cineva simte că identitatea sa de gen nu se potrivește cu sexul biologic.",
+      "p2": "Persoanele care experimentează disforie de gen raportează sentimente puternice, persistente de identificare cu un gen care diferă de sexul lor, și disconfortul asociat cu corpul lor sexuat. Pentru ca un diagnostic formal să fie pus în prezent, sentimentele trebuie să creeze suferință semnificativă sau impediment pentru persoana care le experimentează."
+    },
+    "transgender": {
+      "heading": "Ce înseamnă să fii transgender?",
+      "p1": "Transgender este un termen care poate însemna lucruri diferite pentru oameni diferiți. Se convine în general că femeile trans sunt născute cu un corp masculin dar se identifică ca femei, bărbații trans sunt născuți cu un corp feminin dar se identifică ca bărbați, iar persoanele non-binare se identifică nici ca masculin, nici ca feminin. Oamenii folosesc adesea termenul mai scurt 'trans' pentru a semnifica că cineva se identifică cu un gen care nu este același cu sexul biologic.",
+      "p2": "Transgender poate fi înțeles să însemne că i) ești sexul/genul opus sexului în care te-ai născcut, ii) crezi că ești sexul/genul opus celui în care te-ai născut, sau iii) trăiești ca și cum sexul/genul tău ar fi opus sexului în care te-ai născut. Dezbaterile despre care dintre aceste trei moduri de a înțelege termenul este cel mai precis pot fi încinse și controversate. Unii oameni simt că chiar și purtarea unei discuții despre ce înseamnă să fii transgender subminează validitatea experienței. Cu toate acestea, aceste credințe diferite duc inevitabil la idei diferite despre cum este cel mai bine să sprijinim oamenii să gestioneze suferința legată de gen, așa că discuțiile sunt necesare pentru a ne asigura că oamenii primesc cel mai bun ajutor și sfat posibil."
+    },
+    "desistance": {
+      "heading": "Ce este desistența?",
+      "p1": "Desistența este atunci când o persoană care s-a identificat ca transgender dar nu a întreprins intervenții medicale nu se mai identifică ca transgender. Deși poate nu trebuie să se confrunte cu implicațiile de a fi întreprins intervenții medicale, desistența poate fi în continuare un proces foarte dureros emoțional, confuz și dificil."
+    },
+    "detransition": {
+      "heading": "Detransiția și persoanele care au făcut detransiția",
+      "p1": "Detransiția este atunci când o persoană care s-a identificat ca transgender și a suportat intervenții medicale nu se mai identifică ca transgender. Există o variație enorm de largă în experiențele oamenilor în cadrul acestui grup. Unii oameni pot fi foarte supărați de ceea ce au traversat și de implicațiile pe termen lung, alții pot vedea ca pe ceva prin care a trebuit să treacă pentru a se înțelege pe ei înșiși așa cum sunt în prezent."
+    },
+    "regret": {
+      "heading": "Regretul tranziției",
+      "p1": "Unele persoane s-ar fi putut identifica ca transgender timp de mulți ani și au suportat intervenții medicale precum hormoni și operații care le-au schimbat corpul ireversibil. Ele pot simți că regretă inițierea unei tranziții medicale de gen, dar continuă să se identifice ca transgender și/sau continuă cu hormoni de sex opus."
+    },
+    "source": {
+      "text": "Sursă:",
+      "link": "Fundația Detrans"
+    }
+  },
+  "chat": {
+    "lookingForComments": "Se caută comentarii relevante...",
+    "errorOccurred": "A apărut o eroare, încearcă din nou... Contactează-mă dacă acest lucru continuă să se întâmple.",
+    "analysingExperiences": "Se analizează Experiențele",
+    "detransPerspective": "-> Care sunt perspectivele detrans asupra acestui subiect?",
+    "transPerspective": "-> Care sunt perspectivele trans asupra acestui subiect?",
+    "backToPortal": "<- Înapoi la Portal"
+  },
+  "chatInput": {
+    "placeholder": "Întreabă detrans.ai...",
+    "deepResearch": "Cercetare Profundă",
+    "suggestions": "Sugestii:"
+  },
+  "deepResearchEvents": {
+    "errorTitle": "Eroare cercetare profundă",
+    "retrieving": "Se preiau experiențe detrans...",
+    "generatingQuestions": "Se generează întrebări meta...",
+    "findingAnswers": "Se găsesc răspunsuri la întrebările meta",
+    "completed": "Cercetare profundă finalizată",
+    "retrieveError": "Eroare la preluarea experiențelor detrans!",
+    "analyzeError": "Am rămas fără bani pentru a plăti AI-ul care analizează experiențele detrans și răspunde la întrebări. Dacă poți, te rugăm să donezi pentru a putea menține serviciul activ. Te rugăm să încerci din nou mai târziu. Deocamdată, poți încerca întrebările din portal.",
+    "generatingAnswer": "Se generează răspunsul...",
+    "waitingForAnswer": "Se așteaptă răspunsul",
+    "questionsAnswered": "{answered} din {total} întrebări meta răspunse",
+    "generatingSummary": "Se generează rezumatul răspunsurilor"
+  },
+  "questionTabs": {
+    "topics": "Subiecte",
+    "generated": "Generate",
+    "recent": "Recente",
+    "top": "Top"
+  },
+  "conversations": {
+    "title": "Conversații Recente",
+    "subtitle": "Vezi singur cum detrans.ai ajută oameni din întreaga lume.",
+    "tabs": {
+      "featured": "Recomandate",
+      "all": "Toate"
+    },
+    "buttons": {
+      "showMore": "Arată încă {count} Conversații",
+      "showLess": "Arată mai puțin",
+      "loadMore": "Încarcă mai multe Conversații",
+      "loading": "Se încarcă..."
+    }
+  },
+  "conversationCard": {
+    "untitled": "Conversație fără titlu",
+    "from": "din",
+    "moreMessages": "încă {count} mesaje...",
+    "moreMessage": "încă {count} mesaj...",
+    "date": {
+      "today": "Astăzi",
+      "yesterday": "Ieri",
+      "daysAgo": "acum {count} zile",
+      "weeksAgo": "acum {count, plural, =1 {o săptămână} other {# săptămâni}}"
+    },
+    "admin": {
+      "deleting": "Se șterge...",
+      "delete": "Șterge Conversația",
+      "banning": "Se blochează...",
+      "ban": "Blochează Utilizatorul (IP)"
+    }
+  },
+  "stories": {
+    "metadata": {
+      "title": "detrans.ai | Povești și Statistici despre Detransiție",
+      "description": "Citește povești sincere despre detransiție, cronologii și tendințe de la membrii comunității /r/detrans de pe Reddit, cea mai mare colecție deschisă de povești despre detransiție de pe internet. Află cât de în vârstă erau persoanele care au făcut detransiția când au făcut tranziția și detransiția și ce căi au urmat."
+    },
+    "title": "Povești și Statistici despre Detransiție",
+    "subtitle": "Răsfoiește și vizualizează {count} povești și statistici unice despre detransiție ale persoanelor care și-au împărtășit experiențele în subredditul /r/detrans, care este cea mai mare colecție deschisă de povești și experiențe despre detransiție de pe internet.",
+    "disclaimer": {
+      "summary": "Aceste povești au fost rezumate folosind AI.",
+      "details": "Pe Reddit, oamenii își împărtășesc adesea experiențele în multiple comentarii sau postări. Pentru a face această informație mai accesibilă, AI-ul nostru adună toate acele bucăți dispersate într-un singur rezumat ușor de citit și cronologie. Toate prompt-urile de sistem sunt notate pe pagina de prompt-uri.",
+      "accuracy": "Uneori AI-ul poate halucina sau afirma lucruri care nu sunt adevărate. Dar în general, povestirile rezumate sunt reflectări exacte ale comentariilor originale ale utilizatorilor.",
+      "inclusion": "Doar utilizatorii care au împărtășit suficient pentru a putea alcătui o poveste completă și cronologie sunt incluși. Utilizatorii care au postat mai puțin de cinci comentarii sau comentariile lor care au primit mai puțin de trei voturi pozitive sunt ignorate. Postările nu sunt încă incluse în setul de date.",
+      "verification": "Fiecare utilizator a fost analizat pentru semne de conținut generat de roboți sau neautentic. Orice cont care nu pare a fi un detransitioner autentic este marcat 'suspect'. Aceste conturi vor fi revizuite manual și înlăturate din setul de date detrans.ai dacă se constată că sunt neautentice. Conturile care au făcut mai puțin de cinci comentarii au fost omise din analiză."
+    },
+    "charts": {
+      "tabs": {
+        "age": "Vârstă",
+        "duration": "Durată",
+        "transitionReason": "Motivul Tranziției",
+        "detransitionReason": "Motivul Detransiției",
+        "pathways": "Căi"
+      },
+      "loading": "Se încarcă datele graficului...",
+      "error": "Eroare: {message}",
+      "retry": "Reîncearcă",
+      "noData": "Nu există date disponibile despre motivul {mode} pentru filtrele selectate",
+      "reasonChart": {
+        "title": "De ce spun persoanele care au făcut detransiția că au {mode, select, detransition {făcut detransiția} other {făcut tranziția}}?",
+        "subtitle": "Date din cronologiile de {mode} ale utilizatorilor Reddit ({totalReasonCount} utilizatori total, {totalUsers} motive distincte.)",
+        "mentions": "{count} menționări ({percentage}%)"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Caută experiențe de utilizator...",
+      "ageRange": "Interval de Vârstă:",
+      "ageRangeYears": "{min} - {max} ani",
+      "sex": {
+        "all": "Masculin și Feminin",
+        "female": "Feminin",
+        "male": "Masculin"
+      },
+      "tagsPlaceholder": "Selectează etichete pentru filtrare...",
+      "clearFilters": "Șterge Filtrele"
+    },
+    "results": "Se afișează {showing} din {total} povești de utilizator",
+    "noResults": "Nu s-au găsit utilizatori care să corespundă filtrelor tale.",
+    "pagination": {
+      "previous": "Anterior",
+      "next": "Următor",
+      "pageInfo": "Pagina {page} din {totalPages}"
+    },
+    "userCard": {
+      "comments": "{count} comentarii",
+      "postingSince": "Postează din {date}",
+      "transitionedAt": "A făcut tranziția la {age}",
+      "desistedAt": "A făcut desistența la {age}",
+      "detransitionedAt": "A făcut detransiția la {age}",
+      "female": "feminin",
+      "male": "masculin"
+    }
+  },
+  "prompts": {
+    "metadata": {
+      "title": "Cum funcționează? | Prompt-uri de Sistem",
+      "description": "Află cum funcționează detrans.ai, inclusiv prompt-uri de sistem, date limită ale datelor și informații open source."
+    },
+    "title": "Cum funcționează?",
+    "intro": {
+      "paragraph1": "<bold>detrans.ai</bold> chat este un agent alimentat de RAG (generare augmentată prin recuperare) care generează întrebări meta și le răspunde prin aducerea la suprafață și integrarea gândurilor și experiențelor detrans din subredditul <reddit>/r/detrans</reddit> și de pe YouTube. A fost construit cu framework-ul <llamaIndex>LlamaIndex</llamaIndex> și modelul open-source chinezesc <kimi>kimi-k2.5</kimi> de la Moonshot AI pentru a reduce biasul politic occidental.",
+      "paragraph2": "ChatGPT și majoritatea celorlalte LLM-uri occidentale sunt destul de agresive în modul în care promovează și susțin credințele de gen. S-a dovedit a fi imposibil să folosim modelele GPT de la OpenAI pentru acest proiect, deoarece modelele ar submina și contrazice constant experiențele detrans pe care erau însărcinate să le rezume. Dacă dorești o experiență mai afirmatoare, vezi <chatgpt>ChatGPT</chatgpt>."
+    },
+    "dataCutoff": {
+      "title": "Date Limită ale Datelor",
+      "paragraph1": "<bold>detrans.ai</bold> are în prezent acces la toate comentariile de pe /r/detrans postate înainte de <date>8/9/2025</date> care au primit cel puțin trei voturi pozitive. Voi încerca să actualizez setul de date cel puțin o dată pe an atât timp cât subredditul /r/detrans continuă să existe.",
+      "paragraph2": "Utilizatorii pot trimite experiențe video trimițând linkuri către videoclipuri YouTube. Aceste videoclipuri vor fi revizuite manual înainte de a fi transcrise folosind modelul de text-la-vorbire Whisper de la OpenAI și adăugate în baza de date vectorială și arhiva video."
+    },
+    "openSource": {
+      "title": "Open Source",
+      "paragraph": "Codul sursă este disponibil și pe <github>Github</github> sub licență MIT dacă dorești să inspecționezi sau să refolosești oricare dintre coduri pentru propriul tău proiect. Acest proiect este construit și pe multe alte proiecte open-source, cum ar fi Llamaindex, React, Next.js, Tailwind, Lucide, Qdrant, Postgres și Vercel AI SDK. Mulțumiri multe contribuitorilor acestor proiecte pentru că au oferit o bază solidă pe care să construim."
+    },
+    "systemPrompts": {
+      "title": "Prompt-uri de Sistem",
+      "description": "Acestea sunt prompt-urile pe care sistemul le folosește pentru fluxul de lucru RAG. Nu există alte instrucțiuni sau straturi personalizate în afară de ceea ce este afișat pe această pagină.",
+      "lastUpdated": "Ultima Actualizare",
+      "chatAgentTitle": "Prompt de Sistem pentru Agentul de Chat",
+      "researchModeTitle": "Prompt-uri de Sistem pentru Modul Cercetare Profundă",
+      "researchAgentTitle": "Prompt pentru Agentul de Cercetare",
+      "experienceExtractionTitle": "Prompt pentru Extragerea Experiențelor",
+      "finalAnswerTitle": "Prompt pentru Răspunsul Final"
+    },
+    "userSummaries": {
+      "title": "Prompt-uri de Sistem pentru Rezumatele Utilizatorilor",
+      "description": "Acestea sunt prompt-urile de sistem pentru rezumatele generate ale utilizatorilor.",
+      "lastUpdated": "Ultima Actualizare",
+      "experienceReportTitle": "Raportul Experienței Utilizatorului",
+      "experienceSummaryTitle": "Rezumatul Experienței Utilizatorului",
+      "generateTagsTitle": "Generează Etichete",
+      "extractAgesTitle": "Extrage Vârstele",
+      "determineBirthSexTitle": "Determină Sexul la Naștere",
+      "redFlagReportTitle": "Raportul Steagului Roșu"
+    }
+  },
+  "donatePage": {
+    "title": "Menține Detrans.AI Activ",
+    "description1": "Dacă apreciezi munca pe care am depus-o în acest site sau dacă acest serviciu gratuit te-a ajutat, te rugăm să iei în considerare să faci o donație unică sau regulată pentru a menține <b>detrans.ai</b> online.",
+    "description2": "Nu-mi permit să rulez un serviciu intensiv în resurse ca acesta fără sprijinul tău. Sursa mea principală de venit în acest moment este ajutorul social guvernamental și la momentul scrierii acestui text am mai puțin de 1000 de dolari în contul meu bancar. Dacă acest site explodează, aș putea primi facturi de mii de dolari. Dacă rămân fără bani, abilitatea de a-ți pune propriile întrebări și de a explora subiecte mai în profunzime prin întrebări de urmărire va fi dezactivată și voi servi doar răspunsuri cache la întrebările din portal.",
+    "description3": "Te rugăm să iei în considerare o donație lunară. Poți dona folosind PayPal mai jos, direct în contul meu bancar din Noua Zeelandă sau cu BTC.",
+    "bankAccount": "Cont Bancar Noua Zeelandă",
+    "accountName": "Nume",
+    "accountNumber": "Cont",
+    "swiftCode": "Cod SWIFT/BIC",
+    "bitcoin": "Adresă Bitcoin",
+    "paypal": "Donație PayPal"
+  },
+  "terms": {
+    "metadata": {
+      "title": "Politica de Confidențialitate | detrans.ai",
+      "description": "Află despre politica noastră de confidențialitate, practicile de colectare a datelor și cum protejăm informațiile tale."
+    },
+    "title": "Politica de Confidențialitate",
+    "intro": "Această Politică de Confidențialitate explică ce informații colectăm, de ce le colectăm și cum le păstrăm în siguranță când vizitezi sau folosești serviciul nostru.",
+    "sections": {
+      "informationWeCollect": {
+        "title": "Informațiile pe Care le Colectăm",
+        "chatMessages": {
+          "title": "Mesaje de Chat:",
+          "content": "Păstrăm toate înregistrările de chat, precum și răspunsurile la toate întrebările puse în modul Cercetare Profundă. Înregistrările de chat nu sunt asociate cu adresa ta IP sau cu niciun fel de date care ar putea fi folosite pentru a te identifica. Înregistrările de chat pot fi analizate și folosite în scopuri de cercetare în viitor. Te rugăm să eviți să împărtășești informații sensibile."
+        },
+        "cookies": {
+          "title": "Cookie-uri / Tehnologii de Urmărire:",
+          "content": "Nu folosim <em>cookie-uri</em>, pixel tags sau orice mecanisme similare de urmărire pe partea de client."
+        },
+        "ipAddresses": {
+          "title": "Adrese IP:",
+          "content": "Când faci o cerere către serverele noastre, stocăm adresa ta IP pentru a număra cererile și a aplica limite de rată care previn abuzul."
+        },
+        "optionalData": {
+          "title": "Date Opționale:",
+          "content": "Dacă alegi să ne contactezi, putem colecta informațiile pe care le furnizezi voluntar (de ex., adresă de email, nume). Furnizarea acestor informații este opțională, cu excepția cazului în care se specifică în mod explicit."
+        }
+      },
+      "legalBases": {
+        "title": "Baze Legale pentru Procesare (vizitatori UE/SEE)",
+        "item1": "Procesarea limitării ratei este necesară pentru <em>interesele legitime</em> noastre în conformitate cu GDPR Art. 6(1)(f) — în special, menținerea disponibilității și securității serviciului.",
+        "item2": "Orice procesare suplimentară (de ex., crearea contului) se bazează pe <em>consimțământul</em> sau <em>necesitatea contractuală</em> tău, după caz."
+      },
+      "dataRetention": {
+        "title": "Cât Timp Păstrăm Datele",
+        "content": "Toate înregistrările de chat vor fi păstrate. Adresele IP folosite pentru limitarea ratei sunt șterse automat în câteva minute după ultima cerere sau la sfârșitul ferestrei de limitare a ratei, oricare vine prima. Informațiile voluntare (de ex., emailuri de suport) sunt păstrate doar atât timp cât este necesar pentru a-ți rezolva întrebarea sau pentru a satisface obligațiile legale."
+      },
+      "thirdPartySharing": {
+        "title": "Partajarea cu Terți",
+        "content": "Putem alege să împărtășim înregistrările de chat anonimizate cu academicieni și cercetători care caută să îmbunătățească rezultatele pentru persoanele care experimentează disforie de gen. Putem divulga adrese IP sau alte date doar atunci când este cerut de lege sau pentru a ne proteja drepturile, utilizatorii sau publicul (de ex., prevenirea fraudelor, ordin judecătoresc)."
+      },
+      "security": {
+        "title": "Securitate",
+        "content": "Folosim măsuri tehnice și organizatorice standard în industrie (criptare TLS, controale de acces, design cu privilegii minime) pentru a proteja datele în tranzit și în repaus."
+      },
+      "internationalTransfers": {
+        "title": "Transferuri Internaționale",
+        "content": "Serverele noastre sunt localizate în Statele Unite. Dacă accesezi serviciul din afara S.U.A., înțelegi că adresa ta IP va fi transmisă și procesată în Statele Unite."
+      },
+      "childrensPrivacy": {
+        "title": "Confidențialitatea Copiilor",
+        "content": "Serviciul nostru nu se adresează copiilor sub 13 ani și nu colectăm în mod conștient informații personale de la aceștia. Dacă crezi că am colectat în mod inadvertat astfel de date, te rugăm să ne contactezi pentru ștergerea imediată."
+      },
+      "changes": {
+        "title": "Modificări ale Acestei Politici",
+        "content": "Putem actualiza această politică din când în când. 'Data Efectivă' de sus se va schimba, iar schimbările semnificative vor fi postate în mod proeminent."
+      },
+      "contact": {
+        "title": "Contactează-ne",
+        "content": "Dacă ai întrebări, nelămuriri sau reclamații, folosește formularul de contact sau trimite un email la <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "videos": {
+    "metadata": {
+      "title": "detrans.ai | Urmărește Videoclipuri de la Persoane care au Făcut Detransiția",
+      "description": "Iată o selecție de memorii video personale care au fost încărcate pe YouTube de persoane care au făcut tranziția și apoi au ajuns la o realizare care le-a determinat să facă detransiția. Există nenumărate povești ca acestea pe internet, aceasta este doar o submulțime mică."
+    },
+    "title": "Videoclipuri despre Tranziție și Detransiție",
+    "description": {
+      "line1": "Această pagină își propune să fie cea mai bună arhivă de videoclipuri despre detransiție de pe internet.",
+      "line2": "Folosind text-la-vorbire, detrans.ai integrează aceste experiențe în conversațiile de chat.",
+      "line3": "Deocamdată doar videoclipuri YouTube, TikTok vine curând?!"
+    },
+    "female": "feminin",
+    "male": "masculin",
+    "backToAll": "Înapoi la toate",
+    "overview": "Prezentare Generală",
+    "fullSummary": "Rezumat Complet al Videoclipului",
+    "watchOnYouTube": "Urmărește pe YouTube",
+    "moreVideos": "Mai multe Videoclipuri",
+    "browseAll": "Răsfoiește toate videoclipurile despre detransiție",
+    "metadataWatchDescription": "Urmărește {title} de {author}, o persoană de sex {sex} care a făcut detransiția împărtășindu-și povestea.",
+    "metadataThumbnailAlt": "Miniatură pentru {title}"
+  },
+  "videoList": {
+    "loading": "Se încarcă videoclipurile...",
+    "filters": {
+      "all": "Toate Povestirile",
+      "female": "Feminin",
+      "male": "Masculin",
+      "detransitioners": "Persoane care au Făcut Detransiția"
+    },
+    "thumbnailAlt": "Miniatură pentru {title}",
+    "by": "de",
+    "female": "Feminin",
+    "male": "Masculin"
+  },
+  "videoSubmitForm": {
+    "submitTitle": "Trimite Videoclipul Tău despre Detransiție",
+    "description": {
+      "line1": "Prin trimiterea videoclipului tău, acesta va apărea pe această pagină și în conversațiile relevante de chat.",
+      "line2": "Ar putea fi videoclipul tău sau pur și simplu unul pe care l-ai găsit online și care lipsește de pe această pagină.",
+      "line3": "Toate trimiterile sunt moderate, ar putea dura câteva zile până când apare."
+    },
+    "urlLabel": "URL YouTube",
+    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "submitButton": "Trimite Videoclipul",
+    "submitting": "Se trimite...",
+    "submitSuccess": "Videoclip trimis cu succes! Va fi revizuit înainte de a apărea pe site.",
+    "submitError": "Nu s-a putut trimite videoclipul",
+    "networkError": "Eroare de rețea. Te rugăm să încerci din nou."
+  },
+  "studySubmitForm": {
+    "submitTitle": "Trimite un Studiu",
+    "description": {
+      "line1": "Știi de un studiu academic relevant sau un articol recenzat de pari care lipsește?",
+      "line2": "Trimite URL-ul și opțional sugerează un titlu pentru acesta.",
+      "line3": "Toate trimiterile sunt moderate înainte de a apărea pe site."
+    },
+    "urlLabel": "URL Studiu",
+    "urlPlaceholder": "https://...",
+    "titleLabel": "Titlu Sugerat",
+    "titlePlaceholder": "Titlu sau headline opțional pentru studiu",
+    "titleHelp": "Opțional: Sugerează un titlu scurt sau headline pentru acest studiu",
+    "submitButton": "Trimite Studiul",
+    "submitting": "Se trimite...",
+    "submitSuccess": "Studiu trimis cu succes! Va fi revizuit înainte de a apărea pe site.",
+    "submitError": "Nu s-a putut trimite studiul",
+    "networkError": "Eroare de rețea. Te rugăm să încerci din nou."
+  },
+  "studiesPage": {
+    "metadata": {
+      "title": "detrans.ai | Studii Academice despre Subiecte de Detransiție",
+      "description": "Găsește pe această pagină o selecție de studii academice, articole de jurnal recenzate de pari și statistici verificate care se referă la tendințele identității de gen și detransiție.",
+      "ogTitle": "detrans.ai | Studii Academice despre Subiecte de Detransiție",
+      "ogDescription": "Găsește pe această pagină o selecție de studii academice și articole de jurnal recenzate de pari și statistici verificate care se referă la tendințele identității de gen și detransiție."
+    },
+    "title": "Articole Academice Selectate",
+    "description": "Studii academice, cercetare recenzată de pari și articole de jurnal pe subiectele identității de gen, tranziției și detransiției."
+  },
+  "contentWarning": {
+    "title": "Avertisment de Conținut:",
+    "description": {
+      "line1": "Acest site web conține povești, experiențe și perspective de la foste persoane transgender.",
+      "line2": "Subiectele includ regretul tranziției, complicații medicale și perspective holistice asupra disforiei.",
+      "line3": "Aceste informații pot contesta credințele comune despre identitatea de gen și tranziție."
+    },
+    "buttons": {
+      "exit": "Scoate-mă de aici!",
+      "continue": "Continuă"
+    }
+  },
+  "supportPage": {
+    "metadata": {
+      "title": "detrans.ai | Obține Ajutor și Sprijin pentru Gen",
+      "description": "Află diferența dintre Îngrijirea Afirmatoare de Gen și Terapia Exploratorie de Gen. Dacă experimentezi disforie de gen, unul dintre cele mai bune moduri de a obține sprijin este să vorbești și să înțelegi perspectivele persoanelor care au fost acolo și au ieșit pe cealaltă parte."
+    },
+    "title": "Obține Ajutor și Sprijin pentru Gen",
+    "navigation": {
+      "jumpTo": "Sari la:",
+      "getGenderSupport": "Obține Sprijin pentru Gen:"
+    },
+    "sections": {
+      "onlineSupport": {
+        "title": "Grupuri de Sprijin Online",
+        "description": "Dacă experimentezi disforie de gen, unul dintre cele mai bune moduri de a obține sprijin este să vorbești și să înțelegi perspectivele persoanelor care au fost acolo și au ieșit pe cealaltă parte.",
+        "links": {
+          "redditCommunity": "Comunitatea Detrans pe Reddit",
+          "redditWiki": "Wiki Detrans pe Reddit",
+          "discordServer": "Serverul Discord Oficial /r/detrans",
+          "askDetransAI": "Întreabă peste 50.000 de persoane detrans cu detrans.ai"
+        }
+      },
+      "genderAffirmingCare": {
+        "title": "Îngrijirea Afirmatoare de Gen: Ce este?",
+        "description": "Îngrijirea afirmatoare de gen este în prezent opțiunea standard (și adesea singura) de tratament pentru disforie de gen oferită de furnizorii de servicii medicale în lumea occidentală. Îngrijirea afirmatoare de gen recunoaște în esență așteptările genului societății și apoi adaptează pacientul la ele. Este o abordare etapizată care începe cu tranziția socială (nume, pronume, îmbrăcăminte), apoi terapia hormonală și apoi, pentru unii, proceduri chirurgicale ireversibile. Îngrijirea afirmatoare de gen poate oferi relief pentru disforie de gen, dar vine cu riscuri serioase pentru sănătate și adesea efecte secundare permanente. Procedează cu precauție extremă și asigură-te că",
+        "watchTestimonies": "urmărești câteva mărturii"
+      },
+      "genderExploratoryTherapy": {
+        "title": "Terapia Exploratorie de Gen: Ce este?",
+        "description1": "Terapia Exploratorie de Gen înseamnă pur și simplu că terapeutul tău nu se grăbește să te afirme și să te medicalizeze. În schimb, va începe prin a explora concepte de gen și de ce ai putea simți astfel. Terapia Exploratorie de Gen este o abordare fără o agendă specifică, predeterminată, iar rezultatele terapiei exploratorii de gen pot varia în funcție de fiecare persoană individual.",
+        "description2": "Dacă cauți pe Google 'Terapia Exploratorie de Gen', vei găsi unele critici care o compară cu terapia de conversie gay (care s-a dovedit a fi ineficientă). Adevărul este că Terapia Exploratorie de Gen este foarte diferită de terapia de conversie gay:",
+        "references": {
+          "title": "Referințe",
+          "ref1": "U.S. Dept. of Health & Human Services (2025). Report on Pediatric Gender Dysphoria and Gender Conversion Efforts.",
+          "ref2": "D'Angelo, R. (2025). 'Supporting autonomy in young people with gender dysphoria: psychotherapy is not conversion therapy.' Journal of Medical Ethics, 51(1).",
+          "ref3": "Lemma, A. & Schmidt, L. (2024). 'Psychodynamic Psychotherapy for Gender Dysphoria is not Conversion Therapy.' Frontiers in Psychology.",
+          "ref4": "Korte, A. et al. (2021). 'One Size Does Not Fit All: In Support of Psychotherapy for Gender Dysphoria.' Archives of Sexual Behavior."
+        },
+        "florenceAshley": {
+          "title": "Studiul Florence Ashley",
+          "description": "Cercetarea academică în acest domeniu este adesea părtinitoare. Unul dintre cele mai influente studii (Interogarea Terapiei Exploratorii de Gen) a fost publicat în 2022 de Florence Ashley, o femeie trans. În studiul ei a comparat Terapia Exploratorie de Gen cu terapia de conversie gay și a condamnat puternic practica. Ar trebui recunoscut faptul că persoanele care se identifică ca trans sunt motivate să-și protejeze identitatea și credințele, iar acest studiu este un exemplu perfect al acestui lucru. Studiul este plin de fallacii logice, totuși a fost publicat și este folosit ca justificare academică pentru ca îngrijirea afirmatoare de gen să fie singura opțiune pentru persoanele care experimentează disforie de gen.",
+          "showFallacies": "Vezi toate fallaciile logice din studiul Florence Ashley"
+        }
+      },
+      "findTherapist": {
+        "title": "Unde pot găsi un terapeut care practică terapia exploratorie de gen?",
+        "languageNotice": "Majoritatea terapeuților listați vorbesc doar engleză, dar poți încerca să îi contactezi pentru a găsi pe cineva care vorbește limba ta. Dacă știi de un terapeut licențiat care vorbește limba ta, poți sugera adăugarea lor pe această pagină prin",
+        "contactForm": "formularul de contact",
+        "organizations": {
+          "justTherapy": {
+            "name": "Just Therapy",
+            "description": "Just Therapy s-a născut din dorința de a ne întoarce la ceea ce ar trebui să fie terapia – eficientă, etică și liberă de ideologie. Este o asociație de terapeuți și consilieri aliniați de etică și principii comune. Just Therapy recunoaște că mare parte din lumea psihoterapiei și consilierii a fost preluată de activiști și ideologii, care riscă să dăuneze, mai degrabă decât să sprijine, bunăstarea mentală a clienților. Membrii săi, care provin dintr-o gamă largă de discipline și specialități, au semnat un Cod de Conduită.",
+            "directory": "Directorul de Terapeuți Just Therapy",
+            "codeOfConduct": "Codul de Conduită Just Therapy"
+          },
+          "therapyFirst": {
+            "name": "Therapy First",
+            "description": "Therapy First unește profesioniști în sănătate mintală care cred că clienții în suferință de gen merită psihoterapie deschisă, bazată pe dovezi care explorează factori inconștienți și contextuali înainte de orice pași medicali ireversibili; ei resping atât practicile de conversie, cât și modelul 'doar-afirmare', susțin autonomia clientului și consideră tranziția medicală în copilărie/adolescență ca fiind experimentală, susținând în același timp dreptul adulților la autonomie corporală și explorare terapeutică continuă.",
+            "directory": "Directorul de Terapeuți Therapy First",
+            "about": "Despre Therapy First"
+          },
+          "beyondTrans": {
+            "name": "Beyond Trans",
+            "description": "Stella O'Malley a lansat Rețeaua de Sprijin pentru Disforie de Gen în martie 2020 pentru a oferi părinților ajutor neutru cu copiii în suferință de gen; a crescut rapid într-o comunitate globală, stimulând crearea în 2021 a Genspect, un avocat pentru îngrijirea non-medicalizată. Recunoscând regretul în creștere privind tranziția, grupul a lansat Beyond Trans în 2022, iar în iunie 2025 a fuzionat cu GDSN pentru a forma o singură rețea integrată de sprijin bazată pe dovezi pentru familii, indivizi și persoane care au făcut detransiția.",
+            "directory": "Directorul de Terapeuți Beyond Trans",
+            "supportGroups": "Grupuri de Sprijin Beyond Trans",
+            "about": "Despre Beyond Trans"
+          },
+          "detransFoundation": {
+            "name": "Fundația Detrans",
+            "description": "Fundația Detrans oferă resurse și sprijin pentru persoanele care au făcut detransiția, inclusiv acces la terapeuți calificați care înțeleg experiențele de detransiție. Următorii terapeuți fac parte din Fundația Detrans:",
+            "drEntwistle": "este Psiholog Clinic care a lucrat anterior la serviciul NHS de dezvoltare a identității de gen pentru sub 18 ani în Leeds. Este înregistrată la Consiliul Profesiilor din Domeniul Sănătății din Marea Britanie (HCPC) și oferă consultații online prin videoconferință securizată.",
+            "anastassisSpiliadis": "este Psihoterapeut Sistemic și de Familie care a lucrat patru ani la Serviciul de Dezvoltare a Identității de Gen de la Tavistock, unde a condus Serviciul de Terapie și Consultație de Familie. A demisionat de la Tavistock deoarece nu a fost de acord cu lipsa unui model terapeutic în înțelegerea dificultăților de identitate de gen. A dezvoltat Modelul Explorator de Gen și are experiență extinsă în lucrul cu persoane care se questionează asupra genului și persoane care au făcut detransiția.",
+            "visitWebsite": "Vizitează site-ul Fundației Detrans"
+          }
+        }
+      },
+      "forParents": {
+        "title": "Resurse pentru Părinți",
+        "intro": "Dacă copilul tău a devenit recent transgender, s-ar putea să te simți confuz, îngrijorat și nesigur cum să îl sprijini cel mai bine, protejându-i în același timp sănătatea și bunăstarea pe termen lung.",
+        "rogdRepair": {
+          "name": "Programul ROGD Repair al Stephanie Winn",
+          "whatIs": "Ce este ROGD Repair?",
+          "description1": "ROGD Repair este:",
+          "bullet1": "Un program care ajută părinții tinerilor identificați ca trans să comunice în moduri care promovează desistența, gândirea critică, sănătatea și armonia relațională",
+          "bullet2": "Un set de instrumente interactiv și în continuă expansiune de concepte de psihologie și abilități de comunicare perfecționate de-a lungul anilor ca Terapeut Licențiat de Căsătorie și Familie transformat în coach pentru părinți ROGD",
+          "bullet3": "Un curs online la ritm propriu care conține peste 100 de lecții, fiecare conținând un videoclip, un eseu și întrebări de reflecție concepute pentru a ajuta participanții să personalizeze conținutul în funcție de situațiile unice ale familiilor lor, precum și forumuri de discuții",
+          "description2": "Noile membresii ROGD Repair vin acum cu acces nelimitat la RepairBot, primul și singurul instrument AI conceput special pentru a ajuta părinții non-afirmatori ai tinerilor în suferință de gen. RepairBot este antrenat pe întregul curriculum ROGD Repair și servește ca un excelent punct de reper, partener de teme și ajutor pentru instrumente de comunicare!",
+          "ctaBox": {
+            "title": "Copilul tău spune că este 'trans', dar tu vrei doar să fie sănătos și în siguranță.",
+            "description1": "Sănătatea și viitorul copilului tău sunt în joc, dar pârghia și influența ta sunt limitate. Poate că a început hormoni de pe piața neagră pe la spatele tău, sau iese furios când îl 'degendezi', sau este la o facultate 'afirmatoare'. Trebuie să comunici eficient în această situație dificilă, înainte ca cineva să se rănească. Aici intervine ROGD Repair.",
+            "description2": "ROGD Repair este un curs online la ritm propriu și o comunitate pentru părinți care predă conceptele de psihologie și instrumentele de comunicare de care ai nevoie pentru a înțelege starea mentală a copilului tău și cum să îl abordezi. Membresia include acum RepairBot, asistentul tău AI 24/7 antrenat pe această abordare.",
+            "description3": "ROGD Repair și RepairBot au fost create de un Terapeut Licențiat de Căsătorie și Familie cu peste un deceniu de experiență în lucrul cu tineri identificați ca trans și familiile lor, care ghidează acum exclusiv părinți care știu că trebuie să existe o cale mai bună decât 'afirmarea'."
+          },
+          "coupon": "Folosește acest cod de cupon pentru a obține",
+          "couponCode": "DETRANSAI",
+          "learnMore": "Află mai multe și înscrie-te la ROGD Repair"
+        }
+      }
+    },
+    "table": {
+      "gayConversion": "Terapie de conversie gay",
+      "genderExploratory": "Terapie exploratorie de gen",
+      "goal": "Scop",
+      "goalConversion": "Schimbarea orientării sexuale deoarece este văzută ca patologică.",
+      "goalExploratory": "Înțelegerea semnificației disforiei; rezultatul poate fi tranziție, nicio tranziție sau tranziție socială parțială.",
+      "method": "Metodă",
+      "methodConversion": "Rușine, aversiune, condiționare comportamentală, rugăciune.",
+      "methodExploratory": "TEG este compatibilă cu o gamă largă de modalități terapeutice, cum ar fi tehnicile standard psihodinamice sau umaniste—întrebări deschise, curiozitate, fără puncte finale prestabilite.",
+      "evidence": "Baza de dovezi",
+      "evidenceConversion": "Arată în mod constant rău; fiecare organism medical major o condamnă.",
+      "evidenceExploratory": "Nu există încă RCT-uri, dar paralele cu terapiile care reduc anxietatea, depresia, auto-vătămarea; nicio dată care arată rău sistematic.",
+      "ethics": "Etică",
+      "ethicsConversion": "Încalcă autonomia prin impunerea identității heterosexuale ca singura opțiune corectă.",
+      "ethicsExploratory": "Caută să extindă autonomia asigurându-se că adolescentul (și familia) înțeleg toate opțiunile înainte de pași ireversibili."
+    },
+    "fallacies": {
+      "title": "Fallacii Logice în Studiul Florence Ashley",
+      "name": "Numele Fallaciei",
+      "explanation": "Explicație Simplă",
+      "example": "Exemplu din Lucrare"
+    }
+  },
+  "charts": {
+    "ageDistribution": {
+      "title": "Cât de în vârstă erau persoanele care au făcut detransiția când au făcut tranziția și detransiția?",
+      "subtitle": "Date din cronologiile de tranziție ale utilizatorilor Reddit",
+      "loading": "Se încarcă datele graficului...",
+      "fetchError": "Nu s-au putut prelua datele despre distribuția vârstei",
+      "genericError": "A apărut o eroare",
+      "errorPrefix": "Eroare:",
+      "noData": "Nu există date disponibile pentru intervalul de vârstă selectat",
+      "tooltip": {
+        "age": "Vârstă: {age}",
+        "transitioned": "Au făcut tranziția: {count} utilizatori",
+        "detransitioned": "Au făcut detransiția: {count} utilizatori"
+      },
+      "axis": {
+        "age": "Vârstă",
+        "users": "Număr de Utilizatori"
+      },
+      "legend": {
+        "transition": "Vârsta la Tranziție",
+        "detransition": "Vârsta la Detransiție"
+      }
+    },
+    "transitionDuration": {
+      "title": "Durata Tranziției: Vârsta la Tranziție vs Vârsta la Detransiție",
+      "description": {
+        "line1": "Fiecare punct arată vârsta la tranziție (X) vs vârsta la detransiție (Y).",
+        "line2": "Punctele mai mari, mai opace reprezintă mai mulți utilizatori."
+      },
+      "loading": "Se încarcă datele graficului...",
+      "noData": "Nu există date disponibile pentru intervalul de vârstă selectat",
+      "axis": {
+        "transitionAge": "Vârsta la Tranziție",
+        "detransitionAge": "Vârsta la Detransiție"
+      },
+      "tooltip": {
+        "transitionAge": "Vârsta la Tranziție",
+        "detransitionAge": "Vârsta la Detransiție",
+        "duration": "Durată",
+        "years": "ani"
+      },
+      "male": "Masculin",
+      "female": "Feminin",
+      "yearsAvg": "ani în medie",
+      "user": "utilizator",
+      "users": "utilizatori"
+    },
+    "pathways": {
+      "title": "Fluxul Căilor de Detransiție",
+      "subtitle": "Fluxul demografiei utilizatorilor /r/detrans Reddit către rezultatele detransiției",
+      "loading": "Se încarcă datele despre căi...",
+      "fetchError": "Nu s-au putut prelua datele despre distribuția etichetelor",
+      "genericError": "A apărut o eroare",
+      "error": "Eroare",
+      "users": "{count} utilizatori",
+      "percentageOfTotal": "{percentage}% din total",
+      "totalUsers": "Total utilizatori",
+      "flowConnections": "Conexiuni de flux",
+      "male": "Masculin",
+      "female": "Feminin",
+      "noData": "Nu există date despre căi disponibile pentru filtrele selectate"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Contact | detrans.ai",
+      "description": "Ia legătura cu noi. Trimite-ne gândurile, sugestiile sau feedback-ul tău."
+    },
+    "title": "Formular de Contact",
+    "intro": "Dacă ai gânduri, sugestii, sau dacă acest serviciu gratuit te-a ajutat pe tine, familia ta sau prietenul/prietena ta, aș dori să aud de la tine. Trimite-mi un mesaj mai jos!",
+    "form": {
+      "to": "Către",
+      "name": "Nume",
+      "namePlaceholder": "Numele Tău",
+      "email": "Email",
+      "emailPlaceholder": "tu@exemplu.com",
+      "subject": "Subiect",
+      "subjectPlaceholder": "Subiect",
+      "message": "Mesaj",
+      "messagePlaceholder": "Scrie mesajul tău...",
+      "sendButton": "Trimite Mesajul",
+      "sending": "Se trimite...",
+      "success": "✅ Mesaj trimis!",
+      "error": "❌ Nu s-a putut trimite."
+    }
+  },
+  "seo": {
+    "conversations": {
+      "title": "Arhiva Conversațiilor",
+      "description": "Răsfoiește conversații despre identitatea de gen, detransiție, îngrijirea afirmatoare de gen și afirmare.",
+      "conversations": "Conversații",
+      "featuredConversations": "Conversații Recomandate",
+      "allConversations": "Toate Conversațiile",
+      "untitled": "Conversație fără titlu",
+      "noSummary": "Nu există rezumat disponibil",
+      "noConversations": "Nu există conversații disponibile.",
+      "mode": "Mod",
+      "updated": "Actualizat",
+      "featured": "Recomandate",
+      "conversationSummary": "Rezumatul Conversației",
+      "noSummaryAvailable": "Nu există rezumat disponibil pentru această conversație.",
+      "conversation": "Conversație",
+      "unableToParse": "Nu s-au putut analiza mesajele conversației.",
+      "archiveNote": "Aceasta este o conversație din arhiva noastră. Pentru a vedea conversația completă și a participa la discuții, te rugăm să vizitezi versiunea interactivă a acestei pagini.",
+      "welcomeTitle": "Bine ai venit la Arhiva Conversațiilor",
+      "welcomeDescription": "Selectează o conversație din bara laterală pentru a-i vedea detaliile. Această arhivă conține discuții despre identitatea de gen, experiențele de detransiție și călătoriile de afirmare.",
+      "featuredDescription": "Discuții evidențiate marcate de comunitatea noastră",
+      "allDescription": "Răsfoiește toate discuțiile disponibile",
+      "footer": "Această pagină oferă conținut prietenos SEO pentru motoarele de căutare și roboți. Pentru experiența interactivă completă, te rugăm să vizitezi cu un browser web modern.",
+      "user": "Utilizator"
+    },
+    "chat": {
+      "subtitle": "Întrebări și răspunsuri pentru persoane care se questionează asupra identității lor de gen.",
+      "freedomMessage": "Adevărul este că non-conformitatea de gen ne va elibera pe toți!",
+      "moreQuestions": "Mai multe întrebări legate de \"{question}\""
+    },
+    "videos": {
+      "title": "Videoclipuri despre Tranziție și Detransiție",
+      "description": "Aceasta este o arhivă de videoclipuri personale despre detransiție care au fost încărcate pe internet. Fă-ți vocea auzită contribuind și împărtășindu-ți propria poveste!",
+      "thumbnailAlt": "Miniatură pentru",
+      "by": "de",
+      "female": "Feminin",
+      "male": "Masculin"
+    }
+  },
+  "routes": {
+    "home": "/",
+    "about": "/about",
+    "contact": "/contact",
+    "support": "/support",
+    "videos": "/videos",
+    "stories": "/stories",
+    "studies": "/studies",
+    "definitions": "/definitions",
+    "donate": "/donate",
+    "terms": "/terms",
+    "prompts": "/prompts",
+    "participate": "/participate",
+    "conversations": "/conversations",
+    "research": "/research",
+    "chat": "/chat",
+    "login": "/login"
+  }
+}

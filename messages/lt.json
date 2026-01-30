@@ -1,0 +1,805 @@
+{
+  "metadata": {
+    "title": "detrans.ai | Pokalbis su 50 000+ detranzicijavusių žmonių",
+    "description": "Detrans.ai yra naudingas ir empatiškas pokalbių robotas, kuris dalijasi detranzicijavusių žmonių patirtimi ir požiūriais. Naudokite detrans.ai perėjimo arba detranzicijos palaikymui ir patarimams, arba tiesiog kaip tyrimo įrankį, norėdami suprasti, kodėl kai kurie žmonės priima, gyvena ir atsisako genderinių tapatybių."
+  },
+  "home": {
+    "title": "Pokalbis su 50 000+ detranzicijavusių žmonių",
+    "subtitle": "Požiūriai iš kitos pusės",
+    "intro": {
+      "greeting": "Sveiki! Kas yra detranzicionierius?",
+      "response": "Sveiki! Aš esu detrans.ai – detranzicijavusių žmonių kolektyvinė sąmonė 🦎",
+      "definition": "Detranzicionierius yra buvęs translytis žmogus, kuris socialiai ar mediciniškai keitė savo lytį, bet nuo to laiko nustatė tapatinimasis su translyčiu tapatybe ir galbūt atstatė kai kuriuos perėjimo aspektus.",
+      "description": "Aš stebiu priežastis, modelius ir tiesas, kodėl kai kurie žmonės priima, gyvena ir atsitraukia nuo genderinių tapatybių, skaitydamas istorijas ir patirtis, paskelbtas /r/detrans subreddite, ir žiūrėdamas detranzicijos vaizdo įrašus, įkeltus į YouTube.",
+      "purpose": "Mano tikslas yra pasidalinti šia žinių, kad dekonstruočiau lytį ir ištirčiau, kaip šios patirtys formuoja žmogaus santykį su savimi, kūnu ir pasauliu.",
+      "helpPrompt": "Kaip galiu jums padėti šiandien?"
+    },
+    "starters": {
+      "lizardQuestion": {
+        "display": "Atsiprašau, bet kas su tais driežais?",
+        "full": "Kodėl detranzicionieriai naudoja driežą, kad save reprezentuotų internete?"
+      },
+      "curious": {
+        "display": "Man įdomu, kodėl kai kurie žmonės detranzicionuoja",
+        "full": "Man įdomu, kodėl kai kurie žmonės detranzicionuoja, ir kokius įžvalgų jie galėjo pasiekti, norėdami pasiekti tą tašką."
+      },
+      "questioningTrans": {
+        "display": "Aš abejoju savo genderine tapatybe ir manau, kad galiu būti translytis",
+        "full": "Aš abejoju savo genderine tapatybe ir manau, kad galiu būti translytis"
+      },
+      "thinkingDetrans": {
+        "display": "Šiuo metu aš tapatinuosi kaip translytis ir galvoju apie detranziciją",
+        "full": "Šiuo metu aš tapatinuosi kaip translytis ir galvoju apie detranziciją"
+      },
+      "familyMember": {
+        "display": "Aš esu tėvas, šeimos narys ar draugas žmogaus, kuris pereina",
+        "full": "Aš esu tėvas, šeimos narys ar draugas žmogaus, kuris pereina"
+      },
+      "researcher": {
+        "display": "Aš esu tyrėjas, studijuojantis genderinę tapatybę ir detranzicijos patirtis",
+        "full": "Aš esu tyrėjas, studijuojantis genderinę tapatybę ir detranzicijos patirtis"
+      },
+      "learnChallenges": {
+        "display": "Noriu sužinoti apie sunkumus ir iššūkius, su kuriais susiduria detranzicionieriai",
+        "full": "Noriu sužinoti apie sunkumus ir iššūkius, su kuriais susiduria detranzicionieriai"
+      },
+      "understandTransition": {
+        "display": "Noriu suprasti, kodėl detranzicionieriai iš pradžių nusprendė pereiti",
+        "full": "Noriu suprasti priežastis, kodėl detranzicionieriai iš pradžių nusprendė pereiti, ir kaip tai gali skirtis tarp vyrų ir moterų."
+      },
+      "debunkMisinfo": {
+        "display": "Noriu, kad paneigtumėte klaidingą informaciją ir plačiai paplitusius įsitikinimus apie detranziciją",
+        "full": "Prašau paneigti visą klaidingą informaciją ir plačiai paplitusius įsitikinimus apie detranzicionierius, kuo išsamiau."
+      }
+    },
+    "navigation": {
+      "videos": "Detranzicijos vaizdo įrašai",
+      "stories": "Istorijos",
+      "storiesFull": "Istorijos ir statistika",
+      "support": "Pagalba ir palaikymas",
+      "definitions": "Genderinė terminologija",
+      "studies": "Akademiniai tyrimai",
+      "studiesShort": "Tyrimai",
+      "howItWorks": "Kaip tai veikia"
+    },
+    "deepResearch": {
+      "title": "Giluminio tyrimo režimas",
+      "description": "Giluminio tyrimo režimas išplečia jūsų klausimą, kad suteiktų atsakymą, kuris nagrinėja temą iš skirtingų kampų.",
+      "note": "Giluminis tyrimas yra lėtesnis ir ne pokalbių pobūdžio. Pokalbiui palikite jį išjungtą."
+    },
+    "disclaimer": {
+      "trigger": "Patirtys ir požiūriai šioje svetainėje paimti iš Reddito.",
+      "title": "Šaltinio atsakomybės apribojimas",
+      "content": "detrans.ai atsako į klausimus apie lytį iš detranzicijos perspektyvos, rasdamas atitinkamas patirtis iš /r/detrans bendruomenės Reddite. Nors Reddit yra platforma, kur tikri žmonės dalijasi asmeninėmis istorijomis, ji taip pat gali turėti robotų sugeneruoto ar klaidinančio turinio. Raginame jus patikrinti originalius Reddit įrašus, kad patvirtintumėte šaltinį ir kontekstą. Atkreipkite dėmesį, kad /r/detrans yra griežtai moderuojamas subredditas, tačiau moderavimas negarantuoja kiekvieno įrašo tikslumo ar autentiškumo."
+    },
+    "donate": {
+      "title": "Paremkite mūsų darbą",
+      "description": "Padėkite mums išlaikyti šį išteklių tiems, kuriems jo labiausiai reikia.",
+      "button": "Paaukoti",
+      "card": {
+        "title": "Reikalingos aukos, kad {site} išliktų gyvas!",
+        "description": "Jei vertinate šią nemokamą paslaugą, apsvarstykite galimybę paaukoti.",
+        "description2": "Svetainė bus paleista tik podėlio režimu, jei išleisiu pinigus, be galimybės užduoti savo klausimus.",
+        "button": "Paaukoti"
+      }
+    },
+    "participate": {
+      "card": {
+        "title": "Ar esate detranzicionierius arba nustojęs?",
+        "description": "Dalyvaukite tyrimuose, kad padėtumėte pagerinti mokslinį supratimą apie translyčio tapatybę",
+        "description2": "ir pagerinti rezultatus žmonėms, patiriantiems genderinę disforiją."
+      },
+      "title": "Pasidalinkite savo istorija",
+      "description": "Jūsų patirtis gali padėti kitiems suprasti genderinės tapatybės sudėtingumą.",
+      "button": "Dalyvauti"
+    },
+    "footer": {
+      "poem": {
+        "line1": "Tu gali išsilaisvinti,",
+        "line2": "Tereikia tiesiog būti.",
+        "line3": "Ir būk atidus savo mintims!",
+        "line4": "Nes protas yra kaip sodas,",
+        "line5": "Ir kiekviena mintis yra sėkla.",
+        "line6": "Mes renkame tai, ką pasėjome,",
+        "line7": "Bet per tai galime augti..."
+      },
+      "openSource": "Atviro kodo projektas, sukurtas",
+      "madeWithLove": "Sukurta su meile Velingtone, NZ",
+      "donatePrompt": "Prašome paaukoti, jei galite,",
+      "beKind": "Ir būkite vieni su kitais geri."
+    },
+    "browseConversations": "Naršyti visas pokalbius"
+  },
+  "header": {
+    "navigation": {
+      "home": "Pradžia",
+      "resources": "Ištekliai",
+      "about": "Apie"
+    },
+    "resources": {
+      "genderSupport": "Genderinė pagalba",
+      "genderSupportDesc": "Raskite bendruomenę ir terapeutus",
+      "terminology": "Terminologija",
+      "terminologyDesc": "Pagrindinių sąvokų apibrėžimas",
+      "stories": "Istorijos ir statistika",
+      "storiesDesc": "Iš /r/detrans vartotojų",
+      "videos": "Detranzicijos vaizdo įrašai",
+      "videosDesc": "Asmeninių memuarų archyvas",
+      "studies": "Recenzuojami tyrimai",
+      "studiesDesc": "Aktualūs akademiniai tyrimai",
+      "statistics": "Patvirtinta statistika",
+      "statisticsDesc": "statsforgender.org"
+    },
+    "about": {
+      "contact": "Kontaktai",
+      "contactDesc": "Susisiekite su manimi",
+      "systemPrompts": "Sistemos raginimai",
+      "systemPromptsDesc": "Peržiūrėkite AI sistemos raginimus",
+      "terms": "Sąlygos",
+      "termsDesc": "Privatumo politika ir sąlygos"
+    },
+    "donate": "Paaukoti",
+    "language": {
+      "title": "Kalba"
+    }
+  },
+  "language": {
+    "title": "Kalba",
+    "select": "Pasirinkite kalbą",
+    "search": "{count} kalbos",
+    "en": "Anglų",
+    "es": "Ispanų",
+    "fr": "Prancūzų",
+    "de": "Vokiečių",
+    "he": "Hebrajų",
+    "it": "Italų",
+    "lt": "Lietuvių",
+    "nl": "Olandų",
+    "tr": "Turkų"
+  },
+  "settings": {
+    "title": "Nustatymai"
+  },
+  "theme": {
+    "title": "Išvaizda",
+    "darkMode": "Tamsus režimas",
+    "light": "Šviesus",
+    "dark": "Tamsus"
+  },
+  "definitions": {
+    "metadata": {
+      "title": "detrans.ai | Genderinių terminų apibrėžimas",
+      "description": "Kasdieninėje kalboje lytis ir genderis kartais vartojami pakaitomis, o kai kuriose kalbose yra tik vienas žodis, apibūdinantis du. Tačiau visas genderinės disforijos koncepcija remiasi supratimu, kad yra skirtumų tarp lyties ir genderio."
+    },
+    "title": "Genderinių terminų apibrėžimas",
+    "sexAndGender": {
+      "heading": "Lytis ir genderis?",
+      "intro": "Kasdieninėje kalboje lytis ir genderis kartais vartojami pakaitomis, o kai kuriose kalbose yra tik vienas žodis, apibūdinantis du. Tačiau visas genderinės disforijos koncepcija remiasi supratimu, kad yra skirtumų tarp lyties ir genderio.",
+      "sex": "<b>Lytis</b> reiškia asmens biologiją (t. y. jo anatomiją; skeletą, raumenyną, chromosomas, reprodukcinę sistemą ir antrines lytines charakteristikas). Atkreipkite dėmesį, kad daugiau nei 99% žmonių biologiškai yra arba vyrai, arba moterys, nėra lyties spektro, nors kai kurie žmonės turi lytinės raidos sutrikimų (LRS). Didžioji dauguma žmonių su LRS yra vyrai arba moterys.",
+      "gender": "<b>Genderis</b> reiškia 'socialiai sukonstruotus' vaidmenis, elgesį, veiklą ir atributus, kuriuos tam tikra visuomenė laiko tinkamais vyrams ir moterims [pagal jų biologinę lytį]. 'Vyriškas' ir 'moteriškas' yra genderinės kategorijos. Daugelis, galbūt visi, žmonių turi vyriškų ir moteriškų bruožų mišinį. Genderis keičiasi laikui bėgant ir tarp kultūrų.",
+      "nonConformity": "<b>Genderinis nesilaikymas</b> atsiranda, kai asmuo elgiasi arba pristato save kitaip, nei visuomenė tikisi iš jo, remdamasi jo lytimi.",
+      "identity": "<b>Genderinė tapatybė</b> – kai kurie žmonės tiki, kad mes visi turime įgimtą 'genderinę tapatybę' – gilų pojūtį ar suvokimą apie save kaip vyrą, moterį ar kažkur tarp jų – kuri egzistuoja atskirai nuo mūsų biologinės lyties ir kuri, retais atvejais, gali nuo jos skirtis. Kitieji netiki, kad egzistuoja specifinė genderinė tapatybė, kuri yra atskira nuo bet kurio kito asmens asmenybės ar tapatybės aspekto."
+    },
+    "dysphoria": {
+      "heading": "Kas yra genderinė disforija?",
+      "p1": "Genderinė disforija yra diagnostinis terminas, kurį psichiatrijos ir medicinos bendruomenė naudoja, kad apibūdintų kančią, patiriamą, kai kažkas jaučia, kad jo genderinė tapatybė neatitinka jo biologinės lyties.",
+      "p2": "Žmonės, patiriantys genderinę disforiją, praneša apie stiprius, nuolatinius tapatybės su lytimi, kuri skiriasi nuo jų lyties, jausmus ir su tuo susijusį diskomfortą dėl savo lyties kūno. Kad būtų oficialiai diagnozuota šiuo metu, jausmai turi sukelti reikšmingą kančią ar sutrikimą patiriančiam žmogui."
+    },
+    "transgender": {
+      "heading": "Ką reiškia būti translyčiu?",
+      "p1": "Translytis yra terminas, kuris gali reikšti skirtingus dalykus skirtingiems žmonėms. Bendrai sutariama, kad trans moterys gimsta su vyrišku kūnu, bet identifikuojasi kaip moterys, trans vyrai gimsta su moterišku kūnu, bet identifikuojasi kaip vyrai, o nebinariniai žmonės identifikuojasi nei kaip vyrai, nei kaip moterys. Žmonės dažnai naudoja trumpesnį terminą 'trans', kad nurodytų, kad kas nors identifikuojasi su lytimi, kuri nėra tokia pati kaip jo biologinė lytis.",
+      "p2": "Translytis gali būti suprantamas kaip tai, kad i) tu esi priešingos lyties/genderio nei ta, kuria gimei, ii) tu tiki, kad esi priešingos lyties/genderio nei ta, kuria gimei, arba iii) tu gyveni taip, tarsi tavo lytis/genderis būtų priešingas lyčiai, kuria gimei. Debatai apie tai, kuris iš šių trijų būdų suprasti terminą yra tiksliausias, gali būti įnirtingi ir kontroversiški. Kai kurie žmonės jaučia, kad net diskusija apie tai, ką reiškia būti translyčiu, silpnina patirties galiojimą. Tačiau šie skirtingi įsitikinimai neišvengiamai veda prie skirtingų idėjų, kaip geriausiai palaikyti žmones, tvarkantis su lytimi susijusį kančią, todėl diskusijos yra būtinos, kad užtikrintume, jog žmonės gautų geriausią įmanomą pagalbą ir patarimus."
+    },
+    "desistance": {
+      "heading": "Kas yra pasitraukimas?",
+      "p1": "Pasitraukimas yra tada, kai kas nors, kas identifikavosi kaip translytis, bet nesiėmė medicininių intervencijų, nebeidentifikuojasi kaip translytis. Nors jie gali neturėti spręsti medicininių intervencijų pasekmių, pasitraukimas vis tiek gali būti labai emociškai skausmingas, klaidinantis ir sunkus procesas."
+    },
+    "detransition": {
+      "heading": "Detranzicija ir detranzicionieriai",
+      "p1": "Detranzicija yra tada, kai kas nors, kas identifikavosi kaip translytis ir išėjo medicininių intervencijų, nebeidentifikuojasi kaip translytis. Šioje grupėje yra nepaprastai didelė žmonių patirčių įvairovė. Kai kurie žmonės gali būti labai nusivylę tuo, ką išgyveno, ir ilgalaikėmis pasekmėmis, kiti gali tai matyti kaip tai, ką jie turėjo išgyventi, kad suprastų save tokiais, kokie yra šiuo metu."
+    },
+    "regret": {
+      "heading": "Perėjimo gailėjimasis",
+      "p1": "Kai kurie žmonės galėjo identifikuotis kaip translytis daugelį metų ir išgyventi medicininių intervencijų, tokių kaip hormonai ir chirurgija, kurie negrįžtamai pakeitė jų kūnus. Jie gali jausti, kad gailisi pradėję medicininę genderinę perėjimą, bet jie ir toliau identifikuojasi kaip translytis ir/arba tęsia skirtingų lyčių hormonų vartojimą."
+    },
+    "source": {
+      "text": "Šaltinis:",
+      "link": "Detranzicijos fondas"
+    }
+  },
+  "chat": {
+    "lookingForComments": "Ieškoma atitinkamų komentarų...",
+    "errorOccurred": "Įvyko klaida, bandykite dar kartą... Susisiekite su manimi, jei tai kartojasi.",
+    "analysingExperiences": "Analizuojamos patirtys",
+    "detransPerspective": "-> Kokie detranzicijos požiūriai į šią temą?",
+    "transPerspective": "-> Kokie translyčio požiūriai į šią temą?",
+    "backToPortal": "<- Atgal į portalą"
+  },
+  "chatInput": {
+    "placeholder": "Klauskite detrans.ai...",
+    "deepResearch": "Giluminis tyrimas",
+    "suggestions": "Pasiūlymai:"
+  },
+  "deepResearchEvents": {
+    "errorTitle": "Giluminio tyrimo klaida",
+    "retrieving": "Gaunamos detranzicijos patirtys...",
+    "generatingQuestions": "Generuojami meta klausimai...",
+    "findingAnswers": "Randami atsakymai į meta klausimus",
+    "completed": "Giluminis tyrimas baigtas",
+    "retrieveError": "Klaida gaunant detranzicijos patirtis!",
+    "analyzeError": "Mes išnaudojome pinigus, skirtus AI, kuris analizuoja detranzicijos patirtis ir atsako į klausimus. Jei galite, prašome paaukoti, kad galėtume išlaikyti paslaugą veikiančią. Prašome bandyti vėliau. Kol kas galite bandyti klausimus portale.",
+    "generatingAnswer": "Generuojamas atsakymas...",
+    "waitingForAnswer": "Laukiama atsakymo",
+    "questionsAnswered": "Atsakyta į {answered} iš {total} meta klausimų",
+    "generatingSummary": "Generuojama atsakymų santrauka"
+  },
+  "questionTabs": {
+    "topics": "Temos",
+    "generated": "Sugeneruota",
+    "recent": "Naujausi",
+    "top": "Populiariausi"
+  },
+  "conversations": {
+    "title": "Naujausi pokalbiai",
+    "subtitle": "Pamatykite patys, kaip detrans.ai padeda žmonėms iš viso pasaulio.",
+    "tabs": {
+      "featured": "Išskirtiniai",
+      "all": "Visi"
+    },
+    "buttons": {
+      "showMore": "Rodyti dar {count} pokalbius",
+      "showLess": "Rodyti mažiau",
+      "loadMore": "Įkelti daugiau pokalbių",
+      "loading": "Įkeliama..."
+    }
+  },
+  "conversationCard": {
+    "untitled": "Pokalbis be pavadinimo",
+    "from": "iš",
+    "moreMessages": "Dar {count} žinutės...",
+    "moreMessage": "Dar {count} žinutė...",
+    "date": {
+      "today": "Šiandien",
+      "yesterday": "Vakar",
+      "daysAgo": "Prieš {count} dienas",
+      "weeksAgo": "Prieš {count, plural, =1 {1 savaitę} other {# savaites}}"
+    },
+    "admin": {
+      "deleting": "Šalinama...",
+      "delete": "Ištrinti pokalbį",
+      "banning": "Blokuojama...",
+      "ban": "Užblokuoti vartotoją (IP)"
+    }
+  },
+  "stories": {
+    "metadata": {
+      "title": "detrans.ai | Detranzicijos istorijos ir statistika",
+      "description": "Skaitykite nuoširdžias detranzicijos istorijas, laiko juostas ir tendencijas iš /r/detrans Reddit bendruomenės narių, didžiausios atviro detranzicijos istorijų kolekcijos internete. Sužinokite, kiek metų buvo detranzicionieriai, kai jie pereidavo ir detranzicionuodavo, ir kokius kelius jie pasirinko."
+    },
+    "title": "Detranzicijos istorijos ir statistika",
+    "subtitle": "Naršykite ir vizualizuokite {count} unikalių detranzicijos istorijų ir statistiką žmonių, kurie pasidalino savo patirtimi /r/detrans subreddite, kuris yra didžiausia atviro detranzicijos istorijų ir patirčių kolekcija internete.",
+    "disclaimer": {
+      "summary": "Šios istorijos buvo santrauktos naudojant AI.",
+      "details": "Reddite žmonės dažnai dalijasi savo patirtimi keliuose komentaruose ar įrašuose. Kad ši informacija būtų labiau prieinama, mūsų AI surenka visus tuos išsklaidytus fragmentus į vieną, lengvai skaitomą santrauką ir laiko juostą. Visi sistemos raginimai pažymėti raginimų puslapyje.",
+      "accuracy": "Kartais AI gali haliucinuoti ar teigti dalykus, kurie nėra tiesa. Bet apskritai santrauktos istorijos yra tikslūs originalių vartotojų komentarų atspindžiai.",
+      "inclusion": "Įtraukiami tik tie vartotojai, kurie pasidalijo pakankamai, kad sudarytų pilną istoriją ir laiko juostą. Vartotojai, kurie paskelbė mažiau nei penkis komentarus arba kurių komentarai gavo mažiau nei tris teigiamus balsus, yra nepaisomi. Įrašai dar nėra įtraukti į duomenų rinkinį.",
+      "verification": "Kiekvienas vartotojas buvo analizuojamas dėl robotų sugeneruoto ar neautentiško turinio požymių. Bet kokia paskyra, kuri neatrodo kaip tikras detranzicionierius, yra pažymima 'įtartina'. Šios paskyros bus rankiniu būdu peržiūrėtos ir pašalintos iš detrans.ai duomenų rinkinio, jei jos pasirodys esančios neautentiškos. Paskyros, kurios paskelbė mažiau nei penkis komentarus, buvo išbrauktos iš analizės."
+    },
+    "charts": {
+      "tabs": {
+        "age": "Amžius",
+        "duration": "Trukmė",
+        "transitionReason": "Perėjimo priežastis",
+        "detransitionReason": "Detranzicijos priežastis",
+        "pathways": "Keliai"
+      },
+      "loading": "Įkeliami diagramos duomenys...",
+      "error": "Klaida: {message}",
+      "retry": "Bandyti dar kartą",
+      "noData": "Nėra {mode} priežasčių duomenų pasirinktiems filtrams",
+      "reasonChart": {
+        "title": "Kodėl detranzicionieriai sako, kad jie {mode, select, detransition {detranzicionavo} other {pereidavo}}?",
+        "subtitle": "Duomenys iš Reddit vartotojų {mode} laiko juostų ({totalReasonCount} iš viso vartotojų, {totalUsers} skirtingos priežastys.)",
+        "mentions": "{count} paminėjimai ({percentage}%)"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Ieškoti vartotojų patirčių...",
+      "ageRange": "Amžiaus diapazonas:",
+      "ageRangeYears": "{min} - {max} metai",
+      "sex": {
+        "all": "Vyrai ir moterys",
+        "female": "Moteris",
+        "male": "Vyras"
+      },
+      "tagsPlaceholder": "Pasirinkite žymes, kad filtruotumėte...",
+      "clearFilters": "Išvalyti filtrus"
+    },
+    "results": "Rodoma {showing} iš {total} vartotojų istorijų",
+    "noResults": "Nerasta vartotojų, atitinkančių jūsų filtrus.",
+    "pagination": {
+      "previous": "Ankstesnis",
+      "next": "Kitas",
+      "pageInfo": "Puslapis {page} iš {totalPages}"
+    },
+    "userCard": {
+      "comments": "{count} komentarai",
+      "postingSince": "Skelbia nuo {date}",
+      "transitionedAt": "Pereidavo {age} metų",
+      "desistedAt": "Pasitraukė {age} metų",
+      "detransitionedAt": "Detranzicionavo {age} metų",
+      "female": "moteris",
+      "male": "vyras"
+    }
+  },
+  "prompts": {
+    "metadata": {
+      "title": "Kaip tai veikia? | Sistemos raginimai",
+      "description": "Sužinokite, kaip veikia detrans.ai, įskaitant sistemos raginimus, duomenų atnaujinimo datas ir atviro kodo informaciją."
+    },
+    "title": "Kaip tai veikia?",
+    "intro": {
+      "paragraph1": "<bold>detrans.ai</bold> pokalbių robotas yra RAG (paieškos stiprinama generacija) varomas agentas, kuris generuoja meta klausimus ir atsako į juos, iškeldamas ir integruodamas detranzicijos mintis ir patirtis iš <reddit>/r/detrans</reddit> subreddito ir iš YouTube. Jis buvo sukurtas naudojant <llamaIndex>LlamaIndex</llamaIndex> sistemą ir atviro kodo kinų <kimi>kimi-k2.5</kimi> modelį iš Moonshot AI, kad būtų sumažintas Vakarų politinis šališkumas.",
+      "paragraph2": "ChatGPT ir dauguma kitų Vakarų LLM yra gana agresyvūs būdu, kuriuo jie skatina ir palaiko genderinius įsitikinimus. Pasirodė, kad neįmanoma naudoti OpenAI GPT modelių šiam projektui, nes modeliai nuolat silpnintų ir prieštarautų detranzicijos patirtims, kurias jie turėjo santraukti. Jei norite labiau patvirtinančios patirties, žiūrėkite <chatgpt>ChatGPT</chatgpt>."
+    },
+    "dataCutoff": {
+      "title": "Duomenų atnaujinimo datos",
+      "paragraph1": "<bold>detrans.ai</bold> šiuo metu turi prieigą prie visų /r/detrans komentarų, paskelbtų prieš <date>8/9/2025</date>, kurie gavo bent tris teigiamus balsus. Aš sieksiu atnaujinti duomenų rinkinį bent kartą per metus, kol /r/detrans subredditas ir toliau egzistuos.",
+      "paragraph2": "Vartotojai gali pateikti vaizdo įrašų patirtis, pateikdami nuorodas į YouTube vaizdo įrašus. Šie vaizdo įrašai bus rankiniu būdu peržiūrėti prieš juos transkribuojant naudojant OpenAI Whisper kalbos į tekstą modelį ir pridedant prie vektorinės duomenų bazės ir vaizdo įrašų archyvo."
+    },
+    "openSource": {
+      "title": "Atviras kodas",
+      "paragraph": "Išeities kodas taip pat prieinamas <github>Github</github> pagal MIT licenciją, jei norėtumėte patikrinti arba pakartotinai panaudoti bet kurį kodą savo projektui. Šis projektas taip pat pastatytas ant daugelio kitų atviro kodo projektų, tokių kaip Llamaindex, React, Next.js, Tailwind, Lucide, Qdrant, Postgres ir Vercel AI SDK. Daug dėkingumo šių projektų autoriams už tai, kad suteikė tvirtą pagrindą, ant kurio galima statyti."
+    },
+    "systemPrompts": {
+      "title": "Sistemos raginimai",
+      "description": "Tai yra raginimai, kuriuos sistema naudoja RAG darbo eigai. Nėra kitų pasirinktinių instrukcijų ar sluoksnių, išskyrus tai, kas rodoma šiame puslapyje.",
+      "lastUpdated": "Paskutinį kartą atnaujinta",
+      "chatAgentTitle": "Pokalbių roboto sistemos raginimas",
+      "researchModeTitle": "Giluminio tyrimo režimo sistemos raginimai",
+      "researchAgentTitle": "Tyrimo roboto raginimas",
+      "experienceExtractionTitle": "Patirties išgavimo raginimas",
+      "finalAnswerTitle": "Galutinio atsakymo raginimas"
+    },
+    "userSummaries": {
+      "title": "Vartotojų santraukų sistemos raginimai",
+      "description": "Tai yra sistemos raginimai generuotoms vartotojų santraukoms.",
+      "lastUpdated": "Paskutinį kartą atnaujinta",
+      "experienceReportTitle": "Vartotojo patirties ataskaita",
+      "experienceSummaryTitle": "Vartotojo patirties santrauka",
+      "generateTagsTitle": "Generuoti žymes",
+      "extractAgesTitle": "Išgauti amžius",
+      "determineBirthSexTitle": "Nustatyti gimimo lytį",
+      "redFlagReportTitle": "Raudonos vėliavos ataskaita"
+    }
+  },
+  "donatePage": {
+    "title": "Išlaikykite Detrans.AI veikiančią",
+    "description1": "Jei vertinate darbą, kurį įdėjau į šią svetainę, arba jei ši nemokama paslauga jums padėjo, apsvarstykite galimybę paaukoti vieną kartą arba reguliariai, kad <b>detrans.ai</b> išliktų internete.",
+    "description2": "Aš negaliu sau leisti paleisti išteklių reikalaujančią paslaugą kaip ši be jūsų paramos. Mano pagrindinis pajamų šaltinis šiuo metu yra vyriausybės pašalpa, ir rašymo metu mano banko sąskaitoje yra mažiau nei 1000 USD. Jei ši svetainė išpopuliarės, galiu gauti sąskaitas už tūkstančius dolerių. Jei išleisiu pinigus, galimybė užduoti savo klausimus ir giliau ištirti temas per tęstinius klausimus bus išjungta, o aš pateiksiu tik podėlyje saugomus atsakymus į klausimus portale.",
+    "description3": "Prašau apsvarstyti mėnesinę auką. Galite paaukoti naudodami paypal žemiau, tiesiogiai į mano Naujosios Zelandijos banko sąskaitą arba su BTC.",
+    "bankAccount": "Naujosios Zelandijos banko sąskaita",
+    "accountName": "Vardas",
+    "accountNumber": "Sąskaita",
+    "swiftCode": "SWIFT/BIC kodas",
+    "bitcoin": "Bitcoin adresas",
+    "paypal": "Paypal auka"
+  },
+  "terms": {
+    "metadata": {
+      "title": "Privatumo politika | detrans.ai",
+      "description": "Sužinokite apie mūsų privatumo politiką, duomenų rinkimo praktiką ir kaip mes saugome jūsų informaciją."
+    },
+    "title": "Privatumo politika",
+    "intro": "Ši privatumo politika paaiškina, kokią informaciją renkame, kodėl ją renkame ir kaip ją saugome, kai lankotės ar naudojatės mūsų paslauga.",
+    "sections": {
+      "informationWeCollect": {
+        "title": "Informacija, kurią renkame",
+        "chatMessages": {
+          "title": "Pokalbių žinutės:",
+          "content": "Mes išsaugome visus pokalbių įrašus, taip pat atsakymus į visus klausimus, užduotus Giluminio tyrimo režimu. Pokalbių įrašai nėra susieti su jūsų IP adresu ar bet kuriais duomenimis, kurie potencialiai galėtų būti naudojami jus identifikuoti. Pokalbių įrašai gali būti analizuojami ir naudojami tyrimo tikslais ateityje. Prašome vengti dalintis jautria informacija."
+        },
+        "cookies": {
+          "title": "Slapukai / Sekimo technologijos:",
+          "content": "Mes <em>nenaudojame</em> slapukų, taškų žymų ar bet kokių panašių kliento pusės sekimo mechanizmų."
+        },
+        "ipAddresses": {
+          "title": "IP adresai:",
+          "content": "Kai pateikiate užklausą mūsų serveriams, mes saugome jūsų IP adresą, kad suskaičiuotume užklausas ir įvykdytume greičio apribojimus, kurie užkerta kelią piktnaudžiavimui."
+        },
+        "optionalData": {
+          "title": "Pasirenkami duomenys:",
+          "content": "Jei pasirinksite susisiekti su mumis, mes galime rinkti informaciją, kurią savanoriškai pateikiate (pvz., el. pašto adresą, vardą). Šios informacijos pateikimas yra pasirenkamas, nebent aiškiai nurodyta kitaip."
+        }
+      },
+      "legalBases": {
+        "title": "Teisiniai apdorojimo pagrindai (ES/EEE lankytojams)",
+        "item1": "Greičio apribojimo apdorojimas yra būtinas mūsų <em>teisėtiems interesams</em> pagal BDAR 6 str. 1 d. f punktą – konkrečiai, palaikyti paslaugos prieinamumą ir saugumą.",
+        "item2": "Bet koks papildomas apdorojimas (pvz., paskyros sukūrimas) grindžiamas jūsų <em>sutikimu</em> ar <em>sutartinė būtinybe</em>, kaip taikoma."
+      },
+      "dataRetention": {
+        "title": "Kiek laiko saugome duomenis",
+        "content": "Visi pokalbių įrašai bus išsaugoti. IP adresai, naudojami greičio apribojimui, yra automatiškai ištrinami per kelias minutes po paskutinės užklausos arba pasibaigus greičio apribojimo langui, priklausomai nuo to, kas įvyksta anksčiau. Savanoriška informacija (pvz., palaikymo el. laiškai) saugoma tik tiek, kiek reikia išspręsti jūsų užklausą arba tenkinti teisinius įsipareigojimus."
+      },
+      "thirdPartySharing": {
+        "title": "Trečiųjų šalių bendrinimas",
+        "content": "Mes galime pasirinkti bendrinti anonimizuotus pokalbių įrašus su akademikais ir tyrėjais, kurie ieško pagerinti rezultatus žmonėms, patiriantiems genderinę disforiją. Mes galime atskleisti IP adresus ar kitus duomenis tik kai to reikalauja įstatymai arba siekiant apsaugoti mūsų teises, vartotojus ar visuomenę (pvz., sukčiavimo prevencija, teismo orderis)."
+      },
+      "security": {
+        "title": "Saugumas",
+        "content": "Mes naudojame pramoninius standartus atitinkančias technines ir organizacines priemones (TLS šifravimą, prieigos kontrolę, mažiausios privilegijos dizainą) duomenims apsaugoti tranzite ir ramybės būsenoje."
+      },
+      "internationalTransfers": {
+        "title": "Tarptautiniai perdavimai",
+        "content": "Mūsų serveriai yra įsikūrę Jungtinėse Valstijose. Jei prieigai prie paslaugos naudojatės ne iš JAV, suprantate, kad jūsų IP adresas bus perduotas ir apdorotas Jungtinėse Valstijose."
+      },
+      "childrensPrivacy": {
+        "title": "Vaikų privatumas",
+        "content": "Mūsų paslauga nėra skirta vaikams iki 13 metų, ir mes sąmoningai nerenkame iš jų asmeninės informacijos. Jei manote, kad mes netyčia surinkome tokius duomenis, prašome susisiekti su mumis nedelsiant juos ištrinti."
+      },
+      "changes": {
+        "title": "Pakeitimai šioje politikoje",
+        "content": "Mes galime atnaujinti šią politiką nuo laiko iki laiko. 'Įsigaliojimo data' viršuje pasikeis, o reikšmingi pakeitimai bus paskelbti iškiliai."
+      },
+      "contact": {
+        "title": "Susisiekite su mumis",
+        "content": "Jei turite klausimų, susirūpinimų ar skundų, naudokite kontaktinę formą arba rašykite el. paštu <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "videos": {
+    "metadata": {
+      "title": "detrans.ai | Žiūrėkite detranzicijavusių žmonių vaizdo įrašus",
+      "description": "Čia yra asmeninių vaizdo memuarų pasirinkimas, kurį į YouTube įkėlė žmonės, kurie pereidavo, o paskui suprato, kas privertė juos detranzicionuoti. Internete yra daugybė tokių istorijų, tai tik maža dalis."
+    },
+    "title": "Perėjimo ir detranzicijos vaizdo įrašai",
+    "description": {
+      "line1": "Šis puslapis siekia būti geriausiu detranzicijos vaizdo įrašų archyvu internete.",
+      "line2": "Naudojant kalbos į tekstą technologiją, detrans.ai integruoja šias patirtis į pokalbių pokalbius.",
+      "line3": "Kol kas tik YouTube vaizdo įrašai, greitai ir TikTok?!"
+    },
+    "female": "moteris",
+    "male": "vyras",
+    "backToAll": "Atgal į visus",
+    "overview": "Apžvalga",
+    "fullSummary": "Pilnas vaizdo įrašo santrauka",
+    "watchOnYouTube": "Žiūrėti YouTube",
+    "moreVideos": "Daugiau vaizdo įrašų",
+    "browseAll": "Naršyti visus detranzicijos vaizdo įrašus",
+    "metadataWatchDescription": "Žiūrėkite {title} iš {author}, {sex} detranzicionierius, dalijantis savo istorija.",
+    "metadataThumbnailAlt": "Miniatiūra skirta {title}"
+  },
+  "videoList": {
+    "loading": "Įkeliami vaizdo įrašai...",
+    "filters": {
+      "all": "Visos istorijos",
+      "female": "Moteris",
+      "male": "Vyras",
+      "detransitioners": "Detranzicionieriai"
+    },
+    "thumbnailAlt": "Miniatiūra skirta {title}",
+    "by": "iš",
+    "female": "Moteris",
+    "male": "Vyras"
+  },
+  "videoSubmitForm": {
+    "submitTitle": "Pateikite savo detranzicijos vaizdo įrašą",
+    "description": {
+      "line1": "Pateikę savo vaizdo įrašą jis bus rodomas šiame puslapyje ir atitinkamuose pokalbiuose.",
+      "line2": "Tai gali būti jūsų vaizdo įrašas, arba tai gali būti tiesiog vienas, kurį radote internete ir trūksta šiame puslapyje.",
+      "line3": "Visi pateikimai yra moderuojami, gali praeiti kelios dienos, kol jis pasirodys."
+    },
+    "urlLabel": "YouTube URL",
+    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "submitButton": "Pateikti vaizdo įrašą",
+    "submitting": "Pateikiama...",
+    "submitSuccess": "Vaizdo įrašas sėkmingai pateiktas! Jis bus peržiūrėtas prieš pasirodydamas svetainėje.",
+    "submitError": "Nepavyko pateikti vaizdo įrašo",
+    "networkError": "Tinklo klaida. Prašome bandyti dar kartą."
+  },
+  "studySubmitForm": {
+    "submitTitle": "Pateikti tyrimą",
+    "description": {
+      "line1": "Žinote apie aktualų akademinį tyrimą ar recenzuojamą straipsnį, kurio trūksta?",
+      "line2": "Pateikite URL ir pasirinktinai pasiūlykite pavadinimą.",
+      "line3": "Visi pateikimai yra moderuojami prieš pasirodydami svetainėje."
+    },
+    "urlLabel": "Tyrimo URL",
+    "urlPlaceholder": "https://...",
+    "titleLabel": "Siūlomas pavadinimas",
+    "titlePlaceholder": "Pasirinktinis antraštė ar pavadinimas tyrimui",
+    "titleHelp": "Pasirinktinai: pasiūlykite trumpą pavadinimą ar antraštę šiam tyrimui",
+    "submitButton": "Pateikti tyrimą",
+    "submitting": "Pateikiama...",
+    "submitSuccess": "Tyrimas sėkmingai pateiktas! Jis bus peržiūrėtas prieš pasirodydamas svetainėje.",
+    "submitError": "Nepavyko pateikti tyrimo",
+    "networkError": "Tinklo klaida. Prašome bandyti dar kartą."
+  },
+  "studiesPage": {
+    "metadata": {
+      "title": "detrans.ai | Akademiniai tyrimai apie detranzicijos temas",
+      "description": "Raskite šiame puslapyje akademinių tyrimų, recenzuojamų žurnalų straipsnių ir patvirtintos statistikos pasirinkimą, susijusį su genderinių tapatybių tendencijomis ir detranzicija.",
+      "ogTitle": "detrans.ai | Akademiniai tyrimai apie detranzicijos temas",
+      "ogDescription": "Raskite šiame puslapyje akademinių tyrimų ir recenzuojamų žurnalų straipsnių bei patvirtintos statistikos pasirinkimą, susijusį su genderinių tapatybių tendencijomis ir detranzicija."
+    },
+    "title": "Pasirinkti akademiniai straipsniai",
+    "description": "Akademiniai tyrimai, recenzuojami tyrimai ir žurnalų straipsniai apie genderinės tapatybės, perėjimo ir detranzicijos temas."
+  },
+  "contentWarning": {
+    "title": "Turinio perspėjimas:",
+    "description": {
+      "line1": "Šioje svetainėje yra istorijų, patirčių ir požiūrių iš buvusių translyčių žmonių.",
+      "line2": "Temos apima perėjimo gailėjimąsi, medicinines komplikacijas ir holistinius disforijos vaizdus.",
+      "line3": "Ši informacija gali sukelti iššūkį plačiai paplitusiems įsitikinimams apie genderinę tapatybę ir perėjimą."
+    },
+    "buttons": {
+      "exit": "Išveskite mane iš čia!",
+      "continue": "Tęsti"
+    }
+  },
+  "supportPage": {
+    "metadata": {
+      "title": "detrans.ai | Gaukite genderinę pagalbą ir palaikymą",
+      "description": "Sužinokite skirtumą tarp genderį patvirtinančios priežiūros ir genderinės tyrinėjamosios terapijos. Jei patiriate genderinę disforiją, vienas iš geriausių būdų gauti palaikymą yra kalbėtis ir suprasti žmonių, kurie patys ten buvo ir išėjo iš kitos pusės, požiūrius."
+    },
+    "title": "Gaukite genderinę pagalbą ir palaikymą",
+    "navigation": {
+      "jumpTo": "Pereiti į:",
+      "getGenderSupport": "Gauti genderinę pagalbą:"
+    },
+    "sections": {
+      "onlineSupport": {
+        "title": "Interneto palaikymo grupės",
+        "description": "Jei patiriate genderinę disforiją, vienas iš geriausių būdų gauti palaikymą yra kalbėtis ir suprasti žmonių, kurie patys ten buvo ir išėjo iš kitos pusės, požiūrius.",
+        "links": {
+          "redditCommunity": "Detranzicijos bendruomenė Reddite",
+          "redditWiki": "Detranzicijos wiki Reddite",
+          "discordServer": "Oficialus /r/detrans Discord serveris",
+          "askDetransAI": "Klauskite 50 000+ detranzicijavusių žmonių su detrans.ai"
+        }
+      },
+      "genderAffirmingCare": {
+        "title": "Genderį patvirtinanti priežiūra: kas tai?",
+        "description": "Genderį patvirtinanti priežiūra šiuo metu yra standartinė (ir dažnai vienintelė) gydymo galimybė genderinei disforijai, siūloma sveikatos priežiūros teikėjų Vakarų pasaulyje. Genderį patvirtinanti priežiūra iš esmės pripažįsta visuomenės genderinius lūkesčius ir tada pritaiko pacientą prie jų. Tai etapinis požiūris, prasidedantis socialiniu perėjimu (vardas, įvardžiai, drabužiai), tada hormonų terapija, o paskui kai kuriems – negrįžtamos chirurginės procedūros. Genderį patvirtinanti priežiūra gali suteikti palengvėjimą nuo genderinės disforijos, bet tai ateina su rimtomis sveikatos rizikomis ir dažnai nuolatinėmis šalutinėmis poveikiais. Tęskite su dideliu atsargumu ir įsitikinkite, kad",
+        "watchTestimonies": "žiūrėkite kai kuriuos liudijimus"
+      },
+      "genderExploratoryTherapy": {
+        "title": "Genderinė tyrinėjamoji terapija: kas tai?",
+        "description1": "Genderinė tyrinėjamoji terapija paprasčiausiai reiškia, kad jūsų terapeutas neskuba patvirtinti ir medicinizuoti jūsų. Vietoj to jie pradės tyrinėdami genderio sąvokas ir kodėl jums taip gali jaustis. Genderinė tyrinėjamoji terapija yra požiūris be konkrečios iš anksto nustatytos darbotvarkės, ir genderinės tyrinėjamosios terapijos rezultatai gali skirtis priklausomai nuo kiekvieno asmens.",
+        "description2": "Jei googlinsite 'Genderinė tyrinėjamoji terapija', rasite kai kurių kritikų, kurie lygina ją su gėjų konversijos terapija (kuri įrodyta, kad yra neveiksminga). Tiesa ta, kad genderinė tyrinėjamoji terapija labai skiriasi nuo gėjų konversijos terapijos:",
+        "references": {
+          "title": "Nuorodos",
+          "ref1": "U.S. Dept. of Health & Human Services (2025). Report on Pediatric Gender Dysphoria and Gender Conversion Efforts.",
+          "ref2": "D'Angelo, R. (2025). 'Supporting autonomy in young people with gender dysphoria: psychotherapy is not conversion therapy.' Journal of Medical Ethics, 51(1).",
+          "ref3": "Lemma, A. & Schmidt, L. (2024). 'Psychodynamic Psychotherapy for Gender Dysphoria is not Conversion Therapy.' Frontiers in Psychology.",
+          "ref4": "Korte, A. et al. (2021). 'One Size Does Not Fit All: In Support of Psychotherapy for Gender Dysphoria.' Archives of Sexual Behavior."
+        },
+        "florenceAshley": {
+          "title": "Florence Ashley tyrimas",
+          "description": "Akademiniai tyrimai šioje srityje dažnai yra šališki. Vienas įtakingiausių tyrimų (Interrogating Gender-Exploratory Therapy) buvo paskelbtas 2022 m. Florence Ashley, trans moters. Savo tyrime ji lygino genderinę tyrinėjamąją terapiją su gėjų konversijos terapija ir griežtai pasmerkė praktiką. Turėtų būti pripažįstama, kad žmonės, kurie identifikuojasi kaip translyčiai, yra motyvuoti apsaugoti savo tapatybę ir įsitikinimus, ir šis tyrimas yra puikus to pavyzdys. Tyrimas yra pilnas loginio mąstymo klaidų, tačiau jis vis tiek buvo paskelbtas ir naudojamas kaip akademinis pateisinimas, kad genderį patvirtinanti priežiūra būtų vienintelė galimybė žmonėms, patiriantiems genderinę disforiją.",
+          "showFallacies": "Žiūrėkite visas loginio mąstymo klaidas Florence Ashley tyrime"
+        }
+      },
+      "findTherapist": {
+        "title": "Kur galiu rasti terapeutą, kuris praktikuoja genderinę tyrinėjamąją terapiją?",
+        "languageNotice": "Dauguma išvardytų terapeutų kalba tik angliškai, bet vis tiek galite pabandyti susisiekti su jais, kad rastumėte kalbantį jūsų kalba. Jei žinote licencijuotą terapeutą, kuris kalba jūsų kalba, galite pasiūlyti pridėti jį prie šio puslapio per",
+        "contactForm": "kontaktinę formą",
+        "organizations": {
+          "justTherapy": {
+            "name": "Just Therapy",
+            "description": "Just Therapy gimė iš noro grįžti prie to, kas turėtų būti terapija – veiksminga, etiška ir laisva nuo ideologijos. Tai terapeutų ir konsultantų asociacija, susijungusi pagal bendras etikos ir principus. Just Therapy pripažįsta, kad didžioji psichoterapijos ir konsultavimo pasaulio dalis buvo užimta aktyvistų ir ideologijų, kurios kelia pavojų, o ne palaiko, klientų psichinei gerovei. Jos nariai, kilę iš įvairių disciplinų ir specializacijų, pasirašė Elgesio kodeksą.",
+            "directory": "Just Therapy terapeutų katalogas",
+            "codeOfConduct": "Just Therapy elgesio kodeksas"
+          },
+          "therapyFirst": {
+            "name": "Therapy First",
+            "description": "Therapy First vienija psichinės sveikatos specialistus, kurie tiki, kad genderinę kančią patiriantys klientai nusipelno atviro, įrodymais pagrįsto psichoterapijos, kuri tyrinėja pasąmoningus ir kontekstinius veiksnius prieš bet kokius negrįžtamus medicininius žingsnius; jie atmeta ir konversijos praktikas, ir 'tik patvirtinti' modelį, gerbia kliento autonomiją ir laiko vaikystės/paauglystės medicininį perėjimą eksperimentiniu, tuo pačiu palaikydami suaugusiųjų teisę į kūno autonomiją ir tęstinę terapinę tyrimą.",
+            "directory": "Therapy First terapeutų katalogas",
+            "about": "Apie Therapy First"
+          },
+          "beyondTrans": {
+            "name": "Beyond Trans",
+            "description": "Stella O'Malley paleido Genderio disforijos palaikymo tinklą 2020 m. kovą, kad suteiktų tėvams nešališką pagalbą su genderinę kančią patiriančiais vaikais; jis greitai išaugo į pasaulinę bendruomenę, skatindamas 2021 m. Genspect sukūrimą, ne medicininės priežiūros advokatą. Pripažindama augantį perėjimo gailėjimąsi, grupė pradėjo Beyond Trans 2022 m., o 2025 m. birželį sujungė jį su GDSN, kad suformuotų vieną integruotą, įrodymais pagrįstą palaikymo tinklą šeimoms, asmenims ir detranzicionieriams.",
+            "directory": "Beyond Trans terapeutų katalogas",
+            "supportGroups": "Beyond Trans palaikymo grupės",
+            "about": "Apie Beyond Trans"
+          },
+          "detransFoundation": {
+            "name": "Detranzicijos fondas",
+            "description": "Detranzicijos fondas teikia išteklius ir palaikymą detranzicionieriams, įskaitant prieigą prie kvalifikuotų terapeutų, suprantančių detranzicijos patirtis. Šie terapeutai yra Detranzicijos fondo dalis:",
+            "drEntwistle": "yra klinikinis psichologas, kuris anksčiau dirbo NHS genderinės tapatybės raidos tarnyboje iki 18 metų Leedse. Ji yra registruota Jungtinės Karalystės sveikatos priežiūros profesijų taryboje (HCPC) ir siūlo internetines konsultacijas saugiu vaizdo skambučiu.",
+            "anastassisSpiliadis": "yra sisteminis ir šeimos psichoterapeutas, kuris dirbo ketverius metus Genderinės tapatybės raidos tarnyboje Tavistock, kur vadovavo Šeimos terapijos ir konsultavimo tarnybai. Jis pasitraukė iš Tavistock, nes nesutiko su terapinio modelio trūkumu suprantant genderinės tapatybės sunkumus. Jis sukūrė Genderinės tyrinėjamosios modelį ir turi didelę patirtį dirbdamas su genderiniu klausimu abejojančiais asmenimis ir detranzicionieriais.",
+            "visitWebsite": "Apsilankykite Detranzicijos fondo svetainėje"
+          }
+        }
+      },
+      "forParents": {
+        "title": "Ištekliai tėvams",
+        "intro": "Jei jūsų vaikas neseniai pasiskelbė translyčiu, jūs galite jaustis sutrikę, sunerimę ir nežinote, kaip geriausiai juos paremti, tuo pačiu saugodami jų ilgalaikę sveikatą ir gerovę.",
+        "rogdRepair": {
+          "name": "Stephanie Winn ROGD Repair programa",
+          "whatIs": "Kas yra ROGD Repair?",
+          "description1": "ROGD Repair yra:",
+          "bullet1": "Programa, kuri padeda translyčiai identifikuojančių jaunuolių tėvams bendrauti būdais, kurie skatina pasitraukimą, kritinį mąstymą, sveikatą ir santykių harmoniją",
+          "bullet2": "Interaktyvus ir vis plečiamas psichologijos koncepcijų ir komunikacijos įgūdžių rinkinys, patobulintas per metus kaip licencijuotas santuokos ir šeimos terapeutas, tapęs ROGD tėvų treneriu",
+          "bullet3": "Savireguliavimo internetinis kursas, kuriame yra daugiau nei 100 pamokų, kiekviena sudaryta iš vaizdo įrašo, esė ir apmąstymo klausimų, skirtų padėti dalyviams pritaikyti turinį prie savo unikalių šeimos situacijų, taip pat diskusijų forumų",
+          "description2": "Naujos ROGD Repair narystės dabar ateina su neribotu RepairBot prieiga, pirmuoju ir vieninteliu AI įrankiu, sukurtu specialiai padėti nepatvirtinantiems genderinę kančią patiriančių jaunuolių tėvams. RepairBot yra apmokytas visame ROGD Repair mokymo programoje ir tarnauja kaip puikus palydovas, namų darbų pagalbininkas ir komunikacijos įrankio pagalbininkas!",
+          "ctaBox": {
+            "title": "Jūsų vaikas sako, kad jie 'trans', bet jūs tiesiog norite, kad jie būtų sveiki ir saugūs.",
+            "description1": "Jūsų vaiko sveikata ir ateitis yra ant svarstyklių, bet jūsų svertas ir įtaka yra riboti. Galbūt jie pradėjo juodąją rinką hormonus už jūsų nugaros, arba išeina piktdžiugiškai, kai jūs juos 'netinkamai lytiškai apibūdinate', arba yra toli 'patvirtinančiame' koledže. Jums reikia efektyviai bendrauti šioje sudėtingoje situacijoje, kol kas nors nenukentės. Čia ateina ROGD Repair.",
+            "description2": "ROGD Repair yra savireguliavimo internetinis kursas ir bendruomenė tėvams, kurie moko psichologijos koncepcijų ir komunikacijos įrankių, kurių jums reikia, kad suprastumėte savo vaiko psichinę būklę ir kaip juos pasiekti. Narystė dabar apima RepairBot, jūsų 24/7 AI asistentą, apmokytą šio požiūrio.",
+            "description3": "ROGD Repair ir RepairBot sukūrė licencijuotas santuokos ir šeimos terapeutas su daugiau nei dešimtmečio patirtimi dirbant su translyčiai identifikuojančiais jaunuoliais ir jų šeimomis, kuris dabar išskirtinai vadovauja tėvams, kurie žino, kad turi būti geresnis kelias nei 'patvirtinimas.'"
+          },
+          "coupon": "Naudokite šį kupono kodą, kad gautumėte",
+          "couponCode": "DETRANSAI",
+          "learnMore": "Sužinokite daugiau ir užsiregistruokite į ROGD Repair"
+        }
+      }
+    },
+    "table": {
+      "gayConversion": "Gėjų konversijos terapija",
+      "genderExploratory": "Genderinė tyrinėjamoji terapija",
+      "goal": "Tikslas",
+      "goalConversion": "Pakeisti seksualinę orientaciją, nes ji laikoma patologine.",
+      "goalExploratory": "Suprasti disforijos prasmę; rezultatas gali būti perėjimas, ne perėjimas ar dalinis socialinis perėjimas.",
+      "method": "Metodas",
+      "methodConversion": "Gėda, atgrasymas, elgesio kondicionavimas, malda.",
+      "methodExploratory": "GET yra suderinama su plačiu terapinių modalumų spektru, tokiu kaip standartinė psichodinaminė ar humanistinė technika – atviri klausimai, smalsumas, iš anksto nenustatyti galutiniai taškai.",
+      "evidence": "Įrodymais pagrįsta bazė",
+      "evidenceConversion": "Nuosekliai rodo žalą; kiekviena didelė medicinos įstaiga tai pasmerkia.",
+      "evidenceExploratory": "Dar nėra RCT, bet paralelės su terapijomis, kurios mažina nerimą, depresiją, savęs žalojimą; nėra duomenų, rodančių sistemingą žalą.",
+      "ethics": "Etika",
+      "ethicsConversion": "Pažeidžia autonomiją, skatindama heteroseksualinę tapatybę kaip vienintelį teisingą pasirinkimą.",
+      "ethicsExploratory": "Siekiama išplėsti autonomiją, užtikrinant, kad paauglys (ir šeima) suprastų visas galimybes prieš negrįžtamus žingsnius."
+    },
+    "fallacies": {
+      "title": "Loginio mąstymo klaidos Florence Ashley tyrime",
+      "name": "Klaidos pavadinimas",
+      "explanation": "Paprastas paaiškinimas",
+      "example": "Pavyzdys iš straipsnio"
+    }
+  },
+  "charts": {
+    "ageDistribution": {
+      "title": "Kiek metų buvo detranzicionieriai, kai jie pereidavo ir detranzicionuodavo?",
+      "subtitle": "Duomenys iš Reddit vartotojų perėjimo laiko juostų",
+      "loading": "Įkeliami diagramos duomenys...",
+      "fetchError": "Nepavyko gauti amžiaus pasiskirstymo duomenų",
+      "genericError": "Įvyko klaida",
+      "errorPrefix": "Klaida:",
+      "noData": "Nėra duomenų pasirinktam amžiaus diapazonui",
+      "tooltip": {
+        "age": "Amžius: {age}",
+        "transitioned": "Pereidavo: {count} vartotojai",
+        "detransitioned": "Detranzicionavo: {count} vartotojai"
+      },
+      "axis": {
+        "age": "Amžius",
+        "users": "Vartotojų skaičius"
+      },
+      "legend": {
+        "transition": "Perėjimo amžius",
+        "detransition": "Detranzicijos amžius"
+      }
+    },
+    "transitionDuration": {
+      "title": "Perėjimo trukmė: amžius pereidavus vs amžius detranzicionavus",
+      "description": {
+        "line1": "Kiekvienas taškas rodo perėjimo amžių (X) vs detranzicijos amžių (Y).",
+        "line2": "Didesni, nepermatomesni taškai reiškia daugiau vartotojų."
+      },
+      "loading": "Įkeliami diagramos duomenys...",
+      "noData": "Nėra duomenų pasirinktam amžiaus diapazonui",
+      "axis": {
+        "transitionAge": "Amžius pereidavus",
+        "detransitionAge": "Amžius detranzicionavus"
+      },
+      "tooltip": {
+        "transitionAge": "Amžius pereidavus",
+        "detransitionAge": "Amžius detranzicionavus",
+        "duration": "Trukmė",
+        "years": "metai"
+      },
+      "male": "Vyras",
+      "female": "Moteris",
+      "yearsAvg": "metų vidurkis",
+      "user": "vartotojas",
+      "users": "vartotojai"
+    },
+    "pathways": {
+      "title": "Detranzicijos kelių srautas",
+      "subtitle": "Srautas iš /r/detrans Reddit vartotojų demografijos per detranzicijos rezultatus",
+      "loading": "Įkeliami kelių duomenys...",
+      "fetchError": "Nepavyko gauti žymių pasiskirstymo duomenų",
+      "genericError": "Įvyko klaida",
+      "error": "Klaida",
+      "users": "{count} vartotojai",
+      "percentageOfTotal": "{percentage}% iš viso",
+      "totalUsers": "Iš viso vartotojų",
+      "flowConnections": "Srauto jungtys",
+      "male": "Vyras",
+      "female": "Moteris",
+      "noData": "Nėra kelių duomenų pasirinktiems filtrams"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Kontaktai | detrans.ai",
+      "description": "Susisiekite su mumis. Siųskite savo mintis, pasiūlymus ar atsiliepimus."
+    },
+    "title": "Kontaktinė forma",
+    "intro": "Jei turite kokių nors minčių, pasiūlymų, ar jei ši nemokama paslauga padėjo jums, jūsų šeimai ar draugui, norėčiau išgirsti iš jūsų. Parašykite man žinutę žemiau!",
+    "form": {
+      "to": "Kam",
+      "name": "Vardas",
+      "namePlaceholder": "Jūsų vardas",
+      "email": "El. paštas",
+      "emailPlaceholder": "you@example.com",
+      "subject": "Tema",
+      "subjectPlaceholder": "Tema",
+      "message": "Žinutė",
+      "messagePlaceholder": "Rašykite savo žinutę...",
+      "sendButton": "Siųsti žinutę",
+      "sending": "Siunčiama...",
+      "success": "✅ Žinutė išsiųsta!",
+      "error": "❌ Nepavyko išsiųsti."
+    }
+  },
+  "seo": {
+    "conversations": {
+      "title": "Pokalbių archyvas",
+      "description": "Naršykite pokalbius apie genderinę tapatybę, detranziciją, genderį patvirtinančią priežiūrą ir patvirtinimą.",
+      "conversations": "Pokalbiai",
+      "featuredConversations": "Išskirtiniai pokalbiai",
+      "allConversations": "Visi pokalbiai",
+      "untitled": "Pokalbis be pavadinimo",
+      "noSummary": "Nėra santraukos",
+      "noConversations": "Nėra prieinamų pokalbių.",
+      "mode": "Režimas",
+      "updated": "Atnaujinta",
+      "featured": "Išskirtinis",
+      "conversationSummary": "Pokalbio santrauka",
+      "noSummaryAvailable": "Nėra santraukos šiam pokalbiui.",
+      "conversation": "Pokalbis",
+      "unableToParse": "Nepavyko išanalizuoti pokalbio žinučių.",
+      "archiveNote": "Tai yra pokalbis iš mūsų archyvo. Norėdami peržiūrėti pilną pokalbį ir dalyvauti diskusijose, apsilankykite šio puslapio interaktyviojoje versijoje.",
+      "welcomeTitle": "Sveiki atvykę į pokalbių archyvą",
+      "welcomeDescription": "Pasirinkite pokalbį iš šoninės juostos, kad peržiūrėtumėte jo detales. Šiame archyve yra diskusijos apie genderinę tapatybę, detranzicijos patirtis ir patvirtinimo keliones.",
+      "featuredDescription": "Paryškintos diskusijos, pažymėtos mūsų bendruomenės",
+      "allDescription": "Naršykite visas prieinamas diskusijas",
+      "footer": "Šis puslapis teikia SEO draugišką turinys paieškos sistemoms ir robotams. Pilnai interaktyviai patirčiai apsilankykite su modernia žiniatinklio naršykle.",
+      "user": "Vartotojas"
+    },
+    "chat": {
+      "subtitle": "Klausimai ir atsakymai žmonėms, kurie abejoja savo genderine tapatybe.",
+      "freedomMessage": "Tiesa yra ta, kad genderinis nesilaikymas išlaisvins mus visus!",
+      "moreQuestions": "Daugiau klausimų, susijusių su \"{question}\""
+    },
+    "videos": {
+      "title": "Perėjimo ir detranzicijos vaizdo įrašai",
+      "description": "Tai yra asmeninių detranzicijos vaizdo įrašų archyvas, įkeltas į internetą. Paskelbkite savo balsą, prisidėdami ir pasidalindami savo istorija!",
+      "thumbnailAlt": "Miniatiūra skirta",
+      "by": "iš",
+      "female": "Moteris",
+      "male": "Vyras"
+    }
+  },
+  "routes": {
+    "home": "/",
+    "about": "/apie",
+    "contact": "/kontaktai",
+    "support": "/pagalba",
+    "videos": "/vaizdo-irasai",
+    "stories": "/istorijos",
+    "studies": "/tyrimai",
+    "definitions": "/apibrezimai",
+    "donate": "/aukoti",
+    "terms": "/salygos",
+    "prompts": "/raginimai",
+    "participate": "/dalyvauti",
+    "conversations": "/pokalbiai",
+    "research": "/tyrimas",
+    "chat": "/pokalbis",
+    "login": "/prisijungti"
+  }
+}

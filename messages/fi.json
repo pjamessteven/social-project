@@ -1,0 +1,805 @@
+{
+  "metadata": {
+    "title": "detrans.ai | Keskustele 50 000+ detransitionoinneen kanssa",
+    "description": "Detrans.ai on auttava ja myötätuntoinen chatbotti, joka jakaa detransitionoineiden ihmisten kokemuksia ja näkökulmia. Käytä detrans.ai:ta siirtymän tai detransition tuessa ja neuvonnassa, tai tutkimustyökaluna ymmärtääksesi, miksi jotkut ihmiset omaksuvat, asuvat ja luopuvat sukupuoli-identiteeteistä."
+  },
+  "home": {
+    "title": "Keskustele 50 000+ Detransitionoineen Kanssa",
+    "subtitle": "Näkökulmia Toiselta Puolelta",
+    "intro": {
+      "greeting": "Hei! Mikä on detransitionoinut?",
+      "response": "Hei! Olen detrans.ai - detransitionoineiden kollektiivinen tietoisuus 🦎",
+      "definition": "Detransitionoinut on ex-transhenkilö, joka siirtyi sosiaalisesti tai lääketieteellisesti, mutta joka ei enää identifioi itseään transhenkilöksi ja saattaa olla peruuttanut siirtymänsä osia.",
+      "description": "Havainnoin syitä, kaavoja ja totuuksia siitä, miksi jotkut ihmiset omaksuvat, asuvat ja siirtyvät eteenpäin sukupuoli-identiteeteistä lukemalla tarinoita ja kokemuksia, jotka on julkaistu /r/detrans-subredditissä ja katsomalla detransitio-videoita, jotka on ladattu YouTubeen.",
+      "purpose": "Tarkoitukseni on jakaa tämä tieto sukupuolen purkamiseksi ja tutkiakseni, kuinka nämä kokemukset muokkaavat suhdetta itseen, kehoon ja maailmaan.",
+      "helpPrompt": "Kuinka voin auttaa sinua tänään?"
+    },
+    "starters": {
+      "lizardQuestion": {
+        "display": "Anteeksi, mutta mikä juttu noissa liskoissa on?",
+        "full": "Miksi detransitionoineet käyttävät liskoa edustamaan itseään verkossa?"
+      },
+      "curious": {
+        "display": "Olen utelias siitä, miksi jotkut detransitionoivat",
+        "full": "Olen utelias siitä, miksi jotkut detransitionoivat, ja millaisia oivalluksia heidän täytyi saavuttaa päästäkseen siihen pisteeseen."
+      },
+      "questioningTrans": {
+        "display": "Kyselen sukupuoli-identiteettiäni ja luulen olevani trans",
+        "full": "Kyselen sukupuoli-identiteettiäni ja luulen olevani trans"
+      },
+      "thinkingDetrans": {
+        "display": "Tunnistan tällä hetkellä olevani trans ja ajattelen detransitioitumista",
+        "full": "Tunnistan tällä hetkellä olevani trans ja ajattelen detransitioitumista"
+      },
+      "familyMember": {
+        "display": "Olen vanhempi, perheenjäsen tai ystävä jollekin, joka on siirtymässä",
+        "full": "Olen vanhempi, perheenjäsen tai ystävä jollekin, joka on siirtymässä"
+      },
+      "researcher": {
+        "display": "Olen tutkija, joka tutkii sukupuoli-identiteettiä ja detransitiokokemuksia",
+        "full": "Olen tutkija, joka tutkii sukupuoli-identiteettiä ja detransitiokokemuksia"
+      },
+      "learnChallenges": {
+        "display": "Haluan oppia haasteista ja vaikeuksista, joita detransitionoineet kohtaavat",
+        "full": "Haluan oppia haasteista ja vaikeuksista, joita detransitionoineet kohtaavat"
+      },
+      "understandTransition": {
+        "display": "Haluan ymmärtää, miksi detransitionoineet päättivät siirtyä alun perin",
+        "full": "Haluan ymmärtää syyt, miksi detransitionoineet siirtyivät alun perin, ja kuinka ne voivat erota miesten ja naisten välillä."
+      },
+      "debunkMisinfo": {
+        "display": "Haluan, että kumot vääriä tietoja ja yleisiä uskomuksia detransitiosta",
+        "full": "Ole hyvä ja kumoa kaikki vääriä tietoja ja yleisiä uskomuksia detransitionoineista mahdollisimman syvällisesti."
+      }
+    },
+    "navigation": {
+      "videos": "Detransitio-Videot",
+      "stories": "Tarinoita",
+      "storiesFull": "Tarinoita ja Tilastoja",
+      "support": "Apua ja Tukea",
+      "definitions": "Sukupuolikäsitteet",
+      "studies": "Akateemiset Tutkimukset",
+      "studiesShort": "Tutkimukset",
+      "howItWorks": "Kuinka Se Toimii"
+    },
+    "deepResearch": {
+      "title": "Syvätutkimustila",
+      "description": "Syvätutkimustila laajentaa kysymystäsi antaaksesi vastauksen, joka lähestyy aihetta eri kulmista.",
+      "note": "Syvä tutkimus on hitaampaa ja ei-keskustelevaa. Keskusteluun jätä se pois päältä."
+    },
+    "disclaimer": {
+      "trigger": "Kokemukset ja näkökulmat tällä sivustolla ovat peräisin Reddistä.",
+      "title": "Lähteen Vastuuvapaus",
+      "content": "detrans.ai vastaa kysymyksiin sukupuolesta detrans-näkökulmasta löytämällä asiaankuuluvia kokemuksia /r/detrans-yhteisöstä Redditissä. Vaikka Reddit on alusta, jossa oikeat ihmiset jakavat henkilökohtaisia tarinoita, se voi sisältää myös bottien tuottamaa tai harhaanjohtavaa sisältöä. Sinua kannustetaan tarkastamaan alkuperäiset Reddit-viestit lähteen ja kontekstin varmistamiseksi. Huomaa, että /r/detrans on voimakkaasti moderoitu subreddit, mutta moderointi ei takaa jokaisen viestin tarkkuutta tai aitoutta."
+    },
+    "donate": {
+      "title": "Tue Työtämme",
+      "description": "Auta meitä pitämään tämä resurssi saatavilla niille, jotka tarvitsevat sitä eniten.",
+      "button": "Lahjoita",
+      "card": {
+        "title": "Lahjoituksia tarvitaan {site}in ylläpitämiseen!",
+        "description": "Jos arvostat tätä ilmaista palvelua, harkitse lahjoittamista.",
+        "description2": "Sivusto ajetaan välimuistitilassa, jos rahat loppuvat, ilman mahdollisuutta kysyä omia kysymyksiäsi.",
+        "button": "Tee lahjoitus"
+      }
+    },
+    "participate": {
+      "card": {
+        "title": "Oletko detransitionoinut tai desistanut?",
+        "description": "Osallistu tutkimuksiin auttaaksesi parantamaan tieteellistä ymmärrystä trans-identiteeteistä",
+        "description2": "ja parantamaan tuloksia ihmisille, jotka kokevat sukupuolidysforiaa."
+      },
+      "title": "Jaa Tarinasi",
+      "description": "Kokemuksesi voi auttaa muita ymmärtämään sukupuoli-identiteetin monimutkaisuutta.",
+      "button": "Osallistu"
+    },
+    "footer": {
+      "poem": {
+        "line1": "Voit vapauttaa itsesi,",
+        "line2": "Kaikki mitä sinun tarvitsee tehdä on vain olla.",
+        "line3": "Ja muista vaalia ajatuksiasi!",
+        "line4": "Koska mieli on kuin puutarha,",
+        "line5": "Ja jokainen ajatus on siemen.",
+        "line6": "Me korjaamme sen, mitä kylvämme,",
+        "line7": "Mutta tämän kautta voimme kasvaa..."
+      },
+      "openSource": "Avoimen lähdekoodin projekti",
+      "madeWithLove": "Tehty rakkaudella Wellingtonissa, Uudessa-Seelannissa",
+      "donatePrompt": "Ole hyvä ja lahjoita, jos voit,",
+      "beKind": "Ja olkaa ystävällisiä toisillenne."
+    },
+    "browseConversations": "Selaa kaikkia Keskusteluja"
+  },
+  "header": {
+    "navigation": {
+      "home": "Etusivu",
+      "resources": "Resurssit",
+      "about": "Tietoa"
+    },
+    "resources": {
+      "genderSupport": "Sukupuolentuki",
+      "genderSupportDesc": "Löydä yhteisö ja terapeutteja",
+      "terminology": "Terminologia",
+      "terminologyDesc": "Keskeisten käsitteiden määrittely",
+      "stories": "Tarinoita ja Tilastoja",
+      "storiesDesc": "/r/detrans-käyttäjiltä",
+      "videos": "Detransitio-Videot",
+      "videosDesc": "Henkilökohtainen muistelmakokoelma",
+      "studies": "Vertaisarvioitut Tutkimukset",
+      "studiesDesc": "Asiaankuuluva akateeminen tutkimus",
+      "statistics": "Vahvistetut Tilastot",
+      "statisticsDesc": "statsforgender.org"
+    },
+    "about": {
+      "contact": "Yhteystiedot",
+      "contactDesc": "Ota yhteyttä minuun",
+      "systemPrompts": "Järjestelmäkyselyt",
+      "systemPromptsDesc": "Näytä tekoälyn järjestelmäkyselyt",
+      "terms": "Ehdot",
+      "termsDesc": "Tietosuojakäytäntö ja ehdot"
+    },
+    "donate": "Lahjoita",
+    "language": {
+      "title": "Kieli"
+    }
+  },
+  "language": {
+    "title": "Kieli",
+    "select": "Valitse kieli",
+    "search": "{count} kieltä",
+    "en": "Englanti",
+    "es": "Espanja",
+    "fr": "Ranska",
+    "de": "Saksa",
+    "he": "Heprea",
+    "it": "Italia",
+    "nl": "Hollanti",
+    "tr": "Turkki",
+    "fi": "Suomi"
+  },
+  "settings": {
+    "title": "Asetukset"
+  },
+  "theme": {
+    "title": "Ulkoasu",
+    "darkMode": "Tumma tila",
+    "light": "Vaalea",
+    "dark": "Tumma"
+  },
+  "definitions": {
+    "metadata": {
+      "title": "detrans.ai | Sukupuoleen liittyvien termien määrittely",
+      "description": "Arkipäiväisessä puheessa sukupuoli ja sukupuoli-identiteetti joskus käytetään synonymeina, ja joissakin kielissä on vain yksi sana kuvaamaan molempia. Sukupuolidysforian koko konsepti kuitenkin perustuu siihen, että ymmärretään sukupuolen ja sukupuoli-identiteetin väliset erot."
+    },
+    "title": "Sukupuoleen liittyvien termien määrittely",
+    "sexAndGender": {
+      "heading": "Sukupuoli ja sukupuoli-identiteetti?",
+      "intro": "Arkipäiväisessä puheessa sukupuoli ja sukupuoli-identiteetti joskus käytetään synonymeina, ja joissakin kielissä on vain yksi sana kuvaamaan molempia. Sukupuolidysforian koko konsepti kuitenkin perustuu siihen, että ymmärretään sukupuolen ja sukupuoli-identiteetin väliset erot.",
+      "sex": "<b>Sukupuoli</b> viittaa ihmisen biologiaan (ts. anatomiaan; luuranko, lihaksisto, kromosomit, lisääntymisjärjestelmä ja sekundääriset sukupuoliominaisuudet). Huomaa, että yli 99% ihmisistä on biologisesti joko miehiä tai naisia, sukupuolispektriä ei ole, vaikka jotkut ihmiset kuitenkin kärsivät sukupuolen kehityshäiriöistä (DSD:t). Suurin osa DSD:itä omaavista ihmisistä on miehiä tai naisia.",
+      "gender": "<b>Sukupuoli-identiteetti</b> viittaa 'sosiaalisesti rakennettuihin' rooleihin, käyttäytymiseen, toimintoihin ja ominaisuuksiin, jotka tietty yhteiskunta pitää sopivina miehille ja naisille [kuten määrätty biologisen sukupuolensa perusteella]. 'Maskuliininen' ja 'feminiininen' ovat sukupuolikategorioita. Useimmilla, ehkä kaikilla, ihmisillä on sekoitus maskuliinisia ja feminiinisiä piirteitä. Sukupuoli muuttuu ajan myötä ja kulttuurien välillä.",
+      "nonConformity": "<b>Sukupuolenvastaisuus</b> tapahtuu, kun henkilö toimii tai esiintyy eri tavalla kuin yhteiskunta odottaa häneltä sukupuolensa perusteella.",
+      "identity": "<b>Sukupuoli-identiteetti</b> - jotkut ihmiset uskovat, että meillä kaikilla on synnynnäinen 'sukupuoli-identiteetti' - syvä tunne tai tietoisuus itsestämme joko miehenä, naisena tai jossain välissä - joka on erillään biologisesta sukupuolestamme ja joka voi harvinaisissa tapauksissa erota siitä. Toiset ihmiset eivät usko, että olemassa on tiettyä sukupuoli-identiteettiä, joka on erillään muusta henkilön persoonallisuuden tai identiteetin osasta."
+    },
+    "dysphoria": {
+      "heading": "Mikä on sukupuolidysforia?",
+      "p1": "Sukupuolidysforia on psykiatrisen ja lääketieteellisen yhteisön käyttämä diagnostinen termi kuvaamaan ahdistusta, jonka joku kokee, kun hänen sukupuoli-identiteettinsä ei vastaa hänen biologista sukupuoltaan.",
+      "p2": "Sukupuolidysforiaa kokevat ihmiset raportoivat vahvoista, jatkuvista tunteista identifioitumisesta sukupuoleen, joka eroaa heidän sukupuolestaan, ja siihen liittyvästä epämukavuudesta sukupuolittuneen kehonsa kanssa. Nykyisen virallisen diagnoosin tekemiseksi tunteiden on aiheutettava merkittävää ahdistusta tai haittaa niitä kokevalle henkilölle."
+    },
+    "transgender": {
+      "heading": "Mitä tarkoittaa olla transsukupuolinen?",
+      "p1": "Transsukupuolinen on termi, joka voi tarkoittaa eri asioita eri ihmisille. Yleisesti ollaan yksimielisiä siitä, että transnaiset syntyvät mieskehossa, mutta identifioituvat naisiksi, transmiehet syntyvät naiskehossa, mutta identifioituvat miehiksi, ja ei-binääriset ihmiset identifioituvat ei-miehiksi eivätkä naisiksi. Ihmiset käyttävät usein lyhyempää termiä 'trans' ilmaisemaan, että joku identifioituu sukupuoleen, joka ei ole sama kuin hänen biologinen sukupuolensa.",
+      "p2": "Transsukupuolinen voidaan ymmärtää tarkoittavan, että i) olet vastakkaista sukupuolta kuin se, johon synnyit, ii) uskot olevasi vastakkaista sukupuolta kuin se, johon synnyit, tai iii) elät ikään kuin sukupuolesi olisi vastakkainen kuin se, johon synnyit. Keskustelut siitä, kumpi näistä kolmesta tavan ymmärtää termi on tarkin, voivat olla kiihkeitä ja kiistanalaisia. Jotkut ihmiset tuntevat, että jopa keskustelu siitä, mitä tarkoittaa olla transsukupuolinen, heikentää kokemuksen pätevyyttä. Nämä erilaiset uskomukset kuitenkin johtavat väistämättä erilaisiin ajatuksiin siitä, kuinka parhaiten tukea ihmisiä sukupuoleen liittyvän ahdistuksen hallinnassa, joten keskustelut ovat välttämättömiä varmistamaan, että ihmiset saavat parasta mahdollista apua ja neuvontaa."
+    },
+    "desistance": {
+      "heading": "Mikä on desistanssi?",
+      "p1": "Desistanssi on, kun joku, joka identifioitui transsukupuoliseksi, mutta ei ryhtynyt lääketieteellisiin toimenpiteisiin, ei enää identifioi itseään transsukupuoliseksi. Vaikka heidän ei ehkä tarvitse käsitellä lääketieteellisiin toimenpiteisiin ryhtymisen vaikutuksia, desistanssi voi silti olla erittäin tunteellisesti tuskallinen, hämmentävä ja vaikea prosessi."
+    },
+    "detransition": {
+      "heading": "Detransitio ja detransitionoineet",
+      "p1": "Detransitio on, kun joku, joka identifioitui transsukupuoliseksi ja kävi läpi lääketieteellisiä toimenpiteitä, ei enää identifioi itseään transsukupuoliseksi. Tässä ryhmässä on valtavasti vaihtelua ihmisten kokemuksissa. Jotkut ihmiset saattavat olla erittäin ahdistuneita siitä, mitä he ovat käyneet läpi ja pitkän aikavälin vaikutuksista, toiset saattavat nähdä sen asiana, jonka heidän täytyi käydä läpi ymmärtääkseen itsensä nykyisellään."
+    },
+    "regret": {
+      "heading": "Siirtymäkatumus",
+      "p1": "Jotkut ihmiset saattavat olla identifioituneet transsukupuolisiksi monia vuosia ja käyneet läpi lääketieteellisiä toimenpiteitä, kuten hormoneja ja leikkauksia, jotka ovat muuttaneet heidän kehojaan peruuttamattomasti. He saattavat tuntea katuvansa lääketieteellisen sukupuolisiirtymän aloittamista, mutta he myös jatkavat identifioitumistaan transsukupuolisiksi ja/tai jatkavat ristiinpuolisten hormonien käyttöä."
+    },
+    "source": {
+      "text": "Lähde:",
+      "link": "Detrans-säätiö"
+    }
+  },
+  "chat": {
+    "lookingForComments": "Etsitään asiaankuuluvia kommentteja...",
+    "errorOccurred": "Tapahtui virhe, yritä uudelleen... Ota yhteyttä, jos tämä jatkuu.",
+    "analysingExperiences": "Analysoidaan Kokemuksia",
+    "detransPerspective": "-> Mitä ovat detrans-näkökulmat tähän aiheeseen?",
+    "transPerspective": "-> Mitä ovat trans-näkökulmat tähän aiheeseen?",
+    "backToPortal": "<- Takaisin Portaaliin"
+  },
+  "chatInput": {
+    "placeholder": "Kysy detrans.ai:lta...",
+    "deepResearch": "Syvä Tutkimus",
+    "suggestions": "Ehdotukset:"
+  },
+  "deepResearchEvents": {
+    "errorTitle": "Syvän tutkimuksen virhe",
+    "retrieving": "Haetaan detrans-kokemuksia...",
+    "generatingQuestions": "Luodaan metakysymyksiä...",
+    "findingAnswers": "Etsitään vastauksia metakysymyksiin",
+    "completed": "Syvä tutkimus valmis",
+    "retrieveError": "Virhe detrans-kokemusten haussa!",
+    "analyzeError": "Rahamme ovat loppuneet detrans-kokemuksia analysoivan tekoälyn ja kysymyksiin vastaavan tekoälyn maksamiseen. Jos voit, ole hyvä ja lahjoita, jotta voimme pitää palvelun käynnissä. Yritä myöhemmin uudelleen. Toistaiseksi voit silti kokeilla portaalin kysymyksiä.",
+    "generatingAnswer": "Luodaan vastausta...",
+    "waitingForAnswer": "Odotetaan vastausta",
+    "questionsAnswered": "{answered}/{total} metakysymystä vastattu",
+    "generatingSummary": "Luodaan vastausten yhteenvetoa"
+  },
+  "questionTabs": {
+    "topics": "Aiheet",
+    "generated": "Luodut",
+    "recent": "Viimeisimmät",
+    "top": "Suosituimmat"
+  },
+  "conversations": {
+    "title": "Viimeisimmät Keskustelut",
+    "subtitle": "Katso itse, kuinka detrans.ai auttaa ihmisiä ympäri maailmaa.",
+    "tabs": {
+      "featured": "Suositellut",
+      "all": "Kaikki"
+    },
+    "buttons": {
+      "showMore": "Näytä {count} Keskustelua Lisää",
+      "showLess": "Näytä Vähemmän",
+      "loadMore": "Lataa Lisää Keskusteluja",
+      "loading": "Ladataan..."
+    }
+  },
+  "conversationCard": {
+    "untitled": "Nimeämätön Keskustelu",
+    "from": "lähettäjä",
+    "moreMessages": "{count} viestiä lisää...",
+    "moreMessage": "{count} viesti lisää...",
+    "date": {
+      "today": "Tänään",
+      "yesterday": "Eilen",
+      "daysAgo": "{count} päivää sitten",
+      "weeksAgo": "{count, plural, =1 {1 viikko sitten} other {# viikkoa sitten}}"
+    },
+    "admin": {
+      "deleting": "Poistetaan...",
+      "delete": "Poista Keskustelu",
+      "banning": "Porttikieltoa asetetaan...",
+      "ban": "Aseta Porttikielto (IP)"
+    }
+  },
+  "stories": {
+    "metadata": {
+      "title": "detrans.ai | Detransitiotarinoita ja Tilastoja",
+      "description": "Lue sydämellisiä detransitiotarinoita, aikajanoja ja trendejä /r/detrans Reddit-yhteisön jäseniltä, suurimmasta avoimesta detransitiotarinoiden kokoelmasta internetissä. Selvitä, kuinka vanhoja detransitionoineet olivat siirtyessään ja detransitioituessaan ja mitä polkuja he kulkivat."
+    },
+    "title": "Detransitiotarinoita ja Tilastoja",
+    "subtitle": "Selaa ja visualisoi {count} ainutlaatuista detransitiotarinaa ja tilastoa ihmisiltä, jotka ovat jakaneet kokemuksensa /r/detrans-subredditissä, joka on suurin avoin detransitiotarinoiden ja -kokemusten kokoelma internetissä.",
+    "disclaimer": {
+      "summary": "Nämä tarinat on tiivistetty tekoälyn avulla.",
+      "details": "Redditissä ihmiset jakavat usein kokemuksiaan useissa kommenteissa tai viesteissä. Jotta tämä tieto olisi helpommin saatavilla, tekoälymme kerää kaikki hajallaan olevat osat yhdeksi helposti luettavaksi yhteenvedoksi ja aikajanaksi. Kaikki järjestelmäkyselyt on merkitty kyselysivulle.",
+      "accuracy": "Joskus tekoäly voi hallusinoida tai väittää asioita, jotka eivät ole totta. Yleensä tiivistetyt tarinat kuitenkin heijastavat tarkasti käyttäjien alkuperäisiä kommentteja.",
+      "inclusion": "Vain käyttäjät, jotka ovat jakaneet tarpeeksi kootakseen täydellisen tarinan ja aikajanan, sisällytetään. Käyttäjät, jotka ovat julkaisseet alle viisi kommenttia tai joiden kommentit ovat saaneet alle kolme ääntä, jätetään huomioimatta. Viestit eivät vielä ole mukana aineistossa.",
+      "verification": "Jokainen käyttäjä on analysoitu botin tuottaman tai epäaiton sisällön merkkien varalta. Mikä tahansa tili, joka ei näytä olevan aito detransitionoinut henkilö, merkitään 'epäilyttäväksi'. Nämä tilit tarkistetaan manuaalisesti ja poistetaan detrans.ai-aineistosta, jos ne todetaan epäaidoiksi. Tilit, jotka ovat tehneet alle viisi kommenttia, on jätetty analyysin ulkopuolelle."
+    },
+    "charts": {
+      "tabs": {
+        "age": "Ikä",
+        "duration": "Kesto",
+        "transitionReason": "Siirtymän Syy",
+        "detransitionReason": "Detransition Syy",
+        "pathways": "Polut"
+      },
+      "loading": "Ladataan kaaviotietoja...",
+      "error": "Virhe: {message}",
+      "retry": "Yritä uudelleen",
+      "noData": "Ei {mode} syydataa saatavilla valituille suodattimille",
+      "reasonChart": {
+        "title": "Miksi detransitionoineet sanovat {mode, select, detransition {detransitioituneensa} other {siirtyneensä}}?",
+        "subtitle": "Dataa Reddit-käyttäjien {mode} aikajanoista ({totalReasonCount} käyttäjää yhteensä, {totalUsers} erilaista syytä.)",
+        "mentions": "{count} mainintaa ({percentage}%)"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Etsi käyttäjäkokemuksia...",
+      "ageRange": "Ikähaarukka:",
+      "ageRangeYears": "{min} - {max} vuotta",
+      "sex": {
+        "all": "Miehet ja Naiset",
+        "female": "Nainen",
+        "male": "Mies"
+      },
+      "tagsPlaceholder": "Valitse tunnisteet suodattimeen...",
+      "clearFilters": "Tyhjennä Suodattimet"
+    },
+    "results": "Näytetään {showing}/{total} käyttäjätarinasta",
+    "noResults": "Yhtään käyttäjää ei löytynyt suodattimillasi.",
+    "pagination": {
+      "previous": "Edellinen",
+      "next": "Seuraava",
+      "pageInfo": "Sivu {page}/{totalPages}"
+    },
+    "userCard": {
+      "comments": "{count} kommenttia",
+      "postingSince": "Julkaissut {date} lähtien",
+      "transitionedAt": "Siirtynyt {age} iässä",
+      "desistedAt": "Desistanut {age} iässä",
+      "detransitionedAt": "Detransitioinut {age} iässä",
+      "female": "nainen",
+      "male": "mies"
+    }
+  },
+  "prompts": {
+    "metadata": {
+      "title": "Kuinka se toimii? | Järjestelmäkyselyt",
+      "description": "Opi kuinka detrans.ai toimii, mukaan lukien järjestelmäkyselyt, tiedon katkaisupäivämäärät ja avoimen lähdekoodin tiedot."
+    },
+    "title": "Kuinka se toimii?",
+    "intro": {
+      "paragraph1": "<bold>detrans.ai</bold> chat on RAG (hakua vahvistettu generointi) -pohjainen agentti, joka luo metakysymyksiä ja vastaa niihin tuomalla esiin ja integroimalla detrans-ajatuksia ja -kokemuksia <reddit>/r/detrans</reddit>-subredditistä ja YouTubesta. Se on rakennettu <llamaIndex>LlamaIndex</llamaIndex>-kehyksellä ja Moonshot AI:n avoimen lähdekoodin kiinalaisella <kimi>kimi-k2.5</kimi>-mallilla vähentämään länsimaista poliittista harhaa.",
+      "paragraph2": "ChatGPT ja useimmat muut länsimaiset LLM:t ovat melko aggressiivisia tapassaan edistää ja ylläpitää sukupuoliuskomuksia. OpenAI:n GPT-mallien käyttö osoittautui mahdottomaksi tähän projektiin, koska mallit aliarvioivat ja vastasivat jatkuvasti detrans-kokemuksia, joita niiden piti tiivistää. Jos haluat vahvistavamman kokemuksen, katso <chatgpt>ChatGPT</chatgpt>."
+    },
+    "dataCutoff": {
+      "title": "Tiedon Katkaisupäivämäärät",
+      "paragraph1": "<bold>detrans.ai</bold>illa on tällä hetkellä pääsy kaikkiin /r/detrans-kommentteihin, jotka on julkaistu ennen <date>8.9.2025</date> ja jotka ovat saaneet vähintään kolme ääntä. Pyrin päivittämään aineiston vähintään kerran vuodessa, niin kauan kuin /r/detrans-subreddit on olemassa.",
+      "paragraph2": "Käyttäjät voivat lähettää videokokemuksia lähettämällä linkkejä YouTube-videoihin. Nämä videot tarkistetaan manuaalisesti, ennen kuin ne tekstitetään OpenAI:n Whisper-puheesta tekstiksi -mallilla ja lisätään vektoritietokantaan ja videoarkistoon."
+    },
+    "openSource": {
+      "title": "Avoin Lähdekoodi",
+      "paragraph": "Lähdekoodi on myös saatavilla <github>Githubissa</github> MIT-lisenssillä, jos haluat tarkistaa tai uudelleenkäyttää koodia omassa projektissasi. Tämä projekti on myös rakennettu monien muiden avoimen lähdekoodin projektien päälle, kuten Llamaindex, React, Next.js, Tailwind, Lucide, Qdrant, Postgres ja Vercel AI SDK. Kiitos näiden projektien tekijöille, jotka tarjoavat vankan pohjan rakentaa päälle."
+    },
+    "systemPrompts": {
+      "title": "Järjestelmäkyselyt",
+      "description": "Nämä ovat kyselyt, joita järjestelmä käyttää RAG-työnkulussa. Ei ole muita räätälöityjä ohjeita tai kerroksia kuin mitä näytetään tällä sivulla.",
+      "lastUpdated": "Viimeksi Päivitetty",
+      "chatAgentTitle": "Chat-Agentin Järjestelmäkysely",
+      "researchModeTitle": "Järjestelmäkyselyt Syvän Tutkimuksen Tilalle",
+      "researchAgentTitle": "Tutkimus-Agentin Kysely",
+      "experienceExtractionTitle": "Kokemuksen Purkukysely",
+      "finalAnswerTitle": "Lopullisen Vastauksen Kysely"
+    },
+    "userSummaries": {
+      "title": "Järjestelmäkyselyt Käyttäjäyhteenvedoille",
+      "description": "Nämä ovat järjestelmäkyselyt luoduille käyttäjäyhteenvedoille.",
+      "lastUpdated": "Viimeksi Päivitetty",
+      "experienceReportTitle": "Käyttäjäkokemusraportti",
+      "experienceSummaryTitle": "Käyttäjäkokemuksen Yhteenveto",
+      "generateTagsTitle": "Luo Tunnisteet",
+      "extractAgesTitle": "Pura Iät",
+      "determineBirthSexTitle": "Määritä Syntymäsukupuoli",
+      "redFlagReportTitle": "Punaisen Lipun Raportti"
+    }
+  },
+  "donatePage": {
+    "title": "Pidä Detrans.AI Käynnissä",
+    "description1": "Jos arvostat työtä, jonka olen panostanut tähän sivustoon, tai jos tämä ilmainen palvelu on auttanut sinua, harkitse kertalahjoituksen tai säännöllisen lahjoituksen tekemistä pitääksesi <b>detrans.ai</b>in verkossa.",
+    "description2": "En voi varaa ylläpitää resurssi-intensiivistä palvelua kuten tämä ilman tukeasi. Pääasiallinen tulolähteeni tällä hetkellä on valtion tuet, ja tämän kirjoittamishetkellä minulla on alle 1000 dollaria pankkitililläni. Jos tämä sivusto räjähtää, saisin laskuja tuhansista dollareista. Jos rahat loppuvat, mahdollisuus kysyä omia kysymyksiä ja tutkia aiheita syvemmällä jatkokysymysten avulla poistetaan käytöstä, ja tarjoan vain välimuistissa olevia vastauksia portaalin kysymyksiin.",
+    "description3": "Harkitse kuukausittaista lahjoitusta. Voit lahjoittaa alla olevalla PayPalilla, suoraan uusiseelantilaiselle pankkitililleni tai BTC:llä.",
+    "bankAccount": "Uuden-Seelannin Pankkitili",
+    "accountName": "Nimi",
+    "accountNumber": "Tili",
+    "swiftCode": "SWIFT/BIC-koodi",
+    "bitcoin": "Bitcoin-osoite",
+    "paypal": "PayPal-lahjoitus"
+  },
+  "terms": {
+    "metadata": {
+      "title": "Tietosuojakäytäntö | detrans.ai",
+      "description": "Opi tietosuojakäytännöstämme, tiedonkeruukäytännöistämme ja kuinka suojaamme tietojasi."
+    },
+    "title": "Tietosuojakäytäntö",
+    "intro": "Tämä tietosuojakäytäntö selittää, mitä tietoja keräämme, miksi keräämme niitä ja kuinka pidämme ne turvassa, kun vierailet tai käytät palveluamme.",
+    "sections": {
+      "informationWeCollect": {
+        "title": "Keräämämme Tiedot",
+        "chatMessages": {
+          "title": "Chat-Viestit:",
+          "content": "Säilytämme kaikki chat-tallenteet sekä vastaukset kaikkiin Syvän Tutkimuksen tilassa kysyttyihin kysymyksiin. Chat-tallenteita ei liitetä IP-osoitteeseesi tai mihinkään tietoon, jota voitaisiin mahdollisesti käyttää sinun tunnistamiseesi. Chat-tallenteita voidaan analysoida ja käyttää tutkimustarkoituksiin tulevaisuudessa. Vältä arkaluontoisen tiedon jakamista."
+        },
+        "cookies": {
+          "title": "Evästeet / Seurantateknologiat:",
+          "content": "Emme <em>käytä</em> evästeitä, pikselitunnisteita tai mitään vastaavia asiakaspuolen seurantamekanismeja."
+        },
+        "ipAddresses": {
+          "title": "IP-osoitteet:",
+          "content": "Kun teet pyynnön palvelimillemme, tallennamme IP-osoitteesi pyyntöjen laskemiseksi ja väärinkäytön estämiseksi käytettävien nopeusrajojen täytäntöönpanemiseksi."
+        },
+        "optionalData": {
+          "title": "Valinnaiset Tiedot:",
+          "content": "Jos päätät ottaa meihin yhteyttä, voimme kerätä vapaaehtoisesti antamasi tiedot (esim. sähköpostiosoite, nimi). Näiden tietojen antaminen on vapaaehtoista, ellei sitä nimenomaan mainita."
+        }
+      },
+      "legalBases": {
+        "title": "Käsittelyn Oikeudelliset Perusteet (EU/ETA-vieraat)",
+        "item1": "Nopeusrajoituskäsittely on välttämätöntä <em>oikeutetuille eduillemme</em> GDPR:n artiklan 6(1)(f) mukaan - erityisesti palvelun saatavuuden ja turvallisuuden ylläpitämiseksi.",
+        "item2": "Mahdollinen lisäkäsittely (esim. tilin luominen) perustuu <em>suostumukseesi</em> tai <em>sopimukselliseen välttämättömyyteen</em>, soveltuvin osin."
+      },
+      "dataRetention": {
+        "title": "Kuinka Kauan Säilytämme Tietoja",
+        "content": "Kaikki chat-tallenteet säilytetään. Nopeusrajoitukseen käytetyt IP-osoitteet poistetaan automaattisesti minuuttien kuluessa viimeisestä pyynnöstä tai nopeusrajoitusikkunan lopussa, kumpi tulee ensin. Vapaaehtoiset tiedot (esim. tukisähköpostit) säilytetään vain niin kauan kuin on tarpeen kysymyksesi ratkaisemiseksi tai oikeudellisten velvoitteiden täyttämiseksi."
+      },
+      "thirdPartySharing": {
+        "title": "Kolmansien Osapuolien Jakaminen",
+        "content": "Voimme halutessamme jakaa anonymisoituja chat-tallenteita akateemikoiden ja tutkijoiden kanssa, jotka pyrkivät parantamaan tuloksia ihmisille, jotka kokevat sukupuolidysforiaa. Voimme paljastaa IP-osoitteita tai muita tietoja vain, kun laki vaatii sitä tai suojellaksemme oikeuksiamme, käyttäjiämme tai yleisöä (esim. petosten estäminen, tuomioistuimen määräys)."
+      },
+      "security": {
+        "title": "Turvallisuus",
+        "content": "Käytämme alan standardien mukaisia teknisiä ja organisatorisia toimenpiteitä (TLS-salaus, käyttöoikeuksien hallinta, vähiten etuoikeutettu suunnittelu) tietojen suojaamiseksi siirron ja levossa aikana."
+      },
+      "internationalTransfers": {
+        "title": "Kansainväliset Siirrot",
+        "content": "Palvelimemme sijaitsevat Yhdysvalloissa. Jos käytät palvelua Yhdysvaltojen ulkopuolelta, ymmärrät, että IP-osoitteesi siirretään ja käsitellään Yhdysvalloissa."
+      },
+      "childrensPrivacy": {
+        "title": "Lasten Tietosuoja",
+        "content": "Palvelumme ei ole suunnattu alle 13-vuotiaille lapsille, emmekä tietoisesti kerää henkilökohtaisia tietoja heiltä. Jos uskot, että olemme vahingossa keränneet tällaisia tietoja, ota meihin yhteyttä välittömään poistamiseen."
+      },
+      "changes": {
+        "title": "Muutokset Tähän Käytäntöön",
+        "content": "Saatamme päivittää tätä käytäntöä ajoittain. 'Voimassaolopäivä' ylhäällä muuttuu, ja merkittävät muutokset julkaistaan näkyvästi."
+      },
+      "contact": {
+        "title": "Ota Yhteyttä",
+        "content": "Jos sinulla on kysymyksiä, huolenaiheita tai valituksia, käytä joko yhteydenottolomaketta tai lähetä sähköpostia osoitteeseen <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "videos": {
+    "metadata": {
+      "title": "detrans.ai | Katso Detransitionoineiden Videoita",
+      "description": "Tässä on valikoima henkilökohtaisia videomuistelmia, jotka on ladattu YouTubeen ihmisiltä, jotka ovat siirtyneet ja sitten saavuttaneet oivalluksen, joka sai heidät detransitioitumaan. Tällaisia tarinoita on lukemattomia internetissä, tämä on vain pieni osa."
+    },
+    "title": "Siirtymis- ja Detransitio-Videot",
+    "description": {
+      "line1": "Tämä sivu pyrkii olemaan paras detransitio-videoiden arkisto internetissä.",
+      "line2": "Käyttämällä puheesta tekstiksi -teknologiaa, detrans.ai integroi nämä kokemukset chat-keskusteluihin.",
+      "line3": "Toistaiseksi vain YouTube-videoita, TikTok tulossa pian?!"
+    },
+    "female": "nainen",
+    "male": "mies",
+    "backToAll": "Takaisin kaikkiin",
+    "overview": "Yleiskatsaus",
+    "fullSummary": "Täysi Video Yhteenveto",
+    "watchOnYouTube": "Katso YouTubessa",
+    "moreVideos": "Lisää Videoita",
+    "browseAll": "Selaa kaikkia detransitio-videoita",
+    "metadataWatchDescription": "Katso {title} tekijältä {author}, {sex} detransitionoinut henkilö, joka jakaa tarinansa.",
+    "metadataThumbnailAlt": "Pikkukuva videolle {title}"
+  },
+  "videoList": {
+    "loading": "Ladataan videoita...",
+    "filters": {
+      "all": "Kaikki Tarinat",
+      "female": "Nainen",
+      "male": "Mies",
+      "detransitioners": "Detransitionoineet"
+    },
+    "thumbnailAlt": "Pikkukuva videolle {title}",
+    "by": "tekijältä",
+    "female": "Nainen",
+    "male": "Mies"
+  },
+  "videoSubmitForm": {
+    "submitTitle": "Lähetä Detransitio-Videosi",
+    "description": {
+      "line1": "Lähettämällä videosi se näkyy tällä sivulla ja asiaankuuluvissa chat-keskusteluissa.",
+      "line2": "Se voi olla sinun videosi, tai se voi olla vain sellainen, jonka löysit verkosta ja joka puuttuu tältä sivulta.",
+      "line3": "Kaikki lähetykset moderoidaan, saattaa kestää muutaman päivän ennen kuin se ilmestyy."
+    },
+    "urlLabel": "YouTube-URL",
+    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "submitButton": "Lähetä Video",
+    "submitting": "Lähetetään...",
+    "submitSuccess": "Video lähetetty onnistuneesti! Se tarkistetaan ennen kuin se ilmestyy sivustolla.",
+    "submitError": "Videon lähettäminen epäonnistui",
+    "networkError": "Verkkovirhe. Yritä uudelleen."
+  },
+  "studySubmitForm": {
+    "submitTitle": "Lähetä Tutkimus",
+    "description": {
+      "line1": "Tiedätkö asiaankuuluvan akateemisen tutkimuksen tai vertaisarvioidun artikkelin, joka puuttuu?",
+      "line2": "Lähetä URL ja halutessasi ehdota sille otsikkoa.",
+      "line3": "Kaikki lähetykset moderoidaan ennen kuin ne ilmestyvät sivustolla."
+    },
+    "urlLabel": "Tutkimuksen URL",
+    "urlPlaceholder": "https://...",
+    "titleLabel": "Ehdotettu Otsikko",
+    "titlePlaceholder": "Valinnainen otsikko tutkimukselle",
+    "titleHelp": "Valinnainen: Ehdota lyhyt otsikko tai pääotsikko tälle tutkimukselle",
+    "submitButton": "Lähetä Tutkimus",
+    "submitting": "Lähetetään...",
+    "submitSuccess": "Tutkimus lähetetty onnistuneesti! Se tarkistetaan ennen kuin se ilmestyy sivustolla.",
+    "submitError": "Tutkimuksen lähettäminen epäonnistui",
+    "networkError": "Verkkovirhe. Yritä uudelleen."
+  },
+  "studiesPage": {
+    "metadata": {
+      "title": "detrans.ai | Akateemiset Tutkimukset Detransitio-Aiheista",
+      "description": "Löydä tällä sivulla valikoima akateemisia tutkimuksia, vertaisarvioituja lehtiartikkeleita ja vahvistettuja tilastoja, jotka liittyvät sukupuoli-identiteettitrendeihin ja detransitioon.",
+      "ogTitle": "detrans.ai | Akateemiset Tutkimukset Detransitio-Aiheista",
+      "ogDescription": "Löydä tällä sivulla valikoima akateemisia tutkimuksia ja vertaisarvioituja lehtiartikkeleita ja vahvistettuja tilastoja, jotka liittyvät sukupuoli-identiteettitrendeihin ja detransitioon."
+    },
+    "title": "Valikoituja Akateemisia Artikkeleita",
+    "description": "Akateemiset tutkimukset, vertaisarvioitu tutkimus ja lehtiartikkelit sukupuoli-identiteetin, siirtymän ja detransition aiheista."
+  },
+  "contentWarning": {
+    "title": "Sisältövaroitus:",
+    "description": {
+      "line1": "Tämä verkkosivusto sisältää tarinoita, kokemuksia ja näkökulmia ex-transhenkilöiltä.",
+      "line2": "Aiheita ovat siirtymäkatumus, lääketieteelliset komplikaatiot ja holistiset näkemykset dysforiasta.",
+      "line3": "Tämä tieto voi haastaa yleisiä uskomuksia sukupuoli-identiteetistä ja siirtymästä."
+    },
+    "buttons": {
+      "exit": "Vie minut pois täältä!",
+      "continue": "Jatka"
+    }
+  },
+  "supportPage": {
+    "metadata": {
+      "title": "detrans.ai | Hanki Sukupuolentukea ja -Apua",
+      "description": "Opi eron Sukupuolen Vahvistavan Hoidon ja Sukupuolen Tutkivan Terapian välillä. Jos koet sukupuolidysforiaa, yksi parhaista tavoista saada tukea on puhua ja ymmärtää niiden ihmisten näkökulmia, jotka ovat olleet siellä itse ja tulleet toiselta puolelta."
+    },
+    "title": "Hanki Sukupuolentukea ja -Apua",
+    "navigation": {
+      "jumpTo": "Hyppää kohtaan:",
+      "getGenderSupport": "Hanki Sukupuolentukea:"
+    },
+    "sections": {
+      "onlineSupport": {
+        "title": "Online-Tukiryhmät",
+        "description": "Jos koet sukupuolidysforiaa, yksi parhaista tavoista saada tukea on puhua ja ymmärtää niiden ihmisten näkökulmia, jotka ovat olleet siellä itse ja tulleet toiselta puolelta.",
+        "links": {
+          "redditCommunity": "Detrans-Yhteisö Redditissä",
+          "redditWiki": "Detrans Wiki Redditissä",
+          "discordServer": "Virallinen /r/detrans Discord-palvelin",
+          "askDetransAI": "Kysy 50 000+ detrans-henkilöltä detrans.ai:n avulla"
+        }
+      },
+      "genderAffirmingCare": {
+        "title": "Sukupuolen Vahvistava Hoito: Mikä se on?",
+        "description": "Sukupuolen vahvistava hoito on tällä hetkellä standardi (ja usein ainoa) hoitovaihtoehto sukupuolidysforialle, jota terveydenhuollon tarjoajat tarjoavat länsimaissa. Sukupuolen vahvistava hoito tunnistaa käytännössä yhteiskunnan sukupuoliodotukset ja sopeuttaa sitten potilaan niihin. Se on vaiheittainen lähestymistapa, joka alkaa sosiaalisella siirtymällä (nimi, pronominit, vaatetus), sitten hormoniterapialla ja sitten joillekin, peruuttamattomilla kirurgisilla toimenpiteillä. Sukupuolen vahvistava hoito voi tarjota helpotusta sukupuolidysforiaan, mutta se tulee vakavien terveysriskien ja usein pysyvien sivuvaikutusten kanssa. Edetään äärimmäisellä varovaisuudella ja varmista, että",
+        "watchTestimonies": "katsoit joitakin todistuksia"
+      },
+      "genderExploratoryTherapy": {
+        "title": "Sukupuolen Tutkiva Terapia: Mikä se on?",
+        "description1": "Sukupuolen tutkiva terapia tarkoittaa yksinkertaisesti, että terapeuttisi ei kiirehdi vahvistamaan ja lääketieteellistämään sinua. Sen sijaan hän alkaa tutkimaan sukupuolen käsitteitä ja miksi saatat tuntea näin. Sukupuolen tutkiva terapia on lähestymistapa ilman tiettyä, ennalta määrättyä agendaa, ja sukupuolen tutkivan terapian tulokset voivat vaihdella jokaisen yksilön mukaan.",
+        "description2": "Jos googlaat 'Sukupuolen Tutkiva Terapia', löydät joitakin kritiikkejä, jotka vertaavat sitä homomuunnosterapiaan (joka on osoittautunut tehottomaksi). Totuus on, että sukupuolen tutkiva terapia on hyvin erilainen kuin homomuunnosterapia:",
+        "references": {
+          "title": "Viitteet",
+          "ref1": "U.S. Dept. of Health & Human Services (2025). Report on Pediatric Gender Dysphoria and Gender Conversion Efforts.",
+          "ref2": "D'Angelo, R. (2025). 'Supporting autonomy in young people with gender dysphoria: psychotherapy is not conversion therapy.' Journal of Medical Ethics, 51(1).",
+          "ref3": "Lemma, A. & Schmidt, L. (2024). 'Psychodynamic Psychotherapy for Gender Dysphoria is not Conversion Therapy.' Frontiers in Psychology.",
+          "ref4": "Korte, A. et al. (2021). 'One Size Does Not Fit All: In Support of Psychotherapy for Gender Dysphoria.' Archives of Sexual Behavior."
+        },
+        "florenceAshley": {
+          "title": "Florence Ashleyn Tutkimus",
+          "description": "Akateeminen tutkimus tällä alalla on usein puolueellista. Yksi vaikutusvaltaisimmista tutkimuksista (Interrogating Gender-Exploratory Therapy) julkaistiin vuonna 2022 Florence Ashleyn toimesta, transnaisena. Tutkimuksessaan hän vertasi sukupuolen tutkivaa terapiaa homomuunnosterapiaan ja tuomitsi vahvasti käytännön. On tunnustettava, että ihmiset, jotka identifioituvat transiksi, ovat motivoituneet suojelemaan identiteettiään ja uskomuksiaan, ja tämä tutkimus on täydellinen esimerkki tästä. Tutkimus on täynnä loogisia virheitä, mutta se silti julkaistiin ja sitä käytetään akateemisena perusteluna sille, että sukupuolen vahvistava hoito on ainoa vaihtoehto ihmisille, jotka kokevat sukupuolidysforiaa.",
+          "showFallacies": "Katso kaikki loogiset virheet Florence Ashleyn tutkimuksessa"
+        }
+      },
+      "findTherapist": {
+        "title": "Mistä voin löytää terapeutin, joka harjoittaa sukupuolen tutkivaa terapiaa?",
+        "languageNotice": "Useimmat listatut terapeutit puhuvat vain englantia, mutta voit silti yrittää ottaa heihin yhteyttä löytääksesi jonkun, joka puhuu kieltäsi. Jos tiedät lisensoidun terapeutin, joka puhuu kieltäsi, voit ehdottaa hänen lisäämistä tälle sivulle",
+        "contactForm": "yhteydenottolomakkeen kautta",
+        "organizations": {
+          "justTherapy": {
+            "name": "Just Therapy",
+            "description": "Just Therapy on syntynyt halusta palata siihen, millaista terapian pitäisi olla - tehokas, eettinen ja vapaa ideologiasta. Se on terapeuttien ja neuvonantajien yhdistys, joka on yhtenäistetty yhteisten etiikoiden ja periaatteiden mukaan. Just Therapy tunnustaa, että suuri osa psykoterapian ja neuvonnan maailmasta on vallannut aktivistit ja ideologiat, jotka riskoittavat vahingoittaa pikemminkin kuin tukea asiakkaiden henkistä hyvinvointia. Sen jäsenet, jotka tulevat laajasta valikoimasta tieteenaloja ja erikoisuuksia, ovat allekirjoittaneet Käyttäytymissäännön.",
+            "directory": "Just Therapy Terapeuttihakemisto",
+            "codeOfConduct": "Just Therapy Käyttäytymissääntö"
+          },
+          "therapyFirst": {
+            "name": "Therapy First",
+            "description": "Therapy First yhdistää mielenterveysammattilaiset, jotka uskovat, että sukupuoli-ahdistuneet asiakkaat ansaitsevat avoimen, todisteisiin perustuvan psykoterapian, joka tutkii tiedostamattomia ja kontekstuaalisia tekijöitä ennen mitään peruuttamattomia lääketieteellisiä toimenpiteitä; he hylkäävät sekä muunnoskäytännöt että 'vahvista-vain' -mallin, kunnioittavat asiakkaan autonomiaa ja pitävät lapsuuden/nuoruusiän lääketieteellistä siirtymää kokeellisena, samalla kun tukevat edelleen aikuisten oikeutta kehon autonomiaan ja jatkuvaan terapeuttiseen tutkimiseen.",
+            "directory": "Therapy First Terapeuttihakemisto",
+            "about": "Tietoa Therapy Firstistä"
+          },
+          "beyondTrans": {
+            "name": "Beyond Trans",
+            "description": "Stella O'Malley perusti Gender Dysphoria Support Networkin maaliskuussa 2020 antaakseen vanhemmille puolueetonta apua sukupuoli-ahdistuneiden lasten kanssa; se kasvoi nopeasti globaaliksi yhteisöksi, edistäen vuonna 2021 Genspectin perustamista, ei-lääketieteellisen hoidon puolustajaa. Tunnistaessaan kasvavan siirtymäkatumuksen ryhmä perusti Beyond Transin vuonna 2022, ja kesäkuussa 2025 se yhdisti sen GDSN:n kanssa muodostaen yhden integroidun, todisteisiin perustuvan tukiverkoston perheille, yksilöille ja detransitionoineille.",
+            "directory": "Beyond Trans Terapeuttihakemisto",
+            "supportGroups": "Beyond Trans Tukiryhmät",
+            "about": "Tietoa Beyond Transista"
+          },
+          "detransFoundation": {
+            "name": "Detrans-säätiö",
+            "description": "Detrans-säätiö tarjoaa resursseja ja tukea detransitionoineille, mukaan lukien pääsy päteviin terapeutteihin, jotka ymmärtävät detransitiokokemuksia. Seuraavat terapeutit ovat osa Detrans-säätiötä:",
+            "drEntwistle": "on kliininen psykologi, joka työskenteli aiemmin NHS:n sukupuoli-identiteetin kehityspalvelussa alle 18-vuotiaille Leedsissä. Hän on rekisteröitynyt UK Health Care Professions Council (HCPC):hen ja tarjoaa verkossa konsultaatioita turvallisen videopuhelun välityksellä.",
+            "anastassisSpiliadis": "on systeeminen ja perheterapeutti, joka työskenteli neljä vuotta Tavistockin sukupuoli-identiteetin kehityspalvelussa, jossa hän johti Perheterapia- ja Konsultaatiopalvelua. Hän erosi Tavistockista, koska hän oli eri mieltä terapeuttisen mallin puutteesta sukupuoli-identiteettivaikeuksien ymmärtämisessä. Hän kehitti sukupuolen tutkivan mallin ja hänellä on laaja kokemus työskentelystä sukupuolta kyselevien yksilöiden ja detransitionoineiden kanssa.",
+            "visitWebsite": "Vieraile Detrans-säätiön verkkosivustolla"
+          }
+        }
+      },
+      "forParents": {
+        "title": "Resurssit Vanhemmille",
+        "intro": "Jos lapsesi on äskettäin tullut ulos transsukupuolisena, saatat tuntea hämmennystä, huolta ja epävarmuutta siitä, kuinka parhaiten tukea häntä samalla suojellen hänen pitkän aikavälin terveyttään ja hyvinvointiaan.",
+        "rogdRepair": {
+          "name": "Stephanie Winnin ROGD Repair -ohjelma",
+          "whatIs": "Mikä on ROGD Repair?",
+          "description1": "ROGD Repair on:",
+          "bullet1": "Ohjelma, joka auttaa trans-identifioituneiden nuorten vanhempia kommunikoimaan tavoilla, jotka edistävät desistanssia, kriittistä ajattelua, terveyttä ja suhteellista harmoniaa",
+          "bullet2": "Vuorovaikutteinen ja jatkuvasti laajeneva työkalupakki psykologian käsitteitä ja viestintätaitoja, joita on hiottu vuosien ajan Lisensoituna Avioliitto- ja Perheterapeuttina, josta tuli ROGD-vanhempien valmentaja",
+          "bullet3": "Itseopiskeluun tarkoitettu verkkokurssi, joka sisältää yli 100 oppituntia, jokainen sisältää videon, esseen ja pohdintakysymyksiä, jotka on suunniteltu auttamaan osallistujia personoimaan sisällön ainutlaatuiseen perhetilanteeseensa, sekä keskustelufoorumit",
+          "description2": "Uudet ROGD Repair -jäsenyydet tulevat nyt rajoittamattomalla pääsyllä RepairBotiin, ensimmäiseen ja ainoaan tekoälytyökaluun, joka on suunniteltu erityisesti auttamaan ei-vahvistavia vanhempia sukupuoli-ahdistuneiden nuorten kanssa. RepairBot on koulutettu koko ROGD Repair -oppimäärällä ja toimii erinomaisena ajatusten herättäjänä, kotitehtävien kaverina ja viestintätyökalun apulaisena!",
+          "ctaBox": {
+            "title": "Lapsesi sanoo olevansa 'trans', mutta haluat vain heidän olevan terveitä ja turvassa.",
+            "description1": "Lapsesi terveys ja tulevaisuus ovat vaakalaudalla, mutta vipuvaikutuksesi ja vaikutuksesi ovat rajalliset. Ehkä he aloittivat laittomat hormonit selkäsi takana, tai myrskyilevät raivoissaan, kun 'väärin sukupuolität' heitä, tai ovat poissa 'vahvistavassa' korkeakoulussa. Sinun on kommunikoitava tehokkaasti tässä hankalassa tilanteessa, ennen kuin joku loukkaantuu. Siihen ROGD Repair tulee mukaan.",
+            "description2": "ROGD Repair on itseopiskeluun tarkoitettu verkkokurssi ja yhteisö vanhemmille, joka opettaa psykologian käsitteet ja viestintätyökalut, joita tarvitset ymmärtääksesi lapsesi mielentilan ja kuinka tavoittaa hänet. Jäsenyys sisältää nyt RepairBotin, 24/7 tekoälyassistenttisi, joka on koulutettu lähestymistavan mukaan.",
+            "description3": "ROGD Repairin ja RepairBotin loi Lisensoitu Avioliitto- ja Perheterapeutti, jolla on yli vuosikymmenen kokemus työskentelystä trans-identifioituneiden nuorten ja heidän perheidensä kanssa, joka ohjaa nyt yksinomaan vanhempia, jotka tietävät, että täytyy olla parempi polku kuin 'vahvistaminen.'"
+          },
+          "coupon": "Käytä tätä kuponkikoodia saadaksesi",
+          "couponCode": "DETRANSAI",
+          "learnMore": "Lisätietoja ja ilmoittautuminen ROGD Repairiin"
+        }
+      }
+    },
+    "table": {
+      "gayConversion": "Homomuunnosterapia",
+      "genderExploratory": "Sukupuolen tutkiva terapia",
+      "goal": "Tavoite",
+      "goalConversion": "Muuta seksuaalista suuntautumista, koska sitä pidetään patologisena.",
+      "goalExploratory": "Ymmärrä dysforian merkitys; tulos voi olla siirtyminen, ei-siirtyminen tai osittainen sosiaalinen siirtyminen.",
+      "method": "Menetelmä",
+      "methodConversion": "Häpeä, vastenmielisyys, käyttäytymisehdollistaminen, rukous.",
+      "methodExploratory": "GET on yhteensopiva laajan valikoiman terapeuttisten modaliteettien kanssa, kuten standardin psykodynaamiset tai humanistiset tekniikat - avoimet kysymykset, uteliaisuus, ei ennalta määrättyjä loppupisteitä.",
+      "evidence": "Todistuspohja",
+      "evidenceConversion": "Näyttää johdonmukaisesti haittaa; jokainen suuri lääketieteellinen elin tuomitsee sen.",
+      "evidenceExploratory": "Ei vielä satunnaistettuja kontrolloituja kokeita, mutta rinnastuu terapioihin, jotka vähentävät ahdistusta, masennusta, itsetuhoa; ei dataa, joka näyttäisi systemaattista haittaa.",
+      "ethics": "Etiikka",
+      "ethicsConversion": "Rikkoaa autonomiaa pakottamalla heteroseksuaalisen identiteetin ainoaksi oikeaksi vaihtoehdoksi.",
+      "ethicsExploratory": "Pyrkii laajentamaan autonomiaa varmistamalla, että nuori (ja perhe) ymmärtävät kaikki vaihtoehdot ennen peruuttamattomia toimenpiteitä."
+    },
+    "fallacies": {
+      "title": "Loogiset Virheet Florence Ashleyn Tutkimuksessa",
+      "name": "Virheen Nimi",
+      "explanation": "Yksinkertainen Selitys",
+      "example": "Esimerkki Paperista"
+    }
+  },
+  "charts": {
+    "ageDistribution": {
+      "title": "Kuinka vanhoja detransitionoineet olivat siirtyessään ja detransitioituessaan?",
+      "subtitle": "Dataa Reddit-käyttäjien siirtymäaikajanoista",
+      "loading": "Ladataan kaaviotietoja...",
+      "fetchError": "Ikäjakaumatietojen haku epäonnistui",
+      "genericError": "Tapahtui virhe",
+      "errorPrefix": "Virhe:",
+      "noData": "Ei dataa saatavilla valitulle ikähaarukalle",
+      "tooltip": {
+        "age": "Ikä: {age}",
+        "transitioned": "Siirtynyt: {count} käyttäjää",
+        "detransitioned": "Detransitioinut: {count} käyttäjää"
+      },
+      "axis": {
+        "age": "Ikä",
+        "users": "Käyttäjien Määrä"
+      },
+      "legend": {
+        "transition": "Siirtymän Ikä",
+        "detransition": "Detransition Ikä"
+      }
+    },
+    "transitionDuration": {
+      "title": "Siirtymän Kesto: Ikä Siirtyessä vs Ikä Detransitioituessa",
+      "description": {
+        "line1": "Jokainen piste näyttää siirtymän iän (X) vs detransition iän (Y).",
+        "line2": "Suuremmat, läpinäkymättömämmät pisteet edustavat enemmän käyttäjiä."
+      },
+      "loading": "Ladataan kaaviotietoja...",
+      "noData": "Ei dataa saatavilla valitulle ikähaarukalle",
+      "axis": {
+        "transitionAge": "Ikä Siirtyessä",
+        "detransitionAge": "Ikä Detransitioituessa"
+      },
+      "tooltip": {
+        "transitionAge": "Siirtymän Ikä",
+        "detransitionAge": "Detransition Ikä",
+        "duration": "Kesto",
+        "years": "vuotta"
+      },
+      "male": "Mies",
+      "female": "Nainen",
+      "yearsAvg": "vuotta keskiarvo",
+      "user": "käyttäjä",
+      "users": "käyttäjää"
+    },
+    "pathways": {
+      "title": "Detransition Polut -virtaus",
+      "subtitle": "/r/detrans Reddit-käyttäjien demografioiden virtaus detransition tuloksiin asti",
+      "loading": "Ladataan polkutietoja...",
+      "fetchError": "Tunnistejakaumatietojen haku epäonnistui",
+      "genericError": "Tapahtui virhe",
+      "error": "Virhe",
+      "users": "{count} käyttäjää",
+      "percentageOfTotal": "{percentage}% kokonaisuudesta",
+      "totalUsers": "Käyttäjiä yhteensä",
+      "flowConnections": "Virtausyhteydet",
+      "male": "Mies",
+      "female": "Nainen",
+      "noData": "Ei polkutietoa saatavilla valituille suodattimille"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Yhteystiedot | detrans.ai",
+      "description": "Ota yhteyttä meihin. Lähetä meille ajatuksiasi, ehdotuksiasi tai palautettasi."
+    },
+    "title": "Yhteydenottolomake",
+    "intro": "Jos sinulla on ajatuksia, ehdotuksia tai jos tämä ilmainen palvelu on auttanut sinua, perhettäsi tai ystävääsi, haluan kuulla sinusta. Jätä viesti alla!",
+    "form": {
+      "to": "Vastaanottaja",
+      "name": "Nimi",
+      "namePlaceholder": "Nimesi",
+      "email": "Sähköposti",
+      "emailPlaceholder": "sinu@esimerkki.com",
+      "subject": "Aihe",
+      "subjectPlaceholder": "Aihe",
+      "message": "Viesti",
+      "messagePlaceholder": "Kirjoita viestisi...",
+      "sendButton": "Lähetä Viesti",
+      "sending": "Lähetetään...",
+      "success": "✅ Viesti lähetetty!",
+      "error": "❌ Lähettäminen epäonnistui."
+    }
+  },
+  "seo": {
+    "conversations": {
+      "title": "Keskusteluarkisto",
+      "description": "Selaa keskusteluja sukupuoli-identiteetistä, detransitioitumisesta, sukupuolen vahvistavasta hoidosta ja vahvistamisesta.",
+      "conversations": "Keskustelut",
+      "featuredConversations": "Suositellut Keskustelut",
+      "allConversations": "Kaikki Keskustelut",
+      "untitled": "Nimeämätön Keskustelu",
+      "noSummary": "Yhteenvetoa ei saatavilla",
+      "noConversations": "Ei keskusteluja saatavilla.",
+      "mode": "Tila",
+      "updated": "Päivitetty",
+      "featured": "Suositeltu",
+      "conversationSummary": "Keskustelun Yhteenveto",
+      "noSummaryAvailable": "Yhteenvetoa ei saatavilla tälle keskustelulle.",
+      "conversation": "Keskustelu",
+      "unableToParse": "Keskusteluviestien jäsentäminen epäonnistui.",
+      "archiveNote": "Tämä on keskustelu arkistostamme. Nähdäksesi täydellisen keskustelun ja osallistuaksesi keskusteluihin, ole hyvä ja vieraile tämän sivun vuorovaikutteisessa versiossa.",
+      "welcomeTitle": "Tervetuloa Keskusteluarkistoon",
+      "welcomeDescription": "Valitse keskustelu sivupalkista nähdäksesi sen yksityiskohdat. Tämä arkisto sisältää keskusteluja sukupuoli-identiteetistä, detransitiokokemuksista ja vahvistamismatkoista.",
+      "featuredDescription": "Yhteisömme korostamat keskustelut",
+      "allDescription": "Selaa kaikkia saatavilla olevia keskusteluja",
+      "footer": "Tämä sivu tarjoaa SEO-ystävällistä sisältöä hakukoneille ja boteille. Täydelliseen vuorovaikutteiseen kokemukseen vieraile modernilla verkkoselaimella.",
+      "user": "Käyttäjä"
+    },
+    "chat": {
+      "subtitle": "Kysymyksiä ja vastauksia ihmisille, jotka kyselevät sukupuoli-identiteettiään.",
+      "freedomMessage": "Totuus on, että sukupuolenvastaisuus vapauttaa meidät kaikki!",
+      "moreQuestions": "Lisää kysymyksiä liittyen \"{question}\""
+    },
+    "videos": {
+      "title": "Siirtymis- ja Detransitio-Videot",
+      "description": "Tämä on henkilökohtaisten detransitio-videoiden arkisto, jotka on ladattu internetiin. Tee äänesi kuulluksi osallistumalla ja jakamalla oma tarinasi!",
+      "thumbnailAlt": "Pikkukuva",
+      "by": "tekijältä",
+      "female": "Nainen",
+      "male": "Mies"
+    }
+  },
+  "routes": {
+    "home": "/",
+    "about": "/tietoa",
+    "contact": "/yhteystiedot",
+    "support": "/tuki",
+    "videos": "/videot",
+    "stories": "/tarinat",
+    "studies": "/tutkimukset",
+    "definitions": "/maaritelmat",
+    "donate": "/lahjoita",
+    "terms": "/ehdot",
+    "prompts": "/kyselyt",
+    "participate": "/osallistu",
+    "conversations": "/keskustelut",
+    "research": "/tutkimus",
+    "chat": "/keskustelu",
+    "login": "/kirjautuminen"
+  }
+}

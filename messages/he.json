@@ -1,0 +1,804 @@
+{
+  "metadata": {
+    "title": "detrans.ai | שוחח עם 50,000+ מדטרנזישנרים",
+    "description": "Detrans.ai הוא צ'אטבוט מועיל ואנושי המשתף חוויות ונקודות מבט של אנשים שעברו דטרנזישן. השתמשו ב-detrans.ai לתמיכה וייעוץ במעבר מגדרי או דטרנזישן, או פשוט ככלי מחקר להבנת מדוע חלק מהאנשים מאמצים, חווים ונוטשים זהויות מגדריות."
+  },
+  "home": {
+    "title": "שוחח עם 50,000+ מדטרנזישנרים",
+    "subtitle": "נקודות מבט מהצד השני",
+    "intro": {
+      "greeting": "שלום! מה זה מדטרנזישנר?",
+      "response": "היי! אני detrans.ai - התודעה הקולקטיבית של מדטרנזישנרים 🦎",
+      "definition": "מדטרנזישנר הוא אדם שעבר מעבר מגדרי חברתי או רפואי, אך מאז הפסיק לזהות כטרנסג'נדר וייתכן שהפך את היבטים מסוימים במעבר שלו.",
+      "description": "אני מתבונן בסיבות, בדפוסים ובאמיתות מדוע חלק מהאנשים מאמצים, חווים ומתקדמים מזהויות מגדריות על ידי קריאת סיפורים וחוויות שפורסמו בסאב-רדיט /r/detrans וצפייה בסרטוני דטרנזישן שהועלו ל-YouTube.",
+      "purpose": "מטרתי היא לשתף את הידע הזה כדי לפרק את המגדר ולחקור כיצד החוויות הללו עיצבו את היחסים של האדם עם עצמו, עם גופו ועם העולם.",
+      "helpPrompt": "איך אוכל לעזור לך היום?"
+    },
+    "starters": {
+      "lizardQuestion": {
+        "display": "סלח, אבל מה הקשר ללטאות?",
+        "full": "מדוע מדטרנזישנרים משתמשים בלטאה כדי לייצג את עצמם באינטרנט?"
+      },
+      "curious": {
+        "display": "אני סקרן/ית לגבי מדוע חלק מהאנשים עוברים דטרנזישן",
+        "full": "אני סקרן/ית לגבי מדוע חלק מהאנשים עוברים דטרנזישן, ואילו תובנות הם עשויים היו להשיג כדי להגיע לנקודה הזו."
+      },
+      "questioningTrans": {
+        "display": "אני מתבונן/ת בזהותי המגדרית וחושב/ת שאולי אני טרנס",
+        "full": "אני מתבונן/ת בזהותי המגדרית וחושב/ת שאולי אני טרנס"
+      },
+      "thinkingDetrans": {
+        "display": "אני מזדהה כעת כטרנס ואני חושב/ת על דטרנזישן",
+        "full": "אני מזדהה כעת כטרנס ואני חושב/ת על דטרנזישן"
+      },
+      "familyMember": {
+        "display": "אני הורה, בן/בת משפחה או חבר/ה של מישהו שעובר מעבר מגדרי",
+        "full": "אני הורה, בן/בת משפחה או חבר/ה של מישהו שעובר מעבר מגדרי"
+      },
+      "researcher": {
+        "display": "אני חוקר/ת שחוקר זהות מגדרית וחוויות דטרנזישן",
+        "full": "אני חוקר/ת שחוקר זהות מגדרית וחוויות דטרנזישן"
+      },
+      "learnChallenges": {
+        "display": "אני רוצה ללמוד על הקשיים והאתגרים שמדטרנזישנרים מתמודדים איתם",
+        "full": "אני רוצה ללמוד על הקשיים והאתגרים שמדטרנזישנרים מתמודדים איתם"
+      },
+      "understandTransition": {
+        "display": "אני רוצה להבין מדוע מדטרנזישנרים החליטו לעבור מעבר מגדרי מלכתחילה",
+        "full": "אני רוצה להבין את הסיבות מדוע מדטרנזישנרים עברו מעבר מגדרי מלכתחילה, וכיצד זה עשוי להיות שונה בין נשים לגברים."
+      },
+      "debunkMisinfo": {
+        "display": "אני רוצה שתפרוץ מיתוסים ואמונות נפוצות על דטרנזישן",
+        "full": "אנא פרוץ את כל המידע המוטעה והאמונות הנפוצות על מדטרנזישנרים, בעומק רב ככל האפשר."
+      }
+    },
+    "navigation": {
+      "videos": "סרטוני דטרנזישן",
+      "stories": "סיפורים",
+      "storiesFull": "סיפורים וסטטיסטיקה",
+      "support": "עזרה ותמיכה",
+      "definitions": "מונחי מגדר",
+      "studies": "מחקרים אקדמיים",
+      "studiesShort": "מחקרים",
+      "howItWorks": "איך זה עובד"
+    },
+    "deepResearch": {
+      "title": "מצב מחקר עמוק",
+      "description": "מצב מחקר עמוק מרחיב את השאלה שלך כדי לתת לך תשובה המתקרבת לנושא מזוויות שונות.",
+      "note": "מחקר עמוק הוא איטי יותר ולא שיחתי. לשיחה, השאירו אותו כבוי."
+    },
+    "disclaimer": {
+      "trigger": "החוויות ונקודות המבט באתר זה מגיעות מרדיט.",
+      "title": "כתב ויתור על מקורות",
+      "content": "detrans.ai עונה על שאלות על מגדר מנקודת מבט של מדטרנזישן על ידי מציאת חוויות רלוונטיות מקהילת /r/detrans ברדיט. בעוד שרדיט היא פלטפורמה שבה אנשים אמיתיים משתפים סיפורים אישיים, ייתכן שהיא מכילה גם תוכן שנוצר על ידי בוטים או מטעה. את/ה מוזמן/ת לבדוק את הפוסטים המקוריים ברדיט כדי לאמת את המקור וההקשר. שים/י לב ש-/r/detrans הוא סאב-רדיט מבוקר בקפידה, אך הביקורת אינה מבטיחה את הדיוק או האותנטיות של כל פוסט."
+    },
+ "donate": {
+      "title": "תמיכה בעבודתנו",
+      "description": "עזרו לנו להמשיך להפוך משאב זה לזמין עבור אלו שזקוקים לו ביותר.",
+      "button": "תרומה",
+      "card": {
+        "title": "נדרשות תרומות כדי לשמור את {site} בחיים!",
+        "description": "אם את/ה מעריכ/ה שירות חינם זה, אנא שקול/י לתרום.",
+        "description2": "האתר יפעל במצב קאש בלבד אם איגמר הכסף שלי, ללא יכולת לשאול שאלות משלך.",
+        "button": "בצע/י תרומה"
+      }
+    },
+    "participate": {
+      "card": {
+        "title": "האם את/ה מדטרנזישנר/ית או דיזיסטר/ית?",
+        "description": "השתתפו במחקרים כדי לעזור לשפר את ההבנה המדעית של זהויות טרנסג'נדר",
+        "description2": "ולשפר את התוצאות לאנשים שחווים דיספוריה מגדרית."
+      },
+      "title": "שתף/י את הסיפור שלך",
+      "description": "החוויה שלך יכולה לעזור לאחרים להבין את המורכבות של זהות מגדרית.",
+      "button": "השתתפ/י"
+    },
+    "footer": {
+      "poem": {
+        "line1": "את/ה יכול/ה לשחרר את עצמך,",
+        "line2": "כל מה שאת/ה צריך/ה זה פשוט להיות.",
+        "line3": "ודא/י שאת/ה שומר/ת על המחשבות שלך!",
+        "line4": "כי המחשבה היא כמו גינה,",
+        "line5": "וכל מחשבה היא זרע.",
+        "line6": "אנו קוצרים את מה שאנו זורעים,",
+        "line7": "אבל דרך זה אנו יכולים לצמוח..."
+      },
+      "openSource": "פרויקט קוד פתוח מאת",
+      "madeWithLove": "נוצר באהבה בוולינגטון, ניו זילנד",
+      "donatePrompt": "אנא תרמו אם אתם יכולים,",
+      "beKind": "והיו טובים זה לזה."
+    },
+    "browseConversations": "עיין/י בכל השיחות"
+  },
+  "header": {
+    "navigation": {
+      "home": "דף הבית",
+      "resources": "משאבים",
+      "about": "אודות"
+    },
+    "resources": {
+      "genderSupport": "תמיכה מגדרית",
+      "genderSupportDesc": "מצא/י קהילה ומטפלים",
+      "terminology": "מונחים",
+      "terminologyDesc": "הגדרת מונחים/מושגים מרכזיים",
+      "stories": "סיפורים וסטטיסטיקה",
+      "storiesDesc": "ממשתמשי /r/detrans",
+      "videos": "סרטוני דטרנזישן",
+      "videosDesc": "ארכיון זיכרונות אישיים",
+      "studies": "מחקרים שנבדקו על ידי עמיתים",
+      "studiesDesc": "מחקר אקדמי רלוונטי",
+      "statistics": "סטטיסטיקה מאומתת",
+      "statisticsDesc": "statsforgender.org"
+    },
+    "about": {
+      "contact": "צור קשר",
+      "contactDesc": "צור/י קשר איתי",
+      "systemPrompts": "פרומפטים של המערכת",
+      "systemPromptsDesc": "צפה/י בפרומפטים של המערכת",
+      "terms": "תנאים",
+      "termsDesc": "מדיניות פרטיות ותנאים"
+    },
+    "donate": "תרומה",
+    "language": {
+      "title": "שפה"
+    }
+  },
+  "language": {
+    "title": "שפה",
+    "select": "בחר/י שפה",
+    "search": "{count} שפות",
+    "en": "אנגלית",
+    "es": "ספרדית",
+    "fr": "צרפתית",
+    "de": "גרמנית",
+    "he": "עברית",
+    "it": "איטלקית",
+    "nl": "הולנדית",
+    "tr": "טורקית"
+  },
+  "settings": {
+    "title": "הגדרות"
+  },
+  "theme": {
+    "title": "מראה",
+    "darkMode": "מצב כהה",
+    "light": "בהיר",
+    "dark": "כהה"
+  },
+  "definitions": {
+    "metadata": {
+      "title": "detrans.ai | הגדרת מונחים הקשורים למגדר",
+      "description": "בדיבור היומיומי מין ומגדר משמשים לפעמים לסירוגין ובחלק מהשפות יש רק מילה אחת לתאר את השניים. עם זאת, כל הרעיון של דיספוריה מגדרית מסתמך על ההבנה שיש הבדלים בין מין למגדר."
+    },
+    "title": "הגדרת מונחים הקשורים למגדר",
+    "sexAndGender": {
+      "heading": "מין ומגדר?",
+      "intro": "בדיבור היומיומי מין ומגדר משמשים לפעמים לסירוגין ובחלק מהשפות יש רק מילה אחת לתאר את השניים. עם זאת, כל הרעיון של דיספוריה מגדרית מסתמך על ההבנה שיש הבדלים בין מין למגדר.",
+      "sex": "<b>מין</b> מתייחס לביולוגיה של אדם (כלומר האנטומיה שלו; שלד, מבנה שרירים, כרומוזומים, מערכת רבייה ומאפייני מין משניים). שים/י לב שמעל 99% מהאנשים הם ביולוגית גברים או נשים, אין ספקטרום מיני אם כי יש אנשים שיש להם הפרעות בהתפתחות המינית (DSDs). הרוב המכריע של אנשים עם DSDs הם גברים או נשים.",
+      "gender": "<b>מגדר</b> מתייחס לתפקידים, התנהגויות, פעילויות ותכונות \"מבוססות חברתית\" שחברה נתונה רואה כמתאימות לגברים ולנשים [כפי שהוגדרו לפי המין הביולוגי שלהם]. 'גברי' ו'נשי' הם קטגוריות מגדר. רוב האנשים, אולי כולם, יש להם תערובת של תכונות גבריות ונשיות. מגדר משתנה לאורך זמן ובין תרבויות.",
+      "nonConformity": "<b>אי-התאמה מגדרית</b> מתרחשת כאשר אדם פועל או מציג את עצמו באופן שונה ממה שהחברה שלו מצפה ממנו, בהתבסס על מינו.",
+      "identity": "<b>זהות מגדרית</b> - חלק מהאנשים מאמינים שיש לכולנו 'זהות מגדרית' מולדת - תחושה עמוקה או מודעות לעצמנו כגברים, נשים או איפשהו ביניהם - שקיימת בנפרד מהמין הביולוגי שלנו ושיכולה, לעתים נדירות, להיות שונה ממנו. אנשים אחרים אינם מאמינים שקיימת זהות מגדרית ספציפית שונה מכל היבט אחר באישיותו או זהותו של אדם."
+    },
+    "dysphoria": {
+      "heading": "מהי דיספוריה מגדרית?",
+      "p1": "דיספוריה מגדרית היא מונח אבחנתי המשמש את הקהילה הפסיכיאטרית והרפואית לתיאור המצוקה שחווים כאשר מישהו מרגיש שזהותו המגדרית אינה תואמת למינו הביולוגי.",
+      "p2": "אנשים שחווים דיספוריה מגדרית מדווחים על רגשות עזים ומתמשכים של זיהוי עם מגדר השונה ממינם, ועל אי-נוחות קשורה בגופם המומלח. לאבחנה פורמלית כיום, הרגשות חייבים לגרום למצוקה משמעותית או לפגיעה באדם שחווה אותם."
+    },
+    "transgender": {
+      "heading": "מה זה אומר להיות טרנסג'נדר?",
+      "p1": "טרנסג'נדר הוא מונח שיכול להיות בעל משמעויות שונות לאנשים שונים. מקובל לומר שאישה טרנסית נולדה עם גוף גברי אך מזדהה כאישה, גבר טרנסי נולד עם גוף נשי אך מזדהה כגבר, ואנשים שאינם בינאריים מזדהים כלא גברים ולא נשים. אנשים משתמשים לעתים קרובות במונח הקצר 'טרנס', כדי לציין שמישהו מזדהה עם מגדר שאינו זהה למינו הביולוגי.",
+      "p2": "אפשר להבין טרנסג'נדר במובן שאת/ה i) המין/המגדר ההפוך למין שבו נולדת, ii) את/ה מאמין/ה שאת/ה המין/המגדר ההפוך למה שבו נולדת, או iii) את/ה חי/ה כאילו המין/המגדר שלך הוא ההפוך למין שבו נולדת. דיונים על איזו משלוש הדרכים להבין את המונח היא הדיוק ביותר יכולים להיות סוערים ושנויים במחלוקת. חלק מהאנשים מרגישים שאפילו לערוך דיון על מה זה אומר להיות טרנסג'נדר מערער על תוקף החוויה. עם זאת, האמונות השונות הללו מובילות בלתי נמנע לרעיונות שונים לגבי הדרך הטובה ביותר לתמוך באנשים לניהול מצוקה הקשורה למגדר, כך שדיונים הכרחיים כדי לוודא שאנשים מקבלים את העזרה והייעוץ הטובים ביותר האפשריים."
+    },
+    "desistance": {
+      "heading": "מהי דיזיסטנס?",
+      "p1": "דיזיסטנס הוא כאשר מישהו שזיהה כטרנסג'נדר אך לא עבר התערבויות רפואיות כבר לא מזדהה כטרנסג'נדר. אם כי הם עשויים לא להיות צריכים להתמודד עם ההשלכות של ביצוע התערבויות רפואיות, דיזיסטנס יכולה עדיין להיות תהליך רגשי כואב, מבלבל וקשה מאוד."
+    },
+    "detransition": {
+      "heading": "דטרנזישן ומדטרנזישנרים",
+      "p1": "דטרנזישן הוא כאשר מישהו שזיהה כטרנסג'נדר ועבר התערבויות רפואיות כבר לא מזדהה כטרנסג'נדר. יש שונות עצומה בחוויות של אנשים בקבוצה זו. חלק מהאנשים עשויים להיות במצוקה גבוהה מאוד ממה שעברו וההשלכות לטווח הארוך, אחרים עשויים לראות בזה משהו שהם היו צריכים לעבור כדי להבין את עצמם כפי שהם כעת."
+    },
+    "regret": {
+      "heading": "חרטה על מעבר מגדרי",
+      "p1": "חלק מהאנשים עשויים לזהות כטרנסג'נדר במשך שנים רבות ועברו התערבויות רפואיות כגון הורמונים וניתוחים ששינו את גופם באופן בלתי הפיך. הם עשויים להרגיש שהם מצטערים על התחלת מעבר מגדרי רפואי אך הם ממשיכים גם כן לזהות כטרנסג'נדר ו/או להמשיך עם הורמונים ממין הנגדי."
+    },
+    "source": {
+      "text": "מקור:",
+      "link": "קרן הדטרנזישן"
+    }
+  },
+  "chat": {
+    "lookingForComments": "מחפש תגובות רלוונטיות...",
+    "errorOccurred": "אירעה שגיאה, נסה/י שוב... צור/י קשר איתי אם זה ממשיך לקרות.",
+    "analysingExperiences": "מנתח חוויות",
+    "detransPerspective": "-> מהן נקודות המבט של מדטרנזישנרים על נושא זה?",
+    "transPerspective": "-> מהן נקודות המבט של אנשים טרנס על נושא זה?",
+    "backToPortal": "<- חזרה לפורטל"
+  },
+  "chatInput": {
+    "placeholder": "שאל/י את detrans.ai...",
+    "deepResearch": "מחקר עמוק",
+    "suggestions": "הצעות:"
+  },
+  "deepResearchEvents": {
+    "errorTitle": "שגיאת מחקר עמוק",
+    "retrieving": "משיג חוויות דטרנזישן...",
+    "generatingQuestions": "מייצר שאלות מטא...",
+    "findingAnswers": "מוצא תשובות לשאלות מטא",
+    "completed": "מחקר עמוק הושלם",
+    "retrieveError": "שגיאה באחזור חוויות דטרנזישן!",
+    "analyzeError": "נגמר הכסף לשלם עבור הבינה המלאכותית שמנתחת חוויות דטרנזישן ועונה על שאלות. אם את/ה יכול/ה, אנא תרום/י כדי שנוכל להמשיך להפעיל את השירות. אנא נסה/י שוב מאוחר יותר. לעת עתה, את/ה עדיין יכול/ה לנסות את השאלות בפורטל.",
+    "generatingAnswer": "מייצר תשובה...",
+    "waitingForAnswer": "ממתין לתשובה",
+    "questionsAnswered": "{answered} מתוך {total} שאלות מטא נענו",
+    "generatingSummary": "מייצר סיכום של התשובות"
+  },
+  "questionTabs": {
+    "topics": "נושאים",
+    "generated": "נוצרו",
+    "recent": "אחרונים",
+    "top": "מובילים"
+  },
+  "conversations": {
+    "title": "שיחות אחרונות",
+    "subtitle": "ראה/י בעצמך איך detrans.ai עוזר לאנשים מרחבי העולם.",
+    "tabs": {
+      "featured": "מומלצים",
+      "all": "הכל"
+    },
+    "buttons": {
+      "showMore": "הצג {count} שיחות נוספות",
+      "showLess": "הצג פחות",
+      "loadMore": "טען עוד שיחות",
+      "loading": "טוען..."
+    }
+  },
+  "conversationCard": {
+    "untitled": "שיחה ללא כותרת",
+    "from": "מ",
+    "moreMessages": "{count} הודעות נוספות...",
+    "moreMessage": "{count} הודעה נוספת...",
+    "date": {
+      "today": "היום",
+      "yesterday": "אתמול",
+      "daysAgo": "לפני {count} ימים",
+      "weeksAgo": "לפני {count, plural, =1 {שבוע} other {# שבועות}}"
+    },
+    "admin": {
+      "deleting": "מוחק...",
+      "delete": "מחק/י שיחה",
+      "banning": "חוסם...",
+      "ban": "חסום/י משתמש (IP)"
+    }
+  },
+  "stories": {
+    "metadata": {
+      "title": "detrans.ai | סיפורי דטרנזישן וסטטיסטיקה",
+      "description": "קרא/י סיפורי דטרנזישן מרגשים, צירי זמן ומגמות מחברי קהילת /r/detrans ברדיט, אוסף סיפורי הדטרנזישן הפתוח הגדול ביותר באינטרנט. גלה/י בן כמה היו מדטרנזישנרים כאשר עברו מעבר מגדרי ודטרנזישן ואילו מסלולים הם לקחו."
+    },
+    "title": "סיפורי דטרנזישן וסטטיסטיקה",
+    "subtitle": "עיין/י והצג/י באופן ויזואלי {count} סיפורי דטרנזישן וסטטיסטיקה ייחודיים של אנשים ששיתפו את החוויות שלהם בסאב-רדיט /r/detrans, שהוא אוסף סיפורי הדטרנזישן והחוויות הפתוח הגדול ביותר באינטרנט.",
+    "disclaimer": {
+      "summary": "סיפורים אלה סוכמו באמצעות בינה מלאכותית.",
+      "details": "ברדיט, אנשים לעתים קרובות משתפים את החוויות שלהם בין תגובות או פוסטים רבים. כדי להפוך את המידע הזה לנגיש יותר, הבינה המלאכותית שלנו אוספת את כל החלקים המפוזרים הללו לסיכום אחד קל לקריאה ולציר זמן. כל הפרומפטים של המערכת מצוינים בעמוד הפרומפטים.",
+      "accuracy": "לפעמים בינה מלאכותית יכולה להזות או לציין דברים שאינם נכונים. אך באופן כללי, הסיפורים המסוכמים הם משקפים מדויקים של התגובות המקוריות של המשתמשים.",
+      "inclusion": "רק משתמשים ששיתפו מספיק כדי להרכיב סיפור וציר זמן מלאים נכללו. משתמשים שפרסמו פחות מחמש תגובות או שתגובותיהם קיבלו פחות משלוש הצבעות חיוביות נפסלו. פוסטים עדיין אינם נכללים במערך הנתונים.",
+      "verification": "כל משתמש נותח לאיתור סימנים של תוכן שנוצר על ידי בוט או לא אותנטי. כל חשבון שלא נראה כמדטרנזישנר/ית אמיתי/ת מסומן 'חשוד'. חשבונות אלה ייבדקו ידנית ויוסרו ממערך הנתונים של detrans.ai אם ימצאו כלא אותנטיים. חשבונות שביצעו פחות מחמש תגובות הושמטו מניתוח."
+    },
+    "charts": {
+      "tabs": {
+        "age": "גיל",
+        "duration": "משך זמן",
+        "transitionReason": "סיבת מעבר",
+        "detransitionReason": "סיבת דטרנזישן",
+        "pathways": "מסלולים"
+      },
+      "loading": "טוען נתוני תרשים...",
+      "error": "שגיאה: {message}",
+      "retry": "נסה/י שוב",
+      "noData": "אין נתוני סיבת {mode} זמינים למסננים שנבחרו",
+      "reasonChart": {
+        "title": "מדוע מדטרנזישנרים אומרים שהם {mode, select, detransition {עברו דטרנזישן} other {עברו מעבר מגדרי}}?",
+        "subtitle": "נתונים מצירי זמן של משתמשי {mode} ברדיט ({totalReasonCount} סך הכל משתמשים, {totalUsers} סיבות שונות.)",
+        "mentions": "{count} אזכורים ({percentage}%)"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "חפש/י חוויות משתמשים...",
+      "ageRange": "טווח גילאים:",
+      "ageRangeYears": "{min} - {max} שנים",
+      "sex": {
+        "all": "נשים וגברים",
+        "female": "נקבה",
+        "male": "זכר"
+      },
+      "tagsPlaceholder": "בחר/י תגיות לסינון...",
+      "clearFilters": "נקה/י מסננים"
+    },
+    "results": "מציג {showing} מתוך {total} סיפורי משתמשים",
+    "noResults": "לא נמצאו משתמשים התואמים את המסננים שלך.",
+    "pagination": {
+      "previous": "הקודם",
+      "next": "הבא",
+      "pageInfo": "עמוד {page} מתוך {totalPages}"
+    },
+    "userCard": {
+      "comments": "{count} תגובות",
+      "postingSince": "מפרסם/ת מאז {date}",
+      "transitionedAt": "עבר/ה מעבר מגדרי בגיל {age}",
+      "desistedAt": "עבר/ה דיזיסטנס בגיל {age}",
+      "detransitionedAt": "עבר/ה דטרנזישן בגיל {age}",
+      "female": "נקבה",
+      "male": "זכר"
+    }
+  },
+  "prompts": {
+    "metadata": {
+      "title": "איך זה עובד? | פרומפטים של המערכת",
+      "description": "למד/י איך detrans.ai עובד, כולל פרומפטים של המערכת, תאריכי חיתוך נתונים, ומידע על קוד פתוח."
+    },
+    "title": "איך זה עובד?",
+    "intro": {
+      "paragraph1": "הצ'אט של <bold>detrans.ai</bold> הוא סוכן מופעל על ידי RAG (ריטריבל אוגמנטד ג'נריישן) שמייצר שאלות מטא ועונה עליהן על ידי הדגשת והשלבת מחשבות וחוויות דטרנזישן מסאב-רדיט <reddit>/r/detrans</reddit> ברדיט ומיוטיוב. הוא נבנה עם מסגרת <llamaIndex>LlamaIndex</llamaIndex> והמודל הפתוח הסיני <kimi>kimi-k2.5</kimi> מאת Moonshot AI כדי להפחית הטייה פוליטית מערבית.",
+      "paragraph2": "ChatGPT ורוב מודלי שפה גדולים מערביים אחרים מקדמים ומחזיקים באמונות מגדריות בצורה די אגרסיבית. היה בלתי אפשרי להשתמש במודלי GPT של OpenAI עבור פרויקט זה, שכן המודלים היו מתנגדים וסותרים באופן קבוע את חוויות הדטרנזישן שהיה עליהם לסכם. אם תרצה/י חוויה מבססת יותר, ראה/י את <chatgpt>ChatGPT</chatgpt>."
+    },
+    "dataCutoff": {
+      "title": "תאריכי חיתוך נתונים",
+      "paragraph1": "<bold>detrans.ai</bold> כרגע יש גישה לכל התגובות ב-/r/detrans שפורסמו לפני <date>8/9/2025</date> שקיבלו לפחות שלוש הצבעות חיוביות. אני אשתדל לעדכן את מערך הנתונים לפחות פעם בשנה כל עוד סאב-רדיט /r/detrans ממשיך להתקיים.",
+      "paragraph2": "משתמשים יכולים להגיש חוויות וידאו על ידי שליחת קישורים לסרטוני יוטיוב. סרטונים אלה ייבדקו ידנית לפני שהם יתומללו באמצעות מודל דיבור-לטקסט Whisper של OpenAI וייתווספו למסד הנתונים הווקטורי וארכיון הוידאו."
+    },
+    "openSource": {
+      "title": "קוד פתוח",
+      "paragraph": "קוד המקור זמין גם ב-<github>גיטהאב</github> ברישיון MIT אם תרצה/י לבחון או לעשות שימוש חוזר בכל הקוד עבור הפרויקט שלך. פרויקט זה בנוי גם על גבי פרויקטים רבים אחרים בקוד פתוח, כגון Llamaindex, React, Next.js, Tailwind, Lucide, Qdrant, Postgres ו-Vercel AI SDK. תודה רבה לתורמים של פרויקטים אלה על מסירת בסיס מוצק לבנות עליו."
+    },
+    "systemPrompts": {
+      "title": "פרומפטים של המערכת",
+      "description": "אלה הפרומפטים שהמערכת משתמשת בהם עבור זרימת העבודה של RAG. אין הוראות או שכבות מותאמות אישית אחרות מלבד מה שמוצג בעמוד זה.",
+      "lastUpdated": "עודכן לאחרונה",
+      "chatAgentTitle": "פרומפט סוכן הצ'אט",
+      "researchModeTitle": "פרומפטים של המערכת עבור מצב מחקר עמוק",
+      "researchAgentTitle": "פרומפט סוכן המחקר",
+      "experienceExtractionTitle": "פרומפט חילוץ חוויות",
+      "finalAnswerTitle": "פרומפט תשובה סופית"
+    },
+    "userSummaries": {
+      "title": "פרומפטים של המערכת עבור סיכומי משתמשים",
+      "description": "אלה הפרומפטים של המערכת עבור סיכומי משתמשים שנוצרו.",
+      "lastUpdated": "עודכן לאחרונה",
+      "experienceReportTitle": "דוח חוויית משתמש",
+      "experienceSummaryTitle": "סיכום חוויית משתמש",
+      "generateTagsTitle": "יצירת תגיות",
+      "extractAgesTitle": "חילוץ גילאים",
+      "determineBirthSexTitle": "קביעת מין לידה",
+      "redFlagReportTitle": "דו'ח דגל אדום"
+    }
+  },
+  "donatePage": {
+    "title": "השארת Detrans.AI באוויר",
+    "description1": "אם את/ה מעריכ/ה את העבודה שהשקעתי באתר הזה או אם שירות חינם זה עזר לך, אנא שקול/י לבצע תרומה חד פעמית או קבועה כדי לשמור את <b>detrans.ai</b> באינטרנט.",
+    "description2": "אני לא יכול להרשות לעצמי להפעיל שירות צורני במשאבים כמו זה ללא התמיכה שלך. מקור ההכנסה העיקרי שלי כרגע הוא רווחה ממשלתית ונכון לכתיבת שורות אלה יש לי פחות מ-1000 דולר בחשבון הבנק שלי. אם האתר הזה יתפוצץ אני עלול לקבל חשבונות של אלפי דולרים. אם איגמר לי הכסף, היכולת לשאול שאלות משלך ולחקור נושאים לעומק באמצעות שאלות המשך תושבת ואני אשרת רק תגובות קאשד לשאלות בפורטל.",
+    "description3": "אנא שקל/י תרומה חודשית. את/ה יכול/ה לתרום באמצעות פייפאל למטה, ישירות לחשבון הבנק שלי בניו זילנד או באמצעות BTC.",
+    "bankAccount": "חשבון בנק בניו זילנד",
+    "accountName": "שם",
+    "accountNumber": "חשבון",
+    "swiftCode": "קוד SWIFT/BIC",
+    "bitcoin": "כתובת ביטקוין",
+    "paypal": "תרומת פייפאל"
+  },
+  "terms": {
+    "metadata": {
+      "title": "מדיניות פרטיות | detrans.ai",
+      "description": "למד/י על מדיניות הפרטיות שלנו, נוהלי איסוף נתונים, וכיצד אנו מגינים על המידע שלך."
+    },
+    "title": "מדיניות פרטיות",
+    "intro": "מדיניות פרטיות זו מסבירה איזה מידע אנו אוספים, למה אנו אוספים אותו, וכיצד אנו שומרים עליו בבטחה כאשר את/ה מבקר/ת או משתמש/ת בשירות שלנו.",
+    "sections": {
+      "informationWeCollect": {
+        "title": "מידע שאנו אוספים",
+        "chatMessages": {
+          "title": "הודעות צ'אט:",
+          "content": "אנו שומרים את כל רישומי הצ'אט כמו גם את התשובות לכל השאלות שנשאלו במצב מחקר עמוק. רישומי צ'אט אינם משויכים לכתובת ה-IP שלך או לכל נתונים שעשויים לשמש לזיהויך. רישומי צ'אט עשויים להיות מנותחים ומוצגים למטרות מחקריות בעתיד. אנא הימנע/י משיתוף מידע רגיש."
+        },
+        "cookies": {
+          "title": "עוגיות / טכנולוגיות מעקב:",
+          "content": "אנו <em>איננו</em> משתמשים בעוגיות, תגי פיקסל, או כל מנגנוני מעקב דומים בצד הלקוח."
+        },
+        "ipAddresses": {
+          "title": "כתובות IP:",
+          "content": "כאשר את/ה מבצע/ת בקשה לשרתים שלנו אנו מאחסנים את כתובת ה-IP שלך כדי לספור בקשות ולאכוף מגבלות קצב שמונעות ניצול לרעה."
+        },
+        "optionalData": {
+          "title": "נתונים אופציונליים:",
+          "content": "אם תבחר/י ליצור איתנו קשר, אנו עשויים לאסוף את המידע שאת/ה מספק/ת מרצון (למשל, כתובת דוא\"ל, שם). מתן מידע זה הוא אופציונלי אלא אם כן צוין במפורש."
+        }
+      },
+      "legalBases": {
+        "title": "בסיסים משפטיים לעיבוד (מבקרים מהאיחוד האירופי/EEA)",
+        "item1": "עיבוד מגבלת קצב הוא הכרחי ל-<em>האינטרסים הלגיטימיים</em> שלנו לפי GDPR סעיף 6(1)(f) - במיוחד, שמירה על זמינות השירות והאבטחה.",
+        "item2": "כל עיבוד נוסף (למשל, יצירת חשבון) מבוסס על <em>הסכמתך</em> או <em>הכרח חוזי</em>, לפי החל."
+      },
+      "dataRetention": {
+        "title": "כמה זמן אנו שומרים נתונים",
+        "content": "כל רישומי הצ'אט יישמרו. כתובות IP המשמשות להגבלת קצב נמחקות אוטומטית תוך דקות לאחר הבקשה האחרונה או בסוף חלון הגבלת הקצב, whichever comes first. מידע רצוני (למשל, מיילי תמיכה) נשמר רק כל עוד נדרש כדי לפתור את פנייתך או לספק התחייבויות משפטיות."
+      },
+      "thirdPartySharing": {
+        "title": "שיתוף צד שלישי",
+        "content": "אנו עשויים לבחור לשתף רישומי צ'אט מנותקים עם אקדמאים וחוקרים המחפשים לשפר תוצאות לאנשים החווים דיספוריה מגדרית. אנו עשויים לגלות כתובות IP או נתונים אחרים רק כאשר נדרש על פי חוק או להגן על זכויותינו, משתמשינו, או הציבור (למשל, מניעת הונאה, צו בית משפט)."
+      },
+      "security": {
+        "title": "אבטחה",
+        "content": "אנו משתמשים באמצעים טכניים וארגוניים סטנדרטיים בתעשייה (הצפנת TLS, בקרות גישה, עיצוב הרשאה מזערית) כדי להגן על נתונים בטרנזיט ובמצב מנוחה."
+      },
+      "internationalTransfers": {
+        "title": "העברות בינלאומיות",
+        "content": "השרתים שלנו ממוקמים בארצות הברית. אם את/ה ניגש/ת לשירות מחוץ לארה\"ב, את/ה מבין/ה שכתובת ה-IP שלך תועבר לעיבוד בארצות הברית."
+      },
+      "childrensPrivacy": {
+        "title": "פרטיות ילדים",
+        "content": "השירות שלנו אינו מכוון לילדים מתחת לגיל 13, ואנו איננו אוספים ביודעין מידע אישי מהם. אם את/ה סבור/ה שאספנו בטעות נתונים כאלה, אנא צור/י קשר איתנו למחיקה מיידית."
+      },
+      "changes": {
+        "title": "שינויים במדיניות זו",
+        "content": "אנו עשויים לעדכן מדיניות זו מעת לעת. \"תאריך תחילה\" ישתנה, ושינויים משמעותיים יפורסמו בבולטות."
+      },
+      "contact": {
+        "title": "צור קשר",
+        "content": "אם יש לך שאלות, חששות או תלונות, השתמש/י בטופס יצירת הקשר, או שלח/י דוא\"ל ל-<email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "videos": {
+    "metadata": {
+      "title": "detrans.ai | צפה/י בסרטונים מאת מדטרנזישנרים",
+      "description": "הנה מבחר של זיכרונות וידאו אישיים שהועלו ליוטיוב על ידי אנשים שעברו מעבר מגדרי ואז הגיעו להבנה שגרמה להם לעבור דטרנזישן. יש סיפורים רבים כאלה באינטרנט, זה רק תת-קבוצה קטנה."
+    },
+    "title": "סרטוני מעבר ודטרנזישן",
+    "description": {
+      "line1": "עמוד זה שואף להיות ארכיון הסרטונים הטוב ביותר של דטרנזישן באינטרנט.",
+      "line2": "באמצעות דיבור-לטקסט, detrans.ai משלב חוויות אלה לשיחות צ'אט רלוונטיות.",
+      "line3": "רק סרטוני יוטיוב כרגע, טיקטוק בקרוב?!"
+    },
+    "female": "נקבה",
+    "male": "זכר",
+    "backToAll": "חזרה לכל",
+    "overview": "סקירה כללית",
+    "fullSummary": "סיכום וידאו מלא",
+    "watchOnYouTube": "צפה/י ביוטיוב",
+    "moreVideos": "עוד סרטונים",
+    "browseAll": "עיין/י בכל סרטוני הדטרנזישן",
+    "metadataWatchDescription": "צפה/י ב-{title} מאת {author}, מדטרנזישנר/ית {sex} שמשתף/ת את הסיפור שלו/ה.",
+    "metadataThumbnailAlt": "תמונת ממוזערת עבור {title}"
+  },
+  "videoList": {
+    "loading": "טוען סרטונים...",
+    "filters": {
+      "all": "כל הסיפורים",
+      "female": "נקבה",
+      "male": "זכר",
+      "detransitioners": "מדטרנזישנרים"
+    },
+    "thumbnailAlt": "תמונת ממוזערת עבור {title}",
+    "by": "מאת",
+    "female": "נקבה",
+    "male": "זכר"
+  },
+  "videoSubmitForm": {
+    "submitTitle": "שלח/י את סרטון הדטרנזישן שלך",
+    "description": {
+      "line1": "על ידי שליחת הסרטון שלך הוא יופיע בעמוד זה ובצ'אטים רלוונטיים.",
+      "line2": "זה יכול להיות הסרטון שלך, או שזה יכול להיות סתם סרטון שמצאת באינטרנט שחסר בעמוד זה.",
+      "line3": "כל ההגשות מבוקרות, זה עשוי לקחת כמה ימים עד שהוא יופיע."
+    },
+    "urlLabel": "כתובת URL של יוטיוב",
+    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "submitButton": "שלח/י סרטון",
+    "submitting": "שולח...",
+    "submitSuccess": "הסרטון הוגש בהצלחה! הוא ייבדק לפני שהוא יופיע באתר.",
+    "submitError": "נכשל בשליחת הסרטון",
+    "networkError": "שגיאת רשת. אנא נסה/י שוב."
+  },
+  "studySubmitForm": {
+    "submitTitle": "שלח/י מחקר",
+    "description": {
+      "line1": "מכיר/ה מחקר אקדמי או מאמר שנבדק על ידי עמיתים שחסר?",
+      "line2": "שלח/י את ה-URL ובאופן אופציונלי הצע/י כותרת לו.",
+      "line3": "כל ההגשות מבוקרות לפני שהן מופיעות באתר."
+    },
+    "urlLabel": "כתובת URL של המחקר",
+    "urlPlaceholder": "https://...",
+    "titleLabel": "כותרת מוצעת",
+    "titlePlaceholder": "כותרת או כותרת ראשית אופציונלית למחקר",
+    "titleHelp": "אופציונלי: הצע/י כותרת קצרה או כותרת ראשית למחקר זה",
+    "submitButton": "שלח/י מחקר",
+    "submitting": "שולח...",
+    "submitSuccess": "המחקר הוגש בהצלחה! הוא ייבדק לפני שהוא יופיע באתר.",
+    "submitError": "נכשל בשליחת המחקר",
+    "networkError": "שגיאת רשת. אנא נסה/י שוב."
+  },
+  "studiesPage": {
+    "metadata": {
+      "title": "detrans.ai | מחקרים אקדמיים על נושאי דטרנזישן",
+      "description": "מצא/י בעמוד זה מבחר של מחקרים אקדמיים, מאמרי כתבי עת שנבדקו על ידי עמיתים וסטטיסטיקה מאומתת הקשורים למגמות זהות מגדרית ודטרנזישן.",
+      "ogTitle": "detrans.ai | מחקרים אקדמיים על נושאי דטרנזישן",
+      "ogDescription": "מצא/י בעמוד זה מבחר של מחקרים אקדמיים ומאמרי כתבי עת שנבדקו על ידי עמיתים וסטטיסטיקה מאומתת הקשורים למגמות זהות מגדרית ודטרנזישן."
+    },
+    "title": "מאמרים אקדמיים נבחרים",
+    "description": "מחקרים אקדמיים, מחקר שנבדק על ידי עמיתים ומאמרי כתבי עת בנושאי זהות מגדרית, מעבר מגדרי ודטרנזישן."
+  },
+  "contentWarning": {
+    "title": "אזהרת תוכן:",
+    "description": {
+      "line1": "אתר זה מכיל סיפורים, חוויות ונקודות מבט מאנשים שעברו דטרנזישן.",
+      "line2": "הנושאים כוללים חרטה על מעבר מגדרי, סיבוכים רפואיים, ותפיסות הוליסטיות של דיספוריה.",
+      "line3": "מידע זה עשוי לאתגר אמונות נפוצות על זהות מגדרית ומעבר מגדרי."
+    },
+    "buttons": {
+      "exit": "הוציאו אותי מכאן!",
+      "continue": "המשך"
+    }
+  },
+  "supportPage": {
+    "metadata": {
+      "title": "detrans.ai | קבל/י עזרה ותמיכה מגדרית",
+      "description": "למד/י את ההבדל בין טיפול מאשר מגדר לבין טיפול חוקר מגדר. אם את/ה חוו/ה דיספוריה מגדרית, אחד הדרכים הטובות ביותר לקבל תמיכה היא לדבר ולהבין את נקודות המבט של אנשים שהיו שם בעצמם ויצאו מזה."
+    },
+    "title": "קבל/י עזרה ותמיכה מגדרית",
+    "navigation": {
+      "jumpTo": "דלג/י ל:",
+      "getGenderSupport": "קבל/י תמיכה מגדרית:"
+    },
+    "sections": {
+      "onlineSupport": {
+        "title": "קבוצות תמיכה מקוונות",
+        "description": "אם את/ה חוו/ה דיספוריה מגדרית, אחד הדרכים הטובות ביותר לקבל תמיכה היא לדבר ולהבין את נקודות המבט של אנשים שהיו שם בעצמם ויצאו מזה.",
+        "links": {
+          "redditCommunity": "קהילת Detrans ברדיט",
+          "redditWiki": "ויקי Detrans ברדיט",
+          "discordServer": "שרת Discord הרשמי של /r/detrans",
+          "askDetransAI": "שאל/י 50,000+ אנשי דטרנזישן עם detrans.ai"
+        }
+      },
+      "genderAffirmingCare": {
+        "title": "טיפול מאשר מגדר: מה זה?",
+        "description": "טיפול מאשר מגדר הוא כרגע האפשרות הסטנדרטית (ולעתים קרובות היחידה) לטיפול בדיספוריה מגדרית המוצעת על ידי ספקי בריאות בעולם המערבי. טיפול מאשר מגדר למעשה מכיר בציפיות החברתיות המוגדרות מגדרית ואז מתאים את המטופל אליהן. זהו גישה מדורגת המתחילה במעבר חברתי (שם, כינויי גוף, לבוש), אז טיפול הורמונלי, ואז עבור חלק, הליכים כירורגיים בלתי הפיכים. טיפול מאשר מגדר יכול לספק הקלה לדיספוריה מגדרית אבל יש לו סיכוני בריאות חמורים ותופעות לוואי לעתים קרובות קבועות. התקדם/י בזהירות קיצונית, ודא/י שצפית/י",
+        "watchTestimonies": "בעדויות"
+      },
+      "genderExploratoryTherapy": {
+        "title": "טיפול חוקר מגדר: מה זה?",
+        "description1": "טיפול חוקר מגדר פשוט אומר שהמטפל שלך לא ממהר לאשר ולרפא אותך. במקום זאת הם יתחילו לחקור מושגים של מגדר ולמה את/ה עשוי/ה להרגיש כך. טיפול חוקר מגדר הוא גישה ללא סדר יום ספציפי מוגדר מראש, והתוצאות של טיפול חוקר מגדר יכולות להשתנות בהתאם לכל אדם בנפרד.",
+        "description2": "אם תחפש/י בגוגל 'טיפול חוקר מגדר', תמצא/י כמה ביקורות המשווות אותו לטיפול המרה הומוסקסואלי (המוכח כלא יעיל). האמת היא שטיפול חוקר מגדר שונה מאוד מטיפול המרה הומוסקסואלי:",
+        "references": {
+          "title": "הפניות",
+          "ref1": "U.S. Dept. of Health & Human Services (2025). דו'ח על דיספוריה מגדרית פדיאטרית וניסיונות המרת מגדר.",
+          "ref2": "D'Angelo, R. (2025). 'תמיכה באוטונומיה בצעירים עם דיספוריה מגדרית: פסיכותרפיה היא לא טיפול המרה.' Journal of Medical Ethics, 51(1).",
+          "ref3": "Lemma, A. & Schmidt, L. (2024). 'פסיכותרפיה פסיכודינמית לדיספוריה מגדרית אינה טיפול המרה.' Frontiers in Psychology.",
+          "ref4": "Korte, A. et al. (2021). 'מידה אחת לא מתאימה לכולם: תמיכה בפסיכותרפיה לדיספוריה מגדרית.' Archives of Sexual Behavior."
+        },
+        "florenceAshley": {
+          "title": "מחקר פלורנס אשלי",
+          "description": "מחקר אקדמי בתחום זה הוא לעתים קרובות מוטה. אחד המחקרים המשפיעים ביותר (חקירת טיפול חוקר מגדר) פורסם ב-2022 על ידי פלורנס אשלי, אישה טרנסית. במחקרה היא השוותה טיפול חוקר מגדר לטיפול המרה הומוסקסואלי וגינתה בתקיפות את התרגול. יש להכיר שאנשים המזדהים כטרנס מונעים להגן על זהותם ואמונותיהם, ומחקר זה הוא דוגמה מושלמת לכך. המחקר מלא בסילופי לוגיקה, אך הוא עדיין פורסם ומשמש כהצדקה אקדמית לכך שטיפול מאשר מגדר יהיה האפשרות היחידה לאנשים החווים דיספוריה מגדרית.",
+          "showFallacies": "ראה/י את כל סילופי הלוגיקה במחקר של פלורנס אשלי"
+        }
+      },
+      "findTherapist": {
+        "title": "איפה אני יכול/ה למצוא מטפל/ת שמתרגל/ת טיפול חוקר מגדר?",
+        "languageNotice": "רוב המטפלים הרשומים מדברים רק אנגלית, אבל את/ה עדיין יכול/ה לנסות ליצור איתם קשר כדי למצוא מישהו שמדבר את השפה שלך. אם את/ה מכיר/ה מטפל/ת מורשה שמדבר את השפה שלך, את/ה יכול/ה להציע להוסיף אותם לעמוד זה דרך",
+        "contactForm": "טופס יצירת הקשר",
+        "organizations": {
+          "justTherapy": {
+            "name": "Just Therapy",
+            "description": "Just Therapy נולד מתוך רצון לחזור למה שטיפול צריך להיות - יעיל, אתי, וחופשי מאידיאולוגיה. זהו ארגון של מטפלים ויועצים המאוחדים על ידי אתיקה ועקרונות משותפים. Just Therapy מכיר שרוב עולם הפסיכותרפיה והייעוץ נלקח על ידי פעילים ואידיאולוגיות, שעלולות לגרום נזק, ולא תמיכה, לרווחת הנפש של הלקוחות. חבריו, המגיעים ממגוון רחב של דיסציפלינות והתמחויות, חתמו על קוד התנהגות.",
+            "directory": "מדריך מטפלים של Just Therapy",
+            "codeOfConduct": "קוד התנהגות של Just Therapy"
+          },
+          "therapyFirst": {
+            "name": "Therapy First",
+            "description": "Therapy First מאחד מקצועני בריאות הנפש המאמינים שלקוחות במצוקה מגדרית זכאים לפסיכותרפיה פתוחה מבוססת עדויות החוקרת גורמים בלתי מודעים והקשריים לפני כל צעד רפואי בלתי הפיך; הם דוחים הן פרקטיקות המרה והן את מודל 'אשר בלבד', מכבדים אוטונומיית לקוח, ורואים מעבר מגדרי רפואי בילדות/נוער כניסויי, תוך כדי תמיכה בזכותם של מבוגרים לאוטונומיית גוף וחקירה טיפולית מתמשכת.",
+            "directory": "מדריך מטפלים של Therapy First",
+            "about": "אודות Therapy First"
+          },
+          "beyondTrans": {
+            "name": "Beyond Trans",
+            "description": "סטלה אומאלי השיקה את Gender Dysphoria Support Network במרץ 2020 כדי לתת להורים עזרה לא משוחדת עם ילדים במצוקה מגדרית; הוא צמח במהירות לקהילה גלובלית, שהניעה את יצירת Genspect ב-2021, תומכת בטיפול לא רפואי. מכירה בחרטה הגוברת על מעבר מגדרי, הקבוצה התחילה את Beyond Trans ב-2022, וביוני 2025 מיזגה אותו עם GDSN כדי ליצור רשת תמיכה אינטגרטיבית אחת מבוססת עדויות עבור משפחות, יחידים ומדטרנזישנרים.",
+            "directory": "מדריך מטפלים של Beyond Trans",
+            "supportGroups": "קבוצות תמיכה של Beyond Trans",
+            "about": "אודות Beyond Trans"
+          },
+          "detransFoundation": {
+            "name": "קרן הדטרנזישן",
+            "description": "קרן הדטרנזישן מספקת משאבים ותמיכה למדטרנזישנרים, כולל גישה למטפלים מוסמכים המבינים חוויות דטרנזישן. המטפלים הבאים הם חלק מקרן הדטרנזישן:",
+            "drEntwistle": "היא פסיכולוגית קלינית שעבדה בעבר בשירות הפיתוח של זהות מגדרית של NHS לקטינים מתחת לגיל 18 בלידס. היא רשומה במועצת המקצועות לבריאות של בריטניה (HCPC) ומציעה התייעצויות מקוונות באמצעות שיחת וידאו מאובטחת.",
+            "anastassisSpiliadis": "הוא פסיכותרפיסט מערכתי ומשפחתי שעבד ארבע שנים בשירות הפיתוח של זהות מגדרית בטביסטוק, שם הוביל את שירות הטיפול המשפחתי והייעוץ. הוא התפטר מהטביסטוק מכיוון שהוא לא הסכים עם העדר מודל טיפולי בהבנת קשיי זהות מגדרית. הוא פיתח את המודל החוקר מגדר ויש לו ניסיון רב בעבודה עם אנשים המתבוננים במגדר ועם מדטרנזישנרים.",
+            "visitWebsite": "בקר/י באתר קרן הדטרנזישן"
+          }
+        }
+      },
+      "forParents": {
+        "title": "משאבים להורים",
+        "intro": "אם הילד שלך לאחרונה יצא כטרנסג'נדר, את/ה עשוי/ה להרגיש מבולבל/ת, מודאג/ת, ולא בטוח/ה איך לתמוך בו בצורה הטובה ביותר תוך כדי הגנה על הבריאות והרווחה לטווח הארוך שלו.",
+        "rogdRepair": {
+          "name": "תוכנית ROGD Repair של סטפני ווין",
+          "whatIs": "מה זה ROGD Repair?",
+          "description1": "ROGD Repair זה:",
+          "bullet1": "תוכנית שעוזרת להורים של נוער מזדהה כטרנס לתקשר בדרכים שמקדמות דיזיסטנס, חשיבה ביקורתית, בריאות והרמוניה מערכתית",
+          "bullet2": "ערכת כלים אינטראקטיבית והולכת וגדלה של מושגי פסיכולוגיה וכישורי תקשורת שהושלמו באמצעות שנים כמטפלת נישואים ומשפחה מורשית שהפכה למאמנת הורים ROGD",
+          "bullet3": "קורס מקוון בקצב עצמי המכיל יותר מ-100 שיעורים, כל אחד מכיל סרטון, מאמר ושאלות הרהור שנועדו לעזור למשתתפים להתאים את התוכן למצבים הייחודיים של המשפחה שלהם, כמו גם פורומי דיון",
+          "description2": "חברויות ROGD Repair חדשות מגיעות כעת עם גישה בלתי מוגבלת ל-RepairBot, כלי הבינה המלאכותית הראשון והיחיד שנועד במיוחד לעזור להורים לא מאשרים של נוער במצוקה מגדרית. RepairBot מאומן על כל תוכנית הלימודים של ROGD Repair ומשמש כקיר משמעת מצוין, חבר לשיעורי בית ועוזר בכלי תקשורת!",
+          "ctaBox": {
+            "title": "הילד שלך אומר שהוא 'טרנס', אבל אתה רק רוצה שהוא יהיה בריא ובטוח.",
+            "description1": "הבריאות והעתיד של הילד שלך על הכף, אבל המינוף וההשפעה שלך מוגבלים. אולי הוא התחיל הורמונים בשוק השחור מאחורי גבך, או יוצא בזעם כשאתה 'מכנה אותו בכינויי גוף שגויים', או נמצא במכללה 'מאשרת'. אתה צריך לתקשר ביעילות במצב מסובך זה, לפני שמישהו נפגע. שם ROGD Repair נכנס לתמונה.",
+            "description2": "ROGD Repair הוא קורס מקוון בקצב עצמי וקהילה להורים המלמדת את מושגי הפסיכולוגיה וכלי התקשורת הדרושים לך כדי להבין את מצב הנפש של הילד שלך ואיך להגיע אליו. החברות כוללת כעת את RepairBot, העוזר הבינה המלאכותית שלך 24/7 המאומן על הגישה.",
+            "description3": "ROGD Repair ו-RepairBot נוצרו על ידי מטפלת נישואים ומשפחה מורשית עם מעל עשור של ניסיון בעבודה עם נוער מזדהה כטרנס ומשפחותיהם, שכעת מדריכה אך ורק הורים שיודעים שחייבת להיות דרך טובה יותר מ'אישור.'"
+          },
+          "coupon": "השתמש/י בקוד קופון זה כדי לקבל",
+          "couponCode": "DETRANSAI",
+          "learnMore": "למד/י עוד והירשם/י ל-ROGD Repair"
+        }
+      }
+    },
+    "table": {
+      "gayConversion": "טיפול המרה הומוסקסואלי",
+      "genderExploratory": "טיפול חוקר מגדר",
+      "goal": "מטרה",
+      "goalConversion": "לשנות נטייה מינית מכיוון שהיא נראית כפתולוגית.",
+      "goalExploratory": "להבין את משמעות הדיספוריה; התוצאה יכולה להיות מעבר, ללא מעבר, או מעבר חברתי חלקי.",
+      "method": "שיטה",
+      "methodConversion": "בושה, דחייה, התנייה התנהגותית, תפילה.",
+      "methodExploratory": "GET תואם למגוון רחב של מודלים טיפוליים, כגון טכניקות פסיכודינמיות או הומניסטיות סטנדרטיות - שאלות פתוחות, סקרנות, ללא נקודות קצה מוגדרות מראש.",
+      "evidence": "בסיס עדויות",
+      "evidenceConversion": "מראה עקבות של נזק; כל גוף רפואי מרכזי מגנה עליו.",
+      "evidenceExploratory": "עדיין אין RCTs, אך מקבילות לטיפולים המפחיתים חרדה, דיכאון, פגיעה עצמית; אין נתונים המראים נזק מערכתי.",
+      "ethics": "אתיקה",
+      "ethicsConversion": "מפרה אוטונומיה על ידי דחיפת זהות הטרוסקסואלית כאפשרות הנכונה היחידה.",
+      "ethicsExploratory": "מבקש להרחיב אוטונומיה על ידי הבטחה שהמתבגר (והמשפחה) מבינים את כל האפשרויות לפני צעדים בלתי הפיכים."
+    },
+    "fallacies": {
+      "title": "סילופי לוגיקה במחקר של פלורנס אשלי",
+      "name": "שם הסילוף",
+      "explanation": "הסבר פשוט",
+      "example": "דוגמה מהמאמר"
+    }
+  },
+  "charts": {
+    "ageDistribution": {
+      "title": "בן כמה היו מדטרנזישנרים כאשר עברו מעבר מגדרי ודטרנזישן?",
+      "subtitle": "נתונים מצירי זמן של מעבר מגדרי של משתמשי רדיט",
+      "loading": "טוען נתוני תרשים...",
+      "fetchError": "נכשל באחזור נתוני התפלגות גילאים",
+      "genericError": "אירעה שגיאה",
+      "errorPrefix": "שגיאה:",
+      "noData": "אין נתונים זמינים לטווח הגילאים שנבחר",
+      "tooltip": {
+        "age": "גיל: {age}",
+        "transitioned": "עבר מעבר: {count} משתמשים",
+        "detransitioned": "עבר דטרנזישן: {count} משתמשים"
+      },
+      "axis": {
+        "age": "גיל",
+        "users": "מספר משתמשים"
+      },
+      "legend": {
+        "transition": "גיל מעבר",
+        "detransition": "גיל דטרנזישן"
+      }
+    },
+    "transitionDuration": {
+      "title": "משך מעבר מגדרי: גיל במעבר לעומת גיל בדטרנזישן",
+      "description": {
+        "line1": "כל נקודה מציגה גיל מעבר (X) לעומת גיל דטרנזישן (Y).",
+        "line2": "נקודות גדולות יותר, אטומות יותר מייצגות יותר משתמשים."
+      },
+      "loading": "טוען נתוני תרשים...",
+      "noData": "אין נתונים זמינים לטווח הגילאים שנבחר",
+      "axis": {
+        "transitionAge": "גיל במעבר",
+        "detransitionAge": "גיל בדטרנזישן"
+      },
+      "tooltip": {
+        "transitionAge": "גיל מעבר",
+        "detransitionAge": "גיל דטרנזישן",
+        "duration": "משך",
+        "years": "שנים"
+      },
+      "male": "זכר",
+      "female": "נקבה",
+      "yearsAvg": "שנים בממוצע",
+      "user": "משתמש",
+      "users": "משתמשים"
+    },
+    "pathways": {
+      "title": "זרימת מסלולי דטרנזישן",
+      "subtitle": "זרימת דמוגרפיה של משתמשי /r/detrans ברדיט עד לתוצאות דטרנזישן",
+      "loading": "טוען נתוני מסלול...",
+      "fetchError": "נכשל באחזור נתוני התפלגות תגיות",
+      "genericError": "אירעה שגיאה",
+      "error": "שגיאה",
+      "users": "{count} משתמשים",
+      "percentageOfTotal": "{percentage}% מסך הכל",
+      "totalUsers": "סך הכל משתמשים",
+      "flowConnections": "חיבורי זרימה",
+      "male": "זכר",
+      "female": "נקבה",
+      "noData": "אין נתוני מסלול זמינים למסננים שנבחרו"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "צור קשר | detrans.ai",
+      "description": "צור/י קשר. שלח/י לנו את המחשבות, ההצעות או המשוב שלך."
+    },
+    "title": "טופס יצירת קשר",
+    "intro": "אם יש לך מחשבות, הצעות, או אם שירות חינם זה עזר לך, למשפחתך או לחבר שלך, הייתי רוצה לשמוע ממך. שלח/י לי הודעה למטה!",
+    "form": {
+      "to": "אל",
+      "name": "שם",
+      "namePlaceholder": "השם שלך",
+      "email": "דוא\"ל",
+      "emailPlaceholder": "you@example.com",
+      "subject": "נושא",
+      "subjectPlaceholder": "נושא",
+      "message": "הודעה",
+      "messagePlaceholder": "כתוב/י את הודעתך...",
+      "sendButton": "שלח/י הודעה",
+      "sending": "שולח...",
+      "success": "✅ ההודעה נשלחה!",
+      "error": "❌ נכשל בשליחה."
+    }
+  },
+  "seo": {
+    "conversations": {
+      "title": "ארכיון שיחות",
+      "description": "עיין/י בשיחות על זהות מגדרית, דטרנזישן, טיפול מאשר מגדר, ואישור.",
+      "conversations": "שיחות",
+      "featuredConversations": "שיחות מומלצות",
+      "allConversations": "כל השיחות",
+      "untitled": "שיחה ללא כותרת",
+      "noSummary": "אין סיכום זמין",
+      "noConversations": "אין שיחות זמינות.",
+      "mode": "מצב",
+      "updated": "עודכן",
+      "featured": "מומלץ",
+      "conversationSummary": "סיכום שיחה",
+      "noSummaryAvailable": "אין סיכום זמין לשיחה זו.",
+      "conversation": "שיחה",
+      "unableToParse": "לא ניתן לנתח הודעות שיחה.",
+      "archiveNote": "זוהי שיחה מהארכיון שלנו. כדי לצפות בשיחה המלאה ולהשתתף בדיונים, אנא בקר/י בגרסה האינטראקטיבית של עמוד זה.",
+      "welcomeTitle": "ברוכים הבאים לארכיון שיחות",
+      "welcomeDescription": "בחר/י שיחה מהסרגל הצדדי כדי לצפות בפרטים שלה. ארכיון זה מכיל דיונים על זהות מגדרית, חוויות דטרנזישן, ומסעות אישור.",
+      "featuredDescription": "דיונים מודגשים שסומנו על ידי הקהילה שלנו",
+      "allDescription": "עיון בכל הדיונים הזמינים",
+      "footer": "עמוד זה מספק תוכן ידידותי ל-SEO עבור מנועי חיפוש ובוטים. לחוויה האינטראקטיבית המלאה, אנא בקר/י עם דפדפן אינטרנט מודרני.",
+      "user": "משתמש"
+    },
+    "chat": {
+      "subtitle": "שאלות ותשובות לאנשים המתבוננים בזהותם המגדרית.",
+      "freedomMessage": "האמת היא שאי-התאמה מגדרית תשחרר את כולנו!",
+      "moreQuestions": "עוד שאלות הקשורות ל-\"{question}\""
+    },
+    "videos": {
+      "title": "סרטוני מעבר ודטרנזישן",
+      "description": "זהו ארכיון של סרטוני דטרנזישן אישיים שהועלו לאינטרנט. תרמו ושתפו את הסיפור שלכם!",
+      "thumbnailAlt": "תמונת ממוזערת עבור",
+      "by": "מאת",
+      "female": "נקבה",
+      "male": "זכר"
+    }
+  },
+  "routes": {
+    "home": "/",
+    "about": "/about",
+    "contact": "/contact",
+    "support": "/support",
+    "videos": "/videos",
+    "stories": "/stories",
+    "studies": "/studies",
+    "definitions": "/definitions",
+    "donate": "/donate",
+    "terms": "/terms",
+    "prompts": "/prompts",
+    "participate": "/participate",
+    "conversations": "/conversations",
+    "research": "/research",
+    "chat": "/chat",
+    "login": "/login"
+  }
+}

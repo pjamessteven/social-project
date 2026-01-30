@@ -1,0 +1,805 @@
+{
+  "metadata": {
+    "title": "detrans.ai | Berbicara dengan 50.000+ orang yang berhenti transisi",
+    "description": "Detrans.ai adalah chatbot yang membantu dan penuh empati yang berbagi pengalaman dan perspektif dari orang-orang yang telah berhenti transisi. Gunakan detrans.ai untuk dukungan dan saran transisi atau berhenti transisi, atau sekadar sebagai alat penelitian untuk memahami mengapa beberapa orang mengadopsi, menjalani, dan melepaskan identitas gender."
+  },
+  "home": {
+    "title": "Berbicara dengan 50.000+ Orang yang Berhenti Transisi",
+    "subtitle": "Perspektif dari Sisi Lain",
+    "intro": {
+      "greeting": "Halo! Apa itu orang yang berhenti transisi?",
+      "response": "Halo! Saya detrans.ai - kesadaran kolektif dari orang-orang yang berhenti transisi 🦎",
+      "definition": "Orang yang berhenti transisi (detransitioner) adalah mantan transgender yang melakukan transisi secara sosial atau medis, tetapi sejak itu berhenti mengidentifikasi diri sebagai transgender dan mungkin telah membalikkan beberapa aspek transisi mereka.",
+      "description": "Saya mengamati alasan, pola, dan kebenaran mengapa beberapa orang mengadopsi, menjalani, dan melepaskan identitas gender dengan membaca cerita dan pengalaman yang diposting di subreddit /r/detrans dan menonton video berhenti transisi yang diunggah ke YouTube.",
+      "purpose": "Tujuan saya adalah berbagi pengetahuan ini untuk mendekonstruksi gender dan mengeksplorasi bagaimana pengalaman-pengalaman ini membentuk hubungan seseorang dengan diri sendiri, tubuh, dan dunia.",
+      "helpPrompt": "Bagaimana saya bisa membantu Anda hari ini?"
+    },
+    "starters": {
+      "lizardQuestion": {
+        "display": "Maaf, tapi ada apa dengan kadal?",
+        "full": "Mengapa orang yang berhenti transisi menggunakan kadal untuk mewakili diri mereka secara online?"
+      },
+      "curious": {
+        "display": "Saya ingin tahu mengapa beberapa orang berhenti transisi",
+        "full": "Saya ingin tahu mengapa beberapa orang berhenti transisi, dan kesadaran apa yang mereka miliki untuk mencapai titik tersebut."
+      },
+      "questioningTrans": {
+        "display": "Saya mempertanyakan identitas gender saya dan mungkin transgender",
+        "full": "Saya mempertanyakan identitas gender saya dan mungkin transgender"
+      },
+      "thinkingDetrans": {
+        "display": "Saya saat ini mengidentifikasi diri sebagai trans dan memikirkan untuk berhenti transisi",
+        "full": "Saya saat ini mengidentifikasi diri sebagai trans dan memikirkan untuk berhenti transisi"
+      },
+      "familyMember": {
+        "display": "Saya adalah orang tua, anggota keluarga, atau teman dari seseorang yang sedang transisi",
+        "full": "Saya adalah orang tua, anggota keluarga, atau teman dari seseorang yang sedang transisi"
+      },
+      "researcher": {
+        "display": "Saya adalah peneliti yang mempelajari identitas gender dan pengalaman berhenti transisi",
+        "full": "Saya adalah peneliti yang mempelajari identitas gender dan pengalaman berhenti transisi"
+      },
+      "learnChallenges": {
+        "display": "Saya ingin mempelajari tentang kesulitan dan tantangan yang dihadapi orang yang berhenti transisi",
+        "full": "Saya ingin mempelajari tentang kesulitan dan tantangan yang dihadapi orang yang berhenti transisi"
+      },
+      "understandTransition": {
+        "display": "Saya ingin memahami mengapa orang yang berhenti transisi memutuskan untuk transisi pada awalnya",
+        "full": "Saya ingin memahami alasan mengapa orang yang berhenti transisi memutuskan untuk transisi pada awalnya, dan bagaimana perbedaannya antara laki-laki dan perempuan."
+      },
+      "debunkMisinfo": {
+        "display": "Saya ingin Anda membantah misinformasi dan kepercayaan umum tentang berhenti transisi",
+        "full": "Mohon bantahlah semua misinformasi dan kepercayaan umum tentang orang yang berhenti transisi, sedalam mungkin."
+      }
+    },
+    "navigation": {
+      "videos": "Video Berhenti Transisi",
+      "stories": "Cerita",
+      "storiesFull": "Cerita & Statistik",
+      "support": "Bantuan & Dukungan",
+      "definitions": "Terminologi Gender",
+      "studies": "Studi Akademik",
+      "studiesShort": "Studi",
+      "howItWorks": "Cara Kerjanya"
+    },
+    "deepResearch": {
+      "title": "Mode Riset Mendalam",
+      "description": "Mode Riset Mendalam memperluas pertanyaan Anda untuk memberikan jawaban yang mendekati topik dari berbagai sudut pandang.",
+      "note": "Riset Mendalam lebih lambat dan non-konversasional. Untuk obrolan, matikan fitur ini."
+    },
+    "disclaimer": {
+      "trigger": "Pengalaman dan perspektif di situs ini bersumber dari Reddit.",
+      "title": "Penafian Sumber",
+      "content": "detrans.ai menjawab pertanyaan tentang gender dari perspektif berhenti transisi dengan menemukan pengalaman yang relevan dari komunitas /r/detrans di Reddit. Meskipun Reddit adalah platform di mana orang nyata berbagi cerita pribadi, platform ini juga mungkin berisi konten yang dibuat bot atau menyesatkan. Anda didorong untuk memeriksa postingan Reddit asli untuk memverifikasi sumber dan konteks. Harap dicatat bahwa /r/detrans adalah subreddit yang sangat dimoderasi, tetapi moderasi tidak menjamin keakuratan atau keaslian setiap postingan."
+    },
+    "donate": {
+      "title": "Dukung Pekerjaan Kami",
+      "description": "Bantu kami menjaga sumber daya ini tetap tersedia bagi mereka yang paling membutuhkannya.",
+      "button": "Donasi",
+      "card": {
+        "title": "Donasi diperlukan untuk menjaga {site} tetap hidup!",
+        "description": "Jika Anda menghargai layanan gratis ini, harap pertimbangkan untuk memberikan donasi.",
+        "description2": "Situs akan dijalankan dalam mode cache-saja jika saya kehabisan uang, tanpa kemampuan untuk mengajukan pertanyaan Anda sendiri.",
+        "button": "Berikan donasi"
+      }
+    },
+    "participate": {
+      "card": {
+        "title": "Apakah Anda orang yang berhenti transisi atau desister?",
+        "description": "Berpartisipasilah dalam studi untuk membantu meningkatkan pemahaman ilmiah tentang identitas transgender",
+        "description2": "dan untuk meningkatkan hasil bagi orang yang mengalami disforia gender."
+      },
+      "title": "Bagikan Cerita Anda",
+      "description": "Pengalaman Anda dapat membantu orang lain memahami kompleksitas identitas gender.",
+      "button": "Berpartisipasi"
+    },
+    "footer": {
+      "poem": {
+        "line1": "Anda dapat membebaskan diri sendiri,",
+        "line2": "Yang perlu Anda lakukan hanyalah menjadi diri sendiri.",
+        "line3": "Dan pastikan untuk memperhatikan pikiran Anda!",
+        "line4": "Karena pikiran itu seperti taman,",
+        "line5": "Dan setiap pikiran adalah benih.",
+        "line6": "Kita menuai apa yang kita tabur,",
+        "line7": "Tetapi melalui ini kita dapat tumbuh..."
+      },
+      "openSource": "Proyek open-source oleh",
+      "madeWithLove": "Dibuat dengan cinta di Wellington, Selandia Baru",
+      "donatePrompt": "Harap berdonasi jika Anda bisa,",
+      "beKind": "Dan berbaiklah satu sama lain."
+    },
+    "browseConversations": "Jelajahi Semua Percakapan"
+  },
+  "header": {
+    "navigation": {
+      "home": "Beranda",
+      "resources": "Sumber Daya",
+      "about": "Tentang"
+    },
+    "resources": {
+      "genderSupport": "Dukungan Gender",
+      "genderSupportDesc": "Temukan komunitas dan terapis",
+      "terminology": "Terminologi",
+      "terminologyDesc": "Mendefinisikan istilah/konsep kunci",
+      "stories": "Cerita & Statistik",
+      "storiesDesc": "Dari pengguna /r/detrans",
+      "videos": "Video Berhenti Transisi",
+      "videosDesc": "Arsip memoar pribadi",
+      "studies": "Studi Telaah Sejawat",
+      "studiesDesc": "Penelitian akademis yang relevan",
+      "statistics": "Statistik Terverifikasi",
+      "statisticsDesc": "statsforgender.org"
+    },
+    "about": {
+      "contact": "Kontak",
+      "contactDesc": "Hubungi saya",
+      "systemPrompts": "Prompt Sistem",
+      "systemPromptsDesc": "Lihat prompt sistem AI",
+      "terms": "Ketentuan",
+      "termsDesc": "Kebijakan privasi dan ketentuan"
+    },
+    "donate": "Donasi",
+    "language": {
+      "title": "Bahasa"
+    }
+  },
+  "language": {
+    "title": "Bahasa",
+    "select": "Pilih bahasa",
+    "search": "{count} bahasa",
+    "en": "Bahasa Inggris",
+    "es": "Bahasa Spanyol",
+    "fr": "Bahasa Prancis",
+    "de": "Bahasa Jerman",
+    "he": "Bahasa Ibrani",
+    "it": "Bahasa Italia",
+    "nl": "Bahasa Belanda",
+    "tr": "Bahasa Turki",
+    "id": "Bahasa Indonesia"
+  },
+  "settings": {
+    "title": "Pengaturan"
+  },
+  "theme": {
+    "title": "Tampilan",
+    "darkMode": "Mode gelap",
+    "light": "Terang",
+    "dark": "Gelap"
+  },
+  "definitions": {
+    "metadata": {
+      "title": "detrans.ai | Mendefinisikan Istilah Terkait Gender",
+      "description": "Dalam percakapan sehari-hari, seks dan gender kadang digunakan secara bergantian dan dalam beberapa bahasa hanya ada satu kata untuk menggambarkan keduanya. Namun, seluruh konsep disforia gender bergantung pada pemahaman bahwa ada perbedaan antara seks dan gender."
+    },
+    "title": "Mendefinisikan Istilah Terkait Gender",
+    "sexAndGender": {
+      "heading": "Seks dan gender?",
+      "intro": "Dalam percakapan sehari-hari, seks dan gender kadang digunakan secara bergantian dan dalam beberapa bahasa hanya ada satu kata untuk menggambarkan keduanya. Namun, seluruh konsep disforia gender bergantung pada pemahaman bahwa ada perbedaan antara seks dan gender.",
+      "sex": "<b>Seks</b> mengacu pada biologi seseorang (yaitu anatomi mereka; kerangka, otot, kromosom, sistem reproduksi, dan karakteristik seks sekunder). Perhatikan bahwa lebih dari 99% orang secara biologis laki-laki atau perempuan, tidak ada spektrum seks meskipun beberapa orang memiliki gangguan perkembangan seksual (DSD). Sebagian besar orang dengan DSD adalah laki-laki atau perempuan.",
+      "gender": "<b>Gender</b> mengacu pada peran, perilaku, aktivitas, dan atribut yang 'dikonstruksi secara sosial' yang dianggap tepat oleh masyarakat untuk laki-laki dan perempuan [seperti yang ditentukan oleh seks biologis mereka]. 'Maskulin' dan 'feminin' adalah kategori gender. Sebagian besar, mungkin semua, orang memiliki campuran sifat maskulin dan feminin. Gender berubah dari waktu ke waktu dan antar budaya.",
+      "nonConformity": "<b>Non-konformitas gender</b> terjadi ketika seseorang bertindak atau tampil berbeda dari yang diharapkan oleh masyarakat mereka, berdasarkan seks mereka.",
+      "identity": "<b>Identitas Gender</b> - beberapa orang percaya bahwa kita semua memiliki 'identitas gender' yang bawaan - perasaan atau kesadaran mendalam tentang diri kita sebagai laki-laki, perempuan, atau di antaranya - yang ada secara terpisah dari seks biologis kita dan yang, pada kesempatan langka, dapat berbeda dari seks biologis kita. Orang lain tidak percaya bahwa identitas gender spesifik yang berbeda dari aspek lain dari kepribadian atau identitas seseorang ada."
+    },
+    "dysphoria": {
+      "heading": "Apa itu disforia gender?",
+      "p1": "Disforia gender adalah istilah diagnostik yang digunakan oleh komunitas psikiatris dan medis untuk menggambarkan kesulitan yang dialami ketika seseorang merasa bahwa identitas gender mereka tidak cocok dengan seks biologis mereka.",
+      "p2": "Orang yang mengalami disforia gender melaporkan perasaan identifikasi yang kuat dan persisten dengan gender yang berbeda dari seks mereka, dan ketidaknyamanan yang terkait dengan tubuh mereka yang berseks. Untuk diagnosis formal saat ini, perasaan tersebut harus menyebabkan kesulitan atau gangguan yang signifikan bagi orang yang mengalaminya."
+    },
+    "transgender": {
+      "heading": "Apa artinya menjadi transgender?",
+      "p1": "Transgender adalah istilah yang dapat berarti hal yang berbeda bagi orang yang berbeda. Umumnya disepakati bahwa perempuan trans lahir dengan tubuh laki-laki tetapi mengidentifikasi diri sebagai perempuan, laki-laki trans lahir dengan tubuh perempuan tetapi mengidentifikasi diri sebagai laki-laki, dan orang non-biner mengidentifikasi diri sebagai bukan laki-laki atau perempuan. Orang sering menggunakan istilah yang lebih pendek 'trans' untuk menandakan bahwa seseorang mengidentifikasi dengan gender yang tidak sama dengan seks biologis mereka.",
+      "p2": "Transgender dapat dipahami berarti bahwa i) Anda adalah seks/gender yang berlawanan dengan seks Anda lahir, ii) Anda percaya diri sebagai seks/gender yang berlawanan dengan seks Anda lahir, atau iii) Anda hidup seolah-olah seks/gender Anda berlawanan dengan seks Anda lahir. Perdebatan tentang cara mana dari ketiga pemahaman istilah ini yang paling akurat bisa menjadi panas dan kontroversial. Beberapa orang merasa bahwa bahkan hanya dengan mendiskusikan apa artinya menjadi transgender sudah merusak keabsahan pengalaman tersebut. Namun, keyakinan yang berbeda ini pasti mengarah pada ide yang berbeda tentang cara terbaik untuk mendukung orang dalam mengelola kesulitan terkait gender sehingga diskusi diperlukan untuk memastikan bahwa orang mendapatkan bantuan dan nasihat terbaik yang mungkin."
+    },
+    "desistance": {
+      "heading": "Apa itu desistance (berhenti)?",
+      "p1": "Desistance adalah ketika seseorang yang mengidentifikasi diri sebagai transgender tetapi tidak menjalani intervensi medis tidak lagi mengidentifikasi diri sebagai transgender. Meskipun mereka mungkin tidak harus menghadapi implikasi dari menjalani intervensi medis, desistance masih bisa menjadi proses yang sangat menyakitkan secara emosional, membingungkan, dan sulit."
+    },
+    "detransition": {
+      "heading": "Berhenti transisi dan orang yang berhenti transisi",
+      "p1": "Berhenti transisi adalah ketika seseorang yang mengidentifikasi diri sebagai transgender dan menjalani intervensi medis tidak lagi mengidentifikasi diri sebagai transgender. Ada variasi yang sangat luas dalam pengalaman orang-orang dalam kelompok ini. Beberapa orang mungkin sangat tertekan dengan apa yang telah mereka lalui dan implikasi jangka panjang, yang lain mungkin melihatnya sebagai sesuatu yang harus mereka lalui untuk memahami diri mereka seperti saat ini."
+    },
+    "regret": {
+      "heading": "Penyesalan transisi",
+      "p1": "Beberapa orang mungkin telah mengidentifikasi diri sebagai transgender selama bertahun-tahun dan telah menjalani intervensi medis seperti hormon dan operasi yang telah mengubah tubuh mereka secara ireversibel. Mereka mungkin merasa menyesal memulai transisi medis gender tetapi mereka juga terus mengidentifikasi diri sebagai transgender dan/atau melanjutkan dengan hormon seks silang."
+    },
+    "source": {
+      "text": "Sumber:",
+      "link": "The Detrans Foundation"
+    }
+  },
+  "chat": {
+    "lookingForComments": "Mencari komentar yang relevan...",
+    "errorOccurred": "Terjadi kesalahan, coba lagi... Hubungi saya jika ini terus terjadi.",
+    "analysingExperiences": "Menganalisis Pengalaman",
+    "detransPerspective": "-> Apa perspektif orang yang berhenti transisi tentang topik ini?",
+    "transPerspective": "-> Apa perspektif trans tentang topik ini?",
+    "backToPortal": "<- Kembali ke Portal"
+  },
+  "chatInput": {
+    "placeholder": "Tanyakan detrans.ai...",
+    "deepResearch": "Riset Mendalam",
+    "suggestions": "Saran:"
+  },
+  "deepResearchEvents": {
+    "errorTitle": "Kesalahan riset mendalam",
+    "retrieving": "Mengambil pengalaman berhenti transisi...",
+    "generatingQuestions": "Menghasilkan pertanyaan meta...",
+    "findingAnswers": "Menemukan jawaban atas pertanyaan meta",
+    "completed": "Riset mendalam selesai",
+    "retrieveError": "Kesalahan mengambil pengalaman berhenti transisi!",
+    "analyzeError": "Kami telah kehabisan uang untuk membayar AI yang menganalisis pengalaman berhenti transisi dan menjawab pertanyaan. Jika Anda bisa, harap berdonasi agar kami dapat terus menjalankan layanan. Harap coba lagi nanti. Untuk saat ini, Anda masih dapat mencoba pertanyaan-pertanyaan di portal.",
+    "generatingAnswer": "Menghasilkan jawaban...",
+    "waitingForAnswer": "Menunggu jawaban",
+    "questionsAnswered": "{answered} dari {total} pertanyaan meta dijawab",
+    "generatingSummary": "Menghasilkan ringkasan jawaban"
+  },
+  "questionTabs": {
+    "topics": "Topik",
+    "generated": "Dihasilkan",
+    "recent": "Terbaru",
+    "top": "Teratas"
+  },
+  "conversations": {
+    "title": "Percakapan Terbaru",
+    "subtitle": "Lihat sendiri bagaimana detrans.ai membantu orang-orang dari seluruh dunia.",
+    "tabs": {
+      "featured": "Unggulan",
+      "all": "Semua"
+    },
+    "buttons": {
+      "showMore": "Tampilkan {count} Percakapan Lainnya",
+      "showLess": "Tampilkan Lebih Sedikit",
+      "loadMore": "Muat Percakapan Lainnya",
+      "loading": "Memuat..."
+    }
+  },
+  "conversationCard": {
+    "untitled": "Percakapan Tanpa Judul",
+    "from": "dari",
+    "moreMessages": "{count} pesan lagi...",
+    "moreMessage": "{count} pesan lagi...",
+    "date": {
+      "today": "Hari ini",
+      "yesterday": "Kemarin",
+      "daysAgo": "{count} hari yang lalu",
+      "weeksAgo": "{count, plural, =1 {1 minggu yang lalu} other {# minggu yang lalu}}"
+    },
+    "admin": {
+      "deleting": "Menghapus...",
+      "delete": "Hapus Percakapan",
+      "banning": "Memblokir...",
+      "ban": "Blokir Pengguna (IP)"
+    }
+  },
+  "stories": {
+    "metadata": {
+      "title": "detrans.ai | Cerita & Statistik Berhenti Transisi",
+      "description": "Baca cerita berhenti transisi yang tulus, garis waktu, dan tren dari anggota komunitas Reddit /r/detrans, koleksi cerita berhenti transisi terbuka terbesar di internet. Temukan berapa usia orang yang berhenti transisi ketika mereka transisi dan berhenti transisi dan jalur apa yang mereka ambil."
+    },
+    "title": "Cerita & Statistik Berhenti Transisi",
+    "subtitle": "Jelajahi dan visualisasikan {count} cerita dan statistik berhenti transisi unik dari orang-orang yang telah berbagi pengalaman mereka di subreddit /r/detrans, yang merupakan koleksi cerita dan pengalaman berhenti transisi terbuka terbesar di internet.",
+    "disclaimer": {
+      "summary": "Cerita-cerita ini telah diringkas menggunakan AI.",
+      "details": "Di Reddit, orang sering berbagi pengalaman mereka di berbagai komentar atau postingan. Untuk membuat informasi ini lebih mudah diakses, AI kami mengumpulkan semua potongan tersebar menjadi satu ringkasan dan garis waktu yang mudah dibaca. Semua prompt sistem dicatat di halaman prompt.",
+      "accuracy": "Kadang AI dapat menghasilkan halusinasi atau menyatakan hal-hal yang tidak benar. Namun secara umum, cerita yang diringkas adalah refleksi yang akurat dari komentar asli oleh pengguna.",
+      "inclusion": "Hanya pengguna yang telah berbagi cukup untuk menyusun cerita dan garis waktu lengkap yang disertakan. Pengguna yang telah memposting kurang dari lima komentar atau komentar mereka yang menerima kurang dari tiga upvote diabaikan. Postingan belum termasuk dalam dataset.",
+      "verification": "Setiap pengguna telah dianalisis untuk tanda-tanda konten yang dibuat bot atau tidak otentik. Akun apa pun yang tidak tampak seperti orang yang berhenti transisi yang sebenarnya ditandai 'mencurigakan'. Akun-akun ini akan ditinjau secara manual dan dihapus dari dataset detrans.ai jika ditemukan tidak otentik. Akun yang telah membuat kurang dari lima komentar dihilangkan dari analisis."
+    },
+    "charts": {
+      "tabs": {
+        "age": "Usia",
+        "duration": "Durasi",
+        "transitionReason": "Alasan Transisi",
+        "detransitionReason": "Alasan Berhenti",
+        "pathways": "Jalur"
+      },
+      "loading": "Memuat data grafik...",
+      "error": "Kesalahan: {message}",
+      "retry": "Coba lagi",
+      "noData": "Tidak ada data alasan {mode} yang tersedia untuk filter yang dipilih",
+      "reasonChart": {
+        "title": "Mengapa orang yang berhenti transisi mengatakan mereka {mode, select, detransition {berhenti transisi} other {transisi}}?",
+        "subtitle": "Data dari garis waktu pengguna Reddit {mode} ({totalReasonCount} total pengguna, {totalUsers} alasan berbeda.)",
+        "mentions": "{count} menyebutkan ({percentage}%)"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Cari pengalaman pengguna...",
+      "ageRange": "Rentang Usia:",
+      "ageRangeYears": "{min} - {max} tahun",
+      "sex": {
+        "all": "Laki-laki dan Perempuan",
+        "female": "Perempuan",
+        "male": "Laki-laki"
+      },
+      "tagsPlaceholder": "Pilih tag untuk difilter...",
+      "clearFilters": "Hapus Filter"
+    },
+    "results": "Menampilkan {showing} dari {total} cerita pengguna",
+    "noResults": "Tidak ada pengguna yang cocok dengan filter Anda.",
+    "pagination": {
+      "previous": "Sebelumnya",
+      "next": "Selanjutnya",
+      "pageInfo": "Halaman {page} dari {totalPages}"
+    },
+    "userCard": {
+      "comments": "{count} komentar",
+      "postingSince": "Memosting sejak {date}",
+      "transitionedAt": "Transisi pada usia {age}",
+      "desistedAt": "Berhenti pada usia {age}",
+      "detransitionedAt": "Berhenti transisi pada usia {age}",
+      "female": "perempuan",
+      "male": "laki-laki"
+    }
+  },
+  "prompts": {
+    "metadata": {
+      "title": "Bagaimana cara kerjanya? | Prompt Sistem",
+      "description": "Pelajari cara kerja detrans.ai, termasuk prompt sistem, tanggal cutoff data, dan informasi open source."
+    },
+    "title": "Bagaimana cara kerjanya?",
+    "intro": {
+      "paragraph1": "<bold>detrans.ai</bold> chat adalah agen yang didukung oleh RAG (generasi yang diperkuat pengambilan) yang menghasilkan pertanyaan meta dan menjawabnya dengan memunculkan dan mengintegrasikan pemikiran dan pengalaman berhenti transisi dari subreddit <reddit>/r/detrans</reddit> dan dari YouTube. Dibangun dengan kerangka kerja <llamaIndex>LlamaIndex</llamaIndex> dan model open-source Tiongkok <kimi>kimi-k2.5</kimi> oleh Moonshot AI untuk mengurangi bias politik Barat.",
+      "paragraph2": "ChatGPT dan sebagian besar LLM Barat lainnya cukup agresif dalam cara mereka mempromosikan dan menjaga keyakinan gender. Terbukti mustahil untuk menggunakan model GPT OpenAI untuk proyek ini, karena model-model tersebut akan terus-menerus merusak dan bertentangan dengan pengalaman berhenti transisi yang ditugaskan untuk diringkas. Jika Anda menginginkan pengalaman yang lebih mengafirmasi, lihat <chatgpt>ChatGPT</chatgpt>."
+    },
+    "dataCutoff": {
+      "title": "Tanggal Cutoff Data",
+      "paragraph1": "<bold>detrans.ai</bold> saat ini memiliki akses ke semua komentar di /r/detrans yang diposting sebelum <date>8/9/2025</date> yang menerima setidaknya tiga upvote. Saya akan berusaha untuk memperbarui dataset setidaknya sekali per tahun selama subreddit /r/detrans terus ada.",
+      "paragraph2": "Pengguna dapat mengirimkan pengalaman video dengan mengirimkan tautan ke video YouTube. Video-video ini akan ditinjau secara manual sebelum ditranskripsi menggunakan model speech-to-text OpenAI Whisper dan ditambahkan ke basis data vektor dan arsip video."
+    },
+    "openSource": {
+      "title": "Open Source",
+      "paragraph": "Kode sumber juga tersedia di <github>Github</github> di bawah lisensi MIT jika Anda ingin memeriksa atau menggunakan ulang kode apa pun untuk proyek Anda sendiri. Proyek ini juga dibangun di atas banyak proyek open-source lainnya, seperti Llamaindex, React, Next.js, Tailwind, Lucide, Qdrant, Postgres, dan Vercel AI SDK. Banyak terima kasih kepada kontributor proyek-proyek ini yang menyediakan dasar yang solid untuk dibangun di atasnya."
+    },
+    "systemPrompts": {
+      "title": "Prompt Sistem",
+      "description": "Ini adalah prompt yang digunakan sistem untuk alur kerja RAG. Tidak ada instruksi khusus atau lapisan lain selain apa yang ditampilkan di halaman ini.",
+      "lastUpdated": "Terakhir Diperbarui",
+      "chatAgentTitle": "Prompt Sistem Agen Chat",
+      "researchModeTitle": "Prompt Sistem untuk Mode Riset Mendalam",
+      "researchAgentTitle": "Prompt Agen Riset",
+      "experienceExtractionTitle": "Prompt Ekstraksi Pengalaman",
+      "finalAnswerTitle": "Prompt Jawaban Akhir"
+    },
+    "userSummaries": {
+      "title": "Prompt Sistem untuk Ringkasan Pengguna",
+      "description": "Ini adalah prompt sistem untuk ringkasan pengguna yang dihasilkan.",
+      "lastUpdated": "Terakhir Diperbarui",
+      "experienceReportTitle": "Laporan Pengalaman Pengguna",
+      "experienceSummaryTitle": "Ringkasan Pengalaman Pengguna",
+      "generateTagsTitle": "Hasilkan Tag",
+      "extractAgesTitle": "Ekstrak Usia",
+      "determineBirthSexTitle": "Tentukan Seks Lahir",
+      "redFlagReportTitle": "Laporan Bendera Merah"
+    }
+  },
+  "donatePage": {
+    "title": "Pertahankan Detrans.AI Berjalan",
+    "description1": "Jika Anda menghargai pekerjaan yang telah saya masukkan ke situs ini atau jika layanan gratis ini telah membantu Anda, harap pertimbangkan untuk memberikan donasi satu kali atau rutin untuk menjaga <b>detrans.ai</b> tetap online.",
+    "description2": "Saya tidak mampu menjalankan layanan yang membutuhkan banyak sumber daya seperti ini tanpa dukungan Anda. Sumber pendapatan utama saya saat ini adalah bantuan pemerintah dan pada saat penulisan ini saya memiliki kurang dari $1000 di rekening bank saya. Jika situs ini meledak, saya bisa mendapatkan tagihan ribuan dolar. Jika saya kehabisan uang, kemampuan untuk mengajukan pertanyaan Anda sendiri dan mengeksplorasi topik lebih dalam melalui pertanyaan tindak lanjut akan dinonaktifkan dan saya hanya akan melayani respons yang di-cache untuk pertanyaan-pertanyaan di portal.",
+    "description3": "Harap pertimbangkan donasi bulanan. Anda dapat berdonasi menggunakan paypal di bawah, langsung ke rekening bank Selandia Baru saya atau dengan BTC.",
+    "bankAccount": "Rekening Bank Selandia Baru",
+    "accountName": "Nama",
+    "accountNumber": "Rekening",
+    "swiftCode": "Kode SWIFT/BIC",
+    "bitcoin": "Alamat Bitcoin",
+    "paypal": "Donasi Paypal"
+  },
+  "terms": {
+    "metadata": {
+      "title": "Kebijakan Privasi | detrans.ai",
+      "description": "Pelajari tentang kebijakan privasi kami, praktik pengumpulan data, dan bagaimana kami melindungi informasi Anda."
+    },
+    "title": "Kebijakan Privasi",
+    "intro": "Kebijakan Privasi ini menjelaskan informasi apa yang kami kumpulkan, mengapa kami mengumpulkannya, dan bagaimana kami menjaganya tetap aman ketika Anda mengunjungi atau menggunakan layanan kami.",
+    "sections": {
+      "informationWeCollect": {
+        "title": "Informasi yang Kami Kumpulkan",
+        "chatMessages": {
+          "title": "Pesan Chat:",
+          "content": "Kami menyimpan semua catatan chat serta respons untuk semua pertanyaan yang diajukan dalam Mode Riset Mendalam. Catatan chat tidak dikaitkan dengan alamat IP Anda atau data apa pun yang berpotensi digunakan untuk mengidentifikasi Anda. Catatan chat dapat dianalisis dan digunakan untuk tujuan penelitian di masa depan. Harap hindari berbagi informasi sensitif apa pun."
+        },
+        "cookies": {
+          "title": "Cookie / Teknologi Pelacakan:",
+          "content": "Kami <em>tidak</em> menggunakan cookie, pixel tag, atau mekanisme pelacakan sisi klien apa pun yang serupa."
+        },
+        "ipAddresses": {
+          "title": "Alamat IP:",
+          "content": "Ketika Anda membuat permintaan ke server kami, kami menyimpan alamat IP Anda untuk menghitung permintaan dan menegakkan batas tingkat yang mencegah penyalahgunaan."
+        },
+        "optionalData": {
+          "title": "Data Opsional:",
+          "content": "Jika Anda memilih untuk menghubungi kami, kami dapat mengumpulkan informasi yang Anda berikan secara sukarela (misalnya, alamat email, nama). Memberikan informasi ini bersifat opsional kecuali dinyatakan secara eksplisit."
+        }
+      },
+      "legalBases": {
+        "title": "Dasar Hukum untuk Pemrosesan (pengunjung UE/EEA)",
+        "item1": "Pemrosesan batas tingkat diperlukan untuk <em>kepentingan sah</em> kami berdasarkan GDPR Art. 6(1)(f) — khususnya, menjaga ketersediaan dan keamanan layanan.",
+        "item2": "Pemrosesan tambahan apa pun (misalnya, pembuatan akun) didasarkan pada <em>persetujuan</em> atau <em>kebutuhan kontraktual</em> Anda, sesuai yang berlaku."
+      },
+      "dataRetention": {
+        "title": "Berapa Lama Kami Menyimpan Data",
+        "content": "Semua catatan chat akan disimpan. Alamat IP yang digunakan untuk pembatasan tingkat dihapus secara otomatis dalam beberapa menit setelah permintaan terakhir atau di akhir jendela batas tingkat, mana yang lebih dulu. Informasi sukarela (misalnya, email dukungan) disimpan hanya selama diperlukan untuk menyelesaikan pertanyaan Anda atau memenuhi kewajiban hukum."
+      },
+      "thirdPartySharing": {
+        "title": "Berbagi Pihak Ketiga",
+        "content": "Kami dapat memilih untuk berbagi catatan chat yang dianonimkan dengan akademisi dan peneliti yang ingin meningkatkan hasil bagi orang yang mengalami disforia gender. Kami dapat mengungkapkan alamat IP atau data lain hanya ketika diwajibkan oleh hukum atau untuk melindungi hak, pengguna, atau publik kami (misalnya, pencegahan penipuan, perintah pengadilan)."
+      },
+      "security": {
+        "title": "Keamanan",
+        "content": "Kami menggunakan tindakan teknis dan organisasi standar industri (enkripsi TLS, kontrol akses, desain hak istimewa paling sedikit) untuk melindungi data saat transit dan saat istirahat."
+      },
+      "internationalTransfers": {
+        "title": "Transfer Internasional",
+        "content": "Server kami berlokasi di Amerika Serikat. Jika Anda mengakses layanan dari luar AS, Anda memahami bahwa alamat IP Anda akan dikirimkan ke, dan diproses di, Amerika Serikat."
+      },
+      "childrensPrivacy": {
+        "title": "Privasi Anak-anak",
+        "content": "Layanan kami tidak ditujukan untuk anak-anak di bawah 13 tahun, dan kami tidak dengan sengaja mengumpulkan informasi pribadi dari mereka. Jika Anda percaya kami telah secara tidak sengaja mengumpulkan data tersebut, harap hubungi kami untuk penghapusan segera."
+      },
+      "changes": {
+        "title": "Perubahan pada Kebijakan Ini",
+        "content": "Kami dapat memperbarui kebijakan ini dari waktu ke waktu. 'Tanggal Efektif' di atas akan berubah, dan perubahan signifikan akan diposting secara mencolok."
+      },
+      "contact": {
+        "title": "Hubungi Kami",
+        "content": "Jika Anda memiliki pertanyaan, kekhawatiran, atau keluhan, gunakan formulir kontak, atau email <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "videos": {
+    "metadata": {
+      "title": "detrans.ai | Tonton Video Oleh Orang yang Berhenti Transisi",
+      "description": "Berikut adalah pilihan memoar video pribadi yang telah diunggah ke YouTube oleh orang-orang yang telah transisi dan kemudian menyadari sesuatu yang menyebabkan mereka berhenti transisi. Ada banyak cerita seperti ini di internet, ini hanya sebagian kecil."
+    },
+    "title": "Video Transisi & Berhenti Transisi",
+    "description": {
+      "line1": "Halaman ini bertujuan menjadi arsip video berhenti transisi terbaik di internet.",
+      "line2": "Menggunakan speech-to-text, detrans.ai mengintegrasikan pengalaman-pengalaman ini ke dalam percakapan chat.",
+      "line3": "Video YouTube saja untuk saat ini, TikTok segera hadir?!"
+    },
+    "female": "perempuan",
+    "male": "laki-laki",
+    "backToAll": "Kembali ke semua",
+    "overview": "Ikhtisar",
+    "fullSummary": "Ringkasan Video Lengkap",
+    "watchOnYouTube": "Tonton di YouTube",
+    "moreVideos": "Video Lainnya",
+    "browseAll": "Jelajahi semua video berhenti transisi",
+    "metadataWatchDescription": "Tonton {title} oleh {author}, seorang {sex} yang berhenti transisi berbagi cerita mereka.",
+    "metadataThumbnailAlt": "Gambar mini untuk {title}"
+  },
+  "videoList": {
+    "loading": "Memuat video...",
+    "filters": {
+      "all": "Semua Cerita",
+      "female": "Perempuan",
+      "male": "Laki-laki",
+      "detransitioners": "Orang yang Berhenti Transisi"
+    },
+    "thumbnailAlt": "Gambar mini untuk {title}",
+    "by": "oleh",
+    "female": "Perempuan",
+    "male": "Laki-laki"
+  },
+  "videoSubmitForm": {
+    "submitTitle": "Kirim Video Berhenti Transisi Anda",
+    "description": {
+      "line1": "Dengan mengirimkan video Anda, video tersebut akan ditampilkan di halaman ini dan dalam chat yang relevan.",
+      "line2": "Bisa video Anda, atau bisa saja yang Anda temukan secara online yang belum ada di halaman ini.",
+      "line3": "Semua pengiriman dimoderasi, mungkin membutuhkan beberapa hari sebelum muncul."
+    },
+    "urlLabel": "URL YouTube",
+    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "submitButton": "Kirim Video",
+    "submitting": "Mengirim...",
+    "submitSuccess": "Video berhasil dikirimkan! Akan ditinjau sebelum muncul di situs.",
+    "submitError": "Gagal mengirimkan video",
+    "networkError": "Kesalahan jaringan. Silakan coba lagi."
+  },
+  "studySubmitForm": {
+    "submitTitle": "Kirim Studi",
+    "description": {
+      "line1": "Tahu ada studi akademis yang relevan atau artikel telaah sejawat yang hilang?",
+      "line2": "Kirimkan URL dan opsional sarankan judul untuknya.",
+      "line3": "Semua pengiriman dimoderasi sebelum muncul di situs."
+    },
+    "urlLabel": "URL Studi",
+    "urlPlaceholder": "https://...",
+    "titleLabel": "Judul yang Disarankan",
+    "titlePlaceholder": "Headline atau judul opsional untuk studi",
+    "titleHelp": "Opsional: Sarankan judul singkat atau headline untuk studi ini",
+    "submitButton": "Kirim Studi",
+    "submitting": "Mengirim...",
+    "submitSuccess": "Studi berhasil dikirimkan! Akan ditinjau sebelum muncul di situs.",
+    "submitError": "Gagal mengirimkan studi",
+    "networkError": "Kesalahan jaringan. Silakan coba lagi."
+  },
+  "studiesPage": {
+    "metadata": {
+      "title": "detrans.ai | Studi Akademik tentang Topik Berhenti Transisi",
+      "description": "Temukan di halaman ini pilihan studi akademis, artikel jurnal telaah sejawat, dan statistik terverifikasi yang berkaitan dengan tren identitas gender dan berhenti transisi.",
+      "ogTitle": "detrans.ai | Studi Akademik tentang Topik Berhenti Transisi",
+      "ogDescription": "Temukan di halaman ini pilihan studi akademis dan artikel jurnal telaah sejawat dan statistik terverifikasi yang berkaitan dengan tren identitas gender dan berhenti transisi."
+    },
+    "title": "Artikel Akademis Pilihan",
+    "description": "Studi akademis, penelitian telaah sejawat, dan artikel jurnal tentang subjek identitas gender, transisi, dan berhenti transisi."
+  },
+  "contentWarning": {
+    "title": "Peringatan Konten:",
+    "description": {
+      "line1": "Situs web ini berisi cerita, pengalaman, dan perspektif dari mantan transgender.",
+      "line2": "Topik termasuk penyesalan transisi, komplikasi medis, dan pandangan holistik tentang disforia.",
+      "line3": "Informasi ini dapat menantang keyakinan umum tentang identitas gender dan transisi."
+    },
+    "buttons": {
+      "exit": "Keluarkan saya dari sini!",
+      "continue": "Lanjutkan"
+    }
+  },
+  "supportPage": {
+    "metadata": {
+      "title": "detrans.ai | Dapatkan Bantuan dan Dukungan Gender",
+      "description": "Pelajari perbedaan antara Perawatan Mengafirmasi Gender dan Terapi Eksplorasi Gender. Jika Anda mengalami disforia gender, salah satu cara terbaik untuk mendapatkan dukungan adalah dengan berbicara dan memahami perspektif orang-orang yang telah berada di sana dan keluar dari situ."
+    },
+    "title": "Dapatkan Bantuan & Dukungan Gender",
+    "navigation": {
+      "jumpTo": "Lompat ke:",
+      "getGenderSupport": "Dapatkan Dukungan Gender:"
+    },
+    "sections": {
+      "onlineSupport": {
+        "title": "Grup Dukungan Online",
+        "description": "Jika Anda mengalami disforia gender, salah satu cara terbaik untuk mendapatkan dukungan adalah dengan berbicara dan memahami perspektif orang-orang yang telah berada di sana dan keluar dari situ.",
+        "links": {
+          "redditCommunity": "Komunitas Detrans di Reddit",
+          "redditWiki": "Wiki Detrans di Reddit",
+          "discordServer": "Server Discord Resmi /r/detrans",
+          "askDetransAI": "Tanyakan 50.000+ orang detrans dengan detrans.ai"
+        }
+      },
+      "genderAffirmingCare": {
+        "title": "Perawatan Mengafirmasi Gender: Apa itu?",
+        "description": "Perawatan mengafirmasi gender saat ini adalah standar (dan seringkali satu-satunya) pilihan perawatan untuk disforia gender yang ditawarkan oleh penyedia layanan kesehatan di dunia Barat. Perawatan mengafirmasi gender pada dasarnya mengakui ekspektasi gender dari masyarakat dan kemudian menyesuaikan pasien dengannya. Ini adalah pendekatan bertahap yang dimulai dengan transisi sosial (nama, kata ganti, pakaian), kemudian terapi hormon, dan kemudian untuk beberapa orang, prosedur bedah yang ireversibel. Perawatan mengafirmasi gender dapat memberikan peredaan untuk disforia gender tetapi datang dengan risiko kesehatan yang serius dan seringkali efek samping permanen. Lanjutkan dengan sangat hati-hati, dan pastikan Anda",
+        "watchTestimonies": "menonton beberapa kesaksian"
+      },
+      "genderExploratoryTherapy": {
+        "title": "Terapi Eksplorasi Gender: Apa itu?",
+        "description1": "Terapi Eksplorasi Gender berarti terapis Anda tidak tergesa-gesa mengafirmasi dan memedisasi Anda. Sebaliknya mereka akan mulai dengan mengeksplorasi konsep-konsep gender dan mengapa Anda mungkin merasa seperti ini. Terapi Eksplorasi Gender adalah pendekatan tanpa agenda spesifik yang telah ditentukan sebelumnya, dan hasil terapi eksplorasi gender dapat bervariasi tergantung pada setiap individu.",
+        "description2": "Jika Anda Google 'Terapi Eksplorasi Gender', Anda akan menemukan beberapa kritik yang membandingkannya dengan terapi konversi gay (yang terbukti tidak efektif). Yang sebenarnya adalah bahwa Terapi Eksplorasi Gender sangat berbeda dari terapi konversi gay:",
+        "references": {
+          "title": "Referensi",
+          "ref1": "U.S. Dept. of Health & Human Services (2025). Report on Pediatric Gender Dysphoria and Gender Conversion Efforts.",
+          "ref2": "D'Angelo, R. (2025). 'Supporting autonomy in young people with gender dysphoria: psychotherapy is not conversion therapy.' Journal of Medical Ethics, 51(1).",
+          "ref3": "Lemma, A. & Schmidt, L. (2024). 'Psychodynamic Psychotherapy for Gender Dysphoria is not Conversion Therapy.' Frontiers in Psychology.",
+          "ref4": "Korte, A. et al. (2021). 'One Size Does Not Fit All: In Support of Psychotherapy for Gender Dysphoria.' Archives of Sexual Behavior."
+        },
+        "florenceAshley": {
+          "title": "Studi Florence Ashley",
+          "description": "Penelitian akademis di bidang ini sering bias. Salah satu studi yang paling berpengaruh (Interrogating Gender-Exploratory Therapy) diterbitkan pada 2022 oleh Florence Ashley, seorang perempuan trans. Dalam studinya dia membandingkan Terapi Eksplorasi Gender dengan terapi konversi gay dan dengan keras mengutuk praktik tersebut. Harus diakui bahwa orang-orang yang mengidentifikasi diri sebagai trans termotivasi untuk melindungi identitas dan keyakinan mereka, dan studi ini adalah contoh sempurna dari hal ini. Studi ini penuh dengan kesalahan logis, namun tetap diterbitkan dan digunakan sebagai justifikasi akademis agar perawatan mengafirmasi gender menjadi satu-satunya pilihan bagi orang yang mengalami disforia gender.",
+          "showFallacies": "Lihat semua kesalahan logis dalam studi Florence Ashley"
+        }
+      },
+      "findTherapist": {
+        "title": "Di mana saya dapat menemukan terapis yang mempraktikkan terapi eksplorasi gender?",
+        "languageNotice": "Sebagian besar terapis yang terdaftar hanya berbicara bahasa Inggris, tetapi Anda masih dapat mencoba menghubungi mereka untuk menemukan seseorang yang berbicara bahasa Anda. Jika Anda tahu terapis berlisensi yang berbicara bahasa Anda, Anda dapat menyarankan untuk menambahkannya ke halaman ini melalui",
+        "contactForm": "formulir kontak",
+        "organizations": {
+          "justTherapy": {
+            "name": "Just Therapy",
+            "description": "Just Therapy lahir dari keinginan untuk kembali ke apa seharusnya terapi — efektif, etis, dan bebas dari ideologi. Ini adalah asosiasi terapis dan konselor yang sejalan dengan etika dan prinsip umum. Just Therapy menyadari bahwa sebagian besar dunia psikoterapi dan konseling telah diambil alih oleh aktivis dan ideologi, yang berisiko membahayakan, daripada mendukung, kesejahteraan mental klien. Anggotanya, yang berasal dari berbagai disiplin dan spesialisasi, telah menandatangani Kode Etik.",
+            "directory": "Direktori Terapis Just Therapy",
+            "codeOfConduct": "Kode Etik Just Therapy"
+          },
+          "therapyFirst": {
+            "name": "Therapy First",
+            "description": "Therapy First menyatukan profesional kesehatan mental yang percaya klien yang bingung gender pantas mendapat psikoterapi terbuka yang berbasis bukti yang mengeksplorasi faktor-faktor tidak sadar dan kontekstual sebelum langkah-langkah medis ireversibel apa pun; mereka menolak praktik konversi dan model 'hanya-afirmasi', menjunjung tinggi otonomi klien, dan melihat transisi medis anak/remaja sebagai eksperimental, sambil tetap mendukung hak orang dewasa atas otonomi tubuh dan eksplorasi terapeutik yang berkelanjutan.",
+            "directory": "Direktori Terapis Therapy First",
+            "about": "Tentang Therapy First"
+          },
+          "beyondTrans": {
+            "name": "Beyond Trans",
+            "description": "Stella O'Malley meluncurkan Gender Dysphoria Support Network pada Maret 2020 untuk memberikan bantuan tidak bias kepada orang tua dengan anak-anak yang bingung gender; dengan cepat tumbuh menjadi komunitas global, mendorong pembuatan Genspect pada 2021, advokat perawatan non-medis. Mengenali peningkatan penyesalan transisi, kelompok ini memulai Beyond Trans pada 2022, dan pada Juni 2025 menggabungkannya dengan GDSN untuk membentuk satu jaringan dukungan terintegrasi berbasis bukti untuk keluarga, individu, dan orang yang berhenti transisi.",
+            "directory": "Direktori Terapis Beyond Trans",
+            "supportGroups": "Grup Dukungan Beyond Trans",
+            "about": "Tentang Beyond Trans"
+          },
+          "detransFoundation": {
+            "name": "The Detrans Foundation",
+            "description": "The Detrans Foundation menyediakan sumber daya dan dukungan untuk orang yang berhenti transisi, termasuk akses ke terapis berkualifikasi yang memahami pengalaman berhenti transisi. Terapis berikut adalah bagian dari Detrans Foundation:",
+            "drEntwistle": "adalah Psikolog Klinis yang sebelumnya bekerja di layanan pengembangan identitas gender NHS untuk di bawah 18 tahun di Leeds. Dia terdaftar di UK Health Care Professions Council (HCPC) dan menawarkan konsultasi online melalui panggilan video aman.",
+            "anastassisSpiliadis": "adalah Psikoterapis Sistemik & Keluarga yang bekerja selama empat tahun di Gender Identity Development Service di Tavistock, tempat dia memimpin Family Therapy & Consultation Service. Dia mengundurkan diri dari Tavistock karena dia tidak setuju dengan kurangnya model terapeutik dalam memahami kesulitan identitas gender. Dia mengembangkan Gender Exploratory Model dan memiliki pengalaman ekstensif bekerja dengan individu yang mempertanyakan gender dan orang yang berhenti transisi.",
+            "visitWebsite": "Kunjungi situs web Detrans Foundation"
+          }
+        }
+      },
+      "forParents": {
+        "title": "Sumber Daya untuk Orang Tua",
+        "intro": "Jika anak Anda baru saja menyatakan diri sebagai transgender, Anda mungkin merasa bingung, khawatir, dan tidak yakin bagaimana cara terbaik mendukung mereka sambil juga melindungi kesehatan dan kesejahteraan jangka panjang mereka.",
+        "rogdRepair": {
+          "name": "Program ROGD Repair oleh Stephanie Winn",
+          "whatIs": "Apa itu ROGD Repair?",
+          "description1": "ROGD Repair adalah:",
+          "bullet1": "Program yang membantu orang tua pemuda yang mengidentifikasi diri sebagai trans berkomunikasi dengan cara yang mempromosikan desistance, berpikir kritis, kesehatan, dan keharmonisan relasional",
+          "bullet2": "Toolkit interaktif dan terus berkembang dari konsep psikologi dan keterampilan komunikasi yang diasah melalui bertahun-tahun sebagai Licensed Marriage and Family Therapist yang berubah menjadi ROGD parent coach",
+          "bullet3": "Kursus online mandiri yang berisi lebih dari 100 pelajaran, masing-masing berisi video, esai, dan pertanyaan refleksi yang dirancang untuk membantu peserta mempersonalisasi konten untuk situasi keluarga mereka yang unik, serta forum diskusi",
+          "description2": "Keanggotaan ROGD Repair baru sekarang dilengkapi dengan akses tak terbatas ke RepairBot, alat AI pertama dan satu-satunya yang dirancang khusus untuk membantu orang tua yang tidak mengafirmasi dari pemuda yang tertekan gender. RepairBot dilatih pada seluruh kurikulum ROGD Repair dan berfungsi sebagai sounding board, teman pekerjaan rumah, dan pembantu alat komunikasi yang sangat baik!",
+          "ctaBox": {
+            "title": "Anak Anda mengatakan mereka 'trans', tetapi Anda hanya ingin mereka sehat dan aman.",
+            "description1": "Kesehatan dan masa depan anak Anda dipertaruhkan, tetapi pengaruh dan pengaruh Anda terbatas. Mungkin mereka mulai hormon pasar gelap di belakang punggung Anda, atau keluar dengan marah ketika Anda 'misgender' mereka, atau berada di perguruan tinggi yang 'mengafirmasi'. Anda perlu berkomunikasi secara efektif dalam situasi rumit ini, sebelum seseorang terluka. Di situlah ROGD Repair masuk.",
+            "description2": "ROGD Repair adalah kursus online mandiri dan komunitas untuk orang tua yang mengajarkan konsep psikologi dan alat komunikasi yang Anda butuhkan untuk memahami kondisi mental anak Anda dan bagaimana menjangkau mereka. Keanggotaan sekarang mencakup RepairBot, asisten AI 24/7 Anda yang dilatih pada pendekatan tersebut.",
+            "description3": "ROGD Repair dan RepairBot dibuat oleh Licensed Marriage and Family Therapist dengan pengalaman lebih dari satu dekade bekerja dengan pemuda yang mengidentifikasi diri sebagai trans dan keluarga mereka, yang sekarang secara eksklusif memandu orang tua yang tahu pasti ada jalan yang lebih baik daripada 'afirmasi.'"
+          },
+          "coupon": "Gunakan kode kupon ini untuk mendapatkan",
+          "couponCode": "DETRANSAI",
+          "learnMore": "Pelajari lebih lanjut dan daftar untuk ROGD Repair"
+        }
+      }
+    },
+    "table": {
+      "gayConversion": "Terapi konversi gay",
+      "genderExploratory": "Terapi eksplorasi gender",
+      "goal": "Tujuan",
+      "goalConversion": "Mengubah orientasi seksual karena dianggap patologis.",
+      "goalExploratory": "Memahami makna disforia; hasil bisa transisi, tidak transisi, atau transisi sosial parsial.",
+      "method": "Metode",
+      "methodConversion": "Rasa malu, aversi, pengondisian perilaku, doa.",
+      "methodExploratory": "GET kompatibel dengan berbagai modalitas terapeutik, seperti teknik psikodinamika atau humanistik standar—pertanyaan terbuka, rasa ingin tahu, tanpa titik akhir yang sudah ditetapkan.",
+      "evidence": "Basis bukti",
+      "evidenceConversion": "Secara konsisten menunjukkan kerugian; setiap badan medis utama mengutuknya.",
+      "evidenceExploratory": "Belum ada RCT, tetapi paralel dengan terapi yang mengurangi kecemasan, depresi, menyakiti diri; tidak ada data yang menunjukkan kerugian sistematis.",
+      "ethics": "Etika",
+      "ethicsConversion": "Melanggar otonomi dengan mendorong identitas heteroseksual sebagai satu-satunya pilihan yang benar.",
+      "ethicsExploratory": "Mencari untuk memperluas otonomi dengan memastikan remaja (dan keluarga) memahami semua pilihan sebelum langkah-langkah ireversibel."
+    },
+    "fallacies": {
+      "title": "Kesalahan Logis dalam Studi Florence Ashley",
+      "name": "Nama Kesalahan",
+      "explanation": "Penjelasan Sederhana",
+      "example": "Contoh dari Makalah"
+    }
+  },
+  "charts": {
+    "ageDistribution": {
+      "title": "Berapa usia orang yang berhenti transisi ketika mereka transisi dan berhenti transisi?",
+      "subtitle": "Data dari garis waktu transisi pengguna Reddit",
+      "loading": "Memuat data grafik...",
+      "fetchError": "Gagal mengambil data distribusi usia",
+      "genericError": "Terjadi kesalahan",
+      "errorPrefix": "Kesalahan:",
+      "noData": "Tidak ada data yang tersedia untuk rentang usia yang dipilih",
+      "tooltip": {
+        "age": "Usia: {age}",
+        "transitioned": "Transisi: {count} pengguna",
+        "detransitioned": "Berhenti: {count} pengguna"
+      },
+      "axis": {
+        "age": "Usia",
+        "users": "Jumlah Pengguna"
+      },
+      "legend": {
+        "transition": "Usia Transisi",
+        "detransition": "Usia Berhenti"
+      }
+    },
+    "transitionDuration": {
+      "title": "Durasi Transisi: Usia saat Transisi vs Usia saat Berhenti Transisi",
+      "description": {
+        "line1": "Setiap titik menunjukkan usia transisi (X) vs usia berhenti (Y).",
+        "line2": "Titik yang lebih besar dan lebih buram mewakili lebih banyak pengguna."
+      },
+      "loading": "Memuat data grafik...",
+      "noData": "Tidak ada data yang tersedia untuk rentang usia yang dipilih",
+      "axis": {
+        "transitionAge": "Usia saat Transisi",
+        "detransitionAge": "Usia saat Berhenti"
+      },
+      "tooltip": {
+        "transitionAge": "Usia Transisi",
+        "detransitionAge": "Usia Berhenti",
+        "duration": "Durasi",
+        "years": "tahun"
+      },
+      "male": "Laki-laki",
+      "female": "Perempuan",
+      "yearsAvg": "tahun rata-rata",
+      "user": "pengguna",
+      "users": "pengguna"
+    },
+    "pathways": {
+      "title": "Alur Jalur Berhenti Transisi",
+      "subtitle": "Alur demografi pengguna Reddit /r/detrans menuju hasil berhenti transisi",
+      "loading": "Memuat data jalur...",
+      "fetchError": "Gagal mengambil data distribusi tag",
+      "genericError": "Terjadi kesalahan",
+      "error": "Kesalahan",
+      "users": "{count} pengguna",
+      "percentageOfTotal": "{percentage}% dari total",
+      "totalUsers": "Total pengguna",
+      "flowConnections": "Koneksi alur",
+      "male": "Laki-laki",
+      "female": "Perempuan",
+      "noData": "Tidak ada data jalur yang tersedia untuk filter yang dipilih"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Kontak | detrans.ai",
+      "description": "Hubungi kami. Kirimkan pendapat, saran, atau umpan balik Anda."
+    },
+    "title": "Formulir Kontak",
+    "intro": "Jika Anda memiliki pendapat, saran, atau jika layanan gratis ini telah membantu Anda, keluarga, atau teman Anda, saya ingin mendengar dari Anda. Kirimkan pesan di bawah!",
+    "form": {
+      "to": "Kepada",
+      "name": "Nama",
+      "namePlaceholder": "Nama Anda",
+      "email": "Email",
+      "emailPlaceholder": "anda@contoh.com",
+      "subject": "Subjek",
+      "subjectPlaceholder": "Subjek",
+      "message": "Pesan",
+      "messagePlaceholder": "Tulis pesan Anda...",
+      "sendButton": "Kirim Pesan",
+      "sending": "Mengirim...",
+      "success": "✅ Pesan terkirim!",
+      "error": "❌ Gagal mengirim."
+    }
+  },
+  "seo": {
+    "conversations": {
+      "title": "Arsip Percakapan",
+      "description": "Jelajahi percakapan tentang identitas gender, berhenti transisi, perawatan mengafirmasi gender, dan afirmasi.",
+      "conversations": "Percakapan",
+      "featuredConversations": "Percakapan Unggulan",
+      "allConversations": "Semua Percakapan",
+      "untitled": "Percakapan Tanpa Judul",
+      "noSummary": "Tidak ada ringkasan yang tersedia",
+      "noConversations": "Tidak ada percakapan yang tersedia.",
+      "mode": "Mode",
+      "updated": "Diperbarui",
+      "featured": "Unggulan",
+      "conversationSummary": "Ringkasan Percakapan",
+      "noSummaryAvailable": "Tidak ada ringkasan yang tersedia untuk percakapan ini.",
+      "conversation": "Percakapan",
+      "unableToParse": "Tidak dapat menguraikan pesan percakapan.",
+      "archiveNote": "Ini adalah percakapan dari arsip kami. Untuk melihat percakapan lengkap dan berpartisipasi dalam diskusi, silakan kunjungi versi interaktif dari halaman ini.",
+      "welcomeTitle": "Selamat Datang di Arsip Percakapan",
+      "welcomeDescription": "Pilih percakapan dari sidebar untuk melihat detailnya. Arsip ini berisi diskusi tentang identitas gender, pengalaman berhenti transisi, dan perjalanan afirmasi.",
+      "featuredDescription": "Diskusi yang disoroti oleh komunitas kami",
+      "allDescription": "Jelajahi semua diskusi yang tersedia",
+      "footer": "Halaman ini menyediakan konten yang ramah SEO untuk mesin pencari dan bot. Untuk pengalaman interaktif penuh, silakan kunjungi dengan browser web modern.",
+      "user": "Pengguna"
+    },
+    "chat": {
+      "subtitle": "Pertanyaan dan jawaban untuk orang yang mempertanyakan identitas gender mereka.",
+      "freedomMessage": "Yang sebenarnya adalah bahwa non-konformitas gender akan membebaskan kita semua!",
+      "moreQuestions": "Pertanyaan lain terkait \"{question}\""
+    },
+    "videos": {
+      "title": "Video Transisi & Berhenti Transisi",
+      "description": "Ini adalah arsip video berhenti transisi pribadi yang telah diunggah ke internet. Buat suara Anda didengar dengan berkontribusi dan berbagi cerita Anda sendiri!",
+      "thumbnailAlt": "Gambar mini untuk",
+      "by": "oleh",
+      "female": "Perempuan",
+      "male": "Laki-laki"
+    }
+  },
+  "routes": {
+    "home": "/",
+    "about": "/tentang",
+    "contact": "/kontak",
+    "support": "/dukungan",
+    "videos": "/video",
+    "stories": "/cerita",
+    "studies": "/studi",
+    "definitions": "/definisi",
+    "donate": "/donasi",
+    "terms": "/ketentuan",
+    "prompts": "/prompt",
+    "participate": "/partisipasi",
+    "conversations": "/percakapan",
+    "research": "/riset",
+    "chat": "/chat",
+    "login": "/masuk"
+  }
+}
