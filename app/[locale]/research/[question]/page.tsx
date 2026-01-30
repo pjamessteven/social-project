@@ -76,9 +76,8 @@ export default async function DeepResearchPage({
 
   // For bots, use getDeepResearchAnswer to get cached content for SEO
   if (bot) {
-    console.log("isBot");
     const cachedAnswer = await getDeepResearchAnswer(q);
-    console.log("cachedAnswer", cachedAnswer);
+
     if (cachedAnswer) {
       return (
         <div className="container mx-auto max-w-4xl px-4 py-8">

@@ -4,6 +4,7 @@ import { Dialog, DialogContent } from "@/app/components/ui/dialog";
 import { formatCountryDisplay } from "@/app/lib/countries";
 import { cn, formatDate } from "@/app/lib/utils";
 import { Check, Loader2, Share2, X } from "lucide-react";
+import { useLocale } from "next-intl";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -43,6 +44,7 @@ export function ConversationDialog({
   conversationSummary,
   conversationSummaryTranslation,
 }: ConversationDialogProps) {
+  const locale = useLocale();
   const [isLoading, setIsLoading] = useState(false);
   const [internalOpen, setInternalOpen] = useState(open);
   const [showId, setShowId] = useState(false);
@@ -58,12 +60,11 @@ export function ConversationDialog({
 
     try {
       const translations = JSON.parse(conversationSummaryTranslation) as Record<string, string>;
-      const locale = navigator.language.split('-')[0]; // Get primary language code
       setLocalizedSummary(translations[locale] || conversationSummary || null);
     } catch {
       setLocalizedSummary(conversationSummary ?? null);
     }
-  }, [conversationSummary, conversationSummaryTranslation]);
+  }, [conversationSummary, conversationSummaryTranslation, locale]);
 
   // Sync internal state with props
   useEffect(() => {

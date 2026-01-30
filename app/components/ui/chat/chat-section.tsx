@@ -13,7 +13,7 @@ import { ResizablePanel, ResizablePanelGroup } from "../resizable";
 import { ChatCanvasPanel } from "./canvas/panel";
 import CustomChatMessages from "./chat-messages";
 import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
-import { fetchComponentDefinitions } from "./custom/events/loader";
+//import { fetchComponentDefinitions } from "./custom/events/loader";
 import { ComponentDef } from "./custom/events/types";
 
 export default function ChatSection({
@@ -107,14 +107,17 @@ export default function ChatSection({
           // Set the messages directly using the setMessages function
           useChatHandler.setMessages(data.messages);
           setIsArchived(data.archived);
-          
+
           // Handle summary translation
           let localizedSummary = data.conversationSummary;
           if (data.conversationSummaryTranslation) {
             try {
-              const translations = JSON.parse(data.conversationSummaryTranslation) as Record<string, string>;
-              const locale = navigator.language.split('-')[0];
-              localizedSummary = translations[locale] || data.conversationSummary;
+              const translations = JSON.parse(
+                data.conversationSummaryTranslation,
+              ) as Record<string, string>;
+              const locale = navigator.language.split("-")[0];
+              localizedSummary =
+                translations[locale] || data.conversationSummary;
             } catch {
               localizedSummary = data.conversationSummary;
             }
@@ -139,7 +142,7 @@ export default function ChatSection({
   useEffect(() => {
     // Priority: prop > URL query param
     const starterMessage = starterQuestion || searchParams.get("starter");
-    
+
     if (
       starterMessage &&
       useChatHandler.messages.length === 0 &&
@@ -228,6 +231,7 @@ function ChatSectionPanel({
 
   // fetch component definitions and use Babel to tranform JSX code to JS code
   // this is triggered only once when the page is initialised
+  /*
   useEffect(() => {
     fetchComponentDefinitions().then(({ components, errors }) => {
       setComponentDefs(components);
@@ -235,7 +239,7 @@ function ChatSectionPanel({
         setDynamicEventsErrors((prev) => [...prev, ...errors]);
       }
     });
-  }, []);
+    }, []); */
 
   return (
     <ResizablePanel defaultSize={40} minSize={30} className="w-full">
