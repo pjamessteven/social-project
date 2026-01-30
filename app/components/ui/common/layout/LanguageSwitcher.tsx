@@ -110,7 +110,7 @@ function LanguageSwitcherInner() {
 // Simple fallback when no intl context is available
 function LanguageSwitcherFallback() {
   return (
-    <Link href="/en">
+    <Link href="/">
       <Button variant="ghost" size="sm" className="gap-2 rounded-full px-3">
         <Globe className="h-4 w-4" />
         <span className="text-xs font-medium uppercase">EN</span>

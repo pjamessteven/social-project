@@ -163,7 +163,8 @@
     "title": "Utseende",
     "darkMode": "Mörkt läge",
     "light": "Ljust",
-    "dark": "Mörkt"
+    "dark": "Mörkt",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

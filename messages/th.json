@@ -164,7 +164,8 @@
     "title": "รูปลักษณ์",
     "darkMode": "โหมดมืด",
     "light": "สว่าง",
-    "dark": "มืด"
+    "dark": "มืด",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

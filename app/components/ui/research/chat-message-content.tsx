@@ -50,7 +50,7 @@ function SuggestedQuestionsAnnotations({
         <Link
           prefetch={false}
           key={index}
-          href={getQuestionUrl(question)}
+          href={getQuestionUrl(question) as any}
           className="cursor-pointer font-medium italic no-underline"
         >
           <div className="flex flex-row items-center border-b pt-1 pb-2">

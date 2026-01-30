@@ -161,7 +161,8 @@
     "title": "Aparência",
     "darkMode": "Modo escuro",
     "light": "Claro",
-    "dark": "Escuro"
+    "dark": "Escuro",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

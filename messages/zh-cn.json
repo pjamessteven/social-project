@@ -163,7 +163,8 @@
     "title": "外观",
     "darkMode": "深色模式",
     "light": "浅色",
-    "dark": "深色"
+    "dark": "深色",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

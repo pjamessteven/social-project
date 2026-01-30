@@ -161,7 +161,8 @@
     "title": "모양",
     "darkMode": "다크 모드",
     "light": "밝음",
-    "dark": "어두움"
+    "dark": "어두움",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

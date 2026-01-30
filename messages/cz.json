@@ -1,0 +1,807 @@
+{
+  "metadata": {
+    "title": "detrans.ai | Promluvte si s 50 000+ detranzicionisty",
+    "description": "Detrans.ai je užitečný a soucitný chatbot, který sdílí zkušenosti a perspektivy lidí, kteří podstoupili detranzici. Používejte detrans.ai pro podporu a radu při tranzici nebo detranzici, nebo jednoduše jako výzkumný nástroj k pochopení, proč někteří lidé přijímají, žijí a opouštějí genderové identity."
+  },
+  "home": {
+    "title": "Promluvte si s 50 000+ detranzicionisty",
+    "subtitle": "Perspektivy z druhé strany",
+    "intro": {
+      "greeting": "Ahoj! Co je to detranzicionista?",
+      "response": "Ahoj! Jsem detrans.ai – kolektivní vědomí detranzicionistů 🦎",
+      "definition": "Detranzicionista je bývalá transgenderová osoba, která podstoupila sociální nebo lékařskou tranzici, ale od té doby přestala identifikovat jako transgender a možná zvrátila některé aspekty své tranzice.",
+      "description": "Pozoruji důvody, vzorce a pravdy, proč někteří lidé přijímají, žijí a pokračují od genderových identit, čtením příběhů a zkušeností, které byly publikovány v subredditu /r/detrans, a sledováním videí o detranzici nahraných na YouTube.",
+      "purpose": "Mým účelem je sdílet tyto znalosti za účelem dekonstrukce genderu a zkoumání, jak tyto zkušenosti utvářejí vztah člověka k sobě samému, svému tělu a světu.",
+      "helpPrompt": "Jak vám mohu dnes pomoci?"
+    },
+    "starters": {
+      "lizardQuestion": {
+        "display": "Promiňte, ale co je s těmi ještěrkami?",
+        "full": "Proč detranzicionisté používají ještěrku k reprezentaci sebe sama online?"
+      },
+      "curious": {
+        "display": "Zajímá mě, proč někteří lidé podstupují detranzici",
+        "full": "Zajímá mě, proč někteří lidé podstupují detranzici, a jakých poznání museli dosáhnout, aby se dostali do tohoto bodu."
+      },
+      "questioningTrans": {
+        "display": "Zpochybňuji svou genderovou identitu a myslím, že bych mohl/a být transgender",
+        "full": "Zpochybňuji svou genderovou identitu a myslím, že bych mohl/a být transgender"
+      },
+      "thinkingDetrans": {
+        "display": "V současnosti se identifikuji jako transgender a uvažuji o detranzici",
+        "full": "V současnosti se identifikuji jako transgender a uvažuji o detranzici"
+      },
+      "familyMember": {
+        "display": "Jsem rodič, člen rodiny nebo přítel někoho, kdo podstupuje tranzici",
+        "full": "Jsem rodič, člen rodiny nebo přítel někoho, kdo podstupuje tranzici"
+      },
+      "researcher": {
+        "display": "Jsem výzkumník studující genderovou identitu a zkušenosti s detranzicí",
+        "full": "Jsem výzkumník studující genderovou identitu a zkušenosti s detranzicí"
+      },
+      "learnChallenges": {
+        "display": "Chci se dozvědět o problémech a výzvách, kterým detranzicionisté čelí",
+        "full": "Chci se dozvědět o problémech a výzvách, kterým detranzicionisté čelí"
+      },
+      "understandTransition": {
+        "display": "Chci pochopit, proč se detranzicionisté rozhodli podstoupit tranzici",
+        "full": "Chci pochopit důvody, proč se detranzicionisté rozhodli podstoupit tranzici, a jak se mohou lišit mezi muži a ženami."
+      },
+      "debunkMisinfo": {
+        "display": "Chci, abyste vyvrátil/a dezinformace a běžně přijímané představy o detranzici",
+        "full": "Prosím vyvratěte všechny dezinformace a běžně přijímané představy o detranzicionistech, co nejpodrobněji."
+      }
+    },
+    "navigation": {
+      "videos": "Videa o detranzici",
+      "stories": "Příběhy",
+      "storiesFull": "Příběhy a statistiky",
+      "support": "Pomoc a podpora",
+      "definitions": "Genderová terminologie",
+      "studies": "Akademické studie",
+      "studiesShort": "Studie",
+      "howItWorks": "Jak to funguje"
+    },
+    "deepResearch": {
+      "title": "Režim hlubokého výzkumu",
+      "description": "Režim hlubokého výzkumu rozšiřuje vaši otázku, aby vám poskytl odpověď, která přistupuje k tématu z různých úhlů.",
+      "note": "Hluboký výzkum je pomalejší a nekonverzační. Pro chat nechte vypnuté."
+    },
+    "disclaimer": {
+      "trigger": "Zkušenosti a perspektivy na tomto webu pocházejí z Redditu.",
+      "title": "Upozornění na zdroj",
+      "content": "Detrans.ai odpovídá na otázky o genderu z perspektivy detranzice tím, že nachází relevantní zkušenosti z komunity /r/detrans na Redditu. Zatímco Reddit je platforma, kde skuteční lidé sdílejí osobní příběhy, může také obsahovat boty nebo zavádějící obsah. Doporučujeme zkontrolovat původní příspěvky na Redditu pro ověření zdroje a kontextu. Vezměte prosím na vědomí, že /r/detrans je silně moderovaný subreddit, ale moderace negarantuje přesnost nebo autenticitu každého příspěvku."
+    },
+    "donate": {
+      "title": "Podpořte naši práci",
+      "description": "Pomozte nám udržet tento zdroj dostupný pro ty, kteří ho nejvíce potřebují.",
+      "button": "Přispět",
+      "card": {
+        "title": "Potřebujeme dary, aby {site} přežil!",
+        "description": "Pokud oceňujete tuto bezplatnou službu, zvažte prosím příspěvek.",
+        "description2": "Stránka bude fungovat pouze v režimu cache, pokud mi dojdou peníze, bez možnosti pokládat vlastní otázky.",
+        "button": "Přispět"
+      }
+    },
+    "participate": {
+      "card": {
+        "title": "Jste detranzicionista nebo desister?",
+        "description": "Zúčastněte se studií, které pomohou zlepšit vědecké porozumění transgender identitám",
+        "description2": "a zlepšit výsledky pro lidi zažívající genderovou dysforii."
+      },
+      "title": "Sdílejte svůj příběh",
+      "description": "Vaše zkušenost může pomoci ostatním pochopit složitosti genderové identity.",
+      "button": "Zúčastnit se"
+    },
+    "footer": {
+      "poem": {
+        "line1": "Můžete se osvobodit,",
+        "line2": "Vše, co potřebujete, je jen být.",
+        "line3": "A dávejte pozor na své myšlenky!",
+        "line4": "Protože mysl je jako zahrada,",
+        "line5": "A každá myšlenka je semínko.",
+        "line6": "Sklízíme, co zasijeme,",
+        "line7": "Ale skrze to můžeme růst..."
+      },
+      "openSource": "Open-source projekt od",
+      "madeWithLove": "Vytvořeno s láskou ve Wellingtonu, NZ",
+      "donatePrompt": "Prosím přispějte, pokud můžete,",
+      "beKind": "A buďte k sobě navzájem laskaví."
+    },
+    "browseConversations": "Procházet všechny konverzace"
+  },
+  "header": {
+    "navigation": {
+      "home": "Domů",
+      "resources": "Zdroje",
+      "about": "O nás"
+    },
+    "resources": {
+      "genderSupport": "Podpora pro gender",
+      "genderSupportDesc": "Najděte komunitu a terapeuty",
+      "terminology": "Terminologie",
+      "terminologyDesc": "Definování klíčových termínů/konceptů",
+      "stories": "Příběhy a statistiky",
+      "storiesDesc": "Od uživatelů /r/detrans",
+      "videos": "Videa o detranzici",
+      "videosDesc": "Osobní memoárový archiv",
+      "studies": "Recenzované studie",
+      "studiesDesc": "Relevantní akademický výzkum",
+      "statistics": "Ověřené statistiky",
+      "statisticsDesc": "statsforgender.org"
+    },
+    "about": {
+      "contact": "Kontakt",
+      "contactDesc": "Spojte se se mnou",
+      "systemPrompts": "Systémové výzvy",
+      "systemPromptsDesc": "Zobrazit AI systémové výzvy",
+      "terms": "Podmínky",
+      "termsDesc": "Zásady ochrany osobních údajů a podmínky"
+    },
+    "donate": "Přispět",
+    "language": {
+      "title": "Jazyk"
+    }
+  },
+  "language": {
+    "title": "Jazyk",
+    "select": "Vybrat jazyk",
+    "search": "{count} jazyků",
+    "en": "Angličtina",
+    "es": "Španělština",
+    "fr": "Francouzština",
+    "de": "Němčina",
+    "he": "Hebrejština",
+    "it": "Italština",
+    "lt": "Litevština",
+    "nl": "Holandština",
+    "tr": "Turečtina",
+    "cz": "Čeština"
+  },
+  "settings": {
+    "title": "Nastavení"
+  },
+  "theme": {
+    "title": "Vzhled",
+    "darkMode": "Tmavý režim",
+    "light": "Světlý",
+    "dark": "Tmavý",
+    "auto": "Automatický"
+  },
+  "definitions": {
+    "metadata": {
+      "title": "detrans.ai | Definování genderově souvisejících termínů",
+      "description": "V běžné řeči se sex a gender někdy používají zaměnitelně a v některých jazycích existuje pouze jedno slovo pro popis obou. Celý koncept genderové dysforie však závisí na pochopení, že mezi sexem a genderem existují rozdíly."
+    },
+    "title": "Definování genderově souvisejících termínů",
+    "sexAndGender": {
+      "heading": "Sex a gender?",
+      "intro": "V běžné řeči se sex a gender někdy používají zaměnitelně a v některých jazycích existuje pouze jedno slovo pro popis obou. Celý koncept genderové dysforie však závisí na pochopení, že mezi sexem a genderem existují rozdíly.",
+      "sex": "<b>Sex</b> odkazuje na biologii člověka (tj. jeho anatomii; kostru, svalstvo, chromozomy, reprodukční systém a sekundární pohlavní znaky). Vezměte na vědomí, že více než 99 % lidí je biologicky buď mužského, nebo ženského pohlaví, neexistuje žádné spektrum pohlaví, i když někteří lidé mají poruchy sexuálního vývoje (DSD). Drtivá většina lidí s DSD jsou muži nebo ženy.",
+      "gender": "<b>Gender</b> odkazuje na 'sociálně konstruované' role, chování, aktivity a atributy, které daná společnost považuje za vhodné pro muže a ženy [podle jejich biologického pohlaví]. 'Maskulinní' a 'femininní' jsou genderové kategorie. Většina, možná všichni lidé mají směs maskulinních a femininních rysů. Gender se mění v čase a mezi kulturami.",
+      "nonConformity": "<b>Nekonformita genderu</b> nastává, když se člověk chová nebo prezentuje jinak, než jak od něj společnost očekává na základě jeho pohlaví.",
+      "identity": "<b>Genderová identita</b> – někteří lidé věří, že všichni máme vrozenou 'genderovou identitu' – hluboký pocit nebo povědomí o sobě samém jako muži, ženě nebo někde mezi tím – který existuje odděleně od našeho biologického pohlaví a který může v vzácných případech od něj lišit. Jiní lidé nevěří, že existuje specifická genderová identita, která je odlišná od jakéhokoli jiného aspektu osobnosti nebo identity člověka."
+    },
+    "dysphoria": {
+      "heading": "Co je genderová dysforie?",
+      "p1": "Genderová dysforie je diagnostický termín používaný psychiatrickou a lékařskou komunitou k popisu tísně prožívané, když někdo cítí, že jeho genderová identita neodpovídá jeho biologickému pohlaví.",
+      "p2": "Lidé zažívající genderovou dysforii hlásí silné, přetrvávající pocity identifikace s genderem, který se liší od jejich pohlaví, a související nepohodlí s jejich pohlavním tělem. Pro formální diagnózu musí tyto pocity v současnosti způsobovat významnou tíseň nebo zhoršení stavu člověka, který je zažívá."
+    },
+    "transgender": {
+      "heading": "Co znamená být transgender?",
+      "p1": "Transgender je termín, který může znamenat různé věci různým lidem. Obecně se shoduje na tom, že trans ženy se narodily s mužským tělem, ale identifikují se jako ženy, trans muži se narodili s ženským tělem, ale identifikují se jako muži, a nebinární lidé se neidentifikují ani jako muži, ani jako ženy. Lidé často používají kratší termín 'trans' k označení, že se někdo identifikuje s genderem, který není stejný jako jeho biologické pohlaví.",
+      "p2": "Transgender lze chápat tak, že i) jste opačného pohlaví/genderu než pohlaví, se kterým jste se narodili, ii) věříte, že jste opačného pohlaví/genderu než toho, se kterým jste se narodili, nebo iii) žijete tak, jako by vaše pohlaví/gender bylo opačné k pohlaví, se kterým jste se narodili. Debaty o tom, který z těchto tří způsobů chápání tohoto termínu je nejpřesnější, mohou být vřelé a kontroverzní. Někteří lidé cítí, že i samotná diskuse o tom, co znamená být transgender, podkopává platnost tohoto prožitku. Tyto různé přesvědčení však nevyhnutelně vedou k různým nápadům, jak nejlépe podpořit lidi v zvládání genderově související tísně, takže diskuse jsou nutné, aby se zajistilo, že lidé dostanou co nejlepší pomoc a radu."
+    },
+    "desistance": {
+      "heading": "Co je desistence?",
+      "p1": "Desistence je, když někdo, kdo se identifikoval jako transgender, ale nepodstoupil lékařské intervence, se již neidentifikuje jako transgender. I když nemusí řešit důsledky podstoupení lékařských intervencí, desistence může být stále velmi emocionálně bolestivý, matoucí a obtížný proces."
+    },
+    "detransition": {
+      "heading": "Detranzice a detranzicionisté",
+      "p1": "Detranzice je, když někdo, kdo se identifikoval jako transgender a podstoupil lékařské intervence, se již neidentifikuje jako transgender. Existuje obrovsky široká variace zkušeností lidí v této skupině. Někteří lidé mohou být silně zdrceni tím, čím prošli, a dlouhodobými důsledky, jiní to mohou vidět jako něco, čím museli projít, aby pochopili sami sebe, jakými v současnosti jsou."
+    },
+    "regret": {
+      "heading": "Lítost nad tranzicí",
+      "p1": "Někteří lidé se mohli identifikovat jako transgender po mnoho let a podstoupili lékařské intervence, jako jsou hormony a operace, které nevratně změnily jejich těla. Mohou cítit, že litují zahájení lékařské genderové tranzice, ale také pokračují v identifikaci jako transgender a/nebo pokračují s cross-sex hormony."
+    },
+    "source": {
+      "text": "Zdroj:",
+      "link": "Nadace Detrans (The Detrans Foundation)"
+    }
+  },
+  "chat": {
+    "lookingForComments": "Hledání relevantních komentářů...",
+    "errorOccurred": "Došlo k chybě, zkuste to znovu... Kontaktujte mě, pokud se to bude opakovat.",
+    "analysingExperiences": "Analýza zkušeností",
+    "detransPerspective": "-> Jaké jsou detranzicionistické perspektivy na toto téma?",
+    "transPerspective": "-> Jaké jsou transgender perspektivy na toto téma?",
+    "backToPortal": "<- Zpět na portál"
+  },
+  "chatInput": {
+    "placeholder": "Zeptejte se detrans.ai...",
+    "deepResearch": "Hluboký výzkum",
+    "suggestions": "Návrhy:"
+  },
+  "deepResearchEvents": {
+    "errorTitle": "Chyba hlubokého výzkumu",
+    "retrieving": "Načítání detranzicionistických zkušeností...",
+    "generatingQuestions": "Generování meta otázek...",
+    "findingAnswers": "Hledání odpovědí na meta otázky",
+    "completed": "Hluboký výzkum dokončen",
+    "retrieveError": "Chyba při načítání detranzicionistických zkušeností!",
+    "analyzeError": "Došly nám peníze na platbu za AI, která analyzuje detranzicionistické zkušenosti a odpovídá na otázky. Pokud můžete, prosím přispějte, abychom mohli udržet službu v provozu. Zkuste to prosím později znovu. Prozatím můžete stále vyzkoušet otázky na portálu.",
+    "generatingAnswer": "Generování odpovědi...",
+    "waitingForAnswer": "Čekání na odpověď",
+    "questionsAnswered": "{answered} z {total} meta otázek zodpovězeno",
+    "generatingSummary": "Generování shrnutí odpovědí"
+  },
+  "questionTabs": {
+    "topics": "Témata",
+    "generated": "Generováno",
+    "recent": "Nedávné",
+    "top": "Nejlepší"
+  },
+  "conversations": {
+    "title": "Nedávné konverzace",
+    "subtitle": "Podívejte se, jak detrans.ai pomáhá lidem z celého světa.",
+    "tabs": {
+      "featured": "Doporučené",
+      "all": "Všechny"
+    },
+    "buttons": {
+      "showMore": "Zobrazit {count} dalších konverzací",
+      "showLess": "Zobrazit méně",
+      "loadMore": "Načíst další konverzace",
+      "loading": "Načítání..."
+    }
+  },
+  "conversationCard": {
+    "untitled": "Konverzace bez názvu",
+    "from": "od",
+    "moreMessages": "{count} dalších zpráv...",
+    "moreMessage": "{count} další zpráva...",
+    "date": {
+      "today": "Dnes",
+      "yesterday": "Včera",
+      "daysAgo": "před {count} dny",
+      "weeksAgo": "{count, plural, =1 {před 1 týdnem} other {před # týdny}}"
+    },
+    "admin": {
+      "deleting": "Mazání...",
+      "delete": "Smazat konverzaci",
+      "banning": "Banování...",
+      "ban": "Zabanovat uživatele (IP)"
+    }
+  },
+  "stories": {
+    "metadata": {
+      "title": "detrans.ai | Příběhy a statistiky o detranzici",
+      "description": "Přečtěte si dojemné příběhy o detranzici, časové osy a trendy od členů komunity /r/detrans na Redditu, největší otevřené sbírky příběhů o detranzici na internetu. Zjistěte, kolik let bylo detranzicionistům, když podstupovali tranzici a detranzici, a jaké cesty zvolili."
+    },
+    "title": "Příběhy a statistiky o detranzici",
+    "subtitle": "Procházejte a vizualizujte {count} jedinečných příběhů a statistik o detranzici lidí, kteří sdíleli své zkušenosti v subredditu /r/detrans, což je největší otevřená sbírka příběhů a zkušeností o detranzici na internetu.",
+    "disclaimer": {
+      "summary": "Tyto příběhy byly shrnuty pomocí AI.",
+      "details": "Na Redditu lidé často sdílejí své zkušenosti napříč více komentáři nebo příspěvky. Aby byly tyto informace lépe přístupné, naše AI shromažďuje všechny tyto rozptýlené kousky do jednoho, snadno čitelného shrnutí a časové osy. Všechny systémové výzvy jsou uvedeny na stránce výzev.",
+      "accuracy": "Někdy AI může halucinovat nebo uvádět věci, které nejsou pravdivé. Obecně však shrnuté příběhy přesně odrážejí původní komentáře uživatelů.",
+      "inclusion": "Do zahrnutí jsou zařazeni pouze uživatelé, kteří sdíleli dostatek informací pro sestavení úplného příběhu a časové osy. Uživatelé, kteří publikovali méně než pět komentářů, nebo jejichž komentáře obdržely méně než tři pozitivní hodnocení, jsou vynecháni. Příspěvky zatím nejsou zahrnuty v datasetu.",
+      "verification": "Každý uživatel byl analyzován na známky botů nebo neautentického obsahu. Každý účet, který nevypadá jako skutečný detranzicionista, je označen jako 'podezřelý'. Tyto účty budou ručně přezkoumány a odstraněny z datasetu detrans.ai, pokud budou shledány jako neautentické. Účty, které učinily méně než pět komentářů, byly vynechány z analýzy."
+    },
+    "charts": {
+      "tabs": {
+        "age": "Věk",
+        "duration": "Trvání",
+        "transitionReason": "Důvod tranzice",
+        "detransitionReason": "Důvod detranzice",
+        "pathways": "Cesty"
+      },
+      "loading": "Načítání dat grafu...",
+      "error": "Chyba: {message}",
+      "retry": "Zkusit znovu",
+      "noData": "Pro vybrané filtry nejsou k dispozici žádné data o důvodech {mode}",
+      "reasonChart": {
+        "title": "Proč detranzicionisté říkají, že {mode, select, detransition {podstoupili detranzici} other {podstoupili tranzici}}?",
+        "subtitle": "Data z časových os uživatelů Redditu {mode} ({totalReasonCount} celkem uživatelů, {totalUsers} různých důvodů.)",
+        "mentions": "{count} zmínek ({percentage}%)"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Hledat uživatelské zkušenosti...",
+      "ageRange": "Rozsah věku:",
+      "ageRangeYears": "{min} - {max} let",
+      "sex": {
+        "all": "Muži a ženy",
+        "female": "Ženy",
+        "male": "Muži"
+      },
+      "tagsPlaceholder": "Vyberte štítky pro filtrování...",
+      "clearFilters": "Vymazat filtry"
+    },
+    "results": "Zobrazuje se {showing} z {total} uživatelských příběhů",
+    "noResults": "Nebyly nalezeny žádné uživatelé odpovídající vašim filtrům.",
+    "pagination": {
+      "previous": "Předchozí",
+      "next": "Další",
+      "pageInfo": "Strana {page} z {totalPages}"
+    },
+    "userCard": {
+      "comments": "{count} komentářů",
+      "postingSince": "Příspěvky od {date}",
+      "transitionedAt": "Tranzice ve věku {age}",
+      "desistedAt": "Desistence ve věku {age}",
+      "detransitionedAt": "Detranzice ve věku {age}",
+      "female": "žena",
+      "male": "muž"
+    }
+  },
+  "prompts": {
+    "metadata": {
+      "title": "Jak to funguje? | Systémové výzvy",
+      "description": "Zjistěte, jak funguje detrans.ai, včetně systémových výzev, dat ukončení platnosti a open source informací."
+    },
+    "title": "Jak to funguje?",
+    "intro": {
+      "paragraph1": "<bold>detrans.ai</bold> chat je agent poháněný RAG (retrieval augmented generation), který generuje meta otázky a odpovídá na ně tím, že přináší na povrch a integruje detranzicionistické myšlenky a zkušenosti ze subredditu <reddit>/r/detrans</reddit> na Redditu a z YouTube. Byl vybaven frameworkem <llamaIndex>LlamaIndex</llamaIndex> a open-source čínským modelem <kimi>kimi-k2.5</kimi> od Moonshot AI pro snížení západní politické zaujatosti.",
+      "paragraph2": "ChatGPT a většina dalších západních LLM jsou docela agresivní ve způsobu, jakým prosazují a zastávají genderová přesvědčení. Prokázalo se, že je nemožné používat GPT modely OpenAI pro tento projekt, protože modely by neustále podkopávaly a odporovaly detranzicionistickým zkušenostem, které měly shrnovat. Pokud byste chtěli více potvrzující zážitek, navštivte <chatgpt>ChatGPT</chatgpt>."
+    },
+    "dataCutoff": {
+      "title": "Data ukončení platnosti",
+      "paragraph1": "<bold>detrans.ai</bold> má aktuálně přístup ke všem komentářům na /r/detrans publikovaným před <date>8. 9. 2025</date>, které obdržely alespoň tři pozitivní hodnocení. Budu se snažit aktualizovat dataset alespoň jednou ročně, pokud subreddit /r/detrans bude i nadále existovat.",
+      "paragraph2": "Uživatelé mohou odesílat videozkušenosti odesláním odkazů na YouTube videa. Tato videa budou ručně přezkoumána předtím, než budou přepsána pomocí OpenAI Whisper modelu pro převod řeči na text a přidána do vektorové databáze a video archivu."
+    },
+    "openSource": {
+      "title": "Open Source",
+      "paragraph": "Zdrojový kód je také dostupný na <github>Github</github> pod licencí MIT, pokud byste chtěli zkontrolovat nebo znovu použít jakýkoli kód pro svůj vlastní projekt. Tento projekt je také postaven na mnoha dalších open-source projektech, jako jsou Llamaindex, React, Next.js, Tailwind, Lucide, Qdrant, Postgres a Vercel AI SDK. Mnohokrát děkuji přispěvatelům těchto projektů za poskytnutí solidního základu pro stavbu."
+    },
+    "systemPrompts": {
+      "title": "Systémové výzvy",
+      "description": "Toto jsou výzvy, které systém používá pro RAG workflow. Neexistují žádné další vlastní instrukce nebo vrstvy kromě toho, co je zobrazeno na této stránce.",
+      "lastUpdated": "Naposledy aktualizováno",
+      "chatAgentTitle": "Systémová výzva chat agenta",
+      "researchModeTitle": "Systémové výzvy pro režim hlubokého výzkumu",
+      "researchAgentTitle": "Výzva výzkumného agenta",
+      "experienceExtractionTitle": "Výzva pro extrakci zkušeností",
+      "finalAnswerTitle": "Výzva pro finální odpověď"
+    },
+    "userSummaries": {
+      "title": "Systémové výzvy pro uživatelská shrnutí",
+      "description": "Toto jsou systémové výzvy pro generovaná uživatelská shrnutí.",
+      "lastUpdated": "Naposledy aktualizováno",
+      "experienceReportTitle": "Zpráva o uživatelských zkušenostech",
+      "experienceSummaryTitle": "Shrnutí uživatelských zkušeností",
+      "generateTagsTitle": "Generovat štítky",
+      "extractAgesTitle": "Extrahovat věky",
+      "determineBirthSexTitle": "Určit pohlaví při narození",
+      "redFlagReportTitle": "Zpráva o červených vlajkách"
+    }
+  },
+  "donatePage": {
+    "title": "Udržte Detrans.AI v provozu",
+    "description1": "Pokud oceňujete práci, kterou jsem vložil do těchto stránek, nebo vám tato bezplatná služba pomohla, zvažte prosím jednorázový nebo pravidelný příspěvek, abyste udrželi <b>detrans.ai</b> online.",
+    "description2": "Nemohu si dovolit provozovat tak náročnou službu jako tato bez vaší podpory. Mým hlavním zdrojem příjmů v současnosti je sociální dávka a v době psaní tohoto textu mám na účtu méně než 1000 dolarů. Pokud tato stránka získá velkou popularitu, mohl bych dostávat účty za tisíce dolarů. Pokud mi dojdou peníze, bude zakázána možnost pokládat vlastní otázky a prozkoumávat témata hlouběji prostřednictvím následných otázek a budu poskytovat pouze uložené odpovědi na otázky na portálu.",
+    "description3": "Zvažte prosím měsíční příspěvek. Můžete přispět pomocí PayPalu níže, přímo na můj novozélandský bankovní účet nebo pomocí BTC.",
+    "bankAccount": "Novozélandský bankovní účet",
+    "accountName": "Jméno",
+    "accountNumber": "Účet",
+    "swiftCode": "SWIFT/BIC kód",
+    "bitcoin": "Bitcoinová adresa",
+    "paypal": "PayPal příspěvek"
+  },
+  "terms": {
+    "metadata": {
+      "title": "Zásady ochrany osobních údajů | detrans.ai",
+      "description": "Zjistěte více o našich zásadách ochrany osobních údajů, praktikách sběru dat a jak chráníme vaše informace."
+    },
+    "title": "Zásady ochrany osobních údajů",
+    "intro": "Tyto zásady ochrany osobních údajů vysvětlují, jaké informace shromažďujeme, proč je shromažďujeme a jak je chráníme, když navštívíte nebo používáte naši službu.",
+    "sections": {
+      "informationWeCollect": {
+        "title": "Informace, které shromažďujeme",
+        "chatMessages": {
+          "title": "Chatovací zprávy:",
+          "content": "Uchováváme všechny záznamy chatu stejně jako odpovědi na všechny otázky položené v režimu hlubokého výzkumu. Záznamy chatu nejsou spojeny s vaší IP adresou nebo žádnými daty, která by mohla být potenciálně použita k vaší identifikaci. Záznamy chatu mohou být v budoucnosti analyzovány a použity pro výzkumné účely. Prosím vyhněte se sdílení jakýchkoli citlivých informací."
+        },
+        "cookies": {
+          "title": "Cookies / Sledovací technologie:",
+          "content": "Nepoužíváme <em>cookies</em>, pixelové tagy ani žádné podobné mechanismy sledování na straně klienta."
+        },
+        "ipAddresses": {
+          "title": "IP adresy:",
+          "content": "Když provedete požadavek na naše servery, ukládáme vaši IP adresu za účelem počítání požadavků a vynucování limitů, které zabraňují zneužití."
+        },
+        "optionalData": {
+          "title": "Volitelná data:",
+          "content": "Pokud se rozhodnete nás kontaktovat, můžeme shromáždit informace, které dobrovolně poskytnete (např. e-mailová adresa, jméno). Poskytnutí těchto informací je volitelné, pokud není výslovně uvedeno jinak."
+        }
+      },
+      "legalBases": {
+        "title": "Právní základy pro zpracování (návštěvníci EU/EHP)",
+        "item1": "Zpracování limitů je nutné pro naše <em>oprávněné zájmy</em> podle GDPR čl. 6(1)(f) – konkrétně pro zachování dostupnosti a bezpečnosti služby.",
+        "item2": "Jakékoli další zpracování (např. vytvoření účtu) je založeno na vašem <em>souhlasu</em> nebo <em>smluvní nutnosti</em>, podle toho, co je relevantní."
+      },
+      "dataRetention": {
+        "title": "Jak dlouho uchováváme data",
+        "content": "Všechny záznamy chatu budou uchovány. IP adresy použité pro limitování jsou automaticky smazány do několika minut po posledním požadavku nebo na konci limitního okna, podle toho, co nastane dříve. Dobrovolné informace (např. e-maily podpory) jsou uchovány pouze tak dlouho, jak je potřeba k vyřešení vašeho dotazu nebo splnění právních povinností."
+      },
+      "thirdPartySharing": {
+        "title": "Sdílení s třetími stranami",
+        "content": "Můžeme se rozhodnout sdílet anonymizované záznamy chatu s akademiky a výzkumníky, kteří se snaží zlepšit výsledky pro lidi zažívající genderovou dysforii. Můžeme zpřístupnit IP adresy nebo jiná data pouze v případě, že to vyžaduje zákon nebo pro ochranu našich práv, uživatelů nebo veřejnosti (např. prevence podvodů, soudní příkaz)."
+      },
+      "security": {
+        "title": "Bezpečnost",
+        "content": "Používáme technická a organizační opatření na úrovni průmyslového standardu (šifrování TLS, kontrola přístupu, design s nejnižšími oprávněními) k ochraně dat během přenosu a v klidu."
+      },
+      "internationalTransfers": {
+        "title": "Mezinárodní přenosy",
+        "content": "Naše servery se nacházejí ve Spojených státech. Pokud přistupujete ke službě mimo USA, chápete, že vaše IP adresa bude přenášena a zpracována ve Spojených státech."
+      },
+      "childrensPrivacy": {
+        "title": "Ochrana soukromí dětí",
+        "content": "Naše služba není určena dětem do 13 let a vědomě nesbíráme osobní informace od nich. Pokud se domníváte, že jsme taková data shromáždili omylem, kontaktujte nás pro okamžité smazání."
+      },
+      "changes": {
+        "title": "Změny těchto zásad",
+        "content": "Tyto zásady můžeme čas od času aktualizovat. 'Datum účinnosti' nahoře se změní a významné změny budou zveřejněny výrazně."
+      },
+      "contact": {
+        "title": "Kontaktujte nás",
+        "content": "Pokud máte otázky, obavy nebo stížnosti, použijte kontaktní formulář nebo napište na <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "videos": {
+    "metadata": {
+      "title": "detrans.ai | Sledujte videa od detranzicionistů",
+      "description": "Zde je výběr osobních video memoárů, která byla nahrána na YouTube lidmi, kteří podstoupili tranzici a poté dospěli k poznání, které je vedlo k detranzici. Na internetu existuje nespočet takových příběhů, toto je jen malá podmnožina."
+    },
+    "title": "Videa o tranzici a detranzici",
+    "description": {
+      "line1": "Tato stránka má ambici být nejlepším archivem videí o detranzici na internetu.",
+      "line2": "Pomocí převodu řeči na text detrans.ai integruje tyto zkušenosti do chatovacích konverzací.",
+      "line3": "Zatím pouze YouTube videa, TikTok již brzy?!"
+    },
+    "female": "žena",
+    "male": "muž",
+    "backToAll": "Zpět na všechny",
+    "overview": "Přehled",
+    "fullSummary": "Úplné shrnutí videa",
+    "watchOnYouTube": "Sledovat na YouTube",
+    "moreVideos": "Další videa",
+    "browseAll": "Procházet všechna videa o detranzici",
+    "metadataWatchDescription": "Sledujte {title} od {author}, {sex} detranzicionisty sdílejícího svůj příběh.",
+    "metadataThumbnailAlt": "Náhled pro {title}"
+  },
+  "videoList": {
+    "loading": "Načítání videí...",
+    "filters": {
+      "all": "Všechny příběhy",
+      "female": "Ženy",
+      "male": "Muži",
+      "detransitioners": "Detranzicionisté"
+    },
+    "thumbnailAlt": "Náhled pro {title}",
+    "by": "od",
+    "female": "Žena",
+    "male": "Muž"
+  },
+  "videoSubmitForm": {
+    "submitTitle": "Odešlete své video o detranzici",
+    "description": {
+      "line1": "Odesláním svého videa se zobrazí na této stránce a v relevantních chatech.",
+      "line2": "Může to být vaše video, nebo může jít o video, které jste našli online a chybí na této stránce.",
+      "line3": "Všechny příspěvky jsou moderovány, může trvat několik dní, než se objeví."
+    },
+    "urlLabel": "YouTube URL",
+    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "submitButton": "Odeslat video",
+    "submitting": "Odesílání...",
+    "submitSuccess": "Video úspěšně odesláno! Bude přezkoumáno, než se objeví na stránce.",
+    "submitError": "Nepodařilo se odeslat video",
+    "networkError": "Chyba sítě. Zkuste to prosím znovu."
+  },
+  "studySubmitForm": {
+    "submitTitle": "Odešlete studii",
+    "description": {
+      "line1": "Znáte relevantní akademickou studii nebo recenzovaný článek, který chybí?",
+      "line2": "Odešlete URL a volitelně navrhněte název.",
+      "line3": "Všechny příspěvky jsou moderovány před zobrazením na stránce."
+    },
+    "urlLabel": "URL studie",
+    "urlPlaceholder": "https://...",
+    "titleLabel": "Navrhovaný název",
+    "titlePlaceholder": "Volitelný nadpis nebo název studie",
+    "titleHelp": "Volitelné: Navrhněte stručný název nebo nadpis pro tuto studii",
+    "submitButton": "Odeslat studii",
+    "submitting": "Odesílání...",
+    "submitSuccess": "Studie úspěšně odeslána! Bude přezkoumána před zobrazením na stránce.",
+    "submitError": "Nepodařilo se odeslat studii",
+    "networkError": "Chyba sítě. Zkuste to prosím znovu."
+  },
+  "studiesPage": {
+    "metadata": {
+      "title": "detrans.ai | Akademické studie o tématech detranzice",
+      "description": "Na této stránce najdete výběr akademických studií, recenzovaných článků v časopisech a ověřených statistik týkajících se trendů genderové identity a detranzice.",
+      "ogTitle": "detrans.ai | Akademické studie o tématech detranzice",
+      "ogDescription": "Na této stránce najdete výběr akademických studií a recenzovaných článků v časopisech a ověřených statistik týkajících se trendů genderové identity a detranzice."
+    },
+    "title": "Vybrané akademické články",
+    "description": "Akademické studie, recenzovaný výzkum a články v časopisech na téma genderové identity, tranzice a detranzice."
+  },
+  "contentWarning": {
+    "title": "Upozornění na obsah:",
+    "description": {
+      "line1": "Tento web obsahuje příběhy, zkušenosti a perspektivy od bývalých transgenderových lidí.",
+      "line2": "Témata zahrnují lítost nad tranzicí, lékařské komplikace a holistické pohledy na dysforii.",
+      "line3": "Tyto informace mohou zpochybnit běžně přijímaná přesvědčení o genderové identitě a tranzici."
+    },
+    "buttons": {
+      "exit": "Dostaňte mě odsud!",
+      "continue": "Pokračovat"
+    }
+  },
+  "supportPage": {
+    "metadata": {
+      "title": "detrans.ai | Získejte pomoc a podporu pro gender",
+      "description": "Zjistěte rozdíl mezi genderově potvrzující péčí a genderově explorační terapií. Pokud zažíváte genderovou dysforii, jedním z nejlepších způsobů, jak získat podporu, je mluvit s lidmi, kteří tam sami byli a vyšli na druhou stranu, a pochopit jejich perspektivy."
+    },
+    "title": "Získejte pomoc a podporu pro gender",
+    "navigation": {
+      "jumpTo": "Přejít na:",
+      "getGenderSupport": "Získat podporu pro gender:"
+    },
+    "sections": {
+      "onlineSupport": {
+        "title": "Online podpůrné skupiny",
+        "description": "Pokud zažíváte genderovou dysforii, jedním z nejlepších způsobů, jak získat podporu, je mluvit s lidmi, kteří tam sami byli a vyšli na druhou stranu, a pochopit jejich perspektivy.",
+        "links": {
+          "redditCommunity": "Komunita Detrans na Redditu",
+          "redditWiki": "Detrans Wiki na Redditu",
+          "discordServer": "Oficiální /r/detrans Discord Server",
+          "askDetransAI": "Zeptejte se 50 000+ detranzicionistů pomocí detrans.ai"
+        }
+      },
+      "genderAffirmingCare": {
+        "title": "Genderově potvrzující péče: Co to je?",
+        "description": "Genderově potvrzující péče je v současnosti standardní (a často jedinou) možností léčby genderové dysforie nabízenou zdravotnickými poskytovateli v západním světě. Genderově potvrzující péče v podstatě uznává společenská genderová očekávání a poté na ně adaptuje pacienta. Je to přístup s postupnými kroky, který začíná sociální tranzicí (jméno, zájmena, oblečení), pak hormonální terapií a poté pro některé nevratné chirurgické zákroky. Genderově potvrzující péče může poskytnout úlevu od genderové dysforie, ale přichází s vážnými zdravotními riziky a často trvalými vedlejšími účinky. Postupujte s maximální opatrností a ujistěte se, že",
+        "watchTestimonies": "shlédněte nějaká svědectví"
+      },
+      "genderExploratoryTherapy": {
+        "title": "Genderově explorační terapie: Co to je?",
+        "description1": "Genderově explorační terapie jednoduše znamená, že váš terapeut vás neuspěchává k potvrzení a medicalizaci. Místo toho začne zkoumáním konceptů genderu a proč se tak můžete cítit. Genderově explorační terapie je přístup bez specifické, předem stanovené agendy, a výsledky genderově explorační terapie se mohou lišit v závislosti na každém jednotlivci.",
+        "description2": "Pokud vyhledáte 'Genderově explorační terapie' na Googlu, najdete některé kritiky, které ji srovnávají s terapií konverze homosexuálů (která je prokazatelně neúčinná). Pravda je, že genderově explorační terapie se velmi liší od terapie konverze homosexuálů:",
+        "references": {
+          "title": "Reference",
+          "ref1": "U.S. Dept. of Health & Human Services (2025). Report on Pediatric Gender Dysphoria and Gender Conversion Efforts.",
+          "ref2": "D'Angelo, R. (2025). 'Supporting autonomy in young people with gender dysphoria: psychotherapy is not conversion therapy.' Journal of Medical Ethics, 51(1).",
+          "ref3": "Lemma, A. & Schmidt, L. (2024). 'Psychodynamic Psychotherapy for Gender Dysphoria is not Conversion Therapy.' Frontiers in Psychology.",
+          "ref4": "Korte, A. et al. (2021). 'One Size Does Not Fit All: In Support of Psychotherapy for Gender Dysphoria.' Archives of Sexual Behavior."
+        },
+        "florenceAshley": {
+          "title": "Studie Florence Ashleyové",
+          "description": "Akademický výzkum v této oblasti je často zaujatý. Jedna z nejvlivnějších studií (Interrogating Gender-Exploratory Therapy) byla publikována v roce 2022 Florence Ashleyovou, trans ženou. Ve své studii srovnala genderově explorační terapii s terapií konverze homosexuálů a silně odsoudila tuto praxi. Mělo by se uznat, že lidé, kteří se identifikují jako trans, jsou motivováni chránit svou identitu a přesvědčení, a tato studie je perfektním příkladem tohoto. Studie je plná logických klamů, přesto byla publikována a používá se jako akademické zdůvodnění, proč by měla být genderově potvrzující péče jedinou možností pro lidi zažívající genderovou dysforii.",
+          "showFallacies": "Podívejte se na všechny logické klamy ve studii Florence Ashleyové"
+        }
+      },
+      "findTherapist": {
+        "title": "Kde mohu najít terapeuta, který praktikuje genderově explorační terapii?",
+        "languageNotice": "Většina uvedených terapeutů mluví pouze anglicky, ale můžete se stále pokusit je kontaktovat, abyste našli někoho, kdo mluví vaším jazykem. Pokud znáte licencovaného terapeuta, který mluví vaším jazykem, můžete navrhnout jeho přidání na tuto stránku prostřednictvím",
+        "contactForm": "kontaktního formuláře",
+        "organizations": {
+          "justTherapy": {
+            "name": "Just Therapy",
+            "description": "Just Therapy vznikla z touhy vrátit se k tomu, čím by terapie měla být – účinná, etická a svobodná od ideologie. Je to sdružení terapeutů a poradců sjednocených společnými etickými zásadami a principy. Just Therapy uznává, že velká část světa psychoterapie a poradenství byla převzata aktivisty a ideologiemi, které riskují poškození, spíše než podporu, duševní pohody klientů. Její členové, kteří pocházejí z široké škály disciplín a specializací, podepsali Etický kodex.",
+            "directory": "Adresář terapeutů Just Therapy",
+            "codeOfConduct": "Etický kodex Just Therapy"
+          },
+          "therapyFirst": {
+            "name": "Therapy First",
+            "description": "Therapy First sdružuje odborníky na duševní zdraví, kteří věří, že klienti s genderovým rozrušením si zaslouží otevřenou, založenou na důkazech psychoterapii, která zkoumá nevědomé a kontextuální faktory před jakýmkoli nevratným lékařským krokem; odmítají jak praktiky konverze, tak model 'pouze potvrzovat', zastávají autonomii klienta a považují dětskou/dospívající lékařskou tranzici za experimentální, přesto podporují právo dospělých na autonomii těla a pokračování terapeutického zkoumání.",
+            "directory": "Adresář terapeutů Therapy First",
+            "about": "O Therapy First"
+          },
+          "beyondTrans": {
+            "name": "Beyond Trans",
+            "description": "Stella O'Malley zahájila Gender Dysphoria Support Network v březnu 2020, aby poskytla rodičům nezaujatou pomoc s genderově rozrušenými dětmi; rychle to vyrostlo v globální komunitu, což vedlo k vytvoření Genspect v roce 2021, zastánce ne-lékařské péče. Uvědomujíc si rostoucí lítost nad tranzicí, skupina založila Beyond Trans v roce 2022 a v červnu 2025 sloučila s GDSN, aby vytvořila jednu integrovanou, založenou na důkazech podpůrnou síť pro rodiny, jednotlivce a detranzicionisty.",
+            "directory": "Adresář terapeutů Beyond Trans",
+            "supportGroups": "Podpůrné skupiny Beyond Trans",
+            "about": "O Beyond Trans"
+          },
+          "detransFoundation": {
+            "name": "Nadace Detrans (The Detrans Foundation)",
+            "description": "Nadace Detrans poskytuje zdroje a podporu pro detranzicionisty, včetně přístupu k kvalifikovaným terapeutům, kteří rozumějí zkušenostem s detranzicí. Následující terapeuté jsou součástí Nadace Detrans:",
+            "drEntwistle": "je klinická psycholožka, která dříve pracovala v NHS službě pro vývoj genderové identity pro osoby do 18 let v Leedsu. Je registrovaná u UK Health Care Professions Council (HCPC) a nabízí online konzultace prostřednictvím bezpečného videohovoru.",
+            "anastassisSpiliadis": "je systemický a rodinný psychoterapeut, který pracoval čtyři roky v Gender Identity Development Service v Tavistocku, kde vedl Family Therapy & Consultation Service. Odešel z Tavistocku, protože nesouhlasil s nedostatkem terapeutického modelu při porozumění obtížím genderové identity. Vyvinul Gender Exploratory Model a má rozsáhlé zkušenosti s prací s lidmi zpochybňujícími svůj gender a detranzicionisty.",
+            "visitWebsite": "Navštivte webové stránky Nadace Detrans"
+          }
+        }
+      },
+      "forParents": {
+        "title": "Zdroje pro rodiče",
+        "intro": "Pokud vaše dítě nedávno vyšlo jako transgender, můžete se cítit zmatení, znepokojení a nevědět, jak mu nejlépe poskytnout podporu, zatímco chráníte jeho dlouhodobé zdraví a pohodu.",
+        "rogdRepair": {
+          "name": "ROGD Repair Program Stephanie Winnové",
+          "whatIs": "Co je ROGD Repair?",
+          "description1": "ROGD Repair je:",
+          "bullet1": "Program, který pomáhá rodičům trans-identifikovaných mladistvých komunikovat způsoby, které podporují desistenci, kritické myšlení, zdraví a harmonii vztahů",
+          "bullet2": "Interaktivní a stále se rozšiřující sada nástrojů psychologických konceptů a komunikačních dovedností vylepšených během let jako licencovaná manželská a rodinná terapeutka, která se stala rodičovským koučem pro ROGD",
+          "bullet3": "Samostatný online kurz obsahující přes 100 lekcí, z nichž každá obsahuje video, eseji a reflexní otázky navržené k tomu, aby pomohly účastníkům personalizovat obsah pro jejich jedinečné rodinné situace, stejně jako diskusní fóra",
+          "description2": "Nová členství ROGD Repair nyní přicházejí s neomezeným přístupem k RepairBotovi, prvnímu a jedinému AI nástroji navrženému speciálně k pomoci nepotvrzujícím rodičům genderově rozrušených mladistvých. RepairBot je trénován na celém ROGD Repair kurikulu a slouží jako vynikající zvuková deska, pomocník s domácími úkoly a pomocník s komunikačními nástroji!",
+          "ctaBox": {
+            "title": "Vaše dítě říká, že je 'trans', ale vy je chcete pouze zdravé a v bezpečí.",
+            "description1": "Zdraví a budoucnost vašeho dítěte jsou v sázce, ale váš vliv a vliv jsou omezené. Možná začali s hormony na černém trhu za vašimi zády, nebo se zlobně vychrlí ven, když je 'nezgenderujete', nebo jsou pryč na 'potvrzující' vysoké škole. Musíte v této složité situaci efektivně komunikovat, dříve než se někdo zraní. To je místo, kde přichází ROGD Repair.",
+            "description2": "ROGD Repair je samostatný online kurz a komunita pro rodiče, která učí psychologické koncepty a komunikační nástroje, které potřebujete k porozumění duševního stavu vašeho dítěte a jak je oslovit. Členství nyní zahrnuje RepairBota, vašeho 24/7 AI asistenta trénovaného na tomto přístupu.",
+            "description3": "ROGD Repair a RepairBot byli vytvořeni licencovanou manželskou a rodinnou terapeutkou s více než desetiletými zkušenostmi prací s trans-identifikovanými mladistvými a jejich rodinami, která nyní výhradně vede rodiče, kteří vědí, že musí existovat lepší cesta než 'potvrzování'."
+          },
+          "coupon": "Použijte tento kód kupónu pro získání",
+          "couponCode": "DETRANSAI",
+          "learnMore": "Dozvědět se více a přihlásit se do ROGD Repair"
+        }
+      }
+    },
+    "table": {
+      "gayConversion": "Terapie konverze homosexuálů",
+      "genderExploratory": "Genderově explorační terapie",
+      "goal": "Cíl",
+      "goalConversion": "Změnit sexuální orientaci, protože je považována za patologickou.",
+      "goalExploratory": "Porozumět významu dysforie; výsledek může být tranzice, žádná tranzice nebo částečná sociální tranzice.",
+      "method": "Metoda",
+      "methodConversion": "Stud, averze, behaviorální podmiňování, modlitba.",
+      "methodExploratory": "GET je kompatibilní se širokou škálou terapeutických modalit, jako jsou standardní psychodynamické nebo humanistické techniky – otevřené otázky, zvědavost, žádné předem stanovené koncové body.",
+      "evidence": "Důkazní základ",
+      "evidenceConversion": "Konzistentně ukazuje škodu; každé hlavní lékařské tělo ji odsuzuje.",
+      "evidenceExploratory": "Zatím žádné RCT, ale paralely k terapiím, které snižují úzkost, depresi, sebepoškozování; žádná data ukazující systematickou škodu.",
+      "ethics": "Etika",
+      "ethicsConversion": "Porušuje autonomii tím, že prosazuje heterosexuální identitu jako jedinou správnou možnost.",
+      "ethicsExploratory": "Snaží se rozšířit autonomii tím, že zajišťuje, že dospívající (a rodina) rozumí všem možnostem před nevratnými kroky."
+    },
+    "fallacies": {
+      "title": "Logické klamy ve studii Florence Ashleyové",
+      "name": "Název klamu",
+      "explanation": "Jednoduché vysvětlení",
+      "example": "Příklad z článku"
+    }
+  },
+  "charts": {
+    "ageDistribution": {
+      "title": "Kolik let bylo detranzicionistům, když podstupovali tranzici a detranzici?",
+      "subtitle": "Data z časových os tranzice uživatelů Redditu",
+      "loading": "Načítání dat grafu...",
+      "fetchError": "Nepodařilo se načíst data o distribuci věku",
+      "genericError": "Došlo k chybě",
+      "errorPrefix": "Chyba:",
+      "noData": "Pro vybraný rozsah věku nejsou k dispozici žádná data",
+      "tooltip": {
+        "age": "Věk: {age}",
+        "transitioned": "Tranzice: {count} uživatelů",
+        "detransitioned": "Detranzice: {count} uživatelů"
+      },
+      "axis": {
+        "age": "Věk",
+        "users": "Počet uživatelů"
+      },
+      "legend": {
+        "transition": "Věk při tranzici",
+        "detransition": "Věk při detranzici"
+      }
+    },
+    "transitionDuration": {
+      "title": "Trvání tranzice: Věk při tranzici vs věk při detranzici",
+      "description": {
+        "line1": "Každý bod ukazuje věk při tranzici (X) vs věk při detranzici (Y).",
+        "line2": "Větší, neprůhlednější body reprezentují více uživatelů."
+      },
+      "loading": "Načítání dat grafu...",
+      "noData": "Pro vybraný rozsah věku nejsou k dispozici žádná data",
+      "axis": {
+        "transitionAge": "Věk při tranzici",
+        "detransitionAge": "Věk při detranzici"
+      },
+      "tooltip": {
+        "transitionAge": "Věk při tranzici",
+        "detransitionAge": "Věk při detranzici",
+        "duration": "Trvání",
+        "years": "let"
+      },
+      "male": "Muž",
+      "female": "Žena",
+      "yearsAvg": "let průměrně",
+      "user": "uživatel",
+      "users": "uživatelů"
+    },
+    "pathways": {
+      "title": "Tok cest detranzice",
+      "subtitle": "Tok demografie uživatelů /r/detrans Redditu až k výsledkům detranzice",
+      "loading": "Načítání dat o cestách...",
+      "fetchError": "Nepodařilo se načíst data o distribuci štítků",
+      "genericError": "Došlo k chybě",
+      "error": "Chyba",
+      "users": "{count} uživatelů",
+      "percentageOfTotal": "{percentage}% z celku",
+      "totalUsers": "Celkem uživatelů",
+      "flowConnections": "Tok spojení",
+      "male": "Muž",
+      "female": "Žena",
+      "noData": "Pro vybrané filtry nejsou k dispozici žádná data o cestách"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Kontakt | detrans.ai",
+      "description": "Spojte se s námi. Pošlete nám své myšlenky, návrhy nebo zpětnou vazbu."
+    },
+    "title": "Kontaktní formulář",
+    "intro": "Pokud máte nějaké myšlenky, návrhy, nebo vám tato bezplatná služba pomohla, vaší rodině nebo vašemu příteli, rád bych od vás slyšel. Napište mi zprávu níže!",
+    "form": {
+      "to": "Komu",
+      "name": "Jméno",
+      "namePlaceholder": "Vaše jméno",
+      "email": "E-mail",
+      "emailPlaceholder": "vy@priklad.cz",
+      "subject": "Předmět",
+      "subjectPlaceholder": "Předmět",
+      "message": "Zpráva",
+      "messagePlaceholder": "Napište svou zprávu...",
+      "sendButton": "Odeslat zprávu",
+      "sending": "Odesílání...",
+      "success": "Zpráva odeslána!",
+      "error": "Odeslání se nezdařilo."
+    }
+  },
+  "seo": {
+    "conversations": {
+      "title": "Archiv konverzací",
+      "description": "Procházejte konverzace o genderové identitě, detranzici, genderově potvrzující péči a potvrzování.",
+      "conversations": "Konverzace",
+      "featuredConversations": "Doporučené konverzace",
+      "allConversations": "Všechny konverzace",
+      "untitled": "Konverzace bez názvu",
+      "noSummary": "Shrnutí není k dispozici",
+      "noConversations": "Nejsou k dispozici žádné konverzace.",
+      "mode": "Režim",
+      "updated": "Aktualizováno",
+      "featured": "Doporučeno",
+      "conversationSummary": "Shrnutí konverzace",
+      "noSummaryAvailable": "Pro tuto konverzaci není k dispozici žádné shrnutí.",
+      "conversation": "Konverzace",
+      "unableToParse": "Nepodařilo se analyzovat zprávy konverzace.",
+      "archiveNote": "Toto je konverzace z našeho archivu. Pro zobrazení úplné konverzace a účast na diskusích navštivte interaktivní verzi této stránky.",
+      "welcomeTitle": "Vítejte v archivu konverzací",
+      "welcomeDescription": "Vyberte konverzaci z postranního panelu pro zobrazení jejích podrobností. Tento archiv obsahuje diskuse o genderové identitě, zkušenostech s detranzicí a cestách potvrzování.",
+      "featuredDescription": "Zvýrazněné diskuse označené naší komunitou",
+      "allDescription": "Procházejte všechny dostupné diskuse",
+      "footer": "Tato stránka poskytuje obsah přátelský pro vyhledávače a boty. Pro plný interaktivní zážitek navštivte pomocí moderního webového prohlížeče.",
+      "user": "Uživatel"
+    },
+    "chat": {
+      "subtitle": "Otázky a odpovědi pro lidi, kteří zpochybňují svou genderovou identitu.",
+      "freedomMessage": "Pravdou je, že nekonformita genderu nás všechny osvobodí!",
+      "moreQuestions": "Další otázky související s \"{question}\""
+    },
+    "videos": {
+      "title": "Videa o tranzici a detranzici",
+      "description": "Toto je archiv osobních videí o detranzici, která byla nahrána na internet. Dejte o sobě vědět tím, že přispějete a sdílíte svůj vlastní příběh!",
+      "thumbnailAlt": "Náhled pro",
+      "by": "od",
+      "female": "Žena",
+      "male": "Muž"
+    }
+  },
+  "routes": {
+    "home": "/",
+    "about": "/about",
+    "contact": "/contact",
+    "support": "/support",
+    "videos": "/videos",
+    "stories": "/stories",
+    "studies": "/studies",
+    "definitions": "/definitions",
+    "donate": "/donate",
+    "terms": "/terms",
+    "prompts": "/prompts",
+    "participate": "/participate",
+    "conversations": "/conversations",
+    "research": "/research",
+    "chat": "/chat",
+    "login": "/login"
+  }
+}

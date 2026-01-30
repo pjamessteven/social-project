@@ -218,7 +218,7 @@ export default async function UserPage({
                 </div>
               )}
             </div>
-            <Link
+            <a
               href={`https://reddit.com/u/${user.username}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -227,7 +227,7 @@ export default async function UserPage({
                 <ExternalLink className="mr-2 h-4 w-4" />
                 Reddit Profile
               </Button>
-            </Link>
+            </a>
           </div>
 
           {user.tags.length > 0 && (

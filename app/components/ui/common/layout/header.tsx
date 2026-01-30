@@ -41,7 +41,7 @@ function NavLink({ href, label }: { href: string; label: string }) {
   const isActive = pathname === href;
 
   return (
-    <Link href={href}>
+    <Link href={href as "/"}>
       <Button
         size="sm"
         variant="ghost"

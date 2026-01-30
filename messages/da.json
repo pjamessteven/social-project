@@ -163,7 +163,8 @@
     "title": "Udseende",
     "darkMode": "Mørk tilstand",
     "light": "Lys",
-    "dark": "Mørk"
+    "dark": "Mørk",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

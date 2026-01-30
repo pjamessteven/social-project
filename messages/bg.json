@@ -164,7 +164,8 @@
     "title": "Външен вид",
     "darkMode": "Тъмен режим",
     "light": "Светъл",
-    "dark": "Тъмен"
+    "dark": "Тъмен",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

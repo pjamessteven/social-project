@@ -166,7 +166,7 @@ export async function QuestionCategories({
                 (question: string, questionIndex: number) => (
                   <Link
                     prefetch={false}
-                    href={"/research/" + slugify(question)}
+                    href={"/research/" + slugify(question) as any}
                     key={questionIndex}
                   >
                     <div className="flex flex-row items-center border-b pt-1 pb-2">

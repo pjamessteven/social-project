@@ -120,7 +120,7 @@ export function QuestionCategoriesClient({
                   (question: string, questionIndex: number) => (
                     <Link
                       prefetch={false}
-                      href={"/research/" + slugify(question)}
+                      href={"/research/" + slugify(question) as any}
                       key={questionIndex}
                     >
                       <div

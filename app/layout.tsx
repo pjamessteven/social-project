@@ -10,6 +10,24 @@ import { headers } from "next/headers";
 import "./globals.css";
 import { isRTL, locales, defaultLocale } from "@/i18n/locales";
 
+const themeScript = `
+  (function() {
+    function getTheme() {
+      const theme = localStorage.getItem('theme') || 'system';
+      if (theme === 'system') {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      return theme;
+    }
+    const theme = getTheme();
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  })();
+`;
+
 const inter = Inter({ subsets: ["latin"] });
 
 const viewport: Viewport = {
@@ -50,16 +68,21 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} dir={dir} suppressHydrationWarning>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <body
-          className={clsx(
-            inter.className,
-            "text-primary! dark:text-primary! bg-white transition-colors dark:bg-black",
-          )}
-        >
+      <body
+        className={clsx(
+          inter.className,
+          "text-primary! dark:text-primary! bg-white transition-colors dark:bg-black",
+        )}
+      >
+        <script
+          dangerouslySetInnerHTML={{
+            __html: themeScript,
+          }}
+        />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange disableScript>
           {children}
-        </body>
-      </ThemeProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

@@ -150,7 +150,7 @@ export function DynamicQuestionCategories({
           {topQuestions.map((item, index) => (
             <Link
               prefetch={false}
-              href={getQuestionUrl(item.page)}
+              href={getQuestionUrl(item.page) as any}
               key={`${item.page}-${index}`}
             >
               <div className="flex flex-row items-center border-b pt-1 pb-2">

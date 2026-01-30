@@ -94,15 +94,15 @@ export default function CustomChatMessages({
                     <>
                       <div className="text-foreground mr-16 ml-3 flex items-center border-b">
                         {mode == "affirm" ? (
-                          <Link
+                          <a
                             key={index}
-                            prefetch={false}
                             href={
                               (isDev
                                 ? "/research/"
                                 : "https://detrans.ai/research/") + slugify("")
                             }
                             target="_blank"
+                            rel="noopener noreferrer"
                             className="font-regular text-muted-foreground cursor-pointer italic no-underline"
                           >
                             <div className="flex flex-row items-center pt-0 pb-3">
@@ -116,11 +116,10 @@ export default function CustomChatMessages({
                               </div>
                               <ExternalLink className="ml-2 h-4" />
                             </div>
-                          </Link>
+                          </a>
                         ) : (
-                          <Link
+                          <a
                             key={index}
-                            prefetch={false}
                             href={
                               (isDev
                                 ? "/affirm/research/"
@@ -128,6 +127,7 @@ export default function CustomChatMessages({
                               slugify(lastUserMessage || "")
                             }
                             target="_blank"
+                            rel="noopener noreferrer"
                             className="text-muted-foreground cursor-pointer font-medium italic no-underline"
                           >
                             <div className="flex flex-row items-center pt-0 pb-3">
@@ -141,7 +141,7 @@ export default function CustomChatMessages({
                               </div>
                               <ExternalLink className="ml-2 h-4" />
                             </div>
-                          </Link>
+                          </a>
                         )}
                       </div>
                     </>

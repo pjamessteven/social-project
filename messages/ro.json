@@ -164,7 +164,8 @@
     "title": "Aspect",
     "darkMode": "Mod întunecat",
     "light": "Luminos",
-    "dark": "Întunecat"
+    "dark": "Întunecat",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

@@ -163,7 +163,8 @@
     "title": "Wygląd",
     "darkMode": "Tryb ciemny",
     "light": "Jasny",
-    "dark": "Ciemny"
+    "dark": "Ciemny",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

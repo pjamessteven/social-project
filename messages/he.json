@@ -163,7 +163,8 @@
     "title": "מראה",
     "darkMode": "מצב כהה",
     "light": "בהיר",
-    "dark": "כהה"
+    "dark": "כהה",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

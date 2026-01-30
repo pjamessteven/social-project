@@ -149,7 +149,7 @@ function SettingsMenuInner() {
                   >
                     <div className="flex items-center gap-2">
                       <Monitor className="h-4 w-4" />
-                      <span>{t("theme.auto")}</span>
+                      <span className="capitalize">{t("theme.auto")}</span>
                     </div>
                     {theme === "system" && <Check className="h-4 w-4" />}
                   </button>
@@ -211,7 +211,7 @@ function SettingsMenuInner() {
 // Simple fallback when no intl context is available
 function SettingsMenuFallback() {
   return (
-    <Link href="/en">
+    <Link href="/">
       <Button
         variant="outline"
         size="sm"

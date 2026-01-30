@@ -164,7 +164,8 @@
     "title": "Tampilan",
     "darkMode": "Mode gelap",
     "light": "Terang",
-    "dark": "Gelap"
+    "dark": "Gelap",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {

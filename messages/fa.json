@@ -165,7 +165,8 @@
     "title": "ظاهر",
     "darkMode": "حالت تاریک",
     "light": "روشن",
-    "dark": "تاریک"
+    "dark": "تاریک",
+    "auto": "auto"
   },
   "definitions": {
     "metadata": {
