@@ -17,6 +17,7 @@ export const localesInfo: readonly LocaleInfo[] = [
   { code: "en", label: "English", englishName: "English" },
   { code: "es", label: "Español", englishName: "Spanish" },
   { code: "fr", label: "Français", englishName: "French" },
+  { code: "nl", label: "Nederlands", englishName: "Dutch" },
 ] as const;
 
 // Extract just the locale codes for use in routing and other places

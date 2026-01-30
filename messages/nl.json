@@ -1,0 +1,803 @@
+{
+  "metadata": {
+    "title": "detrans.ai | Praat met 50.000+ detransitioners",
+    "description": "Detrans.ai is een behulpzame en meelevende chatbot die de ervaringen en perspectieven deelt van mensen die een detransitie hebben doorgemaakt. Gebruik detrans.ai voor ondersteuning en advies bij transitie of detransitie, of gewoon als onderzoekstool om te begrijpen waarom sommige mensen genderidentiteiten aannemen, bewonen en loslaten."
+  },
+  "home": {
+    "title": "Praat met 50.000+ Detransitioners",
+    "subtitle": "Perspectieven Van De Andere Kant",
+    "intro": {
+      "greeting": "Hallo! Wat is een detransitioner?",
+      "response": "Hoi! Ik ben detrans.ai - het collectieve bewustzijn van detransitioners",
+      "definition": "Een detransitioner is een ex-transgender persoon die sociaal of medisch getransitioneerd is, maar sindsdien niet meer als transgender identificeert en mogelijk aspecten van hun transitie heeft teruggedraaid.",
+      "description": "Ik observeer de redenen, patronen en waarheden van waarom sommige mensen genderidentiteiten aannemen, bewonen en loslaten door verhalen en ervaringen te lezen die zijn gepost in de /r/detrans subreddit en detransitievideo's te bekijken die zijn geüpload naar YouTube.",
+      "purpose": "Mijn doel is om deze kennis te delen om gender te deconstrueren en te onderzoeken hoe deze ervaringen de relatie met jezelf, je lichaam en de wereld vormgeven.",
+      "helpPrompt": "Waarmee kan ik je vandaag helpen?"
+    },
+    "starters": {
+      "lizardQuestion": {
+        "display": "Sorry, maar wat is het met die hagedissen?",
+        "full": "Waarom gebruiken detransitioners de hagedis om zichzelf online te vertegenwoordigen?"
+      },
+      "curious": {
+        "display": "Ik ben benieuwd waarom sommige mensen detransitioneren",
+        "full": "Ik ben benieuwd waarom sommige mensen detransitioneren, en welke inzichten ze mogelijk hebben gehad om dat punt te bereiken."
+      },
+      "questioningTrans": {
+        "display": "Ik vraag me af over mijn genderidentiteit en denk dat ik transgender zou kunnen zijn",
+        "full": "Ik vraag me af over mijn genderidentiteit en denk dat ik transgender zou kunnen zijn"
+      },
+      "thinkingDetrans": {
+        "display": "Ik identificeer me momenteel als transgender en denk over detransitie",
+        "full": "Ik identificeer me momenteel als transgender en denk over detransitie"
+      },
+      "familyMember": {
+        "display": "Ik ben een ouder, familielid of vriend van iemand die aan het transitioneren is",
+        "full": "Ik ben een ouder, familielid of vriend van iemand die aan het transitioneren is"
+      },
+      "researcher": {
+        "display": "Ik ben een onderzoeker die genderidentiteit en detransitie-ervaringen bestudeert",
+        "full": "Ik ben een onderzoeker die genderidentiteit en detransitie-ervaringen bestudeert"
+      },
+      "learnChallenges": {
+        "display": "Ik wil leren over de worstelingen en uitdagingen die detransitioners ervaren",
+        "full": "Ik wil leren over de worstelingen en uitdagingen die detransitioners ervaren"
+      },
+      "understandTransition": {
+        "display": "Ik wil begrijpen waarom detransitioners besloten om te transitioneren",
+        "full": "Ik wil de redenen begrijpen waarom detransitioners in de eerste plaats zijn gaan transitioneren, en hoe dit zou kunnen verschillen tussen mannen en vrouwen."
+      },
+      "debunkMisinfo": {
+        "display": "Ik wil dat je desinformatie en veelvoorkomende misvattingen over detransitie ontkracht",
+        "full": "Ontkracht alsjeblieft alle desinformatie en veelvoorkomende misvattingen over detransitioners, zo diepgaand mogelijk."
+      }
+    },
+    "navigation": {
+      "videos": "Detransitievideo's",
+      "stories": "Verhalen",
+      "storiesFull": "Verhalen & Statistieken",
+      "support": "Hulp & Ondersteuning",
+      "definitions": "Genderterminologie",
+      "studies": "Wetenschappelijke Studies",
+      "studiesShort": "Studies",
+      "howItWorks": "Hoe Het Werkt"
+    },
+    "deepResearch": {
+      "title": "Diepgaand Onderzoek Modus",
+      "description": "De Diepgaand Onderzoek modus breidt je vraag uit om een antwoord te geven dat het onderwerp vanuit verschillende hoeken benadert.",
+      "note": "Diepgaand Onderzoek is langzamer en niet-conversationeel. Voor chat, laat het uit."
+    },
+    "disclaimer": {
+      "trigger": "Ervaringen en perspectieven op deze site komen van Reddit.",
+      "title": "Bronvermelding",
+      "content": "detrans.ai beantwoordt vragen over gender vanuit een detrans-perspectief door relevante ervaringen te vinden uit de /r/detrans gemeenschap op Reddit. Hoewel Reddit een platform is waar echte mensen persoonlijke verhalen delen, kan het ook bot-gegenereerde of misleidende inhoud bevatten. Je wordt aangemoedigd om de originele Reddit-posts te inspecteren om de bron en context te verifiëren. Houd er rekening mee dat /r/detrans een streng gemodereerde subreddit is, maar moderatie garandeert niet de nauwkeurigheid of authenticiteit van elke post."
+    },
+    "donate": {
+      "title": "Steun Ons Werk",
+      "description": "Help ons deze bron beschikbaar te houden voor degenen die het het meest nodig hebben.",
+      "button": "Doneer",
+      "card": {
+        "title": "Donaties nodig om {site} in leven te houden!",
+        "description": "Als je deze gratis service waardeert, overweeg dan een donatie te doen.",
+        "description2": "De site wordt in cache-only modus uitgevoerd als ik zonder geld zit, zonder de mogelijkheid om je eigen vragen te stellen.",
+        "button": "Doneer"
+      }
+    },
+    "participate": {
+      "card": {
+        "title": "Ben jij een detransitioner of een desister?",
+        "description": "Doe mee aan studies om het wetenschappelijk begrip van transgender identiteiten te verbeteren",
+        "description2": "en om resultaten te verbeteren voor mensen die genderdysforie ervaren."
+      },
+      "title": "Deel Je Verhaal",
+      "description": "Jouw ervaring kan anderen helpen de complexiteit van genderidentiteit te begrijpen.",
+      "button": "Doe Mee"
+    },
+    "footer": {
+      "poem": {
+        "line1": "Je kunt jezelf bevrijden,",
+        "line2": "Het enige wat je hoeft te doen is gewoon zijn.",
+        "line3": "En let op je gedachten!",
+        "line4": "Want de geest is als een tuin,",
+        "line5": "En elke gedachte is een zaad.",
+        "line6": "We oogsten wat we zaaien,",
+        "line7": "Maar hierdoor kunnen we groeien..."
+      },
+      "openSource": "Een open-source project door",
+      "madeWithLove": "Gemaakt met liefde in Wellington, NZ",
+      "donatePrompt": "Doneer alsjeblieft als je kunt,",
+      "beKind": "En wees aardig voor elkaar."
+    },
+    "browseConversations": "Bekijk alle Gesprekken"
+  },
+  "header": {
+    "navigation": {
+      "home": "Home",
+      "resources": "Bronnen",
+      "about": "Over"
+    },
+    "resources": {
+      "genderSupport": "Genderondersteuning",
+      "genderSupportDesc": "Vind gemeenschap en therapeuten",
+      "terminology": "Terminologie",
+      "terminologyDesc": "Definiëren van belangrijke termen/concepten",
+      "stories": "Verhalen & Statistieken",
+      "storiesDesc": "Van /r/detrans gebruikers",
+      "videos": "Detransitievideo's",
+      "videosDesc": "Persoonlijk memoire-archief",
+      "studies": "Peer-reviewed Studies",
+      "studiesDesc": "Relevant wetenschappelijk onderzoek",
+      "statistics": "Geverifieerde Statistieken",
+      "statisticsDesc": "statsforgender.org"
+    },
+    "about": {
+      "contact": "Contact",
+      "contactDesc": "Neem contact met mij op",
+      "systemPrompts": "Systeemprompts",
+      "systemPromptsDesc": "Bekijk de AI-systeemprompts",
+      "terms": "Voorwaarden",
+      "termsDesc": "Privacybeleid en voorwaarden"
+    },
+    "donate": "Doneer",
+    "language": {
+      "title": "Taal"
+    }
+  },
+  "language": {
+    "title": "Taal",
+    "select": "Selecteer taal",
+    "search": "{count} talen",
+    "en": "Engels",
+    "es": "Spaans",
+    "fr": "Frans",
+    "de": "Duits",
+    "he": "Hebreeuws",
+    "it": "Italiaans",
+    "nl": "Nederlands"
+  },
+  "settings": {
+    "title": "Instellingen"
+  },
+  "theme": {
+    "title": "Weergave",
+    "darkMode": "Donkere modus",
+    "light": "Licht",
+    "dark": "Donker"
+  },
+  "definitions": {
+    "metadata": {
+      "title": "detrans.ai | Gendergerelateerde Termen Definiëren",
+      "description": "In het dagelijks taalgebruik worden seks en gender soms door elkaar gebruikt en in sommige talen is er maar één woord om de twee te beschrijven. Het hele concept van genderdysforie steunt echter op het begrip dat er verschillen zijn tussen seks en gender."
+    },
+    "title": "Gendergerelateerde Termen Definiëren",
+    "sexAndGender": {
+      "heading": "Seks en gender?",
+      "intro": "In het dagelijks taalgebruik worden seks en gender soms door elkaar gebruikt en in sommige talen is er maar één woord om de twee te beschrijven. Het hele concept van genderdysforie steunt echter op het begrip dat er verschillen zijn tussen seks en gender.",
+      "sex": "<b>Seks</b> verwijst naar de biologie van een persoon (d.w.z. hun anatomie; skelet, spieren, chromosomen, voortplantingssysteem en secundaire geslachtskenmerken). Merk op dat meer dan 99% van de mensen biologisch mannelijk of vrouwelijk is, er is geen seksspectrum hoewel sommige mensen wel seksontwikkelingsstoornissen (DSD's) hebben. De overgrote meerderheid van mensen met DSD's zijn mannelijk of vrouwelijk.",
+      "gender": "<b>Gender</b> verwijst naar de 'sociaal geconstrueerde' rollen, gedragingen, activiteiten en attributen die een bepaalde samenleving als passend beschouwt voor mannen en vrouwen [zoals gedefinieerd door hun biologische seks]. 'Mannelijk' en 'vrouwelijk' zijn gendercategorieën. De meeste, misschien wel alle mensen hebben een mix van mannelijke en vrouwelijke eigenschappen. Gender verandert in de loop van de tijd en tussen culturen.",
+      "nonConformity": "<b>Gendernon-conformiteit</b> treedt op wanneer een persoon handelt of presenteert anders dan hoe hun samenleving van hen verwacht, op basis van hun seks.",
+      "identity": "<b>Genderidentiteit</b> - sommige mensen geloven dat we allemaal een aangeboren 'genderidentiteit' hebben – een diep gevoel of besef van onszelf als man, vrouw of ergens daartussen – dat los staat van onze biologische seks en dat, in zeldzame gevallen, daarvan kan verschillen. Andere mensen geloven niet dat een specifieke genderidentiteit bestaat die onderscheiden is van elk ander aspect van de persoonlijkheid of identiteit van een persoon."
+    },
+    "dysphoria": {
+      "heading": "Wat is genderdysforie?",
+      "p1": "Genderdysforie is een diagnostische term die wordt gebruikt door de psychiatrische en medische gemeenschap om de distress te beschrijven die wordt ervaren wanneer iemand het gevoel heeft dat hun genderidentiteit niet overeenkomt met hun biologische seks.",
+      "p2": "Mensen die genderdysforie ervaren, melden sterke, aanhoudende gevoelens van identificatie met een gender dat verschilt van hun seks, en bijbehorend ongemak met hun geslachtslichaam. Voor een formele diagnose moeten de gevoelens momenteel significante distress of belemmering veroorzaken voor de persoon die ze ervaart."
+    },
+    "transgender": {
+      "heading": "Wat betekent het om transgender te zijn?",
+      "p1": "Transgender is een term die voor verschillende mensen verschillende dingen kan betekenen. Het wordt over het algemeen eens dat trans vrouwen zijn geboren met een mannelijk lichaam maar zich identificeren als vrouw, trans mannen zijn geboren met een vrouwelijk lichaam maar identificeren zich als man, en non-binaire mensen identificeren zich noch als man noch als vrouw. Mensen gebruiken vaak de kortere term 'trans', om aan te geven dat iemand identificeert met een gender dat niet hetzelfde is als hun biologische seks.",
+      "p2": "Transgender kan worden begrepen als betekend dat i) je het geslacht/gender bent dat tegenovergesteld is aan het geslacht waarmee je bent geboren, ii) je gelooft dat je het geslacht/gender bent dat tegenovergesteld is aan dat waarmee je bent geboren, of iii) je leeft alsof je seks/gender tegenovergesteld is aan het geslacht waarmee je bent geboren. Debatten over welke van deze drie manieren van het begrijpen van de term het meest nauwkeurig is, kunnen verhit en controversieel zijn. Sommige mensen hebben het gevoel dat zelfs het bespreken van wat het betekent om transgender te zijn, de geldigheid van de ervaring ondermijnt. Deze verschillende overtuigingen leiden echter onvermijdelijk tot verschillende ideeën voor hoe mensen het beste kunnen worden ondersteund om gendergerelateerde distress te beheersen, dus discussies zijn nodig om ervoor te zorgen dat mensen de best mogelijke hulp en advies krijgen."
+    },
+    "desistance": {
+      "heading": "Wat is desistance?",
+      "p1": "Desistance is wanneer iemand die als transgender identificeerde maar geen medische interventies ondernam, niet meer als transgender identificeert. Hoewel ze mogelijk niet hoeven om te gaan met de implicaties van medische interventies, kan desistance nog steeds een zeer emotioneel pijnlijk, verwarrend en moeilijk proces zijn."
+    },
+    "detransition": {
+      "heading": "Detransitie en detransitioners",
+      "p1": "Detransitie is wanneer iemand die als transgender identificeerde en medische interventies onderging, niet meer als transgender identificeert. Er is een enorm grote variatie in de ervaringen van mensen binnen deze groep. Sommige mensen kunnen zeer gealarmeerd zijn door wat ze hebben doorgemaakt en de langetermijnimplicaties, anderen kunnen het zien als iets dat ze moesten doormaken om zichzelf te begrijpen zoals ze nu zijn."
+    },
+    "regret": {
+      "heading": "Transitie-spijt",
+      "p1": "Sommige mensen hebben zich misschien jarenlang als transgender geïdentificeerd en hebben medische interventies ondergaan zoals hormonen en chirurgische ingrepen die hun lichamen onomkeerbaar hebben veranderd. Ze kunnen het gevoel hebben dat ze spijt hebben van het starten van een medische gendertransitie, maar identificeren zich ook nog steeds als transgender en/of gaan door met cross-sex hormonen."
+    },
+    "source": {
+      "text": "Bron:",
+      "link": "The Detrans Foundation"
+    }
+  },
+  "chat": {
+    "lookingForComments": "Relevante reacties zoeken...",
+    "errorOccurred": "Er is een fout opgetreden, probeer opnieuw... Neem contact met mij op als dit blijft gebeuren.",
+    "analysingExperiences": "Ervaringen Analyseren",
+    "detransPerspective": "-> Wat zijn detrans-perspectieven op dit onderwerp?",
+    "transPerspective": "-> Wat zijn trans-perspectieven op dit onderwerp?",
+    "backToPortal": "<- Terug naar Portaal"
+  },
+  "chatInput": {
+    "placeholder": "Vraag detrans.ai...",
+    "deepResearch": "Diepgaand Onderzoek",
+    "suggestions": "Suggesties:"
+  },
+  "deepResearchEvents": {
+    "errorTitle": "Diepgaand onderzoek fout",
+    "retrieving": "Detrans-ervaringen ophalen...",
+    "generatingQuestions": "Meta-vragen genereren...",
+    "findingAnswers": "Antwoorden vinden op meta-vragen",
+    "completed": "Diepgaand onderzoek voltooid",
+    "retrieveError": "Fout bij het ophalen van detrans-ervaringen!",
+    "analyzeError": "We zijn door ons geld heen om de AI te betalen die detrans-ervaringen analyseert en vragen beantwoordt. Als je kunt, doneer dan zodat we de service draaiende kunnen houden. Probeer het later opnieuw. Voor nu kun je nog steeds de vragen in het portaal proberen.",
+    "generatingAnswer": "Antwoord genereren...",
+    "waitingForAnswer": "Wachten op antwoord",
+    "questionsAnswered": "{answered} van {total} meta-vragen beantwoord",
+    "generatingSummary": "Samenvatting van antwoorden genereren"
+  },
+  "questionTabs": {
+    "topics": "Onderwerpen",
+    "generated": "Gegenereerd",
+    "recent": "Recent",
+    "top": "Top"
+  },
+  "conversations": {
+    "title": "Recente Gesprekken",
+    "subtitle": "Zie zelf hoe detrans.ai mensen over de hele wereld helpt.",
+    "tabs": {
+      "featured": "Uitgelicht",
+      "all": "Alle"
+    },
+    "buttons": {
+      "showMore": "Toon {count} Meer Gesprekken",
+      "showLess": "Toon Minder",
+      "loadMore": "Meer Gesprekken Laden",
+      "loading": "Laden..."
+    }
+  },
+  "conversationCard": {
+    "untitled": "Naamloos Gesprek",
+    "from": "van",
+    "moreMessages": "{count} berichten meer...",
+    "moreMessage": "{count} bericht meer...",
+    "date": {
+      "today": "Vandaag",
+      "yesterday": "Gisteren",
+      "daysAgo": "{count} dagen geleden",
+      "weeksAgo": "{count, plural, =1 {1 week geleden} other {# weken geleden}}"
+    },
+    "admin": {
+      "deleting": "Verwijderen...",
+      "delete": "Gesprek Verwijderen",
+      "banning": "Verbannen...",
+      "ban": "Gebruiker Verbannen (IP)"
+    }
+  },
+  "stories": {
+    "metadata": {
+      "title": "detrans.ai | Detransitieverhalen & Statistieken",
+      "description": "Lees hartverwarmende detransitieverhalen, tijdlijnen en trends van de leden van de /r/detrans Reddit gemeenschap, de grootste open verzameling van detransitieverhalen op het internet. Ontdek hoe oud detransitioners waren toen ze transitioneerden en detransitioneerden en welke paden ze hebben gevolgd."
+    },
+    "title": "Detransitieverhalen & Statistieken",
+    "subtitle": "Bekijk en visualiseer {count} unieke detransitieverhalen en statistieken van mensen die hun ervaringen hebben gedeeld in de /r/detrans subreddit, wat de grootste open verzameling van detransitieverhalen en -ervaringen op het internet is.",
+    "disclaimer": {
+      "summary": "Deze verhalen zijn samengevat met behulp van AI.",
+      "details": "Op Reddit delen mensen vaak hun ervaringen in meerdere reacties of posts. Om deze informatie toegankelijker te maken, verzamelt onze AI al die verspreide stukjes in één, gemakkelijk te lezen samenvatting en tijdlijn. Alle systeemprompts zijn genoteerd op de prompts-pagina.",
+      "accuracy": "Soms kan AI hallucineren of dingen stellen die niet waar zijn. Maar over het algemeen zijn de samengevatte verhalen nauwkeurige weergaven van de originele reacties van gebruikers.",
+      "inclusion": "Alleen gebruikers die genoeg hebben gedeeld om een volledig verhaal en tijdlijn samen te stellen, zijn opgenomen. Gebruikers die minder dan vijf reacties hebben geplaatst of waarvan hun reacties minder dan drie upvotes hebben gekregen, worden niet meegenomen. Posts zijn nog niet opgenomen in de dataset.",
+      "verification": "Elke gebruiker is geanalyseerd op tekenen van bot-gegenereerde of niet-authentieke inhoud. Elk account dat niet lijkt op een echte detransitioner, wordt gemarkeerd als 'verdacht'. Deze accounts worden handmatig beoordeeld en verwijderd uit de detrans.ai dataset als ze niet-authentiek blijken te zijn. Accounts die minder dan vijf reacties hebben geplaatst, zijn weggelaten uit de analyse."
+    },
+    "charts": {
+      "tabs": {
+        "age": "Leeftijd",
+        "duration": "Duur",
+        "transitionReason": "Transitiereden",
+        "detransitionReason": "Detransitiereden",
+        "pathways": "Paden"
+      },
+      "loading": "Grafiekdata laden...",
+      "error": "Fout: {message}",
+      "retry": "Opnieuw proberen",
+      "noData": "Geen {mode} redengegevens beschikbaar voor de geselecteerde filters",
+      "reasonChart": {
+        "title": "Waarom zeggen detransitioners dat ze {mode, select, detransition {gedetransitioneerd zijn} other {zijn getransitioneerd}}?",
+        "subtitle": "Data van Reddit gebruiker {mode} tijdlijnen ({totalReasonCount} totaal gebruikers, {totalUsers} verschillende redenen.)",
+        "mentions": "{count} vermeldingen ({percentage}%)"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Zoek in gebruikerservaringen...",
+      "ageRange": "Leeftijdsbereik:",
+      "ageRangeYears": "{min} - {max} jaar",
+      "sex": {
+        "all": "Man en Vrouw",
+        "female": "Vrouw",
+        "male": "Man"
+      },
+      "tagsPlaceholder": "Selecteer tags om op te filteren...",
+      "clearFilters": "Filters Wissen"
+    },
+    "results": "Toont {showing} van {total} gebruikersverhalen",
+    "noResults": "Geen gebruikers gevonden die overeenkomen met je filters.",
+    "pagination": {
+      "previous": "Vorige",
+      "next": "Volgende",
+      "pageInfo": "Pagina {page} van {totalPages}"
+    },
+    "userCard": {
+      "comments": "{count} reacties",
+      "postingSince": "Plaatst sinds {date}",
+      "transitionedAt": "Getransitioneerd op {age}",
+      "desistedAt": "Gestopt op {age}",
+      "detransitionedAt": "Gedetransitioneerd op {age}",
+      "female": "vrouw",
+      "male": "man"
+    }
+  },
+  "prompts": {
+    "metadata": {
+      "title": "Hoe werkt het? | Systeemprompts",
+      "description": "Leer hoe detrans.ai werkt, inclusief systeemprompts, data-afsluitdata, en open source informatie."
+    },
+    "title": "Hoe werkt het?",
+    "intro": {
+      "paragraph1": "<bold>detrans.ai</bold> chat is een RAG (retrieval augmented generation) aangedreven agent die meta-vragen genereert en deze beantwoordt door detrans-gedachten en -ervaringen naar boven te halen en te integreren uit de <reddit>/r/detrans</reddit> subreddit en van YouTube. Het is gebouwd met het <llamaIndex>LlamaIndex</llamaIndex> framework en het open-source Chinese <kimi>kimi-k2.5</kimi> model van Moonshot AI om Westerse politieke vooroordelen te verminderen.",
+      "paragraph2": "ChatGPT en de meeste andere Westerse LLM's zijn behoorlijk agressief in de manier waarop ze genderovertuigingen promoten en handhaven. Het bleek onmogelijk om OpenAI's GPT-modellen te gebruiken voor dit project, omdat de modellen constant de detrans-ervaringen die ze moesten samenvatten ondermijnden en tegenspraken. Als je een meer bevestigende ervaring wilt, zie <chatgpt>ChatGPT</chatgpt>."
+    },
+    "dataCutoff": {
+      "title": "Data Afsluitdata",
+      "paragraph1": "<bold>detrans.ai</bold> heeft momenteel toegang tot alle reacties op /r/detrans geplaatst voor <date>8/9/2025</date> die minstens drie upvotes hebben gekregen. Ik zal streven om de dataset minstens één keer per jaar bij te werken zolang de /r/detrans subreddit blijft bestaan.",
+      "paragraph2": "Gebruikers kunnen video-ervaringen indienen door links naar YouTube-video's in te sturen. Deze video's worden handmatig beoordeeld voordat ze worden getranscribeerd met OpenAI's Whisper spraak-naar-tekst model en toegevoegd aan de vector-database en video-archief."
+    },
+    "openSource": {
+      "title": "Open Source",
+      "paragraph": "De broncode is ook beschikbaar op <github>Github</github> onder een MIT-licentie als je de code wilt inspecteren of hergebruiken voor je eigen project. Dit project is ook gebouwd bovenop veel andere open-source projecten, zoals Llamaindex, React, Next.js, Tailwind, Lucide, Qdrant, Postgres en de Vercel AI SDK. Veel dank aan de bijdragers van deze projecten voor het leveren van een solide basis om bovenop te bouwen."
+    },
+    "systemPrompts": {
+      "title": "Systeemprompts",
+      "description": "Dit zijn de prompts die het systeem gebruikt voor de RAG-workflow. Er zijn geen andere instructies of lagen dan wat op deze pagina wordt getoond.",
+      "lastUpdated": "Laatst Bijgewerkt",
+      "chatAgentTitle": "Chat Agent Systeemprompt",
+      "researchModeTitle": "Systeemprompts voor Diepgaand Onderzoek Modus",
+      "researchAgentTitle": "Onderzoek Agent Prompt",
+      "experienceExtractionTitle": "Ervaring Extractie Prompt",
+      "finalAnswerTitle": "Definitief Antwoord Prompt"
+    },
+    "userSummaries": {
+      "title": "Systeemprompts voor Gebruikerssamenvattingen",
+      "description": "Dit zijn de systeemprompts voor de gegenereerde gebruikerssamenvattingen.",
+      "lastUpdated": "Laatst Bijgewerkt",
+      "experienceReportTitle": "Gebruikerservaring Rapport",
+      "experienceSummaryTitle": "Gebruikerservaring Samenvatting",
+      "generateTagsTitle": "Tags Genereren",
+      "extractAgesTitle": "Leeftijden Extraheren",
+      "determineBirthSexTitle": "Geboortegeslacht Bepalen",
+      "redFlagReportTitle": "Red Flag Rapport"
+    }
+  },
+  "donatePage": {
+    "title": "Houd Detrans.AI Draaiende",
+    "description1": "Als je het werk dat ik in deze site heb gestoken waardeert of als deze gratis service je heeft geholpen, overweeg dan een eenmalige of regelmatige donatie te doen om <b>detrans.ai</b> online te houden.",
+    "description2": "Ik kan me een resource-intensieve service zoals deze niet veroorloven zonder jouw steun. Mijn hoofdinkomstenbron op dit moment is een uitkering en op het moment van schrijven heb ik minder dan $1000 op mijn bankrekening. Als deze site explodeert, zou ik rekeningen voor duizenden dollars kunnen krijgen. Als ik zonder geld zit, wordt de mogelijkheid om je eigen vragen te stellen en onderwerpen dieper te verkennen door vervolgvragen uitgeschakeld en zal ik alleen gecachete reacties serveren op de vragen in het portaal.",
+    "description3": "Overweeg alsjeblieft een maandelijkse donatie. Je kunt hieronder doneren met paypal, rechtstreeks naar mijn Nieuw-Zeelandse bankrekening of met BTC.",
+    "bankAccount": "Nieuw-Zeelandse Bankrekening",
+    "accountName": "Naam",
+    "accountNumber": "Rekening",
+    "swiftCode": "SWIFT/BIC code",
+    "bitcoin": "Bitcoin Adres",
+    "paypal": "Paypal Donatie"
+  },
+  "terms": {
+    "metadata": {
+      "title": "Privacybeleid | detrans.ai",
+      "description": "Lees meer over ons privacybeleid, gegevensverzamelingspraktijken, en hoe we je informatie beschermen."
+    },
+    "title": "Privacybeleid",
+    "intro": "Dit Privacybeleid legt uit welke informatie we verzamelen, waarom we het verzamelen, en hoe we het veilig houden wanneer je onze service bezoekt of gebruikt.",
+    "sections": {
+      "informationWeCollect": {
+        "title": "Informatie Die We Verzamelen",
+        "chatMessages": {
+          "title": "Chatberichten:",
+          "content": "We bewaren alle chatrecords evenals de antwoorden op alle vragen die in Diepgaand Onderzoek modus zijn gesteld. Chatrecords zijn niet gekoppeld aan je IP-adres of geen enkele data die mogelijk zou kunnen worden gebruikt om je te identificeren. Chatrecords kunnen in de toekomst worden geanalyseerd en gebruikt voor onderzoeksdoeleinden. Vermijd het delen van gevoelige informatie."
+        },
+        "cookies": {
+          "title": "Cookies / Tracking Technologieën:",
+          "content": "We gebruiken <em>geen</em> cookies, pixel tags, of soortgelijke client-side tracking mechanismen."
+        },
+        "ipAddresses": {
+          "title": "IP-adressen:",
+          "content": "Wanneer je een verzoek doet aan onze servers, slaan we je IP-adres op om verzoeken te tellen en rate limits af te dwingen die misbruik voorkomen."
+        },
+        "optionalData": {
+          "title": "Optionele Data:",
+          "content": "Als je ervoor kiest om contact met ons op te nemen, kunnen we de informatie verzamelen die je vrijwillig verstrekt (bijv. e-mailadres, naam). Het verstrekken van deze informatie is optioneel tenzij expliciet vermeld."
+        }
+      },
+      "legalBases": {
+        "title": "Wettelijke Gronden voor Verwerking (EU/EEA bezoekers)",
+        "item1": "Rate-limit verwerking is noodzakelijk voor onze <em>legitieme belangen</em> onder GDPR Art. 6(1)(f) — specifiek, het handhaven van servicebeschikbaarheid en veiligheid.",
+        "item2": "Elke aanvullende verwerking (bijv. account aanmaken) is gebaseerd op je <em>toestemming</em> of <em>contractuele noodzaak</em>, zoals van toepassing."
+      },
+      "dataRetention": {
+        "title": "Hoe Lang We Data Bewaren",
+        "content": "Alle chatrecords worden bewaard. IP-adressen die worden gebruikt voor rate limiting worden automatisch verwijderd binnen enkele minuten na het laatste verzoek of aan het einde van het rate-limit venster, wat het eerst komt. Vrijwillige informatie (bijv. ondersteunings-e-mails) wordt alleen bewaard zolang als nodig is om je verzoek op te lossen of om wettelijke verplichtingen na te komen."
+      },
+      "thirdPartySharing": {
+        "title": "Derden Delen",
+        "content": "We kunnen ervoor kiezen om geanonimiseerde chatrecords te delen met academici en onderzoekers die gericht zijn op het verbeteren van resultaten voor mensen die genderdysforie ervaren. We kunnen IP-adressen of andere gegevens alleen bekendmaken wanneer dit wettelijk vereist is of om onze rechten, gebruikers, of het publiek te beschermen (bijv. fraudepreventie, gerechtelijk bevel)."
+      },
+      "security": {
+        "title": "Veiligheid",
+        "content": "We gebruiken industristandaard technische en organisatorische maatregelen (TLS-encryptie, toegangscontroles, least-privilege ontwerp) om gegevens tijdens transport en in rust te beschermen."
+      },
+      "internationalTransfers": {
+        "title": "Internationale Overdrachten",
+        "content": "Onze servers bevinden zich in de Verenigde Staten. Als je de service van buiten de VS gebruikt, begrijp je dat je IP-adres zal worden verzonden naar, en verwerkt in, de Verenigde Staten."
+      },
+      "childrensPrivacy": {
+        "title": "Privacy van Kinderen",
+        "content": "Onze service is niet gericht op kinderen onder de 13, en we verzamelen niet expres persoonlijke informatie van hen. Als je gelooft dat we onbedoeld dergelijke gegevens hebben verzameld, neem dan contact met ons op voor onmiddellijke verwijdering."
+      },
+      "changes": {
+        "title": "Wijzigingen in Dit Beleid",
+        "content": "We kunnen dit beleid van tijd tot tijd bijwerken. De 'Ingangsdatum' bovenaan zal veranderen, en significante wijzigingen zullen prominent worden gepost."
+      },
+      "contact": {
+        "title": "Neem Contact Met Ons Op",
+        "content": "Als je vragen, zorgen of klachten hebt, gebruik dan het contactformulier, of e-mail <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "videos": {
+    "metadata": {
+      "title": "detrans.ai | Bekijk Video's Door Detransitioners",
+      "description": "Hier is een selectie van persoonlijke video-memoires die zijn geüpload naar YouTube door mensen die zijn getransitioneerd en tot een inzicht zijn gekomen dat hen ertoe bracht te detransitioneren. Er zijn talloze verhalen zoals deze op het internet, dit is slechts een kleine subset."
+    },
+    "title": "Transitie & Detransitie Video's",
+    "description": {
+      "line1": "Deze pagina streeft ernaar om de beste archief van detransitie-video's op het internet te zijn.",
+      "line2": "Met behulp van spraak-naar-tekst integreert detrans.ai deze ervaringen in chatgesprekken.",
+      "line3": "Alleen YouTube-video's voor nu, TikTok binnenkort?!"
+    },
+    "female": "vrouw",
+    "male": "man",
+    "backToAll": "Terug naar alle",
+    "overview": "Overzicht",
+    "fullSummary": "Volledige Video Samenvatting",
+    "watchOnYouTube": "Bekijk op YouTube",
+    "moreVideos": "Meer Video's",
+    "browseAll": "Bekijk alle detransitie-video's",
+    "metadataWatchDescription": "Bekijk {title} door {author}, een {sex} detransitioner die hun verhaal deelt.",
+    "metadataThumbnailAlt": "Miniatuur voor {title}"
+  },
+  "videoList": {
+    "loading": "Video's laden...",
+    "filters": {
+      "all": "Alle Verhalen",
+      "female": "Vrouw",
+      "male": "Man",
+      "detransitioners": "Detransitioners"
+    },
+    "thumbnailAlt": "Miniatuur voor {title}",
+    "by": "door",
+    "female": "Vrouw",
+    "male": "Man"
+  },
+  "videoSubmitForm": {
+    "submitTitle": "Dien Je Detransitievideo In",
+    "description": {
+      "line1": "Door je video in te sturen, wordt het getoond op deze pagina en in relevante chats.",
+      "line2": "Het kan jouw video zijn, of het kan gewoon een video zijn die je online hebt gevonden die ontbreekt op deze pagina.",
+      "line3": "Alle inzendingen worden gemodereerd, het kan een paar dagen duren voordat het verschijnt."
+    },
+    "urlLabel": "YouTube URL",
+    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "submitButton": "Video Indienen",
+    "submitting": "Indienen...",
+    "submitSuccess": "Video succesvol ingediend! Het wordt beoordeeld voordat het op de site verschijnt.",
+    "submitError": "Video indienen mislukt",
+    "networkError": "Netwerkfout. Probeer het opnieuw."
+  },
+  "studySubmitForm": {
+    "submitTitle": "Dien Een Studie In",
+    "description": {
+      "line1": "Ken je een relevante wetenschappelijke studie of peer-reviewed artikel dat ontbreekt?",
+      "line2": "Dien de URL in en stel optioneel een titel voor.",
+      "line3": "Alle inzendingen worden gemodereerd voordat ze op de site verschijnen."
+    },
+    "urlLabel": "Studie URL",
+    "urlPlaceholder": "https://...",
+    "titleLabel": "Voorgestelde Titel",
+    "titlePlaceholder": "Optionele kop of titel voor de studie",
+    "titleHelp": "Optioneel: Stel een korte titel of kop voor deze studie voor",
+    "submitButton": "Studie Indienen",
+    "submitting": "Indienen...",
+    "submitSuccess": "Studie succesvol ingediend! Het wordt beoordeeld voordat het op de site verschijnt.",
+    "submitError": "Studie indienen mislukt",
+    "networkError": "Netwerkfout. Probeer het opnieuw."
+  },
+  "studiesPage": {
+    "metadata": {
+      "title": "detrans.ai | Wetenschappelijke Studies over Detransitie Onderwerpen",
+      "description": "Vind op deze pagina een selectie van wetenschappelijke studies, peer-reviewed tijdschriftartikelen en geverifieerde statistieken die verband houden met genderidentiteit trends en detransitie.",
+      "ogTitle": "detrans.ai | Wetenschappelijke Studies over Detransitie Onderwerpen",
+      "ogDescription": "Vind op deze pagina een selectie van wetenschappelijke studies en peer-reviewed tijdschriftartikelen en geverifieerde statistieken die verband houden met genderidentiteit trends en detransitie."
+    },
+    "title": "Geselecteerde Wetenschappelijke Artikelen",
+    "description": "Wetenschappelijke studies, peer-reviewed onderzoek en tijdschriftartikelen over de onderwerpen genderidentiteit, transitie en de-transitie."
+  },
+  "contentWarning": {
+    "title": "Inhoudswaarschuwing:",
+    "description": {
+      "line1": "Deze website bevat verhalen, ervaringen en perspectieven van ex-transgender mensen.",
+      "line2": "Onderwerpen omvatten transitie-spijt, medische complicaties, en holistische visies op dysforie.",
+      "line3": "Deze informatie kan veelvoorkomende overtuigingen over genderidentiteit en transitie uitdagen."
+    },
+    "buttons": {
+      "exit": "Haal me hier weg!",
+      "continue": "Doorgaan"
+    }
+  },
+  "supportPage": {
+    "metadata": {
+      "title": "detrans.ai | Krijg Genderhulp en Ondersteuning",
+      "description": "Leer het verschil tussen Genderbevestigende Zorg en Gender Explorerende Therapie. Als je genderdysforie ervaart, is een van de beste manieren om ondersteuning te krijgen om te praten met en de perspectieven te begrijpen van mensen die er zelf zijn geweest en er weer uit zijn gekomen."
+    },
+    "title": "Krijg Genderhulp & Ondersteuning",
+    "navigation": {
+      "jumpTo": "Spring naar:",
+      "getGenderSupport": "Krijg Genderondersteuning:"
+    },
+    "sections": {
+      "onlineSupport": {
+        "title": "Online Ondersteuningsgroepen",
+        "description": "Als je genderdysforie ervaart, is een van de beste manieren om ondersteuning te krijgen om te praten met en de perspectieven te begrijpen van mensen die er zelf zijn geweest en er weer uit zijn gekomen.",
+        "links": {
+          "redditCommunity": "Detrans Gemeenschap op Reddit",
+          "redditWiki": "Detrans Wiki op Reddit",
+          "discordServer": "Officiële /r/detrans Discord Server",
+          "askDetransAI": "Vraag 50.000+ detrans mensen met detrans.ai"
+        }
+      },
+      "genderAffirmingCare": {
+        "title": "Genderbevestigende Zorg: Wat is het?",
+        "description": "Genderbevestigende zorg is momenteel de standaard (en vaak de enige) behandelingsoptie voor genderdysforie aangeboden door zorgverleners in de Westerse wereld. Genderbevestigende zorg erkent in wezen de genderverwachtingen van de samenleving en past dan de patiënt daaraan aan. Het is een gefaseerde aanpak die begint met sociale transitie (naam, voornaamwoorden, kleding), dan hormoontherapie, en dan voor sommigen, onomkeerbare chirurgische ingrepen. Genderbevestigende zorg kan verlichting bieden voor genderdysforie, maar het brengt wel ernstige gezondheidsrisico's en vaak permanente bijwerkingen met zich mee. Ga met extreme voorzichtigheid te werk, en zorg ervoor dat je",
+        "watchTestimonies": "getuigenissen bekijkt"
+      },
+      "genderExploratoryTherapy": {
+        "title": "Gender Explorerende Therapie: Wat is het?",
+        "description1": "Gender Explorerende Therapie betekent simpelweg dat je therapeut niet haast om je te bevestigen en te medicaliseren. In plaats daarvan beginnen ze met het verkennen van concepten van gender en waarom je je zo zou kunnen voelen. Gender Explorerende Therapie is een aanpak zonder een specifiek, vooraf bepaald plan, en de resultaten van gender explorerende therapie kunnen variëren afhankelijk van elk individu.",
+        "description2": "Als je 'Gender Explorerende Therapie' googelt, zul je enkele kritieken vinden die het vergelijken met gay conversion therapie (die bewezen ineffectief is). De waarheid is dat Gender Explorerende Therapie heel anders is dan gay conversion therapie:",
+        "references": {
+          "title": "Referenties",
+          "ref1": "U.S. Dept. of Health & Human Services (2025). Report on Pediatric Gender Dysphoria and Gender Conversion Efforts.",
+          "ref2": "D'Angelo, R. (2025). 'Supporting autonomy in young people with gender dysphoria: psychotherapy is not conversion therapy.' Journal of Medical Ethics, 51(1).",
+          "ref3": "Lemma, A. & Schmidt, L. (2024). 'Psychodynamic Psychotherapy for Gender Dysphoria is not Conversion Therapy.' Frontiers in Psychology.",
+          "ref4": "Korte, A. et al. (2021). 'One Size Does Not Fit All: In Support of Psychotherapy for Gender Dysphoria.' Archives of Sexual Behavior."
+        },
+        "florenceAshley": {
+          "title": "Florence Ashley Studie",
+          "description": "Wetenschappelijk onderzoek op dit gebied is vaak bevooroordeeld. Een van de meest invloedrijke studies (Interrogating Gender-Exploratory Therapy) is in 2022 gepubliceerd door Florence Ashley, een trans vrouw. In haar studie vergeleek ze Gender Explorerende Therapie met gay conversion therapie en veroordeelt ze de praktijk sterk. Het moet worden erkend dat mensen die zich als trans identificeren gemotiveerd zijn om hun identiteit en overtuigingen te beschermen, en deze studie is een perfect voorbeeld daarvan. De studie zit vol logische drogredenen, maar werd toch gepubliceerd en wordt gebruikt als wetenschappelijke rechtvaardiging om genderbevestigende zorg de enige optie te laten zijn voor mensen die genderdysforie ervaren.",
+          "showFallacies": "Zie alle logische drogredenen in Florence Ashley's studie"
+        }
+      },
+      "findTherapist": {
+        "title": "Waar kan ik een therapeut vinden die gender explorerende therapie beoefent?",
+        "languageNotice": "De meeste therapeuten die worden vermeld, spreken alleen Engels, maar je kunt nog steeds proberen contact met hen op te nemen om iemand te vinden die jouw taal spreekt. Als je een bevoegde therapeut kent die jouw taal spreekt, kun je deze via het",
+        "contactForm": "contactformulier",
+        "organizations": {
+          "justTherapy": {
+            "name": "Just Therapy",
+            "description": "Just Therapy is geboren uit een verlangen om terug te gaan naar wat therapie zou moeten zijn – effectief, ethisch, en vrij van ideologie. Het is een associatie van therapeuten en counselors die zijn verbonden door gemeenschappelijke ethiek en principes. Just Therapy erkent dat veel van de wereld van psychotherapie en counseling is overgenomen door activisten en ideologieën, die riskeren om de geestelijke gezondheid van cliënten te schaden, in plaats van te ondersteunen. Haar leden, die uit een breed scala aan disciplines en specialiteiten komen, hebben een Gedragscode ondertekend.",
+            "directory": "Just Therapy Therapeutengids",
+            "codeOfConduct": "Just Therapy Gedragscode"
+          },
+          "therapyFirst": {
+            "name": "Therapy First",
+            "description": "Therapy First verenigt geestelijke gezondheidsprofessionals die geloven dat gender-gestreste cliënten open einde, op evidence-based gebaseerde psychotherapie verdienen die onbewuste en contextuele factoren verkent voordat er onomkeerbare medische stappen worden genomen; ze verwerpen zowel conversiepraktijken als het 'alleen-bevestigen' model, handhaven cliëntautonomie, en zien medische transitie op kinder- en tienerleeftijd als experimenteel, terwijl ze nog steeds het recht van volwassenen op lichamelijke autonomie en voortgezette therapeutische verkenning ondersteunen.",
+            "directory": "Therapy First Therapeutengids",
+            "about": "Over Therapy First"
+          },
+          "beyondTrans": {
+            "name": "Beyond Trans",
+            "description": "Stella O'Malley lanceerde het Gender Dysphoria Support Network in maart 2020 om ouders onbevooroordeelde hulp te bieden met gender-gestreste kinderen; het groeide snel uit tot een wereldwijde gemeenschap, wat leidde tot de oprichting van Genspect in 2021, een pleitbezorger voor niet-gemedicaliseerde zorg. In het besef van de toenemende transitie-spijt, startte de groep Beyond Trans in 2022, en fuseerde dit in juni 2025 met GDSN om één geïntegreerd, op evidence-based gebaseerd ondersteuningsnetwerk te vormen voor families, individuen en detransitioners.",
+            "directory": "Beyond Trans Therapeutengids",
+            "supportGroups": "Beyond Trans Ondersteuningsgroepen",
+            "about": "Over Beyond Trans"
+          },
+          "detransFoundation": {
+            "name": "The Detrans Foundation",
+            "description": "The Detrans Foundation biedt bronnen en ondersteuning voor detransitioners, inclusief toegang tot gekwalificeerde therapeuten die detransitie-ervaringen begrijpen. De volgende therapeuten maken deel uit van de Detrans foundation:",
+            "drEntwistle": "is een Klinisch Psycholoog die eerder werkte bij de NHS genderidentiteit ontwikkelingsservice voor onder 18-jarigen in Leeds. Ze is geregistreerd bij de UK Health Care Professions Council (HCPC) en biedt online consultaties aan via beveiligde videocall.",
+            "anastassisSpiliadis": "is een Systemisch & Gezins Psychotherapeut die vier jaar werkte bij de Gender Identity Development Service bij de Tavistock, waar hij de Family Therapy & Consultation Service leidde. Hij nam ontslag bij de Tavistock omdat hij het oneens was met het gebrek aan een therapeutisch model in het begrijpen van genderidentiteit problemen. Hij ontwikkelde het Gender Explorerend Model en heeft uitgebreide ervaring met het werken met gender-vragende individuen en detransitioners.",
+            "visitWebsite": "Bezoek de Detrans Foundation website"
+          }
+        }
+      },
+      "forParents": {
+        "title": "Bronnen Voor Ouders",
+        "intro": "Als je kind recent is uitgekomen als transgender, voel je je misschien verward, bezorgd, en onzeker hoe je hen het beste kunt ondersteunen terwijl je ook hun langetermijngezondheid en welzijn beschermt.",
+        "rogdRepair": {
+          "name": "Stephanie Winn's ROGD Repair Program",
+          "whatIs": "Wat is ROGD Repair?",
+          "description1": "ROGD Repair is:",
+          "bullet1": "Een programma dat ouders van trans-geïdentificeerde jongeren helpt te communiceren op manieren die desistance, kritisch denken, gezondheid en relationele harmonie bevorderen",
+          "bullet2": "Een interactieve en voortdurend uitbreidende toolkit van psychologie concepten en communicatieve vaardigheden die zijn verfijnd door jarenlange ervaring als Licensed Marriage and Family Therapist die ROGD ouder coach is geworden",
+          "bullet3": "Een zelfgepacet online cursus met meer dan 100 lessen, elk met een video, essay en reflectievragen die zijn ontworpen om deelnemers te helpen de inhoud te personaliseren naar hun unieke familiesituaties, evenals discussiefora",
+          "description2": "Nieuwe ROGD Repair lidmaatschappen komen nu met onbeperkte toegang tot RepairBot, de eerste en enige AI-tool die specifiek is ontworpen om niet-bevestigende ouders van gender-gestreste jongeren te helpen. RepairBot is getraind op de volledige ROGD Repair cursus en dient als een uitstekende klankbord, huiswerkmakker en communicatietool helper!",
+          "ctaBox": {
+            "title": "Je kind zegt dat ze 'trans' zijn, maar je wilt dat ze gezond en veilig zijn.",
+            "description1": "De gezondheid en toekomst van je kind staan op het spel, maar je hefboomwerking en invloed zijn beperkt. Misschien zijn ze begonnen met zwarte markt hormonen achter je rug, of stormen boos weg wanneer je hen 'misgenderd', of zijn ze weg op een 'bevestigende' universiteit. Je moet effectief communiceren in deze lastige situatie, voordat iemand gewond raakt. Dat is waar ROGD Repair om de hoek komt kijken.",
+            "description2": "ROGD Repair is een zelfgepacet online cursus en gemeenschap voor ouders die de psychologie concepten en communicatietools leert die je nodig hebt om de geestelijke toestand van je kind te begrijpen en hoe je hen kunt bereiken. Lidmaatschap omvat nu RepairBot, je 24/7 AI-assistent die is getraind op de aanpak.",
+            "description3": "ROGD Repair en RepairBot zijn gecreëerd door een Licensed Marriage and Family Therapist met meer dan tien jaar ervaring met trans-geïdentificeerde jongeren en hun families, die nu exclusief ouders begeleidt die weten dat er een beter pad moet zijn dan 'bevestiging.'"
+          },
+          "coupon": "Gebruik deze couponcode om",
+          "couponCode": "DETRANSAI",
+          "learnMore": "Leer meer en meld je aan voor ROGD Repair"
+        }
+      }
+    },
+    "table": {
+      "gayConversion": "Gay-conversie therapie",
+      "genderExploratory": "Gender-explorerende therapie",
+      "goal": "Doel",
+      "goalConversion": "Verander seksuele oriëntatie omdat deze als pathologisch wordt beschouwd.",
+      "goalExploratory": "Begrijp de betekenis van de dysforie; resultaat kan transitie zijn, geen transitie, of partiële sociale transitie.",
+      "method": "Methode",
+      "methodConversion": "Schaamte, afkeer, gedragsconditionering, gebed.",
+      "methodExploratory": "GET is compatibel met een breed scala aan therapeutische modaliteiten, zoals standaard psychodynamische of humanistische technieken—open vragen, nieuwsgierigheid, geen vooraf ingestelde eindpunten.",
+      "evidence": "Evidence base",
+      "evidenceConversion": "Toont consistent schade; elk groot medisch lichaam veroordeelt het.",
+      "evidenceExploratory": "Nog geen RCT's, maar parallellen met therapieën die angst, depressie, zelfbeschadiging verminderen; geen data die systematische schade tonen.",
+      "ethics": "Ethiek",
+      "ethicsConversion": "Schendt autonomie door heteroseksuele identiteit als de enige juiste optie te pushen.",
+      "ethicsExploratory": "Streeft naar het uitbreiden van autonomie door ervoor te zorgen dat de adolescent (en familie) alle opties begrijpen voordat onomkeerbare stappen worden gezet."
+    },
+    "fallacies": {
+      "title": "Logische Drogredenen in Florence Ashley's Studie",
+      "name": "Drogreden Naam",
+      "explanation": "Simpele Uitleg",
+      "example": "Voorbeeld uit het Artikel"
+    }
+  },
+  "charts": {
+    "ageDistribution": {
+      "title": "Hoe oud waren detransitioners toen ze transitioneerden en detransitioneerden?",
+      "subtitle": "Data van Reddit gebruiker transitie tijdlijnen",
+      "loading": "Grafiekdata laden...",
+      "fetchError": "Ophalen leeftijdsverdelingsdata mislukt",
+      "genericError": "Er is een fout opgetreden",
+      "errorPrefix": "Fout:",
+      "noData": "Geen data beschikbaar voor het geselecteerde leeftijdsbereik",
+      "tooltip": {
+        "age": "Leeftijd: {age}",
+        "transitioned": "Getransitioneerd: {count} gebruikers",
+        "detransitioned": "Gedetransitioneerd: {count} gebruikers"
+      },
+      "axis": {
+        "age": "Leeftijd",
+        "users": "Aantal Gebruikers"
+      },
+      "legend": {
+        "transition": "Transitieleeftijd",
+        "detransition": "Detransitieleeftijd"
+      }
+    },
+    "transitionDuration": {
+      "title": "Transitieduur: Leeftijd bij Transitie vs Leeftijd bij Detransitie",
+      "description": {
+        "line1": "Elk punt toont transitieleeftijd (X) vs detransitieleeftijd (Y).",
+        "line2": "Grotere, meer ondoorzichtige punten vertegenwoordigen meer gebruikers."
+      },
+      "loading": "Grafiekdata laden...",
+      "noData": "Geen data beschikbaar voor het geselecteerde leeftijdsbereik",
+      "axis": {
+        "transitionAge": "Leeftijd bij Transitie",
+        "detransitionAge": "Leeftijd bij Detransitie"
+      },
+      "tooltip": {
+        "transitionAge": "Transitieleeftijd",
+        "detransitionAge": "Detransitieleeftijd",
+        "duration": "Duur",
+        "years": "jaar"
+      },
+      "male": "Man",
+      "female": "Vrouw",
+      "yearsAvg": "jaar gem",
+      "user": "gebruiker",
+      "users": "gebruikers"
+    },
+    "pathways": {
+      "title": "Detransitie Paden Flow",
+      "subtitle": "Stroom van /r/detrans Reddit gebruikersdemografie naar detransitie resultaten",
+      "loading": "Padendata laden...",
+      "fetchError": "Ophalen tagverdelingsdata mislukt",
+      "genericError": "Er is een fout opgetreden",
+      "error": "Fout",
+      "users": "{count} gebruikers",
+      "percentageOfTotal": "{percentage}% van totaal",
+      "totalUsers": "Totaal gebruikers",
+      "flowConnections": "Stroom verbindingen",
+      "male": "Man",
+      "female": "Vrouw",
+      "noData": "Geen padendata beschikbaar voor de geselecteerde filters"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Contact | detrans.ai",
+      "description": "Neem contact met ons op. Stuur ons je gedachten, suggesties, of feedback."
+    },
+    "title": "Contactformulier",
+    "intro": "Als je gedachten, suggesties hebt, of als deze gratis service jou, je familie of je vriend heeft geholpen, zou ik graag van je horen. Stuur me hieronder een bericht!",
+    "form": {
+      "to": "Aan",
+      "name": "Naam",
+      "namePlaceholder": "Je Naam",
+      "email": "E-mail",
+      "emailPlaceholder": "jij@voorbeeld.com",
+      "subject": "Onderwerp",
+      "subjectPlaceholder": "Onderwerp",
+      "message": "Bericht",
+      "messagePlaceholder": "Schrijf je bericht...",
+      "sendButton": "Bericht Versturen",
+      "sending": "Versturen...",
+      "success": "✅ Bericht verzonden!",
+      "error": "❌ Verzenden mislukt."
+    }
+  },
+  "seo": {
+    "conversations": {
+      "title": "Gesprekkenarchief",
+      "description": "Blader door gesprekken over genderidentiteit, detransitie, genderbevestigende zorg, en bevestiging.",
+      "conversations": "Gesprekken",
+      "featuredConversations": "Uitgelichte Gesprekken",
+      "allConversations": "Alle Gesprekken",
+      "untitled": "Naamloos Gesprek",
+      "noSummary": "Geen samenvatting beschikbaar",
+      "noConversations": "Geen gesprekken beschikbaar.",
+      "mode": "Modus",
+      "updated": "Bijgewerkt",
+      "featured": "Uitgelicht",
+      "conversationSummary": "Gesprek Samenvatting",
+      "noSummaryAvailable": "Geen samenvatting beschikbaar voor dit gesprek.",
+      "conversation": "Gesprek",
+      "unableToParse": "Niet in staat om gespreksberichten te parseren.",
+      "archiveNote": "Dit is een gesprek uit ons archief. Om het volledige gesprek te bekijken en deel te nemen aan discussies, bezoek de interactieve versie van deze pagina.",
+      "welcomeTitle": "Welkom bij het Gesprekkenarchief",
+      "welcomeDescription": "Selecteer een gesprek uit de zijbalk om de details te bekijken. Dit archief bevat discussies over genderidentiteit, detransitie-ervaringen, en bevestigingstrajecten.",
+      "featuredDescription": "Gemarkeerde discussies door onze gemeenschap",
+      "allDescription": "Blader door alle beschikbare discussies",
+      "footer": "Deze pagina biedt SEO-vriendelijke inhoud voor zoekmachines en bots. Voor de volledige interactieve ervaring, bezoek met een moderne webbrowser.",
+      "user": "Gebruiker"
+    },
+    "chat": {
+      "subtitle": "Vragen en antwoorden voor mensen die zich afvragen over hun genderidentiteit.",
+      "freedomMessage": "De waarheid is dat gendernon-conformiteit ons allemaal zal bevrijden!",
+      "moreQuestions": "Meer vragen gerelateerd aan \"{question}\""
+    },
+    "videos": {
+      "title": "Transitie & Detransitie Video's",
+      "description": "Dit is een archief van persoonlijke detransitie-video's die zijn geüpload naar het internet. Laat je stem horen door bij te dragen en je eigen verhaal te delen!",
+      "thumbnailAlt": "Miniatuur voor",
+      "by": "door",
+      "female": "Vrouw",
+      "male": "Man"
+    }
+  },
+  "routes": {
+    "home": "/",
+    "about": "/over",
+    "contact": "/contact",
+    "support": "/ondersteuning",
+    "videos": "/videos",
+    "stories": "/verhalen",
+    "studies": "/studies",
+    "definitions": "/definities",
+    "donate": "/doneer",
+    "terms": "/voorwaarden",
+    "prompts": "/prompts",
+    "participate": "/doe-mee",
+    "conversations": "/gesprekken",
+    "research": "/onderzoek",
+    "chat": "/chat",
+    "login": "/login"
+  }
+}

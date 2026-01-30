@@ -1,5 +1,188 @@
 # Changelog
 
+## [2026-01-31] - Add Korean (KO) Translation File
+
+### Translation Updates
+- **Korean Translation File**: Added complete Korean translation file `messages/ko.json`
+  - Full translation of all UI strings, navigation, forms, and content (800+ lines)
+  - Careful attention to gender terminology in Korean:
+    - "Detransitioner" → "디트랜지셔너" (transliteration, gender-neutral)
+    - "Transgender" → "트랜스젠더" (transliteration, widely used)
+    - "Male/Female" → "남성/여성" (for biological sex), "남자/여자" (for social gender)
+    - "Sex" → "성" (biological), "Gender" → "성별" (social construct)
+  - Gender-neutral language used throughout, as Korean doesn't mark gender grammatically
+  - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
+
+### Gender Terminology Notes (Korean)
+Korean translations carefully handle the language's unique approach to gender:
+- **"디트랜지셔너"** (detransitioner) - gender-neutral transliteration
+- **"트랜스젠더"** (transgender) - standard transliteration used in Korea
+- **"남성/여성"** (male/female) - formal terms for biological sex
+- **"남자/여자"** (man/woman) - common terms for social gender
+- **"성별 불쾌감"** (gender dysphoria) - standard Korean medical terminology
+- **"성별 정체성"** (gender identity) - widely understood academic term
+- **"디트랜지션"** (detransition) - transliteration, clear and direct
+- **"데시스턴스"** (desistance) - transliteration of psychological term
+- **"성별 비순응"** (gender non-conformity) - descriptive translation
+- **"성별 확정적 치료"** (gender-affirming care) - medical terminology
+- **"성별 탐구적 치료"** (gender-exploratory therapy) - clinical term
+- **"논바이너리"** (non-binary) - transliteration, commonly used
+- Honorific speech levels (존칭) used appropriately throughout
+
+### Technical Details
+- Korean locale (ko) integrated into existing language system
+- Translation follows standard Korean conventions (South Korea)
+- All gender-related medical and psychological terms use appropriate Korean terminology
+- Korean's lack of grammatical gender makes translation straightforward for gender agreement
+- Routes preserved (not translated) for URL consistency
+- Character encoding supports Korean Hangul characters (UTF-8)
+
+## [2026-01-31] - Add Chinese Simplified (zh-cn) Translation File
+
+### Translation Updates
+- **Chinese Simplified Translation File**: Added complete Chinese Simplified translation file `messages/zh-cn.json`
+  - Full translation of all UI strings, navigation, forms, and content (800+ lines)
+  - Careful attention to gender terminology in Chinese, ensuring culturally appropriate expressions:
+    - "Detransitioner" → "去过渡者" (qù guòdù zhě)
+    - "Transgender" → "跨性别" (kuà xìngbié)
+    - "Male/Female" → "男性/女性" (nánxìng/nǚxìng) for biological sex
+    - "Sex/Gender" → "生理性别/性别" (shēnglǐ xìngbié/xìngbié) maintaining distinction
+  - All sections translated including:
+    - Metadata and SEO descriptions
+    - Home page content and question starters
+    - Navigation and header elements
+    - Definitions and terminology explanations
+    - Chat interface and conversation handling
+    - Stories, videos, and studies pages
+    - Support resources and therapy information
+    - Privacy policy and terms of service
+    - Charts and data visualizations
+    - Contact form and error messages
+
+### Gender Terminology Notes (Chinese Simplified)
+Chinese translations carefully handle gender concepts throughout:
+- **"去过渡者"** (qù guòdù zhě) (detransitioner) - neutral term without grammatical gender
+- **"跨性别"** (kuà xìngbié) (transgender) - standard term
+- **"男性/女性"** (nánxìng/nǚxìng) (male/female) - used for biological sex
+- **"性别"** (xìngbié) (gender/sex) - context determines meaning
+- **"生理性别"** (shēnglǐ xìngbié) (biological sex) - anatomical/biological distinction
+- **"社会性别"** (shèhuì xìngbié) (social gender) - social construct distinction
+- **"性别认同"** (xìngbié rèntóng) (gender identity) - internal sense of gender
+- **"性别焦虑"** (xìngbié jiāolǜ) (gender dysphoria) - distress from gender/sex mismatch
+- **"性别不一致"** (xìngbié bù yīzhì) (gender non-conformity) - not conforming to stereotypes
+- **"变性"** (biànxìng) (sex change/transition) - medical terminology
+- **"去过渡/脱跨"** (qù guòdù/tuō kuà) (detransition) - descriptive terms
+- **"停止"** (tíngzhǐ) (desistance) - cessation of identification
+- **"性别肯定护理"** (xìngbié kěndìng hùlǐ) (gender-affirming care)
+- **"性别探索性治疗"** (xìngbié tànsuǒ xìng zhìliáo) (gender-exploratory therapy)
+- **"AFAB/AMAB"** → "出生时被指定为女性/男性" (chūshēng shí bèi zhǐdìng)
+- **"非二元"** (fēi èryuán) (non-binary)
+- **"顺性别"** (shùn xìngbié) (cisgender)
+
+### Technical Details
+- Chinese Simplified locale (zh-cn) ready for integration into language selector
+- Translation follows Mainland Chinese conventions
+- All gender-related medical and psychological terms use appropriate Chinese terminology
+- Chinese is a gender-neutral language grammatically (no "he/she" pronoun distinction), requiring careful contextual handling
+- Routes translated for SEO-friendly Chinese URLs
+
+## [2026-01-31] - Add French (FR) Translation File
+
+### Translation Updates
+- **French Translation File**: Added complete French translation file `messages/fr.json`
+  - Full translation of all UI strings, navigation, forms, and content (800+ lines)
+  - Careful attention to gender terminology in French, ensuring correct grammatical agreement:
+    - "Detransitioner" → "personne ayant fait une détransition" (gender-neutral, respectful)
+    - "Transgender" → "transgenre" (invariable)
+    - "Male/Female" → "masculin/féminin" for biological sex, "homme/femme" for social gender
+    - "Trans woman/trans man" → "femme trans/homme trans" (correct French word order)
+  - Gender-inclusive language used throughout with careful attention to:
+    - Article agreement (le/la, un/une) with gendered nouns
+    - Adjective agreement in gender and number
+    - Professional titles with both forms (chercheur/chercheuse)
+  - All sections translated including:
+    - Metadata and SEO descriptions
+    - Home page content and question starters
+    - Navigation and header elements
+    - Definitions and terminology explanations
+    - Chat interface and conversation handling
+    - Stories, videos, and studies pages
+    - Support resources and therapy information
+    - Privacy policy and terms of service
+    - Charts and data visualizations
+    - Contact form and error messages
+
+### Gender Terminology Notes (French)
+French translations carefully handle grammatical gender agreement:
+- **"Personne ayant fait une détransition"** (detransitioner) - gender-neutral, respectful phrasing
+- **"Transgenre"** (transgender) - invariable term used as both adjective and noun
+- **"Mâle/Femelle"** (male/female) - used for biological sex in medical contexts
+- **"Masculin/Féminin"** (masculine/feminine) - used for gender categories
+- **"Homme/Femme"** (man/woman) - social gender identities
+- **"Dysphorie de genre"** (gender dysphoria) - standard French medical terminology
+- **"Identité de genre"** (gender identity) - widely understood term
+- **"Détransition"** (detransition) - clear, direct translation
+- **"Désistance"** (desistance) - appropriate psychological term
+- **"Non-conformité de genre"** (gender non-conformity) - descriptive translation
+- **"Soins d'affirmation de genre"** (gender-affirming care) - medical terminology
+- **"Thérapie d'exploration de genre"** (gender-exploratory therapy) - clinical term
+- **"Non-binaire"** (non-binary) - commonly used term
+- Pronouns (il/elle/iel) preserved with French grammatical context
+
+### Technical Details
+- French locale (fr) integrated into existing language system
+- Translation follows standard French conventions (France)
+- All gender-related medical and psychological terms use appropriate French terminology
+- Careful attention to article and adjective agreement throughout (le/la, un/une)
+- Routes preserved (not translated) for URL consistency
+- Character encoding supports French accented characters (UTF-8)
+
+## [2026-01-30] - Add Portuguese (PT) Translation File
+
+### Translation Updates
+- **Portuguese Translation File**: Added complete Portuguese translation file `messages/pt.json`
+  - Full translation of all UI strings, navigation, forms, and content
+  - Careful attention to gender terminology in Portuguese, a highly gendered language
+  - All gender terms properly translated with correct grammatical agreement:
+    - "Detransitioner" → "detransicionador(a)" (male/female forms)
+    - "Transgender" → "transgênero" (invariable)
+    - "Male/Female" → "homem/mulher" or "masculino/feminino" (context-dependent)
+    - Gender-neutral phrasing used where appropriate
+  - All 800+ lines translated including:
+    - Metadata and SEO descriptions
+    - Home page content and question starters
+    - Navigation and header elements
+    - Definitions and terminology explanations
+    - Chat interface and conversation handling
+    - Stories, videos, and studies pages
+    - Support resources and therapy information
+    - Privacy policy and terms of service
+    - Charts and data visualizations
+    - Contact form and error messages
+
+### Gender Terminology Notes (Portuguese)
+Portuguese translations carefully handle gender agreement throughout:
+- **"Detransicionador/Detransicionadora"** (detransitioner) - gendered forms for male/female
+- **"Transgênero"** (transgender) - invariable term
+- **"Homem/Mulher"** (male/female) - used for biological sex
+- **"Masculino/Feminino"** (masculine/feminine) - used for gender categories
+- **"Disforia de gênero"** (gender dysphoria) - standard medical terminology
+- **"Identidade de gênero"** (gender identity) - widely understood term
+- **"Desransição"** (detransition) - clear translation
+- **"Desistência"** (desistance) - appropriate psychological term
+- **"Não-conformidade de gênero"** (gender non-conformity) - descriptive translation
+- **"Atendimento de afirmação de gênero"** (gender-affirming care) - medical terminology
+- **"Terapia exploratória de gênero"** (gender-exploratory therapy) - clinical term
+- **"TERF"** - preserved as technical term with explanation
+- **"Pronomes"** (pronouns) - grammatical agreement maintained
+
+### Technical Details
+- Portuguese locale (pt) ready for integration into language selector
+- Translation follows Brazilian Portuguese conventions
+- All gender-related medical and psychological terms use appropriate Portuguese terminology
+- Careful attention to article and adjective agreement throughout (o/a, um/uma)
+- Routes translated for SEO-friendly Portuguese URLs
+
 ## [2026-01-30] - Reduce Supported Languages from 32 to 3
 
 ### Internationalization

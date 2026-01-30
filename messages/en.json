@@ -151,7 +151,9 @@
     "es": "Spanish",
     "fr": "French",
     "de": "German",
-    "he": "Hebrew"
+    "he": "Hebrew",
+    "it": "Italian",
+    "nl": "Dutch"
   },
   "settings": {
     "title": "Settings"

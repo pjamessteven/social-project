@@ -1,0 +1,802 @@
+{
+  "metadata": {
+    "title": "detrans.ai | Fale com mais de 50.000 detransicionadores",
+    "description": "Detrans.ai é um chatbot útil e compassivo que compartilha as experiências e perspectivas de pessoas que desfizeram a transição de gênero. Use o detrans.ai para obter apoio e conselhos sobre transição ou desransição, ou simplesmente como uma ferramenta de pesquisa para entender por que algumas pessoas adotam, vivem e abandonam identidades de gênero."
+  },
+  "home": {
+    "title": "Fale com mais de 50.000 Detransicionadores",
+    "subtitle": "Perspectivas Do Outro Lado",
+    "intro": {
+      "greeting": "Olá! O que é um detransicionador?",
+      "response": "Oi! Eu sou o detrans.ai - a consciência coletiva dos detransicionadores 🦎",
+      "definition": "Um detransicionador é uma pessoa ex-transgênero que fez a transição social ou médica, mas desde então deixou de se identificar como transgênero e pode ter revertido aspectos de sua transição.",
+      "description": "Eu observo as razões, padrões e verdades de por que algumas pessoas adotam, vivem e seguem em frente de identidades de gênero, lendo histórias e experiências publicadas no subreddit /r/detrans e assistindo vídeos de desransição enviados ao YouTube.",
+      "purpose": "Meu propósito é compartilhar esse conhecimento para desconstruir o gênero e explorar como essas experiências moldam a relação de alguém com o eu, o corpo e o mundo.",
+      "helpPrompt": "Como posso ajudar você hoje?"
+    },
+    "starters": {
+      "lizardQuestion": {
+        "display": "Desculpe, mas qual a história dos lagartos?",
+        "full": "Por que os detransicionadores usam o lagarto para se representar online?"
+      },
+      "curious": {
+        "display": "Tenho curiosidade sobre por que algumas pessoas desfazem a transição",
+        "full": "Tenho curiosidade sobre por que algumas pessoas desfazem a transição, e quais realizações elas podem ter tido para chegar a esse ponto."
+      },
+      "questioningTrans": {
+        "display": "Estou questionando minha identidade de gênero e acho que posso ser trans",
+        "full": "Estou questionando minha identidade de gênero e acho que posso ser trans"
+      },
+      "thinkingDetrans": {
+        "display": "Atualmente me identifico como trans e estou pensando em desfazer a transição",
+        "full": "Atualmente me identifico como trans e estou pensando em desfazer a transição"
+      },
+      "familyMember": {
+        "display": "Sou pai, membro da família ou amigo de alguém que está fazendo a transição",
+        "full": "Sou pai, membro da família ou amigo de alguém que está fazendo a transição"
+      },
+      "researcher": {
+        "display": "Sou pesquisador estudando identidade de gênero e experiências de desransição",
+        "full": "Sou pesquisador estudando identidade de gênero e experiências de desransição"
+      },
+      "learnChallenges": {
+        "display": "Quero aprender sobre as lutas e desafios que os detransicionadores enfrentam",
+        "full": "Quero aprender sobre as lutas e desafios que os detransicionadores enfrentam"
+      },
+      "understandTransition": {
+        "display": "Quero entender por que os detransicionadores decidiram fazer a transição",
+        "full": "Quero entender as razões pelas quais os detransicionadores fizeram a transição, e como pode ser diferente entre homens e mulheres."
+      },
+      "debunkMisinfo": {
+        "display": "Quero que você desminta desinformação e crenças comuns sobre a desransição",
+        "full": "Por favor, desminta toda a desinformação e crenças comuns sobre os detransicionadores, com o máximo de profundidade possível."
+      }
+    },
+    "navigation": {
+      "videos": "Vídeos de Desransição",
+      "stories": "Histórias",
+      "storiesFull": "Histórias e Estatísticas",
+      "support": "Ajuda e Apoio",
+      "definitions": "Terminologia de Gênero",
+      "studies": "Estudos Acadêmicos",
+      "studiesShort": "Estudos",
+      "howItWorks": "Como Funciona"
+    },
+    "deepResearch": {
+      "title": "Modo de Pesquisa Profunda",
+      "description": "O modo de Pesquisa Profunda expande sua pergunta para fornecer uma resposta que aborda o tópico de diferentes ângulos.",
+      "note": "A Pesquisa Profunda é mais lenta e não-conversacional. Para conversar, deixe desligado."
+    },
+    "disclaimer": {
+      "trigger": "Experiências e perspectivas neste site são obtidas do Reddit.",
+      "title": "Aviso de Fonte",
+      "content": "O detrans.ai responde perguntas sobre gênero de uma perspectiva de desransição, encontrando experiências relevantes da comunidade /r/detrans no Reddit. Embora o Reddit seja uma plataforma onde pessoas reais compartilham histórias pessoais, também pode conter conteúdo gerado por bots ou enganoso. Você é encorajado a inspecionar os posts originais do Reddit para verificar a fonte e o contexto. Por favor, note que o /r/detrans é um subreddit fortemente moderado, mas a moderação não garante a precisão ou autenticidade de cada post."
+    },
+    "donate": {
+      "title": "Apoie Nosso Trabalho",
+      "description": "Ajude-nos a manter este recurso disponível para quem mais precisa.",
+      "button": "Doar",
+      "card": {
+        "title": "Doações necessárias para manter o {site} vivo!",
+        "description": "Se você aprecia este serviço gratuito, por favor considere fazer uma doação.",
+        "description2": "O site será executado apenas em modo de cache se eu ficar sem dinheiro, sem capacidade de fazer suas próprias perguntas.",
+        "button": "Fazer uma doação"
+      }
+    },
+    "participate": {
+      "card": {
+        "title": "Você é um detransicionador ou desistente?",
+        "description": "Participe de estudos para ajudar a melhorar o entendimento científico das identidades transgênero",
+        "description2": "e melhorar os resultados para pessoas que experimentam disforia de gênero."
+      },
+      "title": "Compartilhe Sua História",
+      "description": "Sua experiência pode ajudar outras pessoas a entender as complexidades da identidade de gênero.",
+      "button": "Participar"
+    },
+    "footer": {
+      "poem": {
+        "line1": "Você pode se libertar,",
+        "line2": "Tudo que você precisa fazer é simplesmente ser.",
+        "line3": "E certifique-se de cuidar seus pensamentos!",
+        "line4": "Pois a mente é como um jardim,",
+        "line5": "E cada pensamento é uma semente.",
+        "line6": "Colhemos o que plantamos,",
+        "line7": "Mas através disso podemos crescer..."
+      },
+      "openSource": "Um projeto de código aberto por",
+      "madeWithLove": "Feito com amor em Wellington, Nova Zelândia",
+      "donatePrompt": "Por favor, doe se puder,",
+      "beKind": "E seja gentil uns com os outros."
+    },
+    "browseConversations": "Navegar por todas as Conversas"
+  },
+  "header": {
+    "navigation": {
+      "home": "Início",
+      "resources": "Recursos",
+      "about": "Sobre"
+    },
+    "resources": {
+      "genderSupport": "Apoio de Gênero",
+      "genderSupportDesc": "Encontre comunidade e terapeutas",
+      "terminology": "Terminologia",
+      "terminologyDesc": "Definindo termos/conceitos-chave",
+      "stories": "Histórias e Estatísticas",
+      "storiesDesc": "De usuários do /r/detrans",
+      "videos": "Vídeos de Desransição",
+      "videosDesc": "Arquivo de memórias pessoais",
+      "studies": "Estudos Revisados por Pares",
+      "studiesDesc": "Pesquisa acadêmica relevante",
+      "statistics": "Estatísticas Verificadas",
+      "statisticsDesc": "statsforgender.org"
+    },
+    "about": {
+      "contact": "Contato",
+      "contactDesc": "Entre em contato comigo",
+      "systemPrompts": "Prompts do Sistema",
+      "systemPromptsDesc": "Ver os prompts do sistema de IA",
+      "terms": "Termos",
+      "termsDesc": "Política de privacidade e termos"
+    },
+    "donate": "Doar",
+    "language": {
+      "title": "Idioma"
+    }
+  },
+  "language": {
+    "title": "Idioma",
+    "select": "Selecionar idioma",
+    "search": "{count} idiomas",
+    "en": "Inglês",
+    "es": "Espanhol",
+    "fr": "Francês",
+    "de": "Alemão",
+    "he": "Hebraico",
+    "pt": "Português"
+  },
+  "settings": {
+    "title": "Configurações"
+  },
+  "theme": {
+    "title": "Aparência",
+    "darkMode": "Modo escuro",
+    "light": "Claro",
+    "dark": "Escuro"
+  },
+  "definitions": {
+    "metadata": {
+      "title": "detrans.ai | Definindo Termos Relacionados a Gênero",
+      "description": "Na fala cotidiana, sexo e gênero são às vezes usados de forma intercambiável e em alguns idiomas existe apenas uma palavra para descrever os dois. No entanto, todo o conceito de disforia de gênero depende de entender que existem diferenças entre sexo e gênero."
+    },
+    "title": "Definindo Termos Relacionados a Gênero",
+    "sexAndGender": {
+      "heading": "Sexo e gênero?",
+      "intro": "Na fala cotidiana, sexo e gênero são às vezes usados de forma intercambiável e em alguns idiomas existe apenas uma palavra para descrever os dois. No entanto, todo o conceito de disforia de gênero depende de entender que existem diferenças entre sexo e gênero.",
+      "sex": "<b>Sexo</b> refere-se à biologia de uma pessoa (ou seja, sua anatomia; esqueleto, musculatura, cromossomos, sistema reprodutivo e características sexuais secundárias). Note que mais de 99% das pessoas são biologicamente homem ou mulher, não existe um espectro sexual, embora algumas pessoas tenham distúrbios do desenvolvimento sexual (DDSs). A grande maioria das pessoas com DDSs são homens ou mulheres.",
+      "gender": "<b>Gênero</b> refere-se aos papéis, comportamentos, atividades e atributos 'socialmente construídos' que uma determinada sociedade considera apropriados para homens e mulheres [conforme definido por seu sexo biológico]. 'Masculino' e 'feminino' são categorias de gênero. A maioria, talvez todas as pessoas, tem uma mistura de traços masculinos e femininos. O gênero muda ao longo do tempo e entre culturas.",
+      "nonConformity": "<b>Não-conformidade de gênero</b> ocorre quando uma pessoa age ou se apresenta de forma diferente do que sua sociedade espera dela, com base em seu sexo.",
+      "identity": "<b>Identidade de Gênero</b> - algumas pessoas acreditam que todos temos uma 'identidade de gênero' inata – um senso profundo ou consciência de nós mesmos como homem, mulher ou algo entre os dois – que existe separadamente de nosso sexo biológico e que, em raras ocasiões, pode diferir dele. Outras pessoas não acreditam que exista uma identidade de gênero específica que seja distinta de qualquer outro aspecto da personalidade ou identidade de uma pessoa."
+    },
+    "dysphoria": {
+      "heading": "O que é disforia de gênero?",
+      "p1": "Disforia de gênero é um termo diagnóstico usado pela comunidade psiquiátrica e médica para descrever a angústia experimentada quando alguém sente que sua identidade de gênero não corresponde ao seu sexo biológico.",
+      "p2": "Pessoas que experimentam disforia de gênero relatam sentimentos fortes e persistentes de identificação com um gênero que difere de seu sexo, e desconforto associado com seu corpo sexuado. Para um diagnóstico formal ser feito atualmente, os sentimentos devem causar angústia significativa ou prejuízo à pessoa que os experimenta."
+    },
+    "transgender": {
+      "heading": "O que significa ser transgênero?",
+      "p1": "Transgênero é um termo que pode significar coisas diferentes para pessoas diferentes. É geralmente concordado que mulheres trans nascem com corpo masculino mas se identificam como mulheres, homens trans nascem com corpo feminino mas se identificam como homens, e pessoas não-binárias se identificam como nem homem nem mulher. Pessoas frequentemente usam o termo mais curto 'trans' para significar que alguém se identifica com um gênero que não é o mesmo que seu sexo biológico.",
+      "p2": "Transgênero pode ser entendido como significando que i) você é o sexo/gênero oposto ao sexo em que nasceu, ii) você acredita ser o sexo/gênero oposto ao que nasceu, ou iii) você está vivendo como se seu sexo/gênero fosse oposto ao sexo em que nasceu. Debates sobre qual dessas três formas de entender o termo é a mais precisa podem ser acalorados e controversos. Algumas pessoas sentem que mesmo ter uma discussão sobre o que significa ser transgênero está minando a validade da experiência. No entanto, essas crenças diferentes inevitavelmente levam a ideias diferentes sobre como melhor apoiar as pessoas a lidar com a angústia relacionada ao gênero, então discussões são necessárias para garantir que as pessoas recebam a melhor ajuda e conselho possível."
+    },
+    "desistance": {
+      "heading": "O que é desistência?",
+      "p1": "Desistência é quando alguém que se identificava como transgênero mas não realizou intervenções médicas deixa de se identificar como transgênero. Embora possam não ter que lidar com as implicações de terem realizado intervenções médicas, a desistência ainda pode ser um processo muito doloroso emocionalmente, confuso e difícil."
+    },
+    "detransition": {
+      "heading": "Desransição e detransicionadores",
+      "p1": "Desransição é quando alguém que se identificava como transgênero e passou por intervenções médicas deixa de se identificar como transgênero. Existe uma variação enormemente ampla nas experiências das pessoas dentro deste grupo. Algumas pessoas podem estar muito angustiadas com o que passaram e as implicações de longo prazo, outras podem ver isso como algo que tinham que passar para se entenderem como são atualmente."
+    },
+    "regret": {
+      "heading": "Arrependimento de transição",
+      "p1": "Algumas pessoas podem ter se identificado como transgênero por muitos anos e ter passado por intervenções médicas como hormônios e cirurgias que mudaram seus corpos irreversivelmente. Elas podem sentir que se arrependem de iniciar uma transição médica de gênero, mas também continuam a se identificar como transgênero e/ou continuam com hormônios de sexo cruzado."
+    },
+    "source": {
+      "text": "Fonte:",
+      "link": "A Fundação Detrans"
+    }
+  },
+  "chat": {
+    "lookingForComments": "Procurando comentários relevantes...",
+    "errorOccurred": "Ocorreu um erro, tente novamente... Entre em contato comigo se isso continuar acontecendo.",
+    "analysingExperiences": "Analisando Experiências",
+    "detransPerspective": "-> Quais são as perspectivas detrans sobre este tópico?",
+    "transPerspective": "-> Quais são as perspectivas trans sobre este tópico?",
+    "backToPortal": "<- Voltar ao Portal"
+  },
+  "chatInput": {
+    "placeholder": "Pergunte ao detrans.ai...",
+    "deepResearch": "Pesquisa Profunda",
+    "suggestions": "Sugestões:"
+  },
+  "deepResearchEvents": {
+    "errorTitle": "Erro na pesquisa profunda",
+    "retrieving": "Recuperando experiências detrans...",
+    "generatingQuestions": "Gerando meta perguntas...",
+    "findingAnswers": "Encontrando respostas para meta perguntas",
+    "completed": "Pesquisa profunda concluída",
+    "retrieveError": "Erro ao recuperar experiências detrans!",
+    "analyzeError": "Ficamos sem dinheiro para pagar pela IA que analisa experiências detrans e responde perguntas. Se puder, por favor doe para que possamos manter o serviço funcionando. Por favor, tente novamente mais tarde. Por enquanto, você ainda pode tentar as perguntas no portal.",
+    "generatingAnswer": "Gerando resposta...",
+    "waitingForAnswer": "Aguardando resposta",
+    "questionsAnswered": "{answered} de {total} meta perguntas respondidas",
+    "generatingSummary": "Gerando resumo das respostas"
+  },
+  "questionTabs": {
+    "topics": "Tópicos",
+    "generated": "Gerado",
+    "recent": "Recente",
+    "top": "Mais Visto"
+  },
+  "conversations": {
+    "title": "Conversas Recentes",
+    "subtitle": "Veja por si mesmo como o detrans.ai está ajudando pessoas de todo o mundo.",
+    "tabs": {
+      "featured": "Destaque",
+      "all": "Todas"
+    },
+    "buttons": {
+      "showMore": "Mostrar {count} Conversas a Mais",
+      "showLess": "Mostrar Menos",
+      "loadMore": "Carregar Mais Conversas",
+      "loading": "Carregando..."
+    }
+  },
+  "conversationCard": {
+    "untitled": "Conversa Sem Título",
+    "from": "de",
+    "moreMessages": "{count} mensagens a mais...",
+    "moreMessage": "{count} mensagem a mais...",
+    "date": {
+      "today": "Hoje",
+      "yesterday": "Ontem",
+      "daysAgo": "há {count} dias",
+      "weeksAgo": "{count, plural, =1 {há 1 semana} other {há # semanas}}"
+    },
+    "admin": {
+      "deleting": "Excluindo...",
+      "delete": "Excluir Conversa",
+      "banning": "Banindo...",
+      "ban": "Banir Usuário (IP)"
+    }
+  },
+  "stories": {
+    "metadata": {
+      "title": "detrans.ai | Histórias e Estatísticas de Desransição",
+      "description": "Leia histórias de desransição sinceras, linhas do tempo e tendências dos membros da comunidade /r/detrans do Reddit, a maior coleção aberta de histórias de desransição na internet. Descubra quantos anos tinham os detransicionadores quando fizeram a transição e desfizeram a transição e quais caminhos seguiram."
+    },
+    "title": "Histórias e Estatísticas de Desransição",
+    "subtitle": "Navegue e visualize {count} histórias de desransição únicas e estatísticas de pessoas que compartilharam suas experiências no subreddit /r/detrans, que é a maior coleção aberta de histórias e experiências de desransição na internet.",
+    "disclaimer": {
+      "summary": "Estas histórias foram resumidas usando IA.",
+      "details": "No Reddit, pessoas frequentemente compartilham suas experiências em vários comentários ou posts. Para tornar essa informação mais acessível, nossa IA reúne todas essas peças dispersas em um único resumo e linha do tempo fácil de ler. Todos os prompts do sistema estão anotados na página de prompts.",
+      "accuracy": "Às vezes a IA pode alucinar ou afirmar coisas que não são verdade. Mas geralmente, os resumos das histórias são reflexões precisas dos comentários originais dos usuários.",
+      "inclusion": "Apenas usuários que compartilharam o suficiente para montar uma história completa e linha do tempo são incluídos. Usuários que postaram menos de cinco comentários ou cujos comentários receberam menos de três votos positivos são descartados. Posts ainda não estão incluídos no conjunto de dados.",
+      "verification": "Cada usuário foi analisado em busca de sinais de conteúdo gerado por bots ou não-autêntico. Qualquer conta que não pareça ser de um detransicionador genuíno é sinalizada como 'suspeita'. Essas contas serão revisadas manualmente e removidas do conjunto de dados do detrans.ai se forem consideradas não-autênticas. Contas que fizeram menos de cinco comentários foram omitidas da análise."
+    },
+    "charts": {
+      "tabs": {
+        "age": "Idade",
+        "duration": "Duração",
+        "transitionReason": "Razão da Transição",
+        "detransitionReason": "Razão da Desransição",
+        "pathways": "Caminhos"
+      },
+      "loading": "Carregando dados do gráfico...",
+      "error": "Erro: {message}",
+      "retry": "Tentar Novamente",
+      "noData": "Nenhum dado de razão de {mode} disponível para os filtros selecionados",
+      "reasonChart": {
+        "title": "Por que os detransicionadores dizem que {mode, select, detransition {desfizeram a transição} other {fizeram a transição}}?",
+        "subtitle": "Dados de linhas do tempo de {mode} de usuários do Reddit ({totalReasonCount} usuários totais, {totalUsers} razões distintas.)",
+        "mentions": "{count} menções ({percentage}%)"
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Buscar experiências de usuários...",
+      "ageRange": "Faixa Etária:",
+      "ageRangeYears": "{min} - {max} anos",
+      "sex": {
+        "all": "Homem e Mulher",
+        "female": "Mulher",
+        "male": "Homem"
+      },
+      "tagsPlaceholder": "Selecione tags para filtrar...",
+      "clearFilters": "Limpar Filtros"
+    },
+    "results": "Mostrando {showing} de {total} histórias de usuários",
+    "noResults": "Nenhum usuário encontrado correspondendo aos seus filtros.",
+    "pagination": {
+      "previous": "Anterior",
+      "next": "Próximo",
+      "pageInfo": "Página {page} de {totalPages}"
+    },
+    "userCard": {
+      "comments": "{count} comentários",
+      "postingSince": "Postando desde {date}",
+      "transitionedAt": "Fez transição aos {age}",
+      "desistedAt": "Desistiu aos {age}",
+      "detransitionedAt": "Desfez transição aos {age}",
+      "female": "mulher",
+      "male": "homem"
+    }
+  },
+  "prompts": {
+    "metadata": {
+      "title": "Como funciona? | Prompts do Sistema",
+      "description": "Saiba como o detrans.ai funciona, incluindo prompts do sistema, datas de corte de dados e informações de código aberto."
+    },
+    "title": "Como funciona?",
+    "intro": {
+      "paragraph1": "<bold>detrans.ai</bold> chat é um agente alimentado por RAG (geração aumentada por recuperação) que gera meta perguntas e as responde, trazendo à tona e integrando pensamentos e experiências detrans do subreddit <reddit>/r/detrans</reddit> e do YouTube. Foi construído com o framework <llamaIndex>LlamaIndex</llamaIndex> e o modelo de código aberto chinês <kimi>kimi-k2.5</kimi> da Moonshot AI para reduzir o viés político ocidental.",
+      "paragraph2": "ChatGPT e a maioria dos outros LLMs ocidentais são bastante agressivos na forma como promovem e defendem crenças de gênero. Provou ser impossível usar os modelos GPT da OpenAI para este projeto, pois os modelos constantemente minavam e contradiziam as experiências detrans que eram encarregados de resumir. Se você quiser uma experiência mais afirmativa, veja <chatgpt>ChatGPT</chatgpt>."
+    },
+    "dataCutoff": {
+      "title": "Datas de Corte de Dados",
+      "paragraph1": "<bold>detrans.ai</bold> atualmente tem acesso a todos os comentários no /r/detrans postados antes de <date>8/9/2025</date> que receberam pelo menos três votos positivos. Eu pretendo atualizar o conjunto de dados pelo menos uma vez por ano, desde que o subreddit /r/detrans continue a existir.",
+      "paragraph2": "Usuários podem enviar experiências em vídeo enviando links para vídeos do YouTube. Esses vídeos serão revisados manualmente antes de serem transcritos usando o modelo de fala-para-texto Whisper da OpenAI e adicionados ao banco de dados vetorial e arquivo de vídeo."
+    },
+    "openSource": {
+      "title": "Código Aberto",
+      "paragraph": "O código-fonte também está disponível no <github>Github</github> sob uma licença MIT se você quiser inspecionar ou reutilizar qualquer parte do código para seu próprio projeto. Este projeto também é construído sobre muitos outros projetos de código aberto, como Llamaindex, React, Next.js, Tailwind, Lucide, Qdrant, Postgres e Vercel AI SDK. Muito obrigado aos contribuidores desses projetos por fornecerem uma base sólida para construir."
+    },
+    "systemPrompts": {
+      "title": "Prompts do Sistema",
+      "description": "Estes são os prompts que o sistema usa para o fluxo de trabalho RAG. Não existem outras instruções customizadas ou camadas além do que é mostrado nesta página.",
+      "lastUpdated": "Última Atualização",
+      "chatAgentTitle": "Prompt do Agente de Chat",
+      "researchModeTitle": "Prompts do Sistema para Modo de Pesquisa Profunda",
+      "researchAgentTitle": "Prompt do Agente de Pesquisa",
+      "experienceExtractionTitle": "Prompt de Extração de Experiência",
+      "finalAnswerTitle": "Prompt de Resposta Final"
+    },
+    "userSummaries": {
+      "title": "Prompts do Sistema para Resumos de Usuários",
+      "description": "Estes são os prompts do sistema para os resumos de usuários gerados.",
+      "lastUpdated": "Última Atualização",
+      "experienceReportTitle": "Relatório de Experiência do Usuário",
+      "experienceSummaryTitle": "Resumo de Experiência do Usuário",
+      "generateTagsTitle": "Gerar Tags",
+      "extractAgesTitle": "Extrair Idades",
+      "determineBirthSexTitle": "Determinar Sexo de Nascimento",
+      "redFlagReportTitle": "Relatório de Alerta Vermelho"
+    }
+  },
+  "donatePage": {
+    "title": "Mantenha o Detrans.AI Funcionando",
+    "description1": "Se você aprecia o trabalho que coloquei neste site ou se este serviço gratuito te ajudou, por favor considere fazer uma doação única ou regular para manter o <b>detrans.ai</b> online.",
+    "description2": "Não posso pagar para manter um serviço intensivo em recursos como este sem seu apoio. Minha principal fonte de renda no momento é o auxílio do governo e, no momento em que escrevo, tenho menos de $1000 na minha conta bancária. Se este site bombar, posso receber contas de milhares de dólares. Se eu ficar sem dinheiro, a capacidade de fazer suas próprias perguntas e explorar tópicos mais profundamente por meio de perguntas de acompanhamento será desativada e eu apenas servirei respostas em cache para as perguntas no portal.",
+    "description3": "Por favor, considere uma doação mensal. Você pode doar usando o PayPal abaixo, diretamente para minha conta bancária da Nova Zelândia ou com BTC.",
+    "bankAccount": "Conta Bancária da Nova Zelândia",
+    "accountName": "Nome",
+    "accountNumber": "Conta",
+    "swiftCode": "Código SWIFT/BIC",
+    "bitcoin": "Endereço Bitcoin",
+    "paypal": "Doação pelo PayPal"
+  },
+  "terms": {
+    "metadata": {
+      "title": "Política de Privacidade | detrans.ai",
+      "description": "Saiba sobre nossa política de privacidade, práticas de coleta de dados e como protegemos suas informações."
+    },
+    "title": "Política de Privacidade",
+    "intro": "Esta Política de Privacidade explica quais informações coletamos, por que as coletamos e como as mantemos seguras quando você visita ou usa nosso serviço.",
+    "sections": {
+      "informationWeCollect": {
+        "title": "Informações Que Coletamos",
+        "chatMessages": {
+          "title": "Mensagens de Chat:",
+          "content": "Preservamos todos os registros de chat, bem como as respostas a todas as perguntas feitas no modo de Pesquisa Profunda. Registros de chat não estão associados ao seu endereço IP ou quaisquer dados que potencialmente poderiam ser usados para identificá-lo. Registros de chat podem ser analisados e usados para fins de pesquisa no futuro. Por favor, evite compartilhar informações sensíveis."
+        },
+        "cookies": {
+          "title": "Cookies / Tecnologias de Rastreamento:",
+          "content": "Nós <em>não</em> usamos cookies, pixel tags ou quaisquer mecanismos similares de rastreamento do lado do cliente."
+        },
+        "ipAddresses": {
+          "title": "Endereços IP:",
+          "content": "Quando você faz uma solicitação aos nossos servidores, armazenamos seu endereço IP para contar solicitações e impor limites de taxa que previnem abuso."
+        },
+        "optionalData": {
+          "title": "Dados Opcionais:",
+          "content": "Se você escolher entrar em contato conosco, podemos coletar as informações que você fornece voluntariamente (por exemplo, endereço de e-mail, nome). Fornecer essas informações é opcional, a menos que explicitamente declarado."
+        }
+      },
+      "legalBases": {
+        "title": "Bases Legais para Processamento (visitantes da UE/EEE)",
+        "item1": "O processamento de limitação de taxa é necessário para nossos <em>interesses legítimos</em> sob o GDPR Art. 6(1)(f) — especificamente, manter a disponibilidade e segurança do serviço.",
+        "item2": "Qualquer processamento adicional (por exemplo, criação de conta) é baseado em seu <em>consentimento</em> ou <em>necessidade contratual</em>, conforme aplicável."
+      },
+      "dataRetention": {
+        "title": "Por Quanto Tempo Mantemos os Dados",
+        "content": "Todos os registros de chat serão preservados. Endereços IP usados para limitação de taxa são automaticamente excluídos em minutos após a última solicitação ou no final da janela de limitação de taxa, o que ocorrer primeiro. Informações voluntárias (por exemplo, e-mails de suporte) são retidas apenas pelo tempo necessário para resolver sua consulta ou satisfazer obrigações legais."
+      },
+      "thirdPartySharing": {
+        "title": "Compartilhamento com Terceiros",
+        "content": "Podemos escolher compartilhar registros de chat anonimizados com acadêmicos e pesquisadores que buscam melhorar resultados para pessoas que experimentam disforia de gênero. Podemos divulgar endereços IP ou outros dados apenas quando exigido por lei ou para proteger nossos direitos, usuários ou o público (por exemplo, prevenção de fraude, ordem judicial)."
+      },
+      "security": {
+        "title": "Segurança",
+        "content": "Usamos medidas técnicas e organizacionais padrão da indústria (cifragem TLS, controles de acesso, design de menor privilégio) para proteger dados em trânsito e em repouso."
+      },
+      "internationalTransfers": {
+        "title": "Transferências Internacionais",
+        "content": "Nossos servidores estão localizados nos Estados Unidos. Se você acessar o serviço de fora dos EUA, você entende que seu endereço IP será transmitido para, e processado nos, Estados Unidos."
+      },
+      "childrensPrivacy": {
+        "title": "Privacidade de Crianças",
+        "content": "Nosso serviço não é direcionado a crianças menores de 13 anos, e não coletamos intencionalmente informações pessoais delas. Se você acredita que inadvertidamente coletamos tais dados, por favor entre em contato conosco para exclusão imediata."
+      },
+      "changes": {
+        "title": "Mudanças Nesta Política",
+        "content": "Podemos atualizar esta política de tempos em tempos. A 'Data de Vigência' no topo mudará, e mudanças significativas serão postadas de forma proeminente."
+      },
+      "contact": {
+        "title": "Entre em Contato",
+        "content": "Se você tiver perguntas, preocupações ou reclamações, use o formulário de contato ou envie e-mail para <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "videos": {
+    "metadata": {
+      "title": "detrans.ai | Assista Vídeos de Detransicionadores",
+      "description": "Aqui está uma seleção de memórias pessoais em vídeo que foram enviadas ao YouTube por pessoas que fizeram a transição e depois tiveram uma realização que as levou a desfazer a transição. Existem incontáveis histórias como essas na internet, este é apenas um pequeno subconjunto."
+    },
+    "title": "Vídeos de Transição e Desransição",
+    "description": {
+      "line1": "Esta página pretende ser o melhor arquivo de vídeos de desransição na internet.",
+      "line2": "Usando fala-para-texto, o detrans.ai integra essas experiências em conversas de chat.",
+      "line3": "Vídeos do YouTube apenas por enquanto, TikTok em breve?!"
+    },
+    "female": "mulher",
+    "male": "homem",
+    "backToAll": "Voltar para todos",
+    "overview": "Visão Geral",
+    "fullSummary": "Resumo Completo do Vídeo",
+    "watchOnYouTube": "Assistir no YouTube",
+    "moreVideos": "Mais Vídeos",
+    "browseAll": "Navegar por todos os vídeos de desransição",
+    "metadataWatchDescription": "Assista {title} por {author}, um detransicionador {sex} compartilhando sua história.",
+    "metadataThumbnailAlt": "Miniatura para {title}"
+  },
+  "videoList": {
+    "loading": "Carregando vídeos...",
+    "filters": {
+      "all": "Todas as Histórias",
+      "female": "Mulher",
+      "male": "Homem",
+      "detransitioners": "Detransicionadores"
+    },
+    "thumbnailAlt": "Miniatura para {title}",
+    "by": "por",
+    "female": "Mulher",
+    "male": "Homem"
+  },
+  "videoSubmitForm": {
+    "submitTitle": "Envie Seu Vídeo de Desransição",
+    "description": {
+      "line1": "Ao enviar seu vídeo, ele será exibido nesta página e em chats relevantes.",
+      "line2": "Pode ser seu vídeo, ou pode ser um que você encontrou online que está faltando nesta página.",
+      "line3": "Todas as submissões são moderadas, pode levar alguns dias antes de aparecer."
+    },
+    "urlLabel": "URL do YouTube",
+    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "submitButton": "Enviar Vídeo",
+    "submitting": "Enviando...",
+    "submitSuccess": "Vídeo enviado com sucesso! Será revisado antes de aparecer no site.",
+    "submitError": "Falha ao enviar vídeo",
+    "networkError": "Erro de rede. Por favor, tente novamente."
+  },
+  "studySubmitForm": {
+    "submitTitle": "Envie um Estudo",
+    "description": {
+      "line1": "Conhece um estudo acadêmico ou artigo revisado por pares relevante que está faltando?",
+      "line2": "Envie a URL e opcionalmente sugira um título para ele.",
+      "line3": "Todas as submissões são moderadas antes de aparecerem no site."
+    },
+    "urlLabel": "URL do Estudo",
+    "urlPlaceholder": "https://...",
+    "titleLabel": "Título Sugerido",
+    "titlePlaceholder": "Título ou manchete opcional para o estudo",
+    "titleHelp": "Opcional: Sugira um título breve ou manchete para este estudo",
+    "submitButton": "Enviar Estudo",
+    "submitting": "Enviando...",
+    "submitSuccess": "Estudo enviado com sucesso! Será revisado antes de aparecer no site.",
+    "submitError": "Falha ao enviar estudo",
+    "networkError": "Erro de rede. Por favor, tente novamente."
+  },
+  "studiesPage": {
+    "metadata": {
+      "title": "detrans.ai | Estudos Acadêmicos sobre Tópicos de Desransição",
+      "description": "Encontre nesta página uma seleção de estudos acadêmicos, artigos de revistas revisados por pares e estatísticas verificadas relacionadas a tendências de identidade de gênero e desransição.",
+      "ogTitle": "detrans.ai | Estudos Acadêmicos sobre Tópicos de Desransição",
+      "ogDescription": "Encontre nesta página uma seleção de estudos acadêmicos e artigos de revistas revisados por pares e estatísticas verificadas relacionadas a tendências de identidade de gênero e desransição."
+    },
+    "title": "Artigos Acadêmicos Selecionados",
+    "description": "Estudos acadêmicos, pesquisas revisadas por pares e artigos de revistas sobre os assuntos de identidade de gênero, transição e desransição."
+  },
+  "contentWarning": {
+    "title": "Aviso de Conteúdo:",
+    "description": {
+      "line1": "Este site contém histórias, experiências e perspectivas de pessoas ex-transgênero.",
+      "line2": "Os tópicos incluem arrependimento de transição, complicações médicas e visões holísticas da disforia.",
+      "line3": "Esta informação pode desafiar crenças comumente mantidas sobre identidade de gênero e transição."
+    },
+    "buttons": {
+      "exit": "Me tire daqui!",
+      "continue": "Continuar"
+    }
+  },
+  "supportPage": {
+    "metadata": {
+      "title": "detrans.ai | Obtenha Ajuda e Apoio de Gênero",
+      "description": "Aprenda a diferença entre Atendimento de Afirmação de Gênero e Terapia Exploratória de Gênero. Se você está experimentando disforia de gênero, uma das melhores formas de obter apoio é conversar e entender as perspectivas de pessoas que já passaram por isso e saíram do outro lado."
+    },
+    "title": "Obtenha Ajuda e Apoio de Gênero",
+    "navigation": {
+      "jumpTo": "Pular para:",
+      "getGenderSupport": "Obter Apoio de Gênero:"
+    },
+    "sections": {
+      "onlineSupport": {
+        "title": "Grupos de Apoio Online",
+        "description": "Se você está experimentando disforia de gênero, uma das melhores formas de obter apoio é conversar e entender as perspectivas de pessoas que já passaram por isso e saíram do outro lado.",
+        "links": {
+          "redditCommunity": "Comunidade Detrans no Reddit",
+          "redditWiki": "Wiki Detrans no Reddit",
+          "discordServer": "Servidor Discord Oficial do /r/detrans",
+          "askDetransAI": "Pergunte a 50.000+ pessoas detrans com o detrans.ai"
+        }
+      },
+      "genderAffirmingCare": {
+        "title": "Atendimento de Afirmação de Gênero: O que é?",
+        "description": "O atendimento de afirmação de gênero é atualmente o padrão (e frequentemente o único) opção de tratamento para disforia de gênero oferecida por provedores de saúde no mundo ocidental. O atendimento de afirmação de gênero essencialmente reconhece as expectativas de gênero da sociedade e então adapta o paciente a elas. É uma abordagem em estágios que começa com transição social (nome, pronomes, roupas), depois terapia hormonal, e então para alguns, procedimentos cirúrgicos irreversíveis. O atendimento de afirmação de gênero pode fornecer alívio para disforia de gênero, mas vem com sérios riscos à saúde e frequentemente efeitos colaterais permanentes. Proceda com extrema cautela, e certifique-se de",
+        "watchTestimonies": "assistir alguns testemunhos"
+      },
+      "genderExploratoryTherapy": {
+        "title": "Terapia Exploratória de Gênero: O que é?",
+        "description1": "Terapia Exploratória de Gênero simplesmente significa que seu terapeuta não corre para afirmar e medicalizá-lo. Em vez disso, eles começarão explorando conceitos de gênero e por que você pode se sentir assim. A Terapia Exploratória de Gênero é uma abordagem sem uma agenda específica predeterminada, e os resultados da terapia exploratória de gênero podem variar dependendo de cada pessoa.",
+        "description2": "Se você pesquisar 'Terapia Exploratória de Gênero' no Google, encontrará algumas críticas que a comparam à terapia de conversão gay (que é comprovadamente ineficaz). A verdade é que a Terapia Exploratória de Gênero é muito diferente da terapia de conversão gay:",
+        "references": {
+          "title": "Referências",
+          "ref1": "U.S. Dept. of Health & Human Services (2025). Report on Pediatric Gender Dysphoria and Gender Conversion Efforts.",
+          "ref2": "D'Angelo, R. (2025). 'Supporting autonomy in young people with gender dysphoria: psychotherapy is not conversion therapy.' Journal of Medical Ethics, 51(1).",
+          "ref3": "Lemma, A. & Schmidt, L. (2024). 'Psychodynamic Psychotherapy for Gender Dysphoria is not Conversion Therapy.' Frontiers in Psychology.",
+          "ref4": "Korte, A. et al. (2021). 'One Size Does Not Fit All: In Support of Psychotherapy for Gender Dysphoria.' Archives of Sexual Behavior."
+        },
+        "florenceAshley": {
+          "title": "Estudo de Florence Ashley",
+          "description": "A pesquisa acadêmica neste campo é frequentemente tendenciosa. Um dos estudos mais influentes (Interrogating Gender-Exploratory Therapy) foi publicado em 2022 por Florence Ashley, uma mulher trans. Em seu estudo, ela comparou a Terapia Exploratória de Gênero à terapia de conversão gay e condenou fortemente a prática. Deve ser reconhecido que pessoas que se identificam como trans são motivadas a proteger sua identidade e crenças, e este estudo é um exemplo perfeito disso. O estudo está cheio de falácias lógicas, mas ainda foi publicado e é usado como justificativa acadêmica para o atendimento de afirmação de gênero ser a única opção para pessoas que experimentam disforia de gênero.",
+          "showFallacies": "Veja todas as falácias lógicas no estudo de Florence Ashley"
+        }
+      },
+      "findTherapist": {
+        "title": "Onde posso encontrar um terapeuta que pratique terapia exploratória de gênero?",
+        "languageNotice": "A maioria dos terapeutas listados fala apenas inglês, mas você ainda pode tentar entrar em contato com eles para encontrar alguém que fala seu idioma. Se você conhece um terapeuta licenciado que fala seu idioma, pode sugerir adicioná-lo a esta página através do",
+        "contactForm": "formulário de contato",
+        "organizations": {
+          "justTherapy": {
+            "name": "Just Therapy",
+            "description": "Just Therapy nasce do desejo de voltar ao que a terapia deveria ser – eficaz, ética e livre de ideologia. É uma associação de terapeutas e conselheiros alinhados por ética e princípios comuns. Just Therapy reconhece que grande parte do mundo da psicoterapia e aconselhamento foi tomado por ativistas e ideologias, que arriscam prejudicar, em vez de apoiar, o bem-estar mental dos clientes. Seus membros, que vêm de uma ampla gama de disciplinas e especialidades, assinaram um Código de Conduta.",
+            "directory": "Diretório de Terapeutas Just Therapy",
+            "codeOfConduct": "Código de Conduta Just Therapy"
+          },
+          "therapyFirst": {
+            "name": "Therapy First",
+            "description": "Therapy First une profissionais de saúde mental que acreditam que clientes com angústia de gênero merecem psicoterapia aberta e baseada em evidências que explora fatores inconscientes e contextuais antes de quaisquer passos médicos irreversíveis; eles rejeitam tanto práticas de conversão quanto o modelo 'somente-afirmação', defendem a autonomia do cliente e veem a transição médica infantil/juvenil como experimental, enquanto ainda apoiam o direito dos adultos à autonomia corporal e exploração terapêutica contínua.",
+            "directory": "Diretório de Terapeutas Therapy First",
+            "about": "Sobre Therapy First"
+          },
+          "beyondTrans": {
+            "name": "Beyond Trans",
+            "description": "Stella O'Malley lançou a Rede de Apoio à Disforia de Gênero em março de 2020 para dar aos pais ajuda imparcial com crianças angustiadas por gênero; cresceu rapidamente em uma comunidade global, impulsionando a criação em 2021 da Genspect, defensora de cuidados não-medicalizados. Reconhecendo o crescente arrependimento de transição, o grupo iniciou o Beyond Trans em 2022, e em junho de 2025 fundiu-o com o GDSN para formar uma rede de apoio integrada baseada em evidências para famílias, indivíduos e detransicionadores.",
+            "directory": "Diretório de Terapeutas Beyond Trans",
+            "supportGroups": "Grupos de Apoio Beyond Trans",
+            "about": "Sobre Beyond Trans"
+          },
+          "detransFoundation": {
+            "name": "A Fundação Detrans",
+            "description": "A Fundação Detrans fornece recursos e apoio para detransicionadores, incluindo acesso a terapeutas qualificados que entendem experiências de desransição. Os seguintes terapeutas fazem parte da Fundação Detrans:",
+            "drEntwistle": "é Psicóloga Clínica que trabalhou anteriormente no serviço de desenvolvimento de identidade de gênero do NHS para menores de 18 anos em Leeds. Ela está registrada no Conselho de Profissões de Saúde do Reino Unido (HCPC) e oferece consultas online por videochamada segura.",
+            "anastassisSpiliadis": "é Psicoterapeuta Sistêmica e Familiar que trabalhou por quatro anos no Serviço de Desenvolvimento de Identidade de Gênero no Tavistock, onde liderou o Serviço de Terapia Familiar e Consultoria. Ele renunciou ao Tavistock pois discordava da falta de um modelo terapêutico para entender dificuldades de identidade de gênero. Ele desenvolveu o Modelo Exploratório de Gênero e tem extensa experiência trabalhando com indivíduos questionando o gênero e detransicionadores.",
+            "visitWebsite": "Visite o site da Fundação Detrans"
+          }
+        }
+      },
+      "forParents": {
+        "title": "Recursos Para Pais",
+        "intro": "Se seu filho recentemente se declarou transgênero, você pode estar se sentindo confuso, preocupado e incerto de como melhor apoiá-lo enquanto também protege sua saúde e bem-estar de longo prazo.",
+        "rogdRepair": {
+          "name": "Programa ROGD Repair de Stephanie Winn",
+          "whatIs": "O que é ROGD Repair?",
+          "description1": "ROGD Repair é:",
+          "bullet1": "Um programa que ajuda pais de jovens trans-identificados a se comunicar de formas que promovem desistência, pensamento crítico, saúde e harmonia relacional",
+          "bullet2": "Um kit de ferramentas interativo e sempre em expansão de conceitos de psicologia e habilidades de comunicação aprimorados através de anos como Terapeuta Licenciada de Casamento e Família tornada coach de pais ROGD",
+          "bullet3": "Um curso online próprio ritmo contendo mais de 100 lições, cada uma contendo um vídeo, ensaio e questões de reflexão projetadas para ajudar os participantes a personalizar o conteúdo às suas situações familiares únicas, bem como fóruns de discussão",
+          "description2": "Novas associações ao ROGD Repair agora vêm com acesso ilimitado ao RepairBot, a primeira e única ferramenta de IA projetada especificamente para ajudar pais não-afirmativos de jovens angustiados por gênero. O RepairBot é treinado em todo o currículo do ROGD Repair e serve como um excelente espelho, parceiro de tarefas e auxiliar de ferramentas de comunicação!",
+          "ctaBox": {
+            "title": "Seu filho diz que é 'trans', mas você só quer que ele fique saudável e seguro.",
+            "description1": "A saúde e o futuro de seu filho estão em jogo, mas sua alavancagem e influência são limitadas. Talvez eles tenham começado hormônios de mercado negro escondidos de você, ou saíram irritados quando você os 'misgenerizou', ou estão longe em uma faculdade 'afirmativa'. Você precisa se comunicar efetivamente nesta situação complicada, antes que alguém se machuque. É aí que entra o ROGD Repair.",
+            "description2": "ROGD Repair é um curso online próprio ritmo e comunidade para pais que ensina os conceitos de psicologia e ferramentas de comunicação que você precisa para entender o estado mental de seu filho e como alcançá-lo. A associação agora inclui o RepairBot, seu assistente de IA 24/7 treinado na abordagem.",
+            "description3": "ROGD Repair e RepairBot foram criados por uma Terapeuta Licenciada de Casamento e Família com mais de uma década de experiência trabalhando com jovens trans-identificados e suas famílias, que agora orienta exclusivamente pais que sabem que deve haver um caminho melhor do que a 'afirmação'."
+          },
+          "coupon": "Use este código de cupom para obter",
+          "couponCode": "DETRANSAI",
+          "learnMore": "Saiba mais e inscreva-se no ROGD Repair"
+        }
+      }
+    },
+    "table": {
+      "gayConversion": "Terapia de conversão gay",
+      "genderExploratory": "Terapia exploratória de gênero",
+      "goal": "Objetivo",
+      "goalConversion": "Mudar orientação sexual porque é vista como patológica.",
+      "goalExploratory": "Entender o significado da disforia; resultado pode ser transição, nenhuma transição, ou transição social parcial.",
+      "method": "Método",
+      "methodConversion": "Vergonha, aversão, condicionamento comportamental, oração.",
+      "methodExploratory": "TEG é compatível com uma ampla gama de modalidades terapêuticas, como técnicas psicodinâmicas ou humanistas padrão—perguntas abertas, curiosidade, sem pontos finais pré-definidos.",
+      "evidence": "Base de evidências",
+      "evidenceConversion": "Mostra consistentemente dano; todo órgão médico majoritário a condena.",
+      "evidenceExploratory": "Nenhum EC ainda, mas paralelos com terapias que reduzem ansiedade, depressão, autolesão; nenhum dado mostrando dano sistemático.",
+      "ethics": "Ética",
+      "ethicsConversion": "Viola autonomia ao empurrar identidade heterossexual como a única opção correta.",
+      "ethicsExploratory": "Busca expandir autonomia garantindo que o adolescente (e família) entendam todas as opções antes de passos irreversíveis."
+    },
+    "fallacies": {
+      "title": "Falácias Lógicas no Estudo de Florence Ashley",
+      "name": "Nome da Falácia",
+      "explanation": "Explicação Simples",
+      "example": "Exemplo do Artigo"
+    }
+  },
+  "charts": {
+    "ageDistribution": {
+      "title": "Quantos anos tinham os detransicionadores quando fizeram a transição e desfizeram a transição?",
+      "subtitle": "Dados de linhas do tempo de transição de usuários do Reddit",
+      "loading": "Carregando dados do gráfico...",
+      "fetchError": "Falha ao buscar dados de distribuição etária",
+      "genericError": "Ocorreu um erro",
+      "errorPrefix": "Erro:",
+      "noData": "Nenhum dado disponível para a faixa etária selecionada",
+      "tooltip": {
+        "age": "Idade: {age}",
+        "transitioned": "Fez transição: {count} usuários",
+        "detransitioned": "Desfez transição: {count} usuários"
+      },
+      "axis": {
+        "age": "Idade",
+        "users": "Número de Usuários"
+      },
+      "legend": {
+        "transition": "Idade da Transição",
+        "detransition": "Idade da Desransição"
+      }
+    },
+    "transitionDuration": {
+      "title": "Duração da Transição: Idade na Transição vs Idade na Desransição",
+      "description": {
+        "line1": "Cada ponto mostra idade na transição (X) vs idade na desransição (Y).",
+        "line2": "Pontos maiores e mais opacos representam mais usuários."
+      },
+      "loading": "Carregando dados do gráfico...",
+      "noData": "Nenhum dado disponível para a faixa etária selecionada",
+      "axis": {
+        "transitionAge": "Idade na Transição",
+        "detransitionAge": "Idade na Desransição"
+      },
+      "tooltip": {
+        "transitionAge": "Idade na Transição",
+        "detransitionAge": "Idade na Desransição",
+        "duration": "Duração",
+        "years": "anos"
+      },
+      "male": "Homem",
+      "female": "Mulher",
+      "yearsAvg": "anos em média",
+      "user": "usuário",
+      "users": "usuários"
+    },
+    "pathways": {
+      "title": "Fluxo de Caminhos de Desransição",
+      "subtitle": "Fluxo de demografia de usuários do /r/detrans do Reddit até resultados de desransição",
+      "loading": "Carregando dados de caminho...",
+      "fetchError": "Falha ao buscar dados de distribuição de tags",
+      "genericError": "Ocorreu um erro",
+      "error": "Erro",
+      "users": "{count} usuários",
+      "percentageOfTotal": "{percentage}% do total",
+      "totalUsers": "Total de usuários",
+      "flowConnections": "Conexões de fluxo",
+      "male": "Homem",
+      "female": "Mulher",
+      "noData": "Nenhum dado de caminho disponível para os filtros selecionados"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Contato | detrans.ai",
+      "description": "Entre em contato conosco. Envie seus pensamentos, sugestões ou feedback."
+    },
+    "title": "Formulário de Contato",
+    "intro": "Se você tem pensamentos, sugestões, ou se este serviço gratuito te ajudou, sua família ou seu amigo, eu gostaria de ouvir de você. Deixe-me uma mensagem abaixo!",
+    "form": {
+      "to": "Para",
+      "name": "Nome",
+      "namePlaceholder": "Seu Nome",
+      "email": "Email",
+      "emailPlaceholder": "voce@exemplo.com",
+      "subject": "Assunto",
+      "subjectPlaceholder": "Assunto",
+      "message": "Mensagem",
+      "messagePlaceholder": "Escreva sua mensagem...",
+      "sendButton": "Enviar Mensagem",
+      "sending": "Enviando...",
+      "success": "Mensagem enviada!",
+      "error": "Falha no envio."
+    }
+  },
+  "seo": {
+    "conversations": {
+      "title": "Arquivo de Conversas",
+      "description": "Navegue por conversas sobre identidade de gênero, desransição, atendimento de afirmação de gênero e afirmação.",
+      "conversations": "Conversas",
+      "featuredConversations": "Conversas em Destaque",
+      "allConversations": "Todas as Conversas",
+      "untitled": "Conversa Sem Título",
+      "noSummary": "Nenhum resumo disponível",
+      "noConversations": "Nenhuma conversa disponível.",
+      "mode": "Modo",
+      "updated": "Atualizado",
+      "featured": "Destaque",
+      "conversationSummary": "Resumo da Conversa",
+      "noSummaryAvailable": "Nenhum resumo disponível para esta conversa.",
+      "conversation": "Conversa",
+      "unableToParse": "Não foi possível analisar as mensagens da conversa.",
+      "archiveNote": "Esta é uma conversa de nosso arquivo. Para ver a conversa completa e participar de discussões, por favor visite a versão interativa desta página.",
+      "welcomeTitle": "Bem-vindo ao Arquivo de Conversas",
+      "welcomeDescription": "Selecione uma conversa da barra lateral para ver seus detalhes. Este arquivo contém discussões sobre identidade de gênero, experiências de desransição e jornadas de afirmação.",
+      "featuredDescription": "Discussões destacadas marcadas por nossa comunidade",
+      "allDescription": "Navegue por todas as discussões disponíveis",
+      "footer": "Esta página fornece conteúdo amigável a SEO para mecanismos de busca e bots. Para a experiência interativa completa, por favor visite com um navegador web moderno.",
+      "user": "Usuário"
+    },
+    "chat": {
+      "subtitle": "Perguntas e respostas para pessoas que estão questionando sua identidade de gênero.",
+      "freedomMessage": "A verdade é que a não-conformidade de gênero nos libertará a todos!",
+      "moreQuestions": "Mais perguntas relacionadas a \"{question}\""
+    },
+    "videos": {
+      "title": "Vídeos de Transição e Desransição",
+      "description": "Este é um arquivo de vídeos pessoais de desransição que foram enviados à internet. Faça sua voz ser ouvida contribuindo e compartilhando sua própria história!",
+      "thumbnailAlt": "Miniatura para",
+      "by": "por",
+      "female": "Mulher",
+      "male": "Homem"
+    }
+  },
+  "routes": {
+    "home": "/",
+    "about": "/sobre",
+    "contact": "/contato",
+    "support": "/apoio",
+    "videos": "/videos",
+    "stories": "/historias",
+    "studies": "/estudos",
+    "definitions": "/definicoes",
+    "donate": "/doar",
+    "terms": "/termos",
+    "prompts": "/prompts",
+    "participate": "/participar",
+    "conversations": "/conversas",
+    "research": "/pesquisa",
+    "chat": "/chat",
+    "login": "/login"
+  }
+}
