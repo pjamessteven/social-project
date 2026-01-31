@@ -5,7 +5,6 @@ import { db } from "@/db";
 import { chatConversations, detransQuestions } from "@/db/schema";
 import { createUIMessageStreamResponse, type UIMessage } from "ai";
 import { desc, eq, sql } from "drizzle-orm";
-import { ChatMessage, type MessageType } from "llamaindex";
 
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
@@ -96,12 +95,6 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const chatHistory: ChatMessage[] = messages.map((message) => ({
-      role: message.role as MessageType,
-      content: message.parts[0].type === "text" ? message.parts[0].text : "", // message.parts[0]?
-    }));
-    console.log("Chat history:", chatHistory);
-
     const lastMessage = messages[messages.length - 1];
     if (lastMessage?.role !== "user") {
       return NextResponse.json(
@@ -149,7 +142,7 @@ export async function POST(req: NextRequest) {
 
           onFinal: async (messages: UIMessage[], dataStreamWriter) => {
             await saveConversation(chatUuid, messages, ipAddress);
-
+            console.log("ONFINAL", JSON.stringify(messages));
             /*
             if (suggestNextQuestions) {
               await sendSuggestedQuestionsEvent(
@@ -349,10 +342,13 @@ async function saveConversation(
         : "not found",
     );
 
+    // Find the last text part from the assistant message (after tool calls)
+    const finalTextPart = finalAssistantMessage?.parts
+      ?.slice()
+      .reverse()
+      .find((part) => part.type === "text");
     const finalResponse =
-      finalAssistantMessage?.parts[0]?.type === "text"
-        ? finalAssistantMessage.parts[0].text
-        : null;
+      finalTextPart?.type === "text" ? finalTextPart.text : null;
 
     console.log(
       `[SAVE] questionText: "${questionText?.substring(0, 50)}...", finalResponse length: ${finalResponse?.length}`,
@@ -406,7 +402,103 @@ async function saveConversation(
 
     // Use the existing messages - they already include the assistant response from streaming
     const completeMessages = messages;
+
+    // Check if conversation already exists to preserve existing data
+    const existingConversation = await db
+      .select()
+      .from(chatConversations)
+      .where(eq(chatConversations.uuid, uuid))
+      .limit(1);
+
+    const existing = existingConversation[0];
+
+    // Generate a default title from the first user message (truncated)
+    // firstUserMessage is already declared earlier in this function
+    const defaultTitle =
+      firstUserMessage?.parts[0]?.type === "text"
+        ? firstUserMessage.parts[0].text.substring(0, 100) +
+          (firstUserMessage.parts[0].text.length > 100 ? "..." : "")
+        : "Deep research session";
+
+    // Prepare update data
+    const updateData: any = {
+      messages: JSON.stringify(completeMessages),
+      updatedAt: new Date(),
+      archived: true, // Deep research is single-use, mark as archived after completion
+    };
+
+    // Set country if we have it (always update country when we have new info)
+    if (country) {
+      updateData.country = country;
+    }
+
+    // Set IP address if we have a valid IP and it's not already set
+    if (isValidIP && !existing?.ipAddress) {
+      updateData.ipAddress = ipAddress;
+    }
+
+    // Preserve existing fields if they exist
+    if (existing) {
+      if (existing.mode !== undefined) {
+        updateData.mode = existing.mode;
+      }
+      if (existing.featured !== undefined) {
+        updateData.featured = existing.featured;
+      }
+      if (existing.archived !== undefined) {
+        updateData.archived = existing.archived;
+      }
+      if (existing.conversationSummary !== undefined) {
+        updateData.conversationSummary = existing.conversationSummary;
+      }
+      if (existing.createdAt !== undefined) {
+        updateData.createdAt = existing.createdAt;
+      }
+      if (existing.title !== undefined && existing.title !== null) {
+        updateData.title = existing.title;
+      } else {
+        updateData.title = defaultTitle;
+      }
+      // Preserve existing IP address if we have one
+      if (existing.ipAddress !== undefined) {
+        updateData.ipAddress = existing.ipAddress;
+      }
+    } else {
+      updateData.title = defaultTitle;
+      // Set country and IP address for new conversations
+      if (country) {
+        updateData.country = country;
+      }
+      if (isValidIP) {
+        updateData.ipAddress = ipAddress;
+      }
+    }
+
+    // Save or update the conversation in the database
+    await db
+      .insert(chatConversations)
+      .values({
+        uuid,
+        mode: "deep_research",
+        title: updateData.title,
+        messages: JSON.stringify(completeMessages),
+        featured: false,
+        archived: true, // Deep research is single-use, mark as archived immediately
+        country: updateData.country || null,
+        ipAddress: updateData.ipAddress || null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      })
+      .onConflictDoUpdate({
+        target: chatConversations.uuid,
+        set: updateData,
+      });
+
+    console.log(
+      `Saved deep research session ${uuid} with ${completeMessages.length} messages, country: ${country || "null"}, ip: ${isValidIP ? ipAddress : "not saved"}`,
+    );
   } catch (error) {
     console.error("Failed to save deep research session:", error);
+    // Don't throw - conversation saving failures shouldn't break the chat
   }
 }

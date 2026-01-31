@@ -1,5 +1,4 @@
 import { requireAuth } from "@/app/lib/auth/middleware";
-import { checkIpBan } from "@/app/lib/ipBan";
 import { bannedUsers, chatConversations, db } from "@/db";
 import { locales } from "@/i18n/routing";
 import { eq } from "drizzle-orm";
@@ -10,84 +9,6 @@ const LOCALES = locales;
 type Locale = (typeof LOCALES)[number];
 
 // Also support GET for retrieving a single conversation
-
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ uuid: string }> },
-) {
-  try {
-    // Check if IP is banned before processing request
-    await checkIpBan(request);
-
-    const { uuid } = await params;
-
-    if (!uuid) {
-      return NextResponse.json(
-        { error: "UUID parameter is required" },
-        { status: 400 },
-      );
-    }
-
-    // Retrieve the conversation from the database
-    const conversation = await db
-      .select({
-        uuid: chatConversations.uuid,
-        mode: chatConversations.mode,
-        title: chatConversations.title,
-        messages: chatConversations.messages,
-        featured: chatConversations.featured,
-        archived: chatConversations.archived,
-        conversationSummary: chatConversations.conversationSummary,
-        conversationSummaryTranslation:
-          chatConversations.conversationSummaryTranslation,
-        createdAt: chatConversations.createdAt,
-        updatedAt: chatConversations.updatedAt,
-        country: chatConversations.country,
-      })
-      .from(chatConversations)
-      .where(eq(chatConversations.uuid, uuid))
-      .limit(1);
-
-    if (conversation.length === 0) {
-      return NextResponse.json(
-        { error: "Conversation not found" },
-        { status: 404 },
-      );
-    }
-
-    const chatData = conversation[0];
-
-    // Parse the messages JSON
-    let messages;
-    try {
-      messages = JSON.parse(chatData.messages);
-    } catch (error) {
-      console.error("Failed to parse messages JSON:", error);
-      return NextResponse.json(
-        { error: "Invalid conversation data" },
-        { status: 500 },
-      );
-    }
-
-    return NextResponse.json({
-      uuid: chatData.uuid,
-      mode: chatData.mode,
-      title: chatData.title,
-      messages,
-      featured: chatData.featured,
-      archived: chatData.archived,
-      conversationSummary: chatData.conversationSummary,
-      createdAt: chatData.createdAt,
-      updatedAt: chatData.updatedAt,
-    });
-  } catch (error) {
-    console.error("Failed to retrieve conversation:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 },
-    );
-  }
-}
 
 // DELETE endpoint to delete a conversation
 export async function DELETE(

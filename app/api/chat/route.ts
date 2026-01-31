@@ -3,7 +3,7 @@ import { checkIpBan, getIpFromRequest } from "@/app/lib/ipBan";
 import { db } from "@/db";
 import { chatConversations } from "@/db/schema";
 import { createUIMessageStreamResponse, type UIMessage } from "ai";
-import { desc, eq, sql } from "drizzle-orm";
+import { and, desc, eq, sql } from "drizzle-orm";
 import { ChatMessage, type MessageType } from "llamaindex";
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
@@ -201,7 +201,6 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get("limit") || "20", 10);
     const offset = (page - 1) * limit;
     const locale = searchParams.get("locale") || "en";
-
     const featuredParam = searchParams.get("featured");
     const isFeatured = featuredParam === "true";
 
@@ -245,11 +244,21 @@ export async function GET(request: NextRequest) {
     // Execute queries with conditional where clauses
     const [conversations, totalResult] = await Promise.all([
       isFeatured
-        ? conversationsQuery.where(eq(chatConversations.featured, true))
-        : conversationsQuery,
+        ? conversationsQuery.where(
+            and(
+              eq(chatConversations.mode, "detrans_chat"),
+              eq(chatConversations.featured, true),
+            ),
+          )
+        : conversationsQuery.where(eq(chatConversations.mode, "detrans_chat")),
       isFeatured
-        ? countQuery.where(eq(chatConversations.featured, true))
-        : countQuery,
+        ? countQuery.where(
+            and(
+              eq(chatConversations.mode, "detrans_chat"),
+              eq(chatConversations.featured, true),
+            ),
+          )
+        : countQuery.where(eq(chatConversations.mode, "detrans_chat")),
     ]);
 
     console.log("API Response:", {
