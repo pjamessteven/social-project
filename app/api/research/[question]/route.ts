@@ -1,19 +1,13 @@
-import { requireAuth } from "@/app/lib/auth/middleware";
-import { bannedUsers, chatConversations, db } from "@/db";
 import { locales } from "@/i18n/routing";
-import { eq } from "drizzle-orm";
-import { NextRequest, NextResponse } from "next/server";
 
 // Use locales from i18n routing configuration
 const LOCALES = locales;
 type Locale = (typeof LOCALES)[number];
-
-// Also support GET for retrieving a single conversation
-
-// DELETE endpoint to delete a conversation
+/*
+//
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ uuid: string }> },
+  { params }: { params: Promise<{ question: string }> },
 ) {
   try {
     // Check admin authentication
@@ -78,11 +72,11 @@ export async function DELETE(
     );
   }
 }
-
+/*
 // POST endpoint to ban a user by IP address
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: Promise<{ uuid: string }> },
+  { params }: { params: Promise<{ question: string }> },
 ) {
   try {
     // Check admin authentication
@@ -180,3 +174,4 @@ export async function PATCH(
     return NextResponse.json({ error: "Failed to ban user" }, { status: 500 });
   }
 }
+*/
