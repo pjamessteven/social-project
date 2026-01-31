@@ -14,7 +14,10 @@ import { and, desc, eq, or } from "drizzle-orm";
 import { NextRequest } from "next/server";
 
 // Type assertion for pathnames to match the expected type
-const localizedPaths = pathnames as Record<string, string | Record<string, string>>;
+const localizedPaths = pathnames as Record<
+  string,
+  string | Record<string, string>
+>;
 
 export async function GET(request: NextRequest) {
   const host = request.headers.get("host") || "detrans.ai";
@@ -226,16 +229,14 @@ export async function GET(request: NextRequest) {
     if (basePath) {
       const pathValue = localizedPaths[basePath];
       let localizedBase = basePath;
-      
-      if (typeof pathValue === 'string') {
+
+      if (typeof pathValue === "string") {
         localizedBase = pathValue;
-      } else if (pathValue && typeof pathValue === 'object') {
+      } else if (pathValue && typeof pathValue === "object") {
         localizedBase =
-          pathValue[locale] ||
-          pathValue[defaultLocale] ||
-          basePath;
+          pathValue[locale] || pathValue[defaultLocale] || basePath;
       }
-      
+
       return pathPart.replace(basePath, localizedBase);
     }
 
@@ -341,8 +342,8 @@ export async function GET(request: NextRequest) {
 
   const allRoutes = [
     ...baseRoutes,
-    ...researchRoutes,
-    ...topQuestionResearchRoutes,
+    // ...researchRoutes,
+    // ...topQuestionResearchRoutes,
     ...featuredConversationRoutes,
     ...userRoutes,
     ...tagRoutes,

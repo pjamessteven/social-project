@@ -88,7 +88,8 @@ export function FeaturedConversations() {
                 featured: data.conversation.featured,
                 title: data.conversation.title,
                 conversationSummary: data.conversation.conversationSummary,
-                conversationSummaryTranslation: data.conversation.conversationSummaryTranslation,
+                conversationSummaryTranslation:
+                  data.conversation.conversationSummaryTranslation,
               }
             : convo,
         ),
@@ -181,7 +182,7 @@ export function FeaturedConversations() {
     const heights = [];
     for (let i = 0; i < count; i++) {
       // Use deterministic height based on seed and index
-      const deterministicHeight = (seed + i) % (80 - 32 + 1) + 32;
+      const deterministicHeight = ((seed + i) % (80 - 32 + 1)) + 32;
       heights.push(`h-${deterministicHeight}`);
     }
 
@@ -191,7 +192,9 @@ export function FeaturedConversations() {
   // Generate 1-3 chat bubbles with text loading lines
   const renderChatBubbles = (keyPrefix: string) => {
     // Use deterministic values based on keyPrefix to avoid hydration mismatch
-    const hash = keyPrefix.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const hash = keyPrefix
+      .split("")
+      .reduce((acc, char) => acc + char.charCodeAt(0), 0);
     const bubbleCount = (hash % 3) + 1;
     return (
       <div className="mb-4 space-y-3">
@@ -204,21 +207,19 @@ export function FeaturedConversations() {
               <div className="flex-1 rounded-xl rounded-tr-none border bg-gray-100 p-3">
                 {/* Text loading lines within bubble */}
                 <div className="space-y-2">
-                  {[...Array(lineCount)].map(
-                    (_, lineIndex) => (
-                      <div
-                        key={`${keyPrefix}-bubble-line-${bubbleIndex}-${lineIndex}`}
-                        className={cn(
-                          "bg-gray-300",
-                          lineIndex === 0
-                            ? "h-3 w-full"
-                            : lineIndex === 1
-                              ? "h-3 w-5/6"
-                              : "h-3 w-4/6",
-                        )}
-                      ></div>
-                    ),
-                  )}
+                  {[...Array(lineCount)].map((_, lineIndex) => (
+                    <div
+                      key={`${keyPrefix}-bubble-line-${bubbleIndex}-${lineIndex}`}
+                      className={cn(
+                        "bg-gray-300",
+                        lineIndex === 0
+                          ? "h-3 w-full"
+                          : lineIndex === 1
+                            ? "h-3 w-5/6"
+                            : "h-3 w-4/6",
+                      )}
+                    ></div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -273,7 +274,7 @@ export function FeaturedConversations() {
           "featured=",
           isFeatured,
           "URL:",
-          `/api/chat?featured=${isFeatured}&limit=${limit}&page=${page}`,
+          `/api/chat?featured=${isFeatured}&limit=${limit}&page=${page}&mode=detrans_chat`,
           "Response:",
           data,
         );
@@ -442,7 +443,10 @@ export function FeaturedConversations() {
                 {/* First column loading skeletons */}
                 <div className="flex flex-col">
                   {[...Array(4)].map((_, i) => {
-                    const randomHeights = generateRandomHeights(4, 1000 + i * 100);
+                    const randomHeights = generateRandomHeights(
+                      4,
+                      1000 + i * 100,
+                    );
 
                     return (
                       <div key={`col1-${i}`} className="break-inside-avoid">
@@ -477,7 +481,10 @@ export function FeaturedConversations() {
                 {/* Second column loading skeletons */}
                 <div className="flex flex-col">
                   {[...Array(4)].map((_, i) => {
-                    const randomHeights = generateRandomHeights(4, 2000 + i * 100);
+                    const randomHeights = generateRandomHeights(
+                      4,
+                      2000 + i * 100,
+                    );
 
                     return (
                       <div key={`col2-${i}`} className="break-inside-avoid">
@@ -514,7 +521,10 @@ export function FeaturedConversations() {
                 {isMediumScreen && (
                   <div className="flex flex-col">
                     {[...Array(4)].map((_, i) => {
-                      const randomHeights = generateRandomHeights(4, 3000 + i * 100);
+                      const randomHeights = generateRandomHeights(
+                        4,
+                        3000 + i * 100,
+                      );
 
                       return (
                         <div key={`col3-${i}`} className="break-inside-avoid">
@@ -574,7 +584,9 @@ export function FeaturedConversations() {
                         mode={convo.mode}
                         featured={convo.featured}
                         conversationSummary={convo.conversationSummary}
-                        conversationSummaryTranslation={convo.conversationSummaryTranslation}
+                        conversationSummaryTranslation={
+                          convo.conversationSummaryTranslation
+                        }
                         titleTranslation={convo.titleTranslation}
                         country={convo.country}
                         showFeaturedStar={true}
@@ -610,7 +622,9 @@ export function FeaturedConversations() {
                           mode={convo.mode}
                           featured={convo.featured}
                           conversationSummary={convo.conversationSummary}
-                          conversationSummaryTranslation={convo.conversationSummaryTranslation}
+                          conversationSummaryTranslation={
+                            convo.conversationSummaryTranslation
+                          }
                           titleTranslation={convo.titleTranslation}
                           country={convo.country}
                           showFeaturedStar={true}
@@ -646,7 +660,9 @@ export function FeaturedConversations() {
                           mode={convo.mode}
                           featured={convo.featured}
                           conversationSummary={convo.conversationSummary}
-                          conversationSummaryTranslation={convo.conversationSummaryTranslation}
+                          conversationSummaryTranslation={
+                            convo.conversationSummaryTranslation
+                          }
                           titleTranslation={convo.titleTranslation}
                           country={convo.country}
                           showFeaturedStar={true}
@@ -685,7 +701,9 @@ export function FeaturedConversations() {
                             mode={convo.mode}
                             featured={convo.featured}
                             conversationSummary={convo.conversationSummary}
-                            conversationSummaryTranslation={convo.conversationSummaryTranslation}
+                            conversationSummaryTranslation={
+                              convo.conversationSummaryTranslation
+                            }
                             titleTranslation={convo.titleTranslation}
                             country={convo.country}
                             showFeaturedStar={true}

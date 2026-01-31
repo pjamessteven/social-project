@@ -9,6 +9,7 @@ import {
   capitaliseWords,
   deslugify,
   markdownToPlainText,
+  uuidv4,
 } from "@/app/lib/utils";
 import { db } from "@/db";
 import { detransQuestions } from "@/db/schema";
@@ -94,7 +95,7 @@ export default async function DeepResearchPage({
   // Real users get the interactive chat component
   return (
     <ChatSectionClient
-      conversationId={undefined}
+      conversationId={uuidv4()}
       locale={locale}
       starterQuestion={q}
     />

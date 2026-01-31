@@ -1,5 +1,23 @@
 # Changelog
 
+## [2026-01-31] - Filter Chat Conversations by Mode
+
+### API Changes
+- Updated `/api/chat` GET handler to only return conversations with `mode: 'detrans_chat'`
+- Added `and` import from drizzle-orm to combine multiple where conditions
+- Modified query logic to filter by mode while maintaining existing featured filter support
+
+### Technical Details
+- Base queries now filter by `eq(chatConversations.mode, "detrans_chat")`
+- When `featured=true` parameter is provided, queries use `and()` to combine mode and featured filters
+- This ensures only chat-specific conversations are returned from the chat endpoint
+- Research endpoint (`/api/research`) remains unchanged and uses `mode: "deep_research"`
+
+### Migration Notes
+- No database migration required
+- Existing chat conversations with `mode: 'detrans_chat'` will continue to be accessible
+- This change improves API consistency by ensuring each endpoint returns only its relevant conversation type
+
 ## [2026-01-31] - Add Lithuanian (LT) Translation File
 
 ### Translation Updates

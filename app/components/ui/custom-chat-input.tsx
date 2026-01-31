@@ -1,10 +1,15 @@
 "use client";
 import { slugify } from "@/app/lib/utils";
-import { locales, redirect, usePathname, useRouter } from "@/i18n/routing";
+import {
+  Link,
+  locales,
+  redirect,
+  usePathname,
+  useRouter,
+} from "@/i18n/routing";
 import { useChatStore } from "@/stores/chat-store";
 import { Send, Square, UserSearch, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "./button";
 import { cn } from "./lib/utils";
@@ -263,7 +268,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     setValue("");
   };
 
-  const showResearch = true;
+  const showResearch = false;
 
   return (
     <div
@@ -295,7 +300,10 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               onKeyDown={handleKeyDown}
               onFocus={handleFocus}
               placeholder={placeholder}
-              disabled={(path.includes("/chat") || path.includes("/research")) && chatStatus !== "ready"}
+              disabled={
+                (path.includes("/chat") || path.includes("/research")) &&
+                chatStatus !== "ready"
+              }
               rows={1}
             />
 
