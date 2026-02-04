@@ -1,8 +1,58 @@
+import { db, detransQuestions } from "@/db";
+import { eq } from "drizzle-orm";
 import { locales } from "@/i18n/routing";
+import { NextRequest, NextResponse } from "next/server";
 
 // Use locales from i18n routing configuration
 const LOCALES = locales;
 type Locale = (typeof LOCALES)[number];
+
+interface QuestionData {
+  name: string;
+  finalResponse: string | null;
+  viewsCount: number | null;
+  mostRecentlyAsked: Date | null;
+  createdAt: Date | null;
+}
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ question: string }> }
+) {
+  try {
+    const { question } = await params;
+    const questionName = decodeURIComponent(question);
+
+    // Get question data from detrans_questions table
+    const result = await db
+      .select({
+        name: detransQuestions.name,
+        finalResponse: detransQuestions.finalResponse,
+        viewsCount: detransQuestions.viewsCount,
+        mostRecentlyAsked: detransQuestions.mostRecentlyAsked,
+        createdAt: detransQuestions.createdAt,
+      })
+      .from(detransQuestions)
+        .where(eq(detransQuestions.name, questionName))
+      .limit(1);
+
+    if (!result[0]) {
+      return NextResponse.json(
+        { error: "Question not found" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({ question: result[0] as QuestionData });
+  } catch (error) {
+    console.error("Error fetching research question:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch question" },
+      { status: 500 }
+    );
+  }
+}
+
 /*
 //
 export async function DELETE(

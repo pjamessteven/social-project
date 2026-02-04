@@ -291,17 +291,15 @@ export async function GET(request: NextRequest) {
 
     for (const route of routes) {
       // Check if this is a base route that should have localized versions
-      const isBaseRoute = baseRoutes.some(
+      const isLocalisedRoute = baseRoutes.some(
         (br) =>
           br.url === route.url ||
           (route.url.startsWith(`${baseUrl}/`) &&
             !route.url.includes("/research/") &&
-            !route.url.includes("/stories/") &&
-            !route.url.includes("/chat/") &&
-            !route.url.includes("/videos/")),
+            !route.url.includes("/chat/")),
       );
 
-      if (isBaseRoute) {
+      if (isLocalisedRoute) {
         // Extract the path from the URL
         const pathPart = route.url.replace(baseUrl, "");
 
@@ -342,8 +340,8 @@ export async function GET(request: NextRequest) {
 
   const allRoutes = [
     ...baseRoutes,
-    // ...researchRoutes,
-    // ...topQuestionResearchRoutes,
+    ...researchRoutes,
+    ...topQuestionResearchRoutes,
     ...featuredConversationRoutes,
     ...userRoutes,
     ...tagRoutes,

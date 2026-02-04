@@ -174,8 +174,6 @@ async function processVideos() {
 
   for (const video of unprocessedVideos) {
     try {
-      // Transcribe audio
-      console.log(`Transcribing audio for: ${video.title}`);
       const { segments } = JSON.parse(video.transcript!);
       // Chunk transcript and create documents
       const chunks = chunkTranscript(segments);
