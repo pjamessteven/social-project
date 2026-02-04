@@ -112,7 +112,7 @@ export default async function DeepResearchPage({
   const bot = isBot(ua);
 
   // For bots, fetch cached content for SEO
-  if (bot || true) {
+  if (bot) {
     // Increment view count for this question
     await incrementQuestionViews(q);
 
