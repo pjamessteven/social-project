@@ -14,6 +14,7 @@ import {
 import { db } from "@/db";
 import { detransQuestions } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { marked } from "marked";
 import { Metadata } from "next";
 import { headers } from "next/headers";
 
@@ -85,7 +86,7 @@ export default async function DeepResearchPage({
           <h1 className="mb-6 text-3xl font-bold">{capitaliseWords(q)}</h1>
           <div
             className="prose dark:prose-invert max-w-none"
-            dangerouslySetInnerHTML={{ __html: cachedAnswer }}
+            dangerouslySetInnerHTML={{ __html: marked.parse(cachedAnswer) }}
           />
         </div>
       );

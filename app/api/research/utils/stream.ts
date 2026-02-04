@@ -18,11 +18,11 @@ export interface StreamCallbacks {
   /** `onStart`: Called once when the stream is initialized. */
   onStart?: (dataStreamWriter: UIMessageStreamWriter) => Promise<void> | void;
 
-  /** `onComplete`: Called after stream processing completes but before stream closes. Useful for sending final data annotations. */
-  onComplete?: (dataStreamWriter: UIMessageStreamWriter) => Promise<void> | void;
-
   /** `onFinal`: Called once when the stream is closed with the final completion message. */
-  onFinal?: (messages: UIMessage[], dataStreamWriter: UIMessageStreamWriter) => Promise<void> | void;
+  onFinal?: (
+    messages: UIMessage[],
+    dataStreamWriter: UIMessageStreamWriter,
+  ) => Promise<void> | void;
 
   /** `onText`: Called for each text chunk. */
   onText?: (
@@ -91,27 +91,23 @@ export function toDataStream(
               if (callbacks?.onText) {
                 await callbacks.onText(content, writer);
               }
+            } else if (humanInputEvent.include(event)) {
+              const { response, ...rest } = event.data;
+              writer.write({
+                type: "data-annotation",
+                data: rest,
+              });
+              if (callbacks?.onPauseForHumanInput) {
+                await callbacks.onPauseForHumanInput(response);
+                return; // stop the stream
+              }
+            } else {
+              writer.write({
+                type: "data-annotation",
+                data: event.data,
+              });
             }
-          }
-          
-          if (humanInputEvent.include(event)) {
-            const { response, ...rest } = event.data;
-            writer.write({
-              type: "data-annotation",
-              data: rest,
-            });
-            if (callbacks?.onPauseForHumanInput) {
-              await callbacks.onPauseForHumanInput(response);
-              return; // stop the stream
-            }
-          } else if (agentStreamEvent.include(event) && !event.data.delta) {
-            writer.write({
-              type: "data-annotation",
-              data: event.data,
-            });
-          }
-          
-          if (!agentStreamEvent.include(event)) {
+          } else {
             // console.log('EEVENT" NON AGENTSTREAMEVENT', JSON.stringify(event))
           }
 
@@ -178,13 +174,6 @@ export function toDataStream(
           });
         }
 
-        // Call onComplete callback after main content is done but before stream closes
-        // This is the right time to send data annotations like suggested questions
-        if (callbacks?.onComplete) {
-          console.log(`[STREAM] Calling onComplete callback`);
-          await callbacks.onComplete(writer);
-        }
-
         if (completionText.length > 500 && false) {
           try {
             const philosophicalQuote = await generatePhilosophicalQuote(
@@ -245,20 +234,9 @@ export function toDataStream(
         : "An unknown error occurred during stream finalization";
     },
     onFinish: async ({ messages, isContinuation }) => {
-      console.log(`[STREAM] onFinish called with ${messages.length} messages, isContinuation: ${isContinuation}`);
-      console.log(`[STREAM] Message details:`, messages.map(m => ({
-        role: m.role,
-        partsCount: m.parts?.length,
-        firstPartType: m.parts?.[0]?.type,
-        firstPartTextLength: m.parts?.[0]?.type === 'text' ? (m.parts[0] as any).text?.length : 0
-      })));
-      
       // Call onFinal with the complete text when stream ends
       if (callbacks?.onFinal && !isContinuation && streamWriter) {
-        console.log(`[STREAM] Calling onFinal callback`);
         await callbacks.onFinal(messages, streamWriter);
-      } else {
-        console.log(`[STREAM] Skipping onFinal - callbacks: ${!!callbacks?.onFinal}, isContinuation: ${isContinuation}, streamWriter: ${!!streamWriter}`);
       }
     },
   });

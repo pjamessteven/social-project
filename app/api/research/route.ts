@@ -65,33 +65,13 @@ export async function POST(req: NextRequest) {
         .limit(1);
 
       if (existingConversation[0]) {
-        const conversation = existingConversation[0];
-
-        // Deep research only allows one message per conversation
-        // If conversation exists and has messages, reject the request
-        if (conversation.messages) {
-          const parsedMessages = JSON.parse(conversation.messages);
-          if (parsedMessages.length > 0) {
-            return NextResponse.json(
-              {
-                error:
-                  "This deep research session has already been completed. Please start a new research session.",
-              },
-              { status: 410 },
-            );
-          }
-        }
-
-        // Check if conversation is marked as archived/completed
-        if (conversation.archived) {
-          return NextResponse.json(
-            {
-              error:
-                "This deep research session has been completed and is no longer available.",
-            },
-            { status: 410 },
-          );
-        }
+        return NextResponse.json(
+          {
+            error:
+              "This deep research session has already been completed. Please start a new research session.",
+          },
+          { status: 410 },
+        );
       }
     }
 
@@ -297,6 +277,144 @@ export async function GET(request: NextRequest) {
 }
 
 async function saveConversation(
+  uuid: string,
+  messages: UIMessage[],
+  ipAddress?: string | null,
+): Promise<void> {
+  try {
+    // Get country from IP if available
+    let country: string | null = null;
+    if (ipAddress && ipAddress !== "unknown") {
+      country = await getCountryFromIP(ipAddress);
+    }
+
+    // Validate IP address format
+    const isValidIP =
+      ipAddress &&
+      ipAddress !== "unknown" &&
+      !ipAddress.startsWith("192.168.") &&
+      !ipAddress.startsWith("10.") &&
+      ipAddress !== "127.0.0.1" &&
+      ipAddress !== "::1";
+
+    // Use the existing messages - they already include the assistant response from streaming
+    const completeMessages = messages;
+
+    // Generate a default title from the first user message (truncated)
+    const questionMessage = messages.find((m) => m.role === "user");
+    const questionText =
+      questionMessage?.parts[0]?.type === "text" &&
+      questionMessage.parts[0].text;
+
+    const defaultTitle = questionText
+      ? questionText.substring(0, 100) +
+        (questionText.length > 100 ? "..." : "")
+      : "Chat conversation";
+
+    // Prepare update data
+    const chatConversationsEntry: any = {
+      messages: JSON.stringify(completeMessages),
+      updatedAt: new Date(),
+      archived: false, // Reset archived flag when conversation is updated
+    };
+
+    // Set country if we have it (always update country when we have new info)
+    if (country) {
+      chatConversationsEntry.country = country;
+    }
+
+    // Set IP address if we have a valid IP and it's not already set
+    if (isValidIP) {
+      chatConversationsEntry.ipAddress = ipAddress;
+    }
+
+    chatConversationsEntry.title = defaultTitle;
+    // Set country and IP address for new conversations
+    if (country) {
+      chatConversationsEntry.country = country;
+    }
+    if (isValidIP) {
+      chatConversationsEntry.ipAddress = ipAddress;
+    }
+
+    // Save or update the conversation in the database
+    await db
+      .insert(chatConversations)
+      .values({
+        uuid,
+        mode: "deep_research",
+        title: chatConversationsEntry.title,
+        messages: JSON.stringify(completeMessages),
+        featured: false,
+        archived: false,
+        country: chatConversationsEntry.country || null,
+        ipAddress: chatConversationsEntry.ipAddress || null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      })
+      .onConflictDoUpdate({
+        target: chatConversations.uuid,
+        set: chatConversationsEntry,
+      });
+
+    console.log(
+      `Saved deep research ${uuid} with ${completeMessages.length} messages, country: ${country || "null"}, ip: ${isValidIP ? ipAddress : "not saved"}`,
+    );
+
+    // add/update entry in questions table
+
+    // Find the last text part from the assistant message (after tool calls)
+    // Get the final assistant response
+    const finalAssistantMessage = [...messages]
+      .reverse()
+      .find((m) => m.role === "assistant");
+
+    const finalTextPart = finalAssistantMessage?.parts
+      ?.slice()
+      .reverse()
+      .find((part) => part.type === "text");
+    const finalResponse =
+      finalTextPart?.type === "text" ? finalTextPart.text : null;
+
+    // Update detrans_questions with final response
+    if (questionText && finalResponse) {
+      console.log("questionText: " + questionText);
+      console.log("finalResponse: " + finalResponse);
+      try {
+        console.log(`[SAVE] Inserting into detrans_questions...`);
+        await db
+          .insert(detransQuestions)
+          .values({
+            name: questionText,
+            finalResponse: finalResponse,
+            viewsCount: 1,
+            mostRecentlyAsked: new Date(),
+            createdAt: new Date(),
+          })
+          .onConflictDoUpdate({
+            target: detransQuestions.name,
+            set: {
+              finalResponse: finalResponse,
+              mostRecentlyAsked: new Date(),
+            },
+          });
+        console.log(`[SAVE] Successfully saved to detrans_questions`);
+      } catch (error) {
+        console.error("[SAVE] Failed to update detrans_questions:", error);
+        // Don't throw - analytics failures shouldn't break the application
+      }
+    } else {
+      console.log(
+        `[SAVE] Skipping detrans_questions update - missing questionText (${!!questionText}) or finalResponse (${!!finalResponse})`,
+      );
+    }
+  } catch (error) {
+    console.error("Failed to save deep research:", error);
+    // Don't throw - conversation saving failures shouldn't break the chat
+  }
+}
+
+async function saveConversation2(
   uuid: string,
   messages: UIMessage[],
   ipAddress?: string | null,

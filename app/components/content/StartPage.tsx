@@ -28,6 +28,8 @@ import DisclaimerMessage from "./DisclaimerMessage";
 import DonationCard from "./DonationCard";
 import { FeaturedConversations } from "./FeaturedConversations/FeaturedConversations";
 import ParticipateCard from "./ParticipateCard";
+import { QuestionCategories } from "./QuestionCategories";
+import { QuestionTabs } from "./QuestionTabs";
 import RedditEmbeds from "./RedditEmbeds";
 
 export async function StartPage({
@@ -238,14 +240,10 @@ export async function StartPage({
             {t("deepResearch.description")}
             <br className="hidden" /> {t("deepResearch.note")}
           </p>
-          <p className="my-16 mb-16 border-b pb-4 italic">
-            Deep Research Mode Currently Under Maintanence
-          </p>
         </div>
 
-        {/*
         <>
-          {!bot  ? (
+          {!bot ? (
             <div className="mt-6">
               <QuestionTabs mode="detrans" />
             </div>
@@ -255,7 +253,7 @@ export async function StartPage({
             </div>
           )}
         </>
-         */}
+
         <Accordion type="single" collapsible className="mt-8 w-full">
           <AccordionItem
             value="disclaimer"

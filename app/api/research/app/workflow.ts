@@ -56,9 +56,11 @@ export const workflowFactory = async (
 
   const queryCommentsTool = tool(
     async ({ query }: { query: string }) => {
+      console.log("queryCommentsToolQuery", query);
       const cacheKey = `tool:queryComments:${JSON.stringify({ query })}`;
       const hashedKey = makeHashedKey(cacheKey);
       const cachedResult = await cache.get(hashedKey);
+
       if (cachedResult) {
         console.log("[CACHE HIT] queryCommentsTool");
         return cachedResult;
@@ -66,7 +68,7 @@ export const workflowFactory = async (
       console.log("[CACHE MISS] queryCommentsTool");
 
       const commentsEngineTool = commentsIndex.asRetriever({
-        similarityTopK: 8,
+        similarityTopK: 15,
       });
 
       const nodes = await commentsEngineTool.retrieve({ query });
