@@ -39,8 +39,6 @@ export class PostgresCache implements Cache {
       const queryTime = Date.now() - queryStartTime;
 
       if (result.length > 0) {
-        const updateStartTime = Date.now();
-        // Update last accessed timestamp
         await db
           .update(cacheTable)
           .set({ lastAccessed: new Date() })

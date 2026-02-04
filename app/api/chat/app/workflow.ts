@@ -90,7 +90,9 @@ export const workflowFactory = async (
       );
 
       const hashedKey = makeHashedKey(cacheKey);
-      await cache.set(hashedKey, cacheKey, result, undefined, { conversationId });
+      await cache.set(hashedKey, cacheKey, result, undefined, {
+        conversationId,
+      });
 
       return result;
     },
@@ -117,9 +119,11 @@ export const workflowFactory = async (
         return cachedResult;
       }
       console.log("[CACHE MISS] queryCommentsTool");
+      const filters = buildFilters({});
 
       const commentsEngineTool = commentsIndex.asRetriever({
         similarityTopK: 15,
+        filters,
       });
 
       const nodes = await commentsEngineTool.retrieve({ query });
@@ -146,7 +150,7 @@ export const workflowFactory = async (
 
   const queryVideosTool = tool(
     async ({ query, sex }: { query: string; sex?: "m" | "f" }) => {
-      const cacheKey = `tool:queryComments:${JSON.stringify({ query })}`;
+      const cacheKey = `tool:queryVideos:${JSON.stringify({ query })}`;
       const hashedKey = makeHashedKey(cacheKey);
       const cachedResult = await cache.get(hashedKey);
 
