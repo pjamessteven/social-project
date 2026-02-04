@@ -268,7 +268,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     setValue("");
   };
 
-  const showResearch = false;
+  const showResearch = true;
 
   return (
     <div

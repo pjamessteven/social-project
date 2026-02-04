@@ -5,10 +5,7 @@ import {
   getYouTubeVideoId,
   parseVideoIdFromSlug,
 } from "@/app/lib/video-utils";
-import { db } from "@/db";
-import { videos } from "@/db/schema";
 import { Link } from "@/i18n/routing";
-import { eq } from "drizzle-orm";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -37,6 +34,32 @@ interface VideoWithTranslations {
   titleTranslation: string | null;
   createdAt: Date;
   updatedAt: Date;
+}
+
+async function fetchVideo(
+  videoId: number,
+  locale: string
+): Promise<VideoWithTranslations | null> {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    const apiUrl = `${baseUrl}/api/videos/${videoId}?locale=${locale}`;
+
+    const response = await fetch(apiUrl, {
+      cache: "no-store",
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data.video as VideoWithTranslations;
+    }
+    return null;
+  } catch (error) {
+    console.error("Failed to fetch video:", error);
+    return null;
+  }
 }
 
 function getLocalizedField(
@@ -68,12 +91,7 @@ export async function generateMetadata({
     };
   }
 
-  const video = await db
-    .select()
-    .from(videos)
-    .where(eq(videos.id, videoId))
-    .limit(1)
-    .then((rows) => rows[0] as VideoWithTranslations | undefined);
+  const video = await fetchVideo(videoId, locale);
 
   if (!video) {
     return {
@@ -151,12 +169,7 @@ export default async function VideoPage({ params }: VideoPageProps) {
     notFound();
   }
 
-  const video = await db
-    .select()
-    .from(videos)
-    .where(eq(videos.id, videoId))
-    .limit(1)
-    .then((rows) => rows[0] as VideoWithTranslations | undefined);
+  const video = await fetchVideo(videoId, locale);
 
   if (!video) {
     notFound();

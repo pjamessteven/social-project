@@ -2,18 +2,11 @@
 
 import { isBot } from "@/app/lib/isBot";
 import {
-  getDeepResearchAnswer,
-  incrementQuestionViews,
-} from "@/app/lib/researchCacheHelpers";
-import {
   capitaliseWords,
   deslugify,
   markdownToPlainText,
   uuidv4,
 } from "@/app/lib/utils";
-import { db } from "@/db";
-import { detransQuestions } from "@/db/schema";
-import { eq } from "drizzle-orm";
 import { marked } from "marked";
 import { Metadata } from "next";
 import { headers } from "next/headers";
@@ -25,6 +18,56 @@ interface DeepResearchPageProps {
   params: Promise<{ question: string; locale: string }>;
 }
 
+interface QuestionData {
+  name: string;
+  finalResponse: string | null;
+  viewsCount: number | null;
+  mostRecentlyAsked: Date | null;
+  createdAt: Date | null;
+}
+
+async function fetchResearchQuestion(
+  questionName: string,
+): Promise<QuestionData | null> {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    const encodedQuestion = encodeURIComponent(questionName);
+    const apiUrl = `${baseUrl}/api/research/${encodedQuestion}`;
+
+    const response = await fetch(apiUrl, {
+      cache: "no-store",
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data.question as QuestionData;
+    }
+    return null;
+  } catch (error) {
+    console.error("Failed to fetch research question:", error);
+    return null;
+  }
+}
+
+async function incrementQuestionViews(questionName: string): Promise<void> {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    const encodedQuestion = encodeURIComponent(questionName);
+    const apiUrl = `${baseUrl}/api/research/${encodedQuestion}/views`;
+
+    await fetch(apiUrl, {
+      method: "POST",
+      cache: "no-store",
+    });
+  } catch (error) {
+    console.error("Failed to increment question views:", error);
+    // Don't throw - analytics failures shouldn't break the application
+  }
+}
+
 // Generate metadata for SEO
 export async function generateMetadata({
   params,
@@ -34,14 +77,9 @@ export async function generateMetadata({
   const { question, locale } = await params;
   const q = deslugify(question);
 
-  // Get answer from detrans_questions table
-  const result = await db
-    .select({ finalResponse: detransQuestions.finalResponse })
-    .from(detransQuestions)
-    .where(eq(detransQuestions.name, q.slice(0, 255)))
-    .limit(1);
-
-  const answer = result[0]?.finalResponse;
+  // Get answer from API
+  const questionData = await fetchResearchQuestion(q);
+  const answer = questionData?.finalResponse;
 
   const description = answer
     ? markdownToPlainText(answer.slice(0, 300))
@@ -73,12 +111,13 @@ export default async function DeepResearchPage({
   const ua = (await headers()).get("user-agent");
   const bot = isBot(ua);
 
-  // Increment view count for this question
-  await incrementQuestionViews(q.slice(0, 255));
+  // For bots, fetch cached content for SEO
+  if (bot || true) {
+    // Increment view count for this question
+    await incrementQuestionViews(q);
 
-  // For bots, use getDeepResearchAnswer to get cached content for SEO
-  if (bot) {
-    const cachedAnswer = await getDeepResearchAnswer(q);
+    const questionData = await fetchResearchQuestion(q);
+    const cachedAnswer = questionData?.finalResponse;
 
     if (cachedAnswer) {
       return (
