@@ -108,9 +108,9 @@
       "donatePrompt": "Donér venligst, hvis du kan,",
       "beKind": "Og vær venlig mod hinanden."
     },
-    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
-    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
+    "privacyDisclaimer": "Del venligst ikke personlige oplysninger, der kan bruges til at identificere dig.",
+    "memberCountDisclaimer": "*50,000+ henviser til medlemmer af <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ medlemmer i <a>/r/detrans subreddit</a>",
     "browseConversations": "Gennemse alle Samtaler"
   },
   "header": {

@@ -108,9 +108,9 @@
       "donatePrompt": "Prašome paaukoti, jei galite,",
       "beKind": "Ir būkite vieni su kitais geri."
     },
-    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
-    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
+    "privacyDisclaimer": "Prašome nesidalinti asmenine informacija, kurią būtų galima naudoti jums identifikuoti.",
+    "memberCountDisclaimer": "*50,000+ nurodo <a>/r/detrans subreddit</a> narius",
+    "memberCountDisclaimerMobile": "50,000+ narių <a>/r/detrans subreddit</a> forume",
     "browseConversations": "Naršyti visas pokalbius"
   },
   "header": {

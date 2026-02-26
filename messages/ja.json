@@ -108,9 +108,9 @@
       "donatePrompt": "可能であれば寄付をお願いし、",
       "beKind": "そして互いに親切に。"
     },
-    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
-    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
+    "privacyDisclaimer": "本人を特定できる個人情報は共有しないでください。",
+    "memberCountDisclaimer": "*50,000+ は<a>/r/detrans subreddit</a>のメンバーを指します",
+    "memberCountDisclaimerMobile": "<a>/r/detrans subreddit</a>のメンバー50,000人以上",
     "browseConversations": "すべての会話を閲覧"
   },
   "header": {

@@ -108,9 +108,9 @@
       "donatePrompt": "如果可以的话请捐赠，",
       "beKind": "并善待彼此。"
     },
-    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
-    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
+    "privacyDisclaimer": "请勿分享任何可用于识别您身份的个人信息。",
+    "memberCountDisclaimer": "*50,000+ 指的是 <a>/r/detrans subreddit</a> 的成员",
+    "memberCountDisclaimerMobile": "<a>/r/detrans subreddit</a> 中有 50,000+ 名成员",
     "browseConversations": "浏览所有对话"
   },
   "header": {

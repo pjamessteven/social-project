@@ -108,9 +108,9 @@
       "donatePrompt": "Будь ласка, пожертвуйте, якщо можете,",
       "beKind": "І будьте добрі один до одного."
     },
-    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
-    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
+    "privacyDisclaimer": "Будь ласка, не діліться особистою інформацією, яка може бути використана для вашої ідентифікації.",
+    "memberCountDisclaimer": "*50,000+ відноситься до учасників <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ учасників у <a>/r/detrans subreddit</a>",
     "browseConversations": "Переглянути всі розмови"
   },
   "header": {

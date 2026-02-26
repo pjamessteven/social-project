@@ -108,9 +108,9 @@
       "donatePrompt": "Por favor dona si puedes,",
       "beKind": "Y sé amable con los demás."
     },
-    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
-    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
+    "privacyDisclaimer": "Por favor, no compartas información personal que pueda usarse para identificarte.",
+    "memberCountDisclaimer": "*50,000+ se refiere a los miembros del <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ miembros en el <a>/r/detrans subreddit</a>",
     "browseConversations": "Explorar todas las Conversaciones"
   },
   "header": {

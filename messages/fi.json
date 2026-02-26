@@ -108,9 +108,9 @@
       "donatePrompt": "Ole hyvä ja lahjoita, jos voit,",
       "beKind": "Ja olkaa ystävällisiä toisillenne."
     },
-    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
-    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
+    "privacyDisclaimer": "Älä jaa henkilötietoja, joita voitaisiin käyttää tunnistamaan sinut.",
+    "memberCountDisclaimer": "*50,000+ viittaa <a>/r/detrans subreddit</a>in jäseniin",
+    "memberCountDisclaimerMobile": "50,000+ jäsentä <a>/r/detrans subreddit</a>issä",
     "browseConversations": "Selaa kaikkia Keskusteluja"
   },
   "header": {
