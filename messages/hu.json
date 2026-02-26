@@ -74,7 +74,7 @@
     },
     "donate": {
       "title": "Támogasd a Munkánkat",
-      "description": "Segíts nekünk fenntartani ezt az erőforrást azok számára, akiknek a legnagyobb szükségük van rá.",
+      "description": "Sok saját időt és pénzt fektettem ebbe a projektbe. Az adományod nagyon segítene a tárhely- és AI-token költségekkel, és támogatná a folyamatos fejlesztést.",
       "button": "Adományozás",
       "card": {
         "title": "Adományok szükségesek a {site} fenntartásához!",
@@ -103,11 +103,14 @@
         "line6": "Amit vetünk, azt aratjuk,",
         "line7": "De ezen keresztül növekedhetünk..."
       },
-      "openSource": "Egy nyílt forráskódú projekt",
+      "openSource": "<project>egy nyílt forráskódú projekt</project> készítője: <author>Peter James Steven</author>",
       "madeWithLove": "Szeretettel készült Wellingtonban, Új-Zélandon",
       "donatePrompt": "Kérlek, adományozz, ha tudsz,",
       "beKind": "És légy kedves egymáshoz."
     },
+    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
+    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
     "browseConversations": "Összes Beszélgetés Böngészése"
   },
   "header": {
@@ -377,7 +380,7 @@
   "donatePage": {
     "title": "Tartsd Életben a Detrans.AI-t",
     "description1": "Ha értékled a munkát, amit ebbe az oldalba fektettem, vagy ha ez az ingyenes szolgáltatás segített neked, kérlek, fontold meg egy egyszeri vagy rendszeres adomány elküldését, hogy a <b>detrans.ai</b> online maradjon.",
-    "description2": "Nem engedhetem meg magamnak, hogy ilyen erőforrás-igényes szolgáltatást tartsak fenn a támogatásod nélkül. A fő jövedelmi forrásom jelenleg az állami jóléti ellátás, és írás pillanatában kevesebb mint 1000 dollár van a bankszámlámon. Ha ez az oldal berobban, ezrek dolláros számlákat kaphatok. Ha elfogy a pénzem, a saját kérdések feltételének és a témák mélyebb megismerésének a következő kérdések révén történő lehetősége le lesz tiltva, és csak gyorsítótárazott válaszokat szolgálok ki a portálban található kérdésekre.",
+    "description2": "Sok saját időt és pénzt fektettem ebbe a projektbe. Az adományod nagyon segítene a tárhely- és AI-token költségekkel, és támogatná a folyamatos fejlesztést. Nincs stabil jövedelmem most, és ha elfogy a pénzem, a saját kérdések feltételének és a témák mélyebb megismerésének a következő kérdések révén történő lehetősége le lesz tiltva, és csak gyorsítótárazott válaszokat szolgálok ki a portálban található kérdésekre.",
     "description3": "Kérlek, fontold meg a havi adományozást. Az alábbi paypalon keresztül, közvetlenül az új-zélandi bankszámlámra vagy BTC-vel adományozhatsz.",
     "bankAccount": "Új-Zélandi Bankszámla",
     "accountName": "Név",
@@ -583,6 +586,7 @@
       },
       "findTherapist": {
         "title": "Hol találok olyan terapeutát, aki gender exploratory terápiát gyakorol?",
+        "sidebar": "Find therapists",
         "languageNotice": "A felsorolt terapeuták többsége csak angolul beszél, de megpróbálhatod felvenni velük a kapcsolatot, hogy találj valakit, aki beszéli a nyelvedet. Ha ismersz egy licencelt terapeutát, aki beszéli a nyelvedet, javasolhatod a hozzáadását ehhez az oldalhoz a",
         "contactForm": "kapcsolatfelvételi űrlapon",
         "organizations": {

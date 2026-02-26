@@ -50,7 +50,7 @@ export default function RedditEmbed({
     // Your "border-destructive" class is kept for the specific highlight effect.
     <Card
       className={
-        "!border-destructive reddit-card bg-destructive/5 dark:bg-destructive/40 w-80 border transition-all duration-300"
+        "reddit-card dark:bg-secondary w-80 !border border bg-white transition-all duration-300"
       }
     >
       <blockquote
@@ -64,7 +64,7 @@ export default function RedditEmbed({
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-destructive/80 dark:text-primary/80 brightness-50 hover:underline dark:brightness-150"
+            className="text-muted-foreground hover:underline"
           >
             {title}
           </a>
@@ -95,7 +95,7 @@ export default function RedditEmbed({
         )}
 
         {/* Meta Information Section */}
-        <div className="text-destructive/70 dark:text-primary/70 m-4 text-sm brightness-50 dark:brightness-150">
+        <div className="text-muted-foreground/70 m-4 text-sm">
           Posted by{" "}
           <a
             href={userUrl}

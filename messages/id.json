@@ -74,7 +74,7 @@
     },
     "donate": {
       "title": "Dukung Pekerjaan Kami",
-      "description": "Bantu kami menjaga sumber daya ini tetap tersedia bagi mereka yang paling membutuhkannya.",
+      "description": "Saya telah menginvestasikan banyak waktu dan uang saya sendiri ke dalam proyek ini. Donasi Anda akan sangat membantu saya dengan biaya hosting dan token AI serta akan mendukung pengembangan yang berkelanjutan.",
       "button": "Donasi",
       "card": {
         "title": "Donasi diperlukan untuk menjaga {site} tetap hidup!",
@@ -103,11 +103,14 @@
         "line6": "Kita menuai apa yang kita tabur,",
         "line7": "Tetapi melalui ini kita dapat tumbuh..."
       },
-      "openSource": "Proyek open-source oleh",
+      "openSource": "<project>proyek open-source</project> oleh <author>Peter James Steven</author>",
       "madeWithLove": "Dibuat dengan cinta di Wellington, Selandia Baru",
       "donatePrompt": "Harap berdonasi jika Anda bisa,",
       "beKind": "Dan berbaiklah satu sama lain."
     },
+    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
+    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
     "browseConversations": "Jelajahi Semua Percakapan"
   },
   "header": {
@@ -377,7 +380,7 @@
   "donatePage": {
     "title": "Pertahankan Detrans.AI Berjalan",
     "description1": "Jika Anda menghargai pekerjaan yang telah saya masukkan ke situs ini atau jika layanan gratis ini telah membantu Anda, harap pertimbangkan untuk memberikan donasi satu kali atau rutin untuk menjaga <b>detrans.ai</b> tetap online.",
-    "description2": "Saya tidak mampu menjalankan layanan yang membutuhkan banyak sumber daya seperti ini tanpa dukungan Anda. Sumber pendapatan utama saya saat ini adalah bantuan pemerintah dan pada saat penulisan ini saya memiliki kurang dari $1000 di rekening bank saya. Jika situs ini meledak, saya bisa mendapatkan tagihan ribuan dolar. Jika saya kehabisan uang, kemampuan untuk mengajukan pertanyaan Anda sendiri dan mengeksplorasi topik lebih dalam melalui pertanyaan tindak lanjut akan dinonaktifkan dan saya hanya akan melayani respons yang di-cache untuk pertanyaan-pertanyaan di portal.",
+    "description2": "Saya telah menginvestasikan banyak waktu dan uang saya sendiri ke dalam proyek ini. Donasi Anda akan sangat membantu saya dengan biaya hosting dan token AI serta akan mendukung pengembangan yang berkelanjutan. Saya tidak memiliki pendapatan stabil saat ini, dan jika saya kehabisan uang, kemampuan untuk mengajukan pertanyaan Anda sendiri dan mengeksplorasi topik lebih dalam melalui pertanyaan tindak lanjut akan dinonaktifkan dan saya hanya akan melayani respons yang di-cache untuk pertanyaan-pertanyaan di portal.",
     "description3": "Harap pertimbangkan donasi bulanan. Anda dapat berdonasi menggunakan paypal di bawah, langsung ke rekening bank Selandia Baru saya atau dengan BTC.",
     "bankAccount": "Rekening Bank Selandia Baru",
     "accountName": "Nama",
@@ -583,6 +586,7 @@
       },
       "findTherapist": {
         "title": "Di mana saya dapat menemukan terapis yang mempraktikkan terapi eksplorasi gender?",
+        "sidebar": "Find therapists",
         "languageNotice": "Sebagian besar terapis yang terdaftar hanya berbicara bahasa Inggris, tetapi Anda masih dapat mencoba menghubungi mereka untuk menemukan seseorang yang berbicara bahasa Anda. Jika Anda tahu terapis berlisensi yang berbicara bahasa Anda, Anda dapat menyarankan untuk menambahkannya ke halaman ini melalui",
         "contactForm": "formulir kontak",
         "organizations": {

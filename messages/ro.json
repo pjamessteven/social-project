@@ -74,7 +74,7 @@
     },
     "donate": {
       "title": "Sprijină Munca Noastră",
-      "description": "Ajută-ne să păstrăm această resursă disponibilă pentru cei care au cea mai mare nevoie de ea.",
+      "description": "Am investit mult din timpul și banii mei în acest proiect. Donația ta m-ar ajuta foarte mult cu costurile de găzduire și token-uri AI și va susține dezvoltarea continuă.",
       "button": "Donează",
       "card": {
         "title": "Sunt necesare donații pentru a menține {site} activ!",
@@ -103,11 +103,14 @@
         "line6": "Culegem ceea ce semănăm,",
         "line7": "Dar prin aceasta putem crește..."
       },
-      "openSource": "Un proiect open-source de",
+      "openSource": "<project>un proiect open-source</project> de <author>Peter James Steven</author>",
       "madeWithLove": "Făcut cu drag în Wellington, Noua Zeelandă",
       "donatePrompt": "Te rugăm să donezi dacă poți,",
       "beKind": "Și să fii bun/bună cu ceilalți."
     },
+    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
+    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
     "browseConversations": "Răsfoiește toate Conversațiile"
   },
   "header": {
@@ -377,7 +380,7 @@
   "donatePage": {
     "title": "Menține Detrans.AI Activ",
     "description1": "Dacă apreciezi munca pe care am depus-o în acest site sau dacă acest serviciu gratuit te-a ajutat, te rugăm să iei în considerare să faci o donație unică sau regulată pentru a menține <b>detrans.ai</b> online.",
-    "description2": "Nu-mi permit să rulez un serviciu intensiv în resurse ca acesta fără sprijinul tău. Sursa mea principală de venit în acest moment este ajutorul social guvernamental și la momentul scrierii acestui text am mai puțin de 1000 de dolari în contul meu bancar. Dacă acest site explodează, aș putea primi facturi de mii de dolari. Dacă rămân fără bani, abilitatea de a-ți pune propriile întrebări și de a explora subiecte mai în profunzime prin întrebări de urmărire va fi dezactivată și voi servi doar răspunsuri cache la întrebările din portal.",
+    "description2": "Am investit mult din timpul și banii mei în acest proiect. Donația ta m-ar ajuta foarte mult cu costurile de găzduire și token-uri AI și va susține dezvoltarea continuă. Nu am un venit stabil acum, și dacă rămân fără bani, abilitatea de a-ți pune propriile întrebări și de a explora subiecte mai în profunzime prin întrebări de urmărire va fi dezactivată și voi servi doar răspunsuri cache la întrebările din portal.",
     "description3": "Te rugăm să iei în considerare o donație lunară. Poți dona folosind PayPal mai jos, direct în contul meu bancar din Noua Zeelandă sau cu BTC.",
     "bankAccount": "Cont Bancar Noua Zeelandă",
     "accountName": "Nume",
@@ -583,6 +586,7 @@
       },
       "findTherapist": {
         "title": "Unde pot găsi un terapeut care practică terapia exploratorie de gen?",
+        "sidebar": "Find therapists",
         "languageNotice": "Majoritatea terapeuților listați vorbesc doar engleză, dar poți încerca să îi contactezi pentru a găsi pe cineva care vorbește limba ta. Dacă știi de un terapeut licențiat care vorbește limba ta, poți sugera adăugarea lor pe această pagină prin",
         "contactForm": "formularul de contact",
         "organizations": {

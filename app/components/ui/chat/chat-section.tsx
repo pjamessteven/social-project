@@ -272,13 +272,13 @@ function ChatSectionPanel({
 
         {showHeader && (
           <div className="w-screen border-b p-4 sm:w-auto">
-            {!isArchived && <DisclaimerMessage />}
             {title && <h3 className="text-xl font-semibold">{title}</h3>}
             {summary && (
               <h3 className="text-muted-foreground mt-4 mb-4">{summary}</h3>
             )}
           </div>
         )}
+        {!isArchived && <DisclaimerMessage />}
 
         <CustomChatMessages
           hideControls={hideControls}

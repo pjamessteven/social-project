@@ -1,19 +1,178 @@
 # Changelog
 
+## [2026-02-26] - Add Arabic (ar) and Greek (el) Language Support
+
+### Overview
+
+Added full support for Arabic (ar) and Greek (el) languages including translation files, question translations, and backend endpoint support.
+
+### Database Schema Changes
+
+- No schema changes required - translations stored as JSON in existing columns
+
+### API Changes
+
+- Backend translation endpoints automatically support Arabic and Greek through dynamic locale loading from `i18n/routing.ts`
+- All existing translation endpoints (`/api/chat/conversations/[uuid]`, `/api/research/conversations/[uuid]`, `/api/videos`, `/api/studies`) now support the new locales
+
+### Translation Files Added
+
+#### Arabic (ar)
+
+- **File**: `/messages/ar.json`
+  - Complete Arabic translation for all UI strings
+  - RTL (Right-to-Left) language support
+  - Includes: metadata, home page, chat, definitions, support page, contact, terms, videos, studies
+
+- **File**: `/app/lib/questions.ar.ts`
+  - Arabic translations for all question categories (8 categories, 233+ questions)
+
+#### Greek (el)
+
+- **File**: `/messages/el.json`
+  - Complete Greek translation for all UI strings
+  - Includes: metadata, home page, chat, definitions, support page, contact, terms, videos, studies
+
+- **File**: `/app/lib/questions.el.ts`
+  - Greek translations for all question categories (8 categories, 233+ questions)
+
+### Configuration Updates
+
+#### i18n/locales.ts
+
+- Added Arabic locale entry:
+  ```typescript
+  { code: "ar", label: "العربية", englishName: "Arabic" }
+  ```
+- Added Arabic to RTL locales list: `rtlLocales: readonly string[] = ["ar", "he", "fa"]`
+
+#### i18n/routing.ts
+
+- Added Arabic pathname translations for all routes
+- Updated `getLanguageName()` function to include Arabic and Greek
+
+### Features
+
+- **Arabic**: Full RTL support for right-to-left text rendering
+- **Greek**: Complete translations using existing pathname structure
+- **Backend Support**: Translation generation endpoints automatically support both languages
+- **Question Categories**: Both languages have fully translated question categories for the portal
+
+### Migration Notes
+
+1. No database migrations required
+2. New translation files are automatically loaded by next-intl
+3. Backend endpoints will automatically generate translations for Arabic and Greek when featuring conversations
+4. Both languages appear in the language selector dropdown
+
+### Technical Details
+
+- Arabic added as RTL language alongside Hebrew and Persian
+- Translation files follow the same JSON structure as other languages
+- Question translation files export the same `questionCategories` interface
+- All pathname translations use URL-safe Latin characters for consistency
+
+### Existing Languages Status
+
+- **Turkish (tr)**: Already fully supported with complete translations
+- **Greek (el)**: Configuration existed but translation files were missing - now complete
+- **Arabic (ar)**: Newly added with full support
+
+### Testing Checklist
+
+- [x] Arabic translations display correctly with RTL layout
+- [x] Greek translations display correctly
+- [x] Language selector shows Arabic and Greek options
+- [x] Routing works for all Arabic and Greek pathnames
+- [x] Backend generates translations for both languages
+- [x] Question categories display in both languages
+
+## [2026-02-26] - Update Donation Text Across All Languages
+
+### Translation Updates
+
+- **Home Page Donate Card**: Updated `home.donate.description` in all 31 language files
+  - New text: "I've put a lot of my own time and money into this project. Your donation would help me out a lot with hosting and AI token costs and will support ongoing development."
+  - Removed generic text about keeping the resource available
+  - Added personal message emphasizing personal investment and specific costs
+
+- **Donate Page**: Updated `donatePage.description2` in all 31 language files
+  - Removed reference to bank account balance ("I have less than $1000 in my bank account")
+  - Removed reference to government welfare as main income source
+  - Removed concern about site popularity causing thousands in bills
+  - Added the same personal message about time/money investment, hosting and AI costs, and ongoing development
+  - Kept the warning about cache-only mode if funds run out
+
+### Languages Updated
+
+All 31 language files updated with new translations:
+
+- **European**: English (en), German (de), Spanish (es), French (fr), Italian (it), Portuguese (pt), Dutch (nl), Swedish (sv), Danish (da), Norwegian (no), Finnish (fi), Czech (cz), Polish (pl), Hungarian (hu), Romanian (ro), Bulgarian (bg), Slovenian (sl), Lithuanian (lt), Russian (ru), Ukrainian (uk)
+- **Asian**: Japanese (ja), Korean (ko), Chinese Simplified (zh-cn), Chinese Traditional (zh-tw), Hindi (hi), Thai (th), Vietnamese (vi), Indonesian (id)
+- **Middle Eastern**: Hebrew (he), Persian/Farsi (fa)
+
+### Technical Details
+
+- Text now emphasizes creator's personal investment rather than financial precarity
+- Focus shifted from "please help me avoid financial disaster" to "support ongoing development"
+- Removed specific dollar amounts and banking details for privacy
+- All translations maintain the same core message while being culturally appropriate
+
+## [2026-02-26] - Add Mobile-Specific Member Count Disclaimer
+
+### Components
+
+- Updated `StartPage.tsx` to show different disclaimer text on mobile vs desktop:
+  - **Desktop**: "\*50,000+ refers to members of the /r/detrans subreddit" (with link)
+  - **Mobile**: "50,000+ members of the detrans subreddit" (shorter, no asterisk, no /r/ prefix)
+- Added responsive visibility classes (`hidden sm:inline` and `sm:hidden`) to toggle between versions
+- Added `memberCountDisclaimerMobile` translation key to all 31 language files
+
+### Technical Details
+
+- Used Tailwind responsive classes to conditionally show/hide content based on viewport size
+- Both versions use `t.rich()` with `<a>` tag mapper for the external link
+- Desktop: "\*50,000+ refers to members of the <a>/r/detrans subreddit</a>"
+- Mobile: "50,000+ members of the <a>detrans subreddit</a>"
+
+## [2026-02-26] - Update Footer Open Source Links
+
+### Components
+
+- Updated StartPage footer to use `t.rich()` for rendering two separate links:
+  - "an open source project" links to GitHub repository
+  - "Peter James Steven" links to x.com/pjamessteven
+
+### Translation Changes
+
+- Updated `footer.openSource` in all language files to use HTML-like tags:
+  - `<project>an open source project</project>` - for the GitHub link
+  - `<author>Peter James Steven</author>` - for the X profile link
+- All 31 language files updated (en, bg, cz, da, de, es, fa, fi, fr, he, hi, hu, id, it, ja, ko, lt, nl, no, pl, pt, ro, ru, sl, sv, th, tr, uk, vi, zh-cn, zh-tw)
+
+### Technical Details
+
+- Changed from single anchor tag wrapping entire text to `t.rich()` with component mappers
+- Follows next-intl best practices for HTML in translations (avoiding dangerouslySetInnerHTML)
+- Maintains proper link targets and styling with underline class
+
 ## [2026-01-31] - Filter Chat Conversations by Mode
 
 ### API Changes
+
 - Updated `/api/chat` GET handler to only return conversations with `mode: 'detrans_chat'`
 - Added `and` import from drizzle-orm to combine multiple where conditions
 - Modified query logic to filter by mode while maintaining existing featured filter support
 
 ### Technical Details
+
 - Base queries now filter by `eq(chatConversations.mode, "detrans_chat")`
 - When `featured=true` parameter is provided, queries use `and()` to combine mode and featured filters
 - This ensures only chat-specific conversations are returned from the chat endpoint
 - Research endpoint (`/api/research`) remains unchanged and uses `mode: "deep_research"`
 
 ### Migration Notes
+
 - No database migration required
 - Existing chat conversations with `mode: 'detrans_chat'` will continue to be accessible
 - This change improves API consistency by ensuring each endpoint returns only its relevant conversation type
@@ -21,6 +180,7 @@
 ## [2026-01-31] - Add Lithuanian (LT) Translation File
 
 ### Translation Updates
+
 - **Lithuanian Translation File**: Added complete Lithuanian translation file `messages/lt.json`
   - Full translation of all UI strings, navigation, forms, and content (800+ lines)
   - Careful attention to gender terminology in Lithuanian, a grammatically gendered Baltic language with masculine and feminine forms:
@@ -31,7 +191,9 @@
   - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
 
 ### Gender Terminology Notes (Lithuanian)
+
 Lithuanian translations carefully handle the language's grammatical gender system:
+
 - **"Detranzicionierius/detranzicionierė"** (detransitioner) - masculine/feminine noun forms adapted from international terminology
 - **"Translytis/translytė"** (transgender person) - descriptive Lithuanian term using "lytis" (sex/gender)
 - **"Translyčio/translytės"** (transgender - genitive case) - grammatical agreement for case
@@ -51,6 +213,7 @@ Lithuanian translations carefully handle the language's grammatical gender syste
 - The masculine form often serves as the "unmarked" or generic form when gender is unknown or unspecified
 
 ### Technical Details
+
 - Lithuanian locale (lt) integrated into existing language system via `i18n/locales.ts`
 - Translation follows standard Lithuanian conventions (Lithuania)
 - All gender-related medical and psychological terms use appropriate Lithuanian terminology
@@ -61,6 +224,7 @@ Lithuanian translations carefully handle the language's grammatical gender syste
 ## [2026-01-31] - Add Slovenian (SL) Translation File
 
 ### Translation Updates
+
 - **Slovenian Translation File**: Added complete Slovenian translation file `messages/sl.json`
   - Full translation of all UI strings, navigation, forms, and content (800+ lines)
   - Careful attention to gender terminology in Slovenian, a grammatically gendered Slavic language with masculine, feminine, and neuter forms:
@@ -71,7 +235,9 @@ Lithuanian translations carefully handle the language's grammatical gender syste
   - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
 
 ### Gender Terminology Notes (Slovenian)
+
 Slovenian translations carefully handle the language's grammatical gender system:
+
 - **"Detranzicionar/detranzicionarka"** (detransitioner) - masculine/feminine forms used contextually
 - **"Transgender"** (transgender) - standard loanword used in Slovenia
 - **"Moški/ženska"** (male/female) - terms for biological sex and social gender
@@ -88,6 +254,7 @@ Slovenian translations carefully handle the language's grammatical gender system
 - Slovenian requires grammatical agreement (masculine/feminine/neuter) for adjectives, nouns, and past tense verbs
 
 ### Technical Details
+
 - Slovenian locale (sl) integrated into existing language system
 - Translation follows standard Slovenian conventions (Slovenia)
 - All gender-related medical and psychological terms use appropriate Slovenian terminology
@@ -98,6 +265,7 @@ Slovenian translations carefully handle the language's grammatical gender system
 ## [2026-01-31] - Add Ukrainian (UK) Translation File
 
 ### Translation Updates
+
 - **Ukrainian Translation File**: Added complete Ukrainian translation file `messages/uk.json`
   - Full translation of all UI strings, navigation, forms, and content (800+ lines)
   - Careful attention to gender terminology in Ukrainian, a highly gendered language with masculine/feminine/neuter grammatical forms:
@@ -114,7 +282,9 @@ Slovenian translations carefully handle the language's grammatical gender system
   - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
 
 ### Gender Terminology Notes (Ukrainian)
+
 Ukrainian translations carefully handle grammatical gender agreement throughout:
+
 - **"детранзішнер"** (detransitioner) - gender-neutral noun
 - **"трансгендерний/-а"** (transgender) - gendered adjective forms
 - **"чоловік/жінка"** (male/female) - distinct terms for biological sex
@@ -132,6 +302,7 @@ Ukrainian translations carefully handle grammatical gender agreement throughout:
 - Gendered pronouns used based on grammatical context
 
 ### Technical Details
+
 - Ukrainian locale (uk) integrated into existing language system
 - Translation follows standard Ukrainian conventions
 - All gender-related medical and psychological terms use appropriate Ukrainian terminology
@@ -145,6 +316,7 @@ Ukrainian translations carefully handle grammatical gender agreement throughout:
 ## [2026-01-31] - Add Bulgarian (BG) Translation File
 
 ### Translation Updates
+
 - **Bulgarian Translation File**: Added complete Bulgarian translation file `messages/bg.json`
   - Full translation of all UI strings, navigation, forms, and content (800+ lines)
   - Careful attention to gender terminology in Bulgarian, a grammatically gendered Slavic language with masculine, feminine, and neuter forms:
@@ -155,7 +327,9 @@ Ukrainian translations carefully handle grammatical gender agreement throughout:
   - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
 
 ### Gender Terminology Notes (Bulgarian)
+
 Bulgarian translations carefully handle the language's grammatical gender system:
+
 - **"Детрансишънър/детрансишънърка"** (detransitioner) - masculine/feminine forms where contextually appropriate
 - **"Трансджендър"** (transgender) - standard transliteration used in Bulgaria
 - **"Мъж/жена"** (male/female) - terms for biological sex and social gender
@@ -172,6 +346,7 @@ Bulgarian translations carefully handle the language's grammatical gender system
 - Bulgarian requires grammatical agreement (masculine/feminine/neuter) for adjectives, nouns, and past tense verbs
 
 ### Technical Details
+
 - Bulgarian locale (bg) integrated into existing language system
 - Translation follows standard Bulgarian conventions (Bulgaria)
 - All gender-related medical and psychological terms use appropriate Bulgarian terminology
@@ -182,6 +357,7 @@ Bulgarian translations carefully handle the language's grammatical gender system
 ## [2026-01-31] - Add Thai (TH) Translation File
 
 ### Translation Updates
+
 - **Thai Translation File**: Added complete Thai translation file `messages/th.json`
   - Full translation of all UI strings, navigation, forms, and content (800+ lines)
   - Careful attention to gender terminology in Thai, which is a gender-neutral language grammatically:
@@ -196,7 +372,9 @@ Bulgarian translations carefully handle the language's grammatical gender system
   - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
 
 ### Gender Terminology Notes (Thai)
+
 Thai translations carefully handle gender concepts throughout:
+
 - **"ผู้เลิกเปลี่ยนเพศ"** (detransitioner) - gender-neutral descriptive term
 - **"คนข้ามเพศ"** (transgender) - standard Thai term
 - **"ชาย/หญิง"** (male/female) - used for both biological sex and social gender contexts
@@ -214,6 +392,7 @@ Thai translations carefully handle gender concepts throughout:
 - Thai uses polite particles (ครับ/ค่ะ) at the end of sentences based on speaker's gender
 
 ### Technical Details
+
 - Thai locale (th) integrated into existing language system
 - Translation follows standard Thai conventions (Thailand)
 - All gender-related medical and psychological terms use appropriate Thai terminology
@@ -224,6 +403,7 @@ Thai translations carefully handle gender concepts throughout:
 ## [2026-01-31] - Add Hebrew (HE) Translation File
 
 ### Translation Updates
+
 - **Hebrew Translation File**: Added complete Hebrew translation file `messages/he.json`
   - Full translation of all UI strings, navigation, forms, and content (800+ lines)
   - Careful attention to gender terminology in Hebrew, a highly gendered language with masculine/feminine grammatical forms:
@@ -234,7 +414,9 @@ Thai translations carefully handle gender concepts throughout:
   - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
 
 ### Gender Terminology Notes (Hebrew)
+
 Hebrew translations carefully handle the language's grammatical gender system:
+
 - **"מדטרנזישנר/ית"** (detransitioner) - transliteration with Hebrew suffixes for male/female forms where contextually appropriate
 - **"טרנסג'נדר"** (transgender) - standard transliteration used in Israel
 - **"זכר/נקבה"** (male/female) - terms for biological sex
@@ -251,6 +433,7 @@ Hebrew translations carefully handle the language's grammatical gender system:
 - Hebrew requires verb and adjective agreement with grammatical gender throughout
 
 ### Technical Details
+
 - Hebrew locale (he) integrated into existing language system
 - Translation follows standard Hebrew conventions (Israel)
 - All gender-related medical and psychological terms use appropriate Hebrew terminology
@@ -262,6 +445,7 @@ Hebrew translations carefully handle the language's grammatical gender system:
 ## [2026-01-31] - Add Traditional Chinese (zh-tw) Translation File
 
 ### Translation Updates
+
 - **Traditional Chinese Translation File**: Added complete Traditional Chinese translation file `messages/zh-tw.json`
   - Full translation of all UI strings, navigation, forms, and content (800+ lines)
   - Based on Simplified Chinese (zh-cn) translation with character conversion and Taiwan/Hong Kong terminology adaptation:
@@ -280,7 +464,9 @@ Hebrew translations carefully handle the language's grammatical gender system:
   - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
 
 ### Gender Terminology Notes (Traditional Chinese)
+
 Traditional Chinese translations maintain the same gender concepts as Simplified Chinese:
+
 - **"去過渡者"** (detransitioner) - neutral term without grammatical gender
 - **"跨性別"** (transgender) - standard term used in Taiwan and Hong Kong
 - **"男性/女性"** (male/female) - used for biological sex
@@ -298,6 +484,7 @@ Traditional Chinese translations maintain the same gender concepts as Simplified
 - **"順性別"** (cisgender)
 
 ### Technical Details
+
 - Traditional Chinese locale (zh-tw) ready for integration into language selector
 - Translation follows Taiwan/Hong Kong conventions using traditional characters
 - All gender-related medical and psychological terms use appropriate terminology
@@ -308,6 +495,7 @@ Traditional Chinese translations maintain the same gender concepts as Simplified
 ## [2026-01-31] - Add Hindi (HI) Translation File
 
 ### Translation Updates
+
 - **Hindi Translation File**: Added complete Hindi translation file `messages/hi.json`
   - Full translation of all UI strings, navigation, forms, and content (800+ lines)
   - Careful attention to gender terminology in Hindi, which is a grammatically gendered language:
@@ -319,7 +507,9 @@ Traditional Chinese translations maintain the same gender concepts as Simplified
   - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
 
 ### Gender Terminology Notes (Hindi)
+
 Hindi translations carefully handle the language's grammatical gender system:
+
 - **"डीट्रांजिशनर"** (detransitioner) - gender-neutral usage with appropriate verb agreement
 - **"ट्रांसजेंडर"** (transgender) - standard transliteration used in India
 - **"पुरुष/महिला"** (male/female) - terms for biological sex
@@ -335,6 +525,7 @@ Hindi translations carefully handle the language's grammatical gender system:
 - **"ट्रांस महिला/ट्रांस पुरुष"** (trans woman/trans man) - standard Hindi phrasing
 
 ### Technical Details
+
 - Hindi locale (hi) integrated into existing language system
 - Translation follows standard Hindi conventions (India)
 - All gender-related medical and psychological terms use appropriate Hindi terminology
@@ -345,6 +536,7 @@ Hindi translations carefully handle the language's grammatical gender system:
 ## [2026-01-31] - Add Danish (DA) Translation File
 
 ### Translation Updates
+
 - **Danish Translation File**: Added complete Danish translation file `messages/da.json`
   - Full translation of all UI strings, navigation, forms, and content (800+ lines)
   - Careful attention to gender terminology in Danish:
@@ -355,7 +547,9 @@ Hindi translations carefully handle the language's grammatical gender system:
   - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
 
 ### Gender Terminology Notes (Danish)
+
 Danish translations carefully handle the language's approach to gender:
+
 - **"Detransitioner"** - direct loanword, gender-neutral, commonly used in Danish discourse
 - **"Transkønnet"** (transgender) - standard Danish term, widely recognized
 - **"Mand/Kvinde"** (male/female) - used for people, with "hankøn/hunkøn" for biological classification
@@ -373,6 +567,7 @@ Danish translations carefully handle the language's approach to gender:
 - No grammatical gender agreement required for adjectives describing people (unlike Romance languages)
 
 ### Technical Details
+
 - Danish locale (da) integrated into existing language system
 - Translation follows standard Danish conventions (Denmark)
 - All gender-related medical and psychological terms use appropriate Danish terminology
@@ -383,6 +578,7 @@ Danish translations carefully handle the language's approach to gender:
 ## [2026-01-31] - Add Korean (KO) Translation File
 
 ### Translation Updates
+
 - **Korean Translation File**: Added complete Korean translation file `messages/ko.json`
   - Full translation of all UI strings, navigation, forms, and content (800+ lines)
   - Careful attention to gender terminology in Korean:
@@ -394,7 +590,9 @@ Danish translations carefully handle the language's approach to gender:
   - All sections translated including metadata, UI, definitions, chat, stories, videos, support resources, and legal terms
 
 ### Gender Terminology Notes (Korean)
+
 Korean translations carefully handle the language's unique approach to gender:
+
 - **"디트랜지셔너"** (detransitioner) - gender-neutral transliteration
 - **"트랜스젠더"** (transgender) - standard transliteration used in Korea
 - **"남성/여성"** (male/female) - formal terms for biological sex
@@ -410,6 +608,7 @@ Korean translations carefully handle the language's unique approach to gender:
 - Honorific speech levels (존칭) used appropriately throughout
 
 ### Technical Details
+
 - Korean locale (ko) integrated into existing language system
 - Translation follows standard Korean conventions (South Korea)
 - All gender-related medical and psychological terms use appropriate Korean terminology
@@ -420,6 +619,7 @@ Korean translations carefully handle the language's unique approach to gender:
 ## [2026-01-31] - Add Chinese Simplified (zh-cn) Translation File
 
 ### Translation Updates
+
 - **Chinese Simplified Translation File**: Added complete Chinese Simplified translation file `messages/zh-cn.json`
   - Full translation of all UI strings, navigation, forms, and content (800+ lines)
   - Careful attention to gender terminology in Chinese, ensuring culturally appropriate expressions:
@@ -440,7 +640,9 @@ Korean translations carefully handle the language's unique approach to gender:
     - Contact form and error messages
 
 ### Gender Terminology Notes (Chinese Simplified)
+
 Chinese translations carefully handle gender concepts throughout:
+
 - **"去过渡者"** (qù guòdù zhě) (detransitioner) - neutral term without grammatical gender
 - **"跨性别"** (kuà xìngbié) (transgender) - standard term
 - **"男性/女性"** (nánxìng/nǚxìng) (male/female) - used for biological sex
@@ -460,6 +662,7 @@ Chinese translations carefully handle gender concepts throughout:
 - **"顺性别"** (shùn xìngbié) (cisgender)
 
 ### Technical Details
+
 - Chinese Simplified locale (zh-cn) ready for integration into language selector
 - Translation follows Mainland Chinese conventions
 - All gender-related medical and psychological terms use appropriate Chinese terminology
@@ -469,6 +672,7 @@ Chinese translations carefully handle gender concepts throughout:
 ## [2026-01-31] - Add French (FR) Translation File
 
 ### Translation Updates
+
 - **French Translation File**: Added complete French translation file `messages/fr.json`
   - Full translation of all UI strings, navigation, forms, and content (800+ lines)
   - Careful attention to gender terminology in French, ensuring correct grammatical agreement:
@@ -493,7 +697,9 @@ Chinese translations carefully handle gender concepts throughout:
     - Contact form and error messages
 
 ### Gender Terminology Notes (French)
+
 French translations carefully handle grammatical gender agreement:
+
 - **"Personne ayant fait une détransition"** (detransitioner) - gender-neutral, respectful phrasing
 - **"Transgenre"** (transgender) - invariable term used as both adjective and noun
 - **"Mâle/Femelle"** (male/female) - used for biological sex in medical contexts
@@ -510,6 +716,7 @@ French translations carefully handle grammatical gender agreement:
 - Pronouns (il/elle/iel) preserved with French grammatical context
 
 ### Technical Details
+
 - French locale (fr) integrated into existing language system
 - Translation follows standard French conventions (France)
 - All gender-related medical and psychological terms use appropriate French terminology
@@ -520,6 +727,7 @@ French translations carefully handle grammatical gender agreement:
 ## [2026-01-30] - Add Portuguese (PT) Translation File
 
 ### Translation Updates
+
 - **Portuguese Translation File**: Added complete Portuguese translation file `messages/pt.json`
   - Full translation of all UI strings, navigation, forms, and content
   - Careful attention to gender terminology in Portuguese, a highly gendered language
@@ -541,7 +749,9 @@ French translations carefully handle grammatical gender agreement:
     - Contact form and error messages
 
 ### Gender Terminology Notes (Portuguese)
+
 Portuguese translations carefully handle gender agreement throughout:
+
 - **"Detransicionador/Detransicionadora"** (detransitioner) - gendered forms for male/female
 - **"Transgênero"** (transgender) - invariable term
 - **"Homem/Mulher"** (male/female) - used for biological sex
@@ -557,6 +767,7 @@ Portuguese translations carefully handle gender agreement throughout:
 - **"Pronomes"** (pronouns) - grammatical agreement maintained
 
 ### Technical Details
+
 - Portuguese locale (pt) ready for integration into language selector
 - Translation follows Brazilian Portuguese conventions
 - All gender-related medical and psychological terms use appropriate Portuguese terminology
@@ -566,6 +777,7 @@ Portuguese translations carefully handle gender agreement throughout:
 ## [2026-01-30] - Reduce Supported Languages from 32 to 3
 
 ### Internationalization
+
 - **Language Support Reduction**: Updated application to only support 3 languages (English, Spanish, French) instead of 32
   - Updated `i18n/locales.ts` to only include English, Spanish, and French
   - Updated `i18n/routing.ts` pathnames to only include translations for 3 languages
@@ -573,10 +785,12 @@ Portuguese translations carefully handle gender agreement throughout:
   - Added missing "questionTabs" translations to French and Spanish translation files
 
 ### Components
+
 - **SettingsMenu**: Now only shows 3 languages in language selector dropdown
 - **QuestionTabs**: Added missing translations for French and Spanish versions
 
 ### Technical Details
+
 - Removed unused language definitions and translations
 - Updated type definitions to reflect reduced language support
 - Fixed sitemap generation to handle mixed string/object pathname values
@@ -584,12 +798,14 @@ Portuguese translations carefully handle gender agreement throughout:
 ## [2026-01-30] - Add Auto Theme Option to Settings Menu
 
 ### Features
+
 - **Auto Theme Support**: Added "Auto" option to theme selector that follows system theme preference
   - Defaults to system theme on first app load (when no preference is stored)
   - Automatically switches between light/dark based on OS preference when "Auto" is selected
   - User preference is stored in localStorage and persists across sessions
 
 ### Components
+
 - **SettingsMenu Component** (`app/components/ui/common/layout/SettingsMenu.tsx`):
   - Added third theme option "Auto" with Monitor icon alongside Light and Dark
   - Updated checkmark logic to show selection based on actual theme value (light/dark/system)
@@ -597,11 +813,13 @@ Portuguese translations carefully handle gender agreement throughout:
   - Added `getThemeIcon()` helper function for dynamic icon display
 
 ### Translation Updates
+
 - Added `theme.auto` translation key to all 32 language files
   - English: "Auto"
   - All other languages: "Auto" (universal term, falls back to English where not translated)
 
 ### Technical Details
+
 - Uses next-themes built-in system theme detection (`enableSystem` and `defaultTheme="system"`)
 - ThemeProvider already configured in layout.tsx with system theme support
 - `resolvedTheme` provides the actual applied theme (light/dark) when system mode is active
@@ -610,6 +828,7 @@ Portuguese translations carefully handle gender agreement throughout:
 ## [2026-01-30] - Move Settings and Donate Buttons to Mobile Menu Header
 
 ### Components
+
 - **Header Component** (`app/components/ui/common/layout/header.tsx`):
   - Added Settings and Donate buttons to the top of the mobile menu dialog
   - Buttons now appear in a horizontal row at the top of the mobile navigation, above the Home link
@@ -618,6 +837,7 @@ Portuguese translations carefully handle gender agreement throughout:
   - Responsive: only visible on mobile (`md:hidden`)
 
 ### Technical Details
+
 - Added new `<div>` element inside the DialogContent with `flex items-center justify-end gap-2` classes
 - SettingsMenu component rendered directly in the mobile header row
 - Donate button uses the existing translation key `t("donate")` for consistent text
@@ -626,6 +846,7 @@ Portuguese translations carefully handle gender agreement throughout:
 ## [2026-01-30] - Improve RTL Support for Question Categories Accordion
 
 ### Components
+
 - **QuestionCategoriesClient.tsx** (`app/components/content/QuestionCategoriesClient.tsx`):
   - Added RTL (Right-to-Left) language support for the accordion layout
   - Arrow indicators now adapt to text direction:
@@ -634,12 +855,14 @@ Portuguese translations carefully handle gender agreement throughout:
   - Question text padding adjusts based on text direction (pr-2 for LTR, pl-2 for RTL)
 
 ### Hooks
+
 - **useIsRtl.ts** (`app/hooks/useIsRtl.ts`): New custom hook to detect RTL languages
   - Detects RTL based on current locale from next-intl
   - Supports Hebrew (he), Arabic (ar), Persian/Farsi (fa), and Urdu (ur)
   - Returns boolean indicating if current locale is RTL
 
 ### Technical Details
+
 - RTL detection uses locale from next-intl's `useLocale()` hook
 - Dynamic className adjustment using `cn()` utility for conditional margin/padding
 - Arrow direction flips based on text direction for better UX in RTL languages
@@ -647,12 +870,14 @@ Portuguese translations carefully handle gender agreement throughout:
 ## [2026-01-30] - Implement Right-to-Left (RTL) Language Support
 
 ### Features
+
 - **RTL Language Support**: Implemented proper right-to-left text direction for Hebrew (he) and Persian/Farsi (fa) languages
   - HTML `dir` attribute now dynamically set based on locale (`rtl` for RTL languages, `ltr` for all others)
   - HTML `lang` attribute now correctly reflects the current locale instead of hardcoded "en"
   - Layout automatically adjusts for RTL reading direction on StartPage and throughout the application
 
 ### Technical Details
+
 - **i18n/locales.ts**: Added RTL detection utilities:
   - `rtlLocales`: Array containing RTL language codes (`["he", "fa"]`)
   - `isRTL(code)`: Function to check if a locale is RTL
@@ -664,10 +889,12 @@ Portuguese translations carefully handle gender agreement throughout:
   - Locale detection works for all 32 supported languages
 
 ### Languages Supported
+
 - **Hebrew (he)**: עברית - Right-to-left text direction
 - **Persian/Farsi (fa)**: فارسی - Right-to-left text direction
 
 ### Implementation Notes
+
 - RTL support is automatic based on URL locale prefix (e.g., `/he/`, `/fa/`)
 - No additional CSS or component changes required - browsers handle RTL layout automatically when `dir="rtl"` is set
 - All existing LTR languages continue to work with `dir="ltr"` (default)
@@ -675,11 +902,13 @@ Portuguese translations carefully handle gender agreement throughout:
 ## [2026-01-30] - Update Translations: Stories & Timelines → Stories & Statistics
 
 ### Translation Updates
+
 - **Navigation Labels**: Updated `home.navigation.storiesFull` from "Stories & Timelines" to "Stories & Statistics" in all 32 language files
 - **Header Resources**: Updated `header.resources.stories` from "Stories & Timelines" to "Stories & Statistics" in all 32 language files
 - **Page Subtitles**: Updated `stories.subtitle` to reference "statistics" instead of "timelines" across all languages
 
 ### Languages Updated
+
 - **German** (de): "Geschichten und Zeitlinien" → "Geschichten und Statistiken"
 - **Spanish** (es): "Historias y Cronologías" → "Historias y Estadísticas"
 - **French** (fr): "Histoires et Chronologies" → "Histoires et Statistiques"
@@ -714,12 +943,14 @@ Portuguese translations carefully handle gender agreement throughout:
 - **English** (en): "Stories & Timelines" → "Stories & Statistics"
 
 ### Technical Details
+
 - Updated translation keys across all language files in `messages/*.json`
 - Changes affect navigation menu, header dropdown, and page subtitles
 - Chart timeline data references remain unchanged (still refer to actual user timeline data)
 - Fixed JSON syntax error in Spanish (es.json) - removed extra closing braces
 
 ### Code Changes
+
 - **StartPage.tsx** (app/components/content/StartPage.tsx:131): Fixed hardcoded string " & Timelines" → " & Statistics" in the navigation button that was overriding the translation
   - The Stories navigation button had a hardcoded `<span className="hidden sm:inline"> & Timelines</span>` that displayed regardless of the translation file
   - This hardcoded string has been updated to " & Statistics" to match the translation files
@@ -727,17 +958,21 @@ Portuguese translations carefully handle gender agreement throughout:
 ## [2026-01-30] - Add Traditional Chinese (zh-tw) Language Support
 
 ### Features
+
 - **Traditional Chinese Full Translation Support**:
   - Added complete Traditional Chinese translation file `messages/zh-tw.json` with all UI strings, navigation, forms, and content
   - Translated all 8 question categories: 精選問題 (Featured Questions), 通用術語 (General Terms), 醫學現實 (Medical Reality), 社會與文化 (Society & Culture), 心理學與身份 (Psychology & Identity), 去過渡之旅 (Detransition Journey), 學術與研究偏見 (Academic & Research Bias), 有爭議的觀點 (Controversial Perspectives)
   - All 73 questions translated with appropriate Traditional Chinese gender terminology
 
 ### Translation Files Added
+
 - **Traditional Chinese Messages** (`messages/zh-tw.json`): Complete UI translation with all application strings, settings, definitions, and legal content
 - **Traditional Chinese Questions** (`messages/zh-tw.json` questions namespace): Complete question translations with 73 questions across 8 categories
 
 ### Gender Terminology Notes (Traditional Chinese)
+
 Traditional Chinese translations include comprehensive terminology explanations:
+
 - **"性" (sex)** = 生物性別 (anatomy, chromosomes, reproduction)
 - **"性別" (gender)** = 社會性別 (social roles, behaviors, attributes)
 - **"性別認同" (gender identity)** = 內心感覺自己是男性、女性或介於兩者之間
@@ -755,6 +990,7 @@ Traditional Chinese translations include comprehensive terminology explanations:
 - **"非二元" (non-binary)**
 
 ### Technical Details
+
 - Traditional Chinese locale (zh-tw) added to `i18n/locales.ts` configuration
 - Updated `i18n/locales.ts` header comment to include zh-tw.json
 - Traditional Chinese is written left-to-right (LTR) - no RTL layout changes needed
@@ -767,17 +1003,21 @@ Traditional Chinese translations include comprehensive terminology explanations:
 ## [2026-01-30] - Add Simplified Chinese (zh-cn) Language Support
 
 ### Features
+
 - **Simplified Chinese Full Translation Support**:
   - Added complete Simplified Chinese translation file `messages/zh-cn.json` with all UI strings, navigation, forms, and content
   - Translated all 8 question categories: 精选问题 (Featured Questions), 通用术语 (General Terms), 医学现实 (Medical Reality), 社会与文化 (Society & Culture), 心理学与身份 (Psychology & Identity), 去过渡之旅 (Detransition Journey), 学术与研究偏见 (Academic & Research Bias), 有争议的观点 (Controversial Perspectives)
   - All 73 questions translated with appropriate Chinese gender terminology
 
 ### Translation Files Added
+
 - **Simplified Chinese Messages** (`messages/zh-cn.json`): Complete UI translation with all application strings, settings, definitions, and legal content
 - **Simplified Chinese Questions** (`messages/zh-cn.json` questions namespace): Complete question translations with 73 questions across 8 categories
 
 ### Gender Terminology Notes (Simplified Chinese)
+
 Simplified Chinese translations include comprehensive terminology explanations:
+
 - **"性" (sex)** = 生物性别 (anatomy, chromosomes, reproduction)
 - **"性别" (gender)** = 社会性别 (social roles, behaviors, attributes)
 - **"性别认同" (gender identity)** = 内心感觉自己是男性、女性或介于两者之间
@@ -795,6 +1035,7 @@ Simplified Chinese translations include comprehensive terminology explanations:
 - **"非二元" (non-binary)**
 
 ### Technical Details
+
 - Simplified Chinese locale (zh-cn) added to `i18n/locales.ts` configuration
 - Updated `i18n/locales.ts` header comment to include zh-cn.json
 - Chinese is written left-to-right (LTR) - no RTL layout changes needed
@@ -806,6 +1047,7 @@ Simplified Chinese translations include comprehensive terminology explanations:
 ## [2026-01-30] - Add Lithuanian (lt) Language Support
 
 ### Features
+
 - **Lithuanian Full Translation Support**:
   - Added complete Lithuanian translation file `messages/lt.json` with all UI strings, navigation, forms, and content
   - Added Lithuanian question translations in `app/lib/questions.lt.ts`
@@ -813,11 +1055,14 @@ Simplified Chinese translations include comprehensive terminology explanations:
   - All 73 questions translated with appropriate Lithuanian gender terminology
 
 ### Translation Files Added
+
 - **Lithuanian Messages** (`messages/lt.json`): Complete UI translation with all application strings, settings, definitions, and legal content
 - **Lithuanian Questions** (`app/lib/questions.lt.ts`): Complete question translations with 73 questions across 8 categories
 
 ### Gender Terminology Notes (Lithuanian)
+
 Lithuanian translations include comprehensive terminology explanations in the header comments:
+
 - **"Lytis"** (sex/biological sex) = biologinė lytis (anatomy, chromosomes, reproduction)
   - Note: In Lithuanian, "lytis" primarily refers to biological sex
 - **"Giminė"** (gender) = socialinė giminė (social roles, behaviors, attributes that society considers appropriate for men and women based on their biological sex)
@@ -837,6 +1082,7 @@ Lithuanian translations include comprehensive terminology explanations in the he
 - **"Nebinarinis"** (non-binary)
 
 ### Technical Details
+
 - Lithuanian locale (lt) added to routing configuration in `i18n/routing.ts` and `next-intl.config.ts`
 - Lithuanian has grammatical gender (masculine/feminine) but no grammatical cases for gender-neutral terms
 - Gender-related medical and psychological terms include Lithuanian explanations in terminology header comments
@@ -847,6 +1093,7 @@ Lithuanian translations include comprehensive terminology explanations in the he
 ## [2026-01-30] - Add Persian/Farsi (fa) Language Support
 
 ### Features
+
 - **Persian/Farsi Full Translation Support**:
   - Added complete Persian (Farsi) translation file `messages/fa.json` with all UI strings, navigation, forms, and content
   - Added Persian question translations in `app/lib/questions.fa.ts`
@@ -854,11 +1101,14 @@ Lithuanian translations include comprehensive terminology explanations in the he
   - All 73 questions translated with appropriate Persian gender terminology
 
 ### Translation Files Added
+
 - **Persian Messages** (`messages/fa.json`): Complete UI translation with all application strings, settings, definitions, and legal content
 - **Persian Questions** (`app/lib/questions.fa.ts`): Complete question translations with 73 questions across 8 categories
 
 ### Gender Terminology Notes (Persian/Farsi)
+
 Persian translations include comprehensive terminology explanations in the header comments:
+
 - **"جنس" (sex)** = جنس بیولوژیکی (anatomy, chromosomes, reproduction)
   - Note: In Persian/Farsi, "جنس" and "جنسیت" are often used interchangeably in everyday speech, but have distinct meanings in this context
 - **"جنسیت" (gender)** = جنسیت اجتماعی (social roles, behaviors, attributes)
@@ -877,6 +1127,7 @@ Persian translations include comprehensive terminology explanations in the heade
 - **"غیردودویی" (non-binary)**
 
 ### Technical Details
+
 - Persian locale (fa) added to routing configuration in `i18n/routing.ts`
 - Persian is written right-to-left (RTL) - note: RTL layout support may need additional CSS/styling updates
 - Persian has no grammatical gender (unlike Arabic or Hebrew) - pronouns are gender-neutral (او / u can mean he or she)
@@ -887,6 +1138,7 @@ Persian translations include comprehensive terminology explanations in the heade
 ## [2026-01-30] - Add Turkish (tr) Language Support
 
 ### Features
+
 - **Turkish Full Translation Support**:
   - Added complete Turkish translation file `messages/tr.json` with all UI strings, navigation, forms, and content
   - Added Turkish question translations in `app/lib/questions.tr.ts`
@@ -894,11 +1146,14 @@ Persian translations include comprehensive terminology explanations in the heade
   - All 73 questions translated with appropriate Turkish gender terminology
 
 ### Translation Files Added
+
 - **Turkish Messages** (`messages/tr.json`): Complete UI translation with all application strings, settings, definitions, and legal content
 - **Turkish Questions** (`app/lib/questions.tr.ts`): Complete question translations with 73 questions across 8 categories
 
 ### Gender Terminology Notes (Turkish)
+
 Turkish translations include comprehensive terminology explanations:
+
 - **"Cinsiyet"** (sex) = biological sex (anatomy, chromosomes, reproduction)
   - Note: In Turkish, "cinsiyet" can mean both sex and gender depending on context
 - **"Toplumsal cinsiyet"** (gender) = social gender (social roles, behaviors, attributes)
@@ -917,6 +1172,7 @@ Turkish translations include comprehensive terminology explanations:
 - **"Non-binary"** (non-binary)
 
 ### Technical Details
+
 - Turkish locale (tr) ready for integration into language selector
 - Translation follows Turkish grammar and sentence structure
 - Gender-related medical and psychological terms include Turkish explanations in terminology header comments
@@ -926,6 +1182,7 @@ Turkish translations include comprehensive terminology explanations:
 ## [2026-01-30] - Add Vietnamese (vi) Language Support
 
 ### Features
+
 - **Vietnamese Full Translation Support**:
   - Added complete Vietnamese translation file `messages/vi.json` with contact page translations
   - Added Vietnamese question translations in `app/lib/questions.vi.ts`
@@ -933,11 +1190,14 @@ Turkish translations include comprehensive terminology explanations:
   - All 73 questions translated with appropriate Vietnamese gender terminology
 
 ### Translation Files Added
+
 - **Vietnamese Messages** (`messages/vi.json`): Complete contact page translation
 - **Vietnamese Questions** (`app/lib/questions.vi.ts`): Complete question translations with 73 questions across 8 categories
 
 ### Gender Terminology Notes (Vietnamese)
+
 Vietnamese translations include comprehensive terminology explanations:
+
 - **"Giới tính sinh học"** (sex) = biological sex (anatomy, chromosomes, reproduction)
 - **"Giới"** (gender) = social gender (social roles, behaviors, attributes)
 - **"Bản dạng giới"** (gender identity) = internal sense of being male/female/other
@@ -955,6 +1215,7 @@ Vietnamese translations include comprehensive terminology explanations:
 - **"Không nhị phân"** (non-binary)
 
 ### Technical Details
+
 - Vietnamese locale (vi) ready for integration into language selector
 - Translation follows Vietnamese grammar and sentence structure
 - Gender-related medical and psychological terms include Vietnamese explanations in terminology header comments
@@ -964,6 +1225,7 @@ Vietnamese translations include comprehensive terminology explanations:
 ## [2026-01-30] - Add Finnish (fi) Language Support
 
 ### Features
+
 - **Finnish Full Translation Support**:
   - Added complete Finnish translation file `messages/fi.json` with all UI strings, navigation, forms, and content
   - Added Finnish question translations in `app/lib/questions.fi.ts`
@@ -971,11 +1233,14 @@ Vietnamese translations include comprehensive terminology explanations:
   - All 73 questions translated with appropriate Finnish gender terminology
 
 ### Translation Files Added
+
 - **Finnish Messages** (`messages/fi.json`): Complete UI translation with all application strings, settings, definitions, and legal content
 - **Finnish Questions** (`app/lib/questions.fi.ts`): Complete question translations with 73 questions across 8 categories
 
 ### Gender Terminology Notes (Finnish)
+
 Finnish translations include comprehensive terminology explanations:
+
 - **"Sukupuoli (biologinen)"** (sex) = biological sex (anatomy, chromosomes, reproduction)
 - **"Gender (sosiaalinen sukupuoli)"** (gender) = social gender (social roles, behaviors, attributes)
 - **"Sukupuoli-identiteetti"** (gender identity) = internal sense of being male/female/other
@@ -993,6 +1258,7 @@ Finnish translations include comprehensive terminology explanations:
 - **"Ei-binäärinen"** (non-binary)
 
 ### Technical Details
+
 - Finnish locale (fi) added to routing configuration in `i18n/routing.ts`
 - Finnish language support added to QuestionCategories components
 - Translation follows Finnish grammar and sentence structure
@@ -1003,6 +1269,7 @@ Finnish translations include comprehensive terminology explanations:
 ## [2026-01-30] - Add Greek (el) Language Support
 
 ### Features
+
 - **Greek Full Translation Support**:
   - Added complete Greek translation file `messages/el.json` with all UI strings, navigation, forms, and content
   - Added Greek question translations in `app/lib/questions.el.ts`
@@ -1010,11 +1277,14 @@ Finnish translations include comprehensive terminology explanations:
   - All 73 questions translated with appropriate Greek gender terminology
 
 ### Translation Files Added
+
 - **Greek Messages** (`messages/el.json`): Complete UI translation with all application strings, settings, definitions, and legal content
 - **Greek Questions** (`app/lib/questions.el.ts`): Complete question translations with 73 questions across 8 categories
 
 ### Gender Terminology Notes (Greek)
+
 Greek translations include comprehensive terminology explanations:
+
 - **"Βιολογικό φύλο"** (sex) = biological sex (anatomy, chromosomes, reproduction)
 - **"Κοινωνικό φύλο"** (gender) = social gender (social roles, behaviors, attributes)
 - **"Ταυτότητα φύλου"** (gender identity) = internal sense of being male/female/other
@@ -1032,6 +1302,7 @@ Greek translations include comprehensive terminology explanations:
 - **"Μη δυαδικό"** (non-binary)
 
 ### Technical Details
+
 - Greek locale (el) added to language selection
 - Translation follows Greek grammar and sentence structure
 - Greek is a highly gendered language requiring careful grammatical adaptation based on the gender of the person being referred to
@@ -1041,6 +1312,7 @@ Greek translations include comprehensive terminology explanations:
 ## [2026-01-30] - Add Hungarian (hu) Language Support
 
 ### Features
+
 - **Hungarian Full Translation Support**:
   - Added complete Hungarian translation file `messages/hu.json` with all UI strings, navigation, forms, and content
   - Added Hungarian question translations in `app/lib/questions.hu.ts`
@@ -1048,11 +1320,14 @@ Greek translations include comprehensive terminology explanations:
   - All 73 questions translated with appropriate Hungarian gender terminology
 
 ### Translation Files Added
+
 - **Hungarian Messages** (`messages/hu.json`): Complete UI translation with all application strings, settings, definitions, and legal content
 - **Hungarian Questions** (`app/lib/questions.hu.ts`): Complete question translations with 73 questions across 8 categories
 
 ### Gender Terminology Notes (Hungarian)
+
 Hungarian translations include comprehensive terminology explanations:
+
 - **"Nem"** (biological sex) = biológiai nem (anatomy, chromosomes, reproduction)
 - **"Gender"** (social gender) = társadalmi nem (social roles, behaviors, attributes)
 - **"Nemi identitás"** (gender identity) = internal sense of being male/female/other
@@ -1070,6 +1345,7 @@ Hungarian translations include comprehensive terminology explanations:
 - **"Nem-bináris"** (non-binary)
 
 ### Technical Details
+
 - Hungarian locale (hu) added to language selection in SettingsMenu component
 - Translation follows Hungarian grammar and sentence structure
 - Gender-related medical and psychological terms include Hungarian explanations in terminology header comments
@@ -1078,15 +1354,18 @@ Hungarian translations include comprehensive terminology explanations:
 ## [2026-01-30] - Add Italian (it) Question Translations
 
 ### Features
+
 - **Italian Question Translations**:
   - Added Italian translations for all question categories in `app/lib/questions.it.ts`
   - Translated all 8 question categories: Domande in Evidenza (Featured Questions), Termini Generali (General Terms), La Realtà Medica (Medical Reality), Società e Cultura (Society & Culture), Psicologia e Identità (Psychology & Identity), Il Viaggio della Detransizione (Detransition Journey), Bias Accademico e di Ricerca (Academic & Research Bias), Prospettive Controverse (Controversial Perspectives)
   - 52 questions translated with appropriate gender terminology explanations
 
 ### Translation Files Added
+
 - **Italian Questions** (`app/lib/questions.it.ts`): Complete question translations with 52 questions across 8 categories
 
 ### Technical Details
+
 - Italian locale (it) already configured in SettingsMenu component
 - All gender-related medical and psychological terms include Italian explanations where necessary
 - Gender terminology translations include:
@@ -1108,20 +1387,23 @@ Hungarian translations include comprehensive terminology explanations:
 ## [2026-01-30] - Add Russian (ru) Question Translations
 
 ### Features
+
 - **Russian Question Translations**:
   - Added Russian translations for all question categories in `app/lib/questions.ru.ts`
   - Translated all 8 question categories: Основные вопросы (Featured Questions), Общие термины (General Terms), Медицинская реальность (Medical Reality), Общество и культура (Society & Culture), Психология и идентичность (Psychology & Identity), Путь детрансишн (Detransition Journey), Академический и исследовательский предвзятость (Academic & Research Bias), Спорные перспективы (Controversial Perspectives)
   - 52 questions translated with appropriate gender terminology explanations
 
 ### Translation Files Added
+
 - **Russian Questions** (`app/lib/questions.ru.ts`): Complete question translations with 52 questions across 8 categories
 
 ### Technical Details
+
 - Russian locale (ru) already configured in SettingsMenu component
 - All gender-related medical and psychological terms include Russian explanations where necessary
 - Gender terminology translations include:
-  - детранс* (detrans/detransitioner) - gender-inclusive term
-  - транс* (trans/transgender) - gender-inclusive term
+  - детранс\* (detrans/detransitioner) - gender-inclusive term
+  - транс\* (trans/transgender) - gender-inclusive term
   - гендерно-подтверждающий уход (gender-affirming care)
   - гендерно-исследовательская терапия (gender-exploratory therapy)
   - гендерная дисфория (gender dysphoria)
@@ -1132,6 +1414,7 @@ Hungarian translations include comprehensive terminology explanations:
 ## [2026-01-30] - Add Japanese (ja) Translation File and Questions
 
 ### Features
+
 - **Japanese Translation File**:
   - Added complete Japanese translation for all UI text in `messages/ja.json`
   - Translated all namespaces: metadata, home, header, language, settings, theme, definitions, chat, chatInput, deepResearchEvents, questionTabs, conversations, conversationCard, stories, prompts, donatePage, terms, videos, videoList, videoSubmitForm, studySubmitForm, studiesPage, contentWarning, supportPage, charts, contact, seo
@@ -1152,10 +1435,12 @@ Hungarian translations include comprehensive terminology explanations:
   - 52 questions translated with appropriate gender terminology explanations
 
 ### Translation Files Added
+
 - **Japanese** (`messages/ja.json`): Complete UI translation with all gender-related terms
 - **Japanese Questions** (`app/lib/questions.ja.ts`): Complete question translations with 52 questions across 8 categories
 
 ### Technical Details
+
 - Japanese locale (ja) already configured in SettingsMenu component
 - All gender-related medical and psychological terms include Japanese explanations in parentheses
 - Cultural context preserved for Japanese audience while maintaining clinical accuracy
@@ -1163,6 +1448,7 @@ Hungarian translations include comprehensive terminology explanations:
 ## [2026-01-30] - Add Chinese (zh-tw and zh-cn) Question Translations
 
 ### Features
+
 - **Chinese Question Translations**:
   - Added Traditional Chinese (zh-tw) translations for all question categories in `app/lib/questions.zh-tw.ts`
   - Added Simplified Chinese (zh-cn) translations for all question categories in `app/lib/questions.zh-cn.ts`
@@ -1170,6 +1456,7 @@ Hungarian translations include comprehensive terminology explanations:
   - 52 questions translated for each Chinese locale
 
 ### Components
+
 - **QuestionCategories Component** (`app/components/content/QuestionCategories.tsx`):
   - Added imports for Chinese translation files (questions.zh-tw and questions.zh-cn)
   - Updated locale selection logic to support zh-tw and zh-cn locales
@@ -1179,12 +1466,14 @@ Hungarian translations include comprehensive terminology explanations:
   - Updated locale selection logic to support zh-tw and zh-cn locales
 
 ### Translation Files Added
+
 - **Traditional Chinese** (`app/lib/questions.zh-tw.ts`): Complete translation with 52 questions across 8 categories
 - **Simplified Chinese** (`app/lib/questions.zh-cn.ts`): Complete translation with 52 questions across 8 categories
 
 ## [2026-01-29] - Simplify LLM Caching to Store Full Response Objects
 
 ### API Changes
+
 - **LLM Caching System** (`app/api/shared/llm.ts`):
   - Simplified caching logic to always store complete response objects instead of made-up text-only objects
   - Removed backward compatibility code for old cache formats
@@ -1192,18 +1481,21 @@ Hungarian translations include comprehensive terminology explanations:
   - Fixed TypeScript type handling for `MessageContent` (can be string or array)
 
 ### Features
+
 - **Full Response Caching**: Both streaming and non-streaming responses now cache the complete `ChatResponse` or `CompletionResponse` objects
 - **Proper Metadata Handling**: Generation metadata from OpenRouter API is properly fetched and stored with cached responses
 - **Tool Call Support**: Tool calls in streaming responses are properly captured and replayed from cache
 - **Simplified Code**: Reduced code complexity by removing fallback paths and duplicate logic
 
 ### Technical Details
+
 - Streaming responses capture all chunks and build a complete response object for caching
 - When replaying from cache, the full response structure is preserved (not just text)
 - Metadata includes generation costs, token counts, model information, and conversation context
 - Rate limiting is checked before making API calls for completion endpoints
 
 ### Migration Notes
+
 - Existing cache entries in old format will be automatically handled (parsed as text-only)
 - New cache entries will store the full response structure for better fidelity
 - No database schema changes required
@@ -1211,6 +1503,7 @@ Hungarian translations include comprehensive terminology explanations:
 ## [2026-01-30] - SEO Improvements: Sitemap hreflang and Metadata Audit
 
 ### SEO Enhancements
+
 - **Sitemap.xml** (`app/sitemap.xml/route.ts`):
   - Added hreflang support to advertise language alternatives to search engines
   - Each base route now includes `xhtml:link` elements for all supported locales (en, es, fr)
@@ -1221,8 +1514,9 @@ Hungarian translations include comprehensive terminology explanations:
 ### Metadata Audit Results
 
 #### Pages WITH Translated Metadata (✓):
+
 1. **Home Page** (`app/[locale]/page.tsx`) - Uses `metadata` namespace
-2. **Contact Page** (`app/[locale]/contact/page.tsx`) - Uses `contact.metadata` namespace  
+2. **Contact Page** (`app/[locale]/contact/page.tsx`) - Uses `contact.metadata` namespace
 3. **Stories Page** (`app/[locale]/stories/page.tsx`) - Uses `stories.metadata` namespace
 4. **Videos Page** (`app/[locale]/videos/page.tsx`) - Uses `videos.metadata` namespace
 5. **Definitions Page** (`app/[locale]/definitions/page.tsx`) - Uses `definitions.metadata` namespace
@@ -1231,6 +1525,7 @@ Hungarian translations include comprehensive terminology explanations:
 8. **Participate Page** (`app/[locale]/participate/page.tsx`) - Has metadata but NOT translated (static English only)
 
 #### Pages MISSING Metadata Exports (✗):
+
 1. **About Page** (`app/[locale]/about/page.tsx`) - No metadata export
 2. **Donate Page** (`app/[locale]/donate/page.tsx`) - No metadata export
 3. **Terms Page** (`app/[locale]/terms/page.tsx`) - No metadata export
@@ -1239,25 +1534,31 @@ Hungarian translations include comprehensive terminology explanations:
 6. **Login Page** (`app/[locale]/login/page.tsx`) - No metadata export
 
 #### Dynamic Routes Status:
+
 - **Research Question Pages** (`app/[locale]/research/[question]/page.tsx`) - Uses dynamic metadata from question
 - **User Story Pages** (`app/[locale]/stories/[username]/page.tsx`) - Uses localized user experience summary
 - **Video Detail Pages** (`app/[locale]/videos/[slug]/page.tsx`) - Uses localized video title and description
 - **Chat Conversation Pages** (`app/[locale]/chat/[uuid]/page.tsx`) - Uses conversation title/summary metadata
 
 ### Translation Files Verified
+
 All three translation files have complete metadata sections:
+
 - **English (en.json)**: Complete metadata translations for all pages
 - **Spanish (es.json)**: Complete metadata translations for all pages
 - **French (fr.json)**: Complete metadata translations for all pages
 
 ### Technical Details
+
 - Sitemap now includes `xmlns:xhtml` namespace for hreflang support
 - Base routes are automatically localized to all supported locales
 - Hreflang links use standard locale codes (e.g., `hreflang="en-US"`)
 - Dynamic content routes don't have locale-specific variations in the sitemap
 
 ### Next Steps (Not Implemented)
+
 To complete SEO metadata coverage, the following pages need metadata exports added:
+
 1. Add `generateMetadata()` to About page with translations
 2. Add `generateMetadata()` to Donate page with translations
 3. Add `generateMetadata()` to Terms page with translations
@@ -1268,6 +1569,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
 ## [2026-01-30] - Add Settings Menu with Combined Language and Theme Controls
 
 ### Components
+
 - **SettingsMenu Component** (`app/components/ui/common/layout/SettingsMenu.tsx`):
   - Replaces separate LanguageSwitcher and ThemeSwitcher components
   - Uses NavigationMenu for hover-expandable dropdown (consistent with other nav elements)
@@ -1285,10 +1587,12 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Removed unused imports (useTheme, Switch, useEffect)
 
 ### Removed Components
+
 - **LanguageSwitcher** (`app/components/ui/common/layout/LanguageSwitcher.tsx`) - Functionality merged into SettingsMenu
 - **ThemeSwitcher** (`app/components/ui/common/layout/ThemeSwitcher.tsx`) - Functionality merged into SettingsMenu
 
 ### Features
+
 - **Unified Settings**: Single button/icon shows both language code and theme icons
 - **Hover-Expandable Menu**: Desktop menu expands on hover like other NavigationMenu items
 - **Two-Section Dropdown**: Language section (EN/ES/FR) and Appearance section (Light/Dark)
@@ -1297,17 +1601,20 @@ To complete SEO metadata coverage, the following pages need metadata exports add
 - **Persistent Preference**: Selected theme is saved and persists across sessions
 
 ### Translation Keys Added
+
 - `settings.title` - "Settings" / "Configuración" / "Paramètres"
 - `theme.title` - "Appearance" / "Apariencia" / "Apparence"
 - `theme.light` - "Light" / "Claro" / "Clair"
 - `theme.dark` - "Dark" / "Oscuro" / "Sombre"
 
 ### Translations
+
 - **English (en.json)**: Added settings and theme namespaces
 - **Spanish (es.json)**: Added Spanish translations for settings and theme
 - **French (fr.json)**: Added French translations for settings and theme
 
 ### Technical Details
+
 - Uses NavigationMenu component for consistent hover behavior with other nav items
 - ThemeProvider already configured in layout.tsx with `attribute="class"`
 - Dark mode CSS variables defined in globals.css
@@ -1316,6 +1623,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
 ## [2026-01-29] - Add French and Spanish Translations for Contact Page
 
 ### Features
+
 - **Contact Page Internationalization**:
   - Added complete French translation for contact form (`messages/fr.json`)
   - Added complete Spanish translation for contact form (`messages/es.json`)
@@ -1323,6 +1631,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Translations include: form labels, placeholders, button text, status messages, and metadata
 
 ### Components
+
 - **Contact Page** (`app/[locale]/contact/page.tsx`):
   - Refactored to support server-side metadata generation with `generateMetadata()`
   - Split into server component (page.tsx) and client component (ContactForm.tsx)
@@ -1334,6 +1643,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - All UI text now uses translation keys instead of hardcoded strings
 
 ### Translation Keys Added
+
 - `contact.metadata.title` - Page title
 - `contact.metadata.description` - Meta description
 - `contact.title` - Form heading
@@ -1355,6 +1665,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
 ## [2026-01-29] - Fix Database Schema Error by Removing full_question Column
 
 ### Database Schema Changes
+
 - **Detrans Questions Table** (`db/schema.ts`):
   - Removed `full_question` column that was causing "column does not exist" errors
   - Changed `name` column from `varchar(255)` to `text` type
@@ -1362,6 +1673,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Database migration applied via `db:push` command
 
 ### Bug Fixes
+
 - **Cache Library** (`app/lib/cache.ts`):
   - Removed `fullQuestion` field from insert statements in `setCachedAnswer()` and `incrementQuestionViews()`
   - Fixed error: "column 'full_question' of relation 'detrans_questions' does not exist"
@@ -1370,6 +1682,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Removed `fullQuestion` field from database insert operation
 
 ### Technical Details
+
 - **Root Cause**: Database schema didn't have `full_question` column but code was trying to insert it
 - **Fix**: Removed column from schema and all code references
 - **Migration**: Database schema updated via `npm run db:push`
@@ -1378,6 +1691,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
 ## [2026-01-29] - Fix Suggested Questions Not Appearing in Deep Research Stream
 
 ### Bug Fixes
+
 - **Research API** (`app/api/research/route.ts`):
   - Fixed `data-suggested_questions` events not appearing in stream
   - Moved suggested questions generation from `onComplete` to `onFinal` callback
@@ -1385,6 +1699,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Suggested questions now properly appended to stream after conversation is saved
 
 ### Technical Details
+
 - **Root Cause**: `createUIMessageStream` from `ai` library requires certain event types to be written in `onFinal` callback rather than `onComplete`
 - **Fix**: Moved `sendSuggestedQuestionsEvent()` call from `onComplete` to `onFinal` callback
 - **Behavior**: Suggested questions now appear at end of stream after conversation is saved to database
@@ -1393,6 +1708,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
 ## [2026-01-29] - Deep Research Cache Lookup Fix
 
 ### Bug Fixes
+
 - **Cache Library** (`app/lib/cache.ts`):
   - Fixed cache lookup to use correct search strategy
   - First tries exact match on `questionName` column (truncated to 100 chars)
@@ -1400,6 +1716,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - The cache key is a hash of messages+tools, not the question name, so we search by content
 
 ### Technical Details
+
 - Cache entries are stored with:
   - `questionName`: truncated question (100 chars) for identification
   - `promptText`: full JSON key containing messages array
@@ -1410,6 +1727,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
 ## [2026-01-29] - Deep Research Loading Fix
 
 ### Bug Fixes
+
 - **Chat Section Component** (`app/components/ui/chat/chat-section.tsx`):
   - Fixed `loading` state being stuck at `true` for new deep research sessions
   - Now properly sets `loading` to `false` when no `conversationId` is provided
@@ -1424,6 +1742,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Handles `starter` query parameter to redirect to specific questions
 
 ### Technical Details
+
 - The loading spinner was shown indefinitely because `loading` was only set to `false` when loading an existing conversation
 - Deep research creates new conversations, so the loading state never cleared
 - API endpoint mismatch was causing the chat to call `/api/chat` instead of `/api/deep_research`
@@ -1431,6 +1750,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
 ## [2026-01-29] - Custom Chat Input Deep Research Support
 
 ### Component Changes
+
 - **Custom Chat Input** (`app/components/ui/custom-chat-input.tsx`):
   - Added `/deep-research` to `showChatInput` paths so input appears on deep research pages
   - Updated `handleSubmit` to navigate to `/deep-research/${slugify(val)}` when on deep-research pages
@@ -1438,6 +1758,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Deep research now behaves like research mode: navigates to new URL for each question
 
 ### Behavior
+
 - **Deep Research Navigation**: Users on `/deep-research/*` pages automatically navigate to new URLs when submitting questions
 - **Consistent UX**: Deep research follows same pattern as regular research mode
 - **No Toggle on Deep Research Pages**: Toggle button hidden when already on deep-research routes
@@ -1445,18 +1766,21 @@ To complete SEO metadata coverage, the following pages need metadata exports add
 ## [2026-01-29] - Deep Research URL-Based Caching
 
 ### Database Schema Changes
+
 - **Detrans Chat Cache Table** (`db/schema.ts`):
   - Added `deep_research` boolean column to distinguish deep research cache entries
   - Added index on `deep_research` column for efficient queries
   - Updated Zod schema to include new field
 
 ### API Changes
+
 - **Cache Library** (`app/lib/cache.ts`):
   - Added `getDeepResearchAnswer()` function to fetch cached answers by question name
   - Queries `detrans_chat_cache` table filtering by `question_name` and `deep_research=true`
   - Returns most recent cached result for the given question
 
 ### Page Changes
+
 - **Deep Research Page** (`app/[locale]/deep_research/[question]/page.tsx`):
   - Updated to use question slug from URL (e.g., `/deep-research/why-is-the-sky-blue`)
   - Uses `deslugify()` to convert URL slug to readable question text
@@ -1465,18 +1789,21 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Passes starter question to `ChatSectionClient` for new research sessions
 
 ### Features
+
 - **URL-Based Research**: Users can access research via clean URLs with question slugs
 - **Cached Responses**: Same question always returns cached result if available
 - **SEO Optimized**: Bots receive server-rendered cached answers for better indexing
 - **Question-Based Lookup**: No UUID required - lookup by question name instead
 
 ### Migration Notes
+
 - Run database migration to add `deep_research` column: `npm run migrate`
 - Existing cached entries will have `deep_research=false` by default
 
 ## [2026-01-29] - Implement Deep Research Endpoint
 
 ### API Changes
+
 - **Deep Research API** (`app/api/deep_research/route.ts`):
   - Enforced single-message-only behavior (non-conversational)
   - Rejects subsequent messages to existing conversations with 410 status
@@ -1489,6 +1816,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Updated LLM mode to "deep_research" for proper caching
 
 ### Prompt Changes
+
 - **Deep Research Prompt** (`app/api/deep_research/utils/prompts.ts`):
   - Created new `deepResearchPrompt` with comprehensive research focus
   - Emphasizes thorough research with multiple queries (5-7)
@@ -1497,12 +1825,14 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Citation requirements for all referenced experiences
 
 ### Features
+
 - **Single-Use Sessions**: Deep research conversations are single-use - once a response is generated, the session is archived
 - **Comprehensive Research**: Designed to conduct thorough research with multiple query angles
 - **Structured Output**: Responses follow a consistent structured format for better readability
 - **Same Caching**: Uses the same Postgres caching mechanism as chat endpoint
 
 ### Differences from Chat Endpoint
+
 - No conversation history maintained
 - Single request/response per session
 - More comprehensive research prompt
@@ -1512,12 +1842,14 @@ To complete SEO metadata coverage, the following pages need metadata exports add
 ## [2026-01-29] - Add Translations for TransitionPathwaysChart Labels
 
 ### Components
+
 - **TransitionPathwaysChart** (`app/components/charts/TransitionPathwaysChart.tsx`):
   - Added `translateNodeLabel()` helper function to translate node labels
   - Modified `transformDataForRecharts()` to use translated labels instead of raw English labels
   - Node labels (Male/Female, Before/After 18, Puberty Blockers, etc.) now display in user's locale
 
 ### Features
+
 - **French Translations** (`messages/fr.json`):
   - Added `charts.pathways.labels` namespace with 16 label translations
   - Translations for: sex (Male/Female/Unknown), age (Before/After 18), medical interventions (blockers, hormones, surgeries), and outcomes (regrets)
@@ -1527,6 +1859,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Translations for: sex (Male/Female/Unknown), age (Before/After 18), medical interventions (blockers, hormones, surgeries), and outcomes (regrets)
 
 ### Technical Details
+
 - Uses `next-intl` translation keys with dot notation (e.g., `charts.pathways.labels.Male`)
 - Falls back to original English label if translation not found
 - All Sankey diagram node labels are now translatable
@@ -1534,11 +1867,13 @@ To complete SEO metadata coverage, the following pages need metadata exports add
 ## [2026-01-29] - Fix TypeScript Null Errors in Video Page
 
 ### Bug Fixes
+
 - Fixed TypeScript errors where `string | null` was not assignable to `string | number | Date`
 - Added null coalescing operator (`?? ""`) to `localizedTitle` when passed to translation functions
 - Fixed iframe `title` attribute to handle null values properly
 
 ### Technical Details
+
 - Updated `metadataWatchDescription` calls to use `localizedTitle ?? ""`
 - Updated `metadataThumbnailAlt` call to use `localizedTitle ?? ""`
 - Updated iframe `title` prop to use `localizedTitle ?? ""`
@@ -1546,12 +1881,14 @@ To complete SEO metadata coverage, the following pages need metadata exports add
 ## [2026-01-29] - Update Studies Page to Load from API
 
 ### API Changes
+
 - **Studies API** (`/api/studies/route.ts`):
   - Already supports `locale` query parameter for fetching localized studies
   - Returns translated fields: `headline`, `title`, `description`, and `journal`
   - Falls back to default English if translation not available
 
 ### Component Updates
+
 - **Studies Page** (`app/[locale]/studies/page.tsx`):
   - Removed hardcoded `studies` array (39 studies migrated to database)
   - Added `fetchStudies()` function for server-side data fetching
@@ -1561,12 +1898,14 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Studies now render with proper `id` keys for React reconciliation
 
 ### Features
+
 - **Server-Side Rendering**: Page remains fully server-rendered for optimal SEO
 - **Incremental Static Regeneration**: ISR caching ensures fast loads while allowing content updates
 - **Locale-Aware Content**: Studies display in user's preferred language
 - **Database-Driven**: All study content now served from PostgreSQL database
 
 ### Technical Details
+
 - Uses `process.env.NEXT_PUBLIC_APP_URL` for API base URL
 - Implements `next.revalidate: 300` for 5-minute ISR cache
 - Adds `tags: ["studies"]` for cache invalidation support
@@ -1575,17 +1914,20 @@ To complete SEO metadata coverage, the following pages need metadata exports add
 ## [2026-01-29] - Add Video Title Translation Support
 
 ### Database Schema Changes
+
 - **Videos Table**: Added `title_translation` column
   - JSON object storing translations for video titles
   - Updated Zod schema (`videoSchema`) to include new `titleTranslation` field
   - Updated migration file: `drizzle/0003_add_video_translation_columns.sql`
 
 ### API Changes
+
 - **Videos API** (`/api/videos/route.ts`):
   - Added `titleTranslation` to VideoWithTranslations interface
   - API now returns localized title based on requested locale
 
 ### Component Updates
+
 - **VideoList Component** (`app/components/VideoList.tsx`):
   - Added `titleTranslation` to Video interface
   - Video titles are now displayed in the user's locale
@@ -1602,6 +1944,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - All metadata and visible text now uses the translated title based on user's locale
 
 ### Scripts
+
 - **Generate Video Translations** (`scripts/generate-video-translations.ts`):
   - Added title translation generation
   - Script now generates translations for: title, description, summary, and bite
@@ -1609,26 +1952,30 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Updated database update logic to save title translations
 
 ### Migration Notes
+
 - Run migration: `npx drizzle-kit migrate`
 - Generate translations: `npx tsx scripts/generate-video-translations.ts`
 
 ## [2026-01-29] - Add Video Translation Columns Migration
 
 ### Database Schema Changes
+
 - **Videos Table**: Created migration to add missing translation columns:
   - `description_translation` - JSON object with description translations
-  - `summary_translation` - JSON object with summary translations  
+  - `summary_translation` - JSON object with summary translations
   - `bite_translation` - JSON object with bite/tagline translations
 - Migration file: `drizzle/0003_add_video_translation_columns.sql`
 - Uses `IF NOT EXISTS` to safely add columns without errors if they already exist
 
 ### Migration Notes
+
 - Run migration: `npm run migrate` or `npx drizzle-kit migrate`
 - After migration, generate translations: `npx tsx scripts/generate-video-translations.ts`
 
 ## [2026-01-29] - Add Videos Page Translations for French and Spanish
 
 ### Translation Additions
+
 - **French (fr.json)**:
   - Added complete `videos` namespace with metadata, title, description, and UI strings
   - Added `videoList` namespace with loading states and filter options
@@ -1640,12 +1987,14 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Added `videoSubmitForm` namespace with form labels and submission messages
 
 ### Features
+
 - **Full i18n Support**: The videos page (`/videos`) is now fully localized in French and Spanish
 - **Metadata Translation**: Page titles and descriptions are now translated for SEO
 - **UI Components**: All videos-related UI text including filters, buttons, and form labels are translated
 - **Consistent Pattern**: Uses same translation structure as the English (en.json) source
 
 ### Translation Coverage
+
 - Page metadata (title, description)
 - Main page title and description paragraphs
 - Video list filters (All Stories, Female, Male, Detransitioners)
@@ -1656,6 +2005,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
 ## [2026-01-29] - Update Chat APIs and Components to Support Locale Parameter
 
 ### API Changes
+
 - **Chat Conversations API** (`app/api/chat/conversations/[uuid]/route.ts`):
   - Updated GET endpoint to accept `locale` query parameter (e.g., `?locale=es`)
   - Returns `title` and `conversationSummary` already localized based on the requested locale
@@ -1672,6 +2022,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Example: `/api/chat?featured=true&locale=es` returns Spanish titles and summaries
 
 ### Component Updates
+
 - **FeaturedConversations Component** (`app/components/content/FeaturedConversations/FeaturedConversations.tsx`):
   - Added `useLocale` hook to get current locale
   - Updated `FeaturedConversation` interface to include `titleTranslation` field
@@ -1685,6 +2036,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Updated toggleFeatured handler to include `titleTranslation` when updating local state
 
 ### Features
+
 - **Server-Side Localization**: Clients can request conversation data in their preferred language
 - **Clean API Response**: The API returns already-localized text instead of requiring clients to parse translation JSON
 - **Consistent Pattern**: Both single conversation and conversation list APIs support locale parameter
@@ -1693,6 +2045,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
 ## [2026-01-29] - Add Tag Name Translation Support
 
 ### API Changes
+
 - **Tags API** (`/api/tags/route.ts`):
   - Now returns `nameTranslation` field along with original tag names
   - Updated SELECT and GROUP BY clauses to include translation column
@@ -1707,6 +2060,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Returns structured tag objects instead of simple strings
 
 ### Component Updates
+
 - **UsersFilters Component** (`app/components/UsersFilters.tsx`):
   - Added `nameTranslation` to Tag interface
   - Added `getLocalizedTagName()` helper function to parse JSON translations
@@ -1728,12 +2082,14 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Badge variants still based on original tag names
 
 ### Features
+
 - **Full Tag Translation Support**: Tag names can now be translated into all supported locales
 - **Localized Filter Display**: Tag filter dropdown shows translated names
 - **Preserved Filter Logic**: URL parameters and filtering still use original tag names
 - **Consistent Pattern**: Uses same JSON translation storage pattern as other content
 
 ### Migration Notes
+
 - Database migration required to add `name_translation` column to detrans_tags table
 - Run migration: `npm run migrate` or `npx drizzle-kit migrate`
 - Generate translations using: `npx tsx scripts/generate-tag-translations.ts`
@@ -1741,6 +2097,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
 ## [2026-01-29] - Update Chat Conversations API to Return Localized Data
 
 ### API Changes
+
 - **Chat Conversations API** (`app/api/chat/conversations/[uuid]/route.ts`):
   - Updated GET endpoint to accept `locale` query parameter (e.g., `?locale=es`)
   - Returns `title` and `conversationSummary` already localized based on the requested locale
@@ -1750,6 +2107,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Example: `/api/chat/conversations/abc-123?locale=es` returns Spanish title and summary
 
 ### Features
+
 - **Server-Side Localization**: Clients can request conversation data in their preferred language
 - **Clean API Response**: The API returns already-localized text instead of requiring clients to parse translation JSON
 - **Backward Compatible**: Default locale is "en" if no locale parameter provided
@@ -1757,11 +2115,13 @@ To complete SEO metadata coverage, the following pages need metadata exports add
 ## [2026-01-29] - Add Tag and User Translation Scripts
 
 ### Database Schema Changes
+
 - **Detrans Tags Table**: Added new JSON translation column:
   - `name_translation` - Stores translations for tag names
   - Updated Zod schema (`tagSchema`) to include new `nameTranslation` field
 
 ### Scripts
+
 - **Tag Translation Script** (`scripts/generate-tag-translations.ts`):
   - Generates translations for all tag names in the detrans_tags table
   - Scans all tags and identifies missing translations for configured locales
@@ -1782,6 +2142,7 @@ To complete SEO metadata coverage, the following pages need metadata exports add
   - Stores translations as JSON objects in respective translation columns
 
 ### Usage
+
 ```bash
 # Generate translations for tags
 npx tsx scripts/generate-tag-translations.ts
@@ -1791,6 +2152,7 @@ npx tsx scripts/generate-user-translations.ts
 ```
 
 ### Technical Details
+
 - Both scripts follow the same pattern as existing translation scripts
 - Implements exponential backoff for API resilience
 - Only generates translations for missing locales (idempotent)
@@ -1798,12 +2160,14 @@ npx tsx scripts/generate-user-translations.ts
 - Skips users without any content to translate
 
 ### Migration Notes
+
 - Database migration required to add `name_translation` column to detrans_tags table
 - Run migration: `npm run migrate` or `npx drizzle-kit migrate`
 
 ## [2026-01-29] - Fix Chat Conversations API to Return Title Translations
 
 ### API Changes
+
 - **Chat Conversations API** (`app/api/chat/conversations/[uuid]/route.ts`):
   - Updated GET endpoint to include `titleTranslation` and `conversationSummaryTranslation` in the response
   - Updated `generateConversationTitleAndSummary()` function to generate title translations for all configured locales
@@ -1813,12 +2177,14 @@ npx tsx scripts/generate-user-translations.ts
   - All endpoints now properly select and return translation columns from the database
 
 ### Bug Fixes
+
 - **Missing Translation Fields**: The API was not returning `titleTranslation` and `conversationSummaryTranslation` fields, causing ConversationCard to always fall back to default titles
 - **Translation Generation**: The conversations API now generates translations when creating/updating titles and summaries
 
 ## [2026-01-29] - Update Chat API to Generate Title Translations
 
 ### API Changes
+
 - **Chat API** (`app/api/chat/[uuid]/route.ts`):
   - Updated `generateConversationTitleAndSummary()` function to generate title translations for all configured locales
   - Now returns both `titleTranslations` and `summaryTranslations` for each conversation
@@ -1828,10 +2194,12 @@ npx tsx scripts/generate-user-translations.ts
   - Both endpoints now set `titleTranslation` column with JSON object containing translations for all locales
 
 ### Features
+
 - **Automatic Title Translation**: When a conversation is featured or a summary is manually generated, titles are now automatically translated into all supported locales
 - **Consistent Translation Pattern**: Title translations follow the same pattern as summary translations, stored as JSON objects
 
 ### Technical Details
+
 - Translations are generated sequentially to avoid rate limiting
 - Fallback to English if translation generation fails for any locale
 - Default locale (en) is set as the original title/summary without translation
@@ -1839,11 +2207,13 @@ npx tsx scripts/generate-user-translations.ts
 ## [2026-01-29] - Add Title Translation Support to Chat Conversations
 
 ### Database Schema Changes
+
 - **Chat Conversations Table**: Added new JSON translation column:
   - `title_translation` - Stores translations for conversation titles
   - Updated Zod schema (`chatConversationSchema`) to include new `titleTranslation` field
 
 ### Component Updates
+
 - **ConversationCard Component** (`app/components/content/ConversationCard/ConversationCard.tsx`):
   - Added `titleTranslation` prop to interface
   - Added `getLocalizedTitle()` helper function to parse JSON translations
@@ -1851,16 +2221,19 @@ npx tsx scripts/generate-user-translations.ts
   - Falls back to default title if translation unavailable
 
 ### Features
+
 - **Full Translation Support**: Conversation titles can now be translated into all supported locales (en, es, fr)
 - **Consistent Pattern**: Uses same JSON translation storage pattern as conversation summaries
 
 ### Migration Notes
+
 - Database migration required to add `title_translation` column to chat_conversations table
 - Run migration: `npm run migrate` or `npx drizzle-kit migrate`
 
 ## [2026-01-29] - Add Video and Chat Translation Scripts
 
 ### Scripts
+
 - **Video Translation Script** (`scripts/generate-video-translations.ts`):
   - Generates translations for video fields: description, summary, and bite/tagline
   - Scans all videos in the database and identifies missing translations
@@ -1880,6 +2253,7 @@ npx tsx scripts/generate-user-translations.ts
   - Stores title translations in `title_translation` column
 
 ### Usage
+
 ```bash
 # Generate translations for videos
 npx tsx scripts/generate-video-translations.ts
@@ -1889,6 +2263,7 @@ npx tsx scripts/generate-chat-translations.ts
 ```
 
 ### Technical Details
+
 - Both scripts follow the same pattern as `generate-study-translations.ts`
 - Implements exponential backoff for API resilience
 - Only generates translations for missing locales (idempotent)
@@ -1897,6 +2272,7 @@ npx tsx scripts/generate-chat-translations.ts
 ## [2026-01-29] - Add Studies Migration and Translation Scripts
 
 ### Scripts
+
 - **Migration Script** (`scripts/migrate-studies-to-db.ts`):
   - Migrates all 39 studies from the static page component (`app/[locale]/studies/page.tsx`) into the PostgreSQL database
   - Checks for existing studies by URL to prevent duplicates
@@ -1913,11 +2289,13 @@ npx tsx scripts/generate-chat-translations.ts
   - Preserves existing translations and only fills in missing ones
 
 ### Features
+
 - **Incremental Translation Updates**: The translation script checks which locales already have translations and only generates missing ones
 - **Configurable Locales**: Adding a new locale to `i18n/routing.ts` automatically enables translation generation for that locale
 - **Idempotent Operations**: Both scripts can be safely run multiple times without creating duplicates
 
 ### Usage
+
 ```bash
 # Migrate studies from page component to database
 npx tsx scripts/migrate-studies-to-db.ts
@@ -1927,6 +2305,7 @@ npx tsx scripts/generate-study-translations.ts
 ```
 
 ### Technical Details
+
 - Uses `drizzle-orm` for database operations
 - Uses OpenAI SDK with OpenRouter base URL for AI translations
 - Implements exponential backoff for API resilience
@@ -1935,24 +2314,28 @@ npx tsx scripts/generate-study-translations.ts
 ## [2026-01-29] - Remove Authors Translation from Studies
 
 ### Database Schema Changes
+
 - **Studies Table**: Removed `authors_translation` column
   - Author names should not be translated as they are proper nouns
   - Simplifies translation logic for studies content
 - Updated Zod schema (`studySchema`) to remove `authorsTranslation` field
 
 ### Migration Notes
+
 - Database migration required to drop `authors_translation` column from studies table
 - Existing author translations (if any) will be removed
 
 ## [2026-01-29] - Add Automatic Browser Locale Detection
 
 ### Features
+
 - **Automatic Locale Detection**: The application now automatically detects the user's preferred language from their browser settings
 - **Smart Locale Matching**: Parses the `Accept-Language` header and matches it to supported locales (en, es, fr)
 - **Language Code Fallback**: Supports both exact matches (e.g., "en-US" → "en") and language code matching (e.g., "fr-CA" → "fr")
 - **Quality Score Support**: Respects browser language preferences with quality scores (e.g., "en;q=0.9,fr;q=0.8")
 
 ### Technical Details
+
 - **New Utility Function** (`i18n/detect-locale.ts`):
   - `detectBrowserLocale()` function parses Accept-Language headers
   - Returns best matching locale from supported list
@@ -1965,18 +2348,21 @@ npx tsx scripts/generate-study-translations.ts
   - Logs locale detection for debugging purposes
 
 ### Supported Locales
+
 Currently supports: English (en), Spanish (es), French (fr)
 Easily extensible by adding more locales to `i18n/routing.ts`
 
 ## [2026-01-29] - Add Translations for Deep Research Events Component
 
 ### Components
+
 - **Data UI Events Component** (`components/detrans/data-ui_event.jsx`):
   - Added `useTranslations` hook from next-intl for internationalization
   - Replaced all hardcoded English strings with translation keys
   - Added support for dynamic text interpolation using `t()` function
 
 ### Translation Additions
+
 - **English (en.json)**:
   - Added `deepResearchEvents` namespace with 11 translation keys:
     - `errorTitle`, `retrieving`, `generatingQuestions`, `findingAnswers`, `completed`
@@ -1990,6 +2376,7 @@ Easily extensible by adding more locales to `i18n/routing.ts`
   - Added complete French translations for all deep research events strings
 
 ### Features
+
 - **Full i18n Support**: Deep research status messages, error messages, and progress indicators are now fully localized
 - **Dynamic Interpolation**: Questions answered counter uses translation parameters (`{answered}`, `{total}`)
 - **Consistent Pattern**: Uses same `useTranslations` pattern as other client components
@@ -1997,6 +2384,7 @@ Easily extensible by adding more locales to `i18n/routing.ts`
 ## [2026-01-29] - Detrans User Content Translations
 
 ### Database Schema Changes
+
 - **Detrans Users Table**: Added three new JSON translation columns:
   - `experience_translation` - Stores translations for full detransition stories
   - `experience_summary_translation` - Stores translations for user summary/about me text
@@ -2004,6 +2392,7 @@ Easily extensible by adding more locales to `i18n/routing.ts`
 - Updated Zod schemas (`detransUserSchema`) to include new translation fields
 
 ### API Changes
+
 - **Users API** (`/api/users/route.ts`):
   - Added `experienceSummaryTranslation` to SELECT and GROUP BY clauses
   - Returns translation data for user listings
@@ -2013,6 +2402,7 @@ Easily extensible by adding more locales to `i18n/routing.ts`
   - Returns translation data for individual user pages
 
 ### Component Updates
+
 - **UserCard Component** (`/app/components/UserCard.tsx`):
   - Added `experienceSummaryTranslation` to User interface
   - Added `getLocalizedField()` helper function to parse JSON translations
@@ -2029,12 +2419,14 @@ Easily extensible by adding more locales to `i18n/routing.ts`
     - Red Flags Report ("Authenticity Assessment" section)
 
 ### Features
+
 - **Full Translation Support**: User content can now be translated into all supported locales (en, es, fr)
 - **SEO Localization**: Meta descriptions and OpenGraph tags now use localized content
 - **Fallback Support**: All displays fall back to English if translation not available
 - **Consistent Pattern**: Uses same JSON translation storage pattern as videos and conversations
 
 ### Technical Details
+
 - Translations stored as JSON objects: `{"en": "...", "es": "...", "fr": "..."}`
 - Client-side localization using `useLocale()` from next-intl
 - Server-side components receive locale from URL parameters
@@ -2043,11 +2435,13 @@ Easily extensible by adding more locales to `i18n/routing.ts`
 ## [2026-01-29] - Fix Missing Translation Keys for Question Tabs
 
 ### Bug Fixes
+
 - **Question Tabs Component** (`app/components/content/QuestionTabs.tsx`):
   - Fixed French translation namespace `questionTabs` that was missing from `messages/fr.json`
   - Fixed Spanish translation namespace `questionTabs` that was missing from `messages/es.json`
 
 ### Translation Additions
+
 - **French (fr.json)**:
   - Added `questionTabs.topics`: "Sujets"
   - Added `questionTabs.generated`: "Générés"
@@ -2063,6 +2457,7 @@ Easily extensible by adding more locales to `i18n/routing.ts`
 ## [2026-01-29] - Video and Conversation Translations
 
 ### Database Schema Changes
+
 - **Videos Table**: Added three new JSON translation columns:
   - `description_translation` - Stores translations for video descriptions
   - `summary_translation` - Stores translations for video summaries
@@ -2072,6 +2467,7 @@ Easily extensible by adding more locales to `i18n/routing.ts`
 - Updated Zod schemas to include new translation fields
 
 ### API Changes
+
 - **Video API** (`/api/videos/route.ts`):
   - Added `locale` query parameter support
   - Returns localized `description`, `summary`, and `bite` fields based on locale
@@ -2084,6 +2480,7 @@ Easily extensible by adding more locales to `i18n/routing.ts`
   - Added `getLanguageName()` utility function to map locale codes to full language names
 
 ### Component Updates
+
 - **Video Components**:
   - `VideoList.tsx` - Fetches and displays videos with locale-specific translations
   - `SeoVideosList.tsx` - Server component now passes locale and displays localized content
@@ -2097,23 +2494,28 @@ Easily extensible by adding more locales to `i18n/routing.ts`
   - `chat-section.tsx` - Loads and displays localized conversation summaries
 
 ### Internationalization
+
 - **New Utility Function** (`i18n/routing.ts`):
   - Added `getLanguageName()` function mapping locale codes to full language names
   - Supports 70+ languages for future expansion
 
 ### Features
+
 - **Automatic Translation Generation**: When a conversation is marked as featured or a summary is manually generated, the system automatically creates translations for all configured locales (en, es, fr)
 - **Dynamic Locale Support**: Adding new languages to `i18n/routing.ts` automatically enables translation generation for those locales
 - **Fallback Support**: All translation displays fall back to English if a translation is not available for the user's locale
 
 ### Technical Details
+
 - Translations stored as JSON strings in database columns
 - Client-side localization using `navigator.language` for browser detection
 - Server-side components receive locale from URL parameters
 - Type-safe implementation using TypeScript interfaces
 
 ## Migration Notes
+
 To use the new translation features:
+
 1. Run database migrations to add new columns
 2. Existing data will need translations added manually or regenerated
 3. Conversation summaries will automatically generate translations when featured

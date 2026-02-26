@@ -74,7 +74,7 @@
     },
     "donate": {
       "title": "私たちの活動を支援",
-      "description": "最も必要としている人々のために、このリソースを維持するのを手伝ってください。",
+      "description": "このプロジェクトには自分の時間とお金をたくさん投資しました。あなたの寄付は、ホスティングとAIトークンのコストを大幅に助け、継続的な開発をサポートします。",
       "button": "寄付",
       "card": {
         "title": "{site}を維持するために寄付が必要です！",
@@ -103,11 +103,14 @@
         "line6": "私たちは蒔いたものを収穫し、",
         "line7": "しかしこれを通して成長できる..."
       },
-      "openSource": "オープンソースプロジェクト：",
+      "openSource": "<project>オープンソースプロジェクト</project>： <author>Peter James Steven</author>",
       "madeWithLove": "ニュージーランド・ウェリントンで愛を込めて作りました",
       "donatePrompt": "可能であれば寄付をお願いし、",
       "beKind": "そして互いに親切に。"
     },
+    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
+    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
     "browseConversations": "すべての会話を閲覧"
   },
   "header": {
@@ -374,7 +377,7 @@
   "donatePage": {
     "title": "Detrans.AIを維持する",
     "description1": "このサイトに私が注いだ仕事に感謝する場合、またはこの無料サービスがあなたを助けてくれた場合は、<b>detrans.ai</b>をオンラインに保つために、一度限りまたは定期的な寄付をご検討ください。",
-    "description2": "あなたのサポートなしには、このようなリソースを集中的なサービスを運営する余裕はありません。現在の私の主な収入源は政府の福祉であり、これを書いている時点では銀行口座に1000ドル未満しかありません。このサイトが大流行した場合、数千ドルの請求を受ける可能性があります。資金が尽きた場合、独自の質問をしたり、フォローアップ質問を通じてトピックを深く探索したりする機能は無効になり、ポータルの質問へのキャッシュされた回答のみを提供します。",
+    "description2": "このプロジェクトには自分の時間とお金をたくさん投資しました。あなたの寄付は、ホスティングとAIトークンのコストを大幅に助け、継続的な開発をサポートします。今は安定した収入がなく、資金が尽きた場合、独自の質問をしたり、フォローアップ質問を通じてトピックを深く探索したりする機能は無効になり、ポータルの質問へのキャッシュされた回答のみを提供します。",
     "description3": "毎月の寄付をご検討ください。以下のPayPal、私のニュージーランドの銀行口座への直接振込、またはBTCで寄付できます。",
     "bankAccount": "ニュージーランド銀行口座",
     "accountName": "名義",
@@ -580,6 +583,7 @@
       },
       "findTherapist": {
         "title": "ジェンダー探索療法を実践するセラピストはどこで見つけられますか？",
+        "sidebar": "Find therapists",
         "languageNotice": "リストされているほとんどのセラピストは英語のみを話しますが、あなたの言語を話す人を見つけるために連絡してみることはできます。あなたの言語を話す認定セラピストを知っている場合は、",
         "contactForm": "お問い合わせフォーム",
         "organizations": {

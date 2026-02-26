@@ -74,7 +74,7 @@
     },
     "donate": {
       "title": "Unterstütze unsere Arbeit",
-      "description": "Hilf uns, diese Ressource für diejenigen verfügbar zu halten, die sie am meisten brauchen.",
+      "description": "Ich habe viel von meiner eigenen Zeit und meinem Geld in dieses Projekt investiert. Deine Spende würde mir sehr bei den Hosting- und AI-Token-Kosten helfen und die kontinuierliche Entwicklung unterstützen.",
       "button": "Spenden",
       "card": {
         "title": "Spenden nötig, um {site} am Leben zu erhalten!",
@@ -103,11 +103,14 @@
         "line6": "Wir ernten, was wir säen,",
         "line7": "Aber dadurch können wir wachsen..."
       },
-      "openSource": "Ein Open-Source-Projekt von",
+      "openSource": "<project>ein Open-Source-Projekt</project> von <author>Peter James Steven</author>",
       "madeWithLove": "Mit Liebe gemacht in Wellington, Neuseeland",
       "donatePrompt": "Bitte spende, wenn du kannst,",
       "beKind": "Und sei nett zueinander."
     },
+    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
+    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
     "browseConversations": "Alle Gespräche durchsuchen"
   },
   "header": {
@@ -373,7 +376,7 @@
   "donatePage": {
     "title": "Halte Detrans.AI am Laufen",
     "description1": "Wenn du die Arbeit, die ich in diese Seite gesteckt habe, zu schätzen weißt oder wenn dir dieser kostenlose Service geholfen hat, erwäge bitte eine einmalige oder regelmäßige Spende, um <b>detrans.ai</b> online zu halten.",
-    "description2": "Ich kann mir nicht leisten, einen ressourcenintensiven Service wie diesen ohne deine Unterstützung zu betreiben. Meine Haupteinkommensquelle ist derzeit staatliche Unterstützung und zum Zeitpunkt des Schreibens habe ich weniger als 1000 $ auf meinem Bankkonto. Wenn diese Seite durch die Decke geht, könnte ich Rechnungen über Tausende von Dollar bekommen. Wenn mir das Geld ausgeht, wird die Möglichkeit, eigene Fragen zu stellen und Themen durch Folgefragen tiefer zu erkunden, deaktiviert und ich werde nur gecachte Antworten auf die Fragen im Portal ausliefern.",
+    "description2": "Ich habe viel von meiner eigenen Zeit und meinem Geld in dieses Projekt investiert. Deine Spende würde mir sehr bei den Hosting- und AI-Token-Kosten helfen und die kontinuierliche Entwicklung unterstützen. Ich habe im Moment kein stabiles Einkommen, und wenn mir das Geld ausgeht, wird die Möglichkeit, eigene Fragen zu stellen und Themen durch Folgefragen tiefer zu erkunden, deaktiviert und ich werde nur gecachte Antworten auf die Fragen im Portal ausliefern.",
     "description3": "Bitte erwäge eine monatliche Spende. Du kannst unten über Paypal spenden, direkt auf mein neuseeländisches Bankkonto oder mit BTC.",
     "bankAccount": "Neuseeländisches Bankkonto",
     "accountName": "Name",
@@ -579,6 +582,7 @@
       },
       "findTherapist": {
         "title": "Wo finde ich einen Therapeuten, der Gender Exploratory Therapy praktiziert?",
+        "sidebar": "Find therapists",
         "languageNotice": "Die meisten aufgeführten Therapeuten sprechen nur Englisch, aber du kannst immer versuchen, sie zu kontaktieren, um jemanden zu finden, der deine Sprache spricht. Wenn du einen lizenzierten Therapeuten kennst, der deine Sprache spricht, kannst du vorschlagen, ihn über das",
         "contactForm": "Kontaktformular",
         "organizations": {

@@ -13,6 +13,7 @@ export const pathnames = {
   // Static routes with translations
   "/about": {
     en: "/about",
+    ar: "/hawlana",
     bg: "/za-nas",
     cz: "/o-nas",
     da: "/om-os",
@@ -47,6 +48,7 @@ export const pathnames = {
   },
   "/contact": {
     en: "/contact",
+    ar: "/ittisal",
     bg: "/kontakt",
     cz: "/kontakt",
     da: "/kontakt",
@@ -81,6 +83,7 @@ export const pathnames = {
   },
   "/support": {
     en: "/support",
+    ar: "/daam",
     bg: "/podkrepa",
     cz: "/podpora",
     da: "/support",
@@ -115,6 +118,7 @@ export const pathnames = {
   },
   "/videos": {
     en: "/videos",
+    ar: "/videos",
     bg: "/video",
     cz: "/videa",
     da: "/videoer",
@@ -149,6 +153,7 @@ export const pathnames = {
   },
   "/stories": {
     en: "/stories",
+    ar: "/qisas",
     bg: "/istorii",
     cz: "/pribehy",
     da: "/historier",
@@ -183,6 +188,7 @@ export const pathnames = {
   },
   "/studies": {
     en: "/studies",
+    ar: "/dirasat",
     bg: "/izsledvaniya",
     cz: "/studie",
     da: "/studier",
@@ -217,6 +223,7 @@ export const pathnames = {
   },
   "/definitions": {
     en: "/definitions",
+    ar: "/taarifat",
     bg: "/definitsii",
     cz: "/definice",
     da: "/definitioner",
@@ -251,6 +258,7 @@ export const pathnames = {
   },
   "/donate": {
     en: "/donate",
+    ar: "/tبرع",
     bg: "/daritelska-kamapaniya",
     cz: "/darovat",
     da: "/doner",
@@ -285,6 +293,7 @@ export const pathnames = {
   },
   "/terms": {
     en: "/terms",
+    ar: "/shurut",
     bg: "/usloviya",
     cz: "/podminky",
     da: "/vilkar",
@@ -319,6 +328,7 @@ export const pathnames = {
   },
   "/prompts": {
     en: "/prompts",
+    ar: "/tعليمات",
     bg: "/instryktsii",
     cz: "/pokyny",
     da: "/instruktioner",
@@ -353,6 +363,7 @@ export const pathnames = {
   },
   "/participate": {
     en: "/participate",
+    ar: "/mushاركة",
     bg: "/uchastie",
     cz: "/ucast",
     da: "/deltag",
@@ -387,6 +398,7 @@ export const pathnames = {
   },
   "/conversations": {
     en: "/conversations",
+    ar: "/muhادثات",
     bg: "/razgovori",
     cz: "/rozhovory",
     da: "/samtaler",
@@ -422,6 +434,7 @@ export const pathnames = {
   // Dynamic routes - keep data-driven parts as-is
   "/stories/[username]": {
     en: "/stories/[username]",
+    ar: "/qisas/[username]",
     bg: "/istorii/[username]",
     cz: "/pribehy/[username]",
     da: "/historier/[username]",
@@ -456,6 +469,7 @@ export const pathnames = {
   },
   "/videos/[slug]": {
     en: "/videos/[slug]",
+    ar: "/videos/[slug]",
     bg: "/video/[slug]",
     cz: "/videa/[slug]",
     da: "/videoer/[slug]",

@@ -74,12 +74,12 @@
     },
     "donate": {
       "title": "우리의 작업 지원하기",
-      "description": "가장 필요로 하는 사람들을 위해 이 자원을 유지하는 데 도움을 주세요.",
+      "description": "이 프로젝트에 저의 많은 시간과 돈을 투자했습니다. 여러분의 기부는 호스팅 및 AI 토큰 비용에 큰 도움이 되며 지속적인 개발을 지원할 것입니다.",
       "button": "기부하기",
       "card": {
         "title": "{site}를 유지하기 위해 기부가 필요합니다!",
         "description": "이 물가 서비스를 감사히 여기신다면 기부를 고려해 주세요.",
-        "description2": "돈이 떨어지면 자신의 질문을 할 수 없는 캐시 전용 모드로 실행됩니다.",
+        "description2": "지금 안정적인 수입이 없고, 돈이 떨어지면 자신의 질문을 할 수 없는 캐시 전용 모드로 실행됩니다.",
         "button": "기부하기"
       }
     },
@@ -102,11 +102,14 @@
         "line6": "우리는 심은 대로 거둡니다,",
         "line7": "하지만 이를 통해 우리는 성장할 수 있습니다..."
       },
-      "openSource": "오픈 소스 프로젝트 by",
+      "openSource": "<project>오픈 소스 프로젝트</project> by <author>Peter James Steven</author>",
       "madeWithLove": "웰링턴, 뉴질랜드에서 사랑으로 제작됨",
       "donatePrompt": "가능하다면 기부해 주세요,",
       "beKind": "그리고 서로에게 친절하세요."
     },
+    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
+    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
     "browseConversations": "모든 대화 둘러보기"
   },
   "header": {
@@ -374,7 +377,7 @@
   "donatePage": {
     "title": "Detrans.AI 운영 유지",
     "description1": "이 사이트에 제가 투입한 작업을 감사히 여기시거나 이 무료 서비스가 도움이 되셨다면 <b>detrans.ai</b>를 온라인으로 유지하기 위해 일회성 또는 정기 기부를 고려해 주세요.",
-    "description2": "당신의 지원 없이는 이러한 자원 집약적인 서비스를 운영할 수 없습니다. 현재 제 주요 수입원은 정부 복지이며, 이 글을 쓰는 시점에서 제 은행 계좌에 1000달러 미만이 있습니다. 이 사이트가 인기를 끌면 수천 달러의 청구서를 받을 수 있습니다. 돈이 떨어지면 자신의 질문을 하고 후속 질문을 통해 주제를 더 깊이 탐구하는 기능이 비활성화되고 포털의 질문에 대해서만 캐시된 응답을 제공할 것입니다.",
+    "description2": "이 프로젝트에 저의 많은 시간과 돈을 투자했습니다. 여러분의 기부는 호스팅 및 AI 토큰 비용에 큰 도움이 되며 지속적인 개발을 지원할 것입니다. 지금 안정적인 수입이 없고, 돈이 떨어지면 자신의 질문을 하고 후속 질문을 통해 주제를 더 깊이 탐구하는 기능이 비활성화되고 포털의 질문에 대해서만 캐시된 응답을 제공할 것입니다.",
     "description3": "월간 기부를 고려해 주세요. 아래 페이팔을 사용하거나 뉴질랜드 은행 계좌로 직접 또는 BTC로 기부할 수 있습니다.",
     "bankAccount": "뉴질랜드 은행 계좌",
     "accountName": "이름",
@@ -580,6 +583,7 @@
       },
       "findTherapist": {
         "title": "성별 탐구적 치료를 실시하는 치료사를 어디서 찾을 수 있나요?",
+        "sidebar": "Find therapists",
         "languageNotice": "대부분 나열된 치료사는 영어만 구사하지만, 여전히 귀하의 언어를 구사하는 사람을 찾기 위해 연락해 볼 수 있습니다. 귀하의 언어를 구사하는 자격을 갖춘 치료사를 알고 있다면",
         "contactForm": "연락처 양식",
         "organizations": {

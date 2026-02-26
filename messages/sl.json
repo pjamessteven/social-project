@@ -74,7 +74,7 @@
     },
     "donate": {
       "title": "Podprite naše delo",
-      "description": "Pomagajte nam ohraniti ta vir na voljo tistim, ki ga najbolj potrebujejo.",
+      "description": "V ta projekt sem vložil veliko svojega časa in denarja. Vaša donacija bi mi zelo pomagala pri stroških gostovanja in žetonov AI ter bo podpirala stalni razvoj.",
       "button": "Donirajte",
       "card": {
         "title": "Potrebne so donacije, da {site} ostane živ!",
@@ -103,11 +103,14 @@
         "line6": "Žanjemo, kar sejemo,",
         "line7": "Toda skozi to lahko rastemo..."
       },
-      "openSource": "Odprtokodni projekt avtorja",
+      "openSource": "<project>odprtokodni projekt</project> avtorja <author>Peter James Steven</author>",
       "madeWithLove": "Narejeno z ljubeznijo v Wellingtonu, Nova Zelandija",
       "donatePrompt": "Prosim, donirajte, če lahko,",
       "beKind": "In bodite prijazni med seboj."
     },
+    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
+    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
     "browseConversations": "Brskajte po vseh pogovorih"
   },
   "header": {
@@ -377,7 +380,7 @@
   "donatePage": {
     "title": "Ohranite Detrans.AI v teku",
     "description1": "Če cenite delo, ki sem ga vložil v to spletno mesto, ali če vam je ta brezplačna storitev pomagala, prosimo, razmislite o enkratni ali redni donaciji, da ohranite <b>detrans.ai</b> na spletu.",
-    "description2": "Ne morem si privoščiti voditi vire intenzivne storitve, kot je ta, brez vaše podpore. Moj glavni vir dohodka trenutno je državna pomoč in v času pisanja tega imam manj kot 1000 $ na svojem bančnem računu. Če to spletno mesto eksplodira, bi lahko dobil račune v višini tisočev dolarjev. Če mi zmanjka denarja, bo možnost zastavljanja lastnih vprašanj in raziskovanja tem globlje s slednjimi vprašanji onemogočena in bom ponujal samo predpomnjene odgovore na vprašanja v portalu.",
+    "description2": "V ta projekt sem vložil veliko svojega časa in denarja. Vaša donacija bi mi zelo pomagala pri stroških gostovanja in žetonov AI ter bo podpirala stalni razvoj. Trenutno nimam stabilnega dohodka, in če mi zmanjka denarja, bo možnost zastavljanja lastnih vprašanj in raziskovanja tem globlje s slednjimi vprašanji onemogočena in bom ponujal samo predpomnjene odgovore na vprašanja v portalu.",
     "description3": "Prosim, razmislite o mesečni donaciji. Lahko donirate z uporabo PayPala spodaj, neposredno na moj novozelandski bančni račun ali z BTC.",
     "bankAccount": "Novozelandski bančni račun",
     "accountName": "Ime",
@@ -583,6 +586,7 @@
       },
       "findTherapist": {
         "title": "Kje lahko najdem terapevta, ki izvaja raziskovalno terapijo spola?",
+        "sidebar": "Find therapists",
         "languageNotice": "Večina navedenih terapevtov govori samo angleško, vendar jih lahko še vedno kontaktirate, da poiščete nekoga, ki govori vaš jezik. Če poznate licenciranega terapevta, ki govori vaš jezik, ga lahko predlagate za dodajanje na to stran preko",
         "contactForm": "kontaktnega obrazca",
         "organizations": {

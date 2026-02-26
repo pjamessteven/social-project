@@ -11,10 +11,11 @@ import {
 import { Label } from "@/app/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/app/components/ui/radio-group";
 import { cn, uuidv4 } from "@/app/lib/utils";
+import { Link } from "@/i18n/routing";
 import { useChatStore } from "@/stores/chat-store";
 import { ChatMessage, ChatMessages, useChatUI } from "@llamaindex/chat-ui";
 import { Download, RefreshCcw } from "lucide-react";
-import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ChatMessageAvatar } from "./chat-avatar";
@@ -35,6 +36,7 @@ export default function CustomChatMessages({
   const { messages, stop } = useChatUI();
   const { chatStatus } = useChatStore();
   const router = useRouter();
+  const t = useTranslations();
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   // Scroll to bottom every time messages update
@@ -91,6 +93,9 @@ export default function CustomChatMessages({
 
   return (
     <ChatMessages className="!bg-transparent !p-0">
+      <div className="text-muted-foreground border-b pb-4 text-center">
+        {t("home.privacyDisclaimer")}
+      </div>
       <ChatMessages.List className="!overflow-visible pb-28">
         {messages.map((message, index) => {
           const isLast = index === messages.length - 1;
@@ -206,12 +211,14 @@ export default function CustomChatMessages({
                 }
                 className="space-y-3"
               >
+                {/*
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="pdf" id="pdf" />
                   <Label htmlFor="pdf" className="cursor-pointer">
                     PDF Document
                   </Label>
                 </div>
+                 */}
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="rtf" id="rtf" />
                   <Label htmlFor="rtf" className="cursor-pointer">

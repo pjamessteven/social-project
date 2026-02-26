@@ -74,7 +74,7 @@
     },
     "donate": {
       "title": "Støtt arbeidet vårt",
-      "description": "Hjelp oss å holde denne ressursen tilgjengelig for dem som trenger den mest.",
+      "description": "Jeg har lagt mye av min egen tid og penger i dette prosjektet. Donasjonen din ville hjulpet meg mye med hosting- og AI-token-kostnader og vil støtte kontinuerlig utvikling.",
       "button": "Doner",
       "card": {
         "title": "Donasjoner trengs for å holde {site} i live!",
@@ -103,11 +103,14 @@
         "line6": "Vi høster det vi sår,",
         "line7": "Men gjennom dette kan vi vokse..."
       },
-      "openSource": "Et åpen kildekode-prosjekt av",
+      "openSource": "<project>et åpen kildekode-prosjekt</project> av <author>Peter James Steven</author>",
       "madeWithLove": "Laget med kjærlighet i Wellington, New Zealand",
       "donatePrompt": "Vennligst doner hvis du kan,",
       "beKind": "Og vær snille mot hverandre."
     },
+    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
+    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
     "browseConversations": "Bla gjennom alle samtaler"
   },
   "header": {
@@ -377,7 +380,7 @@
   "donatePage": {
     "title": "Hold Detrans.AI i drift",
     "description1": "Hvis du setter pris på arbeidet jeg har lagt i dette nettstedet, eller hvis denne gratis tjenesten har hjulpet deg, vurder å gi en engangs- eller regelmessig donasjon for å holde <b>detrans.ai</b> på nett.",
-    "description2": "Jeg har ikke råd til å drive en ressurskrevende tjeneste som dette uten din støtte. Min hovedinntektskilde for øyeblikket er statlig velferd, og per nå har jeg mindre enn $1000 på bankkontoen min. Hvis dette nettstedet blir populært kan jeg få regninger på tusenvis av dollar. Hvis jeg går tom for penger, vil muligheten til å stille egne spørsmål og utforske temaer dypere gjennom oppfølgingsspørsmål bli deaktivert, og jeg vil bare betjente hurtigbufrede svar på spørsmålene i portalen.",
+    "description2": "Jeg har lagt mye av min egen tid og penger i dette prosjektet. Donasjonen din ville hjulpet meg mye med hosting- og AI-token-kostnader og vil støtte kontinuerlig utvikling. Jeg har ikke en stabil inntekt akkurat nå, og hvis jeg går tom for penger, vil muligheten til å stille egne spørsmål og utforske temaer dypere gjennom oppfølgingsspørsmål bli deaktivert, og jeg vil bare betjente hurtigbufrede svar på spørsmålene i portalen.",
     "description3": "Vurder en månedlig donasjon. Du kan donere via paypal nedenfor, direkte til min newzealandske bankkonto eller med BTC.",
     "bankAccount": "Newzealandsk bankkonto",
     "accountName": "Navn",
@@ -583,6 +586,7 @@
       },
       "findTherapist": {
         "title": "Hvor kan jeg finne en terapeut som praktiserer kjønnsutforskende terapi?",
+        "sidebar": "Find therapists",
         "languageNotice": "De fleste terapeuter som er oppført, snakker bare engelsk, men du kan fortsatt prøve å kontakte dem for å finne noen som snakker ditt språk. Hvis du kjenner til en lisensiert terapeut som snakker ditt språk, kan du foreslå å legge dem til på denne siden via",
         "contactForm": "kontaktskjemaet",
         "organizations": {

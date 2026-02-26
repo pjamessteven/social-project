@@ -74,7 +74,7 @@
     },
     "donate": {
       "title": "Wesprzyj naszą pracę",
-      "description": "Pomóż nam utrzymać tę zasobę dostępną dla tych, którzy jej najbardziej potrzebują.",
+      "description": "Zainwestowałem dużo własnego czasu i pieniędzy w ten projekt. Twoja darowizna bardzo by mi pomogła w pokryciu kosztów hostingu i tokenów AI oraz wesprze ciągły rozwój.",
       "button": "Wesprzyj",
       "card": {
         "title": "Potrzebne są darowizny, aby utrzymać {site} przy życiu!",
@@ -103,11 +103,14 @@
         "line6": "Zbieramy to, co zasialiśmy,",
         "line7": "Ale przez to możemy rosnąć..."
       },
-      "openSource": "Projekt open-source stworzony przez",
+      "openSource": "<project>projekt open-source</project> stworzony przez <author>Peter James Steven</author>",
       "madeWithLove": "Stworzone z miłością w Wellington, Nowa Zelandia",
       "donatePrompt": "Proszę o darowiznę, jeśli możesz,",
       "beKind": "I bądźmy dla siebie życzliwi."
     },
+    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
+    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
     "browseConversations": "Przeglądaj wszystkie rozmowy"
   },
   "header": {
@@ -376,7 +379,7 @@
   "donatePage": {
     "title": "Utrzymaj Detrans.AI przy życiu",
     "description1": "Jeśli doceniasz pracę, którą włożyłem w tę stronę, lub jeśli ta darmowa usługa Ci pomogła, rozważ proszę jednorazową lub regularną darowiznę, aby utrzymać <b>detrans.ai</b> online.",
-    "description2": "Nie stać mnie na prowadzenie tak zasobochłonnej usługi bez Twojego wsparcia. Moim głównym źródłem dochodu w tej chwili jest zasiłek socjalny, a w chwili pisania tego tekstu mam mniej niż 1000 USD na koncie bankowym. Jeśli ta strona zyska popularność, mogę dostać rachunki na tysiące dolarów. Jeśli zabraknie mi pieniędzy, możliwość zadawania własnych pytań i głębszego eksplorowania tematów poprzez pytania uzupełniające zostanie wyłączona, a będę serwował tylko buforowane odpowiedzi na pytania w portalu.",
+    "description2": "Zainwestowałem dużo własnego czasu i pieniędzy w ten projekt. Twoja darowizna bardzo by mi pomogła w pokryciu kosztów hostingu i tokenów AI oraz wesprze ciągły rozwój. Nie mam teraz stabilnego dochodu, i jeśli zabraknie mi pieniędzy, możliwość zadawania własnych pytań i głębszego eksplorowania tematów poprzez pytania uzupełniające zostanie wyłączona, a będę serwował tylko buforowane odpowiedzi na pytania w portalu.",
     "description3": "Rozważ proszę comiesięczną darowiznę. Możesz wpłacić darowiznę poniżej za pomocą PayPal, bezpośrednio na moje nowozelandzkie konto bankowe lub za pomocą BTC.",
     "bankAccount": "Konto bankowe w Nowej Zelandii",
     "accountName": "Imię i nazwisko",
@@ -582,6 +585,7 @@
       },
       "findTherapist": {
         "title": "Gdzie mogę znaleźć terapeutę praktykującego terapię eksploracyjną płci?",
+        "sidebar": "Find therapists",
         "languageNotice": "Większość wymienionych terapeutów mówi tylko po angielsku, ale nadal możesz spróbować się z nimi skontaktować, aby znaleźć kogoś, kto mówi Twoim językiem. Jeśli znasz licencjonowanego terapeutę mówiącego Twoim językiem, możesz zasugerować dodanie go do tej strony poprzez",
         "contactForm": "formularz kontaktowy",
         "organizations": {

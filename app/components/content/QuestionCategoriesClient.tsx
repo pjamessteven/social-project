@@ -27,9 +27,9 @@ import { questionCategories as questionCategoriesRu } from "@/app/lib/questions.
 import { questionCategories as questionCategoriesSl } from "@/app/lib/questions.sl";
 import { questionCategories as questionCategoriesSv } from "@/app/lib/questions.sv";
 import { questionCategories as questionCategoriesTh } from "@/app/lib/questions.th";
-import { questionCategories as questionCategoriesVi } from "@/app/lib/questions.vi";
 import { questionCategories as questionCategoriesTr } from "@/app/lib/questions.tr";
 import { questionCategories as questionCategoriesUk } from "@/app/lib/questions.uk";
+import { questionCategories as questionCategoriesVi } from "@/app/lib/questions.vi";
 import { questionCategories as questionCategoriesZhCn } from "@/app/lib/questions.zh-cn";
 import { questionCategories as questionCategoriesZhTw } from "@/app/lib/questions.zh-tw";
 import { cn, slugify } from "@/app/lib/utils";
@@ -86,7 +86,8 @@ export function QuestionCategoriesClient({
   const isRtl = useIsRtl();
 
   // Select the appropriate question set based on locale, fallback to English
-  const questionCategories = questionCategoriesMap[locale] || questionCategoriesEn;
+  const questionCategories =
+    questionCategoriesMap[locale] || questionCategoriesEn;
 
   const questions = questionCategories;
 
@@ -98,13 +99,19 @@ export function QuestionCategoriesClient({
           type="single"
           collapsible
           dir={isRtl ? "rtl" : "ltr"}
-          className="w-full border-b"
+          className={cn(
+            "w-full",
+            categoryIndex < questions.length - 1 && "border-b",
+          )}
         >
           <AccordionItem
             value="disclaimer"
             className="overflow-hidden border-none"
           >
-            <AccordionTrigger isRtl={isRtl} className="py-3 text-base !font-normal hover:no-underline">
+            <AccordionTrigger
+              isRtl={isRtl}
+              className="py-3 text-base !font-normal hover:no-underline"
+            >
               <div className={isRtl ? "text-right" : "text-left"}>
                 <h3 className="text-primary mb-1 text-lg font-semibold">
                   {category.title}
@@ -120,7 +127,7 @@ export function QuestionCategoriesClient({
                   (question: string, questionIndex: number) => (
                     <Link
                       prefetch={false}
-                      href={"/research/" + slugify(question) as any}
+                      href={("/research/" + slugify(question)) as any}
                       key={questionIndex}
                     >
                       <div
@@ -130,20 +137,28 @@ export function QuestionCategoriesClient({
                             "border-b pb-2",
                         )}
                       >
-                        <div className={cn(
-                          "text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start text-lg italic opacity-90 transition-colors",
-                          isRtl && "flex-row-reverse"
-                        )}>
-                          <span className={cn(
-                            "whitespace-nowrap",
-                            isRtl ? "ml-2" : "mr-2"
-                          )}>
+                        <div
+                          className={cn(
+                            "text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start text-lg italic opacity-90 transition-colors",
+                            isRtl && "flex-row-reverse",
+                          )}
+                        >
+                          <span
+                            className={cn(
+                              "whitespace-nowrap",
+                              isRtl ? "ml-2" : "mr-2",
+                            )}
+                          >
                             {isRtl ? "<-" : "->"}
                           </span>
-                          <span className={cn(
-                            isRtl ? "pl-2" : "pr-2",
-                            isRtl && "text-right"
-                          )}>{question}</span>
+                          <span
+                            className={cn(
+                              isRtl ? "pl-2" : "pr-2",
+                              isRtl && "text-right",
+                            )}
+                          >
+                            {question}
+                          </span>
                         </div>
                       </div>
                     </Link>

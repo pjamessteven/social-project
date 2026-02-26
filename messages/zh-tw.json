@@ -74,7 +74,7 @@
     },
     "donate": {
       "title": "支援我們的工作",
-      "description": "幫助我們保持這個資源的可用性，服務於最需要的人。",
+      "description": "我在這個項目上投入了大量自己的時間和金錢。你的捐款將大大幫助我支付託管和AI代幣成本，並支持持續開發。",
       "button": "捐款",
       "card": {
         "title": "需要捐款來維持{site}的運作！",
@@ -103,11 +103,14 @@
         "line6": "我們種什麼就收什麼，",
         "line7": "但透過這些我們可以成長..."
       },
-      "openSource": "一個開源專案，由",
+      "openSource": "<project>一個開源專案</project>，由 <author>Peter James Steven</author>",
       "madeWithLove": "在紐西蘭威靈頓用愛製作",
       "donatePrompt": "如果可以的話請捐款，",
       "beKind": "並善待彼此。"
     },
+    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
+    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
     "browseConversations": "瀏覽所有對話"
   },
   "header": {
@@ -377,7 +380,7 @@
   "donatePage": {
     "title": "保持Detrans.AI運作",
     "description1": "如果你欣賞我投入這個網站的工作，或者這個免費服務幫助了你，請考慮一次性或定期捐款以保持<b>detrans.ai</b>線上。",
-    "description2": "沒有你的支持，我無法負擔運行這樣一個資源密集型服務。我目前的主要收入來源是政府福利，截至撰寫本文時，我的銀行帳戶裡不到1000美元。如果這個網站爆紅，我可能會收到數千美元的帳單。如果我資金耗盡，提出自己的問題和透過後續問題深入探索話題的功能將被禁用，我將只提供對入口中問題的快取回覆。",
+    "description2": "我在這個項目上投入了大量自己的時間和金錢。你的捐款將大大幫助我支付託管和AI代幣成本，並支持持續開發。我目前沒有穩定的收入，如果我資金耗盡，提出自己的問題和透過後續問題深入探索話題的功能將被禁用，我將只提供對入口中問題的快取回覆。",
     "description3": "請考慮每月捐款。你可以使用下面的PayPal直接捐款到我的紐西蘭銀行帳戶或使用BTC。",
     "bankAccount": "紐西蘭銀行帳戶",
     "accountName": "姓名",
@@ -583,6 +586,7 @@
       },
       "findTherapist": {
         "title": "在哪裡可以找到實踐性別探索性治療的治療師？",
+        "sidebar": "Find therapists",
         "languageNotice": "大多數列出的治療師只說英語，但你仍然可以嘗試聯繫他們以找到會說你語言的人。如果你知道會說你語言的持證治療師，你可以建議透過",
         "contactForm": "聯絡表單",
         "organizations": {
