@@ -108,9 +108,9 @@
       "donatePrompt": "โปรดบริจาคหากคุณสามารถทำได้",
       "beKind": "และเป็นมิตรต่อกัน"
     },
-    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
-    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
+    "privacyDisclaimer": "กรุณาอย่าแชร์ข้อมูลส่วนบุคคลที่อาจใช้ระบุตัวตนของคุณ",
+    "memberCountDisclaimer": "*50,000+ หมายถึงสมาชิกของ <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "สมาชิก 50,000+ คนใน <a>/r/detrans subreddit</a>",
     "browseConversations": "ดูการสนทนาทั้งหมด"
   },
   "header": {

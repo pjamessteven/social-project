@@ -108,9 +108,9 @@
       "donatePrompt": "Kérlek, adományozz, ha tudsz,",
       "beKind": "És légy kedves egymáshoz."
     },
-    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
-    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
+    "privacyDisclaimer": "Kérjük, ne osszon meg személyes információt, amellyel azonosítani lehetne Önt.",
+    "memberCountDisclaimer": "*50,000+ a <a>/r/detrans subreddit</a> tagjaira vonatkozik",
+    "memberCountDisclaimerMobile": "50,000+ tag a <a>/r/detrans subreddit</a>-ben",
     "browseConversations": "Összes Beszélgetés Böngészése"
   },
   "header": {

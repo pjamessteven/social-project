@@ -107,9 +107,9 @@
       "donatePrompt": "가능하다면 기부해 주세요,",
       "beKind": "그리고 서로에게 친절하세요."
     },
-    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
-    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
+    "privacyDisclaimer": "신원 확인에 사용될 수 있는 개인 정보를 공유하지 마세요.",
+    "memberCountDisclaimer": "*50,000+는 <a>/r/detrans subreddit</a> 회원을 의미합니다",
+    "memberCountDisclaimerMobile": "<a>/r/detrans subreddit</a>의 50,000+ 회원",
     "browseConversations": "모든 대화 둘러보기"
   },
   "header": {
