@@ -74,7 +74,7 @@
     },
     "donate": {
       "title": "Steun Ons Werk",
-      "description": "Help ons deze bron beschikbaar te houden voor degenen die het het meest nodig hebben.",
+      "description": "Ik heb veel van mijn eigen tijd en geld in dit project gestoken. Je donatie zou me enorm helpen met hosting- en AI-tokenkosten en zal de voortdurende ontwikkeling ondersteunen.",
       "button": "Doneer",
       "card": {
         "title": "Donaties nodig om {site} in leven te houden!",
@@ -103,11 +103,14 @@
         "line6": "We oogsten wat we zaaien,",
         "line7": "Maar hierdoor kunnen we groeien..."
       },
-      "openSource": "Een open-source project door",
+      "openSource": "<project>een open-source project</project> door <author>Peter James Steven</author>",
       "madeWithLove": "Gemaakt met liefde in Wellington, NZ",
       "donatePrompt": "Doneer alsjeblieft als je kunt,",
       "beKind": "En wees aardig voor elkaar."
     },
+    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
+    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
     "browseConversations": "Bekijk alle Gesprekken"
   },
   "header": {
@@ -375,7 +378,7 @@
   "donatePage": {
     "title": "Houd Detrans.AI Draaiende",
     "description1": "Als je het werk dat ik in deze site heb gestoken waardeert of als deze gratis service je heeft geholpen, overweeg dan een eenmalige of regelmatige donatie te doen om <b>detrans.ai</b> online te houden.",
-    "description2": "Ik kan me een resource-intensieve service zoals deze niet veroorloven zonder jouw steun. Mijn hoofdinkomstenbron op dit moment is een uitkering en op het moment van schrijven heb ik minder dan $1000 op mijn bankrekening. Als deze site explodeert, zou ik rekeningen voor duizenden dollars kunnen krijgen. Als ik zonder geld zit, wordt de mogelijkheid om je eigen vragen te stellen en onderwerpen dieper te verkennen door vervolgvragen uitgeschakeld en zal ik alleen gecachete reacties serveren op de vragen in het portaal.",
+    "description2": "Ik heb veel van mijn eigen tijd en geld in dit project gestoken. Je donatie zou me enorm helpen met hosting- en AI-tokenkosten en zal de voortdurende ontwikkeling ondersteunen. Ik heb op dit moment geen stabiel inkomen, en als ik zonder geld zit, wordt de mogelijkheid om je eigen vragen te stellen en onderwerpen dieper te verkennen door vervolgvragen uitgeschakeld en zal ik alleen gecachete reacties serveren op de vragen in het portaal.",
     "description3": "Overweeg alsjeblieft een maandelijkse donatie. Je kunt hieronder doneren met paypal, rechtstreeks naar mijn Nieuw-Zeelandse bankrekening of met BTC.",
     "bankAccount": "Nieuw-Zeelandse Bankrekening",
     "accountName": "Naam",
@@ -581,6 +584,7 @@
       },
       "findTherapist": {
         "title": "Waar kan ik een therapeut vinden die gender explorerende therapie beoefent?",
+        "sidebar": "Find therapists",
         "languageNotice": "De meeste therapeuten die worden vermeld, spreken alleen Engels, maar je kunt nog steeds proberen contact met hen op te nemen om iemand te vinden die jouw taal spreekt. Als je een bevoegde therapeut kent die jouw taal spreekt, kun je deze via het",
         "contactForm": "contactformulier",
         "organizations": {

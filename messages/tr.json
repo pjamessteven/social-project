@@ -74,12 +74,12 @@
     },
     "donate": {
       "title": "Çalışmamızı Destekleyin",
-      "description": "Bu kaynağın en çok ihtiyacı olanlar için kullanılabilir durumda kalmasına yardımcı olun.",
+      "description": "Bu projeye kendi zamanımın ve paramın çoğunu harcadım. Bağışınız, barındırma ve AI token maliyetlerimde bana çok yardımcı olacak ve sürekli geliştirmeyi destekleyecek.",
       "button": "Bağış Yap",
       "card": {
         "title": "{site}'i ayakta tutmak için bağışlara ihtiyaç var!",
         "description": "Bu ücretsiz hizmeti takdir ediyorsanız lütfen bağış yapmayı düşünün.",
-        "description2": "Param biterse site önbellek-only modunda çalıştırılacak ve kendi sorularınızı sorma imkanı olmayacak.",
+        "description2": "Şu an istikrarlı bir gelirim yok ve param biterse site önbellek-only modunda çalıştırılacak ve kendi sorularınızı sorma imkanı olmayacak.",
         "button": "Bağış yap"
       }
     },
@@ -103,11 +103,14 @@
         "line6": "Ektiğimizi biçeriz,",
         "line7": "Ama bunun aracılığıyla büyüyebiliriz..."
       },
-      "openSource": "Açık kaynak projesi:",
+      "openSource": "<project>açık kaynak projesi</project>: <author>Peter James Steven</author>",
       "madeWithLove": "Wellington, NZ'de sevgiyle yapıldı",
       "donatePrompt": "Eğer yapabiliyorsanız lütfen bağış yapın,",
       "beKind": "Ve birbirinize nazik olun."
     },
+    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
+    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
     "browseConversations": "Tüm Konuşmaları Göz At"
   },
   "header": {
@@ -376,7 +379,7 @@
   "donatePage": {
     "title": "Detrans.AI'yi Çalışır Durumda Tutun",
     "description1": "Bu siteye koyduğum emeği takdir ediyorsanız veya bu ücretsiz hizmet size yardımcı olduysa, lütfen <b>detrans.ai</b>'yi çevrimiçi tutmak için tek seferlik veya düzenli bir bağış yapmayı düşünün.",
-    "description2": "Desteğiniz olmadan bu tür kaynak yoğun bir hizmeti karşılayamam. Şu anki ana gelir kaynağım hükümet yardımı ve bunu yazdığımda banka hesabımda 1000 dolardan az param var. Eğer bu site patlarsa binlerce dolarlık faturalar alabilirim. Param biterse, kendi sorularınızı sorma ve takip soruları aracılığıyla konuları daha derinlemesine keşfetme yeteneği devre dışı bırakılacak ve portaldaki sorulara yalnızca önbelleğe alınmış yanıtlar sunacağım.",
+    "description2": "Bu projeye kendi zamanımın ve paramın çoğunu harcadım. Bağışınız, barındırma ve AI token maliyetlerimde bana çok yardımcı olacak ve sürekli geliştirmeyi destekleyecek. Şu an istikrarlı bir gelirim yok ve param biterse, kendi sorularınızı sorma ve takip soruları aracılığıyla konuları daha derinlemesine keşfetme yeteneği devre dışı bırakılacak ve portaldaki sorulara yalnızca önbelleğe alınmış yanıtlar sunacağım.",
     "description3": "Lütfen aylık bir bağış yapmayı düşünün. Aşağıdaki paypal kullanarak, doğrudan Yeni Zelanda banka hesabıma veya BTC ile bağış yapabilirsiniz.",
     "bankAccount": "Yeni Zelanda Banka Hesabı",
     "accountName": "İsim",
@@ -582,6 +585,7 @@
       },
       "findTherapist": {
         "title": "Cinsiyet keşifsel terapi uygulayan bir terapisti nerede bulabilirim?",
+        "sidebar": "Find therapists",
         "languageNotice": "Listelenen çoğu terapist yalnızca İngilizce konuşuyor, ancak yine de dilinizi konuşan birini bulmak için onlarla iletişime geçmeyi deneyebilirsiniz. Eğer dilinizi konuşan lisanslı bir terapist biliyorsanız,",
         "contactForm": "iletişim formu",
         "organizations": {

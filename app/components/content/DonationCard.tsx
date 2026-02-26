@@ -1,8 +1,8 @@
 "use client";
 
+import { Link } from "@/i18n/routing";
 import { ExternalLink, HandCoins } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
 import { Button } from "../ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
@@ -15,14 +15,14 @@ export default function DonationCard({
   return (
     <Card
       className={
-        "!border-destructive reddit-card bg-destructive/5 dark:bg-destructive/40 border transition-all duration-300"
+        "!border-destructive/50 reddit-card bg-destructive/5 dark:bg-destructive/40 border transition-all duration-300"
       }
     >
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <HandCoins className="text-foreground mr-2 h-5 w-5" />
-            <CardTitle className="text-foreground dark:text-white">
+            <CardTitle className="text-foreground leading-normal dark:text-white">
               {t("title", {
                 site: "detrans.ai",
               })}

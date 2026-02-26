@@ -74,7 +74,7 @@
     },
     "donate": {
       "title": "Ủng Hộ Công Việc Của Chúng Tôi",
-      "description": "Giúp chúng tôi duy trì tài nguyên này cho những ngưởi cần nó nhất.",
+      "description": "Tôi đã bỏ rất nhiều thờ gian và tiền bạc của riêng mình vào dự án này. Sự quyên góp của bạn sẽ giúp tôi rất nhiều về chi phí lưu trữ và token AI, đồng thờ hỗ trợ phát triển liên tục.",
       "button": "Quyên Góp",
       "card": {
         "title": "Cần quyên góp để duy trì {site}!",
@@ -103,11 +103,14 @@
         "line6": "Chúng ta gặt những gì chúng ta gieo,",
         "line7": "Nhưng qua điều này chúng ta có thể trưởng thành..."
       },
-      "openSource": "Dự án mã nguồn mở của",
+      "openSource": "<project>dự án mã nguồn mở</project> của <author>Peter James Steven</author>",
       "madeWithLove": "Được tạo với tình yêu tại Wellington, New Zealand",
       "donatePrompt": "Vui lòng quyên góp nếu bạn có thể,",
       "beKind": "Và hãy tử tế với nhau."
     },
+    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
+    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
     "browseConversations": "Duyệt Tất Cả Cuộc Trò Chuyện"
   },
   "header": {
@@ -377,7 +380,7 @@
   "donatePage": {
     "title": "Duy Trì Detrans.AI Hoạt Động",
     "description1": "Nếu bạn đánh giá cao công việc tôi đã bỏ ra cho trang web này hoặc nếu dịch vụ miễn phí này đã giúp ích cho bạn, vui lòng cân nhắc quyên góp một lần hoặc định kỳ để duy trì <b>detrans.ai</b> trực tuyến.",
-    "description2": "Tôi không thể chi trả cho một dịch vụ tốn nhiều tài nguyên như thế này nếu không có sự hỗ trợ của bạn. Nguồn thu nhập chính của tôi vào lúc này là phúc lợi chính phủ và tính đến thời điểm viết bài này tôi có ít hơn $1000 trong tài khoản ngân hàng của mình. Nếu trang web này bùng nổ, tôi có thể nhận hóa đơn hàng nghìn đô la. Nếu tôi hết tiền, khả năng đặt câu hỏi của riêng bạn và khám phá các chủ đề sâu hơn thông qua các câu hỏi tiếp theo sẽ bị vô hiệu hóa và tôi sẽ chỉ phục vụ các phản hồi đã lưu trong bộ nhớ cache cho các câu hỏi trong cổng thông tin.",
+    "description2": "Tôi không thể chi trả cho một dịch vụ tốn nhiều tài nguyên như thế này nếu không có sự hỗ trợ của bạn. Nguồn thu nhập chính của tôi vào lúc này là phúc lợi chính phủ và tính đến thời điểm viết bài này tôi có ít hơn $1000 trong tài khoản ngân hàng của mình. Nếu trang web này bùng nổ, tôi có thể nhận hóa đơn hàng nghìn đô la. Tôi không có thu nhập ổn định ngay bây giờ, và nếu tôi hết tiền, khả năng đặt câu hỏi của riêng bạn và khám phá các chủ đề sâu hơn thông qua các câu hỏi tiếp theo sẽ bị vô hiệu hóa và tôi sẽ chỉ phục vụ các phản hồi đã lưu trong bộ nhớ cache cho các câu hỏi trong cổng thông tin.",
     "description3": "Vui lòng cân nhắc quyên góp hàng tháng. Bạn có thể quyên góp bằng paypal bên dưới, trực tiếp vào tài khoản ngân hàng New Zealand của tôi hoặc bằng BTC.",
     "bankAccount": "Tài Khoản Ngân Hàng New Zealand",
     "accountName": "Tên",
@@ -583,6 +586,7 @@
       },
       "findTherapist": {
         "title": "Tôi có thể tìm nhà trị liệu thực hành liệu pháp khám phá giới ở đâu?",
+        "sidebar": "Find therapists",
         "languageNotice": "Hầu hết các nhà trị liệu được liệt kê chỉ nói tiếng Anh, nhưng bạn vẫn có thể thử liên hệ với họ để tìm ngưởi nói ngôn ngữ của bạn. Nếu bạn biết một nhà trị liệu được cấp phép nói ngôn ngữ của bạn, bạn có thể đề xuất thêm họ vào trang này thông qua",
         "contactForm": "biểu mẫu liên hệ",
         "organizations": {

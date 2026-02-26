@@ -1,7 +1,7 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "./button";
 import {
@@ -57,23 +57,19 @@ export function ContentWarningDialog({ host }: ContentWarningDialogProps) {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>{t("title")}</DialogTitle>
-          <DialogDescription className="prose dark:prose-invert mt-2 text-base">
-            <p className="mb-3">
-              {t("description.line1")}
-            </p>
-            <p>
-              {t("description.line2")}
-            </p>
+          <DialogDescription className="prose dark:prose-invert mt-4 text-base">
+            <p>{t("description.line1")}</p>
+            <p>{t("description.line2")}</p>
 
-            <p>
-              {t("description.line3")}
-            </p>
+            <p>{t("description.line3")}</p>
           </DialogDescription>
         </DialogHeader>
-        <div className="mt-2 flex justify-end gap-2">
+        <div className="mt-3 flex justify-end gap-2">
           <Button onClick={handleExit}>{t("buttons.exit")}</Button>
 
-          <Button onClick={handleAccept}>{t("buttons.continue")}</Button>
+          <Button onClick={handleAccept}>
+            {t("buttons.continue")} {"->"}
+          </Button>
         </div>
       </DialogContent>
     </Dialog>

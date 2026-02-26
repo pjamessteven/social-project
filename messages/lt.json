@@ -74,7 +74,7 @@
     },
     "donate": {
       "title": "Paremkite mūsų darbą",
-      "description": "Padėkite mums išlaikyti šį išteklių tiems, kuriems jo labiausiai reikia.",
+      "description": "Į šį projektą įdėjau daug savo laiko ir pinigų. Jūsų auka labai padėtų man padengti prieglobos ir AI žetonų išlaidas ir palaikytų nuolatinį vystymąsi.",
       "button": "Paaukoti",
       "card": {
         "title": "Reikalingos aukos, kad {site} išliktų gyvas!",
@@ -103,11 +103,14 @@
         "line6": "Mes renkame tai, ką pasėjome,",
         "line7": "Bet per tai galime augti..."
       },
-      "openSource": "Atviro kodo projektas, sukurtas",
+      "openSource": "<project>atviro kodo projektas</project>, sukurtas <author>Peter James Steven</author>",
       "madeWithLove": "Sukurta su meile Velingtone, NZ",
       "donatePrompt": "Prašome paaukoti, jei galite,",
       "beKind": "Ir būkite vieni su kitais geri."
     },
+    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
+    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
     "browseConversations": "Naršyti visas pokalbius"
   },
   "header": {
@@ -377,7 +380,7 @@
   "donatePage": {
     "title": "Išlaikykite Detrans.AI veikiančią",
     "description1": "Jei vertinate darbą, kurį įdėjau į šią svetainę, arba jei ši nemokama paslauga jums padėjo, apsvarstykite galimybę paaukoti vieną kartą arba reguliariai, kad <b>detrans.ai</b> išliktų internete.",
-    "description2": "Aš negaliu sau leisti paleisti išteklių reikalaujančią paslaugą kaip ši be jūsų paramos. Mano pagrindinis pajamų šaltinis šiuo metu yra vyriausybės pašalpa, ir rašymo metu mano banko sąskaitoje yra mažiau nei 1000 USD. Jei ši svetainė išpopuliarės, galiu gauti sąskaitas už tūkstančius dolerių. Jei išleisiu pinigus, galimybė užduoti savo klausimus ir giliau ištirti temas per tęstinius klausimus bus išjungta, o aš pateiksiu tik podėlyje saugomus atsakymus į klausimus portale.",
+    "description2": "Į šį projektą įdėjau daug savo laiko ir pinigų. Jūsų auka labai padėtų man padengti prieglobos ir AI žetonų išlaidas ir palaikytų nuolatinį vystymąsi. Šiuo metu neturiu stabilių pajamų, ir jei išleisiu pinigus, galimybė užduoti savo klausimus ir giliau ištirti temas per tęstinius klausimus bus išjungta, o aš pateiksiu tik podėlyje saugomus atsakymus į klausimus portale.",
     "description3": "Prašau apsvarstyti mėnesinę auką. Galite paaukoti naudodami paypal žemiau, tiesiogiai į mano Naujosios Zelandijos banko sąskaitą arba su BTC.",
     "bankAccount": "Naujosios Zelandijos banko sąskaita",
     "accountName": "Vardas",
@@ -583,6 +586,7 @@
       },
       "findTherapist": {
         "title": "Kur galiu rasti terapeutą, kuris praktikuoja genderinę tyrinėjamąją terapiją?",
+        "sidebar": "Find therapists",
         "languageNotice": "Dauguma išvardytų terapeutų kalba tik angliškai, bet vis tiek galite pabandyti susisiekti su jais, kad rastumėte kalbantį jūsų kalba. Jei žinote licencijuotą terapeutą, kuris kalba jūsų kalba, galite pasiūlyti pridėti jį prie šio puslapio per",
         "contactForm": "kontaktinę formą",
         "organizations": {

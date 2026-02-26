@@ -74,7 +74,7 @@
     },
     "donate": {
       "title": "Podpořte naši práci",
-      "description": "Pomozte nám udržet tento zdroj dostupný pro ty, kteří ho nejvíce potřebují.",
+      "description": "Investoval jsem do tohoto projektu mnoho vlastního času a peněz. Váš příspěvek by mi velmi pomohl s náklady na hosting a AI tokeny a podpořil by průběžný vývoj.",
       "button": "Přispět",
       "card": {
         "title": "Potřebujeme dary, aby {site} přežil!",
@@ -103,11 +103,14 @@
         "line6": "Sklízíme, co zasijeme,",
         "line7": "Ale skrze to můžeme růst..."
       },
-      "openSource": "Open-source projekt od",
+      "openSource": "<project>open-source projekt</project> od <author>Peter James Steven</author>",
       "madeWithLove": "Vytvořeno s láskou ve Wellingtonu, NZ",
       "donatePrompt": "Prosím přispějte, pokud můžete,",
       "beKind": "A buďte k sobě navzájem laskaví."
     },
+    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
+    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
     "browseConversations": "Procházet všechny konverzace"
   },
   "header": {
@@ -378,7 +381,7 @@
   "donatePage": {
     "title": "Udržte Detrans.AI v provozu",
     "description1": "Pokud oceňujete práci, kterou jsem vložil do těchto stránek, nebo vám tato bezplatná služba pomohla, zvažte prosím jednorázový nebo pravidelný příspěvek, abyste udrželi <b>detrans.ai</b> online.",
-    "description2": "Nemohu si dovolit provozovat tak náročnou službu jako tato bez vaší podpory. Mým hlavním zdrojem příjmů v současnosti je sociální dávka a v době psaní tohoto textu mám na účtu méně než 1000 dolarů. Pokud tato stránka získá velkou popularitu, mohl bych dostávat účty za tisíce dolarů. Pokud mi dojdou peníze, bude zakázána možnost pokládat vlastní otázky a prozkoumávat témata hlouběji prostřednictvím následných otázek a budu poskytovat pouze uložené odpovědi na otázky na portálu.",
+    "description2": "Investoval jsem do tohoto projektu mnoho vlastního času a peněz. Váš příspěvek by mi velmi pomohl s náklady na hosting a AI tokeny a podpořil by průběžný vývoj. Momentálně nemám stabilní příjem, a pokud mi dojdou peníze, bude zakázána možnost pokládat vlastní otázky a prozkoumávat témata hlouběji prostřednictvím následných otázek a budu poskytovat pouze uložené odpovědi na otázky na portálu.",
     "description3": "Zvažte prosím měsíční příspěvek. Můžete přispět pomocí PayPalu níže, přímo na můj novozélandský bankovní účet nebo pomocí BTC.",
     "bankAccount": "Novozélandský bankovní účet",
     "accountName": "Jméno",
@@ -584,6 +587,7 @@
       },
       "findTherapist": {
         "title": "Kde mohu najít terapeuta, který praktikuje genderově explorační terapii?",
+        "sidebar": "Find therapists",
         "languageNotice": "Většina uvedených terapeutů mluví pouze anglicky, ale můžete se stále pokusit je kontaktovat, abyste našli někoho, kdo mluví vaším jazykem. Pokud znáte licencovaného terapeuta, který mluví vaším jazykem, můžete navrhnout jeho přidání na tuto stránku prostřednictvím",
         "contactForm": "kontaktního formuláře",
         "organizations": {

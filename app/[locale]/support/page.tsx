@@ -69,7 +69,7 @@ export default async function SupportPage({
       href: "#gender-exploratory-therapy",
     },
     {
-      title: t("sections.findTherapist.title").split("?")[0],
+      title: t("sections.findTherapist.sidebar").split("?")[0],
       href: "#find-a-therapist",
       children: [
         {

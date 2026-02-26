@@ -74,7 +74,7 @@
     },
     "donate": {
       "title": "Tue Työtämme",
-      "description": "Auta meitä pitämään tämä resurssi saatavilla niille, jotka tarvitsevat sitä eniten.",
+      "description": "Olen investoinut paljon omaa aikaa ja rahaa tähän projektiin. Lahjoituksesi auttaisi minua paljon hosting- ja AI-token-kustannuksissa ja tukisi jatkuvaa kehitystä.",
       "button": "Lahjoita",
       "card": {
         "title": "Lahjoituksia tarvitaan {site}in ylläpitämiseen!",
@@ -103,11 +103,14 @@
         "line6": "Me korjaamme sen, mitä kylvämme,",
         "line7": "Mutta tämän kautta voimme kasvaa..."
       },
-      "openSource": "Avoimen lähdekoodin projekti",
+      "openSource": "<project>avoimen lähdekoodin projekti</project> tekijältä <author>Peter James Steven</author>",
       "madeWithLove": "Tehty rakkaudella Wellingtonissa, Uudessa-Seelannissa",
       "donatePrompt": "Ole hyvä ja lahjoita, jos voit,",
       "beKind": "Ja olkaa ystävällisiä toisillenne."
     },
+    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
+    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ members of the <a>detrans subreddit</a>",
     "browseConversations": "Selaa kaikkia Keskusteluja"
   },
   "header": {
@@ -377,7 +380,7 @@
   "donatePage": {
     "title": "Pidä Detrans.AI Käynnissä",
     "description1": "Jos arvostat työtä, jonka olen panostanut tähän sivustoon, tai jos tämä ilmainen palvelu on auttanut sinua, harkitse kertalahjoituksen tai säännöllisen lahjoituksen tekemistä pitääksesi <b>detrans.ai</b>in verkossa.",
-    "description2": "En voi varaa ylläpitää resurssi-intensiivistä palvelua kuten tämä ilman tukeasi. Pääasiallinen tulolähteeni tällä hetkellä on valtion tuet, ja tämän kirjoittamishetkellä minulla on alle 1000 dollaria pankkitililläni. Jos tämä sivusto räjähtää, saisin laskuja tuhansista dollareista. Jos rahat loppuvat, mahdollisuus kysyä omia kysymyksiä ja tutkia aiheita syvemmällä jatkokysymysten avulla poistetaan käytöstä, ja tarjoan vain välimuistissa olevia vastauksia portaalin kysymyksiin.",
+    "description2": "Olen investoinut paljon omaa aikaa ja rahaa tähän projektiin. Lahjoituksesi auttaisi minua paljon hosting- ja AI-token-kustannuksissa ja tukisi jatkuvaa kehitystä. Minulla ei ole tasaista tuloa juuri nyt, ja jos rahat loppuvat, mahdollisuus kysyä omia kysymyksiä ja tutkia aiheita syvemmällä jatkokysymysten avulla poistetaan käytöstä, ja tarjoan vain välimuistissa olevia vastauksia portaalin kysymyksiin.",
     "description3": "Harkitse kuukausittaista lahjoitusta. Voit lahjoittaa alla olevalla PayPalilla, suoraan uusiseelantilaiselle pankkitililleni tai BTC:llä.",
     "bankAccount": "Uuden-Seelannin Pankkitili",
     "accountName": "Nimi",
@@ -583,6 +586,7 @@
       },
       "findTherapist": {
         "title": "Mistä voin löytää terapeutin, joka harjoittaa sukupuolen tutkivaa terapiaa?",
+        "sidebar": "Find therapists",
         "languageNotice": "Useimmat listatut terapeutit puhuvat vain englantia, mutta voit silti yrittää ottaa heihin yhteyttä löytääksesi jonkun, joka puhuu kieltäsi. Jos tiedät lisensoidun terapeutin, joka puhuu kieltäsi, voit ehdottaa hänen lisäämistä tälle sivulle",
         "contactForm": "yhteydenottolomakkeen kautta",
         "organizations": {

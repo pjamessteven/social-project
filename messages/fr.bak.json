@@ -103,7 +103,7 @@
         "line6": "Nous récoltons ce que nous semons,",
         "line7": "Mais à travers cela nous pouvons grandir..."
       },
-      "openSource": "Un projet open-source par",
+      "openSource": "Un projet open-source par {creator}",
       "madeWithLove": "Fait avec amour à Te Whanganui-a-Tara (Wellington, NZ)",
       "donatePrompt": "Veuillez faire un don si vous le pouvez,",
       "beKind": "Et soyez gentils les uns envers les autres."

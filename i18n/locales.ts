@@ -1,7 +1,7 @@
 /**
  * Centralized locales configuration
  * This is the single source of truth for all supported languages
- * 
+ *
  * All translation files in /messages/ should be reflected here:
  * en.json, es.json, fr.json, lt.json, nl.json, no.json, uk.json
  */
@@ -15,6 +15,7 @@ export interface LocaleInfo {
 // All supported locales with their native names
 export const localesInfo: readonly LocaleInfo[] = [
   { code: "en", label: "English", englishName: "English" },
+  { code: "ar", label: "العربية", englishName: "Arabic" },
   { code: "bg", label: "Български", englishName: "Bulgarian" },
   { code: "cz", label: "Čeština", englishName: "Czech" },
   { code: "da", label: "Dansk", englishName: "Danish" },
@@ -93,7 +94,7 @@ export function isValidLocale(code: string): boolean {
 /**
  * List of RTL (Right-to-Left) languages
  */
-export const rtlLocales: readonly string[] = ["he", "fa"] as const;
+export const rtlLocales: readonly string[] = ["ar", "he", "fa"] as const;
 
 /**
  * Check if a locale is RTL (Right-to-Left)

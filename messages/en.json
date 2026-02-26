@@ -28,7 +28,7 @@
         "full": "I'm questioning my gender identity and I think I might be trans"
       },
       "thinkingDetrans": {
-        "display": "I currently identif'y as trans and I'm thinking about detransitioning",
+        "display": "I currently identify as trans and I'm thinking about detransitioning",
         "full": "I currently identify as trans and I'm thinking about detransitioning"
       },
       "familyMember": {
@@ -74,12 +74,12 @@
     },
     "donate": {
       "title": "Support Our Work",
-      "description": "Help us keep this resource available for those who need it most.",
+      "description": "I've put a lot of my own time and money into this project. Your donation would help me out a lot with hosting and AI token costs and will support ongoing development.",
       "button": "Donate",
       "card": {
         "title": "Donations needed to keep {site} alive!",
         "description": "If you appreciate this free service please consider making a donation.",
-        "description2": "The site will be run in cache-only mode if I run out of money, with no ability to ask your own questions.",
+        "description2": "I've put a lot of my own time and money into this project, and I don't have a stable income. The site will be run in cache-only mode if I run out of money, with no ability to ask your own questions.",
         "button": "Make a donation"
       }
     },
@@ -103,11 +103,14 @@
         "line6": "We reap what we sow,",
         "line7": "But through this we can grow..."
       },
-      "openSource": "An open-source project by",
-      "madeWithLove": "Made with love in Wellington, NZ",
+      "openSource": "<project>An open source project</project> by <author>Peter James Steven</author>",
+      "madeWithLove": "Made with love in Te Whanganui-a-Tara / Wellington, NZ",
       "donatePrompt": "Please donate if you can,",
       "beKind": "And be kind to each other."
     },
+    "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
+    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "50,000+ members in the <a>/r/detrans subreddit</a>",
     "browseConversations": "Browse all Conversations"
   },
   "header": {
@@ -377,7 +380,7 @@
   "donatePage": {
     "title": "Keep Detrans.AI Running",
     "description1": "If you appreciate the work that I have put into this site or if this free service has helped you, please consider making a one-off or regular donation to keep <b>detrans.ai</b> online.",
-    "description2": "I can't afford to run a resource intensive service like this without your support. My main income source at the moment is government welfare and and as of writing this I have less than $1000 in my bank account. If this site blows up I could be getting bills for thousands of dollars. If I run out of money, the ability to ask your own questions and explore topics deeper through follow-up questions will be disabled and I will only serve cached responses to the questions in the portal.",
+    "description2": "I've put a lot of my own time and money into this project. Your donation would help me out a lot with hosting and AI token costs and will support ongoing development. I don't have a stable income right now, and if I run out of money, the ability to ask your own questions and explore topics deeper through follow-up questions will be disabled and I will only serve cached responses to the questions in the portal.",
     "description3": "Please consider a monthly donation. You can donate using paypal below, directly to my New Zealand bank account or with BTC.",
     "bankAccount": "New Zealand Bank Account",
     "accountName": "Name",
@@ -583,6 +586,7 @@
       },
       "findTherapist": {
         "title": "Where can I find a therapist who practices gender exploratory therapy?",
+        "sidebar": "Find therapists",
         "languageNotice": "Most therapists listed only speak English, but you can still try contacting them to find someone who speaks your language. If you know of a licensed therapist who speaks your language, you can suggest adding them to this page through the",
         "contactForm": "contact form",
         "organizations": {
