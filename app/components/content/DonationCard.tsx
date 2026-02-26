@@ -15,7 +15,7 @@ export default function DonationCard({
   return (
     <Card
       className={
-        "!border-destructive/50 reddit-card bg-destructive/5 dark:bg-destructive/40 border transition-all duration-300"
+        "!border-destructive/40 reddit-card bg-destructive/5 dark:bg-destructive/40 border transition-all duration-300"
       }
     >
       <CardHeader>

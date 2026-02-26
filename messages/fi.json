@@ -54,9 +54,9 @@
     },
     "navigation": {
       "videos": "Detransitio-Videot",
-      "stories": "Tarinoita",
+      "stories": "Tarinat ja trendit",
       "storiesFull": "Tarinoita ja Tilastoja",
-      "support": "Apua ja Tukea",
+      "support": "Löydä Terapeutteja",
       "definitions": "Sukupuolikäsitteet",
       "studies": "Akateemiset Tutkimukset",
       "studiesShort": "Tutkimukset",
@@ -68,9 +68,9 @@
       "note": "Syvä tutkimus on hitaampaa ja ei-keskustelevaa. Keskusteluun jätä se pois päältä."
     },
     "disclaimer": {
-      "trigger": "Kokemukset ja näkökulmat tällä sivustolla ovat peräisin Reddistä.",
+      "trigger": "Kokemukset ja näkökulmat tällä sivustolla ovat peräisin Reddistä ja YouTubesta.",
       "title": "Lähteen Vastuuvapaus",
-      "content": "detrans.ai vastaa kysymyksiin sukupuolesta detrans-näkökulmasta löytämällä asiaankuuluvia kokemuksia /r/detrans-yhteisöstä Redditissä. Vaikka Reddit on alusta, jossa oikeat ihmiset jakavat henkilökohtaisia tarinoita, se voi sisältää myös bottien tuottamaa tai harhaanjohtavaa sisältöä. Sinua kannustetaan tarkastamaan alkuperäiset Reddit-viestit lähteen ja kontekstin varmistamiseksi. Huomaa, että /r/detrans on voimakkaasti moderoitu subreddit, mutta moderointi ei takaa jokaisen viestin tarkkuutta tai aitoutta."
+      "content": "detrans.ai vastaa kysymyksiin sukupuolesta detrans-näkökulmasta löytämällä asiaankuuluvia kokemuksia /r/detrans-yhteisöstä Redditissä ja YouTubessa. Vaikka monet oikeat ihmiset jakavat kokemuksiaan internetissä, voi myös olla bottien tuottamaa tai harhaanjohtavaa sisältöä. Sinua kannustetaan tarkastamaan lainattujen kokemusten lähde. Huomaa, että /r/detransiin postaaminen on rajoitettu detransitionoineille ja subreddit on voimakkaasti moderoitu, mutta moderointi ei takaa jokaisen viestin tarkkuutta tai aitoutta."
     },
     "donate": {
       "title": "Tue Työtämme",
@@ -120,7 +120,7 @@
       "about": "Tietoa"
     },
     "resources": {
-      "genderSupport": "Sukupuolentuki",
+      "genderSupport": "Löydä Terapeutteja",
       "genderSupportDesc": "Löydä yhteisö ja terapeutteja",
       "terminology": "Terminologia",
       "terminologyDesc": "Keskeisten käsitteiden määrittely",

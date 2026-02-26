@@ -54,9 +54,9 @@
     },
     "navigation": {
       "videos": "Video Berhenti Transisi",
-      "stories": "Cerita",
+      "stories": "Cerita & Tren",
       "storiesFull": "Cerita & Statistik",
-      "support": "Bantuan & Dukungan",
+      "support": "Cari Terapis",
       "definitions": "Terminologi Gender",
       "studies": "Studi Akademik",
       "studiesShort": "Studi",
@@ -68,9 +68,9 @@
       "note": "Riset Mendalam lebih lambat dan non-konversasional. Untuk obrolan, matikan fitur ini."
     },
     "disclaimer": {
-      "trigger": "Pengalaman dan perspektif di situs ini bersumber dari Reddit.",
+      "trigger": "Pengalaman dan perspektif di situs ini bersumber dari Reddit dan YouTube.",
       "title": "Penafian Sumber",
-      "content": "detrans.ai menjawab pertanyaan tentang gender dari perspektif berhenti transisi dengan menemukan pengalaman yang relevan dari komunitas /r/detrans di Reddit. Meskipun Reddit adalah platform di mana orang nyata berbagi cerita pribadi, platform ini juga mungkin berisi konten yang dibuat bot atau menyesatkan. Anda didorong untuk memeriksa postingan Reddit asli untuk memverifikasi sumber dan konteks. Harap dicatat bahwa /r/detrans adalah subreddit yang sangat dimoderasi, tetapi moderasi tidak menjamin keakuratan atau keaslian setiap postingan."
+      "content": "detrans.ai menjawab pertanyaan tentang gender dari perspektif berhenti transisi dengan menemukan pengalaman yang relevan dari komunitas /r/detrans di Reddit dan YouTube. Meskipun banyak orang nyata berbagi pengalaman mereka di internet, mungkin juga ada konten yang dibuat bot atau menyesatkan. Anda didorong untuk memeriksa sumber dari pengalaman yang dikutip. Harap dicatat bahwa memposting di /r/detrans dibatasi untuk orang yang berhenti transisi dan subreddit sangat dimoderasi, tetapi moderasi tidak menjamin keakuratan atau keaslian setiap postingan."
     },
     "donate": {
       "title": "Dukung Pekerjaan Kami",
@@ -120,7 +120,7 @@
       "about": "Tentang"
     },
     "resources": {
-      "genderSupport": "Dukungan Gender",
+      "genderSupport": "Cari Terapis",
       "genderSupportDesc": "Temukan komunitas dan terapis",
       "terminology": "Terminologi",
       "terminologyDesc": "Mendefinisikan istilah/konsep kunci",

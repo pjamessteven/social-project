@@ -54,9 +54,9 @@
     },
     "navigation": {
       "videos": "Videi o detranziciji",
-      "stories": "Zgodbe",
+      "stories": "Zgodbe in trendi",
       "storiesFull": "Zgodbe in statistika",
-      "support": "Pomoč in podpora",
+      "support": "Najdi Terapevte",
       "definitions": "Spolna terminologija",
       "studies": "Akademske študije",
       "studiesShort": "Študije",
@@ -68,9 +68,9 @@
       "note": "Globoka raziskava je počasnejša in ni pogovorne narave. Za klepet jo izklopite."
     },
     "disclaimer": {
-      "trigger": "Izkušnje in perspektive na tem spletnem mestu so črpane z Reddita.",
+      "trigger": "Izkušnje in perspektive na tem spletnem mestu so črpane z Reddita in YouTuba.",
       "title": "Zavrnitev odgovornosti glede virov",
-      "content": "Detrans.ai odgovarja na vprašanja o spolu z detranz perspektivo, tako da poišče relevantne izkušnje iz skupnosti /r/detrans na Redditu. Čeprav je Reddit platforma, kjer resnični ljudje delijo osebne zgodbe, lahko vsebuje tudi vsebino, ustvarjeno s strani botov ali zavajajočo vsebino. Priporočamo vam, da si ogledate izvirne objave na Redditu, da preverite vir in kontekst. Upoštevajte, da je /r/detrans močno moderiran podreddit, vendar moderiranje ne zagotavlja točnosti ali pristnosti vsake objave."
+      "content": "Detrans.ai odgovarja na vprašanja o spolu z detranz perspektivo, tako da poišče relevantne izkušnje iz skupnosti /r/detrans na Redditu in YouTubu. Čeprav si mnogi resnični ljudje delijo svoje izkušnje na internetu, lahko obstaja tudi vsebina, ustvarjena s strani botov ali zavajajoča vsebina. Priporočamo vam, da preverite vir citiranih izkušenj. Upoštevajte, da je objavljanje v /r/detrans omejeno na detranzicionarje in je podreddit močno moderiran, vendar moderiranje ne zagotavlja točnosti ali pristnosti vsake objave."
     },
     "donate": {
       "title": "Podprite naše delo",
@@ -120,7 +120,7 @@
       "about": "O nas"
     },
     "resources": {
-      "genderSupport": "Spolna podpora",
+      "genderSupport": "Najdi Terapevte",
       "genderSupportDesc": "Poiščite skupnost in terapevte",
       "terminology": "Terminologija",
       "terminologyDesc": "Opredelitev ključnih izrazov/konceptov",

@@ -54,9 +54,9 @@
     },
     "navigation": {
       "videos": "Video di Detransition",
-      "stories": "Storie",
+      "stories": "Storie e Tendenze",
       "storiesFull": "Storie e Statistiche",
-      "support": "Aiuto e Supporto",
+      "support": "Trova Terapisti",
       "definitions": "Terminologia di Genere",
       "studies": "Studi Accademici",
       "studiesShort": "Studi",
@@ -68,9 +68,9 @@
       "note": "La Ricerca Approfondita è più lenta e non conversazionale. Per chattare, lasciala disattivata."
     },
     "disclaimer": {
-      "trigger": "Le esperienze e le prospettive su questo sito provengono da Reddit.",
+      "trigger": "Le esperienze e le prospettive su questo sito provengono da Reddit e YouTube.",
       "title": "Dichiarazione sulla Fonte",
-      "content": "detrans.ai risponde a domande sul genere da una prospettiva di detransition trovando esperienze rilevanti dalla comunità /r/detrans su Reddit. Sebbene Reddit sia una piattaforma dove persone reali condividono storie personali, potrebbe anche contenere contenuti generati da bot o fuorvianti. Ti incoraggiamo a ispezionare i post originali di Reddit per verificare la fonte e il contesto. Si prega di notare che /r/detrans è un subreddit fortemente moderato, ma la moderazione non garantisce l'accuratezza o l'autenticità di ogni post."
+      "content": "detrans.ai risponde a domande sul genere da una prospettiva di detransition trovando esperienze rilevanti dalla comunità /r/detrans su Reddit e YouTube. Sebbene molte persone reali condividano le loro esperienze su internet, possono anche esserci contenuti generati da bot o fuorvianti. Ti incoraggiamo a ispezionare la fonte delle esperienze citate. Si prega di notare che pubblicare su /r/detrans è riservato a chi ha fatto detransition e il subreddit è fortemente moderato, ma la moderazione non garantisce l'accuratezza o l'autenticità di ogni post."
     },
     "donate": {
       "title": "Sostieni il Nostro Lavoro",
@@ -120,7 +120,7 @@
       "about": "Chi Siamo"
     },
     "resources": {
-      "genderSupport": "Supporto di Genere",
+      "genderSupport": "Trova Terapisti",
       "genderSupportDesc": "Trova comunità e terapeuti",
       "terminology": "Terminologia",
       "terminologyDesc": "Definizioni di termini/concetti chiave",

@@ -120,7 +120,6 @@ export async function StartPage({
                 <Users className="h-4 w-4" />
                 <span className="text-sm font-medium">
                   {t("navigation.stories")}
-                  <span className="hidden sm:inline"> & Statistics</span>
                 </span>
               </Button>
             </Link>
@@ -180,7 +179,7 @@ export async function StartPage({
           <div className="mt-1 w-full border-t" />
           <div className="mt-1 w-full border-t" />
         </div>
-        <div className="text-muted-foreground/80 border-b pt-4 pb-4 text-center text-sm">
+        <div className="text-muted-foreground/80 dark:text-muted-foreground/70 pt-4 pb-4 text-center text-sm">
           {t("privacyDisclaimer")}
           <br />
           <span className="hidden sm:inline">
@@ -211,6 +210,7 @@ export async function StartPage({
             })}
           </span>
         </div>
+        <div className="mt-1 w-full border-t" />
         <div className="mt-1 w-full border-t" />
         <div className="mt-1 w-full border-t" />
 
@@ -279,9 +279,9 @@ export async function StartPage({
           )}
         </>
 
-        <div className="relative mt-4 -mb-16 pb-16 sm:mt-8">
+        <div className="relative mt-4 -mb-16 pb-16 sm:mt-24">
           <div className="from-secondary/50 dark:from-secondary/50 absolute -left-[5000px] z-0 h-full w-[10000px] border-t bg-linear-to-b to-white dark:to-black" />
-          <div className="relative z-20 pt-8 sm:pt-12">
+          <div className="relative z-20 pt-8 sm:-mt-24 sm:pt-12">
             <Card
               className={
                 "dark:bg-secondary overflow-hidden rounded-xl border border-black/20 bg-white shadow-xs dark:border-white/10"
@@ -306,11 +306,11 @@ export async function StartPage({
               </CardHeader>
             </Card>
 
-            <div className="mr-16= mt-4 w-full">
-              <DonationCard mode="detrans" />
-            </div>
-            <div className="mt-4 w-full">
+            <div className="mr-16= mt-4 w-full sm:mt-6">
               <ParticipateCard />
+            </div>
+            <div className="mt-4 w-full sm:mt-6">
+              <DonationCard mode="detrans" />
             </div>
 
             <div className="text-muted-foreground relative flex flex-col text-base italic opacity-90 sm:mt-8 sm:text-lg">

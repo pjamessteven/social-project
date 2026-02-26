@@ -56,7 +56,7 @@
       "videos": "Vídeos de Desransição",
       "stories": "Histórias",
       "storiesFull": "Histórias e Estatísticas",
-      "support": "Ajuda e Apoio",
+      "support": "Encontrar Terapeutas",
       "definitions": "Terminologia de Gênero",
       "studies": "Estudos Acadêmicos",
       "studiesShort": "Estudos",
@@ -68,9 +68,9 @@
       "note": "A Pesquisa Profunda é mais lenta e não-conversacional. Para conversar, deixe desligado."
     },
     "disclaimer": {
-      "trigger": "Experiências e perspectivas neste site são obtidas do Reddit.",
+      "trigger": "Experiências e perspectivas neste site são obtidas do Reddit e YouTube.",
       "title": "Aviso de Fonte",
-      "content": "O detrans.ai responde perguntas sobre gênero de uma perspectiva de desransição, encontrando experiências relevantes da comunidade /r/detrans no Reddit. Embora o Reddit seja uma plataforma onde pessoas reais compartilham histórias pessoais, também pode conter conteúdo gerado por bots ou enganoso. Você é encorajado a inspecionar os posts originais do Reddit para verificar a fonte e o contexto. Por favor, note que o /r/detrans é um subreddit fortemente moderado, mas a moderação não garante a precisão ou autenticidade de cada post."
+      "content": "O detrans.ai responde perguntas sobre gênero de uma perspectiva de desransição, encontrando experiências relevantes da comunidade /r/detrans no Reddit e YouTube. Embora muitas pessoas reais compartilhem suas experiências na internet, também pode haver conteúdo gerado por bots ou enganoso. Você é encorajado a inspecionar a fonte das experiências citadas. Por favor, note que postar no /r/detrans é restrito a pessoas que desfizeram a transição e o subreddit é fortemente moderado, mas a moderação não garante a precisão ou autenticidade de cada post."
     },
     "donate": {
       "title": "Apoie Nosso Trabalho",
@@ -120,7 +120,7 @@
       "about": "Sobre"
     },
     "resources": {
-      "genderSupport": "Apoio de Gênero",
+      "genderSupport": "Encontrar Terapeutas",
       "genderSupportDesc": "Encontre comunidade e terapeutas",
       "terminology": "Terminologia",
       "terminologyDesc": "Definindo termos/conceitos-chave",

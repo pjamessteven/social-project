@@ -54,9 +54,9 @@
     },
     "navigation": {
       "videos": "去过渡视频",
-      "stories": "故事",
+      "stories": "故事与趋势",
       "storiesFull": "故事与统计",
-      "support": "帮助与支持",
+      "support": "寻找治疗师",
       "definitions": "性别术语",
       "studies": "学术研究",
       "studiesShort": "研究",
@@ -68,9 +68,9 @@
       "note": "深度研究速度较慢且非对话式。如需聊天，请保持关闭。"
     },
     "disclaimer": {
-      "trigger": "本网站上的经历和观点来自Reddit。",
+      "trigger": "本网站上的经历和观点来自Reddit和YouTube。",
       "title": "来源声明",
-      "content": "detrans.ai通过从Reddit上的/r/detrans社区寻找相关经历，以去过渡者的视角回答关于性别的问题。虽然Reddit是真实人们分享个人故事的平台，但也可能包含机器人生成或误导性内容。建议你查看原始Reddit帖子以验证来源和背景。请注意，/r/detrans是一个经过严格审核的subreddit，但审核并不能保证每个帖子的准确性或真实性。"
+      "content": "detrans.ai通过从Reddit和YouTube上的/r/detrans社区寻找相关经历，以去过渡者的视角回答关于性别的问题。虽然许多真实的人们在网上分享他们的经历，但也可能存在机器人生成或误导性内容。建议你查看引用经历的来源。请注意，在/r/detrans发帖仅限于去过渡者，且该subreddit经过严格审核，但审核并不能保证每个帖子的准确性或真实性。"
     },
     "donate": {
       "title": "支持我们的工作",
@@ -120,7 +120,7 @@
       "about": "关于"
     },
     "resources": {
-      "genderSupport": "性别支持",
+      "genderSupport": "寻找治疗师",
       "genderSupportDesc": "寻找社群和治疗师",
       "terminology": "术语",
       "terminologyDesc": "定义关键术语/概念",

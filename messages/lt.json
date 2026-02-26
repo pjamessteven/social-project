@@ -56,7 +56,7 @@
       "videos": "Detranzicijos vaizdo įrašai",
       "stories": "Istorijos",
       "storiesFull": "Istorijos ir statistika",
-      "support": "Pagalba ir palaikymas",
+      "support": "Rasti Terapeutus",
       "definitions": "Genderinė terminologija",
       "studies": "Akademiniai tyrimai",
       "studiesShort": "Tyrimai",
@@ -68,9 +68,9 @@
       "note": "Giluminis tyrimas yra lėtesnis ir ne pokalbių pobūdžio. Pokalbiui palikite jį išjungtą."
     },
     "disclaimer": {
-      "trigger": "Patirtys ir požiūriai šioje svetainėje paimti iš Reddito.",
+      "trigger": "Patirtys ir požiūriai šioje svetainėje paimti iš Reddito ir YouTube.",
       "title": "Šaltinio atsakomybės apribojimas",
-      "content": "detrans.ai atsako į klausimus apie lytį iš detranzicijos perspektyvos, rasdamas atitinkamas patirtis iš /r/detrans bendruomenės Reddite. Nors Reddit yra platforma, kur tikri žmonės dalijasi asmeninėmis istorijomis, ji taip pat gali turėti robotų sugeneruoto ar klaidinančio turinio. Raginame jus patikrinti originalius Reddit įrašus, kad patvirtintumėte šaltinį ir kontekstą. Atkreipkite dėmesį, kad /r/detrans yra griežtai moderuojamas subredditas, tačiau moderavimas negarantuoja kiekvieno įrašo tikslumo ar autentiškumo."
+      "content": "detrans.ai atsako į klausimus apie lytį iš detranzicijos perspektyvos, rasdamas atitinkamas patirtis iš /r/detrans bendruomenės Reddite ir YouTube. Nors daug tikrų žmonių dalijasi savo patirtimi internete, gali būti ir robotų sugeneruoto ar klaidinančio turinio. Raginame jus patikrinti cituojamų patirčių šaltinį. Atkreipkite dėmesį, kad rašymas /r/detrans yra ribojamas detranzicionieriams ir subredditas yra griežtai moderuojamas, tačiau moderavimas negarantuoja kiekvieno įrašo tikslumo ar autentiškumo."
     },
     "donate": {
       "title": "Paremkite mūsų darbą",
@@ -120,7 +120,7 @@
       "about": "Apie"
     },
     "resources": {
-      "genderSupport": "Genderinė pagalba",
+      "genderSupport": "Rasti Terapeutus",
       "genderSupportDesc": "Raskite bendruomenę ir terapeutus",
       "terminology": "Terminologija",
       "terminologyDesc": "Pagrindinių sąvokų apibrėžimas",

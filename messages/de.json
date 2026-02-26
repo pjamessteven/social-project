@@ -56,7 +56,7 @@
       "videos": "Detransition-Videos",
       "stories": "Geschichten",
       "storiesFull": "Geschichten & Statistiken",
-      "support": "Hilfe & Unterstützung",
+      "support": "Therapeuten Finden",
       "definitions": "Geschlechtsterminologie",
       "studies": "Wissenschaftliche Studien",
       "studiesShort": "Studien",
@@ -68,9 +68,9 @@
       "note": "Tiefenforschung ist langsamer und nicht konversationell. Für Chat, lass sie ausgeschaltet."
     },
     "disclaimer": {
-      "trigger": "Erfahrungen und Perspektiven auf dieser Seite stammen von Reddit.",
+      "trigger": "Erfahrungen und Perspektiven auf dieser Seite stammen von Reddit und YouTube.",
       "title": "Quellenhaftungsausschluss",
-      "content": "detrans.ai beantwortet Fragen zum Thema Geschlecht aus der Perspektive von Detransitionierenden, indem es relevante Erfahrungen aus der /r/detrans Community auf Reddit findet. Während Reddit eine Plattform ist, auf der echte Menschen persönliche Geschichten teilen, kann sie auch bot-generierte oder irreführende Inhalte enthalten. Du bist eingeladen, die ursprünglichen Reddit-Posts zu prüfen, um die Quelle und den Kontext zu verifizieren. Bitte beachte, dass /r/detrans ein stark moderierter Subreddit ist, aber Moderation garantiert nicht die Richtigkeit oder Authentizität jedes Posts."
+      "content": "detrans.ai beantwortet Fragen zum Thema Geschlecht aus der Perspektive von Detransitionierenden, indem es relevante Erfahrungen aus der /r/detrans Community auf Reddit und YouTube findet. Obwohl viele echte Menschen ihre Erfahrungen im Internet teilen, kann es auch bot-generierte oder irreführende Inhalte geben. Du bist eingeladen, die Quelle der zitierten Erfahrungen zu prüfen. Bitte beachte, dass das Posten in /r/detrans auf Detransitionierende beschränkt ist und der Subreddit stark moderiert wird, aber Moderation garantiert nicht die Richtigkeit oder Authentizität jedes Posts."
     },
     "donate": {
       "title": "Unterstütze unsere Arbeit",
@@ -120,7 +120,7 @@
       "about": "Über uns"
     },
     "resources": {
-      "genderSupport": "Geschlechtsunterstützung",
+      "genderSupport": "Therapeuten Finden",
       "genderSupportDesc": "Finde Community und Therapeuten",
       "terminology": "Terminologie",
       "terminologyDesc": "Definitionen wichtiger Begriffe/Konzepte",

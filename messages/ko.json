@@ -54,9 +54,9 @@
     },
     "navigation": {
       "videos": "디트랜지션 영상",
-      "stories": "이야기",
+      "stories": "이야기 및 트렌드",
       "storiesFull": "이야기 및 통계",
-      "support": "도움 및 지원",
+      "support": "상담사 찾기",
       "definitions": "성별 용어",
       "studies": "학술 연구",
       "studiesShort": "연구",
@@ -68,9 +68,9 @@
       "note": "심층 연구는 더 느리고 대화형이 아닙니다. 채팅을 위해선 꺼두세요."
     },
     "disclaimer": {
-      "trigger": "이 사이트의 경험과 관점은 Reddit에서 출처됩니다.",
+      "trigger": "이 사이트의 경험과 관점은 Reddit과 YouTube에서 출처됩니다.",
       "title": "출처 면책 조항",
-      "content": "detrans.ai는 Reddit의 /r/detrans 커뮤니티에서 관련 경험을 찾아 디트랜스 관점에서 성별에 대한 질문에 답합니다. Reddit은 실제 사람들이 개인적인 이야기를 공유하는 플랫폼이지만, 봇이 생성하거나 오해를 불러일으키는 콘텐츠도 포함될 수 있습니다. 출처와 맥락을 확인하기 위해 원래 Reddit 게시물을 검토하는 것이 권장됩니다. /r/detrans는 엄격히 관리되는 서브레딧이지만, 관리가 모든 게시물의 정확성이나 진위를 보장하지는 않습니다."
+      "content": "detrans.ai는 Reddit과 YouTube의 /r/detrans 커뮤니티에서 관련 경험을 찾아 디트랜스 관점에서 성별에 대한 질문에 답합니다. 많은 실제 사람들이 인터넷에서 경험을 공유하지만, 봇이 생성하거나 오해를 불러일으키는 콘텐츠도 있을 수 있습니다. 인용된 경험의 출처를 확인하는 것이 권장됩니다. /r/detrans에 게시하는 것은 디트랜지셔너로 제한되며 서브레딧은 엄격히 관리되지만, 관리가 모든 게시물의 정확성이나 진위를 보장하지는 않습니다."
     },
     "donate": {
       "title": "우리의 작업 지원하기",
@@ -119,7 +119,7 @@
       "about": "소개"
     },
     "resources": {
-      "genderSupport": "성별 지원",
+      "genderSupport": "상담사 찾기",
       "genderSupportDesc": "커뮤니티 및 상담사 찾기",
       "terminology": "용어",
       "terminologyDesc": "주요 용어/개념 정의",

@@ -56,7 +56,7 @@
       "videos": "Videoclipuri despre Detransiție",
       "stories": "Povești",
       "storiesFull": "Povești și Statistici",
-      "support": "Ajutor și Sprijin",
+      "support": "Găsește Terapeuți",
       "definitions": "Terminologie de Gen",
       "studies": "Studii Academice",
       "studiesShort": "Studii",
@@ -68,9 +68,9 @@
       "note": "Cercetarea Profundă este mai lentă și non-conversațională. Pentru chat, lasă-l dezactivat."
     },
     "disclaimer": {
-      "trigger": "Experiențele și perspectivele de pe acest site sunt preluate de pe Reddit.",
+      "trigger": "Experiențele și perspectivele de pe acest site sunt preluate de pe Reddit și YouTube.",
       "title": "Disclaimer Sursă",
-      "content": "detrans.ai răspunde la întrebări despre gen din perspectiva detrans, găsind experiențe relevante din comunitatea /r/detrans de pe Reddit. Deși Reddit este o platformă unde oameni reali împărtășesc povești personale, poate conține și conținut generat de roboți sau înșelător. Ești încurajat/ă să inspectezi postările originale de pe Reddit pentru a verifica sursa și contextul. Te rugăm să reții că /r/detrans este un subreddit puternic moderat, dar moderarea nu garantează acuratețea sau autenticitatea fiecărei postări."
+      "content": "detrans.ai răspunde la întrebări despre gen din perspectiva detrans, găsind experiențe relevante din comunitatea /r/detrans de pe Reddit și YouTube. Deși mulți oameni reali împărtășesc experiențele lor pe internet, poate exista și conținut generat de roboți sau înșelător. Ești încurajat/ă să inspectezi sursa experiențelor citate. Te rugăm să reții că postarea în /r/detrans este limitată la persoanele care au făcut detransiție și subredditul este puternic moderat, dar moderarea nu garantează acuratețea sau autenticitatea fiecărei postări."
     },
     "donate": {
       "title": "Sprijină Munca Noastră",
@@ -120,7 +120,7 @@
       "about": "Despre"
     },
     "resources": {
-      "genderSupport": "Sprijin pentru Gen",
+      "genderSupport": "Găsește Terapeuți",
       "genderSupportDesc": "Găsește comunitate și terapeuți",
       "terminology": "Terminologie",
       "terminologyDesc": "Definirea termenilor și conceptelor cheie",
