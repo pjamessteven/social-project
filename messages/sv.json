@@ -56,7 +56,7 @@
       "videos": "Detransitionsvideor",
       "stories": "Berättelser",
       "storiesFull": "Berättelser & Statistik",
-      "support": "Hjälp & Stöd",
+      "support": "Hitta Terapeuter",
       "definitions": "Könsterminologi",
       "studies": "Akademiska Studier",
       "studiesShort": "Studier",
@@ -68,9 +68,9 @@
       "note": "Djup forskning är långsammare och icke-konversationell. För chatt, lämna det avstängt."
     },
     "disclaimer": {
-      "trigger": "Erfarenheter och perspektiv på denna webbplats hämtas från Reddit.",
+      "trigger": "Erfarenheter och perspektiv på denna webbplats hämtas från Reddit och YouTube.",
       "title": "Källansvarighet",
-      "content": "detrans.ai besvarar frågor om kön från ett detransperspektiv genom att hitta relevanta erfarenheter från /r/detrans-communityn på Reddit. Medan Reddit är en plattform där verkliga personer delar personliga berättelser, kan den också innehålla bot-genererat eller vilseledande innehåll. Du uppmanas att granska de ursprungliga Reddit-inläggen för att verifiera källan och sammanhanget. Observera att /r/detrans är en starkt modererad subreddit, men moderation garanterar inte noggrannheten eller äktheten i varje inlägg."
+      "content": "detrans.ai besvarar frågor om kön från ett detransperspektiv genom att hitta relevanta erfarenheter från /r/detrans-communityn på Reddit och YouTube. Medan många verkliga personer delar sina erfarenheter på internet, kan det också finnas bot-genererat eller vilseledande innehåll. Du uppmanas att granska källan till citerade erfarenheter. Observera att publicering i /r/detrans är begränsad till detransitionerare och subredditen är starkt modererad, men moderation garanterar inte noggrannheten eller äktheten i varje inlägg."
     },
     "donate": {
       "title": "Stöd Vårt Arbete",
@@ -120,7 +120,7 @@
       "about": "Om"
     },
     "resources": {
-      "genderSupport": "Könsstöd",
+      "genderSupport": "Hitta Terapeuter",
       "genderSupportDesc": "Hitta community och terapeuter",
       "terminology": "Terminologi",
       "terminologyDesc": "Definiera nyckeltermer/koncept",

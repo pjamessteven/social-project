@@ -56,7 +56,7 @@
       "videos": "Detransisyon Videoları",
       "stories": "Hikayeler",
       "storiesFull": "Hikayeler ve İstatistikler",
-      "support": "Yardım ve Destek",
+      "support": "Terapist Bul",
       "definitions": "Cinsiyet Terminolojisi",
       "studies": "Akademik Çalışmalar",
       "studiesShort": "Çalışmalar",
@@ -68,9 +68,9 @@
       "note": "Derin Araştırma daha yavaştır ve konuşma odaklı değildir. Sohbet için kapalı bırakın."
     },
     "disclaimer": {
-      "trigger": "Bu sitedeki deneyimler ve bakış açıları Reddit'ten alınmıştır.",
+      "trigger": "Bu sitedeki deneyimler ve bakış açıları Reddit'ten ve YouTube'tan alınmıştır.",
       "title": "Kaynak Sorumluluk Reddi",
-      "content": "detrans.ai, Reddit'teki /r/detrans topluluğundan ilgili deneyimleri bularak detrans perspektifinden cinsiyet hakkında soruları yanıtlar. Reddit, gerçek insanların kişisel hikayelerini paylaştığı bir platform olsa da, bot tarafından oluşturulan veya yanıltıcı içerikler de içerebilir. Kaynağı ve bağlamı doğrulamak için orijinal Reddit gönderilerini incelemeniz önerilir. Lütfen /r/detrans'ın yoğun bir şekilde moderasyonu yapılan bir altreddit olduğunu unutmayın, ancak moderasyon her gönderinin doğruluğunu veya özgünlüğünü garanti etmez."
+      "content": "detrans.ai, Reddit'teki ve YouTube'taki /r/detrans topluluğundan ilgili deneyimleri bularak detrans perspektifinden cinsiyet hakkında soruları yanıtlar. Birçok gerçek insan internette deneyimlerini paylaşırken, bot tarafından oluşturulan veya yanıltıcı içerikler de olabilir. Alıntı yapılan deneyimlerin kaynağını incelemeniz önerilir. Lütfen /r/detrans'a gönderi yapmanın detransitioner'larla sınırlı olduğunu ve altreddit'in yoğun bir şekilde moderasyonu yapıldığını unutmayın, ancak moderasyon her gönderinin doğruluğunu veya özgünlüğünü garanti etmez."
     },
     "donate": {
       "title": "Çalışmamızı Destekleyin",
@@ -120,7 +120,7 @@
       "about": "Hakkında"
     },
     "resources": {
-      "genderSupport": "Cinsiyet Desteği",
+      "genderSupport": "Terapist Bul",
       "genderSupportDesc": "Topluluk ve terapist bulun",
       "terminology": "Terminoloji",
       "terminologyDesc": "Anahtar terimlerin/kavramların tanımlanması",

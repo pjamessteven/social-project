@@ -54,9 +54,9 @@
     },
     "navigation": {
       "videos": "Videa o detranzici",
-      "stories": "Příběhy",
+      "stories": "Příběhy a trendy",
       "storiesFull": "Příběhy a statistiky",
-      "support": "Pomoc a podpora",
+      "support": "Najít Terapeuty",
       "definitions": "Genderová terminologie",
       "studies": "Akademické studie",
       "studiesShort": "Studie",
@@ -68,9 +68,9 @@
       "note": "Hluboký výzkum je pomalejší a nekonverzační. Pro chat nechte vypnuté."
     },
     "disclaimer": {
-      "trigger": "Zkušenosti a perspektivy na tomto webu pocházejí z Redditu.",
+      "trigger": "Zkušenosti a perspektivy na tomto webu pocházejí z Redditu a YouTube.",
       "title": "Upozornění na zdroj",
-      "content": "Detrans.ai odpovídá na otázky o genderu z perspektivy detranzice tím, že nachází relevantní zkušenosti z komunity /r/detrans na Redditu. Zatímco Reddit je platforma, kde skuteční lidé sdílejí osobní příběhy, může také obsahovat boty nebo zavádějící obsah. Doporučujeme zkontrolovat původní příspěvky na Redditu pro ověření zdroje a kontextu. Vezměte prosím na vědomí, že /r/detrans je silně moderovaný subreddit, ale moderace negarantuje přesnost nebo autenticitu každého příspěvku."
+      "content": "Detrans.ai odpovídá na otázky o genderu z perspektivy detranzice tím, že nachází relevantní zkušenosti z komunity /r/detrans na Redditu a YouTube. Zatímco mnoho skutečných lidí sdílí své zkušenosti na internetu, může také obsahovat obsah generovaný boty nebo zavádějící obsah. Doporučujeme zkontrolovat zdroj citovaných zkušeností. Vezměte prosím na vědomí, že přispívání do /r/detrans je omezeno pro detranzicionisty a subreddit je silně moderovaný, ale moderace negarantuje přesnost nebo autenticitu každého příspěvku."
     },
     "donate": {
       "title": "Podpořte naši práci",
@@ -120,7 +120,7 @@
       "about": "O nás"
     },
     "resources": {
-      "genderSupport": "Podpora pro gender",
+      "genderSupport": "Najít Terapeuty",
       "genderSupportDesc": "Najděte komunitu a terapeuty",
       "terminology": "Terminologie",
       "terminologyDesc": "Definování klíčových termínů/konceptů",

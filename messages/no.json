@@ -56,7 +56,7 @@
       "videos": "Detransisjonsvideoer",
       "stories": "Historier",
       "storiesFull": "Historier og statistikk",
-      "support": "Hjelp og støtte",
+      "support": "Finn Terapeuter",
       "definitions": "Kjønnsbegreper",
       "studies": "Akademiske studier",
       "studiesShort": "Studier",
@@ -68,9 +68,9 @@
       "note": "Dyp forskning er tregere og ikke samtalebasert. For chat, la den være av."
     },
     "disclaimer": {
-      "trigger": "Erfaringer og perspektiver på dette nettstedet er hentet fra Reddit.",
+      "trigger": "Erfaringer og perspektiver på dette nettstedet er hentet fra Reddit og YouTube.",
       "title": "Kildeansvarsfraskrivelse",
-      "content": "detrans.ai besvarer spørsmål om kjønn fra et detransisjonsperspektiv ved å finne relevante erfaringer fra /r/detrans-fellesskapet på Reddit. Selv om Reddit er en plattform hvor ekte mennesker deler personlige historier, kan den også inneholde bot-generert eller villedende innhold. Du oppfordres til å undersøke de opprinnelige Reddit-innleggene for å verifisere kilden og konteksten. Vennligst merk at /r/detrans er en strengt moderert subreddit, men moderering garanterer ikke nøyaktigheten eller ektheten til hvert innlegg."
+      "content": "detrans.ai besvarer spørsmål om kjønn fra et detransisjonsperspektiv ved å finne relevante erfaringer fra /r/detrans-fellesskapet på Reddit og YouTube. Selv om mange ekte mennesker deler erfaringene sine på internett, kan det også være bot-generert eller villedende innhold. Du oppfordres til å undersøke kilden til siterte erfaringer. Vennligst merk at posting i /r/detrans er begrenset til detransisjonerte og subredditen er strengt moderert, men moderering garanterer ikke nøyaktigheten eller ektheten til hvert innlegg."
     },
     "donate": {
       "title": "Støtt arbeidet vårt",
@@ -120,7 +120,7 @@
       "about": "Om"
     },
     "resources": {
-      "genderSupport": "Kjønnsstøtte",
+      "genderSupport": "Finn Terapeuter",
       "genderSupportDesc": "Finn fellesskap og terapeuter",
       "terminology": "Terminologi",
       "terminologyDesc": "Definisjon av nøkkelbegreper",

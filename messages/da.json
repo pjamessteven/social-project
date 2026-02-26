@@ -56,7 +56,7 @@
       "videos": "Detransitionsvideoer",
       "stories": "Historier",
       "storiesFull": "Historier & Statistik",
-      "support": "Hjælp & Støtte",
+      "support": "Find Terapeuter",
       "definitions": "Kønsterminologi",
       "studies": "Akademiske Studier",
       "studiesShort": "Studier",
@@ -68,9 +68,9 @@
       "note": "Dyb forskning er langsommere og ikke-samtalepræget. Til chat, lad den være slukket."
     },
     "disclaimer": {
-      "trigger": "Erfaringer og perspektiver på dette site kommer fra Reddit.",
+      "trigger": "Erfaringer og perspektiver på dette site kommer fra Reddit og YouTube.",
       "title": "Kildeansvarsfraskrivelse",
-      "content": "detrans.ai besvarer spørgsmål om køn fra et detransperspektiv ved at finde relevante erfaringer fra /r/detrans-fællesskabet på Reddit. Selvom Reddit er en platform, hvor rigtige mennesker deler personlige historier, kan den også indeholde bot-genereret eller vildledende indhold. Du opfordres til at undersøge de originale Reddit-indlæg for at verificere kilden og konteksten. Bemærk venligst, at /r/detrans er en strengt modereret subreddit, men moderation garanterer ikke nøjagtigheden eller autenticiteten af hvert indlæg."
+      "content": "detrans.ai besvarer spørgsmål om køn fra et detransperspektiv ved at finde relevante erfaringer fra /r/detrans-fællesskabet på Reddit og YouTube. Selvom mange rigtige mennesker deler deres erfaringer på internettet, kan der også være bot-genereret eller vildledende indhold. Du opfordres til at undersøge kilden til citerede erfaringer. Bemærk venligst, at posting i /r/detrans er begrænset til detransitionister, og subredditen er strengt modereret, men moderation garanterer ikke nøjagtigheden eller autenticiteten af hvert indlæg."
     },
     "donate": {
       "title": "Støt Vores Arbejde",
@@ -120,7 +120,7 @@
       "about": "Om"
     },
     "resources": {
-      "genderSupport": "Kønsstøtte",
+      "genderSupport": "Find Terapeuter",
       "genderSupportDesc": "Find fællesskab og terapeuter",
       "terminology": "Terminologi",
       "terminologyDesc": "Definition af centrale termer/koncepter",

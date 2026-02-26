@@ -56,7 +56,7 @@
       "videos": "Vidéos de Détransition",
       "stories": "Histoires",
       "storiesFull": "Histoires et Statistiques",
-      "support": "Aide et Soutien",
+      "support": "Trouver des Thérapeutes",
       "definitions": "Terminologie du Genre",
       "studies": "Études Académiques",
       "studiesShort": "Études",
@@ -68,9 +68,9 @@
       "note": "La Recherche Approfondie est plus lente et non conversationnelle. Pour discuter, laissez-le désactivé."
     },
     "disclaimer": {
-      "trigger": "Les expériences et perspectives sur ce site proviennent de Reddit.",
+      "trigger": "Les expériences et perspectives sur ce site proviennent de Reddit et de YouTube.",
       "title": "Clause de Non-Responsabilité des Sources",
-      "content": "detrans.ai répond aux questions sur le genre depuis une perspective de détransition en trouvant des expériences pertinentes de la communauté /r/detrans sur Reddit. Bien que Reddit soit une plateforme où des personnes réelles partagent des histoires personnelles, elle peut également contenir du contenu généré par des bots ou trompeur. Vous êtes encouragés à inspecter les publications Reddit originales pour vérifier la source et le contexte. Veuillez noter que /r/detrans est un subreddit fortement modéré, mais la modération ne garantit pas l'exactitude ou l'authenticité de chaque publication."
+      "content": "detrans.ai répond aux questions sur le genre depuis une perspective de détransition en trouvant des expériences pertinentes de la communauté /r/detrans sur Reddit et YouTube. Bien que de nombreuses personnes réelles partagent leurs expériences sur internet, il peut également y avoir du contenu généré par des bots ou trompeur. Vous êtes encouragés à inspecter la source des expériences citées. Veuillez noter que publier sur /r/detrans est réservé aux personnes ayant fait une détransition et que le subreddit est fortement modéré, mais la modération ne garantit pas l'exactitude ou l'authenticité de chaque publication."
     },
     "donate": {
       "title": "Soutenez Notre Travail",
@@ -120,7 +120,7 @@
       "about": "À propos"
     },
     "resources": {
-      "genderSupport": "Soutien de Genre",
+      "genderSupport": "Trouver des Thérapeutes",
       "genderSupportDesc": "Trouvez une communauté et des thérapeutes",
       "terminology": "Terminologie",
       "terminologyDesc": "Définition des termes et concepts clés",

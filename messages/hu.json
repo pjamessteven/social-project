@@ -56,7 +56,7 @@
       "videos": "Detransition Videók",
       "stories": "Történetek",
       "storiesFull": "Történetek és Statisztikák",
-      "support": "Segítség és Támogatás",
+      "support": "Terapeuták Keresése",
       "definitions": "Nemi Terminológia",
       "studies": "Akadémiai Tanulmányok",
       "studiesShort": "Tanulmányok",
@@ -68,9 +68,9 @@
       "note": "A Mélykutatás lassabb és nem beszélgetési jellegű. Csevegéshez hagyd ki."
     },
     "disclaimer": {
-      "trigger": "A tapasztalatok és nézőpontok ezen az oldalon a Redditről származnak.",
+      "trigger": "A tapasztalatok és nézőpontok ezen az oldalon a Redditről és a YouTube-ról származnak.",
       "title": "Forrás Jogi Nyilatkozat",
-      "content": "A detrans.ai a detrans perspektívából válaszol a nemi kérdésekre a Redditen lévő /r/detrans közösségéből származó releváns tapasztalatok megtalálásával. Bár a Reddit egy platform, ahol valódi emberek osztanak meg személyes történeteket, bot által generált vagy félrevezető tartalom is előfordulhat. Ösztönözzük a felhasználókat, hogy nézzék meg az eredeti Reddit bejegyzéseket a forrás és a kontextus ellenőrzéséhez. Kérjük, vegye figyelembe, hogy az /r/detrans erősen moderált subreddit, de a moderálás nem garantálja minden bejegyzés pontosságát vagy hitelességét."
+      "content": "A detrans.ai a detrans perspektívából válaszol a nemi kérdésekre a Redditen és a YouTube-on lévő /r/detrans közösségéből származó releváns tapasztalatok megtalálásával. Bár sok valódi ember megosztja tapasztalatait az interneten, bot által generált vagy félrevezető tartalom is előfordulhat. Ösztönözzük a felhasználókat, hogy nézzék meg az idézett tapasztalatok forrását. Kérjük, vegye figyelembe, hogy az /r/detrans-ba való posztolás detransitionálókra korlátozott és a subreddit erősen moderált, de a moderálás nem garantálja minden bejegyzés pontosságát vagy hitelességét."
     },
     "donate": {
       "title": "Támogasd a Munkánkat",
@@ -120,7 +120,7 @@
       "about": "Rólunk"
     },
     "resources": {
-      "genderSupport": "Nemi Támogatás",
+      "genderSupport": "Terapeuták Keresése",
       "genderSupportDesc": "Találj közösséget és terapeutákat",
       "terminology": "Terminológia",
       "terminologyDesc": "Kulcsfogalmak meghatározása",

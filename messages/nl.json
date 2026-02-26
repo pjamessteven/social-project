@@ -54,9 +54,9 @@
     },
     "navigation": {
       "videos": "Detransitievideo's",
-      "stories": "Verhalen",
+      "stories": "Verhalen en Trends",
       "storiesFull": "Verhalen & Statistieken",
-      "support": "Hulp & Ondersteuning",
+      "support": "Vind Therapeuten",
       "definitions": "Genderterminologie",
       "studies": "Wetenschappelijke Studies",
       "studiesShort": "Studies",
@@ -68,9 +68,9 @@
       "note": "Diepgaand Onderzoek is langzamer en niet-conversationeel. Voor chat, laat het uit."
     },
     "disclaimer": {
-      "trigger": "Ervaringen en perspectieven op deze site komen van Reddit.",
+      "trigger": "Ervaringen en perspectieven op deze site komen van Reddit en YouTube.",
       "title": "Bronvermelding",
-      "content": "detrans.ai beantwoordt vragen over gender vanuit een detrans-perspectief door relevante ervaringen te vinden uit de /r/detrans gemeenschap op Reddit. Hoewel Reddit een platform is waar echte mensen persoonlijke verhalen delen, kan het ook bot-gegenereerde of misleidende inhoud bevatten. Je wordt aangemoedigd om de originele Reddit-posts te inspecteren om de bron en context te verifiëren. Houd er rekening mee dat /r/detrans een streng gemodereerde subreddit is, maar moderatie garandeert niet de nauwkeurigheid of authenticiteit van elke post."
+      "content": "detrans.ai beantwoordt vragen over gender vanuit een detrans-perspectief door relevante ervaringen te vinden uit de /r/detrans gemeenschap op Reddit en YouTube. Hoewel veel echte mensen hun ervaringen op internet delen, kan er ook bot-gegenereerde of misleidende inhoud zijn. Je wordt aangemoedigd om de bron van geciteerde ervaringen te inspecteren. Houd er rekening mee dat posten in /r/detrans is beperkt tot detransitioners en dat de subreddit streng wordt gemodereerd, maar moderatie garandeert niet de nauwkeurigheid of authenticiteit van elke post."
     },
     "donate": {
       "title": "Steun Ons Werk",
@@ -120,7 +120,7 @@
       "about": "Over"
     },
     "resources": {
-      "genderSupport": "Genderondersteuning",
+      "genderSupport": "Vind Therapeuten",
       "genderSupportDesc": "Vind gemeenschap en therapeuten",
       "terminology": "Terminologie",
       "terminologyDesc": "Definiëren van belangrijke termen/concepten",

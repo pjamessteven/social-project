@@ -54,9 +54,9 @@
     },
     "navigation": {
       "videos": "Detransition Videos",
-      "stories": "Stories",
+      "stories": "Stories & Trends",
       "storiesFull": "Stories & Statistics",
-      "support": "Help & Support",
+      "support": "Find Therapists",
       "definitions": "Gender Terminology",
       "studies": "Academic Studies",
       "studiesShort": "Studies",
@@ -68,9 +68,9 @@
       "note": "Deep Research is slower and non-conversational. For chat, leave it off."
     },
     "disclaimer": {
-      "trigger": "Experiences and perspectives on this site are sourced from Reddit.",
+      "trigger": "Experiences and perspectives on this site are sourced from Reddit and YouTube.",
       "title": "Source Disclaimer",
-      "content": "detrans.ai answers questions about gender from a detrans perspective by finding relevant experiences from the /r/detrans community on Reddit. While Reddit is a platform where real people share personal stories, it may also contain bot-generated or misleading content. You are encouraged to inspect the original Reddit posts to verify the source and context. Please note that /r/detrans is a heavily moderated subreddit, but moderation does not guarantee the accuracy or authenticity of every post."
+      "content": "detrans.ai answers questions about gender from a detrans perspective by finding relevant experiences from the /r/detrans community on Reddit and YouTube. While many real people share their experiences on the internet, there can also be bot-generated or misleading content. You are encouraged to inspect the source of quoted experiences. Please note that posting in /r/detrans is restricted to detransitioners and the subreddit is heavily moderated, but moderation does not guarantee the accuracy or authenticity of every post."
     },
     "donate": {
       "title": "Support Our Work",
@@ -120,7 +120,7 @@
       "about": "About"
     },
     "resources": {
-      "genderSupport": "Gender Support",
+      "genderSupport": "Find Therapists",
       "genderSupportDesc": "Find community and therapists",
       "terminology": "Terminology",
       "terminologyDesc": "Defining key terms/concepts",

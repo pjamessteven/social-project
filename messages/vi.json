@@ -54,9 +54,9 @@
     },
     "navigation": {
       "videos": "Video Chuyển Giới Trở Lại",
-      "stories": "Câu Chuyện",
+      "stories": "Câu chuyện",
       "storiesFull": "Câu Chuyện & Thống Kê",
-      "support": "Giúp Đỡ & Hỗ Trợ",
+      "support": "Tìm Nhà Trị Liệu",
       "definitions": "Thuật Ngữ Giới Tính",
       "studies": "Nghiên Cứu Học Thuật",
       "studiesShort": "Nghiên Cứu",
@@ -68,9 +68,9 @@
       "note": "Nghiên Cứu Sâu chậm hơn và không mang tính đối thoại. Để trò chuyện, hãy tắt tính năng này."
     },
     "disclaimer": {
-      "trigger": "Kinh nghiệm và quan điểm trên trang này được lấy từ Reddit.",
+      "trigger": "Kinh nghiệm và quan điểm trên trang này được lấy từ Reddit và YouTube.",
       "title": "Tuyên Bố Từ Chối Trách Nhiệm Về Nguồn",
-      "content": "detrans.ai trả lời các câu hỏi về giới tính từ góc nhìn của ngưởi chuyển giới trở lại bằng cách tìm kiếm những kinh nghiệm liên quan từ cộng đồng /r/detrans trên Reddit. Mặc dù Reddit là nền tảng nơi ngưởi thật chia sẻ câu chuyện cá nhân, nhưng nó cũng có thể chứa nội dung do bot tạo ra hoặc gây hiểu nhầm. Bạn được khuyến khích kiểm tra các bài đăng Reddit gốc để xác minh nguồn và bối cảnh. Xin lưu ý rằng /r/detrans là một subreddit được kiểm duyệt nghiêm ngặt, nhưng việc kiểm duyệt không đảm bảo độ chính xác hoặc tính xác thực của mọi bài đăng."
+      "content": "detrans.ai trả lờ các câu hỏi về giới tính từ góc nhìn của ngưởi chuyển giới trở lại bằng cách tìm kiếm những kinh nghiệm liên quan từ cộng đồng /r/detrans trên Reddit và YouTube. Mặc dù nhiều ngưởi thật chia sẻ kinh nghiệm của họ trên internet, nhưng cũng có thể có nội dung do bot tạo ra hoặc gây hiểu nhầm. Bạn được khuyến khích kiểm tra nguồn của các kinh nghiệm được trích dẫn. Xin lưu ý rằng đăng bài trong /r/detrans bị hạn chế đối với ngưởi chuyển giới trở lại và subreddit được kiểm duyệt nghiêm ngặt, nhưng việc kiểm duyệt không đảm bảo độ chính xác hoặc tính xác thực của mọi bài đăng."
     },
     "donate": {
       "title": "Ủng Hộ Công Việc Của Chúng Tôi",
@@ -120,7 +120,7 @@
       "about": "Giới Thiệu"
     },
     "resources": {
-      "genderSupport": "Hỗ Trợ Giới Tính",
+      "genderSupport": "Tìm Nhà Trị Liệu",
       "genderSupportDesc": "Tìm cộng đồng và nhà trị liệu",
       "terminology": "Thuật Ngữ",
       "terminologyDesc": "Định nghĩa các thuật ngữ/khái niệm chính",
