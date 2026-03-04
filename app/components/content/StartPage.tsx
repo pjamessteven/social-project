@@ -179,9 +179,16 @@ export async function StartPage({
           <div className="mt-1 w-full border-t" />
           <div className="mt-1 w-full border-t" />
         </div>
-        <div className="text-muted-foreground/80 dark:text-muted-foreground/70 pt-4 pb-4 text-center text-sm">
+        <div className="text-muted-foreground/60 dark:text-muted-foreground/60 pt-4 pb-3 text-sm sm:text-center">
           {t("privacyDisclaimer")}
+          <span className="sm:hidden">
+            <br />
+            {t("privacyDisclaimerChatsPublic")}
+          </span>
           <br />
+          <span className="hidden sm:inline">
+            {t("privacyDisclaimerChatsPublic")}&nbsp;
+          </span>
           <span className="hidden sm:inline">
             {t.rich("memberCountDisclaimer", {
               a: (chunks) => (

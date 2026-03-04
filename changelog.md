@@ -1,5 +1,71 @@
 # Changelog
 
+## [2026-03-05] - Optimize Videos API Performance
+
+### API Changes
+
+- **Optimized `/api/videos` endpoint for better performance**
+  - Changed from fetching all translation JSON data to extracting only the requested locale at the database level
+  - Uses PostgreSQL JSON operators (`->>`) to extract specific locale from translation columns
+  - Uses `COALESCE` to fallback to default values when translations don't exist
+  - Reduces data transfer by ~32x (previously transferring JSON with all 32 locales, now only 1)
+
+### Files Modified
+
+- `app/api/videos/route.ts` - Optimized to use SQL JSON operators for locale extraction
+- `app/components/SeoVideosList.tsx` - Applied same optimization for server-side rendering
+
+### Technical Details
+
+- Replaced client-side JSON parsing with database-level locale extraction
+- Removed `getLocalizedField()` helper function (logic now in SQL)
+- Updated Video interface to exclude translation JSON columns (not needed anymore)
+- Maintains backward compatibility - same API response format
+
+## [2026-03-05] - Consolidate Chat API Endpoints
+
+### API Changes
+
+- **Merged `/api/chat/conversations/[uuid]` into `/api/chat/[uuid]`**
+  - Consolidated duplicate conversation endpoints into a single endpoint
+  - Deleted `app/api/chat/conversations/[uuid]/route.ts` (595 lines)
+  - Updated `app/api/chat/[uuid]/route.ts` to support localization via `?locale` query parameter
+
+### Technical Details
+
+- Added `getLocalizedField()` helper function to support locale-specific responses
+- GET endpoint now accepts optional `locale` query parameter (defaults to "en")
+- Returns localized `title` and `conversationSummary` based on requested locale
+- Includes `titleTranslation` and `conversationSummaryTranslation` fields in response for client-side use
+
+### Files Modified
+
+- `app/api/chat/[uuid]/route.ts` - Added locale support to GET endpoint
+- `app/[locale]/chat/[uuid]/page.tsx` - Updated to use `/api/chat/[uuid]?locale=${locale}`
+- `app/[locale]/conversations/[conversationId]/page.tsx` - Updated to use `/api/chat/[uuid]?locale=${locale}`
+
+### Removed
+
+- `app/api/chat/conversations/[uuid]/route.ts` - Duplicate endpoint (functionality merged into main endpoint)
+
+## [2026-02-26] - Update Translations for Privacy and Member Count Disclaimers
+
+### Translations
+
+- Updated translations for `privacyDisclaimer`, `memberCountDisclaimer`, and `memberCountDisclaimerMobile` across all 32 supported languages
+- Languages updated: Arabic (ar), Bulgarian (bg), Czech (cz), Danish (da), German (de), Greek (el), Spanish (es), Finnish (fi), French (fr), Hebrew (he), Hindi (hi), Hungarian (hu), Indonesian (id), Italian (it), Japanese (ja), Korean (ko), Lithuanian (lt), Dutch (nl), Norwegian (no), Polish (pl), Portuguese (pt), Romanian (ro), Russian (ru), Slovenian (sl), Swedish (sv), Thai (th), Turkish (tr), Ukrainian (uk), Vietnamese (vi), Chinese Simplified (zh-cn), Chinese Traditional (zh-tw), Farsi (fa)
+
+### Technical Details
+
+- HTML `<a>` tags preserved in member count disclaimer translations
+- Number format "50,000+" maintained consistently across all languages
+- RTL languages (Arabic, Hebrew, Farsi) properly formatted
+- Replaced English placeholder text with accurate translations
+
+### Files Modified
+
+- All `/messages/*.json` files (32 languages total)
+
 ## [2026-02-26] - Add Arabic (ar) and Greek (el) Language Support
 
 ### Overview
