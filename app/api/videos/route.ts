@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/db';
-import { videos } from '@/db/schema';
-import { desc, eq } from 'drizzle-orm';
+import { db } from "@/db";
+import { videos } from "@/db/schema";
+import { desc, eq, sql } from "drizzle-orm";
+import { NextRequest, NextResponse } from "next/server";
 
-interface VideoWithTranslations {
+interface Video {
   id: number;
   title: string;
   author: string;
@@ -17,57 +17,54 @@ interface VideoWithTranslations {
   bite: string | null;
   duration: number | null;
   date: Date | null;
-  descriptionTranslation: string | null;
-  summaryTranslation: string | null;
-  biteTranslation: string | null;
-  titleTranslation: string | null;
   createdAt: Date;
   updatedAt: Date;
-}
-
-function getLocalizedField(
-  defaultValue: string | null,
-  translationsJson: string | null,
-  locale: string
-): string | null {
-  if (!translationsJson) return defaultValue;
-  
-  try {
-    const translations = JSON.parse(translationsJson) as Record<string, string>;
-    return translations[locale] || defaultValue;
-  } catch {
-    return defaultValue;
-  }
 }
 
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const locale = searchParams.get('locale') || 'en';
-    
+    const locale = searchParams.get("locale") || "en";
+
+    // Use PostgreSQL JSON operators to extract only the requested locale
+    // COALESCE returns the first non-null value (translation -> default)
     const allVideos = await db
-      .select()
+      .select({
+        id: videos.id,
+        title: sql<string>`COALESCE(${videos.titleTranslation}->>${locale}, ${videos.title})`,
+        author: videos.author,
+        sex: videos.sex,
+        url: videos.url,
+        type: videos.type,
+        processed: videos.processed,
+        transcript: videos.transcript,
+        description: sql<
+          string | null
+        >`COALESCE(${videos.descriptionTranslation}->>${locale}, ${videos.description})`,
+        summary: sql<
+          string | null
+        >`COALESCE(${videos.summaryTranslation}->>${locale}, ${videos.summary})`,
+        bite: sql<
+          string | null
+        >`COALESCE(${videos.biteTranslation}->>${locale}, ${videos.bite})`,
+        duration: videos.duration,
+        date: videos.date,
+        createdAt: videos.createdAt,
+        updatedAt: videos.updatedAt,
+      })
       .from(videos)
       .where(eq(videos.processed, true))
       .orderBy(desc(videos.createdAt));
 
-    const localizedVideos = (allVideos as VideoWithTranslations[]).map((video) => ({
-      ...video,
-      title: getLocalizedField(video.title, video.titleTranslation, locale),
-      description: getLocalizedField(video.description, video.descriptionTranslation, locale),
-      summary: getLocalizedField(video.summary, video.summaryTranslation, locale),
-      bite: getLocalizedField(video.bite, video.biteTranslation, locale),
-    }));
-
     return NextResponse.json({
-      videos: localizedVideos,
-      count: localizedVideos.length
+      videos: allVideos as Video[],
+      count: allVideos.length,
     });
   } catch (error) {
-    console.error('Error fetching videos:', error);
+    console.error("Error fetching videos:", error);
     return NextResponse.json(
-      { error: 'Failed to fetch videos' },
-      { status: 500 }
+      { error: "Failed to fetch videos" },
+      { status: 500 },
     );
   }
 }
