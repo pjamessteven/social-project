@@ -1,12 +1,12 @@
 import { requireAuth } from "@/app/lib/auth/middleware";
 import { checkIpBan } from "@/app/lib/ipBan";
 import { bannedUsers, chatConversations, db } from "@/db";
+import { getLanguageName, locales } from "@/i18n/routing";
 import { OpenAI } from "@llamaindex/openai";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { initSettings } from "../app/settings";
-import { locales, getLanguageName } from "@/i18n/routing";
 
 // Schema for the update request
 const updateConversationSchema = z.object({
@@ -22,7 +22,12 @@ type Locale = (typeof LOCALES)[number];
 // Function to generate AI summary of a conversation
 async function generateConversationTitleAndSummary(
   messages: string,
-): Promise<{ title: string; summary: string; titleTranslations: Record<Locale, string>; summaryTranslations: Record<Locale, string> }> {
+): Promise<{
+  title: string;
+  summary: string;
+  titleTranslations: Record<Locale, string>;
+  summaryTranslations: Record<Locale, string>;
+}> {
   try {
     // Parse the messages JSON
     const parsedMessages = JSON.parse(messages);
@@ -140,18 +145,20 @@ async function generateConversationTitleAndSummary(
     const defaultLocale = "en";
     const titleTranslations = {} as Record<Locale, string>;
     const summaryTranslations = {} as Record<Locale, string>;
-    
+
     // Set the default locale title and summary
     titleTranslations[defaultLocale as Locale] = title;
     summaryTranslations[defaultLocale as Locale] = summary;
 
     // Generate translations for all non-default locales
-    const localesToTranslate = LOCALES.filter((locale) => locale !== defaultLocale);
-    
+    const localesToTranslate = LOCALES.filter(
+      (locale) => locale !== defaultLocale,
+    );
+
     for (const locale of localesToTranslate) {
       try {
         const languageName = getLanguageName(locale);
-        
+
         // Translate title
         const titleTranslationPrompt = `
 Translate the following conversation title to ${languageName}. 
@@ -196,7 +203,10 @@ Translation:`;
           summaryTranslations[locale] = summary;
         }
       } catch (translationError) {
-        console.error(`Error generating ${locale} translation:`, translationError);
+        console.error(
+          `Error generating ${locale} translation:`,
+          translationError,
+        );
         titleTranslations[locale] = title;
         summaryTranslations[locale] = summary;
       }
@@ -301,7 +311,8 @@ export async function PUT(
         featured: chatConversations.featured,
         archived: chatConversations.archived,
         conversationSummary: chatConversations.conversationSummary,
-        conversationSummaryTranslation: chatConversations.conversationSummaryTranslation,
+        conversationSummaryTranslation:
+          chatConversations.conversationSummaryTranslation,
         createdAt: chatConversations.createdAt,
         updatedAt: chatConversations.updatedAt,
         country: chatConversations.country,
@@ -330,12 +341,17 @@ export async function PUT(
       // This ensures that if a conversation is unfeatured then re-featured, a fresh summary is generated
       if (featured === true) {
         try {
-          const { title: generatedTitle, summary, titleTranslations, summaryTranslations } =
-            await generateConversationTitleAndSummary(conversation.messages);
+          const {
+            title: generatedTitle,
+            summary,
+            titleTranslations,
+            summaryTranslations,
+          } = await generateConversationTitleAndSummary(conversation.messages);
           updateData.title = generatedTitle;
           updateData.conversationSummary = summary;
           updateData.titleTranslation = JSON.stringify(titleTranslations);
-          updateData.conversationSummaryTranslation = JSON.stringify(summaryTranslations);
+          updateData.conversationSummaryTranslation =
+            JSON.stringify(summaryTranslations);
         } catch (error) {
           console.error(
             "Failed to generate conversation title and summary:",
@@ -367,7 +383,8 @@ export async function PUT(
         featured: chatConversations.featured,
         archived: chatConversations.archived,
         conversationSummary: chatConversations.conversationSummary,
-        conversationSummaryTranslation: chatConversations.conversationSummaryTranslation,
+        conversationSummaryTranslation:
+          chatConversations.conversationSummaryTranslation,
         createdAt: chatConversations.createdAt,
         updatedAt: chatConversations.updatedAt,
         country: chatConversations.country,
@@ -383,6 +400,22 @@ export async function PUT(
       { error: "Failed to update conversation" },
       { status: 500 },
     );
+  }
+}
+
+// Helper function to get localized field
+function getLocalizedField(
+  defaultValue: string | null,
+  translationsJson: string | null,
+  locale: string,
+): string | null {
+  if (!translationsJson) return defaultValue;
+
+  try {
+    const translations = JSON.parse(translationsJson) as Record<string, string>;
+    return translations[locale] || defaultValue;
+  } catch {
+    return defaultValue;
   }
 }
 
@@ -405,17 +438,23 @@ export async function GET(
       );
     }
 
+    // Get locale from query parameter, default to "en"
+    const { searchParams } = new URL(request.url);
+    const locale = searchParams.get("locale") || "en";
+
     // Retrieve the conversation from the database
     const conversation = await db
       .select({
         uuid: chatConversations.uuid,
         mode: chatConversations.mode,
         title: chatConversations.title,
+        titleTranslation: chatConversations.titleTranslation,
         messages: chatConversations.messages,
         featured: chatConversations.featured,
         archived: chatConversations.archived,
         conversationSummary: chatConversations.conversationSummary,
-        conversationSummaryTranslation: chatConversations.conversationSummaryTranslation,
+        conversationSummaryTranslation:
+          chatConversations.conversationSummaryTranslation,
         createdAt: chatConversations.createdAt,
         updatedAt: chatConversations.updatedAt,
         country: chatConversations.country,
@@ -445,14 +484,29 @@ export async function GET(
       );
     }
 
+    // Get localized title and summary based on the requested locale
+    const localizedTitle = getLocalizedField(
+      chatData.title,
+      chatData.titleTranslation,
+      locale,
+    );
+
+    const localizedSummary = getLocalizedField(
+      chatData.conversationSummary,
+      chatData.conversationSummaryTranslation,
+      locale,
+    );
+
     return NextResponse.json({
       uuid: chatData.uuid,
       mode: chatData.mode,
-      title: chatData.title,
+      title: localizedTitle,
+      titleTranslation: chatData.titleTranslation,
       messages,
       featured: chatData.featured,
       archived: chatData.archived,
-      conversationSummary: chatData.conversationSummary,
+      conversationSummary: localizedSummary,
+      conversationSummaryTranslation: chatData.conversationSummaryTranslation,
       createdAt: chatData.createdAt,
       updatedAt: chatData.updatedAt,
     });
@@ -500,7 +554,8 @@ export async function POST(
         featured: chatConversations.featured,
         archived: chatConversations.archived,
         conversationSummary: chatConversations.conversationSummary,
-        conversationSummaryTranslation: chatConversations.conversationSummaryTranslation,
+        conversationSummaryTranslation:
+          chatConversations.conversationSummaryTranslation,
         createdAt: chatConversations.createdAt,
         updatedAt: chatConversations.updatedAt,
         country: chatConversations.country,
@@ -520,8 +575,12 @@ export async function POST(
     const conversation = existingConversation[0];
 
     // Generate AI title and summary
-    const { title: generatedTitle, summary, titleTranslations, summaryTranslations } =
-      await generateConversationTitleAndSummary(conversation.messages);
+    const {
+      title: generatedTitle,
+      summary,
+      titleTranslations,
+      summaryTranslations,
+    } = await generateConversationTitleAndSummary(conversation.messages);
 
     // Update the conversation with the new title and summary
     const updatedConversation = await db
@@ -542,7 +601,8 @@ export async function POST(
         featured: chatConversations.featured,
         archived: chatConversations.archived,
         conversationSummary: chatConversations.conversationSummary,
-        conversationSummaryTranslation: chatConversations.conversationSummaryTranslation,
+        conversationSummaryTranslation:
+          chatConversations.conversationSummaryTranslation,
         createdAt: chatConversations.createdAt,
         updatedAt: chatConversations.updatedAt,
         country: chatConversations.country,
@@ -597,7 +657,8 @@ export async function DELETE(
         featured: chatConversations.featured,
         archived: chatConversations.archived,
         conversationSummary: chatConversations.conversationSummary,
-        conversationSummaryTranslation: chatConversations.conversationSummaryTranslation,
+        conversationSummaryTranslation:
+          chatConversations.conversationSummaryTranslation,
         createdAt: chatConversations.createdAt,
         updatedAt: chatConversations.updatedAt,
         country: chatConversations.country,
@@ -665,7 +726,8 @@ export async function PATCH(
         featured: chatConversations.featured,
         archived: chatConversations.archived,
         conversationSummary: chatConversations.conversationSummary,
-        conversationSummaryTranslation: chatConversations.conversationSummaryTranslation,
+        conversationSummaryTranslation:
+          chatConversations.conversationSummaryTranslation,
         createdAt: chatConversations.createdAt,
         updatedAt: chatConversations.updatedAt,
         country: chatConversations.country,

@@ -58,10 +58,11 @@ async function fetchAllConversations(): Promise<ConversationSummary[]> {
 
 async function fetchSingleConversation(
   uuid: string,
+  locale: string,
 ): Promise<ConversationSummary | null> {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-    const apiUrl = `${baseUrl}/api/chat/conversations/${uuid}`;
+    const apiUrl = `${baseUrl}/api/chat/${uuid}?locale=${locale}`;
 
     const response = await fetch(apiUrl, {
       cache: "no-store",
@@ -85,10 +86,10 @@ async function fetchSingleConversation(
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ uuid: string }>;
+  params: Promise<{ uuid: string; locale: string }>;
 }): Promise<Metadata> {
-  const { uuid } = await params;
-  const conversation = await fetchSingleConversation(uuid);
+  const { uuid, locale } = await params;
+  const conversation = await fetchSingleConversation(uuid, locale);
 
   if (!conversation) {
     return {
@@ -178,7 +179,7 @@ export default async function ChatPage({ params }: ChatPageProps) {
       await Promise.all([
         fetchFeaturedConversations(),
         fetchAllConversations(),
-        fetchSingleConversation(uuid),
+        fetchSingleConversation(uuid, locale),
       ]);
 
     // If we have the single conversation, add it to the lists if not already present
