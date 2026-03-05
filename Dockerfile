@@ -46,19 +46,19 @@ ENV NEXT_PRIVATE_STANDALONE=true
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/components ./components
-COPY --from=builder /app/db ./db
-COPY --from=builder /app/app ./app
-COPY --from=builder /app/scripts ./scripts
-COPY --from=builder /app/drizzle ./drizzle
-COPY --from=builder /app/drizzle.config.ts ./drizzle.config.ts
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+# Copy application code with appropriate ownership and permissions
+COPY --from=builder --chown=nextjs:nodejs --chmod=555 /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs --chmod=555 /app/components ./components
+COPY --from=builder --chown=nextjs:nodejs --chmod=555 /app/db ./db
+COPY --from=builder --chown=nextjs:nodejs --chmod=555 /app/app ./app
+COPY --from=builder --chown=nextjs:nodejs --chmod=555 /app/scripts ./scripts
+COPY --from=builder --chown=nextjs:nodejs --chmod=555 /app/drizzle ./drizzle
+COPY --from=builder --chown=nextjs:nodejs --chmod=444 /app/drizzle.config.ts ./drizzle.config.ts
 
-# Ensuring no unnecessary permissions are given and add necessary permissions for it to run server.js properly.
-RUN chmod -R a-w+x . && chmod -R a+x .next node_modules
+# Copy dependencies and build output with execution permissions
+COPY --from=builder --chown=nextjs:nodejs --chmod=755 /app/node_modules ./node_modules
+COPY --from=builder --chown=nextjs:nodejs --chmod=755 /app/.next ./.next
+COPY --from=builder --chown=nextjs:nodejs --chmod=755 /app/.next/standalone ./
 
 COPY docker-entrypoint.sh /app/
 RUN chmod +x /app/docker-entrypoint.sh
