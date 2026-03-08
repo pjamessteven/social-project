@@ -182,8 +182,7 @@ export async function StartPage({
         <div className="text-muted-foreground/60 dark:text-muted-foreground/60 pt-4 pb-3 text-sm sm:text-center">
           {t("privacyDisclaimer")}
           <span className="sm:hidden">
-            <br />
-            {t("privacyDisclaimerChatsPublic")}
+            &nbsp;{t("privacyDisclaimerChatsPublic")}
           </span>
           <br />
           <span className="hidden sm:inline">
@@ -201,6 +200,7 @@ export async function StartPage({
                 </a>
               ),
             })}
+            .
           </span>
           <span className="sm:hidden">
             *
@@ -215,6 +215,7 @@ export async function StartPage({
                 </a>
               ),
             })}
+            .
           </span>
         </div>
         <div className="mt-1 w-full border-t" />
