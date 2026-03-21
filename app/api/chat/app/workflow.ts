@@ -23,6 +23,8 @@ export const workflowFactory = async (
   reqBody: any,
   userInput: string,
   conversationId?: string,
+  requestId?: string,
+  iteration?: number,
   locale?: string,
 ) => {
   initSettings();
@@ -92,6 +94,8 @@ export const workflowFactory = async (
       const hashedKey = makeHashedKey(cacheKey);
       await cache.set(hashedKey, cacheKey, result, undefined, {
         conversationId,
+        requestId,
+        iteration,
       });
 
       return result;
@@ -131,6 +135,8 @@ export const workflowFactory = async (
 
       await cache.set(hashedKey, cacheKey, result, userInput, {
         conversationId,
+        requestId,
+        iteration,
       });
 
       return result;
@@ -186,6 +192,8 @@ export const workflowFactory = async (
 
       await cache.set(hashedKey, cacheKey, result, userInput, {
         conversationId,
+        requestId,
+        iteration,
       });
 
       return result;
@@ -214,6 +222,7 @@ export const workflowFactory = async (
     baseURL: "https://api.moonshot.ai/v1",
     model: "kimi-k2.5",
     conversationId,
+    requestId,
     temperature: 0.6,
     topP: 0.95,
     additionalSessionOptions: {

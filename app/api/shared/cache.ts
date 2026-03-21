@@ -66,6 +66,8 @@ export class PostgresCache implements Cache {
       model?: string;
       generationId?: string;
       conversationId?: string;
+      requestId?: string;
+      iteration?: number;
     },
   ): Promise<void> {
     try {
@@ -83,6 +85,7 @@ export class PostgresCache implements Cache {
         generationId: metadata?.generationId || null,
         createdAt: new Date(),
         lastAccessed: new Date(),
+        requestId: metadata?.requestId || null,
       };
 
       // Add conversationId  for detrans_chat
@@ -91,6 +94,7 @@ export class PostgresCache implements Cache {
           ? {
               ...baseValues,
               conversationId: metadata?.conversationId || null,
+              iteration: metadata?.iteration || null,
             }
           : baseValues;
 
@@ -136,7 +140,7 @@ export function makeCacheKey(
   return mode === "detrans_chat" || mode === "deep_research"
     ? JSON.stringify({
         messages,
-        tools: options.tools?.map((t: any) => t.name),
+        tools: options.tools?.map((t: any) => t?.name || null),
       })
     : JSON.stringify({ messages, ...options });
 }

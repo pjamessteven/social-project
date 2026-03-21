@@ -1,5 +1,12 @@
+import { MAX_MESSAGE_LENGTH } from "@/app/lib/constants";
 import { getCountryFromIP } from "@/app/lib/geolocation";
 import { checkIpBan, getIpFromRequest } from "@/app/lib/ipBan";
+import {
+  getMessagesUntilCaptchaRequired,
+  incrementMessageCount,
+  isCaptchaRequired,
+} from "@/app/lib/messageCounter";
+import { checkRateLimit } from "@/app/lib/rateLimit";
 import { db } from "@/db";
 import { chatConversations } from "@/db/schema";
 import { createUIMessageStreamResponse, type UIMessage } from "ai";
@@ -15,6 +22,7 @@ import {
   runWorkflow,
   toDataStream,
 } from "./utils";
+import { getChatCachedResponse } from "./utils/cacheHelpers";
 
 // import workflow factory and settings from local file
 import { stopAgentEvent } from "@llamaindex/workflow";
@@ -27,6 +35,10 @@ export async function POST(req: NextRequest) {
   try {
     // Check if IP is banned before processing request
     await checkIpBan(req);
+
+    // Apply rate limiting (10/min, 100/hour)
+    const rateLimitResponse = await checkRateLimit(req);
+    if (rateLimitResponse) return rateLimitResponse;
 
     const reqBody = await req.json();
     const suggestNextQuestions = process.env.SUGGEST_NEXT_QUESTIONS === "true";
@@ -46,6 +58,35 @@ export async function POST(req: NextRequest) {
     };
 
     const ipAddress = getIpFromRequest(req);
+
+    // Check cache first before starting workflow
+    const cachedResponse = await getChatCachedResponse(messages);
+    console.log("CACHED RES", cachedResponse);
+    if (!cachedResponse) {
+      console.log("[CHAT API] Cache miss - checking captcha ");
+      // Check CAPTCHA status if not in cache
+      // Require CAPTCHA every 10 messages
+      const captchaRequired = await isCaptchaRequired(ipAddress);
+      if (captchaRequired) {
+        const messagesUntilCaptcha =
+          await getMessagesUntilCaptchaRequired(ipAddress);
+        const messageText =
+          messagesUntilCaptcha === 0
+            ? "Please complete the CAPTCHA to continue."
+            : `Please complete the CAPTCHA to continue. You have ${messagesUntilCaptcha} message${messagesUntilCaptcha === 1 ? "" : "s"} remaining before CAPTCHA is required again.`;
+        return NextResponse.json(
+          {
+            requiresCaptcha: true,
+            message: messageText,
+            error: "CAPTCHA verification required",
+            messagesUntilCaptcha,
+          },
+          { status: 402 },
+        );
+      }
+    } else {
+      console.log("[CHAT API] Cache hit - bypass captcha ");
+    }
 
     // Generate or use provided conversation UUID
     const chatUuid = conversationId || uuidv4();
@@ -101,6 +142,11 @@ export async function POST(req: NextRequest) {
       role: message.role as MessageType,
       content: message.parts[0].type === "text" ? message.parts[0].text : "", // message.parts[0]?
     }));
+
+    const userMessages = chatHistory.filter(
+      (message) => message.role === "user",
+    );
+
     console.log("Chat history:", chatHistory);
 
     const lastMessage = messages[messages.length - 1];
@@ -113,7 +159,9 @@ export async function POST(req: NextRequest) {
       );
     }
     const userInput =
-      lastMessage.parts[0].type === "text" ? lastMessage.parts[0].text : "";
+      lastMessage.parts[0].type === "text"
+        ? lastMessage.parts[0].text.slice(0, MAX_MESSAGE_LENGTH)
+        : "";
 
     const abortController = new AbortController();
     req.signal.addEventListener("abort", () =>
@@ -122,7 +170,14 @@ export async function POST(req: NextRequest) {
 
     try {
       const context = await runWorkflow({
-        workflow: await workflowFactory(reqBody, userInput, chatUuid, locale),
+        workflow: await workflowFactory(
+          reqBody,
+          userInput,
+          chatUuid,
+          requestId,
+          userMessages.length,
+          locale,
+        ),
         input: { userInput: userInput, chatHistory },
         human: {
           snapshotId: requestId, // use requestId to restore snapshot
@@ -143,6 +198,8 @@ export async function POST(req: NextRequest) {
           },
           onFinal: async (messages: UIMessage[], dataStreamWriter) => {
             await saveConversation(chatUuid, messages, ipAddress);
+            // Increment message count for CAPTCHA tracking
+            await incrementMessageCount(ipAddress);
             /*
             if (suggestNextQuestions) {
               await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory, chatUuid);

@@ -17,19 +17,21 @@ export class CachedOpenAI extends OpenAI {
   private cache: Cache;
   private mode: "detrans_chat" | "deep_research";
   private conversationId: string | undefined;
-
+  private requestId: string | undefined;
   constructor(
     init: ConstructorParameters<typeof OpenAI>[0] & {
       cache: Cache;
       mode: "detrans_chat" | "deep_research";
       conversationId?: string;
+      requestId?: string;
     },
   ) {
-    const { cache, mode, conversationId, ...openAIInit } = init;
+    const { cache, mode, conversationId, requestId, ...openAIInit } = init;
     super(openAIInit);
     this.cache = cache;
     this.mode = mode;
     this.conversationId = conversationId;
+    this.requestId = requestId;
   }
 
   private async fetchGenerationMetadata(generationId: string): Promise<{
@@ -447,13 +449,16 @@ export class CachedOpenAI extends OpenAI {
     model?: string;
     generationId?: string;
     conversationId?: string;
+    requestId?: string;
   }> {
     const metadata: any = {};
+
+    metadata.conversationId = this.conversationId;
+    metadata.requestId = this.requestId;
 
     // Add generation ID if available
     if (generationId) {
       metadata.generationId = generationId;
-      metadata.conversationId = this.conversationId;
 
       // Fetch metadata from OpenRouter
       const generationMetadata =

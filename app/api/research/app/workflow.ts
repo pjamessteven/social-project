@@ -22,7 +22,7 @@ type MetadataFilter = {
 export const workflowFactory = async (
   reqBody: any,
   userInput: string,
-
+  requestId?: string,
   locale?: string,
 ) => {
   initSettings();
@@ -74,7 +74,7 @@ export const workflowFactory = async (
       const nodes = await commentsEngineTool.retrieve({ query });
       const result = JSON.stringify(nodes);
 
-      await cache.set(hashedKey, cacheKey, result, userInput);
+      await cache.set(hashedKey, cacheKey, result, userInput, { requestId });
 
       return result;
     },

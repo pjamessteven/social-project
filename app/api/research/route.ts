@@ -1,5 +1,12 @@
+import { MAX_MESSAGE_LENGTH } from "@/app/lib/constants";
 import { getCountryFromIP } from "@/app/lib/geolocation";
 import { checkIpBan, getIpFromRequest } from "@/app/lib/ipBan";
+import {
+  getMessagesUntilCaptchaRequired,
+  incrementMessageCount,
+  isCaptchaRequired,
+} from "@/app/lib/messageCounter";
+import { checkRateLimit } from "@/app/lib/rateLimit";
 import { incrementQuestionViews } from "@/app/lib/researchCacheHelpers";
 import { db } from "@/db";
 import { chatConversations, detransQuestions } from "@/db/schema";
@@ -9,6 +16,7 @@ import { desc, eq, sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 // import chat utils
+import { getResearchCachedResponse } from "../chat/utils/cacheHelpers";
 import {
   pauseForHumanInput,
   processWorkflowStream,
@@ -25,6 +33,10 @@ initSettings();
 
 export async function POST(req: NextRequest) {
   try {
+    // Apply rate limiting (10/min, 100/hour)
+    const rateLimitResponse = await checkRateLimit(req);
+    if (rateLimitResponse) return rateLimitResponse;
+
     // Check if IP is banned before processing request
     await checkIpBan(req);
 
@@ -49,6 +61,32 @@ export async function POST(req: NextRequest) {
     };
 
     const ipAddress = getIpFromRequest(req);
+
+    // Check cache first before starting workflow
+    const cachedResponse = await getResearchCachedResponse(messages);
+    if (!cachedResponse) {
+      console.log("[DEEP RESEARCH API] Cache miss - checking captcha ");
+      // Check CAPTCHA status if not in cache
+      // Require CAPTCHA every 10 messages
+      const captchaRequired = await isCaptchaRequired(ipAddress);
+      if (captchaRequired) {
+        const messagesUntilCaptcha =
+          await getMessagesUntilCaptchaRequired(ipAddress);
+        const messageText =
+          messagesUntilCaptcha === 0
+            ? "Please complete the CAPTCHA to continue."
+            : `Please complete the CAPTCHA to continue. You have ${messagesUntilCaptcha} message${messagesUntilCaptcha === 1 ? "" : "s"} remaining before CAPTCHA is required again.`;
+        return NextResponse.json(
+          {
+            requiresCaptcha: true,
+            message: messageText,
+            error: "CAPTCHA verification required",
+            messagesUntilCaptcha,
+          },
+          { status: 402 },
+        );
+      }
+    }
 
     // Generate or use provided conversation UUID
     const chatUuid = conversationId || uuidv4();
@@ -85,7 +123,9 @@ export async function POST(req: NextRequest) {
       );
     }
     const userInput =
-      lastMessage.parts[0].type === "text" ? lastMessage.parts[0].text : "";
+      lastMessage.parts[0].type === "text"
+        ? lastMessage.parts[0].text.slice(0, MAX_MESSAGE_LENGTH)
+        : "";
 
     // Track question in detrans_questions table for analytics
     if (userInput) {
@@ -100,7 +140,7 @@ export async function POST(req: NextRequest) {
 
     try {
       const context = await runWorkflow({
-        workflow: await workflowFactory(reqBody, userInput, locale),
+        workflow: await workflowFactory(reqBody, userInput, requestId, locale),
         input: { userInput: userInput }, // No chat history for deep research
         human: {
           snapshotId: requestId, // use requestId to restore snapshot
@@ -122,6 +162,8 @@ export async function POST(req: NextRequest) {
 
           onFinal: async (messages: UIMessage[], dataStreamWriter) => {
             await saveConversation(chatUuid, messages, ipAddress);
+            // Increment message count for CAPTCHA tracking
+            await incrementMessageCount(ipAddress);
             console.log("ONFINAL", JSON.stringify(messages));
             /*
             if (suggestNextQuestions) {

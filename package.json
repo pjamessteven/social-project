@@ -52,6 +52,7 @@
     "@babel/standalone": "^7.27.0",
     "@babel/traverse": "^7.27.0",
     "@babel/types": "^7.27.0",
+    "@hcaptcha/react-hcaptcha": "^2.0.2",
     "@hookform/resolvers": "^5.0.1",
     "@llamaindex/chat-ui": "0.6.1",
     "@llamaindex/deepseek": "^0.0.38",

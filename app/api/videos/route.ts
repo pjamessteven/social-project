@@ -1,3 +1,5 @@
+import { VALID_LOCALES } from "@/app/lib/constants";
+import { sanitizeLocale } from "@/app/lib/sanitization";
 import { db } from "@/db";
 import { videos } from "@/db/schema";
 import { desc, eq, sql } from "drizzle-orm";
@@ -24,7 +26,11 @@ interface Video {
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const locale = searchParams.get("locale") || "en";
+    const locale = sanitizeLocale(
+      searchParams.get("locale"),
+      VALID_LOCALES,
+      "en",
+    );
 
     // Use PostgreSQL JSON operators to extract only the requested locale
     // COALESCE returns the first non-null value (translation -> default)

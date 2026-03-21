@@ -807,5 +807,13 @@
     "research": "/research",
     "chat": "/chat",
     "login": "/login"
+  },
+  "hcaptcha": {
+    "title": "Verify You're Human",
+    "description": "Please complete the CAPTCHA to continue using the chat. This helps us prevent abuse and keep the service running.",
+    "error": {
+      "title": "CAPTCHA Error",
+      "description": "Failed to load CAPTCHA. Please refresh the page and try again."
+    }
   }
 }

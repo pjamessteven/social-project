@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import { connectRedis } from "./redis";
 const LIMIT = Number(process.env.RATE_LIMIT_REQUESTS_PER_DAY);
 const WINDOW = 24 * 3600; // seconds
@@ -22,4 +23,135 @@ export async function rateLimiter(
   } else {
     return { allowed: true, remaining: 0 };
   }
+}
+
+// Dual-window rate limiting: per-minute and per-hour
+interface DualWindowResult {
+  allowed: boolean;
+  perMinuteRemaining: number;
+  perHourRemaining: number;
+  retryAfter?: number; // seconds until next allowed request
+}
+
+interface RateLimitConfig {
+  perMinute: number;
+  perHour: number;
+}
+
+const DEFAULT_RATE_LIMIT: RateLimitConfig = {
+  perMinute: Number(process.env.RATE_LIMIT_PER_MINUTE) || 10,
+  perHour: Number(process.env.RATE_LIMIT_PER_HOUR) || 100,
+};
+
+export async function rateLimit(
+  identifier: string,
+  config: Partial<RateLimitConfig> = {},
+): Promise<DualWindowResult> {
+  const { perMinute, perHour } = { ...DEFAULT_RATE_LIMIT, ...config };
+  const redis = await connectRedis();
+
+  if (!redis) {
+    return {
+      allowed: true,
+      perMinuteRemaining: perMinute,
+      perHourRemaining: perHour,
+    };
+  }
+
+  const now = Date.now();
+  const minuteKey = `ratelimit:${identifier}:minute:${Math.floor(now / 60000)}`;
+  const hourKey = `ratelimit:${identifier}:hour:${Math.floor(now / 3600000)}`;
+
+  // Use multi (transaction) instead of pipeline for better compatibility
+  const multi = redis.multi();
+  multi.incr(minuteKey);
+  multi.expire(minuteKey, 60);
+  multi.incr(hourKey);
+  multi.expire(hourKey, 3600);
+
+  const results = await multi.exec();
+
+  // results is [[null, count], [null, 1], [null, count], [null, 1]]
+  const minuteCount = (results?.[0] as unknown as [null, number])?.[1] ?? 0;
+  const hourCount = (results?.[2] as unknown as [null, number])?.[1] ?? 0;
+
+  const minuteRemaining = Math.max(0, perMinute - minuteCount);
+  const hourRemaining = Math.max(0, perHour - hourCount);
+
+  const allowed = minuteCount <= perMinute && hourCount <= perHour;
+
+  let retryAfter: number | undefined;
+  if (!allowed) {
+    if (minuteCount > perMinute) {
+      retryAfter = 60 - ((now / 1000) % 60);
+    } else {
+      retryAfter = 3600 - ((now / 1000) % 3600);
+    }
+  }
+
+  return {
+    allowed,
+    perMinuteRemaining: minuteRemaining,
+    perHourRemaining: hourRemaining,
+    retryAfter: retryAfter ? Math.ceil(retryAfter) : undefined,
+  };
+}
+
+// Helper to extract IP from request
+export function getClientIP(request: Request): string {
+  const headers = request.headers;
+
+  // Check various headers for the real IP (common proxy/CDN headers)
+  const forwardedFor = headers.get("x-forwarded-for");
+  if (forwardedFor) {
+    return forwardedFor.split(",")[0].trim();
+  }
+
+  const realIP = headers.get("x-real-ip");
+  if (realIP) {
+    return realIP;
+  }
+
+  const cfConnectingIP = headers.get("cf-connecting-ip");
+  if (cfConnectingIP) {
+    return cfConnectingIP;
+  }
+
+  // Fallback (in dev, this will be ::1 or 127.0.0.1)
+  return "unknown";
+}
+
+/**
+ * Helper function to enforce rate limiting in API routes.
+ * Returns null if request is allowed, or a NextResponse if rate limited.
+ *
+ * Usage in API route:
+ * ```ts
+ * export async function POST(request: NextRequest) {
+ *   const rateLimitResponse = await checkRateLimit(request);
+ *   if (rateLimitResponse) return rateLimitResponse;
+ *
+ *   // Your route logic here
+ * }
+ * ```
+ */
+export async function checkRateLimit(
+  request: Request,
+  config?: Partial<RateLimitConfig>,
+): Promise<NextResponse | null> {
+  const ip = getClientIP(request);
+  const result = await rateLimit(ip, config);
+
+  if (!result.allowed) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: "Rate limit exceeded. Please slow down.",
+        retryAfter: result.retryAfter,
+      },
+      { status: 429 },
+    );
+  }
+
+  return null;
 }
