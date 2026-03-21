@@ -1,7 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/db';
-import { videos } from '@/db/schema';
-import { eq } from 'drizzle-orm';
+import { VALID_LOCALES } from "@/app/lib/constants";
+import { sanitizeId, sanitizeLocale } from "@/app/lib/sanitization";
+import { db } from "@/db";
+import { videos } from "@/db/schema";
+import { eq } from "drizzle-orm";
+import { NextRequest, NextResponse } from "next/server";
 
 interface VideoWithTranslations {
   id: number;
@@ -28,10 +30,10 @@ interface VideoWithTranslations {
 function getLocalizedField(
   defaultValue: string | null,
   translationsJson: string | null,
-  locale: string
+  locale: string,
 ): string | null {
   if (!translationsJson) return defaultValue;
-  
+
   try {
     const translations = JSON.parse(translationsJson) as Record<string, string>;
     return translations[locale] || defaultValue;
@@ -42,22 +44,23 @@ function getLocalizedField(
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const { id } = await params;
-    const videoId = parseInt(id, 10);
-    
-    if (isNaN(videoId)) {
-      return NextResponse.json(
-        { error: 'Invalid video ID' },
-        { status: 400 }
-      );
+    const { id: rawId } = await params;
+    const videoId = sanitizeId(rawId);
+
+    if (videoId === null) {
+      return NextResponse.json({ error: "Invalid video ID" }, { status: 400 });
     }
 
     const { searchParams } = new URL(request.url);
-    const locale = searchParams.get('locale') || 'en';
-    
+    const locale = sanitizeLocale(
+      searchParams.get("locale"),
+      VALID_LOCALES,
+      "en",
+    );
+
     const video = await db
       .select()
       .from(videos)
@@ -66,26 +69,31 @@ export async function GET(
       .then((rows) => rows[0] as VideoWithTranslations | undefined);
 
     if (!video) {
-      return NextResponse.json(
-        { error: 'Video not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Video not found" }, { status: 404 });
     }
 
     const localizedVideo = {
       ...video,
       title: getLocalizedField(video.title, video.titleTranslation, locale),
-      description: getLocalizedField(video.description, video.descriptionTranslation, locale),
-      summary: getLocalizedField(video.summary, video.summaryTranslation, locale),
+      description: getLocalizedField(
+        video.description,
+        video.descriptionTranslation,
+        locale,
+      ),
+      summary: getLocalizedField(
+        video.summary,
+        video.summaryTranslation,
+        locale,
+      ),
       bite: getLocalizedField(video.bite, video.biteTranslation, locale),
     };
 
     return NextResponse.json({ video: localizedVideo });
   } catch (error) {
-    console.error('Error fetching video:', error);
+    console.error("Error fetching video:", error);
     return NextResponse.json(
-      { error: 'Failed to fetch video' },
-      { status: 500 }
+      { error: "Failed to fetch video" },
+      { status: 500 },
     );
   }
 }

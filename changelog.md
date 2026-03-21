@@ -1,5 +1,305 @@
 # Changelog
 
+## [2026-03-21] - Extend CAPTCHA and Rate Limiting to Contact, Videos, and Studies Endpoints
+
+### Features
+
+- **Extended CAPTCHA and rate limiting protection to additional endpoints**
+  - All POST endpoints now share the same global message counter per IP
+  - CAPTCHA required on first request to any protected endpoint
+  - After CAPTCHA verification, user gets 10 requests across all endpoints
+  - CAPTCHA required again after 10 total requests (regardless of endpoint)
+
+### Protected Endpoints
+
+- `POST /api/contact` - Contact form submissions
+  - Added CAPTCHA check and message counter
+  - Already had rate limiting and IP ban (unchanged)
+
+- `POST /api/videos/submit` - Video submissions
+  - Added CAPTCHA check and message counter
+  - Already had rate limiting and IP ban (unchanged)
+
+- `POST /api/studies` - Study submissions
+  - Added complete protection: rate limiting, IP ban, CAPTCHA, and message counter
+  - Previously had no protection
+
+### API Response Format
+
+All protected POST endpoints now return consistent 402 response when CAPTCHA is required:
+
+```json
+{
+  "requiresCaptcha": true,
+  "message": "Please complete the CAPTCHA to continue.",
+  "error": "CAPTCHA verification required",
+  "messagesUntilCaptcha": 0
+}
+```
+
+### Files Modified
+
+- `app/api/contact/route.ts` - Added CAPTCHA check and message counter increment
+- `app/api/videos/submit/route.ts` - Added CAPTCHA check and message counter increment
+- `app/api/studies/route.ts` - Added rate limiting, IP ban, CAPTCHA check, and message counter increment
+
+## [2026-03-21] - CAPTCHA Every 10 Messages
+
+### Features
+
+- **Implemented message counter for CAPTCHA requirements**
+  - CAPTCHA is required immediately for first-time users (before any messages)
+  - After CAPTCHA verification, users can send up to 10 messages
+  - CAPTCHA is required again after 10 messages
+  - Counter is tracked per IP address using Redis
+  - Counter initialized to 0 after successful CAPTCHA verification
+  - Added `messagesUntilCaptcha` field to 402 response for better UX
+
+### Technical Details
+
+- New utility file `app/lib/messageCounter.ts`:
+  - `getMessageCount(ipAddress)` - Get current message count for an IP (returns null if not initialized)
+  - `incrementMessageCount(ipAddress)` - Increment count after successful message
+  - `initializeMessageCount(ipAddress)` - Initialize count to 0 after CAPTCHA verification
+  - `isCaptchaRequired(ipAddress)` - Check if CAPTCHA is needed (returns true if count is null or >= 10)
+  - `getMessagesUntilCaptchaRequired(ipAddress)` - Get remaining messages before CAPTCHA
+
+### API Changes
+
+- Updated `POST /api/chat` and `POST /api/research`:
+  - Checks message count before processing
+  - Returns 402 status when CAPTCHA is required (first visit or after 10 messages)
+  - Response includes `messagesUntilCaptcha` field (0 when CAPTCHA required, 1-10 when messages remaining)
+  - Increments counter in `onFinal` callback after successful message processing
+
+- Updated `POST /api/captcha/verify`:
+  - Initializes message counter to 0 for the IP after successful verification
+
+### Files Modified
+
+- `app/lib/messageCounter.ts` - New message counter utility
+- `app/api/chat/route.ts` - Added message counter checks and increment
+- `app/api/research/route.ts` - Added message counter checks and increment
+- `app/api/captcha/verify/route.ts` - Initialize counter on verification
+
+## [2026-03-21] - Fix hCaptcha Retry Message Flow
+
+### Bug Fixes
+
+- **Fixed chat message not being resent after hCaptcha verification**
+  - Added comprehensive console logging to trace captcha error handling flow
+  - Improved error detection to catch "402", "captcha", "CAPTCHA" status codes and error patterns
+  - Added 100ms delay in `handleCaptchaVerify` to ensure dialog closes and state updates before retrying message
+  - Fixed closure issue by capturing `pendingMessage.text` before calling `setPendingMessage(null)`
+  - Added try-catch error handling around `sendMessage` retry attempt
+  - **Critical Fix**: Added `clearError()` call from `useChat` hook before retrying message (required by @ai-sdk/react API)
+  - Destructured `clearError` from `useChatHandler` to properly reset error state
+
+### Technical Details
+
+- Modified `handleError` function in `chat-section.tsx`:
+  - Added debug logging throughout error parsing
+  - Enhanced captcha error detection with multiple pattern matching
+  - Better error handling for non-JSON error messages
+- Modified `handleCaptchaVerify` function:
+  - Close dialog immediately after successful verification
+  - Use setTimeout to delay message retry for state synchronization
+  - Capture text content before clearing pending message state
+  - Added error handling for retry failures
+  - **Call `clearError()` before `sendMessage()` to reset useChat error state** (line ~160)
+- Added `clearError` destructuring from `useChatHandler` (line ~201)
+
+### Root Cause
+
+The `useChat` hook from `@ai-sdk/react` maintains an internal error state when requests fail. When a 402 captcha error occurred, simply calling `sendMessage()` again failed because the hook was still in an error state with `status: 'error'`. According to the useChat API docs, you must call `clearError()` to reset the error state before making a new request after an error.
+
+### Files Modified
+
+- `app/components/ui/chat/chat-section.tsx` - Fixed captcha verification retry logic with clearError()
+
+## [2026-03-19] - Add hCaptcha Frontend Dialog
+
+### Features
+
+- **Implemented hCaptcha verification dialog for chat and research endpoints**
+  - Shows hCaptcha dialog when API returns 402 status with `requiresCaptcha: true`
+  - Automatically retries the pending message after successful verification
+  - Uses dynamic hCaptcha script loading for performance
+  - Dialog prevents user interaction until captcha is completed
+
+### Components
+
+- **New `HCaptchaDialog` component** (`app/components/ui/hcaptcha-dialog.tsx`)
+  - Dialog with hCaptcha widget using `@hcaptcha/react-hcaptcha` React component
+  - Supports light/dark themes
+  - Handles verification, error, and expiration events
+  - Proper cleanup and reset functionality
+
+- **New `useCaptcha` hook** (`app/hooks/useCaptcha.ts`)
+  - Manages captcha state (required, verifying, dialog visibility)
+  - Stores pending message for retry after verification
+  - Provides `verifyCaptcha()` function to call verification endpoint
+  - Handles success/failure states
+
+### API Changes
+
+- **Updated `/api/captcha/verify` endpoint**
+  - Migrated from Google reCAPTCHA to hCaptcha
+  - Changed environment variable from `RECAPTCHA_SECRET_KEY` to `HCAPTCHA_SECRET_KEY`
+  - Uses hCaptcha siteverify API: `https://hcaptcha.com/siteverify`
+
+### Files Modified
+
+- `app/components/ui/chat/chat-section.tsx` - Added hCaptcha dialog integration and error handling
+- `app/api/captcha/verify/route.ts` - Migrated to hCaptcha verification
+- `app/components/ui/hcaptcha-dialog.tsx` - New hCaptcha dialog component
+- `app/hooks/useCaptcha.ts` - New captcha state management hook
+
+### Environment Variables
+
+- `HCAPTCHA_SECRET_KEY` - hCaptcha secret key for server-side verification
+- `NEXT_PUBLIC_HCAPTCHA_SITE_KEY` - hCaptcha site key for client-side widget
+
+### Technical Details
+
+- Flow:
+  ```
+  User sends message
+    ↓
+  API returns 402 (captcha required)
+    ↓
+  Show hCaptcha dialog
+    ↓
+  User completes captcha
+    ↓
+  Verify token with /api/captcha/verify
+    ↓
+  Retry original message automatically
+    ↓
+  Continue normal chat flow
+  ```
+- IP verification stored in Redis for 1 hour after successful captcha completion
+- Dialog prevents sending new messages until captcha is completed
+- Handles edge cases: script loading errors, verification failures, network issues
+
+## [2026-03-19] - Add iteration Column to detrans_chat_cache
+
+### Database Schema Changes
+
+- **Added `iteration` column to `detrans_chat_cache` table**
+  - New column: `iteration` numeric - stores iteration values
+  - Nullable field for flexibility
+  - Created index for efficient lookups: `idx_detrans_chat_cache_iteration`
+
+### Migration Notes
+
+- Run `0006_add_iteration_column.sql` migration to add the column and index
+- Existing records will have `NULL` values for the new column
+
+## [2026-03-19] - Add request_id Column to Cache Tables
+
+### Database Schema Changes
+
+- **Added `request_id` column to `detrans_chat_cache` and `detrans_research_cache` tables**
+  - New column: `request_id` character varying(36) - stores unique identifiers for request tracking
+  - Supports UUID format (max 36 characters)
+  - Nullable field for flexibility in existing records
+  - Created indexes for efficient lookups:
+    - `idx_detrans_chat_cache_request_id` on `detrans_chat_cache(request_id)`
+    - `idx_detrans_research_cache_request_id` on `detrans_research_cache(request_id)`
+
+### Migration Notes
+
+- Run `0005_add_request_id_columns.sql` migration to add the columns and indexes
+- Existing records will have `NULL` values for the new column
+- Update application code to populate `request_id` when inserting new cache entries
+
+## [2026-03-19] - Cache-First with CAPTCHA Protection for AI Endpoints
+
+### API Changes
+
+- **Implemented cache-first strategy for chat and research endpoints**
+  - Routes now check the LLM cache before starting the workflow
+  - Cache hits return immediately with cached streaming response (no CAPTCHA required)
+  - Cache misses trigger CAPTCHA verification before allowing expensive AI operations
+  - Returns 402 status with `requiresCaptcha: true` when CAPTCHA is needed
+  - Added `X-Cache: HIT` header when serving cached responses
+
+- **Added CAPTCHA verification system**
+  - New endpoint: `POST /api/captcha/verify` - Validates reCAPTCHA tokens
+  - Verification persists for 1 hour per IP address (stored in Redis)
+  - Uses reCAPTCHA v2/v3 with `RECAPTCHA_SECRET_KEY` environment variable
+  - CAPTCHA requirement only applies to non-cached requests
+
+### Technical Details
+
+- Cache key generation matches llm.ts exactly (includes system prompt and tool names)
+- Created `app/api/chat/utils/cacheHelpers.ts` with helper functions:
+  - `generateChatCacheKey()` - Creates cache key matching llm.ts format
+  - `generateResearchCacheKey()` - Creates cache key for research workflow
+  - `getChatCachedResponse()` - Checks PostgreSQL cache for chat
+  - `getResearchCachedResponse()` - Checks PostgreSQL cache for research
+  - `createStreamFromCachedResponse()` - Streams cached data as Vercel AI SDK format
+
+### Flow
+
+```
+POST /api/chat or /api/research
+  ↓
+Rate limit check (10/min, 100/hour)
+  ↓
+IP ban check
+  ↓
+Cache lookup (fast, cheap)
+  ├─ Cache HIT → Return cached streaming response
+  ↓
+CAPTCHA verified? (Redis check)
+  ├─ NO → Return 402 with requiresCaptcha: true
+  ↓
+Start workflow (expensive)
+  ↓
+Store response in cache
+  ↓
+Return streaming response
+```
+
+### Files Modified
+
+- `app/api/chat/utils/cacheHelpers.ts` - New helper module for cache operations
+- `app/api/captcha/verify/route.ts` - New CAPTCHA verification endpoint
+- `app/api/chat/route.ts` - Added cache check and CAPTCHA logic
+- `app/api/research/route.ts` - Added cache check and CAPTCHA logic
+
+### Environment Variables Required
+
+- `RECAPTCHA_SECRET_KEY` - Google reCAPTCHA secret key for verification
+
+## [2026-03-19] - Enhanced Rate Limiting for API Endpoints
+
+### API Changes
+
+- **Added dual-window rate limiting to critical API endpoints**
+  - Limits: 10 requests per minute, 100 requests per hour per IP address
+  - Applied to `/api/chat` (POST), `/api/research` (POST), `/api/videos/submit` (POST), and `/api/contact` (POST)
+  - Returns 429 status with `Retry-After` header when limits exceeded
+  - Includes rate limit headers: `X-RateLimit-Limit-Minute`, `X-RateLimit-Limit-Hour`, `X-RateLimit-Remaining-Minute`, `X-RateLimit-Remaining-Hour`
+
+### Technical Details
+
+- New `rateLimit()` function in `app/lib/rateLimit.ts` supporting configurable per-minute and per-hour windows
+- New `checkRateLimit()` helper function for easy integration in API routes
+- New `getClientIP()` function extracts IP from various proxy/CDN headers (x-forwarded-for, x-real-ip, cf-connecting-ip)
+- Uses Redis multi/exec for atomic increment operations
+- Rate limit keys are time-windowed for automatic expiration
+
+### Files Modified
+
+- `app/lib/rateLimit.ts` - Added dual-window rate limiting functions
+- `app/api/chat/route.ts` - Added rate limiting check to POST handler
+- `app/api/research/route.ts` - Added rate limiting check to POST handler
+- `app/api/videos/submit/route.ts` - Added rate limiting check to POST handler
+- `app/api/contact/route.ts` - Added rate limiting check to POST handler
+
 ## [2026-03-05] - Optimize Videos API Performance
 
 ### API Changes

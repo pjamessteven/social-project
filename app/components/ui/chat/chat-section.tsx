@@ -1,5 +1,7 @@
 "use client";
 
+import { HCaptchaDialog } from "@/app/components/ui/hcaptcha-dialog";
+import { useCaptcha } from "@/app/hooks/useCaptcha";
 import { deslugify, uuidv4 } from "@/app/lib/utils";
 import { useChatStore } from "@/stores/chat-store";
 import { useChat } from "@ai-sdk/react";
@@ -8,6 +10,7 @@ import { DefaultChatTransport } from "ai";
 import { Loader2 } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { toast } from "sonner";
 import DisclaimerMessage from "../../content/DisclaimerMessage";
 import { ResizablePanel, ResizablePanelGroup } from "../resizable";
 import { ChatCanvasPanel } from "./canvas/panel";
@@ -39,25 +42,141 @@ export default function ChatSection({
   const [title, setTitle] = useState(undefined);
   const [summary, setSummary] = useState(undefined);
 
+  // Captcha state management
+  const {
+    isCaptchaRequired,
+    showCaptchaDialog,
+    pendingMessage,
+    setShowCaptchaDialog,
+    setPendingMessage,
+    verifyCaptcha,
+    resetCaptcha,
+  } = useCaptcha();
+
   const handleError = (error: unknown) => {
-    if (!(error instanceof Error)) throw error;
-    let errorMessage: string;
+    console.log("[Chat Error Handler] Error received:", error);
+
+    if (!(error instanceof Error)) {
+      console.error(
+        "[Chat Error Handler] Error is not an Error instance:",
+        error,
+      );
+      throw error;
+    }
+
+    let errorMessage: string = error.message;
+    let parsedError: {
+      requiresCaptcha?: boolean;
+      status?: number;
+      detail?: string;
+      error?: string;
+    } = {};
+
     try {
-      const parsedError = JSON.parse(error.message);
-      errorMessage = parsedError.detail || parsedError.error;
+      // Try to parse the error message as JSON
+      try {
+        parsedError = JSON.parse(error.message);
+        errorMessage = parsedError.detail || parsedError.error || error.message;
+        console.log("[Chat Error Handler] Parsed error:", parsedError);
+      } catch (parseError) {
+        console.log("[Chat Error Handler] Could not parse error as JSON");
+      }
+
+      // Check if this is a captcha required error (status 402)
+      // Check multiple possible formats
+      const isCaptchaError =
+        error.message.includes("402") ||
+        error.message.includes("captcha") ||
+        error.message.includes("CAPTCHA") ||
+        parsedError.requiresCaptcha === true ||
+        parsedError.status === 402;
+
+      console.log("[Chat Error Handler] Is captcha error:", isCaptchaError);
+
+      if (isCaptchaError) {
+        // Get the last user message to retry after captcha
+        const messages = useChatHandler.messages;
+        const lastMessage = messages[messages.length - 1];
+        console.log("[Chat Error Handler] Messages count:", messages.length);
+        console.log("[Chat Error Handler] Last message:", lastMessage);
+
+        if (lastMessage?.role === "user") {
+          const text =
+            lastMessage.parts[0]?.type === "text"
+              ? lastMessage.parts[0].text
+              : "";
+          console.log("[Chat Error Handler] Setting pending message:", text);
+          setPendingMessage({ text, conversationId });
+        }
+
+        setShowCaptchaDialog(true);
+        return; // Don't show alert for captcha requirement
+      }
 
       // Check if this is an archived conversation error (status 410)
       if (
-        error.message.includes('"status":410') ||
-        error.message.includes("archived")
+        error.message.includes("410") ||
+        error.message.includes("archived") ||
+        parsedError.status === 410
       ) {
         setIsArchived(true);
         return; // Don't show alert for archived conversations
       }
+
+      // Check if this is a rate limit error (status 429)
+      if (
+        error.message.includes("429") ||
+        parsedError.status === 429 ||
+        error.message.includes("rate limit")
+      ) {
+        toast.error("Too many requests, slow down");
+        return; // Don't show alert for rate limit errors
+      }
     } catch (e) {
-      errorMessage = error.message;
+      console.error("[Chat Error Handler] Error in error handler:", e);
     }
+
     alert(errorMessage);
+  };
+
+  const handleCaptchaVerify = async (token: string) => {
+    console.log("[Captcha Verify] Starting verification with token");
+
+    const success = await verifyCaptcha(token);
+    console.log("[Captcha Verify] Success:", success);
+
+    if (success) {
+      // Close dialog first
+      setShowCaptchaDialog(false);
+
+      if (pendingMessage?.text) {
+        const textToSend = pendingMessage.text;
+        console.log("[Captcha Verify] Retrying message:", textToSend);
+
+        // Small delay to ensure dialog closes and state updates
+        setTimeout(() => {
+          try {
+            // Clear the error state before retrying (required by useChat API)
+            clearError?.();
+            useChatHandler.sendMessage({
+              text: textToSend,
+            });
+            console.log("[Captcha Verify] Message sent successfully");
+          } catch (sendError) {
+            console.error("[Captcha Verify] Error sending message:", sendError);
+          }
+        }, 100);
+
+        setPendingMessage(null);
+      } else {
+        console.log("[Captcha Verify] No pending message to retry");
+      }
+    }
+  };
+
+  const handleCaptchaClose = () => {
+    setShowCaptchaDialog(false);
+    // Don't clear pending message - user might want to try again
   };
 
   const handleStartNewChat = () => {
@@ -81,6 +200,7 @@ export default function ChatSection({
   const handler = useChatHandler;
   const messages = handler.messages;
   const status = handler.status;
+  const clearError = handler.clearError;
 
   useEffect(() => {
     setChatStatus(status);
@@ -195,6 +315,14 @@ export default function ChatSection({
           </div>
         </>
       )}
+
+      {/* hCaptcha Dialog */}
+      <HCaptchaDialog
+        isOpen={showCaptchaDialog}
+        onClose={handleCaptchaClose}
+        onVerify={handleCaptchaVerify}
+        siteKey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ""}
+      />
     </>
   );
 }

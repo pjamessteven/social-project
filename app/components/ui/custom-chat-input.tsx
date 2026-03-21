@@ -1,4 +1,5 @@
 "use client";
+import { MAX_MESSAGE_LENGTH } from "@/app/lib/constants";
 import { slugify } from "@/app/lib/utils";
 import {
   Link,
@@ -305,6 +306,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                 chatStatus !== "ready"
               }
               rows={1}
+              maxLength={MAX_MESSAGE_LENGTH}
             />
 
             {/* Research toggle button */}

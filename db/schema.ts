@@ -39,6 +39,7 @@ export const detransResearchCache = pgTable(
     tokensCompletion: integer("tokens_completion"),
     model: varchar("model", { length: 255 }),
     generationId: varchar("generation_id", { length: 255 }),
+    requestId: varchar("request_id", { length: 36 }),
     createdAt: timestamp("created_at").defaultNow().notNull(),
     lastAccessed: timestamp("last_accessed").defaultNow().notNull(),
   },
@@ -50,6 +51,9 @@ export const detransResearchCache = pgTable(
     modelIdx: index("idx_detrans_research_cache_model").on(table.model),
     generationIdx: index("idx_detrans_research_cache_generation").on(
       table.generationId,
+    ),
+    requestIdIdx: index("idx_detrans_research_cache_request_id").on(
+      table.requestId,
     ),
   }),
 );
@@ -69,6 +73,8 @@ export const detransChatCache = pgTable(
     tokensCompletion: integer("tokens_completion"),
     model: varchar("model", { length: 255 }),
     generationId: varchar("generation_id", { length: 255 }),
+    requestId: varchar("request_id", { length: 36 }),
+    iteration: numeric("iteration"),
     createdAt: timestamp("created_at").defaultNow().notNull(),
     lastAccessed: timestamp("last_accessed").defaultNow().notNull(),
   },
@@ -87,6 +93,10 @@ export const detransChatCache = pgTable(
     generationIdx: index("idx_detrans_chat_cache_generation").on(
       table.generationId,
     ),
+    requestIdIdx: index("idx_detrans_chat_cache_request_id").on(
+      table.requestId,
+    ),
+    iterationIdx: index("idx_detrans_chat_cache_iteration").on(table.iteration),
   }),
 );
 

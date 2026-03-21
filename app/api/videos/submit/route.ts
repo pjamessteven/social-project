@@ -1,4 +1,16 @@
-import { checkIpBan } from "@/app/lib/ipBan";
+import {
+  MAX_VIDEO_AUTHOR_LENGTH,
+  MAX_VIDEO_TITLE_LENGTH,
+  MAX_VIDEO_URL_LENGTH,
+} from "@/app/lib/constants";
+import { checkIpBan, getIpFromRequest } from "@/app/lib/ipBan";
+import {
+  getMessagesUntilCaptchaRequired,
+  incrementMessageCount,
+  isCaptchaRequired,
+} from "@/app/lib/messageCounter";
+import { checkRateLimit } from "@/app/lib/rateLimit";
+import { sanitizeString, sanitizeUrl } from "@/app/lib/sanitization";
 import { db } from "@/db";
 import { videos } from "@/db/schema";
 import { eq } from "drizzle-orm";
@@ -6,9 +18,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 const submitVideoSchema = z.object({
-  url: z.string().url(),
-  title: z.string().optional(),
-  author: z.string().optional(),
+  url: z.string().url().max(MAX_VIDEO_URL_LENGTH),
+  title: z.string().max(MAX_VIDEO_TITLE_LENGTH).optional(),
+  author: z.string().max(MAX_VIDEO_AUTHOR_LENGTH).optional(),
 });
 
 // Function to extract video ID from YouTube URL
@@ -56,15 +68,58 @@ async function getYouTubeMetadata(videoId: string) {
 
 export async function POST(request: NextRequest) {
   try {
+    // Apply rate limiting (10/min, 100/hour)
+    const rateLimitResponse = await checkRateLimit(request);
+    if (rateLimitResponse) return rateLimitResponse;
+
     // Check if IP is banned before processing request
     await checkIpBan(request);
 
+    // Check CAPTCHA requirement
+    const ipAddress = getIpFromRequest(request);
+    const captchaRequired = await isCaptchaRequired(ipAddress);
+    if (captchaRequired) {
+      const messagesUntilCaptcha =
+        await getMessagesUntilCaptchaRequired(ipAddress);
+      const messageText =
+        messagesUntilCaptcha === 0
+          ? "Please complete the CAPTCHA to continue."
+          : `Please complete the CAPTCHA to continue. You have ${messagesUntilCaptcha} message${messagesUntilCaptcha === 1 ? "" : "s"} remaining before CAPTCHA is required again.`;
+      return NextResponse.json(
+        {
+          requiresCaptcha: true,
+          message: messageText,
+          error: "CAPTCHA verification required",
+          messagesUntilCaptcha,
+        },
+        { status: 402 },
+      );
+    }
+
     const body = await request.json();
     const {
-      url,
-      title: providedTitle,
-      author: providedAuthor,
+      url: rawUrl,
+      title: rawProvidedTitle,
+      author: rawProvidedAuthor,
     } = submitVideoSchema.parse(body);
+
+    // Sanitize URL and optional fields
+    const url = sanitizeUrl(rawUrl, MAX_VIDEO_URL_LENGTH);
+    const providedTitle = sanitizeString(
+      rawProvidedTitle,
+      MAX_VIDEO_TITLE_LENGTH,
+    );
+    const providedAuthor = sanitizeString(
+      rawProvidedAuthor,
+      MAX_VIDEO_AUTHOR_LENGTH,
+    );
+
+    if (!url) {
+      return NextResponse.json(
+        { error: "Invalid YouTube URL" },
+        { status: 400 },
+      );
+    }
 
     // Extract video ID from URL
     const videoId = extractYouTubeVideoId(url);
@@ -116,6 +171,9 @@ export async function POST(request: NextRequest) {
         date: metadata.date,
       })
       .returning();
+
+    // Increment message count for CAPTCHA tracking
+    await incrementMessageCount(ipAddress);
 
     return NextResponse.json(
       {
