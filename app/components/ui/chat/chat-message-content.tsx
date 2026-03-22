@@ -54,7 +54,7 @@ function SuggestedQuestionsAnnotations({}: {}) {
   const questions = suggestedQuestionsData[0].data;
 
   return (
-    <div className="animate-in slide-in-from-top-2 duration-500 ease-out overflow-hidden transition-all">
+    <div className="animate-in slide-in-from-top-2 overflow-hidden transition-all duration-500 ease-out">
       <div className="flex flex-col gap-2 sm:mt-8">
         <div className="mb-2 text-base font-semibold md:text-lg">
           Follow-up questions:
@@ -62,10 +62,21 @@ function SuggestedQuestionsAnnotations({}: {}) {
         {questions.map((question, index) => (
           <div
             key={index}
-            onClick={() => sendMessage(question)}
+            onClick={async () => {
+              try {
+                await sendMessage(question);
+              } catch (e) {
+                // Error handled in store
+              }
+            }}
             className="cursor-pointer font-medium italic no-underline"
           >
-            <div className={cn("flex flex-row items-center  pt-1 pb-2", index < questions.length -0 && 'border-b')}>
+            <div
+              className={cn(
+                "flex flex-row items-center pt-1 pb-2",
+                index < questions.length - 0 && "border-b",
+              )}
+            >
               <div className="text-muted-foreground hover:text-foreground no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 transition-colors sm:text-base">
                 <div className="mr-2 whitespace-nowrap">{"->"}</div>
                 <div className="hover:underline">
