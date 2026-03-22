@@ -1,5 +1,135 @@
 # Changelog
 
+## [2026-03-21] - Fix CAPTCHA Error Handler Scoping Issue
+
+### Bug Fixes
+
+- **Fixed scoping issue in `handleError` function where `messages` was not accessible**
+  - `handleError` was defined before `useChatHandler` existed, causing closure issues
+  - Changed to access `chatHandler` from Zustand store using `useChatStore.getState().chatHandler`
+  - This ensures pending message capture works correctly when CAPTCHA errors occur
+  - Messages can now be properly retrieved and removed after setting up CAPTCHA retry
+
+### Technical Details
+
+Previous issue:
+
+- `handleError` defined at line 56 tried to access `useChatHandler.messages` (line 98)
+- `useChatHandler` not assigned until line 192, after the function was defined
+- This created a closure that couldn't access the handler properly
+
+Solution:
+
+- Access chatHandler from Zustand store within the error handler
+- Store is already updated with the handler via `setChatHandler` in useEffect
+- Messages accessed via `chatHandler?.messages` with null-safe optional chaining
+
+### Files Modified
+
+- `app/components/ui/chat/chat-section.tsx` - Changed handleError to access messages from store instead of local variable
+
+## [2026-03-21] - Remove messagesUntilCaptcha from API Responses
+
+### API Changes
+
+- **Removed `messagesUntilCaptcha` from 402 CAPTCHA responses across all API endpoints**
+  - Simplified response to only return `requiresCaptcha: true` and `error: "CAPTCHA verification required"`
+  - Removed the `message` field that previously contained user-friendly text about remaining messages
+  - Affected endpoints: `/api/chat`, `/api/studies`, `/api/videos/submit`, `/api/contact`, `/api/research`
+
+### Rationale
+
+- Reduces information leakage about rate limiting internals
+- Frontend now handles user-facing messaging consistently
+- Simplifies API contract and maintenance burden
+
+## [2026-03-21] - Fix CAPTCHA Flow: Pending Message Not Saved or Resent
+
+### Bug Fixes
+
+- **Fixed issue where pending message was not properly saved during CAPTCHA flow**
+  - Store's `sendMessage` no longer removes failed messages from the array
+  - Message removal now handled by `handleError` in chat-section.tsx
+  - This ensures the message is available when setting up the CAPTCHA retry
+  - After CAPTCHA verification, the pending message is correctly resent
+
+### Technical Changes
+
+Previous flow (broken):
+
+1. Store catches error → removes message from array → re-throws
+2. handleError tries to get last message → message already gone → can't set pending
+3. CAPTCHA verification has no message to retry
+
+New flow (fixed):
+
+1. Store catches error → restores input text → re-throws (message stays in array)
+2. handleError gets last message → sets as pending → removes from array
+3. CAPTCHA verification finds pending message → retries successfully
+
+### Files Modified
+
+- `stores/chat-store.ts` - Removed message removal from catch block, now just re-throws
+- `app/components/ui/chat/chat-section.tsx` - handleError now removes message after setting pending
+
+## [2026-03-21] - Fix Chat Status Stuck in Pending After Send Error
+
+### Bug Fixes
+
+- **Fixed chat status remaining "pending" after failed message send**
+  - Now calls `chatHandler.clearError()` after catching send errors
+  - This resets the status from "pending" back to "ready"
+  - Input field is no longer disabled after failed sends
+
+### Files Modified
+
+- `stores/chat-store.ts` - Added `clearError()` call in error handler
+
+## [2026-03-21] - Add Global Input Text State and Restore Failed Messages
+
+### Features
+
+- **Added global input text state to chat store**
+  - New `inputText` state in `stores/chat-store.ts` for shared text input management
+  - New `setInputText` action to update the input text from anywhere
+  - Failed messages are now automatically restored to the input field
+
+### Behavior Changes
+
+- When a message fails to send:
+  1. The message is removed from the chat (as before)
+  2. The original message text is now restored to the input field
+  3. User can retry sending without retyping
+
+### Files Modified
+
+- `stores/chat-store.ts` - Added `inputText` state, `setInputText` action, and restore logic
+- `app/components/ui/custom-chat-input.tsx` - Now uses global `inputText` state instead of local state
+
+## [2026-03-21] - Fix Failed Message Removal from Chat Store
+
+### Bug Fixes
+
+- **Fixed failed message handling in chat store (`stores/chat-store.ts`)**
+  - `sendMessage` now properly awaits the async operation to catch errors
+  - Changed return type to `Promise<UIMessage | undefined>` to support async/await
+  - Fixed message removal logic using functional `setMessages` update
+  - Uses `slice(0, -1)` instead of broken `splice()` to remove the last message
+
+### Technical Details
+
+The previous implementation had multiple bugs:
+
+1. `sendMessage` wasn't awaited, so errors were never caught
+2. `messages[-1]` doesn't work in JavaScript (no negative indexing)
+3. `splice()` modifies in-place and returns removed items, not the remaining array
+
+### Files Modified
+
+- `stores/chat-store.ts` - Fixed async handling and message removal logic
+- `app/components/ui/chat/chat-message-content.tsx` - Added await to sendMessage call
+- `app/components/ui/custom-chat-input.tsx` - Made handleSubmit async and added await
+
 ## [2026-03-21] - Extend CAPTCHA and Rate Limiting to Contact, Videos, and Studies Endpoints
 
 ### Features

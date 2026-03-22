@@ -5,7 +5,6 @@ import {
 } from "@/app/lib/constants";
 import { checkIpBan, getIpFromRequest } from "@/app/lib/ipBan";
 import {
-  getMessagesUntilCaptchaRequired,
   incrementMessageCount,
   isCaptchaRequired,
 } from "@/app/lib/messageCounter";
@@ -79,18 +78,10 @@ export async function POST(request: NextRequest) {
     const ipAddress = getIpFromRequest(request);
     const captchaRequired = await isCaptchaRequired(ipAddress);
     if (captchaRequired) {
-      const messagesUntilCaptcha =
-        await getMessagesUntilCaptchaRequired(ipAddress);
-      const messageText =
-        messagesUntilCaptcha === 0
-          ? "Please complete the CAPTCHA to continue."
-          : `Please complete the CAPTCHA to continue. You have ${messagesUntilCaptcha} message${messagesUntilCaptcha === 1 ? "" : "s"} remaining before CAPTCHA is required again.`;
       return NextResponse.json(
         {
           requiresCaptcha: true,
-          message: messageText,
           error: "CAPTCHA verification required",
-          messagesUntilCaptcha,
         },
         { status: 402 },
       );

@@ -31,10 +31,11 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     isResearch,
     setIsResearch,
     setChatStatus,
+    inputText,
+    setInputText,
   } = useChatStore();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
-  const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
@@ -72,7 +73,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   // Fetch suggestions when value changes
   useEffect(() => {
     const fetchSuggestions = async () => {
-      if (value.trim().length < 2) {
+      if (inputText.trim().length < 2) {
         setSuggestions([]);
         setShowSuggestions(false);
         return;
@@ -80,7 +81,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
 
       try {
         const response = await fetch(
-          `/api/questions/top?mode=${mode}&q=${encodeURIComponent(value.trim())}&limit=5`,
+          `/api/questions/top?mode=${mode}&q=${encodeURIComponent(inputText.trim())}&limit=5`,
         );
         const data = await response.json();
 
@@ -98,7 +99,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
 
     const debounceTimer = setTimeout(fetchSuggestions, 300);
     return () => clearTimeout(debounceTimer);
-  }, [value, mode]);
+  }, [inputText, mode]);
 
 */
   // Auto-expand textarea based on content
@@ -114,7 +115,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     const newHeight = Math.min(textarea.scrollHeight, maxHeight);
 
     textarea.style.height = `${newHeight}px`;
-  }, [value]);
+  }, [inputText]);
 
   // Focus the input when chat status becomes 'ready' - only on desktop to prevent soft keyboard
   useEffect(() => {
@@ -167,11 +168,11 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   if (!showChatInput) {
     return <></>;
   }
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (value.trim()) {
-      const val = value.trim();
-      setValue("");
+    if (inputText.trim()) {
+      const val = inputText.trim();
+      setInputText("");
       setShowSuggestions(false);
 
       if (path.includes("/research") && !path.includes("/chat")) {
@@ -190,7 +191,11 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
         // Chat mode - use chat handler or navigate to chat
         if (chatHandler && path.includes("/chat")) {
           // We're on chat page and have handler, send message directly
-          sendMessage(val);
+          try {
+            await sendMessage(val);
+          } catch (e) {
+            // Error handled in store, message was removed from UI
+          }
         } else {
           // Navigate to chat page
           router.push(("/chat?starter=" + slugify(val)) as any);
@@ -218,7 +223,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
 
       if (e.key === "Tab" && selectedSuggestion >= 0) {
         e.preventDefault();
-        setValue(suggestions[selectedSuggestion]);
+        setInputText(suggestions[selectedSuggestion]);
         setShowSuggestions(false);
         setSelectedSuggestion(-1);
         return;
@@ -235,7 +240,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       if (showSuggestions && selectedSuggestion >= 0) {
-        setValue(suggestions[selectedSuggestion]);
+        setInputText(suggestions[selectedSuggestion]);
         setShowSuggestions(false);
         setSelectedSuggestion(-1);
       } else {
@@ -245,28 +250,28 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   };
 
   const handleSuggestionClick = (suggestion: string) => {
-    setValue(suggestion);
+    setInputText(suggestion);
     setShowSuggestions(false);
     setSelectedSuggestion(-1);
     textareaRef.current?.focus();
   };
 
   const handleFocus = () => {
-    if (value.trim().length >= 2 && suggestions.length > 0) {
+    if (inputText.trim().length >= 2 && suggestions.length > 0) {
       setShowSuggestions(true);
     }
   };
 
   const handleClear = () => {
     setShowSuggestions(false);
-    setValue("");
+    setInputText("");
     setSelectedSuggestion(-1);
     textareaRef.current?.focus();
   };
 
   const handleClickSuggestion = () => {
     setShowSuggestions(false);
-    setValue("");
+    setInputText("");
   };
 
   const showResearch = true;
@@ -294,10 +299,10 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               }}
               className={cn(
                 "!placeholder-opacity-100 border-slate relative z-20 flex max-h-48 min-h-12 w-full cursor-text resize-none overflow-hidden rounded-2xl bg-white py-4 pl-4 shadow-sm disabled:cursor-default sm:pr-40 dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white",
-                value.length === 0 ? "pr-16 sm:pr-32" : "pr-16",
+                inputText.length === 0 ? "pr-16 sm:pr-32" : "pr-16",
               )}
-              value={value}
-              onChange={(event) => setValue(event.target.value)}
+              value={inputText}
+              onChange={(event) => setInputText(event.target.value)}
               onKeyDown={handleKeyDown}
               onFocus={handleFocus}
               placeholder={placeholder}
@@ -324,7 +329,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                 )}
               >
                 <div className="flex flex-row items-center px-3 text-xs">
-                  {value.length === 0 && (
+                  {inputText.length === 0 && (
                     <div className="mr-2 flex flex-row">
                       <span className="hidden sm:inline">
                         {t("deepResearch").split(" ")[0]}&nbsp;
@@ -337,7 +342,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               </Button>
             )}
             {/* Clear button */}
-            {value.trim() && (
+            {inputText.trim() && (
               <button
                 type="button"
                 onClick={handleClear}

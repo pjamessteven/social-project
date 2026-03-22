@@ -94,8 +94,10 @@ export default function ChatSection({
       console.log("[Chat Error Handler] Is captcha error:", isCaptchaError);
 
       if (isCaptchaError) {
+        // Get the chat handler from the store to access messages
+        const chatHandler = useChatStore.getState().chatHandler;
         // Get the last user message to retry after captcha
-        const messages = useChatHandler.messages;
+        const messages = chatHandler?.messages || [];
         const lastMessage = messages[messages.length - 1];
         console.log("[Chat Error Handler] Messages count:", messages.length);
         console.log("[Chat Error Handler] Last message:", lastMessage);
@@ -107,10 +109,12 @@ export default function ChatSection({
               : "";
           console.log("[Chat Error Handler] Setting pending message:", text);
           setPendingMessage({ text, conversationId });
+
+          // Remove the failed message from the chat UI
+          chatHandler?.setMessages((prevMessages) => prevMessages.slice(0, -1));
         }
 
         setShowCaptchaDialog(true);
-        return; // Don't show alert for captcha requirement
       }
 
       // Check if this is an archived conversation error (status 410)
@@ -120,7 +124,6 @@ export default function ChatSection({
         parsedError.status === 410
       ) {
         setIsArchived(true);
-        return; // Don't show alert for archived conversations
       }
 
       // Check if this is a rate limit error (status 429)
@@ -130,13 +133,14 @@ export default function ChatSection({
         error.message.includes("rate limit")
       ) {
         toast.error("Too many requests, slow down");
-        return; // Don't show alert for rate limit errors
       }
     } catch (e) {
       console.error("[Chat Error Handler] Error in error handler:", e);
     }
 
     alert(errorMessage);
+
+    throw new Error(errorMessage);
   };
 
   const handleCaptchaVerify = async (token: string) => {
@@ -214,7 +218,7 @@ export default function ChatSection({
 
   // Set chat handler in Zustand store
   useEffect(() => {
-    setChatHandler(useChatHandler);
+    setChatHandler(handler);
   }, [setChatHandler]);
 
   // Load existing conversation if conversationId is provided

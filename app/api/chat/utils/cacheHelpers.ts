@@ -38,6 +38,7 @@ export function generateChatCacheKey(messages: UIMessage[]): string {
     chatAgentPrompt,
   );
   const options = { tools: [null, null] };
+  console.log("generateChatCache transfor", transformedMessages);
   return makeCacheKey(transformedMessages, options, "detrans_chat");
 }
 
@@ -59,6 +60,7 @@ export function generateResearchCacheKey(messages: UIMessage[]): string {
 export async function getChatCachedResponse(
   messages: UIMessage[],
 ): Promise<string | null> {
+  console.log("getChatCached", messages);
   const cacheKey = generateChatCacheKey(messages);
   const hashedKey = makeHashedKey(cacheKey);
   const cache = new PostgresCache("detrans_chat");

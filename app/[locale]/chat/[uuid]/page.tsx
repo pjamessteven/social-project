@@ -90,7 +90,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { uuid, locale } = await params;
   const conversation = await fetchSingleConversation(uuid, locale);
-
+  console.log("getmetadata", conversation);
   if (!conversation) {
     return {
       title: "Chat Conversation",
@@ -104,7 +104,7 @@ export async function generateMetadata({
   if (!description) {
     // Fallback: Parse messages to extract content for metadata
     try {
-      const messages = JSON.parse(conversation.messages);
+      const messages = conversation.messages;
       if (Array.isArray(messages)) {
         // Extract the first user message as the question
         const firstUserMessage = messages.find(
