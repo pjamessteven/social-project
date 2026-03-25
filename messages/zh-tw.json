@@ -218,7 +218,10 @@
     "analysingExperiences": "正在分析經歷",
     "detransPerspective": "-> 去過渡者對這個話題有什麼看法？",
     "transPerspective": "-> 跨性別者對這個話題有什麼看法？",
-    "backToPortal": "<- 返回入口"
+    "backToPortal": "<- 返回入口",
+    "captchaRequired": "需要驗證碼才能繼續聊天。",
+    "chatArchived": "此聊天已存檔。開始一個新的。",
+    "rateLimitExceeded": "請求過多，請放慢速度稍後再試。"
   },
   "chatInput": {
     "placeholder": "詢問detrans.ai...",

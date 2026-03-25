@@ -219,7 +219,10 @@
     "analysingExperiences": "جاري تحليل التجارب",
     "detransPerspective": "-> ما هي وجهات نظر الأشخاص الذين تراجعوا عن التحول حول هذا الموضوع؟",
     "transPerspective": "-> ما هي وجهات نظر المتحولين حول هذا الموضوع؟",
-    "backToPortal": "<- العودة إلى البوابة"
+    "backToPortal": "<- العودة إلى البوابة",
+    "captchaRequired": "مطلوب كابتشا لمواصلة الدردشة.",
+    "chatArchived": "تم أرشفة هذه الدردشة. ابدأ واحدة جديدة.",
+    "rateLimitExceeded": "طلبات كثيرة جدًا، أبطئ وحاول مرة أخرى لاحقًا."
   },
   "chatInput": {
     "placeholder": "اسأل detrans.ai...",

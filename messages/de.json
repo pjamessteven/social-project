@@ -214,7 +214,10 @@
     "analysingExperiences": "Analysiere Erfahrungen",
     "detransPerspective": "-> Was sind die Perspektiven von Detransitionierenden zu diesem Thema?",
     "transPerspective": "-> Was sind die Perspektiven von Trans-Personen zu diesem Thema?",
-    "backToPortal": "<- Zurück zum Portal"
+    "backToPortal": "<- Zurück zum Portal",
+    "captchaRequired": "Captcha erforderlich, um den Chat fortzusetzen.",
+    "chatArchived": "Dieser Chat ist archiviert. Starten Sie einen neuen.",
+    "rateLimitExceeded": "Zu viele Anfragen, verlangsamen Sie und versuchen Sie es später erneut."
   },
   "chatInput": {
     "placeholder": "Frag detrans.ai...",

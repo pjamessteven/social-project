@@ -10,18 +10,18 @@ function transformMessagesForCache(
   uiMessages: UIMessage[],
   systemPrompt: string,
 ): Array<{ role: string; content: string }> {
-  // Start with system message
+  // Start with system message (role first to match database format)
   const messages: Array<{ role: string; content: string }> = [
     { role: "system", content: systemPrompt },
   ];
 
-  // Transform UI messages
+  // Transform UI messages (content first to match database format)
   for (const msg of uiMessages) {
     const textPart = msg.parts.find((part) => part.type === "text");
     if (textPart && textPart.type === "text") {
       messages.push({
-        role: msg.role,
         content: textPart.text,
+        role: msg.role,
       });
     }
   }
@@ -33,13 +33,15 @@ function transformMessagesForCache(
  * Generates a cache key that matches what llm.ts would generate
  */
 export function generateChatCacheKey(messages: UIMessage[]): string {
+  // Include all messages - the agent workflow adds userInput separately
+  // so the cache key should include all messages to match the LLM context
   const transformedMessages = transformMessagesForCache(
     messages,
     chatAgentPrompt,
   );
   const options = { tools: [null, null] };
-  console.log("generateChatCache transfor", transformedMessages);
-  return makeCacheKey(transformedMessages, options, "detrans_chat");
+  const key = makeCacheKey(transformedMessages, options, "detrans_chat");
+  return key;
 }
 
 /**
@@ -60,7 +62,6 @@ export function generateResearchCacheKey(messages: UIMessage[]): string {
 export async function getChatCachedResponse(
   messages: UIMessage[],
 ): Promise<string | null> {
-  console.log("getChatCached", messages);
   const cacheKey = generateChatCacheKey(messages);
   const hashedKey = makeHashedKey(cacheKey);
   const cache = new PostgresCache("detrans_chat");

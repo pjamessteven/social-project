@@ -218,7 +218,10 @@
     "analysingExperiences": "Analiziranje izkušenj",
     "detransPerspective": "-> Kakšne so detranz perspektive o tej temi?",
     "transPerspective": "-> Kakšne so trans perspektive o tej temi?",
-    "backToPortal": "<- Nazaj na portal"
+    "backToPortal": "<- Nazaj na portal",
+    "captchaRequired": "Za nadaljevanje klepeta je potrebna captcha.",
+    "chatArchived": "Ta klepet je arhiviran. Začnite novega.",
+    "rateLimitExceeded": "Preveč zahtev, upočasnite in poskusite znova pozneje."
   },
   "chatInput": {
     "placeholder": "Vprašajte detrans.ai...",

@@ -65,19 +65,32 @@ export async function rateLimit(
   // Use multi (transaction) instead of pipeline for better compatibility
   const multi = redis.multi();
   multi.incr(minuteKey);
-  multi.expire(minuteKey, 60);
   multi.incr(hourKey);
-  multi.expire(hourKey, 3600);
 
   const results = await multi.exec();
 
-  // results is [[null, count], [null, 1], [null, count], [null, 1]]
-  const minuteCount = (results?.[0] as unknown as [null, number])?.[1] ?? 0;
-  const hourCount = (results?.[2] as unknown as [null, number])?.[1] ?? 0;
+  // redis package returns array of values directly: [minuteCount, hourCount]
+  const minuteCount = (results?.[0] as number) ?? 0;
+  const hourCount = (results?.[1] as number) ?? 0;
+
+  // Set TTL only on first increment to prevent extending the window
+  if (minuteCount === 1) {
+    await redis.expire(minuteKey, 60);
+  }
+  if (hourCount === 1) {
+    await redis.expire(hourKey, 3600);
+  }
 
   const minuteRemaining = Math.max(0, perMinute - minuteCount);
   const hourRemaining = Math.max(0, perHour - hourCount);
-
+  console.log(
+    minuteCount,
+    hourCount,
+    "remaining",
+    minuteRemaining,
+    hourRemaining,
+  );
+  // Use strict comparison: count must be <= limit (e.g., 10 requests allowed: counts 1-10)
   const allowed = minuteCount <= perMinute && hourCount <= perHour;
 
   let retryAfter: number | undefined;
@@ -104,7 +117,9 @@ export function getClientIP(request: Request): string {
   // Check various headers for the real IP (common proxy/CDN headers)
   const forwardedFor = headers.get("x-forwarded-for");
   if (forwardedFor) {
-    return forwardedFor.split(",")[0].trim();
+    // Handle IPv6-mapped IPv4 addresses by stripping ::ffff: prefix
+    const ip = forwardedFor.split(",")[0].trim();
+    return ip.replace(/^::ffff:/, "");
   }
 
   const realIP = headers.get("x-real-ip");

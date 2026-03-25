@@ -63,6 +63,7 @@ export async function POST(req: NextRequest) {
 
     // Check cache first before starting workflow
     const cachedResponse = await getResearchCachedResponse(messages);
+    const isCached = !!cachedResponse;
     if (!cachedResponse) {
       console.log("[DEEP RESEARCH API] Cache miss - checking captcha ");
       // Check CAPTCHA status if not in cache
@@ -153,8 +154,10 @@ export async function POST(req: NextRequest) {
 
           onFinal: async (messages: UIMessage[], dataStreamWriter) => {
             await saveConversation(chatUuid, messages, ipAddress);
-            // Increment message count for CAPTCHA tracking
-            await incrementMessageCount(ipAddress);
+            // Increment message count for CAPTCHA tracking (skip if response was cached)
+            if (!isCached) {
+              await incrementMessageCount(ipAddress);
+            }
             console.log("ONFINAL", JSON.stringify(messages));
             /*
             if (suggestNextQuestions) {

@@ -218,7 +218,10 @@
     "analysingExperiences": "Menganalisis Pengalaman",
     "detransPerspective": "-> Apa perspektif orang yang berhenti transisi tentang topik ini?",
     "transPerspective": "-> Apa perspektif trans tentang topik ini?",
-    "backToPortal": "<- Kembali ke Portal"
+    "backToPortal": "<- Kembali ke Portal",
+    "captchaRequired": "Captcha diperlukan untuk melanjutkan obrolan.",
+    "chatArchived": "Obrolan ini diarsipkan. Mulai yang baru.",
+    "rateLimitExceeded": "Terlalu banyak permintaan, pelan-pelan dan coba lagi nanti."
   },
   "chatInput": {
     "placeholder": "Tanyakan detrans.ai...",

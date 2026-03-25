@@ -217,7 +217,10 @@
     "analysingExperiences": "מנתח חוויות",
     "detransPerspective": "-> מהן נקודות המבט של מדטרנזישנרים על נושא זה?",
     "transPerspective": "-> מהן נקודות המבט של אנשים טרנס על נושא זה?",
-    "backToPortal": "<- חזרה לפורטל"
+    "backToPortal": "<- חזרה לפורטל",
+    "captchaRequired": "נדרש קפצ'ה להמשך הצ'אט.",
+    "chatArchived": "צ'אט זה הועבר לארכיון. התחל אחד חדש.",
+    "rateLimitExceeded": "יותר מדי בקשות, האט ונסה שוב מאוחר יותר."
   },
   "chatInput": {
     "placeholder": "שאל/י את detrans.ai...",

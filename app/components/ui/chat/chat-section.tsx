@@ -6,7 +6,7 @@ import { deslugify, uuidv4 } from "@/app/lib/utils";
 import { useChatStore } from "@/stores/chat-store";
 import { useChat } from "@ai-sdk/react";
 import { ChatSection as ChatUI } from "@llamaindex/chat-ui";
-import { DefaultChatTransport } from "ai";
+import { DefaultChatTransport, UIMessage } from "ai";
 import { Loader2 } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -17,6 +17,7 @@ import { ChatCanvasPanel } from "./canvas/panel";
 import CustomChatMessages from "./chat-messages";
 import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
 //import { fetchComponentDefinitions } from "./custom/events/loader";
+import { useTranslations } from "next-intl";
 import { ComponentDef } from "./custom/events/types";
 
 export default function ChatSection({
@@ -32,7 +33,7 @@ export default function ChatSection({
   starterQuestion?: string;
   apiEndpoint?: string;
 }) {
-  const { setChatHandler, setChatStatus } = useChatStore();
+  const { setChatHandler, setChatStatus, setInputText } = useChatStore();
   const searchParams = useSearchParams();
   const starterSentRef = useRef(false);
   const router = useRouter();
@@ -41,6 +42,11 @@ export default function ChatSection({
   const [timeoutError, setTimeoutError] = useState(false);
   const [title, setTitle] = useState(undefined);
   const [summary, setSummary] = useState(undefined);
+
+  const t = useTranslations("chat");
+
+  // Ref to track current messages for error handling (avoids stale closure issues)
+  const messagesRef = useRef<UIMessage[]>([]);
 
   // Captcha state management
   const {
@@ -52,6 +58,33 @@ export default function ChatSection({
     verifyCaptcha,
     resetCaptcha,
   } = useCaptcha();
+
+  // Helper function to restore failed user message to input field
+  const restoreFailedMessage = (setPending = false) => {
+    const currentMessages = messagesRef.current;
+    const lastMessage = currentMessages[currentMessages.length - 1];
+    console.log("restore", currentMessages);
+    if (lastMessage?.role === "user") {
+      const text =
+        lastMessage.parts[0]?.type === "text" ? lastMessage.parts[0].text : "";
+
+      // Remove the failed message from the chat UI
+      handler.setMessages((prevMessages) => prevMessages.slice(0, -1));
+
+      handler.clearError();
+
+      // Optionally set as pending message for retry
+      if (setPending) {
+        setPendingMessage({ text, conversationId });
+      } else {
+        // Restore to input field
+        setInputText(text);
+      }
+
+      return text;
+    }
+    return null;
+  };
 
   const handleError = (error: unknown) => {
     console.log("[Chat Error Handler] Error received:", error);
@@ -70,6 +103,8 @@ export default function ChatSection({
       status?: number;
       detail?: string;
       error?: string;
+      success?: boolean;
+      retryAfter?: number;
     } = {};
 
     try {
@@ -83,7 +118,6 @@ export default function ChatSection({
       }
 
       // Check if this is a captcha required error (status 402)
-      // Check multiple possible formats
       const isCaptchaError =
         error.message.includes("402") ||
         error.message.includes("captcha") ||
@@ -91,56 +125,62 @@ export default function ChatSection({
         parsedError.requiresCaptcha === true ||
         parsedError.status === 402;
 
-      console.log("[Chat Error Handler] Is captcha error:", isCaptchaError);
-
-      if (isCaptchaError) {
-        // Get the chat handler from the store to access messages
-        const chatHandler = useChatStore.getState().chatHandler;
-        // Get the last user message to retry after captcha
-        const messages = chatHandler?.messages || [];
-        const lastMessage = messages[messages.length - 1];
-        console.log("[Chat Error Handler] Messages count:", messages.length);
-        console.log("[Chat Error Handler] Last message:", lastMessage);
-
-        if (lastMessage?.role === "user") {
-          const text =
-            lastMessage.parts[0]?.type === "text"
-              ? lastMessage.parts[0].text
-              : "";
-          console.log("[Chat Error Handler] Setting pending message:", text);
-          setPendingMessage({ text, conversationId });
-
-          // Remove the failed message from the chat UI
-          chatHandler?.setMessages((prevMessages) => prevMessages.slice(0, -1));
-        }
-
-        setShowCaptchaDialog(true);
-      }
-
       // Check if this is an archived conversation error (status 410)
-      if (
+      const isArchivedError =
         error.message.includes("410") ||
         error.message.includes("archived") ||
-        parsedError.status === 410
-      ) {
-        setIsArchived(true);
-      }
+        parsedError.status === 410;
 
       // Check if this is a rate limit error (status 429)
-      if (
+      const errorText = (
+        parsedError.error ||
+        error.message ||
+        ""
+      ).toLowerCase();
+      console.log("[Chat Error Handler] Rate limit check:", {
+        errorMessage: error.message,
+        parsedStatus: parsedError.status,
+        parsedError: parsedError.error,
+        errorText,
+      });
+
+      const isRateLimitError =
         error.message.includes("429") ||
         parsedError.status === 429 ||
-        error.message.includes("rate limit")
-      ) {
-        toast.error("Too many requests, slow down");
+        parsedError?.error?.includes("Rate limit") ||
+        !!parsedError.retryAfter;
+
+      console.log("[Chat Error Handler] Error types:", {
+        isCaptchaError,
+        isArchivedError,
+        isRateLimitError,
+      });
+
+      // Always restore failed message for any error (except archived)
+      const restoredText = restoreFailedMessage(isCaptchaError);
+      if (restoredText) {
+        console.log(
+          "[Chat Error Handler] Restored message to input:",
+          restoredText,
+        );
+      }
+
+      if (isCaptchaError) {
+        setShowCaptchaDialog(true);
+        toast.error(t("captchaRequired"));
+      }
+
+      if (isArchivedError) {
+        setIsArchived(true);
+        toast.error(t("chatArchived"));
+      }
+
+      if (isRateLimitError) {
+        toast.error(t("rateLimitExceeded"));
       }
     } catch (e) {
       console.error("[Chat Error Handler] Error in error handler:", e);
     }
-
-    alert(errorMessage);
-
-    throw new Error(errorMessage);
   };
 
   const handleCaptchaVerify = async (token: string) => {
@@ -205,6 +245,11 @@ export default function ChatSection({
   const messages = handler.messages;
   const status = handler.status;
   const clearError = handler.clearError;
+
+  // Sync messages to ref for error handler (avoids stale closure)
+  useEffect(() => {
+    messagesRef.current = messages;
+  }, [messages]);
 
   useEffect(() => {
     setChatStatus(status);

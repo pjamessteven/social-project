@@ -209,7 +209,10 @@
     "analysingExperiences": "Analizando Experiencias de Destransición",
     "detransPerspective": "-> ¿Cuáles son las perspectivas de destransición sobre este tema?",
     "transPerspective": "-> ¿Cuáles son las perspectivas trans sobre este tema?",
-    "backToPortal": "<- Volver al Portal"
+    "backToPortal": "<- Volver al Portal",
+    "captchaRequired": "Se requiere captcha para continuar el chat.",
+    "chatArchived": "Este chat está archivado. Comience uno nuevo.",
+    "rateLimitExceeded": "Demasiadas solicitudes, reduzca la velocidad e intente nuevamente más tarde."
   },
   "chatInput": {
     "placeholder": "Pregunta a detrans.ai...",

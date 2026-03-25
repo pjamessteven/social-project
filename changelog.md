@@ -1,5 +1,151 @@
 # Changelog
 
+## [2026-03-24] - Add Translations for Chat Toast Messages
+
+### Internationalization
+
+- Added translations for chat error toast messages
+- Toast messages now support all 34 languages in the application
+- Updated chat-section.tsx to use `useTranslations` hook from next-intl
+
+### Translation Keys Added
+
+- `chat.captchaRequired`: "Captcha required to continue chat."
+- `chat.chatArchived`: "This chat is archived. Start a new one."
+- `chat.rateLimitExceeded`: "Too many requests, slow down and try again later."
+
+### Files Modified
+
+- `app/components/ui/chat/chat-section.tsx` - Added `useTranslations` import and updated toast messages
+- `messages/*.json` (34 files) - Added new translation keys to all language files
+
+## [2026-03-24] - Fix Missing Sonner Toaster Component
+
+### Bug Fixes
+
+- **Fixed toast notifications not showing in chat error handler**
+  - Toast calls in `handleError` (archived error and rate limit error) were not displaying
+  - Root cause: `Toaster` component from Sonner was not rendered anywhere in the app
+  - Added `<Toaster />` component to root layout inside `ThemeProvider`
+  - Imported `Toaster` from `./components/ui/sonner`
+  - Toast notifications for chat errors will now display correctly
+
+### Files Modified
+
+- `app/layout.tsx` - Added `Toaster` import and component
+
+## [2026-03-24] - Fix Rate Limiting TTL Extension and IP Extraction
+
+### Bug Fixes
+
+- **Fixed TTL extension bug in rate limiting**
+  - Redis expire was being reset on every request, extending the window indefinitely
+  - Now only sets TTL on first increment (count === 1) to maintain proper time windows
+  - Prevents users from bypassing rate limits by making requests within the TTL period
+
+- **Fixed IPv6-mapped IPv4 address extraction**
+  - IP addresses like `::ffff:172.64.66.1` are now normalized by stripping the `::ffff:` prefix
+  - Ensures consistent rate limiting regardless of how the IP is reported by proxies
+  - Applied to `getClientIP()` function in `app/lib/rateLimit.ts`
+
+- **Added rate limiting debug logging to chat endpoint**
+  - Logs IP address and whether request was allowed or blocked
+  - Helps diagnose rate limiting issues in production
+
+### Files Modified
+
+- `app/lib/rateLimit.ts` - Fixed TTL extension and IP normalization
+- `app/api/chat/route.ts` - Added rate limit debug logging
+
+## [2026-03-22] - Fix Message Restoration on CAPTCHA Error
+
+### Bug Fixes
+
+- **Fixed empty messages array in CAPTCHA error handler**
+  - `handler.messages` accessed via `useChatStore.getState().chatHandler` was always empty
+  - This happened because the store captured a snapshot of the handler at render time
+  - By the time the error occurred, messages existed in the live hook but not in the stored snapshot
+  - Added `messagesRef` to track current messages without causing re-renders
+  - Updated `handleError` to use `messagesRef.current` instead of store access
+  - Fixed the bug where pending message couldn't be captured for CAPTCHA retry
+
+- **Fixed message restoration to input field on any error**
+  - Failed messages were not being restored to the input field for retry
+  - Created `restoreFailedMessage()` helper function to centralize restoration logic
+  - Function removes last message from chat UI and restores it to input field
+  - Applied to all error types (CAPTCHA, rate limit, server errors) except archived conversations
+  - Removed duplicate error handling from `chat-store.ts` to avoid conflicts
+  - User can immediately edit and resend without retyping after any error
+
+### Files Modified
+
+- `app/components/ui/chat/chat-section.tsx` - Added messagesRef, setInputText import, and message restoration
+- `stores/chat-store.ts` - Removed duplicate error handling from sendMessage
+
+## [2026-03-22] - Fix Cached Response Message Count Bug
+
+### Bug Fixes
+
+- **Fixed message count increment for cached responses**
+  - Cached responses were incorrectly incrementing message count despite skipping CAPTCHA
+  - When user dismissed CAPTCHA dialog and resent message, cache hit bypassed CAPTCHA check
+  - `onFinal` callback still called `incrementMessageCount()` even for cached responses
+  - This caused message count to increase without user ever solving CAPTCHA
+  - Added `isCached` flag to track cache status and skip count increment for cached responses
+  - Applied fix to both chat route (`/api/chat/route.ts`) and research route (`/api/research/route.ts`)
+
+### Files Modified
+
+- `app/api/chat/route.ts` - Track cache status and skip incrementMessageCount for cached responses
+- `app/api/research/route.ts` - Track cache status and skip incrementMessageCount for cached responses
+
+## [2026-03-22] - Fix Missing Import in CAPTCHA Verification
+
+### Bug Fixes
+
+- **Fixed missing import causing CAPTCHA bypass vulnerability**
+  - `getIpFromRequest` was being called in `/api/captcha/verify` but was never imported
+  - This caused a ReferenceError during captcha verification
+  - The error handling triggered message count initialization to 0 even though captcha wasn't solved
+  - After the "fix", subsequent requests would see count=0 and not require captcha
+  - Added missing import: `import { getIpFromRequest } from "@/app/lib/ipBan"`
+
+### Files Modified
+
+- `app/api/captcha/verify/route.ts` - Added missing `getIpFromRequest` import
+
+## [2026-03-22] - Fix isCaptchaRequired Bug and Redis Persistence
+
+### Bug Fixes
+
+- **Fixed IP extraction inconsistency causing `isCaptchaRequired` to fail**
+  - CAPTCHA verify route was using `getClientIP()` from `rateLimit.ts`
+  - All other routes were using `getIpFromRequest()` from `ipBan.ts`
+  - This caused different IP addresses to be used for storing vs checking message counts
+  - Standardized all routes to use `getIpFromRequest()` for consistent IP extraction
+
+### Configuration Changes
+
+- **Disabled Redis disk persistence**
+  - Changed `appendonly yes` to `appendonly no` in `redis.conf`
+  - Removed RDB save directives (`save 900 1`, `save 300 10`, `save 60 10000`)
+  - Redis now runs in pure memory mode
+  - Data will be lost on restart, but FLUSHALL will work properly
+
+### Files Modified
+
+- `app/api/captcha/verify/route.ts` - Changed from `getClientIP()` to `getIpFromRequest()`
+- `redis.conf` - Disabled AOF and RDB persistence
+
+### Migration Notes
+
+To apply the Redis configuration changes:
+
+1. Stop the Redis server
+2. Delete existing AOF file (if present): `rm /data/appendonly.aof`
+3. Delete existing RDB file (if present): `rm /data/dump.rdb`
+4. Start Redis with the new configuration
+
 ## [2026-03-21] - Fix CAPTCHA Error Handler Scoping Issue
 
 ### Bug Fixes

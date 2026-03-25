@@ -215,7 +215,10 @@
     "analysingExperiences": "Analisando Experiências",
     "detransPerspective": "-> Quais são as perspectivas detrans sobre este tópico?",
     "transPerspective": "-> Quais são as perspectivas trans sobre este tópico?",
-    "backToPortal": "<- Voltar ao Portal"
+    "backToPortal": "<- Voltar ao Portal",
+    "captchaRequired": "Captcha necessário para continuar o chat.",
+    "chatArchived": "Este chat está arquivado. Comece um novo.",
+    "rateLimitExceeded": "Muitas solicitações, diminua a velocidade e tente novamente mais tarde."
   },
   "chatInput": {
     "placeholder": "Pergunte ao detrans.ai...",

@@ -219,7 +219,10 @@
     "analysingExperiences": "Analýza zkušeností",
     "detransPerspective": "-> Jaké jsou detranzicionistické perspektivy na toto téma?",
     "transPerspective": "-> Jaké jsou transgender perspektivy na toto téma?",
-    "backToPortal": "<- Zpět na portál"
+    "backToPortal": "<- Zpět na portál",
+    "captchaRequired": "Pro pokračování v chatu je vyžadována captcha.",
+    "chatArchived": "Tento chat je archivován. Začněte nový.",
+    "rateLimitExceeded": "Příliš mnoho požadavků, zpomalte a zkuste to znovu později."
   },
   "chatInput": {
     "placeholder": "Zeptejte se detrans.ai...",

@@ -26,26 +26,14 @@ export const useChatStore = create<ChatState>((set, get) => ({
   setChatStatus: (status) => set({ chatStatus: status }),
   setInputText: (text) => set({ inputText: text }),
   sendMessage: async (message) => {
-    const { chatHandler, setInputText } = get();
+    const { chatHandler } = get();
     if (!chatHandler) return;
 
-    try {
-      await chatHandler.sendMessage({
-        id: `user-${Date.now()}`,
-        role: "user",
-        parts: [{ type: "text", text: message }],
-      });
-    } catch (e) {
-      console.log("send message throws");
-
-      // Restore the message text to the input field so user can retry
-      setInputText(message);
-
-      // Clear the error state to reset status from "pending" back to "ready"
-      chatHandler.clearError();
-
-      // Re-throw the error so the caller can handle it (e.g., captcha flow)
-      throw e;
-    }
+    // Let errors propagate to be handled by the component's error handler
+    await chatHandler.sendMessage({
+      id: `user-${Date.now()}`,
+      role: "user",
+      parts: [{ type: "text", text: message }],
+    });
   },
 }));
