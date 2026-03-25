@@ -218,7 +218,10 @@
     "analysingExperiences": "Se analizează Experiențele",
     "detransPerspective": "-> Care sunt perspectivele detrans asupra acestui subiect?",
     "transPerspective": "-> Care sunt perspectivele trans asupra acestui subiect?",
-    "backToPortal": "<- Înapoi la Portal"
+    "backToPortal": "<- Înapoi la Portal",
+    "captchaRequired": "Captcha necesar pentru a continua chat-ul.",
+    "chatArchived": "Acest chat este arhivat. Începeți unul nou.",
+    "rateLimitExceeded": "Prea multe solicitări, încetiniți și încercați din nou mai târziu."
   },
   "chatInput": {
     "placeholder": "Întreabă detrans.ai...",

@@ -215,7 +215,10 @@
     "analysingExperiences": "経験を分析中",
     "detransPerspective": "→ デトランスの視点は？",
     "transPerspective": "→ トランスの視点は？",
-    "backToPortal": "← ポータルに戻る"
+    "backToPortal": "← ポータルに戻る",
+    "captchaRequired": "チャットを続行するにはキャプチャが必要です。",
+    "chatArchived": "このチャットはアーカイブされています。新しいものを開始してください。",
+    "rateLimitExceeded": "リクエストが多すぎます。速度を落として後でもう一度試してください。"
   },
   "chatInput": {
     "placeholder": "detrans.aiに質問...",

@@ -218,7 +218,10 @@
     "analysingExperiences": "Tapasztalatok Elemzése",
     "detransPerspective": "-> Mik a detrans nézőpontok erről a témáról?",
     "transPerspective": "-> Mik a transz nézőpontok erről a témáról?",
-    "backToPortal": "<- Vissza a Portálra"
+    "backToPortal": "<- Vissza a Portálra",
+    "captchaRequired": "Captcha szükséges a chat folytatásához.",
+    "chatArchived": "Ez a chat archiválva van. Kezdj egy újat.",
+    "rateLimitExceeded": "Túl sok kérés, lassítson és próbálkozzon újra később."
   },
   "chatInput": {
     "placeholder": "Kérdezd a detrans.ai-t...",

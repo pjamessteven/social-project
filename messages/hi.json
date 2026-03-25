@@ -217,7 +217,10 @@
     "analysingExperiences": "अनुभवों का विश्लेषण",
     "detransPerspective": "-> इस विषय पर डीट्रांज दृष्टिकोण क्या हैं?",
     "transPerspective": "-> इस विषय पर ट्रांस दृष्टिकोण क्या हैं?",
-    "backToPortal": "<- पोर्टल पर वापस"
+    "backToPortal": "<- पोर्टल पर वापस",
+    "captchaRequired": "चैट जारी रखने के लिए कैप्चा आवश्यक है।",
+    "chatArchived": "यह चैट संग्रहीत है। एक नया शुरू करें।",
+    "rateLimitExceeded": "बहुत अधिक अनुरोध, धीमा करें और बाद में पुनः प्रयास करें।"
   },
   "chatInput": {
     "placeholder": "detrans.ai से पूछें...",

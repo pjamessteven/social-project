@@ -216,7 +216,10 @@
     "analysingExperiences": "Ervaringen Analyseren",
     "detransPerspective": "-> Wat zijn detrans-perspectieven op dit onderwerp?",
     "transPerspective": "-> Wat zijn trans-perspectieven op dit onderwerp?",
-    "backToPortal": "<- Terug naar Portaal"
+    "backToPortal": "<- Terug naar Portaal",
+    "captchaRequired": "Captcha vereist om door te gaan met chatten.",
+    "chatArchived": "Deze chat is gearchiveerd. Start een nieuwe.",
+    "rateLimitExceeded": "Te veel verzoeken, vertraag en probeer het later opnieuw."
   },
   "chatInput": {
     "placeholder": "Vraag detrans.ai...",

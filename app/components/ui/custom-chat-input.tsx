@@ -275,7 +275,6 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   };
 
   const showResearch = true;
-
   return (
     <div
       style={{
@@ -308,7 +307,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               placeholder={placeholder}
               disabled={
                 (path.includes("/chat") || path.includes("/research")) &&
-                chatStatus !== "ready"
+                (chatStatus === "streaming" || chatStatus === "submitted")
               }
               rows={1}
               maxLength={MAX_MESSAGE_LENGTH}
@@ -385,16 +384,21 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
             )}
           </div>
           <Button
-            type={chatStatus === "streaming" ? "button" : "submit"}
+            type={
+              chatStatus === "streaming" || chatStatus === "submitted"
+                ? "button"
+                : "submit"
+            }
             size="icon"
             className="h-14 w-14 flex-shrink-0 rounded-full"
             onClick={
-              chatStatus !== "ready" && chatHandler?.stop
+              (chatStatus === "streaming" || chatStatus === "submitted") &&
+              chatHandler?.stop
                 ? chatHandler.stop
                 : undefined
             }
           >
-            {chatStatus !== "ready" ? (
+            {chatStatus == "streaming" || chatStatus === "submitted" ? (
               <Square className="h-5 w-5" />
             ) : (
               <Send className="h-6 w-6" />

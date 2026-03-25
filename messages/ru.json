@@ -216,7 +216,10 @@
     "analysingExperiences": "Анализирую опыт",
     "detransPerspective": "-> Каковы взгляды детрансионеров на эту тему?",
     "transPerspective": "-> Каковы взгляды трансгендерных людей на эту тему?",
-    "backToPortal": "<- Вернуться к порталу"
+    "backToPortal": "<- Вернуться к порталу",
+    "captchaRequired": "Требуется капча для продолжения чата.",
+    "chatArchived": "Этот чат архивирован. Начните новый.",
+    "rateLimitExceeded": "Слишком много запросов, замедлитесь и попробуйте позже."
   },
   "chatInput": {
     "placeholder": "Спросите detrans.ai...",

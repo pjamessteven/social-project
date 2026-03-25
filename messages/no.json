@@ -218,7 +218,10 @@
     "analysingExperiences": "Analyserer erfaringer",
     "detransPerspective": "-> Hva er detransisjonerte perspektiver på dette temaet?",
     "transPerspective": "-> Hva er transpersoners perspektiver på dette temaet?",
-    "backToPortal": "<- Tilbake til portalen"
+    "backToPortal": "<- Tilbake til portalen",
+    "captchaRequired": "Captcha kreves for å fortsette chatten.",
+    "chatArchived": "Denne chatten er arkivert. Start en ny.",
+    "rateLimitExceeded": "For mange forespørsler, brems og prøv igjen senere."
   },
   "chatInput": {
     "placeholder": "Spør detrans.ai...",

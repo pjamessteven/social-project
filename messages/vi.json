@@ -218,7 +218,10 @@
     "analysingExperiences": "Đang Phân Tích Kinh Nghiệm",
     "detransPerspective": "-> Quan điểm của ngưởi chuyển giới trở lại về chủ đề này là gì?",
     "transPerspective": "-> Quan điểm của ngưởi chuyển giới về chủ đề này là gì?",
-    "backToPortal": "<- Quay lại Cổng Thông Tin"
+    "backToPortal": "<- Quay lại Cổng Thông Tin",
+    "captchaRequired": "Yêu cầu captcha để tiếp tục trò chuyện.",
+    "chatArchived": "Cuộc trò chuyện này đã được lưu trữ. Bắt đầu một cuộc trò chuyện mới.",
+    "rateLimitExceeded": "Quá nhiều yêu cầu, hãy chậm lại và thử lại sau."
   },
   "chatInput": {
     "placeholder": "Hỏi detrans.ai...",

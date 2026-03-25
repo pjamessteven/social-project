@@ -11,6 +11,7 @@ import ScrollRestoration from "../components/content/ScrollRestoration";
 import Header from "../components/ui/common/layout/header";
 import { ContentWarningDialog } from "../components/ui/content-warning-dialog";
 import { CustomChatInput } from "../components/ui/custom-chat-input";
+import { Toaster } from "../components/ui/sonner";
 import { isBot } from "../lib/isBot";
 
 export function generateStaticParams() {
@@ -96,6 +97,7 @@ export default async function LocaleLayout({
         {!bot && <ContentWarningDialog host={host} />}
         <div className="relative flex h-[100dvh] flex-col">
           <Header mode="detrans" locale={locale} />
+          <Toaster />
           <main
             className={
               "flex h-full min-h-0 flex-1 flex-row justify-center overflow-x-hidden overflow-y-auto"

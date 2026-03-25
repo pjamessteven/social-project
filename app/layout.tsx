@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 
+import { defaultLocale, isRTL, locales } from "@/i18n/locales";
 import "@llamaindex/chat-ui/styles/editor.css";
 import "@llamaindex/chat-ui/styles/markdown.css";
 import "@llamaindex/chat-ui/styles/pdf.css";
@@ -8,7 +9,6 @@ import { Viewport } from "next";
 import { ThemeProvider } from "next-themes";
 import { headers } from "next/headers";
 import "./globals.css";
-import { isRTL, locales, defaultLocale } from "@/i18n/locales";
 
 const themeScript = `
   (function() {
@@ -79,7 +79,12 @@ export default async function RootLayout({
             __html: themeScript,
           }}
         />
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
         </ThemeProvider>
       </body>

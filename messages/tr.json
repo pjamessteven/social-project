@@ -217,7 +217,10 @@
     "analysingExperiences": "Deneyimler Analiz Ediliyor",
     "detransPerspective": "-> Bu konuda detrans bakış açıları nedir?",
     "transPerspective": "-> Bu konuda trans bakış açıları nedir?",
-    "backToPortal": "<- Portala Geri Dön"
+    "backToPortal": "<- Portala Geri Dön",
+    "captchaRequired": "Sohbeti devam ettirmek için captcha gerekiyor.",
+    "chatArchived": "Bu sohbet arşivlendi. Yeni bir tane başlatın.",
+    "rateLimitExceeded": "Çok fazla istek, yavaşlayın ve daha sonra tekrar deneyin."
   },
   "chatInput": {
     "placeholder": "detrans.ai'ye sorun...",

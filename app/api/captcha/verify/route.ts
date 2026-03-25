@@ -1,5 +1,5 @@
+import { getIpFromRequest } from "@/app/lib/ipBan";
 import { initializeMessageCount } from "@/app/lib/messageCounter";
-import { getClientIP } from "@/app/lib/rateLimit";
 import { connectRedis } from "@/app/lib/redis";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
     // Mark this IP as verified in Redis (expires after 1 hour)
     // Also reset the message counter for this IP
     const redis = await connectRedis();
-    const ip = getClientIP(req);
+    const ip = getIpFromRequest(req);
 
     if (redis) {
       const key = `captcha:verified:${ip}`;

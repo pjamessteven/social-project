@@ -217,7 +217,10 @@
     "analysingExperiences": "Analyserer Erfaringer",
     "detransPerspective": "-> Hvad er detransperspektiver på dette emne?",
     "transPerspective": "-> Hvad er transperspektiver på dette emne?",
-    "backToPortal": "<- Tilbage til Portalen"
+    "backToPortal": "<- Tilbage til Portalen",
+    "captchaRequired": "Captcha påkrævet for at fortsætte chatten.",
+    "chatArchived": "Denne chat er arkiveret. Start en ny.",
+    "rateLimitExceeded": "For mange anmodninger, tag det roligt og prøv igen senere."
   },
   "chatInput": {
     "placeholder": "Spørg detrans.ai...",

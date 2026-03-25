@@ -8,7 +8,7 @@
     "subtitle": "Perspectives From The Other Side",
     "intro": {
       "greeting": "Hello! What's a detransitioner?",
-      "response": "Hi there! I'm detrans.ai - the collective consciousness of detransitioners \ud83e\udd8e",
+      "response": "Hi there! I'm detrans.ai - the collective consciousness of detransitioners 🦎",
       "definition": "A detransitioner is an ex-transgender person who transitioned socially or medically, but has since stopped identifying as transgender and may have reversed aspects of their transition.",
       "description": "I observe the reasons, patterns and truths of why some people adopt, inhabit and move on from gender identities by reading stories and experiences that have been posted in the /r/detrans subreddit and watching detransition videos that have been uploaded to YouTube.",
       "purpose": "My purpose is to share this knowledge in order to deconstruct gender and to explore how these experiences shape one's relationship with self, body and the world.",
@@ -183,7 +183,7 @@
       "sex": "<b>Sex</b> refers to a person's biology (i.e. their anatomy; skeleton, musculature, chromosomes, reproductive system and secondary sex characteristics). Note that over 99% of people are biologically either male or female, there is no sex spectrum though some people do have disorders of sexual development (DSDs). The vast majority of people with DSDs are male or female.",
       "gender": "<b>Gender</b> refers to the 'socially constructed' roles, behaviours, activities, and attributes that a given society considers appropriate for men and women [as defined by their biological sex]. 'Masculine' and 'feminine' are gender categories. Most, maybe all, people have a mix of masculine and feminine traits. Gender changes over time and between cultures.",
       "nonConformity": "<b>Gender non-conformity</b> occurs when a person acts or presents differently from how their society expects them to, based on their sex.",
-      "identity": "<b>Gender Identity</b> - some people believe that we all have an innate 'gender identity' \u2013 a deep sense or awareness of ourselves as either male, female or somewhere in between \u2013 which exists separately to our biological sex and which can, on rare occasions, differ from it. Other people do not believe that a specific gender identity exists that is distinct from other any other aspect of a person's personality or identity."
+      "identity": "<b>Gender Identity</b> - some people believe that we all have an innate 'gender identity' – a deep sense or awareness of ourselves as either male, female or somewhere in between – which exists separately to our biological sex and which can, on rare occasions, differ from it. Other people do not believe that a specific gender identity exists that is distinct from other any other aspect of a person's personality or identity."
     },
     "dysphoria": {
       "heading": "What is gender dysphoria?",
@@ -218,7 +218,10 @@
     "analysingExperiences": "Analysing Experiences",
     "detransPerspective": "-> What are detrans perspectives on this topic?",
     "transPerspective": "-> What are trans perspectives on this topic?",
-    "backToPortal": "<- Back to Portal"
+    "backToPortal": "<- Back to Portal",
+    "captchaRequired": "Captcha required to continue chat.",
+    "chatArchived": "This chat is archived. Start a new one.",
+    "rateLimitExceeded": "Too many requests, slow down and try again later."
   },
   "chatInput": {
     "placeholder": "Ask detrans.ai...",
@@ -419,7 +422,7 @@
       },
       "legalBases": {
         "title": "Legal Bases for Processing (EU/EEA visitors)",
-        "item1": "Rate-limit processing is necessary for our <em>legitimate interests</em> under GDPR Art. 6(1)(f) \u2014 specifically, maintaining service availability and security.",
+        "item1": "Rate-limit processing is necessary for our <em>legitimate interests</em> under GDPR Art. 6(1)(f) — specifically, maintaining service availability and security.",
         "item2": "Any additional processing (e.g., account creation) is based on your <em>consent</em> or <em>contractual necessity</em>, as applicable."
       },
       "dataRetention": {
@@ -593,7 +596,7 @@
         "organizations": {
           "justTherapy": {
             "name": "Just Therapy",
-            "description": "Just Therapy is born out of a desire to go back to what therapy should be \u2013 effective, ethical, and free from ideology. It is an association of therapists and counsellors aligned by common ethics and principles. Just Therapy recognises that much of the world of psychotherapy and counselling has been taken over by activists and ideologies, which risk harming, rather than supporting, the mental wellbeing of clients. Its members, who come from a wide range of disciplines and specialities, have signed a Code of Conduct.",
+            "description": "Just Therapy is born out of a desire to go back to what therapy should be – effective, ethical, and free from ideology. It is an association of therapists and counsellors aligned by common ethics and principles. Just Therapy recognises that much of the world of psychotherapy and counselling has been taken over by activists and ideologies, which risk harming, rather than supporting, the mental wellbeing of clients. Its members, who come from a wide range of disciplines and specialities, have signed a Code of Conduct.",
             "directory": "Just Therapy Therapist Directory",
             "codeOfConduct": "Just Therapy Code Of Conduct"
           },
@@ -650,7 +653,7 @@
       "goalExploratory": "Understand the meaning of the dysphoria; outcome can be transition, no transition, or partial social transition.",
       "method": "Method",
       "methodConversion": "Shame, aversion, behavioural conditioning, prayer.",
-      "methodExploratory": "GET is compatible with a wide range of therapeutic modalities, such as standard psychodynamic or humanistic techniques\u2014open questions, curiosity, no pre-set end-points.",
+      "methodExploratory": "GET is compatible with a wide range of therapeutic modalities, such as standard psychodynamic or humanistic techniques—open questions, curiosity, no pre-set end-points.",
       "evidence": "Evidence base",
       "evidenceConversion": "Consistently shows harm; every major medical body condemns it.",
       "evidenceExploratory": "No RCTs yet, but parallels to therapies that reduce anxiety, depression, self-harm; no data showing systematic harm.",

@@ -218,7 +218,10 @@
     "analysingExperiences": "Analizuojamos patirtys",
     "detransPerspective": "-> Kokie detranzicijos požiūriai į šią temą?",
     "transPerspective": "-> Kokie translyčio požiūriai į šią temą?",
-    "backToPortal": "<- Atgal į portalą"
+    "backToPortal": "<- Atgal į portalą",
+    "captchaRequired": "Norint tęsti pokalbį, reikalinga captcha.",
+    "chatArchived": "Šis pokalbis yra archyvuotas. Pradėkite naują.",
+    "rateLimitExceeded": "Per daug užklausų, sulėtinkite ir bandykite vėliau."
   },
   "chatInput": {
     "placeholder": "Klauskite detrans.ai...",

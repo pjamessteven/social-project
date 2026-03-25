@@ -218,7 +218,10 @@
     "analysingExperiences": "Analysoidaan Kokemuksia",
     "detransPerspective": "-> Mitä ovat detrans-näkökulmat tähän aiheeseen?",
     "transPerspective": "-> Mitä ovat trans-näkökulmat tähän aiheeseen?",
-    "backToPortal": "<- Takaisin Portaaliin"
+    "backToPortal": "<- Takaisin Portaaliin",
+    "captchaRequired": "Captcha vaaditaan chat-jatkamiseen.",
+    "chatArchived": "Tämä keskustelu on arkistoitu. Aloita uusi.",
+    "rateLimitExceeded": "Liian monta pyyntöä, hidasta ja yritä myöhemmin uudelleen."
   },
   "chatInput": {
     "placeholder": "Kysy detrans.ai:lta...",

@@ -35,14 +35,19 @@ export async function POST(req: NextRequest) {
     // Check if IP is banned before processing request
     await checkIpBan(req);
 
+    const ipAddress = getIpFromRequest(req);
+
     // Apply rate limiting (10/min, 100/hour)
     const rateLimitResponse = await checkRateLimit(req);
+    console.log(
+      `[CHAT API] Rate limit check - IP: ${ipAddress}, Allowed: ${rateLimitResponse ? "BLOCKED" : "ALLOWED"}`,
+    );
     if (rateLimitResponse) return rateLimitResponse;
 
     const reqBody = await req.json();
     const suggestNextQuestions = process.env.SUGGEST_NEXT_QUESTIONS === "true";
 
-    console.log("[CHAT API] Request body:", JSON.stringify(reqBody, null, 2));
+    // console.log("[CHAT API] Request body:", JSON.stringify(reqBody, null, 2));
 
     const {
       messages,
@@ -55,29 +60,6 @@ export async function POST(req: NextRequest) {
       conversationId?: string;
       locale?: string;
     };
-
-    const ipAddress = getIpFromRequest(req);
-
-    // Check cache first before starting workflow
-    const cachedResponse = await getChatCachedResponse(messages);
-    console.log("CACHED RES", cachedResponse);
-    if (!cachedResponse) {
-      console.log("[CHAT API] Cache miss - checking captcha ");
-      // Check CAPTCHA status if not in cache
-      // Require CAPTCHA every 10 messages
-      const captchaRequired = await isCaptchaRequired(ipAddress);
-      if (captchaRequired) {
-        return NextResponse.json(
-          {
-            requiresCaptcha: true,
-            error: "CAPTCHA verification required",
-          },
-          { status: 402 },
-        );
-      }
-    } else {
-      console.log("[CHAT API] Cache hit - bypass captcha ");
-    }
 
     // Generate or use provided conversation UUID
     const chatUuid = conversationId || uuidv4();
@@ -129,6 +111,27 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    // Check cache first before starting workflow
+    const cachedResponse = await getChatCachedResponse(messages);
+    const isCached = !!cachedResponse;
+    if (!cachedResponse) {
+      console.log("[CHAT API] Cache miss - checking captcha ");
+      // Check CAPTCHA status if not in cache
+      // Require CAPTCHA every 10 messages
+      const captchaRequired = await isCaptchaRequired(ipAddress);
+      if (captchaRequired) {
+        return NextResponse.json(
+          {
+            requiresCaptcha: true,
+            error: "CAPTCHA verification required",
+          },
+          { status: 402 },
+        );
+      }
+    } else {
+      console.log("[CHAT API] Cache hit - bypass captcha ");
+    }
+
     const chatHistory: ChatMessage[] = messages.map((message) => ({
       role: message.role as MessageType,
       content: message.parts[0].type === "text" ? message.parts[0].text : "", // message.parts[0]?
@@ -169,7 +172,7 @@ export async function POST(req: NextRequest) {
           userMessages.length,
           locale,
         ),
-        input: { userInput: userInput, chatHistory },
+        input: { userInput: userInput, chatHistory: chatHistory },
         human: {
           snapshotId: requestId, // use requestId to restore snapshot
         },
@@ -189,8 +192,10 @@ export async function POST(req: NextRequest) {
           },
           onFinal: async (messages: UIMessage[], dataStreamWriter) => {
             await saveConversation(chatUuid, messages, ipAddress);
-            // Increment message count for CAPTCHA tracking
-            await incrementMessageCount(ipAddress);
+            // Increment message count for CAPTCHA tracking (skip if response was cached)
+            if (!isCached) {
+              await incrementMessageCount(ipAddress);
+            }
             /*
             if (suggestNextQuestions) {
               await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory, chatUuid);
@@ -308,13 +313,6 @@ export async function GET(request: NextRequest) {
           )
         : countQuery.where(eq(chatConversations.mode, "detrans_chat")),
     ]);
-
-    console.log("API Response:", {
-      isFeatured,
-      count: conversations.length,
-      featuredValues: conversations.map((c) => c.featured),
-      total: totalResult[0].value,
-    });
 
     // Localize conversations based on requested locale
     const localizedConversations = conversations.map((convo) => ({
