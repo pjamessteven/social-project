@@ -70,8 +70,9 @@ export async function rateLimit(
   const results = await multi.exec();
 
   // redis package returns array of values directly: [minuteCount, hourCount]
-  const minuteCount = (results?.[0] as number) ?? 0;
-  const hourCount = (results?.[1] as number) ?? 0;
+  // Handle Redis reply union type - could be number, string, etc.
+  const minuteCount = results?.[0] ? Number(results[0]) : 0;
+  const hourCount = results?.[1] ? Number(results[1]) : 0;
 
   // Set TTL only on first increment to prevent extending the window
   if (minuteCount === 1) {
