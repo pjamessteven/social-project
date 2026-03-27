@@ -13,6 +13,7 @@ import { and, desc, eq, sql } from "drizzle-orm";
 import { ChatMessage, type MessageType } from "llamaindex";
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
+import { z } from "zod";
 
 // import chat utils
 import {
@@ -21,7 +22,6 @@ import {
   runWorkflow,
   toDataStream,
 } from "./utils";
-import { getChatCachedResponse } from "./utils/cacheHelpers";
 
 // import workflow factory and settings from local file
 import { stopAgentEvent } from "@llamaindex/workflow";
@@ -29,6 +29,14 @@ import { initSettings } from "./app/settings";
 import { workflowFactory } from "./app/workflow";
 
 initSettings();
+
+// Schema for chat request validation
+const chatRequestSchema = z.object({
+  message: z.string().max(MAX_MESSAGE_LENGTH),
+  conversationId: z.string().uuid().optional(),
+  locale: z.string().optional(),
+  id: z.string().optional(),
+});
 
 export async function POST(req: NextRequest) {
   try {
@@ -47,19 +55,26 @@ export async function POST(req: NextRequest) {
     const reqBody = await req.json();
     const suggestNextQuestions = process.env.SUGGEST_NEXT_QUESTIONS === "true";
 
-    // console.log("[CHAT API] Request body:", JSON.stringify(reqBody, null, 2));
+    // Validate request body
+    const validationResult = chatRequestSchema.safeParse(reqBody);
+    if (!validationResult.success) {
+      return NextResponse.json(
+        {
+          error: "Invalid request format",
+          details: validationResult.error.format(),
+        },
+        { status: 400 },
+      );
+    }
 
     const {
-      messages,
-      id: requestId,
+      message,
       conversationId,
       locale,
-    } = reqBody as {
-      messages: UIMessage[];
-      id?: string;
-      conversationId?: string;
-      locale?: string;
-    };
+      id: requestId,
+    } = validationResult.data;
+
+    const userInput = message.slice(0, MAX_MESSAGE_LENGTH);
 
     // Generate or use provided conversation UUID
     const chatUuid = conversationId || uuidv4();
@@ -108,54 +123,80 @@ export async function POST(req: NextRequest) {
             { status: 410 },
           );
         }
+
+        // Verify IP ownership for existing conversations
+        if (conversation.ipAddress && conversation.ipAddress !== ipAddress) {
+          console.log(
+            `[CHAT API] IP mismatch: stored=${conversation.ipAddress}, request=${ipAddress}`,
+          );
+          return NextResponse.json(
+            {
+              error: "You cannot add messages to someone else's conversation.",
+            },
+            { status: 403 },
+          );
+        }
       }
     }
 
-    // Check cache first before starting workflow
-    const cachedResponse = await getChatCachedResponse(messages);
-    const isCached = !!cachedResponse;
-    if (!cachedResponse) {
-      console.log("[CHAT API] Cache miss - checking captcha ");
-      // Check CAPTCHA status if not in cache
-      // Require CAPTCHA every 10 messages
-      const captchaRequired = await isCaptchaRequired(ipAddress);
-      if (captchaRequired) {
-        return NextResponse.json(
-          {
-            requiresCaptcha: true,
-            error: "CAPTCHA verification required",
-          },
-          { status: 402 },
-        );
-      }
-    } else {
-      console.log("[CHAT API] Cache hit - bypass captcha ");
-    }
-
-    const chatHistory: ChatMessage[] = messages.map((message) => ({
-      role: message.role as MessageType,
-      content: message.parts[0].type === "text" ? message.parts[0].text : "", // message.parts[0]?
-    }));
-
-    const userMessages = chatHistory.filter(
-      (message) => message.role === "user",
-    );
-
-    console.log("Chat history:", chatHistory);
-
-    const lastMessage = messages[messages.length - 1];
-    if (lastMessage?.role !== "user") {
+    // Check CAPTCHA status
+    const captchaRequired = await isCaptchaRequired(ipAddress);
+    if (captchaRequired) {
       return NextResponse.json(
         {
-          detail: "Messages cannot be empty and last message must be from user",
+          requiresCaptcha: true,
+          error: "CAPTCHA verification required",
         },
-        { status: 400 },
+        { status: 402 },
       );
     }
-    const userInput =
-      lastMessage.parts[0].type === "text"
-        ? lastMessage.parts[0].text.slice(0, MAX_MESSAGE_LENGTH)
-        : "";
+
+    // Get existing conversation messages if conversation exists
+    let existingMessages: UIMessage[] = [];
+    if (conversationId) {
+      const existingConversation = await db
+        .select()
+        .from(chatConversations)
+        .where(eq(chatConversations.uuid, chatUuid))
+        .limit(1);
+
+      if (existingConversation[0]) {
+        try {
+          existingMessages = JSON.parse(
+            existingConversation[0].messages,
+          ) as UIMessage[];
+        } catch (error) {
+          console.error("[CHAT API] Failed to parse existing messages:", error);
+          existingMessages = [];
+        }
+      }
+    }
+
+    // Create new user message in UIMessage format
+    const newUserMessage: UIMessage = {
+      id: uuidv4(),
+      role: "user",
+      parts: [{ type: "text", text: message }],
+    };
+
+    // Combine existing messages with new user message
+    const allMessages = [...existingMessages, newUserMessage];
+
+    // Convert to ChatMessage format for workflow
+    const chatHistory: ChatMessage[] = allMessages.map((msg) => ({
+      role: msg.role as MessageType,
+      content: msg.parts[0]?.type === "text" ? msg.parts[0].text : "",
+    }));
+
+    const userMessages = chatHistory.filter((msg) => msg.role === "user");
+
+    console.log("[CHAT API] Chat history reconstructed:", {
+      existingMessages: existingMessages.length,
+      newMessage: message.substring(0, 50) + (message.length > 50 ? "..." : ""),
+      totalMessages: allMessages.length,
+    });
+
+    // userInput already defined above after validation
 
     const abortController = new AbortController();
     req.signal.addEventListener("abort", () =>
@@ -165,7 +206,7 @@ export async function POST(req: NextRequest) {
     try {
       const context = await runWorkflow({
         workflow: await workflowFactory(
-          reqBody,
+          { messages: allMessages, id: requestId, conversationId, locale },
           userInput,
           chatUuid,
           requestId,
@@ -185,17 +226,15 @@ export async function POST(req: NextRequest) {
           abortController.signal.aborted || stopAgentEvent.include(event),
       );
 
-      const dataStream = toDataStream(messages, stream, chatUuid, {
+      const dataStream = toDataStream(allMessages, stream, chatUuid, {
         callbacks: {
           onPauseForHumanInput: async (responseEvent) => {
             await pauseForHumanInput(context, responseEvent, requestId); // use requestId to save snapshot
           },
           onFinal: async (messages: UIMessage[], dataStreamWriter) => {
             await saveConversation(chatUuid, messages, ipAddress);
-            // Increment message count for CAPTCHA tracking (skip if response was cached)
-            if (!isCached) {
-              await incrementMessageCount(ipAddress);
-            }
+            // Increment message count for CAPTCHA tracking
+            await incrementMessageCount(ipAddress);
             /*
             if (suggestNextQuestions) {
               await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory, chatUuid);

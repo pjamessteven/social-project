@@ -218,7 +218,8 @@
     "backToPortal": "← ポータルに戻る",
     "captchaRequired": "チャットを続行するにはキャプチャが必要です。",
     "chatArchived": "このチャットはアーカイブされています。新しいものを開始してください。",
-    "rateLimitExceeded": "リクエストが多すぎます。速度を落として後でもう一度試してください。"
+    "rateLimitExceeded": "リクエストが多すぎます。速度を落として後でもう一度試してください。",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "detrans.aiに質問...",

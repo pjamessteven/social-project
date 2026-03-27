@@ -221,7 +221,8 @@
     "backToPortal": "<- Înapoi la Portal",
     "captchaRequired": "Captcha necesar pentru a continua chat-ul.",
     "chatArchived": "Acest chat este arhivat. Începeți unul nou.",
-    "rateLimitExceeded": "Prea multe solicitări, încetiniți și încercați din nou mai târziu."
+    "rateLimitExceeded": "Prea multe solicitări, încetiniți și încercați din nou mai târziu.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "Întreabă detrans.ai...",

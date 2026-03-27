@@ -212,7 +212,8 @@
     "backToPortal": "<- Volver al Portal",
     "captchaRequired": "Se requiere captcha para continuar el chat.",
     "chatArchived": "Este chat está archivado. Comience uno nuevo.",
-    "rateLimitExceeded": "Demasiadas solicitudes, reduzca la velocidad e intente nuevamente más tarde."
+    "rateLimitExceeded": "Demasiadas solicitudes, reduzca la velocidad e intente nuevamente más tarde.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "Pregunta a detrans.ai...",

@@ -221,7 +221,8 @@
     "backToPortal": "<- Vissza a Portálra",
     "captchaRequired": "Captcha szükséges a chat folytatásához.",
     "chatArchived": "Ez a chat archiválva van. Kezdj egy újat.",
-    "rateLimitExceeded": "Túl sok kérés, lassítson és próbálkozzon újra később."
+    "rateLimitExceeded": "Túl sok kérés, lassítson és próbálkozzon újra később.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "Kérdezd a detrans.ai-t...",

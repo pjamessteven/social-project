@@ -220,7 +220,8 @@
     "backToPortal": "<- Tillbaka till Portalen",
     "captchaRequired": "Captcha krävs för att fortsätta chattandet.",
     "chatArchived": "Denna chatt är arkiverad. Starta en ny.",
-    "rateLimitExceeded": "För många förfrågningar, sakta ner och försök igen senare."
+    "rateLimitExceeded": "För många förfrågningar, sakta ner och försök igen senare.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "Fråga detrans.ai...",

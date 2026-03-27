@@ -222,7 +222,8 @@
     "backToPortal": "<- بازگشت به پورتال",
     "captchaRequired": "برای ادامه چت نیاز به کپچا است.",
     "chatArchived": "این چت بایگانی شده است. یک چت جدید شروع کنید.",
-    "rateLimitExceeded": "درخواست‌های زیادی وجود دارد، سرعت خود را کم کنید و بعداً دوباره امتحان کنید."
+    "rateLimitExceeded": "درخواست‌های زیادی وجود دارد، سرعت خود را کم کنید و بعداً دوباره امتحان کنید.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "از detrans.ai بپرسید...",

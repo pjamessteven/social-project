@@ -220,7 +220,8 @@
     "backToPortal": "<- पोर्टल पर वापस",
     "captchaRequired": "चैट जारी रखने के लिए कैप्चा आवश्यक है।",
     "chatArchived": "यह चैट संग्रहीत है। एक नया शुरू करें।",
-    "rateLimitExceeded": "बहुत अधिक अनुरोध, धीमा करें और बाद में पुनः प्रयास करें।"
+    "rateLimitExceeded": "बहुत अधिक अनुरोध, धीमा करें और बाद में पुनः प्रयास करें।",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "detrans.ai से पूछें...",

@@ -221,7 +221,8 @@
     "backToPortal": "<- Обратно към портала",
     "captchaRequired": "Изисква се капча за продължаване на чата.",
     "chatArchived": "Този чат е архивиран. Започнете нов.",
-    "rateLimitExceeded": "Твърде много заявки, забавете се и опитайте отново по-късно."
+    "rateLimitExceeded": "Твърде много заявки, забавете се и опитайте отново по-късно.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "Попитайте detrans.ai...",

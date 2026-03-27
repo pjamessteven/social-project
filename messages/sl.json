@@ -221,7 +221,8 @@
     "backToPortal": "<- Nazaj na portal",
     "captchaRequired": "Za nadaljevanje klepeta je potrebna captcha.",
     "chatArchived": "Ta klepet je arhiviran. Začnite novega.",
-    "rateLimitExceeded": "Preveč zahtev, upočasnite in poskusite znova pozneje."
+    "rateLimitExceeded": "Preveč zahtev, upočasnite in poskusite znova pozneje.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "Vprašajte detrans.ai...",

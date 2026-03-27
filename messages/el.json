@@ -223,7 +223,8 @@
     "backToPortal": "<- Επιστροφή στην Πύλη",
     "captchaRequired": "Απαιτείται captcha για να συνεχίσετε τη συνομιλία.",
     "chatArchived": "Αυτή η συνομιλία έχει αρχειοθετηθεί. Ξεκινήστε μια νέα.",
-    "rateLimitExceeded": "Πάρα πολλά αιτήματα, επιβραδύνετε και δοκιμάστε ξανά αργότερα."
+    "rateLimitExceeded": "Πάρα πολλά αιτήματα, επιβραδύνετε και δοκιμάστε ξανά αργότερα.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "Ρώτησε το detrans.ai...",

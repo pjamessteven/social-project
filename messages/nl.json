@@ -219,7 +219,8 @@
     "backToPortal": "<- Terug naar Portaal",
     "captchaRequired": "Captcha vereist om door te gaan met chatten.",
     "chatArchived": "Deze chat is gearchiveerd. Start een nieuwe.",
-    "rateLimitExceeded": "Te veel verzoeken, vertraag en probeer het later opnieuw."
+    "rateLimitExceeded": "Te veel verzoeken, vertraag en probeer het later opnieuw.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "Vraag detrans.ai...",

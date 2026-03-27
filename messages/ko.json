@@ -218,7 +218,8 @@
     "backToPortal": "<- 포털로 돌아가기",
     "captchaRequired": "채팅을 계속하려면 캡차가 필요합니다.",
     "chatArchived": "이 채팅은 보관되었습니다. 새 채팅을 시작하세요.",
-    "rateLimitExceeded": "요청이 너무 많습니다. 속도를 늦추고 나중에 다시 시도하세요."
+    "rateLimitExceeded": "요청이 너무 많습니다. 속도를 늦추고 나중에 다시 시도하세요.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "detrans.ai에게 질문하세요...",

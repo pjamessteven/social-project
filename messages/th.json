@@ -221,7 +221,8 @@
     "backToPortal": "<- กลับไปยังพอร์ทัล",
     "captchaRequired": "ต้องใช้แคปช่าถึงจะแชทต่อได้",
     "chatArchived": "แชทนี้ถูกเก็บถาวรแล้ว เริ่มใหม่ได้เลย",
-    "rateLimitExceeded": "คำขอมากเกินไป ชะลอตัวลงและลองอีกครั้งในภายหลัง"
+    "rateLimitExceeded": "คำขอมากเกินไป ชะลอตัวลงและลองอีกครั้งในภายหลัง",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "ถาม detrans.ai...",
