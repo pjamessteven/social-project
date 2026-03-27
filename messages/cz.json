@@ -222,7 +222,8 @@
     "backToPortal": "<- Zpět na portál",
     "captchaRequired": "Pro pokračování v chatu je vyžadována captcha.",
     "chatArchived": "Tento chat je archivován. Začněte nový.",
-    "rateLimitExceeded": "Příliš mnoho požadavků, zpomalte a zkuste to znovu později."
+    "rateLimitExceeded": "Příliš mnoho požadavků, zpomalte a zkuste to znovu později.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "Zeptejte se detrans.ai...",

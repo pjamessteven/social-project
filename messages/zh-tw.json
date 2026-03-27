@@ -221,7 +221,8 @@
     "backToPortal": "<- 返回入口",
     "captchaRequired": "需要驗證碼才能繼續聊天。",
     "chatArchived": "此聊天已存檔。開始一個新的。",
-    "rateLimitExceeded": "請求過多，請放慢速度稍後再試。"
+    "rateLimitExceeded": "請求過多，請放慢速度稍後再試。",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "詢問detrans.ai...",

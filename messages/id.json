@@ -221,7 +221,8 @@
     "backToPortal": "<- Kembali ke Portal",
     "captchaRequired": "Captcha diperlukan untuk melanjutkan obrolan.",
     "chatArchived": "Obrolan ini diarsipkan. Mulai yang baru.",
-    "rateLimitExceeded": "Terlalu banyak permintaan, pelan-pelan dan coba lagi nanti."
+    "rateLimitExceeded": "Terlalu banyak permintaan, pelan-pelan dan coba lagi nanti.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "Tanyakan detrans.ai...",

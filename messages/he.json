@@ -220,7 +220,8 @@
     "backToPortal": "<- חזרה לפורטל",
     "captchaRequired": "נדרש קפצ'ה להמשך הצ'אט.",
     "chatArchived": "צ'אט זה הועבר לארכיון. התחל אחד חדש.",
-    "rateLimitExceeded": "יותר מדי בקשות, האט ונסה שוב מאוחר יותר."
+    "rateLimitExceeded": "יותר מדי בקשות, האט ונסה שוב מאוחר יותר.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "שאל/י את detrans.ai...",

@@ -221,7 +221,8 @@
     "backToPortal": "<- Atgal į portalą",
     "captchaRequired": "Norint tęsti pokalbį, reikalinga captcha.",
     "chatArchived": "Šis pokalbis yra archyvuotas. Pradėkite naują.",
-    "rateLimitExceeded": "Per daug užklausų, sulėtinkite ir bandykite vėliau."
+    "rateLimitExceeded": "Per daug užklausų, sulėtinkite ir bandykite vėliau.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "Klauskite detrans.ai...",

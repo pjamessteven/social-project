@@ -221,7 +221,8 @@
     "backToPortal": "<- Takaisin Portaaliin",
     "captchaRequired": "Captcha vaaditaan chat-jatkamiseen.",
     "chatArchived": "Tämä keskustelu on arkistoitu. Aloita uusi.",
-    "rateLimitExceeded": "Liian monta pyyntöä, hidasta ja yritä myöhemmin uudelleen."
+    "rateLimitExceeded": "Liian monta pyyntöä, hidasta ja yritä myöhemmin uudelleen.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "Kysy detrans.ai:lta...",

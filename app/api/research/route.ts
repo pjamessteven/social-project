@@ -14,8 +14,8 @@ import { desc, eq, sql } from "drizzle-orm";
 
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
+import { z } from "zod";
 // import chat utils
-import { getResearchCachedResponse } from "../chat/utils/cacheHelpers";
 import {
   pauseForHumanInput,
   processWorkflowStream,
@@ -30,6 +30,14 @@ import { workflowFactory } from "./app/workflow";
 
 initSettings();
 
+// Schema for research request validation
+const researchRequestSchema = z.object({
+  message: z.string().max(MAX_MESSAGE_LENGTH),
+  conversationId: z.string().uuid().optional(),
+  locale: z.string().optional(),
+  id: z.string().optional(),
+});
+
 export async function POST(req: NextRequest) {
   try {
     // Apply rate limiting (10/min, 100/hour)
@@ -42,42 +50,39 @@ export async function POST(req: NextRequest) {
     const reqBody = await req.json();
     const suggestNextQuestions = process.env.SUGGEST_NEXT_QUESTIONS === "true";
 
-    console.log(
-      "[DEEP RESEARCH API] Request body:",
-      JSON.stringify(reqBody, null, 2),
-    );
+    // Validate request body
+    const validationResult = researchRequestSchema.safeParse(reqBody);
+    if (!validationResult.success) {
+      return NextResponse.json(
+        {
+          error: "Invalid request format",
+          details: validationResult.error.format(),
+        },
+        { status: 400 },
+      );
+    }
 
     const {
-      messages,
-      id: requestId,
+      message,
       conversationId,
       locale,
-    } = reqBody as {
-      messages: UIMessage[];
-      id?: string;
-      conversationId?: string;
-      locale?: string;
-    };
+      id: requestId,
+    } = validationResult.data;
+
+    const userInput = message.slice(0, MAX_MESSAGE_LENGTH);
 
     const ipAddress = getIpFromRequest(req);
 
-    // Check cache first before starting workflow
-    const cachedResponse = await getResearchCachedResponse(messages);
-    const isCached = !!cachedResponse;
-    if (!cachedResponse) {
-      console.log("[DEEP RESEARCH API] Cache miss - checking captcha ");
-      // Check CAPTCHA status if not in cache
-      // Require CAPTCHA every 10 messages
-      const captchaRequired = await isCaptchaRequired(ipAddress);
-      if (captchaRequired) {
-        return NextResponse.json(
-          {
-            requiresCaptcha: true,
-            error: "CAPTCHA verification required",
-          },
-          { status: 402 },
-        );
-      }
+    // Check CAPTCHA status
+    const captchaRequired = await isCaptchaRequired(ipAddress);
+    if (captchaRequired) {
+      return NextResponse.json(
+        {
+          requiresCaptcha: true,
+          error: "CAPTCHA verification required",
+        },
+        { status: 402 },
+      );
     }
 
     // Generate or use provided conversation UUID
@@ -105,25 +110,22 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const lastMessage = messages[messages.length - 1];
-    if (lastMessage?.role !== "user") {
-      return NextResponse.json(
-        {
-          detail: "Messages cannot be empty and last message must be from user",
-        },
-        { status: 400 },
-      );
-    }
-    const userInput =
-      lastMessage.parts[0].type === "text"
-        ? lastMessage.parts[0].text.slice(0, MAX_MESSAGE_LENGTH)
-        : "";
+    // userInput already defined above after validation
 
     // Track question in detrans_questions table for analytics
     if (userInput) {
       const questionName = userInput.slice(0, 255); // Truncate to fit varchar(255)
       await incrementQuestionViews(questionName);
     }
+
+    // Create UIMessage for the single user message
+    const newUserMessage: UIMessage = {
+      id: uuidv4(),
+      role: "user",
+      parts: [{ type: "text", text: message }],
+    };
+
+    const messages = [newUserMessage];
 
     const abortController = new AbortController();
     req.signal.addEventListener("abort", () =>
@@ -132,7 +134,12 @@ export async function POST(req: NextRequest) {
 
     try {
       const context = await runWorkflow({
-        workflow: await workflowFactory(reqBody, userInput, requestId, locale),
+        workflow: await workflowFactory(
+          { messages, id: requestId, conversationId, locale },
+          userInput,
+          requestId,
+          locale,
+        ),
         input: { userInput: userInput }, // No chat history for deep research
         human: {
           snapshotId: requestId, // use requestId to restore snapshot
@@ -154,10 +161,8 @@ export async function POST(req: NextRequest) {
 
           onFinal: async (messages: UIMessage[], dataStreamWriter) => {
             await saveConversation(chatUuid, messages, ipAddress);
-            // Increment message count for CAPTCHA tracking (skip if response was cached)
-            if (!isCached) {
-              await incrementMessageCount(ipAddress);
-            }
+            // Increment message count for CAPTCHA tracking
+            await incrementMessageCount(ipAddress);
             console.log("ONFINAL", JSON.stringify(messages));
             /*
             if (suggestNextQuestions) {

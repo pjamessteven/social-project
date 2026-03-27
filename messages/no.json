@@ -221,7 +221,8 @@
     "backToPortal": "<- Tilbake til portalen",
     "captchaRequired": "Captcha kreves for å fortsette chatten.",
     "chatArchived": "Denne chatten er arkivert. Start en ny.",
-    "rateLimitExceeded": "For mange forespørsler, brems og prøv igjen senere."
+    "rateLimitExceeded": "For mange forespørsler, brems og prøv igjen senere.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "Spør detrans.ai...",

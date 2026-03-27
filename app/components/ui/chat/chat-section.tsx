@@ -150,10 +150,20 @@ export default function ChatSection({
         parsedError?.error?.includes("Rate limit") ||
         !!parsedError.retryAfter;
 
+      // Check if this is an IP mismatch error (status 403)
+      const isIpMismatchError =
+        error.message.includes("403") ||
+        parsedError.status === 403 ||
+        parsedError?.error?.includes(
+          "cannot add messages to someone else's conversation",
+        ) ||
+        parsedError?.error?.includes("IP address has changed");
+
       console.log("[Chat Error Handler] Error types:", {
         isCaptchaError,
         isArchivedError,
         isRateLimitError,
+        isIpMismatchError,
       });
 
       // Always restore failed message for any error (except archived)
@@ -177,6 +187,10 @@ export default function ChatSection({
 
       if (isRateLimitError) {
         toast.error(t("rateLimitExceeded"));
+      }
+
+      if (isIpMismatchError) {
+        toast.error(t("ipMismatchError"));
       }
     } catch (e) {
       console.error("[Chat Error Handler] Error in error handler:", e);
@@ -235,6 +249,28 @@ export default function ChatSection({
       body: {
         conversationId,
         locale,
+      },
+      prepareSendMessagesRequest: (options: any) => {
+        // Get only the last message (the new user message)
+        const { messages } = options;
+        if (!messages || messages.length === 0) {
+          return options;
+        }
+
+        const latestMessage = messages[messages.length - 1];
+        const messageText =
+          latestMessage.parts[0]?.type === "text"
+            ? latestMessage.parts[0].text
+            : "";
+
+        // Transform to new format
+        return {
+          ...options,
+          body: {
+            ...options.body,
+            message: messageText,
+          },
+        };
       },
     }),
     onError: handleError,

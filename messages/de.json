@@ -217,7 +217,8 @@
     "backToPortal": "<- Zurück zum Portal",
     "captchaRequired": "Captcha erforderlich, um den Chat fortzusetzen.",
     "chatArchived": "Dieser Chat ist archiviert. Starten Sie einen neuen.",
-    "rateLimitExceeded": "Zu viele Anfragen, verlangsamen Sie und versuchen Sie es später erneut."
+    "rateLimitExceeded": "Zu viele Anfragen, verlangsamen Sie und versuchen Sie es später erneut.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "Frag detrans.ai...",

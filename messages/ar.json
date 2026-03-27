@@ -222,7 +222,8 @@
     "backToPortal": "<- العودة إلى البوابة",
     "captchaRequired": "مطلوب كابتشا لمواصلة الدردشة.",
     "chatArchived": "تم أرشفة هذه الدردشة. ابدأ واحدة جديدة.",
-    "rateLimitExceeded": "طلبات كثيرة جدًا، أبطئ وحاول مرة أخرى لاحقًا."
+    "rateLimitExceeded": "طلبات كثيرة جدًا، أبطئ وحاول مرة أخرى لاحقًا.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "اسأل detrans.ai...",

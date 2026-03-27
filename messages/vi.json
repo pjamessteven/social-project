@@ -221,7 +221,8 @@
     "backToPortal": "<- Quay lại Cổng Thông Tin",
     "captchaRequired": "Yêu cầu captcha để tiếp tục trò chuyện.",
     "chatArchived": "Cuộc trò chuyện này đã được lưu trữ. Bắt đầu một cuộc trò chuyện mới.",
-    "rateLimitExceeded": "Quá nhiều yêu cầu, hãy chậm lại và thử lại sau."
+    "rateLimitExceeded": "Quá nhiều yêu cầu, hãy chậm lại và thử lại sau.",
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
   },
   "chatInput": {
     "placeholder": "Hỏi detrans.ai...",

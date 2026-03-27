@@ -58,10 +58,17 @@ export function generateResearchCacheKey(messages: UIMessage[]): string {
 
 /**
  * Checks if there's a cached response for chat
+ * Only caches single-turn conversations (no conversationId)
  */
 export async function getChatCachedResponse(
   messages: UIMessage[],
+  conversationId?: string,
 ): Promise<string | null> {
+  // Disable cache for multi-turn conversations
+  if (conversationId) {
+    return null;
+  }
+
   const cacheKey = generateChatCacheKey(messages);
   const hashedKey = makeHashedKey(cacheKey);
   const cache = new PostgresCache("detrans_chat");
@@ -70,6 +77,7 @@ export async function getChatCachedResponse(
 
 /**
  * Checks if there's a cached response for research
+ * Research is always single-turn, so we can cache it
  */
 export async function getResearchCachedResponse(
   messages: UIMessage[],

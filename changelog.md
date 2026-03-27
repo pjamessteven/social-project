@@ -1,5 +1,61 @@
 # Changelog
 
+## [2026-03-27] - Security Fix: Prevent Chat History Tampering and Message Length Abuse
+
+### Security Changes
+
+- **Fixed critical security vulnerability**: Users could tamper with chat history and bypass message length limits by posting manipulated conversation objects
+- **New API contract**: Chat and research endpoints now only accept the latest message instead of full conversation history
+- **Server-side history reconstruction**: Chat history is retrieved from database and validated before processing
+- **IP-based conversation ownership**: Users can only add messages to conversations they created (same IP address)
+
+### API Changes
+
+#### Chat Endpoint (`/api/chat`)
+
+- **Request format changed**: From `{ messages: UIMessage[], conversationId?: string }` to `{ message: string, conversationId?: string }`
+- **Validation added**: Zod schema validation for message length (max 1024 chars) and UUID format
+- **History reconstruction**: Existing conversation messages retrieved from `chat_conversations` table
+- **IP ownership check**: Rejects messages from different IP addresses than conversation creator
+
+#### Research Endpoint (`/api/research`)
+
+- **Same security improvements** as chat endpoint
+- **Maintains single-use enforcement**: Research conversations remain single-message only
+
+#### Frontend Changes
+
+- **Updated `useChat` configuration**: Added `prepareSendMessagesRequest` to transform request format
+- **Only sends latest message**: Frontend now extracts and sends only the user's latest message
+- **Backward compatible**: Works with updated backend API contract
+
+### Cache System Updates
+
+- **Disabled cache for multi-turn conversations**: Cache only used for single-turn (new) conversations
+- **Research caching unchanged**: Single-use research conversations still cached as before
+
+### Security Benefits
+
+1. **History Tampering Prevention**: Users cannot modify previous messages in conversation
+2. **Length Enforcement**: Server-side validation prevents oversized messages (>1024 chars)
+3. **Role Enforcement**: Server controls message roles (no fake system/assistant messages)
+4. **IP Ownership**: Prevents conversation hijacking via UUID guessing
+5. **Input Validation**: Comprehensive Zod schema validation for all requests
+
+### Files Modified
+
+- `app/api/chat/route.ts` - Updated POST handler with new request format, validation, and history reconstruction
+- `app/api/research/route.ts` - Same security improvements as chat endpoint
+- `app/api/chat/utils/cacheHelpers.ts` - Updated cache logic for multi-turn conversations
+- `app/components/ui/chat/chat-section.tsx` - Added `prepareSendMessagesRequest` to transform request format
+- `changelog.md` - This security fix documentation
+
+### Migration Notes
+
+- **Breaking change**: Frontend and backend must be deployed simultaneously
+- **No data migration required**: Existing conversations remain accessible
+- **IP ownership**: Users with dynamic IPs may lose access to their own conversations if IP changes
+
 ## [2026-03-24] - Add Translations for Chat Toast Messages
 
 ### Internationalization
