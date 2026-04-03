@@ -215,6 +215,7 @@ export const questionCategories = [
       "Hva skjedde med Lisa Littmans 2018-studie om ROGD?",
       "Hva er Tavistock-klinikkgjennomgangen og hvorfor ble den bestilt?",
       "Hvordan ble kjønnsdysfori reklassifisert mellom DSM-IV og DSM-5?",
+      "Hva er den implisitte skjevheten i den amerikanske transkjønnede undersøkelsen?",
     ],
   },
   {

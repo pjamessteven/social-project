@@ -3,16 +3,16 @@
  *
  * Uwagi dotyczące terminologii związanej z płcią:
  * - "Płeć" (sex) = płeć biologiczna (anatomia, chromosomy, reprodukcja, cechy niezmienne)
- * - "Gender" / "Płeć kulturowa" = płeć społeczna (role, zachowania, atrybuty, które społeczeństwo 
+ * - "Gender" / "Płeć kulturowa" = płeć społeczna (role, zachowania, atrybuty, które społeczeństwo
  *   uznaje za odpowiednie dla mężczyzn i kobiet w oparciu o ich płeć biologiczną)
- * - "Tożsamość płciowa" (gender identity) = wewnętrzne poczucie bycia mężczyzną, kobietą 
+ * - "Tożsamość płciowa" (gender identity) = wewnętrzne poczucie bycia mężczyzną, kobietą
  *   lub gdzieś pomiędzy
- * - "Niezgodność z normami płciowymi" / "Nonkonformizm płciowy" (GNC) = gdy osoba zachowuje 
+ * - "Niezgodność z normami płciowymi" / "Nonkonformizm płciowy" (GNC) = gdy osoba zachowuje
  *   się/prezentuje inaczej niż oczekuje tego społeczeństwo w oparciu o jej płeć biologiczną
  * - "AFAB/AMAB" = przypisano żeńską/męską płeć przy urodzeniu (w oparciu o zaobserwowaną płeć biologiczną)
  * - "Transpłciowość/trans" = identyfikowanie się z płcią różną od płci biologicznej
  * - "Destranzycja" = zaprzestanie identyfikacji jako osoba transpłciowa i/lub odwrócenie kroków tranzycji
- * - "Zaniechanie" = gdy osoba, która identyfikowała się jako trans (bez interwencji medycznych), 
+ * - "Zaniechanie" = gdy osoba, która identyfikowała się jako trans (bez interwencji medycznych),
  *   przestaje identyfikować się jako trans
  *
  * Ważne rozróżnienie: Koncepcja dysforii płciowej opiera się na zrozumieniu, że płeć biologiczna
@@ -216,6 +216,7 @@ export const questionCategories = [
       "Co stało się z badaniem Lisa Littman z 2018 roku o ROGD?",
       "Czym jest recenzja kliniki Tavistock i dlaczego została zlecona?",
       "Jak dysforia płciowa została reklasyfikowana między DSM-IV a DSM-5?",
+      "Jakie jest niejawne stronniczwo w amerykańskim badaniu osób transpłciowych?",
     ],
   },
   {

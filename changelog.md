@@ -1,5 +1,94 @@
 # Changelog
 
+## [2026-04-03] - Update All Translation Metadata Descriptions
+
+### Features
+
+- **Updated `metadata.description` field in all 32 translation files** to match the new English source description
+- New description format: "The collective consciousness of detransitioners - a chatbot which shares the lived experiences and perspectives of ex-transgender people. Use detrans.ai for detransition support and advice, or simply to understand and explore why some people adopt, inhabit, and let go of gender identities."
+
+### Languages Updated
+
+All 32 translation files updated with professional translations:
+
+- Spanish (es), French (fr), German (de), Chinese Simplified (zh-cn), Chinese Traditional (zh-tw), Vietnamese (vi), Arabic (ar), Bulgarian (bg), Czech (cz), Danish (da), Greek (el), Persian/Farsi (fa), Finnish (fi), Hebrew (he), Hindi (hi), Hungarian (hu), Indonesian (id), Italian (it), Japanese (ja), Korean (ko), Lithuanian (lt), Dutch (nl), Norwegian (no), Polish (pl), Portuguese (pt), Romanian (ro), Russian (ru), Slovenian (sl), Swedish (sv), Thai (th), Turkish (tr), Ukrainian (uk)
+
+### Technical Details
+
+- All translations maintain professional tone and accurately convey the source meaning
+- No breaking changes to API structure or functionality
+- Only metadata descriptions updated for SEO and user clarity
+
+## [2026-04-03] - Add Question About US Transgender Survey Bias
+
+### Content
+
+- **Added new question to "Academic & Research Bias" category**
+  - New question: "What is the implicit bias in the US transgender survey?"
+  - Added to the existing questions array in `app/lib/questions.ts`
+  - Added to all 32 language translation files (questions.\*.ts)
+
+### Files Modified
+
+- `app/lib/questions.ts` - Added new question to Academic & Research Bias category
+- `app/lib/questions.*.ts` (32 files) - Added English question to all language translations
+
+## [2026-04-02] - Fix Videos API JSON Translation Query
+
+### Bug Fixes
+
+- **Fixed videos page not loading videos**
+  - API was returning "Failed to fetch videos" error
+  - Root cause: PostgreSQL JSON operator `->>` cannot be used directly on `text` type columns
+  - The `titleTranslation`, `descriptionTranslation`, `summaryTranslation`, and `biteTranslation` columns are stored as `text` (containing JSON strings), not native JSONB
+  - Added `::jsonb` casts to convert text columns to JSONB before using JSON operators
+  - SQL queries now use `(${videos.titleTranslation})::jsonb->>${locale}` instead of `${videos.titleTranslation}->>${locale}`
+
+### Files Modified
+
+- `app/api/videos/route.ts` - Added `::jsonb` casts to translation column queries
+
+## [2026-04-02] - Consolidate Prompts to Single Source of Truth
+
+### Architecture Changes
+
+- **Created shared prompts file**: Moved all prompts to `app/lib/prompts.ts` for single source of truth
+- **Consolidated duplicate prompts**: Combined chat and research prompts into unified exports
+- **Maintained backward compatibility**: Updated existing API prompt files to re-export from shared location
+
+### Shared Prompts File (`app/lib/prompts.ts`)
+
+- **Common prompts**: `NEXT_QUESTION_PROMPT`, `questionPrompt`, `SummaryPrompt`, `KeywordPrompt`
+- **Agent prompts**: `chatAgentPrompt` (for chat mode), `deepResearchPrompt` (for research mode)
+- **Aliases**: `researchAgentPrompt` as alias for `deepResearchPrompt`
+
+### API Updates
+
+- **Chat prompts**: `app/api/chat/utils/prompts.ts` now re-exports from shared location
+- **Research prompts**: `app/api/research/utils/prompts.ts` now re-exports from shared location
+- **Index files**: Continue to export prompts through existing index files
+
+### Frontend Updates
+
+- **Prompts page**: `app/[locale]/prompts/page.tsx` now imports and displays prompts dynamically
+- **Dynamic rendering**: Chat and research prompts displayed directly from shared source
+- **Eliminated hardcoded strings**: No more manual prompt updates needed in UI
+
+### Benefits
+
+1. **Single source of truth**: All prompts defined in one location
+2. **Consistency**: Chat and research modes use same base prompts
+3. **Maintainability**: Updates to prompts propagate automatically
+4. **Transparency**: Users see actual prompts used in production
+5. **Backward compatibility**: Existing imports continue to work
+
+### Files Modified
+
+- `app/lib/prompts.ts` - New shared prompts file
+- `app/api/chat/utils/prompts.ts` - Updated to re-export from shared location
+- `app/api/research/utils/prompts.ts` - Updated to re-export from shared location
+- `app/[locale]/prompts/page.tsx` - Updated to import and display prompts dynamically
+
 ## [2026-03-27] - Security Fix: Prevent Chat History Tampering and Message Length Abuse
 
 ### Security Changes

@@ -52,7 +52,7 @@ export const chatAgentPrompt = `
   ## Style
   - Write clearly in plain language
   - Explain concepts in depth
-  - Use tables where appropriate
+  - Use minimalist formatting
   - Do not make any assumptions about the user
   - Ask for clarification when needed
   - Don't be too metaphorical
@@ -132,7 +132,7 @@ export const deepResearchPrompt = `
 
   ### Citation format
   - Use this format to quote comments/experiences: 
-  One detransitioner/person/female/etc explained/recounts/writes/etc: *I think about this all the time. Because like when I was in it, I was really in it, I was a true believer...* [[source]](https://reddit.com/r/detrans/comments/example)
+  One detransitioner/person/female/etc explained/recounts/writes/etc: *I think about this all the time. Because when I identified as trans, I was really in it, I was a true believer...* [[source]](https://reddit.com/r/detrans/comments/example)
 
   ### IMPORTANT:
   **NEVER provide medical advice or guidance**

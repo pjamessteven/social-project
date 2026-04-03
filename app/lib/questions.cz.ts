@@ -1,6 +1,6 @@
 /**
  * České otázky a kategorie pro detrans.ai
- * 
+ *
  * Poznámky k genderové terminologii:
  * - "Pohlaví (sex)" = biologické pohlaví (anatomie, chromozomy, reprodukce, neměnné znaky)
  * - "Gender" = sociální gender (role, chování, atributy, které společnost považuje za vhodné
@@ -11,9 +11,9 @@
  * - "AFAB/AMAB" = assigned female/male at birth (přiřazena žena/muž při narození)
  * - "Transgender/trans" = identifikace s gendrem, který se liší od biologického pohlaví člověka
  * - "Detranzice" = ukončení identifikace jako transgender a/nebo zvrácení kroků tranzice
- * - "Desistence (zanechání)" = když někdo, kdo se identifikoval jako trans (bez lékařských zákroků), 
+ * - "Desistence (zanechání)" = když někdo, kdo se identifikoval jako trans (bez lékařských zákroků),
  *   se již neidentifikuje jako trans
- * 
+ *
  * Důležité rozlišení: Koncept genderové dysforie závisí na pochopení, že biologické pohlaví
  * a sociální gender jsou odlišné. Negenderová konformita (nepasování do stereotypů) je
  * odlišná od genderové identity, která se liší od biologického pohlaví člověka.
@@ -215,6 +215,7 @@ export const questionCategories = [
       "Co se stalo se studií Lisy Littmanové z roku 2018 o ROGD?",
       "Co je to přezkum kliniky Tavistock a proč byl zadán?",
       "Jak byla genderová dysforie reklasifikována mezi DSM-IV a DSM-5?",
+      "Jaká je implicitní zkreslení v americkém transgenderovém průzkumu?",
     ],
   },
   {

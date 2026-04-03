@@ -1,46 +1,46 @@
 /**
  * Vietnamese question categories and featured questions for detrans.ai
- * 
+ *
  * Ghi chú về Thuật ngữ Liên quan đến Giới tính:
- * 
+ *
  * - "Giới tính sinh học" (Sex) = giới tính sinh học (giải phẫu, nhiễm sắc thể, sinh sản,
  *   các đặc điểm bất biến)
- * 
+ *
  * - "Giới" (Gender) = giới xã hội (vai trò, hành vi, các thuộc tính mà xã hội cho là phù hợp
  *   với nam và nữ dựa trên giới tính sinh học của họ)
- * 
+ *
  * - "Bản dạng giới" (Gender identity) = cảm nhận nội tâm về việc là nam, nữ, hoặc ở giữa
- * 
+ *
  * - "Không tuân thủ giới (GNC - Gender non-conformity)" = khi một ngườihành động/thể hiện
  *   khác biệt với mong đợi của xã hội dựa trên giới tính sinh học của họ
- * 
+ *
  * - "AFAB/AMAB" = được gán giới tính nữ/nam khi sinh (dựa trên giới tính sinh học quan sát được)
  *   - AFAB (Assigned Female At Birth): Được gán là nữ khi sinh
  *   - AMAB (Assigned Male At Birth): Được gán là nam khi sinh
- * 
+ *
  * - "Chuyển giới/trans" (Transgender/trans) = nhận dạng với một giới khác với giới tính sinh học
  *   của họ
- * 
+ *
  * - "Hủy bỏ chuyển giới" (Detransition) = ngừng nhận dạng là chuyển giới và/hoặc đảo ngược
  *   các bước chuyển giới
- * 
+ *
  * - "Từ bỏ" (Desist) = khi ai đó từng nhận dạng là chuyển giới (không có can thiệp y tế)
  *   không còn nhận dạng là chuyển giới nữa
- * 
+ *
  * - "Song tính" (Intersex) = ngườicó đặc điểm sinh học không hoàn toàn nam hoặc nữ
- * 
+ *
  * - "Không nhị phân" (Non-binary) = nhận dạng giới không hoàn toàn là nam hoặc nữ
- * 
+ *
  * - "Đồng tính nữ/nam" (Lesbian/Gay) = ngườithu hút về tình dục/tình cảm với ngườicùng giới
- * 
+ *
  * - "Song tính luyến ái" (Bisexual) = ngườithu hút với nhiều giới tính
- * 
+ *
  * - "Đa dạng giới" (Gender diversity) = sự đa dạng trong cách thể hiện và trải nghiệm giới tính
- * 
+ *
  * Phân biệt quan trọng: Khái niệm khó chịu về giới (gender dysphoria) dựa trên việc hiểu rằng
  * giới tính sinh học và giới xã hội là khác nhau. Không tuân thủ giới (không phù hợp với khuôn mẫu)
  * khác với việc có bản dạng giới khác với giới tính sinh học.
- * 
+ *
  * Về văn hóa Việt Nam:
  * - Thuật ngữ "giới tính" trong tiếng Việt thường dùng chung cho cả sex và gender
  * - Cần phân biệt rõ "giới tính sinh học" (sex) và "giới" (gender)
@@ -244,6 +244,7 @@ export const questionCategories = [
       "Điều gì đã xảy ra với nghiên cứu năm 2018 của Lisa Littman về ROGD?",
       "Đánh giá phòng khám Tavistock là gì và tại sao nó được ủy thác?",
       "Khó chịu về giới được tái phân loại như thế nào giữa DSM-IV và DSM-5?",
+      "Thiên kiến ngầm trong cuộc khảo sát người chuyển giới tại Mỹ là gì?",
     ],
   },
   {

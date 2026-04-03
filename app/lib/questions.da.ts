@@ -6,16 +6,16 @@
  * - "Socialt køn" (Gender) = socialt køn (roller, adfærd, attributter som samfundet anser for passende
  *   for mænd og kvinder baseret på deres biologiske køn)
  * - "Kønsidentitet" (Gender identity) = indre følelse af at være mand, kvinde eller et sted imellem
- * - "Kønsnonkonformitet (GNC)" (Gender non-conformity) = når en person handler/præsenterer sig anderledes 
+ * - "Kønsnonkonformitet (GNC)" (Gender non-conformity) = når en person handler/præsenterer sig anderledes
  *   end samfundets forventninger baseret på deres biologiske køn
  * - "Tildelt køn ved fødslen" (AFAB/AMAB) = tildelt kvinde/mand ved fødslen (baseret på observeret biologisk køn)
  * - "Transkønnet/trans" (Transgender/trans) = identificerer sig med et køn der adskiller sig fra ens biologiske køn
  * - "Detransition" (Detransition) = ophører med at identificere sig som transkønnet og/eller ophæver transitionstrin
- * - "Desistens" (Desist) = når nogen, der identificerede sig som trans (uden medicinske indgreb), ikke længere 
+ * - "Desistens" (Desist) = når nogen, der identificerede sig som trans (uden medicinske indgreb), ikke længere
  *   identificerer sig som trans
  *
- * VIGTIG DISTINKTION: Kønsdysphori som koncept er afhængig af forståelsen af, at biologisk køn og socialt 
- * køn er forskellige. Kønsnonkonformitet (passer ikke ind i stereotyper) er forskellig fra at have en kønsidentitet 
+ * VIGTIG DISTINKTION: Kønsdysphori som koncept er afhængig af forståelsen af, at biologisk køn og socialt
+ * køn er forskellige. Kønsnonkonformitet (passer ikke ind i stereotyper) er forskellig fra at have en kønsidentitet
  * der adskiller sig fra ens biologiske køn.
  */
 
@@ -215,6 +215,7 @@ export const questionCategories = [
       "Hvad skete der med Lisa Littmans undersøgelse fra 2018 om ROGD?",
       "Hvad er Tavistock-klinikkens gennemgang og hvorfor blev den bestilt?",
       "Hvordan blev kønsdysphori reklassificeret mellem DSM-IV og DSM-5?",
+      "Hvad er den implicitte forskelsbehandling i den amerikanske transkønnede undersøgelse?",
     ],
   },
   {

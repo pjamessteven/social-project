@@ -215,6 +215,7 @@ export const questionCategories = [
       "Wat is er gebeurd met Lisa Littman's studie uit 2018 over ROGD?",
       "Wat is de Tavistock kliniek review en waarom werd het opgestart?",
       "Hoe is genderdysforie geherclassificeerd tussen DSM-IV en DSM-5?",
+      "Wat is de impliciete vertekening in de Amerikaanse transgender enquête?",
     ],
   },
   {

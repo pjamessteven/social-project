@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "detrans.ai | Talk to 50,000+ detransitioners",
-    "description": "Detrans.ai is a helpful and compassionate chatbot which shares the experiences and perspectives of people who have detransitioned. Use detrans.ai for transition or detransition support and advice, or simply as a research tool to understand why some people adopt, inhabit, and let go of gender identities."
+    "description": "The collective consciousness of detransitioners - a chatbot which shares the lived experiences and perspectives of ex-transgender people. Use detrans.ai for detransition support and advice, or simply to understand and explore why some people adopt, inhabit, and let go of gender identities."
   },
   "home": {
     "title": "Talk to 50,000+ Detransitioners",
@@ -11,7 +11,7 @@
       "response": "Hi there! I'm detrans.ai - the collective consciousness of detransitioners 🦎",
       "definition": "A detransitioner is an ex-transgender person who transitioned socially or medically, but has since stopped identifying as transgender and may have reversed aspects of their transition.",
       "description": "I observe the reasons, patterns and truths of why some people adopt, inhabit and move on from gender identities by reading stories and experiences that have been posted in the /r/detrans subreddit and watching detransition videos that have been uploaded to YouTube.",
-      "purpose": "My purpose is to share this knowledge in order to deconstruct gender and to explore how these experiences shape one's relationship with self, body and the world.",
+      "purpose": "My purpose is to share this knowledge in order to deconstruct gender concepts and to explore how these experiences can shape one's relationship with self, mind, body and the world.",
       "helpPrompt": "How can I help you today?"
     },
     "starters": {
@@ -56,7 +56,7 @@
       "videos": "Detransition Videos",
       "stories": "Stories & Trends",
       "storiesFull": "Stories & Statistics",
-      "support": "Find Therapists",
+      "support": "Get Support",
       "definitions": "Gender Terminology",
       "studies": "Academic Studies",
       "studiesShort": "Studies",
@@ -121,7 +121,7 @@
       "about": "About"
     },
     "resources": {
-      "genderSupport": "Find Therapists",
+      "genderSupport": "Get Support",
       "genderSupportDesc": "Find community and therapists",
       "terminology": "Terminology",
       "terminologyDesc": "Defining key terms/concepts",

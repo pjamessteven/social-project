@@ -1,10 +1,10 @@
 /**
  * Turkish question categories and featured questions for detrans.ai
- * 
+ *
  * Cinsiyetle İlgili Terminoloji Notları (Gender-Related Terminology Notes):
  * - "Cinsiyet" = biyolojik cinsiyet (anatomi, kromozomlar, üreme, değiştirilemez özellikler)
  *   Note: In Turkish, "cinsiyet" can mean both sex and gender. Context determines meaning.
- * - "Toplumsal cinsiyet" = sosyal cinsiyet (roller, davranışlar, toplumun erkek ve kadınlar 
+ * - "Toplumsal cinsiyet" = sosyal cinsiyet (roller, davranışlar, toplumun erkek ve kadınlar
  *   için uygun gördüğü nitelikler)
  * - "Cinsiyet kimliği" = kendini erkek, kadın veya arada bir yerde hissetme hali
  * - "Cinsiyet uyumsuzluğu" = birinin biyolojik cinsiyetine dayalı toplumsal beklentilere
@@ -13,9 +13,9 @@
  *   Note: In Turkish, these are often explained as "doğumda kız/erkek olarak atandı"
  * - "Transgender/trans" = biyolojik cinsiyetinden farklı bir cinsiyet kimliğiyle tanınma
  * - "Detransition" = trans kimliğini bırakma ve/veya geçiş adımlarını geri alma
- * - "Desist/vazgeçme" = trans kimliğiyle tanımlanan ancak tıbbi müdahalede bulunmamış 
+ * - "Desist/vazgeçme" = trans kimliğiyle tanımlanan ancak tıbbi müdahalede bulunmamış
  *   birinin artık trans kimliğiyle tanımlanmaması
- * 
+ *
  * Önemli ayrım: Cinsiyet disforisi kavramı, biyolojik cinsiyet ve sosyal cinsiyetin farklı
  * olduğunu anlamaya dayanır. Cinsiyet uyumsuzluğu (stereotiplere uymama), cinsiyet kimliğinin
  * biyolojik cinsiyetten farklı olmasından farklıdır.
@@ -217,6 +217,7 @@ export const questionCategories = [
       "Lisa Littman'ın 2018 ROGD çalışmasına ne oldu?",
       "Tavistock klinik incelemesi nedir ve neden talep edildi?",
       "Cinsiyet disforisi DSM-IV ve DSM-5 arasında nasıl yeniden sınıflandırıldı?",
+      "ABD transseksüel anketindeki örtülü önyargı nedir?",
     ],
   },
   {

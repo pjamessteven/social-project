@@ -22,7 +22,8 @@
 export const questionCategories = [
   {
     title: "Izpostavljena vprašanja",
-    description: "Najboljša vprašanja za postavitev osebam, ki so opravile detranzicijo.",
+    description:
+      "Najboljša vprašanja za postavitev osebam, ki so opravile detranzicijo.",
     questions: [
       "Kaj pomeni trans?",
       "Ali so trans osebe obstajale vedno?",
@@ -215,6 +216,7 @@ export const questionCategories = [
       "Kaj se je zgodilo s študijo Lise Littman iz leta 2018 o ROGD?",
       "Kaj je pregled klinike Tavistock in zakaj je bil naročen?",
       "Kako je bila disforija spola med DSM-IV in DSM-5 preklasificirana?",
+      "Kakšna je implicitna pristranskost v ameriški raziskavi transseksualnih oseb?",
     ],
   },
   {

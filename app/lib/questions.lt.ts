@@ -1,6 +1,6 @@
 /**
  * Lithuanian question categories and featured questions for detrans.ai
- * 
+ *
  * Lietuvių kalbos klausimų kategorijos ir teminiai klausimai detrans.ai
  *
  * Gender-Related Terminology Notes / Lyties sąvokų paaiškinimai:
@@ -224,6 +224,7 @@ export const questionCategories = [
       "Kas nutiko Lisa Littman 2018 metų ROGD tyrimui?",
       "Kas yra Tavistock klinikos apžvalga ir kodėl ji buvo užsakyta?",
       "Kaip lyties disforija buvo perkategorizuota tarp DSM-IV ir DSM-5?",
+      "Koks yra paslėptasis šališkumas JAV translyčių asmenų apklausoje?",
     ],
   },
   {

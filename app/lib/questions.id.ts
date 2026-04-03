@@ -1,6 +1,6 @@
 /**
  * Indonesian question categories and featured questions for detrans.ai
- * 
+ *
  * Catatan Terminologi Terkait Gender:
  * - "Seks/Jenis Kelamin Biologis" = jenis kelamin biologis (anatomi, kromosom, reproduksi, karakteristik yang tidak dapat diubah)
  * - "Gender" = gender sosial (peran, perilaku, atribut yang dianggap sesuai oleh masyarakat
@@ -13,7 +13,7 @@
  * - "Detransisi" = berhenti mengidentifikasi diri sebagai transgender dan/atau membalikkan langkah-langkah transisi
  * - "Desist" = ketika seseorang yang mengidentifikasi diri sebagai trans (tanpa intervensi medis) tidak lagi
  *   mengidentifikasi diri sebagai trans
- * 
+ *
  * Perbedaan penting: Konsep disforia gender bergantung pada pemahaman bahwa jenis kelamin biologis
  * dan gender sosial adalah berbeda. Ketidaksesuaian gender (tidak sesuai stereotip) adalah
  * berbeda dari memiliki identitas gender yang berbeda dari jenis kelamin biologis.
@@ -215,6 +215,7 @@ export const questionCategories = [
       "Apa yang terjadi pada studi ROGD Lisa Littman tahun 2018?",
       "Apa itu tinjauan klinik Tavistock dan mengapa itu dipesan?",
       "Bagaimana disforia gender diklasifikasikan ulang antara DSM-IV dan DSM-5?",
+      "Apa bias implisit dalam survei transgender AS?",
     ],
   },
   {

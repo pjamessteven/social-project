@@ -74,7 +74,7 @@ export const questionCategories = [
   },
   {
     title: "General Terms",
-    description: "Understanding the fundamental concepts",
+    description: "Understand basic concepts from a detrans perspective",
     questions: [
       "What is a man?",
       "What is a woman?",
@@ -215,6 +215,7 @@ export const questionCategories = [
       "What happened to Lisa Littman’s 2018 study on ROGD?",
       "What is the Tavistock clinic review and why was it commissioned?",
       "How was gender dysphoria re-classified between DSM-IV and DSM-5?",
+      "What is the implicit bias in the US transgender survey?",
     ],
   },
   {
