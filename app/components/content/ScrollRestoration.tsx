@@ -1,96 +1,62 @@
-// app/components/ScrollRestoration.tsx
 "use client";
 
 import { useMainStore } from "@/stores/main-store";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+
+const STORAGE_KEY = (path: string) => `scroll-${path}`;
+
 export default function ScrollRestoration() {
   const pathname = usePathname();
   const { setScrollPosition } = useMainStore();
 
   useEffect(() => {
-    // Find the main scrollable element
-    const getScrollableElement = () => {
-      return document.querySelector("main");
+    const main = document.querySelector("main");
+    if (!main) return;
+
+    const saveScroll = () => {
+      const position = main.scrollTop;
+      setScrollPosition(position);
+      sessionStorage.setItem(STORAGE_KEY(pathname), String(position));
     };
 
-    const saveGlobalScroll = () => {
-      const scrollableElement = getScrollableElement();
-      if (scrollableElement) {
-        const scrollTop = scrollableElement.scrollTop;
-        // Set global scroll position
-        setScrollPosition(scrollTop);
-      }
-    };
-
-    // Save scroll position for a specific path
-    const saveScrollForPath = (path: string) => {
-      const scrollableElement = getScrollableElement();
-      if (scrollableElement) {
-        const scrollTop = scrollableElement.scrollTop;
-        // Set global scroll position
-        setScrollPosition(scrollTop);
-        console.log(`Saving scroll position for ${path}: ${scrollTop}`);
-        sessionStorage.setItem(`scroll-${path}`, String(scrollTop));
-      }
-    };
-
-    // Restore scroll position after content loads
     const restoreScroll = () => {
-      const saved = sessionStorage.getItem(`scroll-${pathname}`);
-      const scrollableElement = getScrollableElement();
+      const saved = sessionStorage.getItem(STORAGE_KEY(pathname));
+      if (!saved) return;
 
-      console.log(`Attempting to restore scroll for ${pathname}: ${saved}`);
-
-      if (saved && scrollableElement) {
-        const scrollTop = parseInt(saved, 10);
-        // Use setTimeout to ensure DOM is fully rendered
-        setTimeout(() => {
-          scrollableElement.scrollTop = scrollTop;
-          // Set global scroll position
-          setScrollPosition(scrollTop);
-          console.log(
-            `Restored scroll position to: ${scrollTop}, actual: ${scrollableElement.scrollTop}`,
-          );
-        }, 0);
-      }
+      const position = parseInt(saved, 10);
+      setTimeout(() => {
+        main.scrollTop = position;
+        setScrollPosition(position);
+      }, 0);
     };
 
-    // Throttled scroll handler to save position periodically
-    let scrollTimeout: NodeJS.Timeout;
+    // Debounced scroll handler
+    let timeout: ReturnType<typeof setTimeout>;
     const handleScroll = () => {
-      clearTimeout(scrollTimeout);
-      saveGlobalScroll();
-      scrollTimeout = setTimeout(() => saveScrollForPath(pathname), 100);
+      clearTimeout(timeout);
+      timeout = setTimeout(saveScroll, 100);
     };
 
-    const scrollableElement = getScrollableElement();
-
-    // Restore scroll on page load
+    // Restore on load
     if (document.readyState === "complete") {
       restoreScroll();
     } else {
       window.addEventListener("load", restoreScroll);
     }
 
-    // Listen for scroll events to save position
-    if (scrollableElement) {
-      scrollableElement.addEventListener("scroll", handleScroll);
-    }
+    main.addEventListener("scroll", handleScroll);
 
-    // Save scroll on navigation/unload
-    const handleBeforeUnload = () => saveScrollForPath(pathname);
+    const handleBeforeUnload = () => saveScroll();
     window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
-      clearTimeout(scrollTimeout);
-      window.removeEventListener("beforeunload", handleBeforeUnload);
+      clearTimeout(timeout);
+      main.removeEventListener("scroll", handleScroll);
       window.removeEventListener("load", restoreScroll);
-      if (scrollableElement) {
-        scrollableElement.removeEventListener("scroll", handleScroll);
-      }
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, [pathname]);
+  }, [pathname, setScrollPosition]);
 
   return null;
 }
