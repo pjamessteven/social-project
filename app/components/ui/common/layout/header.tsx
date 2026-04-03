@@ -2,6 +2,7 @@
 
 import DonationCard from "@/app/components/content/DonationCard";
 import { Link } from "@/i18n/routing";
+import { useMainStore } from "@/stores/main-store";
 import { clsx } from "clsx";
 import {
   BookOpen,
@@ -68,13 +69,17 @@ export default function Header({
   const isDev = process.env.NODE_ENV === "development";
   const devAffirm = isDev && mode === "affirm";
   const t = useTranslations("header");
+  const { scrollPosition } = useMainStore();
+
   return (
-    <div
-      className={cn(
-        "border-bottom top-0 right-0 left-0 z-50 flex items-center justify-between p-2 px-4",
-        mode === "affirm" || true ? "bg-transparent" : "bg-white dark:bg-black",
-      )}
-    >
+    <div className="relative top-0 right-0 left-0 z-50 flex items-center justify-between bg-transparent p-2 px-4 shadow-none transition-all">
+      {/* Shadow and border overlay that fades in/out on scroll */}
+      <div
+        className={cn(
+          "pointer-events-none absolute inset-0 h-full w-full shadow transition-opacity duration-300 dark:border-b",
+          scrollPosition > 1 ? "opacity-100" : "opacity-0",
+        )}
+      />
       <Link
         href={isDev && mode === "affirm" ? "/affirm" : "/"}
         className="!cursor-pointer"

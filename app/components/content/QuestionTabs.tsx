@@ -59,8 +59,8 @@ export function QuestionTabs({ mode }: QuestionTabsProps) {
       onValueChange={handleTabChange}
       className="w-full"
     >
-      <div className="relative sticky top-0 z-10">
-        <div className="bg-[linear-gradient(to_bottom,theme(colors.background)_0px,theme(colors.background)_3rem,transparent_5rem)] pointer-events-none absolute z-20 h-40 w-screen dark:bg-[linear-gradient(to_bottom,black_0px,black_3rem,transparent_5rem)]" />
+      <div className="relative sticky top-4 z-10">
+        <div className="bg-[linear-gradient(to_bottom,theme(colors.background)_0px,theme(colors.background)_3rem,transparent_5rem)] pointer-events-none absolute z-20 -mt-4 h-40 w-screen dark:bg-[linear-gradient(to_bottom,black_0px,black_3rem,transparent_5rem)]" />
 
         <TabsList
           id="question-tabs"
