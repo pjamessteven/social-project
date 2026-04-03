@@ -20,11 +20,21 @@ export function slugify(question: string): string {
 
 export function deslugify(slug?: string): string {
   if (slug) {
-    return decodeURIComponent(slug)
-      .replace(/--/g, "\x00") // temporary sentinel
-      .replace(/-/g, " ")
-      .replace(/\x00/g, "-")
-      .trim();
+    try {
+      return decodeURIComponent(slug)
+        .replace(/--/g, "\x00") // temporary sentinel
+        .replace(/-/g, " ")
+        .replace(/\x00/g, "-")
+        .trim();
+    } catch {
+      // If decoding fails (e.g., malformed percent-encoding),
+      // return the slug with dashes replaced by spaces
+      return slug
+        .replace(/--/g, "\x00")
+        .replace(/-/g, " ")
+        .replace(/\x00/g, "-")
+        .trim();
+    }
   } else {
     return "";
   }
