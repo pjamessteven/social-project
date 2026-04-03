@@ -1,11 +1,12 @@
 // app/components/ScrollRestoration.tsx
 "use client";
 
+import { useMainStore } from "@/stores/main-store";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-
 export default function ScrollRestoration() {
   const pathname = usePathname();
+  const { setScrollPosition } = useMainStore();
 
   useEffect(() => {
     // Find the main scrollable element
@@ -13,11 +14,22 @@ export default function ScrollRestoration() {
       return document.querySelector("main");
     };
 
+    const saveGlobalScroll = () => {
+      const scrollableElement = getScrollableElement();
+      if (scrollableElement) {
+        const scrollTop = scrollableElement.scrollTop;
+        // Set global scroll position
+        setScrollPosition(scrollTop);
+      }
+    };
+
     // Save scroll position for a specific path
     const saveScrollForPath = (path: string) => {
       const scrollableElement = getScrollableElement();
       if (scrollableElement) {
         const scrollTop = scrollableElement.scrollTop;
+        // Set global scroll position
+        setScrollPosition(scrollTop);
         console.log(`Saving scroll position for ${path}: ${scrollTop}`);
         sessionStorage.setItem(`scroll-${path}`, String(scrollTop));
       }
@@ -35,6 +47,8 @@ export default function ScrollRestoration() {
         // Use setTimeout to ensure DOM is fully rendered
         setTimeout(() => {
           scrollableElement.scrollTop = scrollTop;
+          // Set global scroll position
+          setScrollPosition(scrollTop);
           console.log(
             `Restored scroll position to: ${scrollTop}, actual: ${scrollableElement.scrollTop}`,
           );
@@ -46,6 +60,7 @@ export default function ScrollRestoration() {
     let scrollTimeout: NodeJS.Timeout;
     const handleScroll = () => {
       clearTimeout(scrollTimeout);
+      saveGlobalScroll();
       scrollTimeout = setTimeout(() => saveScrollForPath(pathname), 100);
     };
 
