@@ -25,6 +25,7 @@ import {
 
 // import workflow factory and settings from local file
 import { stopAgentEvent } from "@llamaindex/workflow";
+import { getResearchCachedResponse } from "../chat/utils/cacheHelpers";
 import { initSettings } from "./app/settings";
 import { workflowFactory } from "./app/workflow";
 
@@ -73,16 +74,31 @@ export async function POST(req: NextRequest) {
 
     const ipAddress = getIpFromRequest(req);
 
-    // Check CAPTCHA status
-    const captchaRequired = await isCaptchaRequired(ipAddress);
-    if (captchaRequired) {
-      return NextResponse.json(
-        {
-          requiresCaptcha: true,
-          error: "CAPTCHA verification required",
-        },
-        { status: 402 },
-      );
+    // Check if we can return the first response from cache
+    // Create UIMessage for the single user message to check cache
+    const newUserMessage: UIMessage = {
+      id: uuidv4(),
+      role: "user",
+      parts: [{ type: "text", text: message }],
+    };
+    const messages = [newUserMessage];
+    const cachedResponse = await getResearchCachedResponse(message);
+
+    if (!cachedResponse) {
+      console.log("[DEEP RESEARCH API] Cache miss - checking captcha ");
+      // Otherwise require captcha if not in cache
+      const captchaRequired = await isCaptchaRequired(ipAddress);
+      if (captchaRequired) {
+        return NextResponse.json(
+          {
+            requiresCaptcha: true,
+            error: "CAPTCHA verification required",
+          },
+          { status: 402 },
+        );
+      }
+    } else {
+      console.log("[DEEP RESEARCH API] Cache hit - bypass captcha ");
     }
 
     // Generate or use provided conversation UUID
@@ -117,15 +133,6 @@ export async function POST(req: NextRequest) {
       const questionName = userInput.slice(0, 255); // Truncate to fit varchar(255)
       await incrementQuestionViews(questionName);
     }
-
-    // Create UIMessage for the single user message
-    const newUserMessage: UIMessage = {
-      id: uuidv4(),
-      role: "user",
-      parts: [{ type: "text", text: message }],
-    };
-
-    const messages = [newUserMessage];
 
     const abortController = new AbortController();
     req.signal.addEventListener("abort", () =>
@@ -162,7 +169,9 @@ export async function POST(req: NextRequest) {
           onFinal: async (messages: UIMessage[], dataStreamWriter) => {
             await saveConversation(chatUuid, messages, ipAddress);
             // Increment message count for CAPTCHA tracking
-            await incrementMessageCount(ipAddress);
+            if (!cachedResponse) {
+              await incrementMessageCount(ipAddress);
+            }
             console.log("ONFINAL", JSON.stringify(messages));
             /*
             if (suggestNextQuestions) {
