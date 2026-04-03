@@ -25,7 +25,6 @@ import {
 
 // import workflow factory and settings from local file
 import { stopAgentEvent } from "@llamaindex/workflow";
-import { getResearchCachedResponse } from "../chat/utils/cacheHelpers";
 import { initSettings } from "./app/settings";
 import { workflowFactory } from "./app/workflow";
 
@@ -82,8 +81,9 @@ export async function POST(req: NextRequest) {
       parts: [{ type: "text", text: message }],
     };
     const messages = [newUserMessage];
-    const cachedResponse = await getResearchCachedResponse(message);
-
+    // disabled cache check for now
+    // const cachedResponse = await getResearchCachedResponse(message);
+    const cachedResponse = null;
     if (!cachedResponse) {
       console.log("[DEEP RESEARCH API] Cache miss - checking captcha ");
       // Otherwise require captcha if not in cache
