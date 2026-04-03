@@ -1,42 +1,31 @@
-import type { UIMessage } from "ai";
+import { db, detransQuestions } from "@/db";
+import { eq } from "drizzle-orm";
 import { agentPrompt as researchAgentPrompt } from "../../research/utils/prompts";
 import { PostgresCache, makeCacheKey, makeHashedKey } from "../../shared/cache";
 import { agentPrompt as chatAgentPrompt } from "./prompts";
 
 /**
- * Transforms UIMessages from the frontend format to the format expected by the cache key
+ * Transforms a single message to the format expected by the cache key
  */
-function transformMessagesForCache(
-  uiMessages: UIMessage[],
+function transformMessageForCache(
+  message: string,
   systemPrompt: string,
 ): Array<{ role: string; content: string }> {
-  // Start with system message (role first to match database format)
-  const messages: Array<{ role: string; content: string }> = [
+  // Return system message and user message
+  return [
     { role: "system", content: systemPrompt },
+    { content: message, role: "user" },
+    { content: message, role: "user" }, // THIS IS INTENTIONAL
   ];
-
-  // Transform UI messages (content first to match database format)
-  for (const msg of uiMessages) {
-    const textPart = msg.parts.find((part) => part.type === "text");
-    if (textPart && textPart.type === "text") {
-      messages.push({
-        content: textPart.text,
-        role: msg.role,
-      });
-    }
-  }
-
-  return messages;
 }
 
 /**
  * Generates a cache key that matches what llm.ts would generate
  */
-export function generateChatCacheKey(messages: UIMessage[]): string {
-  // Include all messages - the agent workflow adds userInput separately
-  // so the cache key should include all messages to match the LLM context
-  const transformedMessages = transformMessagesForCache(
-    messages,
+export function generateChatCacheKey(message: string): string {
+  // Use single message for cache key
+  const transformedMessages = transformMessageForCache(
+    message,
     chatAgentPrompt,
   );
   const options = { tools: [null, null] };
@@ -47,9 +36,9 @@ export function generateChatCacheKey(messages: UIMessage[]): string {
 /**
  * Generates a cache key that matches what llm.ts would generate for research
  */
-export function generateResearchCacheKey(messages: UIMessage[]): string {
-  const transformedMessages = transformMessagesForCache(
-    messages,
+export function generateResearchCacheKey(message: string): string {
+  const transformedMessages = transformMessageForCache(
+    message,
     researchAgentPrompt,
   );
   const options = { tools: [null] };
@@ -61,7 +50,7 @@ export function generateResearchCacheKey(messages: UIMessage[]): string {
  * Only caches single-turn conversations (no conversationId)
  */
 export async function getChatCachedResponse(
-  messages: UIMessage[],
+  message: string,
   conversationId?: string,
 ): Promise<string | null> {
   // Disable cache for multi-turn conversations
@@ -69,7 +58,8 @@ export async function getChatCachedResponse(
     return null;
   }
 
-  const cacheKey = generateChatCacheKey(messages);
+  const cacheKey = generateChatCacheKey(message);
+  console.log("cache key", cacheKey);
   const hashedKey = makeHashedKey(cacheKey);
   const cache = new PostgresCache("detrans_chat");
   return cache.get(hashedKey);
@@ -80,12 +70,23 @@ export async function getChatCachedResponse(
  * Research is always single-turn, so we can cache it
  */
 export async function getResearchCachedResponse(
-  messages: UIMessage[],
+  message: string,
 ): Promise<string | null> {
-  const cacheKey = generateResearchCacheKey(messages);
-  const hashedKey = makeHashedKey(cacheKey);
-  const cache = new PostgresCache("deep_research");
-  return cache.get(hashedKey);
+  // Check if there's an entry in the detrans_questions table
+  const result = await db
+    .select({
+      name: detransQuestions.name,
+      finalResponse: detransQuestions.finalResponse,
+    })
+    .from(detransQuestions)
+    .where(eq(detransQuestions.name, message))
+    .limit(1);
+
+  if (!result[0]) {
+    return null;
+  }
+
+  return result[0].finalResponse;
 }
 
 /**

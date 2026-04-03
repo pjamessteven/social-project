@@ -27,6 +27,7 @@ import {
 import { stopAgentEvent } from "@llamaindex/workflow";
 import { initSettings } from "./app/settings";
 import { workflowFactory } from "./app/workflow";
+import { getChatCachedResponse } from "./utils/cacheHelpers";
 
 initSettings();
 
@@ -139,18 +140,6 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Check CAPTCHA status
-    const captchaRequired = await isCaptchaRequired(ipAddress);
-    if (captchaRequired) {
-      return NextResponse.json(
-        {
-          requiresCaptcha: true,
-          error: "CAPTCHA verification required",
-        },
-        { status: 402 },
-      );
-    }
-
     // Get existing conversation messages if conversation exists
     let existingMessages: UIMessage[] = [];
     if (conversationId) {
@@ -169,6 +158,42 @@ export async function POST(req: NextRequest) {
           console.error("[CHAT API] Failed to parse existing messages:", error);
           existingMessages = [];
         }
+      }
+    }
+
+    // Check if we can return the first response from cache
+
+    let cachedResponse: string | null;
+    if (existingMessages.length == 0) {
+      cachedResponse = await getChatCachedResponse(userInput);
+
+      if (!cachedResponse) {
+        console.log("[CHAT API] Cache miss - checking captcha ");
+        // Otherwise require captcha if not in cache
+        const captchaRequired = await isCaptchaRequired(ipAddress);
+        if (captchaRequired) {
+          return NextResponse.json(
+            {
+              requiresCaptcha: true,
+              error: "CAPTCHA verification required",
+            },
+            { status: 402 },
+          );
+        }
+      } else {
+        console.log("[CHAT API] Cache hit - bypass captcha ");
+      }
+    } else {
+      // Check CAPTCHA status
+      const captchaRequired = await isCaptchaRequired(ipAddress);
+      if (captchaRequired) {
+        return NextResponse.json(
+          {
+            requiresCaptcha: true,
+            error: "CAPTCHA verification required",
+          },
+          { status: 402 },
+        );
       }
     }
 
@@ -234,7 +259,9 @@ export async function POST(req: NextRequest) {
           onFinal: async (messages: UIMessage[], dataStreamWriter) => {
             await saveConversation(chatUuid, messages, ipAddress);
             // Increment message count for CAPTCHA tracking
-            await incrementMessageCount(ipAddress);
+            if (!cachedResponse) {
+              await incrementMessageCount(ipAddress);
+            }
             /*
             if (suggestNextQuestions) {
               await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory, chatUuid);
