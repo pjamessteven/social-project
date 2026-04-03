@@ -22,7 +22,8 @@
 export const questionCategories = [
   {
     title: "Utvalda frågor",
-    description: "De bästa frågorna att ställa till människor med detransitionserfarenhet.",
+    description:
+      "De bästa frågorna att ställa till människor med detransitionserfarenhet.",
     questions: [
       "Vad betyder trans?",
       "Har transpersoner alltid funnits?",
@@ -215,6 +216,7 @@ export const questionCategories = [
       "Vad hände med Lisa Littmans studie från 2018 om ROGD?",
       "Vad är Tavistock-klinikens granskning och varför beställdes den?",
       "Hur omklassificerades könsdysfori mellan DSM-IV och DSM-5?",
+      "Vad är den implicita snedvridningen i den amerikanska transenkäten?",
     ],
   },
   {

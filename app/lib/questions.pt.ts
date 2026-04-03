@@ -5,7 +5,8 @@
 export const questionCategories = [
   {
     title: "Perguntas em Destaque",
-    description: "As melhores perguntas para fazer a pessoas que fizeram detransição.",
+    description:
+      "As melhores perguntas para fazer a pessoas que fizeram detransição.",
     questions: [
       "O que significa trans?",
       "Pessoas trans sempre existiram?",
@@ -198,11 +199,13 @@ export const questionCategories = [
       "O que aconteceu com o estudo de 2018 de Lisa Littman sobre ROGD?",
       "O que é a revisão da clínica Tavistock e por que foi encomendada?",
       "Como disforia de gênero foi reclassificada entre DSM-IV e DSM-5?",
+      "Qual é o viés implícito na pesquisa de pessoas transgênero dos EUA?",
     ],
   },
   {
     title: "Perspectivas Controversas",
-    description: "Perspectivas de detransição que ativistas de gênero realmente não querem que você ouça",
+    description:
+      "Perspectivas de detransição que ativistas de gênero realmente não querem que você ouça",
     questions: [
       "Quem está ganhando dinheiro com cuidado de afirmação de gênero?",
       "Quais fatores estruturais levam à sub-representação de histórias de detransição na mídia mainstream?",

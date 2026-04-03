@@ -1,6 +1,6 @@
 /**
  * German translation of question categories and featured questions
- * 
+ *
  * Gender-Related Terminology Notes:
  * - "Geschlecht" = biological sex (anatomy, chromosomes, reproduction)
  * - "Gender" = social gender (roles, behaviors, attributes assigned by society)
@@ -8,7 +8,7 @@
  * - "Geschlechter-Nichtkonformität (GNC)" = gender non-conformity
  * - "transgeschlechtlich" = transgender (literally: trans-gendered)
  * - "AFAB/AMAB" = zugewiesen weiblich/männlich bei Geburt (assigned female/male at birth)
- * 
+ *
  * German distinguishes between biological sex (Geschlecht) and social gender (Gender),
  * which is crucial for understanding detransition narratives and gender dysphoria discussions.
  */
@@ -16,7 +16,8 @@
 export const questionCategories = [
   {
     title: "Empfohlene Fragen",
-    description: "Die besten Fragen, die Sie Personen stellen können, die eine Detransition durchgeführt haben.",
+    description:
+      "Die besten Fragen, die Sie Personen stellen können, die eine Detransition durchgeführt haben.",
     questions: [
       "Was bedeutet trans?",
       "Haben trans Personen schon immer existiert?",
@@ -209,6 +210,7 @@ export const questionCategories = [
       "Was ist mit Lisa Littmans Studie von 2018 über ROGD passiert?",
       "Was ist die Tavistock-Klinik-Überprüfung und warum wurde sie beauftragt?",
       "Wie wurde Geschlechtsdysphorie zwischen DSM-IV und DSM-5 neu klassifiziert?",
+      "Was ist die implizite Verzerrung in der US-amerikanischen Transgender-Studie?",
     ],
   },
   {

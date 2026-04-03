@@ -194,6 +194,7 @@ export const questionCategories = [
       "¿Qué pasó con el estudio de 2018 de Lisa Littman sobre ROGD?",
       "¿Qué es la revisión de la clínica Tavistock y por qué se encargó?",
       "¿Cómo fue reclasificada la disforia de género entre el DSM-IV y el DSM-5?",
+      "¿Cuál es el sesgo implícito en la encuesta estadounidense de personas transgénero?",
     ],
   },
   {

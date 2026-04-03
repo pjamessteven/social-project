@@ -1,6 +1,6 @@
 /**
  * Finnish translation of question categories and featured questions
- * 
+ *
  * Gender-Related Terminology Notes (Sukupuoleen liittyvä termistö):
  * - "Sukupuoli (biologinen)" = biological sex (anatomy, chromosomes, reproduction, immutable characteristics)
  * - "Gender (sosiaalinen sukupuoli)" = social gender (roles, behaviors, attributes assigned by society)
@@ -11,12 +11,12 @@
  *   - Finnish abbreviations: SMN (syntyessä määritelty naiseksi), SMM (syntyessä määritelty mieheksi)
  * - "Detransitio" = detransition (ceasing to identify as transgender and/or reversing transition steps)
  * - "Luopuminen (desistance)" = when someone who identified as trans without medical interventions no longer identifies as trans
- * 
+ *
  * Important distinction: Finnish language uses "sukupuoli" for both biological sex and social gender,
  * which can cause confusion. In this context, we distinguish:
  * - "Biologinen sukupuoli" = biological sex (unchangeable characteristics)
  * - "Sosiaalinen sukupuoli / gender" = social roles and expectations
- * 
+ *
  * The concept of gender dysphoria relies on understanding these differences.
  */
 
@@ -216,6 +216,7 @@ export const questionCategories = [
       "Mitä tapahtui Lisa Littmanin vuoden 2018 tutkimukselle ROGD:stä?",
       "Mikä on Tavistock-klinikan tarkastelu ja miksi se tilattiin?",
       "Miten sukupuolidysforia luokiteltiin uudelleen DSM-IV:n ja DSM-5:n välillä?",
+      "Mikä on Yhdysvaltain transsukupuolista kyselyä koskeva implisiittinen harha?",
     ],
   },
   {

@@ -1,6 +1,6 @@
 /**
  * Hungarian translation of question categories and featured questions
- * 
+ *
  * Gender-Related Terminology Notes:
  * - 'Nem' (biological sex) = biológiai nem (anatómia, kromoszómák, reprodukció)
  * - 'Gender' (social gender) = társadalmi nem (szerepek, viselkedés, társadalmi elvárások)
@@ -10,17 +10,18 @@
  * - 'Transznemű/trans' = transgender (nem azonosul a születési nemével)
  * - 'Detransition/visszaátmenet' = nem transzneműként való azonosulás abbahagyása
  * - 'Desistance/leállás' = nem transzneműként való azonosulás abbahagyása orvosi beavatkozások nélkül
- * 
- * Important distinction: A nemi diszfória (gender dysphoria) megértéséhez elengedhetetlen 
- * a biológiai nem és a társadalmi nem megkülönböztetése. A nemi nem-konformitás 
- * (a sztereotípiákhoz való nem illeszkedés) különbözik attól, ha valaki nemi identitása 
+ *
+ * Important distinction: A nemi diszfória (gender dysphoria) megértéséhez elengedhetetlen
+ * a biológiai nem és a társadalmi nem megkülönböztetése. A nemi nem-konformitás
+ * (a sztereotípiákhoz való nem illeszkedés) különbözik attól, ha valaki nemi identitása
  * eltér a biológiai nemétől.
  */
 
 export const questionCategories = [
   {
-    title: 'Kiemelt kérdések',
-    description: 'A legjobb kérdések, amelyeket feltehet a detransitionereknek.',
+    title: "Kiemelt kérdések",
+    description:
+      "A legjobb kérdések, amelyeket feltehet a detransitionereknek.",
     questions: [
       "Mit jelent a trans?",
       "Mindig is léteztek transznemű emberek?",
@@ -71,8 +72,8 @@ export const questionCategories = [
     ],
   },
   {
-    title: 'Általános fogalmak',
-    description: 'Az alapvető fogalmak megértése',
+    title: "Általános fogalmak",
+    description: "Az alapvető fogalmak megértése",
     questions: [
       "Mi a férfi?",
       "Mi a nő?",
@@ -108,8 +109,8 @@ export const questionCategories = [
     ],
   },
   {
-    title: 'Az orvosi valóság',
-    description: 'Egészség, beavatkozások és biológiai igazságok',
+    title: "Az orvosi valóság",
+    description: "Egészség, beavatkozások és biológiai igazságok",
     questions: [
       "Mik a női tesztoszteron-használat mellékhatásai?",
       "Mik a férfi ösztrogén-használat mellékhatásai?",
@@ -137,8 +138,8 @@ export const questionCategories = [
     ],
   },
   {
-    title: 'Társadalom és kultúra',
-    description: 'Hogyan lépnek interakcióba a nemi meggyőződések a világgal',
+    title: "Társadalom és kultúra",
+    description: "Hogyan lépnek interakcióba a nemi meggyőződések a világgal",
     questions: [
       "Mik a 'így születtem” narratíva következményei?",
       "A nemi identitások újraportolják és megerősítik a szexista sztereotípiákat?",
@@ -162,8 +163,8 @@ export const questionCategories = [
     ],
   },
   {
-    title: 'Pszichológia és identitás',
-    description: 'A mentális és érzelmi szempontok megértése',
+    title: "Pszichológia és identitás",
+    description: "A mentális és érzelmi szempontok megértése",
     questions: [
       "Lehet valaki nő anélkül, hogy nőies lenne, vagy férfi anélkül, hogy férfias lenne?",
       "Milyen szerepet játszik a közösségi média a nemi identitások felvételében?",
@@ -185,8 +186,8 @@ export const questionCategories = [
     ],
   },
   {
-    title: 'A detransition útja',
-    description: 'Gyógyulás, támogatás és a visszatérés megtalálása',
+    title: "A detransition útja",
+    description: "Gyógyulás, támogatás és a visszatérés megtalálása",
     questions: [
       "Hogyan tudok megbékélni a testemen végzett állandó változtatásokkal?",
       "Úgy érzem, néhány ember azt gondolja, hogy csak 'visszabújtam a szekrénybe' és nem élek autentikusan",
@@ -203,8 +204,8 @@ export const questionCategories = [
     ],
   },
   {
-    title: 'Akadémiai és kutatási elfogultság',
-    description: 'A narratíva megkérdőjelezése az intézményekben',
+    title: "Akadémiai és kutatási elfogultság",
+    description: "A narratíva megkérdőjelezése az intézményekben",
     questions: [
       "Milyen módszertani aggályok merültek fel a főbb detransition felmérések kapcsán?",
       "Miért számolnak be a kutatók nehézségekről a detransition tanulmányok finanszírozásának megszerzésében?",
@@ -213,12 +214,13 @@ export const questionCategories = [
       "Mi történt Lisa Littman 2018-as ROGD tanulmányával?",
       "Mi a Tavistock klinikai felülvizsgálat és miért rendelték el?",
       "Hogyan változott a nemi diszfória besorolása a DSM-IV és a DSM-5 között?",
+      "Mi az implicit torzítás az amerikai transznemű felmérésben?",
     ],
   },
   {
-    title: 'Vitás perspektívák',
+    title: "Vitás perspektívák",
     description:
-      'Detrans perspektívák, amelyeket a nemi aktivista nagyon nem akarja, hogy meghallj',
+      "Detrans perspektívák, amelyeket a nemi aktivista nagyon nem akarja, hogy meghallj",
     questions: [
       "Ki keres pénzt a nemi azonosságot megerősítő ellátással?",
       "Milyen strukturális tényezők vezetnek a detransition történetek alulreprezentálásához a mainstream médiában?",

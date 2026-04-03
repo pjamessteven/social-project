@@ -198,6 +198,7 @@ export const questionCategories = [
       "Cosa è successo allo studio del 2018 di Lisa Littman sulla ROGD?",
       "Cos'è la revisione della clinica Tavistock e perché è stata commissionata?",
       "Come è stata riclassificata la disforia di genere tra DSM-IV e DSM-5?",
+      "Qual è il bias implicito nel sondaggio transgender statunitense?",
     ],
   },
   {

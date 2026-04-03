@@ -222,6 +222,7 @@ export const questionCategories = [
       "Ce s-a întâmplat cu studiul lui Lisa Littman din 2018 despre ROGD?",
       "Ce este revizuirea clinicii Tavistock și de ce a fost comandată?",
       "Cum a fost reclasificată disforia de gen între DSM-IV și DSM-5?",
+      "Care este prejudecata implicită în sondajul american privind persoanele transgender?",
     ],
   },
   {
