@@ -14,9 +14,8 @@ export default function ScrollRestoration() {
     const main = document.querySelector("main");
     if (!main) return;
 
-    const saveScroll = () => {
+    const saveScrollToStorage = () => {
       const position = main.scrollTop;
-      setScrollPosition(position);
       sessionStorage.setItem(STORAGE_KEY(pathname), String(position));
     };
 
@@ -31,11 +30,14 @@ export default function ScrollRestoration() {
       }, 0);
     };
 
-    // Debounced scroll handler
+    // Debounced storage handler - only debounce sessionStorage write
     let timeout: ReturnType<typeof setTimeout>;
     const handleScroll = () => {
+      const position = main.scrollTop;
+      setScrollPosition(position); // Call immediately - not debounced
+
       clearTimeout(timeout);
-      timeout = setTimeout(saveScroll, 100);
+      timeout = setTimeout(saveScrollToStorage, 100);
     };
 
     // Restore on load
@@ -47,7 +49,7 @@ export default function ScrollRestoration() {
 
     main.addEventListener("scroll", handleScroll);
 
-    const handleBeforeUnload = () => saveScroll();
+    const handleBeforeUnload = () => saveScrollToStorage();
     window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
