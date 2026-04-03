@@ -69,8 +69,8 @@ export default function VideosList() {
 
   return (
     <>
-      <div className="flex flex-col border-t">
-        <div className="not-prose my-4 overflow-x-auto sm:my-8">
+      <div className="flex flex-col">
+        <div className="not-prose my-4 overflow-x-auto sm:mb-8">
           <Tabs
             value={filter}
             onValueChange={(value: string) =>

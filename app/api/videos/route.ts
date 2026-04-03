@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
     const allVideos = await db
       .select({
         id: videos.id,
-        title: sql<string>`COALESCE(${videos.titleTranslation}->>${locale}, ${videos.title})`,
+        title: sql<string>`COALESCE((${videos.titleTranslation})::jsonb->>${locale}, ${videos.title})`,
         author: videos.author,
         sex: videos.sex,
         url: videos.url,
@@ -46,13 +46,13 @@ export async function GET(request: NextRequest) {
         transcript: videos.transcript,
         description: sql<
           string | null
-        >`COALESCE(${videos.descriptionTranslation}->>${locale}, ${videos.description})`,
+        >`COALESCE((${videos.descriptionTranslation})::jsonb->>${locale}, ${videos.description})`,
         summary: sql<
           string | null
-        >`COALESCE(${videos.summaryTranslation}->>${locale}, ${videos.summary})`,
+        >`COALESCE((${videos.summaryTranslation})::jsonb->>${locale}, ${videos.summary})`,
         bite: sql<
           string | null
-        >`COALESCE(${videos.biteTranslation}->>${locale}, ${videos.bite})`,
+        >`COALESCE((${videos.biteTranslation})::jsonb->>${locale}, ${videos.bite})`,
         duration: videos.duration,
         date: videos.date,
         createdAt: videos.createdAt,
