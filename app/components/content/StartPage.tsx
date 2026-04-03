@@ -66,18 +66,22 @@ export async function StartPage({
       display: t("starters.familyMember.display"),
       full: t("starters.familyMember.full"),
     },
+    /*
     {
       display: t("starters.researcher.display"),
       full: t("starters.researcher.full"),
     },
+    */
     {
       display: t("starters.learnChallenges.display"),
       full: t("starters.learnChallenges.full"),
     },
+    /*
     {
       display: t("starters.understandTransition.display"),
       full: t("starters.understandTransition.full"),
     },
+    */
     {
       display: t("starters.debunkMisinfo.display"),
       full: t("starters.debunkMisinfo.full"),
