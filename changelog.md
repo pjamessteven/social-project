@@ -1,5 +1,24 @@
 # Changelog
 
+## [2026-04-05] - Fix CAPTCHA Verification on Studies and Videos Pages
+
+### Bug Fixes
+
+- **Fixed CAPTCHA dialog not showing on studies page when submission requires verification**
+  - The `StudySubmitForm` component was missing hCaptcha integration
+  - When API returned 402 status with `requiresCaptcha: true`, the form showed an error instead of the CAPTCHA dialog
+  - Added `HCaptchaDialog` component and `useCaptcha` hook integration
+  - Form now properly shows CAPTCHA dialog and retries submission after successful verification
+
+- **Fixed CAPTCHA dialog not showing on videos page when submission requires verification**
+  - The `VideoSubmitForm` component had the same issue as `StudySubmitForm`
+  - Added the same CAPTCHA integration pattern with hCaptcha dialog and retry logic
+
+### Files Modified
+
+- `app/components/StudySubmitForm.tsx` - Added CAPTCHA dialog, verification handling, and retry logic
+- `app/components/VideoSubmitForm.tsx` - Added CAPTCHA dialog, verification handling, and retry logic
+
 ## [2026-04-03] - Update All Translation Metadata Descriptions
 
 ### Features
