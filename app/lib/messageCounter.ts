@@ -56,8 +56,15 @@ export async function initializeMessageCount(ipAddress: string): Promise<void> {
  * Returns true if:
  * - User is new (no count exists) - requires CAPTCHA on first use
  * - User has sent 10 or more messages since last CAPTCHA verification
+ *
+ * Note: CAPTCHA is always disabled in development mode
  */
 export async function isCaptchaRequired(ipAddress: string): Promise<boolean> {
+  // Skip CAPTCHA in development mode
+  if (process.env.NODE_ENV === "development") {
+    return false;
+  }
+
   const count = await getMessageCount(ipAddress);
 
   // If no count exists, this is either a new user or they just completed CAPTCHA
