@@ -208,10 +208,16 @@ export async function POST(req: NextRequest) {
     const allMessages = [...existingMessages, newUserMessage];
 
     // Convert to ChatMessage format for workflow
-    const chatHistory: ChatMessage[] = allMessages.map((msg) => ({
-      role: msg.role as MessageType,
-      content: msg.parts[0]?.type === "text" ? msg.parts[0].text : "",
-    }));
+    // Collect all text parts, not just the first one (data events may come before text)
+    const chatHistory: ChatMessage[] = allMessages
+      .map((msg) => ({
+        role: msg.role as MessageType,
+        content: msg.parts
+          .filter((part) => part.type === "text")
+          .map((part) => part.text)
+          .join("\n"),
+      }))
+      .filter((message) => message.content?.length > 0);
 
     const userMessages = chatHistory.filter((msg) => msg.role === "user");
 
