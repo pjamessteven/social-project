@@ -17,7 +17,10 @@ interface UseCaptchaReturn {
 }
 
 export function useCaptcha(): UseCaptchaReturn {
-  const [isCaptchaRequired, setIsCaptchaRequired] = useState(false);
+  const [isCaptchaRequired, setIsCaptchaRequired] = useState(() => {
+    // CAPTCHA is disabled in development mode
+    return process.env.NODE_ENV !== "development";
+  });
   const [isVerifying, setIsVerifying] = useState(false);
   const [showCaptchaDialog, setShowCaptchaDialog] = useState(false);
   const [pendingMessage, setPendingMessage] = useState<{

@@ -1,5 +1,32 @@
 # Changelog
 
+## [2026-04-09] - Disable CAPTCHA in Development Mode
+
+### Features
+
+- **CAPTCHA verification is now automatically disabled in development mode**
+  - Backend `isCaptchaRequired()` function returns `false` immediately when `NODE_ENV === "development"`
+  - Frontend `useCaptcha` hook initializes with `isCaptchaRequired: false` in development
+  - Message counting and rate limiting remain active for testing purposes
+  - No visual indicators or UI changes - seamless developer experience
+
+### Technical Details
+
+- **Backend change**: Added early return check at the start of `isCaptchaRequired()` in `app/lib/messageCounter.ts`
+- **Frontend change**: `useState` initializer in `app/hooks/useCaptcha.ts` checks `process.env.NODE_ENV`
+- **Scope**: All endpoints and components using CAPTCHA are automatically covered:
+  - Chat (`/api/chat`)
+  - Research (`/api/research`)
+  - Contact (`/api/contact`)
+  - Video submissions (`/api/videos/submit`)
+  - Study submissions (`/api/studies`)
+- **Note**: This is a build-time check - requires `NODE_ENV=development` at build time
+
+### Files Modified
+
+- `app/lib/messageCounter.ts` - Added development mode check to `isCaptchaRequired()`
+- `app/hooks/useCaptcha.ts` - Initialize state based on NODE_ENV
+
 ## [2026-04-05] - Fix CAPTCHA Verification on Studies and Videos Pages
 
 ### Bug Fixes
