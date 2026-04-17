@@ -34,6 +34,13 @@ export class CachedOpenAI extends OpenAI {
     this.requestId = requestId;
   }
 
+  get metadata() {
+    return {
+      ...super.metadata,
+      contextWindow: 256000, // Set Kimi K2's actual context window
+    };
+  }
+
   private async fetchGenerationMetadata(generationId: string): Promise<{
     totalCost?: number;
     tokensPrompt?: number;
@@ -461,11 +468,13 @@ export class CachedOpenAI extends OpenAI {
       metadata.generationId = generationId;
 
       // Fetch metadata from OpenRouter
+      /*
       const generationMetadata =
         await this.fetchGenerationMetadata(generationId);
       if (generationMetadata) {
         Object.assign(metadata, generationMetadata);
       }
+        */
     }
 
     // Add token counts from response if available
