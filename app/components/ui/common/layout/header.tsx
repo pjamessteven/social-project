@@ -329,6 +329,22 @@ export default function Header({
                         </div>
                       </Link>
                     </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href="/donate"
+                        className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                      >
+                        <Heart className="me-2 mt-0.5 h-4 w-4 flex-shrink-0 text-red-500" />
+                        <div className="flex flex-col space-y-1">
+                          <div className="text-sm leading-none font-medium">
+                            {t("donate")}
+                          </div>
+                          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                            {t("about.donateDesc")}
+                          </p>
+                        </div>
+                      </Link>
+                    </NavigationMenuLink>
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -633,6 +649,25 @@ export default function Header({
                           </div>
                           <div className="text-muted-foreground text-xs">
                             {t("about.termsDesc")}
+                          </div>
+                        </div>
+                      </Button>
+                    </Link>
+                    <Link href="/donate" onClick={() => setIsOpen(false)}>
+                      <Button
+                        variant="ghost"
+                        className={cn(
+                          "h-auto w-full flex-row items-center justify-start py-3",
+                          pathname === "/donate" && "bg-muted",
+                        )}
+                      >
+                        <Heart className="h-4 w-4 text-red-500" />
+                        <div className="ml-4 flex flex-col items-start">
+                          <div className="text-sm font-medium">
+                            {t("donate")}
+                          </div>
+                          <div className="text-muted-foreground text-xs">
+                            {t("about.donateDesc")}
                           </div>
                         </div>
                       </Button>
