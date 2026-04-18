@@ -5,6 +5,7 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const token = searchParams.get("token");
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
     if (!token) {
       // Redirect to login page with error
@@ -27,7 +28,7 @@ export async function GET(request: NextRequest) {
     await setSessionCookie(result.user);
 
     // Redirect to conversations page or redirect URL if provided
-    const redirectTo = searchParams.get("redirect") || "/";
+    const redirectTo = searchParams.get("redirect") || appUrl;
     return NextResponse.redirect(new URL(redirectTo, request.url));
   } catch (error) {
     console.error("Magic link verification endpoint error:", error);
