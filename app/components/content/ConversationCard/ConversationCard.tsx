@@ -201,6 +201,7 @@ export function ConversationCard({
                     <div
                       onClick={(e) => {
                         e.stopPropagation();
+                        e.preventDefault();
                         setShowAdminMenu(!showAdminMenu);
                       }}
                       className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-md hover:bg-gray-100"
@@ -209,10 +210,14 @@ export function ConversationCard({
                     </div>
 
                     {showAdminMenu && (
-                      <div className="absolute top-full right-0 z-10 mt-1 w-48 rounded-md border border-gray-200 bg-white py-1 shadow-lg">
+                      <div
+                        onClick={(e) => e.stopPropagation()}
+                        className="absolute top-full right-0 z-10 mt-1 w-48 rounded-md border border-gray-200 bg-white py-1 shadow-lg"
+                      >
                         <button
                           onClick={async (e) => {
                             e.stopPropagation();
+                            e.preventDefault();
                             if (onDeleteConversation && !isDeleting) {
                               setIsDeleting(true);
                               try {
@@ -234,6 +239,7 @@ export function ConversationCard({
                           <button
                             onClick={async (e) => {
                               e.stopPropagation();
+                              e.preventDefault();
                               if (onBanUser && !isBanning) {
                                 setIsBanning(true);
                                 try {
