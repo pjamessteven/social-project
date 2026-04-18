@@ -36,6 +36,17 @@ export default function CustomChatMessages({
   const { chatStatus } = useChatStore();
   const router = useRouter();
 
+  // Get stored tab from sessionStorage for "Back to Portal" link
+  const [portalHref, setPortalHref] = useState("/");
+  useEffect(() => {
+    const storedTab = sessionStorage.getItem("portalTab");
+    if (storedTab && storedTab !== "featured") {
+      setPortalHref(`/?tab=${storedTab}`);
+    } else {
+      setPortalHref("/");
+    }
+  }, []);
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   // Scroll to bottom every time messages update
   useEffect(() => {
@@ -121,7 +132,7 @@ export default function CustomChatMessages({
                 <div className="-mt-2 mb-4 ml-3 flex w-full flex-row justify-between pr-20 sm:mb-8 sm:pr-4">
                   <div className="flex w-full grow flex-row justify-between pt-8">
                     <Link
-                      href={"/"}
+                      href={portalHref as "/"}
                       className="cursor-pointer font-semibold no-underline"
                     >
                       <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-sm opacity-90 transition-colors sm:text-base">

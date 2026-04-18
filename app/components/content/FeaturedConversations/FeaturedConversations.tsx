@@ -86,6 +86,8 @@ export function FeaturedConversations() {
   const handleTabChange = useCallback(
     (value: "featured" | "all" | "mine") => {
       setCurrentTab(value);
+      // Store tab in sessionStorage for persistence when navigating back from chat
+      sessionStorage.setItem("portalTab", value);
       const params = new URLSearchParams(searchParams.toString());
       if (value === "featured") {
         params.delete("tab");
