@@ -15,59 +15,40 @@ export default function AdminPanel({ onLogin, onLogout }: AdminPanelProps) {
   const { user, isAuthenticated, isLoading, logout, checkAuth } =
     useUserStore();
   const [showLoginForm, setShowLoginForm] = useState(false);
-  const [loginData, setLoginData] = useState({
-    username: "",
-    password: "",
-  });
+  const [email, setEmail] = useState("");
   const [loginError, setLoginError] = useState("");
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   // Check auth status on mount
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
 
-  const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setLoginData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoginError("");
 
     try {
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch("/api/auth/magic-link", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(loginData),
+        body: JSON.stringify({ email }),
       });
 
       const data = await response.json();
 
       if (data.success) {
-        // Update user store with the logged-in user
-        useUserStore.getState().setUser({
-          id: data.user.id,
-          username: data.user.username,
-          email: data.user.email,
-          role: data.user.role,
-        });
-
-        setShowLoginForm(false);
-        setLoginData({ username: "", password: "" });
-        onLogin?.();
-        router.refresh();
+        setLoginSuccess(true);
+        // Note: For magic links, we don't log in immediately
+        // The user needs to click the link in their email
       } else {
-        setLoginError(data.error || "Login failed");
+        setLoginError(data.error || "Failed to send magic link");
       }
     } catch (error) {
       setLoginError("An error occurred. Please try again.");
-      console.error("Login error:", error);
+      console.error("Magic link request error:", error);
     }
   };
 
@@ -135,50 +116,52 @@ export default function AdminPanel({ onLogin, onLogout }: AdminPanelProps) {
           </button>
         </div>
 
-        <form onSubmit={handleLoginSubmit} className="space-y-3">
-          {loginError && (
-            <div className="rounded-md bg-red-50 p-2 text-xs text-red-600 dark:bg-red-900/30 dark:text-red-400">
-              {loginError}
+        {loginSuccess ? (
+          <div className="rounded-md bg-green-50 p-3 text-sm text-green-600 dark:bg-green-900/30 dark:text-green-400">
+            <p className="font-medium">Check your email!</p>
+            <p className="mt-1 text-xs">
+              If you have an account, you will receive a magic link to log in.
+            </p>
+            <button
+              onClick={() => {
+                setLoginSuccess(false);
+                setEmail("");
+              }}
+              className="mt-2 text-xs text-green-700 hover:text-green-600 dark:text-green-300"
+            >
+              Try again
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={handleLoginSubmit} className="space-y-3">
+            {loginError && (
+              <div className="rounded-md bg-red-50 p-2 text-xs text-red-600 dark:bg-red-900/30 dark:text-red-400">
+                {loginError}
+              </div>
+            )}
+
+            <div>
+              <label className="block text-xs font-medium text-gray-700 dark:text-gray-300">
+                Email
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="mt-1 block w-full rounded-md border border-gray-300 px-2 py-1 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                placeholder="you@example.com"
+                required
+              />
             </div>
-          )}
 
-          <div>
-            <label className="block text-xs font-medium text-gray-700 dark:text-gray-300">
-              Username
-            </label>
-            <input
-              type="text"
-              name="username"
-              value={loginData.username}
-              onChange={handleLoginChange}
-              className="mt-1 block w-full rounded-md border border-gray-300 px-2 py-1 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-              placeholder="Admin username"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-xs font-medium text-gray-700 dark:text-gray-300">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              value={loginData.password}
-              onChange={handleLoginChange}
-              className="mt-1 block w-full rounded-md border border-gray-300 px-2 py-1 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-              placeholder="Admin password"
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full rounded-md bg-blue-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          >
-            Sign In
-          </button>
-        </form>
+            <button
+              type="submit"
+              className="w-full rounded-md bg-blue-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            >
+              Send Magic Link
+            </button>
+          </form>
+        )}
       </div>
     );
   }

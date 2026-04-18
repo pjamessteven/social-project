@@ -253,7 +253,8 @@
     "subtitle": "Xem detrans.ai đang giúp đỡ mọi ngưởi từ khắp nơi trên thế giới như thế nào.",
     "tabs": {
       "featured": "Nổi Bật",
-      "all": "Tất Cả"
+      "all": "Tất Cả",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "Hiển Thị Thêm {count} Cuộc Trò Chuyện",
@@ -318,6 +319,7 @@
       "ageRangeYears": "{min} - {max} tuổi",
       "sex": {
         "all": "Nam và Nữ",
+      "mine": "Mine",
         "female": "Nữ",
         "male": "Nam"
       },
@@ -482,6 +484,7 @@
     "loading": "Đang tải video...",
     "filters": {
       "all": "Tất Cả Câu Chuyện",
+      "mine": "Mine",
       "female": "Nữ",
       "male": "Nam",
       "detransitioners": "Ngưởi Chuyển Giới Trở Lại"

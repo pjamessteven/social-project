@@ -250,7 +250,8 @@
     "subtitle": "detrans.aiが世界中の人々をどのように助けているか、ご自分の目でご確認ください。",
     "tabs": {
       "featured": "注目",
-      "all": "すべて"
+      "all": "すべて",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "{count}件の会話をさらに表示",
@@ -315,6 +316,7 @@
       "ageRangeYears": "{min} - {max}歳",
       "sex": {
         "all": "男性と女性",
+      "mine": "Mine",
         "female": "女性",
         "male": "男性"
       },
@@ -479,6 +481,7 @@
     "loading": "動画を読み込み中...",
     "filters": {
       "all": "すべてのストーリー",
+      "mine": "Mine",
       "female": "女性",
       "male": "男性",
       "detransitioners": "デトランショナー"

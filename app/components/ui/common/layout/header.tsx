@@ -3,6 +3,7 @@
 import DonationCard from "@/app/components/content/DonationCard";
 import { Link } from "@/i18n/routing";
 import { useMainStore } from "@/stores/main-store";
+import { useUserStore } from "@/stores/user-store";
 import { clsx } from "clsx";
 import {
   BookOpen,
@@ -12,6 +13,7 @@ import {
   Heart,
   HelpCircle,
   Home,
+  LogOut,
   Mail,
   Menu,
   MessageCircleHeart,
@@ -57,6 +59,32 @@ function NavLink({ href, label }: { href: string; label: string }) {
   );
 }
 
+// User menu component - shows email and logout when logged in
+function UserMenu() {
+  const { user, isAuthenticated, logout } = useUserStore();
+
+  if (!isAuthenticated || !user) {
+    return null;
+  }
+
+  const handleLogout = async () => {
+    await logout();
+    window.location.reload();
+  };
+
+  return (
+    <Button
+      size="sm"
+      variant="ghost"
+      onClick={handleLogout}
+      className="rounded-full border px-3 py-1.5 text-sm md:mr-3"
+    >
+      <LogOut className="mr-2 h-4 w-4 md:mr-2" />
+      <span className="max-w-[120px] truncate">Logout</span>
+    </Button>
+  );
+}
+
 export default function Header({
   mode,
   locale,
@@ -80,22 +108,26 @@ export default function Header({
           scrollPosition > 1 ? "opacity-100" : "opacity-0",
         )}
       />
-      <Link
-        href={isDev && mode === "affirm" ? "/affirm" : "/"}
-        className="!cursor-pointer"
-      >
-        <div className="flex items-center gap-2">
-          <MessageCircleHeart className="size-6" />
-          <h1 className="font-semibold">
-            {mode === "affirm" ? "genderaffirming.ai" : "detrans.ai"}&nbsp;
-            {/*
-            <span className="font-base regular hidden font-light italic opacity-30 sm:inline">
-              {" "}
-              | Blossom & Grow
-            </span> */}
-          </h1>
-        </div>
-      </Link>
+
+      {/* Left side:  Logo */}
+      <div className="flex items-center gap-2">
+        <Link
+          href={isDev && mode === "affirm" ? "/affirm" : "/"}
+          className="!cursor-pointer"
+        >
+          <div className="flex items-center gap-2">
+            <MessageCircleHeart className="size-6" />
+            <h1 className="font-semibold">
+              {"detrans.ai"}&nbsp;
+              {/*
+              <span className="font-base regular hidden font-light italic opacity-30 sm:inline">
+                {" "}
+                | Blossom & Grow
+              </span> */}
+            </h1>
+          </div>
+        </Link>
+      </div>
 
       <div className="flex items-center gap-2">
         {/* Desktop Navigation - hidden on mobile */}
@@ -306,10 +338,15 @@ export default function Header({
 
         {/* Settings Menu */}
         <div
-          className={clsx("mr-3", "hidden md:block")}
+          className={clsx("mr-2", "hidden md:block")}
           onClick={(e) => e.stopPropagation()}
         >
           <SettingsMenu />
+        </div>
+
+        {/* User Menu - Desktop only */}
+        <div className="hidden md:block">
+          <UserMenu />
         </div>
 
         {/* Donate Button  */}
@@ -346,7 +383,13 @@ export default function Header({
             <div className="flex h-full flex-col justify-between overflow-y-auto px-4 pb-4">
               {/* Mobile Header Actions Row */}
               <div className="border- sticky top-0 -mx-4 flex items-center justify-between gap-2 border-b bg-white px-4 pt-4 pb-4 shadow-md md:hidden dark:bg-black">
-                <SettingsMenu />
+                {/* User Menu - Desktop only */}
+                <div className="mr-r row flex">
+                  <SettingsMenu />
+                  <div className="ml-2">
+                    <UserMenu />
+                  </div>
+                </div>
                 <Link href="/donate" onClick={() => setIsOpen(false)}>
                   <Button size="sm" variant="destructive">
                     {t("donate")}

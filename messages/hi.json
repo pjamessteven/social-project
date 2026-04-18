@@ -252,7 +252,8 @@
     "subtitle": "देखें कि detrans.ai दुनिया भर के लोगों की कैसे मदद कर रहा है।",
     "tabs": {
       "featured": "विशेष रुप से प्रदर्शित",
-      "all": "सभी"
+      "all": "सभी",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "{count} और वार्तालाप दिखाएं",
@@ -317,6 +318,7 @@
       "ageRangeYears": "{min} - {max} वर्ष",
       "sex": {
         "all": "पुरुष और महिला",
+      "mine": "Mine",
         "female": "महिला",
         "male": "पुरुष"
       },
@@ -481,6 +483,7 @@
     "loading": "वीडियो लोड हो रहे हैं...",
     "filters": {
       "all": "सभी कहानियां",
+      "mine": "Mine",
       "female": "महिला",
       "male": "पुरुष",
       "detransitioners": "डीट्रांजिशनर्स"

@@ -255,7 +255,8 @@
     "subtitle": "Δες ο ίδιος πώς το detrans.ai βοηθάει ανθρώπους από όλο τον κόσμο.",
     "tabs": {
       "featured": "Επιλεγμένα",
-      "all": "Όλα"
+      "all": "Όλα",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "Εμφάνιση {count} Περισσότερων Συνομιλιών",
@@ -320,6 +321,7 @@
       "ageRangeYears": "{min} - {max} χρόνια",
       "sex": {
         "all": "Άρρενες και Θήλυες",
+      "mine": "Mine",
         "female": "Θήλυ",
         "male": "Άρρεν"
       },
@@ -484,6 +486,7 @@
     "loading": "Φόρτωση βίντεο...",
     "filters": {
       "all": "Όλες οι Ιστορίες",
+      "mine": "Mine",
       "female": "Θήλυ",
       "male": "Άρρεν",
       "detransitioners": "Άτομα που Αποχώρησαν"

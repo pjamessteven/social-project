@@ -1,23 +1,30 @@
-import { registerUser, setSessionCookie } from "@/app/lib/auth/auth";
-import { checkIpBan } from "@/app/lib/ipBan";
+import { addUserToWhitelist } from "@/app/lib/auth/auth";
+import { requireAuth } from "@/app/lib/auth/middleware";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-// Schema for registration request
-const registerSchema = z.object({
-  username: z.string().min(3, "Username must be at least 3 characters"),
+// Schema for adding user to whitelist (admin only)
+const whitelistSchema = z.object({
   email: z.string().email("Invalid email address"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  role: z.string().optional().default("user"),
 });
 
+// Registration is now done via whitelist only
+// This endpoint allows admins to add users to the whitelist
 export async function POST(request: NextRequest) {
   try {
-    // Check if IP is banned before processing request
-    await checkIpBan(request);
+    // Check if user is admin
+    const { session, errorResponse } = await requireAuth(request, {
+      requireAdmin: true,
+    });
+
+    if (errorResponse) {
+      return errorResponse;
+    }
 
     // Parse and validate request body
     const body = await request.json();
-    const validationResult = registerSchema.safeParse(body);
+    const validationResult = whitelistSchema.safeParse(body);
 
     if (!validationResult.success) {
       return NextResponse.json(
@@ -30,36 +37,58 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { username, email, password } = validationResult.data;
+    const { email, role } = validationResult.data;
 
-    // Attempt to register user
-    const result = await registerUser({ username, email, password });
+    // Add user to whitelist
+    const result = await addUserToWhitelist(email, role);
 
     if (!result.success) {
       return NextResponse.json(
         {
           success: false,
-          error: result.error || "Registration failed",
+          error: result.error || "Failed to add user",
         },
         { status: 400 },
       );
     }
 
-    // Set session cookie
-    await setSessionCookie(result.user!);
+    return NextResponse.json({
+      success: true,
+      message: `User ${email} has been added to the whitelist`,
+    });
+  } catch (error) {
+    console.error("Whitelist endpoint error:", error);
+    return NextResponse.json(
+      {
+        success: false,
+        error: "Internal server error",
+      },
+      { status: 500 },
+    );
+  }
+}
+
+// Get all whitelisted users (admin only)
+export async function GET(request: NextRequest) {
+  try {
+    // Check if user is admin
+    const { errorResponse } = await requireAuth(request, {
+      requireAdmin: true,
+    });
+
+    if (errorResponse) {
+      return errorResponse;
+    }
+
+    const { getWhitelistedUsers } = await import("@/app/lib/auth/auth");
+    const users = await getWhitelistedUsers();
 
     return NextResponse.json({
       success: true,
-      user: {
-        id: result.user!.userId,
-        username: result.user!.username,
-        email: result.user!.email,
-        role: result.user!.role,
-      },
-      message: "Registration successful",
+      users,
     });
   } catch (error) {
-    console.error("Registration endpoint error:", error);
+    console.error("Get whitelisted users error:", error);
     return NextResponse.json(
       {
         success: false,

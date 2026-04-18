@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { users } from "@/db/schema";
-import bcrypt from "bcryptjs";
+import { randomBytes } from "crypto";
 import { eq } from "drizzle-orm";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
@@ -9,38 +9,14 @@ const JWT_SECRET = new TextEncoder().encode(
   process.env.JWT_SECRET || "your-secret-key-change-in-production",
 );
 const SESSION_COOKIE_NAME = "session_token";
-const SESSION_MAX_AGE = 60 * 60 * 24 * 7; // 7 days in seconds
+const SESSION_MAX_AGE = 60 * 60 * 24 * 30; // 30 days in seconds
+const SESSION_REFRESH_THRESHOLD = 60 * 60 * 24 * 14; // Refresh if less than 14 days remaining
+const MAGIC_LINK_EXPIRY_MINUTES = 15; // Magic links expire after 15 minutes
 
 export interface SessionPayload {
   userId: number;
-  username: string;
+  username: string; // This is the email address
   role: string;
-  email: string;
-}
-
-export interface LoginCredentials {
-  username: string;
-  password: string;
-}
-
-export interface RegisterData {
-  username: string;
-  email: string;
-  password: string;
-  role?: string;
-}
-
-// Hash password
-export async function hashPassword(password: string): Promise<string> {
-  return bcrypt.hash(password, 10);
-}
-
-// Verify password
-export async function verifyPassword(
-  password: string,
-  hashedPassword: string,
-): Promise<boolean> {
-  return bcrypt.compare(password, hashedPassword);
 }
 
 // Create JWT token
@@ -51,7 +27,6 @@ export async function createSessionToken(
     userId: payload.userId,
     username: payload.username,
     role: payload.role,
-    email: payload.email,
   })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
@@ -59,10 +34,23 @@ export async function createSessionToken(
     .sign(JWT_SECRET);
 }
 
+export interface SessionResult {
+  payload: SessionPayload;
+  expiresAt: number; // Unix timestamp in seconds
+}
+
 // Verify JWT token
 export async function verifySessionToken(
   token: string,
 ): Promise<SessionPayload | null> {
+  const result = await verifySessionTokenWithExpiry(token);
+  return result?.payload ?? null;
+}
+
+// Verify JWT token and return with expiration
+export async function verifySessionTokenWithExpiry(
+  token: string,
+): Promise<SessionResult | null> {
   try {
     const { payload } = await jwtVerify(token, JWT_SECRET);
 
@@ -71,12 +59,27 @@ export async function verifySessionToken(
       userId: Number(payload.userId),
       username: String(payload.username),
       role: String(payload.role),
-      email: String(payload.email),
     };
 
-    return sessionPayload;
+    // Get expiration time from the exp claim
+    const expiresAt = payload.exp ?? 0;
+
+    return { payload: sessionPayload, expiresAt };
   } catch (error) {
     return null;
+  }
+}
+
+// Refresh session cookie if needed (sliding expiration)
+export async function refreshSessionIfNeeded(
+  sessionResult: SessionResult,
+): Promise<void> {
+  const now = Math.floor(Date.now() / 1000); // Current time in seconds
+  const timeRemaining = sessionResult.expiresAt - now;
+
+  // If less than threshold remaining, refresh the session
+  if (timeRemaining < SESSION_REFRESH_THRESHOLD) {
+    await setSessionCookie(sessionResult.payload);
   }
 }
 
@@ -89,7 +92,16 @@ export async function getCurrentSession(): Promise<SessionPayload | null> {
     return null;
   }
 
-  return verifySessionToken(token);
+  const result = await verifySessionTokenWithExpiry(token);
+
+  if (!result) {
+    return null;
+  }
+
+  // Refresh session if it's getting close to expiration
+  await refreshSessionIfNeeded(result);
+
+  return result.payload;
 }
 
 // Check if user is admin
@@ -104,20 +116,92 @@ export async function isModeratorOrAdmin(): Promise<boolean> {
   return session?.role === "admin" || session?.role === "moderator";
 }
 
-// Login user
-export async function loginUser(
-  credentials: LoginCredentials,
-): Promise<{ success: boolean; user?: SessionPayload; error?: string }> {
+// Generate a secure random magic link token
+export function generateMagicToken(): string {
+  return randomBytes(32).toString("hex");
+}
+
+export async function requestMagicLink(email: string): Promise<{
+  success: boolean;
+  message?: string;
+  error?: string;
+  magicToken?: string;
+  userId?: number;
+}> {
   try {
-    // Find user by username or email
+    // Normalize email to lowercase
+    const normalizedEmail = email.toLowerCase().trim();
+
     const user = await db
       .select()
       .from(users)
-      .where(eq(users.username, credentials.username))
+      .where(eq(users.username, normalizedEmail))
       .limit(1);
 
     if (!user[0]) {
-      return { success: false, error: "Invalid credentials" };
+      return {
+        success: true,
+        message:
+          "If you have an account, you will receive a magic link shortly.",
+      };
+    }
+
+    // Check if user is active
+    if (!user[0].isActive) {
+      return {
+        success: true,
+        message:
+          "If you have an account, you will receive a magic link shortly.",
+      };
+    }
+
+    // Generate magic token
+    const magicToken = generateMagicToken();
+    const expiresAt = new Date();
+    expiresAt.setMinutes(expiresAt.getMinutes() + MAGIC_LINK_EXPIRY_MINUTES);
+
+    // Store token in database
+    await db
+      .update(users)
+      .set({
+        magicLinkToken: magicToken,
+        magicLinkExpiresAt: expiresAt,
+        updatedAt: new Date(),
+      })
+      .where(eq(users.id, user[0].id));
+
+    return {
+      success: true,
+      message: "Magic link generated",
+      magicToken,
+      userId: user[0].id,
+    };
+  } catch (error) {
+    console.error("Magic link request error:", error);
+    return { success: false, error: "Internal server error" };
+  }
+}
+
+// Verify magic link and create session
+export async function verifyMagicLink(
+  token: string,
+): Promise<{ success: boolean; user?: SessionPayload; error?: string }> {
+  try {
+    // Find user by magic token
+    const user = await db
+      .select()
+      .from(users)
+      .where(eq(users.magicLinkToken, token))
+      .limit(1);
+
+    if (!user[0]) {
+      return { success: false, error: "Invalid or expired magic link" };
+    }
+
+    // Check if token is expired
+    const now = new Date();
+    if (!user[0].magicLinkExpiresAt || user[0].magicLinkExpiresAt < now) {
+      return { success: false, error: "Magic link has expired" };
     }
 
     // Check if user is active
@@ -125,20 +209,15 @@ export async function loginUser(
       return { success: false, error: "Account is deactivated" };
     }
 
-    // Verify password
-    const isValidPassword = await verifyPassword(
-      credentials.password,
-      user[0].passwordHash,
-    );
-
-    if (!isValidPassword) {
-      return { success: false, error: "Invalid credentials" };
-    }
-
-    // Update last login
+    // Clear the magic link token (one-time use)
     await db
       .update(users)
-      .set({ lastLogin: new Date() })
+      .set({
+        magicLinkToken: null,
+        magicLinkExpiresAt: null,
+        lastLogin: new Date(),
+        updatedAt: new Date(),
+      })
       .where(eq(users.id, user[0].id));
 
     // Create session payload
@@ -146,71 +225,11 @@ export async function loginUser(
       userId: user[0].id,
       username: user[0].username,
       role: user[0].role,
-      email: user[0].email,
     };
 
     return { success: true, user: sessionPayload };
   } catch (error) {
-    console.error("Login error:", error);
-    return { success: false, error: "Internal server error" };
-  }
-}
-
-// Register new user
-export async function registerUser(
-  data: RegisterData,
-): Promise<{ success: boolean; user?: SessionPayload; error?: string }> {
-  try {
-    // Check if username already exists
-    const existingUsername = await db
-      .select()
-      .from(users)
-      .where(eq(users.username, data.username))
-      .limit(1);
-
-    if (existingUsername[0]) {
-      return { success: false, error: "Username already exists" };
-    }
-
-    // Check if email already exists
-    const existingEmail = await db
-      .select()
-      .from(users)
-      .where(eq(users.email, data.email))
-      .limit(1);
-
-    if (existingEmail[0]) {
-      return { success: false, error: "Email already exists" };
-    }
-
-    // Hash password
-    const passwordHash = await hashPassword(data.password);
-
-    // Create user (default role is 'user' unless specified)
-    const newUser = await db
-      .insert(users)
-      .values({
-        username: data.username,
-        email: data.email,
-        passwordHash,
-        role: data.role || "user",
-        isActive: true,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      })
-      .returning();
-
-    // Create session payload
-    const sessionPayload: SessionPayload = {
-      userId: newUser[0].id,
-      username: newUser[0].username,
-      role: newUser[0].role,
-      email: newUser[0].email,
-    };
-
-    return { success: true, user: sessionPayload };
-  } catch (error) {
-    console.error("Registration error:", error);
+    console.error("Magic link verification error:", error);
     return { success: false, error: "Internal server error" };
   }
 }
@@ -237,13 +256,12 @@ export async function clearSessionCookie(): Promise<void> {
   cookieStore.delete(SESSION_COOKIE_NAME);
 }
 
-// Create admin user (for initial setup)
-export async function createAdminUser(
-  username: string,
-  email: string,
-  password: string,
-): Promise<boolean> {
+// Create admin user (for initial setup) - now just email, no password
+export async function createAdminUser(email: string): Promise<boolean> {
   try {
+    // Normalize email
+    const normalizedEmail = email.toLowerCase().trim();
+
     // Check if admin already exists
     const existingAdmin = await db
       .select()
@@ -256,18 +274,126 @@ export async function createAdminUser(
       return false;
     }
 
-    // Create admin user
-    await registerUser({
-      username,
-      email,
-      password,
+    // Create admin user (no password needed)
+    await db.insert(users).values({
+      username: normalizedEmail,
       role: "admin",
+      isActive: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
 
-    console.log("Admin user created successfully");
+    console.log("Admin user created successfully:", normalizedEmail);
     return true;
   } catch (error) {
     console.error("Error creating admin user:", error);
     return false;
+  }
+}
+
+// Add user to whitelist (admin only)
+export async function addUserToWhitelist(
+  email: string,
+  role: string = "user",
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    // Normalize email
+    const normalizedEmail = email.toLowerCase().trim();
+
+    // Check if user already exists
+    const existingUser = await db
+      .select()
+      .from(users)
+      .where(eq(users.username, normalizedEmail))
+      .limit(1);
+
+    if (existingUser[0]) {
+      return { success: false, error: "User already exists" };
+    }
+
+    // Create user
+    await db.insert(users).values({
+      username: normalizedEmail,
+      role: role,
+      isActive: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error adding user to whitelist:", error);
+    return { success: false, error: "Internal server error" };
+  }
+}
+
+// Remove user from whitelist (admin only)
+export async function removeUserFromWhitelist(
+  email: string,
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    // Normalize email
+    const normalizedEmail = email.toLowerCase().trim();
+
+    // Cannot delete the last admin
+    const userToDelete = await db
+      .select()
+      .from(users)
+      .where(eq(users.username, normalizedEmail))
+      .limit(1);
+
+    if (!userToDelete[0]) {
+      return { success: false, error: "User not found" };
+    }
+
+    if (userToDelete[0].role === "admin") {
+      const adminCount = await db
+        .select()
+        .from(users)
+        .where(eq(users.role, "admin"));
+
+      if (adminCount.length <= 1) {
+        return { success: false, error: "Cannot delete the last admin" };
+      }
+    }
+
+    // Delete user
+    await db.delete(users).where(eq(users.username, normalizedEmail));
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error removing user from whitelist:", error);
+    return { success: false, error: "Internal server error" };
+  }
+}
+
+// Get all whitelisted users (admin only)
+export async function getWhitelistedUsers(): Promise<
+  Array<{
+    id: number;
+    username: string;
+    role: string;
+    isActive: boolean;
+    lastLogin: Date | null;
+    createdAt: Date;
+  }>
+> {
+  try {
+    const allUsers = await db
+      .select({
+        id: users.id,
+        username: users.username,
+        role: users.role,
+        isActive: users.isActive,
+        lastLogin: users.lastLogin,
+        createdAt: users.createdAt,
+      })
+      .from(users)
+      .orderBy(users.createdAt);
+
+    return allUsers;
+  } catch (error) {
+    console.error("Error fetching whitelisted users:", error);
+    return [];
   }
 }

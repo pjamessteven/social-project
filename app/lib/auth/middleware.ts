@@ -13,9 +13,13 @@ export interface AuthOptions {
  */
 export async function requireAuth(
   request: NextRequest,
-  options: AuthOptions = {}
+  options: AuthOptions = {},
 ): Promise<{ session: any; errorResponse: NextResponse | null }> {
-  const { requireAdmin = false, requireModerator = false, requireAuth = true } = options;
+  const {
+    requireAdmin = false,
+    requireModerator = false,
+    requireAuth = true,
+  } = options;
 
   // Get current session
   const session = await getCurrentSession();
@@ -34,7 +38,7 @@ export async function requireAuth(
           success: false,
           error: "Authentication required",
         },
-        { status: 401 }
+        { status: 401 },
       ),
     };
   }
@@ -50,7 +54,7 @@ export async function requireAuth(
             success: false,
             error: "Admin privileges required",
           },
-          { status: 403 }
+          { status: 403 },
         ),
       };
     }
@@ -67,7 +71,7 @@ export async function requireAuth(
             success: false,
             error: "Moderator or admin privileges required",
           },
-          { status: 403 }
+          { status: 403 },
         ),
       };
     }
@@ -81,7 +85,7 @@ export async function requireAuth(
  */
 export function withAuth(
   handler: (request: NextRequest, session: any) => Promise<NextResponse>,
-  options: AuthOptions = {}
+  options: AuthOptions = {},
 ) {
   return async (request: NextRequest): Promise<NextResponse> => {
     const { session, errorResponse } = await requireAuth(request, options);
@@ -124,7 +128,7 @@ export async function checkAuth(): Promise<{
     user: {
       id: session.userId,
       username: session.username,
-      email: session.email,
+      email: session.username, // Email is stored in username field
       role: session.role,
     },
   };

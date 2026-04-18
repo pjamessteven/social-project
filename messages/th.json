@@ -253,7 +253,8 @@
     "subtitle": "ดูด้วยตัวเองว่า detrans.ai กำลังช่วยเหลือผู้คนจากทั่วโลกอย่างไร",
     "tabs": {
       "featured": "ที่แนะนำ",
-      "all": "ทั้งหมด"
+      "all": "ทั้งหมด",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "แสดงการสนทนาเพิ่ม {count}",
@@ -318,6 +319,7 @@
       "ageRangeYears": "{min} - {max} ปี",
       "sex": {
         "all": "ชายและหญิง",
+      "mine": "Mine",
         "female": "หญิง",
         "male": "ชาย"
       },
@@ -482,6 +484,7 @@
     "loading": "กำลังโหลดวิดีโอ...",
     "filters": {
       "all": "เรื่องราวทั้งหมด",
+      "mine": "Mine",
       "female": "หญิง",
       "male": "ชาย",
       "detransitioners": "ผู้เลิกเปลี่ยนเพศ"

@@ -250,7 +250,8 @@
     "subtitle": "전 세계 사람들에게 detrans.ai가 어떻게 도움이 되는지 직접 확인하세요.",
     "tabs": {
       "featured": "추천",
-      "all": "전체"
+      "all": "전체",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "{count}개 더 많은 대화 표시",
@@ -315,6 +316,7 @@
       "ageRangeYears": "{min} - {max}세",
       "sex": {
         "all": "남성 및 여성",
+      "mine": "Mine",
         "female": "여성",
         "male": "남성"
       },
@@ -479,6 +481,7 @@
     "loading": "영상 불러오는 중...",
     "filters": {
       "all": "모든 이야기",
+      "mine": "Mine",
       "female": "여성",
       "male": "남성",
       "detransitioners": "디트랜지셔너"

@@ -253,7 +253,8 @@
     "subtitle": "Lihat sendiri bagaimana detrans.ai membantu orang-orang dari seluruh dunia.",
     "tabs": {
       "featured": "Unggulan",
-      "all": "Semua"
+      "all": "Semua",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "Tampilkan {count} Percakapan Lainnya",
@@ -318,6 +319,7 @@
       "ageRangeYears": "{min} - {max} tahun",
       "sex": {
         "all": "Laki-laki dan Perempuan",
+      "mine": "Mine",
         "female": "Perempuan",
         "male": "Laki-laki"
       },
@@ -482,6 +484,7 @@
     "loading": "Memuat video...",
     "filters": {
       "all": "Semua Cerita",
+      "mine": "Mine",
       "female": "Perempuan",
       "male": "Laki-laki",
       "detransitioners": "Orang yang Berhenti Transisi"

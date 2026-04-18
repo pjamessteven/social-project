@@ -253,7 +253,8 @@
     "subtitle": "Katso itse, kuinka detrans.ai auttaa ihmisiä ympäri maailmaa.",
     "tabs": {
       "featured": "Suositellut",
-      "all": "Kaikki"
+      "all": "Kaikki",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "Näytä {count} Keskustelua Lisää",
@@ -318,6 +319,7 @@
       "ageRangeYears": "{min} - {max} vuotta",
       "sex": {
         "all": "Miehet ja Naiset",
+      "mine": "Mine",
         "female": "Nainen",
         "male": "Mies"
       },
@@ -482,6 +484,7 @@
     "loading": "Ladataan videoita...",
     "filters": {
       "all": "Kaikki Tarinat",
+      "mine": "Mine",
       "female": "Nainen",
       "male": "Mies",
       "detransitioners": "Detransitionoineet"

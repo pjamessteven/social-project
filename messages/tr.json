@@ -252,7 +252,8 @@
     "subtitle": "Detrans.ai'nin dünyanın dört bir yanından gelen insanlara nasıl yardımcı olduğunu kendiniz görün.",
     "tabs": {
       "featured": "Öne Çıkan",
-      "all": "Tümü"
+      "all": "Tümü",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "{count} Konuşma Daha Göster",
@@ -317,6 +318,7 @@
       "ageRangeYears": "{min} - {max} yaş",
       "sex": {
         "all": "Erkek ve Kadın",
+      "mine": "Mine",
         "female": "Kadın",
         "male": "Erkek"
       },
@@ -481,6 +483,7 @@
     "loading": "Videolar yükleniyor...",
     "filters": {
       "all": "Tüm Hikayeler",
+      "mine": "Mine",
       "female": "Kadın",
       "male": "Erkek",
       "detransitioners": "Detransitioner'lar"

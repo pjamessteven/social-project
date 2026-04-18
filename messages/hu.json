@@ -253,7 +253,8 @@
     "subtitle": "Lásd saját szemmel, hogyan segít a detrans.ai az embereknek a világ minden tájáról.",
     "tabs": {
       "featured": "Kiemelt",
-      "all": "Összes"
+      "all": "Összes",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "{count} További Beszélgetés Mutatása",
@@ -318,6 +319,7 @@
       "ageRangeYears": "{min} - {max} év",
       "sex": {
         "all": "Férfi és Nő",
+      "mine": "Mine",
         "female": "Nő",
         "male": "Férfi"
       },
@@ -482,6 +484,7 @@
     "loading": "Videók betöltése...",
     "filters": {
       "all": "Összes Történet",
+      "mine": "Mine",
       "female": "Nő",
       "male": "Férfi",
       "detransitioners": "Detransitionálók"

@@ -253,7 +253,8 @@
     "subtitle": "Se selv hvordan detrans.ai hjelper mennesker fra hele verden.",
     "tabs": {
       "featured": "Fremhevet",
-      "all": "Alle"
+      "all": "Alle",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "Vis {count} flere samtaler",
@@ -318,6 +319,7 @@
       "ageRangeYears": "{min} - {max} år",
       "sex": {
         "all": "Mann og kvinne",
+      "mine": "Mine",
         "female": "Kvinne",
         "male": "Mann"
       },
@@ -482,6 +484,7 @@
     "loading": "Laster videoer...",
     "filters": {
       "all": "Alle historier",
+      "mine": "Mine",
       "female": "Kvinne",
       "male": "Mann",
       "detransitioners": "Detransisjonerte"

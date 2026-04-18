@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import { getCurrentSession } from "@/app/lib/auth/auth";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   try {
@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
           success: false,
           error: "Not authenticated",
         },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
       user: {
         id: session.userId,
         username: session.username,
-        email: session.email,
+        email: session.username, // Email is stored in username field
         role: session.role,
       },
     });
@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
         success: false,
         error: "Internal server error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

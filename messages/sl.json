@@ -253,7 +253,8 @@
     "subtitle": "Prepričajte se sami, kako detrans.ai pomaga ljudem po vsem svetu.",
     "tabs": {
       "featured": "Izpostavljeno",
-      "all": "Vsi"
+      "all": "Vsi",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "Prikaži še {count} pogovorov",
@@ -318,6 +319,7 @@
       "ageRangeYears": "{min} - {max} let",
       "sex": {
         "all": "Moški in ženske",
+      "mine": "Mine",
         "female": "Ženske",
         "male": "Moški"
       },
@@ -482,6 +484,7 @@
     "loading": "Nalaganje videov...",
     "filters": {
       "all": "Vse zgodbe",
+      "mine": "Mine",
       "female": "Ženske",
       "male": "Moški",
       "detransitioners": "Detranzicionarji"

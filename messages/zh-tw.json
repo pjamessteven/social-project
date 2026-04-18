@@ -253,7 +253,8 @@
     "subtitle": "看看detrans.ai如何幫助來自世界各地的人們。",
     "tabs": {
       "featured": "精選",
-      "all": "全部"
+      "all": "全部",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "顯示{count}個更多對話",
@@ -318,6 +319,7 @@
       "ageRangeYears": "{min} - {max}歲",
       "sex": {
         "all": "男性和女性",
+      "mine": "Mine",
         "female": "女性",
         "male": "男性"
       },
@@ -482,6 +484,7 @@
     "loading": "正在載入影片...",
     "filters": {
       "all": "所有故事",
+      "mine": "Mine",
       "female": "女性",
       "male": "男性",
       "detransitioners": "去過渡者"

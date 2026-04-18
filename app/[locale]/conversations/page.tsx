@@ -1,6 +1,4 @@
-import ConversationsPageClient, {
-  ConversationSummary,
-} from "@/app/components/content/ConversationsPage";
+import { ConversationSummary } from "@/app/components/content/ConversationsPage";
 import SeoConversationsPage from "@/app/components/content/SeoConversationsPage";
 import { isBot } from "@/app/lib/isBot";
 import { headers } from "next/headers";
@@ -79,7 +77,4 @@ export default async function ConversationsPage({
       />
     );
   }
-
-  // Real users get the interactive client component
-  return <ConversationsPageClient currentConversationId={conversationId} />;
 }

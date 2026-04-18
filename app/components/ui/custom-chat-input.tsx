@@ -9,6 +9,7 @@ import {
   useRouter,
 } from "@/i18n/routing";
 import { useChatStore } from "@/stores/chat-store";
+import { useUserStore } from "@/stores/user-store";
 import { Send, Square, UserSearch, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
@@ -40,6 +41,8 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const { isAuthenticated } = useUserStore();
 
   const showChatInput =
     path == "/" ||
@@ -310,7 +313,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                 (chatStatus === "streaming" || chatStatus === "submitted")
               }
               rows={1}
-              maxLength={MAX_MESSAGE_LENGTH}
+              maxLength={!isAuthenticated ? MAX_MESSAGE_LENGTH : undefined}
             />
 
             {/* Research toggle button */}

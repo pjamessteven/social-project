@@ -254,7 +254,8 @@
     "subtitle": "Podívejte se, jak detrans.ai pomáhá lidem z celého světa.",
     "tabs": {
       "featured": "Doporučené",
-      "all": "Všechny"
+      "all": "Všechny",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "Zobrazit {count} dalších konverzací",
@@ -319,6 +320,7 @@
       "ageRangeYears": "{min} - {max} let",
       "sex": {
         "all": "Muži a ženy",
+      "mine": "Mine",
         "female": "Ženy",
         "male": "Muži"
       },
@@ -483,6 +485,7 @@
     "loading": "Načítání videí...",
     "filters": {
       "all": "Všechny příběhy",
+      "mine": "Mine",
       "female": "Ženy",
       "male": "Muži",
       "detransitioners": "Detranzicionisté"
