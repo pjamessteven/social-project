@@ -4,13 +4,9 @@ export async function GET(request: NextRequest) {
   const host = request.headers.get("host") || "detrans.ai";
   const protocol = request.headers.get("x-forwarded-proto") || "https";
   const baseUrl = `${protocol}://${host}`;
-  const includeAffirm = !!host.includes("genderaffirming.ai");
-
-  const disallowRules = includeAffirm ? "" : "Disallow: /affirm/";
 
   const robots = `User-agent: *
 Allow: /
-${disallowRules}
 
 Sitemap: ${baseUrl}/sitemap.xml`;
 

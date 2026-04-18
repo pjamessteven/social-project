@@ -1,4 +1,4 @@
-import { MAX_MESSAGE_LENGTH } from "@/app/lib/constants";
+import { getCurrentSession } from "@/app/lib/auth/auth";
 import { getCountryFromIP } from "@/app/lib/geolocation";
 import { checkIpBan, getIpFromRequest } from "@/app/lib/ipBan";
 import {
@@ -9,7 +9,7 @@ import { checkRateLimit } from "@/app/lib/rateLimit";
 import { db } from "@/db";
 import { chatConversations } from "@/db/schema";
 import { createUIMessageStreamResponse, type UIMessage } from "ai";
-import { and, desc, eq, sql } from "drizzle-orm";
+import { and, desc, eq, isNull, sql } from "drizzle-orm";
 import { ChatMessage, type MessageType } from "llamaindex";
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
@@ -24,6 +24,7 @@ import {
 } from "./utils";
 
 // import workflow factory and settings from local file
+import { MAX_MESSAGE_LENGTH } from "@/app/lib/constants";
 import { stopAgentEvent } from "@llamaindex/workflow";
 import { initSettings } from "./app/settings";
 import { workflowFactory } from "./app/workflow";
@@ -33,7 +34,7 @@ initSettings();
 
 // Schema for chat request validation
 const chatRequestSchema = z.object({
-  message: z.string().max(MAX_MESSAGE_LENGTH),
+  message: z.string(), //.max(MAX_MESSAGE_LENGTH),
   conversationId: z.string().uuid().optional(),
   locale: z.string().optional(),
   id: z.string().optional(),
@@ -43,6 +44,10 @@ export async function POST(req: NextRequest) {
   try {
     // Check if IP is banned before processing request
     await checkIpBan(req);
+
+    // Get current session for username tracking
+    const session = await getCurrentSession();
+    const username = session?.username || null;
 
     const ipAddress = getIpFromRequest(req);
 
@@ -75,7 +80,11 @@ export async function POST(req: NextRequest) {
       id: requestId,
     } = validationResult.data;
 
-    const userInput = message.slice(0, MAX_MESSAGE_LENGTH);
+    let userInput = message;
+
+    if (!username) {
+      userInput = message.slice(0, MAX_MESSAGE_LENGTH);
+    }
 
     // Generate or use provided conversation UUID
     const chatUuid = conversationId || uuidv4();
@@ -105,37 +114,58 @@ export async function POST(req: NextRequest) {
           );
         }
 
-        // Auto-archive conversations older than 30 minutes
-        const thirtyMinutesAgo = Date.now() - 30 * 60 * 1000;
-        const lastUpdated = conversation.updatedAt.getTime();
-
-        if (lastUpdated < thirtyMinutesAgo) {
-          // Mark conversation as archived
-          await db
-            .update(chatConversations)
-            .set({ archived: true })
-            .where(eq(chatConversations.uuid, chatUuid));
-
-          return NextResponse.json(
-            {
-              error:
-                "This conversation has been archived and is no longer available for new messages.",
-            },
-            { status: 410 },
-          );
+        // Verify username ownership for existing conversations
+        // Signed-in users must own the conversation; anonymous users use IP verification
+        if (conversation.username) {
+          // Conversation belongs to a signed-in user
+          if (!username || conversation.username !== username) {
+            console.log(
+              `[CHAT API] Username mismatch: stored=${conversation.username}, request=${username}`,
+            );
+            return NextResponse.json(
+              {
+                error:
+                  "You cannot add messages to someone else's conversation.",
+              },
+              { status: 403 },
+            );
+          }
+        } else {
+          // Conversation is anonymous - verify IP ownership
+          if (conversation.ipAddress && conversation.ipAddress !== ipAddress) {
+            console.log(
+              `[CHAT API] IP mismatch: stored=${conversation.ipAddress}, request=${ipAddress}`,
+            );
+            return NextResponse.json(
+              {
+                error:
+                  "You cannot add messages to someone else's conversation.",
+              },
+              { status: 403 },
+            );
+          }
         }
 
-        // Verify IP ownership for existing conversations
-        if (conversation.ipAddress && conversation.ipAddress !== ipAddress) {
-          console.log(
-            `[CHAT API] IP mismatch: stored=${conversation.ipAddress}, request=${ipAddress}`,
-          );
-          return NextResponse.json(
-            {
-              error: "You cannot add messages to someone else's conversation.",
-            },
-            { status: 403 },
-          );
+        // Auto-archive conversations older than 30 minutes (only for anonymous users)
+        if (!username) {
+          const thirtyMinutesAgo = Date.now() - 30 * 60 * 1000;
+          const lastUpdated = conversation.updatedAt.getTime();
+
+          if (lastUpdated < thirtyMinutesAgo) {
+            // Mark conversation as archived
+            await db
+              .update(chatConversations)
+              .set({ archived: true })
+              .where(eq(chatConversations.uuid, chatUuid));
+
+            return NextResponse.json(
+              {
+                error:
+                  "This conversation has been archived and is no longer available for new messages.",
+              },
+              { status: 410 },
+            );
+          }
         }
       }
     }
@@ -169,7 +199,29 @@ export async function POST(req: NextRequest) {
 
       if (!cachedResponse) {
         console.log("[CHAT API] Cache miss - checking captcha ");
-        // Otherwise require captcha if not in cache
+        // Require captcha if not in cache and user is not logged in
+        // Logged-in users bypass CAPTCHA
+        if (!username) {
+          const captchaRequired = await isCaptchaRequired(ipAddress);
+          if (captchaRequired) {
+            return NextResponse.json(
+              {
+                requiresCaptcha: true,
+                error: "CAPTCHA verification required",
+              },
+              { status: 402 },
+            );
+          }
+        } else {
+          console.log("[CHAT API] Logged-in user - bypassing captcha ");
+        }
+      } else {
+        console.log("[CHAT API] Cache hit - bypass captcha ");
+      }
+    } else {
+      // Check CAPTCHA status only for anonymous users
+      // Logged-in users bypass CAPTCHA
+      if (!username) {
         const captchaRequired = await isCaptchaRequired(ipAddress);
         if (captchaRequired) {
           return NextResponse.json(
@@ -181,19 +233,7 @@ export async function POST(req: NextRequest) {
           );
         }
       } else {
-        console.log("[CHAT API] Cache hit - bypass captcha ");
-      }
-    } else {
-      // Check CAPTCHA status
-      const captchaRequired = await isCaptchaRequired(ipAddress);
-      if (captchaRequired) {
-        return NextResponse.json(
-          {
-            requiresCaptcha: true,
-            error: "CAPTCHA verification required",
-          },
-          { status: 402 },
-        );
+        console.log("[CHAT API] Logged-in user - bypassing captcha ");
       }
     }
 
@@ -263,7 +303,7 @@ export async function POST(req: NextRequest) {
             await pauseForHumanInput(context, responseEvent, requestId); // use requestId to save snapshot
           },
           onFinal: async (messages: UIMessage[], dataStreamWriter) => {
-            await saveConversation(chatUuid, messages, ipAddress);
+            await saveConversation(chatUuid, messages, ipAddress, username);
             // Increment message count for CAPTCHA tracking
             if (!cachedResponse) {
               await incrementMessageCount(ipAddress);
@@ -328,18 +368,35 @@ export async function GET(request: NextRequest) {
     const locale = searchParams.get("locale") || "en";
     const featuredParam = searchParams.get("featured");
     const isFeatured = featuredParam === "true";
+    const mineParam = searchParams.get("mine");
+    const isMine = mineParam === "true";
+
+    // Check if user is logged in
+    const session = await getCurrentSession();
+    const isLoggedIn = !!session;
+    const isAdmin = session?.role === "admin";
+    const username = session?.username;
 
     console.log("API GET:", {
       featuredParam,
       isFeatured,
+      isMine,
+      isLoggedIn,
+      isAdmin,
+      username,
       page,
       limit,
       offset,
       locale,
     });
 
-    // Allow all users to access all conversations
-    // Removed admin check for unauthenticated users
+    // Anonymous users cannot use "mine" filter
+    if (isMine && !isLoggedIn) {
+      return NextResponse.json(
+        { error: "Authentication required to view your conversations" },
+        { status: 401 },
+      );
+    }
 
     // Build conversations query with conditional where clause
     const conversationsQuery = db
@@ -355,6 +412,7 @@ export async function GET(request: NextRequest) {
         conversationSummaryTranslation:
           chatConversations.conversationSummaryTranslation,
         country: chatConversations.country,
+        username: chatConversations.username,
       })
       .from(chatConversations)
       .orderBy(desc(chatConversations.updatedAt))
@@ -366,24 +424,52 @@ export async function GET(request: NextRequest) {
       .select({ value: sql<number>`count(*)` })
       .from(chatConversations);
 
-    // Execute queries with conditional where clauses
+    // Build where conditions based on access control
+    let conversationsWhere: any;
+    let countWhere: any;
+
+    if (isMine && username) {
+      conversationsWhere = and(
+        eq(chatConversations.mode, "detrans_chat"),
+        eq(chatConversations.username, username),
+      );
+      countWhere = and(
+        eq(chatConversations.mode, "detrans_chat"),
+        eq(chatConversations.username, username),
+      );
+    } else {
+      if (isFeatured) {
+        conversationsWhere = and(
+          eq(chatConversations.mode, "detrans_chat"),
+          eq(chatConversations.featured, true),
+          isNull(chatConversations.username),
+        );
+        countWhere = and(
+          eq(chatConversations.mode, "detrans_chat"),
+          eq(chatConversations.featured, true),
+          isNull(chatConversations.username),
+        );
+      } else {
+        if (isAdmin) {
+          conversationsWhere = eq(chatConversations.mode, "detrans_chat");
+          countWhere = eq(chatConversations.mode, "detrans_chat");
+        } else {
+          conversationsWhere = and(
+            eq(chatConversations.mode, "detrans_chat"),
+            isNull(chatConversations.username),
+          );
+          countWhere = and(
+            eq(chatConversations.mode, "detrans_chat"),
+            isNull(chatConversations.username),
+          );
+        }
+      }
+    }
+
+    // Execute queries
     const [conversations, totalResult] = await Promise.all([
-      isFeatured
-        ? conversationsQuery.where(
-            and(
-              eq(chatConversations.mode, "detrans_chat"),
-              eq(chatConversations.featured, true),
-            ),
-          )
-        : conversationsQuery.where(eq(chatConversations.mode, "detrans_chat")),
-      isFeatured
-        ? countQuery.where(
-            and(
-              eq(chatConversations.mode, "detrans_chat"),
-              eq(chatConversations.featured, true),
-            ),
-          )
-        : countQuery.where(eq(chatConversations.mode, "detrans_chat")),
+      conversationsQuery.where(conversationsWhere),
+      countQuery.where(countWhere),
     ]);
 
     // Localize conversations based on requested locale
@@ -422,8 +508,12 @@ async function saveConversation(
   uuid: string,
   messages: UIMessage[],
   ipAddress?: string | null,
+  username?: string | null,
 ): Promise<void> {
   try {
+    // Check if user is logged in
+    const isLoggedIn = !!username;
+
     // Get country from IP if available
     let country: string | null = null;
     if (ipAddress && ipAddress !== "unknown") {
@@ -502,6 +592,10 @@ async function saveConversation(
       if (existing.ipAddress !== undefined) {
         updateData.ipAddress = existing.ipAddress;
       }
+      // Preserve existing username - never change ownership
+      if (existing.username !== undefined) {
+        updateData.username = existing.username;
+      }
     } else {
       updateData.title = defaultTitle;
       // Set country and IP address for new conversations
@@ -510,6 +604,10 @@ async function saveConversation(
       }
       if (isValidIP) {
         updateData.ipAddress = ipAddress;
+      }
+      // Set username for new conversations created by logged-in users
+      if (username) {
+        updateData.username = username;
       }
     }
 
@@ -521,10 +619,11 @@ async function saveConversation(
         mode: "detrans_chat",
         title: updateData.title,
         messages: JSON.stringify(completeMessages),
-        featured: false,
+        featured: isLoggedIn ? null : false,
         archived: false,
         country: updateData.country || null,
         ipAddress: updateData.ipAddress || null,
+        username: updateData.username || null,
         createdAt: new Date(),
         updatedAt: new Date(),
       })

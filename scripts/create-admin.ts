@@ -1,6 +1,5 @@
 #!/usr/bin/env tsx
 
-import bcrypt from "bcryptjs";
 import "dotenv/config";
 import { eq } from "drizzle-orm";
 import { db } from "../db";
@@ -18,33 +17,25 @@ async function createAdminUser() {
 
   if (existingAdmin[0]) {
     console.log("⚠️  Admin user already exists:");
-    console.log(`   Username: ${existingAdmin[0].username}`);
-    console.log(`   Email: ${existingAdmin[0].email}`);
+    console.log(`   Email: ${existingAdmin[0].username}`);
     console.log(`   Role: ${existingAdmin[0].role}`);
     return;
   }
 
-  // Get admin credentials from environment or prompt
-  const adminUsername = process.env.ADMIN_USERNAME || "admin";
+  // Get admin email from environment or use default
   const adminEmail = process.env.ADMIN_EMAIL || "admin@example.com";
-  const adminPassword = process.env.ADMIN_PASSWORD || "admin123";
 
-  console.log(`📝 Creating admin user with credentials:`);
-  console.log(`   Username: ${adminUsername}`);
+  console.log(`📝 Creating admin user:`);
   console.log(`   Email: ${adminEmail}`);
-  console.log(`   Password: ${adminPassword} (change this immediately!)`);
+  console.log(`   Role: admin`);
+  console.log(`\n   ⚠️  This email must be registered in your Zoho account!`);
 
-  // Hash password
-  const passwordHash = await bcrypt.hash(adminPassword, 10);
-
-  // Create admin user
+  // Create admin user (no password needed with magic links)
   try {
     const newAdmin = await db
       .insert(users)
       .values({
-        username: adminUsername,
-        email: adminEmail,
-        passwordHash,
+        username: adminEmail.toLowerCase().trim(),
         role: "admin",
         isActive: true,
         createdAt: new Date(),
@@ -52,13 +43,13 @@ async function createAdminUser() {
       })
       .returning();
 
-    console.log("✅ Admin user created successfully!");
+    console.log("\n✅ Admin user created successfully!");
     console.log(`   User ID: ${newAdmin[0].id}`);
-    console.log(`   Username: ${newAdmin[0].username}`);
-    console.log(`   Email: ${newAdmin[0].email}`);
+    console.log(`   Email: ${newAdmin[0].username}`);
     console.log(`   Role: ${newAdmin[0].role}`);
-    console.log("\n⚠️  IMPORTANT: Change the default password immediately!");
+    console.log("\n📧 Magic link login enabled - no password needed!");
     console.log("   Login at: /login");
+    console.log("   A magic link will be emailed to this address.");
   } catch (error) {
     console.error("❌ Error creating admin user:", error);
     process.exit(1);

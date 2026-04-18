@@ -253,7 +253,8 @@
     "subtitle": "See for yourself how detrans.ai is helping people from around the world.",
     "tabs": {
       "featured": "Featured",
-      "all": "All"
+      "all": "All",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "Show {count} More Conversations",

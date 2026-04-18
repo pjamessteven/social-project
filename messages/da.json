@@ -252,7 +252,8 @@
     "subtitle": "Se selv, hvordan detrans.ai hjælper mennesker fra hele verden.",
     "tabs": {
       "featured": "Udvalgte",
-      "all": "Alle"
+      "all": "Alle",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "Vis {count} Flere Samtaler",
@@ -317,6 +318,7 @@
       "ageRangeYears": "{min} - {max} år",
       "sex": {
         "all": "Mand og Kvinde",
+      "mine": "Mine",
         "female": "Kvinde",
         "male": "Mand"
       },
@@ -481,6 +483,7 @@
     "loading": "Indlæser videoer...",
     "filters": {
       "all": "Alle Historier",
+      "mine": "Mine",
       "female": "Kvinde",
       "male": "Mand",
       "detransitioners": "Detransitionister"

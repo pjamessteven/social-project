@@ -253,7 +253,8 @@
     "subtitle": "Вижте сами как detrans.ai помага на хора от цял свят.",
     "tabs": {
       "featured": "Препоръчани",
-      "all": "Всички"
+      "all": "Всички",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "Покажи още {count} разговора",
@@ -318,6 +319,7 @@
       "ageRangeYears": "{min} - {max} години",
       "sex": {
         "all": "Мъже и жени",
+      "mine": "Mine",
         "female": "Жени",
         "male": "Мъже"
       },
@@ -482,6 +484,7 @@
     "loading": "Зареждане на видеа...",
     "filters": {
       "all": "Всички истории",
+      "mine": "Mine",
       "female": "Жени",
       "male": "Мъже",
       "detransitioners": "Детрансишънъри"

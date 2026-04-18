@@ -253,7 +253,8 @@
     "subtitle": "Vezi singur cum detrans.ai ajută oameni din întreaga lume.",
     "tabs": {
       "featured": "Recomandate",
-      "all": "Toate"
+      "all": "Toate",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "Arată încă {count} Conversații",
@@ -318,6 +319,7 @@
       "ageRangeYears": "{min} - {max} ani",
       "sex": {
         "all": "Masculin și Feminin",
+      "mine": "Mine",
         "female": "Feminin",
         "male": "Masculin"
       },
@@ -482,6 +484,7 @@
     "loading": "Se încarcă videoclipurile...",
     "filters": {
       "all": "Toate Povestirile",
+      "mine": "Mine",
       "female": "Feminin",
       "male": "Masculin",
       "detransitioners": "Persoane care au Făcut Detransiția"

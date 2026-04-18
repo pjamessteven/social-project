@@ -249,7 +249,8 @@
     "subtitle": "Sieh selbst, wie detrans.ai Menschen auf der ganzen Welt hilft.",
     "tabs": {
       "featured": "Hervorgehoben",
-      "all": "Alle"
+      "all": "Alle",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "{count} weitere Gespräche anzeigen",
@@ -314,6 +315,7 @@
       "ageRangeYears": "{min} - {max} Jahre",
       "sex": {
         "all": "Männlich und Weiblich",
+      "mine": "Mine",
         "female": "Weiblich",
         "male": "Männlich"
       },
@@ -478,6 +480,7 @@
     "loading": "Lade Videos...",
     "filters": {
       "all": "Alle Geschichten",
+      "mine": "Mine",
       "female": "Weiblich",
       "male": "Männlich",
       "detransitioners": "Detransitionierende"

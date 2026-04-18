@@ -1,9 +1,9 @@
 "use client";
 
 import { formatCountryDisplay } from "@/app/lib/countries";
+import { Link } from "@/i18n/routing";
 import { Ban, Clock, MoreVertical, Star, Trash2 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
 import { ReactNode, useState } from "react";
 import ChatBubbleButton from "../ChatBubbleButton";
 export interface ConversationCardProps {
@@ -26,6 +26,8 @@ export interface ConversationCardProps {
   isTogglingFeatured?: boolean;
   onDeleteConversation?: (uuid: string) => Promise<void>;
   onBanUser?: (uuid: string) => Promise<void>;
+  conversationUsername?: string | null;
+  currentUsername?: string | null;
 }
 
 export function ConversationCard({
@@ -48,17 +50,27 @@ export function ConversationCard({
   isTogglingFeatured = false,
   onDeleteConversation,
   onBanUser,
+  conversationUsername,
+  currentUsername,
 }: ConversationCardProps) {
   const t = useTranslations("conversationCard");
   const locale = useLocale();
   const [showAdminMenu, setShowAdminMenu] = useState(false);
 
+  // Determine if current user is the owner of this conversation
+  const isOwner = currentUsername && conversationUsername === currentUsername;
+  // Show delete button if user is admin or owner
+  const canDelete = isAdminUser || isOwner;
+
   // Get localized conversation summary
   const getLocalizedSummary = (): string | null => {
     if (!conversationSummaryTranslation) return conversationSummary;
-    
+
     try {
-      const translations = JSON.parse(conversationSummaryTranslation) as Record<string, string>;
+      const translations = JSON.parse(conversationSummaryTranslation) as Record<
+        string,
+        string
+      >;
       return translations[locale] || conversationSummary;
     } catch {
       return conversationSummary;
@@ -70,9 +82,12 @@ export function ConversationCard({
   // Get localized title
   const getLocalizedTitle = (): string | null => {
     if (!titleTranslation) return title;
-    
+
     try {
-      const translations = JSON.parse(titleTranslation) as Record<string, string>;
+      const translations = JSON.parse(titleTranslation) as Record<
+        string,
+        string
+      >;
       return translations[locale] || title;
     } catch {
       return title;
@@ -164,55 +179,58 @@ export function ConversationCard({
                 {!isAdminUser && showFeaturedStar && featured && (
                   <Star className="h-4 w-4 shrink-0 fill-yellow-400 text-yellow-400" />
                 )}
+                {/* Show star toggle for admin users only */}
                 {isAdminUser && (
-                  <>
-                    <Star
+                  <Star
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (!isTogglingFeatured && onToggleFeatured) {
+                        onToggleFeatured(uuid, featured);
+                      }
+                    }}
+                    className={`h-4 w-4 shrink-0 ${
+                      featured
+                        ? "fill-yellow-400 text-yellow-400"
+                        : "text-gray-400"
+                    }`}
+                  />
+                )}
+                {/* Show admin menu for users who can delete (admin or owner) */}
+                {canDelete && (
+                  <div className="relative">
+                    <div
                       onClick={(e) => {
                         e.stopPropagation();
-                        if (!isTogglingFeatured && onToggleFeatured) {
-                          onToggleFeatured(uuid, featured);
-                        }
+                        setShowAdminMenu(!showAdminMenu);
                       }}
-                      className={`h-4 w-4 shrink-0 ${
-                        featured
-                          ? "fill-yellow-400 text-yellow-400"
-                          : "text-gray-400"
-                      }`}
-                    />
-                    <div className="relative">
-                      <div
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setShowAdminMenu(!showAdminMenu);
-                        }}
-                        className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-md hover:bg-gray-100"
-                      >
-                        <MoreVertical className="h-4 w-4 text-gray-500" />
-                      </div>
+                      className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-md hover:bg-gray-100"
+                    >
+                      <MoreVertical className="h-4 w-4 text-gray-500" />
+                    </div>
 
-                      {showAdminMenu && (
-                        <div className="absolute top-full right-0 z-10 mt-1 w-48 rounded-md border border-gray-200 bg-white py-1 shadow-lg">
-                          <button
-                            onClick={async (e) => {
-                              e.stopPropagation();
-                              if (onDeleteConversation && !isDeleting) {
-                                setIsDeleting(true);
-                                try {
-                                  await onDeleteConversation(uuid);
-                                } finally {
-                                  setIsDeleting(false);
-                                  setShowAdminMenu(false);
-                                }
+                    {showAdminMenu && (
+                      <div className="absolute top-full right-0 z-10 mt-1 w-48 rounded-md border border-gray-200 bg-white py-1 shadow-lg">
+                        <button
+                          onClick={async (e) => {
+                            e.stopPropagation();
+                            if (onDeleteConversation && !isDeleting) {
+                              setIsDeleting(true);
+                              try {
+                                await onDeleteConversation(uuid);
+                              } finally {
+                                setIsDeleting(false);
+                                setShowAdminMenu(false);
                               }
-                            }}
-                            disabled={isDeleting}
-                            className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-red-600 hover:bg-gray-100 disabled:opacity-50"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                            {isDeleting
-                              ? t("admin.deleting")
-                              : t("admin.delete")}
-                          </button>
+                            }
+                          }}
+                          disabled={isDeleting}
+                          className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-red-600 hover:bg-gray-100 disabled:opacity-50"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                          {isDeleting ? t("admin.deleting") : t("admin.delete")}
+                        </button>
+                        {/* Ban button only for admin users */}
+                        {isAdminUser && onBanUser && (
                           <button
                             onClick={async (e) => {
                               e.stopPropagation();
@@ -232,10 +250,10 @@ export function ConversationCard({
                             <Ban className="h-4 w-4" />
                             {isBanning ? t("admin.banning") : t("admin.ban")}
                           </button>
-                        </div>
-                      )}
-                    </div>
-                  </>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
             </div>

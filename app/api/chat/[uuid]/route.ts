@@ -1,3 +1,4 @@
+import { getCurrentSession } from "@/app/lib/auth/auth";
 import { requireAuth } from "@/app/lib/auth/middleware";
 import { checkIpBan } from "@/app/lib/ipBan";
 import { bannedUsers, chatConversations, db } from "@/db";
@@ -20,9 +21,7 @@ const LOCALES = locales;
 type Locale = (typeof LOCALES)[number];
 
 // Function to generate AI summary of a conversation
-async function generateConversationTitleAndSummary(
-  messages: string,
-): Promise<{
+async function generateConversationTitleAndSummary(messages: string): Promise<{
   title: string;
   summary: string;
   titleTranslations: Record<Locale, string>;
@@ -628,13 +627,14 @@ export async function DELETE(
   { params }: { params: Promise<{ uuid: string }> },
 ) {
   try {
-    // Check admin authentication
-    const { session, errorResponse } = await requireAuth(request, {
-      requireAdmin: true,
-    });
+    // Check authentication (any logged-in user, not just admin)
+    const session = await getCurrentSession();
 
-    if (errorResponse) {
-      return errorResponse;
+    if (!session) {
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 },
+      );
     }
 
     const { uuid } = await params;
@@ -663,6 +663,7 @@ export async function DELETE(
         updatedAt: chatConversations.updatedAt,
         country: chatConversations.country,
         ipAddress: chatConversations.ipAddress,
+        username: chatConversations.username,
       })
       .from(chatConversations)
       .where(eq(chatConversations.uuid, uuid))
@@ -672,6 +673,21 @@ export async function DELETE(
       return NextResponse.json(
         { error: "Conversation not found" },
         { status: 404 },
+      );
+    }
+
+    const conversation = existingConversation[0];
+
+    // Check authorization:
+    // - Admin can delete any conversation
+    // - Regular users can only delete their own conversations
+    const isAdmin = session.role === "admin";
+    const isOwner = conversation.username === session.username;
+
+    if (!isAdmin && !isOwner) {
+      return NextResponse.json(
+        { error: "You can only delete your own conversations" },
+        { status: 403 },
       );
     }
 

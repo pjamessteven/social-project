@@ -251,7 +251,8 @@
     "subtitle": "Zie zelf hoe detrans.ai mensen over de hele wereld helpt.",
     "tabs": {
       "featured": "Uitgelicht",
-      "all": "Alle"
+      "all": "Alle",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "Toon {count} Meer Gesprekken",
@@ -316,6 +317,7 @@
       "ageRangeYears": "{min} - {max} jaar",
       "sex": {
         "all": "Man en Vrouw",
+      "mine": "Mine",
         "female": "Vrouw",
         "male": "Man"
       },
@@ -480,6 +482,7 @@
     "loading": "Video's laden...",
     "filters": {
       "all": "Alle Verhalen",
+      "mine": "Mine",
       "female": "Vrouw",
       "male": "Man",
       "detransitioners": "Detransitioners"

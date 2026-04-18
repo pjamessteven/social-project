@@ -252,7 +252,8 @@
     "subtitle": "ראה/י בעצמך איך detrans.ai עוזר לאנשים מרחבי העולם.",
     "tabs": {
       "featured": "מומלצים",
-      "all": "הכל"
+      "all": "הכל",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "הצג {count} שיחות נוספות",
@@ -317,6 +318,7 @@
       "ageRangeYears": "{min} - {max} שנים",
       "sex": {
         "all": "נשים וגברים",
+      "mine": "Mine",
         "female": "נקבה",
         "male": "זכר"
       },
@@ -481,6 +483,7 @@
     "loading": "טוען סרטונים...",
     "filters": {
       "all": "כל הסיפורים",
+      "mine": "Mine",
       "female": "נקבה",
       "male": "זכר",
       "detransitioners": "מדטרנזישנרים"

@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
 
     const ok = await mailer.sendMail({
       to: process.env.ZOHO_EMAIL!,
-      subject: `${site == "detrans" ? "detrans.ai" : "genderaffirming.ai"} Contact Form: ${name}: ${subject}`,
+      subject: `${"detrans.ai"} Contact Form: ${name}: ${subject}`,
       content: `<p><b>From:</b> ${name} (${email}): <br/><b>Subject:</b>${subject}</p><p>${message}</p>`,
     });
 

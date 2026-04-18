@@ -254,7 +254,8 @@
     "subtitle": "شاهد بنفسك كيف يساعد detrans.ai الناس من جميع أنحاء العالم.",
     "tabs": {
       "featured": "مميز",
-      "all": "الكل"
+      "all": "الكل",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "عرض {count} محادثات إضافية",
@@ -319,6 +320,7 @@
       "ageRangeYears": "{min} - {max} سنة",
       "sex": {
         "all": "ذكور وإناث",
+      "mine": "Mine",
         "female": "أنثى",
         "male": "ذكر"
       },
@@ -483,6 +485,7 @@
     "loading": "جاري تحميل مقاطع الفيديو...",
     "filters": {
       "all": "جميع القصص",
+      "mine": "Mine",
       "female": "أنثى",
       "male": "ذكر",
       "detransitioners": "الأشخاص الذين تراجعوا عن التحول"

@@ -253,7 +253,8 @@
     "subtitle": "Pamatykite patys, kaip detrans.ai padeda žmonėms iš viso pasaulio.",
     "tabs": {
       "featured": "Išskirtiniai",
-      "all": "Visi"
+      "all": "Visi",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "Rodyti dar {count} pokalbius",
@@ -318,6 +319,7 @@
       "ageRangeYears": "{min} - {max} metai",
       "sex": {
         "all": "Vyrai ir moterys",
+      "mine": "Mine",
         "female": "Moteris",
         "male": "Vyras"
       },
@@ -482,6 +484,7 @@
     "loading": "Įkeliami vaizdo įrašai...",
     "filters": {
       "all": "Visos istorijos",
+      "mine": "Mine",
       "female": "Moteris",
       "male": "Vyras",
       "detransitioners": "Detranzicionieriai"

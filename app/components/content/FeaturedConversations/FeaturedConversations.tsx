@@ -2,8 +2,16 @@
 
 import { cn, toggleFeaturedAPI } from "@/app/lib/utils";
 import { useUserStore } from "@/stores/user-store";
-import { History, List, Loader2, MessageSquare, Star } from "lucide-react";
+import {
+  History,
+  List,
+  Loader2,
+  MessageSquare,
+  Star,
+  User,
+} from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "../../ui/tabs";
 import { ConversationCard } from "../ConversationCard/ConversationCard";
@@ -20,6 +28,7 @@ interface FeaturedConversation {
   conversationSummaryTranslation: string | null;
   titleTranslation: string | null;
   country: string | null; // Country from IP geolocation
+  username?: string | null;
 }
 
 // Custom hook to detect medium screens (md: 768px and larger)
@@ -43,13 +52,51 @@ function useIsMediumScreen() {
 
 export function FeaturedConversations() {
   const { isAuthenticated, user } = useUserStore();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [conversations, setConversations] = useState<FeaturedConversation[]>(
     [],
   );
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [currentTab, setCurrentTab] = useState<"featured" | "all">("featured");
+
+  // Initialize tab from URL query parameter, defaulting to "featured"
+  const getInitialTab = useCallback((): "featured" | "all" | "mine" => {
+    const tabFromUrl = searchParams.get("tab");
+    if (
+      tabFromUrl === "all" ||
+      tabFromUrl === "mine" ||
+      tabFromUrl === "featured"
+    ) {
+      // Only allow "mine" if user is authenticated
+      if (tabFromUrl === "mine" && !isAuthenticated) {
+        return "featured";
+      }
+      return tabFromUrl;
+    }
+    return "featured";
+  }, [searchParams, isAuthenticated]);
+
+  const [currentTab, setCurrentTab] = useState<"featured" | "all" | "mine">(
+    getInitialTab(),
+  );
+
+  // Update URL when tab changes
+  const handleTabChange = useCallback(
+    (value: "featured" | "all" | "mine") => {
+      setCurrentTab(value);
+      const params = new URLSearchParams(searchParams.toString());
+      if (value === "featured") {
+        params.delete("tab");
+      } else {
+        params.set("tab", value);
+      }
+      // Use replace to avoid adding to history stack for tab changes
+      router.replace(`?${params.toString()}`, { scroll: false });
+    },
+    [router, searchParams],
+  );
   const [showAllMobile, setShowAllMobile] = useState(false);
   const [togglingFeaturedUuid, setTogglingFeaturedUuid] = useState<
     string | null
@@ -109,8 +156,6 @@ export function FeaturedConversations() {
   };
 
   const handleDeleteConversation = async (uuid: string) => {
-    if (user?.role !== "admin") return;
-
     if (
       !confirm(
         "Are you sure you want to delete this conversation? This action cannot be undone.",
@@ -248,12 +293,20 @@ export function FeaturedConversations() {
         }
 
         const isFeatured = currentTab === "featured";
+        const isMine = currentTab === "mine";
         // Use limit=12 for medium screens and larger, limit=8 for smaller screens
         const limit = isMediumScreen ? 12 : 8;
-        const response = await fetch(
-          `/api/chat?featured=${isFeatured}&limit=${limit}&page=${page}&locale=${locale}`,
-          { signal: abortController.signal },
-        );
+        const params = new URLSearchParams();
+        params.set("featured", isFeatured.toString());
+        params.set("limit", limit.toString());
+        params.set("page", page.toString());
+        params.set("locale", locale);
+        if (isMine) {
+          params.set("mine", "true");
+        }
+        const response = await fetch(`/api/chat?${params.toString()}`, {
+          signal: abortController.signal,
+        });
 
         if (!response.ok) {
           if (response.status === 403) {
@@ -336,6 +389,27 @@ export function FeaturedConversations() {
     };
   }, [fetchConversations]);
 
+  // Sync tab state when URL changes (for back/forward navigation)
+  useEffect(() => {
+    const tabFromUrl = searchParams.get("tab");
+    let newTab: "featured" | "all" | "mine" = "featured";
+    if (
+      tabFromUrl === "all" ||
+      tabFromUrl === "mine" ||
+      tabFromUrl === "featured"
+    ) {
+      // Only allow "mine" if user is authenticated
+      if (tabFromUrl === "mine" && !isAuthenticated) {
+        newTab = "featured";
+      } else {
+        newTab = tabFromUrl;
+      }
+    }
+    if (newTab !== currentTab) {
+      setCurrentTab(newTab);
+    }
+  }, [searchParams, isAuthenticated, currentTab]);
+
   const handleLoadMore = () => {
     if (!loadingMore && pagination) {
       const currentPage = pagination.page;
@@ -369,7 +443,7 @@ export function FeaturedConversations() {
         <Tabs
           value={currentTab}
           onValueChange={(value: string) =>
-            setCurrentTab(value as "featured" | "all")
+            handleTabChange(value as "featured" | "all" | "mine")
           }
           className="w-full"
         >
@@ -384,7 +458,9 @@ export function FeaturedConversations() {
                 {t("subtitle")}
               </div>
             </div>
-            <TabsList className="mb-4 grid h-12 grid-cols-2 gap-1 rounded-xl border lg:mb-0 lg:w-1/3">
+            <TabsList
+              className={`mb-4 grid h-12 gap-1 rounded-xl border lg:mb-0 lg:w-1/3 ${isAuthenticated ? "grid-cols-3" : "grid-cols-2"}`}
+            >
               <TabsTrigger
                 value="featured"
                 className="flex-row items-center gap-2 rounded-lg py-2"
@@ -401,10 +477,24 @@ export function FeaturedConversations() {
                 <List className="hidden h-4 w-4 sm:block" />
                 <span className="text-sm font-medium">{t("tabs.all")}</span>
               </TabsTrigger>
+              {isAuthenticated && (
+                <TabsTrigger
+                  value="mine"
+                  className="flex-row items-center gap-2 rounded-lg py-2"
+                >
+                  <User className="hidden h-4 w-4 sm:block" />
+                  <span className="text-sm font-medium">{t("tabs.mine")}</span>
+                </TabsTrigger>
+              )}
             </TabsList>
           </div>
+          {conversations.length === 0 && !loading && (
+            <div className="text-muted-foreground mt-24 mb-16 rounded-xl border p-8 text-center">
+              No conversations yet!
+            </div>
+          )}
 
-          {loading || conversations.length === 0 ? (
+          {loading ? (
             <>
               {/* Mobile loading skeletons - single column */}
               <div className="flex flex-col sm:hidden">
@@ -591,15 +681,21 @@ export function FeaturedConversations() {
                         country={convo.country}
                         showFeaturedStar={true}
                         layout="grid"
-                        onClick={() => {
-                          setSelectedConversationId(convo.uuid);
-                          setDialogOpen(true);
-                        }}
+                        onClick={
+                          user?.username && convo.username === user.username
+                            ? undefined
+                            : () => {
+                                setSelectedConversationId(convo.uuid);
+                                setDialogOpen(true);
+                              }
+                        }
                         isAdminUser={user?.role === "admin"}
                         onToggleFeatured={handleToggleFeatured}
                         isTogglingFeatured={togglingFeaturedUuid === convo.uuid}
                         onDeleteConversation={handleDeleteConversation}
                         onBanUser={handleBanUser}
+                        conversationUsername={convo.username}
+                        currentUsername={user?.username}
                       >
                         {convo.messages}
                       </ConversationCard>
@@ -609,7 +705,7 @@ export function FeaturedConversations() {
               </div>
 
               {/* Desktop: Responsive columns */}
-              <div className="relative hidden grid-cols-1 gap-3 sm:grid sm:grid-cols-2 md:mt-8 md:grid-cols-3 lg:gap-4">
+              <div className="relative mb-4 hidden grid-cols-1 gap-3 sm:grid sm:grid-cols-2 md:mt-8 md:grid-cols-3 lg:gap-4">
                 {/* First column */}
                 <div className="flex flex-col">
                   {getItemsForColumn(0, isMediumScreen ? 3 : 2).map((convo) => (
@@ -629,10 +725,14 @@ export function FeaturedConversations() {
                           country={convo.country}
                           showFeaturedStar={true}
                           layout="grid"
-                          onClick={() => {
-                            setSelectedConversationId(convo.uuid);
-                            setDialogOpen(true);
-                          }}
+                          onClick={
+                            user?.username && convo.username === user.username
+                              ? undefined
+                              : () => {
+                                  setSelectedConversationId(convo.uuid);
+                                  setDialogOpen(true);
+                                }
+                          }
                           isAdminUser={user?.role === "admin"}
                           onToggleFeatured={handleToggleFeatured}
                           isTogglingFeatured={
@@ -640,6 +740,8 @@ export function FeaturedConversations() {
                           }
                           onDeleteConversation={handleDeleteConversation}
                           onBanUser={handleBanUser}
+                          conversationUsername={convo.username}
+                          currentUsername={user?.username}
                         >
                           {convo.messages}
                         </ConversationCard>
@@ -667,10 +769,14 @@ export function FeaturedConversations() {
                           country={convo.country}
                           showFeaturedStar={true}
                           layout="grid"
-                          onClick={() => {
-                            setSelectedConversationId(convo.uuid);
-                            setDialogOpen(true);
-                          }}
+                          onClick={
+                            user?.username && convo.username === user.username
+                              ? undefined
+                              : () => {
+                                  setSelectedConversationId(convo.uuid);
+                                  setDialogOpen(true);
+                                }
+                          }
                           isAdminUser={user?.role === "admin"}
                           onToggleFeatured={handleToggleFeatured}
                           isTogglingFeatured={
@@ -678,6 +784,8 @@ export function FeaturedConversations() {
                           }
                           onDeleteConversation={handleDeleteConversation}
                           onBanUser={handleBanUser}
+                          conversationUsername={convo.username}
+                          currentUsername={user?.username}
                         >
                           {convo.messages}
                         </ConversationCard>
@@ -708,10 +816,14 @@ export function FeaturedConversations() {
                             country={convo.country}
                             showFeaturedStar={true}
                             layout="grid"
-                            onClick={() => {
-                              setSelectedConversationId(convo.uuid);
-                              setDialogOpen(true);
-                            }}
+                            onClick={
+                              user?.username && convo.username === user.username
+                                ? undefined
+                                : () => {
+                                    setSelectedConversationId(convo.uuid);
+                                    setDialogOpen(true);
+                                  }
+                            }
                             isAdminUser={user?.role === "admin"}
                             onToggleFeatured={handleToggleFeatured}
                             isTogglingFeatured={
@@ -719,6 +831,8 @@ export function FeaturedConversations() {
                             }
                             onDeleteConversation={handleDeleteConversation}
                             onBanUser={handleBanUser}
+                            conversationUsername={convo.username}
+                            currentUsername={user?.username}
                           >
                             {convo.messages}
                           </ConversationCard>

@@ -252,7 +252,8 @@
     "subtitle": "Se själv hur detrans.ai hjälper människor från hela världen.",
     "tabs": {
       "featured": "Utvalda",
-      "all": "Alla"
+      "all": "Alla",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "Visa {count} Fler Konversationer",
@@ -317,6 +318,7 @@
       "ageRangeYears": "{min} - {max} år",
       "sex": {
         "all": "Man och Kvinna",
+      "mine": "Mine",
         "female": "Kvinna",
         "male": "Man"
       },
@@ -481,6 +483,7 @@
     "loading": "Laddar videor...",
     "filters": {
       "all": "Alla Berättelser",
+      "mine": "Mine",
       "female": "Kvinna",
       "male": "Man",
       "detransitioners": "Detransitionerare"

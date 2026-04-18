@@ -254,7 +254,8 @@
     "subtitle": "ببینید چگونه detrans.ai به افراد از سراسر جهان کمک می‌کند.",
     "tabs": {
       "featured": "ویژه",
-      "all": "همه"
+      "all": "همه",
+      "mine": "Mine"
     },
     "buttons": {
       "showMore": "نمایش {count} گفتگوی بیشتر",
@@ -319,6 +320,7 @@
       "ageRangeYears": "{min} - {max} سال",
       "sex": {
         "all": "مرد و زن",
+      "mine": "Mine",
         "female": "زن",
         "male": "مرد"
       },
@@ -483,6 +485,7 @@
     "loading": "در حال بارگذاری ویدیوها...",
     "filters": {
       "all": "همه داستان‌ها",
+      "mine": "Mine",
       "female": "زن",
       "male": "مرد",
       "detransitioners": "دترنزیشنرها"
