@@ -318,7 +318,7 @@
       "ageRangeYears": "{min} - {max} yaş",
       "sex": {
         "all": "Erkek ve Kadın",
-      "mine": "Mine",
+        "mine": "Mine",
         "female": "Kadın",
         "male": "Erkek"
       },
@@ -349,7 +349,7 @@
     },
     "title": "Nasıl çalışır?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> sohbeti, meta sorular oluşturan ve bunları <reddit>/r/detrans</reddit> altreddit'inden ve YouTube'dan detrans düşüncelerini ve deneyimlerini ortaya çıkararak ve entegre ederek yanıtlayan RAG (retrieval augmented generation) destekli bir ajandır. <llamaIndex>LlamaIndex</llamaIndex> çerçevesi ve Moonshot AI tarafından Batı politik önyargısını azaltmak için oluşturulan açık kaynaklı Çince <kimi>kimi-k2.5</kimi> modeli ile inşa edilmiştir.",
+      "paragraph1": "<bold>detrans.ai</bold> sohbeti, meta sorular oluşturan ve bunları <reddit>/r/detrans</reddit> altreddit'inden ve YouTube'dan detrans düşüncelerini ve deneyimlerini ortaya çıkararak ve entegre ederek yanıtlayan RAG (retrieval augmented generation) destekli bir ajandır. <llamaIndex>LlamaIndex</llamaIndex> çerçevesi ve Moonshot AI tarafından Batı politik önyargısını azaltmak için oluşturulan açık kaynaklı Çince <kimi>kimi-k2.6</kimi> modeli ile inşa edilmiştir.",
       "paragraph2": "ChatGPT ve diğer çoğu Batı LLM'si, cinsiyet inançlarını teşvik ve sürdürme konusunda oldukça agresiftir. OpenAI'nin GPT modellerini bu proje için kullanmak imkansız oldu, çünkü modeller sürekli olarak özetlemeleri görevlendirilen detrans deneyimlerini zayıflatıyor ve çelişkili hale getiriyordu. Daha onaylayıcı bir deneyim isterseniz, <chatgpt>ChatGPT</chatgpt>'ye bakın."
     },
     "dataCutoff": {

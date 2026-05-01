@@ -318,7 +318,7 @@
       "ageRangeYears": "{min} - {max}岁",
       "sex": {
         "all": "男性和女性",
-      "mine": "Mine",
+        "mine": "Mine",
         "female": "女性",
         "male": "男性"
       },
@@ -349,7 +349,7 @@
     },
     "title": "它是如何工作的？",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold>聊天是一个由RAG（检索增强生成）驱动的智能体，它生成元问题并通过从<reddit>/r/detrans</reddit> subreddit和YouTube中提取和整合去过渡者的想法和经验来回答它们。它是用<llamaIndex>LlamaIndex</llamaIndex>框架和Moonshot AI的开源中文<kimi>kimi-k2.5</kimi>模型构建的，以减少西方政治偏见。",
+      "paragraph1": "<bold>detrans.ai</bold>聊天是一个由RAG（检索增强生成）驱动的智能体，它生成元问题并通过从<reddit>/r/detrans</reddit> subreddit和YouTube中提取和整合去过渡者的想法和经验来回答它们。它是用<llamaIndex>LlamaIndex</llamaIndex>框架和Moonshot AI的开源中文<kimi>kimi-k2.6</kimi>模型构建的，以减少西方政治偏见。",
       "paragraph2": "ChatGPT和大多数其他西方大语言模型在推广和维护性别观念方面相当激进。事实证明，无法在这个项目中使用OpenAI的GPT模型，因为这些模型会不断削弱和反驳被要求总结的去过渡经历。如果你想要一个更加肯定的经历，请参见<chatgpt>ChatGPT</chatgpt>。"
     },
     "dataCutoff": {

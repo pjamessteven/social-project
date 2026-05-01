@@ -319,7 +319,7 @@
       "ageRangeYears": "{min} - {max} tahun",
       "sex": {
         "all": "Laki-laki dan Perempuan",
-      "mine": "Mine",
+        "mine": "Mine",
         "female": "Perempuan",
         "male": "Laki-laki"
       },
@@ -350,7 +350,7 @@
     },
     "title": "Bagaimana cara kerjanya?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> chat adalah agen yang didukung oleh RAG (generasi yang diperkuat pengambilan) yang menghasilkan pertanyaan meta dan menjawabnya dengan memunculkan dan mengintegrasikan pemikiran dan pengalaman berhenti transisi dari subreddit <reddit>/r/detrans</reddit> dan dari YouTube. Dibangun dengan kerangka kerja <llamaIndex>LlamaIndex</llamaIndex> dan model open-source Tiongkok <kimi>kimi-k2.5</kimi> oleh Moonshot AI untuk mengurangi bias politik Barat.",
+      "paragraph1": "<bold>detrans.ai</bold> chat adalah agen yang didukung oleh RAG (generasi yang diperkuat pengambilan) yang menghasilkan pertanyaan meta dan menjawabnya dengan memunculkan dan mengintegrasikan pemikiran dan pengalaman berhenti transisi dari subreddit <reddit>/r/detrans</reddit> dan dari YouTube. Dibangun dengan kerangka kerja <llamaIndex>LlamaIndex</llamaIndex> dan model open-source Tiongkok <kimi>kimi-k2.6</kimi> oleh Moonshot AI untuk mengurangi bias politik Barat.",
       "paragraph2": "ChatGPT dan sebagian besar LLM Barat lainnya cukup agresif dalam cara mereka mempromosikan dan menjaga keyakinan gender. Terbukti mustahil untuk menggunakan model GPT OpenAI untuk proyek ini, karena model-model tersebut akan terus-menerus merusak dan bertentangan dengan pengalaman berhenti transisi yang ditugaskan untuk diringkas. Jika Anda menginginkan pengalaman yang lebih mengafirmasi, lihat <chatgpt>ChatGPT</chatgpt>."
     },
     "dataCutoff": {

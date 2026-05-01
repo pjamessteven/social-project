@@ -318,7 +318,7 @@
       "ageRangeYears": "{min} - {max} år",
       "sex": {
         "all": "Mand og Kvinde",
-      "mine": "Mine",
+        "mine": "Mine",
         "female": "Kvinde",
         "male": "Mand"
       },
@@ -349,7 +349,7 @@
     },
     "title": "Hvordan fungerer det?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> chat er en RAG (retrieval augmented generation) drevet agent, der genererer meta-spørgsmål og besvarer dem ved at fremsøge og integrere detranstanker og erfaringer fra <reddit>/r/detrans</reddit> subredditen og fra YouTube. Det blev bygget med <llamaIndex>LlamaIndex</llamaIndex>-frameworket og den open source kinesiske <kimi>kimi-k2.5</kimi> model af Moonshot AI for at reducere vestlig politisk bias.",
+      "paragraph1": "<bold>detrans.ai</bold> chat er en RAG (retrieval augmented generation) drevet agent, der genererer meta-spørgsmål og besvarer dem ved at fremsøge og integrere detranstanker og erfaringer fra <reddit>/r/detrans</reddit> subredditen og fra YouTube. Det blev bygget med <llamaIndex>LlamaIndex</llamaIndex>-frameworket og den open source kinesiske <kimi>kimi-k2.6</kimi> model af Moonshot AI for at reducere vestlig politisk bias.",
       "paragraph2": "ChatGPT og de fleste andre vestlige LLM'er er ret aggressive i den måde, de fremmer og opretholder kønsoverbevisninger på. Det viste sig at være umuligt at bruge OpenAI's GPT-modeller til dette projekt, da modellerne konstant ville undergrave og modsige de detranserfaringer, som de var sat til at sammenfatte. Hvis du ønsker en mere bekræftende oplevelse, se <chatgpt>ChatGPT</chatgpt>."
     },
     "dataCutoff": {

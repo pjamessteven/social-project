@@ -319,7 +319,7 @@
       "ageRangeYears": "{min} - {max} ปี",
       "sex": {
         "all": "ชายและหญิง",
-      "mine": "Mine",
+        "mine": "Mine",
         "female": "หญิง",
         "male": "ชาย"
       },
@@ -350,7 +350,7 @@
     },
     "title": "มันทำงานอย่างไร?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> แชทเป็นเอเจนต์ RAG (retrieval augmented generation) ที่สร้างคำถามเมตาและตอบโดยการนำเสนอและรวมความคิดและประสบการณ์การเลิกเปลี่ยนเพศจากซับเรดดิต <reddit>/r/detrans</reddit> บน Reddit และจาก YouTube สร้างด้วยเฟรมเวิร์ก <llamaIndex>LlamaIndex</llamaIndex> และโมเดล <kimi>kimi-k2.5</kimi> โอเพนซอร์สของจีนโดย Moonshot AI เพื่อลดอคติทางการเมืองตะวันตก",
+      "paragraph1": "<bold>detrans.ai</bold> แชทเป็นเอเจนต์ RAG (retrieval augmented generation) ที่สร้างคำถามเมตาและตอบโดยการนำเสนอและรวมความคิดและประสบการณ์การเลิกเปลี่ยนเพศจากซับเรดดิต <reddit>/r/detrans</reddit> บน Reddit และจาก YouTube สร้างด้วยเฟรมเวิร์ก <llamaIndex>LlamaIndex</llamaIndex> และโมเดล <kimi>kimi-k2.6</kimi> โอเพนซอร์สของจีนโดย Moonshot AI เพื่อลดอคติทางการเมืองตะวันตก",
       "paragraph2": "ChatGPT และ LLM ตะวันตกส่วนใหญ่ค่อนข้างรุนแรงในการส่งเสริมและยึดมั่นความเชื่อเรื่องเพศ ปรากฏว่าเป็นไปไม่ได้ที่จะใช้โมเดล GPT ของ OpenAI สำหรับโครงการนี้ เนื่องจากโมเดลจะคอยใต้รากฐานและขัดแย้งกับประสบการณ์การเลิกเปลี่ยนเพศที่ได้รับมอบหมายให้สรุป หากคุณต้องการประสบการณ์ที่สนับสนุนมากขึ้น ดูที่ <chatgpt>ChatGPT</chatgpt>"
     },
     "dataCutoff": {
