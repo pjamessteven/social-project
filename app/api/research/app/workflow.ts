@@ -96,7 +96,7 @@ export const workflowFactory = async (
     mode: "deep_research",
     apiKey: process.env.KIMI_KEY,
     baseURL: "https://api.moonshot.ai/v1",
-    model: "kimi-k2.5",
+    model: "kimi-k2.6",
     temperature: 0.6,
     topP: 0.95,
     additionalSessionOptions: {

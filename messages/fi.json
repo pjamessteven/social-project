@@ -319,7 +319,7 @@
       "ageRangeYears": "{min} - {max} vuotta",
       "sex": {
         "all": "Miehet ja Naiset",
-      "mine": "Mine",
+        "mine": "Mine",
         "female": "Nainen",
         "male": "Mies"
       },
@@ -350,7 +350,7 @@
     },
     "title": "Kuinka se toimii?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> chat on RAG (hakua vahvistettu generointi) -pohjainen agentti, joka luo metakysymyksiä ja vastaa niihin tuomalla esiin ja integroimalla detrans-ajatuksia ja -kokemuksia <reddit>/r/detrans</reddit>-subredditistä ja YouTubesta. Se on rakennettu <llamaIndex>LlamaIndex</llamaIndex>-kehyksellä ja Moonshot AI:n avoimen lähdekoodin kiinalaisella <kimi>kimi-k2.5</kimi>-mallilla vähentämään länsimaista poliittista harhaa.",
+      "paragraph1": "<bold>detrans.ai</bold> chat on RAG (hakua vahvistettu generointi) -pohjainen agentti, joka luo metakysymyksiä ja vastaa niihin tuomalla esiin ja integroimalla detrans-ajatuksia ja -kokemuksia <reddit>/r/detrans</reddit>-subredditistä ja YouTubesta. Se on rakennettu <llamaIndex>LlamaIndex</llamaIndex>-kehyksellä ja Moonshot AI:n avoimen lähdekoodin kiinalaisella <kimi>kimi-k2.6</kimi>-mallilla vähentämään länsimaista poliittista harhaa.",
       "paragraph2": "ChatGPT ja useimmat muut länsimaiset LLM:t ovat melko aggressiivisia tapassaan edistää ja ylläpitää sukupuoliuskomuksia. OpenAI:n GPT-mallien käyttö osoittautui mahdottomaksi tähän projektiin, koska mallit aliarvioivat ja vastasivat jatkuvasti detrans-kokemuksia, joita niiden piti tiivistää. Jos haluat vahvistavamman kokemuksen, katso <chatgpt>ChatGPT</chatgpt>."
     },
     "dataCutoff": {

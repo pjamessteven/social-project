@@ -349,7 +349,7 @@
     },
     "title": "How does it work?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> chat is a RAG (retrieval augmented generation) powered agent that generates meta questions and answers them by surfacing and integrating detrans thoughts and experiences from the <reddit>/r/detrans</reddit> subreddit and from YouTube. It was built with the <llamaIndex>LlamaIndex</llamaIndex> framework and the open-source Chinese <kimi>kimi-k2.5</kimi> model by Moonshot AI to reduce Western political bias.",
+      "paragraph1": "<bold>detrans.ai</bold> chat is a RAG (retrieval augmented generation) powered agent that generates meta questions and answers them by surfacing and integrating detrans thoughts and experiences from the <reddit>/r/detrans</reddit> subreddit and from YouTube. It was built with the <llamaIndex>LlamaIndex</llamaIndex> framework and the open-source Chinese <kimi>kimi-k2.6</kimi> model by Moonshot AI to reduce Western political bias.",
       "paragraph2": "ChatGPT and most other Western LLMs are quite aggressive in the way that they promote and uphold gender beliefs. It proved to be impossible to use OpenAI's GPT models for this project, as the models would constantly undermine and contradict the detrans experiences that it was tasked to summarise. If you would like a more affirming experience, see <chatgpt>ChatGPT</chatgpt>."
     },
     "dataCutoff": {

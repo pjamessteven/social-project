@@ -316,7 +316,7 @@
       "ageRangeYears": "{min} - {max}세",
       "sex": {
         "all": "남성 및 여성",
-      "mine": "Mine",
+        "mine": "Mine",
         "female": "여성",
         "male": "남성"
       },
@@ -347,7 +347,7 @@
     },
     "title": "어떻게 작동하나요?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> 채팅은 RAG(검색 증강 생성) 기반 에이전트로, 메타 질문을 생성하고 Reddit의 <reddit>/r/detrans</reddit> 서브레딧과 유튜브에서 디트랜스 생각과 경험을 표면화하고 통합하여 답변합니다. LlamaIndex 프레임워크와 Moonshot AI의 오픈 소스 중국어 <kimi>kimi-k2.5</kimi> 모델을 사용하여 서양의 정치적 편견을 줄였습니다.",
+      "paragraph1": "<bold>detrans.ai</bold> 채팅은 RAG(검색 증강 생성) 기반 에이전트로, 메타 질문을 생성하고 Reddit의 <reddit>/r/detrans</reddit> 서브레딧과 유튜브에서 디트랜스 생각과 경험을 표면화하고 통합하여 답변합니다. LlamaIndex 프레임워크와 Moonshot AI의 오픈 소스 중국어 <kimi>kimi-k2.6</kimi> 모델을 사용하여 서양의 정치적 편견을 줄였습니다.",
       "paragraph2": "ChatGPT 및 대부분의 다른 서양 LLM은 성별 믿음을 홍보하고 유지하는 방식이 꽤 공격적입니다. OpenAI의 GPT 모델을 이 프로젝트에 사용하는 것은 불가능했는데, 모델이 요약하라는 디트랜스 경험을 끊임없이 훼손하고 모순시켰기 때문입니다. 더 확정적인 경험을 원하신다면 <chatgpt>ChatGPT</chatgpt>를 참조하세요."
     },
     "dataCutoff": {

@@ -319,7 +319,7 @@
       "ageRangeYears": "{min} - {max} metai",
       "sex": {
         "all": "Vyrai ir moterys",
-      "mine": "Mine",
+        "mine": "Mine",
         "female": "Moteris",
         "male": "Vyras"
       },
@@ -350,7 +350,7 @@
     },
     "title": "Kaip tai veikia?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> pokalbių robotas yra RAG (paieškos stiprinama generacija) varomas agentas, kuris generuoja meta klausimus ir atsako į juos, iškeldamas ir integruodamas detranzicijos mintis ir patirtis iš <reddit>/r/detrans</reddit> subreddito ir iš YouTube. Jis buvo sukurtas naudojant <llamaIndex>LlamaIndex</llamaIndex> sistemą ir atviro kodo kinų <kimi>kimi-k2.5</kimi> modelį iš Moonshot AI, kad būtų sumažintas Vakarų politinis šališkumas.",
+      "paragraph1": "<bold>detrans.ai</bold> pokalbių robotas yra RAG (paieškos stiprinama generacija) varomas agentas, kuris generuoja meta klausimus ir atsako į juos, iškeldamas ir integruodamas detranzicijos mintis ir patirtis iš <reddit>/r/detrans</reddit> subreddito ir iš YouTube. Jis buvo sukurtas naudojant <llamaIndex>LlamaIndex</llamaIndex> sistemą ir atviro kodo kinų <kimi>kimi-k2.6</kimi> modelį iš Moonshot AI, kad būtų sumažintas Vakarų politinis šališkumas.",
       "paragraph2": "ChatGPT ir dauguma kitų Vakarų LLM yra gana agresyvūs būdu, kuriuo jie skatina ir palaiko genderinius įsitikinimus. Pasirodė, kad neįmanoma naudoti OpenAI GPT modelių šiam projektui, nes modeliai nuolat silpnintų ir prieštarautų detranzicijos patirtims, kurias jie turėjo santraukti. Jei norite labiau patvirtinančios patirties, žiūrėkite <chatgpt>ChatGPT</chatgpt>."
     },
     "dataCutoff": {

@@ -319,7 +319,7 @@
       "ageRangeYears": "{min} - {max} let",
       "sex": {
         "all": "Moški in ženske",
-      "mine": "Mine",
+        "mine": "Mine",
         "female": "Ženske",
         "male": "Moški"
       },
@@ -350,7 +350,7 @@
     },
     "title": "Kako deluje?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> klepet je agent, pogonjen z RAG (okrepljeno generiranje z iskanjem), ki generira meta vprašanja in nanje odgovarja tako, da površno predstavi in integrira detranz misli in izkušnje iz podreddita <reddit>/r/detrans</reddit> na Redditu in iz YouTuba. Zgrajen je bil z ogrodjem <llamaIndex>LlamaIndex</llamaIndex> in odprtokodnim kitajskim modelom <kimi>kimi-k2.5</kimi> podjetja Moonshot AI za zmanjšanje zahodne politične pristranskosti.",
+      "paragraph1": "<bold>detrans.ai</bold> klepet je agent, pogonjen z RAG (okrepljeno generiranje z iskanjem), ki generira meta vprašanja in nanje odgovarja tako, da površno predstavi in integrira detranz misli in izkušnje iz podreddita <reddit>/r/detrans</reddit> na Redditu in iz YouTuba. Zgrajen je bil z ogrodjem <llamaIndex>LlamaIndex</llamaIndex> in odprtokodnim kitajskim modelom <kimi>kimi-k2.6</kimi> podjetja Moonshot AI za zmanjšanje zahodne politične pristranskosti.",
       "paragraph2": "ChatGPT in večina drugih zahodnih LLMjev so precej agresivni v načinu, kako promovirajo in vzdržujejo prepričanja o spolu. Izkaže se, da je bilo nemogoče uporabiti OpenAI-jeve GPT modele za ta projekt, saj bi modeli nenehno podrivali in nasprotovali detranz izkušnjam, ki jih je bilo treba povzeti. Če želite bolj potrjevalno izkušnjo, glejte <chatgpt>ChatGPT</chatgpt>."
     },
     "dataCutoff": {

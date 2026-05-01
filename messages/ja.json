@@ -316,7 +316,7 @@
       "ageRangeYears": "{min} - {max}歳",
       "sex": {
         "all": "男性と女性",
-      "mine": "Mine",
+        "mine": "Mine",
         "female": "女性",
         "male": "男性"
       },
@@ -347,7 +347,7 @@
     },
     "title": "どのように機能しますか？",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold>チャットは、/r/detransサブレディットとYouTubeからデトランスの考えや経験を浮き彫りにして統合することで、メタ質問に答えるRAG（検索拡張生成）を活用したエージェントです。これは、LlamaIndexフレームワークとMoonshot AIによるオープンソースの中国語モデル<kimi>kimi-k2.5</kimi>を使用して構築され、西洋の政治的バイアスを減らしています。",
+      "paragraph1": "<bold>detrans.ai</bold>チャットは、/r/detransサブレディットとYouTubeからデトランスの考えや経験を浮き彫りにして統合することで、メタ質問に答えるRAG（検索拡張生成）を活用したエージェントです。これは、LlamaIndexフレームワークとMoonshot AIによるオープンソースの中国語モデル<kimi>kimi-k2.6</kimi>を使用して構築され、西洋の政治的バイアスを減らしています。",
       "paragraph2": "ChatGPTや他のほとんどの西洋のLLMは、ジェンダー信念を促進し維持する方法でかなり攻撃的です。このプロジェクトにOpenAIのGPTモデルを使用することは不可能でした。モデルが要約するよう任されたデトランス経験を常に損ない、矛盾させるからです。より肯定的な経験を希望する場合は、<chatgpt>ChatGPT</chatgpt>をご覧ください。"
     },
     "dataCutoff": {

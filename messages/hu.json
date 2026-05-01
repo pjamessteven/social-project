@@ -319,7 +319,7 @@
       "ageRangeYears": "{min} - {max} év",
       "sex": {
         "all": "Férfi és Nő",
-      "mine": "Mine",
+        "mine": "Mine",
         "female": "Nő",
         "male": "Férfi"
       },
@@ -350,7 +350,7 @@
     },
     "title": "Hogyan működik?",
     "intro": {
-      "paragraph1": "A <bold>detrans.ai</bold> chat egy RAG (retrieval augmented generation) alapú ügynök, amely meta kérdéseket generál és válaszol rájuk azzal, hogy felhozza és integrálja a detrans gondolatokat és tapasztalatokat az <reddit>/r/detrans</reddit> subredditről és a YouTube-ról. A <llamaIndex>LlamaIndex</llamaIndex> keretrendszerrel és a nyílt forráskódú kínai <kimi>kimi-k2.5</kimi> modellel készült a Moonshot AI-tól a nyugati politikai elfogultság csökkentésére.",
+      "paragraph1": "A <bold>detrans.ai</bold> chat egy RAG (retrieval augmented generation) alapú ügynök, amely meta kérdéseket generál és válaszol rájuk azzal, hogy felhozza és integrálja a detrans gondolatokat és tapasztalatokat az <reddit>/r/detrans</reddit> subredditről és a YouTube-ról. A <llamaIndex>LlamaIndex</llamaIndex> keretrendszerrel és a nyílt forráskódú kínai <kimi>kimi-k2.6</kimi> modellel készült a Moonshot AI-tól a nyugati politikai elfogultság csökkentésére.",
       "paragraph2": "A ChatGPT és a legtöbb más nyugati LLM meglehetősen agresszív módon promotálja és fenntartja a nemi meggyőződéseket. Kiderült, hogy lehetetlen az OpenAI GPT modelljeit használni ehhez a projekthez, mivel a modellek folyamatosan aláásni és ellentmondani fogtak azoknak a detrans tapasztalatoknak, amelyeket összefoglalni kellett volna. Ha pozitívabb megerősítő élményt szeretnél, lásd a <chatgpt>ChatGPT</chatgpt>-t."
     },
     "dataCutoff": {

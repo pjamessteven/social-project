@@ -320,7 +320,7 @@
       "ageRangeYears": "{min} - {max} let",
       "sex": {
         "all": "Muži a ženy",
-      "mine": "Mine",
+        "mine": "Mine",
         "female": "Ženy",
         "male": "Muži"
       },
@@ -351,7 +351,7 @@
     },
     "title": "Jak to funguje?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> chat je agent poháněný RAG (retrieval augmented generation), který generuje meta otázky a odpovídá na ně tím, že přináší na povrch a integruje detranzicionistické myšlenky a zkušenosti ze subredditu <reddit>/r/detrans</reddit> na Redditu a z YouTube. Byl vybaven frameworkem <llamaIndex>LlamaIndex</llamaIndex> a open-source čínským modelem <kimi>kimi-k2.5</kimi> od Moonshot AI pro snížení západní politické zaujatosti.",
+      "paragraph1": "<bold>detrans.ai</bold> chat je agent poháněný RAG (retrieval augmented generation), který generuje meta otázky a odpovídá na ně tím, že přináší na povrch a integruje detranzicionistické myšlenky a zkušenosti ze subredditu <reddit>/r/detrans</reddit> na Redditu a z YouTube. Byl vybaven frameworkem <llamaIndex>LlamaIndex</llamaIndex> a open-source čínským modelem <kimi>kimi-k2.6</kimi> od Moonshot AI pro snížení západní politické zaujatosti.",
       "paragraph2": "ChatGPT a většina dalších západních LLM jsou docela agresivní ve způsobu, jakým prosazují a zastávají genderová přesvědčení. Prokázalo se, že je nemožné používat GPT modely OpenAI pro tento projekt, protože modely by neustále podkopávaly a odporovaly detranzicionistickým zkušenostem, které měly shrnovat. Pokud byste chtěli více potvrzující zážitek, navštivte <chatgpt>ChatGPT</chatgpt>."
     },
     "dataCutoff": {

@@ -315,7 +315,7 @@
       "ageRangeYears": "{min} - {max} Jahre",
       "sex": {
         "all": "Männlich und Weiblich",
-      "mine": "Mine",
+        "mine": "Mine",
         "female": "Weiblich",
         "male": "Männlich"
       },
@@ -346,7 +346,7 @@
     },
     "title": "Wie funktioniert es?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> Chat ist ein RAG (Retrieval Augmented Generation) unterstützter Agent, der Meta-Fragen generiert und sie beantwortet, indem er Detrans-Gedanken und Erfahrungen aus dem <reddit>/r/detrans</reddit> Subreddit und von YouTube zusammenträgt. Es wurde mit dem <llamaIndex>LlamaIndex</llamaIndex> Framework und dem Open-Source-chinesischen <kimi>kimi-k2.5</kimi> Modell von Moonshot AI gebaut, um westliche politische Voreingenommenheit zu reduzieren.",
+      "paragraph1": "<bold>detrans.ai</bold> Chat ist ein RAG (Retrieval Augmented Generation) unterstützter Agent, der Meta-Fragen generiert und sie beantwortet, indem er Detrans-Gedanken und Erfahrungen aus dem <reddit>/r/detrans</reddit> Subreddit und von YouTube zusammenträgt. Es wurde mit dem <llamaIndex>LlamaIndex</llamaIndex> Framework und dem Open-Source-chinesischen <kimi>kimi-k2.6</kimi> Modell von Moonshot AI gebaut, um westliche politische Voreingenommenheit zu reduzieren.",
       "paragraph2": "ChatGPT und die meisten anderen westlichen LLMs sind ziemlich aggressiv in der Art und Weise, wie sie Gender-Überzeugungen fördern und aufrechterhalten. Es erwies sich als unmöglich, OpenAIs GPT-Modelle für dieses Projekt zu nutzen, da die Modelle ständig die Detrans-Erfahrungen untergruben und widersprachen, die sie zusammenfassen sollten. Wenn du eine affirmierendere Erfahrung möchtest, sieh dir <chatgpt>ChatGPT</chatgpt> an."
     },
     "dataCutoff": {

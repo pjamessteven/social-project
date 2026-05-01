@@ -319,7 +319,7 @@
       "ageRangeYears": "{min} - {max} tuổi",
       "sex": {
         "all": "Nam và Nữ",
-      "mine": "Mine",
+        "mine": "Mine",
         "female": "Nữ",
         "male": "Nam"
       },
@@ -350,7 +350,7 @@
     },
     "title": "Cách hoạt động?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> chat là một tác nhân được cung cấp bởi RAG (tạo sinh tăng cường truy xuất) tạo câu hỏi meta và trả lời chúng bằng cách hiển thị và tích hợp suy nghĩ và kinh nghiệm của ngưởi chuyển giới trở lại từ subreddit <reddit>/r/detrans</reddit> và từ YouTube. Nó được xây dựng với khung <llamaIndex>LlamaIndex</llamaIndex> và mô hình <kimi>kimi-k2.5</kimi> mã nguồn mở của Moonshot AI để giảm thiên kiến chính trị phương Tây.",
+      "paragraph1": "<bold>detrans.ai</bold> chat là một tác nhân được cung cấp bởi RAG (tạo sinh tăng cường truy xuất) tạo câu hỏi meta và trả lời chúng bằng cách hiển thị và tích hợp suy nghĩ và kinh nghiệm của ngưởi chuyển giới trở lại từ subreddit <reddit>/r/detrans</reddit> và từ YouTube. Nó được xây dựng với khung <llamaIndex>LlamaIndex</llamaIndex> và mô hình <kimi>kimi-k2.6</kimi> mã nguồn mở của Moonshot AI để giảm thiên kiến chính trị phương Tây.",
       "paragraph2": "ChatGPT và hầu hết các LLM phương Tây khác khá quyết liệt trong cách họ quảng bá và duy trì các niềm tin về giới. Việc sử dụng các mô hình GPT của OpenAI cho dự án này đã chứng minh là không thể, vì các mô hình liên tục phá hoại và mâu thuẫn với các kinh nghiệm chuyển giới trở lại mà chúng được giao tóm tắt. Nếu bạn muốn có trải nghiệm khẳng định hơn, hãy xem <chatgpt>ChatGPT</chatgpt>."
     },
     "dataCutoff": {
