@@ -97,7 +97,9 @@ export default function Header({
   const isDev = process.env.NODE_ENV === "development";
   const devAffirm = isDev && mode === "affirm";
   const t = useTranslations("header");
+  const tHome = useTranslations("home");
   const { scrollPosition } = useMainStore();
+  const { isAuthenticated } = useUserStore();
 
   return (
     <div className="relative top-0 right-0 left-0 z-50 flex items-center justify-between bg-transparent p-2 px-4 shadow-none transition-all">
@@ -340,7 +342,7 @@ export default function Header({
                             {t("donate")}
                           </div>
                           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            {t("about.donateDesc")}
+                            {tHome("donate.card.button")}
                           </p>
                         </div>
                       </Link>
@@ -366,16 +368,17 @@ export default function Header({
         </div>
 
         {/* Donate Button  */}
-        <Link
-          href="/donate"
-          className={"hidden md:block"}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <Button size={"sm"} variant={"destructive"}>
-            {t("donate")}
-          </Button>
-        </Link>
-
+        {!isAuthenticated && (
+          <Link
+            href="/donate"
+            className={"hidden md:block"}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Button size={"sm"} variant={"destructive"}>
+              {t("donate")}
+            </Button>
+          </Link>
+        )}
         {/* Mobile Menu */}
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
@@ -667,7 +670,7 @@ export default function Header({
                             {t("donate")}
                           </div>
                           <div className="text-muted-foreground text-xs">
-                            {t("about.donateDesc")}
+                            {tHome("donate.card.button")}
                           </div>
                         </div>
                       </Button>
