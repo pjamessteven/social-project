@@ -289,12 +289,12 @@ export async function StartPage({
           )}
         </>
  */}
-        <div className="relative mt-4 -mb-16 pb-16 sm:mt-24">
+        <div className="relative mt-4 -mb-16 pb-16 sm:mt-8">
           <div className="from-secondary/50 dark:from-secondary/50 absolute -left-[5000px] z-0 h-full w-[10000px] border-t bg-linear-to-b to-white dark:to-black" />
-          <div className="relative z-20 pt-8 sm:pt-12">
+          <div className="relative z-20 -mt-20 pt-8 sm:pt-12">
             <Card
               className={
-                "dark:bg-secondary overflow-hidden rounded-xl border border-black/20 bg-white shadow-xs dark:border-white/10"
+                "dark:bg-secondary bg-accent overflow-hidden rounded-xl border border-black/20 shadow-xs dark:border-white/10"
               }
             >
               <CardHeader>

@@ -952,7 +952,7 @@ export function FeaturedConversations() {
                           <button
                             onClick={handleLoadMore}
                             disabled={loadingMore}
-                            className="dark:text-primary dark:bg-secondary dark:border-muted-foreground/20 flex w-full max-w-[740px] items-center justify-center gap-2 rounded-lg border bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-lg transition-colors hover:bg-gray-50 disabled:opacity-50 dark:shadow-gray-800/20"
+                            className="dark:text-primary dark:bg-secondary dark:border-muted-foreground/20 flex w-full max-w-[740px] items-center justify-center gap-2 rounded-lg border bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-xs transition-colors hover:bg-gray-50 disabled:opacity-50 dark:shadow-gray-800/20"
                           >
                             {loadingMore ? (
                               <>
