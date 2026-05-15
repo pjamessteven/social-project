@@ -110,8 +110,8 @@
     },
     "privacyDisclaimer": "Prosimo, ne delite osebnih podatkov, ki bi jih bilo mogoče uporabiti za vašo identifikacijo.",
     "privacyDisclaimerChatsPublic": "Klepeti so javni.",
-    "memberCountDisclaimer": "*50,000+ se nanaša na člane <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ članov v <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimer": "*60,000+ se nanaša na člane <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "60,000+ članov v <a>/r/detrans subreddit</a>",
     "browseConversations": "Brskajte po vseh pogovorih"
   },
   "header": {
@@ -567,7 +567,7 @@
           "redditCommunity": "Skupnost Detrans na Redditu",
           "redditWiki": "Detrans Wiki na Redditu",
           "discordServer": "Uradni /r/detrans Discord strežnik",
-          "askDetransAI": "Vprašajte 50.000+ detranz ljudi z detrans.ai"
+          "askDetransAI": "Vprašajte 60.000+ detranz ljudi z detrans.ai"
         }
       },
       "genderAffirmingCare": {

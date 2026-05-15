@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "title": "detrans.ai | Praat met 50.000+ detransitioners",
+    "title": "detrans.ai | Praat met 60.000+ detransitioners",
     "description": "Het collectieve bewustzijn van detransitioners - een chatbot die de geleefde ervaringen en perspectieven deelt van ex-transgender mensen. Gebruik detrans.ai voor detransitie ondersteuning en advies, of gewoon om te begrijpen en te verkennen waarom sommige mensen genderidentiteiten aannemen, bewonen en loslaten."
   },
   "home": {
-    "title": "Praat met 50.000+ Detransitioners",
+    "title": "Praat met 60.000+ Detransitioners",
     "subtitle": "Perspectieven Van De Andere Kant",
     "intro": {
       "greeting": "Hallo! Wat is een detransitioner?",
@@ -110,8 +110,8 @@
     },
     "privacyDisclaimer": "Deel alstublieft geen persoonlijke informatie die gebruikt kan worden om u te identificeren.",
     "privacyDisclaimerChatsPublic": "Chats zijn openbaar.",
-    "memberCountDisclaimer": "*50,000+ verwijst naar leden van de <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ leden in de <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimer": "*60,000+ verwijst naar leden van de <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "60,000+ leden in de <a>/r/detrans subreddit</a>",
     "browseConversations": "Bekijk alle Gesprekken"
   },
   "header": {
@@ -565,7 +565,7 @@
           "redditCommunity": "Detrans Gemeenschap op Reddit",
           "redditWiki": "Detrans Wiki op Reddit",
           "discordServer": "Officiële /r/detrans Discord Server",
-          "askDetransAI": "Vraag 50.000+ detrans mensen met detrans.ai"
+          "askDetransAI": "Vraag 60.000+ detrans mensen met detrans.ai"
         }
       },
       "genderAffirmingCare": {

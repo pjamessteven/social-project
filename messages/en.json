@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "title": "detrans.ai | Talk to 50,000+ detransitioners",
+    "title": "detrans.ai | Talk to 60,000+ detransitioners",
     "description": "The collective consciousness of detransitioners - a chatbot which shares the lived experiences and perspectives of ex-transgender people. Use detrans.ai for detransition support and advice, or simply to understand and explore why some people adopt, inhabit, and let go of gender identities."
   },
   "home": {
-    "title": "Talk to 50,000+ Detransitioners",
+    "title": "Talk to 60,000+ Detransitioners",
     "subtitle": "Perspectives From The Other Side",
     "intro": {
       "greeting": "Hello! What's a detransitioner?",
@@ -110,8 +110,8 @@
     },
     "privacyDisclaimer": "Please don't share any personal information that could be used to identify you.",
     "privacyDisclaimerChatsPublic": "Chats are public.",
-    "memberCountDisclaimer": "*50,000+ refers to members of the <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ members in the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimer": "*60,000+ refers to members of the <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "60,000+ members in the <a>/r/detrans subreddit</a>",
     "browseConversations": "Browse all Conversations"
   },
   "header": {
@@ -565,7 +565,7 @@
           "redditCommunity": "Detrans Community on Reddit",
           "redditWiki": "Detrans Wiki on Reddit",
           "discordServer": "Official /r/detrans Discord Server",
-          "askDetransAI": "Ask 50,000+ detrans people with detrans.ai"
+          "askDetransAI": "Ask 60,000+ detrans people with detrans.ai"
         }
       },
       "genderAffirmingCare": {

@@ -110,8 +110,8 @@
     },
     "privacyDisclaimer": "Per favore, non condividere informazioni personali che potrebbero essere utilizzate per identificarti.",
     "privacyDisclaimerChatsPublic": "Le chat sono pubbliche.",
-    "memberCountDisclaimer": "*50,000+ si riferisce ai membri del <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ membri nel <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimer": "*60,000+ si riferisce ai membri del <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "60,000+ membri nel <a>/r/detrans subreddit</a>",
     "browseConversations": "Sfoglia tutte le Conversazioni"
   },
   "header": {
@@ -564,7 +564,7 @@
           "redditCommunity": "Comunità Detrans su Reddit",
           "redditWiki": "Wiki Detrans su Reddit",
           "discordServer": "Server Discord Ufficiale /r/detrans",
-          "askDetransAI": "Chiedi a 50.000+ persone che hanno fatto detrans con detrans.ai"
+          "askDetransAI": "Chiedi a 60.000+ persone che hanno fatto detrans con detrans.ai"
         }
       },
       "genderAffirmingCare": {

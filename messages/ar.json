@@ -110,8 +110,8 @@
     },
     "privacyDisclaimer": "يرجى عدم مشاركة أي معلومات شخصية يمكن استخدامها لتحديد هويتك.",
     "privacyDisclaimerChatsPublic": "الدردشات عامة.",
-    "memberCountDisclaimer": "*50,000+ يشير إلى أعضاء <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ عضو في <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimer": "*60,000+ يشير إلى أعضاء <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "60,000+ عضو في <a>/r/detrans subreddit</a>",
     "browseConversations": "تصفح جميع المحادثات"
   },
   "header": {
@@ -568,7 +568,7 @@
           "redditCommunity": "مجتمع Detrans على Reddit",
           "redditWiki": "ويكي Detrans على Reddit",
           "discordServer": "خادم Discord الرسمي /r/detrans",
-          "askDetransAI": "اسأل 50,000+ شخص تراجع عن التحول باستخدام detrans.ai"
+          "askDetransAI": "اسأل 60,000+ شخص تراجع عن التحول باستخدام detrans.ai"
         }
       },
       "genderAffirmingCare": {

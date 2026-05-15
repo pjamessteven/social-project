@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "title": "detrans.ai | Tal med 50.000+ detransitionister",
+    "title": "detrans.ai | Tal med 60.000+ detransitionister",
     "description": "Detransitioneres kollektive bevidsthed - en chatbot, der deler levede erfaringer og perspektiver fra tidligere transkønnede personer. Brug detrans.ai til detransitionsstøtte og rådgivning, eller bare for at forstå og udforske, hvorfor nogle mennesker påtager sig, lever med og giver slip på kønsidentiteter."
   },
   "home": {
-    "title": "Tal med 50.000+ Detransitionister",
+    "title": "Tal med 60.000+ Detransitionister",
     "subtitle": "Perspektiver Fra Den Anden Side",
     "intro": {
       "greeting": "Hej! Hvad er en detransitioner?",
@@ -110,8 +110,8 @@
     },
     "privacyDisclaimer": "Del venligst ikke personlige oplysninger, der kan bruges til at identificere dig.",
     "privacyDisclaimerChatsPublic": "Chats er offentlige.",
-    "memberCountDisclaimer": "*50,000+ henviser til medlemmer af <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ medlemmer i <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimer": "*60,000+ henviser til medlemmer af <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "60,000+ medlemmer i <a>/r/detrans subreddit</a>",
     "browseConversations": "Gennemse alle Samtaler"
   },
   "header": {
@@ -566,7 +566,7 @@
           "redditCommunity": "Detrans-fællesskabet på Reddit",
           "redditWiki": "Detrans Wiki på Reddit",
           "discordServer": "Official /r/detrans Discord-server",
-          "askDetransAI": "Spørg 50.000+ detrans-mennesker med detrans.ai"
+          "askDetransAI": "Spørg 60.000+ detrans-mennesker med detrans.ai"
         }
       },
       "genderAffirmingCare": {
