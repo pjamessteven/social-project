@@ -19,7 +19,6 @@ import {
   MessageCircleHeart,
   Scroll,
   Settings,
-  Users,
   X,
   Youtube,
 } from "lucide-react";
@@ -181,24 +180,7 @@ export default function Header({
                           </div>
                         </Link>
                       </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link
-                          href={"/stories"}
-                          className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground no-wrap flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                        >
-                          <div>
-                            <Users className="me-2 h-6 w-6" />
-                          </div>
-                          <div className="flex flex-col space-y-1">
-                            <div className="text-sm leading-none font-medium">
-                              {t("resources.stories")}
-                            </div>
-                            <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                              {t("resources.storiesDesc")}
-                            </p>
-                          </div>
-                        </Link>
-                      </NavigationMenuLink>
+
                       <NavigationMenuLink asChild>
                         <Link
                           href={"/videos"}
@@ -465,25 +447,7 @@ export default function Header({
                           </div>
                         </Button>
                       </Link>
-                      <Link href="/stories" onClick={() => setIsOpen(false)}>
-                        <Button
-                          variant="ghost"
-                          className={cn(
-                            "h-auto w-full flex-row items-center justify-start py-3",
-                            pathname === "/stories" && "bg-muted",
-                          )}
-                        >
-                          <Users className="h-4 w-4" />
-                          <div className="ml-4 flex flex-col items-start">
-                            <div className="text-sm font-medium">
-                              {t("resources.stories")}
-                            </div>
-                            <div className="text-muted-foreground text-xs">
-                              {t("resources.storiesDesc")}
-                            </div>
-                          </div>
-                        </Button>
-                      </Link>
+
                       <Link href="/videos" onClick={() => setIsOpen(false)}>
                         <Button
                           variant="ghost"

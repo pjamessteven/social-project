@@ -10,7 +10,6 @@ import {
   Heart,
   MessageSquareIcon,
   Settings,
-  Users,
   Youtube,
 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
@@ -101,7 +100,7 @@ export async function StartPage({
           }
         </h1>
 
-        <div className="mt-8 hidden sm:block">
+        <div className="mt-8 hidden">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
             <Link href="/videos">
               <Button
@@ -114,14 +113,14 @@ export async function StartPage({
                 </span>
               </Button>
             </Link>
-            <Link href="/stories">
+            <Link href="/prompts">
               <Button
                 variant="secondary"
                 className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
               >
-                <Users className="h-4 w-4" />
+                <Settings className="me-2 mt-0.5 h-4 w-4 flex-shrink-0" />
                 <span className="text-sm font-medium">
-                  {t("navigation.stories")}
+                  {t("about.systemPrompts")}
                 </span>
               </Button>
             </Link>
