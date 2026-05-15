@@ -1,4 +1,3 @@
-import { availableTags } from "@/app/lib/availableTags";
 import { questionCategories } from "@/app/lib/questions";
 import { slugify } from "@/app/lib/utils";
 import { generateVideoSlug } from "@/app/lib/video-utils";
@@ -131,12 +130,7 @@ export async function GET(request: NextRequest) {
       changeFrequency: "weekly",
       priority: 0.6,
     },
-    {
-      url: `${baseUrl}/stories`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "daily",
-      priority: 0.8,
-    },
+
     {
       url: `${baseUrl}/conversations`,
       lastModified: new Date().toISOString(),
@@ -150,38 +144,6 @@ export async function GET(request: NextRequest) {
       priority: 0.7,
     },
   ];
-
-  // Generate tag routes for stories
-  const tagRoutes = availableTags.map((tag) => ({
-    url: `${baseUrl}/stories?tag=${encodeURIComponent(tag)}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "weekly",
-    priority: 0.7,
-  }));
-
-  // Generate sex filter routes for stories
-  const sexRoutes = [
-    {
-      url: `${baseUrl}/stories?sex=f`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "weekly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/stories?sex=m`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "weekly",
-      priority: 0.7,
-    },
-  ];
-
-  // Generate user story routes
-  const userRoutes = users.map((user) => ({
-    url: `${baseUrl}/stories/${encodeURIComponent(user.username)}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "weekly",
-    priority: 0.7,
-  }));
 
   // Generate chat routes for all questions
   const researchRoutes = allQuestions.map((question) => ({
@@ -343,9 +305,6 @@ export async function GET(request: NextRequest) {
     ...researchRoutes,
     ...topQuestionResearchRoutes,
     ...featuredConversationRoutes,
-    ...userRoutes,
-    ...tagRoutes,
-    ...sexRoutes,
     ...videoRoutes,
   ];
 

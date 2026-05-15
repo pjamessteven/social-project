@@ -292,7 +292,10 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
       )}
     >
       <div className="z-10 flex items-center justify-center">
-        <form onSubmit={handleSubmit} className="flex w-3xl items-center gap-2">
+        <form
+          onSubmit={handleSubmit}
+          className="flex w-3xl items-center gap-2 md:px-4"
+        >
           <div ref={containerRef} className="relative flex-1 grow">
             <Textarea
               ref={textareaRef}
