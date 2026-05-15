@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "title": "detrans.ai | 与50,000+位去过渡者交流",
+    "title": "detrans.ai | 与60,000+位去过渡者交流",
     "description": "去性别转换者的集体意识——一个分享前跨性别者生活经验和观点的聊天机器人。使用 detrans.ai 获取去性别转换的支持和建议，或仅仅为了理解和探索为什么有些人采纳、经历并放下性别认同。"
   },
   "home": {
-    "title": "与50,000+位去过渡者交流",
+    "title": "与60,000+位去过渡者交流",
     "subtitle": "来自另一面的视角",
     "intro": {
       "greeting": "你好！什么是去过渡者？",
@@ -110,8 +110,8 @@
     },
     "privacyDisclaimer": "请勿分享任何可用于识别您身份的个人信息。",
     "privacyDisclaimerChatsPublic": "聊天记录是公开的。",
-    "memberCountDisclaimer": "*50,000+ 指的是 <a>/r/detrans subreddit</a> 的成员",
-    "memberCountDisclaimerMobile": "<a>/r/detrans subreddit</a> 中有 50,000+ 名成员",
+    "memberCountDisclaimer": "*60,000+ 指的是 <a>/r/detrans subreddit</a> 的成员",
+    "memberCountDisclaimerMobile": "<a>/r/detrans subreddit</a> 中有 60,000+ 名成员",
     "browseConversations": "浏览所有对话"
   },
   "header": {
@@ -566,7 +566,7 @@
           "redditCommunity": "Reddit上的去过渡社区",
           "redditWiki": "Reddit上的去过渡维基",
           "discordServer": "官方/r/detrans Discord服务器",
-          "askDetransAI": "通过detrans.ai询问50,000+位去过渡者"
+          "askDetransAI": "通过detrans.ai询问60,000+位去过渡者"
         }
       },
       "genderAffirmingCare": {

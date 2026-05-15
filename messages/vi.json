@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "title": "detrans.ai | Trò chuyện với 50,000+ ngưởi chuyển giới trở lại",
+    "title": "detrans.ai | Trò chuyện với 60,000+ ngưởi chuyển giới trở lại",
     "description": "Ý thức tập thể của những ngưởi chuyển giới trở lại - một chatbot chia sẻ kinh nghiệm sống và quan điểm của những ngưởi từng là ngưởi chuyển giới. Sử dụng detrans.ai để được hỗ trợ và tư vấn về chuyển giới trở lại, hoặc đơn giản là để hiểu và khám phá tại sao một số ngưởi tiếp nhận, duy trì và buông bỏ bản dạng giới."
   },
   "home": {
-    "title": "Trò chuyện với 50,000+ Ngưởi Chuyển Giới Trở Lại",
+    "title": "Trò chuyện với 60,000+ Ngưởi Chuyển Giới Trở Lại",
     "subtitle": "Quan Điểm Từ Phía Bên Kia",
     "intro": {
       "greeting": "Xin chào! Ngưởi chuyển giới trở lại là gì?",
@@ -110,8 +110,8 @@
     },
     "privacyDisclaimer": "Vui lòng không chia sẻ bất kỳ thông tin cá nhân nào có thể được sử dụng để xác định danh tính của bạn.",
     "privacyDisclaimerChatsPublic": "Trò chuyện là công khai.",
-    "memberCountDisclaimer": "*50,000+ đề cập đến thành viên của <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ thành viên trong <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimer": "*60,000+ đề cập đến thành viên của <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "60,000+ thành viên trong <a>/r/detrans subreddit</a>",
     "browseConversations": "Duyệt Tất Cả Cuộc Trò Chuyện"
   },
   "header": {
@@ -567,7 +567,7 @@
           "redditCommunity": "Cộng Đồng Detrans trên Reddit",
           "redditWiki": "Wiki Detrans trên Reddit",
           "discordServer": "Máy Chủ Discord Chính Thức /r/detrans",
-          "askDetransAI": "Hỏi 50,000+ ngưởi chuyển giới trở lại với detrans.ai"
+          "askDetransAI": "Hỏi 60,000+ ngưởi chuyển giới trở lại với detrans.ai"
         }
       },
       "genderAffirmingCare": {

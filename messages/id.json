@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "title": "detrans.ai | Berbicara dengan 50.000+ orang yang berhenti transisi",
+    "title": "detrans.ai | Berbicara dengan 60.000+ orang yang berhenti transisi",
     "description": "Kesadaran kolektif para detransitioner - chatbot yang berbagi pengalaman hidup dan perspektif dari orang-orang eks-transgender. Gunakan detrans.ai untuk dukungan dan saran detransisi, atau sekadar untuk memahami dan menjelajahi mengapa beberapa orang mengadopsi, menjalani, dan melepaskan identitas gender."
   },
   "home": {
-    "title": "Berbicara dengan 50.000+ Orang yang Berhenti Transisi",
+    "title": "Berbicara dengan 60.000+ Orang yang Berhenti Transisi",
     "subtitle": "Perspektif dari Sisi Lain",
     "intro": {
       "greeting": "Halo! Apa itu orang yang berhenti transisi?",
@@ -110,8 +110,8 @@
     },
     "privacyDisclaimer": "Harap jangan membagikan informasi pribadi yang dapat digunakan untuk mengidentifikasi Anda.",
     "privacyDisclaimerChatsPublic": "Chat bersifat publik.",
-    "memberCountDisclaimer": "*50,000+ mengacu pada anggota <a>/r/detrans subreddit</a>",
-    "memberCountDisclaimerMobile": "50,000+ anggota di <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimer": "*60,000+ mengacu pada anggota <a>/r/detrans subreddit</a>",
+    "memberCountDisclaimerMobile": "60,000+ anggota di <a>/r/detrans subreddit</a>",
     "browseConversations": "Jelajahi Semua Percakapan"
   },
   "header": {
@@ -567,7 +567,7 @@
           "redditCommunity": "Komunitas Detrans di Reddit",
           "redditWiki": "Wiki Detrans di Reddit",
           "discordServer": "Server Discord Resmi /r/detrans",
-          "askDetransAI": "Tanyakan 50.000+ orang detrans dengan detrans.ai"
+          "askDetransAI": "Tanyakan 60.000+ orang detrans dengan detrans.ai"
         }
       },
       "genderAffirmingCare": {
