@@ -440,8 +440,8 @@ export function FeaturedConversations() {
 
   return (
     <div className="relative mb-8">
-      <div className="bg-secondary/50 dark:bg-secondary/60 absolute -left-[5000px] z-0 h-full w-[10000px] border-t border-b" />
-      <div className="relative z-20 overflow-y-hidden border-t border-b py-8 sm:pb-0 lg:-mx-48 lg:px-8 lg:pt-8">
+      <div className="bg-secondary/50 dark:bg-secondary/60 border- absolute -left-[5000px] z-0 h-full w-[10000px] border-t bg-linear-to-b to-white dark:to-black" />
+      <div className="relative z-20 overflow-y-hidden border-t py-8 sm:pb-0 lg:-mx-48 lg:px-8 lg:pt-8">
         <Tabs
           value={currentTab}
           onValueChange={(value: string) =>
@@ -941,7 +941,7 @@ export function FeaturedConversations() {
                       >
                         {/* Gradient fade overlay */}
                         {currentPage === 1 && (
-                          <div className="pointer-events-none absolute inset-x-0 top-0 -mx-8 h-full bg-linear-to-b from-transparent via-[#f8fafc] to-[#f8fafc] dark:via-[#090e19] dark:to-[#090e19]"></div>
+                          <div className="via-[#f8fafc]s to-[#f8fafc]s dark:via-[#090e19]s dark:to-[#090e19]s pointer-events-none absolute inset-x-0 top-0 -mx-8 h-full bg-linear-to-b from-transparent via-white to-white dark:via-black dark:to-black"></div>
                         )}
                         {/* Button container */}
                         <div

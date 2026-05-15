@@ -23,8 +23,6 @@ import ChatBubbleButton from "./ChatBubbleButton";
 import DonationCard from "./DonationCard";
 import { FeaturedConversations } from "./FeaturedConversations/FeaturedConversations";
 import ParticipateCard from "./ParticipateCard";
-import { QuestionCategories } from "./QuestionCategories";
-import { QuestionTabs } from "./QuestionTabs";
 import RedditEmbeds from "./RedditEmbeds";
 
 export async function StartPage({
@@ -265,6 +263,7 @@ export async function StartPage({
           </div>
         )}
 
+        {/*
         <div className="sm:prose-base prose dark:prose-invert max-w-full sm:mt-4">
           <div className="flex items-center justify-start gap-2 lg:mt-2">
             <BookOpen className="mx-2 h-6 w-6 text-black dark:text-white" />
@@ -290,10 +289,10 @@ export async function StartPage({
             </div>
           )}
         </>
-
+ */}
         <div className="relative mt-4 -mb-16 pb-16 sm:mt-24">
           <div className="from-secondary/50 dark:from-secondary/50 absolute -left-[5000px] z-0 h-full w-[10000px] border-t bg-linear-to-b to-white dark:to-black" />
-          <div className="relative z-20 pt-8 sm:-mt-24 sm:pt-12">
+          <div className="relative z-20 pt-8 sm:pt-12">
             <Card
               className={
                 "dark:bg-secondary overflow-hidden rounded-xl border border-black/20 bg-white shadow-xs dark:border-white/10"
