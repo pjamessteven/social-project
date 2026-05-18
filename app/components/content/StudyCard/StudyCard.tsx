@@ -3,9 +3,10 @@ import { StudyDescription } from "./StudyDescription";
 
 export interface StudyCardProps {
   study: Study;
+  isAdmin?: boolean;
 }
 
-export function StudyCard({ study }: StudyCardProps) {
+export function StudyCard({ study, isAdmin }: StudyCardProps) {
   return (
     <article className="prose dark:prose-invert dark:bg-secondary block rounded-2xl border bg-white p-4 shadow-sm">
       <h2 className="!mt-0 !mb-2 text-base">
@@ -28,6 +29,23 @@ export function StudyCard({ study }: StudyCardProps) {
 
       {study.description && (
         <StudyDescription description={study.description} url={study.url} />
+      )}
+
+      {study.approved && study.keyPoints && study.keyPoints.length > 0 && (
+        <div className="mt-3 border-t pt-3">
+          <h3 className="!mt-0 !mb-2 text-sm font-semibold">Key Findings</h3>
+          <ul className="!mt-0 !mb-0 list-disc pl-5 text-sm">
+            {study.keyPoints.map((point, i) => (
+              <li key={i}>{point}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {isAdmin && !study.approved && (
+        <div className="mt-2 rounded bg-amber-100 px-3 py-1 text-xs text-amber-800 dark:bg-amber-900/30 dark:text-amber-200">
+          Pending approval
+        </div>
       )}
     </article>
   );

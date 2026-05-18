@@ -18,6 +18,7 @@ import { db } from "@/db";
 import { studies } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
+import { isAdmin } from "@/app/lib/auth/auth";
 
 interface StudyWithTranslations {
   id: number;
@@ -33,6 +34,12 @@ interface StudyWithTranslations {
   titleTranslation: string | null;
   descriptionTranslation: string | null;
   journalTranslation: string | null;
+  approved: boolean;
+  fullText: string | null;
+  abstract: string | null;
+  conclusion: string | null;
+  keyPoints: string[] | null;
+  summary: string | null;
   processed: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -62,11 +69,23 @@ export async function GET(request: NextRequest) {
       "en",
     );
 
-    const allStudies = await db
-      .select()
-      .from(studies)
-      .where(eq(studies.processed, true))
-      .orderBy(desc(studies.year));
+    const admin = await isAdmin();
+
+    let allStudies;
+    if (admin) {
+      // Admin sees all studies
+      allStudies = await db
+        .select()
+        .from(studies)
+        .orderBy(desc(studies.year));
+    } else {
+      // Public sees only approved studies
+      allStudies = await db
+        .select()
+        .from(studies)
+        .where(eq(studies.approved, true))
+        .orderBy(desc(studies.year));
+    }
 
     const localizedStudies = (allStudies as StudyWithTranslations[]).map(
       (study) => ({
@@ -91,12 +110,19 @@ export async function GET(request: NextRequest) {
           study.journalTranslation,
           locale,
         ),
+        approved: study.approved,
+        fullText: study.fullText,
+        abstract: study.abstract,
+        conclusion: study.conclusion,
+        keyPoints: study.keyPoints,
+        summary: study.summary,
       }),
     );
 
     return NextResponse.json({
       studies: localizedStudies,
       count: localizedStudies.length,
+      isAdmin: admin,
     });
   } catch (error) {
     console.error("Error fetching studies:", error);
@@ -155,7 +181,7 @@ export async function POST(request: NextRequest) {
       displayUrl = url;
     }
 
-    // Insert the study with just URL and processed = false
+    // Insert the study with just URL and approved = false
     // If user provided a suggested title, store it in headline field
     const result = await db
       .insert(studies)
@@ -163,6 +189,7 @@ export async function POST(request: NextRequest) {
         url,
         displayUrl,
         headline: suggestedTitle || null,
+        approved: false,
         processed: false,
       })
       .returning();
