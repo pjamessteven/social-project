@@ -1,27 +1,11 @@
 "use server";
-import { StudyCard } from "@/app/components/content/StudyCard";
 import { Study } from "@/app/types/study";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { cookies } from "next/headers";
 import StudySubmitForm from "../../components/StudySubmitForm";
-
-async function fetchStudies(locale: string): Promise<Study[]> {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-  const response = await fetch(`${baseUrl}/api/studies?locale=${locale}`, {
-    next: {
-      revalidate: 300,
-      tags: ["studies"],
-    },
-  });
-
-  if (!response.ok) {
-    console.error("Failed to fetch studies:", response.statusText);
-    return [];
-  }
-
-  const data = await response.json();
-  return data.studies || [];
-}
+import { StudyCard } from "@/app/components/content/StudyCard";
+import { StudyAdminWrapper } from "../../components/StudyAdminWrapper";
 
 export async function generateMetadata({
   params,
@@ -46,6 +30,18 @@ export async function generateMetadata({
   };
 }
 
+function StudyItem({ study, isAdmin }: { study: Study; isAdmin: boolean }) {
+  const card = <StudyCard study={study} isAdmin={isAdmin} />;
+
+  if (isAdmin) {
+    return (
+      <StudyAdminWrapper study={study}>{card}</StudyAdminWrapper>
+    );
+  }
+
+  return card;
+}
+
 export default async function StudiesPage({
   params,
 }: {
@@ -53,7 +49,33 @@ export default async function StudiesPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "studiesPage" });
-  const studiesData = await fetchStudies(locale);
+
+  // Forward session cookie so the API can authenticate admin users
+  const cookieStore = await cookies();
+  const sessionCookie = cookieStore.get("session_token")?.value;
+
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  const response = await fetch(`${baseUrl}/api/studies?locale=${locale}`, {
+    next: {
+      revalidate: 300,
+      tags: ["studies"],
+    },
+    headers: sessionCookie
+      ? { Cookie: `session_token=${sessionCookie}` }
+      : undefined,
+  });
+
+  let studiesData: Study[] = [];
+  let isAdmin = false;
+
+  if (response.ok) {
+    const data = await response.json();
+    studiesData = data.studies || [];
+    isAdmin = data.isAdmin || false;
+  }
+
+  const approvedStudies = studiesData.filter((s) => s.approved);
+  const pendingStudies = studiesData.filter((s) => !s.approved);
 
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
@@ -61,10 +83,37 @@ export default async function StudiesPage({
       <p>{t("description")}</p>
       <StudySubmitForm />
 
-      <div className="mt-8 space-y-6">
-        {studiesData.map((study, index) => (
-          <StudyCard key={index} study={study} />
-        ))}
+      <div className="mt-8 space-y-8">
+        {isAdmin && pendingStudies.length > 0 && (
+          <div>
+            <h2 className="text-xl font-semibold text-amber-600 dark:text-amber-400">
+              Pending Review ({pendingStudies.length})
+            </h2>
+            <div className="mt-4 space-y-6">
+              {pendingStudies.map((study) => (
+                <div
+                  key={study.id}
+                  className="opacity-70 transition-opacity hover:opacity-100"
+                >
+                  <StudyItem study={study} isAdmin={isAdmin} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div>
+          {isAdmin && (
+            <h2 className="text-xl font-semibold">
+              Approved Studies ({approvedStudies.length})
+            </h2>
+          )}
+          <div className="mt-4 space-y-6">
+            {approvedStudies.map((study) => (
+              <StudyItem key={study.id} study={study} isAdmin={isAdmin} />
+            ))}
+          </div>
+        </div>
       </div>
 
       <hr />

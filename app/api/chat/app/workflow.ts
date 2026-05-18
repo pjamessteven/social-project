@@ -4,7 +4,7 @@ import z from "zod";
 import { PostgresCache, makeHashedKey } from "../../shared/cache";
 import { CachedOpenAI } from "../../shared/llm";
 import { agentPrompt } from "../utils";
-import { getCommentsIndex, getStoriesIndex, getVideosIndex } from "./data";
+import { getCommentsIndex, getStoriesIndex, getVideosIndex, getStudiesIndex } from "./data";
 import { initSettings } from "./settings";
 
 type FilterConfig = {
@@ -35,6 +35,7 @@ export const workflowFactory = async (
   const commentsIndex = await getCommentsIndex(reqBody?.data, locale);
   const storiesIndex = await getStoriesIndex(reqBody?.data, locale);
   const videosIndex = await getVideosIndex(reqBody?.data, locale);
+  const studiesIndex = await getStudiesIndex(reqBody?.data, locale);
 
   console.log("[WORKFLOW] Creating query tools...");
 
@@ -215,6 +216,100 @@ export const workflowFactory = async (
     },
   );
 
+  const queryStudiesTool = tool(
+    async ({ query }: { query: string }) => {
+      const cacheKey = `tool:queryStudies:${JSON.stringify({ query })}`;
+      const hashedKey = makeHashedKey(cacheKey);
+      const cachedResult = await cache.get(hashedKey);
+
+      if (cachedResult) {
+        console.log("[CACHE HIT] queryStudiesTool");
+        return cachedResult;
+      }
+      console.log("[CACHE MISS] queryStudiesTool");
+
+      const studiesEngineTool = studiesIndex.asRetriever({
+        similarityTopK: 15,
+      });
+
+      const nodes = await studiesEngineTool.retrieve({ query });
+
+      // Deduplicate by studyId and return rich metadata
+      const uniqueStudies = nodes.reduce<
+        Map<
+          number,
+          {
+            title: string;
+            authors: string;
+            year: number;
+            url: string;
+            abstract: string;
+            conclusion: string;
+            keyPoints: string[];
+            chunks: string[];
+          }
+        >
+      >((acc, item) => {
+        const meta = item.node.metadata;
+        const studyId = meta?.studyId as number;
+        if (!studyId) return acc;
+
+        if (!acc.has(studyId)) {
+          acc.set(studyId, {
+            title: meta?.title || "",
+            authors: meta?.authors || "",
+            year: meta?.year || 0,
+            url: meta?.url || "",
+            abstract: meta?.abstract || "",
+            conclusion: meta?.conclusion || "",
+            keyPoints: [],
+            chunks: [],
+          });
+        }
+
+        const study = acc.get(studyId)!;
+        study.chunks.push((item.node as any).text || "");
+
+        // Parse keyPoints once
+        if (study.keyPoints.length === 0 && meta?.keyPoints) {
+          try {
+            const kp = JSON.parse(meta.keyPoints as string);
+            if (Array.isArray(kp)) {
+              study.keyPoints = kp;
+            }
+          } catch {
+            // ignore parse errors
+          }
+        }
+
+        return acc;
+      }, new Map());
+
+      const result = JSON.stringify(
+        Array.from(uniqueStudies.values()).slice(0, 5),
+      );
+
+      await cache.set(hashedKey, cacheKey, result, userInput, {
+        conversationId,
+        requestId,
+        iteration,
+      });
+
+      return result;
+    },
+    {
+      name: "queryStudies",
+      description:
+        "Search academic studies and research papers for evidence-based information on gender dysphoria, detransition, puberty blockers, cross-sex hormones, and related medical/social science topics. **Ask your question in the users native language**.",
+      parameters: z.object({
+        query: z.string({
+          description:
+            "A specific question to search academic studies. **Ask your question in the users native language**.'",
+        }),
+      }),
+    },
+  );
+
   const llm = new CachedOpenAI({
     cache,
     mode: "detrans_chat",
@@ -235,7 +330,7 @@ export const workflowFactory = async (
 
   return agent({
     llm,
-    tools: [queryCommentsTool, queryVideosTool],
+    tools: [queryCommentsTool, queryVideosTool, queryStudiesTool],
     systemPrompt: agentPrompt,
     timeout: 30,
   });

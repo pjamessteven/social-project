@@ -7,6 +7,7 @@ import {
 let storiesIndexCache: VectorStoreIndex | null = null;
 let commentsIndexCache: VectorStoreIndex | null = null;
 let videosIndexCache: VectorStoreIndex | null = null;
+let studiesIndexCache: VectorStoreIndex | null = null;
 
 export async function getStoriesIndex(params?: any, locale?: string, tags?: string[]) {
   console.log('[STORIES INDEX] Called with params:', params, 'locale:', locale, 'tags:', tags);
@@ -136,5 +137,48 @@ export async function getVideosIndex(params?: any, locale?: string, tags?: strin
   }
 
   return videosIndexCache;
+}
+
+export async function getStudiesIndex(params?: any, locale?: string, tags?: string[]) {
+  console.log('[STUDIES INDEX] Called with params:', params, 'locale:', locale, 'tags:', tags);
+  
+  if (!studiesIndexCache) {
+    console.log('[STUDIES INDEX] Creating new studies index (first time)');
+    
+    try {
+      const vectorStore = new QdrantVectorStore({
+        url: process.env.QDRANT_URL || "http://localhost:6333",
+        collectionName: "detrans_studies",
+      });
+
+      console.log('[STUDIES INDEX] Vector store created successfully, building index...');
+      console.log('[STUDIES INDEX] Qdrant URL:', process.env.QDRANT_URL || "http://localhost:6333");
+      console.log('[STUDIES INDEX] Collection name: detrans_studies');
+      
+      studiesIndexCache = await VectorStoreIndex.fromVectorStore(vectorStore);
+      console.log('[STUDIES INDEX] Index created:', !!studiesIndexCache);
+      console.log('[STUDIES INDEX] Index cached for future requests');
+      
+      // Test the index with a simple query
+      try {
+        const queryEngine = studiesIndexCache.asQueryEngine();
+        if (queryEngine) {
+          // const testQuery = await queryEngine.query("test");
+          // console.log('[STUDIES INDEX] Test query successful, response length:', testQuery.response?.length || 0);
+        } else {
+          console.warn('[STUDIES INDEX] Query engine is undefined, index may be empty');
+        }
+      } catch (testError) {
+        console.error('[STUDIES INDEX] Test query failed:', testError);
+      }
+    } catch (error) {
+      console.error('[STUDIES INDEX] Failed to create index:', error);
+      throw error;
+    }
+  } else {
+    console.log('[STUDIES INDEX] Using cached studies index');
+  }
+
+  return studiesIndexCache;
 }
 
