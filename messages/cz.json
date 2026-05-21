@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "Chaty jsou veřejné.",
     "memberCountDisclaimer": "*60,000+ se vztahuje na členy <a>/r/detrans subreddit</a>",
     "memberCountDisclaimerMobile": "60,000+ členů v <a>/r/detrans subreddit</a>",
-    "browseConversations": "Procházet všechny konverzace"
+    "browseConversations": "Procházet všechny konverzace",
+    "aboutDetransition": {
+      "title": "O detranzici",
+      "whatIs": "Detranzice je proces zastavení nebo zvrácení genderové tranzice. Lidé podstupují detranzici z mnoha důvodů: jejich dysforie měla jiné kořeny, tranzice nevyřešila jejich tíseň, nebo se jejich chápání sebe sama časem změnilo. Tyto zkušenosti jsou reálné, ale často je obtížné o nich otevřeně mluvit.",
+      "reality": "Detranzicionisté představují realitu, kterou mnoho lidí těžko přijímá: lidé, kteří byli přesvědčeni, že se narodili v nesprávném těle, kteří byli v tomto přesvědčení podporováni, a kteří přesto zjistili, že tranzice nebyla odpovědí. To vyzývá samotný koncept vrozené genderové identity — a proto je odpovědí tak často popírání, odmítání a <a>falešná statistika</a> tvrdící, že jich je příliš málo na to, aby záleželo.",
+      "hardToFindTitle": "Proč je těžké tyto informace najít",
+      "onlineSpaces": "Online prostředí posilují jednostranný příběh. Na TikToku a Instagramu algoritmy identifikují zájem uživatele a vytvářejí zpětné vazby. Na Redditu a Discordu jsou genderové komunity silně moderovány. Odlišné perspektivy jsou odstraňovány nejen tehdy, když jsou vyjádřeny agresivně, ale když jsou vyjádřeny vůbec. Člověk, který vyjádří lítost, který zpochybní, zda je tranzice vždy vhodná, který sdílí výzkum ukazující vysoké míry desistence, který zmíní, že zná někoho, kdo podstoupil detranzici — všechny tyto příspěvky budou smazány a uživatel zablokován. Někteří výzkumníci, kteří studují detranzici, čelili také profesionálním důsledkům.",
+      "aiBias": "Předsudek je nyní zabudován přímo do samotné umělé inteligence. Západní chatboty jsou odrazem dominantních kulturních přesvědčení a znalostí. Jsou trénovány na datech, která drtivě potvrzují tranzici jako správnou odpověď na tíseň. LLM, na které se lidé stále častěji obracejí pro radu, prezentují jednu stranu jako uzavřený fakt, zatímco tu druhou skrývají.",
+      "restoreBalance": "detrans.ai existuje pro obnovení rovnováhy. Existuje, protože hlasy detranzicionistů jsou rutinně umlčovány komunitami, které je považují za hrozbu, profesionály, kteří kážou pouze afirmaci, a kulturou, která považuje zpochybňování lékařské tranzice za škodlivé, i když detranzicionisté často vysvětlují, že jí byli ublíženi.",
+      "supportTitle": "Podpora při detranzici",
+      "supportDescription": "detrans.ai je bezplatná služba podpory při detranzici pro ty, kteří zpochybňují, uvažují o hormonech nebo operacích, podstupují detranzici, nebo jsou rodiči či blízkými někoho, kdo se nyní identifikuje jako transgender. Toto je zdroj bez ideologických podmínek. Čerpá z tisíců reálných příběhů detranzicionistů k prozkoumání kořenů jejich genderové dysforie, nuancí identity, osobních cest detranzice a toho, jak lidé znovu budují vztah se svými těly a myslemi poté.",
+      "whatYouCanLearn": "Pomocí tohoto webu můžete prozkoumat, co může způsobit genderovou dysforii nebo být mylně diagnostikováno jako taková, nuance identity, osobní cesty detranzice a pochopit, jak lidé znovu budují vztah se svými těly a myslemi poté. Můžete se dozvědět o sociální tranzici, ukončení hormonů, chirurgických realitách a praktické i emocionální práci při posunu vpřed. Můžete také najít vyprávění o tom, co mnohým připadá nejtěžší: ztráta komunity, strach z přiznání pochybností a proces budování života mimo identitu, která kdysi definovala vše.",
+      "differentStages": "Lidé sem přicházejí v různých fázích. Někteří zkoumají před zahájením tranzice. Jiní jsou uprostřed tranzice s pochybnostmi. Jiní již zahájili detranzici a potřebují praktické vedení. Mnoho lidí přichází hledat <a>podpůrné skupiny pro detranzici</a> nebo <a>terapeuty s explorativním přístupem k genderu</a>, kteří automaticky nepotvrzují tranzici jako jedinou cestu.",
+      "closing": "Doufám, že detrans.ai vám může pomoci učinit informovaná, uvědomělá rozhodnutí."
+    }
   },
   "header": {
     "navigation": {
@@ -536,7 +550,8 @@
       "ogDescription": "Na této stránce najdete výběr akademických studií a recenzovaných článků v časopisech a ověřených statistik týkajících se trendů genderové identity a detranzice."
     },
     "title": "Vybrané akademické články",
-    "description": "Akademické studie, recenzovaný výzkum a články v časopisech na téma genderové identity, tranzice a detranzice."
+    "description": "Výzkum detranzice je vznikající obor. Rychlý nárůst diagnóz genderové dysforie v minulém desetiletí – zejména mezi dospívajícími dívkami – vedl k rostoucí populaci detranzicionistů, přičemž sběr dat zůstává náročný kvůli vysoké ztrátě při sledování, ideologickému rozdělení a metodologickým omezením.",
+    "segmNote": "Na této stránce najdete akademické studie, recenzovaný výzkum a články z časopisů, které zpochybňují účinnost a etiku genderově potvrzující péče. Další informace, včetně komplexních analýz podpůrných studií, naleznete na webu <a>Society for Evidence-Based Gender Medicine (SEGM)</a>."
   },
   "contentWarning": {
     "title": "Upozornění na obsah:",

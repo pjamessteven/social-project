@@ -129,7 +129,8 @@ function extractMessageContent(message: any): string {
         rtfContent += markdownToRtf(part.text) + "\\par\n";
       } else if (
         part.type === "data-comment-query-event" ||
-        part.type === "data-video-query-event"
+        part.type === "data-video-query-event" ||
+        part.type === "data-study-query-event"
       ) {
         const data = part.data || {};
         const title = data.title || "Query";

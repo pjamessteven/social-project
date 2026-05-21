@@ -6,6 +6,7 @@ import {
   jsonb,
   numeric,
   pgTable,
+  primaryKey,
   serial,
   text,
   timestamp,
@@ -536,10 +537,11 @@ export const studies = pgTable(
     url: text("url").notNull(),
     displayUrl: text("display_url").notNull(),
     journal: varchar("journal", { length: 500 }),
-    // Translation columns (JSON objects)
+    // Translation columns (JSON objects with locale keys)
     headlineTranslation: text("headline_translation"),
     titleTranslation: text("title_translation"),
     descriptionTranslation: text("description_translation"),
+    keyPointsTranslation: text("key_points_translation"),
     // Approval and RAG fields
     approved: boolean("approved").default(false).notNull(),
     fullText: text("full_text"),
@@ -547,6 +549,8 @@ export const studies = pgTable(
     conclusion: text("conclusion"),
     keyPoints: jsonb("key_points").$type<string[]>(),
     summary: text("summary"),
+    // Methodological limitations and flaws
+    limitations: jsonb("limitations").$type<string[]>(),
     // Legacy field — replaced by approved for visibility gating
     processed: boolean("processed").default(false).notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -578,13 +582,50 @@ export const studySchema = z.object({
   abstract: z.string().nullable(),
   conclusion: z.string().nullable(),
   keyPoints: z.array(z.string()).nullable(),
+  keyPointsTranslation: z.string().nullable(),
   summary: z.string().nullable(),
+  limitations: z.array(z.string()).nullable(),
   processed: z.boolean().default(false),
   createdAt: z.date(),
   updatedAt: z.date(),
 });
 
 export type Study = z.infer<typeof studySchema>;
+
+// Normalized study tags
+export const studyTags = pgTable("study_tags", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 100 }).notNull().unique(),
+  // Translations as JSON object: {"en": "...", "fr": "...", "es": "..."}
+  translations: text("translations"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const studyTagRelations = pgTable(
+  "study_tag_relations",
+  {
+    studyId: integer("study_id").notNull(),
+    tagId: integer("tag_id").notNull(),
+  },
+  (table) => ({
+    pk: primaryKey({ columns: [table.studyId, table.tagId] }),
+  }),
+);
+
+export const studyTagSchema = z.object({
+  id: z.number().int(),
+  name: z.string().max(100),
+  translations: z.string().nullable(),
+  createdAt: z.date(),
+});
+
+export const studyTagRelationSchema = z.object({
+  studyId: z.number().int(),
+  tagId: z.number().int(),
+});
+
+export type StudyTag = z.infer<typeof studyTagSchema>;
+export type StudyTagRelation = z.infer<typeof studyTagRelationSchema>;
 
 export type Video = z.infer<typeof videoSchema>;
 export type UserTag = z.infer<typeof userTagSchema>;

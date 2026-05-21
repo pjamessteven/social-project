@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "Pokalbiai yra vieši.",
     "memberCountDisclaimer": "*60,000+ nurodo <a>/r/detrans subreddit</a> narius",
     "memberCountDisclaimerMobile": "60,000+ narių <a>/r/detrans subreddit</a> forume",
-    "browseConversations": "Naršyti visas pokalbius"
+    "browseConversations": "Naršyti visas pokalbius",
+    "aboutDetransition": {
+      "title": "Apie detranziciją",
+      "whatIs": "Detranzicija yra procesas, kai sustabdomas arba atstatomas genderinis perėjimas. Žmonės detranzicionuoja dėl daugelio priežasčių: jų disforija turėjo kitas šaknis, perėjimas neišsprendė jų kančios, arba jų savęs supratimas pasikeitė laikui bėgant. Šios patirtys yra realios, tačiau dažnai sunkiai aptariamos atvirai.",
+      "reality": "Detranzicionieriai atstovauja realybę, kurią daugeliui sunku priimti: žmones, kurie buvo tikri, kad gimė ne savo kūne, kurie buvo palaikomi šiame tikėjime, ir kurie vis tiek suprato, kad perėjimas nebuvo atsakymas. Tai meta iššūkį pačiai įgimtos genderinės tapatybės sampratai – todėl atsakymas taip dažnai būna neigimas, atmetimas ir <a>klaidinga statistika</a>, teigianti, kad jų per mažai, jog tai būtų svarbu.",
+      "hardToFindTitle": "Kodėl šią informaciją sunku rasti",
+      "onlineSpaces": "Interneto erdvės stiprina vienpusį pasakojimą. TikTok ir Instagram algoritmai identifikuoja vartotojų susidomėjimą ir kuria grįžtamojo ryšio kilpas. Reddit ir Discord genderinėmis temomis besidominčios bendruomenės yra griežtai moderuojamos. Kitokios perspektyvos šalinamos ne tik tada, kai išreiškiamos agresyviai, bet kai išreiškiamos apskritai. Asmuo, kuris reiškia apgailestavimą, kuris abejoja, ar perėjimas visada yra tinkamas, kuris dalijasi tyrimais, rodančiais didelį pasitraukimo dažnį, kuris mini pažįstantį ką nors, kas detranzicionavo – visi šie indėliai bus ištrinti, o vartotojas užblokuotas. Kai kurie detranziciją tyrinėjantys mokslininkai taip pat patyrė profesinių pasekmių.",
+      "aiBias": "Šališkumas dabar įsišaknijęs pačiame AI. Vakarų pokalbių robotai yra dominuojančių kultūrinių įsitikinimų ir žinių atspindys. Jie mokomi duomenų, kurie smarkiai patvirtina perėjimą kaip teisingą atsaką į kančią. LLM, į kuriuos žmonės vis labiau kreipiasi patarimų, pateikia vieną pusę kaip nusistovėjusią faktą, tuo tarpu slepia kitą.",
+      "restoreBalance": "detrans.ai egzistuoja tam, kad atkurtų pusiausvyrą. Ji egzistuoja todėl, kad detranzicionierių balsai yra sistemingai nutildomi bendruomenių, kurios juos laiko grėsme, profesionalų, kurie skelbia tik patvirtinimą, ir kultūros, kuri laiko abejones dėl medicininio perėjimo žalingomis, net kai detranzicionieriai dažnai aiškina, kad jie dėl to patyrė žalos.",
+      "supportTitle": "Detranzicijos palaikymas",
+      "supportDescription": "detrans.ai yra nemokama detranzicijos palaikymo paslauga tiems, kurie abejoja, svarsto apie hormonus ar operacijas, detranzicionuoja, ar yra tėvai ar artimieji žmogaus, kuris dabar identifikuojasi kaip translytis. Tai išteklius be ideologinių sąlygų. Jis remiasi tūkstančiais tikrų detranzicionierių istorijų, kad ištirtų jų genderinės disforijos šaknis, tapatybės niuansus, asmenines detranzicijos keliones ir kaip žmonės atkuria savo santykį su kūnu ir protu po to.",
+      "whatYouCanLearn": "Šioje svetainėje galite ištirti, kas gali sukelti ar būti klaidingai diagnozuota kaip genderinė disforija, tapatybės niuansus, asmenines detranzicijos keliones ir suprasti, kaip žmonės atkuria savo santykį su kūnu ir protu po to. Galite sužinoti apie socialinį perėjimą, hormonų nutraukimą, chirurgines realybes ir praktinį bei emocinį darbą, reikalingą judėti pirmyn. Taip pat galite rasti pasakojimų apie tai, ką daugelis laiko sunkiausiu: bendruomenės praradimą, baimę pripažinti abejones ir procesą, kaip kurti gyvenimą už tapatybės ribų, kuri kažkada apibrėžė viską.",
+      "differentStages": "Žmonės ateina čia skirtinguose etapuose. Kai kurie tyrinėja prieš pradėdami perėjimą. Kiti yra perėjimo viduryje su abejonėmis. Kiti jau pradėjo detranziciją ir reikia praktinių patarimų. Daugelis ateina ieškodami <a>detranzicijos palaikymo grupių</a> arba <a>genderinės tyrinėjamosios terapijos terapeutų</a>, kurie automatiškai nepatvirtina perėjimo kaip vienintelio kelio.",
+      "closing": "Tikiuosi, kad detrans.ai gali padėti jums priimti pagrįstus, sąmoningus sprendimus."
+    }
   },
   "header": {
     "navigation": {
@@ -535,7 +549,8 @@
       "ogDescription": "Raskite šiame puslapyje akademinių tyrimų ir recenzuojamų žurnalų straipsnių bei patvirtintos statistikos pasirinkimą, susijusį su genderinių tapatybių tendencijomis ir detranzicija."
     },
     "title": "Pasirinkti akademiniai straipsniai",
-    "description": "Akademiniai tyrimai, recenzuojami tyrimai ir žurnalų straipsniai apie genderinės tapatybės, perėjimo ir detranzicijos temas."
+    "description": "Detranzicijos tyrimai – tai nauja sritis. Sparčiai augantys genderinės disforijos diagnozių skaičiai per pastarąjį dešimtmetį – ypač tarp paauglių merginų – sukūrė augančią detranzicionierių populiaciją, nors duomenų rinkimas išlieka sudėtingas dėl didelio stebėjimų nutraukimo, ideologinės susiskaldymo ir metodologinių apribojimų.",
+    "segmNote": "Šiame puslapyje rasite akademinių tyrimų, recenzuojamų mokslinių publikacijų ir žurnalų straipsnių, keliančių abejonių dėl genderį patvirtinančios priežiūros veiksmingumo ir etikos. Daugiau informacijos, įskaitant išsamias palaikančių tyrimų analizes, rasite <a>Society for Evidence-Based Gender Medicine (SEGM)</a>."
   },
   "contentWarning": {
     "title": "Turinio perspėjimas:",

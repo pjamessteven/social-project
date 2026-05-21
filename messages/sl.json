@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "Klepeti so javni.",
     "memberCountDisclaimer": "*60,000+ se nanaša na člane <a>/r/detrans subreddit</a>",
     "memberCountDisclaimerMobile": "60,000+ članov v <a>/r/detrans subreddit</a>",
-    "browseConversations": "Brskajte po vseh pogovorih"
+    "browseConversations": "Brskajte po vseh pogovorih",
+    "aboutDetransition": {
+      "title": "O detranziciji",
+      "whatIs": "Detranzicija je postopek ustavitve ali povrnitve spolne tranzicije. Ljudje se detranzicionirajo iz različnih razlogov: njihova disforija je imela druge korenine, tranzicija ni razrešila njihove stiske, ali pa se je njihovo razumevanje samega sebe spremenilo s časom. Te izkušnje so resnične, vendar pogosto težko izgovorljive na glas.",
+      "reality": "Detranzicionarji predstavljajo resničnost, ki jo mnogi težko sprejmejo: ljudje, ki so bili prepričani, da so rojeni v napačno telo, ki so bili pri tej veri podprti, in ki so kljub temu ugotovili, da tranzicija ni odgovor. To izziva sam koncept prirojene spolne identitete — zato je odziv tako pogosto zanikanje, zavračanje in <a>lažna statistika</a>, ki trdi, da jih je premalo, da bi štel.",
+      "hardToFindTitle": "Zakaj je te informacije težko najti",
+      "onlineSpaces": "Spletni prostori utrjujejo enostransko zgodbo. Na TikToku in Instagramu algoritmi prepoznajo zanimanje uporabnikov in ustvarjajo povratne zanke. Na Redditu in Discordu so spolno povezane skupnosti močno moderirane. Nasprotujoča mnenja se odstranjujejo ne le, ko so izražena agresivno, temveč ko so izražena sploh. Posameznik, ki izraža obžalovanje, ki postavlja vprašanja, ali je tranzicija vedno primerna, ki deli raziskave, ki kažejo visoke stopnje prenehanja, ki omenja, da pozna nekoga, ki se je detranzicioniral — vsi ti prispevki bodo izbrisani in uporabnik bo izključen. Nekateri raziskovalci, ki preučujejo detranzicijo, so prav tako doživeli poklicne posledice.",
+      "aiBias": "Pristranskost je zdaj vgrajena v samo umetno inteligenco. Zahodni klepetalni roboti so odsev prevladujočih kulturnih prepričanj in znanja. Usposobljeni so na podatkih, ki v veliki večini potrjujejo tranzicijo kot pravilen odgovor na stisko. LLM, na katere se ljudje vse pogosteje obračajo za nasvet, predstavljajo eno stran kot uveljavljeno dejstvo, medtem ko prikrivajo drugo.",
+      "restoreBalance": "detrans.ai obstaja, da povrne ravnotežje. Obstaja, ker so glasovi detranzicionarjev redoma utišani s strani skupnosti, ki jih dojemajo kot grožnjo, s strani strokovnjakov, ki pridigujejo le potrjevanje, in s strani kulture, ki dojema spraševanje medicinske tranzicije kot škodljivo, tudi ko detranzicionarji pogosto razlagajo, da so bili poškodovani prav zaradi nje.",
+      "supportTitle": "Podpora pri detranziciji",
+      "supportDescription": "detrans.ai je brezplačna storitev podpore pri detranziciji za tiste, ki raziskujejo, razmišljajo o hormonih ali operacijah, se detranzicionirajo, ali so starši ali bližnji nekoga, ki se zdaj identificira kot transgender. To je vir brez ideoloških pogojev. Črpa iz tisočev resničnih zgodb detranzicionarjev za raziskovanje korenin njihove spolne disforije, nijans identitete, osebnih poti detranzicije in kako ljudje znova gradijo odnos s svojimi telesi in uma potem.",
+      "whatYouCanLearn": "To spletno mesto lahko uporabite za raziskovanje, kaj bi lahko povzročilo ali bilo napačno diagnosticirano kot spolna disforija, nijans identitete, osebnih poti detranzicije, ter razumevanje, kako ljudje znova gradijo odnos s svojimi telesi in uma potem. Lahko se seznanite s socialno tranzicijo, prenehanjem hormonov, kirurškimi realnostmi in praktičnim ter čustvenim delom napredovanja. Lahko najdete tudi zgodbe o tem, kar mnogi doživljajo kot najtežje: izguba skupnosti, strah pred priznanjem dvomov in proces gradnje življenja zunaj identitete, ki je nekoč določala vse.",
+      "differentStages": "Ljudje pridejo sem v različnih fazah. Nekateri raziskujejo, preden začnejo tranzicijo. Drugi so vmes v tranziciji z dvomi. Drugi so že začeli detranzicionirati in potrebujejo praktična navodila. Mnogi pridejo iskat <a>skupine za podporo pri detranziciji</a> ali <a>terapevte za raziskovanje spola</a>, ki samodejno ne potrjujejo tranzicije kot edine poti.",
+      "closing": "Upam, da vam detrans.ai lahko pomaga pri informiranih, samozavednih odločitvah."
+    }
   },
   "header": {
     "navigation": {
@@ -535,7 +549,8 @@
       "ogDescription": "Na tej strani poiščite izbor akademskih študij in člankov iz revij, ki jih recenzirajo vrstniki, ter preverjene statistike, ki se nanašajo na trende spolne identitete in detranzicijo."
     },
     "title": "Izbrane akademske članke",
-    "description": "Akademske študije, raziskave, ki jih recenzirajo vrstniki, in članki iz revij o temah spolne identitete, tranzicije in detranzicije."
+    "description": "Raziskovanje detranzicije je novo področje. Hiter porast diagnoz spolnega nelagodja v zadnjem desetletju – zlasti med najstnicami – je ustvaril rastočo populacijo detranzicionarjev, čeprav zbiranje podatkov ostaja izziv zaradi velikega odstopanja pri nadaljnjem spremljanju, ideološke razdeljenosti in metodoloških omejitev.",
+    "segmNote": "Na tej strani boste našli akademske študije, recenzirane raziskave in članke iz revij, ki zastavljajo vprašanja o učinkovitosti in etiki potrjevalne oskrbe spola. Za več informacij, vključno z vsestranskimi analizami podpornih študij, glejte <a>Society for Evidence-Based Gender Medicine (SEGM)</a>."
   },
   "contentWarning": {
     "title": "Opozorilo o vsebini:",

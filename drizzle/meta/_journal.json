@@ -12,15 +12,8 @@
     {
       "idx": 1,
       "version": "7",
-      "when": 1738128000000,
-      "tag": "0003_add_video_translation_columns",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
       "when": 1750243200000,
-      "tag": "0007_add_study_rag_columns",
+      "tag": "0008_normalize_tags_and_translations",
       "breakpoints": true
     }
   ]

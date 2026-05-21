@@ -87,11 +87,12 @@ export default function CommentQueryEventPart() {
           <AccordionTrigger
             disabled={isLoading}
             indicatorStart
-            className="text-muted-foreground bg-secondary rounded-lg border p-3 hover:no-underline sm:p-3"
+            className="text-muted-foreground bg-secondary rounded-xl p-3 hover:no-underline sm:p-3"
           >
             <div className="flex w-full flex-row items-center justify-between">
               <div className="no-wrap flex flex-row items-baseline pr-2">
                 <div className="text-muted-foreground text-base font-normal italic">
+                  Ask Detransitioners:{" "}
                   {commentPart?.data?.query
                     ? commentPart?.data?.query
                     : t("lookingForComments")}

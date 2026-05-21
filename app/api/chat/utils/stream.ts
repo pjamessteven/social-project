@@ -110,13 +110,18 @@ export function toDataStream(
 
           if (toolCallsEvent.include(event)) {
             for (const toolCall of event.data.toolCalls) {
+              const isStudyTool =
+                toolCall.toolName === "queryStudies" ||
+                toolCall.toolName === "querySupportiveStudies";
               writer.write({
                 type:
                   toolCall.toolName === "queryVideos"
                     ? "data-video-query-event"
                     : toolCall.toolName === "queryStories"
                       ? "data-story-query-event"
-                      : "data-comment-query-event",
+                      : isStudyTool
+                        ? "data-study-query-event"
+                        : "data-comment-query-event",
                 id: toolCall.toolId,
                 data: {
                   title:
@@ -124,7 +129,9 @@ export function toDataStream(
                       ? "Querying videos..."
                       : toolCall.toolName === "queryStories"
                         ? "Querying user stories..."
-                        : "Querying user comments...",
+                        : isStudyTool
+                          ? "Querying studies..."
+                          : "Querying user comments...",
                   query: toolCall.toolKwargs.query,
                 },
               });
@@ -139,13 +146,18 @@ export function toDataStream(
               textId = null;
             }
             for (const toolResult of event.data.results) {
+              const isStudyTool =
+                toolResult.toolName === "queryStudies" ||
+                toolResult.toolName === "querySupportiveStudies";
               writer.write({
                 type:
                   toolResult.toolName === "queryVideos"
                     ? "data-video-query-event"
                     : toolResult.toolName === "queryStories"
                       ? "data-story-query-event"
-                      : "data-comment-query-event",
+                      : isStudyTool
+                        ? "data-study-query-event"
+                        : "data-comment-query-event",
                 id: toolResult.toolId,
                 data: {
                   title:
@@ -153,7 +165,9 @@ export function toDataStream(
                       ? "Queried user videos"
                       : toolResult.toolName === "queryStories"
                         ? "Queried user stories"
-                        : "Queried user comments",
+                        : isStudyTool
+                          ? "Queried studies"
+                          : "Queried user comments",
                   query: toolResult.toolKwargs.query,
                   result: toolResult.raw,
                   status: toolResult.toolOutput.isError ? "error" : "success",

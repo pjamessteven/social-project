@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "Le chat sono pubbliche.",
     "memberCountDisclaimer": "*60,000+ si riferisce ai membri del <a>/r/detrans subreddit</a>",
     "memberCountDisclaimerMobile": "60,000+ membri nel <a>/r/detrans subreddit</a>",
-    "browseConversations": "Sfoglia tutte le Conversazioni"
+    "browseConversations": "Sfoglia tutte le Conversazioni",
+    "aboutDetransition": {
+      "title": "Informazioni sulla Detransition",
+      "whatIs": "La detransition è il processo di interruzione o inversione di una transizione di genere. Le persone fanno detransition per molti motivi: la loro disforia aveva altre radici, la transizione non ha risolto la loro sofferenza, o la loro comprensione di sé è cambiata nel tempo. Queste esperienze sono reali, ma spesso difficili da raccontare apertamente.",
+      "reality": "Chi ha fatto detransition rappresenta una realtà che molti faticano ad accettare: persone che erano certe di essere nate nel corpo sbagliato, che sono state sostenute in quella convinzione, e che hanno comunque scoperto che la transizione non era la risposta. Questo mette in discussione il concetto stesso di identità di genere innata — ed è per questo che la reazione è così spesso negazione, liquidazione e <a>statistiche false</a> che sostengono siano troppo pochi per contare.",
+      "hardToFindTitle": "Perché Queste Informazioni Sono Difficili da Trovare",
+      "onlineSpaces": "Gli spazi online rafforzano una narrazione unilaterale. Su TikTok e Instagram, gli algoritmi identificano l'interesse degli utenti e creano cicli di feedback. Su Reddit e Discord, le comunità legate al genere sono fortemente moderate. Le prospettive dissenzienti vengono rimosse non solo quando espresse in modo aggressivo, ma quando espresse in assoluto. L'individuo che esprime rimpianto, che mette in discussione se la transizione sia sempre appropriata, che condivide ricerche che mostrano alte percentuali di desistenza, che menziona di conoscere qualcuno che ha fatto detransition — tutti questi contributi verranno eliminati, e l'utente bannato. Alcuni ricercatori che studiano la detransition hanno anche affrontato conseguenze professionali.",
+      "aiBias": "Il bias è ormai integrato nell'AI stessa. I chatbot occidentali sono il riflesso di credenze culturali dominanti e conoscenza. Sono addestrati su dati che in modo schiacciante affermano la transizione come risposta corretta alla sofferenza. Gli LLM a cui le persone si rivolgono sempre più spesso per consigli presentano un lato come un dato acquisito nascondendo l'altro.",
+      "restoreBalance": "detrans.ai esiste per ripristinare l'equilibrio. Esiste perché le voci di chi ha fatto detransition sono sistematicamente silenziate da comunità che li vedono come una minaccia, da professionisti che predicano solo affermazione, e da una cultura che considera dannoso mettere in discussione la transizione medica, anche quando chi ha fatto detransition spiega di averne subito il danno.",
+      "supportTitle": "Supporto alla Detransition",
+      "supportDescription": "detrans.ai è un servizio gratuito di supporto alla detransition per chi sta mettendo in discussione, considerando ormoni o interventi chirurgici, sta facendo detransition, o è genitore o persona cara di qualcuno che ora si identifica come transgender. Questa è una risorsa senza condizioni ideologiche. Attinge a migliaia di storie reali di chi ha fatto detransition per esplorare le radici della loro disforia di genere, le sfumature dell'identità, i percorsi personali di detransition, e come le persone ricostruiscono il loro rapporto con il corpo e la mente in seguito.",
+      "whatYouCanLearn": "Puoi usare questo sito per esplorare cosa potrebbe causare o essere diagnosticato erroneamente come disforia di genere, le sfumature dell'identità, i percorsi personali di detransition, e capire come le persone ricostruiscono il loro rapporto con il corpo e la mente in seguito. Puoi imparare sulla transizione sociale, l'interruzione degli ormoni, le realtà chirurgiche, e il lavoro pratico ed emotivo per andare avanti. Puoi anche trovare racconti di ciò che molti trovano più difficile: la perdita della comunità, la paura di ammettere il dubbio, e il processo di costruire una vita al di fuori di un'identità che un tempo definiva tutto.",
+      "differentStages": "Le persone arrivano qui in momenti diversi. Alcuni stanno facendo ricerche prima di iniziare la transizione. Altri sono a metà transizione con dei dubbi. Altri hanno già iniziato la detransition e hanno bisogno di orientamenti pratici. Molti vengono cercando <a>gruppi di supporto alla detransition</a> o <a>terapisti esplorativi del genere</a> che non affermino automaticamente la transizione come unica strada.",
+      "closing": "Spero che detrans.ai possa aiutarti a prendere decisioni consapevoli e informate."
+    }
   },
   "header": {
     "navigation": {
@@ -532,7 +546,8 @@
       "ogDescription": "Trova in questa pagina una selezione di studi accademici e articoli di riviste peer-reviewed e statistiche verificate relative alle tendenze di identità di genere e alla detransition."
     },
     "title": "Articoli Accademici Selezionati",
-    "description": "Studi accademici, ricerca peer-reviewed e articoli di riviste sui soggetti di identità di genere, transizione e detransition."
+    "description": "La ricerca sulla detransition è un campo emergente. Il rapido aumento delle diagnosi di disforia di genere nell'ultimo decennio — in particolare tra le adolescenti — ha prodotto una popolazione crescente di persone che hanno fatto detransition, sebbene la raccolta dei dati rimanga difficoltosa a causa dell'elevata perdita al follow-up, della divisione ideologica e dei limiti metodologici.",
+    "segmNote": "In questa pagina troverai studi accademici, ricerche peer-reviewed e articoli di rivista che mettono in discussione l'efficacia e l'etica della gender-affirming care. Consulta la <a>Society for Evidence-Based Gender Medicine (SEGM)</a> per ulteriori informazioni, inclusa un'analisi approfondita degli studi a sostegno."
   },
   "contentWarning": {
     "title": "Avviso sui Contenuti:",

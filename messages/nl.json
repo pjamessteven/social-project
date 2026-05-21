@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "Chats zijn openbaar.",
     "memberCountDisclaimer": "*60,000+ verwijst naar leden van de <a>/r/detrans subreddit</a>",
     "memberCountDisclaimerMobile": "60,000+ leden in de <a>/r/detrans subreddit</a>",
-    "browseConversations": "Bekijk alle Gesprekken"
+    "browseConversations": "Bekijk alle Gesprekken",
+    "aboutDetransition": {
+      "title": "Over Detransitie",
+      "whatIs": "Detransitie is het proces van het stoppen of terugdraaien van een gendertransitie. Mensen detransitioneren om veel redenen: hun dysforie had andere wortels, transitie loste hun nood niet op, of hun begrip van zichzelf veranderde in de loop der tijd. Deze ervaringen zijn echt, maar vaak moeilijk om openlijk over te spreken.",
+      "reality": "Detransitioners vertegenwoordigen een realiteit die velen moeilijk kunnen accepteren: mensen die zeker waren dat ze in het verkeerde lichaam waren geboren, die in die overtuiging werden gesteund, en die nog steeds ontdekten dat transitie niet het antwoord was. Dit daagt het concept van een aangeboren genderidentiteit zelf uit – daarom is het antwoord zo vaak ontkenning, afwijzing en <a>valse statistieken</a> die beweren dat ze met te weinig zijn om ertoe te doen.",
+      "hardToFindTitle": "Waarom Deze Informatie Moeilijk te Vinden Is",
+      "onlineSpaces": "Online ruimtes versterken een eenzijdig verhaal. Op TikTok en Instagram identificeren algoritmes de interesse van gebruikers en creëren feedbacklussen. Op Reddit en Discord worden gendergerelateerde gemeenschappen zwaar gemodereerd. Afwijkende perspectieven worden niet alleen verwijderd wanneer ze agressief worden geuit, maar wanneer ze überhaupt worden geuit. De persoon die spijt uitdrukt, die vraagtekens zet bij of transitie altijd passend is, die onderzoek deelt dat hoge percentages desistance laat zien, die noemt dat iemand kent die is gedetransitioneerd – al deze bijdragen worden verwijderd, en de gebruiker verbannen. Ook sommige onderzoekers die detransitie bestuderen hebben professionele consequenties ondervonden.",
+      "aiBias": "De bias is nu in de AI zelf ingebouwd. Westerse chatbots zijn weerspiegelingen van dominante culturele overtuigingen en kennis. Ze zijn getraind op data die transitie overweldigend bevestigt als het juiste antwoord op nood. De LLM's waar mensen zich steeds vaker voor advies tot wenden, presenteren de ene kant als een vaststaand feit terwijl ze de andere verbergen.",
+      "restoreBalance": "detrans.ai bestaat om evenwicht te herstellen. Het bestaat omdat de stemmen van detransitioners routinematig worden gezwegen door gemeenschappen die hen als bedreigend zien, door professionals die alleen bevestiging prediken, en door een cultuur die het in twijfel trekken van medische transitie als schadelijk behandelt, zelfs wanneer detransitioners vaak uitleggen dat zij er juist schade door hebben ondervonden.",
+      "supportTitle": "Detransitieondersteuning",
+      "supportDescription": "detrans.ai is een gratis detransitieondersteuningsdienst voor degenen die twijfelen, hormonen of operaties overwegen, detransitioneren, of ouders of geliefden zijn van iemand die zich nu als transgender identificeert. Dit is een bron zonder ideologische voorwaarden. Het put uit duizenden echte verhalen van detransitioners om de wortels van hun genderdysforie te verkennen, de nuances van identiteit, persoonlijke reizen van detransitie, en hoe mensen daarna hun relatie met hun lichaam en geest herbouwen.",
+      "whatYouCanLearn": "Je kunt deze site gebruiken om te verkennen wat genderdysforie kan veroorzaken of wat er foutief als zodanig wordt gediagnosticeerd, de nuances van identiteit, persoonlijke reizen van detransitie, en te begrijpen hoe mensen daarna hun relatie met hun lichaam en geest herbouwen. Je kunt leren over sociale transitie, het stoppen met hormonen, chirurgische realiteiten, en het praktische en emotionele werk om verder te gaan. Je kunt ook verslagen vinden van wat velen het moeilijkst vinden: het verlies van gemeenschap, de angst om twijfel toe te geven, en het proces van het opbouwen van een leven buiten een identiteit die ooit alles definieerde.",
+      "differentStages": "Mensen komen hier in verschillende stadia. Sommigen doen onderzoek voordat ze met transitie beginnen. Anderen zitten midden in transitie met twijfels. Anderen zijn al begonnen met detransitie en hebben praktische begeleiding nodig. Velen komen op zoek naar <a>detransitieondersteuningsgroepen</a> of <a>gender explorerende therapeuten</a> die transitie niet automatisch bevestigen als het enige pad.",
+      "closing": "Ik hoop dat detrans.ai je kan helpen om geïnformeerde, zelfbewuste beslissingen te nemen."
+    }
   },
   "header": {
     "navigation": {
@@ -533,7 +547,8 @@
       "ogDescription": "Vind op deze pagina een selectie van wetenschappelijke studies en peer-reviewed tijdschriftartikelen en geverifieerde statistieken die verband houden met genderidentiteit trends en detransitie."
     },
     "title": "Geselecteerde Wetenschappelijke Artikelen",
-    "description": "Wetenschappelijke studies, peer-reviewed onderzoek en tijdschriftartikelen over de onderwerpen genderidentiteit, transitie en de-transitie."
+    "description": "Detransitieonderzoek is een opkomend veld. De snelle stijging van genderdysforie-diagnoses in het afgelopen decennium — met name onder adolescente meisjes — heeft een groeiende populatie van detransitioners opgeleverd, hoewel gegevensverzameling uitdagend blijft door een hoge uitval bij follow-up, ideologische verdeeldheid en methodologische beperkingen.",
+    "segmNote": "Op deze pagina vind je wetenschappelijke studies, peer-reviewed onderzoek en tijdschriftartikelen die de effectiviteit en ethiek van genderbevestigende zorg in twijfel trekken. Zie de <a>Society for Evidence-Based Gender Medicine (SEGM)</a> voor meer, inclusief uitgebreide analyse van ondersteunende studies."
   },
   "contentWarning": {
     "title": "Inhoudswaarschuwing:",

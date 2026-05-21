@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "Czaty są publiczne.",
     "memberCountDisclaimer": "*60,000+ odnosi się do członków <a>/r/detrans subreddit</a>",
     "memberCountDisclaimerMobile": "60,000+ członków w <a>/r/detrans subreddit</a>",
-    "browseConversations": "Przeglądaj wszystkie rozmowy"
+    "browseConversations": "Przeglądaj wszystkie rozmowy",
+    "aboutDetransition": {
+      "title": "O detransycji",
+      "whatIs": "Detransycja to proces zaprzestania lub odwrócenia tranzycji płciowej. Ludzie decydują się na nią z wielu powodów: ich dysforia miała inne źródła, tranzycja nie przyniosła ulgi w cierpieniu, lub ich rozumienie siebie zmieniło się z czasem. Te doświadczenia są realne, a jednak często trudno o nich mówić otwarcie.",
+      "reality": "Osoby po detransycji reprezentują rzeczywistość, którą wielu ma trudność zaakceptować: ludzi, którzy byli pewni, że urodzili się w niewłaściwym ciele, których w tej przekonaniu wspierano, a którzy mimo to odkryli, że tranzycja nie była odpowiedzią. To podważa samą koncepcję wrodzonej tożsamości płciowej — dlatego reakcją jest tak często zaprzeczanie, lekceważenie i <a>fałszywe statystyki</a>, twierdzące, że jest ich zbyt mało, by byli istotni.",
+      "hardToFindTitle": "Dlaczego te informacje są trudne do znalezienia",
+      "onlineSpaces": "Przestrzenie online wzmacniają jednostronną narrację. Na TikToku i Instagramie algorytmy identyfikują zainteresowania użytkowników i tworzą pętle sprzężenia zwrotnego. Na Reddicie i Discordzie społeczności związane z płcią są silnie moderowane. Odmienne perspektywy są usuwane nie tylko wtedy, gdy wyrażane są agresywnie, ale gdy wyrażane są w ogóle. Osoba, która wyraża żal, kwestionuje, czy tranzycja jest zawsze odpowiednia, dzieli się badaniami pokazującymi wysoki odsetek zaniechania, wspomina, że zna kogoś, kto przeszedł detransycję — wszystkie te wkłady zostaną usunięte, a użytkownik zbanowany. Niektórzy badacze zajmujący się detransycją również ponieśli konsekwencje zawodowe.",
+      "aiBias": "Ta stronniczość jest teraz wbudowana w samą sztuczną inteligencję. Zachodnie chatboty są odzwierciedleniem dominujących przekonań kulturowych i wiedzy. Są szkolone na danych, które w przytłaczającej większości afirmują tranzycję jako właściwą odpowiedź na cierpienie. LLMy, do których ludzie coraz częściej zwracają się po porady, przedstawiają jedną stronę jako ustalony fakt, ukrywając drugą.",
+      "restoreBalance": "detrans.ai istnieje, by przywrócić równowagę. Istnieje, ponieważ głosy osób po detransycji są rutynowo uciszane przez społeczności, które postrzegają je jako zagrożenie, przez specjalistów, którzy głoszą tylko afirmację, oraz przez kulturę, która traktuje kwestionowanie tranzycji medycznej jako szkodliwe, podczas gdy osoby po detransycji często tłumaczą, że właśnie ona im zaszkodziła.",
+      "supportTitle": "Wsparcie w detransycji",
+      "supportDescription": "detrans.ai to bezpłatna usługa wsparcia w detransycji dla osób, które są w fazie kwestionowania, rozważają hormony lub operacje, przechodzą detransycję, lub są rodzicami lub bliskimi osoby, która obecnie identyfikuje się jako transpłciowa. To zasób bez warunków ideologicznych. Czerpie z tysięcy prawdziwych historii osób po detransycji, by zbadać źródła ich dysforii płciowej, niuanse tożsamości, osobiste podróże detransycji oraz to, jak ludzie odbudowują relację ze swoim ciałem i umysłem.",
+      "whatYouCanLearn": "Możesz użyć tej strony, by zbadać, co może powodować lub być błędnie zdiagnozowane jako dysforia płciowa, niuanse tożsamości, osobiste podróże detransycji oraz zrozumieć, jak ludzie odbudowują relację ze swoim ciałem i umysłem. Możesz dowiedzieć się o tranzycji społecznej, zaprzestaniu hormonów, chirurgicznych realiach oraz praktycznej i emocjonalnej pracy związanej z przejściem do przodu. Możesz także znaleźć relacje o tym, co wielu uważa za najtrudniejsze: utratę społeczności, strach przed przyznaniem się do wątpliwości oraz proces budowania życia poza tożsamością, która kiedyś definiowała wszystko.",
+      "differentStages": "Ludzie przychodzą tu na różnych etapach. Niektórzy badają temat przed rozpoczęciem tranzycji. Inni są w trakcie tranzycji z wątpliwościami. Inni już rozpoczęli detransycję i potrzebują praktycznych wskazówek. Wielu szuka <a>grup wsparcia w detransycji</a> lub <a>terapeutów eksploracyjnych płci</a>, którzy nie afirmują automatycznie tranzycji jako jedynej ścieżki.",
+      "closing": "Mam nadzieję, że detrans.ai pomoże Ci podjąć świadome, dojrzałe decyzje."
+    }
   },
   "header": {
     "navigation": {
@@ -534,7 +548,8 @@
       "ogDescription": "Znajdź na tej stronie wybór badań akademickich i recenzowanych artykułów czasopism oraz zweryfikowanych statystyk związanych z trendami tożsamości płciowej i detransycją."
     },
     "title": "Wybrane artykuły akademickie",
-    "description": "Badania akademickie, recenzowane badania i artykuły czasopism na temat tożsamości płciowej, tranzycji i detransycji."
+    "description": "Badania nad detransycją to dziedzina dopiero się rozwijająca. Gwałtowny wzrost diagnoz dysforii płciowej w minionej dekadzie – szczególnie wśród dziewcząt w wieku nastoletnim – doprowadził do powstania rosnącej populacji osób po detransycji, choć zbieranie danych pozostaje trudne ze względu na wysoki poziom utraty kontaktu w okresie obserwacji, podziały ideologiczne i ograniczenia metodologiczne.",
+    "segmNote": "Na tej stronie znajdziesz badania akademickie, recenzowane publikacje naukowe oraz artykuły czasopism, które kwestionują skuteczność i etykę opieki afirmującej płeć. Zobacz <a>Society for Evidence-Based Gender Medicine (SEGM)</a>, aby dowiedzieć się więcej, w tym o kompleksowych analizach badań wspierających."
   },
   "contentWarning": {
     "title": "Ostrzeżenie o treści:",

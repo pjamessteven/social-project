@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "Chatit ovat julkisia.",
     "memberCountDisclaimer": "*60,000+ viittaa <a>/r/detrans subreddit</a>in jäseniin",
     "memberCountDisclaimerMobile": "60,000+ jäsentä <a>/r/detrans subreddit</a>issä",
-    "browseConversations": "Selaa kaikkia Keskusteluja"
+    "browseConversations": "Selaa kaikkia Keskusteluja",
+    "aboutDetransition": {
+      "title": "Detransitiosta",
+      "whatIs": "Detransitio on prosessi, jossa sukupuolensiirtymää pysäytetään tai käännetään. Ihmiset detransitionoivat monista syistä: heidän dysforiallaan oli muita juuria, siirtymä ei ratkaissut heidän ahdistustaan, tai heidän ymmärryksensä itsestään muuttui ajan myötä. Nämä kokemukset ovat todellisia, mutta niistä on usein vaikea puhua avoimesti.",
+      "reality": "Detransitionoineet edustavat todellisuutta, jota monet eivät halua hyväksyä: ihmisiä, jotka olivat varmoja syntyneensä väärään kehoon, joita tuettiin tässä uskossa, ja jotka silti huomasivat, ettei siirtymä ollutkaan vastaus. Tämä haastaa itse synnynnäisen sukupuoli-identiteetin käsitteen – siksi vastaus on niin usein kielto, sivuuttaminen ja <a>valetilastot</a>, jotka väittävät heidän olevan liian vähän merkitäkseen.",
+      "hardToFindTitle": "Miksi tämä tieto on vaikea löytää",
+      "onlineSpaces": "Verkkotilat vahvistavat yksipuolista tarinaa. TikTokissa ja Instagramissa algoritmit tunnistavat käyttäjien kiinnostuksen ja luovat takaisinkytkentöjä. Redditissä ja Discordissa sukupuoleen liittyvät yhteisöt ovat voimakkaasti moderoituja. Eriävät näkökulmat poistetaan ei pelkästään aggressiivisesti ilmaistuina, vaan milloin tahansa ilmaistuina. Yksilö, joka ilmaisee katumusta, joka kyseenalaistaa onko siirtymä aina sopiva, joka jakaa tutkimusta joka osoittaa korkean desistanssin, joka mainitsee tuntevansa jonkun joka detransitionoi – kaikki nämä panokset poistetaan, ja käyttäjä bannataan. Jotkut detransitiota tutkivat tutkijat ovat myös kohdanneet ammatillisia seurauksia.",
+      "aiBias": "Harha on nyt rakennettu suoraan tekoälyyn. Länsimaiset chatbotit ovat hallitsevien kulttuuristen uskomusten ja tiedon heijastuksia. Ne on koulutettu datasta, joka ylivoimaisesti vahvistaa siirtymän oikeaksi vastaukseksi ahdistukseen. LLM:t, joihin ihmiset yhä enemmän kääntyvät neuvoa etsiessään, esittävät toisen puolen ratkaistuna faktana samalla kun piilottavat toisen.",
+      "restoreBalance": "detrans.ai on olemassa palauttamaan tasapainon. Se on olemassa, koska detransitioneiden äänet rutiininomaisesti vaientetaan yhteisöissä, jotka näkevät heidät uhkaavina, ammattilaisten toimesta, jotka saarnaavat vain vahvistamista, ja kulttuurin toimesta, joka kohtelee lääketieteellisen siirtymän kyseenalaistamista haitallisena, vaikka detransitioneet usein selittävät, että heitä on siitä vahingoitettu.",
+      "supportTitle": "Detransition-tuki",
+      "supportDescription": "detrans.ai on ilmainen detransition-tukipalvelu niille, jotka kyseenalaistavat, harkitsevat hormoneja tai leikkauksia, detransitionoivat, tai ovat vanhempia tai läheisiä jollekin, joka nyt identifioituu transsukupuoliseksi. Tämä on resurssi ilman ideologisia ehtoja. Se ammentaa tuhansista oikeista detransitioneiden tarinoista tutkiakseen heidän sukupuolidysforiansa juuria, identiteetin sävyjä, henkilökohtaisia detransition-matkoja ja kuinka ihmiset rakentavat uudelleen suhteensa kehoonsa ja mieleensä sen jälkeen.",
+      "whatYouCanLearn": "Voit käyttää tätä sivustoa tutkiaksesi, mikä voi aiheuttaa tai virheellisesti diagnosoida sukupuolidysforiaa, identiteetin sävyjä, henkilökohtaisia detransition-matkoja, ja ymmärtääksesi kuinka ihmiset rakentavat uudelleen suhteensa kehoihinsa ja mieliinsä sen jälkeen. Voit oppia sosiaalisesta siirtymästä, hormonien lopettamisesta, kirurgisista todellisuuksista, ja eteenpäin menemisen käytännöllisestä ja emotionaalisesta työstä. Voit myös löytää kertomuksia siitä, mikä monille on vaikeinta: yhteisön menetyksestä, epäilyn myöntämisen pelosta, ja prosessista rakentaa elämä identiteetin ulkopuolella, joka kerran määritteli kaiken.",
+      "differentStages": "Ihmiset tulevat tänne eri vaiheissa. Jotkut tutkivat ennen siirtymän aloittamista. Toiset ovat siirtymän keskellä epäilyksin. Toiset ovat jo aloittaneet detransitionoinnin ja tarvitsevat käytännön ohjausta. Monet tulevat etsimään <a>detransition-tukiryhmiä</a> tai <a>sukupuolen tutkivia terapeutteja</a>, jotka eivät automaattisesti vahvista siirtymää ainoana polkuna.",
+      "closing": "Toivon, että detrans.ai voi auttaa sinua tekemään tietoisia, itsetietoisia päätöksiä."
+    }
   },
   "header": {
     "navigation": {
@@ -535,7 +549,8 @@
       "ogDescription": "Löydä tällä sivulla valikoima akateemisia tutkimuksia ja vertaisarvioituja lehtiartikkeleita ja vahvistettuja tilastoja, jotka liittyvät sukupuoli-identiteettitrendeihin ja detransitioon."
     },
     "title": "Valikoituja Akateemisia Artikkeleita",
-    "description": "Akateemiset tutkimukset, vertaisarvioitu tutkimus ja lehtiartikkelit sukupuoli-identiteetin, siirtymän ja detransition aiheista."
+    "description": "Detransitiotutkimus on uusi ala. Sukupuolidysforiadiagnoosien nopea kasvu viime vuosikymmenen aikana – erityisesti nuorten tyttöjen keskuudessa – on tuottanut kasvavan detransitioneiden joukon, vaikka tiedonkeruu pysyy haastavana suuren seurantahävikin, ideologisen jakautumisen ja menetelmällisten rajoitusten vuoksi.",
+    "segmNote": "Tällä sivulla löydät akateemisia tutkimuksia, vertaisarvioituja tutkimuksia ja lehtiartikkeleita, jotka kyseenalaistavat sukupuolen vahvistavan hoidon tehokkuuden ja etiikan. Katso <a>Society for Evidence-Based Gender Medicine (SEGM)</a> saadaksesi lisää, mukaan lukien kattavat analyysit tukevista tutkimuksista."
   },
   "contentWarning": {
     "title": "Sisältövaroitus:",

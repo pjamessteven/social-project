@@ -10,7 +10,7 @@
       "greeting": "Hello! What's a detransitioner?",
       "response": "Hi there! I'm detrans.ai - the collective consciousness of detransitioners 🦎",
       "definition": "A detransitioner is an ex-transgender person who transitioned socially or medically, but has since stopped identifying as transgender and may have reversed aspects of their transition.",
-      "description": "I observe the lived realities of why some people adopt, inhabit and move on from gender identities by reading stories and experiences that have been posted in the /r/detrans subreddit and watching detransition videos that have been uploaded to YouTube.",
+      "description": "I observe the lived realities of why some people adopt, inhabit and move on from gender identities by reading stories and experiences that have been posted in the /r/detrans subreddit and watching detransition videos that have been uploaded to YouTube. In Deep Research mode, I can also read and reference academic studies related to detransition.",
       "purpose": "My purpose is to share this knowledge in order to challenge common beliefs and to explore how these experiences can shape one's relationship with self, mind, body and the world.",
       "helpPrompt": "How can I help you today?"
     },
@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "Chats are public.",
     "memberCountDisclaimer": "*60,000+ refers to members of the <a>/r/detrans subreddit</a>",
     "memberCountDisclaimerMobile": "60,000+ members in the <a>/r/detrans subreddit</a>",
-    "browseConversations": "Browse all Conversations"
+    "browseConversations": "Browse all Conversations",
+    "aboutDetransition": {
+      "title": "About Detransition",
+      "whatIs": "Detransition is the process of stopping or reversing a gender transition. People detransition for many reasons: their dysphoria had other roots, transition didn't resolve their distress, or their understanding of themselves changed over time. These experiences are real, yet often difficult to speak about openly.",
+      "reality": "Detransitioners represent a reality many find hard to accept: people who were certain they were born in the wrong body, who were supported in that belief, and who still found transition was not the answer. This challenges the concept of innate gender identity itself—which is why the response is so often denial, dismissal, and <a>false statistics</a> claiming they're too few to matter.",
+      "hardToFindTitle": "Why This Information Is Hard to Find",
+      "onlineSpaces": "Online spaces reinforce a one-sided story. On TikTok and Instagram, algorithms identify user interest and create feedback loops. On Reddit and Discord, gender-related communities are heavily moderated. Dissenting perspectives are removed not merely when expressed aggressively but when expressed at all. The individual who expresses regret, who questions whether transition is always appropriate, who shares research which shows high rates of desistance, who mentions knowing someone who detransitioned—all of these contributions will be deleted, and the user banned. Some researchers who study detransition have also faced professional consequences.",
+      "aiBias": "The bias is now built into AI itself. Western chatbots are reflections of dominant cultural beliefs and knowledge. They're trained on data that overwhelmingly affirms transition as the correct response to distress. The LLMs that people are increasingly turning to for advice present one side as a settled fact while hiding the other.",
+      "restoreBalance": "detrans.ai exists to restore balance. It exists because detransitioner voices are routinely silenced by communities that see them as threatening, by professionals who only preach affirmation, and by a culture that treats questioning medical transition as harmful, even when detransitioners often explain that they have been harmed by it.",
+      "supportTitle": "Detransition Support",
+      "supportDescription": "detrans.ai is a free detransition support service for those who are questioning, considering hormones or surgeries, detransitioning, or are parents or loved ones of someone who now identifies as transgender. This is a resource without ideological conditions. It draws from thousands of real detransitioner stories to explore the roots of their gender dysphoria, nuances of identity, personal journies of detransition, and how people rebuild their relationship with their bodies and minds afterward.",
+      "whatYouCanLearn": "You can use this site to explore what might cause or be misdiagnosed as gender dysphoria, the nuances of identity, personal journeys of detransition, and understand how people rebuild their relationship with their bodies and minds afterward. You can learn about social transition, hormone cessation, surgical realities, and the practical and emotional work of moving forward. You can also find accounts of what many find hardest: the loss of community, the fear of admitting doubt, and the process of building a life outside an identity that once defined everything.",
+      "differentStages": "People come here at different stages. Some are researching before starting transition. Others are mid-transition with doubts. Others have already begun detransitioning and need practical guidance. Many come looking for <a>detransition support groups</a> or <a>gender-exploratory therapists</a> who do not automatically affirm transition as the only path.",
+      "closing": "I hope that detrans.ai can help you make informed, self-aware decisions."
+    }
   },
   "header": {
     "navigation": {
@@ -214,6 +228,7 @@
   },
   "chat": {
     "lookingForComments": "Looking for relevant comments...",
+    "lookingForStudies": "Looking for relevant studies...",
     "errorOccurred": "Error occurred, try again... Contact me if this keeps happening.",
     "analysingExperiences": "Analysing Experiences",
     "detransPerspective": "-> What are detrans perspectives on this topic?",
@@ -533,7 +548,8 @@
       "ogDescription": "Find on this page a selection of academic studies and peer-reviewed journal articles and verified statistics that relate to gender identity trends and detransition."
     },
     "title": "Selected Academic Articles",
-    "description": "Academic studies, peer-reviewed research and journal articles on the subjects of gender identity, transition and de-transition."
+    "description": "Detransition research is an emerging field. The rapid rise in gender dysphoria diagnoses in the past decade—particularly among adolescent girls—has produced a growing population of detransitioners, though data collection remains challenging due to high loss to follow-up, ideological division, and methodological limitations.",
+    "segmNote": "On this page you will find academic studies, peer-reviewed research, and journal articles which bring into question the efficacy and ethics of gender-affirming care. See the <a>Society for Evidence-Based Gender Medicine (SEGM)</a> for more, including comprehensive analysis of supportive studies."
   },
   "contentWarning": {
     "title": "Content Warning:",

@@ -1,22 +1,26 @@
 import { isAdmin } from "@/app/lib/auth/auth";
 import { db } from "@/db";
-import { studies } from "@/db/schema";
+import { studies, studyTagRelations } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { QdrantVectorStore } from "@llamaindex/qdrant";
 
-const COLLECTION_NAME = "detrans_studies";
+const STUDIES_COLLECTION = "detrans_studies";
+const SUPPORTIVE_COLLECTION = "supportive_studies";
 
-async function deleteStudyVectors(studyId: number) {
+async function deleteStudyVectorsFromCollection(
+  studyId: number,
+  collectionName: string,
+) {
   const vectorStore = new QdrantVectorStore({
     url: process.env.QDRANT_URL || "http://localhost:6333",
-    collectionName: COLLECTION_NAME,
+    collectionName,
   });
 
   const client = vectorStore.client();
 
   // Find points with matching studyId
-  const scrollResult = await client.scroll(COLLECTION_NAME, {
+  const scrollResult = await client.scroll(collectionName, {
     filter: {
       must: [
         {
@@ -33,11 +37,11 @@ async function deleteStudyVectors(studyId: number) {
   const pointIds = scrollResult.points.map((p) => p.id);
 
   if (pointIds.length > 0) {
-    await client.delete(COLLECTION_NAME, {
+    await client.delete(collectionName, {
       points: pointIds,
     });
     console.log(
-      `Deleted ${pointIds.length} vectors for study ${studyId}`,
+      `Deleted ${pointIds.length} vectors for study ${studyId} from ${collectionName}`,
     );
   }
 }
@@ -77,7 +81,13 @@ export async function DELETE(
     // Delete Qdrant vectors first
     if (study.approved) {
       try {
-        await deleteStudyVectors(studyId);
+        // Delete from the primary collection
+        await deleteStudyVectorsFromCollection(studyId, STUDIES_COLLECTION);
+        // Also try the legacy supportive collection for backward compatibility
+        await deleteStudyVectorsFromCollection(
+          studyId,
+          SUPPORTIVE_COLLECTION,
+        );
       } catch (qdrantError) {
         console.error(
           `Failed to delete Qdrant vectors for study ${studyId}:`,
@@ -89,6 +99,11 @@ export async function DELETE(
         );
       }
     }
+
+    // Delete tag relations
+    await db
+      .delete(studyTagRelations)
+      .where(eq(studyTagRelations.studyId, studyId));
 
     // Delete study from DB
     await db.delete(studies).where(eq(studies.id, studyId));

@@ -15,10 +15,11 @@ import {
   sanitizeUrl,
 } from "@/app/lib/sanitization";
 import { db } from "@/db";
-import { studies } from "@/db/schema";
-import { desc, eq } from "drizzle-orm";
+import { studies, studyTags, studyTagRelations } from "@/db/schema";
+import { desc, eq, inArray } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { isAdmin } from "@/app/lib/auth/auth";
+import { getMailer } from "@/app/lib/mailer";
 
 interface StudyWithTranslations {
   id: number;
@@ -34,12 +35,14 @@ interface StudyWithTranslations {
   titleTranslation: string | null;
   descriptionTranslation: string | null;
   journalTranslation: string | null;
+  keyPoints: string[] | null;
+  keyPointsTranslation: string | null;
   approved: boolean;
   fullText: string | null;
   abstract: string | null;
   conclusion: string | null;
-  keyPoints: string[] | null;
   summary: string | null;
+  limitations: string[] | null;
   processed: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -60,6 +63,36 @@ function getLocalizedField(
   }
 }
 
+function getLocalizedArray(
+  defaultValue: string[] | null,
+  translationsJson: string | null,
+  locale: string,
+): string[] | null {
+  if (!translationsJson) return defaultValue;
+
+  try {
+    const translations = JSON.parse(translationsJson) as Record<string, string[]>;
+    return translations[locale] || defaultValue;
+  } catch {
+    return defaultValue;
+  }
+}
+
+function getLocalizedTagName(
+  defaultName: string,
+  translationsJson: string | null,
+  locale: string,
+): string {
+  if (!translationsJson) return defaultName;
+
+  try {
+    const translations = JSON.parse(translationsJson) as Record<string, string>;
+    return translations[locale] || defaultName;
+  } catch {
+    return defaultName;
+  }
+}
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -68,6 +101,7 @@ export async function GET(request: NextRequest) {
       VALID_LOCALES,
       "en",
     );
+    const tagFilter = searchParams.get("tag");
 
     const admin = await isAdmin();
 
@@ -87,42 +121,98 @@ export async function GET(request: NextRequest) {
         .orderBy(desc(studies.year));
     }
 
-    const localizedStudies = (allStudies as StudyWithTranslations[]).map(
-      (study) => ({
-        id: study.id,
-        headline: getLocalizedField(
-          study.headline,
-          study.headlineTranslation,
-          locale,
-        ),
-        title: getLocalizedField(study.title, study.titleTranslation, locale),
-        authors: study.authors,
-        description: getLocalizedField(
-          study.description,
-          study.descriptionTranslation,
-          locale,
-        ),
-        year: study.year,
-        url: study.url,
-        displayUrl: study.displayUrl,
-        journal: getLocalizedField(
-          study.journal,
-          study.journalTranslation,
-          locale,
-        ),
-        approved: study.approved,
-        fullText: study.fullText,
-        abstract: study.abstract,
-        conclusion: study.conclusion,
-        keyPoints: study.keyPoints,
-        summary: study.summary,
-      }),
-    );
+    let filteredStudies = allStudies as StudyWithTranslations[];
+
+    // Load all study-tag relations with translations
+    const studyIds = filteredStudies.map((s) => s.id);
+    const allTagsQuery =
+      studyIds.length > 0
+        ? await db
+            .select({
+              studyId: studyTagRelations.studyId,
+              tagName: studyTags.name,
+              tagTranslations: studyTags.translations,
+            })
+            .from(studyTagRelations)
+            .innerJoin(studyTags, eq(studyTagRelations.tagId, studyTags.id))
+            .where(inArray(studyTagRelations.studyId, studyIds))
+        : [];
+
+    // Map studyId -> localized tag names
+    const localizedTagsByStudyId = new Map<number, string[]>();
+    // Map default tag name -> { localizedName, count }
+    const tagCounts = new Map<string, { name: string; count: number }>();
+
+    for (const row of allTagsQuery) {
+      const localizedName = getLocalizedTagName(
+        row.tagName,
+        row.tagTranslations,
+        locale,
+      );
+
+      const existing = localizedTagsByStudyId.get(row.studyId) || [];
+      existing.push(localizedName);
+      localizedTagsByStudyId.set(row.studyId, existing);
+
+      const current = tagCounts.get(row.tagName);
+      if (current) {
+        current.count += 1;
+      } else {
+        tagCounts.set(row.tagName, { name: localizedName, count: 1 });
+      }
+    }
+
+    // Apply tag filter if present (filter by localized name)
+    if (tagFilter) {
+      filteredStudies = filteredStudies.filter((s) => {
+        const tags = localizedTagsByStudyId.get(s.id) || [];
+        return tags.includes(tagFilter);
+      });
+    }
+
+    const localizedStudies = filteredStudies.map((study) => ({
+      id: study.id,
+      headline: getLocalizedField(
+        study.headline,
+        study.headlineTranslation,
+        locale,
+      ),
+      title: getLocalizedField(study.title, study.titleTranslation, locale),
+      authors: study.authors,
+      description: getLocalizedField(
+        study.description,
+        study.descriptionTranslation,
+        locale,
+      ),
+      year: study.year,
+      url: study.url,
+      displayUrl: study.displayUrl,
+      journal: getLocalizedField(
+        study.journal,
+        study.journalTranslation,
+        locale,
+      ),
+      approved: study.approved,
+      fullText: study.fullText,
+      abstract: study.abstract,
+      conclusion: study.conclusion,
+      keyPoints: getLocalizedArray(
+        study.keyPoints,
+        study.keyPointsTranslation,
+        locale,
+      ),
+      summary: study.summary,
+      tags: localizedTagsByStudyId.get(study.id) || [],
+      limitations: study.limitations,
+    }));
 
     return NextResponse.json({
       studies: localizedStudies,
       count: localizedStudies.length,
       isAdmin: admin,
+      tags: Array.from(tagCounts.values())
+        .sort((a, b) => b.count - a.count)
+        .map((t) => [t.name, t.count] as [string, number]),
     });
   } catch (error) {
     console.error("Error fetching studies:", error);
@@ -193,6 +283,23 @@ export async function POST(request: NextRequest) {
         processed: false,
       })
       .returning();
+
+    // Notify admin of new submission (non-blocking)
+    try {
+      const mailer = getMailer();
+      await mailer.sendMail({
+        to: process.env.ZOHO_EMAIL!,
+        subject: `New Study Submission: ${suggestedTitle || url}`,
+        content: `<p>A new study has been submitted:</p>
+<ul>
+<li><b>URL:</b> ${url}</li>
+<li><b>Suggested Title:</b> ${suggestedTitle || "N/A"}</li>
+<li><b>Time:</b> ${new Date().toISOString()}</li>
+</ul>`,
+      });
+    } catch (emailError) {
+      console.error("Failed to send study submission email:", emailError);
+    }
 
     // Increment message count for CAPTCHA tracking
     await incrementMessageCount(ipAddress);

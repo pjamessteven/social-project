@@ -13,6 +13,7 @@ import { sanitizeString, sanitizeUrl } from "@/app/lib/sanitization";
 import { db } from "@/db";
 import { videos } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { getMailer } from "@/app/lib/mailer";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -162,6 +163,24 @@ export async function POST(request: NextRequest) {
         date: metadata.date,
       })
       .returning();
+
+    // Notify admin of new submission (non-blocking)
+    try {
+      const mailer = getMailer();
+      await mailer.sendMail({
+        to: process.env.ZOHO_EMAIL!,
+        subject: `New Video Submission: ${metadata.title || url}`,
+        content: `<p>A new video has been submitted:</p>
+<ul>
+<li><b>URL:</b> ${url}</li>
+<li><b>Title:</b> ${metadata.title || "N/A"}</li>
+<li><b>Author:</b> ${metadata.author || "N/A"}</li>
+<li><b>Time:</b> ${new Date().toISOString()}</li>
+</ul>`,
+      });
+    } catch (emailError) {
+      console.error("Failed to send video submission email:", emailError);
+    }
 
     // Increment message count for CAPTCHA tracking
     await incrementMessageCount(ipAddress);

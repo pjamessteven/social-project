@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "Les chats sont publics.",
     "memberCountDisclaimer": "*60,000+ fait référence aux membres du <a>/r/detrans subreddit</a>",
     "memberCountDisclaimerMobile": "60,000+ membres dans le <a>/r/detrans subreddit</a>",
-    "browseConversations": "Parcourir toutes les Conversations"
+    "browseConversations": "Parcourir toutes les Conversations",
+    "aboutDetransition": {
+      "title": "À propos de la détransition",
+      "whatIs": "La détransition est le processus d'arrêt ou d'inversion d'une transition de genre. Les gens détransitionnent pour de nombreuses raisons : leur dysphorie avait d'autres racines, la transition n'a pas résolu leur détresse, ou leur compréhension d'eux-mêmes a changé avec le temps. Ces expériences sont réelles, mais il est souvent difficile d'en parler ouvertement.",
+      "reality": "Les détransitionneurs représentent une réalité que beaucoup ont du mal à accepter : des gens qui étaient certains d'être nés dans le mauvais corps, qui ont été soutenus dans cette croyance, et qui ont tout de même constaté que la transition n'était pas la réponse. Cela remet en question le concept même d'identité de genre innée — c'est pourquoi la réponse est si souvent le déni, le rejet, et des <a>fausses statistiques</a> affirmant qu'ils sont trop peu pour compter.",
+      "hardToFindTitle": "Pourquoi ces informations sont difficiles à trouver",
+      "onlineSpaces": "Les espaces en ligne renforcent une histoire unilatérale. Sur TikTok et Instagram, les algorithmes identifient l'intérêt des utilisateurs et créent des boucles de rétroaction. Sur Reddit et Discord, les communautés liées au genre sont fortement modérées. Les perspectives dissidentes sont supprimées non seulement lorsqu'elles sont exprimées agressivement, mais lorsqu'elles le sont tout court. L'individu qui exprime des regrets, qui remet en question le fait que la transition soit toujours appropriée, qui partage des recherches montrant des taux élevés de désistance, qui mentionne connaître quelqu'un qui a détransitionné — toutes ces contributions seront supprimées, et l'utilisateur banni. Certains chercheurs qui étudient la détransition ont également fait face à des conséquences professionnelles.",
+      "aiBias": "Le biais est désormais intégré à l'IA elle-même. Les chatbots occidentaux sont le reflet des croyances culturelles et des connaissances dominantes. Ils sont entraînés sur des données qui affirment de manière écrasante que la transition est la bonne réponse à la détresse. Les LLM auxquels les gens se tournent de plus en plus pour obtenir des conseils présentent un côté comme un fait acquis tout en dissimulant l'autre.",
+      "restoreBalance": "detrans.ai existe pour rétablir l'équilibre. Elle existe parce que les voix des détransitionneurs sont systématiquement réduites au silence par des communautés qui les considèrent comme menaçantes, par des professionnels qui ne prêchent que l'affirmation, et par une culture qui considère que remettre en question la transition médicale est nuisible, même lorsque les détransitionneurs expliquent souvent qu'ils en ont été eux-mêmes lésés.",
+      "supportTitle": "Soutien à la détransition",
+      "supportDescription": "detrans.ai est un service de soutien à la détransition gratuit pour ceux qui se questionnent, qui envisagent des hormones ou des chirurgies, qui détransitionnent, ou qui sont des parents ou des proches de quelqu'un qui s'identifie désormais comme transgenre. C'est une ressource sans conditions idéologiques. Elle s'inspire de milliers d'histoires réelles de détransitionneurs pour explorer les racines de leur dysphorie de genre, les nuances de l'identité, les parcours personnels de détransition, et comment les gens reconstruisent leur relation avec leur corps et leur esprit par la suite.",
+      "whatYouCanLearn": "Vous pouvez utiliser ce site pour explorer ce qui peut causer ou être mal diagnostiqué comme de la dysphorie de genre, les nuances de l'identité, les parcours personnels de détransition, et comprendre comment les gens reconstruisent leur relation avec leur corps et leur esprit par la suite. Vous pouvez en apprendre sur la transition sociale, l'arrêt des hormones, les réalités chirurgicales, et le travail pratique et émotionnel pour aller de l'avant. Vous pouvez aussi trouver des récits de ce que beaucoup trouvent le plus difficile : la perte de communauté, la peur d'admettre un doute, et le processus de construire une vie en dehors d'une identité qui a un jour tout défini.",
+      "differentStages": "Les gens viennent ici à différents stades. Certains font des recherches avant de commencer une transition. D'autres sont en pleine transition avec des doutes. D'autres ont déjà commencé à détransitionner et ont besoin de conseils pratiques. Beaucoup viennent chercher des <a>groupes de soutien à la détransition</a> ou des <a>thérapeutes exploratoires du genre</a> qui n'affirment pas automatiquement la transition comme le seul chemin.",
+      "closing": "J'espère que detrans.ai pourra vous aider à prendre des décisions éclairées et conscientes de vous-même."
+    }
   },
   "header": {
     "navigation": {
@@ -531,7 +545,8 @@
       "ogDescription": "Trouvez sur cette page une sélection d'études académiques et d'articles de journaux révisés par des pairs et de statistiques vérifiées qui se rapportent aux tendances de l'identité de genre et à la détransition."
     },
     "title": "Articles Académiques Sélectionnés",
-    "description": "Études académiques, recherche révisée par des pairs et articles de journaux sur les sujets de l'identité de genre, de la transition et de la détransition."
+    "description": "La recherche sur la détransition est un domaine émergent. L'augmentation rapide des diagnostics de dysphorie de genre au cours de la dernière décennie — particulièrement chez les adolescentes — a produit une population croissante de personnes ayant fait une détransition, bien que la collecte de données reste difficile en raison du fort taux de perte de suivi, des divisions idéologiques et des limites méthodologiques.",
+    "segmNote": "Sur cette page, vous trouverez des études académiques, des recherches révisées par des pairs et des articles de revue qui remettent en question l'efficacité et l'éthique des soins d'affirmation de genre. Consultez la <a>Society for Evidence-Based Gender Medicine (SEGM)</a> pour en savoir plus, y compris une analyse complète des études favorables."
   },
   "contentWarning": {
     "title": "Avertissement de Contenu :",

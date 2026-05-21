@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "Los chats son públicos.",
     "memberCountDisclaimer": "*60,000+ se refiere a los miembros del <a>/r/detrans subreddit</a>",
     "memberCountDisclaimerMobile": "60,000+ miembros en el <a>/r/detrans subreddit</a>",
-    "browseConversations": "Explorar todas las Conversaciones"
+    "browseConversations": "Explorar todas las Conversaciones",
+    "aboutDetransition": {
+      "title": "Acerca de la Destransición",
+      "whatIs": "La destransición es el proceso de detener o revertir una transición de género. Las personas destransicionan por muchas razones: su disforia tenía otras raíces, la transición no resolvió su angustia, o su comprensión de sí mismos cambió con el tiempo. Estas experiencias son reales, pero a menudo difíciles de hablar abiertamente.",
+      "reality": "Los destransicionadores representan una realidad que muchos encuentran difícil de aceptar: personas que estaban seguras de haber nacido en el cuerpo equivocado, que fueron apoyadas en esa creencia, y que aún así descubrieron que la transición no era la respuesta. Esto desafía el concepto mismo de identidad de género innata — razón por la cual la respuesta suele ser negación, desprecio y <a>estadísticas falsas</a> que afirman que son muy pocos como para importar.",
+      "hardToFindTitle": "Por qué es difícil encontrar esta información",
+      "onlineSpaces": "Los espacios en línea refuerzan una historia unilateral. En TikTok e Instagram, los algoritmos identifican el interés del usuario y crean bucles de retroalimentación. En Reddit y Discord, las comunidades relacionadas con el género están fuertemente moderadas. Las perspectivas disidentes se eliminan no solo cuando se expresan agresivamente, sino cuando se expresan en absoluto. El individuo que expresa arrepentimiento, que cuestiona si la transición siempre es apropiada, que comparte investigación que muestra altas tasas de desistencia, que menciona conocer a alguien que destransicionó — todas estas contribuciones serán eliminadas, y el usuario baneado. Algunos investigadores que estudian la destransición también han enfrentado consecuencias profesionales.",
+      "aiBias": "El sesgo ahora está integrado en la propia IA. Los chatbots occidentales son reflejos de las creencias culturales dominantes y del conocimiento. Se entrenan con datos que abrumadoramente afirman la transición como la respuesta correcta a la angustia. Los LLM a los que la gente recurre cada vez más para obtener consejos presentan un lado como un hecho establecido mientras ocultan el otro.",
+      "restoreBalance": "detrans.ai existe para restaurar el equilibrio. Existe porque las voces de los destransicionadores son sistemáticamente silenciadas por comunidades que los ven como una amenaza, por profesionales que solo predican la afirmación, y por una cultura que trata el cuestionamiento de la transición médica como dañino, incluso cuando los destransicionadores a menudo explican que han sido dañados por ella.",
+      "supportTitle": "Apoyo en la Destransición",
+      "supportDescription": "detrans.ai es un servicio gratuito de apoyo para la destransición para quienes están cuestionando, considerando hormonas o cirugías, destransicionando, o son padres o seres queridos de alguien que ahora se identifica como transgénero. Este es un recurso sin condiciones ideológicas. Se basa en miles de historias reales de destransicionadores para explorar las raíces de su disforia de género, los matices de la identidad, los viajes personales de destransición y cómo las personas reconstruyen su relación con sus cuerpos y mentes después.",
+      "whatYouCanLearn": "Puedes usar este sitio para explorar qué puede causar o ser diagnosticado erróneamente como disforia de género, los matices de la identidad, los viajes personales de destransición, y entender cómo las personas reconstruyen su relación con sus cuerpos y mentes después. Puedes aprender sobre transición social, cesación de hormonas, realidades quirúrgicas, y el trabajo práctico y emocional de seguir adelante. También puedes encontrar relatos de lo que muchos encuentran más difícil: la pérdida de comunidad, el miedo a admitir dudas, y el proceso de construir una vida fuera de una identidad que una vez lo definió todo.",
+      "differentStages": "Las personas llegan aquí en diferentes etapas. Algunos están investigando antes de comenzar la transición. Otros están a mitad de la transición con dudas. Otros ya han comenzado a destransicionar y necesitan orientación práctica. Muchos vienen buscando <a>grupos de apoyo para la destransición</a> o <a>terapeutas exploratorios de género</a> que no afirmen automáticamente la transición como el único camino.",
+      "closing": "Espero que detrans.ai pueda ayudarte a tomar decisiones informadas y conscientes."
+    }
   },
   "header": {
     "navigation": {
@@ -690,7 +704,8 @@
       "ogDescription": "Encuentra en esta página una selección de estudios académicos y artículos de revistas revisados por pares y estadísticas verificadas que se relacionan con tendencias de identidad de género y destransición."
     },
     "title": "Artículos Académicos Seleccionados",
-    "description": "Estudios académicos, investigación revisada por pares y artículos de revistas sobre los temas de identidad de género, transición y destransición."
+    "description": "La investigación sobre destransición es un campo emergente. El rápido aumento en los diagnósticos de disforia de género en la última década — particularmente entre adolescentes mujeres — ha producido una población creciente de personas que destransicionan, aunque la recolección de datos sigue siendo desafiante debido a la alta pérdida de seguimiento, la división ideológica y las limitaciones metodológicas.",
+    "segmNote": "En esta página encontrarás estudios académicos, investigaciones revisadas por pares y artículos de revistas que cuestionan la eficacia y la ética de la atención de afirmación de género. Consulta la <a>Society for Evidence-Based Gender Medicine (SEGM)</a> para más información, incluyendo un análisis comprehensivo de estudios de apoyo."
   },
   "prompts": {
     "metadata": {

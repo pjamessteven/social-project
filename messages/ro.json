@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "Chat-urile sunt publice.",
     "memberCountDisclaimer": "*60,000+ se referă la membrii <a>/r/detrans subreddit</a>",
     "memberCountDisclaimerMobile": "60,000+ membri în <a>/r/detrans subreddit</a>",
-    "browseConversations": "Răsfoiește toate Conversațiile"
+    "browseConversations": "Răsfoiește toate Conversațiile",
+    "aboutDetransition": {
+      "title": "Despre Detransiție",
+      "whatIs": "Detransiția este procesul de oprire sau inversare a unei tranziții de gen. Oamenii fac detransiție din multe motive: disforia lor avea alte rădăcini, tranziția nu le-a rezolvat suferința, sau înțelegerea lor despre sine s-a schimbat în timp. Aceste experiențe sunt reale, dar adesea dificil de vorbit deschis despre ele.",
+      "reality": "Persoanele care au făcut detransiția reprezintă o realitate pe care mulți o găsesc greu de acceptat: oameni care erau convinși că s-au născut în corpul greșit, care au fost sprijiniți în acea convingere, și care totuși au descoperit că tranziția nu era răspunsul. Acest lucru provoacă însuși conceptul de identitate de gen înnăscută — de aceea răspunsul este atât de des negare, respingere și <a>statistici false</a> care pretind că sunt prea puțini ca să conteze.",
+      "hardToFindTitle": "De Ce Este Greu de Găsit Această Informație",
+      "onlineSpaces": "Spațiile online întăresc o poveste unilaterală. Pe TikTok și Instagram, algoritmii identifică interesul utilizatorului și creează bucle de feedback. Pe Reddit și Discord, comunitățile legate de gen sunt puternic moderate. Perspectivele divergente sunt eliminate nu doar când sunt exprimate agresiv, ci când sunt exprimate deloc. Individul care exprimă regret, care se întreabă dacă tranziția este întotdeauna potrivită, care împărtășește cercetări care arată rate ridicate de renunțare, care menționează că cunoaște pe cineva care a făcut detransiția — toate aceste contribuții vor fi șterse, iar utilizatorul interzis. Unii cercetători care studiază detransiția au suferit și ei consecințe profesionale.",
+      "aiBias": "Părtinirea este acum încorporată în însăși inteligența artificială. Chatboții occidentali sunt o reflectare a credințelor culturale dominante și a cunoașterii. Sunt antrenați pe date care afirmă în mod copleșitor tranziția ca răspuns corect la suferință. LLM-urile la care oamenii apelează din ce în ce mai mult pentru sfaturi prezintă o parte ca pe un fapt stabilit, ascunzând cealaltă.",
+      "restoreBalance": "detrans.ai există pentru a restabili echilibrul. Există pentru că vocile persoanelor care au făcut detransiția sunt în mod obișnuit reduse la tăcere de comunități care le percep ca pe o amenințare, de profesioniști care predică doar afirmarea, și de o cultură care tratează chestionarea tranziției medicale ca pe ceva dăunător, chiar și atunci când persoanele care au făcut detransiția explică adesea că au fost afectate de ea.",
+      "supportTitle": "Sprijin pentru Detransiție",
+      "supportDescription": "detrans.ai este un serviciu gratuit de sprijin pentru detransiție pentru cei care se întreabă, iau în considerare hormoni sau intervenții chirurgicale, fac detransiția, sau sunt părinți sau persoane dragi cuiva care se identifică acum ca transgender. Aceasta este o resursă fără condiții ideologice. Se bazează pe mii de povești reale ale persoanelor care au făcut detransiția pentru a explora rădăcinile disforiei lor de gen, nuanțele identității, călătoriile personale de detransiție și cum oamenii își reconstruiesc relația cu corpurile și mințile lor după aceea.",
+      "whatYouCanLearn": "Puteți folosi acest site pentru a explora ce ar putea cauza sau fi diagnosticat greșit ca disforie de gen, nuanțele identității, călătoriile personale de detransiție și pentru a înțelege cum oamenii își reconstruiesc relația cu corpurile și mințile lor după aceea. Puteți afla despre tranziția socială, încetarea hormonilor, realitățile chirurgicale și munca practică și emoțională de a merge mai departe. Puteți găsi și relatări despre ceea ce mulți consideră cel mai greu: pierderea comunității, frica de a admite îndoieli și procesul de construire a unei vieți în afara unei identități care cândva definea totul.",
+      "differentStages": "Oamenii vin aici în diferite stadii. Unii fac cercetări înainte de a începe tranziția. Alții sunt în mijlocul tranziției cu îndoieli. Alții au început deja detransiția și au nevoie de îndrumare practică. Mulți vin în căutare de <a>grupuri de sprijin pentru detransiție</a> sau <a>terapeuți exploratori de gen</a> care nu afirme automat tranziția ca fiind unicul drum.",
+      "closing": "Sper că detrans.ai vă poate ajuta să luați decizii informate și conștiente de sine."
+    }
   },
   "header": {
     "navigation": {
@@ -535,7 +549,8 @@
       "ogDescription": "Găsește pe această pagină o selecție de studii academice și articole de jurnal recenzate de pari și statistici verificate care se referă la tendințele identității de gen și detransiție."
     },
     "title": "Articole Academice Selectate",
-    "description": "Studii academice, cercetare recenzată de pari și articole de jurnal pe subiectele identității de gen, tranziției și detransiției."
+    "description": "Cercetarea asupra detransiției este un domeniu emergent. Creșterea rapidă a diagnosticelor de disforie de gen în ultimul deceniu – în special în rândul adolescentelor – a produs o populație în creștere de persoane care au făcut detransiția, deși colectarea datelor rămâne o provocare din cauza ratei ridicate de pierdere la urmărire, diviziunii ideologice și limitărilor metodologice.",
+    "segmNote": "Pe această pagină veți găsi studii academice, cercetări recenzate de pari și articole de jurnal care pun la îndoială eficacitatea și etica îngrijirii afirmatoare de gen. Consultați <a>Society for Evidence-Based Gender Medicine (SEGM)</a> pentru mai multe informații, inclusiv analize comprehensive ale studiilor de susținere."
   },
   "contentWarning": {
     "title": "Avertisment de Conținut:",

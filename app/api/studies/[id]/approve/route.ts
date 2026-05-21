@@ -1,14 +1,14 @@
 import { isAdmin } from "@/app/lib/auth/auth";
+import { extractPdfText } from "@/app/lib/pdf";
 import { db } from "@/db";
-import { studies } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { studies, studyTags, studyTagRelations } from "@/db/schema";
+import { eq, inArray, sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { QdrantVectorStore } from "@llamaindex/qdrant";
 import { TextNode, VectorStoreIndex } from "llamaindex";
 import { initSettings } from "@/app/api/chat/app/settings";
-import { PDFReader } from "@llamaindex/readers/pdf";
 
-const COLLECTION_NAME = "detrans_studies";
+const STUDIES_COLLECTION = "detrans_studies";
 const CHUNK_MAX_CHARS = 2000;
 
 function chunkText(text: string): string[] {
@@ -44,15 +44,15 @@ function chunkText(text: string): string[] {
   return chunks;
 }
 
-async function deleteStudyVectors(studyId: number) {
+async function deleteStudyVectors(studyId: number, collectionName: string) {
   const vectorStore = new QdrantVectorStore({
     url: process.env.QDRANT_URL || "http://localhost:6333",
-    collectionName: COLLECTION_NAME,
+    collectionName,
   });
 
   const client = vectorStore.client();
 
-  const scrollResult = await client.scroll(COLLECTION_NAME, {
+  const scrollResult = await client.scroll(collectionName, {
     filter: {
       must: [
         {
@@ -69,21 +69,105 @@ async function deleteStudyVectors(studyId: number) {
   const pointIds = scrollResult.points.map((p) => p.id);
 
   if (pointIds.length > 0) {
-    await client.delete(COLLECTION_NAME, {
+    await client.delete(collectionName, {
       points: pointIds,
     });
-    console.log(`Deleted ${pointIds.length} old vectors for study ${studyId}`);
+    console.log(
+      `Deleted ${pointIds.length} old vectors for study ${studyId} from ${collectionName}`,
+    );
   }
 }
 
-async function extractPdfText(file: File): Promise<string> {
-  const arrayBuffer = await file.arrayBuffer();
-  const uint8Array = new Uint8Array(arrayBuffer);
+async function embedStudy(
+  studyId: number,
+  fullText: string,
+  title: string,
+  authors: string,
+  year: number | null,
+  url: string,
+  abstract: string,
+  conclusion: string,
+  keyPoints: string[],
+  collectionName: string,
+) {
+  const chunks = chunkText(fullText);
 
-  const reader = new PDFReader();
-  const documents = await reader.loadDataAsContent(uint8Array);
+  if (chunks.length === 0) {
+    throw new Error("Could not chunk full text");
+  }
 
-  return documents.map((doc) => doc.text).join("\n\n");
+  const header = `Title: ${title || "Unknown"}
+Authors: ${authors || "Unknown"}
+Year: ${year || "Unknown"}
+
+`;
+
+  const nodes: TextNode[] = [];
+  for (let i = 0; i < chunks.length; i++) {
+    const chunkTextContent = header + chunks[i];
+
+    const node = new TextNode({
+      text: chunkTextContent,
+      metadata: {
+        studyId: studyId,
+        title: title || "",
+        authors: authors || "",
+        year: year || 0,
+        url: url || "",
+        abstract: abstract || "",
+        conclusion: conclusion || "",
+        keyPoints: JSON.stringify(keyPoints),
+        type: "study",
+      },
+    });
+
+    nodes.push(node);
+  }
+
+  initSettings();
+
+  const vectorStore = new QdrantVectorStore({
+    url: process.env.QDRANT_URL || "http://localhost:6333",
+    collectionName,
+  });
+
+  const index = await VectorStoreIndex.fromVectorStore(vectorStore);
+  await index.insertNodes(nodes);
+
+  return chunks.length;
+}
+
+async function upsertTags(studyId: number, tagNames: string[]) {
+  // Delete existing relations
+  await db
+    .delete(studyTagRelations)
+    .where(eq(studyTagRelations.studyId, studyId));
+
+  if (tagNames.length === 0) return;
+
+  // Upsert tags into study_tags table
+  for (const name of tagNames) {
+    await db
+      .insert(studyTags)
+      .values({ name })
+      .onConflictDoNothing({ target: studyTags.name });
+  }
+
+  // Get tag IDs
+  const tagRecords = await db
+    .select()
+    .from(studyTags)
+    .where(inArray(studyTags.name, tagNames));
+
+  // Create relations
+  if (tagRecords.length > 0) {
+    await db.insert(studyTagRelations).values(
+      tagRecords.map((tag) => ({
+        studyId,
+        tagId: tag.id,
+      })),
+    );
+  }
 }
 
 export async function POST(
@@ -128,7 +212,6 @@ export async function POST(
       try {
         const extractedText = await extractPdfText(pdfFile);
         if (extractedText.trim()) {
-          // If admin also typed fullText, they take precedence. Otherwise use extracted.
           fullText = fullText.trim() || extractedText;
         }
       } catch (pdfError) {
@@ -148,8 +231,17 @@ export async function POST(
     const authors = (formData.get("authors") as string) || study.authors || "";
     const yearStr = (formData.get("year") as string) || "";
     const journal = (formData.get("journal") as string) || study.journal || "";
-    const headline = (formData.get("headline") as string) || study.headline || "";
-    const description = (formData.get("description") as string) || study.description || "";
+    const headline =
+      (formData.get("headline") as string) || study.headline || "";
+    const description =
+      (formData.get("description") as string) || study.description || "";
+    const tagsRaw = (formData.get("tags") as string) || "";
+    const limitationsRaw =
+      (formData.get("limitations") as string) || "";
+    const limitations = limitationsRaw
+      .split("\n")
+      .map((line) => line.trim())
+      .filter((line) => line.length > 0);
     const regenerateEmbedding = formData.get("regenerateEmbedding") === "on";
 
     const keyPoints = keyPointsRaw
@@ -157,10 +249,21 @@ export async function POST(
       .map((line) => line.trim())
       .filter((line) => line.length > 0);
 
+    const tags = tagsRaw
+      .split(",")
+      .map((t) => t.trim())
+      .filter((t) => t.length > 0);
+
     const year = yearStr ? parseInt(yearStr, 10) : study.year;
 
     // Validate required fields
-    if (!fullText || !abstract || !conclusion || !summary || keyPoints.length === 0) {
+    if (
+      !fullText ||
+      !abstract ||
+      !conclusion ||
+      !summary ||
+      keyPoints.length === 0
+    ) {
       return NextResponse.json(
         {
           error:
@@ -170,11 +273,10 @@ export async function POST(
       );
     }
 
-    // If editing an already-approved study, delete old vectors first
-    // Only do this if admin explicitly asked to regenerate embeddings
+    // Delete old vectors if regenerating
     if (study.approved && regenerateEmbedding) {
       try {
-        await deleteStudyVectors(studyId);
+        await deleteStudyVectors(studyId, STUDIES_COLLECTION);
       } catch (deleteError) {
         console.error(
           `Failed to delete old vectors for study ${studyId}:`,
@@ -203,73 +305,45 @@ export async function POST(
         journal: journal || study.journal,
         headline: headline || study.headline,
         description: description || study.description,
+        limitations: limitations.length > 0 ? limitations : null,
         updatedAt: new Date(),
       })
       .where(eq(studies.id, studyId))
       .returning();
+
+    // Upsert normalized tags
+    await upsertTags(studyId, tags);
 
     // Only regenerate embeddings for new approvals or when explicitly requested
     const shouldEmbed = !study.approved || regenerateEmbedding;
     let chunksCreated = 0;
 
     if (shouldEmbed) {
-      // Chunk full text and create embeddings
-      const chunks = chunkText(fullText);
-
-      if (chunks.length === 0) {
+      try {
+        chunksCreated = await embedStudy(
+          studyId,
+          fullText,
+          title || study.title || "",
+          authors || study.authors || "",
+          year || study.year || null,
+          study.url || "",
+          abstract,
+          conclusion,
+          keyPoints,
+          STUDIES_COLLECTION,
+        );
+        console.log(
+          `Approved study ${studyId}: created ${chunksCreated} chunks in ${STUDIES_COLLECTION}`,
+        );
+      } catch (embedError) {
+        console.error("Failed to embed study:", embedError);
         return NextResponse.json(
-          { error: "Could not chunk full text" },
-          { status: 400 },
+          { error: "Failed to create embeddings" },
+          { status: 500 },
         );
       }
-
-      const header = `Title: ${title || study.title || "Unknown"}
-Authors: ${authors || study.authors || "Unknown"}
-Year: ${year || study.year || "Unknown"}
-
-`;
-
-      const nodes: TextNode[] = [];
-      for (let i = 0; i < chunks.length; i++) {
-        const chunkTextContent = header + chunks[i];
-
-        const node = new TextNode({
-          text: chunkTextContent,
-          metadata: {
-            studyId: studyId,
-            title: title || study.title || "",
-            authors: authors || study.authors || "",
-            year: year || study.year || 0,
-            url: study.url || "",
-            abstract: abstract || "",
-            conclusion: conclusion || "",
-            keyPoints: JSON.stringify(keyPoints),
-            type: "study",
-          },
-        });
-
-        nodes.push(node);
-      }
-
-      // Insert into Qdrant
-      initSettings();
-
-      const vectorStore = new QdrantVectorStore({
-        url: process.env.QDRANT_URL || "http://localhost:6333",
-        collectionName: COLLECTION_NAME,
-      });
-
-      const index = await VectorStoreIndex.fromVectorStore(vectorStore);
-      await index.insertNodes(nodes);
-
-      chunksCreated = chunks.length;
-      console.log(
-        `Approved study ${studyId}: created ${chunks.length} chunks in Qdrant`,
-      );
     } else {
-      console.log(
-        `Edited study ${studyId}: skipped embedding regeneration`,
-      );
+      console.log(`Edited study ${studyId}: skipped embedding regeneration`);
     }
 
     return NextResponse.json({

@@ -323,9 +323,51 @@ export async function StartPage({
               <DonationCard mode="detrans" />
             </div>
 
-            <div className="text-muted-foreground relative flex flex-col text-base italic opacity-90 sm:mt-8 sm:text-lg">
+            <div className="relative mt-12 flex flex-col text-base opacity-90 sm:mt-12 sm:text-base">
+              <h2 className="mb-4 font-medium">
+                {t("aboutDetransition.title")}
+              </h2>
+              <p>{t("aboutDetransition.whatIs")}</p>
+              <p className="mt-4">
+                {t.rich("aboutDetransition.reality", {
+                  a: (chunks) => (
+                    <a
+                      href="/research/why-are-detransition-statistics-unreliable-and-who-runs-us-transgender-survey"
+                      className="underline"
+                    >
+                      {chunks}
+                    </a>
+                  ),
+                })}
+              </p>
+
+              <h2 className="mt-8 font-medium">
+                {t("aboutDetransition.hardToFindTitle")}
+              </h2>
+
+              <p className="mt-4">{t("aboutDetransition.onlineSpaces")}</p>
+              <p className="mt-4">{t("aboutDetransition.aiBias")}</p>
+              <p className="mt-4">{t("aboutDetransition.restoreBalance")}</p>
+              <h2 className="mt-8 font-medium">
+                {t("aboutDetransition.supportTitle")}
+              </h2>
+
+              <p className="mt-4">
+                {t("aboutDetransition.supportDescription")}
+              </p>
+
+              <p className="mt-4">{t("aboutDetransition.whatYouCanLearn")}</p>
+              <p className="mt-4">
+                {t.rich("aboutDetransition.differentStages", {
+                  a: (chunks) => <Link href="/support">{chunks}</Link>,
+                })}
+              </p>
+              <p className="mt-4">{t("aboutDetransition.closing")}</p>
+            </div>
+
+            <div className="text-muted-foreground relative flex flex-col text-base italic opacity-90 sm:mt-8">
               <div
-                className={`relative z-0 mt-10 block w-[200px] sm:absolute sm:top-16 sm:mt-0 sm:w-[250px] ${isRTL(locale) ? "left-0 sm:left-0" : "right-0 sm:-right-0"}`}
+                className={`relative z-0 mt-10 block w-[200px] sm:absolute sm:top-0 sm:mt-0 sm:w-[250px] ${isRTL(locale) ? "left-0 sm:left-0" : "right-0 sm:-right-0"}`}
               >
                 <Image
                   className="dark:opacity-40"
@@ -349,7 +391,7 @@ export async function StartPage({
                   });
                   return (
                     <div className="-mb-4 max-w-sm border-b pb-4">
-                      <p className="mt-8">{tEn("footer.poem.line3")}</p>
+                      <p className="mt-3">{tEn("footer.poem.line3")}</p>
                       <p className="mt-1">{tEn("footer.poem.line4")}</p>
                       <p className="mt-1">{tEn("footer.poem.line5")}</p>
                       <p className="mt-1">{tEn("footer.poem.line6")}</p>

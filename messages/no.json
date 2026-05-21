@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "Chatter er offentlige.",
     "memberCountDisclaimer": "*60,000+ refererer til medlemmer av <a>/r/detrans subreddit</a>",
     "memberCountDisclaimerMobile": "60,000+ medlemmer i <a>/r/detrans subreddit</a>",
-    "browseConversations": "Bla gjennom alle samtaler"
+    "browseConversations": "Bla gjennom alle samtaler",
+    "aboutDetransition": {
+      "title": "Om detransisjon",
+      "whatIs": "Detransisjon er prosessen med å stoppe eller reversere en kjønnsovergang. Mennesker detransisjonerer av mange grunner: deres dysfori hadde andre røtter, overgangen løste ikke deres nød, eller deres forståelse av seg selv endret seg over tid. Disse erfaringene er virkelige, men ofte vanskelige å snakke åpent om.",
+      "reality": "Detransisjonerte representerer en virkelighet mange har vanskelig for å akseptere: mennesker som var sikre på at de var født i feil kropp, som ble støttet i den troen, og som fortsatt fant at overgangen ikke var svaret. Dette utfordrer selve konseptet med medfødt kjønnsidentitet – derfor er responsen så ofte benektelse, avvisning og <a>falsk statistikk</a> som hevder de er for få til å bety noe.",
+      "hardToFindTitle": "Hvorfor denne informasjonen er vanskelig å finne",
+      "onlineSpaces": "Nettbaserte rom forsterker en ensidig historie. På TikTok og Instagram identifiserer algoritmer brukerinteresse og skaper tilbakemeldingssløyfer. På Reddit og Discord er kjønnsrelaterte fellesskap tungt moderert. Avvikende perspektiver fjernes ikke bare når de uttrykkes aggressivt, men når de uttrykkes i det hele tatt. Individet som uttrykker anger, som stiller spørsmål ved om overgang alltid er passende, som deler forskning som viser høye rater av desistens, som nevner å kjenne noen som har detransisjonert – alle disse bidragene vil bli slettet, og brukeren utestengt. Også noen forskere som studerer detransisjon har møtt profesjonelle konsekvenser.",
+      "aiBias": "Skjevheten er nå bygget inn i selve AI. Vestlige chatbots er speilinger av dominerende kulturelle overbevisninger og kunnskap. De er trent på data som overveldende bekrefter overgang som det riktige svaret på nød. LLM-ene som folk i økende grad tyr til for råd, presenterer den ene siden som et avgjort faktum mens de skjuler den andre.",
+      "restoreBalance": "detrans.ai eksisterer for å gjenopprette balanse. Det eksisterer fordi detransisjonertes stemmer rutinemessig blir holdt tause av fellesskap som ser på dem som truende, av fagpersoner som bare preker bekreftelse, og av en kultur som behandler å stille spørsmål ved medisinsk overgang som skadelig, selv når detransisjonerte ofte forklarer at de har blitt skadet av den.",
+      "supportTitle": "Detransisjonsstøtte",
+      "supportDescription": "detrans.ai er en gratis detransisjonsstøttetjeneste for de som stiller spørsmål, vurderer hormoner eller operasjoner, detransisjonerer, eller er foreldre eller nære av noen som nå identifiserer seg som transperson. Dette er en ressurs uten ideologiske betingelser. Den henter fra tusenvis av ekte detransisjonerte historier for å utforske røttene til deres kjønnsdysfori, nyansene av identitet, personlige detransisjonsreiser, og hvordan mennesker gjenoppbygger forholdet til kroppen og sinnet etterpå.",
+      "whatYouCanLearn": "Du kan bruke denne siden til å utforske hva som kan forårsake eller feildiagnostiseres som kjønnsdysfori, nyansene av identitet, personlige detransisjonsreiser, og forstå hvordan mennesker gjenoppbygger forholdet til kroppen og sinnet etterpå. Du kan lære om sosial kjønnsovergang, hormonstans, kirurgiske realiteter, og det praktiske og emosjonelle arbeidet med å gå videre. Du kan også finne beretninger om det mange finner vanskeligst: tapet av fellesskap, frykten for å innrømme tvil, og prosessen med å bygge et liv utenfor en identitet som en gang definerte alt.",
+      "differentStages": "Mennesker kommer hit i ulike stadier. Noen forsker før de starter overgang. Andre er midt i overgangen med tvil. Andre har allerede begynt å detransisjonere og trenger praktisk veiledning. Mange kommer på jakt etter <a>detransisjonsstøttegrupper</a> eller <a>kjønnsutforskende terapeuter</a> som ikke automatisk bekrefter overgang som den eneste veien.",
+      "closing": "Jeg håper at detrans.ai kan hjelpe deg med å ta informerte, selvbevisste beslutninger."
+    }
   },
   "header": {
     "navigation": {
@@ -535,7 +549,8 @@
       "ogDescription": "Finn på denne siden et utvalg av akademiske studier og fagfellevurderte tidsskriftartikler og verifisert statistikk som er relatert til kjønnsidentitetstrender og detransisjon."
     },
     "title": "Utvalgte akademiske artikler",
-    "description": "Akademiske studier, fagfellevurdert forskning og tidsskriftartikler om emnene kjønnsidentitet, kjønnsovergang og detransisjon."
+    "description": "Detransisjonsforskning er et nytt felt. Den raske økningen i diagnoser av kjønnsdysfori det siste tiåret – særlig blant unge jenter – har skapt en voksende populasjon av detransisjonerte, selv om datainnsamling fortsatt er utfordrende på grunn av høyt frafall ved oppfølging, ideologisk splittelse og metodologiske begrensninger.",
+    "segmNote": "På denne siden finner du akademiske studier, fagfellevurdert forskning og tidsskriftsartikler som reiser spørsmål ved effektiviteten og etikken til kjønnsbekreftende behandling. Se <a>Society for Evidence-Based Gender Medicine (SEGM)</a> for mer, inkludert omfattende analyser av støttende studier."
   },
   "contentWarning": {
     "title": "Innholdsadvarsel:",
