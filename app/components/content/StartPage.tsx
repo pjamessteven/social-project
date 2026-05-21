@@ -331,12 +331,12 @@ export async function StartPage({
               <p className="mt-4">
                 {t.rich("aboutDetransition.reality", {
                   a: (chunks) => (
-                    <a
+                    <Link
                       href="/research/why-are-detransition-statistics-unreliable-and-who-runs-us-transgender-survey"
                       className="underline"
                     >
                       {chunks}
-                    </a>
+                    </Link>
                   ),
                 })}
               </p>

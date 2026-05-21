@@ -419,7 +419,6 @@ export function FeaturedConversations() {
   }, [fetchConversations]);
 
   // Sync tab state when URL changes (for back/forward navigation)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const tabFromUrl = searchParams.get("tab");
     let newTab: "featured" | "all" | "mine" = "featured";
