@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "Os chats são públicos.",
     "memberCountDisclaimer": "*60,000+ refere-se aos membros do <a>/r/detrans subreddit</a>",
     "memberCountDisclaimerMobile": "60,000+ membros no <a>/r/detrans subreddit</a>",
-    "browseConversations": "Navegar por todas as Conversas"
+    "browseConversations": "Navegar por todas as Conversas",
+    "aboutDetransition": {
+      "title": "Sobre a Desransição",
+      "whatIs": "A desransição é o processo de interromper ou reverter uma transição de gênero. As pessoas desfazem a transição por muitos motivos: sua disforia tinha outras raízes, a transição não resolveu seu sofrimento, ou sua compreensão de si mesmas mudou com o tempo. Essas experiências são reais, mas frequentemente difíceis de serem faladas abertamente.",
+      "reality": "Os detransicionadores representam uma realidade que muitos têm dificuldade em aceitar: pessoas que tinham certeza de que nasceram no corpo errado, que foram apoiadas nessa crença, e que mesmo assim descobriram que a transição não era a resposta. Isso desafia o próprio conceito de identidade de gênero inata — por isso a resposta é tão frequentemente negação, menosprezo e <a>estatísticas falsas</a> alegando que são poucos demais para importar.",
+      "hardToFindTitle": "Por Que Essa Informação É Difícil de Encontrar",
+      "onlineSpaces": "Os espaços online reforçam uma história unilateral. No TikTok e no Instagram, algoritmos identificam o interesse do usuário e criam loops de feedback. No Reddit e no Discord, as comunidades relacionadas a gênero são fortemente moderadas. Perspectivas divergentes são removidas não apenas quando expressas agressivamente, mas quando expressadas de qualquer forma. O indivíduo que expressa arrependimento, que questiona se a transição é sempre apropriada, que compartilha pesquisas mostrando altas taxas de desistência, que menciona conhecer alguém que desfez a transição — todas essas contribuições serão deletadas, e o usuário banido. Alguns pesquisadores que estudam desransição também enfrentaram consequências profissionais.",
+      "aiBias": "O viés agora está embutido na própria IA. Chatbots ocidentais são reflexos de crenças culturais dominantes e conhecimento. Eles são treinados com dados que esmagadoramente afirmam a transição como a resposta correta ao sofrimento. Os LLMs para os quais as pessoas recorrem cada vez mais em busca de conselhos apresentam um lado como fato estabelecido enquanto escondem o outro.",
+      "restoreBalance": "O detrans.ai existe para restaurar o equilíbrio. Ele existe porque as vozes dos detransicionadores são rotineiramente silenciadas por comunidades que os veem como ameaçadores, por profissionais que só pregam a afirmação, e por uma cultura que trata o questionamento da transição médica como prejudicial, mesmo quando os detransicionadores frequentemente explicam que foram prejudicados por ela.",
+      "supportTitle": "Apoio à Desransição",
+      "supportDescription": "O detrans.ai é um serviço gratuito de apoio à desransição para aqueles que estão questionando, considerando hormônios ou cirurgias, desfazendo a transição, ou são pais ou entes queridos de alguém que agora se identifica como transgênero. Este é um recurso sem condições ideológicas. Ele se baseia em milhares de histórias reais de detransicionadores para explorar as raízes de sua disforia de gênero, as nuances da identidade, as jornadas pessoais de desransição e como as pessoas reconstróem sua relação com seus corpos e mentes depois disso.",
+      "whatYouCanLearn": "Você pode usar este site para explorar o que pode causar ou ser diagnosticado erroneamente como disforia de gênero, as nuances da identidade, as jornadas pessoais de desransição e entender como as pessoas reconstróem sua relação com seus corpos e mentes depois disso. Você pode aprender sobre transição social, cessação de hormônios, realidades cirúrgicas e o trabalho prático e emocional de seguir em frente. Você também pode encontrar relatos sobre o que muitos consideram mais difícil: a perda de comunidade, o medo de admitir dúvidas e o processo de construir uma vida fora de uma identidade que uma vez definiu tudo.",
+      "differentStages": "As pessoas vêm aqui em diferentes estágios. Algumas estão pesquisando antes de iniciar a transição. Outras estão no meio da transição com dúvidas. Outras já começaram a desfazer a transição e precisam de orientação prática. Muitos vêm em busca de <a>grupos de apoio à desransição</a> ou <a>terapeutas exploradores de gênero</a> que não afirmem automaticamente a transição como o único caminho.",
+      "closing": "Espero que o detrans.ai possa ajudá-lo a tomar decisões informadas e conscientes."
+    }
   },
   "header": {
     "navigation": {
@@ -532,7 +546,8 @@
       "ogDescription": "Encontre nesta página uma seleção de estudos acadêmicos e artigos de revistas revisados por pares e estatísticas verificadas relacionadas a tendências de identidade de gênero e desransição."
     },
     "title": "Artigos Acadêmicos Selecionados",
-    "description": "Estudos acadêmicos, pesquisas revisadas por pares e artigos de revistas sobre os assuntos de identidade de gênero, transição e desransição."
+    "description": "A pesquisa sobre desransição é um campo emergente. O rápido aumento nos diagnósticos de disforia de gênero na última década — particularmente entre adolescentes do sexo feminino — produziu uma população crescente de detransicionadores, embora a coleta de dados continue desafiadora devido à alta perda de acompanhamento, divisão ideológica e limitações metodológicas.",
+    "segmNote": "Nesta página você encontrará estudos acadêmicos, pesquisas revisadas por pares e artigos de revistas que questionam a eficácia e a ética da atenção de afirmação de gênero. Veja a <a>Society for Evidence-Based Gender Medicine (SEGM)</a> para mais, incluindo análise abrangente de estudos de apoio."
   },
   "contentWarning": {
     "title": "Aviso de Conteúdo:",

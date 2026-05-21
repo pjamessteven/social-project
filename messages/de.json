@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "Chats sind öffentlich.",
     "memberCountDisclaimer": "*60,000+ bezieht sich auf Mitglieder des <a>/r/detrans subreddit</a>",
     "memberCountDisclaimerMobile": "60,000+ Mitglieder im <a>/r/detrans subreddit</a>",
-    "browseConversations": "Alle Gespräche durchsuchen"
+    "browseConversations": "Alle Gespräche durchsuchen",
+    "aboutDetransition": {
+      "title": "Über die Detransition",
+      "whatIs": "Die Detransition ist der Prozess des Abbruchs oder der Rücknahme einer Geschlechtsangleichung. Menschen detransitionieren aus vielen Gründen: Ihre Dysphorie hatte andere Ursachen, die Transition löste ihr Leid nicht, oder ihr Selbstverständnis änderte sich im Laufe der Zeit. Diese Erfahrungen sind real, doch oft schwer offen anzusprechen.",
+      "reality": "Detransitionierende repräsentieren eine Realität, die viele nur schwer akzeptieren können: Menschen, die sicher waren, im falschen Körper geboren zu sein, die in dieser Überzeugung unterstützt wurden und die dennoch feststellten, dass die Transition nicht die Antwort war. Das stellt das Konzept einer angeborenen Geschlechtsidentität selbst in Frage – deshalb lautet die Reaktion so oft auf Leugnung, Abwertung und <a>falsche Statistiken</a>, die behaupten, sie seien zu wenige, um relevant zu sein.",
+      "hardToFindTitle": "Warum diese Information so schwer zu finden ist",
+      "onlineSpaces": "Online-Räume verstärken eine einseitige Erzählung. Auf TikTok und Instagram identifizieren Algorithmen das Interesse der Nutzer und schaffen Feedback-Schleifen. Auf Reddit und Discord werden geschlechtsbezogene Communities stark moderiert. Abweichende Perspektiven werden nicht nur entfernt, wenn sie aggressiv geäußert werden, sondern wenn sie überhaupt geäußert werden. Die Person, die Bedauern äußert, die bezweifelt, ob Transition immer angemessen ist, die Forschung teilt, die hohe Desistance-Raten zeigt, die erwähnt, jemanden zu kennen, der detransitioniert hat – all diese Beiträge werden gelöscht und der Nutzer gebannt. Einige Forscher, die Detransition untersuchen, mussten ebenfalls berufliche Konsequenzen hinnehmen.",
+      "aiBias": "Diese Voreingenommenheit ist nun in die KI selbst eingebaut. Westliche Chatbots spiegeln dominante kulturelle Überzeugungen und Wissen wider. Sie werden mit Daten trainiert, die die Transition überwältigend als die richtige Antwort auf Leid bestätigen. Die LLMs, zu denen sich Menschen zunehmend für Rat wenden, präsentieren eine Seite als unumstößliche Tatsache und verbergen die andere.",
+      "restoreBalance": "detrans.ai existiert, um das Gleichgewicht wiederherzustellen. Es existiert, weil die Stimmen von Detransitionierenden routinemäßig von Communities zum Schweigen gebracht werden, die sie als bedrohlich empfinden, von Fachleuten, die nur Affirmation predigen, und von einer Kultur, die die Infragestellung medizinischer Transition als schädlich betrachtet – selbst wenn Detransitionierende oft erklären, dass sie dadurch Schaden erlitten haben.",
+      "supportTitle": "Unterstützung bei der Detransition",
+      "supportDescription": "detrans.ai ist ein kostenloser Support-Service für die Detransition für diejenigen, die sich im Hinterfragen befinden, Hormone oder Operationen in Betracht ziehen, gerade detransitionieren oder Eltern oder Angehörige von jemandem sind, der sich jetzt als transgender identifiziert. Dies ist eine Ressource ohne ideologische Bedingungen. Sie zieht aus Tausenden echten Geschichten von Detransitionierenden, um die Wurzeln ihrer Geschlechtsdysphorie, die Nuancen der Identität, die persönlichen Reisen der Detransition und wie Menschen ihre Beziehung zu ihrem Körper und Geist danach wieder aufbauen, zu erforschen.",
+      "whatYouCanLearn": "Du kannst diese Seite nutzen, um zu erforschen, was Geschlechtsdysphorie verursachen oder falsch diagnostiziert werden kann, die Nuancen der Identität, persönliche Reisen der Detransition und zu verstehen, wie Menschen ihre Beziehung zu ihrem Körper und Geist danach wieder aufbauen. Du kannst über soziale Transition, das Absetzen von Hormonen, chirurgische Realitäten und die praktische und emotionale Arbeit des Weitermachens lernen. Du kannst auch Berichte darüber finden, was viele am schwersten finden: den Verlust der Community, die Angst, Zweifel zuzugeben, und den Prozess, ein Leben außerhalb einer Identität aufzubauen, die einst alles definierte.",
+      "differentStages": "Menschen kommen hier in verschiedenen Phasen. Manche recherchieren, bevor sie mit der Transition beginnen. Andere sind mitten in der Transition mit Zweifeln. Andere haben bereits mit der Detransition begonnen und brauchen praktische Anleitung. Viele kommen auf der Suche nach <a>Detransition-Supportgruppen</a> oder <a>geschlechtsexplorativen Therapeuten</a>, die Transition nicht automatisch als den einzigen Weg bejahen.",
+      "closing": "Ich hoffe, dass detrans.ai dir helfen kann, informierte, selbstbewusste Entscheidungen zu treffen."
+    }
   },
   "header": {
     "navigation": {
@@ -531,7 +545,8 @@
       "ogDescription": "Finde auf dieser Seite eine Auswahl akademischer Studien und begutachteter Zeitschriftenartikel und verifizierter Statistiken, die sich auf Geschlechtsidentitätstrends und Detransition beziehen."
     },
     "title": "Ausgewählte akademische Artikel",
-    "description": "Akademische Studien, begutachtete Forschung und Zeitschriftenartikel zu den Themen Geschlechtsidentität, Transition und Detransition."
+    "description": "Die Detransitionsforschung ist ein aufstrebendes Feld. Der rasche Anstieg von Diagnosen für Geschlechtsdysphorie im vergangenen Jahrzehnt — insbesondere bei jugendlichen Mädchen — hat eine wachsende Population von Detransitionierenden hervorgebracht, auch wenn die Datenerhebung aufgrund hoher Abbruchraten, ideologischer Spaltung und methodischer Einschränkungen weiterhin herausfordernd bleibt.",
+    "segmNote": "Auf dieser Seite finden Sie akademische Studien, begutachtete Forschung und Zeitschriftenartikel, die die Wirksamkeit und Ethik von gender-affirmierender Behandlung in Frage stellen. Sehen Sie sich die <a>Society for Evidence-Based Gender Medicine (SEGM)</a> für weitere Informationen an, einschließlich einer umfassenden Analyse unterstützender Studien."
   },
   "contentWarning": {
     "title": "Inhaltswarnung:",

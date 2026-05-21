@@ -13,6 +13,7 @@ import CommentQueryEventPart from "./comment-query-event";
 import { DynamicEvents } from "./custom/events/dynamic-events";
 import { ComponentDef } from "./custom/events/types";
 import StoryQueryEventPart from "./story-query-event";
+import StudyQueryEventPart from "./study-query-event";
 import VideoQueryEventPart from "./video-query-event";
 
 type EventPart = {
@@ -109,6 +110,7 @@ export function ChatMessageContent({
         <ChatMessage.Content.Source />
         <VideoQueryEventPart />
         <StoryQueryEventPart />
+        <StudyQueryEventPart />
         <CommentQueryEventPart />
       </ChatMessage.Content>
       <SuggestedQuestionsAnnotations />

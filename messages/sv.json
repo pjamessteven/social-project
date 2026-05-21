@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "Chattar är offentliga.",
     "memberCountDisclaimer": "*60,000+ hänvisar till medlemmar i <a>/r/detrans subreddit</a>",
     "memberCountDisclaimerMobile": "60,000+ medlemmar i <a>/r/detrans subreddit</a>",
-    "browseConversations": "Bläddra bland alla Konversationer"
+    "browseConversations": "Bläddra bland alla Konversationer",
+    "aboutDetransition": {
+      "title": "Om detransition",
+      "whatIs": "Detransition är processen att stoppa eller vända en könsövergång. Människor detransitionerar av många anledningar: deras dysfori hade andra rötter, övergången löste inte deras ångest, eller deras förståelse av sig själva förändrades med tiden. Dessa erfarenheter är verkliga, men ofta svåra att tala öppet om.",
+      "reality": "Detransitionerare representerar en verklighet som många har svårt att acceptera: människor som var övertygade om att de föddes i fel kropp, som fick stöd i den tron, och som ändå upptäckte att övergången inte var svaret. Detta utmanar själva begreppet medfödd könsidentitet — därför är svaret så ofta förnekelse, avfärdande och <a>falsk statistik</a> som påstår att de är för få för att spela roll.",
+      "hardToFindTitle": "Varför denna information är svår att hitta",
+      "onlineSpaces": "Onlinemiljöer förstärker en ensidig berättelse. På TikTok och Instagram identifierar algoritmer användarnas intresse och skapar återkopplingsloopar. På Reddit och Discord är könsrelaterade communities kraftigt modererade. Avvikande perspektiv tas bort inte bara när de uttrycks aggressivt utan när de uttrycks över huvud taget. Den enskilde som uttrycker ånger, som ifrågasätter om övergång alltid är lämplig, som delar forskning som visar höga nivåer av desistance, som nämner att känna någon som har detransitionerat — alla dessa bidrag raderas och användaren stängs av. Vissa forskare som studerar detransition har också mött professionella konsekvenser.",
+      "aiBias": "Nu är partiskheten inbyggd i AI självt. Västerländska chatbots är speglingar av dominerande kulturella övertygelser och kunskap. De tränas på data som överväldigande bekräftar övergång som det rätta svaret på ångest. De LLM som människor allt oftare vänder sig till för rådgivning presenterar ena sidan som ett avgjort faktum samtidigt som de döljer den andra.",
+      "restoreBalance": "detrans.ai finns för att återställa balans. Det finns därför att detransitionerares röster rutinmässigt tystas av communities som ser dem som hotfulla, av yrkesverksamma som endast predikar bekräftelse, och av en kultur som behandlar ifrågasättande av medicinsk övergång som skadligt, även när detransitionerare ofta förklarar att de har skadats av den.",
+      "supportTitle": "Stöd vid detransition",
+      "supportDescription": "detrans.ai är en gratis detransitionstödtjänst för de som ifrågasätter, överväger hormoner eller operationer, detransitionerar, eller är föräldrar eller närstående till någon som nu identifierar sig som transgender. Detta är en resurs utan ideologiska villkor. Den bygger på tusentals verkliga detransitionerares berättelser för att utforska rötterna till deras könsdysfori, nyanser av identitet, personliga resor genom detransition, och hur människor återuppbygger sin relation till kropp och sinne efteråt.",
+      "whatYouCanLearn": "Du kan använda denna sida för att utforska vad som kan orsaka eller feldiagnostiseras som könsdysfori, nyanser av identitet, personliga resor genom detransition, och förstå hur människor återuppbygger sin relation till kropp och sinne efteråt. Du kan lära dig om social transition, att upphöra med hormoner, kirurgiska verkligheter, och det praktiska och känslomässiga arbetet med att gå vidare. Du kan också hitta skildringar av det många upplever som svårast: förlusten av gemenskap, rädslan för att erkänna tvivel, och processen med att bygga ett liv utanför en identitet som en gång definierade allt.",
+      "differentStages": "Människor kommer hit i olika skeden. Vissa forskar innan de påbörjar övergång. Andra befinner sig mitt i övergången med tvivel. Andra har redan påbörjat detransition och behöver praktisk vägledning. Många kommer för att leta efter <a>detransitionsstödgrupper</a> eller <a>könsutforskande terapeuter</a> som inte automatiskt bekräftar övergång som den enda vägen.",
+      "closing": "Jag hoppas att detrans.ai kan hjälpa dig att fatta välgrundade, självmedvetna beslut."
+    }
   },
   "header": {
     "navigation": {
@@ -534,7 +548,8 @@
       "ogDescription": "Hitta på denna sida ett urval av akademiska studier och granskade tidskriftsartiklar och verifierad statistik som rör könsidentitetstrender och detransition."
     },
     "title": "Utvalda Akademiska Artiklar",
-    "description": "Akademiska studier, granskad forskning och tidskriftsartiklar om ämnena könsidentitet, transition och detransition."
+    "description": "Forskning om detransition är ett framväxande område. Den snabba ökningen av diagnoser för könsdysfori det senaste decenniet – särskilt bland tonårsflickor – har lett till en växande population detransitionerare, även om datainsamling fortfarande är utmanande på grund av hög bortfall vid uppföljning, ideologisk splittring och metodologiska begränsningar.",
+    "segmNote": "På denna sida hittar du akademiska studier, forskning som genomgått fackgranskning och tidskriftsartiklar som ifrågasätter effektiviteten och etiken bakom könsbekräftande vård. Se <a>Society for Evidence-Based Gender Medicine (SEGM)</a> för mer, inklusive omfattande analyser av stödjande studier."
   },
   "contentWarning": {
     "title": "Innehållsvarning:",

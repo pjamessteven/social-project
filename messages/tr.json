@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "Sohbetler herkese açıktır.",
     "memberCountDisclaimer": "*60,000+, <a>/r/detrans subreddit</a> üyelerini ifade eder",
     "memberCountDisclaimerMobile": "<a>/r/detrans subreddit</a>'te 60,000+ üye",
-    "browseConversations": "Tüm Konuşmaları Göz At"
+    "browseConversations": "Tüm Konuşmaları Göz At",
+    "aboutDetransition": {
+      "title": "Detransisyon Hakkında",
+      "whatIs": "Detransisyon, cinsiyet geçişini durdurma veya geri alma sürecidir. İnsanlar detransisyon yaparlar çünkü: disforilerinin başka kökleri vardı, geçiş onların sıkıntısını çözmedi, veya zamanla kendilerini anlama biçimleri değişti. Bu deneyimler gerçektir, ancak çoğu zaman açıkça konuşulması zordur.",
+      "reality": "Detransitioner'lar, birçok kişinin kabul etmekte zorlandığı bir gerçekliği temsil eder: yanlış bedende doğduğundan emin olan, bu inançları desteklenen ve yine de geçişin cevap olmadığını fark eden insanlar. Bu, doğuştan gelen cinsiyet kimliği kavramının kendisini sorgular — işte bu yüzden yanıt çoğu zaman inkar, görmezden gelme ve <a>yanlış istatistikler</a> olur; bunlar sayılarının az olduğunu, önemli olmadıklarını iddia eder.",
+      "hardToFindTitle": "Bu Bilgiyi Bulmak Neden Zor",
+      "onlineSpaces": "Çevrimiçi alanlar tek taraflı bir hikâyeyi pekiştirir. TikTok ve Instagram'da algoritmalar kullanıcı ilgisini belirler ve geri besleme döngüleri oluşturur. Reddit ve Discord'da cinsiyetle ilgili topluluklar yoğun bir şekilde moderasyon yapılır. Muhalif bakış açıları yalnızca agresif bir şekilde ifade edildiğinde değil, hiç ifade edildiğinde bile kaldırılır. Pişmanlığını dile getiren, geçişin her zaman uygun olup olmadığını sorgulayan, yüksek oranda desistance'ı gösteren araştırmaları paylaşan, detransisyon yapan birini tanıdığından bahseden birey — tüm bu katkılar silinecek ve kullanıcı yasaklanacaktır. Detransisyonu inceleyen bazı araştırmacılar da profesyonel sonuçlarla karşı karşıya kalmıştır.",
+      "aiBias": "Bu önyargı artık yapay zekanın kendisine işlenmiş durumda. Batılı chatbot'lar hakim kültürel inançların ve bilginin bir yansımasıdır. Sıkıntıya karşı doğru yanıt olarak geçişi ezici çoğunlukla onaylayan verilerle eğitilirler. İnsanların giderek daha fazla tavsiye için başvurdukları LLM'ler, bir tarafı kesinleşmiş bir gerçek olarak sunarken diğerini gizler.",
+      "restoreBalance": "detrans.ai dengeyi yeniden kurmak için var. Var çünkü detransitioner sesleri, onları tehdit olarak gören topluluklar tarafından, yalnızca onaylama vaaz eden profesyoneller tarafından ve tıbbi geçişi sorgulamayı zararlı olarak gören bir kültür tarafından rutin olarak susturulur; oysa detransitioner'lar sıklıkla bundan zarar gördüklerini açıklarlar.",
+      "supportTitle": "Detransisyon Desteği",
+      "supportDescription": "detrans.ai, kendini sorgulayan, hormon veya ameliyat düşünen, detransisyon yapan veya şu anda kendini trans olarak tanımlayan birinin ebeveyni veya sevdiklerinden biri olanlar için ücretsiz bir detransisyon destek hizmetidir. Bu, ideolojik koşullar içermeyen bir kaynaktır. Binlerce gerçek detransitioner hikâyesinden yararlanarak cinsiyet disforilerinin köklerini, kimliğin inceliklerini, detransisyonun kişisel yolculuklarını ve insanların sonrasında bedenleri ve zihinleriyle ilişkilerini nasıl yeniden inşa ettiklerini keşfeder.",
+      "whatYouCanLearn": "Bu siteyi, cinsiyet disforisine neden olabilecek veya yanlış teşhis edilebilecek şeyleri, kimliğin inceliklerini, detransisyonun kişisel yolculuklarını keşfetmek ve insanların sonrasında bedenleri ve zihinleriyle ilişkilerini nasıl yeniden inşa ettiklerini anlamak için kullanabilirsiniz. Sosyal geçiş, hormon bırakma, cerrahi gerçekler ve ilerlemeye yönelik pratik ve duygusal çalışma hakkında bilgi edinebilirsiniz. Ayrıca birçok kişinin en zor bulduğu şeylerin hikâyelerini de bulabilirsiniz: topluluk kaybı, şüpheyi kabul etme korkusu ve bir zamanlar her şeyi tanımlayan bir kimlik dışında hayat kurma süreci.",
+      "differentStages": "İnsanlar farklı aşamalarda buraya gelir. Bazıları geçişe başlamadan önce araştırma yapıyor. Bazıları geçişin ortasında şüpheler yaşıyor. Bazıları zaten detransisyona başladı ve pratik rehberliğe ihtiyaç duyuyor. Birçoğu geçişi tek yol olarak otomatik olarak onaylamayan <a>detransisyon destek grupları</a> veya <a>cinsiyet-keşifsel terapistler</a> arıyor.",
+      "closing": "Umarım detrans.ai, bilgili ve öz-farkında kararlar almanıza yardımcı olabilir."
+    }
   },
   "header": {
     "navigation": {
@@ -534,7 +548,8 @@
       "ogDescription": "Bu sayfada cinsiyet kimliği trendleri ve detransisyonla ilgili akademik çalışmalar ve hakemli dergi makaleleri ile doğrulanmış istatistiklerin bir seçkisini bulun."
     },
     "title": "Seçilmiş Akademik Makaleler",
-    "description": "Cinsiyet kimliği, geçiş ve detransisyon konularında akademik çalışmalar, hakemli araştırma ve dergi makaleleri."
+    "description": "Detransisyon araştırmaları yeni gelişmekte olan bir alandır. Geçtiğimiz on yılda cinsiyet disforisi tanılarındaki hızlı artış—özellikle ergen kızlar arasında—büyüyen bir detransitioner nüfusu oluşturmuştur; ancak yüksek kayıp oranları, ideolojik bölünme ve metodolojik sınırlamalar nedeniyle veri toplamayı zorlu bir süreç olmaya devam etmektedir.",
+    "segmNote": "Bu sayfada, cinsiyet onaylayıcı bakımın etkinliği ve etiği sorgulayan akademik çalışmalar, hakemli araştırmalar ve dergi makaleleri bulacaksınız. Destekleyici çalışmaların kapsamlı analizi dahil olmak üzere daha fazla bilgi için <a>Society for Evidence-Based Gender Medicine (SEGM)</a>'e bakın."
   },
   "contentWarning": {
     "title": "İçerik Uyarısı:",

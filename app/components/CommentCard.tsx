@@ -2,7 +2,6 @@
 
 import { ExternalLink } from "lucide-react";
 import { marked } from "marked";
-import { Link } from "@/i18n/routing";
 
 interface Comment {
   id: string;
@@ -49,23 +48,21 @@ export default function CommentCard({ comment }: CommentCardProps) {
   };
 
   return (
-    <div className="rounded-lg overflow-hidden border bg-white dark:bg-gray-900">
-      <div className="bg-secondary dark:bg-primary/5 flex flex-col">
-        <div className="prose dark:prose-invert max-w-full px-4 pt-3 pb-3  font-semibold">
+    <div className="dark:bg-secondary overflow-hidden rounded-xl border">
+      <div className="flex flex-col">
+        <div className="max-w-full px-4 pt-3 pb-2 font-medium">
           {comment.summary}
         </div>
         <div className="flex items-start justify-between px-4 pb-3">
-          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-            <span className="whitespace-nowrap">
-              {comment.score} points
-            </span>
-            •<span>{formatCommentDate(comment.created)}</span>
+          <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
+            <span className="whitespace-nowrap">{comment.score} points</span>•
+            <span>{formatCommentDate(comment.created)}</span>
           </div>
           <a
             href={`https://reddit.com${comment.link}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+            className="flex items-center text-xs text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
           >
             <div>View on Reddit</div>
             <ExternalLink className="ml- h-3" />
@@ -73,7 +70,7 @@ export default function CommentCard({ comment }: CommentCardProps) {
         </div>
       </div>
       <div
-        className="prose dark:prose-invert max-w-none px-4 py-3 dark:text-muted-foreground "
+        className="prose dark:prose-invert dark:text-muted-foreground max-w-none border-t px-4 py-3 text-sm"
         dangerouslySetInnerHTML={{
           __html: marked.parse(comment.text || ""),
         }}
@@ -85,16 +82,14 @@ export default function CommentCard({ comment }: CommentCardProps) {
             Related Questions:
           </h4>
           <ul className="space-y-1">
-            {parseQuestions(comment.questions).map(
-              (question, index) => (
-                <li
-                  key={index}
-                  className="text-sm text-gray-600 dark:text-gray-400"
-                >
-                  • {question}
-                </li>
-              ),
-            )}
+            {parseQuestions(comment.questions).map((question, index) => (
+              <li
+                key={index}
+                className="text-sm text-gray-600 dark:text-gray-400"
+              >
+                • {question}
+              </li>
+            ))}
           </ul>
         </div>
       )}

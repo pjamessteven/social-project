@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "A csevegések nyilvánosak.",
     "memberCountDisclaimer": "*60,000+ a <a>/r/detrans subreddit</a> tagjaira vonatkozik",
     "memberCountDisclaimerMobile": "60,000+ tag a <a>/r/detrans subreddit</a>-ben",
-    "browseConversations": "Összes Beszélgetés Böngészése"
+    "browseConversations": "Összes Beszélgetés Böngészése",
+    "aboutDetransition": {
+      "title": "A detransitionről",
+      "whatIs": "A detransition a nemi átmenet leállításának vagy visszafordításának folyamata. Az emberek sok okból detransitionálnak: diszfóriájuknak más gyökerei voltak, az átmenet nem oldotta meg a szenvedésüket, vagy megváltozott az önmagukról alkotott kép. Ezek a tapasztalatok valósak, mégis gyakran nehéz nyíltan beszélni róluk.",
+      "reality": "A detransitionálók egy olyan valóságot képviselnek, amelyet sokan nehezen fogadnak el: olyan embereket, akik biztosak voltak benne, hogy rossz testbe születtek, akiket ebben a hitben támogattak, és akik mégis azt tapasztalták, hogy az átmenet nem volt a válasz. Ez magát a veleszületett nemi identitás fogalmát is megkérdőjelezi — ezért a válasz oly gyakran tagadás, elutasítás és <a>hamis statisztikák</a>, amelyek szerint túl kevesen vannak ahhoz, hogy számítsanak.",
+      "hardToFindTitle": "Miért nehéz megtalálni ezt az információt",
+      "onlineSpaces": "Az online terek egyoldalú történetet erősítenek meg. A TikTokon és az Instagramon az algoritmusok azonosítják a felhasználói érdeklődést, és visszacsatolási hurkokat hoznak létre. A Redditen és a Discordon a nemi témájú közösségeket erősen moderálják. Az eltérő nézőpontokat nem csupán akkor távolítják el, amikor agresszívan fejezik ki őket, hanem akkor is, amikor egyáltalán csak kifejezik. Az egyén, aki megbánást fejez ki, aki kérdőjelezi, hogy az átmenet mindig megfelelő-e, aki kutatást oszt meg, amely magas deszisztencia-arányt mutat, aki említi, hogy ismer valakit, aki detransitionált — mindezen hozzájárulásokat törölni fogják, és a felhasználót kitiltják. Néhány detransitiont tanulmányozó kutató szintén szakmai következményekkel szembesült.",
+      "aiBias": "Az elfogultság most már magába az AI-ba is beépült. A nyugati chatbotok a domináns kulturális hiedelmek és tudás tükrei. Olyan adatokon képezték ki őket, amelyek döntő többségben megerősítik, hogy az átmenet a helyes válasz a szenvedésre. Az LLM-ek, amelyekhez az emberek egyre gyakrabban fordulnak tanácsért, egy oldalt befejezett tényként mutatnak be, miközben elrejtik a másikat.",
+      "restoreBalance": "A detrans.ai azért jött létre, hogy helyreállítsa az egyensúlyt. Azért létezik, mert a detransitionálók hangjait rendszeresen elnémítják azok a közösségek, amelyek fenyegetőnek látják őket, azok a szakemberek, akik kizárólag az affirmációt prédikálják, és az a kultúra, amely károsnak tartja az orvosi átmenet megkérdőjelezését, még akkor is, amikor a detransitionálók gyakran elmagyarázzák, hogy őket ez károsította.",
+      "supportTitle": "Detransition támogatás",
+      "supportDescription": "A detrans.ai ingyenes detransition támogató szolgáltatás azok számára, akik kérdőjeleznek, hormonokat vagy műtéteket fontolgatnak, detransitionálnak, vagy olyan szülők vagy szeretteik, akiknek valakije most transzneműként azonosítja magát. Ez egy erőforrás ideológiai feltételek nélkül. Több ezer valódi detransitionáló történetéből merít, hogy feltárja nemi diszfóriájuk gyökereit, az identitás árnyalatait, a detransition személyes útjait, és hogyan építik újjá emberek a testükkel és elméjükkel való kapcsolatukat.",
+      "whatYouCanLearn": "Ezzel az oldallal felfedezheted, hogy mi okozhatja vagy tévesen diagnosztizálható nemi diszfóriaként, az identitás árnyalatait, a detransition személyes útjait, és megértheted, hogyan építik újjá emberek a testükkel és elméjükkel való kapcsolatukat. Tudhatsz meg a társadalmi átmenetről, a hormonok leállításáról, a műtéti valóságról, és a továbblépés gyakorlati és érzelmi munkájáról. Olyan történeteket is találsz, amelyek sokak számára a legnehezebbek: a közösség elvesztése, a kétség beismerésétől való félelem, és azon folyamat, amellyel az ember egy olyan identitáson kívül épít életet, amely egykor mindent meghatározott.",
+      "differentStages": "Az emberek különböző szakaszokban érkeznek ide. Néhányan az átmenet megkezdése előtt kutatnak. Mások az átmenet közepén vannak kétségekkel. Mások már elkezdték a detransitiont, és gyakorlati útmutatásra van szükségük. Sokan <a>detransition támogató csoportokat</a> vagy <a>nemi-felfedező terapeutákat</a> keresnek, akik nem tekintik automatikusan az átmenetet az egyetlen útnak.",
+      "closing": "Remélem, hogy a detrans.ai segíthet tájékozott, öntudatos döntéseket hozni."
+    }
   },
   "header": {
     "navigation": {
@@ -535,7 +549,8 @@
       "ogDescription": "Találj ezen az oldalon akadémiai tanulmányok és szakértői áttekintésű folyóiratcikkek és ellenőrzött statisztikák válogatását, amelyek a nemi identitás trendekhez és a detransitionhoz kapcsolódnak."
     },
     "title": "Kiválasztott Akadémiai Cikkek",
-    "description": "Akadémiai tanulmányok, szakértői áttekintésű kutatások és folyóiratcikkek a nemi identitás, transition és detransition témákban."
+    "description": "A detransition kutatása egy új terület. A nemi diszfória diagnózisainak gyors növekedése az elmúlt évtizedben – különösen a kamasz lányok körében – egy növekvő detransitionáló populációt hozott létre, bár az adatgyűjtés továbbra is kihívást jelent a magas lemorzsolódás, az ideológiai megosztottság és a módszertani korlátozások miatt.",
+    "segmNote": "Ezen az oldalon akadémiai tanulmányokat, szakértői áttekintésű kutatásokat és folyóiratcikkeket talál, amelyek megkérdőjelezik a gender-affirming ellátás hatékonyságát és etikáját. További információkért, beleértve a támogató tanulmányok átfogó elemzéseit, lásd a <a>Society for Evidence-Based Gender Medicine (SEGM)</a> oldalát."
   },
   "contentWarning": {
     "title": "Tartalmi Figyelmeztetés:",

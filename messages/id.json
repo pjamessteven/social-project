@@ -112,7 +112,21 @@
     "privacyDisclaimerChatsPublic": "Chat bersifat publik.",
     "memberCountDisclaimer": "*60,000+ mengacu pada anggota <a>/r/detrans subreddit</a>",
     "memberCountDisclaimerMobile": "60,000+ anggota di <a>/r/detrans subreddit</a>",
-    "browseConversations": "Jelajahi Semua Percakapan"
+    "browseConversations": "Jelajahi Semua Percakapan",
+    "aboutDetransition": {
+      "title": "Tentang Detransisi",
+      "whatIs": "Detransisi adalah proses menghentikan atau membalikkan transisi gender. Orang-orang berdetransisi karena berbagai alasan: disforia mereka memiliki akar lain, transisi tidak mengatasi penderitaan mereka, atau pemahaman mereka tentang diri sendiri berubah seiring waktu. Pengalaman-pengalaman ini nyata, namun seringkali sulit untuk dibicarakan secara terbuka.",
+      "reality": "Para detransitioner mewakili sebuah realitas yang banyak orang sulit menerimanya: orang-orang yang yakin mereka lahir dalam tubuh yang salah, yang didukung dalam keyakinan itu, dan yang masih menemukan bahwa transisi bukanlah jawabannya. Ini menantang konsep identitas gender bawaan itu sendiri — itulah sebabnya responsnya seringkali penolakan, pengabaian, dan <a>statistik palsu</a> yang mengklaim mereka terlalu sedikit untuk diperhitungkan.",
+      "hardToFindTitle": "Mengapa Informasi Ini Sulit Ditemukan",
+      "onlineSpaces": "Ruang daring memperkuat narasi yang satu sisi. Di TikTok dan Instagram, algoritma mengidentifikasi minat pengguna dan menciptakan lingkaran umpan balik. Di Reddit dan Discord, komunitas terkait gender sangat dimoderasi. Perspektif yang menyimpang dihapus bukan hanya ketika diungkapkan secara agresif, tetapi ketika diungkapkan sama sekali. Individu yang mengungkapkan penyesalan, yang mempertanyakan apakah transisi selalu pantas, yang membagikan penelitian yang menunjukkan tingkat desistance yang tinggi, yang menyebut mengenal seseorang yang berdetransisi — semua kontribusi ini akan dihapus, dan pengguna diblokir. Beberapa peneliti yang mempelajari detransisi juga telah menghadapi konsekuensi profesional.",
+      "aiBias": "Bias kini sudah tertanam dalam AI itu sendiri. Chatbot Barat adalah cerminan dari keyakinan budaya dominan dan pengetahuan. Mereka dilatih pada data yang sangat besar mengafirmasi transisi sebagai respons yang benar terhadap penderitaan. LLM yang semakin sering orang gunakan untuk mencari saran menyajikan satu sisi sebagai fakta yang sudah final sambil menyembunyikan sisi lainnya.",
+      "restoreBalance": "detrans.ai ada untuk mengembalikan keseimbangan. Ia ada karena suara-suara detransitioner secara rutin dibungkam oleh komunitas yang menganggap mereka mengancam, oleh para profesional yang hanya mengkhotbahkan pengafirmasian, dan oleh budaya yang menganggap mempertanyakan transisi medis sebagai berbahaya, bahkan ketika detransitioner sering menjelaskan bahwa mereka telah dirugikan olehnya.",
+      "supportTitle": "Dukungan Detransisi",
+      "supportDescription": "detrans.ai adalah layanan dukungan detransisi gratis bagi mereka yang sedang mempertanyakan, mempertimbangkan hormon atau operasi, sedang berdetransisi, atau adalah orang tua atau orang terkasih dari seseorang yang kini mengidentifikasi diri sebagai transgender. Ini adalah sumber daya tanpa syarat ideologis. Ia mengambil dari ribuan cerita detransitioner nyata untuk menjelajahi akar disforia gender mereka, nuansa identitas, perjalanan pribadi detransisi, dan bagaimana orang membangun kembali hubungan mereka dengan tubuh dan pikiran mereka setelahnya.",
+      "whatYouCanLearn": "Anda dapat menggunakan situs ini untuk menjelajahi apa yang mungkin menyebabkan atau didiagnosis keliru sebagai disforia gender, nuansa identitas, perjalanan pribadi detransisi, dan memahami bagaimana orang membangun kembali hubungan mereka dengan tubuh dan pikiran mereka setelahnya. Anda dapat belajar tentang transisi sosial, penghentian hormon, realitas pembedahan, dan pekerjaan praktis serta emosional untuk melangkah maju. Anda juga dapat menemukan kisah-kisah tentang apa yang banyak orang anggap paling sulit: kehilangan komunitas, ketakutan untuk mengakui keraguan, dan proses membangun kehidupan di luar identitas yang pernah mendefinisikan segalanya.",
+      "differentStages": "Orang-orang datang ke sini pada tahap yang berbeda. Beberapa sedang meneliti sebelum memulai transisi. Yang lain sedang di tengah transisi dengan keraguan. Yang lain sudah memulai detransisi dan membutuhkan panduan praktis. Banyak yang datang mencari <a>grup dukungan detransisi</a> atau <a>terapis eksplorasi gender</a> yang tidak secara otomatis mengafirmasi transisi sebagai satu-satunya jalan.",
+      "closing": "Saya berharap detrans.ai dapat membantu Anda membuat keputusan yang terinformasi dan sadar diri."
+    }
   },
   "header": {
     "navigation": {
@@ -535,7 +549,8 @@
       "ogDescription": "Temukan di halaman ini pilihan studi akademis dan artikel jurnal telaah sejawat dan statistik terverifikasi yang berkaitan dengan tren identitas gender dan berhenti transisi."
     },
     "title": "Artikel Akademis Pilihan",
-    "description": "Studi akademis, penelitian telaah sejawat, dan artikel jurnal tentang subjek identitas gender, transisi, dan berhenti transisi."
+    "description": "Penelitian tentang berhenti transisi adalah bidang yang masih berkembang. Peningkatan pesat diagnosis disforia gender dalam dekade terakhir—terutama di kalangan gadis remaja—telah menghasilkan populasi orang yang berhenti transisi yang terus bertambah, meskipun pengumpulan data tetap menantang karena tingginya angka kehilangan tindak lanjut, perpecahan ideologi, dan keterbatasan metodologis.",
+    "segmNote": "Di halaman ini Anda akan menemukan studi akademis, penelitian telaah sejawat, dan artikel jurnal yang mempertanyakan efikasi dan etika perawatan mengafirmasi gender. Lihat <a>Society for Evidence-Based Gender Medicine (SEGM)</a> untuk informasi lebih lanjut, termasuk analisis komprehensif terhadap studi-studi yang mendukung."
   },
   "contentWarning": {
     "title": "Peringatan Konten:",

@@ -1,6 +1,7 @@
 import { agent } from "@llamaindex/workflow";
 import { tool } from "llamaindex";
 import z from "zod";
+import { getStudiesIndex } from "../../chat/app/data";
 import { PostgresCache, makeHashedKey } from "../../shared/cache";
 import { CachedOpenAI } from "../../shared/llm";
 import { agentPrompt } from "../utils";
@@ -31,6 +32,7 @@ export const workflowFactory = async (
   const cache = new PostgresCache("deep_research");
 
   const commentsIndex = await getCommentsIndex(reqBody?.data, locale);
+  const studiesIndex = await getStudiesIndex(reqBody?.data, locale);
 
   console.log("[WORKFLOW] Creating query tools...");
 
@@ -91,6 +93,100 @@ export const workflowFactory = async (
     },
   );
 
+  function deduplicateStudies(nodes: any[]) {
+    const uniqueStudies = nodes.reduce<
+      Map<
+        number,
+        {
+          studyId: number;
+          title: string;
+          authors: string;
+          year: number;
+          url: string;
+          abstract: string;
+          conclusion: string;
+          keyPoints: string[];
+          chunks: string[];
+        }
+      >
+    >((acc, item) => {
+      const meta = item.node.metadata;
+      const studyId = meta?.studyId as number;
+      if (!studyId) return acc;
+
+      if (!acc.has(studyId)) {
+        acc.set(studyId, {
+          studyId: studyId,
+          title: meta?.title || "",
+          authors: meta?.authors || "",
+          year: meta?.year || 0,
+          url: meta?.url || "",
+          abstract: meta?.abstract || "",
+          conclusion: meta?.conclusion || "",
+          keyPoints: [],
+          chunks: [],
+        });
+      }
+
+      const study = acc.get(studyId)!;
+      study.chunks.push((item.node as any).text || "");
+
+      // Parse keyPoints once
+      if (study.keyPoints.length === 0 && meta?.keyPoints) {
+        try {
+          const kp = JSON.parse(meta.keyPoints as string);
+          if (Array.isArray(kp)) {
+            study.keyPoints = kp;
+          }
+        } catch {
+          // ignore parse errors
+        }
+      }
+
+      return acc;
+    }, new Map());
+
+    return Array.from(uniqueStudies.values()).slice(0, 5);
+  }
+
+  const queryStudiesTool = tool(
+    async ({ query }: { query: string }) => {
+      const cacheKey = `tool:queryStudies:${JSON.stringify({ query })}`;
+      const hashedKey = makeHashedKey(cacheKey);
+      const cachedResult = await cache.get(hashedKey);
+
+      if (cachedResult) {
+        console.log("[CACHE HIT] queryStudiesTool");
+        return cachedResult;
+      }
+      console.log("[CACHE MISS] queryStudiesTool");
+
+      const studiesEngineTool = studiesIndex.asRetriever({
+        similarityTopK: 15,
+      });
+
+      const nodes = await studiesEngineTool.retrieve({ query });
+      const result = JSON.stringify(deduplicateStudies(nodes));
+
+      await cache.set(hashedKey, cacheKey, result, userInput, {
+        requestId,
+      });
+
+      return result;
+    },
+    {
+      name: "queryStudies",
+      description:
+        "Search academic studies on gender-affirming care (GAC). Use this to find evidence, research findings, methodological analyses, or clinical data related to medical transition. **Ask your question in the users native language**.",
+      parameters: z.object({
+        query: z.string({
+          description:
+            "A specific question to search academic studies. **Ask your question in the users native language**.'",
+        }),
+      }),
+    },
+  );
+
   const llm = new CachedOpenAI({
     cache,
     mode: "deep_research",
@@ -109,7 +205,7 @@ export const workflowFactory = async (
 
   return agent({
     llm,
-    tools: [queryCommentsTool],
+    tools: [queryCommentsTool, queryStudiesTool],
     systemPrompt: agentPrompt,
     timeout: 30,
   });

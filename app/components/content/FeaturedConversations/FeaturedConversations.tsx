@@ -85,9 +85,7 @@ export function FeaturedConversations() {
   // Update URL when tab changes
   const handleTabChange = useCallback(
     (value: "featured" | "all" | "mine") => {
-      setCurrentTab(value);
-      // Store tab in sessionStorage for persistence when navigating back from chat
-      sessionStorage.setItem("portalTab", value);
+      // Update URL FIRST before any state changes to avoid sync-effect race
       const params = new URLSearchParams(searchParams.toString());
       if (value === "featured") {
         params.delete("tab");
@@ -96,6 +94,23 @@ export function FeaturedConversations() {
       }
       // Use replace to avoid adding to history stack for tab changes
       router.replace(`?${params.toString()}`, { scroll: false });
+
+      // Abort any pending fetch so it can't overwrite our new loading state
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+        abortControllerRef.current = null;
+      }
+
+      // Immediately switch UI to loading so the tab feels responsive
+      currentTabRef.current = value;
+      setCurrentTab(value);
+      setConversations([]);
+      setLoading(true);
+      setError(null);
+      setShowAllMobile(false);
+
+      // Store tab in sessionStorage for persistence when navigating back from chat
+      sessionStorage.setItem("portalTab", value);
     },
     [router, searchParams],
   );
@@ -115,8 +130,15 @@ export function FeaturedConversations() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const isMediumScreen = useIsMediumScreen();
   const abortControllerRef = useRef<AbortController | null>(null);
+  const fetchIdRef = useRef(0);
+  const currentTabRef = useRef(currentTab);
   const t = useTranslations("conversations");
   const locale = useLocale();
+
+  // Keep ref in sync with state so event handlers and effects read the latest value
+  useEffect(() => {
+    currentTabRef.current = currentTab;
+  }, [currentTab]);
 
   const handleToggleFeatured = async (
     uuid: string,
@@ -278,6 +300,8 @@ export function FeaturedConversations() {
 
   const fetchConversations = useCallback(
     async (page = 1, append = false) => {
+      const fetchId = ++fetchIdRef.current;
+
       try {
         // Only cancel pending fetch when not appending (i.e., not loading more)
         if (!append && abortControllerRef.current) {
@@ -361,7 +385,10 @@ export function FeaturedConversations() {
           err instanceof Error ? err.message : "Failed to load conversations",
         );
       } finally {
-        setLoading(false);
+        // Only clear loading if this is still the most recent fetch
+        if (fetchId === fetchIdRef.current) {
+          setLoading(false);
+        }
         setLoadingMore(false);
       }
     },
@@ -392,6 +419,7 @@ export function FeaturedConversations() {
   }, [fetchConversations]);
 
   // Sync tab state when URL changes (for back/forward navigation)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const tabFromUrl = searchParams.get("tab");
     let newTab: "featured" | "all" | "mine" = "featured";
@@ -407,10 +435,10 @@ export function FeaturedConversations() {
         newTab = tabFromUrl;
       }
     }
-    if (newTab !== currentTab) {
+    if (newTab !== currentTabRef.current) {
       setCurrentTab(newTab);
     }
-  }, [searchParams, isAuthenticated, currentTab]);
+  }, [searchParams, isAuthenticated]);
 
   const handleLoadMore = () => {
     if (!loadingMore && pagination) {

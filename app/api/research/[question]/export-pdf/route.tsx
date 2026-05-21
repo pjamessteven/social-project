@@ -94,7 +94,8 @@ function extractPlainText(message: any): string {
         textContent += part.text + "\n";
       } else if (
         part.type === "data-comment-query-event" ||
-        part.type === "data-video-query-event"
+        part.type === "data-video-query-event" ||
+        part.type === "data-study-query-event"
       ) {
         const data = part.data || {};
         const title = data.title || "Query";
