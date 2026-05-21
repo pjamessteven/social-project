@@ -332,7 +332,7 @@ export async function StartPage({
                 {t.rich("aboutDetransition.reality", {
                   a: (chunks) => (
                     <Link
-                      href="/research/why-are-detransition-statistics-unreliable-and-who-runs-us-transgender-survey"
+                      href={"/research/why-are-detransition-statistics-unreliable-and-who-runs-us-transgender-survey" as any}
                       className="underline"
                     >
                       {chunks}
