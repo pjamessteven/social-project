@@ -55,21 +55,6 @@ function LanguageSwitcherInner() {
 
   return (
     <>
-      {/* Hreflang meta links for SEO - rendered invisibly for crawlers */}
-      <link
-        rel="alternate"
-        hrefLang="x-default"
-        href={`https://detrans.ai/en${pathname}`}
-      />
-      {localesInfo.map((l) => (
-        <link
-          key={l.code}
-          rel="alternate"
-          hrefLang={l.code}
-          href={`https://detrans.ai/${l.code}${pathname}`}
-        />
-      ))}
-
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button

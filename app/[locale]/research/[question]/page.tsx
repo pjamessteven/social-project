@@ -7,6 +7,7 @@ import {
   markdownToPlainText,
   uuidv4,
 } from "@/app/lib/utils";
+import { localesInfo } from "@/i18n/locales";
 import { marked } from "marked";
 import { Metadata } from "next";
 import { headers } from "next/headers";
@@ -87,6 +88,8 @@ export async function generateMetadata({
 
   const title = `${capitaliseWords(q)} - Research | detrans.ai`;
 
+  const canonicalUrl = `https://detrans.ai/${locale}/research/${question}`;
+
   return {
     title,
     description,
@@ -99,6 +102,25 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
+    },
+    alternates: {
+      canonical: canonicalUrl,
+      languages: Object.fromEntries(
+        localesInfo.map((l) => [
+          l.code === "en"
+            ? "en-US"
+            : l.code === "es"
+              ? "es-ES"
+              : l.code === "fr"
+                ? "fr-FR"
+                : l.code === "zh-cn"
+                  ? "zh-CN"
+                  : l.code === "zh-tw"
+                    ? "zh-TW"
+                    : `${l.code}-${l.code.toUpperCase()}`,
+          `https://detrans.ai/${l.code}/research/${question}`,
+        ]),
+      ),
     },
   };
 }
