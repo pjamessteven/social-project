@@ -88,17 +88,17 @@ export async function StartPage({
   return (
     <>
       <div className="relative flex flex-col pb-[88px]">
-        <h1 className="z-10 mt-[20vh] text-3xl font-bold sm:text-4xl">
-          <div className="text-muted-foreground opacity-30 dark:opacity-80">
-            detrans.ai
-          </div>
-          <div className="max-w-2xl">{t("title")}</div>
-          {
-            <div className="text-muted-foreground opacity-30 dark:opacity-80">
+        <div className="z-10 mt-[20vh]">
+          <h1 className="text-3xl font-bold sm:text-4xl">
+            <span className="text-muted-foreground block opacity-30 dark:opacity-80">
+              detrans.ai
+            </span>
+            <span className="block max-w-2xl">{t("title")}</span>
+            <span className="text-muted-foreground block opacity-30 dark:opacity-80">
               {t("subtitle")}
-            </div>
-          }
-        </h1>
+            </span>
+          </h1>
+        </div>
 
         <div className="mt-8 hidden">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">

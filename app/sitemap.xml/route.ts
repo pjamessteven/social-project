@@ -9,6 +9,7 @@ import {
   videos,
 } from "@/db/schema";
 import { defaultLocale, pathnames } from "@/i18n/routing";
+import { locales } from "@/i18n/locales";
 import { and, desc, eq, or } from "drizzle-orm";
 import { NextRequest } from "next/server";
 
@@ -71,22 +72,10 @@ export async function GET(request: NextRequest) {
       priority: 1,
     },
     {
-      url: `${baseUrl}/about`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
       url: `${baseUrl}/contact`,
       lastModified: new Date().toISOString(),
       changeFrequency: "monthly",
       priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/donate`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "monthly",
-      priority: 0.7,
     },
     {
       url: `${baseUrl}/terms`,
@@ -215,41 +204,8 @@ export async function GET(request: NextRequest) {
       alternates?: Record<string, string>;
     }> = [];
 
-    // All supported languages for localization (3 locales)
-    const allLocales = [
-      "en",
-      "es",
-      "fr",
-      "de",
-      "ja",
-      "it",
-      "pt",
-      "nl",
-      "ru",
-      "ko",
-      "zh-cn",
-      "zh-tw",
-      "hi",
-      "tr",
-      "pl",
-      "sv",
-      "da",
-      "no",
-      "fi",
-      "cz",
-      "el",
-      "he",
-      "th",
-      "vi",
-      "id",
-      "uk",
-      "ro",
-      "hu",
-      "bg",
-      "sl",
-      "lt",
-      "fa",
-    ];
+    // All supported languages for localization from locales.ts
+    const allLocales = locales as readonly string[];
 
     for (const route of routes) {
       // Check if this is a base route that should have localized versions
@@ -318,11 +274,41 @@ ${localizedRoutes
     if (route.alternates) {
       alternatesXml = Object.entries(route.alternates)
         .map(([lang, url]) => {
-          // Map locale codes to proper hreflang format (3 languages)
+          // Map locale codes to proper BCP47 hreflang tags
           const hreflangMap: Record<string, string> = {
-            en: "en-US",
-            es: "es-ES",
-            fr: "fr-FR",
+            "en": "en-US",
+            "ar": "ar-SA",
+            "bg": "bg-BG",
+            "cz": "cs-CZ",
+            "da": "da-DK",
+            "de": "de-DE",
+            "el": "el-GR",
+            "es": "es-ES",
+            "fa": "fa-IR",
+            "fi": "fi-FI",
+            "fr": "fr-FR",
+            "he": "he-IL",
+            "hi": "hi-IN",
+            "hu": "hu-HU",
+            "id": "id-ID",
+            "it": "it-IT",
+            "ja": "ja-JP",
+            "ko": "ko-KR",
+            "lt": "lt-LT",
+            "nl": "nl-NL",
+            "no": "no-NO",
+            "pl": "pl-PL",
+            "pt": "pt-PT",
+            "ro": "ro-RO",
+            "ru": "ru-RU",
+            "sl": "sl-SI",
+            "sv": "sv-SE",
+            "th": "th-TH",
+            "tr": "tr-TR",
+            "uk": "uk-UA",
+            "vi": "vi-VN",
+            "zh-cn": "zh-CN",
+            "zh-tw": "zh-TW",
             "x-default": "x-default",
           };
           const hreflang = hreflangMap[lang] || lang;
