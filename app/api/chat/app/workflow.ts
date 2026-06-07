@@ -1,10 +1,15 @@
-import { agent } from "@llamaindex/workflow";
 import { PostgresCache } from "@/app/lib/agents/cache";
-import { CachedOpenAI } from "../../shared/llm";
-import { agentPrompt } from "../utils/prompts";
 import { getCommentsIndex, getVideosIndex } from "@/app/lib/agents/data";
 import { initSettings } from "@/app/lib/agents/settings";
-import { createQueryCommentsTool, createQueryVideosTool, createWebSearchTool, getStudiesTool } from "@/app/lib/agents/tools";
+import {
+  createQueryCommentsTool,
+  createQueryVideosTool,
+  createWebSearchTool,
+  getStudiesTool,
+} from "@/app/lib/agents/tools";
+import { agent } from "@llamaindex/workflow";
+import { CachedOpenAI } from "../../shared/llm";
+import { agentPrompt } from "../utils/prompts";
 
 export const workflowFactory = async (
   reqBody: any,
