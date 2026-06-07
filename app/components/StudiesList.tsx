@@ -3,14 +3,30 @@
 import { StudyCard } from "@/app/components/content/StudyCard";
 import { StudyAdminWrapper } from "@/app/components/StudyAdminWrapper";
 import { Study } from "@/app/types/study";
+import { SearchBar } from "./ui/search-bar";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 import { ChevronDown } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+
+const METHODOLOGY_TAGS = [
+  "cohort study",
+  "systematic review",
+  "qualitative research",
+  "case report",
+  "survey",
+];
 
 interface StudiesListProps {
   studies: Study[];
   isAdmin: boolean;
   locale: string;
-  tags?: [string, number][];
 }
 
 function StudyItem({
@@ -35,54 +51,99 @@ function StudyItem({
   return card;
 }
 
-export function StudiesList({
-  studies,
-  isAdmin,
-  locale,
-  tags = [],
-}: StudiesListProps) {
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+export function StudiesList({ studies, isAdmin, locale }: StudiesListProps) {
+  const t = useTranslations("studiesPage");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedMethodology, setSelectedMethodology] = useState<string | null>(
+    null,
+  );
+  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const [pendingExpanded, setPendingExpanded] = useState(true);
 
   const pendingStudies = studies.filter((s) => !s.approved);
   const approvedStudies = studies.filter((s) => s.approved);
 
-  const displayedStudies = selectedTag
-    ? approvedStudies.filter((s) => s.tags?.includes(selectedTag))
-    : approvedStudies;
+  // Extract unique tags from approved studies
+  const allTags = new Set<string>();
+  approvedStudies.forEach((s) => s.tags?.forEach((t) => allTags.add(t)));
+
+  const methodologyOptions = METHODOLOGY_TAGS.filter((t) => allTags.has(t));
+  const topicOptions = Array.from(allTags)
+    .filter((t) => !METHODOLOGY_TAGS.includes(t))
+    .sort((a, b) => a.localeCompare(b));
+
+  const query = searchQuery.trim().toLowerCase();
+  const displayedStudies = approvedStudies.filter((s) => {
+    if (query) {
+      const text = (
+        (s.headline || "") +
+        " " +
+        (s.title || "") +
+        " " +
+        (s.authors || "") +
+        " " +
+        (s.description || "") +
+        " " +
+        (s.tags?.join(" ") || "")
+      ).toLowerCase();
+      if (!text.includes(query)) return false;
+    }
+    if (selectedMethodology && !s.tags?.includes(selectedMethodology))
+      return false;
+    if (selectedTopic && !s.tags?.includes(selectedTopic)) return false;
+    return true;
+  });
 
   return (
     <div className="space-y-8">
-      {/* Tag filter */}
-      {tags.length > 0 && (
-        <div>
-          <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => setSelectedTag(null)}
-              className={`rounded-full px-3 py-1 text-sm transition-colors ${
-                selectedTag === null
-                  ? "bg-gray-900 text-white dark:bg-white dark:text-gray-900"
-                  : "border bg-white text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
-              }`}
-            >
-              All ({approvedStudies.length})
-            </button>
-            {tags.map(([tag, count]) => (
-              <button
-                key={tag}
-                onClick={() => setSelectedTag(tag === selectedTag ? null : tag)}
-                className={`rounded-full px-3 py-1 text-sm transition-colors ${
-                  selectedTag === tag
-                    ? "bg-gray-900 text-white dark:bg-white dark:text-gray-900"
-                    : "border bg-white text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
-                }`}
-              >
-                {tag} ({count})
-              </button>
-            ))}
-          </div>
+      {/* Search + Dropdown filters */}
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <SearchBar
+          value={searchQuery}
+          onChange={setSearchQuery}
+          placeholder={t("searchPlaceholder")}
+          className="w-full sm:w-1/2"
+        />
+        <div className="flex w-full gap-3 sm:w-1/2">
+          <Select
+            value={selectedMethodology ?? "all"}
+            onValueChange={(val) =>
+              setSelectedMethodology(val === "all" ? null : val)
+            }
+          >
+            <SelectTrigger className="bg-background dark:text-muted-foreground h-12 w-full rounded-full border px-4 text-base [&>span]:truncate">
+              <SelectValue placeholder={t("methodology")} />
+            </SelectTrigger>
+            <SelectContent className="rounded-2xl">
+              <SelectItem value="all">{t("methodology")}</SelectItem>
+              {methodologyOptions.map((opt) => (
+                <SelectItem key={opt} value={opt}>
+                  {opt}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+
+          <Select
+            value={selectedTopic ?? "all"}
+            onValueChange={(val) =>
+              setSelectedTopic(val === "all" ? null : val)
+            }
+          >
+            <SelectTrigger className="bg-background dark:text-muted-foreground h-12 w-full rounded-full border px-4 text-base [&>span]:truncate">
+              <SelectValue placeholder={t("topic")} />
+            </SelectTrigger>
+            <SelectContent className="rounded-2xl">
+              <SelectItem value="all">{t("topic")}</SelectItem>
+              {topicOptions.map((opt) => (
+                <SelectItem key={opt} value={opt}>
+                  {opt}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
-      )}
+      </div>
 
       {isAdmin && pendingStudies.length > 0 && (
         <div>
@@ -95,7 +156,7 @@ export function StudiesList({
                 pendingExpanded ? "rotate-0" : "-rotate-90"
               }`}
             />
-            Pending Review ({pendingStudies.length})
+            {t("pendingReview")} ({pendingStudies.length})
           </button>
           {pendingExpanded && (
             <div className="mt-4 space-y-6">
@@ -123,9 +184,9 @@ export function StudiesList({
 
         {displayedStudies.length === 0 && (
           <p className="text-gray-500">
-            {selectedTag
-              ? `No studies tagged with "${selectedTag}".`
-              : "No approved studies yet."}
+            {query || selectedMethodology || selectedTopic
+              ? t("noResults")
+              : t("noStudies")}
           </p>
         )}
       </div>

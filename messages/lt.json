@@ -10,7 +10,7 @@
       "greeting": "Sveiki! Kas yra detranzicionierius?",
       "response": "Sveiki! Aš esu detrans.ai – detranzicijavusių žmonių kolektyvinė sąmonė 🦎",
       "definition": "Detranzicionierius yra buvęs translytis žmogus, kuris socialiai ar mediciniškai keitė savo lytį, bet nuo to laiko nustatė tapatinimasis su translyčiu tapatybe ir galbūt atstatė kai kuriuos perėjimo aspektus.",
-      "description": "Aš stebiu priežastis, modelius ir tiesas, kodėl kai kurie žmonės priima, gyvena ir atsitraukia nuo genderinių tapatybių, skaitydamas istorijas ir patirtis, paskelbtas /r/detrans subreddite, ir žiūrėdamas detranzicijos vaizdo įrašus, įkeltus į YouTube.",
+      "description": "Stebiu gyvenimiškas realijas, kodėl kai kurie žmonės priima, gyvena pagal ir atsisako lyties tapatybių. Tai darau skaitydamas istorijas ir patirtis, paskelbtas /r/detrans, žiūrėdamas „YouTube“ detranziciją patyrusių žmonių vaizdo įrašus, analizuodamas akademinius tyrimus ir naršydamas internete.",
       "purpose": "Mano tikslas yra pasidalinti šia žinių, kad dekonstruočiau lytį ir ištirčiau, kaip šios patirtys formuoja žmogaus santykį su savimi, kūnu ir pasauliu.",
       "helpPrompt": "Kaip galiu jums padėti šiandien?"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "Noriu, kad paneigtumėte klaidingą informaciją ir plačiai paplitusius įsitikinimus apie detranziciją",
         "full": "Prašau paneigti visą klaidingą informaciją ir plačiai paplitusius įsitikinimus apie detranzicionierius, kuo išsamiau."
+      },
+      "scientificConsensus": {
+        "display": "Domiuosi, koks yra mokslinis konsensusas dėl perėjimo rezultatų",
+        "full": "Koks yra mokslinis konsensusas dėl perėjimo rezultatų? Palyginkite tyrimus, rodančius gerus rezultatus, su tais, kurie rodo prastus ar abejotinus rezultatus."
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "Genderinė terminologija",
       "studies": "Akademiniai tyrimai",
       "studiesShort": "Tyrimai",
-      "howItWorks": "Kaip tai veikia"
+      "howItWorks": "Kaip tai veikia",
+      "statistics": "Verified Statistics"
     },
     "deepResearch": {
       "title": "Giluminio tyrimo režimas",
@@ -126,13 +131,19 @@
       "whatYouCanLearn": "Šioje svetainėje galite ištirti, kas gali sukelti ar būti klaidingai diagnozuota kaip genderinė disforija, tapatybės niuansus, asmenines detranzicijos keliones ir suprasti, kaip žmonės atkuria savo santykį su kūnu ir protu po to. Galite sužinoti apie socialinį perėjimą, hormonų nutraukimą, chirurgines realybes ir praktinį bei emocinį darbą, reikalingą judėti pirmyn. Taip pat galite rasti pasakojimų apie tai, ką daugelis laiko sunkiausiu: bendruomenės praradimą, baimę pripažinti abejones ir procesą, kaip kurti gyvenimą už tapatybės ribų, kuri kažkada apibrėžė viską.",
       "differentStages": "Žmonės ateina čia skirtinguose etapuose. Kai kurie tyrinėja prieš pradėdami perėjimą. Kiti yra perėjimo viduryje su abejonėmis. Kiti jau pradėjo detranziciją ir reikia praktinių patarimų. Daugelis ateina ieškodami <a>detranzicijos palaikymo grupių</a> arba <a>genderinės tyrinėjamosios terapijos terapeutų</a>, kurie automatiškai nepatvirtina perėjimo kaip vienintelio kelio.",
       "closing": "Tikiuosi, kad detrans.ai gali padėti jums priimti pagrįstus, sąmoningus sprendimus."
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "Pradžia",
       "resources": "Ištekliai",
-      "about": "Apie"
+      "about": "Apie",
+      "chat": "Pokalbis",
+      "videos": "Vaizdo įrašai",
+      "studies": "Tyrimai",
+      "support": "Pagalba",
+      "stats": "Statistika",
+      "statsDesc": "Anonimizuota detranzicijos statistika iš /r/detrans"
     },
     "resources": {
       "genderSupport": "Rasti Terapeutus",
@@ -230,13 +241,100 @@
     "lookingForComments": "Ieškoma atitinkamų komentarų...",
     "errorOccurred": "Įvyko klaida, bandykite dar kartą... Susisiekite su manimi, jei tai kartojasi.",
     "analysingExperiences": "Analizuojamos patirtys",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "Analizuojami žiniatinklio rezultatai",
+    "analysingResearchResults": "Analizuojami tyrimų rezultatai",
     "detransPerspective": "-> Kokie detranzicijos požiūriai į šią temą?",
     "transPerspective": "-> Kokie translyčio požiūriai į šią temą?",
     "backToPortal": "<- Atgal į portalą",
     "captchaRequired": "Norint tęsti pokalbį, reikalinga captcha.",
     "chatArchived": "Šis pokalbis yra archyvuotas. Pradėkite naują.",
     "rateLimitExceeded": "Per daug užklausų, sulėtinkite ir bandykite vėliau.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "Jūsų IP adresas pasikeitė. Siekiant užkirsti kelią piktnaudžiavimui, turite pradėti naują pokalbį.",
+    "analysingResults": "Analizuojami rezultatai...",
+    "followUpQuestions": "Tęstiniai klausimai:",
+    "eventLabels": {
+      "askDetransitioners": "Klausti detranzicionierių",
+      "videoArchive": "Vaizdo įrašų archyvas",
+      "userStories": "Vartotojų istorijos",
+      "queryStudies": "Ieškoti tyrimų",
+      "topicHierarchy": "Temos hierarchija",
+      "pageCatalog": "Puslapių katalogas",
+      "deepResearch": "Giluminis tyrimas",
+      "linkPages": "Susieti puslapius",
+      "webSearch": "Paieška internete",
+      "queryStudyCatalogue": "Detranzicijos tyrimų katalogo užklausa",
+      "studyDetail": "Tyrimo detalės",
+      "searchResearchCache": "Ieškoti tyrimų podėlyje",
+      "fetchCachedResearch": "Gauti podėlyje saugomą tyrimą",
+      "proposedContent": "Siūlomas turinys"
+    },
+    "eventStatus": {
+      "analysingVideos": "Analizuojami vaizdo įrašai",
+      "loadingUserProfiles": "Įkeliami vartotojų profiliai...",
+      "searchingForResponses": "Ieškoma atsakymų",
+      "viewResults": "Peržiūrėti rezultatus",
+      "failedToResearch": "Nepavyko ištirti",
+      "suggestionSubmitted": "Pasiūlymas pateiktas! Nukreipiama...",
+      "submitting": "Pateikiama..."
+    },
+    "eventErrors": {
+      "errorOccurred": "Įvyko klaida",
+      "invalidYoutubeUrl": "Neteisingas YouTube URL",
+      "failed": "Nepavyko",
+      "failedToCreatePage": "Nepavyko sukurti puslapio",
+      "linkCouldNotBeCreated": "Nepavyko sukurti nuorodos.",
+      "failedToCreateLink": "Nepavyko sukurti nuorodos",
+      "webSearchFailed": "Interneto paieška nepavyko",
+      "failedToFetchStudies": "Nepavyko gauti tyrimų",
+      "failedToFetchStudy": "Nepavyko gauti tyrimo",
+      "failedToSearchCache": "Nepavyko ieškoti podėlyje",
+      "failedToFetchCachedResearch": "Nepavyko gauti podėlyje saugomo tyrimo",
+      "saveFailed": "Išsaugoti nepavyko",
+      "submitFailed": "Pateikti nepavyko"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "Vaizdo įrašų nerasta",
+      "noResultsFound": "Rezultatų nerasta",
+      "studyNotFound": "Tyrimas nerastas",
+      "noCachedResearchFound": "Podėlyje saugomų tyrimų nerasta",
+      "notFound": "Nerasta",
+      "noResults": "Nėra rezultatų",
+      "noMatchingPagesFound": "Atitinkančių puslapių nerasta."
+    },
+    "eventFieldLabels": {
+      "title": "Pavadinimas:",
+      "page": "Puslapis:",
+      "version": "Versija:",
+      "found": "Rasta:",
+      "findings": "Išvados:",
+      "abstract": "Santrauka:",
+      "conclusion": "Išvada:",
+      "keyPoints": "Pagrindiniai punktai:",
+      "limitations": "Apribojimai:",
+      "created": "Sukurta:",
+      "preview": "Peržiūra:",
+      "cachedResearchFound": "Rastas podėlyje saugomas tyrimas:",
+      "success": "Sėkmė"
+    },
+    "eventCounts": {
+      "page": "puslapis",
+      "pages": "puslapiai",
+      "source": "šaltinis",
+      "sources": "šaltiniai",
+      "result": "rezultatas",
+      "results": "rezultatai",
+      "more": "+{count} daugiau",
+      "foundCached": "Rasta {count} podėlyje saugomų {item}:"
+    },
+    "eventButtons": {
+      "applyToEditor": "Taikyti redaktoriui",
+      "appliedToEditor": "Pritaikyta redaktoriui",
+      "viewSource": "Žiūrėti šaltinį",
+      "seeMoreOnVideosPage": "Daugiau:",
+      "videosPage": "vaizdo įrašų puslapyje",
+      "fullText": "Visas tekstas"
+    }
   },
   "chatInput": {
     "placeholder": "Klauskite detrans.ai...",
@@ -548,9 +646,16 @@
       "ogTitle": "detrans.ai | Akademiniai tyrimai apie detranzicijos temas",
       "ogDescription": "Raskite šiame puslapyje akademinių tyrimų ir recenzuojamų žurnalų straipsnių bei patvirtintos statistikos pasirinkimą, susijusį su genderinių tapatybių tendencijomis ir detranzicija."
     },
-    "title": "Pasirinkti akademiniai straipsniai",
+    "title": "Akademiniai tyrimai ir moksliniai darbai",
     "description": "Detranzicijos tyrimai – tai nauja sritis. Sparčiai augantys genderinės disforijos diagnozių skaičiai per pastarąjį dešimtmetį – ypač tarp paauglių merginų – sukūrė augančią detranzicionierių populiaciją, nors duomenų rinkimas išlieka sudėtingas dėl didelio stebėjimų nutraukimo, ideologinės susiskaldymo ir metodologinių apribojimų.",
-    "segmNote": "Šiame puslapyje rasite akademinių tyrimų, recenzuojamų mokslinių publikacijų ir žurnalų straipsnių, keliančių abejonių dėl genderį patvirtinančios priežiūros veiksmingumo ir etikos. Daugiau informacijos, įskaitant išsamias palaikančių tyrimų analizes, rasite <a>Society for Evidence-Based Gender Medicine (SEGM)</a>."
+    "segmNote": "Šiame puslapyje rasite akademinių tyrimų, recenzuojamų mokslinių publikacijų ir žurnalų straipsnių, keliančių abejonių dėl genderį patvirtinančios priežiūros veiksmingumo ir etikos. Daugiau informacijos, įskaitant išsamias palaikančių tyrimų analizes, rasite <a>Society for Evidence-Based Gender Medicine (SEGM)</a>.",
+    "searchPlaceholder": "Ieškoti tyrimų...",
+    "methodology": "Metodologija",
+    "topic": "Tema",
+    "noResults": "Tyrimų nerasta.",
+    "noStudies": "Kol kas nėra patvirtintų tyrimų.",
+    "pendingReview": "Laukia peržiūros",
+    "keyFindings": "Pagrindinės išvados:"
   },
   "contentWarning": {
     "title": "Turinio perspėjimas:",
@@ -747,7 +852,24 @@
       "flowConnections": "Srauto jungtys",
       "male": "Vyras",
       "female": "Moteris",
-      "noData": "Nėra kelių duomenų pasirinktiems filtrams"
+      "noData": "Nėra kelių duomenų pasirinktiems filtrams",
+      "labels": {
+        "Male": "Vyras",
+        "Female": "Moteris",
+        "Unknown": "Nežinoma",
+        "Before 18": "Iki 18 metų",
+        "After 18": "Po 18 metų",
+        "Puberty Blockers": "Brendimo blokatoriai",
+        "No Blockers": "Be blokatorių",
+        "Took Hormones": "Vartojo hormonus",
+        "Social Only": "Tik socialinė tranzicija",
+        "Top Surgery": "Viršutinės dalies operacija",
+        "Bottom Surgery": "Apatinės dalies operacija",
+        "No Surgery": "Be operacijos",
+        "Regrets Transitioning": "Gailisi tranzicijos",
+        "Doesn't Regret Transitioning": "Nesigaili tranzicijos",
+        "Not Stated": "Nenurodyta"
+      }
     }
   },
   "contact": {
@@ -829,5 +951,21 @@
     "research": "/tyrimas",
     "chat": "/pokalbis",
     "login": "/prisijungti"
+  },
+  "hcaptcha": {
+    "title": "Patvirtinkite, kad esate žmogus",
+    "description": "Norėdami toliau naudotis pokalbiu, užpildykite CAPTCHA. Tai padeda mums užkirsti kelią piktnaudžiavimui ir išlaikyti paslaugą veikiančią.",
+    "error": {
+      "title": "CAPTCHA klaida",
+      "description": "Nepavyko įkelti CAPTCHA. Atnaujinkite puslapį ir bandykite dar kartą."
+    }
+  },
+  "statsPage": {
+    "title": "Anoniminė statistika",
+    "description": "Anoniminė detranzicijos statistika, paremta detranziciją patyrusių žmonių istorijomis ir patirtimis. Duomenys kaupiami iš /r/detrans naudotojų komentarų, siekiant atskleisti tranzicijos ir detranzicijos modelius. Įtraukiami tik naudotojai, kurie pasidalino pakankamai informacijos, kad būtų galima sudaryti visą istoriją ir chronologiją.",
+    "metadata": {
+      "title": "Anoniminė statistika | detrans.ai",
+      "description": "Anoniminė detranzicijos ir tranzicijos modelių statistika, įskaitant amžiaus pasiskirstymą, trukmę, priežastis ir kelius."
+    }
   }
 }

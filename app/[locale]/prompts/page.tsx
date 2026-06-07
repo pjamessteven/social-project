@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { chatAgentPrompt, deepResearchPrompt } from "../../lib/prompts";
+import { chatAgentPrompt, researchAgentPrompt } from "../../lib/prompts";
 
 export default function PromptsPage() {
   const t = useTranslations("prompts");
@@ -95,12 +95,13 @@ export default function PromptsPage() {
             </div>
           </div>
         </div>
+        {/*
         <h2>{t("systemPrompts.researchModeTitle")}</h2>
         <p>
           {t("systemPrompts.lastUpdated")}: <i>24/9/25</i>
-        </p>
+        </p> */}
       </div>
-      <div className="mx-auto mt-8 max-w-5xl space-y-8">
+      <div className="mx-auto mt-8 hidden max-w-5xl space-y-8">
         {/* Agent Prompt Card */}
         <div className="overflow-hidden rounded-xl bg-white shadow-lg">
           <div className="bg-gray-800 px-6 py-4 text-white">
@@ -109,7 +110,7 @@ export default function PromptsPage() {
             </h2>
           </div>
           <div className="overflow-x-auto bg-gray-900 p-6 font-mono text-sm text-gray-200">
-            <pre className="whitespace-pre-wrap">{deepResearchPrompt}</pre>
+            <pre className="whitespace-pre-wrap">{researchAgentPrompt}</pre>
           </div>
         </div>
       </div>

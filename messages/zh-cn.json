@@ -10,7 +10,7 @@
       "greeting": "你好！什么是去过渡者？",
       "response": "你好！我是detrans.ai —— 去过渡者的集体意识🦎",
       "definition": "去过渡者是曾经的跨性别者，他们曾进行社会或医学过渡，但已不再认同为跨性别者，并可能已经逆转了过渡的某些方面。",
-      "description": "我通过阅读/r/detrans subreddit上发布的故事和经历，以及观看上传到YouTube的去过渡视频，来观察为什么有些人会接受、经历并放下性别认同的原因、模式和真相。",
+      "description": "我观察一些人为什么接受、认同并最终放弃性别认同的真实经历。我通过阅读 /r/detrans 上的故事和经历、观看去转换者的 YouTube 视频、分析学术研究以及浏览网页来进行这项工作。",
       "purpose": "我的目的是分享这些知识，以解构性别，并探索这些经历如何塑造一个人与自我、身体和世界的关系。",
       "helpPrompt": "今天我能如何帮助你？"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "我想让你揭穿关于去过渡的误解和常见错误观念",
         "full": "请尽可能详细地揭穿所有关于去过渡者的误解和常见错误观念。"
+      },
+      "scientificConsensus": {
+        "display": "我想知道关于转变结果的科学共识是什么",
+        "full": "关于转变结果的科学共识是什么？比较显示良好结果的研究与显示不良或可疑结果的研究。"
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "性别术语",
       "studies": "学术研究",
       "studiesShort": "研究",
-      "howItWorks": "工作原理"
+      "howItWorks": "工作原理",
+      "statistics": "经核实的统计数据"
     },
     "deepResearch": {
       "title": "深度研究模式",
@@ -126,13 +131,19 @@
       "whatYouCanLearn": "你可以使用本网站探索什么可能导致或被误诊为性别焦虑、身份的细微差别、去过渡的个人历程，并了解人们事后如何重建与身体和心灵的关系。你可以了解社会过渡、停止激素、手术现实，以及向前迈进的实际和情感工作。你还可以找到关于许多人觉得最困难的事情的描述：失去社群、承认怀疑的恐惧，以及在一个曾经定义一切的认同之外重建生活的过程。",
       "differentStages": "人们在不同阶段来到这里。有些人在开始过渡前进行研究。另一些人在过渡过程中产生了怀疑。还有一些人已经开始去过渡，需要实际指导。许多人来这里寻找<a>去过渡支持小组</a>或<a>性别探索治疗师</a>——他们不会自动将过渡肯定为唯一道路。",
       "closing": "我希望detrans.ai能帮助你做出知情、自觉的决定。"
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "首页",
       "resources": "资源",
-      "about": "关于"
+      "about": "关于",
+      "chat": "聊天",
+      "videos": "视频",
+      "studies": "研究",
+      "support": "支持",
+      "stats": "统计",
+      "statsDesc": "/r/detrans 匿名去转性别统计"
     },
     "resources": {
       "genderSupport": "寻找治疗师",
@@ -229,13 +240,100 @@
     "lookingForComments": "正在寻找相关评论...",
     "errorOccurred": "发生错误，请重试...如果这种情况持续发生，请联系我。",
     "analysingExperiences": "正在分析经历",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "正在分析网页搜索结果",
+    "analysingResearchResults": "正在分析研究结果",
     "detransPerspective": "-> 去过渡者对这个话题有什么看法？",
     "transPerspective": "-> 跨性别者对这个话题有什么看法？",
     "backToPortal": "<- 返回门户",
     "captchaRequired": "需要验证码才能继续聊天。",
     "chatArchived": "此聊天已存档。开始一个新的。",
     "rateLimitExceeded": "请求过多，请放慢速度稍后再试。",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "analysingResults": "正在分析结果...",
+    "followUpQuestions": "后续问题：",
+    "eventLabels": {
+      "askDetransitioners": "询问去过渡者",
+      "videoArchive": "视频档案",
+      "userStories": "用户故事",
+      "queryStudies": "查询研究",
+      "topicHierarchy": "主题层级",
+      "pageCatalog": "页面目录",
+      "deepResearch": "深度研究",
+      "linkPages": "链接页面",
+      "webSearch": "网络搜索",
+      "queryStudyCatalogue": "查询去过渡研究目录",
+      "studyDetail": "研究详情",
+      "searchResearchCache": "搜索研究缓存",
+      "fetchCachedResearch": "获取缓存的研究",
+      "proposedContent": "建议内容"
+    },
+    "eventStatus": {
+      "analysingVideos": "正在分析视频",
+      "loadingUserProfiles": "正在加载用户资料...",
+      "searchingForResponses": "正在搜索回复",
+      "viewResults": "查看结果",
+      "failedToResearch": "研究失败",
+      "suggestionSubmitted": "建议已提交！正在跳转...",
+      "submitting": "正在提交..."
+    },
+    "eventErrors": {
+      "errorOccurred": "发生错误",
+      "invalidYoutubeUrl": "无效的YouTube URL",
+      "failed": "失败",
+      "failedToCreatePage": "创建页面失败",
+      "linkCouldNotBeCreated": "无法创建链接。",
+      "failedToCreateLink": "创建链接失败",
+      "webSearchFailed": "网络搜索失败",
+      "failedToFetchStudies": "获取研究失败",
+      "failedToFetchStudy": "获取研究失败",
+      "failedToSearchCache": "搜索缓存失败",
+      "failedToFetchCachedResearch": "获取缓存研究失败",
+      "saveFailed": "保存失败",
+      "submitFailed": "提交失败"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "未找到视频",
+      "noResultsFound": "未找到结果",
+      "studyNotFound": "未找到研究",
+      "noCachedResearchFound": "未找到缓存的研究",
+      "notFound": "未找到",
+      "noResults": "无结果",
+      "noMatchingPagesFound": "未找到匹配页面。"
+    },
+    "eventFieldLabels": {
+      "title": "标题：",
+      "page": "页面：",
+      "version": "版本：",
+      "found": "已找到：",
+      "findings": "发现：",
+      "abstract": "摘要：",
+      "conclusion": "结论：",
+      "keyPoints": "关键点：",
+      "limitations": "局限性：",
+      "created": "创建时间：",
+      "preview": "预览：",
+      "cachedResearchFound": "找到缓存的研究：",
+      "success": "成功"
+    },
+    "eventCounts": {
+      "page": "页",
+      "pages": "页",
+      "source": "来源",
+      "sources": "来源",
+      "result": "结果",
+      "results": "结果",
+      "more": "+{count} 更多",
+      "foundCached": "找到 {count} 个缓存的 {item}："
+    },
+    "eventButtons": {
+      "applyToEditor": "应用到编辑器",
+      "appliedToEditor": "已应用到编辑器",
+      "viewSource": "查看来源",
+      "seeMoreOnVideosPage": "查看更多请访问",
+      "videosPage": "视频页面",
+      "fullText": "全文"
+    }
   },
   "chatInput": {
     "placeholder": "询问detrans.ai...",
@@ -547,7 +645,14 @@
       "ogTitle": "detrans.ai | 关于去过渡话题的学术研究",
       "ogDescription": "在本页查找与性别认同趋势和去过渡相关的学术研究和同行评审期刊文章以及已验证统计的选择。"
     },
-    "title": "精选学术文章",
+    "title": "学术研究与调查",
+    "searchPlaceholder": "搜索研究...",
+    "methodology": "研究方法",
+    "topic": "主题",
+    "noResults": "未找到相关研究。",
+    "noStudies": "尚无已批准的研究。",
+    "pendingReview": "待审核",
+    "keyFindings": "主要发现：",
     "description": "去过渡研究是一个新兴领域。过去十年间，性别焦虑诊断数量迅速上升——尤其在青春期少女中——导致去过渡者群体不断增长，但由于随访流失率高、意识形态分歧以及方法论局限，数据收集仍然充满挑战。",
     "segmNote": "在本页中，您将找到对性别肯定护理的有效性与伦理提出质疑的学术研究、同行评审研究和期刊文章。更多信息请参阅<a>Society for Evidence-Based Gender Medicine (SEGM)</a>，包括对相关支持性研究的全面分析。"
   },
@@ -746,7 +851,24 @@
       "flowConnections": "流程连接",
       "male": "男性",
       "female": "女性",
-      "noData": "所选筛选条件没有可用的路径数据"
+      "noData": "所选筛选条件没有可用的路径数据",
+      "labels": {
+        "Male": "男性",
+        "Female": "女性",
+        "Unknown": "未知",
+        "Before 18": "18岁前",
+        "After 18": "18岁后",
+        "Puberty Blockers": "青春期阻断剂",
+        "No Blockers": "未使用阻断剂",
+        "Took Hormones": "使用了激素",
+        "Social Only": "仅社交过渡",
+        "Top Surgery": "上半身手术",
+        "Bottom Surgery": "下半身手术",
+        "No Surgery": "未手术",
+        "Regrets Transitioning": "后悔转换",
+        "Doesn't Regret Transitioning": "不后悔转换",
+        "Not Stated": "未说明"
+      }
     }
   },
   "contact": {
@@ -828,5 +950,21 @@
     "research": "/research",
     "chat": "/chat",
     "login": "/login"
+  },
+  "hcaptcha": {
+    "title": "验证您是人类",
+    "description": "请完成验证码以继续使用聊天功能。这有助于我们防止滥用并保持服务运行。",
+    "error": {
+      "title": "验证码错误",
+      "description": "加载验证码失败。请刷新页面后重试。"
+    }
+  },
+  "statsPage": {
+    "title": "匿名统计",
+    "description": "来自去转换者故事和经历的匿名去转换统计数据。数据从 /r/detrans 的用户评论中汇总，以揭示转换和去转换的模式。只有分享了足够信息以构成完整故事和时间线的用户才被纳入。",
+    "metadata": {
+      "title": "匿名统计 | detrans.ai",
+      "description": "关于去转换和转换模式的匿名统计数据，包括年龄分布、持续时间、原因和途径。"
+    }
   }
 }

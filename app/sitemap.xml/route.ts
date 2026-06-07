@@ -6,10 +6,11 @@ import {
   chatConversations,
   detransQuestions,
   detransUsers,
+  studies,
   videos,
 } from "@/db/schema";
-import { defaultLocale, pathnames } from "@/i18n/routing";
 import { locales } from "@/i18n/locales";
+import { defaultLocale, pathnames } from "@/i18n/routing";
 import { and, desc, eq, or } from "drizzle-orm";
 import { NextRequest } from "next/server";
 
@@ -34,15 +35,15 @@ export async function GET(request: NextRequest) {
     .select({ username: detransUsers.username })
     .from(detransUsers);
 
-  // Fetch top 1000 questions from database based on mode
+  // Fetch top 500 questions from database based on mode
   const questionsTable = detransQuestions;
   const topQuestions = await db
     .select({ name: questionsTable.name })
     .from(questionsTable)
     .orderBy(desc(questionsTable.viewsCount))
-    .limit(1000);
+    .limit(500);
 
-  // Fetch featured conversations (limit to 1000 for sitemap)
+  // Fetch featured conversations (limit to 2000 for sitemap)
   const featuredConversations = await db
     .select({ uuid: chatConversations.uuid })
     .from(chatConversations)
@@ -56,13 +57,19 @@ export async function GET(request: NextRequest) {
       ),
     )
     .orderBy(desc(chatConversations.updatedAt))
-    .limit(1000);
+    .limit(2000);
 
   // Fetch all processed videos for sitemap
   const allVideos = await db
     .select({ id: videos.id, title: videos.title })
     .from(videos)
     .where(eq(videos.processed, true));
+
+  // Fetch all approved studies for sitemap
+  const approvedStudies = await db
+    .select({ id: studies.id, updatedAt: studies.updatedAt })
+    .from(studies)
+    .where(eq(studies.approved, true));
 
   const baseRoutes = [
     {
@@ -119,28 +126,25 @@ export async function GET(request: NextRequest) {
       changeFrequency: "weekly",
       priority: 0.6,
     },
-
-    {
-      url: `${baseUrl}/conversations`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "daily",
-      priority: 0.8,
-    },
     {
       url: `${baseUrl}/participate`,
       lastModified: new Date().toISOString(),
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/donate`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/stats`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "weekly",
+      priority: 0.5,
+    },
   ];
-
-  // Generate chat routes for all questions
-  const researchRoutes = allQuestions.map((question) => ({
-    url: `${baseUrl}/research/${slugify(question)}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "weekly",
-    priority: 0.7,
-  }));
 
   // Generate chat routes for top questions from database
   const topQuestionResearchRoutes = topQuestions.map((question) => ({
@@ -165,6 +169,14 @@ export async function GET(request: NextRequest) {
     url: `${baseUrl}/videos/${generateVideoSlug(video.id, video.title)}`,
     lastModified: new Date().toISOString(),
     changeFrequency: "weekly",
+    priority: 0.7,
+  }));
+
+  // Generate routes for all approved studies
+  const studyRoutes = approvedStudies.map((study) => ({
+    url: `${baseUrl}/studies/${study.id}`,
+    lastModified: study.updatedAt.toISOString(),
+    changeFrequency: "monthly",
     priority: 0.7,
   }));
 
@@ -258,10 +270,10 @@ export async function GET(request: NextRequest) {
 
   const allRoutes = [
     ...baseRoutes,
-    ...researchRoutes,
     ...topQuestionResearchRoutes,
     ...featuredConversationRoutes,
     ...videoRoutes,
+    ...studyRoutes,
   ];
 
   const localizedRoutes = generateLocalizedRoutes(allRoutes);
@@ -276,37 +288,37 @@ ${localizedRoutes
         .map(([lang, url]) => {
           // Map locale codes to proper BCP47 hreflang tags
           const hreflangMap: Record<string, string> = {
-            "en": "en-US",
-            "ar": "ar-SA",
-            "bg": "bg-BG",
-            "cz": "cs-CZ",
-            "da": "da-DK",
-            "de": "de-DE",
-            "el": "el-GR",
-            "es": "es-ES",
-            "fa": "fa-IR",
-            "fi": "fi-FI",
-            "fr": "fr-FR",
-            "he": "he-IL",
-            "hi": "hi-IN",
-            "hu": "hu-HU",
-            "id": "id-ID",
-            "it": "it-IT",
-            "ja": "ja-JP",
-            "ko": "ko-KR",
-            "lt": "lt-LT",
-            "nl": "nl-NL",
-            "no": "no-NO",
-            "pl": "pl-PL",
-            "pt": "pt-PT",
-            "ro": "ro-RO",
-            "ru": "ru-RU",
-            "sl": "sl-SI",
-            "sv": "sv-SE",
-            "th": "th-TH",
-            "tr": "tr-TR",
-            "uk": "uk-UA",
-            "vi": "vi-VN",
+            en: "en-US",
+            ar: "ar-SA",
+            bg: "bg-BG",
+            cz: "cs-CZ",
+            da: "da-DK",
+            de: "de-DE",
+            el: "el-GR",
+            es: "es-ES",
+            fa: "fa-IR",
+            fi: "fi-FI",
+            fr: "fr-FR",
+            he: "he-IL",
+            hi: "hi-IN",
+            hu: "hu-HU",
+            id: "id-ID",
+            it: "it-IT",
+            ja: "ja-JP",
+            ko: "ko-KR",
+            lt: "lt-LT",
+            nl: "nl-NL",
+            no: "no-NO",
+            pl: "pl-PL",
+            pt: "pt-PT",
+            ro: "ro-RO",
+            ru: "ru-RU",
+            sl: "sl-SI",
+            sv: "sv-SE",
+            th: "th-TH",
+            tr: "tr-TR",
+            uk: "uk-UA",
+            vi: "vi-VN",
             "zh-cn": "zh-CN",
             "zh-tw": "zh-TW",
             "x-default": "x-default",

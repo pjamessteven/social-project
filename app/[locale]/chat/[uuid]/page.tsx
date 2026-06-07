@@ -1,59 +1,14 @@
 import { ConversationSummary } from "@/app/components/content/ConversationsPage";
-import SeoConversationsPage from "@/app/components/content/SeoConversationsPage";
-import { isBot } from "@/app/lib/isBot";
+import { formatCountryDisplay } from "@/app/lib/countries";
+import { Clock } from "lucide-react";
 import { Metadata } from "next";
-import { headers } from "next/headers";
+import { getTranslations } from "next-intl/server";
 
 // Client component for the interactive chat section
 import ChatSectionClient from "../ChatSectionClient";
 
 interface ChatPageProps {
   params: Promise<{ uuid: string; locale: string }>;
-}
-
-// Function to fetch conversations
-async function fetchConversations(
-  featured: boolean = false,
-  page: number = 1,
-  limit: number = 20,
-): Promise<{ items: ConversationSummary[]; pagination: any }> {
-  try {
-    const params = new URLSearchParams();
-    params.set("page", page.toString());
-    params.set("limit", limit.toString());
-    if (featured) {
-      params.set("featured", "true");
-    }
-
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-    const apiUrl = `${baseUrl}/api/chat?${params.toString()}`;
-
-    const response = await fetch(apiUrl, {
-      cache: "no-store",
-      headers: {
-        Accept: "application/json",
-      },
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      return data;
-    }
-    return { items: [], pagination: null };
-  } catch (error) {
-    console.error("Failed to fetch conversations:", error);
-    return { items: [], pagination: null };
-  }
-}
-
-async function fetchFeaturedConversations(): Promise<ConversationSummary[]> {
-  const data = await fetchConversations(true, 1, 10);
-  return data.items || [];
-}
-
-async function fetchAllConversations(): Promise<ConversationSummary[]> {
-  const data = await fetchConversations(false, 1, 20);
-  return data.items || [];
 }
 
 async function fetchSingleConversation(
@@ -129,10 +84,7 @@ export async function generateMetadata({
   }
 
   // Create a shortened version for the description
-  const shortDescription =
-    description.length > 150
-      ? description.substring(0, 150) + "..."
-      : description;
+  const shortDescription = description;
 
   // Use title if available, otherwise create from first message
   let title = conversation.title || "";
@@ -170,49 +122,61 @@ export async function generateMetadata({
 
 export default async function ChatPage({ params }: ChatPageProps) {
   const { uuid, locale } = await params;
-  const ua = (await headers()).get("user-agent");
-  const bot = isBot(ua);
+  const conversation = await fetchSingleConversation(uuid, locale);
+  const t = await getTranslations({ locale, namespace: "conversationCard" });
 
-  if (bot) {
-    // For bots, fetch conversations server-side
-    const [featuredConversations, allConversations, singleConversation] =
-      await Promise.all([
-        fetchFeaturedConversations(),
-        fetchAllConversations(),
-        fetchSingleConversation(uuid, locale),
-      ]);
+  const formatRelativeDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffTime = Math.abs(now.getTime() - date.getTime());
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-    // If we have the single conversation, add it to the lists if not already present
-    let conversations = allConversations;
-    let featuredConvs = featuredConversations;
-
-    if (singleConversation) {
-      // Check if conversation is already in the lists
-      const isInAll = allConversations.some(
-        (conv: ConversationSummary) => conv.uuid === uuid,
-      );
-      const isInFeatured = featuredConversations.some(
-        (conv: ConversationSummary) => conv.uuid === uuid,
-      );
-
-      if (!isInAll) {
-        conversations = [singleConversation, ...allConversations];
-      }
-
-      if (singleConversation.featured && !isInFeatured) {
-        featuredConvs = [singleConversation, ...featuredConversations];
-      }
+    if (diffDays === 0) {
+      return t("date.today");
+    } else if (diffDays === 1) {
+      return t("date.yesterday");
+    } else if (diffDays < 7) {
+      return t("date.daysAgo", { count: diffDays });
+    } else if (diffDays < 30) {
+      const weeks = Math.floor(diffDays / 7);
+      return t("date.weeksAgo", { count: weeks });
+    } else {
+      return date.toLocaleDateString(locale, {
+        month: "short",
+        day: "numeric",
+      });
     }
+  };
 
-    return (
-      <SeoConversationsPage
-        conversations={conversations}
-        featuredConversations={featuredConvs}
-        currentConversationId={uuid}
-      />
-    );
-  }
-
-  // Real users get the interactive client component
-  return <ChatSectionClient conversationId={uuid} locale={locale} />;
+  return (
+    <>
+      {conversation && (
+        <div className="mx-auto mb-4 mb-8 max-w-4xl sm:px-4 sm:pt-8">
+          <div className="rounded-lg border bg-white p-3 sm:p-6 sm:shadow-sm dark:border-gray-700 dark:bg-gray-900">
+            <h1 className="text-lg font-bold sm:text-2xl">
+              {conversation.title || "Chat Conversation"}
+            </h1>
+            <div className="mt-2 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+              <div className="flex items-center gap-1">
+                <Clock className="h-3 w-3" />
+                <span>{formatRelativeDate(conversation.updatedAt)}</span>
+              </div>
+              {conversation.country && (
+                <>
+                  <span>·</span>
+                  <span>{formatCountryDisplay(conversation.country)}</span>
+                </>
+              )}
+            </div>
+            {conversation.conversationSummary && (
+              <p className="mt-3 text-gray-600 dark:text-gray-300">
+                {conversation.conversationSummary}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+      <ChatSectionClient conversationId={uuid} locale={locale} />
+    </>
+  );
 }

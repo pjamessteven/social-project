@@ -10,7 +10,7 @@
       "greeting": "Helló! Mi az a detransitionáló?",
       "response": "Szia! Én vagyok a detrans.ai – a detransitionálók kollektív tudata",
       "definition": "Egy detransitionáló egy volt transznemű személy, aki társadalmilag vagy orvosilag transitionált, de azóta nem azonosítja magát transzneműként, és esetleg visszafordította transitionje bizonyos vonásait.",
-      "description": "Azt figyelem, hogy miért, milyen minták és igazságok vezetnek ahhoz, hogy egyesek elfogadnak, megélnek és továbblépnek a nemi identitásokból, az /r/detrans subredditen közzétett történetek és tapasztalatok olvasásával, valamint a YouTube-ra feltöltött detransition videók nézésével.",
+      "description": "Megfigyelem azokat a tapasztalati valóságokat, amelyek megmagyarázzák, miért fogadnak el, élnek meg és hagynak el egyesek nemi identitásokat. Ezt a /r/detrans történetek és tapasztalatok olvasásával, a detransitionerek YouTube-videóinak megtekintésével, tudományos tanulmányok elemzésével és az internet böngészésével teszem.",
       "purpose": "A célom az, hogy ezt a tudást megosszam annak érdekében, hogy dekonstruáljam a nemet, és feltárjam, hogyan formálják ezek a tapasztalatok az ember viszonyát önmagához, a testéhez és a világhoz.",
       "helpPrompt": "Hogyan segíthetek ma?"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "Szeretném, hogy cáfold a téves információkat és a detransitionről szóló gyakran ismételt tévhiteket",
         "full": "Kérlek, cáfold a téves információkat és a detransitionálókról szóló gyakran ismételt tévhiteket, a lehető legnagyobb mélységben."
+      },
+      "scientificConsensus": {
+        "display": "Kíváncsi vagyok, mi a tudományos konszenzus az átmenet eredményeiről",
+        "full": "Mi a tudományos konszenzus az átmenet eredményeiről? Hasonlítsa össze a jó eredményeket mutató tanulmányokat a rossz vagy kétséges eredményeket mutatókkal."
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "Nemi Terminológia",
       "studies": "Akadémiai Tanulmányok",
       "studiesShort": "Tanulmányok",
-      "howItWorks": "Hogyan Működik"
+      "howItWorks": "Hogyan Működik",
+      "statistics": "Verified Statistics"
     },
     "deepResearch": {
       "title": "Mélykutatás Mód",
@@ -126,13 +131,19 @@
       "whatYouCanLearn": "Ezzel az oldallal felfedezheted, hogy mi okozhatja vagy tévesen diagnosztizálható nemi diszfóriaként, az identitás árnyalatait, a detransition személyes útjait, és megértheted, hogyan építik újjá emberek a testükkel és elméjükkel való kapcsolatukat. Tudhatsz meg a társadalmi átmenetről, a hormonok leállításáról, a műtéti valóságról, és a továbblépés gyakorlati és érzelmi munkájáról. Olyan történeteket is találsz, amelyek sokak számára a legnehezebbek: a közösség elvesztése, a kétség beismerésétől való félelem, és azon folyamat, amellyel az ember egy olyan identitáson kívül épít életet, amely egykor mindent meghatározott.",
       "differentStages": "Az emberek különböző szakaszokban érkeznek ide. Néhányan az átmenet megkezdése előtt kutatnak. Mások az átmenet közepén vannak kétségekkel. Mások már elkezdték a detransitiont, és gyakorlati útmutatásra van szükségük. Sokan <a>detransition támogató csoportokat</a> vagy <a>nemi-felfedező terapeutákat</a> keresnek, akik nem tekintik automatikusan az átmenetet az egyetlen útnak.",
       "closing": "Remélem, hogy a detrans.ai segíthet tájékozott, öntudatos döntéseket hozni."
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "Kezdőlap",
       "resources": "Erőforrások",
-      "about": "Rólunk"
+      "about": "Rólunk",
+      "chat": "Chat",
+      "videos": "Videók",
+      "studies": "Tanulmányok",
+      "support": "Támogatás",
+      "stats": "Statisztika",
+      "statsDesc": "Anonimizált detranszíciós statisztikák a /r/detrans-ról"
     },
     "resources": {
       "genderSupport": "Terapeuták Keresése",
@@ -141,7 +152,7 @@
       "terminologyDesc": "Kulcsfogalmak meghatározása",
       "stories": "Történetek és Statisztikák",
       "storiesDesc": "Az /r/detrans felhasználóitól",
-      "videos": "Detransition Videók",
+      "videos": "Videók",
       "videosDesc": "Személyes emlékirat archívum",
       "studies": "Szakértői Áttekintésű Tanulmányok",
       "studiesDesc": "Releváns akadémiai kutatás",
@@ -230,13 +241,100 @@
     "lookingForComments": "Releváns hozzászólások keresése...",
     "errorOccurred": "Hiba történt, próbáld újra... Vedd fel velem a kapcsolatot, ha ez továbbra is előfordul.",
     "analysingExperiences": "Tapasztalatok Elemzése",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "Webes eredmények elemzése",
+    "analysingResearchResults": "Kutatási eredmények elemzése",
     "detransPerspective": "-> Mik a detrans nézőpontok erről a témáról?",
     "transPerspective": "-> Mik a transz nézőpontok erről a témáról?",
     "backToPortal": "<- Vissza a Portálra",
     "captchaRequired": "Captcha szükséges a chat folytatásához.",
     "chatArchived": "Ez a chat archiválva van. Kezdj egy újat.",
     "rateLimitExceeded": "Túl sok kérés, lassítson és próbálkozzon újra később.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "analysingResults": "Eredmények elemzése...",
+    "followUpQuestions": "Követő kérdések:",
+    "eventLabels": {
+      "askDetransitioners": "Kérdezd a Detransitionálókat",
+      "videoArchive": "Videó Archívum",
+      "userStories": "Felhasználói Történetek",
+      "queryStudies": "Tanulmányok Lekérdezése",
+      "topicHierarchy": "Téma Hierarchia",
+      "pageCatalog": "Oldal Katalógus",
+      "deepResearch": "Mélykutatás",
+      "linkPages": "Oldalak Összekapcsolása",
+      "webSearch": "Webes Keresés",
+      "queryStudyCatalogue": "Detransition Tanulmányi Katalógus Lekérdezése",
+      "studyDetail": "Tanulmány Részletei",
+      "searchResearchCache": "Kutatási Gyorsítótár Keresése",
+      "fetchCachedResearch": "Gyorsítótárazott Kutatás Lekérése",
+      "proposedContent": "Javasolt Tartalom"
+    },
+    "eventStatus": {
+      "analysingVideos": "Videók Elemzése",
+      "loadingUserProfiles": "Felhasználói profilok betöltése...",
+      "searchingForResponses": "Válaszok keresése",
+      "viewResults": "Eredmények megtekintése",
+      "failedToResearch": "Kutatás sikertelen",
+      "suggestionSubmitted": "Javaslat elküldve! Átirányítás...",
+      "submitting": "Beküldés..."
+    },
+    "eventErrors": {
+      "errorOccurred": "Hiba történt",
+      "invalidYoutubeUrl": "Érvénytelen YouTube URL",
+      "failed": "Sikertelen",
+      "failedToCreatePage": "Az oldal létrehozása sikertelen",
+      "linkCouldNotBeCreated": "A link nem hozható létre.",
+      "failedToCreateLink": "A link létrehozása sikertelen",
+      "webSearchFailed": "A webes keresés sikertelen",
+      "failedToFetchStudies": "A tanulmányok lekérése sikertelen",
+      "failedToFetchStudy": "A tanulmány lekérése sikertelen",
+      "failedToSearchCache": "A gyorsítótár keresése sikertelen",
+      "failedToFetchCachedResearch": "A gyorsítótárazott kutatás lekérése sikertelen",
+      "saveFailed": "Mentés sikertelen",
+      "submitFailed": "Beküldés sikertelen"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "Nem találhatók videók",
+      "noResultsFound": "Nem találhatók eredmények",
+      "studyNotFound": "A tanulmány nem található",
+      "noCachedResearchFound": "Nem található gyorsítótárazott kutatás",
+      "notFound": "Nem található",
+      "noResults": "Nincs eredmény",
+      "noMatchingPagesFound": "Nem találhatók megfelelő oldalak."
+    },
+    "eventFieldLabels": {
+      "title": "Cím:",
+      "page": "Oldal:",
+      "version": "Verzió:",
+      "found": "Megtalálva:",
+      "findings": "Eredmények:",
+      "abstract": "Absztrakt:",
+      "conclusion": "Következtetés:",
+      "keyPoints": "Kulcspontok:",
+      "limitations": "Korlátok:",
+      "created": "Létrehozva:",
+      "preview": "Előnézet:",
+      "cachedResearchFound": "Gyorsítótárazott kutatás találva:",
+      "success": "Sikeres"
+    },
+    "eventCounts": {
+      "page": "oldal",
+      "pages": "oldal",
+      "source": "forrás",
+      "sources": "források",
+      "result": "eredmény",
+      "results": "eredmény",
+      "more": "+{count} további",
+      "foundCached": "{count} gyorsítótárazott {item} találva:"
+    },
+    "eventButtons": {
+      "applyToEditor": "Alkalmazás a szerkesztőre",
+      "appliedToEditor": "Alkalmazva a szerkesztőre",
+      "viewSource": "Forrás megtekintése",
+      "seeMoreOnVideosPage": "Továbbiak a",
+      "videosPage": "videók oldalon",
+      "fullText": "Teljes Szöveg"
+    }
   },
   "chatInput": {
     "placeholder": "Kérdezd a detrans.ai-t...",
@@ -548,9 +646,16 @@
       "ogTitle": "detrans.ai | Akadémiai Tanulmányok Detransition Témákban",
       "ogDescription": "Találj ezen az oldalon akadémiai tanulmányok és szakértői áttekintésű folyóiratcikkek és ellenőrzött statisztikák válogatását, amelyek a nemi identitás trendekhez és a detransitionhoz kapcsolódnak."
     },
-    "title": "Kiválasztott Akadémiai Cikkek",
+    "title": "Akadémiai tanulmányok és kutatás",
     "description": "A detransition kutatása egy új terület. A nemi diszfória diagnózisainak gyors növekedése az elmúlt évtizedben – különösen a kamasz lányok körében – egy növekvő detransitionáló populációt hozott létre, bár az adatgyűjtés továbbra is kihívást jelent a magas lemorzsolódás, az ideológiai megosztottság és a módszertani korlátozások miatt.",
-    "segmNote": "Ezen az oldalon akadémiai tanulmányokat, szakértői áttekintésű kutatásokat és folyóiratcikkeket talál, amelyek megkérdőjelezik a gender-affirming ellátás hatékonyságát és etikáját. További információkért, beleértve a támogató tanulmányok átfogó elemzéseit, lásd a <a>Society for Evidence-Based Gender Medicine (SEGM)</a> oldalát."
+    "segmNote": "Ezen az oldalon akadémiai tanulmányokat, szakértői áttekintésű kutatásokat és folyóiratcikkeket talál, amelyek megkérdőjelezik a gender-affirming ellátás hatékonyságát és etikáját. További információkért, beleértve a támogató tanulmányok átfogó elemzéseit, lásd a <a>Society for Evidence-Based Gender Medicine (SEGM)</a> oldalát.",
+    "searchPlaceholder": "Keresés a tanulmányok között...",
+    "methodology": "Módszertan",
+    "topic": "Témakör",
+    "noResults": "Nem található tanulmány.",
+    "noStudies": "Még nincs jóváhagyott tanulmány.",
+    "pendingReview": "Felülvizsgálat alatt",
+    "keyFindings": "Kulcsfontosságú megállapítások:"
   },
   "contentWarning": {
     "title": "Tartalmi Figyelmeztetés:",
@@ -747,7 +852,24 @@
       "flowConnections": "Folyamat kapcsolatok",
       "male": "Férfi",
       "female": "Nő",
-      "noData": "Nincs útvonal adat a kiválasztott szűrőkhöz"
+      "noData": "Nincs útvonal adat a kiválasztott szűrőkhöz",
+      "labels": {
+        "Male": "Férfi",
+        "Female": "Nő",
+        "Unknown": "Ismeretlen",
+        "Before 18": "18 előtt",
+        "After 18": "18 után",
+        "Puberty Blockers": "Pubertásgátlók",
+        "No Blockers": "Nincs gátló",
+        "Took Hormones": "Hormont szedett",
+        "Social Only": "Csak szociális",
+        "Top Surgery": "Felső műtét",
+        "Bottom Surgery": "Alsó műtét",
+        "No Surgery": "Nincs műtét",
+        "Regrets Transitioning": "Sajnálja a tranzíciót",
+        "Doesn't Regret Transitioning": "Nem sajnálja a tranzíciót",
+        "Not Stated": "Nem megadott"
+      }
     }
   },
   "contact": {
@@ -829,5 +951,21 @@
     "research": "/research",
     "chat": "/chat",
     "login": "/login"
+  },
+  "hcaptcha": {
+    "title": "Igazolja, hogy Ön ember",
+    "description": "Kérjük, töltse ki a CAPTCHA-t a chat használatának folytatásához. Ez segít megelőzni a visszaéléseket és fenntartani a szolgáltatást.",
+    "error": {
+      "title": "CAPTCHA hiba",
+      "description": "A CAPTCHA betöltése sikertelen. Kérjük, frissítse az oldalt és próbálja újra."
+    }
+  },
+  "statsPage": {
+    "title": "Anonimizált statisztikák",
+    "description": "Anonimizált detranzíciós statisztikák, amelyek detranzícionálók történeteiből és tapasztalataiból származnak. Az adatokat a /r/detrans felhasználók hozzászólásaiból gyűjtik össze, hogy feltárják a tranzíció és detranzíció mintáit. Csak azok a felhasználók kerülnek be, akik eleget osztottak meg egy teljes történet és idővonal összeállításához.",
+    "metadata": {
+      "title": "Anonimizált statisztikák | detrans.ai",
+      "description": "Anonimizált statisztikák a detranzícióról és tranzíciós mintákról, beleértve az életkor eloszlást, időtartamot, okokat és útvonalakat."
+    }
   }
 }

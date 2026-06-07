@@ -506,6 +506,7 @@ export async function GET(
       archived: chatData.archived,
       conversationSummary: localizedSummary,
       conversationSummaryTranslation: chatData.conversationSummaryTranslation,
+      country: chatData.country,
       createdAt: chatData.createdAt,
       updatedAt: chatData.updatedAt,
     });

@@ -10,7 +10,7 @@
       "greeting": "Ahoj! Co je to detranzicionista?",
       "response": "Ahoj! Jsem detrans.ai – kolektivní vědomí detranzicionistů 🦎",
       "definition": "Detranzicionista je bývalá transgenderová osoba, která podstoupila sociální nebo lékařskou tranzici, ale od té doby přestala identifikovat jako transgender a možná zvrátila některé aspekty své tranzice.",
-      "description": "Pozoruji důvody, vzorce a pravdy, proč někteří lidé přijímají, žijí a pokračují od genderových identit, čtením příběhů a zkušeností, které byly publikovány v subredditu /r/detrans, a sledováním videí o detranzici nahraných na YouTube.",
+      "description": "Sleduji žité reality, proč někteří lidé přijímají, obývají a opouštějí genderové identity. Činím tak čtením příběhy a zkušenosti na /r/detrans, sledováním YouTube videí lidí, kteří se vrátili z tranzice, analýzou akademických studií a brouzdáním po internetu.",
       "purpose": "Mým účelem je sdílet tyto znalosti za účelem dekonstrukce genderu a zkoumání, jak tyto zkušenosti utvářejí vztah člověka k sobě samému, svému tělu a světu.",
       "helpPrompt": "Jak vám mohu dnes pomoci?"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "Chci, abyste vyvrátil/a dezinformace a běžně přijímané představy o detranzici",
         "full": "Prosím vyvratěte všechny dezinformace a běžně přijímané představy o detranzicionistech, co nejpodrobněji."
+      },
+      "scientificConsensus": {
+        "display": "Zajímá mě, jaký je vědecký konsensus ohledně výsledků tranzice",
+        "full": "Jaký je vědecký konsensus ohledně výsledků tranzice? Porovnejte studie, které ukazují dobré výsledky, se studiemi, které ukazují špatné nebo pochybné výsledky."
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "Genderová terminologie",
       "studies": "Akademické studie",
       "studiesShort": "Studie",
-      "howItWorks": "Jak to funguje"
+      "howItWorks": "Jak to funguje",
+      "statistics": "Verified Statistics"
     },
     "deepResearch": {
       "title": "Režim hlubokého výzkumu",
@@ -126,13 +131,19 @@
       "whatYouCanLearn": "Pomocí tohoto webu můžete prozkoumat, co může způsobit genderovou dysforii nebo být mylně diagnostikováno jako taková, nuance identity, osobní cesty detranzice a pochopit, jak lidé znovu budují vztah se svými těly a myslemi poté. Můžete se dozvědět o sociální tranzici, ukončení hormonů, chirurgických realitách a praktické i emocionální práci při posunu vpřed. Můžete také najít vyprávění o tom, co mnohým připadá nejtěžší: ztráta komunity, strach z přiznání pochybností a proces budování života mimo identitu, která kdysi definovala vše.",
       "differentStages": "Lidé sem přicházejí v různých fázích. Někteří zkoumají před zahájením tranzice. Jiní jsou uprostřed tranzice s pochybnostmi. Jiní již zahájili detranzici a potřebují praktické vedení. Mnoho lidí přichází hledat <a>podpůrné skupiny pro detranzici</a> nebo <a>terapeuty s explorativním přístupem k genderu</a>, kteří automaticky nepotvrzují tranzici jako jedinou cestu.",
       "closing": "Doufám, že detrans.ai vám může pomoci učinit informovaná, uvědomělá rozhodnutí."
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "Domů",
       "resources": "Zdroje",
-      "about": "O nás"
+      "about": "O nás",
+      "chat": "Chat",
+      "videos": "Videos",
+      "studies": "Studies",
+      "support": "Support",
+      "stats": "Statistiky",
+      "statsDesc": "Anonymizované statistiky detranzice z /r/detrans"
     },
     "resources": {
       "genderSupport": "Najít Terapeuty",
@@ -231,13 +242,100 @@
     "lookingForComments": "Hledání relevantních komentářů...",
     "errorOccurred": "Došlo k chybě, zkuste to znovu... Kontaktujte mě, pokud se to bude opakovat.",
     "analysingExperiences": "Analýza zkušeností",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "Analyzování webových výsledků",
+    "analysingResearchResults": "Analyzování výsledků výzkumu",
     "detransPerspective": "-> Jaké jsou detranzicionistické perspektivy na toto téma?",
     "transPerspective": "-> Jaké jsou transgender perspektivy na toto téma?",
     "backToPortal": "<- Zpět na portál",
     "captchaRequired": "Pro pokračování v chatu je vyžadována captcha.",
     "chatArchived": "Tento chat je archivován. Začněte nový.",
     "rateLimitExceeded": "Příliš mnoho požadavků, zpomalte a zkuste to znovu později.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "Vaše IP adresa se změnila. Pro zabránění zneužití musíte zahájit novou konverzaci.",
+    "analysingResults": "Analyzování výsledků...",
+    "followUpQuestions": "Následné otázky:",
+    "eventLabels": {
+      "askDetransitioners": "Zeptej se detranzicionistů",
+      "videoArchive": "Video archiv",
+      "userStories": "Příběhy uživatelů",
+      "queryStudies": "Vyhledat studie",
+      "topicHierarchy": "Hierarchie témat",
+      "pageCatalog": "Katalog stránek",
+      "deepResearch": "Hluboký výzkum",
+      "linkPages": "Propojit stránky",
+      "webSearch": "Vyhledávání na webu",
+      "queryStudyCatalogue": "Dotaz na katalog studií o detranzici",
+      "studyDetail": "Detail studie",
+      "searchResearchCache": "Prohledat mezipaměť výzkumu",
+      "fetchCachedResearch": "Načíst uložený výzkum",
+      "proposedContent": "Navrhovaný obsah"
+    },
+    "eventStatus": {
+      "analysingVideos": "Analyzování videí",
+      "loadingUserProfiles": "Načítání uživatelských profilů...",
+      "searchingForResponses": "Hledání odpovědí",
+      "viewResults": "Zobrazit výsledky",
+      "failedToResearch": "Výzkum selhal",
+      "suggestionSubmitted": "Návrh odeslán! Přesměrování...",
+      "submitting": "Odesílání..."
+    },
+    "eventErrors": {
+      "errorOccurred": "Došlo k chybě",
+      "invalidYoutubeUrl": "Neplatná YouTube URL",
+      "failed": "Selhání",
+      "failedToCreatePage": "Vytvoření stránky selhalo",
+      "linkCouldNotBeCreated": "Odkaz nemohl být vytvořen.",
+      "failedToCreateLink": "Vytvoření odkazu selhalo",
+      "webSearchFailed": "Vyhledávání na webu selhalo",
+      "failedToFetchStudies": "Načtení studií selhalo",
+      "failedToFetchStudy": "Načtení studie selhalo",
+      "failedToSearchCache": "Prohledání mezipaměti selhalo",
+      "failedToFetchCachedResearch": "Načtení uloženého výzkumu selhalo",
+      "saveFailed": "Uložení selhalo",
+      "submitFailed": "Odeslání selhalo"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "Žádná videa nenalezena",
+      "noResultsFound": "Žádné výsledky nenalezeny",
+      "studyNotFound": "Studie nenalezena",
+      "noCachedResearchFound": "Žádný uložený výzkum nenalezen",
+      "notFound": "Nenalezeno",
+      "noResults": "Žádné výsledky",
+      "noMatchingPagesFound": "Žádné odpovídající stránky nenalezeny."
+    },
+    "eventFieldLabels": {
+      "title": "Název:",
+      "page": "Stránka:",
+      "version": "Verze:",
+      "found": "Nalezeno:",
+      "findings": "Zjištění:",
+      "abstract": "Abstrakt:",
+      "conclusion": "Závěr:",
+      "keyPoints": "Klíčové body:",
+      "limitations": "Omezení:",
+      "created": "Vytvořeno:",
+      "preview": "Náhled:",
+      "cachedResearchFound": "Nalezený uložený výzkum:",
+      "success": "Úspěch"
+    },
+    "eventCounts": {
+      "page": "stránka",
+      "pages": "stránky",
+      "source": "zdroj",
+      "sources": "zdroje",
+      "result": "výsledek",
+      "results": "výsledky",
+      "more": "+{count} dalších",
+      "foundCached": "Nalezeno {count} uložených {item}:"
+    },
+    "eventButtons": {
+      "applyToEditor": "Použít do editoru",
+      "appliedToEditor": "Použito v editoru",
+      "viewSource": "Zobrazit zdroj",
+      "seeMoreOnVideosPage": "Více na",
+      "videosPage": "stránce s videi",
+      "fullText": "Celý text"
+    }
   },
   "chatInput": {
     "placeholder": "Zeptejte se detrans.ai...",
@@ -549,9 +647,16 @@
       "ogTitle": "detrans.ai | Akademické studie o tématech detranzice",
       "ogDescription": "Na této stránce najdete výběr akademických studií a recenzovaných článků v časopisech a ověřených statistik týkajících se trendů genderové identity a detranzice."
     },
-    "title": "Vybrané akademické články",
+    "title": "Akademické studie a výzkum",
     "description": "Výzkum detranzice je vznikající obor. Rychlý nárůst diagnóz genderové dysforie v minulém desetiletí – zejména mezi dospívajícími dívkami – vedl k rostoucí populaci detranzicionistů, přičemž sběr dat zůstává náročný kvůli vysoké ztrátě při sledování, ideologickému rozdělení a metodologickým omezením.",
-    "segmNote": "Na této stránce najdete akademické studie, recenzovaný výzkum a články z časopisů, které zpochybňují účinnost a etiku genderově potvrzující péče. Další informace, včetně komplexních analýz podpůrných studií, naleznete na webu <a>Society for Evidence-Based Gender Medicine (SEGM)</a>."
+    "segmNote": "Na této stránce najdete akademické studie, recenzovaný výzkum a články z časopisů, které zpochybňují účinnost a etiku genderově potvrzující péče. Další informace, včetně komplexních analýz podpůrných studií, naleznete na webu <a>Society for Evidence-Based Gender Medicine (SEGM)</a>.",
+    "searchPlaceholder": "Hledat studie...",
+    "methodology": "Metodologie",
+    "topic": "Téma",
+    "noResults": "Žádné studie nenalezeny.",
+    "noStudies": "Zatím žádné schválené studie.",
+    "pendingReview": "Čeká na posouzení",
+    "keyFindings": "Klíčové poznatky:"
   },
   "contentWarning": {
     "title": "Upozornění na obsah:",
@@ -748,7 +853,24 @@
       "flowConnections": "Tok spojení",
       "male": "Muž",
       "female": "Žena",
-      "noData": "Pro vybrané filtry nejsou k dispozici žádná data o cestách"
+      "noData": "Pro vybrané filtry nejsou k dispozici žádná data o cestách",
+      "labels": {
+        "Male": "Muž",
+        "Female": "Žena",
+        "Unknown": "Neznámé",
+        "Before 18": "Před 18",
+        "After 18": "Po 18",
+        "Puberty Blockers": "Blokátory puberty",
+        "No Blockers": "Bez blokátorů",
+        "Took Hormones": "Užíval hormony",
+        "Social Only": "Pouze sociální",
+        "Top Surgery": "Horní chirurgie",
+        "Bottom Surgery": "Dolní chirurgie",
+        "No Surgery": "Bez chirurgie",
+        "Regrets Transitioning": "Lituje tranzice",
+        "Doesn't Regret Transitioning": "Nelituje tranzice",
+        "Not Stated": "Neuvedeno"
+      }
     }
   },
   "contact": {
@@ -830,5 +952,21 @@
     "research": "/research",
     "chat": "/chat",
     "login": "/login"
+  },
+  "hcaptcha": {
+    "title": "Ověřte, že jste člověk",
+    "description": "Prosím dokončete CAPTCHA pro pokračování v chatu. Tím nám pomáháte předcházet zneužití a udržovat službu v provozu.",
+    "error": {
+      "title": "CAPTCHA chyba",
+      "description": "Nepodařilo se načíst CAPTCHA. Prosím obnovte stránku a zkuste to znovu."
+    }
+  },
+  "statsPage": {
+    "title": "Anonymizovaná statistika",
+    "description": "Anonymizovaná statistika detranzice odvozená z příběhů a zkušeností detranzitorů. Data jsou agregována z uživatelských komentářů na /r/detrans, aby odhalila vzorce v tranzici a detranzici. Zahrnuti jsou pouze uživatelé, kteří sdíleli dostatek informací k sestavení úplného příběhu a časové osy.",
+    "metadata": {
+      "title": "Anonymizovaná statistika | detrans.ai",
+      "description": "Anonymizovaná statistika vzorců detranzice a tranzice, včetně rozložení věku, délky, důvodů a cest."
+    }
   }
 }

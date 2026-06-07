@@ -10,7 +10,7 @@
       "greeting": "Pozdravljeni! Kaj je detranzicionar?",
       "response": "Pozdravljeni! Jaz sem detrans.ai – kolektivna zavest detranzicionarjev 🦎",
       "definition": "Detranzicionar je bivši transgender oseba, ki je družbeno ali medicinsko prešla v drugi spol, vendar se več ne identificira kot transgender in je morda povrnila nekatere vidike svoje tranzicije.",
-      "description": "Opazujem razloge, vzorce in resnice, zakaj nekateri ljudje sprejmejo, živijo in se premaknejo naprej od spolnih identitet, tako da berem zgodbe in izkušnje, objavljene v podreddit-u /r/detrans, in gledam videe o detranziciji, naložene na YouTube.",
+      "description": "Opazujem življenjske resničnosti, zakaj nekateri ljudje sprejmejo, živijo in opustijo spolne identitete. To počnem z branjem zgodbe in izkušnje na /r/detrans, gledanjem YouTube videov detranziterjev, analiziranjem akademskih študij in brskanjem po spletu.",
       "purpose": "Moj namen je deliti to znanje, da bi dekonstruirali spol ter raziskali, kako te izkušnje oblikujejo odnos človeka s samim seboj, s svojim telesom in s svetom.",
       "helpPrompt": "Kako vam lahko danes pomagam?"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "Želim, da ovržete napačne informacije in pogosto zmotna prepričanja o detranziciji",
         "full": "Prosim, ovrzite vse napačne informacije in pogosto zmotna prepričanja o detranzicionarjih, čim podrobneje."
+      },
+      "scientificConsensus": {
+        "display": "Zanima me, kakšen je znanstveni konsenz o rezultatih tranzicije",
+        "full": "Kakšen je znanstveni konsenz o rezultatih tranzicije? Primerjajte študije, ki kažejo dobre rezultate, s tistimi, ki kažejo slabe ali vprašljive rezultate."
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "Spolna terminologija",
       "studies": "Akademske študije",
       "studiesShort": "Študije",
-      "howItWorks": "Kako deluje"
+      "howItWorks": "Kako deluje",
+      "statistics": "Verified Statistics"
     },
     "deepResearch": {
       "title": "Način globoke raziskave",
@@ -126,13 +131,19 @@
       "whatYouCanLearn": "To spletno mesto lahko uporabite za raziskovanje, kaj bi lahko povzročilo ali bilo napačno diagnosticirano kot spolna disforija, nijans identitete, osebnih poti detranzicije, ter razumevanje, kako ljudje znova gradijo odnos s svojimi telesi in uma potem. Lahko se seznanite s socialno tranzicijo, prenehanjem hormonov, kirurškimi realnostmi in praktičnim ter čustvenim delom napredovanja. Lahko najdete tudi zgodbe o tem, kar mnogi doživljajo kot najtežje: izguba skupnosti, strah pred priznanjem dvomov in proces gradnje življenja zunaj identitete, ki je nekoč določala vse.",
       "differentStages": "Ljudje pridejo sem v različnih fazah. Nekateri raziskujejo, preden začnejo tranzicijo. Drugi so vmes v tranziciji z dvomi. Drugi so že začeli detranzicionirati in potrebujejo praktična navodila. Mnogi pridejo iskat <a>skupine za podporo pri detranziciji</a> ali <a>terapevte za raziskovanje spola</a>, ki samodejno ne potrjujejo tranzicije kot edine poti.",
       "closing": "Upam, da vam detrans.ai lahko pomaga pri informiranih, samozavednih odločitvah."
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "Domov",
       "resources": "Viri",
-      "about": "O nas"
+      "about": "O nas",
+      "chat": "Klepet",
+      "videos": "Videoposnetki",
+      "studies": "Študije",
+      "support": "Podpora",
+      "stats": "Statistika",
+      "statsDesc": "Anonimizirane statistike detranzicije iz /r/detrans"
     },
     "resources": {
       "genderSupport": "Najdi Terapevte",
@@ -230,13 +241,100 @@
     "lookingForComments": "Iščem relevantne komentarje...",
     "errorOccurred": "Prišlo je do napake, poskusite znova... Stopite v stik z mano, če se to še naprej dogaja.",
     "analysingExperiences": "Analiziranje izkušenj",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "Analiziranje spletnih rezultatov",
+    "analysingResearchResults": "Analiziranje raziskovalnih rezultatov",
     "detransPerspective": "-> Kakšne so detranz perspektive o tej temi?",
     "transPerspective": "-> Kakšne so trans perspektive o tej temi?",
     "backToPortal": "<- Nazaj na portal",
     "captchaRequired": "Za nadaljevanje klepeta je potrebna captcha.",
     "chatArchived": "Ta klepet je arhiviran. Začnite novega.",
     "rateLimitExceeded": "Preveč zahtev, upočasnite in poskusite znova pozneje.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "analysingResults": "Analiziram rezultate...",
+    "followUpQuestions": "Nadaljnja vprašanja:",
+    "eventLabels": {
+      "askDetransitioners": "Vprašajte detranzicionarje",
+      "videoArchive": "Arhiv videov",
+      "userStories": "Zgodbe uporabnikov",
+      "queryStudies": "Poizvedba po študijah",
+      "topicHierarchy": "Hierarhija tem",
+      "pageCatalog": "Katalog strani",
+      "deepResearch": "Globoka raziskava",
+      "linkPages": "Poveži strani",
+      "webSearch": "Iskanje po spletu",
+      "queryStudyCatalogue": "Poizvedba po katalogu študij detranzicije",
+      "studyDetail": "Podrobnosti študije",
+      "searchResearchCache": "Iskanje po predpomnilniku raziskav",
+      "fetchCachedResearch": "Pridobi predpomnjene raziskave",
+      "proposedContent": "Predlagana vsebina"
+    },
+    "eventStatus": {
+      "analysingVideos": "Analiziranje videov",
+      "loadingUserProfiles": "Nalaganje profilov uporabnikov...",
+      "searchingForResponses": "Iskanje odgovorov",
+      "viewResults": "Oglejte si rezultate",
+      "failedToResearch": "Raziskava ni uspela",
+      "suggestionSubmitted": "Predlog oddan! Preusmerjanje...",
+      "submitting": "Oddajanje..."
+    },
+    "eventErrors": {
+      "errorOccurred": "Prišlo je do napake",
+      "invalidYoutubeUrl": "Neveljaven URL YouTuba",
+      "failed": "Ni uspelo",
+      "failedToCreatePage": "Ustvarjanje strani ni uspelo",
+      "linkCouldNotBeCreated": "Povezave ni bilo mogoče ustvariti.",
+      "failedToCreateLink": "Ustvarjanje povezave ni uspelo",
+      "webSearchFailed": "Iskanje po spletu ni uspelo",
+      "failedToFetchStudies": "Pridobivanje študij ni uspelo",
+      "failedToFetchStudy": "Pridobivanje študije ni uspelo",
+      "failedToSearchCache": "Iskanje po predpomnilniku ni uspelo",
+      "failedToFetchCachedResearch": "Pridobivanje predpomnjenih raziskav ni uspelo",
+      "saveFailed": "Shranjevanje ni uspelo",
+      "submitFailed": "Oddaja ni uspela"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "Ni najdenih videov",
+      "noResultsFound": "Ni najdenih rezultatov",
+      "studyNotFound": "Študija ni najdena",
+      "noCachedResearchFound": "Ni najdenih predpomnjenih raziskav",
+      "notFound": "Ni najdeno",
+      "noResults": "Ni rezultatov",
+      "noMatchingPagesFound": "Ni najdenih ujemajočih se strani."
+    },
+    "eventFieldLabels": {
+      "title": "Naslov:",
+      "page": "Stran:",
+      "version": "Različica:",
+      "found": "Najdeno:",
+      "findings": "Ugotovitve:",
+      "abstract": "Povzetek:",
+      "conclusion": "Sklep:",
+      "keyPoints": "Ključne točke:",
+      "limitations": "Omejitve:",
+      "created": "Ustvarjeno:",
+      "preview": "Predogled:",
+      "cachedResearchFound": "Najdene predpomnjene raziskave:",
+      "success": "Uspeh"
+    },
+    "eventCounts": {
+      "page": "stran",
+      "pages": "strani",
+      "source": "vir",
+      "sources": "viri",
+      "result": "rezultat",
+      "results": "rezultati",
+      "more": "+{count} več",
+      "foundCached": "Najdeno {count} predpomnjenih {item}:"
+    },
+    "eventButtons": {
+      "applyToEditor": "Uporabi v urejevalniku",
+      "appliedToEditor": "Uporabljeno v urejevalniku",
+      "viewSource": "Oglejte si vir",
+      "seeMoreOnVideosPage": "Oglejte si več na",
+      "videosPage": "strani z videi",
+      "fullText": "Celotno besedilo"
+    }
   },
   "chatInput": {
     "placeholder": "Vprašajte detrans.ai...",
@@ -548,9 +646,16 @@
       "ogTitle": "detrans.ai | Akademske študije o temah detranzicije",
       "ogDescription": "Na tej strani poiščite izbor akademskih študij in člankov iz revij, ki jih recenzirajo vrstniki, ter preverjene statistike, ki se nanašajo na trende spolne identitete in detranzicijo."
     },
-    "title": "Izbrane akademske članke",
+    "title": "Akademske študije in raziskave",
     "description": "Raziskovanje detranzicije je novo področje. Hiter porast diagnoz spolnega nelagodja v zadnjem desetletju – zlasti med najstnicami – je ustvaril rastočo populacijo detranzicionarjev, čeprav zbiranje podatkov ostaja izziv zaradi velikega odstopanja pri nadaljnjem spremljanju, ideološke razdeljenosti in metodoloških omejitev.",
-    "segmNote": "Na tej strani boste našli akademske študije, recenzirane raziskave in članke iz revij, ki zastavljajo vprašanja o učinkovitosti in etiki potrjevalne oskrbe spola. Za več informacij, vključno z vsestranskimi analizami podpornih študij, glejte <a>Society for Evidence-Based Gender Medicine (SEGM)</a>."
+    "segmNote": "Na tej strani boste našli akademske študije, recenzirane raziskave in članke iz revij, ki zastavljajo vprašanja o učinkovitosti in etiki potrjevalne oskrbe spola. Za več informacij, vključno z vsestranskimi analizami podpornih študij, glejte <a>Society for Evidence-Based Gender Medicine (SEGM)</a>.",
+    "searchPlaceholder": "Iskanje študij...",
+    "methodology": "Metodologija",
+    "topic": "Tema",
+    "noResults": "Ni najdenih študij.",
+    "noStudies": "Ni še potrjenih študij.",
+    "pendingReview": "V čakanju na pregled",
+    "keyFindings": "Ključne ugotovitve:"
   },
   "contentWarning": {
     "title": "Opozorilo o vsebini:",
@@ -747,7 +852,24 @@
       "flowConnections": "Povezave toka",
       "male": "Moški",
       "female": "Ženske",
-      "noData": "Za izbrane filtre ni na voljo podatkov o poteh"
+      "noData": "Za izbrane filtre ni na voljo podatkov o poteh",
+      "labels": {
+        "Male": "Moški",
+        "Female": "Ženska",
+        "Unknown": "Neznano",
+        "Before 18": "Pred 18. letom",
+        "After 18": "Po 18. letu",
+        "Puberty Blockers": "Blokatorji pubertete",
+        "No Blockers": "Brez blokatorjev",
+        "Took Hormones": "Jemal/a hormone",
+        "Social Only": "Samo socialno",
+        "Top Surgery": "Zgornja operacija",
+        "Bottom Surgery": "Spodnja operacija",
+        "No Surgery": "Brez operacije",
+        "Regrets Transitioning": "Obžaluje tranzicijo",
+        "Doesn't Regret Transitioning": "Ne obžaluje tranzicije",
+        "Not Stated": "Ni navedeno"
+      }
     }
   },
   "contact": {
@@ -829,5 +951,21 @@
     "research": "/research",
     "chat": "/chat",
     "login": "/login"
+  },
+  "hcaptcha": {
+    "title": "Potrdite, da ste človek",
+    "description": "Za nadaljevanje klepeta izpolnite CAPTCHA. To nam pomaga preprečiti zlorabe in ohraniti storitev v teku.",
+    "error": {
+      "title": "Napaka CAPTCHA",
+      "description": "Nalaganje CAPTCHA ni uspelo. Osvežite stran in poskusite znova."
+    }
+  },
+  "statsPage": {
+    "title": "Anonimizirana statistika",
+    "description": "Anonimizirana statistika detranzicije, pridobljena iz zgodb in izkušenj detranzitorjev. Podatki so združeni iz komentarjev uporabnikov na /r/detrans za razkrivanje vzorcev v tranziciji in detranziciji. Vključeni so samo uporabniki, ki so delili dovolj za sestavo celotne zgodbe in časovnice.",
+    "metadata": {
+      "title": "Anonimizirana statistika | detrans.ai",
+      "description": "Anonimizirana statistika o vzorcih detranzicije in tranzicije, vključno s porazdelitvijo starosti, trajanjem, razlogi in potmi."
+    }
   }
 }

@@ -4,6 +4,7 @@ import { isBot } from "@/app/lib/isBot";
 import { Study } from "@/app/types/study";
 import { db } from "@/db";
 import { studies, studyTagRelations, studyTags } from "@/db/schema";
+import { localesInfo } from "@/i18n/locales";
 import { desc, eq, inArray } from "drizzle-orm";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -26,11 +27,35 @@ export async function generateMetadata({
     openGraph: {
       title: t("metadata.ogTitle"),
       description: t("metadata.ogDescription"),
-      url: "https://detrans.ai/studies",
+      url: `https://detrans.ai/${locale}/studies`,
       siteName: "detrans.ai",
       images: ["https://detrans.ai/x_card_lg.png"],
       locale: locale === "en" ? "en_US" : locale === "fr" ? "fr_FR" : "es_ES",
       type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("metadata.ogTitle"),
+      description: t("metadata.ogDescription"),
+    },
+    alternates: {
+      canonical: `https://detrans.ai/${locale}/studies`,
+      languages: Object.fromEntries(
+        localesInfo.map((l) => [
+          l.code === "en"
+            ? "en-US"
+            : l.code === "es"
+              ? "es-ES"
+              : l.code === "fr"
+                ? "fr-FR"
+                : l.code === "zh-cn"
+                  ? "zh-CN"
+                  : l.code === "zh-tw"
+                    ? "zh-TW"
+                    : `${l.code}-${l.code.toUpperCase()}`,
+          `https://detrans.ai/${l.code}/studies`,
+        ]),
+      ),
     },
   };
 }
@@ -116,7 +141,6 @@ export default async function StudiesPage({
       : [];
 
   const localizedTagsByStudyId = new Map<number, string[]>();
-  const tagCounts = new Map<string, { name: string; count: number }>();
 
   for (const row of allTagsQuery) {
     const localizedName = getLocalizedTagName(
@@ -127,13 +151,6 @@ export default async function StudiesPage({
     const existing = localizedTagsByStudyId.get(row.studyId) || [];
     existing.push(localizedName);
     localizedTagsByStudyId.set(row.studyId, existing);
-
-    const current = tagCounts.get(row.tagName);
-    if (current) {
-      current.count += 1;
-    } else {
-      tagCounts.set(row.tagName, { name: localizedName, count: 1 });
-    }
   }
 
   // Build study data with translations
@@ -169,10 +186,6 @@ export default async function StudiesPage({
     limitations: study.limitations,
   }));
 
-  const tags: [string, number][] = Array.from(tagCounts.values())
-    .sort((a, b) => b.count - a.count)
-    .map((t) => [t.name, t.count]);
-
   // For bots: render pure SSR card grid (no client components)
   if (bot) {
     // Bots only see approved studies
@@ -182,20 +195,6 @@ export default async function StudiesPage({
       <div className="prose dark:prose-invert pb-16 lg:pt-8">
         <h1 className="text-3xl font-bold">{t("title")}</h1>
         <p className="text-muted-foreground">{t("description")}</p>
-        <p className="text-muted-foreground">
-          {t.rich("segmNote", {
-            a: (chunks) => (
-              <a
-                href="https://segm.org/studies"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-blue-800 dark:hover:text-blue-300"
-              >
-                {chunks}
-              </a>
-            ),
-          })}
-        </p>
 
         <div className="not-prose mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
           {approvedStudies.map((study) => {
@@ -279,33 +278,51 @@ export default async function StudiesPage({
   }
 
   // For humans: render interactive client component
+  const approvedStudies = studiesData.filter((s) => s.approved);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: t("metadata.title"),
+    description: t("metadata.description"),
+    url: `https://detrans.ai/${locale}/studies`,
+    publisher: {
+      "@type": "Organization",
+      name: "detrans.ai",
+      url: "https://detrans.ai",
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: approvedStudies.length,
+      itemListElement: approvedStudies.slice(0, 20).map((study, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "ScholarlyArticle",
+          name: study.headline || study.title,
+          url: `https://detrans.ai/${locale}/studies/${study.id}`,
+          author: study.authors
+            ? { "@type": "Person", name: study.authors }
+            : undefined,
+          datePublished: study.year ? `${study.year}` : undefined,
+        },
+      })),
+    },
+  };
+
   return (
-    <div className="prose dark:prose-invert pb-16 lg:pt-8">
+    <div className="prose dark:prose-invert pb-16 lg:-mx-48 lg:max-w-none lg:pt-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <h1 className="text-3xl font-bold">{t("title")}</h1>
-      <p className="text-muted-foreground">{t("description")}</p>
-      <p className="text-muted-foreground">
-        {t.rich("segmNote", {
-          a: (chunks) => (
-            <a
-              href="https://segm.org/studies"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-800 dark:hover:text-blue-300"
-            >
-              {chunks}
-            </a>
-          ),
-        })}
-      </p>
+      <p className="text-muted-foreground max-w-3xl">{t("description")}</p>
+
       <StudySubmitForm />
 
       <div className="mt-8">
-        <StudiesList
-          studies={studiesData}
-          isAdmin={admin}
-          locale={locale}
-          tags={tags}
-        />
+        <StudiesList studies={studiesData} isAdmin={admin} locale={locale} />
       </div>
 
       <hr />

@@ -10,7 +10,7 @@
       "greeting": "Bună! Ce înseamnă o persoană care a făcut detransiție?",
       "response": "Salut! Sunt detrans.ai - conștiința colectivă a persoanelor care au făcut detransiție 🦎",
       "definition": "O persoană care a făcut detransiție este o fostă persoană transgender care a făcut tranziție socială sau medicală, dar care între timp nu se mai identifică ca transgender și poate a inversat anumite aspecte ale tranziției.",
-      "description": "Observ motivele, tiparele și adevărurile despre de ce unele persoane adoptă, îmbrățișează și merg mai departe de la identitățile de gen citind povești și experiențe postate în subredditul /r/detrans și urmărind videoclipuri despre detransiție încărcate pe YouTube.",
+      "description": "Observ realitățile trăite ale motivului pentru care unele persoane adoptă, locuiesc și renunță la identitățile de gen. Fac acest lucru citind povești și experiențe postate pe /r/detrans, urmărind videoclipuri YouTube ale persoanelor care au detranziționat, analizând studii academice și navigând pe internet.",
       "purpose": "Scopul meu este să împărtășesc aceste cunoștințe pentru a deconstrui genul și pentru a explora cum aceste experiențe modelează relația cu sine, cu corpul și cu lumea.",
       "helpPrompt": "Cum te pot ajuta astăzi?"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "Vreau să demontezi dezinformările și credințele comune despre detransiție",
         "full": "Te rog să demontezi toate dezinformările și credințele comune despre persoanele care au făcut detransiția, cu cât mai multe detalii posibil."
+      },
+      "scientificConsensus": {
+        "display": "Mă întreb care este consensul științific privind rezultatele tranziției",
+        "full": "Care este consensul științific privind rezultatele tranziției? Comparați studiile care arată rezultate bune cu cele care arată rezultate slabe sau discutabile."
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "Terminologie de Gen",
       "studies": "Studii Academice",
       "studiesShort": "Studii",
-      "howItWorks": "Cum Funcționează"
+      "howItWorks": "Cum Funcționează",
+      "statistics": "Statistici Verificate"
     },
     "deepResearch": {
       "title": "Modul Cercetare Profundă",
@@ -126,13 +131,19 @@
       "whatYouCanLearn": "Puteți folosi acest site pentru a explora ce ar putea cauza sau fi diagnosticat greșit ca disforie de gen, nuanțele identității, călătoriile personale de detransiție și pentru a înțelege cum oamenii își reconstruiesc relația cu corpurile și mințile lor după aceea. Puteți afla despre tranziția socială, încetarea hormonilor, realitățile chirurgicale și munca practică și emoțională de a merge mai departe. Puteți găsi și relatări despre ceea ce mulți consideră cel mai greu: pierderea comunității, frica de a admite îndoieli și procesul de construire a unei vieți în afara unei identități care cândva definea totul.",
       "differentStages": "Oamenii vin aici în diferite stadii. Unii fac cercetări înainte de a începe tranziția. Alții sunt în mijlocul tranziției cu îndoieli. Alții au început deja detransiția și au nevoie de îndrumare practică. Mulți vin în căutare de <a>grupuri de sprijin pentru detransiție</a> sau <a>terapeuți exploratori de gen</a> care nu afirme automat tranziția ca fiind unicul drum.",
       "closing": "Sper că detrans.ai vă poate ajuta să luați decizii informate și conștiente de sine."
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "Acasă",
       "resources": "Resurse",
-      "about": "Despre"
+      "about": "Despre",
+      "chat": "Chat",
+      "videos": "Videoclipuri",
+      "studies": "Studii",
+      "support": "Suport",
+      "stats": "Statistici",
+      "statsDesc": "Statistici de detranziție anonimizate din /r/detrans"
     },
     "resources": {
       "genderSupport": "Găsește Terapeuți",
@@ -230,13 +241,100 @@
     "lookingForComments": "Se caută comentarii relevante...",
     "errorOccurred": "A apărut o eroare, încearcă din nou... Contactează-mă dacă acest lucru continuă să se întâmple.",
     "analysingExperiences": "Se analizează Experiențele",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "Se analizează rezultatele web",
+    "analysingResearchResults": "Se analizează rezultatele cercetării",
     "detransPerspective": "-> Care sunt perspectivele detrans asupra acestui subiect?",
     "transPerspective": "-> Care sunt perspectivele trans asupra acestui subiect?",
     "backToPortal": "<- Înapoi la Portal",
     "captchaRequired": "Captcha necesar pentru a continua chat-ul.",
     "chatArchived": "Acest chat este arhivat. Începeți unul nou.",
     "rateLimitExceeded": "Prea multe solicitări, încetiniți și încercați din nou mai târziu.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "Adresa ta IP s-a schimbat. Pentru a preveni abuzul, trebuie să începi o nouă conversație.",
+    "analysingResults": "Se analizează rezultatele...",
+    "followUpQuestions": "Întrebări de urmărire:",
+    "eventLabels": {
+      "askDetransitioners": "Întreabă persoanele care au făcut detransiția",
+      "videoArchive": "Arhivă video",
+      "userStories": "Povești ale utilizatorilor",
+      "queryStudies": "Caută studii",
+      "topicHierarchy": "Ierarhia subiectelor",
+      "pageCatalog": "Catalog de pagini",
+      "deepResearch": "Cercetare Profundă",
+      "linkPages": "Leagă pagini",
+      "webSearch": "Căutare pe web",
+      "queryStudyCatalogue": "Caută în catalogul de studii despre detransiție",
+      "studyDetail": "Detalii studiu",
+      "searchResearchCache": "Caută în cache-ul de cercetare",
+      "fetchCachedResearch": "Preia cercetarea din cache",
+      "proposedContent": "Conținut propus"
+    },
+    "eventStatus": {
+      "analysingVideos": "Se analizează videoclipurile",
+      "loadingUserProfiles": "Se încarcă profilurile utilizatorilor...",
+      "searchingForResponses": "Se caută răspunsuri",
+      "viewResults": "Vezi rezultatele",
+      "failedToResearch": "Cercetarea a eșuat",
+      "suggestionSubmitted": "Sugestie trimisă! Se redirecționează...",
+      "submitting": "Se trimite..."
+    },
+    "eventErrors": {
+      "errorOccurred": "A apărut o eroare",
+      "invalidYoutubeUrl": "URL YouTube invalid",
+      "failed": "Eșuat",
+      "failedToCreatePage": "Nu s-a putut crea pagina",
+      "linkCouldNotBeCreated": "Linkul nu a putut fi creat.",
+      "failedToCreateLink": "Nu s-a putut crea linkul",
+      "webSearchFailed": "Căutarea pe web a eșuat",
+      "failedToFetchStudies": "Nu s-au putut prelua studiile",
+      "failedToFetchStudy": "Nu s-a putut prelua studiul",
+      "failedToSearchCache": "Nu s-a putut căuta în cache",
+      "failedToFetchCachedResearch": "Nu s-a putut prelua cercetarea din cache",
+      "saveFailed": "Salvarea a eșuat",
+      "submitFailed": "Trimiterea a eșuat"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "Nu s-au găsit videoclipuri",
+      "noResultsFound": "Nu s-au găsit rezultate",
+      "studyNotFound": "Studiul nu a fost găsit",
+      "noCachedResearchFound": "Nu s-a găsit cercetare în cache",
+      "notFound": "Nu a fost găsit",
+      "noResults": "Fără rezultate",
+      "noMatchingPagesFound": "Nu s-au găsit pagini corespunzătoare."
+    },
+    "eventFieldLabels": {
+      "title": "Titlu:",
+      "page": "Pagina:",
+      "version": "Versiunea:",
+      "found": "Găsit:",
+      "findings": "Descoperiri:",
+      "abstract": "Rezumat:",
+      "conclusion": "Concluzie:",
+      "keyPoints": "Puncte cheie:",
+      "limitations": "Limitări:",
+      "created": "Creat:",
+      "preview": "Previzualizare:",
+      "cachedResearchFound": "Cercetare în cache găsită:",
+      "success": "Succes"
+    },
+    "eventCounts": {
+      "page": "pagină",
+      "pages": "pagini",
+      "source": "sursă",
+      "sources": "surse",
+      "result": "rezultat",
+      "results": "rezultate",
+      "more": "+{count} mai multe",
+      "foundCached": "S-au găsit {count} {item} în cache:"
+    },
+    "eventButtons": {
+      "applyToEditor": "Aplică în editor",
+      "appliedToEditor": "Aplicat în editor",
+      "viewSource": "Vezi sursa",
+      "seeMoreOnVideosPage": "Mai multe pe",
+      "videosPage": "pagina de videoclipuri",
+      "fullText": "Text complet"
+    }
   },
   "chatInput": {
     "placeholder": "Întreabă detrans.ai...",
@@ -548,9 +646,16 @@
       "ogTitle": "detrans.ai | Studii Academice despre Subiecte de Detransiție",
       "ogDescription": "Găsește pe această pagină o selecție de studii academice și articole de jurnal recenzate de pari și statistici verificate care se referă la tendințele identității de gen și detransiție."
     },
-    "title": "Articole Academice Selectate",
+    "title": "Studii academice și cercetare",
     "description": "Cercetarea asupra detransiției este un domeniu emergent. Creșterea rapidă a diagnosticelor de disforie de gen în ultimul deceniu – în special în rândul adolescentelor – a produs o populație în creștere de persoane care au făcut detransiția, deși colectarea datelor rămâne o provocare din cauza ratei ridicate de pierdere la urmărire, diviziunii ideologice și limitărilor metodologice.",
-    "segmNote": "Pe această pagină veți găsi studii academice, cercetări recenzate de pari și articole de jurnal care pun la îndoială eficacitatea și etica îngrijirii afirmatoare de gen. Consultați <a>Society for Evidence-Based Gender Medicine (SEGM)</a> pentru mai multe informații, inclusiv analize comprehensive ale studiilor de susținere."
+    "segmNote": "Pe această pagină veți găsi studii academice, cercetări recenzate de pari și articole de jurnal care pun la îndoială eficacitatea și etica îngrijirii afirmatoare de gen. Consultați <a>Society for Evidence-Based Gender Medicine (SEGM)</a> pentru mai multe informații, inclusiv analize comprehensive ale studiilor de susținere.",
+    "searchPlaceholder": "Caută studii...",
+    "methodology": "Metodologie",
+    "topic": "Subiect",
+    "noResults": "Nu s-au găsit studii.",
+    "noStudies": "Încă nu există studii aprobate.",
+    "pendingReview": "În așteptarea revizuirii",
+    "keyFindings": "Constatări cheie:"
   },
   "contentWarning": {
     "title": "Avertisment de Conținut:",
@@ -747,7 +852,24 @@
       "flowConnections": "Conexiuni de flux",
       "male": "Masculin",
       "female": "Feminin",
-      "noData": "Nu există date despre căi disponibile pentru filtrele selectate"
+      "noData": "Nu există date despre căi disponibile pentru filtrele selectate",
+      "labels": {
+        "Male": "Bărbat",
+        "Female": "Femeie",
+        "Unknown": "Necunoscut",
+        "Before 18": "Înainte de 18 ani",
+        "After 18": "După 18 ani",
+        "Puberty Blockers": "Blocante ale pubertății",
+        "No Blockers": "Fără blocante",
+        "Took Hormones": "A luat hormoni",
+        "Social Only": "Doar tranziție socială",
+        "Top Surgery": "Chirurgie superioară",
+        "Bottom Surgery": "Chirurgie inferioară",
+        "No Surgery": "Fără chirurgie",
+        "Regrets Transitioning": "Regretă tranziția",
+        "Doesn't Regret Transitioning": "Nu regretă tranziția",
+        "Not Stated": "Nespecificat"
+      }
     }
   },
   "contact": {
@@ -829,5 +951,21 @@
     "research": "/research",
     "chat": "/chat",
     "login": "/login"
+  },
+  "hcaptcha": {
+    "title": "Verifică că ești om",
+    "description": "Te rugăm să completezi CAPTCHA pentru a continua să folosești chat-ul. Acest lucru ne ajută să prevenim abuzul și să menținem serviciul activ.",
+    "error": {
+      "title": "Eroare CAPTCHA",
+      "description": "Nu s-a putut încărca CAPTCHA. Te rugăm să reîmprospătezi pagina și să încerci din nou."
+    }
+  },
+  "statsPage": {
+    "title": "Statistici anonimizate",
+    "description": "Statistici de detranziție anonimizate, derivate din poveștile și experiențele persoanelor care au făcut detranziție. Datele sunt colectate din comentariile utilizatorilor de pe /r/detrans pentru a releva modele în tranziție și detranziție. Sunt incluși doar utilizatorii care au împărtășit suficiente informații pentru a alcătui o poveste și o cronologie completă.",
+    "metadata": {
+      "title": "Statistici anonimizate | detrans.ai",
+      "description": "Statistici anonimizate privind modelele de detranziție și tranziție, inclusiv distribuția pe vârstă, durata, motivele și traiectoriile."
+    }
   }
 }

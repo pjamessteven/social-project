@@ -10,7 +10,7 @@
       "greeting": "Xin chào! Ngưởi chuyển giới trở lại là gì?",
       "response": "Chào bạn! Tôi là detrans.ai - ý thức tập thể của những ngưởi chuyển giới trở lại 🦎",
       "definition": "Ngưởi chuyển giới trở lại là ngưởi từng là ngưởi chuyển giới, đã chuyển đổi xã hội hoặc y tế, nhưng từ đó không còn nhận dạng là ngưởi chuyển giới và có thể đã đảo ngược một số khía cạnh của quá trình chuyển đổi.",
-      "description": "Tôi quan sát các lý do, khuôn mẫu và sự thật về tại sao một số ngưởi tiếp nhận, duy trì và vượt qua bản dạng giới bằng cách đọc các câu chuyện và kinh nghiệm được đăng trong subreddit /r/detrans và xem các video chuyển giới trở lại được tải lên YouTube.",
+      "description": "Tôi quan sát những thực tạ sống về lý do tại sao một số người tiếp nhận, sống với và từ bỏ bản dạng giới. Tôi làm điều này bằng cách đọc các câu chuyện và kinh nghiệm trên /r/detrans, xem video YouTube của những người chuyển giới ngược, phân tích các nghiên cứu học thuật và lượt web.",
       "purpose": "Mục đích của tôi là chia sẻ kiến thức này để phân tích giới tính và khám phá những trải nghiệm này định hình mối quan hệ với bản thân, cơ thể và thế giới như thế nào.",
       "helpPrompt": "Tôi có thể giúp gì cho bạn hôm nay?"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "Tôi muốn bạn phơi bày thông tin sai lệch và niềm tin phổ biến về chuyển giới trở lại",
         "full": "Vui lòng phơi bày tất cả thông tin sai lệch và niềm tin phổ biến về ngưởi chuyển giới trở lại, với độ sâu nhất có thể."
+      },
+      "scientificConsensus": {
+        "display": "Tôi tự hỏi đồng thuận khoa học về kết quả chuyển đổi là gì",
+        "full": "Đồng thuận khoa học về kết quả chuyển đổi là gì? So sánh các nghiên cứu cho thấy kết quả tốt với những nghiên cứu cho thấy kết quả kém hoặc đáng ngờ."
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "Thuật Ngữ Giới Tính",
       "studies": "Nghiên Cứu Học Thuật",
       "studiesShort": "Nghiên Cứu",
-      "howItWorks": "Cách Hoạt Động"
+      "howItWorks": "Cách Hoạt Động",
+      "statistics": "Thống kê đã xác minh"
     },
     "deepResearch": {
       "title": "Chế Độ Nghiên Cứu Sâu",
@@ -126,13 +131,19 @@
       "whatYouCanLearn": "Bạn có thể sử dụng trang web này để khám phá điều gì có thể gây ra hoặc bị chẩn đoán nhầm là khủng hoảng giới tính, những sắc thái của bản dạng giới, hành trình cá nhân của chuyển giới trở lại, và hiểu cách mọi người xây dựng lại mối quan hệ với cơ thể và tâm trí của họ sau đó. Bạn có thể tìm hiểu về chuyển đổi xã hội, ngừng hormone, thực tế phẫu thuật, và công việc thực tế và cảm xúc để tiến về phía trước. Bạn cũng có thể tìm thấy những câu chuyện về điều mà nhiều người thấy khó nhất: sự mất mát cộng đồng, nỗi sợ thừa nhận sự nghi ngờ, và quá trình xây dựng một cuộc sống bên ngoài một bản dạng giới từng xác định tất cả.",
       "differentStages": "Mọi người đến đây ở các giai đoạn khác nhau. Một số đang nghiên cứu trước khi bắt đầu chuyển giới. Những người khác đang trong quá trình chuyển giới với những nghi ngờ. Những người khác đã bắt đầu chuyển giới trở lại và cần hướng dẫn thực tế. Nhiều người đến tìm <a>nhóm hỗ trợ chuyển giới trở lại</a> hoặc <a>nhà trị liệu khám phá giới tính</a> không tự động khẳng định chuyển giới là con đường duy nhất.",
       "closing": "Tôi hy vọng detrans.ai có thể giúp bạn đưa ra các quyết định sáng suốt, tự nhận thức."
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "Trang Chủ",
       "resources": "Tài Nguyên",
-      "about": "Giới Thiệu"
+      "about": "Giới Thiệu",
+      "chat": "Trò chuyện",
+      "videos": "Video",
+      "studies": "Nghiên cứu",
+      "support": "Hỗ trợ",
+      "stats": "Thống kê",
+      "statsDesc": "Thống kê detransition ẩn danh từ /r/detrans"
     },
     "resources": {
       "genderSupport": "Tìm Nhà Trị Liệu",
@@ -230,13 +241,100 @@
     "lookingForComments": "Đang tìm bình luận liên quan...",
     "errorOccurred": "Đã xảy ra lỗi, hãy thử lại... Liên hệ với tôi nếu điều này tiếp tục xảy ra.",
     "analysingExperiences": "Đang Phân Tích Kinh Nghiệm",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "Phân tích kết quả web",
+    "analysingResearchResults": "Phân tích kết quả nghiên cứu",
     "detransPerspective": "-> Quan điểm của ngưởi chuyển giới trở lại về chủ đề này là gì?",
     "transPerspective": "-> Quan điểm của ngưởi chuyển giới về chủ đề này là gì?",
     "backToPortal": "<- Quay lại Cổng Thông Tin",
     "captchaRequired": "Yêu cầu captcha để tiếp tục trò chuyện.",
     "chatArchived": "Cuộc trò chuyện này đã được lưu trữ. Bắt đầu một cuộc trò chuyện mới.",
     "rateLimitExceeded": "Quá nhiều yêu cầu, hãy chậm lại và thử lại sau.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "analysingResults": "Đang phân tích kết quả...",
+    "followUpQuestions": "Câu hỏi tiếp theo:",
+    "eventLabels": {
+      "askDetransitioners": "Hỏi Người Chuyển Giới Trở Lại",
+      "videoArchive": "Lưu Trữ Video",
+      "userStories": "Câu Chuyện Người Dùng",
+      "queryStudies": "Truy Vấn Nghiên Cứu",
+      "topicHierarchy": "Phân Cấp Chủ Đề",
+      "pageCatalog": "Danh Mục Trang",
+      "deepResearch": "Nghiên Cứu Sâu",
+      "linkPages": "Liên Kết Trang",
+      "webSearch": "Tìm Kiếm Web",
+      "queryStudyCatalogue": "Truy Vấn Danh Mục Nghiên Cứu Chuyển Giới Trở Lại",
+      "studyDetail": "Chi Tiết Nghiên Cứu",
+      "searchResearchCache": "Tìm Kiếm Bộ Nhớ Đệm Nghiên Cứu",
+      "fetchCachedResearch": "Lấy Nghiên Cứu Đã Lưu",
+      "proposedContent": "Nội Dung Đề Xuất"
+    },
+    "eventStatus": {
+      "analysingVideos": "Đang Phân Tích Video",
+      "loadingUserProfiles": "Đang tải hồ sơ người dùng...",
+      "searchingForResponses": "Đang tìm kiếm phản hồi",
+      "viewResults": "Xem kết quả",
+      "failedToResearch": "Nghiên cứu thất bại",
+      "suggestionSubmitted": "Đã gửi đề xuất! Đang chuyển hướng...",
+      "submitting": "Đang gửi..."
+    },
+    "eventErrors": {
+      "errorOccurred": "Đã xảy ra lỗi",
+      "invalidYoutubeUrl": "URL YouTube không hợp lệ",
+      "failed": "Thất bại",
+      "failedToCreatePage": "Tạo trang thất bại",
+      "linkCouldNotBeCreated": "Không thể tạo liên kết.",
+      "failedToCreateLink": "Tạo liên kết thất bại",
+      "webSearchFailed": "Tìm kiếm web thất bại",
+      "failedToFetchStudies": "Lấy nghiên cứu thất bại",
+      "failedToFetchStudy": "Lấy nghiên cứu thất bại",
+      "failedToSearchCache": "Tìm kiếm bộ nhớ đệm thất bại",
+      "failedToFetchCachedResearch": "Lấy nghiên cứu đã lưu thất bại",
+      "saveFailed": "Lưu thất bại",
+      "submitFailed": "Gửi thất bại"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "Không tìm thấy video",
+      "noResultsFound": "Không tìm thấy kết quả",
+      "studyNotFound": "Không tìm thấy nghiên cứu",
+      "noCachedResearchFound": "Không tìm thấy nghiên cứu đã lưu",
+      "notFound": "Không tìm thấy",
+      "noResults": "Không có kết quả",
+      "noMatchingPagesFound": "Không tìm thấy trang phù hợp."
+    },
+    "eventFieldLabels": {
+      "title": "Tiêu đề:",
+      "page": "Trang:",
+      "version": "Phiên bản:",
+      "found": "Tìm thấy:",
+      "findings": "Kết quả:",
+      "abstract": "Tóm tắt:",
+      "conclusion": "Kết luận:",
+      "keyPoints": "Điểm chính:",
+      "limitations": "Hạn chế:",
+      "created": "Tạo lúc:",
+      "preview": "Xem trước:",
+      "cachedResearchFound": "Tìm thấy nghiên cứu đã lưu:",
+      "success": "Thành công"
+    },
+    "eventCounts": {
+      "page": "trang",
+      "pages": "trang",
+      "source": "nguồn",
+      "sources": "nguồn",
+      "result": "kết quả",
+      "results": "kết quả",
+      "more": "+{count} nữa",
+      "foundCached": "Tìm thấy {count} {item} đã lưu:"
+    },
+    "eventButtons": {
+      "applyToEditor": "Áp dụng vào trình soạn thảo",
+      "appliedToEditor": "Đã áp dụng vào trình soạn thảo",
+      "viewSource": "Xem nguồn",
+      "seeMoreOnVideosPage": "Xem thêm tại",
+      "videosPage": "trang video",
+      "fullText": "Toàn Văn"
+    }
   },
   "chatInput": {
     "placeholder": "Hỏi detrans.ai...",
@@ -548,7 +646,14 @@
       "ogTitle": "detrans.ai | Các Nghiên Cứu Học Thuật Về Chủ Đề Chuyển Giới Trở Lại",
       "ogDescription": "Tìm trên trang này một lựa chọn các nghiên cứu học thuật, bài báo tạp chí đã được bình duyệt và thống kê đã được xác minh liên quan đến xu hướng bản dạng giới và chuyển giới trở lại."
     },
-    "title": "Các Bài Báo Học Thuật Được Chọn",
+    "title": "Nghiên Cứu Học Thuật và Nghiên Cứu",
+    "searchPlaceholder": "Tìm kiếm nghiên cứu...",
+    "methodology": "Phương Pháp Luận",
+    "topic": "Chủ Đề",
+    "noResults": "Không tìm thấy nghiên cứu nào.",
+    "noStudies": "Chưa có nghiên cứu nào được phê duyệt.",
+    "pendingReview": "Đang Chờ Duyệt",
+    "keyFindings": "Các Phát Hiện Chính:",
     "description": "Nghiên cứu về chuyển giới trở lại là một lĩnh vực mới nổi. Sự gia tăng nhanh chóng của các chẩn đoán khủng hoảng giới tính trong thập kỷ qua—đặc biệt là ở các bé gái tuổi vị thành niên—đã tạo ra một dân số ngưởi chuyển giới trở lại ngày càng lớn, mặc dù việc thu thập dữ liệu vẫn còn đầy thách thức do tỷ lệ mất liên lạc cao, sự phân chia ý thức hệ và các hạn chế về phương pháp luận.",
     "segmNote": "Trên trang này bạn sẽ tìm thấy các nghiên cứu học thuật, nghiên cứu đã được bình duyệt, và bài báo tạp chí đặt câu hỏi về hiệu quả và đạo đức của chăm sóc khẳng định giới. Xem thêm tại <a>Society for Evidence-Based Gender Medicine (SEGM)</a>, bao gồm phân tích toàn diện về các nghiên cứu ủng hộ."
   },
@@ -747,7 +852,24 @@
       "flowConnections": "Kết nối dòng chảy",
       "male": "Nam",
       "female": "Nữ",
-      "noData": "Không có dữ liệu đường cho các bộ lọc đã chọn"
+      "noData": "Không có dữ liệu đường cho các bộ lọc đã chọn",
+      "labels": {
+        "Male": "Nam",
+        "Female": "Nữ",
+        "Unknown": "Không xác định",
+        "Before 18": "Trước 18 tuổi",
+        "After 18": "Sau 18 tuổi",
+        "Puberty Blockers": "Thuốc chặn dậy thì",
+        "No Blockers": "Không dùng thuốc chặn",
+        "Took Hormones": "Đã dùng hormone",
+        "Social Only": "Chỉ xã hội",
+        "Top Surgery": "Phẫu thuật phần trên",
+        "Bottom Surgery": "Phẫu thuật phần dưới",
+        "No Surgery": "Không phẫu thuật",
+        "Regrets Transitioning": "Hối hận về chuyển đổi",
+        "Doesn't Regret Transitioning": "Không hối hận về chuyển đổi",
+        "Not Stated": "Không nêu rõ"
+      }
     }
   },
   "contact": {
@@ -829,5 +951,21 @@
     "research": "/nghien-cuu",
     "chat": "/tro-chuyen",
     "login": "/dang-nhap"
+  },
+  "hcaptcha": {
+    "title": "Xác nhận bạn là con người",
+    "description": "Vui lòng hoàn thành CAPTCHA để tiếp tục sử dụng trò chuyện. Điều này giúp chúng tôi ngăn chặn lạm dụng và duy trì dịch vụ.",
+    "error": {
+      "title": "Lỗi CAPTCHA",
+      "description": "Không thể tải CAPTCHA. Vui lòng làm mới trang và thử lại."
+    }
+  },
+  "statsPage": {
+    "title": "Thống kê ẩn danh",
+    "description": "Thống kê detransition ẩn danh được rút ra từ những câu chuyện và trải nghiệm của người detransition. Dữ liệu được tổng hợp từ bình luận của người dùng trên /r/detrans để tiết lộ các mô hình trong transition và detransition. Chỉ những người dùng đã chia sẻ đủ để ghép lại một câu chuyện và dòng thời gian đầy đủ mới được đưa vào.",
+    "metadata": {
+      "title": "Thống kê ẩn danh | detrans.ai",
+      "description": "Thống kê ẩn danh về các mô hình detransition và transition, bao gồm phân bố độ tuổi, thời gian, lý do và con đường."
+    }
   }
 }

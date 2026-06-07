@@ -12,7 +12,7 @@ interface UseCaptchaReturn {
   setPendingMessage: (
     message: { text: string; conversationId?: string } | null,
   ) => void;
-  verifyCaptcha: (token: string) => Promise<boolean>;
+  verifyCaptcha: (token: string) => Promise<{ success: boolean; token: string }>;
   resetCaptcha: () => void;
 }
 
@@ -28,34 +28,37 @@ export function useCaptcha(): UseCaptchaReturn {
     conversationId?: string;
   } | null>(null);
 
-  const verifyCaptcha = useCallback(async (token: string): Promise<boolean> => {
-    setIsVerifying(true);
-    try {
-      const response = await fetch("/api/captcha/verify", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token }),
-      });
+  const verifyCaptcha = useCallback(
+    async (token: string): Promise<{ success: boolean; token: string }> => {
+      setIsVerifying(true);
+      try {
+        const response = await fetch("/api/captcha/verify", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token }),
+        });
 
-      const data = await response.json();
+        const data = await response.json();
 
-      if (data.success) {
-        setIsCaptchaRequired(false);
-        setShowCaptchaDialog(false);
-        return true;
-      } else {
-        console.error("CAPTCHA verification failed:", data.error);
-        return false;
+        if (data.success) {
+          setIsCaptchaRequired(false);
+          setShowCaptchaDialog(false);
+          return { success: true, token };
+        } else {
+          console.error("CAPTCHA verification failed:", data.error);
+          return { success: false, token };
+        }
+      } catch (error) {
+        console.error("Error verifying CAPTCHA:", error);
+        return { success: false, token };
+      } finally {
+        setIsVerifying(false);
       }
-    } catch (error) {
-      console.error("Error verifying CAPTCHA:", error);
-      return false;
-    } finally {
-      setIsVerifying(false);
-    }
-  }, []);
+    },
+    [],
+  );
 
   const resetCaptcha = useCallback(() => {
     setIsCaptchaRequired(false);

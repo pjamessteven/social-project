@@ -1,11 +1,10 @@
-version: '3.8'
+version: "3.8"
 
 services:
   redis:
     image: redis:7-alpine
-    container_name: redis
     ports:
-      - "6379:6379"
+      - "6380:6379"
     volumes:
       - ./redis-data:/data
       - ./redis.conf:/usr/local/etc/redis/redis.conf
@@ -13,18 +12,16 @@ services:
     restart: unless-stopped
   qdrant:
     image: qdrant/qdrant:latest
-    container_name: qdrant
     ports:
-      - "6333:6333"
+      - "6334:6333"
     volumes:
       - ./qdrant-storage:/qdrant/storage
     restart: unless-stopped
 
   postgres:
-    image: postgres:15-alpine
-    container_name: postgres
+    image: pgvector/pgvector:pg15
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
       - POSTGRES_DB=app
       - POSTGRES_USER=postgres
@@ -32,21 +29,21 @@ services:
       - PGDATA=/var/lib/postgresql/data/
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+      - ./scripts/init-pgvector.sql:/docker-entrypoint-initdb.d/init-pgvector.sql
     restart: unless-stopped
 
   nextjs:
-    platform: linux/amd64   
+    platform: linux/amd64
     build:
       context: .
       dockerfile: Dockerfile
-      target: deps   # <--- stop at deps stage, so we have node_modules but not the build
-    container_name: nextjs
+      target: deps # <--- stop at deps stage, so we have node_modules but not the build
     ports:
-      - "3000:3000"
+      - "3001:3000"
     volumes:
       - .:/app
-      - next_node_modules:/app/node_modules  # container-managed node_modules
-      - next_cache:/app/.next         # container-managed build cache
+      - next_node_modules:/app/node_modules # container-managed node_modules
+      - next_cache:/app/.next # container-managed build cache
     command: npm run dev
     env_file:
       - .env

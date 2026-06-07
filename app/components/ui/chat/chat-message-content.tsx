@@ -9,37 +9,20 @@ import {
   SuggestionPartType,
   useChatMessage,
 } from "@llamaindex/chat-ui";
-import CommentQueryEventPart from "./comment-query-event";
+import { useTranslations } from "next-intl";
 import { DynamicEvents } from "./custom/events/dynamic-events";
 import { ComponentDef } from "./custom/events/types";
-import StoryQueryEventPart from "./story-query-event";
-import StudyQueryEventPart from "./study-query-event";
-import VideoQueryEventPart from "./video-query-event";
-
-type EventPart = {
-  id?: string | undefined;
-  type: "data-event";
-  data: {
-    title: string;
-    query: string;
-    result: any;
-    status: string;
-  };
-};
-
-interface User {
-  username: string;
-  activeSince: string;
-  sex: "m" | "f";
-  experienceSummary: string | null;
-  tags: string[];
-  commentCount: number;
-  transitionAge: number | null;
-  detransitionAge: number | null;
-}
+import {
+  CommentQueryEventPart,
+  GetStudiesEventPart,
+  StudyQueryEventPart,
+  VideoQueryEventPart,
+  WebSearchEventPart,
+} from "./tool-components/EventParts";
 
 function SuggestedQuestionsAnnotations({}: {}) {
   const isDev = process.env.NODE_ENV === "development";
+  const t = useTranslations("chat");
 
   const { sendMessage } = useChatStore();
   const { message, isLast } = useChatMessage();
@@ -58,7 +41,7 @@ function SuggestedQuestionsAnnotations({}: {}) {
     <div className="animate-in slide-in-from-top-2 overflow-hidden transition-all duration-500 ease-out">
       <div className="flex flex-col gap-2 sm:mt-8">
         <div className="mb-2 text-base font-semibold md:text-lg">
-          Follow-up questions:
+          {t("followUpQuestions")}
         </div>
         {questions.map((question, index) => (
           <div
@@ -109,9 +92,10 @@ export function ChatMessageContent({
         <ChatMessage.Content.Markdown />
         <ChatMessage.Content.Source />
         <VideoQueryEventPart />
-        <StoryQueryEventPart />
         <StudyQueryEventPart />
         <CommentQueryEventPart />
+        <WebSearchEventPart />
+        <GetStudiesEventPart />
       </ChatMessage.Content>
       <SuggestedQuestionsAnnotations />
     </div>

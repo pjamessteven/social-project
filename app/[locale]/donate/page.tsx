@@ -1,7 +1,56 @@
 "use server";
 
+import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { localesInfo } from "@/i18n/locales";
 import DonationBox from "../../components/content/DonationBox";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "donatePage" });
+
+  return {
+    title: `${t("title")} | detrans.ai`,
+    description: t("description2"),
+    openGraph: {
+      title: `${t("title")} | detrans.ai`,
+      description: t("description2"),
+      url: `https://detrans.ai/${locale}/donate`,
+      siteName: "detrans.ai",
+      images: ["https://detrans.ai/x_card_lg.png"],
+      locale: locale === "en" ? "en_US" : locale === "fr" ? "fr_FR" : "es_ES",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${t("title")} | detrans.ai`,
+      description: t("description2"),
+    },
+    alternates: {
+      canonical: `https://detrans.ai/${locale}/donate`,
+      languages: Object.fromEntries(
+        localesInfo.map((l) => [
+          l.code === "en"
+            ? "en-US"
+            : l.code === "es"
+              ? "es-ES"
+              : l.code === "fr"
+                ? "fr-FR"
+                : l.code === "zh-cn"
+                  ? "zh-CN"
+                  : l.code === "zh-tw"
+                    ? "zh-TW"
+                    : `${l.code}-${l.code.toUpperCase()}`,
+          `https://detrans.ai/${l.code}/donate`,
+        ]),
+      ),
+    },
+  };
+}
 
 export default async function DonationPage() {
   const t = await getTranslations("donatePage");

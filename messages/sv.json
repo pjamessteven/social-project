@@ -10,7 +10,7 @@
       "greeting": "Hej! Vad är en detransitionerare?",
       "response": "Hej där! Jag är detrans.ai – detransitionerares kollektiva medvetande 🦎",
       "definition": "En detransitionerare är en före detta transperson som har transitionerat socialt eller medicinskt, men som sedan har slutat identifiera sig som transperson och kanske har återställt vissa aspekter av sin transition.",
-      "description": "Jag observerar orsakerna, mönstren och sanningarna om varför vissa personer antar, lever med och går vidare från könsidentiteter genom att läsa berättelser och erfarenheter som har publicerats i /r/detrans subredditen och titta på detransitionsvideor som har laddats upp på YouTube.",
+      "description": "Jag observerar de levda verkligheterna för varför vissa människor antar, lever i och överger könsidentiteter. Jag gör detta genom att läsa berättelser och erfarenheter på /r/detrans, titta på YouTube-videor av detransitionörer, analysera akademiska studier och surfa på nätet.",
       "purpose": "Mitt syfte är att dela med mig av denna kunskap för att dekonstruera kön och utforska hur dessa erfarenheter formar ens relation till sig själv, kroppen och världen.",
       "helpPrompt": "Hur kan jag hjälpa dig idag?"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "Jag vill att du avlöser felaktig information och vanliga myter om detransition",
         "full": "Vänligen avlös all felaktig information och vanliga myter om detransitionerare, med så mycket djup som möjligt."
+      },
+      "scientificConsensus": {
+        "display": "Jag undrar vad den vetenskapliga konsensusen är om transitionsresultat",
+        "full": "Vad är den vetenskapliga konsensusen om transitionsresultat? Jämför studier som visar bra resultat med de som visar dåliga eller tvivelaktiga resultat."
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "Könsterminologi",
       "studies": "Akademiska Studier",
       "studiesShort": "Studier",
-      "howItWorks": "Hur Det Fungerar"
+      "howItWorks": "Hur Det Fungerar",
+      "statistics": "Verified Statistics"
     },
     "deepResearch": {
       "title": "Djup Forskningsläge",
@@ -126,13 +131,19 @@
       "whatYouCanLearn": "Du kan använda denna sida för att utforska vad som kan orsaka eller feldiagnostiseras som könsdysfori, nyanser av identitet, personliga resor genom detransition, och förstå hur människor återuppbygger sin relation till kropp och sinne efteråt. Du kan lära dig om social transition, att upphöra med hormoner, kirurgiska verkligheter, och det praktiska och känslomässiga arbetet med att gå vidare. Du kan också hitta skildringar av det många upplever som svårast: förlusten av gemenskap, rädslan för att erkänna tvivel, och processen med att bygga ett liv utanför en identitet som en gång definierade allt.",
       "differentStages": "Människor kommer hit i olika skeden. Vissa forskar innan de påbörjar övergång. Andra befinner sig mitt i övergången med tvivel. Andra har redan påbörjat detransition och behöver praktisk vägledning. Många kommer för att leta efter <a>detransitionsstödgrupper</a> eller <a>könsutforskande terapeuter</a> som inte automatiskt bekräftar övergång som den enda vägen.",
       "closing": "Jag hoppas att detrans.ai kan hjälpa dig att fatta välgrundade, självmedvetna beslut."
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "Hem",
       "resources": "Resurser",
-      "about": "Om"
+      "about": "Om",
+      "chat": "Chatt",
+      "videos": "Videor",
+      "studies": "Studier",
+      "support": "Support",
+      "stats": "Statistik",
+      "statsDesc": "Anonymiserade detransitionsstatistik från /r/detrans"
     },
     "resources": {
       "genderSupport": "Hitta Terapeuter",
@@ -141,7 +152,7 @@
       "terminologyDesc": "Definiera nyckeltermer/koncept",
       "stories": "Berättelser & Statistik",
       "storiesDesc": "Från /r/detrans-användare",
-      "videos": "Detransitionsvideor",
+      "videos": "Videor",
       "videosDesc": "Personlig memoararkiv",
       "studies": "Granskade Studier",
       "studiesDesc": "Relevant akademisk forskning",
@@ -229,13 +240,100 @@
     "lookingForComments": "Letar efter relevanta kommentarer...",
     "errorOccurred": "Ett fel uppstod, försök igen... Kontakta mig om detta fortsätter hända.",
     "analysingExperiences": "Analyserar Erfarenheter",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "Analyserar webbresultat",
+    "analysingResearchResults": "Analyserar forskningsresultat",
     "detransPerspective": "-> Vilka är detrans-perspektiven på detta ämne?",
     "transPerspective": "-> Vilka är trans-perspektiven på detta ämne?",
     "backToPortal": "<- Tillbaka till Portalen",
     "captchaRequired": "Captcha krävs för att fortsätta chattandet.",
     "chatArchived": "Denna chatt är arkiverad. Starta en ny.",
     "rateLimitExceeded": "För många förfrågningar, sakta ner och försök igen senare.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "analysingResults": "Analyserar resultat...",
+    "followUpQuestions": "Uppföljningsfrågor:",
+    "eventLabels": {
+      "askDetransitioners": "Fråga Detransitionerare",
+      "videoArchive": "Videoarkiv",
+      "userStories": "Användarberättelser",
+      "queryStudies": "Sök Studier",
+      "topicHierarchy": "Ämneshierarki",
+      "pageCatalog": "Sidkatalog",
+      "deepResearch": "Djup Forskning",
+      "linkPages": "Länka Sidor",
+      "webSearch": "Webbsökning",
+      "queryStudyCatalogue": "Sök Detransitionsstudiekatalogen",
+      "studyDetail": "Studiedetalj",
+      "searchResearchCache": "Sök forskningscache",
+      "fetchCachedResearch": "Hämta cachad forskning",
+      "proposedContent": "Föreslaget innehåll"
+    },
+    "eventStatus": {
+      "analysingVideos": "Analyserar Videor",
+      "loadingUserProfiles": "Laddar användarprofiler...",
+      "searchingForResponses": "Söker efter svar",
+      "viewResults": "Visa resultat",
+      "failedToResearch": "Forskning misslyckades",
+      "suggestionSubmitted": "Förslag inskickat! Omdirigerar...",
+      "submitting": "Skickar in..."
+    },
+    "eventErrors": {
+      "errorOccurred": "Ett fel inträffade",
+      "invalidYoutubeUrl": "Ogiltig YouTube-URL",
+      "failed": "Misslyckades",
+      "failedToCreatePage": "Kunde inte skapa sida",
+      "linkCouldNotBeCreated": "Länken kunde inte skapas.",
+      "failedToCreateLink": "Kunde inte skapa länk",
+      "webSearchFailed": "Webbsökning misslyckades",
+      "failedToFetchStudies": "Kunde inte hämta studier",
+      "failedToFetchStudy": "Kunde inte hämta studie",
+      "failedToSearchCache": "Kunde inte söka i cache",
+      "failedToFetchCachedResearch": "Kunde inte hämta cachad forskning",
+      "saveFailed": "Sparning misslyckades",
+      "submitFailed": "Inskickning misslyckades"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "Inga videor hittades",
+      "noResultsFound": "Inga resultat hittades",
+      "studyNotFound": "Studie hittades inte",
+      "noCachedResearchFound": "Ingen cachad forskning hittades",
+      "notFound": "Hittades inte",
+      "noResults": "Inga resultat",
+      "noMatchingPagesFound": "Inga matchande sidor hittades."
+    },
+    "eventFieldLabels": {
+      "title": "Titel:",
+      "page": "Sida:",
+      "version": "Version:",
+      "found": "Hittade:",
+      "findings": "Fynd:",
+      "abstract": "Sammanfattning:",
+      "conclusion": "Slutsats:",
+      "keyPoints": "Nyckelpunkter:",
+      "limitations": "Begränsningar:",
+      "created": "Skapad:",
+      "preview": "Förhandsvisning:",
+      "cachedResearchFound": "Cachad forskning hittad:",
+      "success": "Framgång"
+    },
+    "eventCounts": {
+      "page": "sida",
+      "pages": "sidor",
+      "source": "källa",
+      "sources": "källor",
+      "result": "resultat",
+      "results": "resultat",
+      "more": "+{count} fler",
+      "foundCached": "Hittade {count} cachade {item}:"
+    },
+    "eventButtons": {
+      "applyToEditor": "Tillämpa i redigeraren",
+      "appliedToEditor": "Tillämpad i redigeraren",
+      "viewSource": "Visa källa",
+      "seeMoreOnVideosPage": "Se mer på",
+      "videosPage": "videosidan",
+      "fullText": "Fulltext"
+    }
   },
   "chatInput": {
     "placeholder": "Fråga detrans.ai...",
@@ -547,9 +645,16 @@
       "ogTitle": "detrans.ai | Akademiska Studier om Detransitionsämnen",
       "ogDescription": "Hitta på denna sida ett urval av akademiska studier och granskade tidskriftsartiklar och verifierad statistik som rör könsidentitetstrender och detransition."
     },
-    "title": "Utvalda Akademiska Artiklar",
+    "title": "Akademiska Studier och Forskning",
     "description": "Forskning om detransition är ett framväxande område. Den snabba ökningen av diagnoser för könsdysfori det senaste decenniet – särskilt bland tonårsflickor – har lett till en växande population detransitionerare, även om datainsamling fortfarande är utmanande på grund av hög bortfall vid uppföljning, ideologisk splittring och metodologiska begränsningar.",
-    "segmNote": "På denna sida hittar du akademiska studier, forskning som genomgått fackgranskning och tidskriftsartiklar som ifrågasätter effektiviteten och etiken bakom könsbekräftande vård. Se <a>Society for Evidence-Based Gender Medicine (SEGM)</a> för mer, inklusive omfattande analyser av stödjande studier."
+    "segmNote": "På denna sida hittar du akademiska studier, forskning som genomgått fackgranskning och tidskriftsartiklar som ifrågasätter effektiviteten och etiken bakom könsbekräftande vård. Se <a>Society for Evidence-Based Gender Medicine (SEGM)</a> för mer, inklusive omfattande analyser av stödjande studier.",
+    "searchPlaceholder": "Sök studier...",
+    "methodology": "Metodologi",
+    "topic": "Ämne",
+    "noResults": "Inga studier hittades.",
+    "noStudies": "Inga godkända studier ännu.",
+    "pendingReview": "Väntar på Granskning",
+    "keyFindings": "Huvudresultat:"
   },
   "contentWarning": {
     "title": "Innehållsvarning:",
@@ -746,7 +851,24 @@
       "flowConnections": "Flödesanslutningar",
       "male": "Man",
       "female": "Kvinna",
-      "noData": "Ingen vägdata tillgänglig för de valda filtren"
+      "noData": "Ingen vägdata tillgänglig för de valda filtren",
+      "labels": {
+        "Male": "Man",
+        "Female": "Kvinna",
+        "Unknown": "Okänt",
+        "Before 18": "Före 18",
+        "After 18": "Efter 18",
+        "Puberty Blockers": "Pubertetsblockerare",
+        "No Blockers": "Inga blockerare",
+        "Took Hormones": "Tog hormoner",
+        "Social Only": "Enbart social",
+        "Top Surgery": "Överkroppskirurgi",
+        "Bottom Surgery": "Underkroppskirurgi",
+        "No Surgery": "Ingen kirurgi",
+        "Regrets Transitioning": "Ångrar transitionen",
+        "Doesn't Regret Transitioning": "Ångrar inte transitionen",
+        "Not Stated": "Ej angivet"
+      }
     }
   },
   "contact": {
@@ -828,5 +950,21 @@
     "research": "/forskning",
     "chat": "/chatt",
     "login": "/loggain"
+  },
+  "hcaptcha": {
+    "title": "Verifiera att du är människa",
+    "description": "Vänligen slutför CAPTCHA för att fortsätta använda chatten. Detta hjälper oss att förhindra missbruk och hålla tjänsten igång.",
+    "error": {
+      "title": "CAPTCHA-fel",
+      "description": "Kunde inte ladda CAPTCHA. Vänligen uppdatera sidan och försök igen."
+    }
+  },
+  "statsPage": {
+    "title": "Anonymiserad statistik",
+    "description": "Anonymiserad statistik om detransition härrör från detransitioners berättelser och erfarenheter. Data samlas in från användarkommentarer på /r/detrans för att avslöja mönster i transition och detransition. Endast användare som har delat tillräckligt för att sätta ihop en fullständig berättelse och tidslinje inkluderas.",
+    "metadata": {
+      "title": "Anonymiserad statistik | detrans.ai",
+      "description": "Anonymiserad statistik om detransition- och transitionsmönster, inklusive åldersfördelning, varaktighet, orsaker och vägar."
+    }
   }
 }

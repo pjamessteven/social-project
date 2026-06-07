@@ -10,7 +10,7 @@
       "greeting": "Merhaba! Detransitioner nedir?",
       "response": "Merhaba! Ben detrans.ai - detransitioner'ların toplu bilinci 🦎",
       "definition": "Detransitioner, sosyal veya tıbbi olarak geçiş yapmış ancak artık kendini transgender olarak tanımlamayan ve geçişinin bazı yönlerini geri almış olabilecek eski bir transgender kişidir.",
-      "description": "Neden bazı insanların cinsiyet kimlikleri benimsediğini, yaşadığını ve devam ettiğini, /r/detrans altreddit'inde paylaşılan hikayeleri ve deneyimleri okuyarak ve YouTube'a yüklenen detransisyon videolarını izleyerek gözlemliyorum.",
+      "description": "Bazı insanların cinsiyet kimliklerini neden benimsediğini, sürdürdüğünü ve terk ettiğini gözlemliyorum. Bunu /r/detrans'taki hikayeleri ve deneyimleri okuyarak, detransisyonerlerin YouTube videolarını izleyerek, akademik çalışmaları analiz ederek ve internette gezinerek yapıyorum.",
       "purpose": "Amacım, cinsiyeti yapıbozuma uğratmak ve bu deneyimlerin kişinin kendi, bedeni ve dünya ile olan ilişkisini nasıl şekillendirdiğini keşfetmek için bu bilgiyi paylaşmaktır.",
       "helpPrompt": "Bugün size nasıl yardımcı olabilirim?"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "Detransisyon hakkındaki yanlış bilgileri ve yaygın inançları çürütmenizi istiyorum",
         "full": "Detransisyon hakkındaki tüm yanlış bilgileri ve yaygın inançları, mümkün olduğunca ayrıntılı bir şekilde çürütün lütfen."
+      },
+      "scientificConsensus": {
+        "display": "Geçiş sonuçları hakkında bilimsel konsensüsün ne olduğunu merak ediyorum",
+        "full": "Geçiş sonuçları hakkında bilimsel konsensüs nedir? İyi sonuçları gösteren çalışmaları kötü veya şüpheli sonuçları gösteren çalışmalarla karşılaştırın."
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "Cinsiyet Terminolojisi",
       "studies": "Akademik Çalışmalar",
       "studiesShort": "Çalışmalar",
-      "howItWorks": "Nasıl Çalışır"
+      "howItWorks": "Nasıl Çalışır",
+      "statistics": "Doğrulanmış İstatistikler"
     },
     "deepResearch": {
       "title": "Derin Araştırma Modu",
@@ -126,13 +131,19 @@
       "whatYouCanLearn": "Bu siteyi, cinsiyet disforisine neden olabilecek veya yanlış teşhis edilebilecek şeyleri, kimliğin inceliklerini, detransisyonun kişisel yolculuklarını keşfetmek ve insanların sonrasında bedenleri ve zihinleriyle ilişkilerini nasıl yeniden inşa ettiklerini anlamak için kullanabilirsiniz. Sosyal geçiş, hormon bırakma, cerrahi gerçekler ve ilerlemeye yönelik pratik ve duygusal çalışma hakkında bilgi edinebilirsiniz. Ayrıca birçok kişinin en zor bulduğu şeylerin hikâyelerini de bulabilirsiniz: topluluk kaybı, şüpheyi kabul etme korkusu ve bir zamanlar her şeyi tanımlayan bir kimlik dışında hayat kurma süreci.",
       "differentStages": "İnsanlar farklı aşamalarda buraya gelir. Bazıları geçişe başlamadan önce araştırma yapıyor. Bazıları geçişin ortasında şüpheler yaşıyor. Bazıları zaten detransisyona başladı ve pratik rehberliğe ihtiyaç duyuyor. Birçoğu geçişi tek yol olarak otomatik olarak onaylamayan <a>detransisyon destek grupları</a> veya <a>cinsiyet-keşifsel terapistler</a> arıyor.",
       "closing": "Umarım detrans.ai, bilgili ve öz-farkında kararlar almanıza yardımcı olabilir."
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "Ana Sayfa",
       "resources": "Kaynaklar",
-      "about": "Hakkında"
+      "about": "Hakkında",
+      "chat": "Sohbet",
+      "videos": "Videolar",
+      "studies": "Çalışmalar",
+      "support": "Destek",
+      "stats": "İstatistikler",
+      "statsDesc": "/r/detrans anonim detransisyon istatistikleri"
     },
     "resources": {
       "genderSupport": "Terapist Bul",
@@ -229,13 +240,100 @@
     "lookingForComments": "İlgili yorumlar aranıyor...",
     "errorOccurred": "Hata oluştu, tekrar deneyin... Bu sürekli oluyorsa benimle iletişime geçin.",
     "analysingExperiences": "Deneyimler Analiz Ediliyor",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "Web Sonuçları Analiz Ediliyor",
+    "analysingResearchResults": "Araştırma Sonuçları Analiz Ediliyor",
     "detransPerspective": "-> Bu konuda detrans bakış açıları nedir?",
     "transPerspective": "-> Bu konuda trans bakış açıları nedir?",
     "backToPortal": "<- Portala Geri Dön",
     "captchaRequired": "Sohbeti devam ettirmek için captcha gerekiyor.",
     "chatArchived": "Bu sohbet arşivlendi. Yeni bir tane başlatın.",
     "rateLimitExceeded": "Çok fazla istek, yavaşlayın ve daha sonra tekrar deneyin.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "analysingResults": "Sonuçlar analiz ediliyor...",
+    "followUpQuestions": "Takip soruları:",
+    "eventLabels": {
+      "askDetransitioners": "Detransitioner'lara Sor",
+      "videoArchive": "Video Arşivi",
+      "userStories": "Kullanıcı Hikayeleri",
+      "queryStudies": "Çalışmaları Sorgula",
+      "topicHierarchy": "Konu Hiyerarşisi",
+      "pageCatalog": "Sayfa Kataloğu",
+      "deepResearch": "Derin Araştırma",
+      "linkPages": "Sayfaları Bağla",
+      "webSearch": "Web Araması",
+      "queryStudyCatalogue": "Detransisyon Çalışma Kataloğunu Sorgula",
+      "studyDetail": "Çalışma Detayı",
+      "searchResearchCache": "Araştırma Önbelleğini Ara",
+      "fetchCachedResearch": "Önbelleğe Alınmış Araştırmayı Getir",
+      "proposedContent": "Önerilen İçerik"
+    },
+    "eventStatus": {
+      "analysingVideos": "Videolar Analiz Ediliyor",
+      "loadingUserProfiles": "Kullanıcı profilleri yükleniyor...",
+      "searchingForResponses": "Yanıtlar aranıyor",
+      "viewResults": "Sonuçları görüntüle",
+      "failedToResearch": "Araştırma başarısız oldu",
+      "suggestionSubmitted": "Öneri gönderildi! Yönlendiriliyor...",
+      "submitting": "Gönderiliyor..."
+    },
+    "eventErrors": {
+      "errorOccurred": "Hata oluştu",
+      "invalidYoutubeUrl": "Geçersiz YouTube URL'si",
+      "failed": "Başarısız",
+      "failedToCreatePage": "Sayfa oluşturulamadı",
+      "linkCouldNotBeCreated": "Bağlantı oluşturulamadı.",
+      "failedToCreateLink": "Bağlantı oluşturulamadı",
+      "webSearchFailed": "Web araması başarısız oldu",
+      "failedToFetchStudies": "Çalışmalar getirilemedi",
+      "failedToFetchStudy": "Çalışma getirilemedi",
+      "failedToSearchCache": "Önbellekte arama başarısız oldu",
+      "failedToFetchCachedResearch": "Önbelleğe alınan araştırma getirilemedi",
+      "saveFailed": "Kaydetme başarısız oldu",
+      "submitFailed": "Gönderme başarısız oldu"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "Video bulunamadı",
+      "noResultsFound": "Sonuç bulunamadı",
+      "studyNotFound": "Çalışma bulunamadı",
+      "noCachedResearchFound": "Önbelleğe alınan araştırma bulunamadı",
+      "notFound": "Bulunamadı",
+      "noResults": "Sonuç yok",
+      "noMatchingPagesFound": "Eşleşen sayfa bulunamadı."
+    },
+    "eventFieldLabels": {
+      "title": "Başlık:",
+      "page": "Sayfa:",
+      "version": "Sürüm:",
+      "found": "Bulundu:",
+      "findings": "Bulgular:",
+      "abstract": "Özet:",
+      "conclusion": "Sonuç:",
+      "keyPoints": "Ana Noktalar:",
+      "limitations": "Sınırlamalar:",
+      "created": "Oluşturulma:",
+      "preview": "Önizleme:",
+      "cachedResearchFound": "Önbelleğe alınan araştırma bulundu:",
+      "success": "Başarılı"
+    },
+    "eventCounts": {
+      "page": "sayfa",
+      "pages": "sayfa",
+      "source": "kaynak",
+      "sources": "kaynak",
+      "result": "sonuç",
+      "results": "sonuç",
+      "more": "+{count} daha",
+      "foundCached": "{count} önbelleğe alınmış {item} bulundu:"
+    },
+    "eventButtons": {
+      "applyToEditor": "Editöre uygula",
+      "appliedToEditor": "Editöre uygulandı",
+      "viewSource": "Kaynağı görüntüle",
+      "seeMoreOnVideosPage": "Daha fazlası için",
+      "videosPage": "videolar sayfası",
+      "fullText": "Tam Metin"
+    }
   },
   "chatInput": {
     "placeholder": "detrans.ai'ye sorun...",
@@ -547,7 +645,14 @@
       "ogTitle": "detrans.ai | Detransisyon Konularında Akademik Çalışmalar",
       "ogDescription": "Bu sayfada cinsiyet kimliği trendleri ve detransisyonla ilgili akademik çalışmalar ve hakemli dergi makaleleri ile doğrulanmış istatistiklerin bir seçkisini bulun."
     },
-    "title": "Seçilmiş Akademik Makaleler",
+    "title": "Akademik Çalışmalar ve Araştırma",
+    "searchPlaceholder": "Çalışma ara...",
+    "methodology": "Metodoloji",
+    "topic": "Konu",
+    "noResults": "Çalışma bulunamadı.",
+    "noStudies": "Henüz onaylanmış çalışma yok.",
+    "pendingReview": "İnceleme Bekliyor",
+    "keyFindings": "Ana Bulgular:",
     "description": "Detransisyon araştırmaları yeni gelişmekte olan bir alandır. Geçtiğimiz on yılda cinsiyet disforisi tanılarındaki hızlı artış—özellikle ergen kızlar arasında—büyüyen bir detransitioner nüfusu oluşturmuştur; ancak yüksek kayıp oranları, ideolojik bölünme ve metodolojik sınırlamalar nedeniyle veri toplamayı zorlu bir süreç olmaya devam etmektedir.",
     "segmNote": "Bu sayfada, cinsiyet onaylayıcı bakımın etkinliği ve etiği sorgulayan akademik çalışmalar, hakemli araştırmalar ve dergi makaleleri bulacaksınız. Destekleyici çalışmaların kapsamlı analizi dahil olmak üzere daha fazla bilgi için <a>Society for Evidence-Based Gender Medicine (SEGM)</a>'e bakın."
   },
@@ -746,7 +851,24 @@
       "flowConnections": "Akış bağlantıları",
       "male": "Erkek",
       "female": "Kadın",
-      "noData": "Seçilen filtreler için yol verisi mevcut değil"
+      "noData": "Seçilen filtreler için yol verisi mevcut değil",
+      "labels": {
+        "Male": "Erkek",
+        "Female": "Kadın",
+        "Unknown": "Bilinmiyor",
+        "Before 18": "18'den önce",
+        "After 18": "18'den sonra",
+        "Puberty Blockers": "Ergenlik engelleyiciler",
+        "No Blockers": "Engelleyici yok",
+        "Took Hormones": "Hormon kullandı",
+        "Social Only": "Sadece sosyal",
+        "Top Surgery": "Üst cerrahi",
+        "Bottom Surgery": "Alt cerrahi",
+        "No Surgery": "Ameliyat yok",
+        "Regrets Transitioning": "Geçişten pişmanlık duyuyor",
+        "Doesn't Regret Transitioning": "Geçişten pişmanlık duymuyor",
+        "Not Stated": "Belirtilmemiş"
+      }
     }
   },
   "contact": {
@@ -828,5 +950,21 @@
     "research": "/research",
     "chat": "/chat",
     "login": "/login"
+  },
+  "hcaptcha": {
+    "title": "İnsan Olduğunu Doğrula",
+    "description": "Sohbeti kullanmaya devam etmek için lütfen CAPTCHA'yı tamamlayın. Bu, kötüye kullanımı önlememize ve hizmeti çalışır durumda tutmamıza yardımcı olur.",
+    "error": {
+      "title": "CAPTCHA Hatası",
+      "description": "CAPTCHA yüklenemedi. Lütfen sayfayı yenileyin ve tekrar deneyin."
+    }
+  },
+  "statsPage": {
+    "title": "Anonim İstatistikler",
+    "description": "Detransisyon hikayeleri ve deneyimlerinden elde edilen anonimleştirilmiş detransisyon istatistikleri. Veriler, geçiş ve detransisyon kalıplarını ortaya çıkarmak için /r/detrans'daki kullanıcı yorumlarından derlenir. Yalnızca tam bir hikaye ve zaman çizelgesi oluşturacak kadar bilgi paylaşan kullanıcılar dahil edilir.",
+    "metadata": {
+      "title": "Anonim İstatistikler | detrans.ai",
+      "description": "Yaş dağılımı, süre, nedenler ve yollar dahil olmak üzere detransisyon ve geçiş kalıpları hakkında anonim istatistikler."
+    }
   }
 }

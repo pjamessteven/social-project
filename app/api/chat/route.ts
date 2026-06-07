@@ -15,18 +15,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
 
-// import chat utils
 import {
   pauseForHumanInput,
   processWorkflowStream,
   runWorkflow,
   toDataStream,
-} from "./utils";
+} from "@/app/lib/agents";
 
-// import workflow factory and settings from local file
 import { MAX_MESSAGE_LENGTH } from "@/app/lib/constants";
 import { stopAgentEvent } from "@llamaindex/workflow";
-import { initSettings } from "./app/settings";
+import { initSettings } from "@/app/lib/agents/settings";
 import { workflowFactory } from "./app/workflow";
 import { getChatCachedResponse } from "./utils/cacheHelpers";
 

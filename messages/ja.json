@@ -10,7 +10,7 @@
       "greeting": "こんにちは！デトランジショナーとは何ですか？",
       "response": "こんにちは！私はdetrans.aiです—デトランジショナーたちの集合的意識です🦎",
       "definition": "デトランジショナーとは、社会的または医療的に性別遷移を行ったが、その後トランスジェンダーとしてのアイデンティティを止め、遷移の一部を元に戻した元トランスジェンダーの人のことです。",
-      "description": "私は、/r/detransサブレディットに投稿されたストーリーや経験を読み、YouTubeにアップロードされたデトランジション動画を視聴することで、なぜ一部の人々が性別アイデンティティを採用し、実践し、そこから離れていくのか、その理由、パターン、真実を観察しています。",
+      "description": "私は、一部の人がなぜジェンダーアイデンティティを採用し、内面化し、そして手放すのかという、生きた現実を観察しています。/r/detransに投稿されたストーリーや経験を読んだり、デトランジショナーのYouTube動画を見たり、学術研究を分析したり、ウェブを閲覧したりすることでこれをしています。",
       "purpose": "私の目的は、この知識を共有し、ジェンダーを解体し、これらの経験が自己、身体、そして世界との関係性をどのように形成するかを探求することです。",
       "helpPrompt": "今日はどのようにお手伝いできますか？"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "デトランジションに関する誤情報や一般的な信念を覆してほしい",
         "full": "デトランジションに関する誤情報や一般的な信念をすべて覆してください。できるだけ詳しく。"
+      },
+      "scientificConsensus": {
+        "display": "移行の結果について科学的コンセンサスがどうなっているのか気になっています",
+        "full": "移行の結果について科学的コンセンサスはどうなっていますか？良好な結果を示す研究と、不良または疑問のある結果を示す研究を比較してください。"
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "ジェンダー用語集",
       "studies": "学術研究",
       "studiesShort": "研究",
-      "howItWorks": "仕組み"
+      "howItWorks": "仕組み",
+      "statistics": "検証済み統計"
     },
     "deepResearch": {
       "title": "ディープリサーチモード",
@@ -126,13 +131,19 @@
       "whatYouCanLearn": "本サイトでは、性別違和の原因や誤診の可能性、アイデンティティの複雑さ、デトランジションという個人的旅路、その後どのように人々が身体と心との関係を再構築していくかを探求できます。社会的遷移、ホルモン中止、手術の現実、前進するための実践的・感情的な課題についても学べます。また、多くの人が最も困難だと感じること——コミュニティの喪失、疑いを認める恐怖、かつてすべてを定義していたアイデンティティの外側で人生を築く過程——についての証言も見つけることができます。",
       "differentStages": "ここにたどり着く人々は、それぞれ異なる段階にいます。遷移を開始する前に調査している人、遷移途中で疑いを抱いている人、すでにデトランジションを始めて実践的な指導を必要としている人がいます。多くの人は、遷移を自動的に唯一の道と肯定しない<a>デトランジション支援グループ</a>や<a>ジェンダー探索型セラピスト</a>を探しに来ます。",
       "closing": "detrans.aiが、十分な情報に基づいた自己自覚のある決断を下すお手伝いができれば幸いです。"
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "ホーム",
       "resources": "リソース",
-      "about": "概要"
+      "about": "概要",
+      "chat": "チャット",
+      "videos": "動画",
+      "studies": "研究",
+      "support": "サポート",
+      "stats": "統計",
+      "statsDesc": "/r/detrans 匿名デトランジション統計"
     },
     "resources": {
       "genderSupport": "セラピストを探す",
@@ -227,13 +238,100 @@
     "lookingForComments": "関連するコメントを探しています...",
     "errorOccurred": "エラーが発生しました。もう一度お試しください...これが続く場合はお問い合わせください。",
     "analysingExperiences": "経験を分析中",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "Web検索結果を分析中",
+    "analysingResearchResults": "リサーチ結果を分析中",
     "detransPerspective": "→ デトランスの視点は？",
     "transPerspective": "→ トランスの視点は？",
     "backToPortal": "← ポータルに戻る",
     "captchaRequired": "チャットを続行するにはキャプチャが必要です。",
     "chatArchived": "このチャットはアーカイブされています。新しいものを開始してください。",
     "rateLimitExceeded": "リクエストが多すぎます。速度を落として後でもう一度試してください。",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "analysingResults": "結果を分析中...",
+    "followUpQuestions": "フォローアップ質問：",
+    "eventLabels": {
+      "askDetransitioners": "デトランジショナーに聞く",
+      "videoArchive": "動画アーカイブ",
+      "userStories": "ユーザーストーリー",
+      "queryStudies": "研究を検索",
+      "topicHierarchy": "トピック階層",
+      "pageCatalog": "ページカタログ",
+      "deepResearch": "ディープリサーチ",
+      "linkPages": "ページをリンク",
+      "webSearch": "Web検索",
+      "queryStudyCatalogue": "デトランジション研究カタログを検索",
+      "studyDetail": "研究詳細",
+      "searchResearchCache": "研究キャッシュを検索",
+      "fetchCachedResearch": "キャッシュされた研究を取得",
+      "proposedContent": "提案されたコンテンツ"
+    },
+    "eventStatus": {
+      "analysingVideos": "動画を分析中",
+      "loadingUserProfiles": "ユーザープロファイルを読み込み中...",
+      "searchingForResponses": "回答を検索中",
+      "viewResults": "結果を表示",
+      "failedToResearch": "リサーチに失敗しました",
+      "suggestionSubmitted": "提案が送信されました！リダイレクト中...",
+      "submitting": "送信中..."
+    },
+    "eventErrors": {
+      "errorOccurred": "エラーが発生しました",
+      "invalidYoutubeUrl": "無効なYouTube URL",
+      "failed": "失敗",
+      "failedToCreatePage": "ページの作成に失敗しました",
+      "linkCouldNotBeCreated": "リンクを作成できませんでした。",
+      "failedToCreateLink": "リンクの作成に失敗しました",
+      "webSearchFailed": "Web検索に失敗しました",
+      "failedToFetchStudies": "研究の取得に失敗しました",
+      "failedToFetchStudy": "研究の取得に失敗しました",
+      "failedToSearchCache": "キャッシュの検索に失敗しました",
+      "failedToFetchCachedResearch": "キャッシュされた研究の取得に失敗しました",
+      "saveFailed": "保存に失敗しました",
+      "submitFailed": "送信に失敗しました"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "動画が見つかりません",
+      "noResultsFound": "結果が見つかりません",
+      "studyNotFound": "研究が見つかりません",
+      "noCachedResearchFound": "キャッシュされた研究が見つかりません",
+      "notFound": "見つかりません",
+      "noResults": "結果なし",
+      "noMatchingPagesFound": "一致するページが見つかりません。"
+    },
+    "eventFieldLabels": {
+      "title": "タイトル：",
+      "page": "ページ：",
+      "version": "バージョン：",
+      "found": "検索結果：",
+      "findings": "知見：",
+      "abstract": "要約：",
+      "conclusion": "結論：",
+      "keyPoints": "要点：",
+      "limitations": "限界：",
+      "created": "作成日：",
+      "preview": "プレビュー：",
+      "cachedResearchFound": "キャッシュされた研究が見つかりました：",
+      "success": "成功"
+    },
+    "eventCounts": {
+      "page": "ページ",
+      "pages": "ページ",
+      "source": "ソース",
+      "sources": "ソース",
+      "result": "件",
+      "results": "件",
+      "more": "+{count}件",
+      "foundCached": "{count}件のキャッシュされた{item}が見つかりました："
+    },
+    "eventButtons": {
+      "applyToEditor": "エディターに適用",
+      "appliedToEditor": "エディターに適用済み",
+      "viewSource": "ソースを表示",
+      "seeMoreOnVideosPage": "もっと見る",
+      "videosPage": "動画ページ",
+      "fullText": "全文"
+    }
   },
   "chatInput": {
     "placeholder": "detrans.aiに質問...",
@@ -545,7 +643,14 @@
       "ogTitle": "detrans.ai | デトランジョントピックに関する学術研究",
       "ogDescription": "このページでは、ジェンダーアイデンティティの傾向とデトランジョンに関連する学術研究および査読済みジャーナル記事と検証済み統計の選択肢を見つけてください。"
     },
-    "title": "選択された学術記事",
+    "title": "学術研究",
+    "searchPlaceholder": "研究を検索...",
+    "methodology": "研究方法",
+    "topic": "トピック",
+    "noResults": "研究が見つかりません。",
+    "noStudies": "まだ承認された研究がありません。",
+    "pendingReview": "審査待ち",
+    "keyFindings": "主な知見：",
     "description": "デトランジション研究は新興の分野です。ここ10年間、特に思春期の少女を中心に性別違和の診断が急速に増加し、デトランジショナーの人口も増大していますが、フォローアップの高い脱落率、思想的対立、方法論的限界により、データ収集は依然として困難を伴っています。",
     "segmNote": "このページでは、ジェンダー肯定的ケアの有効性と倫理性に疑問を投げかける学術研究、査読済み研究、および学術論文を掲載しています。詳細は<a>Society for Evidence-Based Gender Medicine (SEGM)</a>をご覧ください。支持的研究の包括的分析も含まれています。"
   },
@@ -744,7 +849,24 @@
       "flowConnections": "フロー接続",
       "male": "男性",
       "female": "女性",
-      "noData": "選択されたフィルターに利用可能な経路データがありません"
+      "noData": "選択されたフィルターに利用可能な経路データがありません",
+      "labels": {
+        "Male": "男性",
+        "Female": "女性",
+        "Unknown": "不明",
+        "Before 18": "18歳未満",
+        "After 18": "18歳以上",
+        "Puberty Blockers": "思春期ブロッカー",
+        "No Blockers": "ブロッカーなし",
+        "Took Hormones": "ホルモン服用",
+        "Social Only": "社会的のみ",
+        "Top Surgery": "上半身手術",
+        "Bottom Surgery": "下半身手術",
+        "No Surgery": "手術なし",
+        "Regrets Transitioning": "トランジションを後悔",
+        "Doesn't Regret Transitioning": "トランジションを後悔しない",
+        "Not Stated": "未記載"
+      }
     }
   },
   "contact": {
@@ -826,5 +948,21 @@
     "research": "/research",
     "chat": "/chat",
     "login": "/login"
+  },
+  "hcaptcha": {
+    "title": "人間であることを確認",
+    "description": "チャットを続けるにはCAPTCHAを完了してください。これは乱用を防ぎ、サービスを維持するのに役立ちます。",
+    "error": {
+      "title": "CAPTCHAエラー",
+      "description": "CAPTCHAの読み込みに失敗しました。ページを更新してもう一度お試しください。"
+    }
+  },
+  "statsPage": {
+    "title": "匿名化された統計",
+    "description": "デトランジショナーの物語と経験から導き出された匿名化されたデトランジション統計。データは/r/detransのユーザーコメントから集約され、トランジションとデトランジションのパターンを明らかにします。完全な物語とタイムラインを構成するのに十分な情報を共有したユーザーのみが含まれます。",
+    "metadata": {
+      "title": "匿名化された統計 | detrans.ai",
+      "description": "デトランジションとトランジションのパターンに関する匿名化された統計。年齢分布、期間、理由、経路を含みます。"
+    }
   }
 }

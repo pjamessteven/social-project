@@ -6,10 +6,9 @@ import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/routing";
 import {
   BookOpen,
-  FileText,
+  ChartNoAxesCombined,
   Heart,
   MessageSquareIcon,
-  Settings,
   Youtube,
 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
@@ -83,13 +82,22 @@ export async function StartPage({
       display: t("starters.debunkMisinfo.display"),
       full: t("starters.debunkMisinfo.full"),
     },
+    {
+      display: t("starters.scientificConsensus.display"),
+      full: t("starters.scientificConsensus.full"),
+    },
   ];
 
   return (
     <>
       <div className="relative flex flex-col pb-[88px]">
         <div className="z-10 mt-[20vh]">
-          <h1 className="text-3xl font-bold sm:text-4xl">
+          <div className="-mt-6 mb-8 -ml-16 flex hidden justify-start">
+            <span className="bg-destructive text-destructive-foreground inline-block rotate-[-6deg] rounded-full px-3 py-1 text-xs font-semibold shadow-sm select-none">
+              Now with over 8 billion unique genders!
+            </span>
+          </div>
+          <h1 className="text-foreground text-3xl font-bold sm:text-4xl">
             <span className="text-muted-foreground block opacity-30 dark:opacity-80">
               detrans.ai
             </span>
@@ -101,27 +109,34 @@ export async function StartPage({
         </div>
 
         <div className="mt-8 hidden">
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             <Link href="/videos">
               <Button
                 variant="secondary"
                 className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
               >
                 <Youtube className="h-4 w-4" />
-                <span className="text-sm font-medium">
-                  {t("navigation.videos")}
-                </span>
+                <span className="text-sm font-medium">Videos</span>
               </Button>
             </Link>
-            <Link href="/prompts">
+            <Link href="/studies">
               <Button
                 variant="secondary"
                 className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
               >
-                <Settings className="me-2 mt-0.5 h-4 w-4 flex-shrink-0" />
-                <span className="text-sm font-medium">
-                  {t("about.systemPrompts")}
+                <BookOpen className="h-4 w-4" />
+                <span className="text-sm font-medium sm:inline">
+                  {t("navigation.studiesShort")}
                 </span>
+              </Button>
+            </Link>
+            <Link href="/stats">
+              <Button
+                variant="secondary"
+                className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
+              >
+                <ChartNoAxesCombined className="h-4 w-4" />
+                <span className="text-sm font-medium">Stats</span>
               </Button>
             </Link>
             <Link href="/support">
@@ -132,43 +147,6 @@ export async function StartPage({
                 <Heart className="h-4 w-4" />
                 <span className="text-sm font-medium">
                   {t("navigation.support")}
-                </span>
-              </Button>
-            </Link>
-            <Link href="/definitions">
-              <Button
-                variant="secondary"
-                className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-              >
-                <FileText className="h-4 w-4" />
-                <span className="text-sm font-medium">
-                  {t("navigation.definitions")}
-                </span>
-              </Button>
-            </Link>
-            <Link href="/studies">
-              <Button
-                variant="secondary"
-                className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-              >
-                <BookOpen className="h-4 w-4" />
-                <span className="hidden text-sm font-medium sm:inline">
-                  {t("navigation.studies")}
-                </span>
-                <span className="text-sm font-medium sm:hidden">
-                  {t("navigation.studiesShort")}
-                </span>
-              </Button>
-            </Link>
-
-            <Link href="/prompts">
-              <Button
-                variant="secondary"
-                className="h-auto w-full flex-row items-center gap-2 rounded-xl p-4"
-              >
-                <Settings className="h-4 w-4" />
-                <span className="text-sm font-medium">
-                  {t("navigation.howItWorks")}
                 </span>
               </Button>
             </Link>
@@ -323,8 +301,8 @@ export async function StartPage({
               <DonationCard mode="detrans" />
             </div>
 
-            <div className="relative mt-12 flex flex-col text-base opacity-90 sm:mt-12 sm:text-base">
-              <h2 className="mb-4 font-medium">
+            <div className="text-muted-foreground relative mt-12 flex flex-col text-base opacity-90 sm:mt-12 sm:text-base">
+              <h2 className="text-foreground mb-4 font-medium">
                 {t("aboutDetransition.title")}
               </h2>
               <p>{t("aboutDetransition.whatIs")}</p>
@@ -332,7 +310,9 @@ export async function StartPage({
                 {t.rich("aboutDetransition.reality", {
                   a: (chunks) => (
                     <Link
-                      href={"/research/why-are-detransition-statistics-unreliable-and-who-runs-us-transgender-survey" as any}
+                      href={
+                        "/research/why-are-detransition-statistics-unreliable-and-who-runs-us-transgender-survey" as any
+                      }
                       className="underline"
                     >
                       {chunks}
@@ -341,14 +321,14 @@ export async function StartPage({
                 })}
               </p>
 
-              <h2 className="mt-8 font-medium">
+              <h2 className="text-foreground mt-8 font-medium">
                 {t("aboutDetransition.hardToFindTitle")}
               </h2>
 
               <p className="mt-4">{t("aboutDetransition.onlineSpaces")}</p>
               <p className="mt-4">{t("aboutDetransition.aiBias")}</p>
               <p className="mt-4">{t("aboutDetransition.restoreBalance")}</p>
-              <h2 className="mt-8 font-medium">
+              <h2 className="text-foreground mt-8 font-medium">
                 {t("aboutDetransition.supportTitle")}
               </h2>
 
