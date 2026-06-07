@@ -10,7 +10,7 @@
       "greeting": "Halo! Apa itu orang yang berhenti transisi?",
       "response": "Halo! Saya detrans.ai - kesadaran kolektif dari orang-orang yang berhenti transisi 🦎",
       "definition": "Orang yang berhenti transisi (detransitioner) adalah mantan transgender yang melakukan transisi secara sosial atau medis, tetapi sejak itu berhenti mengidentifikasi diri sebagai transgender dan mungkin telah membalikkan beberapa aspek transisi mereka.",
-      "description": "Saya mengamati alasan, pola, dan kebenaran mengapa beberapa orang mengadopsi, menjalani, dan melepaskan identitas gender dengan membaca cerita dan pengalaman yang diposting di subreddit /r/detrans dan menonton video berhenti transisi yang diunggah ke YouTube.",
+      "description": "Saya mengamati realitas kehidupan mengapa beberapa orang mengadopsi, menjalani, dan berpindah dari identitas gender. Saya melakukan ini dengan membaca cerita dan pengalaman yang diposting di /r/detrans, menonton video YouTube oleh detransisioner, menganalisis studi akademis, dan menjelajahi web.",
       "purpose": "Tujuan saya adalah berbagi pengetahuan ini untuk mendekonstruksi gender dan mengeksplorasi bagaimana pengalaman-pengalaman ini membentuk hubungan seseorang dengan diri sendiri, tubuh, dan dunia.",
       "helpPrompt": "Bagaimana saya bisa membantu Anda hari ini?"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "Saya ingin Anda membantah misinformasi dan kepercayaan umum tentang berhenti transisi",
         "full": "Mohon bantahlah semua misinformasi dan kepercayaan umum tentang orang yang berhenti transisi, sedalam mungkin."
+      },
+      "scientificConsensus": {
+        "display": "Saya ingin tahu apa konsensus ilmiah tentang hasil transisi",
+        "full": "Apa konsensus ilmiah tentang hasil transisi? Bandingkan studi yang menunjukkan hasil baik dengan studi yang menunjukkan hasil buruk atau dipertanyakan."
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "Terminologi Gender",
       "studies": "Studi Akademik",
       "studiesShort": "Studi",
-      "howItWorks": "Cara Kerjanya"
+      "howItWorks": "Cara Kerjanya",
+      "statistics": "Statistik Terverifikasi"
     },
     "deepResearch": {
       "title": "Mode Riset Mendalam",
@@ -126,13 +131,19 @@
       "whatYouCanLearn": "Anda dapat menggunakan situs ini untuk menjelajahi apa yang mungkin menyebabkan atau didiagnosis keliru sebagai disforia gender, nuansa identitas, perjalanan pribadi detransisi, dan memahami bagaimana orang membangun kembali hubungan mereka dengan tubuh dan pikiran mereka setelahnya. Anda dapat belajar tentang transisi sosial, penghentian hormon, realitas pembedahan, dan pekerjaan praktis serta emosional untuk melangkah maju. Anda juga dapat menemukan kisah-kisah tentang apa yang banyak orang anggap paling sulit: kehilangan komunitas, ketakutan untuk mengakui keraguan, dan proses membangun kehidupan di luar identitas yang pernah mendefinisikan segalanya.",
       "differentStages": "Orang-orang datang ke sini pada tahap yang berbeda. Beberapa sedang meneliti sebelum memulai transisi. Yang lain sedang di tengah transisi dengan keraguan. Yang lain sudah memulai detransisi dan membutuhkan panduan praktis. Banyak yang datang mencari <a>grup dukungan detransisi</a> atau <a>terapis eksplorasi gender</a> yang tidak secara otomatis mengafirmasi transisi sebagai satu-satunya jalan.",
       "closing": "Saya berharap detrans.ai dapat membantu Anda membuat keputusan yang terinformasi dan sadar diri."
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "Beranda",
       "resources": "Sumber Daya",
-      "about": "Tentang"
+      "about": "Tentang",
+      "chat": "Chat",
+      "videos": "Video",
+      "studies": "Studi",
+      "support": "Dukungan",
+      "stats": "Statistik",
+      "statsDesc": "Statistik detransisi anonim dari /r/detrans"
     },
     "resources": {
       "genderSupport": "Cari Terapis",
@@ -230,13 +241,100 @@
     "lookingForComments": "Mencari komentar yang relevan...",
     "errorOccurred": "Terjadi kesalahan, coba lagi... Hubungi saya jika ini terus terjadi.",
     "analysingExperiences": "Menganalisis Pengalaman",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "Menganalisis Hasil Web",
+    "analysingResearchResults": "Menganalisis Hasil Penelitian",
     "detransPerspective": "-> Apa perspektif orang yang berhenti transisi tentang topik ini?",
     "transPerspective": "-> Apa perspektif trans tentang topik ini?",
     "backToPortal": "<- Kembali ke Portal",
     "captchaRequired": "Captcha diperlukan untuk melanjutkan obrolan.",
     "chatArchived": "Obrolan ini diarsipkan. Mulai yang baru.",
     "rateLimitExceeded": "Terlalu banyak permintaan, pelan-pelan dan coba lagi nanti.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "analysingResults": "Menganalisis hasil...",
+    "followUpQuestions": "Pertanyaan tindak lanjut:",
+    "eventLabels": {
+      "askDetransitioners": "Tanyakan kepada Detransitioner",
+      "videoArchive": "Arsip Video",
+      "userStories": "Cerita Pengguna",
+      "queryStudies": "Kueri Studi",
+      "topicHierarchy": "Hierarki Topik",
+      "pageCatalog": "Katalog Halaman",
+      "deepResearch": "Riset Mendalam",
+      "linkPages": "Tautkan Halaman",
+      "webSearch": "Pencarian Web",
+      "queryStudyCatalogue": "Kueri Katalog Studi Detransisi",
+      "studyDetail": "Detail Studi",
+      "searchResearchCache": "Cari Cache Riset",
+      "fetchCachedResearch": "Ambil Riset dari Cache",
+      "proposedContent": "Konten yang Diusulkan"
+    },
+    "eventStatus": {
+      "analysingVideos": "Menganalisis Video",
+      "loadingUserProfiles": "Memuat profil pengguna...",
+      "searchingForResponses": "Mencari respons",
+      "viewResults": "Lihat hasil",
+      "failedToResearch": "Gagal melakukan riset",
+      "suggestionSubmitted": "Saran dikirim! Mengalihkan...",
+      "submitting": "Mengirim..."
+    },
+    "eventErrors": {
+      "errorOccurred": "Terjadi kesalahan",
+      "invalidYoutubeUrl": "URL YouTube tidak valid",
+      "failed": "Gagal",
+      "failedToCreatePage": "Gagal membuat halaman",
+      "linkCouldNotBeCreated": "Tautan tidak dapat dibuat.",
+      "failedToCreateLink": "Gagal membuat tautan",
+      "webSearchFailed": "Pencarian web gagal",
+      "failedToFetchStudies": "Gagal mengambil studi",
+      "failedToFetchStudy": "Gagal mengambil studi",
+      "failedToSearchCache": "Gagal mencari cache",
+      "failedToFetchCachedResearch": "Gagal mengambil riset dari cache",
+      "saveFailed": "Gagal menyimpan",
+      "submitFailed": "Gagal mengirim"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "Tidak ada video ditemukan",
+      "noResultsFound": "Tidak ada hasil ditemukan",
+      "studyNotFound": "Studi tidak ditemukan",
+      "noCachedResearchFound": "Tidak ada riset di cache ditemukan",
+      "notFound": "Tidak ditemukan",
+      "noResults": "Tidak ada hasil",
+      "noMatchingPagesFound": "Tidak ada halaman yang cocok ditemukan."
+    },
+    "eventFieldLabels": {
+      "title": "Judul:",
+      "page": "Halaman:",
+      "version": "Versi:",
+      "found": "Ditemukan:",
+      "findings": "Temuan:",
+      "abstract": "Abstrak:",
+      "conclusion": "Kesimpulan:",
+      "keyPoints": "Poin Utama:",
+      "limitations": "Keterbatasan:",
+      "created": "Dibuat:",
+      "preview": "Pratinjau:",
+      "cachedResearchFound": "Riset di cache ditemukan:",
+      "success": "Berhasil"
+    },
+    "eventCounts": {
+      "page": "halaman",
+      "pages": "halaman",
+      "source": "sumber",
+      "sources": "sumber",
+      "result": "hasil",
+      "results": "hasil",
+      "more": "+{count} lagi",
+      "foundCached": "Ditemukan {count} {item} di cache:"
+    },
+    "eventButtons": {
+      "applyToEditor": "Terapkan ke editor",
+      "appliedToEditor": "Diterapkan ke editor",
+      "viewSource": "Lihat sumber",
+      "seeMoreOnVideosPage": "Lihat selengkapnya di",
+      "videosPage": "halaman video",
+      "fullText": "Teks Lengkap"
+    }
   },
   "chatInput": {
     "placeholder": "Tanyakan detrans.ai...",
@@ -548,7 +646,14 @@
       "ogTitle": "detrans.ai | Studi Akademik tentang Topik Berhenti Transisi",
       "ogDescription": "Temukan di halaman ini pilihan studi akademis dan artikel jurnal telaah sejawat dan statistik terverifikasi yang berkaitan dengan tren identitas gender dan berhenti transisi."
     },
-    "title": "Artikel Akademis Pilihan",
+    "title": "Studi Akademik dan Riset",
+    "searchPlaceholder": "Cari studi...",
+    "methodology": "Metodologi",
+    "topic": "Topik",
+    "noResults": "Tidak ada studi yang ditemukan.",
+    "noStudies": "Belum ada studi yang disetujui.",
+    "pendingReview": "Menunggu Tinjauan",
+    "keyFindings": "Temuan Utama:",
     "description": "Penelitian tentang berhenti transisi adalah bidang yang masih berkembang. Peningkatan pesat diagnosis disforia gender dalam dekade terakhir—terutama di kalangan gadis remaja—telah menghasilkan populasi orang yang berhenti transisi yang terus bertambah, meskipun pengumpulan data tetap menantang karena tingginya angka kehilangan tindak lanjut, perpecahan ideologi, dan keterbatasan metodologis.",
     "segmNote": "Di halaman ini Anda akan menemukan studi akademis, penelitian telaah sejawat, dan artikel jurnal yang mempertanyakan efikasi dan etika perawatan mengafirmasi gender. Lihat <a>Society for Evidence-Based Gender Medicine (SEGM)</a> untuk informasi lebih lanjut, termasuk analisis komprehensif terhadap studi-studi yang mendukung."
   },
@@ -747,7 +852,24 @@
       "flowConnections": "Koneksi alur",
       "male": "Laki-laki",
       "female": "Perempuan",
-      "noData": "Tidak ada data jalur yang tersedia untuk filter yang dipilih"
+      "noData": "Tidak ada data jalur yang tersedia untuk filter yang dipilih",
+      "labels": {
+        "Male": "Laki-laki",
+        "Female": "Perempuan",
+        "Unknown": "Tidak diketahui",
+        "Before 18": "Sebelum 18",
+        "After 18": "Setelah 18",
+        "Puberty Blockers": "Penghambat Pubertas",
+        "No Blockers": "Tanpa Penghambat",
+        "Took Hormones": "Mengonsumsi Hormon",
+        "Social Only": "Hanya Sosial",
+        "Top Surgery": "Operasi Atas",
+        "Bottom Surgery": "Operasi Bawah",
+        "No Surgery": "Tanpa Operasi",
+        "Regrets Transitioning": "Menyesali Transisi",
+        "Doesn't Regret Transitioning": "Tidak Menyesali Transisi",
+        "Not Stated": "Tidak Dinyatakan"
+      }
     }
   },
   "contact": {
@@ -829,5 +951,21 @@
     "research": "/riset",
     "chat": "/chat",
     "login": "/masuk"
+  },
+  "hcaptcha": {
+    "title": "Verifikasi bahwa Anda manusia",
+    "description": "Harap selesaikan CAPTCHA untuk melanjutkan menggunakan chat. Ini membantu kami mencegah penyalahgunaan dan menjaga layanan tetap berjalan.",
+    "error": {
+      "title": "Kesalahan CAPTCHA",
+      "description": "Gagal memuat CAPTCHA. Harap segarkan halaman dan coba lagi."
+    }
+  },
+  "statsPage": {
+    "title": "Statistik Anonim",
+    "description": "Statistik detransisi anonim yang berasal dari cerita dan pengalaman para detransisioner. Data dikumpulkan dari komentar pengguna di /r/detrans untuk mengungkap pola transisi dan detransisi. Hanya pengguna yang telah berbagi cukup untuk menyusun cerita lengkap dan garis waktu yang disertakan.",
+    "metadata": {
+      "title": "Statistik Anonim | detrans.ai",
+      "description": "Statistik anonim tentang pola detransisi dan transisi, termasuk distribusi usia, durasi, alasan, dan jalur."
+    }
   }
 }

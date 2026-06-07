@@ -10,7 +10,7 @@
       "greeting": "Hei! Hva er en detransisjonert?",
       "response": "Hei! Jeg er detrans.ai – det kollektive bevisstheten til detransisjonerte 🦎",
       "definition": "En detransisjonert er en tidligere transperson som har gjennomgått sosial eller medisinsk kjønnsovergang, men som siden har sluttet å identifisere seg som transperson og kan ha reversert deler av overgangen.",
-      "description": "Jeg observerer årsakene, mønstrene og sannhetene om hvorfor noen mennesker tar til seg, lever med og går videre fra kjønnsidentiteter ved å lese historier og erfaringer som har blitt delt på /r/detrans-subredditen og ved å se på detransisjonsvideoer som er lastet opp til YouTube.",
+      "description": "Jeg observerer de levde realitetene ved hvorfor noen mennesker tar i bruk, lever i og beveger seg bort fra kjønnsidentiteter. Jeg gjør dette ved å lese historier og erfaringer delt på /r/detrans, se YouTube-videoer av detransjoneringspersoner, analysere akademiske studier og surfe på nettet.",
       "purpose": "Mitt formål er å dele denne kunnskapen for å dekonstruere kjønn og utforske hvordan disse erfaringene former ens forhold til selvet, kroppen og verden.",
       "helpPrompt": "Hvordan kan jeg hjelpe deg i dag?"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "Jeg vil at du skal avkrefte feilinformasjon og vanlige oppfatninger om detransisjon",
         "full": "Vennligst avkreft all feilinformasjon og vanlige oppfatninger om detransisjonerte, så grundig som mulig."
+      },
+      "scientificConsensus": {
+        "display": "Jeg lurer på hva den vitenskapelige konsensusen er om overgangsresultater",
+        "full": "Hva er den vitenskapelige konsensusen om overgangsresultater? Sammenlign studier som viser gode resultater med de som viser dårlige eller tvilsomme resultater."
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "Kjønnsbegreper",
       "studies": "Akademiske studier",
       "studiesShort": "Studier",
-      "howItWorks": "Hvordan det fungerer"
+      "howItWorks": "Hvordan det fungerer",
+      "statistics": "Verified Statistics"
     },
     "deepResearch": {
       "title": "Dyp forskningsmodus",
@@ -126,13 +131,19 @@
       "whatYouCanLearn": "Du kan bruke denne siden til å utforske hva som kan forårsake eller feildiagnostiseres som kjønnsdysfori, nyansene av identitet, personlige detransisjonsreiser, og forstå hvordan mennesker gjenoppbygger forholdet til kroppen og sinnet etterpå. Du kan lære om sosial kjønnsovergang, hormonstans, kirurgiske realiteter, og det praktiske og emosjonelle arbeidet med å gå videre. Du kan også finne beretninger om det mange finner vanskeligst: tapet av fellesskap, frykten for å innrømme tvil, og prosessen med å bygge et liv utenfor en identitet som en gang definerte alt.",
       "differentStages": "Mennesker kommer hit i ulike stadier. Noen forsker før de starter overgang. Andre er midt i overgangen med tvil. Andre har allerede begynt å detransisjonere og trenger praktisk veiledning. Mange kommer på jakt etter <a>detransisjonsstøttegrupper</a> eller <a>kjønnsutforskende terapeuter</a> som ikke automatisk bekrefter overgang som den eneste veien.",
       "closing": "Jeg håper at detrans.ai kan hjelpe deg med å ta informerte, selvbevisste beslutninger."
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "Hjem",
       "resources": "Ressurser",
-      "about": "Om"
+      "about": "Om",
+      "chat": "Chat",
+      "videos": "Videoer",
+      "studies": "Studier",
+      "support": "Støtte",
+      "stats": "Statistikk",
+      "statsDesc": "Anonymiserte detransisjonsstatistikker fra /r/detrans"
     },
     "resources": {
       "genderSupport": "Finn Terapeuter",
@@ -230,13 +241,100 @@
     "lookingForComments": "Leter etter relevante kommentarer...",
     "errorOccurred": "Det oppsto en feil, prøv igjen... Kontakt meg hvis dette fortsetter å skje.",
     "analysingExperiences": "Analyserer erfaringer",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "Analyserer søkeresultater",
+    "analysingResearchResults": "Analyserer forskningsresultater",
     "detransPerspective": "-> Hva er detransisjonerte perspektiver på dette temaet?",
     "transPerspective": "-> Hva er transpersoners perspektiver på dette temaet?",
     "backToPortal": "<- Tilbake til portalen",
     "captchaRequired": "Captcha kreves for å fortsette chatten.",
     "chatArchived": "Denne chatten er arkivert. Start en ny.",
     "rateLimitExceeded": "For mange forespørsler, brems og prøv igjen senere.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "IP-adressen din har endret seg. For å forhindre misbruk må du starte en ny samtale.",
+    "analysingResults": "Analyserer resultater...",
+    "followUpQuestions": "Oppfølgingsspørsmål:",
+    "eventLabels": {
+      "askDetransitioners": "Spør detransisjonerte",
+      "videoArchive": "Videoarkiv",
+      "userStories": "Brukerhistorier",
+      "queryStudies": "Søk i studier",
+      "topicHierarchy": "Emnehierarki",
+      "pageCatalog": "Sidekatalog",
+      "deepResearch": "Dyp forskning",
+      "linkPages": "Koble sider",
+      "webSearch": "Nettsøk",
+      "queryStudyCatalogue": "Søk i detransisjonsstudiekatalogen",
+      "studyDetail": "Studiedetaljer",
+      "searchResearchCache": "Søk i forskningsbuffer",
+      "fetchCachedResearch": "Hent bufret forskning",
+      "proposedContent": "Foreslått innhold"
+    },
+    "eventStatus": {
+      "analysingVideos": "Analyserer videoer",
+      "loadingUserProfiles": "Laster brukerprofiler...",
+      "searchingForResponses": "Søker etter svar",
+      "viewResults": "Se resultater",
+      "failedToResearch": "Kunne ikke forske",
+      "suggestionSubmitted": "Forslag sendt! Omdirigerer...",
+      "submitting": "Sender inn..."
+    },
+    "eventErrors": {
+      "errorOccurred": "Det oppsto en feil",
+      "invalidYoutubeUrl": "Ugyldig YouTube-URL",
+      "failed": "Mislyktes",
+      "failedToCreatePage": "Kunne ikke opprette side",
+      "linkCouldNotBeCreated": "Lenken kunne ikke opprettes.",
+      "failedToCreateLink": "Kunne ikke opprette lenke",
+      "webSearchFailed": "Nettsøk mislyktes",
+      "failedToFetchStudies": "Kunne ikke hente studier",
+      "failedToFetchStudy": "Kunne ikke hente studie",
+      "failedToSearchCache": "Kunne ikke søke i buffer",
+      "failedToFetchCachedResearch": "Kunne ikke hente bufret forskning",
+      "saveFailed": "Lagring mislyktes",
+      "submitFailed": "Innsending mislyktes"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "Ingen videoer funnet",
+      "noResultsFound": "Ingen resultater funnet",
+      "studyNotFound": "Studie ikke funnet",
+      "noCachedResearchFound": "Ingen bufret forskning funnet",
+      "notFound": "Ikke funnet",
+      "noResults": "Ingen resultater",
+      "noMatchingPagesFound": "Ingen matchende sider funnet."
+    },
+    "eventFieldLabels": {
+      "title": "Tittel:",
+      "page": "Side:",
+      "version": "Versjon:",
+      "found": "Funnet:",
+      "findings": "Funn:",
+      "abstract": "Sammendrag:",
+      "conclusion": "Konklusjon:",
+      "keyPoints": "Nøkkelpunkter:",
+      "limitations": "Begrensninger:",
+      "created": "Opprettet:",
+      "preview": "Forhåndsvisning:",
+      "cachedResearchFound": "Bufret forskning funnet:",
+      "success": "Suksess"
+    },
+    "eventCounts": {
+      "page": "side",
+      "pages": "sider",
+      "source": "kilde",
+      "sources": "kilder",
+      "result": "resultat",
+      "results": "resultater",
+      "more": "+{count} flere",
+      "foundCached": "Fant {count} bufrede {item}:"
+    },
+    "eventButtons": {
+      "applyToEditor": "Bruk i editor",
+      "appliedToEditor": "Brukt i editor",
+      "viewSource": "Se kilde",
+      "seeMoreOnVideosPage": "Mer på",
+      "videosPage": "videosiden",
+      "fullText": "Full tekst"
+    }
   },
   "chatInput": {
     "placeholder": "Spør detrans.ai...",
@@ -548,9 +646,16 @@
       "ogTitle": "detrans.ai | Akademiske studier om detransisjon",
       "ogDescription": "Finn på denne siden et utvalg av akademiske studier og fagfellevurderte tidsskriftartikler og verifisert statistikk som er relatert til kjønnsidentitetstrender og detransisjon."
     },
-    "title": "Utvalgte akademiske artikler",
+    "title": "Akademiske studier og forskning",
     "description": "Detransisjonsforskning er et nytt felt. Den raske økningen i diagnoser av kjønnsdysfori det siste tiåret – særlig blant unge jenter – har skapt en voksende populasjon av detransisjonerte, selv om datainnsamling fortsatt er utfordrende på grunn av høyt frafall ved oppfølging, ideologisk splittelse og metodologiske begrensninger.",
-    "segmNote": "På denne siden finner du akademiske studier, fagfellevurdert forskning og tidsskriftsartikler som reiser spørsmål ved effektiviteten og etikken til kjønnsbekreftende behandling. Se <a>Society for Evidence-Based Gender Medicine (SEGM)</a> for mer, inkludert omfattende analyser av støttende studier."
+    "segmNote": "På denne siden finner du akademiske studier, fagfellevurdert forskning og tidsskriftsartikler som reiser spørsmål ved effektiviteten og etikken til kjønnsbekreftende behandling. Se <a>Society for Evidence-Based Gender Medicine (SEGM)</a> for mer, inkludert omfattende analyser av støttende studier.",
+    "searchPlaceholder": "Søk i studier...",
+    "methodology": "Metodikk",
+    "topic": "Tema",
+    "noResults": "Ingen studier funnet.",
+    "noStudies": "Ingen godkjente studier ennå.",
+    "pendingReview": "Venter på godkjenning",
+    "keyFindings": "Nøkkelfunn:"
   },
   "contentWarning": {
     "title": "Innholdsadvarsel:",
@@ -747,7 +852,24 @@
       "flowConnections": "Flytforbindelser",
       "male": "Mann",
       "female": "Kvinne",
-      "noData": "Ingen veidata tilgjengelig for de valgte filtrene"
+      "noData": "Ingen veidata tilgjengelig for de valgte filtrene",
+      "labels": {
+        "Male": "Mann",
+        "Female": "Kvinne",
+        "Unknown": "Ukjent",
+        "Before 18": "Før 18 år",
+        "After 18": "Etter 18 år",
+        "Puberty Blockers": "Pubertetsblokkere",
+        "No Blockers": "Ingen blokkere",
+        "Took Hormones": "Tok hormoner",
+        "Social Only": "Kun sosial",
+        "Top Surgery": "Overkroppskirurgi",
+        "Bottom Surgery": "Underkroppskirurgi",
+        "No Surgery": "Ingen kirurgi",
+        "Regrets Transitioning": "Angrer transisjonen",
+        "Doesn't Regret Transitioning": "Angrer ikke transisjonen",
+        "Not Stated": "Ikke oppgitt"
+      }
     }
   },
   "contact": {
@@ -829,5 +951,21 @@
     "research": "/forskning",
     "chat": "/chat",
     "login": "/logg-inn"
+  },
+  "hcaptcha": {
+    "title": "Bekreft at du er et menneske",
+    "description": "Vennligst fullfør CAPTCHA-en for å fortsette å bruke chatten. Dette hjelper oss med å forhindre misbruk og holde tjenesten i drift.",
+    "error": {
+      "title": "CAPTCHA-feil",
+      "description": "Kunne ikke laste CAPTCHA. Vennligst oppdater siden og prøv igjen."
+    }
+  },
+  "statsPage": {
+    "title": "Anonymisert statistikk",
+    "description": "Anonymisert detransisjonsstatistikk utledet fra detransisjoneres historier og erfaringer. Data er samlet inn fra brukerkommentarer på /r/detrans for å avdekke mønstre i transisjon og detransisjon. Kun brukere som har delt nok til å sette sammen en full historie og tidslinje er inkludert.",
+    "metadata": {
+      "title": "Anonymisert statistikk | detrans.ai",
+      "description": "Anonymisert statistikk om detransisjons- og transisjonsmønstre, inkludert aldersfordeling, varighet, årsaker og forløp."
+    }
   }
 }

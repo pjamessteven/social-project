@@ -15,17 +15,15 @@ import { desc, eq, sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
-// import chat utils
 import {
   pauseForHumanInput,
   processWorkflowStream,
   runWorkflow,
   toDataStream,
-} from "./utils";
+} from "@/app/lib/agents";
 
-// import workflow factory and settings from local file
 import { stopAgentEvent } from "@llamaindex/workflow";
-import { initSettings } from "./app/settings";
+import { initSettings } from "@/app/lib/agents/settings";
 import { workflowFactory } from "./app/workflow";
 
 initSettings();

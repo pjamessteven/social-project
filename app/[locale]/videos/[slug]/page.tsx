@@ -5,6 +5,7 @@ import {
   getYouTubeVideoId,
   parseVideoIdFromSlug,
 } from "@/app/lib/video-utils";
+import { localesInfo } from "@/i18n/locales";
 import { Link } from "@/i18n/routing";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -132,7 +133,7 @@ export async function generateMetadata({
           author: video.author,
           sex: video.sex === "f" ? t("female") : t("male"),
         }),
-      url: `https://detrans.ai/videos/${slug}`,
+      url: `https://detrans.ai/${locale}/videos/${slug}`,
       siteName: "detrans.ai",
       images: [
         {
@@ -156,6 +157,25 @@ export async function generateMetadata({
           sex: video.sex === "f" ? t("female") : t("male"),
         }),
       images: [thumbnailUrl],
+    },
+    alternates: {
+      canonical: `https://detrans.ai/${locale}/videos/${slug}`,
+      languages: Object.fromEntries(
+        localesInfo.map((l) => [
+          l.code === "en"
+            ? "en-US"
+            : l.code === "es"
+              ? "es-ES"
+              : l.code === "fr"
+                ? "fr-FR"
+                : l.code === "zh-cn"
+                  ? "zh-CN"
+                  : l.code === "zh-tw"
+                    ? "zh-TW"
+                    : `${l.code}-${l.code.toUpperCase()}`,
+          `https://detrans.ai/${l.code}/videos/${slug}`,
+        ]),
+      ),
     },
   };
 }
@@ -199,8 +219,42 @@ export default async function VideoPage({ params }: VideoPageProps) {
   const youtubeVideoId = getYouTubeVideoId(video.url);
   const embedUrl = getYouTubeEmbedUrl(youtubeVideoId);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: localizedTitle,
+    description: localizedDescription || localizedSummary,
+    thumbnailUrl: `https://img.youtube.com/vi/${youtubeVideoId}/maxresdefault.jpg`,
+    uploadDate: video.createdAt,
+    duration: video.duration ? `PT${video.duration}S` : undefined,
+    contentUrl: video.url,
+    embedUrl: embedUrl,
+    author: {
+      "@type": "Person",
+      name: video.author,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "detrans.ai",
+      url: "https://detrans.ai",
+    },
+    url: `https://detrans.ai/${locale}/videos/${slug}`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://detrans.ai/${locale}/videos/${slug}`,
+    },
+    about: {
+      "@type": "Thing",
+      name: "detransition",
+    },
+  };
+
   return (
     <div className="prose dark:prose-invert pb-16 lg:max-w-none lg:pt-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="mb-8">
         <Link
           href="/videos"

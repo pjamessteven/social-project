@@ -10,7 +10,7 @@
       "greeting": "Cześć! Co to jest osoba po detransycji?",
       "response": "Cześć! Jestem detrans.ai – zbiorową świadomością osób po detransycji 🦎",
       "definition": "Osoba po detransycji to była osoba transpłciowa, która przeszła tranzycję społeczną lub medyczną, ale od tego czasu przestała identyfikować się jako transpłciowa i być może cofnęła niektóre aspekty swojej tranzycji.",
-      "description": "Obserwuję powody, wzorce i prawdy, dlaczego niektórzy ludzie przyjmują, przeżywają i przechodzą dalej od tożsamości płciowych, czytając historie i doświadczenia opublikowane w subreddicie /r/detrans oraz oglądając filmy o detransycji przesłane na YouTube.",
+      "description": "Obserwuję przeżywane rzeczywistości dotyczące tego, dlaczego niektóre osoby przyjmują, zamieszkują i porzucają tożsamości płciowe. Robię to czytając historie i doświadczenia opublikowane na /r/detrans, oglądając filmy na YouTube autorstwa detranzycjonistów, analizując badania akademickie i przeglądając internet.",
       "purpose": "Moim celem jest dzielenie się tą wiedzą w celu dekonstrukcji pojęcia płci oraz eksploracji, jak te doświadczenia kształtują relację z samym sobą, ciałem i światem.",
       "helpPrompt": "Jak mogę Ci dzisiaj pomóc?"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "Chcę, żebyś obalił/obiała dezinformację i powszechne przekonania na temat detransycji",
         "full": "Proszę o obalenie całej dezinformacji i powszechnych przekonań na temat osób po detransycji, jak najbardziej szczegółowo."
+      },
+      "scientificConsensus": {
+        "display": "Zastanawiam się, jaki jest konsensus naukowy dotyczący wyników tranzycji",
+        "full": "Jaki jest konsensus naukowy dotyczący wyników tranzycji? Porównaj badania pokazujące dobre wyniki z tymi pokazującymi słabe lub wątpliwe wyniki."
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "Terminologia płciowa",
       "studies": "Studia akademickie",
       "studiesShort": "Studia",
-      "howItWorks": "Jak to działa"
+      "howItWorks": "Jak to działa",
+      "statistics": "Zweryfikowane Statystyki"
     },
     "deepResearch": {
       "title": "Tryb głębokiego badania",
@@ -126,13 +131,19 @@
       "whatYouCanLearn": "Możesz użyć tej strony, by zbadać, co może powodować lub być błędnie zdiagnozowane jako dysforia płciowa, niuanse tożsamości, osobiste podróże detransycji oraz zrozumieć, jak ludzie odbudowują relację ze swoim ciałem i umysłem. Możesz dowiedzieć się o tranzycji społecznej, zaprzestaniu hormonów, chirurgicznych realiach oraz praktycznej i emocjonalnej pracy związanej z przejściem do przodu. Możesz także znaleźć relacje o tym, co wielu uważa za najtrudniejsze: utratę społeczności, strach przed przyznaniem się do wątpliwości oraz proces budowania życia poza tożsamością, która kiedyś definiowała wszystko.",
       "differentStages": "Ludzie przychodzą tu na różnych etapach. Niektórzy badają temat przed rozpoczęciem tranzycji. Inni są w trakcie tranzycji z wątpliwościami. Inni już rozpoczęli detransycję i potrzebują praktycznych wskazówek. Wielu szuka <a>grup wsparcia w detransycji</a> lub <a>terapeutów eksploracyjnych płci</a>, którzy nie afirmują automatycznie tranzycji jako jedynej ścieżki.",
       "closing": "Mam nadzieję, że detrans.ai pomoże Ci podjąć świadome, dojrzałe decyzje."
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "Strona główna",
       "resources": "Zasoby",
-      "about": "O nas"
+      "about": "O nas",
+      "chat": "Czat",
+      "videos": "Wideo",
+      "studies": "Badania",
+      "support": "Wsparcie",
+      "stats": "Statystyki",
+      "statsDesc": "Zanonimizowane statystyki detranzycji z /r/detrans"
     },
     "resources": {
       "genderSupport": "Znajdź Terapeutów",
@@ -229,13 +240,100 @@
     "lookingForComments": "Szukam odpowiednich komentarzy...",
     "errorOccurred": "Wystąpił błąd, spróbuj ponownie... Skontaktuj się ze mną, jeśli to się powtarza.",
     "analysingExperiences": "Analizowanie doświadczeń",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "Analizowanie wyników wyszukiwania",
+    "analysingResearchResults": "Analizowanie wyników badań",
     "detransPerspective": "-> Jakie są perspektywy osób po detransycji na ten temat?",
     "transPerspective": "-> Jakie są perspektywy osób transpłciowych na ten temat?",
     "backToPortal": "<- Powrót do portalu",
     "captchaRequired": "Wymagane captcha, aby kontynuować czat.",
     "chatArchived": "Ten czat jest zarchiwizowany. Zacznij nowy.",
     "rateLimitExceeded": "Zbyt wiele żądań, zwolnij i spróbuj ponownie później.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "Twój adres IP uległ zmianie. Aby zapobiec nadużyciom, musisz rozpocząć nową rozmowę.",
+    "analysingResults": "Analizowanie wyników...",
+    "followUpQuestions": "Pytania uzupełniające:",
+    "eventLabels": {
+      "askDetransitioners": "Zapytaj osoby po detransycji",
+      "videoArchive": "Archiwum wideo",
+      "userStories": "Historie użytkowników",
+      "queryStudies": "Wyszukaj badania",
+      "topicHierarchy": "Hierarchia tematów",
+      "pageCatalog": "Katalog stron",
+      "deepResearch": "Głębokie badanie",
+      "linkPages": "Połącz strony",
+      "webSearch": "Wyszukiwanie w sieci",
+      "queryStudyCatalogue": "Przeszukaj katalog badań detransycji",
+      "studyDetail": "Szczegóły badania",
+      "searchResearchCache": "Przeszukaj pamięć podręczną badań",
+      "fetchCachedResearch": "Pobierz zbuforowane badania",
+      "proposedContent": "Proponowana treść"
+    },
+    "eventStatus": {
+      "analysingVideos": "Analizowanie filmów",
+      "loadingUserProfiles": "Ładowanie profili użytkowników...",
+      "searchingForResponses": "Szukanie odpowiedzi",
+      "viewResults": "Zobacz wyniki",
+      "failedToResearch": "Badanie nie powiodło się",
+      "suggestionSubmitted": "Sugestia wysłana! Przekierowywanie...",
+      "submitting": "Wysyłanie..."
+    },
+    "eventErrors": {
+      "errorOccurred": "Wystąpił błąd",
+      "invalidYoutubeUrl": "Nieprawidłowy URL YouTube",
+      "failed": "Niepowodzenie",
+      "failedToCreatePage": "Nie udało się utworzyć strony",
+      "linkCouldNotBeCreated": "Nie udało się utworzyć linku.",
+      "failedToCreateLink": "Nie udało się utworzyć linku",
+      "webSearchFailed": "Wyszukiwanie w sieci nie powiodło się",
+      "failedToFetchStudies": "Nie udało się pobrać badań",
+      "failedToFetchStudy": "Nie udało się pobrać badania",
+      "failedToSearchCache": "Nie udało się przeszukać pamięci podręcznej",
+      "failedToFetchCachedResearch": "Nie udało się pobrać zbuforowanych badań",
+      "saveFailed": "Zapis nie powiódł się",
+      "submitFailed": "Wysłanie nie powiodło się"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "Nie znaleziono filmów",
+      "noResultsFound": "Nie znaleziono wyników",
+      "studyNotFound": "Badanie nie znalezione",
+      "noCachedResearchFound": "Nie znaleziono zbuforowanych badań",
+      "notFound": "Nie znaleziono",
+      "noResults": "Brak wyników",
+      "noMatchingPagesFound": "Nie znaleziono pasujących stron."
+    },
+    "eventFieldLabels": {
+      "title": "Tytuł:",
+      "page": "Strona:",
+      "version": "Wersja:",
+      "found": "Znaleziono:",
+      "findings": "Wnioski:",
+      "abstract": "Streszczenie:",
+      "conclusion": "Wniosek:",
+      "keyPoints": "Kluczowe punkty:",
+      "limitations": "Ograniczenia:",
+      "created": "Utworzono:",
+      "preview": "Podgląd:",
+      "cachedResearchFound": "Znaleziono zbuforowane badania:",
+      "success": "Sukces"
+    },
+    "eventCounts": {
+      "page": "strona",
+      "pages": "stron",
+      "source": "źródło",
+      "sources": "źródła",
+      "result": "wynik",
+      "results": "wyniki",
+      "more": "+{count} więcej",
+      "foundCached": "Znaleziono {count} zbuforowanych {item}:"
+    },
+    "eventButtons": {
+      "applyToEditor": "Zastosuj w edytorze",
+      "appliedToEditor": "Zastosowano w edytorze",
+      "viewSource": "Zobacz źródło",
+      "seeMoreOnVideosPage": "Więcej na",
+      "videosPage": "stronie filmów",
+      "fullText": "Pełny tekst"
+    }
   },
   "chatInput": {
     "placeholder": "Zapytaj detrans.ai...",
@@ -547,9 +645,16 @@
       "ogTitle": "detrans.ai | Studia akademickie na temat detransycji",
       "ogDescription": "Znajdź na tej stronie wybór badań akademickich i recenzowanych artykułów czasopism oraz zweryfikowanych statystyk związanych z trendami tożsamości płciowej i detransycją."
     },
-    "title": "Wybrane artykuły akademickie",
+    "title": "Badania akademickie i nauka",
     "description": "Badania nad detransycją to dziedzina dopiero się rozwijająca. Gwałtowny wzrost diagnoz dysforii płciowej w minionej dekadzie – szczególnie wśród dziewcząt w wieku nastoletnim – doprowadził do powstania rosnącej populacji osób po detransycji, choć zbieranie danych pozostaje trudne ze względu na wysoki poziom utraty kontaktu w okresie obserwacji, podziały ideologiczne i ograniczenia metodologiczne.",
-    "segmNote": "Na tej stronie znajdziesz badania akademickie, recenzowane publikacje naukowe oraz artykuły czasopism, które kwestionują skuteczność i etykę opieki afirmującej płeć. Zobacz <a>Society for Evidence-Based Gender Medicine (SEGM)</a>, aby dowiedzieć się więcej, w tym o kompleksowych analizach badań wspierających."
+    "segmNote": "Na tej stronie znajdziesz badania akademickie, recenzowane publikacje naukowe oraz artykuły czasopism, które kwestionują skuteczność i etykę opieki afirmującej płeć. Zobacz <a>Society for Evidence-Based Gender Medicine (SEGM)</a>, aby dowiedzieć się więcej, w tym o kompleksowych analizach badań wspierających.",
+    "searchPlaceholder": "Szukaj badań...",
+    "methodology": "Metodologia",
+    "topic": "Temat",
+    "noResults": "Nie znaleziono badań.",
+    "noStudies": "Brak zatwierdzonych badań.",
+    "pendingReview": "Oczekuje na recenzję",
+    "keyFindings": "Kluczowe ustalenia:"
   },
   "contentWarning": {
     "title": "Ostrzeżenie o treści:",
@@ -746,7 +851,24 @@
       "flowConnections": "Połączenia przepływu",
       "male": "Mężczyzna",
       "female": "Kobieta",
-      "noData": "Brak danych o ścieżkach dla wybranych filtrów"
+      "noData": "Brak danych o ścieżkach dla wybranych filtrów",
+      "labels": {
+        "Male": "Mężczyzna",
+        "Female": "Kobieta",
+        "Unknown": "Nieznana",
+        "Before 18": "Przed 18 rokiem życia",
+        "After 18": "Po 18 roku życia",
+        "Puberty Blockers": "Bloker dojrzewania",
+        "No Blockers": "Bez blokerów",
+        "Took Hormones": "Przyjmował hormony",
+        "Social Only": "Tylko tranzycja społeczna",
+        "Top Surgery": "Operacja górnej części ciała",
+        "Bottom Surgery": "Operacja dolnej części ciała",
+        "No Surgery": "Bez operacji",
+        "Regrets Transitioning": "Żałuje tranzycji",
+        "Doesn't Regret Transitioning": "Nie żałuje tranzycji",
+        "Not Stated": "Nie podano"
+      }
     }
   },
   "contact": {
@@ -828,5 +950,21 @@
     "research": "/research",
     "chat": "/chat",
     "login": "/login"
+  },
+  "hcaptcha": {
+    "title": "Potwierdź, że jesteś człowiekiem",
+    "description": "Proszę wypełnić CAPTCHA, aby kontynuować korzystanie z czatu. Pomaga nam to zapobiegać nadużyciom i utrzymać usługę w działaniu.",
+    "error": {
+      "title": "Błąd CAPTCHA",
+      "description": "Nie udało się załadować CAPTCHA. Proszę odświeżyć stronę i spróbować ponownie."
+    }
+  },
+  "statsPage": {
+    "title": "Anonimowe statystyki",
+    "description": "Anonimowe statystyki detranzycji oparte na historiach i doświadczeniach osób, które przeszły detranzycję. Dane są zbierane z komentarzy użytkowników na /r/detrans, aby ujawnić wzorce w tranzycji i detranzycji. Uwzględnieni są tylko użytkownicy, którzy podzielili się wystarczającą ilością informacji, aby złożyć pełną historię i oś czasu.",
+    "metadata": {
+      "title": "Anonimowe statystyki | detrans.ai",
+      "description": "Anonimowe statystyki dotyczące wzorców detranzycji i tranzycji, w tym rozkładu wieku, czasu trwania, powodów i ścieżek."
+    }
   }
 }

@@ -489,3 +489,24 @@ export class CachedOpenAI extends OpenAI {
     return metadata;
   }
 }
+
+export class CustomOpenAI extends OpenAI {
+  private contextWindowSize: number;
+
+  constructor(
+    init: ConstructorParameters<typeof OpenAI>[0] & {
+      contextWindow?: number;
+    },
+  ) {
+    const { contextWindow, ...openAIInit } = init;
+    super(openAIInit);
+    this.contextWindowSize = contextWindow ?? 128000;
+  }
+
+  get metadata() {
+    return {
+      ...super.metadata,
+      contextWindow: this.contextWindowSize,
+    };
+  }
+}

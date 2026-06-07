@@ -15,6 +15,13 @@
       "when": 1750243200000,
       "tag": "0008_normalize_tags_and_translations",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1750329600000,
+      "tag": "0010_wiki_schema",
+      "breakpoints": true
     }
   ]
 }

@@ -1,12 +1,11 @@
 import { agent } from "@llamaindex/workflow";
 import { tool } from "llamaindex";
 import z from "zod";
-import { getStudiesIndex } from "../../chat/app/data";
-import { PostgresCache, makeHashedKey } from "../../shared/cache";
+import { getCommentsIndex, getStudiesIndex } from "@/app/lib/agents/data";
+import { PostgresCache, makeHashedKey } from "@/app/lib/agents/cache";
 import { CachedOpenAI } from "../../shared/llm";
-import { agentPrompt } from "../utils";
-import { getCommentsIndex } from "./data";
-import { initSettings } from "./settings";
+import { agentPrompt } from "../utils/prompts";
+import { initSettings } from "@/app/lib/agents/settings";
 
 type FilterConfig = {
   sex?: string;

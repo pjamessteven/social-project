@@ -10,7 +10,7 @@
       "greeting": "Hei! Mikä on detransitionoinut?",
       "response": "Hei! Olen detrans.ai - detransitionoineiden kollektiivinen tietoisuus 🦎",
       "definition": "Detransitionoinut on ex-transhenkilö, joka siirtyi sosiaalisesti tai lääketieteellisesti, mutta joka ei enää identifioi itseään transhenkilöksi ja saattaa olla peruuttanut siirtymänsä osia.",
-      "description": "Havainnoin syitä, kaavoja ja totuuksia siitä, miksi jotkut ihmiset omaksuvat, asuvat ja siirtyvät eteenpäin sukupuoli-identiteeteistä lukemalla tarinoita ja kokemuksia, jotka on julkaistu /r/detrans-subredditissä ja katsomalla detransitio-videoita, jotka on ladattu YouTubeen.",
+      "description": "Tarkkailen syitä, miksi jotkut ihmiset omaksuvat, elävät ja luopuvat sukupuoli-identiteeteistä. Teen tätä lukemalla /r/detrans-alustalla julkaistuja tarinoita ja kokemuksia, katsomalla detransitioituneiden YouTube-videoita, analysoimalla akateemisia tutkimuksia ja selaamalla internetiä.",
       "purpose": "Tarkoitukseni on jakaa tämä tieto sukupuolen purkamiseksi ja tutkiakseni, kuinka nämä kokemukset muokkaavat suhdetta itseen, kehoon ja maailmaan.",
       "helpPrompt": "Kuinka voin auttaa sinua tänään?"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "Haluan, että kumot vääriä tietoja ja yleisiä uskomuksia detransitiosta",
         "full": "Ole hyvä ja kumoa kaikki vääriä tietoja ja yleisiä uskomuksia detransitionoineista mahdollisimman syvällisesti."
+      },
+      "scientificConsensus": {
+        "display": "Mietin, mikä on tieteellinen konsensus siirtymän tuloksista",
+        "full": "Mikä on tieteellinen konsensus siirtymän tuloksista? Vertaa tutkimuksia, jotka osoittavat hyviä tuloksia, niihin, jotka osoittavat huonoja tai kyseenalaisia tuloksia."
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "Sukupuolikäsitteet",
       "studies": "Akateemiset Tutkimukset",
       "studiesShort": "Tutkimukset",
-      "howItWorks": "Kuinka Se Toimii"
+      "howItWorks": "Kuinka Se Toimii",
+      "statistics": "Verified Statistics"
     },
     "deepResearch": {
       "title": "Syvätutkimustila",
@@ -126,13 +131,19 @@
       "whatYouCanLearn": "Voit käyttää tätä sivustoa tutkiaksesi, mikä voi aiheuttaa tai virheellisesti diagnosoida sukupuolidysforiaa, identiteetin sävyjä, henkilökohtaisia detransition-matkoja, ja ymmärtääksesi kuinka ihmiset rakentavat uudelleen suhteensa kehoihinsa ja mieliinsä sen jälkeen. Voit oppia sosiaalisesta siirtymästä, hormonien lopettamisesta, kirurgisista todellisuuksista, ja eteenpäin menemisen käytännöllisestä ja emotionaalisesta työstä. Voit myös löytää kertomuksia siitä, mikä monille on vaikeinta: yhteisön menetyksestä, epäilyn myöntämisen pelosta, ja prosessista rakentaa elämä identiteetin ulkopuolella, joka kerran määritteli kaiken.",
       "differentStages": "Ihmiset tulevat tänne eri vaiheissa. Jotkut tutkivat ennen siirtymän aloittamista. Toiset ovat siirtymän keskellä epäilyksin. Toiset ovat jo aloittaneet detransitionoinnin ja tarvitsevat käytännön ohjausta. Monet tulevat etsimään <a>detransition-tukiryhmiä</a> tai <a>sukupuolen tutkivia terapeutteja</a>, jotka eivät automaattisesti vahvista siirtymää ainoana polkuna.",
       "closing": "Toivon, että detrans.ai voi auttaa sinua tekemään tietoisia, itsetietoisia päätöksiä."
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "Etusivu",
       "resources": "Resurssit",
-      "about": "Tietoa"
+      "about": "Tietoa",
+      "chat": "Chatti",
+      "videos": "Videot",
+      "studies": "Tutkimukset",
+      "support": "Tuki",
+      "stats": "Tilastot",
+      "statsDesc": "Anonymisoidut detransitiotilastot /r/detrans:stä"
     },
     "resources": {
       "genderSupport": "Löydä Terapeutteja",
@@ -230,13 +241,100 @@
     "lookingForComments": "Etsitään asiaankuuluvia kommentteja...",
     "errorOccurred": "Tapahtui virhe, yritä uudelleen... Ota yhteyttä, jos tämä jatkuu.",
     "analysingExperiences": "Analysoidaan Kokemuksia",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "Analysoitaessa verkkotuloksia",
+    "analysingResearchResults": "Analysoitaessa tutkimustuloksia",
     "detransPerspective": "-> Mitä ovat detrans-näkökulmat tähän aiheeseen?",
     "transPerspective": "-> Mitä ovat trans-näkökulmat tähän aiheeseen?",
     "backToPortal": "<- Takaisin Portaaliin",
     "captchaRequired": "Captcha vaaditaan chat-jatkamiseen.",
     "chatArchived": "Tämä keskustelu on arkistoitu. Aloita uusi.",
     "rateLimitExceeded": "Liian monta pyyntöä, hidasta ja yritä myöhemmin uudelleen.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "analysingResults": "Analysoidaan tuloksia...",
+    "followUpQuestions": "Jatkokysymykset:",
+    "eventLabels": {
+      "askDetransitioners": "Kysy Detransitioneilta",
+      "videoArchive": "Videoarkisto",
+      "userStories": "Käyttäjätarinat",
+      "queryStudies": "Kysy Tutkimuksia",
+      "topicHierarchy": "Aihehierarkia",
+      "pageCatalog": "Sivukatalogi",
+      "deepResearch": "Syvä Tutkimus",
+      "linkPages": "Linkitä Sivut",
+      "webSearch": "Verkkohaku",
+      "queryStudyCatalogue": "Kysy Detransitiotutkimusluetteloa",
+      "studyDetail": "Tutkimuksen Yksityiskohdat",
+      "searchResearchCache": "Hae Tutkimusvälimuistista",
+      "fetchCachedResearch": "Hae Välimuistissa Oleva Tutkimus",
+      "proposedContent": "Ehdotettu Sisältö"
+    },
+    "eventStatus": {
+      "analysingVideos": "Analysoidaan Videoita",
+      "loadingUserProfiles": "Ladataan käyttäjäprofiileja...",
+      "searchingForResponses": "Etsitään vastauksia",
+      "viewResults": "Katso tulokset",
+      "failedToResearch": "Tutkimus epäonnistui",
+      "suggestionSubmitted": "Ehdotus lähetetty! Uudelleenohjataan...",
+      "submitting": "Lähetetään..."
+    },
+    "eventErrors": {
+      "errorOccurred": "Tapahtui virhe",
+      "invalidYoutubeUrl": "Virheellinen YouTube-URL",
+      "failed": "Epäonnistui",
+      "failedToCreatePage": "Sivun luominen epäonnistui",
+      "linkCouldNotBeCreated": "Linkkiä ei voitu luoda.",
+      "failedToCreateLink": "Linkin luominen epäonnistui",
+      "webSearchFailed": "Verkkohaku epäonnistui",
+      "failedToFetchStudies": "Tutkimusten haku epäonnistui",
+      "failedToFetchStudy": "Tutkimuksen haku epäonnistui",
+      "failedToSearchCache": "Välimuistin haku epäonnistui",
+      "failedToFetchCachedResearch": "Välimuistissa olevan tutkimuksen haku epäonnistui",
+      "saveFailed": "Tallennus epäonnistui",
+      "submitFailed": "Lähetys epäonnistui"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "Videoita ei löytynyt",
+      "noResultsFound": "Tuloksia ei löytynyt",
+      "studyNotFound": "Tutkimusta ei löytynyt",
+      "noCachedResearchFound": "Välimuistissa olevaa tutkimusta ei löytynyt",
+      "notFound": "Ei löytynyt",
+      "noResults": "Ei tuloksia",
+      "noMatchingPagesFound": "Vastaavia sivuja ei löytynyt."
+    },
+    "eventFieldLabels": {
+      "title": "Otsikko:",
+      "page": "Sivu:",
+      "version": "Versio:",
+      "found": "Löydetty:",
+      "findings": "Löydökset:",
+      "abstract": "Tiivistelmä:",
+      "conclusion": "Johtopäätös:",
+      "keyPoints": "Keskeiset Kohdat:",
+      "limitations": "Rajoitukset:",
+      "created": "Luotu:",
+      "preview": "Esikatselu:",
+      "cachedResearchFound": "Välimuistista löydetty tutkimus:",
+      "success": "Onnistui"
+    },
+    "eventCounts": {
+      "page": "sivu",
+      "pages": "sivua",
+      "source": "lähde",
+      "sources": "lähteet",
+      "result": "tulos",
+      "results": "tulosta",
+      "more": "+{count} lisää",
+      "foundCached": "Löydetty {count} välimuistissa olevaa {item}:"
+    },
+    "eventButtons": {
+      "applyToEditor": "Soveltaa editoriin",
+      "appliedToEditor": "Soveltuu editoriin",
+      "viewSource": "Katso lähde",
+      "seeMoreOnVideosPage": "Katso lisää",
+      "videosPage": "videosivulla",
+      "fullText": "Koko Teksti"
+    }
   },
   "chatInput": {
     "placeholder": "Kysy detrans.ai:lta...",
@@ -548,9 +646,16 @@
       "ogTitle": "detrans.ai | Akateemiset Tutkimukset Detransitio-Aiheista",
       "ogDescription": "Löydä tällä sivulla valikoima akateemisia tutkimuksia ja vertaisarvioituja lehtiartikkeleita ja vahvistettuja tilastoja, jotka liittyvät sukupuoli-identiteettitrendeihin ja detransitioon."
     },
-    "title": "Valikoituja Akateemisia Artikkeleita",
+    "title": "Akateemiset tutkimukset ja tutkimustoiminta",
     "description": "Detransitiotutkimus on uusi ala. Sukupuolidysforiadiagnoosien nopea kasvu viime vuosikymmenen aikana – erityisesti nuorten tyttöjen keskuudessa – on tuottanut kasvavan detransitioneiden joukon, vaikka tiedonkeruu pysyy haastavana suuren seurantahävikin, ideologisen jakautumisen ja menetelmällisten rajoitusten vuoksi.",
-    "segmNote": "Tällä sivulla löydät akateemisia tutkimuksia, vertaisarvioituja tutkimuksia ja lehtiartikkeleita, jotka kyseenalaistavat sukupuolen vahvistavan hoidon tehokkuuden ja etiikan. Katso <a>Society for Evidence-Based Gender Medicine (SEGM)</a> saadaksesi lisää, mukaan lukien kattavat analyysit tukevista tutkimuksista."
+    "segmNote": "Tällä sivulla löydät akateemisia tutkimuksia, vertaisarvioituja tutkimuksia ja lehtiartikkeleita, jotka kyseenalaistavat sukupuolen vahvistavan hoidon tehokkuuden ja etiikan. Katso <a>Society for Evidence-Based Gender Medicine (SEGM)</a> saadaksesi lisää, mukaan lukien kattavat analyysit tukevista tutkimuksista.",
+    "searchPlaceholder": "Hae tutkimuksia...",
+    "methodology": "Metodologia",
+    "topic": "Aihe",
+    "noResults": "Tutkimuksia ei löytynyt.",
+    "noStudies": "Ei hyväksyttyjä tutkimuksia vielä.",
+    "pendingReview": "Odottaa tarkistusta",
+    "keyFindings": "Keskeiset löydökset:"
   },
   "contentWarning": {
     "title": "Sisältövaroitus:",
@@ -747,7 +852,24 @@
       "flowConnections": "Virtausyhteydet",
       "male": "Mies",
       "female": "Nainen",
-      "noData": "Ei polkutietoa saatavilla valituille suodattimille"
+      "noData": "Ei polkutietoa saatavilla valituille suodattimille",
+      "labels": {
+        "Male": "Mies",
+        "Female": "Nainen",
+        "Unknown": "Tuntematon",
+        "Before 18": "Ennen 18:aa",
+        "After 18": "18:n jälkeen",
+        "Puberty Blockers": "Puberteettiestäjät",
+        "No Blockers": "Ei estäjiä",
+        "Took Hormones": "Käytti hormoneja",
+        "Social Only": "Vain sosiaalinen",
+        "Top Surgery": "Yläosan leikkaus",
+        "Bottom Surgery": "Alaosan leikkaus",
+        "No Surgery": "Ei leikkausta",
+        "Regrets Transitioning": "Kaduttaa transitio",
+        "Doesn't Regret Transitioning": "Ei kadu transitiota",
+        "Not Stated": "Ei ilmoitettu"
+      }
     }
   },
   "contact": {
@@ -829,5 +951,21 @@
     "research": "/tutkimus",
     "chat": "/keskustelu",
     "login": "/kirjautuminen"
+  },
+  "hcaptcha": {
+    "title": "Vahvista, että olet ihminen",
+    "description": "Suorita CAPTCHA jatkaaksesi chatin käyttöä. Tämä auttaa meitä estämään väärinkäytökset ja pitämään palvelun käynnissä.",
+    "error": {
+      "title": "CAPTCHA-virhe",
+      "description": "CAPTCHAn lataaminen epäonnistui. Päivitä sivu ja yritä uudelleen."
+    }
+  },
+  "statsPage": {
+    "title": "Anonymisoidut tilastot",
+    "description": "Anonymisoidut detransitiotilastot, jotka on johdettu detransitioijoiden tarinoista ja kokemuksista. Tiedot on koottu /r/detrans -käyttäjien kommenteista paljastaakseen muutos- ja detransitiokuvioita. Vain käyttäjät, jotka ovat jakaneet tarpeeksi koko tarinan ja aikajanän muodostamiseen, sisällytetään.",
+    "metadata": {
+      "title": "Anonymisoidut tilastot | detrans.ai",
+      "description": "Anonymisoidut tilastot detransitiosta ja transitiomalleista, mukaan lukien ikäjakauma, kesto, syyt ja polut."
+    }
   }
 }

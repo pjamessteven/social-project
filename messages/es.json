@@ -10,7 +10,7 @@
       "greeting": "¡Hola! ¿Qué es una persona que destransiciona?",
       "response": "¡Hola! Soy detrans.ai - la conciencia colectiva de las personas que destransicionan 🦎",
       "definition": "Una persona que destransiciona es un ex-transgénero que hizo la transición social o médicamente, pero que desde entonces ha dejado de identificarse como transgénero y puede haber revertido aspectos de su transición.",
-      "description": "Observo las razones, patrones y verdades de por qué algunas personas adoptan, habitan y siguen adelante con sus identidades de género leyendo historias y experiencias publicadas en el subreddit /r/detrans y viendo videos de destransición subidos a YouTube.",
+      "description": "Observo las realidades vividas de por qué algunas personas adoptan, habitan y abandonan las identidades de género. Lo hago leyendo historias y experiencias publicadas en /r/detrans, viendo videos de YouTube de personas que han detransicionado, analizando estudios académicos y navegando por internet.",
       "purpose": "Mi propósito es compartir este conocimiento para deconstruir el género y explorar cómo estas experiencias moldean la relación de uno consigo mismo, con su cuerpo y con el mundo.",
       "helpPrompt": "¿Cómo puedo ayudarte hoy?"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "Quiero que refutes la desinformación y creencias comunes sobre la destransición",
         "full": "Por favor, refuta toda la desinformación y creencias comúnmente aceptadas sobre quienes destransicionan, con la mayor profundidad posible."
+      },
+      "scientificConsensus": {
+        "display": "Me pregunto cuál es el consenso científico sobre los resultados de la transición",
+        "full": "¿Cuál es el consenso científico sobre los resultados de la transición? Compara estudios que muestran buenos resultados con aquellos que muestran resultados pobres o cuestionables."
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "Terminología de Género",
       "studies": "Estudios Académicos",
       "studiesShort": "Estudios",
-      "howItWorks": "Cómo Funciona"
+      "howItWorks": "Cómo Funciona",
+      "statistics": "Estadísticas Verificadas"
     },
     "deepResearch": {
       "title": "Modo de Investigación Profunda",
@@ -126,13 +131,19 @@
       "whatYouCanLearn": "Puedes usar este sitio para explorar qué puede causar o ser diagnosticado erróneamente como disforia de género, los matices de la identidad, los viajes personales de destransición, y entender cómo las personas reconstruyen su relación con sus cuerpos y mentes después. Puedes aprender sobre transición social, cesación de hormonas, realidades quirúrgicas, y el trabajo práctico y emocional de seguir adelante. También puedes encontrar relatos de lo que muchos encuentran más difícil: la pérdida de comunidad, el miedo a admitir dudas, y el proceso de construir una vida fuera de una identidad que una vez lo definió todo.",
       "differentStages": "Las personas llegan aquí en diferentes etapas. Algunos están investigando antes de comenzar la transición. Otros están a mitad de la transición con dudas. Otros ya han comenzado a destransicionar y necesitan orientación práctica. Muchos vienen buscando <a>grupos de apoyo para la destransición</a> o <a>terapeutas exploratorios de género</a> que no afirmen automáticamente la transición como el único camino.",
       "closing": "Espero que detrans.ai pueda ayudarte a tomar decisiones informadas y conscientes."
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "Inicio",
       "resources": "Recursos",
-      "about": "Acerca de"
+      "about": "Acerca de",
+      "chat": "Chat",
+      "videos": "Videos",
+      "studies": "Estudios",
+      "support": "Apoyo",
+      "stats": "Estadísticas",
+      "statsDesc": "Estadísticas de detransición anonimizadas de /r/detrans"
     },
     "resources": {
       "genderSupport": "Encontrar Terapeutas",
@@ -141,7 +152,7 @@
       "terminologyDesc": "Definiendo términos y conceptos clave",
       "stories": "Historias y Cronologías",
       "storiesDesc": "De usuarios de /r/detrans",
-      "videos": "Videos de Destransición",
+      "videos": "Videos",
       "videosDesc": "Archivo de memorias personales",
       "studies": "Estudios Revisados por Pares",
       "studiesDesc": "Investigación académica relevante",
@@ -221,13 +232,100 @@
     "lookingForComments": "Buscando comentarios relevantes...",
     "errorOccurred": "Ocurrió un error, inténtalo de nuevo... Contáctame si esto sigue sucediendo.",
     "analysingExperiences": "Analizando Experiencias de Destransición",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "Analizando resultados web",
+    "analysingResearchResults": "Analizando resultados de investigación",
     "detransPerspective": "-> ¿Cuáles son las perspectivas de destransición sobre este tema?",
     "transPerspective": "-> ¿Cuáles son las perspectivas trans sobre este tema?",
     "backToPortal": "<- Volver al Portal",
     "captchaRequired": "Se requiere captcha para continuar el chat.",
     "chatArchived": "Este chat está archivado. Comience uno nuevo.",
     "rateLimitExceeded": "Demasiadas solicitudes, reduzca la velocidad e intente nuevamente más tarde.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "Tu dirección IP ha cambiado. Para prevenir el abuso, debes iniciar una nueva conversación.",
+    "analysingResults": "Analizando resultados...",
+    "followUpQuestions": "Preguntas de seguimiento:",
+    "eventLabels": {
+      "askDetransitioners": "Preguntar a Destransicionadores",
+      "videoArchive": "Archivo de Video",
+      "userStories": "Historias de Usuarios",
+      "queryStudies": "Buscar Estudios",
+      "topicHierarchy": "Jerarquía de Temas",
+      "pageCatalog": "Catálogo de Páginas",
+      "deepResearch": "Investigación Profunda",
+      "linkPages": "Vincular Páginas",
+      "webSearch": "Búsqueda Web",
+      "queryStudyCatalogue": "Consultar Catálogo de Estudios de Destransición",
+      "studyDetail": "Detalle del Estudio",
+      "searchResearchCache": "Buscar en Caché de Investigación",
+      "fetchCachedResearch": "Obtener Investigación en Caché",
+      "proposedContent": "Contenido Propuesto"
+    },
+    "eventStatus": {
+      "analysingVideos": "Analizando Videos",
+      "loadingUserProfiles": "Cargando perfiles de usuario...",
+      "searchingForResponses": "Buscando respuestas",
+      "viewResults": "Ver resultados",
+      "failedToResearch": "Error en la investigación",
+      "suggestionSubmitted": "¡Sugerencia enviada! Redirigiendo...",
+      "submitting": "Enviando..."
+    },
+    "eventErrors": {
+      "errorOccurred": "Ocurrió un error",
+      "invalidYoutubeUrl": "URL de YouTube no válida",
+      "failed": "Error",
+      "failedToCreatePage": "Error al crear la página",
+      "linkCouldNotBeCreated": "No se pudo crear el enlace.",
+      "failedToCreateLink": "Error al crear el enlace",
+      "webSearchFailed": "Error en la búsqueda web",
+      "failedToFetchStudies": "Error al obtener estudios",
+      "failedToFetchStudy": "Error al obtener el estudio",
+      "failedToSearchCache": "Error al buscar en caché",
+      "failedToFetchCachedResearch": "Error al obtener investigación en caché",
+      "saveFailed": "Error al guardar",
+      "submitFailed": "Error al enviar"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "No se encontraron videos",
+      "noResultsFound": "No se encontraron resultados",
+      "studyNotFound": "Estudio no encontrado",
+      "noCachedResearchFound": "No se encontró investigación en caché",
+      "notFound": "No encontrado",
+      "noResults": "Sin resultados",
+      "noMatchingPagesFound": "No se encontraron páginas coincidentes."
+    },
+    "eventFieldLabels": {
+      "title": "Título:",
+      "page": "Página:",
+      "version": "Versión:",
+      "found": "Encontrado:",
+      "findings": "Hallazgos:",
+      "abstract": "Resumen:",
+      "conclusion": "Conclusión:",
+      "keyPoints": "Puntos Clave:",
+      "limitations": "Limitaciones:",
+      "created": "Creado:",
+      "preview": "Vista previa:",
+      "cachedResearchFound": "Investigación en caché encontrada:",
+      "success": "Éxito"
+    },
+    "eventCounts": {
+      "page": "página",
+      "pages": "páginas",
+      "source": "fuente",
+      "sources": "fuentes",
+      "result": "resultado",
+      "results": "resultados",
+      "more": "+{count} más",
+      "foundCached": "Encontrados {count} {item} en caché:"
+    },
+    "eventButtons": {
+      "applyToEditor": "Aplicar al editor",
+      "appliedToEditor": "Aplicado al editor",
+      "viewSource": "Ver fuente",
+      "seeMoreOnVideosPage": "Ver más en la",
+      "videosPage": "página de videos",
+      "fullText": "Texto Completo"
+    }
   },
   "chatInput": {
     "placeholder": "Pregunta a detrans.ai...",
@@ -395,7 +493,24 @@
       "flowConnections": "Conexiones de flujo",
       "male": "Masculino",
       "female": "Femenino",
-      "noData": "No hay datos de caminos disponibles para los filtros seleccionados"
+      "noData": "No hay datos de caminos disponibles para los filtros seleccionados",
+      "labels": {
+        "Male": "Masculino",
+        "Female": "Femenino",
+        "Unknown": "Desconocido",
+        "Before 18": "Antes de 18",
+        "After 18": "Después de 18",
+        "Puberty Blockers": "Bloqueadores de pubertad",
+        "No Blockers": "Sin bloqueadores",
+        "Took Hormones": "Tomó hormonas",
+        "Social Only": "Solo social",
+        "Top Surgery": "Cirugía superior",
+        "Bottom Surgery": "Cirugía inferior",
+        "No Surgery": "Sin cirugía",
+        "Regrets Transitioning": "Lamenta la transición",
+        "Doesn't Regret Transitioning": "No lamenta la transición",
+        "Not Stated": "No indicado"
+      }
     }
   },
   "theme": {
@@ -703,9 +818,16 @@
       "ogTitle": "detrans.ai | Estudios Académicos sobre Temas de Destransición",
       "ogDescription": "Encuentra en esta página una selección de estudios académicos y artículos de revistas revisados por pares y estadísticas verificadas que se relacionan con tendencias de identidad de género y destransición."
     },
-    "title": "Artículos Académicos Seleccionados",
+    "title": "Estudios Académicos e Investigación",
     "description": "La investigación sobre destransición es un campo emergente. El rápido aumento en los diagnósticos de disforia de género en la última década — particularmente entre adolescentes mujeres — ha producido una población creciente de personas que destransicionan, aunque la recolección de datos sigue siendo desafiante debido a la alta pérdida de seguimiento, la división ideológica y las limitaciones metodológicas.",
-    "segmNote": "En esta página encontrarás estudios académicos, investigaciones revisadas por pares y artículos de revistas que cuestionan la eficacia y la ética de la atención de afirmación de género. Consulta la <a>Society for Evidence-Based Gender Medicine (SEGM)</a> para más información, incluyendo un análisis comprehensivo de estudios de apoyo."
+    "segmNote": "En esta página encontrarás estudios académicos, investigaciones revisadas por pares y artículos de revistas que cuestionan la eficacia y la ética de la atención de afirmación de género. Consulta la <a>Society for Evidence-Based Gender Medicine (SEGM)</a> para más información, incluyendo un análisis comprehensivo de estudios de apoyo.",
+    "searchPlaceholder": "Buscar estudios...",
+    "methodology": "Metodología",
+    "topic": "Tema",
+    "noResults": "No se encontraron estudios.",
+    "noStudies": "Aún no hay estudios aprobados.",
+    "pendingReview": "Pendiente de Revisión",
+    "keyFindings": "Hallazgos Clave:"
   },
   "prompts": {
     "metadata": {
@@ -827,5 +949,21 @@
     "research": "/research",
     "chat": "/chat",
     "login": "/login"
+  },
+  "hcaptcha": {
+    "title": "Verifica que eres humano",
+    "description": "Por favor completa el CAPTCHA para continuar usando el chat. Esto nos ayuda a prevenir el abuso y mantener el servicio funcionando.",
+    "error": {
+      "title": "Error de CAPTCHA",
+      "description": "Error al cargar el CAPTCHA. Por favor actualiza la página e intenta de nuevo."
+    }
+  },
+  "statsPage": {
+    "title": "Estadísticas anonimizadas",
+    "description": "Estadísticas anonimizadas sobre la destransición derivadas de las historias y experiencias de personas que han destransicionado. Los datos se agregan a partir de los comentarios de los usuarios en /r/detrans para revelar patrones en la transición y la destransición. Solo se incluyen usuarios que han compartido lo suficiente para armar una historia y cronología completa.",
+    "metadata": {
+      "title": "Estadísticas anonimizadas | detrans.ai",
+      "description": "Estadísticas anonimizadas sobre patrones de destransición y transición, incluyendo distribución de edad, duración, razones y caminos."
+    }
   }
 }

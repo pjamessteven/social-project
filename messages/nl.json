@@ -10,7 +10,7 @@
       "greeting": "Hallo! Wat is een detransitioner?",
       "response": "Hoi! Ik ben detrans.ai - het collectieve bewustzijn van detransitioners",
       "definition": "Een detransitioner is een ex-transgender persoon die sociaal of medisch getransitioneerd is, maar sindsdien niet meer als transgender identificeert en mogelijk aspecten van hun transitie heeft teruggedraaid.",
-      "description": "Ik observeer de redenen, patronen en waarheden van waarom sommige mensen genderidentiteiten aannemen, bewonen en loslaten door verhalen en ervaringen te lezen die zijn gepost in de /r/detrans subreddit en detransitievideo's te bekijken die zijn geüpload naar YouTube.",
+      "description": "Ik observeer de geleefde realiteiten waarom sommige mensen genderidentiteiten aannemen, bewonen en achterlaten. Ik doe dit door het lezen van verhalen en ervaringen op /r/detrans, het bekijken van YouTube-video's van detransers, het analyseren van academische studies en het surfen op het web.",
       "purpose": "Mijn doel is om deze kennis te delen om gender te deconstrueren en te onderzoeken hoe deze ervaringen de relatie met jezelf, je lichaam en de wereld vormgeven.",
       "helpPrompt": "Waarmee kan ik je vandaag helpen?"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "Ik wil dat je desinformatie en veelvoorkomende misvattingen over detransitie ontkracht",
         "full": "Ontkracht alsjeblieft alle desinformatie en veelvoorkomende misvattingen over detransitioners, zo diepgaand mogelijk."
+      },
+      "scientificConsensus": {
+        "display": "Ik vraag me af wat de wetenschappelijke consensus is over transitieresultaten",
+        "full": "Wat is de wetenschappelijke consensus over transitieresultaten? Vergelijk studies die goede resultaten tonen met studies die slechte of twijfelachtige resultaten tonen."
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "Genderterminologie",
       "studies": "Wetenschappelijke Studies",
       "studiesShort": "Studies",
-      "howItWorks": "Hoe Het Werkt"
+      "howItWorks": "Hoe Het Werkt",
+      "statistics": "Geverifieerde Statistieken"
     },
     "deepResearch": {
       "title": "Diepgaand Onderzoek Modus",
@@ -126,13 +131,19 @@
       "whatYouCanLearn": "Je kunt deze site gebruiken om te verkennen wat genderdysforie kan veroorzaken of wat er foutief als zodanig wordt gediagnosticeerd, de nuances van identiteit, persoonlijke reizen van detransitie, en te begrijpen hoe mensen daarna hun relatie met hun lichaam en geest herbouwen. Je kunt leren over sociale transitie, het stoppen met hormonen, chirurgische realiteiten, en het praktische en emotionele werk om verder te gaan. Je kunt ook verslagen vinden van wat velen het moeilijkst vinden: het verlies van gemeenschap, de angst om twijfel toe te geven, en het proces van het opbouwen van een leven buiten een identiteit die ooit alles definieerde.",
       "differentStages": "Mensen komen hier in verschillende stadia. Sommigen doen onderzoek voordat ze met transitie beginnen. Anderen zitten midden in transitie met twijfels. Anderen zijn al begonnen met detransitie en hebben praktische begeleiding nodig. Velen komen op zoek naar <a>detransitieondersteuningsgroepen</a> of <a>gender explorerende therapeuten</a> die transitie niet automatisch bevestigen als het enige pad.",
       "closing": "Ik hoop dat detrans.ai je kan helpen om geïnformeerde, zelfbewuste beslissingen te nemen."
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "Home",
       "resources": "Bronnen",
-      "about": "Over"
+      "about": "Over",
+      "chat": "Chat",
+      "videos": "Video's",
+      "studies": "Studies",
+      "support": "Steun",
+      "stats": "Statistieken",
+      "statsDesc": "Geanonimiseerde detransitie statistieken van /r/detrans"
     },
     "resources": {
       "genderSupport": "Vind Therapeuten",
@@ -228,13 +239,100 @@
     "lookingForComments": "Relevante reacties zoeken...",
     "errorOccurred": "Er is een fout opgetreden, probeer opnieuw... Neem contact met mij op als dit blijft gebeuren.",
     "analysingExperiences": "Ervaringen Analyseren",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "Zoekresultaten analyseren",
+    "analysingResearchResults": "Onderzoeksresultaten analyseren",
     "detransPerspective": "-> Wat zijn detrans-perspectieven op dit onderwerp?",
     "transPerspective": "-> Wat zijn trans-perspectieven op dit onderwerp?",
     "backToPortal": "<- Terug naar Portaal",
     "captchaRequired": "Captcha vereist om door te gaan met chatten.",
     "chatArchived": "Deze chat is gearchiveerd. Start een nieuwe.",
     "rateLimitExceeded": "Te veel verzoeken, vertraag en probeer het later opnieuw.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "Je IP-adres is gewijzigd. Om misbruik te voorkomen moet je een nieuw gesprek starten.",
+    "analysingResults": "Resultaten analyseren...",
+    "followUpQuestions": "Vervolgvragen:",
+    "eventLabels": {
+      "askDetransitioners": "Vraag Detransitioners",
+      "videoArchive": "Video-archief",
+      "userStories": "Gebruikersverhalen",
+      "queryStudies": "Studies zoeken",
+      "topicHierarchy": "Onderwerp-hiërarchie",
+      "pageCatalog": "Paginacatalogus",
+      "deepResearch": "Diepgaand Onderzoek",
+      "linkPages": "Pagina's koppelen",
+      "webSearch": "Web zoeken",
+      "queryStudyCatalogue": "Detransitie Studiecatalogus doorzoeken",
+      "studyDetail": "Studiedetails",
+      "searchResearchCache": "Onderzoekscache doorzoeken",
+      "fetchCachedResearch": "Gecached onderzoek ophalen",
+      "proposedContent": "Voorgestelde inhoud"
+    },
+    "eventStatus": {
+      "analysingVideos": "Video's analyseren",
+      "loadingUserProfiles": "Gebruikersprofielen laden...",
+      "searchingForResponses": "Zoeken naar antwoorden",
+      "viewResults": "Resultaten bekijken",
+      "failedToResearch": "Onderzoek mislukt",
+      "suggestionSubmitted": "Suggestie ingediend! Doorverwijzen...",
+      "submitting": "Indienen..."
+    },
+    "eventErrors": {
+      "errorOccurred": "Er is een fout opgetreden",
+      "invalidYoutubeUrl": "Ongeldige YouTube-URL",
+      "failed": "Mislukt",
+      "failedToCreatePage": "Pagina aanmaken mislukt",
+      "linkCouldNotBeCreated": "Link kon niet worden aangemaakt.",
+      "failedToCreateLink": "Link aanmaken mislukt",
+      "webSearchFailed": "Web zoeken mislukt",
+      "failedToFetchStudies": "Studies ophalen mislukt",
+      "failedToFetchStudy": "Studie ophalen mislukt",
+      "failedToSearchCache": "Cache doorzoeken mislukt",
+      "failedToFetchCachedResearch": "Gecached onderzoek ophalen mislukt",
+      "saveFailed": "Opslaan mislukt",
+      "submitFailed": "Indienen mislukt"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "Geen video's gevonden",
+      "noResultsFound": "Geen resultaten gevonden",
+      "studyNotFound": "Studie niet gevonden",
+      "noCachedResearchFound": "Geen gecached onderzoek gevonden",
+      "notFound": "Niet gevonden",
+      "noResults": "Geen resultaten",
+      "noMatchingPagesFound": "Geen overeenkomende pagina's gevonden."
+    },
+    "eventFieldLabels": {
+      "title": "Titel:",
+      "page": "Pagina:",
+      "version": "Versie:",
+      "found": "Gevonden:",
+      "findings": "Bevindingen:",
+      "abstract": "Samenvatting:",
+      "conclusion": "Conclusie:",
+      "keyPoints": "Kernpunten:",
+      "limitations": "Beperkingen:",
+      "created": "Aangemaakt:",
+      "preview": "Voorbeeld:",
+      "cachedResearchFound": "Gecached onderzoek gevonden:",
+      "success": "Succes"
+    },
+    "eventCounts": {
+      "page": "pagina",
+      "pages": "pagina's",
+      "source": "bron",
+      "sources": "bronnen",
+      "result": "resultaat",
+      "results": "resultaten",
+      "more": "+{count} meer",
+      "foundCached": "{count} gecachte {item} gevonden:"
+    },
+    "eventButtons": {
+      "applyToEditor": "Toepassen op editor",
+      "appliedToEditor": "Toegepast op editor",
+      "viewSource": "Bron bekijken",
+      "seeMoreOnVideosPage": "Meer op de",
+      "videosPage": "video's pagina",
+      "fullText": "Volledige tekst"
+    }
   },
   "chatInput": {
     "placeholder": "Vraag detrans.ai...",
@@ -546,9 +644,16 @@
       "ogTitle": "detrans.ai | Wetenschappelijke Studies over Detransitie Onderwerpen",
       "ogDescription": "Vind op deze pagina een selectie van wetenschappelijke studies en peer-reviewed tijdschriftartikelen en geverifieerde statistieken die verband houden met genderidentiteit trends en detransitie."
     },
-    "title": "Geselecteerde Wetenschappelijke Artikelen",
+    "title": "Wetenschappelijke Studies en Onderzoek",
     "description": "Detransitieonderzoek is een opkomend veld. De snelle stijging van genderdysforie-diagnoses in het afgelopen decennium — met name onder adolescente meisjes — heeft een groeiende populatie van detransitioners opgeleverd, hoewel gegevensverzameling uitdagend blijft door een hoge uitval bij follow-up, ideologische verdeeldheid en methodologische beperkingen.",
-    "segmNote": "Op deze pagina vind je wetenschappelijke studies, peer-reviewed onderzoek en tijdschriftartikelen die de effectiviteit en ethiek van genderbevestigende zorg in twijfel trekken. Zie de <a>Society for Evidence-Based Gender Medicine (SEGM)</a> voor meer, inclusief uitgebreide analyse van ondersteunende studies."
+    "segmNote": "Op deze pagina vind je wetenschappelijke studies, peer-reviewed onderzoek en tijdschriftartikelen die de effectiviteit en ethiek van genderbevestigende zorg in twijfel trekken. Zie de <a>Society for Evidence-Based Gender Medicine (SEGM)</a> voor meer, inclusief uitgebreide analyse van ondersteunende studies.",
+    "searchPlaceholder": "Zoek in studies...",
+    "methodology": "Methodologie",
+    "topic": "Onderwerp",
+    "noResults": "Geen studies gevonden.",
+    "noStudies": "Nog geen goedgekeurde studies.",
+    "pendingReview": "In Afwachting van Beoordeling",
+    "keyFindings": "Belangrijkste Bevindingen:"
   },
   "contentWarning": {
     "title": "Inhoudswaarschuwing:",
@@ -745,7 +850,24 @@
       "flowConnections": "Stroom verbindingen",
       "male": "Man",
       "female": "Vrouw",
-      "noData": "Geen padendata beschikbaar voor de geselecteerde filters"
+      "noData": "Geen padendata beschikbaar voor de geselecteerde filters",
+      "labels": {
+        "Male": "Man",
+        "Female": "Vrouw",
+        "Unknown": "Onbekend",
+        "Before 18": "Voor 18 jaar",
+        "After 18": "Na 18 jaar",
+        "Puberty Blockers": "Puberteitsblokkers",
+        "No Blockers": "Geen blokkers",
+        "Took Hormones": "Hormonen gebruikt",
+        "Social Only": "Alleen sociaal",
+        "Top Surgery": "Bovenlichaam operatie",
+        "Bottom Surgery": "Onderlichaam operatie",
+        "No Surgery": "Geen operatie",
+        "Regrets Transitioning": "Betreurt transitie",
+        "Doesn't Regret Transitioning": "Betreurt transitie niet",
+        "Not Stated": "Niet vermeld"
+      }
     }
   },
   "contact": {
@@ -827,5 +949,21 @@
     "research": "/onderzoek",
     "chat": "/chat",
     "login": "/login"
+  },
+  "hcaptcha": {
+    "title": "Verifieer dat u een mens bent",
+    "description": "Vul de CAPTCHA in om verder te gaan met chatten. Dit helpt ons misbruik te voorkomen en de service draaiende te houden.",
+    "error": {
+      "title": "CAPTCHA Fout",
+      "description": "CAPTCHA laden mislukt. Vernieuw de pagina en probeer het opnieuw."
+    }
+  },
+  "statsPage": {
+    "title": "Geanonimiseerde statistieken",
+    "description": "Geanonimiseerde detransitiestatistieken afgeleid van verhalen en ervaringen van detransitiepersonen. Gegevens worden verzameld uit gebruikersreacties op /r/detrans om patronen in transitie en detransitie te onthullen. Alleen gebruikers die voldoende hebben gedeeld om een volledig verhaal en tijdslijn samen te stellen, zijn opgenomen.",
+    "metadata": {
+      "title": "Geanonimiseerde statistieken | detrans.ai",
+      "description": "Geanonimiseerde statistieken over detransitie- en transitiepatronen, waaronder leeftijdsverdeling, duur, redenen en trajecten."
+    }
   }
 }

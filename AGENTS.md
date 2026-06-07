@@ -69,3 +69,25 @@ When adding new public routes to the application:
 2. Determine if the route should be localized (most content routes should be)
 3. If localizing dynamic routes (like `/videos/:id`), update the exclusion logic in `generateLocalizedRoutes`
 4. Test the sitemap output to verify URLs are generated correctly
+
+## Captcha Strategy
+
+### Two captcha modes
+
+The codebase has two captcha verification approaches:
+
+**1. Count-based (chat, research, videos, studies, contact)**
+- Uses `isCaptchaRequired()` from `app/lib/messageCounter.ts`
+- Tracks request count per IP in Redis
+- Requires captcha after 10 requests (count resets after captcha verification)
+- Logged-in users bypass captcha entirely
+- Used by: `/api/chat`, `/api/research`, `/api/videos/submit`, `/api/studies`, `/api/contact`
+
+### Frontend implementation
+
+- `useCaptcha()` — Hook for captcha verification. Resets captcha requirement after verification.
+
+### Shared utility
+
+- `app/lib/captcha.ts` — `verifyCaptchaToken(token)` verifies hCaptcha tokens directly. Used by `/api/captcha/verify`.
+- `/api/captcha/verify` — Also handles Redis/message count logic for count-based endpoints.

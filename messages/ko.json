@@ -10,7 +10,7 @@
       "greeting": "안녕하세요! 디트랜지셔너가 뭔가요?",
       "response": "안녕하세요! 저는 detrans.ai입니다 - 디트랜지셔너들의 집단 의식입니다 🦎",
       "definition": "디트랜지셔너는 사회적으로 또는 의학적으로 전환을 경험했으나 더 이상 트랜스젠더로 정체화하지 않으며, 전환의 일부 측면을 되돌렸을 수 있는 전 트랜스젠더 사람입니다.",
-      "description": "저는 /r/detrans 서브레딧에 게시된 이야기와 경험을 읽고 유튜브에 업로드된 디트랜지션 영상을 시청하여 일부 사람들이 성별 정체성을 채택하고 거주하며 넘어가는 이유, 패턴, 진실을 관찰합니다.",
+      "description": "나는 일부 사람들이 왜 젠더 정체성을 채택하고, 내면화하고, 그리고 벗어나는지에 대한 살아있는 현실을 관찰한다. 나는 /r/detrans에 게시된 이야기와 경험을 읽고, 디트랜지셔너의 YouTube 동영상을 보고, 학술 연구를 분석하고, 웹을 탐색함으로써 이를 수행한다.",
       "purpose": "저의 목적은 이 지식을 공유하여 성별을 해체하고 이러한 경험이 자아, 신체, 세계와의 관계를 어떻게 형성하는지 탐구하는 것입니다.",
       "helpPrompt": "오늘 어떻게 도와드릴까요?"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "디트랜지션에 대한 잘못된 정보와 일반적으로 믿어지는 믿음을 반박해 주세요",
         "full": "가능한 한 깊이 있게 디트랜지셔너들에 대한 잘못된 정보와 일반적으로 믿어지는 믿음을 모두 반박해 주세요."
+      },
+      "scientificConsensus": {
+        "display": "전환 결과에 대한 과학적 합의가 궁금합니다",
+        "full": "전환 결과에 대한 과학적 합의는 무엇인가요? 좋은 결과를 보여주는 연구와 나쁘거나 의심스러운 결과를 보여주는 연구를 비교해 보세요."
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "성별 용어",
       "studies": "학술 연구",
       "studiesShort": "연구",
-      "howItWorks": "작동 방식"
+      "howItWorks": "작동 방식",
+      "statistics": "검증된 통계"
     },
     "deepResearch": {
       "title": "심층 연구 모드",
@@ -125,13 +130,19 @@
       "whatYouCanLearn": "이 사이트를 통해 성별 불쾌감의 원인이나 오진될 수 있는 것, 정체성의 뉘앙스, 디트랜지션의 개인적 여정, 그리고 사람들이 어떻게 자신의 몸과 마음과의 관계를 재구축하는지 탐구할 수 있습니다. 사회적 전환, 호르몬 중단, 수술의 현실, 그리고 앞으로 나아가기 위한 실질적이고 감정적인 작업에 대해 배울 수 있습니다. 또한 많은 사람들이 가장 어렵게 여기는 것에 대한 이야기도 찾을 수 있습니다: 공동체의 상실, 의심을 인정하는 두려움, 그리고 한때 모든 것을 규정했던 정체성 밖에서 삶을 구축하는 과정입니다.",
       "differentStages": "사람들은 서로 다른 단계에서 이곳을 찾습니다. 일부는 전환을 시작하기 전에 조사하고 있습니다. 일부는 전환 중에 의문을 품고 있습니다. 일부는 이미 디트랜지션을 시작했으며 실질적인 지침이 필요합니다. 많은 사람들이 전환을 유일한 길로 자동적으로 긍정하지 않는 <a>디트랜지션 지원 그룹</a>이나 <a>성별 탐구적 치료사</a>를 찾아옵니다.",
       "closing": "detrans.ai가 정보에 기반한, 자기 인식이 있는 결정을 내리는 데 도움이 되길 바랍니다."
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "홈",
       "resources": "자원",
-      "about": "소개"
+      "about": "소개",
+      "chat": "채팅",
+      "videos": "비디오",
+      "studies": "연구",
+      "support": "지원",
+      "stats": "통계",
+      "statsDesc": "/r/detrans 익명 전환 해제 통계"
     },
     "resources": {
       "genderSupport": "상담사 찾기",
@@ -227,13 +238,100 @@
     "lookingForComments": "관련 댓글 찾는 중...",
     "errorOccurred": "오류가 발생했습니다, 다시 시도하세요... 계속 발생하면 저에게 연락하세요.",
     "analysingExperiences": "경험 분석 중",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "웹 검색 결과 분석 중",
+    "analysingResearchResults": "연구 결과 분석 중",
     "detransPerspective": "-> 이 주제에 대한 디트랜스 관점은 무엇인가?",
     "transPerspective": "-> 이 주제에 대한 트랜스 관점은 무엇인가?",
     "backToPortal": "<- 포털로 돌아가기",
     "captchaRequired": "채팅을 계속하려면 캡차가 필요합니다.",
     "chatArchived": "이 채팅은 보관되었습니다. 새 채팅을 시작하세요.",
     "rateLimitExceeded": "요청이 너무 많습니다. 속도를 늦추고 나중에 다시 시도하세요.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "analysingResults": "결과 분석 중...",
+    "followUpQuestions": "후속 질문:",
+    "eventLabels": {
+      "askDetransitioners": "디트랜지셔너에게 묻기",
+      "videoArchive": "비디오 아카이브",
+      "userStories": "사용자 이야기",
+      "queryStudies": "연구 검색",
+      "topicHierarchy": "주제 계층",
+      "pageCatalog": "페이지 카탈로그",
+      "deepResearch": "심층 연구",
+      "linkPages": "페이지 연결",
+      "webSearch": "웹 검색",
+      "queryStudyCatalogue": "디트랜지션 연구 카탈로그 검색",
+      "studyDetail": "연구 상세",
+      "searchResearchCache": "연구 캐시 검색",
+      "fetchCachedResearch": "캐시된 연구 가져오기",
+      "proposedContent": "제안된 콘텐츠"
+    },
+    "eventStatus": {
+      "analysingVideos": "비디오 분석 중",
+      "loadingUserProfiles": "사용자 프로필 로딩 중...",
+      "searchingForResponses": "응답 검색 중",
+      "viewResults": "결과 보기",
+      "failedToResearch": "연구 실패",
+      "suggestionSubmitted": "제안 제출됨! 리디렉션 중...",
+      "submitting": "제출 중..."
+    },
+    "eventErrors": {
+      "errorOccurred": "오류 발생",
+      "invalidYoutubeUrl": "유효하지 않은 YouTube URL",
+      "failed": "실패",
+      "failedToCreatePage": "페이지 생성 실패",
+      "linkCouldNotBeCreated": "링크를 생성할 수 없습니다.",
+      "failedToCreateLink": "링크 생성 실패",
+      "webSearchFailed": "웹 검색 실패",
+      "failedToFetchStudies": "연구 가져오기 실패",
+      "failedToFetchStudy": "연구 가져오기 실패",
+      "failedToSearchCache": "캐시 검색 실패",
+      "failedToFetchCachedResearch": "캐시된 연구 가져오기 실패",
+      "saveFailed": "저장 실패",
+      "submitFailed": "제출 실패"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "비디오를 찾을 수 없음",
+      "noResultsFound": "결과를 찾을 수 없음",
+      "studyNotFound": "연구를 찾을 수 없음",
+      "noCachedResearchFound": "캐시된 연구를 찾을 수 없음",
+      "notFound": "찾을 수 없음",
+      "noResults": "결과 없음",
+      "noMatchingPagesFound": "일치하는 페이지를 찾을 수 없습니다."
+    },
+    "eventFieldLabels": {
+      "title": "제목:",
+      "page": "페이지:",
+      "version": "버전:",
+      "found": "발견:",
+      "findings": "발견 사항:",
+      "abstract": "초록:",
+      "conclusion": "결론:",
+      "keyPoints": "핵심 사항:",
+      "limitations": "한계:",
+      "created": "생성일:",
+      "preview": "미리보기:",
+      "cachedResearchFound": "캐시된 연구 발견:",
+      "success": "성공"
+    },
+    "eventCounts": {
+      "page": "페이지",
+      "pages": "페이지",
+      "source": "출처",
+      "sources": "출처",
+      "result": "결과",
+      "results": "결과",
+      "more": "+{count}개 더",
+      "foundCached": "{count}개의 캐시된 {item} 발견:"
+    },
+    "eventButtons": {
+      "applyToEditor": "편집기에 적용",
+      "appliedToEditor": "편집기에 적용됨",
+      "viewSource": "출처 보기",
+      "seeMoreOnVideosPage": "더 보기:",
+      "videosPage": "비디오 페이지",
+      "fullText": "전체 텍스트"
+    }
   },
   "chatInput": {
     "placeholder": "detrans.ai에게 질문하세요...",
@@ -545,7 +643,14 @@
       "ogTitle": "detrans.ai | 디트랜지션 주제에 대한 학술 연구",
       "ogDescription": "성별 정체성 추세 및 디트랜지션과 관련된 학술 연구 및 동료 심사 저널 기사 및 검증된 통계 선택을 이 페이지에서 찾으세요."
     },
-    "title": "선택된 학술 기사",
+    "title": "학술 연구",
+    "searchPlaceholder": "연구 검색...",
+    "methodology": "방법론",
+    "topic": "주제",
+    "noResults": "연구를 찾을 수 없습니다.",
+    "noStudies": "아직 승인된 연구가 없습니다.",
+    "pendingReview": "검토 대기 중",
+    "keyFindings": "주요 발견 사항：",
     "description": "디트랜지션 연구는 아직 새로운 분야입니다. 지난 10년간 특히 청소년 여성 사이에서 성별 불쾌감 진단이 급증하면서 디트랜지셔너 인구도 늘어나고 있지만, 높은 추종 단절률, 이념적 분열, 방법론적 한계로 인해 데이터 수집은 여전히 어려운 과제로 남아 있습니다.",
     "segmNote": "이 페이지에서는 성별 확정적 치료의 효능과 윤리성에 의문을 제기하는 학술 연구, 동료 심사 연구, 및 학술 기사를 찾아보실 수 있습니다. 자세한 내용은<a>Society for Evidence-Based Gender Medicine (SEGM)</a>을 참조하세요. 지지 연구에 대한 포괄적 분석도 포함되어 있습니다."
   },
@@ -744,7 +849,24 @@
       "flowConnections": "흐름 연결",
       "male": "남성",
       "female": "여성",
-      "noData": "선택한 필터에 사용 가능한 경로 데이터 없음"
+      "noData": "선택한 필터에 사용 가능한 경로 데이터 없음",
+      "labels": {
+        "Male": "남성",
+        "Female": "여성",
+        "Unknown": "알 수 없음",
+        "Before 18": "18세 이전",
+        "After 18": "18세 이후",
+        "Puberty Blockers": "사춘기 차단제",
+        "No Blockers": "차단제 없음",
+        "Took Hormones": "호르몬 복용",
+        "Social Only": "사회적 전환만",
+        "Top Surgery": "상체 수술",
+        "Bottom Surgery": "하체 수술",
+        "No Surgery": "수술 없음",
+        "Regrets Transitioning": "전환을 후회함",
+        "Doesn't Regret Transitioning": "전환을 후회하지 않음",
+        "Not Stated": "미기재"
+      }
     }
   },
   "contact": {
@@ -826,5 +948,21 @@
     "research": "/research",
     "chat": "/chat",
     "login": "/login"
+  },
+  "hcaptcha": {
+    "title": "사용자 확인",
+    "description": "채팅을 계속 사용하려면 CAPTCHA를 완료해 주세요. 이는 남용을 방지하고 서비스를 유지하는 데 도움이 됩니다.",
+    "error": {
+      "title": "CAPTCHA 오류",
+      "description": "CAPTCHA를 로드하지 못했습니다. 페이지를 새로고침하고 다시 시도해 주세요."
+    }
+  },
+  "statsPage": {
+    "title": "익명 통계",
+    "description": "전환 취소 경험자들의 이야기와 경험에서 도출된 익명 전환 취소 통계입니다. /r/detrans의 사용자 댓글에서 데이터를 집계하여 전환 및 전환 취소의 패턴을 보여줍니다. 전체 이야기와 타임라인을 구성할 만큼 충분한 정보를 공유한 사용자만 포함됩니다.",
+    "metadata": {
+      "title": "익명 통계 | detrans.ai",
+      "description": "연령 분포, 기간, 사유, 경로를 포함한 전환 취소 및 전환 패턴에 대한 익명 통계입니다."
+    }
   }
 }

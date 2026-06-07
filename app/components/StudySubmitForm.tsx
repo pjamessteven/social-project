@@ -74,9 +74,9 @@ export default function StudySubmitForm() {
   };
 
   const handleCaptchaVerify = async (token: string) => {
-    const success = await verifyCaptcha(token);
+    const result = await verifyCaptcha(token);
 
-    if (success) {
+    if (result.success) {
       setShowCaptchaDialog(false);
 
       // Retry submission after successful captcha verification

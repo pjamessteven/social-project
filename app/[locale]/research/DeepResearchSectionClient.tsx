@@ -20,19 +20,29 @@ interface ChatSectionClientProps {
   conversationId?: string;
   locale: string;
   starterQuestion?: string;
+  jsonLd?: Record<string, unknown> | null;
 }
 
 export default function ChatSectionClient({
   conversationId,
   locale,
   starterQuestion,
+  jsonLd,
 }: ChatSectionClientProps) {
   return (
-    <DynamicChatSection
-      conversationId={conversationId}
-      locale={locale}
-      starterQuestion={starterQuestion}
-      apiEndpoint="/api/research"
-    />
+    <>
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
+      <DynamicChatSection
+        conversationId={conversationId}
+        locale={locale}
+        starterQuestion={starterQuestion}
+        apiEndpoint="/api/research"
+      />
+    </>
   );
 }

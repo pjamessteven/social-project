@@ -133,17 +133,47 @@ export default async function DeepResearchPage({
   const ua = (await headers()).get("user-agent");
   const bot = isBot(ua);
 
+  // Fetch question data for all users (used for JSON-LD and bot rendering)
+  const questionData = await fetchResearchQuestion(q);
+  const cachedAnswer = questionData?.finalResponse;
+
   // For bots, fetch cached content for SEO
   if (bot) {
     // Increment view count for this question
     await incrementQuestionViews(q);
 
-    const questionData = await fetchResearchQuestion(q);
-    const cachedAnswer = questionData?.finalResponse;
-
     if (cachedAnswer) {
+      const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "QAPage",
+        mainEntity: {
+          "@type": "Question",
+          name: capitaliseWords(q),
+          text: capitaliseWords(q),
+          answerCount: 1,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: markdownToPlainText(cachedAnswer.slice(0, 500)),
+            dateCreated:
+              questionData?.createdAt?.toISOString() ||
+              new Date().toISOString(),
+            upvoteCount: questionData?.viewsCount || 0,
+          },
+        },
+        author: {
+          "@type": "Organization",
+          name: "detrans.ai",
+          url: "https://detrans.ai",
+        },
+        url: `https://detrans.ai/${locale}/research/${question}`,
+      };
+
       return (
         <div className="container mx-auto max-w-4xl px-4 py-8">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
           <h1 className="mb-6 text-3xl font-bold">{capitaliseWords(q)}</h1>
           <div
             className="prose dark:prose-invert max-w-none"
@@ -155,11 +185,39 @@ export default async function DeepResearchPage({
   }
 
   // Real users get the interactive chat component
+  const jsonLd = cachedAnswer
+    ? {
+        "@context": "https://schema.org",
+        "@type": "QAPage",
+        mainEntity: {
+          "@type": "Question",
+          name: capitaliseWords(q),
+          text: capitaliseWords(q),
+          answerCount: 1,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: markdownToPlainText(cachedAnswer.slice(0, 500)),
+            dateCreated:
+              questionData?.createdAt?.toISOString() ||
+              new Date().toISOString(),
+            upvoteCount: questionData?.viewsCount || 0,
+          },
+        },
+        author: {
+          "@type": "Organization",
+          name: "detrans.ai",
+          url: "https://detrans.ai",
+        },
+        url: `https://detrans.ai/${locale}/research/${question}`,
+      }
+    : null;
+
   return (
     <ChatSectionClient
       conversationId={uuidv4()}
       locale={locale}
       starterQuestion={q}
+      jsonLd={jsonLd}
     />
   );
 }

@@ -200,10 +200,10 @@ export default function ChatSection({
   const handleCaptchaVerify = async (token: string) => {
     console.log("[Captcha Verify] Starting verification with token");
 
-    const success = await verifyCaptcha(token);
-    console.log("[Captcha Verify] Success:", success);
+    const result = await verifyCaptcha(token);
+    console.log("[Captcha Verify] Success:", result.success);
 
-    if (success) {
+    if (result.success) {
       // Close dialog first
       setShowCaptchaDialog(false);
 

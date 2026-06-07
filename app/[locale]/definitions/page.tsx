@@ -2,6 +2,7 @@
 
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { localesInfo } from "@/i18n/locales";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -17,11 +18,35 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: t("title"),
       description: t("description"),
-      url: "https://detrans.ai/definitions",
+      url: `https://detrans.ai/${locale}/definitions`,
       siteName: "detrans.ai",
       images: ["https://detrans.ai/x_card_lg.png"],
       locale: locale === "es" ? "es_ES" : locale === "fr" ? "fr_FR" : "en_US",
       type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+    },
+    alternates: {
+      canonical: `https://detrans.ai/${locale}/definitions`,
+      languages: Object.fromEntries(
+        localesInfo.map((l) => [
+          l.code === "en"
+            ? "en-US"
+            : l.code === "es"
+              ? "es-ES"
+              : l.code === "fr"
+                ? "fr-FR"
+                : l.code === "zh-cn"
+                  ? "zh-CN"
+                  : l.code === "zh-tw"
+                    ? "zh-TW"
+                    : `${l.code}-${l.code.toUpperCase()}`,
+          `https://detrans.ai/${l.code}/definitions`,
+        ]),
+      ),
     },
   };
 }

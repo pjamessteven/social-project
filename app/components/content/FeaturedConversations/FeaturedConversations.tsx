@@ -13,7 +13,7 @@ import {
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Tabs, TabsList, TabsTrigger } from "../../ui/tabs";
+import { SlidingNavGroup } from "../../ui/sliding-nav-group";
 import { ConversationCard } from "../ConversationCard/ConversationCard";
 import { ConversationDialog } from "../ConversationDialog/ConversationDialog";
 
@@ -467,16 +467,10 @@ export function FeaturedConversations() {
 
   return (
     <div className="relative mb-8">
-      <div className="bg-secondary/50 dark:bg-secondary/60 border- absolute -left-[5000px] z-0 h-full w-[10000px] border-t bg-linear-to-b to-white dark:to-black" />
-      <div className="relative z-20 overflow-y-hidden border-t py-8 sm:pb-0 lg:-mx-48 lg:px-8 lg:pt-8">
-        <Tabs
-          value={currentTab}
-          onValueChange={(value: string) =>
-            handleTabChange(value as "featured" | "all" | "mine")
-          }
-          className="w-full"
-        >
-          <div className="lg:no-wrap mb-4 flex w-full flex-col lg:flex-row lg:items-center lg:justify-between">
+      <div className="bg-secondary/50 dark:bg-secondary/60 border- border- absolute -left-[5000px] z-0 h-full w-[10000px] border-t bg-linear-to-b to-white dark:to-black" />
+      <div className="relative z-20 overflow-y-hidden py-8 sm:pb-0 lg:-mx-48 lg:px-8 lg:pt-8">
+        <div className="w-full">
+          <div className="lg:no-wrap mb-4 flex w-full flex-col sm:items-start lg:flex-row lg:items-center lg:justify-between">
             <div className="lg:prose-base prose dark:prose-invert flex flex-col">
               <div className="flex items-center justify-start gap-2 lg:mt-2">
                 <History className="mx-2 h-6 w-6 text-black dark:text-white" />
@@ -487,35 +481,37 @@ export function FeaturedConversations() {
                 {t("subtitle")}
               </div>
             </div>
-            <TabsList
-              className={`mb-4 grid h-12 gap-1 rounded-xl border lg:mb-0 lg:w-1/3 ${isAuthenticated ? "grid-cols-3" : "grid-cols-2"}`}
-            >
-              <TabsTrigger
-                value="featured"
-                className="flex-row items-center gap-2 rounded-lg py-2"
-              >
-                <Star className="hidden h-4 w-4 sm:block" />
-                <span className="text-sm font-medium">
-                  {t("tabs.featured")}
-                </span>
-              </TabsTrigger>
-              <TabsTrigger
-                value="all"
-                className="flex-row items-center gap-2 rounded-lg py-2"
-              >
-                <List className="hidden h-4 w-4 sm:block" />
-                <span className="text-sm font-medium">{t("tabs.all")}</span>
-              </TabsTrigger>
-              {isAuthenticated && (
-                <TabsTrigger
-                  value="mine"
-                  className="flex-row items-center gap-2 rounded-lg py-2"
-                >
-                  <User className="hidden h-4 w-4 sm:block" />
-                  <span className="text-sm font-medium">{t("tabs.mine")}</span>
-                </TabsTrigger>
-              )}
-            </TabsList>
+            <SlidingNavGroup
+              className="bg-secondary/70 flex justify-between border dark:bg-black"
+              tabClassName="w-full sm:w-auto justify-center flex text-center"
+              tabs={[
+                {
+                  key: "featured",
+                  label: t("tabs.featured"),
+                  isActive: currentTab === "featured",
+                  icon: <Star className="h-3.5 w-3.5" />,
+                },
+                {
+                  key: "all",
+                  label: t("tabs.all"),
+                  isActive: currentTab === "all",
+                  icon: <List className="h-3.5 w-3.5" />,
+                },
+                ...(isAuthenticated
+                  ? [
+                      {
+                        key: "mine",
+                        label: t("tabs.mine"),
+                        isActive: currentTab === "mine",
+                        icon: <User className="h-3.5 w-3.5" />,
+                      },
+                    ]
+                  : []),
+              ]}
+              onTabClick={(key) =>
+                handleTabChange(key as "featured" | "all" | "mine")
+              }
+            />
           </div>
           {conversations.length === 0 && !loading && (
             <div className="text-muted-foreground mt-24 mb-16 rounded-xl border p-8 text-center">
@@ -1000,7 +996,7 @@ export function FeaturedConversations() {
                 })()}
             </>
           )}
-        </Tabs>
+        </div>
 
         {/* Conversation Dialog */}
         <ConversationDialog

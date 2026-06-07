@@ -4,6 +4,7 @@ import { isAdmin } from "@/app/lib/auth/auth";
 import { Study } from "@/app/types/study";
 import { db } from "@/db";
 import { studies, studyTagRelations, studyTags } from "@/db/schema";
+import { localesInfo } from "@/i18n/locales";
 import { eq } from "drizzle-orm";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -14,7 +15,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; id: string }>;
 }): Promise<Metadata> {
-  const { id } = await params;
+  const { locale, id } = await params;
   const studyId = parseInt(id, 10);
 
   if (isNaN(studyId)) {
@@ -29,19 +30,44 @@ export async function generateMetadata({
 
   const study = existingStudy[0];
   const title = study
-    ? `${study.headline || study.title || "Study"} · detrans.ai`
+    ? `${study.headline || study.title || "Study"} | detrans.ai`
     : "Study Not Found";
+  const description = study?.summary || study?.abstract || undefined;
 
   return {
     title,
-    description: study?.summary || study?.abstract || undefined,
+    description,
     openGraph: {
       title,
-      description: study?.summary || study?.abstract || undefined,
-      url: `https://detrans.ai/studies/${studyId}`,
+      description,
+      url: `https://detrans.ai/${locale}/studies/${studyId}`,
       siteName: "detrans.ai",
       images: ["https://detrans.ai/x_card_lg.png"],
       type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+    alternates: {
+      canonical: `https://detrans.ai/${locale}/studies/${studyId}`,
+      languages: Object.fromEntries(
+        localesInfo.map((l) => [
+          l.code === "en"
+            ? "en-US"
+            : l.code === "es"
+              ? "es-ES"
+              : l.code === "fr"
+                ? "fr-FR"
+                : l.code === "zh-cn"
+                  ? "zh-CN"
+                  : l.code === "zh-tw"
+                    ? "zh-TW"
+                    : `${l.code}-${l.code.toUpperCase()}`,
+          `https://detrans.ai/${l.code}/studies/${studyId}`,
+        ]),
+      ),
     },
   };
 }
@@ -108,8 +134,42 @@ export default async function StudyPage({
   };
   const admin = await isAdmin();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    name: study.headline || study.title,
+    headline: study.headline || study.title,
+    description: study.summary || study.abstract || study.description,
+    author: study.authors
+      ? study.authors.split(",").map((author) => ({
+          "@type": "Person",
+          name: author.trim(),
+        }))
+      : undefined,
+    datePublished: study.year ? `${study.year}` : undefined,
+    publisher: {
+      "@type": "Organization",
+      name: "detrans.ai",
+      url: "https://detrans.ai",
+    },
+    url: `https://detrans.ai/${locale}/studies/${study.id}`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://detrans.ai/${locale}/studies/${study.id}`,
+    },
+    keywords: study.tags?.join(", "),
+    about: {
+      "@type": "Thing",
+      name: "detransition",
+    },
+  };
+
   return (
     <div className="pb-16 lg:pt-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="mb-4">
         <Link
           href={`/${locale}/studies`}

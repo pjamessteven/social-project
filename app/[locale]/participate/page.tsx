@@ -1,6 +1,7 @@
 import Studies from "./studies";
 
 import type { Metadata } from "next";
+import { localesInfo } from "@/i18n/locales";
 
 const metadata: Metadata = {
   title: "detrans.ai | Current Research Studies",
@@ -16,10 +17,43 @@ const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "detrans.ai | Current Research Studies",
+    description:
+      "Your voice matters. Academic researchers are actively studying detransition experiences to improve healthcare and support for individuals like you.",
+  },
 };
 
-export async function generateMetadata(): Promise<Metadata> {
-  return metadata;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  return {
+    ...metadata,
+    alternates: {
+      canonical: `https://detrans.ai/${locale}/participate`,
+      languages: Object.fromEntries(
+        localesInfo.map((l) => [
+          l.code === "en"
+            ? "en-US"
+            : l.code === "es"
+              ? "es-ES"
+              : l.code === "fr"
+                ? "fr-FR"
+                : l.code === "zh-cn"
+                  ? "zh-CN"
+                  : l.code === "zh-tw"
+                    ? "zh-TW"
+                    : `${l.code}-${l.code.toUpperCase()}`,
+          `https://detrans.ai/${l.code}/participate`,
+        ]),
+      ),
+    },
+  };
 }
 
 export default async function ParticipatePage() {

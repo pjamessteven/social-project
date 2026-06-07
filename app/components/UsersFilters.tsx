@@ -1,11 +1,9 @@
 "use client";
 
-import { Loader2, Search } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import { Input } from "./ui/input";
 import { MultiSelect } from "./ui/multi-select";
 import {
   Select,
@@ -47,15 +45,11 @@ export default function UsersFilters({}: UsersFiltersProps) {
   const locale = useLocale();
   const [tags, setTags] = useState<Tag[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchLoading, setSearchLoading] = useState(false);
 
   const selectedSex = searchParams.get("sex") || "";
   const selectedTagNames = searchParams
     .getAll("tag")
     .flatMap((tag) => tag.split(",").filter(Boolean));
-  const [searchQuery, setSearchQuery] = useState(
-    searchParams.get("search") || "",
-  );
   const [ageRange, setAgeRange] = useState(() => {
     const minAge = searchParams.get("minAge")
       ? parseInt(searchParams.get("minAge")!)
@@ -97,7 +91,7 @@ export default function UsersFilters({}: UsersFiltersProps) {
     params.delete("page");
 
     const queryString = params.toString();
-    router.push(`/stories${queryString ? `?${queryString}` : ""}`);
+    router.push(`/stats${queryString ? `?${queryString}` : ""}`);
   };
 
   const updateTagsFilter = (selectedDisplayNames: string[]) => {
@@ -131,7 +125,7 @@ export default function UsersFilters({}: UsersFiltersProps) {
     params.delete("page");
 
     const queryString = params.toString();
-    router.push(`/stories${queryString ? `?${queryString}` : ""}`);
+    router.push(`/stats${queryString ? `?${queryString}` : ""}`);
   };
 
   const updateAgeFilter = (newRange: number[]) => {
@@ -143,77 +137,16 @@ export default function UsersFilters({}: UsersFiltersProps) {
     params.delete("page"); // Reset to first page when filtering
 
     const queryString = params.toString();
-    router.push(`/stories${queryString ? `?${queryString}` : ""}`);
-  };
-
-  const updateSearchFilter = useCallback(
-    (query: string) => {
-      setSearchLoading(true);
-
-      const params = new URLSearchParams(searchParams);
-
-      if (query.trim()) {
-        params.set("search", query.trim());
-      } else {
-        params.delete("search");
-      }
-
-      // Reset to page 1 when search changes
-      params.delete("page");
-
-      const queryString = params.toString();
-      router.push(`/stories${queryString ? `?${queryString}` : ""}`);
-
-      // Reset loading state after a short delay to allow for navigation
-      setTimeout(() => setSearchLoading(false), 100);
-    },
-    [searchParams, router],
-  );
-
-  // Debounced search effect
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      const currentSearch = searchParams.get("search") || "";
-      if (searchQuery !== currentSearch) {
-        updateSearchFilter(searchQuery);
-      }
-    }, 300);
-
-    return () => clearTimeout(timeoutId);
-  }, [searchQuery, updateSearchFilter, searchParams]);
-
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    updateSearchFilter(searchQuery);
+    router.push(`/stats${queryString ? `?${queryString}` : ""}`);
   };
 
   const clearFilters = () => {
     setAgeRange([5, 80]);
-    setSearchQuery("");
-    setSearchLoading(false);
-    router.push("/stories");
+    router.push("/stats");
   };
 
   return (
     <div className="mb-6 space-y-4">
-      {/* Search Bar */}
-      <form onSubmit={handleSearchSubmit} className="relative">
-        <div className="relative">
-          {searchLoading ? (
-            <Loader2 className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform animate-spin text-gray-400" />
-          ) : (
-            <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-gray-400" />
-          )}
-          <Input
-            type="text"
-            placeholder={t("searchPlaceholder")}
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="pr-4 pl-10"
-          />
-        </div>
-      </form>
-
       {/* Age Range Filter */}
       <div className="bg-background flex flex-col rounded-md border p-3 sm:flex-row sm:items-center">
         <label className="text-sm whitespace-nowrap">
@@ -272,8 +205,7 @@ export default function UsersFilters({}: UsersFiltersProps) {
         {(selectedSex ||
           selectedTagNames.length > 0 ||
           ageRange[0] !== 5 ||
-          ageRange[1] !== 80 ||
-          searchQuery) && (
+          ageRange[1] !== 80) && (
           <div className="flex flex-col gap-2">
             <Button variant="outline" onClick={clearFilters}>
               {t("clearFilters")}

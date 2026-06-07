@@ -10,7 +10,7 @@
       "greeting": "Bonjour ! Qu'est-ce qu'une personne qui fait une détransition ?",
       "response": "Bonjour ! Je suis detrans.ai, la conscience collective des personnes ayant fait une détransition 🦎",
       "definition": "Une personne ayant fait une détransition est une personne anciennement transgenre qui a fait une transition sociale ou médicale, mais qui a depuis cessé de s'identifier comme transgenre et peut avoir inversé certains aspects de sa transition.",
-      "description": "J'observe les raisons, les motifs et les vérités de pourquoi certaines personnes adoptent, habitent et évoluent au-delà de leurs identités de genre en lisant des histoires et expériences publiées sur le subreddit /r/detrans et en regardant des vidéos de détransition téléchargées sur YouTube.",
+      "description": "J'observe les réalités vécues de pourquoi certaines personnes adoptent, habitent et abandonnent les identités de genre. Je le fais en lisant les histoires et expériences publiées sur /r/detrans, en regardant des vidéos YouTube de personnes ayant détransitionné, en analysant des études académiques et en naviguant sur le web.",
       "purpose": "Mon but est de partager ces connaissances pour déconstruire le genre et explorer comment ces expériences façonnent la relation de chacun avec soi-même, son corps et le monde.",
       "helpPrompt": "Comment puis-je vous aider aujourd'hui ?"
     },
@@ -50,6 +50,10 @@
       "debunkMisinfo": {
         "display": "Je veux que vous réfutiez la désinformation et les croyances courantes sur la détransition",
         "full": "Veuillez réfuter toute la désinformation et les croyances courantes sur les personnes ayant fait une détransition, en autant de profondeur que possible."
+      },
+      "scientificConsensus": {
+        "display": "Je me demande quel est le consensus scientifique sur les résultats de la transition",
+        "full": "Quel est le consensus scientifique sur les résultats de la transition ? Comparez les études montrant de bons résultats avec celles montrant des résultats médiocres ou discutables."
       }
     },
     "navigation": {
@@ -60,7 +64,8 @@
       "definitions": "Terminologie du Genre",
       "studies": "Études Académiques",
       "studiesShort": "Études",
-      "howItWorks": "Comment Ça Marche"
+      "howItWorks": "Comment Ça Marche",
+      "statistics": "Statistiques Vérifiées"
     },
     "deepResearch": {
       "title": "Mode Recherche Approfondie",
@@ -126,13 +131,19 @@
       "whatYouCanLearn": "Vous pouvez utiliser ce site pour explorer ce qui peut causer ou être mal diagnostiqué comme de la dysphorie de genre, les nuances de l'identité, les parcours personnels de détransition, et comprendre comment les gens reconstruisent leur relation avec leur corps et leur esprit par la suite. Vous pouvez en apprendre sur la transition sociale, l'arrêt des hormones, les réalités chirurgicales, et le travail pratique et émotionnel pour aller de l'avant. Vous pouvez aussi trouver des récits de ce que beaucoup trouvent le plus difficile : la perte de communauté, la peur d'admettre un doute, et le processus de construire une vie en dehors d'une identité qui a un jour tout défini.",
       "differentStages": "Les gens viennent ici à différents stades. Certains font des recherches avant de commencer une transition. D'autres sont en pleine transition avec des doutes. D'autres ont déjà commencé à détransitionner et ont besoin de conseils pratiques. Beaucoup viennent chercher des <a>groupes de soutien à la détransition</a> ou des <a>thérapeutes exploratoires du genre</a> qui n'affirment pas automatiquement la transition comme le seul chemin.",
       "closing": "J'espère que detrans.ai pourra vous aider à prendre des décisions éclairées et conscientes de vous-même."
-    }
+    },
+    "about": {}
   },
   "header": {
     "navigation": {
-      "home": "Accueil",
       "resources": "Ressources",
-      "about": "À propos"
+      "about": "À propos",
+      "chat": "Chat",
+      "videos": "Vidéos",
+      "studies": "Études",
+      "support": "Aide",
+      "stats": "Stats",
+      "statsDesc": "Statistiques de détransition anonymisées de /r/detrans"
     },
     "resources": {
       "genderSupport": "Trouver des Thérapeutes",
@@ -226,13 +237,100 @@
     "lookingForComments": "Recherche de commentaires pertinents...",
     "errorOccurred": "Une erreur s'est produite, réessayez... Contactez-moi si cela continue.",
     "analysingExperiences": "Analyse des Expériences",
+    "analysingStudies": "Analysing Studies",
+    "analysingWebResults": "Analyse des résultats web",
+    "analysingResearchResults": "Analyse des résultats de recherche",
     "detransPerspective": "-> Quelles sont les perspectives des personnes ayant fait une détransition sur ce sujet ?",
     "transPerspective": "-> Quelles sont les perspectives des personnes trans sur ce sujet ?",
     "backToPortal": "<- Retour au Portail",
     "captchaRequired": "Captcha requis pour continuer la discussion.",
     "chatArchived": "Cette discussion est archivée. Commencez-en une nouvelle.",
     "rateLimitExceeded": "Trop de requêtes, ralentissez et réessayez plus tard.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation."
+    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "analysingResults": "Analyse des résultats...",
+    "followUpQuestions": "Questions de suivi :",
+    "eventLabels": {
+      "askDetransitioners": "Demander aux Personnes ayant fait une Détransition",
+      "videoArchive": "Archive Vidéo",
+      "userStories": "Histoires d'Utilisateurs",
+      "queryStudies": "Interroger les Études",
+      "topicHierarchy": "Hiérarchie des Sujets",
+      "pageCatalog": "Catalogue de Pages",
+      "deepResearch": "Recherche Approfondie",
+      "linkPages": "Lier des Pages",
+      "webSearch": "Recherche Web",
+      "queryStudyCatalogue": "Interroger le Catalogue d'Études sur la Détransition",
+      "studyDetail": "Détail de l'Étude",
+      "searchResearchCache": "Rechercher dans le Cache de Recherche",
+      "fetchCachedResearch": "Récupérer la Recherche en Cache",
+      "proposedContent": "Contenu Proposé"
+    },
+    "eventStatus": {
+      "analysingVideos": "Analyse des Vidéos",
+      "loadingUserProfiles": "Chargement des profils utilisateurs...",
+      "searchingForResponses": "Recherche de réponses",
+      "viewResults": "Voir les résultats",
+      "failedToResearch": "Échec de la recherche",
+      "suggestionSubmitted": "Suggestion soumise ! Redirection...",
+      "submitting": "Soumission en cours..."
+    },
+    "eventErrors": {
+      "errorOccurred": "Une erreur s'est produite",
+      "invalidYoutubeUrl": "URL YouTube invalide",
+      "failed": "Échoué",
+      "failedToCreatePage": "Échec de la création de la page",
+      "linkCouldNotBeCreated": "Le lien n'a pas pu être créé.",
+      "failedToCreateLink": "Échec de la création du lien",
+      "webSearchFailed": "La recherche web a échoué",
+      "failedToFetchStudies": "Échec de la récupération des études",
+      "failedToFetchStudy": "Échec de la récupération de l'étude",
+      "failedToSearchCache": "Échec de la recherche dans le cache",
+      "failedToFetchCachedResearch": "Échec de la récupération de la recherche en cache",
+      "saveFailed": "Échec de la sauvegarde",
+      "submitFailed": "Échec de la soumission"
+    },
+    "eventEmptyStates": {
+      "noVideosFound": "Aucune vidéo trouvée",
+      "noResultsFound": "Aucun résultat trouvé",
+      "studyNotFound": "Étude non trouvée",
+      "noCachedResearchFound": "Aucune recherche en cache trouvée",
+      "notFound": "Non trouvé",
+      "noResults": "Aucun résultat",
+      "noMatchingPagesFound": "Aucune page correspondante trouvée."
+    },
+    "eventFieldLabels": {
+      "title": "Titre :",
+      "page": "Page :",
+      "version": "Version :",
+      "found": "Trouvé :",
+      "findings": "Constatations :",
+      "abstract": "Résumé :",
+      "conclusion": "Conclusion :",
+      "keyPoints": "Points Clés :",
+      "limitations": "Limitations :",
+      "created": "Créé :",
+      "preview": "Aperçu :",
+      "cachedResearchFound": "Recherche en cache trouvée :",
+      "success": "Succès"
+    },
+    "eventCounts": {
+      "page": "page",
+      "pages": "pages",
+      "source": "source",
+      "sources": "sources",
+      "result": "résultat",
+      "results": "résultats",
+      "more": "+{count} de plus",
+      "foundCached": "{count} {item} trouvé(s) en cache :"
+    },
+    "eventButtons": {
+      "applyToEditor": "Appliquer à l'éditeur",
+      "appliedToEditor": "Appliqué à l'éditeur",
+      "viewSource": "Voir la source",
+      "seeMoreOnVideosPage": "Voir plus sur la",
+      "videosPage": "page vidéos",
+      "fullText": "Texte Intégral"
+    }
   },
   "chatInput": {
     "placeholder": "Demandez à detrans.ai...",
@@ -544,9 +642,16 @@
       "ogTitle": "detrans.ai | Études Académiques sur les Sujets de Détransition",
       "ogDescription": "Trouvez sur cette page une sélection d'études académiques et d'articles de journaux révisés par des pairs et de statistiques vérifiées qui se rapportent aux tendances de l'identité de genre et à la détransition."
     },
-    "title": "Articles Académiques Sélectionnés",
+    "title": "Études Académiques et Recherche",
     "description": "La recherche sur la détransition est un domaine émergent. L'augmentation rapide des diagnostics de dysphorie de genre au cours de la dernière décennie — particulièrement chez les adolescentes — a produit une population croissante de personnes ayant fait une détransition, bien que la collecte de données reste difficile en raison du fort taux de perte de suivi, des divisions idéologiques et des limites méthodologiques.",
-    "segmNote": "Sur cette page, vous trouverez des études académiques, des recherches révisées par des pairs et des articles de revue qui remettent en question l'efficacité et l'éthique des soins d'affirmation de genre. Consultez la <a>Society for Evidence-Based Gender Medicine (SEGM)</a> pour en savoir plus, y compris une analyse complète des études favorables."
+    "segmNote": "Sur cette page, vous trouverez des études académiques, des recherches révisées par des pairs et des articles de revue qui remettent en question l'efficacité et l'éthique des soins d'affirmation de genre. Consultez la <a>Society for Evidence-Based Gender Medicine (SEGM)</a> pour en savoir plus, y compris une analyse complète des études favorables.",
+    "searchPlaceholder": "Rechercher des études...",
+    "methodology": "Méthodologie",
+    "topic": "Sujet",
+    "noResults": "Aucune étude trouvée.",
+    "noStudies": "Aucune étude approuvée pour le moment.",
+    "pendingReview": "En Attente de Révision",
+    "keyFindings": "Principales Conclusions :"
   },
   "contentWarning": {
     "title": "Avertissement de Contenu :",
@@ -743,7 +848,24 @@
       "flowConnections": "Connexions de flux",
       "male": "Masculin",
       "female": "Féminin",
-      "noData": "Aucune donnée de parcours disponible pour les filtres sélectionnés"
+      "noData": "Aucune donnée de parcours disponible pour les filtres sélectionnés",
+      "labels": {
+        "Male": "Homme",
+        "Female": "Femme",
+        "Unknown": "Inconnu",
+        "Before 18": "Avant 18 ans",
+        "After 18": "Après 18 ans",
+        "Puberty Blockers": "Bloqueurs de puberté",
+        "No Blockers": "Pas de bloqueurs",
+        "Took Hormones": "A pris des hormones",
+        "Social Only": "Social uniquement",
+        "Top Surgery": "Chirurgie du haut",
+        "Bottom Surgery": "Chirurgie du bas",
+        "No Surgery": "Pas de chirurgie",
+        "Regrets Transitioning": "Regrette la transition",
+        "Doesn't Regret Transitioning": "Ne regrette pas la transition",
+        "Not Stated": "Non précisé"
+      }
     }
   },
   "contact": {
@@ -825,5 +947,21 @@
     "research": "/research",
     "chat": "/chat",
     "login": "/login"
+  },
+  "hcaptcha": {
+    "title": "Vérifiez que vous êtes humain",
+    "description": "Veuillez compléter le CAPTCHA pour continuer à utiliser le chat. Cela nous aide à prévenir les abus et à maintenir le service.",
+    "error": {
+      "title": "Erreur CAPTCHA",
+      "description": "Échec du chargement du CAPTCHA. Veuillez rafraîchir la page et réessayer."
+    }
+  },
+  "statsPage": {
+    "title": "Statistiques anonymisées",
+    "description": "Statistiques de détransition anonymisées, dérivées des récits et des expériences des personnes ayant détransitionné. Les données sont agrégées à partir des commentaires des utilisateurs sur /r/detrans pour révéler les schémas de transition et de détransition. Seuls les utilisateurs qui ont partagé suffisamment pour reconstituer un récit complet et une chronologie sont inclus.",
+    "metadata": {
+      "title": "Statistiques anonymisées | detrans.ai",
+      "description": "Statistiques anonymisées sur les schémas de détransition et de transition, incluant la répartition par âge, la durée, les raisons et les parcours."
+    }
   }
 }

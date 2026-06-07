@@ -1,37 +1,8 @@
+import { verifyCaptchaToken } from "@/app/lib/captcha";
 import { getIpFromRequest } from "@/app/lib/ipBan";
 import { initializeMessageCount } from "@/app/lib/messageCounter";
 import { connectRedis } from "@/app/lib/redis";
 import { NextRequest, NextResponse } from "next/server";
-
-// hCaptcha secret key from environment
-const HCAPTCHA_SECRET_KEY = process.env.HCAPTCHA_SECRET_KEY;
-
-// Verify hCaptcha token with hCaptcha API
-async function verifyHCaptcha(token: string): Promise<boolean> {
-  if (!HCAPTCHA_SECRET_KEY) {
-    console.warn("HCAPTCHA_SECRET_KEY not set, skipping verification");
-    return true;
-  }
-
-  try {
-    const response = await fetch("https://hcaptcha.com/siteverify", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams({
-        secret: HCAPTCHA_SECRET_KEY,
-        response: token,
-      }),
-    });
-
-    const data = await response.json();
-    return data.success === true;
-  } catch (error) {
-    console.error("hCaptcha verification error:", error);
-    return false;
-  }
-}
 
 export async function POST(req: NextRequest) {
   try {
@@ -44,8 +15,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Verify the CAPTCHA token
-    const isValid = await verifyHCaptcha(token);
+    const isValid = await verifyCaptchaToken(token);
 
     if (!isValid) {
       return NextResponse.json(
