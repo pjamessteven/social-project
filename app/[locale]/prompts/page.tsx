@@ -33,7 +33,7 @@ export default function PromptsPage() {
             ),
             kimi: (chunks) => (
               <a
-                href="https://www.kimi.com/blog/kimi-k2-5.html"
+                href="https://mimo.xiaomi.com/index"
                 target="_blank"
                 className="whitespace-nowrap text-blue-500 underline hover:text-blue-600"
               >
