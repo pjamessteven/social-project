@@ -303,8 +303,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                 boxShadow: "rgba(0, 0, 0, 0.2) 0px 18px 50px -10px",
               }}
               className={cn(
-                "!placeholder-opacity-100 border-slate relative z-20 flex max-h-48 min-h-12 w-full cursor-text resize-none overflow-hidden rounded-full bg-white py-4 pl-5 shadow-sm disabled:cursor-default sm:pr-40 dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white",
-                inputText.length === 0 ? "pr-16 sm:pr-32" : "pr-16",
+                "!placeholder-opacity-100 border-slate s relative z-20 flex max-h-48 min-h-12 w-full cursor-text resize-none overflow-hidden rounded-[32px] bg-white py-4 pl-5 shadow-sm disabled:cursor-default dark:border dark:border-white/10 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white",
               )}
               value={inputText}
               onChange={(event) => setInputText(event.target.value)}
