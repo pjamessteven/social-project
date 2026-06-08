@@ -1,12 +1,13 @@
 import { connectRedis } from "@/app/lib/redis";
 import {
   fetchMentions,
-  fetchThread,
+  fetchThreadChain,
   postReply,
   type ThreadTweet,
   type MentionData,
 } from "./client";
 import { createTwitterWorkflow } from "./workflow";
+import type { MessageContentDetail } from "llamaindex";
 
 const PROCESSED_SET_KEY = "twitter:processed_mentions";
 const REPLY_COUNT_PREFIX = "twitter:replies:";
@@ -19,23 +20,65 @@ function formatThreadForLLM(
   thread: ThreadTweet[],
   mentionUsername: string | undefined,
 ): string {
-  const lines: string[] = ["### Conversation Thread", ""];
+  const lines: string[] = [];
 
+  // Build a lookup of tweet ID → author handle for labeling references
+  const handleMap = new Map<string, string>();
   for (const tweet of thread) {
-    const prefix = tweet.isMention ? "[MENTION] " : "";
-    const handle = tweet.authorUsername || `user_${tweet.authorId}`;
-    lines.push(`@${handle}: ${prefix}${tweet.text}`);
+    handleMap.set(tweet.id, tweet.authorUsername || `user_${tweet.authorId}`);
+  }
+
+  // Separate quoted content (tweets that other tweets reference via "quoted")
+  const quotedIds = new Set<string>();
+  for (const tweet of thread) {
+    for (const ref of tweet.referencedTweets ?? []) {
+      if (ref.type === "quoted") quotedIds.add(ref.id);
+    }
+  }
+
+  // Output quoted/original content first if present
+  const quotedTweets = thread.filter((t) => quotedIds.has(t.id));
+  if (quotedTweets.length > 0) {
+    lines.push("### Quoted Content");
+    for (const tweet of quotedTweets) {
+      const handle = handleMap.get(tweet.id) || `user_${tweet.authorId}`;
+      lines.push(`@${handle}: ${tweet.text}`);
+    }
+    lines.push("");
+  }
+
+  // Output the conversation thread (excluding already-shown quoted content)
+  const conversationTweets = thread.filter((t) => !quotedIds.has(t.id));
+  if (conversationTweets.length > 0) {
+    lines.push("### Conversation Thread");
+    for (const tweet of conversationTweets) {
+      const handle = handleMap.get(tweet.id) || `user_${tweet.authorId}`;
+      const prefix = tweet.isMention ? "[MENTION] " : "";
+
+      // Label what this tweet is referencing
+      const refs = tweet.referencedTweets ?? [];
+      const quoteRef = refs.find((r) => r.type === "quoted");
+      const replyRef = refs.find((r) => r.type === "replied_to");
+
+      let suffix = "";
+      if (quoteRef) {
+        const quotedHandle = handleMap.get(quoteRef.id);
+        suffix = quotedHandle ? ` (quote tweeted @${quotedHandle}'s post)` : " (quote tweet)";
+      } else if (replyRef) {
+        const replyHandle = handleMap.get(replyRef.id);
+        suffix = replyHandle ? ` (replying to @${replyHandle})` : " (reply)";
+      }
+
+      lines.push(`@${handle}: ${prefix}${tweet.text}${suffix}`);
+    }
   }
 
   lines.push("");
   lines.push("### The Mention");
-  const mention = thread.find((t) => t.isMention);
-  const username = mentionUsername || "user";
-  if (mention) {
-    lines.push(
-      `@${username} mentioned @detrans.ai in the above conversation.`,
-    );
-  }
+  const mentionUsernameStr = mentionUsername || "user";
+  lines.push(
+    `@${mentionUsernameStr} mentioned @detrans.ai in the above conversation.`,
+  );
   lines.push(
     "Generate a helpful reply to contribute to this conversation.",
   );
@@ -182,15 +225,30 @@ export async function processMentionsCycle() {
         continue;
       }
 
-      // Fetch full thread context
-      const thread = await fetchThread(mention.id, MAX_THREAD_DEPTH);
+      // Fetch full thread context (walks up reply/quote chain)
+      const thread = await fetchThreadChain(mention.id, MAX_THREAD_DEPTH);
       console.log(`[TWITTER BOT] Thread has ${thread.length} tweets`);
 
       const context = formatThreadForLLM(thread, mention.authorUsername);
+      console.log("[TWITTER BOT] Full context:\n" + context);
+
+      // Build multimodal content with images from the mention tweet
+      const mentionTweet = thread.find((t) => t.isMention);
+      const contentParts: MessageContentDetail[] = [
+        { type: "text", text: context },
+      ];
+      if (mentionTweet?.imageUrls?.length) {
+        for (const url of mentionTweet.imageUrls) {
+          contentParts.push({ type: "image_url", image_url: { url } });
+        }
+        console.log(
+          `[TWITTER BOT] Including ${mentionTweet.imageUrls.length} image(s) from mention tweet`,
+        );
+      }
 
       // Generate reply via LlamaIndex agent
       console.log("[TWITTER BOT] Generating reply...");
-      const result = await workflow.run(context);
+      const result = await workflow.run(contentParts);
       const replyText = extractReplyText(result);
 
       if (replyText && replyText !== "SKIP") {

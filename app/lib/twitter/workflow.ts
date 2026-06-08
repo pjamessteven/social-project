@@ -1,4 +1,4 @@
-import { agent } from "@llamaindex/workflow";
+import { CustomOpenAI } from "@/app/api/shared/llm";
 import { RedisCache } from "@/app/lib/agents/cache";
 import { getCommentsIndex, getVideosIndex } from "@/app/lib/agents/data";
 import { initSettings } from "@/app/lib/agents/settings";
@@ -8,7 +8,7 @@ import {
   createWebSearchTool,
   getStudiesTool,
 } from "@/app/lib/agents/tools";
-import { CustomOpenAI } from "@/app/api/shared/llm";
+import { agent } from "@llamaindex/workflow";
 import { twitterBotPrompt } from "./prompt";
 
 export async function createTwitterWorkflow() {

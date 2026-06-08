@@ -7,6 +7,8 @@ export interface ThreadTweet {
   authorUsername: string | undefined;
   createdAt: string | undefined;
   isMention: boolean;
+  referencedTweets: { type: string; id: string }[] | undefined;
+  imageUrls: string[];
 }
 
 export interface MentionData {
@@ -78,69 +80,146 @@ export async function fetchMentions(userId: string): Promise<MentionData[]> {
   });
 }
 
-export async function fetchThread(
-  mentionId: string,
-  maxDepth = 20,
-): Promise<ThreadTweet[]> {
-  const client = getReadClient();
+const MAX_CHAIN_DEPTH = 10;
 
-  // Step 1: Get mention tweet to find conversation_id
-  const mentionResponse = await client.posts.getById(mentionId, {
-    tweetFields: ["conversation_id"],
-  });
+function extractImageUrls(data: any, includes: any): string[] {
+  const urls: string[] = [];
 
-  const conversationId = (mentionResponse.data as any)?.conversationId;
-  if (!conversationId) {
-    // Fallback: if no conversation_id, return just the mention itself
-    const tweet = mentionResponse.data as any;
-    if (!tweet) return [];
-    return [
-      {
-        id: tweet.id,
-        text: tweet.text,
-        authorId: tweet.authorId,
-        authorUsername: undefined,
-        createdAt: tweet.createdAt,
-        isMention: true,
-      },
-    ];
+  // URL card preview images
+  for (const urlEntity of data.entities?.urls ?? []) {
+    for (const img of urlEntity.images ?? []) {
+      if (img.url) urls.push(img.url);
+    }
   }
 
-  // Step 2: Search for all tweets in the conversation
-  const searchResponse = await client.posts.searchRecent(
-    `conversation_id:${conversationId}`,
-    {
-      maxResults: Math.min(maxDepth, 100),
-      tweetFields: ["author_id", "text", "created_at"],
-      userFields: ["username"],
-      expansions: ["author_id"],
-    },
-  );
+  // Attached media (type === "photo")
+  for (const media of includes?.media ?? []) {
+    if (media.type === "photo" && media.url) {
+      urls.push(media.url);
+    }
+  }
 
-  const tweets = (searchResponse.data ?? []) as any[];
-  const users = (searchResponse.includes?.users ?? []) as any[];
+  return urls;
+}
 
-  // Step 3: Map to ThreadTweet format
-  const thread: ThreadTweet[] = tweets.map((tweet) => {
-    const author = users.find((u) => u.id === tweet.authorId);
-    return {
-      id: tweet.id,
-      text: tweet.text,
-      authorId: tweet.authorId,
+export async function fetchThreadChain(
+  mentionId: string,
+  maxDepth = MAX_CHAIN_DEPTH,
+): Promise<ThreadTweet[]> {
+  const client = getReadClient();
+  const visited = new Set<string>();
+  const collected: ThreadTweet[] = [];
+
+  async function walk(tweetId: string, depth: number): Promise<void> {
+    if (depth > maxDepth || visited.has(tweetId)) return;
+    visited.add(tweetId);
+
+    let data: any;
+    let includes: any;
+    try {
+      const response = await client.posts.getById(tweetId, {
+        tweetFields: [
+          "referenced_tweets",
+          "author_id",
+          "created_at",
+          "text",
+          "entities",
+          "attachments",
+        ],
+        expansions: [
+          "referenced_tweets.id",
+          "author_id",
+          "attachments.media_keys",
+        ],
+        userFields: ["username"],
+        mediaFields: ["url", "preview_image_url", "type"],
+      });
+      data = response.data as any;
+      includes = response.includes as any;
+    } catch (error: any) {
+      // Deleted, protected, or inaccessible tweet — skip
+      console.warn(
+        `[TWITTER BOT] Could not fetch tweet ${tweetId}:`,
+        error.message || error,
+      );
+      return;
+    }
+
+    if (!data) return;
+
+    const users = includes?.users ?? [];
+    const expandedTweets = includes?.tweets ?? [];
+
+    const author = users.find((u: any) => u.id === data.authorId);
+    collected.push({
+      id: data.id,
+      text: data.text,
+      authorId: data.authorId,
       authorUsername: author?.username,
-      createdAt: tweet.createdAt,
-      isMention: tweet.id === mentionId,
-    };
-  });
+      createdAt: data.createdAt || data.created_at,
+      isMention: tweetId === mentionId,
+      referencedTweets: data.referencedTweets || data.referenced_tweets,
+      imageUrls: extractImageUrls(data, includes),
+    });
 
-  // Step 4: Sort chronologically (oldest first)
-  thread.sort(
+    // Walk up referenced tweets (replied_to, quoted, etc.)
+    const refs: { type: string; id: string }[] =
+      data.referencedTweets ?? data.referenced_tweets ?? [];
+    for (const ref of refs) {
+      if (visited.has(ref.id)) continue;
+
+      // Check if the expanded data is already in includes
+      const expanded = expandedTweets.find((t: any) => t.id === ref.id);
+      if (expanded) {
+        // Use inline data without extra API call
+        const expandedAuthor = users.find(
+          (u: any) => u.id === expanded.authorId,
+        );
+        collected.push({
+          id: expanded.id,
+          text: expanded.text,
+          authorId: expanded.authorId,
+          authorUsername: expandedAuthor?.username,
+          createdAt: expanded.createdAt || expanded.created_at,
+          isMention: false,
+          referencedTweets:
+            expanded.referencedTweets || expanded.referenced_tweets,
+          imageUrls: extractImageUrls(expanded, {}),
+        });
+        visited.add(ref.id);
+        // Continue walking up from expanded tweet's references
+        const expandedRefs: { type: string; id: string }[] =
+          expanded.referencedTweets ?? expanded.referenced_tweets ?? [];
+        for (const expandedRef of expandedRefs) {
+          await walk(expandedRef.id, depth + 1);
+        }
+      } else {
+        // Not in includes — fetch it
+        await walk(ref.id, depth + 1);
+      }
+    }
+  }
+
+  await walk(mentionId, 0);
+
+  // Deduplicate by ID
+  const seen = new Set<string>();
+  const unique: ThreadTweet[] = [];
+  for (const tweet of collected) {
+    if (!seen.has(tweet.id)) {
+      seen.add(tweet.id);
+      unique.push(tweet);
+    }
+  }
+
+  // Sort chronologically (oldest first)
+  unique.sort(
     (a, b) =>
       new Date(a.createdAt || 0).getTime() -
       new Date(b.createdAt || 0).getTime(),
   );
 
-  return thread;
+  return unique;
 }
 
 export async function postReply(
