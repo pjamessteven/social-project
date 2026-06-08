@@ -18,6 +18,7 @@ export interface MentionData {
   authorUsername: string | undefined;
   createdAt: string | undefined;
   referencedTweets: { type: string; id: string }[] | undefined;
+  inReplyToUserId: string | undefined;
 }
 
 function getReadClient(): Client {
@@ -76,6 +77,7 @@ export async function fetchMentions(userId: string): Promise<MentionData[]> {
       authorUsername: author?.username,
       createdAt: tweet.created_at,
       referencedTweets: tweet.referenced_tweets,
+      inReplyToUserId: tweet.inReplyToUserId || tweet.in_reply_to_user_id,
     };
   });
 }
