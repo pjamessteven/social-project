@@ -510,5 +510,4 @@ export function QuestionsEventPart() {
       ))}
     </div>
   );
-  x;
 }
