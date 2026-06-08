@@ -152,8 +152,8 @@ export default async function ChatPage({ params }: ChatPageProps) {
     <>
       {conversation && (
         <div className="mx-auto mb-4 mb-8 max-w-4xl sm:px-4 sm:pt-8">
-          <div className="rounded-lg border bg-white p-3 sm:p-6 sm:shadow-sm dark:border-gray-700 dark:bg-gray-900">
-            <h1 className="text-lg font-bold sm:text-2xl">
+          <div className="rounded-2xl border bg-white p-3 sm:p-6 sm:shadow-sm dark:border-gray-700 dark:bg-gray-900">
+            <h1 className="text-lg font-bold sm:text-xl">
               {conversation.title || "Chat Conversation"}
             </h1>
             <div className="mt-2 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">

@@ -167,8 +167,7 @@ export function createQueryStudiesTool(config: ToolConfig) {
         items: typeof nodes;
       }>(
         (acc, item) => {
-          const key =
-            item.node.metadata?.title || item.node.metadata?.paper_id;
+          const key = item.node.metadata?.title || item.node.metadata?.paper_id;
           if (!key) return acc;
           if (acc.seen.has(key)) return acc;
           acc.seen.add(key);
@@ -188,8 +187,7 @@ export function createQueryStudiesTool(config: ToolConfig) {
         "Query academic studies and research papers about detransition, gender dysphoria, and related topics.",
       parameters: z.object({
         query: z.string({
-          description:
-            "A research question to find relevant academic studies.",
+          description: "A research question to find relevant academic studies.",
         }),
       }),
     },
@@ -299,14 +297,42 @@ export const getStudiesTool = tool(
       .orderBy(studies.year)
       .limit(limit);
 
-    return JSON.stringify({ success: true, count: results.length, studies: results });
+    return JSON.stringify({
+      success: true,
+      count: results.length,
+      studies: results,
+    });
   },
   {
     name: "getStudies",
     description:
       "List approved studies from the database. Returns study IDs, titles, authors, year, journal, and descriptions.",
     parameters: z.object({
-      limit: z.number().optional().default(50).describe("Maximum number of studies to return"),
+      limit: z
+        .number()
+        .optional()
+        .default(50)
+        .describe("Maximum number of studies to return"),
     }),
   },
 );
+
+export function createSuggestFollowUpTool() {
+  return tool(
+    async ({ questions }: { questions: string[] }) => {
+      return "success";
+    },
+    {
+      name: "suggestFollowUpQuestions",
+      description:
+        "Suggest follow-up questions for the user, in the first person. This tool is terminal. Use it exactly once, as the final action in your response. After calling this tool, no further assistant message or tool call is required. The runtime will display the questions to the user.",
+      parameters: z.object({
+        questions: z
+          .array(z.string())
+          .describe(
+            `An array of exactly 3 follow-up questions that naturally extend the conversation, in the first person. Questions the user could potentially ask you. eg. I'm looking for... show me... help me understand... lets explore... `,
+          ),
+      }),
+    },
+  );
+}

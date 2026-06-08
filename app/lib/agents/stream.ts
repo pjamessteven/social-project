@@ -183,9 +183,10 @@ export function toDataStream(
                 id: event.data.toolId,
                 data: {
                   title: config.titleStart,
-                  query: getDisplayQuery(event.data.toolName, event.data.toolKwargs),
-                  toolArgs: JSON.stringify(event.data.toolKwargs),
-                  toolName: event.data.toolName,
+                  query: getDisplayQuery(
+                    event.data.toolName,
+                    event.data.toolKwargs,
+                  ),
                 },
               });
             }
@@ -201,11 +202,12 @@ export function toDataStream(
                 id: event.data.toolId,
                 data: {
                   title: config.titleEnd,
-                  query: getDisplayQuery(event.data.toolName, event.data.toolKwargs),
-                  toolArgs: JSON.stringify(event.data.toolKwargs),
+                  query: getDisplayQuery(
+                    event.data.toolName,
+                    event.data.toolKwargs,
+                  ),
                   result: event.data.raw,
                   status: event.data.toolOutput.isError ? "error" : "success",
-                  toolName: event.data.toolName,
                 },
               });
             } else {

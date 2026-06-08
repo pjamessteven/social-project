@@ -93,12 +93,6 @@
   display: none !important;
 }
 
-/* hacky way of styling follow up questions */
-.flex.flex-col.space-y-2 > a.text-sm {
-  font-size: 1rem !important; /* Tailwind text-lg */
-  line-height: 1.5rem !important;
-}
-
 div.bg-background.border:has(> img[alt="Llama Logo"]) {
   display: none !important;
 }
@@ -106,6 +100,7 @@ div.bg-background.border:has(> img[alt="Llama Logo"]) {
 /* chat message margin style*/
 .user-message :is(.custom-markdown) {
   border-top-right-radius: 0px !important;
+  padding: 10px 18px;
 }
 @media (prefers-color-scheme: dark) {
   .user-message :is(.custom-markdown) {

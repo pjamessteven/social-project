@@ -555,3 +555,51 @@ export type StudyTagRelation = z.infer<typeof studyTagRelationSchema>;
 
 export type Video = z.infer<typeof videoSchema>;
 export type UserTag = z.infer<typeof userTagSchema>;
+
+// Chat feedback table (thumbs up/down per message)
+export const chatFeedback = pgTable(
+  "chat_feedback",
+  {
+    id: serial("id").primaryKey(),
+    conversationUuid: varchar("conversation_uuid", { length: 36 })
+      .notNull()
+      .references(() => chatConversations.uuid, { onDelete: "cascade" }),
+    messageId: varchar("message_id", { length: 36 }).notNull(),
+    vote: varchar("vote", { length: 4 }).notNull(), // 'up' or 'down'
+    feedbackText: text("feedback_text"), // Optional feedback text (only for downvotes)
+    ipAddress: varchar("ip_address", { length: 45 }),
+    username: varchar("username", { length: 255 }),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    conversationMessageIdx: index("idx_chat_feedback_conversation_message").on(
+      table.conversationUuid,
+      table.messageId,
+    ),
+    ipAddressIdx: index("idx_chat_feedback_ip_address").on(table.ipAddress),
+    usernameIdx: index("idx_chat_feedback_username").on(table.username),
+    // One vote per user per message (by IP for anonymous, by username for logged-in)
+    uniqueIpMessage: index("idx_chat_feedback_unique_ip_message").on(
+      table.ipAddress,
+      table.messageId,
+    ),
+    uniqueUsernameMessage: index(
+      "idx_chat_feedback_unique_username_message",
+    ).on(table.username, table.messageId),
+  }),
+);
+
+export const chatFeedbackSchema = z.object({
+  id: z.number().int(),
+  conversationUuid: z.string(),
+  messageId: z.string(),
+  vote: z.enum(["up", "down"]),
+  feedbackText: z.string().nullable(),
+  ipAddress: z.string().max(45).nullable(),
+  username: z.string().max(255).nullable(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+
+export type ChatFeedback = z.infer<typeof chatFeedbackSchema>;

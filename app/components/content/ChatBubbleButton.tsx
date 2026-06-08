@@ -13,6 +13,7 @@ interface ChatBubbleButtonProps {
   isLink?: boolean;
   size?: "sm" | "md";
   className?: string;
+  onClick?: () => void;
 }
 
 function useIsRTL() {
@@ -39,12 +40,14 @@ export default function ChatBubbleButton({
   className,
   size = "md",
   isLink = false,
+  onClick,
 }: ChatBubbleButtonProps) {
   const rtl = useIsRTL();
 
   const button = (
     <Button
       variant="secondary"
+      onClick={onClick}
       className={cn(
         "h-auto w-auto gap-2 rounded-xl whitespace-normal transition-colors duration-300 sm:w-auto",
         rtl
@@ -54,7 +57,7 @@ export default function ChatBubbleButton({
           ? "px-3 py-2 !text-sm font-normal"
           : "px-4 py-3 text-base font-medium",
         className,
-        isLink === true
+        isLink === true || onClick
           ? "transition-none hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
           : "pointer-none:",
       )}
@@ -67,7 +70,7 @@ export default function ChatBubbleButton({
         )}
       >
         <div>
-          {isLink && (
+          {(isLink || onClick) && (
             <span className="whitespace-nowrap">
               {rtl ? "<-" : "->"}&nbsp;&nbsp;
             </span>
