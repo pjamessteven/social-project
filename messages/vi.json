@@ -960,6 +960,16 @@
       "description": "Không thể tải CAPTCHA. Vui lòng làm mới trang và thử lại."
     }
   },
+  "feedback": {
+    "title": "Phản hồi",
+    "prompt": "Làm thế nào chúng tôi có thể cải thiện câu trả lời này?",
+    "placeholder": "Tùy chọn: cho chúng tôi biết điều gì sai...",
+    "submit": "Gửi",
+    "cancel": "Hủy",
+    "thankYou": "Cảm ơn phản hồi của bạn!",
+    "error": "Gửi phản hồi thất bại. Vui lòng thử lại.",
+    "voteLocked": "Phản hồi cho tin nhắn này đã được gửi."
+  },
   "statsPage": {
     "title": "Thống kê ẩn danh",
     "description": "Thống kê detransition ẩn danh được rút ra từ những câu chuyện và trải nghiệm của người detransition. Dữ liệu được tổng hợp từ bình luận của người dùng trên /r/detrans để tiết lộ các mô hình trong transition và detransition. Chỉ những người dùng đã chia sẻ đủ để ghép lại một câu chuyện và dòng thời gian đầy đủ mới được đưa vào.",

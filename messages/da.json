@@ -959,6 +959,16 @@
       "description": "Kunne ikke indlæse CAPTCHA. Opdater venligst siden og prøv igen."
     }
   },
+  "feedback": {
+    "title": "Feedback",
+    "prompt": "Hvordan kan vi forbedre dette svar?",
+    "placeholder": "Valgfrit: fortæl os hvad der var galt...",
+    "submit": "Indsend",
+    "cancel": "Annuller",
+    "thankYou": "Tak for din feedback!",
+    "error": "Kunne ikke sende feedback. Prøv venligst igen.",
+    "voteLocked": "Feedback er allerede indsendt for denne besked."
+  },
   "statsPage": {
     "title": "Anonymiseret statistik",
     "description": "Anonymiseret detransitionstatistik udledt fra detransitioneres historier og erfaringer. Data er samlet fra brugerkommentarer på /r/detrans for at afsløre mønstre i transition og detransition. Kun brugere, der har delt nok til at sammensætte en fuld historie og tidslinje, er inkluderet.",

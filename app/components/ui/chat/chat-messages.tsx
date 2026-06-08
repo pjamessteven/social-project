@@ -20,17 +20,20 @@ import { useEffect, useRef, useState } from "react";
 import { ChatMessageAvatar } from "./chat-avatar";
 import { ChatMessageContent } from "./chat-message-content";
 import { ComponentDef } from "./custom/events/types";
+import { FeedbackButtons } from "./feedback-buttons";
 
 export default function CustomChatMessages({
   componentDefs,
   appendError,
   hideControls,
   conversationId,
+  isArchived,
 }: {
   componentDefs: ComponentDef[];
   appendError: (error: string) => void;
   hideControls?: boolean;
   conversationId?: string;
+  isArchived?: boolean;
 }) {
   const { messages, stop } = useChatUI();
   const { chatStatus } = useChatStore();
@@ -107,7 +110,7 @@ export default function CustomChatMessages({
           const isLast = index === messages.length - 1;
 
           return (
-            <div key={index}>
+            <div key={index} className="group">
               <ChatMessage
                 message={message}
                 isLast={index === messages.length - 1}
@@ -123,13 +126,24 @@ export default function CustomChatMessages({
                   componentDefs={componentDefs}
                   appendError={appendError}
                 />
-                <ChatMessage.Actions />
+                <div className="transition-opacity sm:opacity-0 sm:group-hover:opacity-100">
+                  <ChatMessage.Actions />
+                </div>
               </ChatMessage>
+              {message.role === "assistant" && !isArchived && (
+                <div className="-mt-4 -mb-8 ml-1 flex items-start transition-opacity sm:ml-12 sm:opacity-0 sm:group-hover:opacity-100">
+                  <FeedbackButtons
+                    messageId={message.id}
+                    conversationId={conversationId || ""}
+                    isArchived={false}
+                  />
+                </div>
+              )}
               {isLast && (
                 <ChatMessages.Loading className="mb-4 -ml-16 sm:mr-0" />
               )}
               {isLast && !hideControls && (
-                <div className="-mt-2 mb-4 ml-3 flex w-full flex-row justify-between pr-20 sm:mb-8 sm:pr-4">
+                <div className="mt-4 mb-4 ml-3 flex w-full flex-row justify-between pr-20 sm:mb-8 sm:pr-4">
                   <div className="flex w-full grow flex-row justify-between pt-8">
                     <Link
                       href={portalHref as "/"}

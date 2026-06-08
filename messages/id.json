@@ -960,6 +960,16 @@
       "description": "Gagal memuat CAPTCHA. Harap segarkan halaman dan coba lagi."
     }
   },
+  "feedback": {
+    "title": "Umpan Balik",
+    "prompt": "Bagaimana kami dapat meningkatkan respons ini?",
+    "placeholder": "Opsional: beri tahu kami apa yang salah...",
+    "submit": "Kirim",
+    "cancel": "Batal",
+    "thankYou": "Terima kasih atas umpan balik Anda!",
+    "error": "Gagal mengirim umpan balik. Silakan coba lagi.",
+    "voteLocked": "Umpan balik sudah dikirim untuk pesan ini."
+  },
   "statsPage": {
     "title": "Statistik Anonim",
     "description": "Statistik detransisi anonim yang berasal dari cerita dan pengalaman para detransisioner. Data dikumpulkan dari komentar pengguna di /r/detrans untuk mengungkap pola transisi dan detransisi. Hanya pengguna yang telah berbagi cukup untuk menyusun cerita lengkap dan garis waktu yang disertakan.",

@@ -959,6 +959,16 @@
       "description": "Nie udało się załadować CAPTCHA. Proszę odświeżyć stronę i spróbować ponownie."
     }
   },
+  "feedback": {
+    "title": "Opinie",
+    "prompt": "Jak możemy ulepszyć tę odpowiedź?",
+    "placeholder": "Opcjonalnie: powiedz nam, co było nie tak...",
+    "submit": "Wyślij",
+    "cancel": "Anuluj",
+    "thankYou": "Dziękujemy za Twoją opinię!",
+    "error": "Nie udało się przesłać opinii. Spróbuj ponownie.",
+    "voteLocked": "Opinia dla tej wiadomości została już przesłana."
+  },
   "statsPage": {
     "title": "Anonimowe statystyki",
     "description": "Anonimowe statystyki detranzycji oparte na historiach i doświadczeniach osób, które przeszły detranzycję. Dane są zbierane z komentarzy użytkowników na /r/detrans, aby ujawnić wzorce w tranzycji i detranzycji. Uwzględnieni są tylko użytkownicy, którzy podzielili się wystarczającą ilością informacji, aby złożyć pełną historię i oś czasu.",

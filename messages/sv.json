@@ -959,6 +959,16 @@
       "description": "Kunde inte ladda CAPTCHA. Vänligen uppdatera sidan och försök igen."
     }
   },
+  "feedback": {
+    "title": "Feedback",
+    "prompt": "Hur kan vi förbättra detta svar?",
+    "placeholder": "Valfritt: berätta vad som var fel...",
+    "submit": "Skicka",
+    "cancel": "Avbryt",
+    "thankYou": "Tack för din feedback!",
+    "error": "Det gick inte att skicka feedback. Försök igen.",
+    "voteLocked": "Feedback har redan skickats för detta meddelande."
+  },
   "statsPage": {
     "title": "Anonymiserad statistik",
     "description": "Anonymiserad statistik om detransition härrör från detransitioners berättelser och erfarenheter. Data samlas in från användarkommentarer på /r/detrans för att avslöja mönster i transition och detransition. Endast användare som har delat tillräckligt för att sätta ihop en fullständig berättelse och tidslinje inkluderas.",

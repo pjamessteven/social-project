@@ -497,7 +497,7 @@ export function QuestionsEventPart() {
   return (
     <div
       className={cn(
-        "-mt-2 mb-2 flex flex-col items-end gap-2 sm:-mr-16",
+        "-mt-2 mb-8 flex flex-col items-end gap-3 sm:-mr-4",
         !isLast && "pointer-events-none opacity-50",
       )}
     >
@@ -510,4 +510,5 @@ export function QuestionsEventPart() {
       ))}
     </div>
   );
+  x;
 }

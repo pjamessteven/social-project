@@ -960,6 +960,16 @@
       "description": "CAPTCHAn lataaminen epäonnistui. Päivitä sivu ja yritä uudelleen."
     }
   },
+  "feedback": {
+    "title": "Palaute",
+    "prompt": "Miten voimme parantaa tätä vastausta?",
+    "placeholder": "Valinnainen: kerro meille mikä oli väärin...",
+    "submit": "Lähetä",
+    "cancel": "Peruuta",
+    "thankYou": "Kiittelemme palautteestasi!",
+    "error": "Palautteen lähettäminen epäonnistui. Yritä uudelleen.",
+    "voteLocked": "Tälle viestille on jo lähetetty palaute."
+  },
   "statsPage": {
     "title": "Anonymisoidut tilastot",
     "description": "Anonymisoidut detransitiotilastot, jotka on johdettu detransitioijoiden tarinoista ja kokemuksista. Tiedot on koottu /r/detrans -käyttäjien kommenteista paljastaakseen muutos- ja detransitiokuvioita. Vain käyttäjät, jotka ovat jakaneet tarpeeksi koko tarinan ja aikajanän muodostamiseen, sisällytetään.",

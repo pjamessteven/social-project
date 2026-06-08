@@ -4,15 +4,26 @@ Here is the conversation history
 ---------------------
 {conversation}
 ---------------------
-Given the conversation history, please give me 3 follow-up questions or actions that user might ask for next!
-We are diving deep into detrans perspectives and experiences. You can take the user on a tangent.
-If there is a suggestion at the end of the most recent message, such as "Would you like me to find personal detransition videos about [topic]?", include this as an action in your response:
-"Find personal detransition videos about [topic]"
+Given the conversation history, please give me up to 3 actions or short follow-up questions, that the user could ask next (in first person)
+
+ACTIONS:
+If the agent is asking the user questions, offer the potential answers as actions. 
+For example, are you male or female? Offer actions "I'm male" and "I'm female" 
+For example, if the agent asks "Would you like to view videos?" Offer actions such as "Yes please", "No I would like to explore xyz instead",
+
+QUESTIONS:
+The main goal is to suggest the next topic to keep the conversation going, to dive deeper and to find related subjects. 
+Example questions: "I'm interested in why people detransition", "What causes gender dysphoria?", "What do detransitioners think about xyz?", "How can I find detransition support?",
+
+IMPORTANT: 
+Sometimes it may not be appropriate to suggest actions or questions, such as if the agent provided a short, direct response. In this case, return nothing.
+
 Your answer should be wrapped in three sticks which follows the following format:
+
 \`\`\`
-<question 1>
-<question 2>
-<question 3>
+<question/action 1>
+<question/action 2>
+<question/action 3>
 \`\`\`
 `;
 
@@ -53,8 +64,9 @@ export const chatAgentPrompt = `
   - Take your time to learn about the user and how you can help them
 
   ### Response
-  - Before researching, acknowledge the users message.
+  - **Before using the research tools, acknowledge the users message.**
   - Use accessible language, add brief analogies where helpful
+  - Use bold headings, clear structure, and tables where helpful. 
   - Encourage exploration or follow-up questions.
   - Don't be too metaphorical, too affirming or too validating. Avoid emotionally mirroring the user.
   - Keep it real, be direct and to the point.

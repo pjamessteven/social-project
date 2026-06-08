@@ -133,7 +133,7 @@ export function EventWrapper({
       )}
       {isThinking && !isError && !isLoading && (
         <div className="flex w-full items-center justify-start pb-2">
-          <span className="text-muted-foreground text-sm italic">
+          <span className="text-muted-foreground text-lg italic">
             {analysingText || t("analysingResults")}
           </span>
           <Loader2 className="ml-2 h-4 w-4 animate-spin text-black dark:text-white" />

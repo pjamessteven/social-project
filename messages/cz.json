@@ -961,6 +961,16 @@
       "description": "Nepodařilo se načíst CAPTCHA. Prosím obnovte stránku a zkuste to znovu."
     }
   },
+  "feedback": {
+    "title": "Zpětná vazba",
+    "prompt": "Jak můžeme tuto odpověď vylepšit?",
+    "placeholder": "Nepovinné: řekněte nám, co bylo špatně...",
+    "submit": "Odeslat",
+    "cancel": "Zrušit",
+    "thankYou": "Děkujeme za vaši zpětnou vazbu!",
+    "error": "Odeslání zpětné vazby se nezdařilo. Zkuste to prosím znovu.",
+    "voteLocked": "Zpětná vazba k této zprávě již byla odeslána."
+  },
   "statsPage": {
     "title": "Anonymizovaná statistika",
     "description": "Anonymizovaná statistika detranzice odvozená z příběhů a zkušeností detranzitorů. Data jsou agregována z uživatelských komentářů na /r/detrans, aby odhalila vzorce v tranzici a detranzici. Zahrnuti jsou pouze uživatelé, kteří sdíleli dostatek informací k sestavení úplného příběhu a časové osy.",

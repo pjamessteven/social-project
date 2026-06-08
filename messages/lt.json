@@ -960,6 +960,16 @@
       "description": "Nepavyko įkelti CAPTCHA. Atnaujinkite puslapį ir bandykite dar kartą."
     }
   },
+  "feedback": {
+    "title": "Atsiliepimai",
+    "prompt": "Kaip galėtume pagerinti šį atsakymą?",
+    "placeholder": "Nebūtina: pasakykite mums, kas buvo neteisinga...",
+    "submit": "Pateikti",
+    "cancel": "Atšaukti",
+    "thankYou": "Dėkojame už jūsų atsiliepimą!",
+    "error": "Nepavyko pateikti atsiliepimo. Bandykite dar kartą.",
+    "voteLocked": "Atsiliepimas apie šią žinutę jau pateiktas."
+  },
   "statsPage": {
     "title": "Anoniminė statistika",
     "description": "Anoniminė detranzicijos statistika, paremta detranziciją patyrusių žmonių istorijomis ir patirtimis. Duomenys kaupiami iš /r/detrans naudotojų komentarų, siekiant atskleisti tranzicijos ir detranzicijos modelius. Įtraukiami tik naudotojai, kurie pasidalino pakankamai informacijos, kad būtų galima sudaryti visą istoriją ir chronologiją.",

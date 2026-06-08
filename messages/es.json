@@ -958,6 +958,16 @@
       "description": "Error al cargar el CAPTCHA. Por favor actualiza la página e intenta de nuevo."
     }
   },
+  "feedback": {
+    "title": "Comentarios",
+    "prompt": "¿Cómo podemos mejorar esta respuesta?",
+    "placeholder": "Opcional: dinos qué estuvo mal...",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "thankYou": "¡Gracias por tus comentarios!",
+    "error": "No se pudieron enviar los comentarios. Inténtalo de nuevo.",
+    "voteLocked": "Ya se enviaron comentarios para este mensaje."
+  },
   "statsPage": {
     "title": "Estadísticas anonimizadas",
     "description": "Estadísticas anonimizadas sobre la destransición derivadas de las historias y experiencias de personas que han destransicionado. Los datos se agregan a partir de los comentarios de los usuarios en /r/detrans para revelar patrones en la transición y la destransición. Solo se incluyen usuarios que han compartido lo suficiente para armar una historia y cronología completa.",

@@ -498,6 +498,7 @@ function ChatSectionPanel({
           componentDefs={componentDefs}
           appendError={appendError}
           conversationId={conversationId}
+          isArchived={isArchived}
         />
 
         {isArchived && (

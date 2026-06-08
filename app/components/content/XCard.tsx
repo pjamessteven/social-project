@@ -26,7 +26,7 @@ export default function XCard() {
       rel="noopener noreferrer"
       className="no-underline"
     >
-      <Card className="group bg-card relative cursor-pointer overflow-hidden rounded-xl border-blue-400/50 bg-blue-300/20 shadow-none shadow-sm transition-all duration-500 hover:brightness-110 dark:border-blue-600/30 dark:bg-blue-600/20">
+      <Card className="group bg-card relative cursor-pointer overflow-hidden rounded-xl border-blue-400/50 bg-blue-300/20 shadow-none shadow-sm transition-all duration-500 hover:brightness-110 dark:border-blue-400/30 dark:bg-blue-400/20">
         <div className="pointer-events-none absolute inset-0 left-0 w-[300%] translate-x-[-100%] bg-gradient-to-r from-white/20 via-white/10 to-transparent transition-transform duration-500 ease-in-out group-hover:translate-x-[0%] dark:via-white/10" />
         <CardHeader className="z-10">
           <div className="flex items-center justify-between">
