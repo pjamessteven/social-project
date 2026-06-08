@@ -48,6 +48,7 @@ RUN adduser --system --uid 1001 nextjs
 
 # Copy application code with appropriate ownership and permissions
 COPY --from=builder --chown=nextjs:nodejs --chmod=555 /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs --chmod=444 /app/tsconfig.json ./tsconfig.json
 COPY --from=builder --chown=nextjs:nodejs --chmod=555 /app/components ./components
 COPY --from=builder --chown=nextjs:nodejs --chmod=555 /app/db ./db
 COPY --from=builder --chown=nextjs:nodejs --chmod=555 /app/app ./app
