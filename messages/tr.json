@@ -959,6 +959,16 @@
       "description": "CAPTCHA yüklenemedi. Lütfen sayfayı yenileyin ve tekrar deneyin."
     }
   },
+  "feedback": {
+    "title": "Geri Bildirim",
+    "prompt": "Bu yanıtı nasıl geliştirebiliriz?",
+    "placeholder": "İsteğe bağlı: neyin yanlış olduğunu bize söyleyin...",
+    "submit": "Gönder",
+    "cancel": "İptal",
+    "thankYou": "Geri bildiriminiz için teşekkürler!",
+    "error": "Geri bildirim gönderilemedi. Lütfen tekrar deneyin.",
+    "voteLocked": "Bu mesaj için geri bildirim zaten gönderildi."
+  },
   "statsPage": {
     "title": "Anonim İstatistikler",
     "description": "Detransisyon hikayeleri ve deneyimlerinden elde edilen anonimleştirilmiş detransisyon istatistikleri. Veriler, geçiş ve detransisyon kalıplarını ortaya çıkarmak için /r/detrans'daki kullanıcı yorumlarından derlenir. Yalnızca tam bir hikaye ve zaman çizelgesi oluşturacak kadar bilgi paylaşan kullanıcılar dahil edilir.",

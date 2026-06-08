@@ -1,6 +1,5 @@
-import { getEnv } from "@llamaindex/env";
 import type { UIMessageStreamWriter } from "ai";
-import { type ChatMessage, Settings } from "llamaindex";
+import { type ChatMessage } from "llamaindex";
 import { RedisCache } from "../../shared/cache";
 import { CachedOpenAI } from "../../shared/llm";
 import { NEXT_QUESTION_PROMPT } from "./prompts";
@@ -34,15 +33,18 @@ export async function generateNextQuestions(
     mode: "detrans_chat",
     apiKey: process.env.OPENROUTER_KEY,
     baseURL: "https://openrouter.ai/api/v1",
-    model: "moonshotai/kimi-k2-0905:exacto",
+    model: "deepseek/deepseek-v4-flash",
     conversationId,
   });
 
   const conversationText = conversation
     .map((message) => `${message.role}: ${message.content}`)
     .join("\n");
-  const promptTemplate = getEnv("NEXT_QUESTION_PROMPT") || NEXT_QUESTION_PROMPT;
-  const message = promptTemplate.replace("{conversation}", conversationText);
+  const promptTemplate = NEXT_QUESTION_PROMPT;
+  const message = promptTemplate.replace(
+    "{conversation}",
+    conversationText.slice(1000),
+  );
 
   try {
     const response = await llm.complete({ prompt: message });

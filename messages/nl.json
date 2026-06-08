@@ -958,6 +958,16 @@
       "description": "CAPTCHA laden mislukt. Vernieuw de pagina en probeer het opnieuw."
     }
   },
+  "feedback": {
+    "title": "Feedback",
+    "prompt": "Hoe kunnen we dit antwoord verbeteren?",
+    "placeholder": "Optioneel: vertel ons wat er mis was...",
+    "submit": "Verzenden",
+    "cancel": "Annuleren",
+    "thankYou": "Bedankt voor je feedback!",
+    "error": "Feedback verzenden mislukt. Probeer het opnieuw.",
+    "voteLocked": "Feedback is al ingediend voor dit bericht."
+  },
   "statsPage": {
     "title": "Geanonimiseerde statistieken",
     "description": "Geanonimiseerde detransitiestatistieken afgeleid van verhalen en ervaringen van detransitiepersonen. Gegevens worden verzameld uit gebruikersreacties op /r/detrans om patronen in transitie en detransitie te onthullen. Alleen gebruikers die voldoende hebben gedeeld om een volledig verhaal en tijdslijn samen te stellen, zijn opgenomen.",

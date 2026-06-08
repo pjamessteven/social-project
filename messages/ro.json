@@ -960,6 +960,16 @@
       "description": "Nu s-a putut încărca CAPTCHA. Te rugăm să reîmprospătezi pagina și să încerci din nou."
     }
   },
+  "feedback": {
+    "title": "Feedback",
+    "prompt": "Cum putem îmbunătăți acest răspuns?",
+    "placeholder": "Opțional: spune-ne ce a fost greșit...",
+    "submit": "Trimite",
+    "cancel": "Anulează",
+    "thankYou": "Mulțumim pentru feedback!",
+    "error": "Nu s-a putut trimite feedback-ul. Vă rugăm să încercați din nou.",
+    "voteLocked": "Feedback-ul pentru acest mesaj a fost deja trimis."
+  },
   "statsPage": {
     "title": "Statistici anonimizate",
     "description": "Statistici de detranziție anonimizate, derivate din poveștile și experiențele persoanelor care au făcut detranziție. Datele sunt colectate din comentariile utilizatorilor de pe /r/detrans pentru a releva modele în tranziție și detranziție. Sunt incluși doar utilizatorii care au împărtășit suficiente informații pentru a alcătui o poveste și o cronologie completă.",

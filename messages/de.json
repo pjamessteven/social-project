@@ -956,6 +956,16 @@
       "description": "CAPTCHA konnte nicht geladen werden. Bitte aktualisiere die Seite und versuche es erneut."
     }
   },
+  "feedback": {
+    "title": "Feedback",
+    "prompt": "Wie können wir diese Antwort verbessern?",
+    "placeholder": "Optional: Sagen Sie uns, was falsch war...",
+    "submit": "Absenden",
+    "cancel": "Abbrechen",
+    "thankYou": "Vielen Dank für Ihr Feedback!",
+    "error": "Feedback konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+    "voteLocked": "Für diese Nachricht wurde bereits Feedback eingereicht."
+  },
   "statsPage": {
     "title": "Anonymisierte Statistiken",
     "description": "Anonymisierte Detransitionsstatistiken, abgeleitet aus den Geschichten und Erfahrungen von Detransitionierenden. Die Daten werden aus Kommentaren von Nutzern auf /r/detrans zusammengefasst, um Muster in Transition und Detransition aufzudecken. Nur Nutzer, die genug geteilt haben, um eine vollständige Geschichte und einen Zeitstrahl zusammenzustellen, sind enthalten.",

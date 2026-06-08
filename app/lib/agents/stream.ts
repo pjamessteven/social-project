@@ -7,8 +7,9 @@ import {
 } from "@llamaindex/workflow";
 import { createUIMessageStream, UIMessage, UIMessageStreamWriter } from "ai";
 import { randomUUID } from "crypto";
-import type { ChatResponseChunk } from "llamaindex";
+import type { ChatMessage, ChatResponseChunk } from "llamaindex";
 import { humanInputEvent, type HumanResponseEventData } from "./hitl";
+import { generateNextQuestions } from "../../api/chat/utils/suggestion";
 
 export interface StreamCallbacks {
   onStart?: (dataStreamWriter: UIMessageStreamWriter) => Promise<void> | void;
@@ -119,9 +120,11 @@ export function toDataStream(
   conversationId: string,
   options: {
     callbacks?: StreamCallbacks;
+    chatHistory?: ChatMessage[];
+    suggestNextQuestions?: boolean;
   } = {},
 ) {
-  const { callbacks } = options;
+  const { callbacks, chatHistory, suggestNextQuestions } = options;
 
   let completionText = "";
   let hasStarted = false;
@@ -224,6 +227,26 @@ export function toDataStream(
             }
           }
         }
+
+        // TODO: Re-enable when we have a faster model or caching
+        // Generate follow-up questions as a second pass after the main stream
+        // if (suggestNextQuestions && chatHistory && chatHistory.length > 0) {
+        //   try {
+        //     const questions = await generateNextQuestions(chatHistory, conversationId);
+        //     if (questions.length > 0) {
+        //       writer.write({
+        //         type: "data-questions-event" as any,
+        //         data: {
+        //           title: "Suggested follow-up questions",
+        //           result: JSON.stringify({ questions }),
+        //           status: "success",
+        //         },
+        //       });
+        //     }
+        //   } catch (error) {
+        //     console.error("[Stream] Error generating follow-up questions:", error);
+        //   }
+        // }
 
         closeTextBlock(writer);
       } catch (error) {

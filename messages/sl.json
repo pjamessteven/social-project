@@ -960,6 +960,16 @@
       "description": "Nalaganje CAPTCHA ni uspelo. Osvežite stran in poskusite znova."
     }
   },
+  "feedback": {
+    "title": "Povratne informacije",
+    "prompt": "Kako lahko izboljšamo ta odgovor?",
+    "placeholder": "Neobvezno: povejte nam, kaj je bilo narobe...",
+    "submit": "Pošlji",
+    "cancel": "Prekliči",
+    "thankYou": "Hvala za vaše povratne informacije!",
+    "error": "Pošiljanje povratnih informacij ni uspelo. Poskusite znova.",
+    "voteLocked": "Povratne informacije za to sporočilo so bile že poslane."
+  },
   "statsPage": {
     "title": "Anonimizirana statistika",
     "description": "Anonimizirana statistika detranzicije, pridobljena iz zgodb in izkušenj detranzitorjev. Podatki so združeni iz komentarjev uporabnikov na /r/detrans za razkrivanje vzorcev v tranziciji in detranziciji. Vključeni so samo uporabniki, ki so delili dovolj za sestavo celotne zgodbe in časovnice.",

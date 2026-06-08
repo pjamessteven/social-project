@@ -960,6 +960,16 @@
       "description": "Kunne ikke laste CAPTCHA. Vennligst oppdater siden og prøv igjen."
     }
   },
+  "feedback": {
+    "title": "Tilbakemelding",
+    "prompt": "Hvordan kan vi forbedre dette svaret?",
+    "placeholder": "Valgfritt: fortell oss hva som var galt...",
+    "submit": "Send",
+    "cancel": "Avbryt",
+    "thankYou": "Takk for tilbakemeldingen!",
+    "error": "Kunne ikke sende tilbakemelding. Vennligst prøv igjen.",
+    "voteLocked": "Tilbakemelding er allerede sendt for denne meldingen."
+  },
   "statsPage": {
     "title": "Anonymisert statistikk",
     "description": "Anonymisert detransisjonsstatistikk utledet fra detransisjoneres historier og erfaringer. Data er samlet inn fra brukerkommentarer på /r/detrans for å avdekke mønstre i transisjon og detransisjon. Kun brukere som har delt nok til å sette sammen en full historie og tidslinje er inkludert.",

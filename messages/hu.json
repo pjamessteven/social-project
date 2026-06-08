@@ -960,6 +960,16 @@
       "description": "A CAPTCHA betöltése sikertelen. Kérjük, frissítse az oldalt és próbálja újra."
     }
   },
+  "feedback": {
+    "title": "Visszajelzés",
+    "prompt": "Hogyan javíthatnánk ezt a választ?",
+    "placeholder": "Opcionális: mondja el, mi volt a probléma...",
+    "submit": "Küldés",
+    "cancel": "Mégse",
+    "thankYou": "Köszönjük a visszajelzését!",
+    "error": "Nem sült elküldeni a visszajelzést. Kérjük, próbálja újra.",
+    "voteLocked": "Erre az üzenetre már küldtek visszajelzést."
+  },
   "statsPage": {
     "title": "Anonimizált statisztikák",
     "description": "Anonimizált detranzíciós statisztikák, amelyek detranzícionálók történeteiből és tapasztalataiból származnak. Az adatokat a /r/detrans felhasználók hozzászólásaiból gyűjtik össze, hogy feltárják a tranzíció és detranzíció mintáit. Csak azok a felhasználók kerülnek be, akik eleget osztottak meg egy teljes történet és idővonal összeállításához.",
