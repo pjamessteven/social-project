@@ -1,11 +1,11 @@
-import { PostgresCache } from "../../shared/cache";
+import { RedisCache } from "../../shared/cache";
 import { CachedOpenAI } from "../../shared/llm";
 
 export const generatePhilosophicalQuote = async (
   message: string,
   conversationId: string,
 ) => {
-  const cache = new PostgresCache("deep_research");
+  const cache = new RedisCache("deep_research");
 
   const llm = new CachedOpenAI({
     cache,

@@ -1,7 +1,7 @@
 import { getEnv } from "@llamaindex/env";
 import type { UIMessageStreamWriter } from "ai";
 import { type ChatMessage, Settings } from "llamaindex";
-import { PostgresCache } from "../../shared/cache";
+import { RedisCache } from "../../shared/cache";
 import { CachedOpenAI } from "../../shared/llm";
 import { NEXT_QUESTION_PROMPT } from "./prompts";
 
@@ -23,7 +23,7 @@ export async function generateNextQuestions(
   conversation: ChatMessage[],
   conversationId: string,
 ) {
-  const cache = new PostgresCache("detrans_chat");
+  const cache = new RedisCache("detrans_chat");
 
   const llm = new CachedOpenAI({
     cache,

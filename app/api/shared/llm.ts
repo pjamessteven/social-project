@@ -121,14 +121,29 @@ export class CachedOpenAI extends OpenAI {
         const content = cachedResponse.message?.content;
         const text =
           typeof content === "string" ? content : JSON.stringify(content);
+        const cachedToolCalls = (cachedResponse.message?.options as any)
+          ?.toolCall;
 
-        // Replay the cached text as a stream
+        // Replay the cached result as a fake stream
         const replayStream =
           async function* (): AsyncGenerator<ChatResponseChunk> {
+            // If there are tool calls, yield them first as a separate chunk
+            // so the agent framework always sees them, even when text is empty
+            if (cachedToolCalls && cachedToolCalls.length > 0) {
+              yield {
+                delta: "",
+                raw: null,
+                options: { toolCall: cachedToolCalls },
+              } as ChatResponseChunk;
+            }
+            // Yield the text content using replayCached
             for await (const chunk of replayCached(text)) {
               yield {
                 ...chunk,
-                options: cachedResponse.message?.options || {},
+                options:
+                  cachedToolCalls && cachedToolCalls.length > 0
+                    ? { toolCall: cachedToolCalls }
+                    : {},
               } as ChatResponseChunk;
             }
           };
@@ -170,11 +185,18 @@ export class CachedOpenAI extends OpenAI {
               : [chunkOptions.toolCall];
 
             for (const call of calls) {
-              // Check if we've already seen this tool call ID to avoid duplicates
               const toolCallId = call.id;
-              if (toolCallId && !seenToolCallIds.has(toolCallId)) {
+              if (toolCallId) {
+                // Overwrite existing entry with latest version (which has fully parsed input)
+                const existingIndex = toolCalls.findIndex(
+                  (t) => t.id === toolCallId,
+                );
+                if (existingIndex >= 0) {
+                  toolCalls[existingIndex] = call;
+                } else {
+                  toolCalls.push(call);
+                }
                 seenToolCallIds.add(toolCallId);
-                toolCalls.push(call);
               }
             }
           }

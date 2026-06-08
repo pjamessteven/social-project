@@ -2,7 +2,7 @@ import { agent } from "@llamaindex/workflow";
 import { tool } from "llamaindex";
 import z from "zod";
 import { getCommentsIndex, getStudiesIndex } from "@/app/lib/agents/data";
-import { PostgresCache, makeHashedKey } from "@/app/lib/agents/cache";
+import { RedisCache, makeHashedKey } from "@/app/lib/agents/cache";
 import { CachedOpenAI } from "../../shared/llm";
 import { agentPrompt } from "../utils/prompts";
 import { initSettings } from "@/app/lib/agents/settings";
@@ -28,7 +28,7 @@ export const workflowFactory = async (
   initSettings();
 
   // Initialize cache first since it's used by tools
-  const cache = new PostgresCache("deep_research");
+  const cache = new RedisCache("deep_research");
 
   const commentsIndex = await getCommentsIndex(reqBody?.data, locale);
   const studiesIndex = await getStudiesIndex(reqBody?.data, locale);

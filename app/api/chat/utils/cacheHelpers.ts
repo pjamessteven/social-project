@@ -1,7 +1,7 @@
 import { db, detransQuestions } from "@/db";
 import { eq } from "drizzle-orm";
 import { agentPrompt as researchAgentPrompt } from "../../research/utils/prompts";
-import { PostgresCache, makeCacheKey, makeHashedKey } from "../../shared/cache";
+import { RedisCache, makeCacheKey, makeHashedKey } from "../../shared/cache";
 import { agentPrompt as chatAgentPrompt } from "./prompts";
 
 /**
@@ -61,7 +61,7 @@ export async function getChatCachedResponse(
   const cacheKey = generateChatCacheKey(message);
   console.log("cache key", cacheKey);
   const hashedKey = makeHashedKey(cacheKey);
-  const cache = new PostgresCache("detrans_chat");
+  const cache = new RedisCache("detrans_chat");
   return cache.get(hashedKey);
 }
 

@@ -4,7 +4,6 @@ import {
   index,
   integer,
   jsonb,
-  numeric,
   pgTable,
   primaryKey,
   serial,
@@ -26,79 +25,6 @@ export const detransQuestions = pgTable(
   },
   (table) => ({
     nameIdx: index("idx_detrans_questions_name").on(table.name),
-  }),
-);
-
-export const detransResearchCache = pgTable(
-  "detrans_research_cache",
-  {
-    promptHash: varchar("prompt_hash", { length: 64 }).primaryKey(),
-    promptText: text("prompt_text").notNull(),
-    resultText: text("result_text").notNull(),
-    questionName: varchar("question_name", { length: 255 }),
-    totalCost: numeric("total_cost", { precision: 10, scale: 6 }),
-    tokensPrompt: integer("tokens_prompt"),
-    tokensCompletion: integer("tokens_completion"),
-    model: varchar("model", { length: 255 }),
-    generationId: varchar("generation_id", { length: 255 }),
-    requestId: varchar("request_id", { length: 36 }),
-    createdAt: timestamp("created_at").defaultNow().notNull(),
-    lastAccessed: timestamp("last_accessed").defaultNow().notNull(),
-  },
-  (table) => ({
-    questionIdx: index("idx_detrans_research_cache_question").on(
-      table.questionName,
-    ),
-    createdIdx: index("idx_detrans_research_cache_created").on(table.createdAt),
-    modelIdx: index("idx_detrans_research_cache_model").on(table.model),
-    generationIdx: index("idx_detrans_research_cache_generation").on(
-      table.generationId,
-    ),
-    requestIdIdx: index("idx_detrans_research_cache_request_id").on(
-      table.requestId,
-    ),
-  }),
-);
-
-// Detrans chat cache table
-export const detransChatCache = pgTable(
-  "detrans_chat_cache",
-  {
-    promptHash: varchar("prompt_hash", { length: 64 }).primaryKey(),
-    promptText: text("prompt_text").notNull(),
-    resultText: text("result_text").notNull(),
-    questionName: varchar("question_name", { length: 255 }),
-    conversationId: varchar("conversation_id", { length: 36 }),
-    deepResearch: boolean("deep_research").default(false).notNull(),
-    totalCost: numeric("total_cost", { precision: 10, scale: 6 }),
-    tokensPrompt: integer("tokens_prompt"),
-    tokensCompletion: integer("tokens_completion"),
-    model: varchar("model", { length: 255 }),
-    generationId: varchar("generation_id", { length: 255 }),
-    requestId: varchar("request_id", { length: 36 }),
-    iteration: numeric("iteration"),
-    createdAt: timestamp("created_at").defaultNow().notNull(),
-    lastAccessed: timestamp("last_accessed").defaultNow().notNull(),
-  },
-  (table) => ({
-    questionIdx: index("idx_detrans_chat_cache_question").on(
-      table.questionName,
-    ),
-    conversationIdx: index("idx_detrans_chat_cache_conversation").on(
-      table.conversationId,
-    ),
-    deepResearchIdx: index("idx_detrans_chat_cache_deep_research").on(
-      table.deepResearch,
-    ),
-    createdIdx: index("idx_detrans_chat_cache_created").on(table.createdAt),
-    modelIdx: index("idx_detrans_chat_cache_model").on(table.model),
-    generationIdx: index("idx_detrans_chat_cache_generation").on(
-      table.generationId,
-    ),
-    requestIdIdx: index("idx_detrans_chat_cache_request_id").on(
-      table.requestId,
-    ),
-    iterationIdx: index("idx_detrans_chat_cache_iteration").on(table.iteration),
   }),
 );
 
