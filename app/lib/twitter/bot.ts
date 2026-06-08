@@ -1,13 +1,13 @@
 import { connectRedis } from "@/app/lib/redis";
+import type { MessageContentDetail } from "llamaindex";
 import {
   fetchMentions,
   fetchThreadChain,
   postReply,
-  type ThreadTweet,
   type MentionData,
+  type ThreadTweet,
 } from "./client";
 import { createTwitterWorkflow } from "./workflow";
-import type { MessageContentDetail } from "llamaindex";
 
 const PROCESSED_SET_KEY = "twitter:processed_mentions";
 const REPLY_COUNT_PREFIX = "twitter:replies:";
@@ -63,7 +63,9 @@ function formatThreadForLLM(
       let suffix = "";
       if (quoteRef) {
         const quotedHandle = handleMap.get(quoteRef.id);
-        suffix = quotedHandle ? ` (quote tweeted @${quotedHandle}'s post)` : " (quote tweet)";
+        suffix = quotedHandle
+          ? ` (quote tweeted @${quotedHandle}'s post)`
+          : " (quote tweet)";
       } else if (replyRef) {
         const replyHandle = handleMap.get(replyRef.id);
         suffix = replyHandle ? ` (replying to @${replyHandle})` : " (reply)";
@@ -79,9 +81,7 @@ function formatThreadForLLM(
   lines.push(
     `@${mentionUsernameStr} mentioned @detrans.ai in the above conversation.`,
   );
-  lines.push(
-    "Generate a helpful reply to contribute to this conversation.",
-  );
+  lines.push("Generate a helpful reply to contribute to this conversation.");
 
   return lines.join("\n");
 }
@@ -129,10 +129,7 @@ function isDeletedTweet(error: any): boolean {
   return false;
 }
 
-async function markProcessed(
-  redis: any,
-  mentionId: string,
-): Promise<void> {
+async function markProcessed(redis: any, mentionId: string): Promise<void> {
   await redis.sAdd(PROCESSED_SET_KEY, mentionId);
   await redis.expire(PROCESSED_SET_KEY, 7 * 24 * 60 * 60);
 }
@@ -179,21 +176,31 @@ export async function processMentionsCycle() {
   const mentions = await fetchMentions(userId);
   console.log(`[TWITTER BOT] Found ${mentions.length} mentions (last 24h)`);
 
-  // Skip self-replies
-  const nonSelfMentions = mentions.filter((m) => m.authorId !== userId);
+  // Filter mentions
+  const nonSelfMentions = mentions.filter((m) => {
+    // Skip if bot authored the mention
+    if (m.authorId === userId) return false;
+    // Skip if replying to bot's tweet, unless explicitly mentioning @DetransAI
+    if (m.inReplyToUserId === userId) {
+      const text = m.text?.toLowerCase() || "";
+      const explicitlyMentionsBot = text.includes("@detransai");
+      if (!explicitlyMentionsBot) return false;
+    }
+    // Skip @grok threads entirely
+    const text = m.text?.toLowerCase() || "";
+    if (text.includes("@grok")) return false;
+    return true;
+  });
   if (nonSelfMentions.length < mentions.length) {
     console.log(
-      `[TWITTER BOT] Filtered ${mentions.length - nonSelfMentions.length} self-replies`,
+      `[TWITTER BOT] Filtered ${mentions.length - nonSelfMentions.length} self-replies or replies to bot`,
     );
   }
 
   // Filter already processed
   const newMentions: MentionData[] = [];
   for (const mention of nonSelfMentions) {
-    const isProcessed = await redis.sIsMember(
-      PROCESSED_SET_KEY,
-      mention.id,
-    );
+    const isProcessed = await redis.sIsMember(PROCESSED_SET_KEY, mention.id);
     if (!isProcessed) newMentions.push(mention);
   }
 
