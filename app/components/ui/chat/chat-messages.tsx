@@ -51,24 +51,58 @@ export default function CustomChatMessages({
   }, []);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  // Scroll to bottom every time messages update
+  const userScrolledRef = useRef(false);
+
+  // Detect manual scroll — if user scrolls away from bottom, pause auto-scroll
   useEffect(() => {
     const container = document.querySelector("main");
     if (!container) return;
 
-    const isAtBottom =
-      Math.abs(
-        container.scrollHeight - container.scrollTop - container.clientHeight,
-      ) < 100; // within 70px of bottom
+    const handleScroll = () => {
+      const atBottom =
+        Math.abs(
+          container.scrollHeight -
+            container.scrollTop -
+            container.clientHeight,
+        ) < 80;
+      userScrolledRef.current = !atBottom;
+    };
 
-    if (isAtBottom || chatStatus === "submitted") {
-      // only scroll if user was already at bottom
-      container.scrollTo({
-        top: container.scrollHeight,
-        behavior: "smooth",
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Scroll to bottom when messages update
+  useEffect(() => {
+    const container = document.querySelector("main");
+    if (!container) return;
+
+    // New message sent — always jump to bottom and release scroll lock
+    if (chatStatus === "submitted") {
+      userScrolledRef.current = false;
+      requestAnimationFrame(() => {
+        container.scrollTo({
+          top: container.scrollHeight,
+          behavior: "instant",
+        });
       });
+      return;
+    }
+
+    // During streaming — only auto-scroll if user hasn't scrolled up
+    if (chatStatus === "streaming") {
+      if (!userScrolledRef.current) {
+        container.scrollTo({
+          top: container.scrollHeight,
+          behavior: "instant",
+        });
+      }
+      return;
     }
   }, [messages, chatStatus]);
+
+  // Track which messages have already played their fade-in
+  const animatedMessages = useRef<Set<number>>(new Set());
 
   const newConversation = () => {
     if (stop) {
@@ -108,6 +142,10 @@ export default function CustomChatMessages({
       <ChatMessages.List className="!overflow-visible pb-28">
         {messages.map((message, index) => {
           const isLast = index === messages.length - 1;
+          const shouldFadeIn = !animatedMessages.current.has(index);
+          if (shouldFadeIn) {
+            animatedMessages.current.add(index);
+          }
 
           return (
             <div key={index} className="group">
@@ -117,6 +155,7 @@ export default function CustomChatMessages({
                 className={cn(
                   "dark:prose-invert prose max-w-none",
                   message.role == "user" && "user-message mr-12 sm:mr-0",
+                  shouldFadeIn && "animate-[fadeIn_0.4s_ease-out]",
                 )}
               >
                 <div className="hidden sm:block">

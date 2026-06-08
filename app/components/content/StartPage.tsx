@@ -367,28 +367,30 @@ export async function StartPage({
           <p className="mt-8 sm:mt-8">{t("footer.poem.line1")}</p>
           <p className="mt-1">{t("footer.poem.line2")}</p>
            */}
-              {locale !== "en" &&
-                (await (async () => {
-                  const tEn = await getTranslations({
-                    locale: "en" as Locale,
-                    namespace: "home",
-                  });
-                  return (
-                    <div className="-mb-4 max-w-sm border-b pb-4">
-                      <p className="mt-3">{tEn("footer.poem.line3")}</p>
-                      <p className="mt-1">{tEn("footer.poem.line4")}</p>
-                      <p className="mt-1">{tEn("footer.poem.line5")}</p>
-                      <p className="mt-1">{tEn("footer.poem.line6")}</p>
-                      <p className="mt-1">{tEn("footer.poem.line7")}</p>
-                    </div>
-                  );
-                })())}
-              <p className="mt-8">{t("footer.poem.line3")}</p>
-              <p className="mt-1">{t("footer.poem.line4")}</p>
-              <p className="mt-1">{t("footer.poem.line5")}</p>
-              <p className="mt-1">{t("footer.poem.line6")}</p>
-              <p className="mt-1">{t("footer.poem.line7")}</p>
-
+              <div className="border-l pl-4">
+                <p className="">{t("footer.poem.line3")}</p>
+                <p className="mt-1">{t("footer.poem.line4")}</p>
+                <p className="mt-1">{t("footer.poem.line5")}</p>
+                <p className="mt-1">{t("footer.poem.line6")}</p>
+                <p className="mt-1">{t("footer.poem.line7")}</p>
+                {locale !== "en" &&
+                  (await (async () => {
+                    const tEn = await getTranslations({
+                      locale: "en" as Locale,
+                      namespace: "home",
+                    });
+                    return (
+                      <div className="mt-4 max-w-sm">
+                        <div className="max-w-xs border-t" />
+                        <p className="mt-3">{tEn("footer.poem.line3")}</p>
+                        <p className="mt-1">{tEn("footer.poem.line4")}</p>
+                        <p className="mt-1">{tEn("footer.poem.line5")}</p>
+                        <p className="mt-1">{tEn("footer.poem.line6")}</p>
+                        <p className="mt-1">{tEn("footer.poem.line7")}</p>
+                      </div>
+                    );
+                  })())}
+              </div>
               <div className="mt-8">
                 {t.rich("footer.openSource", {
                   project: (chunks) => (
