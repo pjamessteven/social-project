@@ -30,4 +30,4 @@ cron.schedule("*/15 * * * *", () => {
   runCycle();
 });
 
-console.log("[TWITTER BOT] Scheduled. Polling every 5 minutes.");
+console.log("[TWITTER BOT] Scheduled. Polling every 15 minutes.");
