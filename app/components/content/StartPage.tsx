@@ -22,6 +22,7 @@ import DonationCard from "./DonationCard";
 import { FeaturedConversations } from "./FeaturedConversations/FeaturedConversations";
 import ParticipateCard from "./ParticipateCard";
 import RedditEmbeds from "./RedditEmbeds";
+import XCard from "./XCard";
 
 export async function StartPage({
   className,
@@ -299,6 +300,9 @@ export async function StartPage({
             </div>
             <div className="mt-4 w-full sm:mt-6">
               <DonationCard mode="detrans" />
+            </div>
+            <div className="mt-4 w-full sm:mt-6">
+              <XCard />
             </div>
 
             <div className="text-muted-foreground relative mt-12 flex flex-col text-base opacity-90 sm:mt-12 sm:text-base">

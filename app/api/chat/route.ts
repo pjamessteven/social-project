@@ -27,6 +27,7 @@ import { stopAgentEvent } from "@llamaindex/workflow";
 import { initSettings } from "@/app/lib/agents/settings";
 import { workflowFactory } from "./app/workflow";
 import { getChatCachedResponse } from "./utils/cacheHelpers";
+import { sendSuggestedQuestionsEvent } from "./utils/suggestion";
 
 initSettings();
 
@@ -306,10 +307,9 @@ export async function POST(req: NextRequest) {
             if (!cachedResponse) {
               await incrementMessageCount(ipAddress);
             }
-            /*
             if (suggestNextQuestions) {
               await sendSuggestedQuestionsEvent(dataStreamWriter, chatHistory, chatUuid);
-            } */
+            }
           },
         },
       });

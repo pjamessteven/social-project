@@ -98,6 +98,10 @@
       "description": "Your experience can help others understand the complexities of gender identity.",
       "button": "Participate"
     },
+    "xCard": {
+      "title": "Detrans.ai is on X, the everything app",
+      "description": "Mention @DetransAI in your post or reply to include detrans.ai in the conversation."
+    },
     "footer": {
       "poem": {
         "line1": "You can set yourself free,",
@@ -268,7 +272,8 @@
       "studyDetail": "Study Detail",
       "searchResearchCache": "Search Research Cache",
       "fetchCachedResearch": "Fetch Cached Research",
-      "proposedContent": "Proposed Content"
+      "proposedContent": "Proposed Content",
+      "followUpQuestions": "Follow-up Questions"
     },
     "eventStatus": {
       "analysingVideos": "Analysing Videos",

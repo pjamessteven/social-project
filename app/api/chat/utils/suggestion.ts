@@ -13,8 +13,12 @@ export const sendSuggestedQuestionsEvent = async (
   const questions = await generateNextQuestions(chatHistory, conversationId);
   if (questions.length > 0) {
     streamWriter.write({
-      type: "data-suggested_questions",
-      data: questions,
+      type: "data-questions-event",
+      data: {
+        title: "Suggested follow-up questions",
+        result: JSON.stringify({ questions }),
+        status: "success",
+      },
     });
   }
 };

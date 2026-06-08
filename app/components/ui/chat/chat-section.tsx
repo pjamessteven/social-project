@@ -456,7 +456,7 @@ function ChatSectionPanel({
 
   return (
     <ResizablePanel defaultSize={40} minSize={30} className="w-full">
-      <div className="flex h-full w-full min-w-0 flex-1 flex-col gap-4">
+        <div className="flex h-full w-full min-w-0 flex-1 flex-col gap-4">
         {timeoutError && (
           <div className="mx-4 mt-4 rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-900/20">
             <div className="flex items-center justify-between">

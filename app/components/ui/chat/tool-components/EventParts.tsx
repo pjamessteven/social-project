@@ -1,14 +1,17 @@
 "use client";
 
+import { capitaliseFirstWord, cn } from "@/app/lib/utils";
 import { Study } from "@/app/types/study";
-import { usePart } from "@llamaindex/chat-ui";
+import { useChatStore } from "@/stores/chat-store";
+import { useChatMessage, useChatUI, usePart } from "@llamaindex/chat-ui";
 import { AlertCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTranslations } from "next-intl";
 import { memo, useMemo, useState } from "react";
 import YouTube from "react-youtube";
 import CommentCard from "../../../CommentCard";
+import ChatBubbleButton from "../../../content/ChatBubbleButton";
 import { StudyCard } from "../../../content/StudyCard/StudyCard";
 import { EventWrapper, type EventPartData } from "./EventWrapper";
 
@@ -67,7 +70,9 @@ export function CommentQueryEventPart() {
       analysingText={t("analysingExperiences")}
     >
       <div className="text-primary mt-4 max-w-full space-y-4">
-        {eventPart.data.status === "error" && <span>{t("eventErrors.errorOccurred")}</span>}
+        {eventPart.data.status === "error" && (
+          <span>{t("eventErrors.errorOccurred")}</span>
+        )}
         {results.map((comment: any, index: number) => (
           <CommentCard key={index} comment={comment} />
         ))}
@@ -127,7 +132,9 @@ const VideoComponent = memo(function VideoComponent({
           }}
         />
       ) : (
-        <div className="p-4 text-center text-gray-500">{t("eventErrors.invalidYoutubeUrl")}</div>
+        <div className="p-4 text-center text-gray-500">
+          {t("eventErrors.invalidYoutubeUrl")}
+        </div>
       )}
       {video.summary && (
         <div className="p-3">
@@ -263,7 +270,9 @@ export function StudyQueryEventPart() {
       analysingText={t("analysingStudies")}
     >
       <div className="text-primary mt-4 max-w-full space-y-4">
-        {eventPart.data.status === "error" && <span>{t("eventErrors.errorOccurred")}</span>}
+        {eventPart.data.status === "error" && (
+          <span>{t("eventErrors.errorOccurred")}</span>
+        )}
         {results.map((study, index) => (
           <StudyCard study={study} key={index} showDescription={false} />
         ))}
@@ -310,7 +319,11 @@ export function WebSearchEventPart() {
         {isSuccess && Array.isArray(results) && results.length > 0 && (
           <div className="bg-muted/50 mt-1 space-y-1 rounded-2xl border px-3 py-2 text-xs">
             <span className="text-muted-foreground">
-              {results.length} {results.length === 1 ? t("eventCounts.source") : t("eventCounts.sources")}:
+              {results.length}{" "}
+              {results.length === 1
+                ? t("eventCounts.source")
+                : t("eventCounts.sources")}
+              :
             </span>
             <ul className="mt-1 space-y-1.5">
               {results.map((r: any, i: number) => (
@@ -385,7 +398,11 @@ export function GetStudiesEventPart() {
     <EventWrapper
       eventType="data-get-studies-event"
       label={t("eventLabels.queryStudyCatalogue")}
-      query={isSuccess && studies.length && `${studies.length} ${t("eventCounts.results")}`}
+      query={
+        isSuccess &&
+        studies.length &&
+        `${studies.length} ${t("eventCounts.results")}`
+      }
       analysingText={t("analysingStudies")}
       disableExpand
     >
@@ -446,5 +463,51 @@ export function GetStudiesEventPart() {
         )}
       </div>
     </EventWrapper>
+  );
+}
+
+// =====================
+// Follow-Up Questions
+// =====================
+
+export function QuestionsEventPart() {
+  const eventPart = usePart<EventPartData>("data-questions-event");
+  const t = useTranslations("chat");
+  const { sendMessage } = useChatStore();
+  const { message } = useChatMessage();
+  const { messages } = useChatUI();
+
+  const isLast = messages[messages.length - 1]?.id === message.id;
+
+  const questions: string[] = useMemo(() => {
+    if (!eventPart?.data?.result) return [];
+    try {
+      const result =
+        typeof eventPart.data.result === "string"
+          ? JSON.parse(eventPart.data.result)
+          : eventPart.data.result;
+      return result.questions || [];
+    } catch {
+      return [];
+    }
+  }, [eventPart?.data?.result]);
+
+  if (!eventPart) return null;
+
+  return (
+    <div
+      className={cn(
+        "-mt-2 mb-2 flex flex-col items-end gap-2 sm:-mr-16",
+        !isLast && "pointer-events-none opacity-50",
+      )}
+    >
+      {questions.map((question, index) => (
+        <ChatBubbleButton
+          key={index}
+          message={{ display: capitaliseFirstWord(question) }}
+          onClick={() => sendMessage(question)}
+        />
+      ))}
+    </div>
   );
 }
