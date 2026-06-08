@@ -14,6 +14,15 @@ const securityHeaders = [
 const nextConfig = {
   reactStrictMode: true,
   productionBrowserSourceMaps: true,
+  async redirects() {
+    return [
+      {
+        source: "/stories",
+        destination: "/stats",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },
