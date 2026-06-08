@@ -3,10 +3,10 @@ import { studies } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { tool, type VectorStoreIndex } from "llamaindex";
 import z from "zod";
-import { type PostgresCache, makeHashedKey } from "./cache";
+import { type Cache, makeHashedKey } from "./cache";
 
 interface ToolConfig {
-  cache: PostgresCache;
+  cache: Cache;
   index: VectorStoreIndex;
   userInput?: string;
   metadata?: Record<string, unknown>;
@@ -197,7 +197,7 @@ export function createQueryStudiesTool(config: ToolConfig) {
 }
 
 interface WebSearchToolConfig {
-  cache: PostgresCache;
+  cache: Cache;
   userInput?: string;
   metadata?: Record<string, unknown>;
 }

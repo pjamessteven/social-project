@@ -1,6 +1,5 @@
-import { db, detransChatCache, detransResearchCache } from "@/db";
-import { eq } from "drizzle-orm";
 import { createHash } from "crypto";
+import { connectRedis } from "@/app/lib/redis";
 
 export interface Cache {
   get(hashedKey: string): Promise<string | null>;
@@ -20,33 +19,22 @@ export interface Cache {
   ): Promise<void>;
 }
 
-export class PostgresCache implements Cache {
-  constructor(private mode: "detrans_chat" | "deep_research") {}
+export class RedisCache implements Cache {
+  private prefix: string;
 
-  private getCacheTable() {
-    if (this.mode === "detrans_chat") return detransChatCache;
-    return detransResearchCache;
+  constructor(private mode: "detrans_chat" | "deep_research") {
+    this.prefix = `cache:${mode}:`;
   }
 
   async get(hashedKey: string): Promise<string | null> {
     try {
-      const cacheTable = this.getCacheTable();
-      const result = await db
-        .select({ resultText: cacheTable.resultText })
-        .from(cacheTable)
-        .where(eq(cacheTable.promptHash, hashedKey))
-        .limit(1);
+      const redis = await connectRedis();
+      if (!redis) return null;
 
-      if (result.length > 0) {
-        await db
-          .update(cacheTable)
-          .set({ lastAccessed: new Date() })
-          .where(eq(cacheTable.promptHash, hashedKey));
-        return result[0].resultText;
-      }
-      return null;
+      const result = await redis.get(`${this.prefix}${hashedKey}`);
+      return result ?? null;
     } catch (error) {
-      console.error("Cache get error:", error);
+      console.error("Redis cache get error:", error);
       return null;
     }
   }
@@ -68,57 +56,12 @@ export class PostgresCache implements Cache {
     },
   ): Promise<void> {
     try {
-      const cacheTable = this.getCacheTable();
-      const baseValues = {
-        promptHash: hashedKey,
-        promptText: key,
-        resultText: value,
-        questionName: questionName || null,
-        totalCost: metadata?.totalCost?.toString() || null,
-        tokensPrompt: metadata?.tokensPrompt || null,
-        tokensCompletion: metadata?.tokensCompletion || null,
-        model: metadata?.model || null,
-        generationId: metadata?.generationId || null,
-        createdAt: new Date(),
-        lastAccessed: new Date(),
-        requestId: metadata?.requestId || null,
-      };
+      const redis = await connectRedis();
+      if (!redis) return;
 
-      const values =
-        this.mode === "detrans_chat"
-          ? {
-              ...baseValues,
-              conversationId: metadata?.conversationId || null,
-              iteration: metadata?.iteration || null,
-            }
-          : baseValues;
-
-      const baseUpdateSet = {
-        resultText: value,
-        lastAccessed: new Date(),
-        ...(metadata && {
-          totalCost: metadata.totalCost?.toString() || null,
-          tokensPrompt: metadata.tokensPrompt || null,
-          tokensCompletion: metadata.tokensCompletion || null,
-          model: metadata.model || null,
-          generationId: metadata.generationId || null,
-        }),
-      };
-
-      const updateSet =
-        this.mode === "detrans_chat" && metadata
-          ? {
-              ...baseUpdateSet,
-              conversationId: metadata.conversationId || null,
-            }
-          : baseUpdateSet;
-
-      await db.insert(cacheTable).values(values).onConflictDoUpdate({
-        target: cacheTable.promptHash,
-        set: updateSet,
-      });
+      await redis.set(`${this.prefix}${hashedKey}`, value, { EX: 1209600 });
     } catch (error) {
-      console.error("Cache set error:", error);
+      console.error("Redis cache set error:", error);
     }
   }
 }
