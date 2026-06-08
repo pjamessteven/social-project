@@ -81,7 +81,10 @@ function formatThreadForLLM(
   lines.push(
     `@${mentionUsernameStr} mentioned @detrans.ai in the above conversation.`,
   );
-  lines.push("Generate a helpful reply to contribute to this conversation.");
+  lines.push("");
+  lines.push(
+    `Reply to @${mentionUsernameStr}'s message above. The rest of the thread is context only.`,
+  );
 
   return lines.join("\n");
 }
