@@ -93,9 +93,9 @@ export async function StartPage({
     <>
       <div className="relative flex flex-col pb-[88px]">
         <div className="z-10 mt-[20vh]">
-          <div className="-mt-6 mb-8 -ml-16 flex hidden justify-start">
-            <span className="bg-destructive text-destructive-foreground inline-block rotate-[-6deg] rounded-full px-3 py-1 text-xs font-semibold shadow-sm select-none">
-              Now with over 8 billion unique genders!
+          <div className="-mt-6 mb-8 flex justify-start">
+            <span className="bg-destructive text-destructive-foreground inline-block rounded-full px-3 py-1 text-xs font-semibold shadow-sm select-none">
+              Update: Ran out of credits, chat unavailable, check back tomrrow.
             </span>
           </div>
           <h1 className="text-foreground text-3xl font-bold sm:text-4xl">
