@@ -95,7 +95,8 @@ export async function StartPage({
         <div className="z-10 mt-[20vh]">
           <div className="-mt-6 mb-8 flex justify-start">
             <span className="bg-destructive text-destructive-foreground inline-block rounded-full px-3 py-1 text-xs font-semibold shadow-sm select-none">
-              Update: Ran out of credits, chat unavailable, check back tomrrow.
+              Update: Chat unavailable due to lack of funds, check back
+              tomorrow.
             </span>
           </div>
           <h1 className="text-foreground text-3xl font-bold sm:text-4xl">
