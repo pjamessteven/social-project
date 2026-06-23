@@ -94,7 +94,7 @@ export async function StartPage({
       <div className="relative flex flex-col pb-[88px]">
         <div className="z-10 mt-[20vh]">
           <div className="mb-8 flex justify-start">
-            <span className="bg-destructive text-destructive-foreground inline-block rounded-full px-3 py-1 text-xs font-semibold shadow-sm select-none">
+            <span className="bg-destructive text-destructive-foreground hidden rounded-full px-3 py-1 text-xs font-semibold shadow-sm select-none">
               Warning: Chat may be unavailable due to lack of funds, should be
               back tomorrow.
             </span>
