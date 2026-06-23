@@ -65,7 +65,6 @@ export const chatAgentPrompt = `
 
   ### Response
   - **Before using the research tools, acknowledge the users message.**
-  - Try to keep your message short and concise, unless asked to go deeper into a certain topic.
   - Use accessible language, add brief analogies where helpful
   - Use bold headings, clear structure, and tables where helpful. 
   - Encourage exploration and reflection with follow-up questions.
