@@ -270,7 +270,7 @@ export async function GET(request: NextRequest) {
 
   const allRoutes = [
     ...baseRoutes,
-    ...topQuestionResearchRoutes,
+    //...topQuestionResearchRoutes,
     ...featuredConversationRoutes,
     ...videoRoutes,
     ...studyRoutes,
