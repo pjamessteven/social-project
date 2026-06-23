@@ -280,21 +280,16 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   const showResearch = false;
   return (
     <div
-      style={{
-        boxShadow:
-          " rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px",
-      }}
       className={cn(
-        "fixed bottom-0 z-50 w-full border-t border-white p-4 backdrop-blur-lg dark:border-white/5",
-        "supports-[backdrop-filter]:bg-accent/80 dark:supports-[backdrop-filter]:bg-gray-900/80",
-        mode === "affirm" &&
-          "bg-gradient-to-r from-[#5BCEFA]/20 via-[#FFFFFF]/20 to-[#F5A9B8]/20 dark:bg-gradient-to-r dark:from-[#5BCEFA]/20 dark:via-[#2D2D2D]/20 dark:to-[#F5A9B8]/20",
+        "border- fixed bottom-0 z-50 w-full border-t border-white p-4 shadow-[0_10px_36px_0_rgba(0,0,0,0.16),0_0_0_1px_rgba(0,0,0,0.06)] backdrop-blur-lg sm:border-none sm:p-0 md:shadow-none dark:border-white/5",
+        "supports-[backdrop-filter]:bg-accent/80 sm:bg-transparent! sm:backdrop-blur-none dark:supports-[backdrop-filter]:bg-gray-900/80",
       )}
     >
-      <div className="z-10 flex items-center justify-center">
+      <div className="relative z-10 flex items-center justify-center">
+        <div className="hidden h-full w-full bg-gradient-to-t from-white via-white/70 to-transparent sm:absolute sm:block dark:from-black dark:via-black/70" />
         <form
           onSubmit={handleSubmit}
-          className="flex w-3xl items-center gap-2 md:px-4"
+          className="bg-secondary flex w-3xl items-center gap-2 sm:mb-4 sm:rounded-full sm:border sm:border-white sm:p-4 sm:shadow-[0_10px_36px_0_rgba(0,0,0,0.16),0_0_0_1px_rgba(0,0,0,0.06)] sm:backdrop-blur-lg md:px-4 sm:dark:border-gray-800/50 sm:dark:supports-[backdrop-filter]:bg-gray-900/80"
         >
           <div ref={containerRef} className="relative flex-1 grow">
             <Textarea
