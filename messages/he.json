@@ -470,7 +470,7 @@
     },
     "title": "איך זה עובד?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> צ'אט הוא סוכן המופעל על ידי RAG (יצירה מועשרת באחזור) שיוצר שאלות מטא ועונה עליהן על ידי חשיפה ושילוב של מחשבות וחוויות דetrנסציה מ-subreddit <reddit>/r/detrans</reddit> ומיוטיוב. הוא נבנה עם ה-framework <llamaIndex>LlamaIndex</llamaIndex> והמודל בקוד פתוח Xiaomi MiMo-v2.5-Pro כדי להפחית הטיה פוליטית מערבית.",
+      "paragraph1": "<bold>detrans.ai</bold> צ'אט הוא סוכן המופעל על ידי RAG (יצירה מועשרת באחזור) שיוצר שאלות מטא ועונה עליהן על ידי חשיפה ושילוב של מחשבות וחוויות דetrנסציה מ-subreddit <reddit>/r/detrans</reddit> ומיוטיוב. הוא נבנה עם ה-framework <llamaIndex>LlamaIndex</llamaIndex> והמודל בקוד פתוח DeepSeek V4 Flash כדי להפחית הטיה פוליטית מערבית.",
       "paragraph2": "ChatGPT ורוב מודלי שפה גדולים מערביים אחרים מקדמים ומחזיקים באמונות מגדריות בצורה די אגרסיבית. היה בלתי אפשרי להשתמש במודלי GPT של OpenAI עבור פרויקט זה, שכן המודלים היו מתנגדים וסותרים באופן קבוע את חוויות הדטרנזישן שהיה עליהם לסכם. אם תרצה/י חוויה מבססת יותר, ראה/י את <chatgpt>ChatGPT</chatgpt>."
     },
     "dataCutoff": {

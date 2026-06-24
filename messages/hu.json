@@ -471,7 +471,7 @@
     },
     "title": "Hogyan működik?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> chat egy RAG-alapú (lekérdezéssel kiegészített generálás) ügynök, amely meta-kérdéseket generál és úgy válaszol rájuk, hogy felfedezi és integrálja a detranzíciós gondolatokat és tapasztalatokat a <reddit>/r/detrans</reddit> subreddit-ről és a YouTube-ról. A <llamaIndex>LlamaIndex</llamaIndex> frameworkkal és a nyílt forráskódú Xiaomi MiMo-v2.5-Pro modellel épült a nyugati politikai elfogultság csökkentésére.",
+      "paragraph1": "<bold>detrans.ai</bold> chat egy RAG-alapú (lekérdezéssel kiegészített generálás) ügynök, amely meta-kérdéseket generál és úgy válaszol rájuk, hogy felfedezi és integrálja a detranzíciós gondolatokat és tapasztalatokat a <reddit>/r/detrans</reddit> subreddit-ről és a YouTube-ról. A <llamaIndex>LlamaIndex</llamaIndex> frameworkkal és a nyílt forráskódú DeepSeek V4 Flash modellel épült a nyugati politikai elfogultság csökkentésére.",
       "paragraph2": "A ChatGPT és a legtöbb más nyugati LLM meglehetősen agresszív módon promotálja és fenntartja a nemi meggyőződéseket. Kiderült, hogy lehetetlen az OpenAI GPT modelljeit használni ehhez a projekthez, mivel a modellek folyamatosan aláásni és ellentmondani fogtak azoknak a detrans tapasztalatoknak, amelyeket összefoglalni kellett volna. Ha pozitívabb megerősítő élményt szeretnél, lásd a <chatgpt>ChatGPT</chatgpt>-t."
     },
     "dataCutoff": {

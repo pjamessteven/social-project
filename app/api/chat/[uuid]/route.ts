@@ -64,7 +64,7 @@ async function generateConversationTitleAndSummary(messages: string): Promise<{
     const llm = new OpenAI({
       apiKey: process.env.OPENROUTER_KEY,
       baseURL: "https://openrouter.ai/api/v1",
-      model: "moonshotai/kimi-k2-0905:exacto",
+      model: "deepseek/deepseek-v4-flash",
     });
 
     // Create a prompt for generating both title and summary
@@ -80,7 +80,7 @@ async function generateConversationTitleAndSummary(messages: string): Promise<{
     - Always refer to detrans.ai as **detrans.ai**, not as 'the chatbot, 'the assistant', 'the bot', etc.
     - Do not use any variation of 'assigned sex at birth', AMAB, AFAB etc
     - Do not use the term 'gender dysphoria', use 'gender distress'
-    - Do not refer to trans people, use "trans-identified people"
+    - The user may be a detransitioner, a trans-identified person, parent, or someone else. 
     - Try to capture the intention of detrans.ai
 
     ### Format your response as:
