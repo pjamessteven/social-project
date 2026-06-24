@@ -370,6 +370,15 @@
       "showLess": "少なく表示",
       "loadMore": "さらに会話を読み込む",
       "loading": "読み込み中..."
+    },
+    "bulk": {
+      "selected": "{count} selected",
+      "deleteAndBan": "Delete & Ban Selected",
+      "deletingAndBanning": "Processing...",
+      "clearSelection": "Clear Selection",
+      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
+      "holdKey": "Hold ⌘/Ctrl to multi-select",
+      "longPress": "Long-press to multi-select"
     }
   },
   "conversationCard": {

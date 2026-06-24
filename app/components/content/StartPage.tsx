@@ -21,7 +21,6 @@ import ChatBubbleButton from "./ChatBubbleButton";
 import DonationCard from "./DonationCard";
 import { FeaturedConversations } from "./FeaturedConversations/FeaturedConversations";
 import ParticipateCard from "./ParticipateCard";
-import RedditEmbeds from "./RedditEmbeds";
 import XCard from "./XCard";
 
 export async function StartPage({
@@ -423,10 +422,10 @@ export async function StartPage({
                   {t("footer.beKind")}
                 </div>
               </div>
-
+              {/*
               <div className="mt-8">
                 <RedditEmbeds mode={"detrans"} />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

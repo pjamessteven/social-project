@@ -372,6 +372,15 @@
       "showLess": "Vis Færre",
       "loadMore": "Indlæs Flere Samtaler",
       "loading": "Indlæser..."
+    },
+    "bulk": {
+      "selected": "{count} selected",
+      "deleteAndBan": "Delete & Ban Selected",
+      "deletingAndBanning": "Processing...",
+      "clearSelection": "Clear Selection",
+      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
+      "holdKey": "Hold ⌘/Ctrl to multi-select",
+      "longPress": "Long-press to multi-select"
     }
   },
   "conversationCard": {

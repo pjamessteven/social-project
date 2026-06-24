@@ -4,7 +4,7 @@ import { formatCountryDisplay } from "@/app/lib/countries";
 import { Link } from "@/i18n/routing";
 import { Ban, Clock, MoreVertical, Star, Trash2 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { ReactNode, useState } from "react";
+import { ReactNode, useCallback, useRef, useState } from "react";
 import ChatBubbleButton from "../ChatBubbleButton";
 export interface ConversationCardProps {
   uuid: string;
@@ -19,7 +19,7 @@ export interface ConversationCardProps {
   showFeaturedStar?: boolean;
   layout?: "grid" | "list";
   children?: ReactNode;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
   isActive?: boolean;
   isAdminUser?: boolean;
   onToggleFeatured?: (uuid: string, currentFeatured: boolean) => Promise<void>;
@@ -28,6 +28,9 @@ export interface ConversationCardProps {
   onBanUser?: (uuid: string) => Promise<void>;
   conversationUsername?: string | null;
   currentUsername?: string | null;
+  selected?: boolean;
+  onToggleSelect?: (uuid: string) => void;
+  onLongPress?: (uuid: string) => void;
 }
 
 export function ConversationCard({
@@ -52,10 +55,52 @@ export function ConversationCard({
   onBanUser,
   conversationUsername,
   currentUsername,
+  selected = false,
+  onToggleSelect,
+  onLongPress,
 }: ConversationCardProps) {
   const t = useTranslations("conversationCard");
   const locale = useLocale();
   const [showAdminMenu, setShowAdminMenu] = useState(false);
+  const longPressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const longPressTriggeredRef = useRef(false);
+
+  const handleTouchStart = useCallback(() => {
+    if (!onLongPress) return;
+    longPressTriggeredRef.current = false;
+    longPressTimerRef.current = setTimeout(() => {
+      longPressTriggeredRef.current = true;
+      onLongPress(uuid);
+    }, 500);
+  }, [onLongPress, uuid]);
+
+  const handleTouchEnd = useCallback(() => {
+    if (longPressTimerRef.current) {
+      clearTimeout(longPressTimerRef.current);
+      longPressTimerRef.current = null;
+    }
+  }, []);
+
+  const handleTouchCancel = useCallback(() => {
+    if (longPressTimerRef.current) {
+      clearTimeout(longPressTimerRef.current);
+      longPressTimerRef.current = null;
+    }
+    longPressTriggeredRef.current = false;
+  }, []);
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent) => {
+      if (longPressTriggeredRef.current) {
+        longPressTriggeredRef.current = false;
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      onClick?.(e);
+    },
+    [onClick],
+  );
 
   // Determine if current user is the owner of this conversation
   const isOwner = currentUsername && conversationUsername === currentUsername;
@@ -149,12 +194,12 @@ export function ConversationCard({
       <div
         className={`${
           layout === "grid"
-            ? "hover-group dark:bg-secondary block rounded-2xl border bg-white p-4 shadow-sm transition-colors hover:bg-gray-100"
+            ? `hover-group dark:bg-secondary block rounded-2xl border bg-white p-4 shadow-sm transition-colors hover:bg-gray-100 ${selected ? "ring-2 ring-blue-500 ring-offset-2" : ""}`
             : `block w-full rounded-md p-3 text-left hover:bg-gray-100 dark:hover:bg-gray-700 ${
                 isActive
                   ? "border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-900/20"
                   : ""
-              }`
+              } ${selected ? "ring-2 ring-blue-500 ring-offset-2" : ""}`
         }`}
       >
         <div className="mb-2 flex items-start justify-between">
@@ -323,16 +368,34 @@ export function ConversationCard({
     </>
   );
 
+  const touchHandlers = onLongPress
+    ? {
+        onTouchStart: handleTouchStart,
+        onTouchEnd: handleTouchEnd,
+        onTouchCancel: handleTouchCancel,
+      }
+    : {};
+
   if (onClick) {
     return (
-      <div onClick={onClick} className="w-full cursor-pointer text-left">
+      <div
+        onClick={handleClick}
+        className="w-full cursor-pointer select-none text-left"
+        style={{ WebkitTouchCallout: "none" }}
+        {...touchHandlers}
+      >
         {content}
       </div>
     );
   }
 
   return (
-    <Link href={`/chat/${uuid}` as any} className="block">
+    <Link
+      href={`/chat/${uuid}` as any}
+      className="block select-none"
+      style={{ WebkitTouchCallout: "none" }}
+      {...touchHandlers}
+    >
       {content}
     </Link>
   );

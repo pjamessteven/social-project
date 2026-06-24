@@ -1,3 +1,5 @@
+import { db } from "@/db";
+import { studyTags } from "@/db/schema";
 import { RedisCache } from "@/app/lib/agents/cache";
 import { getCommentsIndex, getVideosIndex } from "@/app/lib/agents/data";
 import { initSettings } from "@/app/lib/agents/settings";
@@ -5,7 +7,7 @@ import {
   createQueryCommentsTool,
   createQueryVideosTool,
   createWebSearchTool,
-  getStudiesTool,
+  createGetStudiesTool,
 } from "@/app/lib/agents/tools";
 import { agent } from "@llamaindex/workflow";
 import { CachedOpenAI } from "../../shared/llm";
@@ -49,6 +51,16 @@ export const workflowFactory = async (
     metadata: cacheMetadata,
   });
 
+  const getStudiesTool = createGetStudiesTool();
+
+  const tags = await db.select({ name: studyTags.name }).from(studyTags);
+  const tagNames = tags.map((t) => t.name).filter(Boolean);
+  const tagList =
+    tagNames.length > 0
+      ? `\n\n### Available Study Tags\nThe following tags should be used to filter studies with the getStudies tool: ${tagNames.join(", ")}`
+      : "";
+  const systemPrompt = agentPrompt + tagList;
+
   const llm = new CachedOpenAI({
     cache,
     mode: "detrans_chat",
@@ -74,7 +86,7 @@ export const workflowFactory = async (
   return agent({
     llm,
     tools: [queryCommentsTool, queryVideosTool, getStudiesTool, webSearchTool],
-    systemPrompt: agentPrompt,
+    systemPrompt,
     timeout: 30,
   });
 };
