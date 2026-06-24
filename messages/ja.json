@@ -468,7 +468,7 @@
     },
     "title": "どのように機能しますか？",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> チャットはRAG（検索拡張生成）を活用したエージェントで、<reddit>/r/detrans</reddit> サブレ딧やYouTubeからデトランジションの思考や経験を発見・統合し、メタ質問を生成して回答します。<llamaIndex>LlamaIndex</llamaIndex> フレームワークとオープンソースのXiaomi MiMo-v2.5-Proモデルで構築され、西欧の政治的バイアスを軽減します。",
+      "paragraph1": "<bold>detrans.ai</bold> チャットはRAG（検索拡張生成）を活用したエージェントで、<reddit>/r/detrans</reddit> サブレ딧やYouTubeからデトランジションの思考や経験を発見・統合し、メタ質問を生成して回答します。<llamaIndex>LlamaIndex</llamaIndex> フレームワークとオープンソースのDeepSeek V4 Flashモデルで構築され、西欧の政治的バイアスを軽減します。",
       "paragraph2": "ChatGPTや他のほとんどの西洋のLLMは、ジェンダー信念を促進し維持する方法でかなり攻撃的です。このプロジェクトにOpenAIのGPTモデルを使用することは不可能でした。モデルが要約するよう任されたデトランス経験を常に損ない、矛盾させるからです。より肯定的な経験を希望する場合は、<chatgpt>ChatGPT</chatgpt>をご覧ください。"
     },
     "dataCutoff": {

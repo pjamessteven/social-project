@@ -1,14 +1,14 @@
-import { db } from "@/db";
-import { studyTags } from "@/db/schema";
 import { RedisCache } from "@/app/lib/agents/cache";
 import { getCommentsIndex, getVideosIndex } from "@/app/lib/agents/data";
 import { initSettings } from "@/app/lib/agents/settings";
 import {
+  createGetStudiesTool,
   createQueryCommentsTool,
   createQueryVideosTool,
   createWebSearchTool,
-  createGetStudiesTool,
 } from "@/app/lib/agents/tools";
+import { db } from "@/db";
+import { studyTags } from "@/db/schema";
 import { agent } from "@llamaindex/workflow";
 import { CachedOpenAI } from "../../shared/llm";
 import { agentPrompt } from "../utils/prompts";
@@ -73,7 +73,7 @@ export const workflowFactory = async (
     requestId,
     apiKey: process.env.OPENROUTER_KEY,
     baseURL: "https://openrouter.ai/api/v1",
-    model: "xiaomi/mimo-v2.5-pro",
+    model: "deepseek/deepseek-v4-flash",
     temperature: 1,
     additionalSessionOptions: {
       thinking: { type: "disabled" },

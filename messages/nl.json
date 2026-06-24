@@ -469,7 +469,7 @@
     },
     "title": "Hoe werkt het?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> chat is een RAG-aangedreven (retrieval augmented generation) agent die meta-vragen genereert en beantwoordt door detrans-gedachten en -ervaringen uit de <reddit>/r/detrans</reddit> subreddit en YouTube op te halen en te integreren. Het is gebouwd met het <llamaIndex>LlamaIndex</llamaIndex>-framework en het open-source Xiaomi MiMo-v2.5-Pro model om westerse politieke beïnvloeding te verminderen.",
+      "paragraph1": "<bold>detrans.ai</bold> chat is een RAG-aangedreven (retrieval augmented generation) agent die meta-vragen genereert en beantwoordt door detrans-gedachten en -ervaringen uit de <reddit>/r/detrans</reddit> subreddit en YouTube op te halen en te integreren. Het is gebouwd met het <llamaIndex>LlamaIndex</llamaIndex>-framework en het open-source DeepSeek V4 Flash model om westerse politieke beïnvloeding te verminderen.",
       "paragraph2": "ChatGPT en de meeste andere Westerse LLM's zijn behoorlijk agressief in de manier waarop ze genderovertuigingen promoten en handhaven. Het bleek onmogelijk om OpenAI's GPT-modellen te gebruiken voor dit project, omdat de modellen constant de detrans-ervaringen die ze moesten samenvatten ondermijnden en tegenspraken. Als je een meer bevestigende ervaring wilt, zie <chatgpt>ChatGPT</chatgpt>."
     },
     "dataCutoff": {

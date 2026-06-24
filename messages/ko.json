@@ -468,7 +468,7 @@
     },
     "title": "어떻게 작동하나요?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> 채팅은 RAG(검색 증강 생성) 기반 에이젠트로, 메타 질문을 생성하고 <reddit>/r/detrans</reddit> 서브레딧과 YouTube에서 디트랜지션 생각과 경험을 찾아내어 통합하여 답변합니다. <llamaIndex>LlamaIndex</llamaIndex> 프레임워크와 오픈 소스 Xiaomi MiMo-v2.5-Pro 모델로 구축되어 서구 정치적 편향을 줄입니다.",
+      "paragraph1": "<bold>detrans.ai</bold> 채팅은 RAG(검색 증강 생성) 기반 에이젠트로, 메타 질문을 생성하고 <reddit>/r/detrans</reddit> 서브레딧과 YouTube에서 디트랜지션 생각과 경험을 찾아내어 통합하여 답변합니다. <llamaIndex>LlamaIndex</llamaIndex> 프레임워크와 오픈 소스 DeepSeek V4 Flash 모델로 구축되어 서구 정치적 편향을 줄입니다.",
       "paragraph2": "ChatGPT 및 대부분의 다른 서양 LLM은 성별 믿음을 홍보하고 유지하는 방식이 꽤 공격적입니다. OpenAI의 GPT 모델을 이 프로젝트에 사용하는 것은 불가능했는데, 모델이 요약하라는 디트랜스 경험을 끊임없이 훼손하고 모순시켰기 때문입니다. 더 확정적인 경험을 원하신다면 <chatgpt>ChatGPT</chatgpt>를 참조하세요."
     },
     "dataCutoff": {

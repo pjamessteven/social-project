@@ -470,7 +470,7 @@
     },
     "title": "Hvordan fungerer det?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> chat er en RAG-drevet (retrieval augmented generation) agent, der genererer meta-spørgsmål og besvarer dem ved at finde og integrere detrans-tanke og erfaringer fra <reddit>/r/detrans</reddit> subreddit og YouTube. Den er bygget med <llamaIndex>LlamaIndex</llamaIndex>-frameworket og open-source-modellen Xiaomi MiMo-v2.5-Pro for at reducere vestlig politisk bias.",
+      "paragraph1": "<bold>detrans.ai</bold> chat er en RAG-drevet (retrieval augmented generation) agent, der genererer meta-spørgsmål og besvarer dem ved at finde og integrere detrans-tanke og erfaringer fra <reddit>/r/detrans</reddit> subreddit og YouTube. Den er bygget med <llamaIndex>LlamaIndex</llamaIndex>-frameworket og open-source-modellen DeepSeek V4 Flash for at reducere vestlig politisk bias.",
       "paragraph2": "ChatGPT og de fleste andre vestlige LLM'er er ret aggressive i den måde, de fremmer og opretholder kønsoverbevisninger på. Det viste sig at være umuligt at bruge OpenAI's GPT-modeller til dette projekt, da modellerne konstant ville undergrave og modsige de detranserfaringer, som de var sat til at sammenfatte. Hvis du ønsker en mere bekræftende oplevelse, se <chatgpt>ChatGPT</chatgpt>."
     },
     "dataCutoff": {
