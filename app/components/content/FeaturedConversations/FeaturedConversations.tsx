@@ -3,12 +3,15 @@
 import { cn, toggleFeaturedAPI } from "@/app/lib/utils";
 import { useUserStore } from "@/stores/user-store";
 import {
+  Ban,
   History,
   List,
   Loader2,
   MessageSquare,
   Star,
+  Trash2,
   User,
+  X,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -108,6 +111,7 @@ export function FeaturedConversations() {
       setLoading(true);
       setError(null);
       setShowAllMobile(false);
+      setSelectedUuids(new Set());
 
       // Store tab in sessionStorage for persistence when navigating back from chat
       sessionStorage.setItem("portalTab", value);
@@ -118,6 +122,8 @@ export function FeaturedConversations() {
   const [togglingFeaturedUuid, setTogglingFeaturedUuid] = useState<
     string | null
   >(null);
+  const [selectedUuids, setSelectedUuids] = useState<Set<string>>(new Set());
+  const [isBulkProcessing, setIsBulkProcessing] = useState(false);
   const [pagination, setPagination] = useState<{
     page: number;
     limit: number;
@@ -246,6 +252,83 @@ export function FeaturedConversations() {
     }
   };
 
+  const handleToggleSelect = useCallback((uuid: string) => {
+    setSelectedUuids((prev) => {
+      const next = new Set(prev);
+      if (next.has(uuid)) {
+        next.delete(uuid);
+      } else {
+        next.add(uuid);
+      }
+      return next;
+    });
+  }, []);
+
+  const handleCardClick = useCallback(
+    (convo: FeaturedConversation, e: React.MouseEvent) => {
+      if (user?.role === "admin" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        e.stopPropagation();
+        handleToggleSelect(convo.uuid);
+        return;
+      }
+      if (user?.username && convo.username === user.username) {
+        return;
+      }
+      setSelectedConversationId(convo.uuid);
+      setDialogOpen(true);
+    },
+    [user, handleToggleSelect],
+  );
+
+  const handleBulkDeleteAndBan = async () => {
+    const uuids = Array.from(selectedUuids);
+    if (uuids.length === 0) return;
+
+    const confirmed = confirm(t("bulk.confirm", { count: uuids.length }));
+    if (!confirmed) return;
+
+    setIsBulkProcessing(true);
+    const errors: string[] = [];
+
+    for (const uuid of uuids) {
+      try {
+        const deleteResponse = await fetch(`/api/chat/${uuid}`, {
+          method: "DELETE",
+        });
+        if (!deleteResponse.ok) {
+          const errorData = await deleteResponse.json();
+          throw new Error(errorData.error || "Failed to delete");
+        }
+
+        try {
+          await fetch(`/api/chat/${uuid}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ reason: "Banned by admin" }),
+          });
+        } catch (banError) {
+          errors.push(
+            `${uuid}: ban failed (${banError instanceof Error ? banError.message : "unknown"})`,
+          );
+        }
+
+        setConversations((prev) => prev.filter((convo) => convo.uuid !== uuid));
+      } catch (error) {
+        errors.push(
+          `${uuid}: ${error instanceof Error ? error.message : "unknown error"}`,
+        );
+      }
+    }
+
+    setIsBulkProcessing(false);
+    setSelectedUuids(new Set());
+
+    if (errors.length > 0) {
+      alert(`Some operations failed:\n${errors.join("\n")}`);
+    }
+  };
+
   // Generate random heights for loading skeletons between h-32 and h-80
   const generateRandomHeights = (count: number, seed: number = 0): string[] => {
     const heights = [];
@@ -318,8 +401,8 @@ export function FeaturedConversations() {
           setLoadingMore(true);
         }
 
-        const isFeatured = currentTab === "featured";
-        const isMine = currentTab === "mine";
+        const isFeatured = currentTabRef.current === "featured";
+        const isMine = currentTabRef.current === "mine";
         // Use limit=12 for medium screens and larger, limit=8 for smaller screens
         const limit = isMediumScreen ? 12 : 8;
         const params = new URLSearchParams();
@@ -349,7 +432,7 @@ export function FeaturedConversations() {
         const data = await response.json();
         console.log(
           "API Response for tab",
-          currentTab,
+          currentTabRef.current,
           "featured=",
           isFeatured,
           "URL:",
@@ -393,7 +476,6 @@ export function FeaturedConversations() {
       }
     },
     [
-      currentTab,
       isMediumScreen,
       setCurrentTab,
       setError,
@@ -416,7 +498,7 @@ export function FeaturedConversations() {
         abortControllerRef.current = null;
       }
     };
-  }, [fetchConversations]);
+  }, [currentTab, fetchConversations]);
 
   // Sync tab state when URL changes (for back/forward navigation)
   useEffect(() => {
@@ -513,6 +595,7 @@ export function FeaturedConversations() {
               }
             />
           </div>
+
           {conversations.length === 0 && !loading && (
             <div className="text-muted-foreground mt-24 mb-16 rounded-xl border p-8 text-center">
               No conversations yet!
@@ -706,14 +789,18 @@ export function FeaturedConversations() {
                         country={convo.country}
                         showFeaturedStar={true}
                         layout="grid"
-                        onClick={
-                          user?.username && convo.username === user.username
-                            ? undefined
-                            : () => {
-                                setSelectedConversationId(convo.uuid);
-                                setDialogOpen(true);
-                              }
+                        selected={selectedUuids.has(convo.uuid)}
+                        onToggleSelect={
+                          user?.role === "admin"
+                            ? handleToggleSelect
+                            : undefined
                         }
+                        onLongPress={
+                          user?.role === "admin"
+                            ? handleToggleSelect
+                            : undefined
+                        }
+                        onClick={(e) => handleCardClick(convo, e)}
                         isAdminUser={user?.role === "admin"}
                         onToggleFeatured={handleToggleFeatured}
                         isTogglingFeatured={togglingFeaturedUuid === convo.uuid}
@@ -750,14 +837,18 @@ export function FeaturedConversations() {
                           country={convo.country}
                           showFeaturedStar={true}
                           layout="grid"
-                          onClick={
-                            user?.username && convo.username === user.username
-                              ? undefined
-                              : () => {
-                                  setSelectedConversationId(convo.uuid);
-                                  setDialogOpen(true);
-                                }
+                          selected={selectedUuids.has(convo.uuid)}
+                          onToggleSelect={
+                            user?.role === "admin"
+                              ? handleToggleSelect
+                              : undefined
                           }
+                          onLongPress={
+                            user?.role === "admin"
+                              ? handleToggleSelect
+                              : undefined
+                          }
+                          onClick={(e) => handleCardClick(convo, e)}
                           isAdminUser={user?.role === "admin"}
                           onToggleFeatured={handleToggleFeatured}
                           isTogglingFeatured={
@@ -794,14 +885,18 @@ export function FeaturedConversations() {
                           country={convo.country}
                           showFeaturedStar={true}
                           layout="grid"
-                          onClick={
-                            user?.username && convo.username === user.username
-                              ? undefined
-                              : () => {
-                                  setSelectedConversationId(convo.uuid);
-                                  setDialogOpen(true);
-                                }
+                          selected={selectedUuids.has(convo.uuid)}
+                          onToggleSelect={
+                            user?.role === "admin"
+                              ? handleToggleSelect
+                              : undefined
                           }
+                          onLongPress={
+                            user?.role === "admin"
+                              ? handleToggleSelect
+                              : undefined
+                          }
+                          onClick={(e) => handleCardClick(convo, e)}
                           isAdminUser={user?.role === "admin"}
                           onToggleFeatured={handleToggleFeatured}
                           isTogglingFeatured={
@@ -841,14 +936,18 @@ export function FeaturedConversations() {
                             country={convo.country}
                             showFeaturedStar={true}
                             layout="grid"
-                            onClick={
-                              user?.username && convo.username === user.username
-                                ? undefined
-                                : () => {
-                                    setSelectedConversationId(convo.uuid);
-                                    setDialogOpen(true);
-                                  }
+                            selected={selectedUuids.has(convo.uuid)}
+                            onToggleSelect={
+                              user?.role === "admin"
+                                ? handleToggleSelect
+                                : undefined
                             }
+                            onLongPress={
+                              user?.role === "admin"
+                                ? handleToggleSelect
+                                : undefined
+                            }
+                            onClick={(e) => handleCardClick(convo, e)}
                             isAdminUser={user?.role === "admin"}
                             onToggleFeatured={handleToggleFeatured}
                             isTogglingFeatured={
@@ -1034,6 +1133,43 @@ export function FeaturedConversations() {
               : undefined
           }
         />
+
+        {/* Bulk action bar for admin multi-select */}
+        {user?.role === "admin" && selectedUuids.size > 0 && (
+          <div className="fixed top-8 z-500 mt-4">
+            <div className="flex items-center justify-between gap-4 rounded-xl border border-gray-200 bg-white px-4 py-3 shadow-lg dark:border-gray-700 dark:bg-gray-900">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
+                {t("bulk.selected", { count: selectedUuids.size })}
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleBulkDeleteAndBan}
+                  disabled={isBulkProcessing}
+                  className="flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-700 disabled:opacity-50"
+                >
+                  {isBulkProcessing ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      {t("bulk.deletingAndBanning")}
+                    </>
+                  ) : (
+                    <>
+                      <Trash2 className="h-4 w-4" />
+                      <Ban className="h-4 w-4" />
+                    </>
+                  )}
+                </button>
+                <button
+                  onClick={() => setSelectedUuids(new Set())}
+                  disabled={isBulkProcessing}
+                  className="flex items-center gap-1 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-50 disabled:opacity-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

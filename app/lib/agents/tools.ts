@@ -1,6 +1,6 @@
 import { db } from "@/db";
-import { studies } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { studies, studyTags, studyTagRelations } from "@/db/schema";
+import { eq, inArray, sql } from "drizzle-orm";
 import { tool, type VectorStoreIndex } from "llamaindex";
 import z from "zod";
 import { type Cache, makeHashedKey } from "./cache";
@@ -280,10 +280,10 @@ export function createWebSearchTool(config: WebSearchToolConfig) {
   );
 }
 
-export const getStudiesTool = tool(
-  async ({ limit = 50 }: { limit?: number }) => {
-    const results = await db
-      .select({
+export function createGetStudiesTool() {
+  return tool(
+    async ({ limit = 50, tags }: { limit?: number; tags: string[] }) => {
+      const baseSelect = {
         id: studies.id,
         title: studies.title,
         authors: studies.authors,
@@ -291,31 +291,96 @@ export const getStudiesTool = tool(
         description: studies.description,
         journal: studies.journal,
         url: studies.url,
-      })
-      .from(studies)
-      .where(eq(studies.approved, true))
-      .orderBy(studies.year)
-      .limit(limit);
+        abstract: studies.abstract,
+        conclusion: studies.conclusion,
+        keyPoints: studies.keyPoints,
+        summary: studies.summary,
+        limitations: studies.limitations,
+      };
 
-    return JSON.stringify({
-      success: true,
-      count: results.length,
-      studies: results,
-    });
-  },
-  {
-    name: "getStudies",
-    description:
-      "List approved studies from the database. Returns study IDs, titles, authors, year, journal, and descriptions.",
-    parameters: z.object({
-      limit: z
-        .number()
-        .optional()
-        .default(50)
-        .describe("Maximum number of studies to return"),
-    }),
-  },
-);
+      let results;
+
+      if (tags.length > 0) {
+        const tagFilter = inArray(studyTags.name, tags);
+        const studyIdsFromTags = db
+          .select({ studyId: studyTagRelations.studyId })
+          .from(studyTagRelations)
+          .innerJoin(studyTags, eq(studyTagRelations.tagId, studyTags.id))
+          .where(tagFilter);
+
+        results = await db
+          .select({
+            ...baseSelect,
+            tags:
+              sql<string[]>`array_agg(distinct ${studyTags.name})`.as("tags"),
+          })
+          .from(studies)
+          .leftJoin(
+            studyTagRelations,
+            eq(studies.id, studyTagRelations.studyId),
+          )
+          .leftJoin(studyTags, eq(studyTagRelations.tagId, studyTags.id))
+          .where(
+            sql`${studies.approved} = true AND ${studies.id} IN (${studyIdsFromTags})`,
+          )
+          .groupBy(
+            studies.id,
+            studies.title,
+            studies.authors,
+            studies.year,
+            studies.description,
+            studies.journal,
+            studies.url,
+            studies.abstract,
+            studies.conclusion,
+            studies.keyPoints,
+            studies.summary,
+            studies.limitations,
+          )
+          .orderBy(studies.year)
+          .limit(limit);
+
+        // Clean up null tags from left join
+        results = results.map((r) => ({
+          ...r,
+          tags: r.tags?.filter(Boolean) ?? [],
+        }));
+      } else {
+        results = await db
+          .select(baseSelect)
+          .from(studies)
+          .where(eq(studies.approved, true))
+          .orderBy(studies.year)
+          .limit(limit);
+
+        results = results.map((r) => ({ ...r, tags: [] }));
+      }
+
+      return JSON.stringify({
+        success: true,
+        count: results.length,
+        studies: results,
+      });
+    },
+    {
+      name: "getStudies",
+      description:
+        "List approved studies from the database. Filter by tags (OR logic). Returns study IDs, titles, authors, year, journal, descriptions, abstracts, summaries, conclusions, key points, limitations, and associated tags.",
+      parameters: z.object({
+        tags: z
+          .array(z.string())
+          .describe(
+            "Filter studies by these tag names (OR logic — returns studies matching any of the provided tags). Pass an empty array to return all studies.",
+          ),
+        limit: z
+          .number()
+          .optional()
+          .default(50)
+          .describe("Maximum number of studies to return"),
+      }),
+    },
+  );
+}
 
 export function createSuggestFollowUpTool() {
   return tool(

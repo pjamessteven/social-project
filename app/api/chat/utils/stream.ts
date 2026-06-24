@@ -51,6 +51,7 @@ export function toDataStream(
 
   let completionText = "";
   let hasStarted = false;
+  let hasError = false;
   let textId: string | null = null;
   let streamWriter: UIMessageStreamWriter | null = null;
 
@@ -231,6 +232,7 @@ export function toDataStream(
     },
     onError: (error: unknown) => {
       console.error("Stream finalization error:", error);
+      hasError = true;
 
       // Handle specific LLM authentication errors
       if (
@@ -246,7 +248,7 @@ export function toDataStream(
     },
     onFinish: async ({ messages, isContinuation }) => {
       // Call onFinal with the complete text when stream ends
-      if (callbacks?.onFinal && !isContinuation && streamWriter) {
+      if (callbacks?.onFinal && !isContinuation && !hasError && streamWriter) {
         await callbacks.onFinal(messages, streamWriter);
       }
     },

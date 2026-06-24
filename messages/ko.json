@@ -370,6 +370,15 @@
       "showLess": "더 적게 표시",
       "loadMore": "더 많은 대화 불러오기",
       "loading": "불러오는 중..."
+    },
+    "bulk": {
+      "selected": "{count} selected",
+      "deleteAndBan": "Delete & Ban Selected",
+      "deletingAndBanning": "Processing...",
+      "clearSelection": "Clear Selection",
+      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
+      "holdKey": "Hold ⌘/Ctrl to multi-select",
+      "longPress": "Long-press to multi-select"
     }
   },
   "conversationCard": {

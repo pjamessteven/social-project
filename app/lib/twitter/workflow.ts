@@ -1,4 +1,6 @@
 import { CustomOpenAI } from "@/app/api/shared/llm";
+import { db } from "@/db";
+import { studyTags } from "@/db/schema";
 import { RedisCache } from "@/app/lib/agents/cache";
 import { getCommentsIndex, getVideosIndex } from "@/app/lib/agents/data";
 import { initSettings } from "@/app/lib/agents/settings";
@@ -6,7 +8,7 @@ import {
   createQueryCommentsTool,
   createQueryVideosTool,
   createWebSearchTool,
-  getStudiesTool,
+  createGetStudiesTool,
 } from "@/app/lib/agents/tools";
 import { agent } from "@llamaindex/workflow";
 import { twitterBotPrompt } from "./prompt";
@@ -29,6 +31,15 @@ export async function createTwitterWorkflow() {
   });
 
   const webSearchTool = createWebSearchTool({ cache });
+  const getStudiesTool = createGetStudiesTool();
+
+  const tags = await db.select({ name: studyTags.name }).from(studyTags);
+  const tagNames = tags.map((t) => t.name).filter(Boolean);
+  const tagList =
+    tagNames.length > 0
+      ? `\n\n### Available Study Tags\nThe following tags should be used to filter studies with the getStudies tool: ${tagNames.join(", ")}`
+      : "";
+  const systemPrompt = twitterBotPrompt + tagList;
 
   const llm = new CustomOpenAI({
     apiKey: process.env.OPENROUTER_KEY,
@@ -44,7 +55,7 @@ export async function createTwitterWorkflow() {
   return agent({
     llm,
     tools: [queryCommentsTool, queryVideosTool, getStudiesTool, webSearchTool],
-    systemPrompt: twitterBotPrompt,
+    systemPrompt,
     timeout: 120,
   });
 }
