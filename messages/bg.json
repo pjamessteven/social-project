@@ -369,6 +369,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "Покажи още {count} разговора",
       "showLess": "Покажи по-малко",
       "loadMore": "Зареди още разговори",

@@ -370,6 +370,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "عرض {count} محادثات إضافية",
       "showLess": "عرض أقل",
       "loadMore": "تحميل المزيد من المحادثات",

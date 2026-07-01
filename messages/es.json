@@ -347,6 +347,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "Mostrar {count} conversaciones más",
       "showLess": "Mostrar menos",
       "loadMore": "Cargar más conversaciones",

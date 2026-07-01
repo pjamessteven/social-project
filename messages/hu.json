@@ -369,6 +369,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "{count} További Beszélgetés Mutatása",
       "showLess": "Kevesebb Mutatása",
       "loadMore": "További Beszélgetések Betöltése",

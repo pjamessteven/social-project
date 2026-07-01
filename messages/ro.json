@@ -369,6 +369,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "Arată încă {count} Conversații",
       "showLess": "Arată mai puțin",
       "loadMore": "Încarcă mai multe Conversații",

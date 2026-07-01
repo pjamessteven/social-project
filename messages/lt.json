@@ -369,6 +369,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "Rodyti dar {count} pokalbius",
       "showLess": "Rodyti mažiau",
       "loadMore": "Įkelti daugiau pokalbių",

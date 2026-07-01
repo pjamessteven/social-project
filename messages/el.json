@@ -371,6 +371,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "Εμφάνιση {count} Περισσότερων Συνομιλιών",
       "showLess": "Εμφάνιση Λιγότερων",
       "loadMore": "Φόρτωση Περισσότερων Συνομιλιών",

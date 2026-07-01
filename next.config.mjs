@@ -12,8 +12,9 @@ const securityHeaders = [
 ];
 
 const nextConfig = {
+  output: "standalone",
   reactStrictMode: true,
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: false,
   async redirects() {
     return [
       {

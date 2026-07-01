@@ -370,6 +370,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "Zobrazit {count} dalších konverzací",
       "showLess": "Zobrazit méně",
       "loadMore": "Načíst další konverzace",

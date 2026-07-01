@@ -369,6 +369,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "แสดงการสนทนาเพิ่ม {count}",
       "showLess": "แสดงน้อยลง",
       "loadMore": "โหลดการสนทนาเพิ่ม",

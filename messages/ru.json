@@ -367,6 +367,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "Показать ещё {count} разговоров",
       "showLess": "Показать меньше",
       "loadMore": "Загрузить больше разговоров",

@@ -368,6 +368,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "显示{count}个更多对话",
       "showLess": "显示较少",
       "loadMore": "加载更多对话",

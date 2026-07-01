@@ -12,6 +12,7 @@ import {
   DollarSign,
   ExternalLink,
   FileText,
+  HandCoins,
   Heart,
   HelpCircle,
   Info,
@@ -173,7 +174,7 @@ export default function Header({
                             href="/support"
                             className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                           >
-                            <Heart className="h-5 w-5 text-red-500" />
+                            <Heart className="h-5 w-5" />
                             <div className="flex flex-col space-y-1">
                               <div className="text-sm leading-none font-medium">
                                 {t("navigation.support")}
@@ -331,6 +332,9 @@ export default function Header({
               </div>
 
               <div className="flex w-full flex-col space-y-2 pt-3">
+                <h3 className="text-muted-foreground ml-1 pt-2 text-sm font-medium">
+                  {t("navigation.resources")}
+                </h3>
                 {/* Chat */}
                 <Link
                   href={!devAffirm ? "/" : "/affirm"}
@@ -417,8 +421,27 @@ export default function Header({
                         </div>
                       </Button>
                     </Link>
+                    <Link href="/support" onClick={() => setIsOpen(false)}>
+                      <Button
+                        variant="ghost"
+                        className={cn(
+                          "h-auto w-full flex-row items-center justify-start py-3",
+                          pathname === "/support" && "bg-muted",
+                        )}
+                      >
+                        <Heart className="h-4 w-4 text-red-500" />
+                        <div className="ml-4 flex flex-col items-start">
+                          <div className="text-sm font-medium">
+                            {t("navigation.support")}
+                          </div>
+                          <div className="text-muted-foreground text-xs">
+                            {t("resources.genderSupportDesc")}
+                          </div>
+                        </div>
+                      </Button>
+                    </Link>
                     {/* More / Resources Section */}
-                    <div className="border-border mt-2 border-t py-2">
+                    <div className="border-border mt-2 hidden border-t py-2">
                       <h3 className="text-muted-foreground ml-1 pt-2 text-sm font-medium">
                         {t("navigation.resources")}
                       </h3>
@@ -466,34 +489,6 @@ export default function Header({
                             <ExternalLink className="ms-2 h-4" />
                           </Button>
                         </a>
-                      </div>
-                    </div>
-
-                    {/* Support Section */}
-                    <div className="border-border border-t py-2">
-                      <h3 className="text-muted-foreground ml-1 pt-2 text-sm font-medium">
-                        {t("navigation.support")}
-                      </h3>
-                      <div className="space-y-1">
-                        <Link href="/support" onClick={() => setIsOpen(false)}>
-                          <Button
-                            variant="ghost"
-                            className={cn(
-                              "h-auto w-full flex-row items-center justify-start py-3",
-                              pathname === "/support" && "bg-muted",
-                            )}
-                          >
-                            <Heart className="h-4 w-4 text-red-500" />
-                            <div className="ml-4 flex flex-col items-start">
-                              <div className="text-sm font-medium">
-                                {t("navigation.support")}
-                              </div>
-                              <div className="text-muted-foreground text-xs">
-                                {t("resources.genderSupportDesc")}
-                              </div>
-                            </div>
-                          </Button>
-                        </Link>
                       </div>
                     </div>
 
@@ -571,7 +566,7 @@ export default function Header({
                               pathname === "/donate" && "bg-muted",
                             )}
                           >
-                            <Heart className="h-4 w-4 text-red-500" />
+                            <HandCoins className="h-4 w-4" />
                             <div className="ml-4 flex flex-col items-start">
                               <div className="text-sm font-medium">
                                 {t("donate")}

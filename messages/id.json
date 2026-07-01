@@ -369,6 +369,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "Tampilkan {count} Percakapan Lainnya",
       "showLess": "Tampilkan Lebih Sedikit",
       "loadMore": "Muat Percakapan Lainnya",

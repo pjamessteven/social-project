@@ -368,6 +368,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "הצג {count} שיחות נוספות",
       "showLess": "הצג פחות",
       "loadMore": "טען עוד שיחות",

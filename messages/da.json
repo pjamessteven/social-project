@@ -368,6 +368,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "Vis {count} Flere Samtaler",
       "showLess": "Vis Færre",
       "loadMore": "Indlæs Flere Samtaler",
