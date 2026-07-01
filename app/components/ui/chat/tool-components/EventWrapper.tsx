@@ -1,6 +1,6 @@
 "use client";
 
-import { useChatUI, usePart } from "@llamaindex/chat-ui";
+import { useChatMessage, useChatUI, usePart } from "@llamaindex/chat-ui";
 import clsx from "clsx";
 import { ChevronDown, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -47,6 +47,7 @@ export function EventWrapper({
   const eventPart = usePart<EventPartData>(eventType);
   const t = useTranslations("chat");
   const { messages } = useChatUI();
+  const { message } = useChatMessage();
 
   const isThinking = useMemo(() => {
     if (!eventPart) return false;
@@ -67,6 +68,12 @@ export function EventWrapper({
   const isLoading = !eventPart?.data.status;
   const isError = eventPart?.data.status === "error";
 
+  const isFirstPart = useMemo(() => {
+    if (!message?.parts?.length || !eventPart) return false;
+    const firstPart = message.parts[0] as any;
+    return firstPart?.type === eventPart.type;
+  }, [message, eventPart]);
+
   if (!eventPart) return null;
 
   return (
@@ -78,7 +85,7 @@ export function EventWrapper({
           type="single"
           collapsible
           defaultValue={defaultExpanded ? "content" : undefined}
-          className="not-prose -mt-2 w-full"
+          className={clsx("not-prose -mt-2 mb-2 w-full", isFirstPart && "mt-1")}
         >
           <AccordionItem
             value="content"
@@ -88,21 +95,17 @@ export function EventWrapper({
               disabled={isLoading}
               hideIndicator
               className={clsx(
-                "group text-muted-foreground bg-secondary/80 dark:bg-secondary relative m-0 w-full items-start overflow-hidden rounded-2xl border p-0 hover:no-underline",
+                "group text-muted-foreground/60 relative m-0 w-full items-start overflow-hidden border-l-2 p-0 pl-3 hover:no-underline",
                 disableExpand && "pointer-events-none",
               )}
             >
               <div className="flex w-full flex-col">
-                <div className="flex w-full flex-row items-center justify-between px-4 py-3 text-base dark:bg-black/30">
-                  <div className="no-wrap flex flex-row items-baseline pr-2">
-                    <div className="text-primary-background font-normal">
-                      <span className="font-medium">{label}</span>
+                <div className="flex w-full flex-row items-center justify-between text-base dark:bg-black/30">
+                  <div className="no-wrap flex flex-row items-baseline pr-2 font-normal">
+                    <div className="italic">
+                      <span className="">{label}</span>
                       {query && <span>{": "}</span>}
-                      {query && (
-                        <span className="text-muted-foreground italic">
-                          {query}
-                        </span>
-                      )}
+                      {query && <span className="italic">{query}</span>}
                     </div>
                   </div>
                   <div>
