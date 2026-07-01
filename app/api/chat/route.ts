@@ -28,8 +28,6 @@ import { initSettings } from "@/app/lib/agents/settings";
 import { workflowFactory } from "./app/workflow";
 import { getChatCachedResponse } from "./utils/cacheHelpers";
 
-initSettings();
-
 // Schema for chat request validation
 const chatRequestSchema = z.object({
   message: z.string(), //.max(MAX_MESSAGE_LENGTH),
@@ -40,6 +38,7 @@ const chatRequestSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
+    initSettings();
     // Check if IP is banned before processing request
     await checkIpBan(req);
 

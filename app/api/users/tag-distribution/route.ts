@@ -1,13 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { drizzle } from "drizzle-orm/postgres-js";
 import { sql, eq, and, inArray } from "drizzle-orm";
-import postgres from "postgres";
+import { db } from "@/db";
 import { detransUsers, detransTags, detransUserTags } from "@/db/schema";
 import { availableTags } from "@/app/lib/availableTags";
-
-const connectionString = process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/app";
-const client = postgres(connectionString);
-const db = drizzle(client);
 
 // Tag mappings for Sankey flow
 const TAG_MAPPINGS = {

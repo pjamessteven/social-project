@@ -1,12 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
-import { detransTags, detransUserTags } from "../../../db/schema";
+import { db } from "@/db";
+import { detransTags, detransUserTags } from "@/db/schema";
 import { sql } from "drizzle-orm";
-
-const connectionString = process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/app";
-const client = postgres(connectionString);
-const db = drizzle(client);
 
 export async function GET(request: NextRequest) {
   try {
