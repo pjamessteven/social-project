@@ -8,6 +8,7 @@ import {
   List,
   Loader2,
   MessageSquare,
+  Shuffle,
   Star,
   Trash2,
   User,
@@ -112,6 +113,10 @@ export function FeaturedConversations() {
       setError(null);
       setShowAllMobile(false);
       setSelectedUuids(new Set());
+      // Reset shuffle when switching tabs
+      if (value === "featured") {
+        setShuffle(false);
+      }
 
       // Store tab in sessionStorage for persistence when navigating back from chat
       sessionStorage.setItem("portalTab", value);
@@ -119,6 +124,7 @@ export function FeaturedConversations() {
     [router, searchParams],
   );
   const [showAllMobile, setShowAllMobile] = useState(false);
+  const [shuffle, setShuffle] = useState(false);
   const [togglingFeaturedUuid, setTogglingFeaturedUuid] = useState<
     string | null
   >(null);
@@ -329,7 +335,11 @@ export function FeaturedConversations() {
     }
   };
 
-  // Generate random heights for loading skeletons between h-32 and h-80
+  const handleShuffle = useCallback(() => {
+    setShuffle(true);
+    setConversations([]);
+    setLoading(true);
+  }, []);
   const generateRandomHeights = (count: number, seed: number = 0): string[] => {
     const heights = [];
     for (let i = 0; i < count; i++) {
@@ -413,6 +423,9 @@ export function FeaturedConversations() {
         if (isMine) {
           params.set("mine", "true");
         }
+        if (isFeatured && shuffle) {
+          params.set("shuffle", "true");
+        }
         const response = await fetch(`/api/chat?${params.toString()}`, {
           signal: abortController.signal,
         });
@@ -477,6 +490,7 @@ export function FeaturedConversations() {
     },
     [
       isMediumScreen,
+      shuffle,
       setCurrentTab,
       setError,
       setLoading,
@@ -554,46 +568,77 @@ export function FeaturedConversations() {
         <div className="w-full">
           <div className="lg:no-wrap mb-4 flex w-full flex-col sm:items-start lg:flex-row lg:items-center lg:justify-between">
             <div className="lg:prose-base prose dark:prose-invert flex flex-col">
-              <div className="flex items-center justify-start gap-2 lg:mt-2">
-                <History className="mx-2 h-6 w-6 text-black dark:text-white" />
+              <div className="flex items-center justify-between gap-2 lg:mt-2">
+                <div className="flex items-center">
+                  <History className="mx-2 h-6 w-6 text-black dark:text-white" />
 
-                <h3 className="my-0! py-0! text-xl font-bold">{t("title")}</h3>
+                  <h3 className="my-0! py-0! text-xl font-bold">
+                    {t("title")}
+                  </h3>
+                </div>
+
+                <button
+                  onClick={handleShuffle}
+                  className={cn(
+                    "hover:bg-secondary/70 text-muted-foreground hover:text-foreground bg-secondary absolute right-0 flex items-center justify-center rounded-full border p-3 transition-all duration-300 sm:hidden",
+                    currentTab === "featured"
+                      ? "opacity-100"
+                      : "pointer-events-none opacity-0",
+                  )}
+                  title={t("buttons.shuffle")}
+                >
+                  <Shuffle className="h-3.5 w-3.5" />
+                </button>
               </div>
               <div className="mt-4 mb-6 text-base text-gray-500 lg:mt-4">
                 {t("subtitle")}
               </div>
             </div>
-            <SlidingNavGroup
-              className="bg-secondary/70 flex justify-between border dark:bg-black"
-              tabClassName="w-full sm:w-auto justify-center flex text-center"
-              tabs={[
-                {
-                  key: "featured",
-                  label: t("tabs.featured"),
-                  isActive: currentTab === "featured",
-                  icon: <Star className="h-3.5 w-3.5" />,
-                },
-                {
-                  key: "all",
-                  label: t("tabs.all"),
-                  isActive: currentTab === "all",
-                  icon: <List className="h-3.5 w-3.5" />,
-                },
-                ...(isAuthenticated
-                  ? [
-                      {
-                        key: "mine",
-                        label: t("tabs.mine"),
-                        isActive: currentTab === "mine",
-                        icon: <User className="h-3.5 w-3.5" />,
-                      },
-                    ]
-                  : []),
-              ]}
-              onTabClick={(key) =>
-                handleTabChange(key as "featured" | "all" | "mine")
-              }
-            />
+            <div className="flex gap-2 sm:items-center">
+              <button
+                onClick={handleShuffle}
+                className={cn(
+                  "hover:bg-secondary/70 text-muted-foreground bg-secondary hover:text-foreground hidden items-center justify-center rounded-full border p-3 transition-all duration-300 sm:flex",
+                  currentTab === "featured"
+                    ? "opacity-100"
+                    : "pointer-events-none opacity-0",
+                )}
+                title={t("buttons.shuffle")}
+              >
+                <Shuffle className="h-3.5 w-3.5" />
+              </button>
+              <SlidingNavGroup
+                className="bg-secondary/70 flex w-full justify-between border dark:bg-black"
+                tabClassName="w-full sm:w-auto justify-center flex text-center"
+                tabs={[
+                  {
+                    key: "featured",
+                    label: t("tabs.featured"),
+                    isActive: currentTab === "featured",
+                    icon: <Star className="h-3.5 w-3.5" />,
+                  },
+                  {
+                    key: "all",
+                    label: t("tabs.all"),
+                    isActive: currentTab === "all",
+                    icon: <List className="h-3.5 w-3.5" />,
+                  },
+                  ...(isAuthenticated
+                    ? [
+                        {
+                          key: "mine",
+                          label: t("tabs.mine"),
+                          isActive: currentTab === "mine",
+                          icon: <User className="h-3.5 w-3.5" />,
+                        },
+                      ]
+                    : []),
+                ]}
+                onTabClick={(key) =>
+                  handleTabChange(key as "featured" | "all" | "mine")
+                }
+              />
+            </div>
           </div>
 
           {conversations.length === 0 && !loading && (
