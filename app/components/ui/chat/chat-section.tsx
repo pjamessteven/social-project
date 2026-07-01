@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import DisclaimerMessage from "../../content/DisclaimerMessage";
 import { ResizablePanel, ResizablePanelGroup } from "../resizable";
 import { ChatCanvasPanel } from "./canvas/panel";
+import { ChatActionBar } from "./chat-action-bar";
 import CustomChatMessages from "./chat-messages";
 import { DynamicEventsErrors } from "./custom/events/dynamic-events-errors";
 //import { fetchComponentDefinitions } from "./custom/events/loader";
@@ -500,6 +501,7 @@ function ChatSectionPanel({
           conversationId={conversationId}
           isArchived={isArchived}
         />
+        {!hideControls && <ChatActionBar conversationId={conversationId} />}
 
         {isArchived && (
           <div className="-mt-24 w-screen px-4 sm:w-auto">

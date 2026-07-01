@@ -2,6 +2,7 @@ import { RedisCache } from "@/app/lib/agents/cache";
 import { getCommentsIndex, getVideosIndex } from "@/app/lib/agents/data";
 import { initSettings } from "@/app/lib/agents/settings";
 import {
+  createBanUserTool,
   createGetStudiesTool,
   createQueryCommentsTool,
   createQueryVideosTool,
@@ -20,6 +21,7 @@ export const workflowFactory = async (
   requestId?: string,
   iteration?: number,
   locale?: string,
+  ipAddress?: string,
 ) => {
   initSettings();
 
@@ -53,6 +55,18 @@ export const workflowFactory = async (
 
   const getStudiesTool = createGetStudiesTool();
 
+  const tools: any[] = [
+    queryCommentsTool,
+    queryVideosTool,
+    getStudiesTool,
+    webSearchTool,
+  ];
+
+  if (ipAddress) {
+    const banUserTool = createBanUserTool({ ipAddress });
+    tools.push(banUserTool);
+  }
+
   const tags = await db.select({ name: studyTags.name }).from(studyTags);
   const tagNames = tags.map((t) => t.name).filter(Boolean);
   const tagList =
@@ -73,7 +87,7 @@ export const workflowFactory = async (
     requestId,
     apiKey: process.env.OPENROUTER_KEY,
     baseURL: "https://openrouter.ai/api/v1",
-    model: "deepseek/deepseek-v4-flash",
+    model: "xiaomi/mimo-v2.5",
     temperature: 1,
     additionalSessionOptions: {
       thinking: { type: "disabled" },
@@ -85,7 +99,7 @@ export const workflowFactory = async (
 
   return agent({
     llm,
-    tools: [queryCommentsTool, queryVideosTool, getStudiesTool, webSearchTool],
+    tools,
     systemPrompt,
     timeout: 30,
   });

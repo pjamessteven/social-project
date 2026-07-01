@@ -281,6 +281,7 @@ export async function POST(req: NextRequest) {
           requestId,
           userMessages.length,
           locale,
+          ipAddress,
         ),
         input: { userInput: userInput, chatHistory: chatHistory },
         human: {

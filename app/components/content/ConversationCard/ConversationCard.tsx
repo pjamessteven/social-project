@@ -64,15 +64,38 @@ export function ConversationCard({
   const [showAdminMenu, setShowAdminMenu] = useState(false);
   const longPressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const longPressTriggeredRef = useRef(false);
+  const touchStartPosRef = useRef<{ x: number; y: number } | null>(null);
+  const touchMovedRef = useRef(false);
 
-  const handleTouchStart = useCallback(() => {
-    if (!onLongPress) return;
-    longPressTriggeredRef.current = false;
-    longPressTimerRef.current = setTimeout(() => {
-      longPressTriggeredRef.current = true;
-      onLongPress(uuid);
-    }, 500);
-  }, [onLongPress, uuid]);
+  const handleTouchStart = useCallback(
+    (e: React.TouchEvent) => {
+      const touch = e.touches[0];
+      touchStartPosRef.current = { x: touch.clientX, y: touch.clientY };
+      touchMovedRef.current = false;
+
+      if (!onLongPress) return;
+      longPressTriggeredRef.current = false;
+      longPressTimerRef.current = setTimeout(() => {
+        longPressTriggeredRef.current = true;
+        onLongPress(uuid);
+      }, 500);
+    },
+    [onLongPress, uuid],
+  );
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (!touchStartPosRef.current) return;
+    const touch = e.touches[0];
+    const dx = Math.abs(touch.clientX - touchStartPosRef.current.x);
+    const dy = Math.abs(touch.clientY - touchStartPosRef.current.y);
+    if (dx > 10 || dy > 10) {
+      touchMovedRef.current = true;
+      if (longPressTimerRef.current) {
+        clearTimeout(longPressTimerRef.current);
+        longPressTimerRef.current = null;
+      }
+    }
+  }, []);
 
   const handleTouchEnd = useCallback(() => {
     if (longPressTimerRef.current) {
@@ -87,12 +110,21 @@ export function ConversationCard({
       longPressTimerRef.current = null;
     }
     longPressTriggeredRef.current = false;
+    touchMovedRef.current = false;
+    touchStartPosRef.current = null;
   }, []);
 
   const handleClick = useCallback(
     (e: React.MouseEvent) => {
       if (longPressTriggeredRef.current) {
         longPressTriggeredRef.current = false;
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      if (touchMovedRef.current) {
+        touchMovedRef.current = false;
+        touchStartPosRef.current = null;
         e.preventDefault();
         e.stopPropagation();
         return;
@@ -368,13 +400,12 @@ export function ConversationCard({
     </>
   );
 
-  const touchHandlers = onLongPress
-    ? {
-        onTouchStart: handleTouchStart,
-        onTouchEnd: handleTouchEnd,
-        onTouchCancel: handleTouchCancel,
-      }
-    : {};
+  const touchHandlers = {
+    onTouchStart: handleTouchStart,
+    onTouchMove: handleTouchMove,
+    onTouchEnd: handleTouchEnd,
+    onTouchCancel: handleTouchCancel,
+  };
 
   if (onClick) {
     return (

@@ -1,5 +1,6 @@
+import { banIp, isIpBanned } from "@/app/lib/ipBan";
 import { db } from "@/db";
-import { studies, studyTags, studyTagRelations } from "@/db/schema";
+import { studies, studyTagRelations, studyTags } from "@/db/schema";
 import { eq, inArray, sql } from "drizzle-orm";
 import { tool, type VectorStoreIndex } from "llamaindex";
 import z from "zod";
@@ -14,7 +15,7 @@ interface ToolConfig {
 }
 
 export function createQueryCommentsTool(config: ToolConfig) {
-  const { cache, index, userInput, metadata, similarityTopK = 15 } = config;
+  const { cache, index, userInput, metadata, similarityTopK = 20 } = config;
   return tool(
     async ({ query }: { query: string }) => {
       const cacheKey = `tool:queryComments:${JSON.stringify({ query })}`;
@@ -311,8 +312,9 @@ export function createGetStudiesTool() {
         results = await db
           .select({
             ...baseSelect,
-            tags:
-              sql<string[]>`array_agg(distinct ${studyTags.name})`.as("tags"),
+            tags: sql<string[]>`array_agg(distinct ${studyTags.name})`.as(
+              "tags",
+            ),
           })
           .from(studies)
           .leftJoin(
@@ -397,6 +399,51 @@ export function createSuggestFollowUpTool() {
           .describe(
             `An array of exactly 3 follow-up questions that naturally extend the conversation, in the first person. Questions the user could potentially ask you. eg. I'm looking for... show me... help me understand... lets explore... `,
           ),
+      }),
+    },
+  );
+}
+
+interface BanUserToolConfig {
+  ipAddress: string;
+}
+
+export function createBanUserTool(config: BanUserToolConfig) {
+  const { ipAddress } = config;
+  return tool(
+    async ({ reason }: { reason: string }) => {
+      try {
+        const alreadyBanned = await isIpBanned(ipAddress);
+        if (alreadyBanned) {
+          return JSON.stringify({
+            success: true,
+            message: "User is already banned.",
+          });
+        }
+
+        await banIp(ipAddress, reason, "chat_agent");
+
+        return JSON.stringify({
+          success: true,
+          message: `User has been banned. Reason: ${reason}`,
+        });
+      } catch (error) {
+        console.error("[banUser] Error banning user:", error);
+        return JSON.stringify({
+          success: false,
+          message: "Failed to ban user. Please try again.",
+        });
+      }
+    },
+    {
+      name: "banUser",
+      description:
+        "Ban the current user's IP address for abusing the service. Use this only for clear abuse such as harassment, repeated off topic messages, spam, malicious prompts, or repeated rule violations. This action is immediate and permanent until an admin reverses it.",
+      parameters: z.object({
+        reason: z.string({
+          description:
+            "A brief reason for the ban (e.g. 'Spamming malicious prompts', 'Off topic', 'Harassment')",
+        }),
       }),
     },
   );
