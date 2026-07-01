@@ -367,6 +367,8 @@ export async function GET(request: NextRequest) {
     const isFeatured = featuredParam === "true";
     const mineParam = searchParams.get("mine");
     const isMine = mineParam === "true";
+    const shuffleParam = searchParams.get("shuffle");
+    const isShuffle = shuffleParam === "true";
 
     // Check if user is logged in
     const session = await getCurrentSession();
@@ -412,7 +414,7 @@ export async function GET(request: NextRequest) {
         username: chatConversations.username,
       })
       .from(chatConversations)
-      .orderBy(desc(chatConversations.updatedAt))
+      .orderBy(isShuffle ? sql`RANDOM()` : desc(chatConversations.updatedAt))
       .limit(limit)
       .offset(offset);
 
