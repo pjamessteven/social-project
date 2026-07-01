@@ -368,7 +368,7 @@ export async function StartPage({
           <p className="mt-8 sm:mt-8">{t("footer.poem.line1")}</p>
           <p className="mt-1">{t("footer.poem.line2")}</p>
            */}
-              <div className="border-l pl-4">
+              <div className="text-muted-foreground/70 border-l pl-4">
                 <p className="">{t("footer.poem.line3")}</p>
                 <p className="mt-1">{t("footer.poem.line4")}</p>
                 <p className="mt-1">{t("footer.poem.line5")}</p>
@@ -416,7 +416,7 @@ export async function StartPage({
                 <div className="mt-1 flex items-center">
                   {t("footer.madeWithLove")}
                 </div>
-                <div className="mt-8 flex items-center underline">
+                <div className="mt-1 flex items-center underline">
                   <Link href="/donate">{t("footer.donatePrompt")} </Link>
                 </div>
                 <div className="mt-1 flex items-center">

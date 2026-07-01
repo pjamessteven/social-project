@@ -58,10 +58,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
 COPY --from=builder --chown=nextjs:nodejs /app/tsconfig.json ./tsconfig.json
 
 # Standalone server (includes its own minimal node_modules)
+COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-# Static assets (JS/CSS/image chunks served by Next.js)
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-# Public assets (favicon, images, etc.)
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
 COPY --chown=nextjs:nodejs docker-entrypoint.sh /app/
