@@ -84,19 +84,35 @@ const TOOL_UI_MAP: Record<
 /**
  * Extract a display-friendly query string from tool kwargs.
  * Returns the most meaningful string field for display in the UI.
+ * Appends keyword filters if present.
  */
 function extractDisplayQuery(
   toolKwargs: Record<string, any> | undefined,
 ): string {
   if (!toolKwargs) return "";
-  for (const key of ["query", "keywords", "name", "slug", "title"]) {
-    if (toolKwargs[key] && typeof toolKwargs[key] === "string")
-      return toolKwargs[key];
+
+  // Find the primary query string
+  let query = "";
+  for (const key of ["query", "name", "slug", "title"]) {
+    if (toolKwargs[key] && typeof toolKwargs[key] === "string") {
+      query = toolKwargs[key];
+      break;
+    }
   }
-  const firstString = Object.values(toolKwargs).find(
-    (v) => typeof v === "string",
-  );
-  return firstString ? String(firstString) : "";
+  if (!query) {
+    const firstString = Object.values(toolKwargs).find(
+      (v) => typeof v === "string",
+    );
+    query = firstString ? String(firstString) : "";
+  }
+
+  // Append keyword filter if present
+  const keyword = toolKwargs.keyword;
+  if (typeof keyword === "string" && keyword.length > 0) {
+    query = query ? `${query} [${keyword}]` : `[${keyword}]`;
+  }
+
+  return query;
 }
 
 /**

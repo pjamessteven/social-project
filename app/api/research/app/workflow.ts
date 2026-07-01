@@ -1,11 +1,14 @@
 import { agent } from "@llamaindex/workflow";
-import { tool } from "llamaindex";
+import { Settings, tool } from "llamaindex";
 import z from "zod";
-import { getCommentsIndex, getStudiesIndex } from "@/app/lib/agents/data";
+import { getStudiesIndex, queryCommentsV2 } from "@/app/lib/agents/data";
 import { RedisCache, makeHashedKey } from "@/app/lib/agents/cache";
 import { CachedOpenAI } from "../../shared/llm";
 import { agentPrompt } from "../utils/prompts";
 import { initSettings } from "@/app/lib/agents/settings";
+import allKeywords from "@/app/lib/agents/keywords.json";
+
+const TOP_KEYWORDS = Object.keys(allKeywords).slice(0, 300).join(", ");
 
 type FilterConfig = {
   sex?: string;
@@ -30,7 +33,6 @@ export const workflowFactory = async (
   // Initialize cache first since it's used by tools
   const cache = new RedisCache("deep_research");
 
-  const commentsIndex = await getCommentsIndex(reqBody?.data, locale);
   const studiesIndex = await getStudiesIndex(reqBody?.data, locale);
 
   console.log("[WORKFLOW] Creating query tools...");
@@ -56,9 +58,9 @@ export const workflowFactory = async (
   };
 
   const queryCommentsTool = tool(
-    async ({ query }: { query: string }) => {
+    async ({ query, keyword }: { query: string; keyword?: string }) => {
       console.log("queryCommentsToolQuery", query);
-      const cacheKey = `tool:queryComments:${JSON.stringify({ query })}`;
+      const cacheKey = `tool:queryComments:${JSON.stringify({ query, keyword })}`;
       const hashedKey = makeHashedKey(cacheKey);
       const cachedResult = await cache.get(hashedKey);
 
@@ -68,12 +70,18 @@ export const workflowFactory = async (
       }
       console.log("[CACHE MISS] queryCommentsTool");
 
-      const commentsEngineTool = commentsIndex.asRetriever({
-        similarityTopK: 15,
-      });
+      const embedModel = Settings.embedModel;
+      const queryEmbedding = await embedModel.getTextEmbedding(query);
 
-      const nodes = await commentsEngineTool.retrieve({ query });
-      const result = JSON.stringify(nodes);
+      if (!queryEmbedding) {
+        return JSON.stringify({ error: "Failed to generate query embedding" });
+      }
+
+      const result = await queryCommentsV2({
+        queryEmbedding,
+        topK: 15,
+        keyword: keyword || undefined,
+      });
 
       await cache.set(hashedKey, cacheKey, result, userInput, { requestId });
 
@@ -88,6 +96,12 @@ export const workflowFactory = async (
           description:
             "A question to find more specific information from real detransitioners. **Ask your question in the users native language**.'",
         }),
+        keyword: z
+          .string()
+          .optional()
+          .describe(
+            `Filter results to comments matching this keyword. Use to further refine a search if more granular results are required, or when searching for specific experiences (e.g. "top surgery", "testosterone effects"). Choose from the list: ${TOP_KEYWORDS}`,
+          ),
       }),
     },
   );

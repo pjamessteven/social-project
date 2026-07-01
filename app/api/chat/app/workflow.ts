@@ -1,5 +1,5 @@
 import { RedisCache } from "@/app/lib/agents/cache";
-import { getCommentsIndex, getVideosIndex } from "@/app/lib/agents/data";
+import { getVideosIndex } from "@/app/lib/agents/data";
 import { initSettings } from "@/app/lib/agents/settings";
 import {
   createBanUserTool,
@@ -26,7 +26,6 @@ export const workflowFactory = async (
   initSettings();
 
   const cache = new RedisCache("detrans_chat");
-  const commentsIndex = await getCommentsIndex(reqBody?.data, locale);
   const videosIndex = await getVideosIndex(reqBody?.data, locale);
 
   console.log("[WORKFLOW] Creating query tools...");
@@ -35,7 +34,6 @@ export const workflowFactory = async (
 
   const queryCommentsTool = createQueryCommentsTool({
     cache,
-    index: commentsIndex,
     userInput,
     metadata: cacheMetadata,
   });

@@ -367,6 +367,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "Toon {count} Meer Gesprekken",
       "showLess": "Toon Minder",
       "loadMore": "Meer Gesprekken Laden",

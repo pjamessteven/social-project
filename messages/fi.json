@@ -369,6 +369,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "Näytä {count} Keskustelua Lisää",
       "showLess": "Näytä Vähemmän",
       "loadMore": "Lataa Lisää Keskusteluja",

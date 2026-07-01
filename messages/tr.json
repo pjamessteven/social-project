@@ -368,6 +368,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "{count} Konuşma Daha Göster",
       "showLess": "Daha Az Göster",
       "loadMore": "Daha Fazla Konuşma Yükle",

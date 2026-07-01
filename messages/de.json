@@ -365,6 +365,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "{count} weitere Gespräche anzeigen",
       "showLess": "Weniger anzeigen",
       "loadMore": "Mehr Gespräche laden",

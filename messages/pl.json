@@ -368,6 +368,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "Pokaż {count} więcej rozmów",
       "showLess": "Pokaż mniej",
       "loadMore": "Załaduj więcej rozmów",

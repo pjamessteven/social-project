@@ -2,13 +2,18 @@ import { banIp, isIpBanned } from "@/app/lib/ipBan";
 import { db } from "@/db";
 import { studies, studyTagRelations, studyTags } from "@/db/schema";
 import { eq, inArray, sql } from "drizzle-orm";
-import { tool, type VectorStoreIndex } from "llamaindex";
+import { Settings, tool, type VectorStoreIndex } from "llamaindex";
 import z from "zod";
 import { type Cache, makeHashedKey } from "./cache";
+import { queryCommentsV2 } from "./data";
+import allKeywords from "./keywords.json";
+
+// Top 200 keywords by frequency, for injection into the tool description
+const TOP_KEYWORDS = Object.keys(allKeywords).slice(0, 300).join(", ");
 
 interface ToolConfig {
   cache: Cache;
-  index: VectorStoreIndex;
+  index?: VectorStoreIndex;
   userInput?: string;
   metadata?: Record<string, unknown>;
   similarityTopK?: number;
@@ -17,15 +22,27 @@ interface ToolConfig {
 export function createQueryCommentsTool(config: ToolConfig) {
   const { cache, index, userInput, metadata, similarityTopK = 20 } = config;
   return tool(
-    async ({ query }: { query: string }) => {
-      const cacheKey = `tool:queryComments:${JSON.stringify({ query })}`;
+    async ({ query, keyword }: { query: string; keyword?: string }) => {
+      const cacheKey = `tool:queryComments:${JSON.stringify({ query, keyword })}`;
       const hashedKey = makeHashedKey(cacheKey);
       const cachedResult = await cache.get(hashedKey);
       if (cachedResult) return cachedResult;
 
-      const retriever = index.asRetriever({ similarityTopK });
-      const nodes = await retriever.retrieve({ query });
-      const result = JSON.stringify(nodes);
+      // Embed the query using the configured embedding model
+      const embedModel = Settings.embedModel;
+      const queryEmbedding = await embedModel.getTextEmbedding(query);
+
+      if (!queryEmbedding) {
+        return JSON.stringify({ error: "Failed to generate query embedding" });
+      }
+
+      // Multi-vector search with optional keyword filtering
+      const result = await queryCommentsV2({
+        queryEmbedding,
+        topK: similarityTopK,
+        keyword: keyword || undefined,
+      });
+
       await cache.set(hashedKey, cacheKey, result, userInput, metadata);
       return result;
     },
@@ -38,6 +55,12 @@ export function createQueryCommentsTool(config: ToolConfig) {
           description:
             "A question to find specific information from real detransitioners.",
         }),
+        keyword: z
+          .string()
+          .optional()
+          .describe(
+            `Filter results to comments matching this keyword. Use to further refine a search if more granular results are required, or when searching for specific experiences (e.g. "top surgery", "testosterone effects"). Choose from the list: ${TOP_KEYWORDS}`,
+          ),
       }),
     },
   );
@@ -52,7 +75,7 @@ export function createQueryTransCommentsTool(config: ToolConfig) {
       const cachedResult = await cache.get(hashedKey);
       if (cachedResult) return cachedResult;
 
-      const retriever = index.asRetriever({ similarityTopK });
+      const retriever = index!.asRetriever({ similarityTopK });
       const nodes = await retriever.retrieve({ query });
       const result = JSON.stringify(nodes);
       await cache.set(hashedKey, cacheKey, result, userInput, metadata);
@@ -81,7 +104,7 @@ export function createQueryStoriesTool(config: ToolConfig) {
       const cachedResult = await cache.get(hashedKey);
       if (cachedResult) return cachedResult;
 
-      const retriever = index.asRetriever({ similarityTopK });
+      const retriever = index!.asRetriever({ similarityTopK });
       const nodes = await retriever.retrieve({ query });
       const result = JSON.stringify(nodes);
       await cache.set(hashedKey, cacheKey, result, userInput, metadata);
@@ -113,7 +136,7 @@ export function createQueryVideosTool(config: ToolConfig) {
         ? { filters: [{ key: "sex", value: sex, operator: "==" as const }] }
         : undefined;
 
-      const retriever = index.asRetriever({ similarityTopK, filters });
+      const retriever = index!.asRetriever({ similarityTopK, filters });
       const nodes = await retriever.retrieve({ query });
       const unique = nodes.reduce<{
         seen: Set<string>;
@@ -161,7 +184,7 @@ export function createQueryStudiesTool(config: ToolConfig) {
       const cachedResult = await cache.get(hashedKey);
       if (cachedResult) return cachedResult;
 
-      const retriever = index.asRetriever({ similarityTopK });
+      const retriever = index!.asRetriever({ similarityTopK });
       const nodes = await retriever.retrieve({ query });
       const unique = nodes.reduce<{
         seen: Set<string>;

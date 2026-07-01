@@ -368,6 +368,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "Visa {count} Fler Konversationer",
       "showLess": "Visa Färre",
       "loadMore": "Ladda Fler Konversationer",

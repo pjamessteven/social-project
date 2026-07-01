@@ -370,6 +370,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "نمایش {count} گفتگوی بیشتر",
       "showLess": "نمایش کمتر",
       "loadMore": "بارگذاری گفتگوهای بیشتر",

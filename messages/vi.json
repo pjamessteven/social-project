@@ -369,6 +369,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "Hiển Thị Thêm {count} Cuộc Trò Chuyện",
       "showLess": "Hiển Thị Ít Hơn",
       "loadMore": "Tải Thêm Cuộc Trò Chuyện",

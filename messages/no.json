@@ -369,6 +369,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "Vis {count} flere samtaler",
       "showLess": "Vis færre",
       "loadMore": "Last flere samtaler",

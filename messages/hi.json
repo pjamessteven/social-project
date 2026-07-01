@@ -368,6 +368,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "{count} और वार्तालाप दिखाएं",
       "showLess": "कम दिखाएं",
       "loadMore": "और वार्तालाप लोड करें",

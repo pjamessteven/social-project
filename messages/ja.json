@@ -366,6 +366,7 @@
       "mine": "Mine"
     },
     "buttons": {
+      "shuffle": "Shuffle",
       "showMore": "{count}件の会話をさらに表示",
       "showLess": "少なく表示",
       "loadMore": "さらに会話を読み込む",
