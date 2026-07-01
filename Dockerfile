@@ -22,7 +22,6 @@ COPY . .
 
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED=1
-ENV NEXT_PRIVATE_STANDALONE=true
 
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
@@ -39,29 +38,33 @@ WORKDIR /app
 RUN apk add --no-cache postgresql-client netcat-openbsd python3 ffmpeg yt-dlp
 
 ENV NODE_ENV=production
-# Uncomment the following line in case you want to disable telemetry during the build.
-# ENV NEXT_TELEMETRY_DISABLED=1
-ENV NEXT_PRIVATE_STANDALONE=true
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
 
-# Copy application code with appropriate ownership and permissions
-COPY --from=builder --chown=nextjs:nodejs --chmod=555 /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs --chmod=444 /app/tsconfig.json ./tsconfig.json
-COPY --from=builder --chown=nextjs:nodejs --chmod=555 /app/components ./components
-COPY --from=builder --chown=nextjs:nodejs --chmod=555 /app/db ./db
-COPY --from=builder --chown=nextjs:nodejs --chmod=555 /app/app ./app
-COPY --from=builder --chown=nextjs:nodejs --chmod=555 /app/scripts ./scripts
-COPY --from=builder --chown=nextjs:nodejs --chmod=555 /app/drizzle ./drizzle
-COPY --from=builder --chown=nextjs:nodejs --chmod=444 /app/drizzle.config.ts ./drizzle.config.ts
+# Source + deps (needed for tsx script execution and ad-hoc scripts)
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
+COPY --from=builder --chown=nextjs:nodejs /app/app ./app
+COPY --from=builder --chown=nextjs:nodejs /app/components ./components
+COPY --from=builder --chown=nextjs:nodejs /app/db ./db
+COPY --from=builder --chown=nextjs:nodejs /app/scripts ./scripts
+COPY --from=builder --chown=nextjs:nodejs /app/stores ./stores
+COPY --from=builder --chown=nextjs:nodejs /app/types ./types
+COPY --from=builder --chown=nextjs:nodejs /app/i18n ./i18n
+COPY --from=builder --chown=nextjs:nodejs /app/messages ./messages
+COPY --from=builder --chown=nextjs:nodejs /app/drizzle ./drizzle
+COPY --from=builder --chown=nextjs:nodejs /app/drizzle.config.ts ./drizzle.config.ts
+COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
+COPY --from=builder --chown=nextjs:nodejs /app/tsconfig.json ./tsconfig.json
 
-# Copy dependencies and build output with execution permissions
-COPY --from=builder --chown=nextjs:nodejs --chmod=755 /app/node_modules ./node_modules
-COPY --from=builder --chown=nextjs:nodejs --chmod=755 /app/.next ./.next
-COPY --from=builder --chown=nextjs:nodejs --chmod=755 /app/.next/standalone ./
+# Standalone server (includes its own minimal node_modules)
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+# Static assets (JS/CSS/image chunks served by Next.js)
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+# Public assets (favicon, images, etc.)
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
-COPY docker-entrypoint.sh /app/
+COPY --chown=nextjs:nodejs docker-entrypoint.sh /app/
 RUN chmod +x /app/docker-entrypoint.sh
 
 USER nextjs
