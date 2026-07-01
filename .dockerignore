@@ -29,8 +29,7 @@ tsconfig.tsbuildinfo
 package-lock2.json
 AGENTS.md
 components.json
+tailwind.config.js
 eslint.config.mjs
 prettier.config.mjs
-postcss.config.js
-tailwind.config.js
 redis.conf

@@ -5,8 +5,8 @@
 /postgres-data
 /redis-data
 /storage
-/postgres-data
-/qdrant-storage.zip
+/postgres-data*
+/qdrant-storage*
 # python env
 /env
 
