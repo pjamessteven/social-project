@@ -57,9 +57,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/drizzle.config.ts ./drizzle.confi
 COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
 COPY --from=builder --chown=nextjs:nodejs /app/tsconfig.json ./tsconfig.json
 
-# Standalone server (includes its own minimal node_modules)
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+# Standalone server + static assets (CSS, JS chunks, fonts)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
 COPY --chown=nextjs:nodejs docker-entrypoint.sh /app/
