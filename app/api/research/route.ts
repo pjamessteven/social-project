@@ -26,8 +26,6 @@ import { stopAgentEvent } from "@llamaindex/workflow";
 import { initSettings } from "@/app/lib/agents/settings";
 import { workflowFactory } from "./app/workflow";
 
-initSettings();
-
 // Schema for research request validation
 const researchRequestSchema = z.object({
   message: z.string().max(MAX_MESSAGE_LENGTH),
@@ -38,6 +36,7 @@ const researchRequestSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
+    initSettings();
     // Apply rate limiting (10/min, 100/hour)
     const rateLimitResponse = await checkRateLimit(req);
     if (rateLimitResponse) return rateLimitResponse;

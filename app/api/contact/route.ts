@@ -7,13 +7,15 @@ import { checkRateLimit } from "@/app/lib/rateLimit";
 import { NextRequest, NextResponse } from "next/server";
 import { ZohoMailer } from "../../lib/mailer";
 
-const mailer = new ZohoMailer({
-  clientId: process.env.ZOHO_CLIENT_ID!,
-  clientSecret: process.env.ZOHO_CLIENT_SECRET!,
-  accountId: process.env.ZOHO_ACCOUNT_ID!,
-  defaultFrom: process.env.ZOHO_EMAIL!,
-  region: "com.au", // adjust if your account is in AU
-});
+function getMailer() {
+  return new ZohoMailer({
+    clientId: process.env.ZOHO_CLIENT_ID!,
+    clientSecret: process.env.ZOHO_CLIENT_SECRET!,
+    accountId: process.env.ZOHO_ACCOUNT_ID!,
+    defaultFrom: process.env.ZOHO_EMAIL!,
+    region: "com.au",
+  });
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -39,7 +41,7 @@ export async function POST(request: NextRequest) {
 
     const { name, email, subject, message, site } = await request.json();
 
-    const ok = await mailer.sendMail({
+    const ok = await getMailer().sendMail({
       to: process.env.ZOHO_EMAIL!,
       subject: `${"detrans.ai"} Contact Form: ${name}: ${subject}`,
       content: `<p><b>From:</b> ${name} (${email}): <br/><b>Subject:</b>${subject}</p><p>${message}</p>`,

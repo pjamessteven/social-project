@@ -598,7 +598,7 @@ export function FeaturedConversations() {
               <button
                 onClick={handleShuffle}
                 className={cn(
-                  "hover:bg-secondary/70 text-muted-foreground bg-secondary hover:text-foreground hidden items-center justify-center rounded-full border p-3 transition-all duration-300 sm:flex",
+                  "hover:bg-secondary/70 text-muted-foreground bg-secondary hover:text-foreground dark:hover:bg-secondary hidden items-center justify-center rounded-full border p-3 transition-all duration-300 sm:flex dark:bg-black",
                   currentTab === "featured"
                     ? "opacity-100"
                     : "pointer-events-none opacity-0",
