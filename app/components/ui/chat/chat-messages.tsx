@@ -10,12 +10,10 @@ import {
 } from "@/app/components/ui/dialog";
 import { Label } from "@/app/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/app/components/ui/radio-group";
-import { cn, uuidv4 } from "@/app/lib/utils";
-import { Link } from "@/i18n/routing";
+import { cn } from "@/app/lib/utils";
 import { useChatStore } from "@/stores/chat-store";
 import { ChatMessage, ChatMessages, useChatUI } from "@llamaindex/chat-ui";
-import { Download, RefreshCcw } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { Download } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { ChatMessageAvatar } from "./chat-avatar";
 import { ChatMessageContent } from "./chat-message-content";
@@ -35,20 +33,8 @@ export default function CustomChatMessages({
   conversationId?: string;
   isArchived?: boolean;
 }) {
-  const { messages, stop } = useChatUI();
+  const { messages } = useChatUI();
   const { chatStatus } = useChatStore();
-  const router = useRouter();
-
-  // Get stored tab from sessionStorage for "Back to Portal" link
-  const [portalHref, setPortalHref] = useState("/");
-  useEffect(() => {
-    const storedTab = sessionStorage.getItem("portalTab");
-    if (storedTab && storedTab !== "featured") {
-      setPortalHref(`/?tab=${storedTab}`);
-    } else {
-      setPortalHref("/");
-    }
-  }, []);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const userScrolledRef = useRef(false);
@@ -61,9 +47,7 @@ export default function CustomChatMessages({
     const handleScroll = () => {
       const atBottom =
         Math.abs(
-          container.scrollHeight -
-            container.scrollTop -
-            container.clientHeight,
+          container.scrollHeight - container.scrollTop - container.clientHeight,
         ) < 80;
       userScrolledRef.current = !atBottom;
     };
@@ -104,15 +88,6 @@ export default function CustomChatMessages({
   // Track which messages have already played their fade-in
   const animatedMessages = useRef<Set<number>>(new Set());
 
-  const newConversation = () => {
-    if (stop) {
-      stop();
-    }
-    const newConversationId = uuidv4();
-    const newUrl = `/chat/` + newConversationId;
-    router.replace(newUrl);
-  };
-
   const [isDownloadDialogOpen, setIsDownloadDialogOpen] = useState(false);
   const [selectedFormat, setSelectedFormat] = useState<"pdf" | "rtf">("pdf");
 
@@ -139,7 +114,7 @@ export default function CustomChatMessages({
 
   return (
     <ChatMessages className="!bg-transparent !p-0">
-      <ChatMessages.List className="!overflow-visible pb-28">
+      <ChatMessages.List className="!overflow-visible pb-56">
         {messages.map((message, index) => {
           const isLast = index === messages.length - 1;
           const shouldFadeIn = !animatedMessages.current.has(index);
@@ -170,7 +145,7 @@ export default function CustomChatMessages({
                 </div>
               </ChatMessage>
               {message.role === "assistant" && !isArchived && (
-                <div className="-mt-4 -mb-8 ml-1 flex items-start transition-opacity sm:ml-12 sm:opacity-0 sm:group-hover:opacity-100">
+                <div className="-mt-4 -mb-8 ml-1 flex hidden items-start transition-opacity sm:ml-12 sm:opacity-0 sm:group-hover:opacity-100">
                   <FeedbackButtons
                     messageId={message.id}
                     conversationId={conversationId || ""}
@@ -181,57 +156,7 @@ export default function CustomChatMessages({
               {isLast && (
                 <ChatMessages.Loading className="mb-4 -ml-16 sm:mr-0" />
               )}
-              {isLast && !hideControls && (
-                <div className="mt-4 mb-4 ml-3 flex w-full flex-row justify-between pr-20 sm:mb-8 sm:pr-4">
-                  <div className="flex w-full grow flex-row justify-between pt-8">
-                    <Link
-                      href={portalHref as "/"}
-                      className="cursor-pointer font-semibold no-underline"
-                    >
-                      <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-sm opacity-90 transition-colors sm:text-base">
-                        <div className="mr-2 whitespace-nowrap no-underline">
-                          {"<-"}
-                        </div>
-                        <div className="hidden hover:underline sm:block">
-                          {"Back to Portal"}
-                        </div>
-                        <div className="hover:underline sm:hidden">
-                          {"Back"}
-                        </div>
-                      </div>
-                    </Link>
-                    <div className="flex items-center gap-4">
-                      {messages.length > 0 && (
-                        <>
-                          <div
-                            onClick={handleDownloadClick}
-                            className="cursor-pointer border-r pr-2 font-semibold hover:underline"
-                          >
-                            <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-sm opacity-90 transition-colors sm:text-base">
-                              <div className="mr-2 whitespace-nowrap">
-                                <Download className="h-4 w-4" />
-                              </div>
-                            </div>
-                          </div>
-                        </>
-                      )}
-                      <div
-                        onClick={newConversation}
-                        className="cursor-pointer font-semibold hover:underline"
-                      >
-                        <div className="text-muted-primary hover:text-primary no-wrap flex cursor-pointer flex-row items-center text-sm opacity-90 transition-colors sm:text-base">
-                          <div className="mr-2 whitespace-nowrap">
-                            <RefreshCcw className="h-4 w-4" />
-                          </div>
-                          <div className="hover:underline">
-                            {"New Conversation"}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
+
               {isLast && hideControls && (
                 <div className="flex justify-end">
                   {messages.length > 0 && (

@@ -289,7 +289,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
         <div className="hidden h-full w-full bg-gradient-to-t from-white via-white/70 to-transparent sm:absolute sm:block dark:from-black dark:via-black/40" />
         <form
           onSubmit={handleSubmit}
-          className="bg-secondary flex w-3xl items-center gap-2 sm:mb-6 sm:rounded-full sm:border sm:border-white sm:p-2 sm:shadow-[0_10px_36px_0_rgba(0,0,0,0.16),0_0_0_1px_rgba(0,0,0,0.06)] sm:backdrop-blur-lg sm:dark:border-white/10 sm:dark:supports-[backdrop-filter]:bg-gray-900/90"
+          className="sm:bg-secondary flex w-3xl items-center gap-2 sm:mb-6 sm:rounded-full sm:border sm:border-white sm:p-2 sm:shadow-[0_10px_36px_0_rgba(0,0,0,0.16),0_0_0_1px_rgba(0,0,0,0.06)] sm:backdrop-blur-lg sm:dark:border-white/10 sm:dark:supports-[backdrop-filter]:bg-gray-900/90"
         >
           <div ref={containerRef} className="relative flex-1 grow">
             <Textarea
