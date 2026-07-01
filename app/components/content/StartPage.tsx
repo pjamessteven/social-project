@@ -99,13 +99,13 @@ export async function StartPage({
             </span>
           </div>
           <h1 className="text-foreground text-3xl font-bold sm:text-4xl">
-            <span className="text-muted-foreground block opacity-30 dark:opacity-80">
+            <div className="text-muted-foreground/30 dark:text-muted-foreground/60">
               detrans.ai
-            </span>
-            <span className="block max-w-2xl">{t("title")}</span>
-            <span className="text-muted-foreground block opacity-30 dark:opacity-80">
+            </div>
+            <div className="mt-1 block max-w-2xl">{t("title")}</div>
+            <div className="text-muted-foreground/30 dark:text-muted-foreground/60 mt-1">
               {t("subtitle")}
-            </span>
+            </div>
           </h1>
         </div>
 
@@ -154,12 +154,12 @@ export async function StartPage({
           </div>
         </div>
 
-        <div className="mt-8 w-full sm:mt-8">
+        <div className="mt-8 hidden w-full sm:mt-8">
           <div className="w-full border-t" />
           <div className="mt-1 w-full border-t" />
           <div className="mt-1 w-full border-t" />
         </div>
-        <div className="text-muted-foreground/60 dark:text-muted-foreground/60 pt-4 pb-3 text-sm sm:text-center">
+        <div className="text-muted-foreground/50 dark:text-muted-foreground/60 my-4 mt-4 border-t-2 pt-4 text-sm leading-relaxed sm:text-left sm:text-base">
           {t("privacyDisclaimer")}
           <span className="sm:hidden">
             &nbsp;{t("privacyDisclaimerChatsPublic")}
@@ -198,10 +198,11 @@ export async function StartPage({
             .
           </span>
         </div>
-        <div className="mt-1 w-full border-t" />
-        <div className="mt-1 w-full border-t" />
-        <div className="mt-1 w-full border-t" />
-
+        <div className="hidden">
+          <div className="mt-1 w-full border-t" />
+          <div className="mt-1 w-full border-t" />
+          <div className="mt-1 w-full border-t" />
+        </div>
         <div className="absolute top-0 right-0 z-0 w-[170px] rotate-15 sm:top-8 sm:-right-32 sm:w-[220px]">
           <LizardAnimation />
           <div className="absolute inset-0 dark:bg-black/20"></div>
