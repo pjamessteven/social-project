@@ -100,7 +100,7 @@ export function EventWrapper({
               )}
             >
               <div className="flex w-full flex-col">
-                <div className="flex w-full flex-row items-center justify-between text-base dark:bg-black/30">
+                <div className="flex w-full flex-row items-center justify-between text-base">
                   <div className="no-wrap flex flex-row items-baseline pr-2 font-normal">
                     <div className="italic">
                       <span className="">{label}</span>
