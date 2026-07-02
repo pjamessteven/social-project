@@ -14,9 +14,6 @@ storage
 env
 *.zip
 *.tar.zst
-.env
-.env.local
-.env.example
 checkpoint.json
 checkpoint_ftm.json
 checkpoint_mtf.json
