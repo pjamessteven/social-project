@@ -1,10 +1,11 @@
 import { RedisCache } from "@/app/lib/agents/cache";
-import { getVideosIndex } from "@/app/lib/agents/data";
+import { getTransCommentsIndex, getVideosIndex } from "@/app/lib/agents/data";
 import { initSettings } from "@/app/lib/agents/settings";
 import {
   createBanUserTool,
   createGetStudiesTool,
   createQueryCommentsTool,
+  createQueryTransCommentsTool,
   createQueryVideosTool,
   createWebSearchTool,
 } from "@/app/lib/agents/tools";
@@ -22,6 +23,7 @@ export const workflowFactory = async (
   iteration?: number,
   locale?: string,
   ipAddress?: string,
+  includeTransPerspectives?: boolean,
 ) => {
   initSettings();
 
@@ -65,13 +67,32 @@ export const workflowFactory = async (
     tools.push(banUserTool);
   }
 
+  if (includeTransPerspectives) {
+    const transCommentsIndex = await getTransCommentsIndex(
+      reqBody?.data,
+      locale,
+    );
+    const queryTransCommentsTool = createQueryTransCommentsTool({
+      cache,
+      index: transCommentsIndex,
+      userInput,
+      metadata: cacheMetadata,
+    });
+    tools.push(queryTransCommentsTool);
+  }
+
   const tags = await db.select({ name: studyTags.name }).from(studyTags);
   const tagNames = tags.map((t) => t.name).filter(Boolean);
   const tagList =
     tagNames.length > 0
       ? `\n\n### Available Study Tags\nThe following tags should be used to filter studies with the getStudies tool: ${tagNames.join(", ")}`
       : "";
-  const systemPrompt = agentPrompt + tagList;
+  const systemPrompt = includeTransPerspectives
+    ? agentPrompt.replace(
+        "- Make liberal use of the queryCommentsTool",
+        "- Make liberal use of the queryCommentsTool\n  - Use the queryTransCommentsTool to find experiences of transgender people. Include, explore and compare how trans perspectives relate and contrast to detrans perspectives on gender identity and transition.",
+      ) + tagList
+    : agentPrompt + tagList;
 
   const llm = new CachedOpenAI({
     cache,

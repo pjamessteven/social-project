@@ -267,7 +267,8 @@
       "studyDetail": "Tanulmány Részletei",
       "searchResearchCache": "Kutatási Gyorsítótár Keresése",
       "fetchCachedResearch": "Gyorsítótárazott Kutatás Lekérése",
-      "proposedContent": "Javasolt Tartalom"
+      "proposedContent": "Javasolt Tartalom",
+      "askTransPeople": "Kérdezd a Transznemű Embereket"
     },
     "eventStatus": {
       "analysingVideos": "Videók Elemzése",
@@ -339,7 +340,9 @@
   "chatInput": {
     "placeholder": "Kérdezd a detrans.ai-t...",
     "deepResearch": "Mélykutatás",
-    "suggestions": "Javaslatok:"
+    "suggestions": "Javaslatok:",
+    "transPerspectivesLabel": "Transz nézőpontok bevonása (beta)",
+    "transPerspectivesDesc": "Nagy népszerűségnek örvendve a detrans.ai most már képes keresni a /r/mtf és /r/ftm közösségekben, hogy bemutassa és feltárja, hogyan viszonyulnak a transz nézőpontok a detrans nézőpontokhoz a nemi identitás és az átmenet témáiban."
   },
   "deepResearchEvents": {
     "errorTitle": "Mélykutatás hiba",

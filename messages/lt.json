@@ -267,7 +267,8 @@
       "studyDetail": "Tyrimo detalės",
       "searchResearchCache": "Ieškoti tyrimų podėlyje",
       "fetchCachedResearch": "Gauti podėlyje saugomą tyrimą",
-      "proposedContent": "Siūlomas turinys"
+      "proposedContent": "Siūlomas turinys",
+      "askTransPeople": "Klausti translyčių asmenų"
     },
     "eventStatus": {
       "analysingVideos": "Analizuojami vaizdo įrašai",
@@ -339,7 +340,9 @@
   "chatInput": {
     "placeholder": "Klauskite detrans.ai...",
     "deepResearch": "Giluminis tyrimas",
-    "suggestions": "Pasiūlymai:"
+    "suggestions": "Pasiūlymai:",
+    "transPerspectivesLabel": "Įtraukti translyčių požiūrius (beta)",
+    "transPerspectivesDesc": "Dėl didelio populiarumo detrans.ai dabar gali ieškoti /r/mtf ir /r/ftm, kad įtrauktų ir ištirtų, kaip translyčių požiūriai lyginami su detranzicijos požiūriais į genderinę tapatybę ir perėjimą."
   },
   "deepResearchEvents": {
     "errorTitle": "Giluminio tyrimo klaida",

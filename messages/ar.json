@@ -256,6 +256,7 @@
     "followUpQuestions": "أسئلة المتابعة:",
     "eventLabels": {
       "askDetransitioners": "اسأل المتراجعين عن التحول",
+      "askTransPeople": "اسأل الأشخاص المعرّفين كمتحولين",
       "videoArchive": "أرشيف الفيديو",
       "userStories": "قصص المستخدمين",
       "queryStudies": "البحث في الدراسات",
@@ -340,7 +341,9 @@
   "chatInput": {
     "placeholder": "اسأل detrans.ai...",
     "deepResearch": "بحث عميق",
-    "suggestions": "الاقتراحات:"
+    "suggestions": "الاقتراحات:",
+    "transPerspectivesLabel": "تضمين وجهات نظر المتحولين (تجريبي)",
+    "transPerspectivesDesc": "بطلب شعبي، يمكن لـ detrans.ai الآن البحث في /r/mtf و /r/ftm لتضمين واستكشاف كيف تختلف وجهات نظر المتحولين عن وجهات نظر المتراجعين عن التحول حول هوية الجندر والتحول."
   },
   "deepResearchEvents": {
     "errorTitle": "خطأ في البحث العميق",

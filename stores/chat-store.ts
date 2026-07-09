@@ -4,10 +4,12 @@ import { create } from "zustand";
 
 interface ChatState {
   isResearch: boolean;
+  includeTransPerspectives: boolean;
   chatHandler: UseChatHelpers<UIMessage<unknown, UIDataTypes, UITools>> | null;
   chatStatus: string | null;
   inputText: string;
   setIsResearch: (value: boolean) => void;
+  setIncludeTransPerspectives: (value: boolean) => void;
   setChatHandler: (
     handler: UseChatHelpers<UIMessage<unknown, UIDataTypes, UITools>> | null,
   ) => void;
@@ -18,10 +20,13 @@ interface ChatState {
 
 export const useChatStore = create<ChatState>((set, get) => ({
   isResearch: false,
+  includeTransPerspectives: false,
   chatHandler: null,
   chatStatus: "ready",
   inputText: "",
   setIsResearch: (value) => set({ isResearch: value }),
+  setIncludeTransPerspectives: (value) =>
+    set({ includeTransPerspectives: value }),
   setChatHandler: (handler) => set({ chatHandler: handler }),
   setChatStatus: (status) => set({ chatStatus: status }),
   setInputText: (text) => set({ inputText: text }),

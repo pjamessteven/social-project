@@ -254,6 +254,7 @@
     "followUpQuestions": "Takip soruları:",
     "eventLabels": {
       "askDetransitioners": "Detransitioner'lara Sor",
+      "askTransPeople": "Trans Olarak Tanımlanan Kişilere Sor",
       "videoArchive": "Video Arşivi",
       "userStories": "Kullanıcı Hikayeleri",
       "queryStudies": "Çalışmaları Sorgula",
@@ -338,7 +339,9 @@
   "chatInput": {
     "placeholder": "detrans.ai'ye sorun...",
     "deepResearch": "Derin Araştırma",
-    "suggestions": "Öneriler:"
+    "suggestions": "Öneriler:",
+    "transPerspectivesLabel": "Trans perspektiflerini dahil et (beta)",
+    "transPerspectivesDesc": "Yoğun talep üzerine, detrans.ai artık /r/mtf ve /r/ftm'de arama yaparak trans perspektiflerin cinsiyet kimliği ve geçiş konularında detrans perspektifleriyle nasıl karşılaştırıldığını dahil edebilir ve keşfedebilir."
   },
   "deepResearchEvents": {
     "errorTitle": "Derin araştırma hatası",

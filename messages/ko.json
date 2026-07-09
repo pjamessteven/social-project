@@ -264,7 +264,8 @@
       "studyDetail": "연구 상세",
       "searchResearchCache": "연구 캐시 검색",
       "fetchCachedResearch": "캐시된 연구 가져오기",
-      "proposedContent": "제안된 콘텐츠"
+      "proposedContent": "제안된 콘텐츠",
+      "askTransPeople": "트랜스로 식별하는 사람들에게 묻기"
     },
     "eventStatus": {
       "analysingVideos": "비디오 분석 중",
@@ -336,7 +337,9 @@
   "chatInput": {
     "placeholder": "detrans.ai에게 질문하세요...",
     "deepResearch": "심층 연구",
-    "suggestions": "제안:"
+    "suggestions": "제안:",
+    "transPerspectivesLabel": "트랜스 관점 포함 (beta)",
+    "transPerspectivesDesc": "많은 요청에 따라, detrans.ai는 이제 /r/mtf와 /r/ftm을 검색하여 성별 정체성과 전환에 대해 트랜스 관점이 디트랜스 관점과 어떻게 비교되는지 포함하고 탐구할 수 있습니다."
   },
   "deepResearchEvents": {
     "errorTitle": "심층 연구 오류",

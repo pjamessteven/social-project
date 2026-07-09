@@ -257,6 +257,7 @@
     "followUpQuestions": "Ερωτήσεις παρακολούθησης:",
     "eventLabels": {
       "askDetransitioners": "Ρώτησε Άτομα που Αποχώρησαν",
+      "askTransPeople": "Ρώτησε Άτομα που Ταυτίζονται ως Τρανς",
       "videoArchive": "Αρχείο Βίντεο",
       "userStories": "Ιστορίες Χρηστών",
       "queryStudies": "Αναζήτηση Μελετών",
@@ -341,7 +342,9 @@
   "chatInput": {
     "placeholder": "Ρώτησε το detrans.ai...",
     "deepResearch": "Βαθιά Έρευνα",
-    "suggestions": "Προτάσεις:"
+    "suggestions": "Προτάσεις:",
+    "transPerspectivesLabel": "Συμπερίληψη τρανς απόψεων (beta)",
+    "transPerspectivesDesc": "Λόγω δημοφιλούς ζήτησης, το detrans.ai μπορεί πλέον να αναζητήσει στο /r/mtf και /r/ftm για να συμπεριλάβει και να εξερευνήσει πώς οι τρανς απόψεις συγκρίνονται με τις απόψεις αποχώρησης από την αλλαγή φύλου σχετικά με την ταυτότητα φύλου και τη μετάβαση."
   },
   "deepResearchEvents": {
     "errorTitle": "Σφάλμα βαθιάς έρευνας",

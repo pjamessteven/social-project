@@ -255,6 +255,7 @@
     "followUpQuestions": "Nadaljnja vprašanja:",
     "eventLabels": {
       "askDetransitioners": "Vprašajte detranzicionarje",
+      "askTransPeople": "Vprašajte trans-identificirane osebe",
       "videoArchive": "Arhiv videov",
       "userStories": "Zgodbe uporabnikov",
       "queryStudies": "Poizvedba po študijah",
@@ -339,7 +340,9 @@
   "chatInput": {
     "placeholder": "Vprašajte detrans.ai...",
     "deepResearch": "Globoka raziskava",
-    "suggestions": "Predlogi:"
+    "suggestions": "Predlogi:",
+    "transPerspectivesLabel": "Vključi trans perspektive (beta)",
+    "transPerspectivesDesc": "Na zahtevo uporabnikov lahko detrans.ai zdaj išče po /r/mtf in /r/ftm, da vključi in razišče, kako se trans perspektive primerjajo z detrans perspektivami o spolni identiteti in tranziciji."
   },
   "deepResearchEvents": {
     "errorTitle": "Napaka globoke raziskave",

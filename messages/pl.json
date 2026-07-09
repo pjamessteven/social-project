@@ -266,7 +266,8 @@
       "studyDetail": "Szczegóły badania",
       "searchResearchCache": "Przeszukaj pamięć podręczną badań",
       "fetchCachedResearch": "Pobierz zbuforowane badania",
-      "proposedContent": "Proponowana treść"
+      "proposedContent": "Proponowana treść",
+      "askTransPeople": "Zapytaj osoby identyfikujące się jako trans"
     },
     "eventStatus": {
       "analysingVideos": "Analizowanie filmów",
@@ -338,7 +339,9 @@
   "chatInput": {
     "placeholder": "Zapytaj detrans.ai...",
     "deepResearch": "Głębokie badanie",
-    "suggestions": "Sugestie:"
+    "suggestions": "Sugestie:",
+    "transPerspectivesLabel": "Uwzględnij perspektywy trans (beta)",
+    "transPerspectivesDesc": "Na skutek licznych próśb detrans.ai może teraz przeszukiwać /r/mtf i /r/ftm, aby uwzględnić i zbadać, jak perspektywy trans wypadają w porównaniu z perspektywami osób po detransycji w kwestii tożsamości płciowej i tranzycji."
   },
   "deepResearchEvents": {
     "errorTitle": "Błąd głębokiego badania",

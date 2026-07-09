@@ -8,6 +8,7 @@ import {
   GetStudiesEventPart,
   QuestionsEventPart,
   StudyQueryEventPart,
+  TransCommentQueryEventPart,
   VideoQueryEventPart,
   WebSearchEventPart,
 } from "./tool-components/EventParts";
@@ -31,6 +32,7 @@ export function ChatMessageContent({
         <VideoQueryEventPart />
         <StudyQueryEventPart />
         <CommentQueryEventPart />
+        <TransCommentQueryEventPart />
         <WebSearchEventPart />
         <GetStudiesEventPart />
         <QuestionsEventPart />

@@ -34,7 +34,8 @@ export default function ChatSection({
   starterQuestion?: string;
   apiEndpoint?: string;
 }) {
-  const { setChatHandler, setChatStatus, setInputText } = useChatStore();
+  const { setChatHandler, setChatStatus, setInputText, includeTransPerspectives } =
+    useChatStore();
   const searchParams = useSearchParams();
   const starterSentRef = useRef(false);
   const router = useRouter();
@@ -270,6 +271,7 @@ export default function ChatSection({
           body: {
             ...options.body,
             message: messageText,
+            includeTransPerspectives,
           },
         };
       },

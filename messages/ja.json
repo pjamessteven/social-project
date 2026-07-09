@@ -264,7 +264,8 @@
       "studyDetail": "研究詳細",
       "searchResearchCache": "研究キャッシュを検索",
       "fetchCachedResearch": "キャッシュされた研究を取得",
-      "proposedContent": "提案されたコンテンツ"
+      "proposedContent": "提案されたコンテンツ",
+      "askTransPeople": "トランスと識別する人々に聞く"
     },
     "eventStatus": {
       "analysingVideos": "動画を分析中",
@@ -336,7 +337,9 @@
   "chatInput": {
     "placeholder": "detrans.aiに質問...",
     "deepResearch": "ディープリサーチ",
-    "suggestions": "提案："
+    "suggestions": "提案：",
+    "transPerspectivesLabel": "トランスの視点を含める (beta)",
+    "transPerspectivesDesc": "多くのご要望により、detrans.aiは/r/mtfと/r/ftmを検索し、ジェンダーアイデンティティと遷移についてトランスの視点がデトランスの視点とどのように比較されるかを探求できるようになりました。"
   },
   "deepResearchEvents": {
     "errorTitle": "ディープリサーチエラー",

@@ -266,7 +266,8 @@
       "studyDetail": "अध्ययन विवरण",
       "searchResearchCache": "अनुसंधान कैश खोजें",
       "fetchCachedResearch": "कैश किया गया अनुसंधान प्राप्त करें",
-      "proposedContent": "प्रस्तावित सामग्री"
+      "proposedContent": "प्रस्तावित सामग्री",
+      "askTransPeople": "ट्रांस-पहचान वाले लोगों से पूछें"
     },
     "eventStatus": {
       "analysingVideos": "वीडियो का विश्लेषण",
@@ -338,7 +339,9 @@
   "chatInput": {
     "placeholder": "detrans.ai से पूछें...",
     "deepResearch": "डीप रिसर्च",
-    "suggestions": "सुझाव:"
+    "suggestions": "सुझाव:",
+    "transPerspectivesLabel": "ट्रांस दृष्टिकोण शामिल करें (beta)",
+    "transPerspectivesDesc": "लोकप्रिय मांग के कारण, detrans.ai अब /r/mtf और /r/ftm को खोज सकता है ताकि ट्रांस दृष्टिकोण की तुलना डीट्रांज दृष्टिकोण से लिंग पहचान और ट्रांजिशन पर की जा सके।"
   },
   "deepResearchEvents": {
     "errorTitle": "डीप रिसर्च त्रुटि",

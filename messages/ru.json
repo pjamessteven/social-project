@@ -253,6 +253,7 @@
     "followUpQuestions": "Уточняющие вопросы:",
     "eventLabels": {
       "askDetransitioners": "Спросить детрансионеров",
+      "askTransPeople": "Спросить транс-идентифицированных людей",
       "videoArchive": "Видеоархив",
       "userStories": "Истории пользователей",
       "queryStudies": "Поиск исследований",
@@ -337,7 +338,9 @@
   "chatInput": {
     "placeholder": "Спросите detrans.ai...",
     "deepResearch": "Глубокое исследование",
-    "suggestions": "Предложения:"
+    "suggestions": "Предложения:",
+    "transPerspectivesLabel": "Включить транс-перспективы (beta)",
+    "transPerspectivesDesc": "По многочисленным просьбам detrans.ai теперь может искать в /r/mtf и /r/ftm, чтобы включить и исследовать, как транс-перспективы соотносятся с детранс-перспективами по вопросам гендерной идентичности и перехода."
   },
   "deepResearchEvents": {
     "errorTitle": "Ошибка глубокого исследования",

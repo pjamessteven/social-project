@@ -260,6 +260,7 @@
     "followUpQuestions": "Follow-up questions:",
     "eventLabels": {
       "askDetransitioners": "Ask Detransitioners",
+      "askTransPeople": "Ask Trans-identified People",
       "videoArchive": "Video Archive",
       "userStories": "User Stories",
       "queryStudies": "Query Studies",
@@ -345,7 +346,9 @@
   "chatInput": {
     "placeholder": "Ask detrans.ai...",
     "deepResearch": "Deep Research",
-    "suggestions": "Suggestions:"
+    "suggestions": "Suggestions:",
+    "transPerspectivesLabel": "Include trans perspectives (beta)",
+    "transPerspectivesDesc": "Due to popular demand, detrans.ai can now search /r/mtf and /r/ftm to include trans perspectives and explore how they compare to detrans perspectives."
   },
   "deepResearchEvents": {
     "errorTitle": "Deep research error",

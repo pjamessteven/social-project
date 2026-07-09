@@ -82,6 +82,53 @@ export function CommentQueryEventPart() {
 }
 
 // =====================
+// Trans Comment Query
+// =====================
+
+export function TransCommentQueryEventPart() {
+  const eventPart = usePart<EventPartData>("data-trans-comment-query-event");
+  const t = useTranslations("chat");
+
+  const results = useMemo(() => {
+    if (!eventPart?.data?.result) return [];
+    try {
+      const result = JSON.parse(eventPart.data.result);
+      return result.map((item: any) => ({
+        text: item.node.text,
+        summary: item.node.metadata.sectionSummary,
+        score: item.node.metadata.score,
+        created: Number(item.node.metadata.created) * 1000,
+        link: item.node.metadata.link,
+        id: item.node.metadata.id,
+        subreddit: "/r/asktransgender",
+      }));
+    } catch {
+      return [];
+    }
+  }, [eventPart?.data?.result]);
+
+  if (!eventPart) return null;
+
+  return (
+    <EventWrapper
+      eventType="data-trans-comment-query-event"
+      label={t("eventLabels.askTransPeople")}
+      query={eventPart.data.query}
+      analysingText={t("analysingExperiences")}
+    >
+      <div className="text-primary mt-4 max-w-full space-y-4">
+        {eventPart.data.status === "error" && (
+          <span>{t("eventErrors.errorOccurred")}</span>
+        )}
+        {results.map((comment: any, index: number) => (
+          <CommentCard key={index} comment={comment} />
+        ))}
+      </div>
+    </EventWrapper>
+  );
+}
+
+// =====================
 // Video Query (expanded by default)
 // =====================
 

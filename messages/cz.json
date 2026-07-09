@@ -256,6 +256,7 @@
     "followUpQuestions": "Následné otázky:",
     "eventLabels": {
       "askDetransitioners": "Zeptej se detranzicionistů",
+      "askTransPeople": "Zeptej se trans-identifikovaných lidí",
       "videoArchive": "Video archiv",
       "userStories": "Příběhy uživatelů",
       "queryStudies": "Vyhledat studie",
@@ -340,7 +341,9 @@
   "chatInput": {
     "placeholder": "Zeptejte se detrans.ai...",
     "deepResearch": "Hluboký výzkum",
-    "suggestions": "Návrhy:"
+    "suggestions": "Návrhy:",
+    "transPerspectivesLabel": "Zahrnout trans perspektivy (beta)",
+    "transPerspectivesDesc": "Na vyžádání uživatelů nyní detrans.ai může prohledávat /r/mtf a /r/ftm, aby zahrnul a prozkoumal, jak se trans perspektivy porovnávají s detrans perspektivami ohledně genderové identity a tranzice."
   },
   "deepResearchEvents": {
     "errorTitle": "Chyba hlubokého výzkumu",

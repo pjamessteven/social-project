@@ -255,6 +255,7 @@
     "followUpQuestions": "คำถามติดตาม:",
     "eventLabels": {
       "askDetransitioners": "ถามผู้เลิกเปลี่ยนเพศ",
+      "askTransPeople": "ถามผู้ที่ระบุว่าเป็นคนข้ามเพศ",
       "videoArchive": "คลังวิดีโอ",
       "userStories": "เรื่องราวของผู้ใช้",
       "queryStudies": "ค้นคว้าการศึกษา",
@@ -339,7 +340,9 @@
   "chatInput": {
     "placeholder": "ถาม detrans.ai...",
     "deepResearch": "วิจัยลึก",
-    "suggestions": "คำแนะนำ:"
+    "suggestions": "คำแนะนำ:",
+    "transPerspectivesLabel": "รวมมุมมองของคนข้ามเพศ (beta)",
+    "transPerspectivesDesc": "ตามคำเรียกร้องอย่างมาก detrans.ai สามารถค้นหา /r/mtf และ /r/ftm เพื่อรวมและสำรวจว่ามุมมองของคนข้ามเพศเปรียบเทียบกับมุมมองของผู้เลิกเปลี่ยนเพศเกี่ยวกับตัวตนทางเพศและการเปลี่ยนเพศอย่างไร"
   },
   "deepResearchEvents": {
     "errorTitle": "ข้อผิดพลาดการวิจัยลึก",

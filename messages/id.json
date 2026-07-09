@@ -267,7 +267,8 @@
       "studyDetail": "Detail Studi",
       "searchResearchCache": "Cari Cache Riset",
       "fetchCachedResearch": "Ambil Riset dari Cache",
-      "proposedContent": "Konten yang Diusulkan"
+      "proposedContent": "Konten yang Diusulkan",
+      "askTransPeople": "Tanyakan kepada Orang yang Mengidentifikasi sebagai Trans"
     },
     "eventStatus": {
       "analysingVideos": "Menganalisis Video",
@@ -339,7 +340,9 @@
   "chatInput": {
     "placeholder": "Tanyakan detrans.ai...",
     "deepResearch": "Riset Mendalam",
-    "suggestions": "Saran:"
+    "suggestions": "Saran:",
+    "transPerspectivesLabel": "Sertakan perspektif trans (beta)",
+    "transPerspectivesDesc": "Karena permintaan yang tinggi, detrans.ai sekarang dapat mencari /r/mtf dan /r/ftm untuk menyertakan dan mengeksplorasi bagaimana perspektif trans dibandingkan dengan perspektif detrans tentang identitas gender dan transisi."
   },
   "deepResearchEvents": {
     "errorTitle": "Kesalahan riset mendalam",

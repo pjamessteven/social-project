@@ -265,7 +265,8 @@
       "studyDetail": "Studiedetails",
       "searchResearchCache": "Onderzoekscache doorzoeken",
       "fetchCachedResearch": "Gecached onderzoek ophalen",
-      "proposedContent": "Voorgestelde inhoud"
+      "proposedContent": "Voorgestelde inhoud",
+      "askTransPeople": "Vraag Trans-geïdentificeerde Mensen"
     },
     "eventStatus": {
       "analysingVideos": "Video's analyseren",
@@ -337,7 +338,9 @@
   "chatInput": {
     "placeholder": "Vraag detrans.ai...",
     "deepResearch": "Diepgaand Onderzoek",
-    "suggestions": "Suggesties:"
+    "suggestions": "Suggesties:",
+    "transPerspectivesLabel": "Trans-perspectieven opnemen (beta)",
+    "transPerspectivesDesc": "Op veler verzoek kan detrans.ai nu zoeken in /r/mtf en /r/ftm om te onderzoeken hoe trans-perspectieven zich verhouden tot detrans-perspectieven over genderidentiteit en transitie."
   },
   "deepResearchEvents": {
     "errorTitle": "Diepgaand onderzoek fout",

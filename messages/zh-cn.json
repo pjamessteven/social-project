@@ -254,6 +254,7 @@
     "followUpQuestions": "后续问题：",
     "eventLabels": {
       "askDetransitioners": "询问去过渡者",
+      "askTransPeople": "询问跨性别认同者",
       "videoArchive": "视频档案",
       "userStories": "用户故事",
       "queryStudies": "查询研究",
@@ -338,7 +339,9 @@
   "chatInput": {
     "placeholder": "询问detrans.ai...",
     "deepResearch": "深度研究",
-    "suggestions": "建议："
+    "suggestions": "建议：",
+    "transPerspectivesLabel": "包含跨性别视角（beta）",
+    "transPerspectivesDesc": "应广大用户要求，detrans.ai 现在可以搜索 /r/mtf 和 /r/ftm，以包含并探索跨性别视角与去过渡视角在性别认同和过渡方面的比较。"
   },
   "deepResearchEvents": {
     "errorTitle": "深度研究错误",

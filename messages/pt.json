@@ -264,7 +264,8 @@
       "studyDetail": "Detalhes do Estudo",
       "searchResearchCache": "Pesquisar Cache de Pesquisa",
       "fetchCachedResearch": "Buscar Pesquisa em Cache",
-      "proposedContent": "Conteúdo Proposto"
+      "proposedContent": "Conteúdo Proposto",
+      "askTransPeople": "Perguntar a Pessoas Trans-identificadas"
     },
     "eventStatus": {
       "analysingVideos": "Analisando Vídeos",
@@ -336,7 +337,9 @@
   "chatInput": {
     "placeholder": "Pergunte ao detrans.ai...",
     "deepResearch": "Pesquisa Profunda",
-    "suggestions": "Sugestões:"
+    "suggestions": "Sugestões:",
+    "transPerspectivesLabel": "Incluir perspectivas trans (beta)",
+    "transPerspectivesDesc": "Devido à grande demanda, o detrans.ai agora pode pesquisar /r/mtf e /r/ftm para incluir e explorar como as perspectivas trans se comparam às perspectivas detrans sobre identidade de gênero e transição."
   },
   "deepResearchEvents": {
     "errorTitle": "Erro na pesquisa profunda",

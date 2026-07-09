@@ -255,6 +255,7 @@
     "followUpQuestions": "Întrebări de urmărire:",
     "eventLabels": {
       "askDetransitioners": "Întreabă persoanele care au făcut detransiția",
+      "askTransPeople": "Întreabă persoanele care se identifică drept trans",
       "videoArchive": "Arhivă video",
       "userStories": "Povești ale utilizatorilor",
       "queryStudies": "Caută studii",
@@ -339,7 +340,9 @@
   "chatInput": {
     "placeholder": "Întreabă detrans.ai...",
     "deepResearch": "Cercetare Profundă",
-    "suggestions": "Sugestii:"
+    "suggestions": "Sugestii:",
+    "transPerspectivesLabel": "Include perspectivelor trans (beta)",
+    "transPerspectivesDesc": "La cerere populară, detrans.ai poate acum căuta pe /r/mtf și /r/ftm pentru a include și explora cum se compară perspectivele trans cu perspectivele detrans asupra identității de gen și tranziției."
   },
   "deepResearchEvents": {
     "errorTitle": "Eroare cercetare profundă",

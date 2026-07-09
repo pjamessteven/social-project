@@ -256,6 +256,7 @@
     "followUpQuestions": "سوالات پیگیری:",
     "eventLabels": {
       "askDetransitioners": "پرسش از دترنزیشنرها",
+      "askTransPeople": "پرسش از افراد ترنس‌شناسی‌شده",
       "videoArchive": "آرشیو ویدیو",
       "userStories": "داستان‌های کاربران",
       "queryStudies": "جستجوی مطالعات",
@@ -340,7 +341,9 @@
   "chatInput": {
     "placeholder": "از detrans.ai بپرسید...",
     "deepResearch": "پژوهش عمیق",
-    "suggestions": "پیشنهادات:"
+    "suggestions": "پیشنهادات:",
+    "transPerspectivesLabel": "شامل دیدگاه‌های ترنس (آزمایشی)",
+    "transPerspectivesDesc": "به درخواست پرتکرار، detrans.ai اکنون می‌تواند در /r/mtf و /r/ftm جستجو کند تا دیدگاه‌های ترنس را با دیدگاه‌های دترنز درباره هویت جنسیتی و ترنزیشن مقایسه و بررسی کند."
   },
   "deepResearchEvents": {
     "errorTitle": "خطای پژوهش عمیق",

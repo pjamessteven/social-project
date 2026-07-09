@@ -34,6 +34,7 @@ const chatRequestSchema = z.object({
   conversationId: z.string().uuid().optional(),
   locale: z.string().optional(),
   id: z.string().optional(),
+  includeTransPerspectives: z.boolean().optional(),
 });
 
 export async function POST(req: NextRequest) {
@@ -75,6 +76,7 @@ export async function POST(req: NextRequest) {
       conversationId,
       locale,
       id: requestId,
+      includeTransPerspectives,
     } = validationResult.data;
 
     let userInput = message;
@@ -281,6 +283,7 @@ export async function POST(req: NextRequest) {
           userMessages.length,
           locale,
           ipAddress,
+          includeTransPerspectives,
         ),
         input: { userInput: userInput, chatHistory: chatHistory },
         human: {

@@ -254,6 +254,7 @@
     "followUpQuestions": "Opfølgende spørgsmål:",
     "eventLabels": {
       "askDetransitioners": "Spørg Detransitionister",
+      "askTransPeople": "Spørg trans-identificerede personer",
       "videoArchive": "Videoarkiv",
       "userStories": "Brugerhistorier",
       "queryStudies": "Søg i studier",
@@ -338,7 +339,9 @@
   "chatInput": {
     "placeholder": "Spørg detrans.ai...",
     "deepResearch": "Dyb Forskning",
-    "suggestions": "Forslag:"
+    "suggestions": "Forslag:",
+    "transPerspectivesLabel": "Inkluder transperspektiver (beta)",
+    "transPerspectivesDesc": "Efter populær efterspørgsel kan detrans.ai nu søge i /r/mtf og /r/ftm for at inkludere og udforske, hvordan transperspektiver sammenlignes med detransperspektiver om kønsidentitet og transition."
   },
   "deepResearchEvents": {
     "errorTitle": "Dyb forskningsfejl",

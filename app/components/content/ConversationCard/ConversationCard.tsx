@@ -257,7 +257,7 @@ export function ConversationCard({
                   <Star className="h-4 w-4 shrink-0 fill-yellow-400 text-yellow-400" />
                 )}
                 {/* Show star toggle for admin users only */}
-                {isAdminUser && (
+                {isAdminUser && !conversationUsername && (
                   <Star
                     onClick={(e) => {
                       e.stopPropagation();

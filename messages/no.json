@@ -267,7 +267,8 @@
       "studyDetail": "Studiedetaljer",
       "searchResearchCache": "Søk i forskningsbuffer",
       "fetchCachedResearch": "Hent bufret forskning",
-      "proposedContent": "Foreslått innhold"
+      "proposedContent": "Foreslått innhold",
+      "askTransPeople": "Spør transpersoner"
     },
     "eventStatus": {
       "analysingVideos": "Analyserer videoer",
@@ -339,7 +340,9 @@
   "chatInput": {
     "placeholder": "Spør detrans.ai...",
     "deepResearch": "Dyp forskning",
-    "suggestions": "Forslag:"
+    "suggestions": "Forslag:",
+    "transPerspectivesLabel": "Inkluder transperspektiver (beta)",
+    "transPerspectivesDesc": "På grunn av stor etterspørsel kan detrans.ai nå søke i /r/mtf og /r/ftm for å inkludere og utforske hvordan transperspektiver sammenlignes med detransperspektiver på kjønnsidentitet og kjønnsovergang."
   },
   "deepResearchEvents": {
     "errorTitle": "Dyp forskningsfeil",

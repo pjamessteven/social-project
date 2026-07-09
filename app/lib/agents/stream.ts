@@ -52,9 +52,9 @@ const TOOL_UI_MAP: Record<
     titleEnd: "Queried user comments",
   },
   queryTransComments: {
-    type: "data-comment-query-event",
-    titleStart: "Querying user comments...",
-    titleEnd: "Queried user comments",
+    type: "data-trans-comment-query-event",
+    titleStart: "Querying trans perspectives...",
+    titleEnd: "Queried trans perspectives",
   },
   queryStudies: {
     type: "data-study-query-event",

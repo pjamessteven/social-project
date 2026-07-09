@@ -10,10 +10,16 @@ import {
 } from "@/i18n/routing";
 import { useChatStore } from "@/stores/chat-store";
 import { useUserStore } from "@/stores/user-store";
-import { Send, Square, UserSearch, X } from "lucide-react";
+import { EllipsisVertical, Send, Square, UserSearch, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "./button";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "./dropdown-menu";
 import { cn } from "./lib/utils";
 import { Textarea } from "./textarea";
 
@@ -31,6 +37,8 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     chatStatus,
     isResearch,
     setIsResearch,
+    includeTransPerspectives,
+    setIncludeTransPerspectives,
     setChatStatus,
     inputText,
     setInputText,
@@ -304,7 +312,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               onChange={(event) => setInputText(event.target.value)}
               onKeyDown={handleKeyDown}
               onFocus={handleFocus}
-              placeholder={placeholder}
+              placeholder={"🦎  " + placeholder}
               disabled={
                 (path.includes("/chat") || path.includes("/research")) &&
                 (chatStatus === "streaming" || chatStatus === "submitted")
@@ -350,6 +358,40 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                 <X className="h-4 w-4 text-gray-500 dark:text-gray-400" />
               </button>
             )}
+
+            {/* Trans perspectives menu */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  type="button"
+                  className={cn(
+                    "absolute right-2 bottom-2 z-30 flex items-center gap-0.5 rounded-full px-2 py-1 pl-3 text-2xl transition-colors sm:text-3xl",
+                    includeTransPerspectives
+                      ? "bg-trans-gradient shadow-md"
+                      : "hover:bg-gray-100 dark:hover:bg-gray-700",
+                  )}
+                >
+                  <span>🏳️‍⚧️</span>
+                  <EllipsisVertical className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                side="top"
+                align="end"
+                className="rounded-xl"
+              >
+                <div className="text-muted-foreground max-w-xs border-b p-2 text-sm">
+                  {t("transPerspectivesDesc")}
+                </div>
+                <DropdownMenuCheckboxItem
+                  checked={includeTransPerspectives}
+                  className="cursor-pointer"
+                  onCheckedChange={setIncludeTransPerspectives}
+                >
+                  {t("transPerspectivesLabel")}
+                </DropdownMenuCheckboxItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             {/* Suggestions dropdown */}
             {showSuggestions && suggestions.length > 0 && (

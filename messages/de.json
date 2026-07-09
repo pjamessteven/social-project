@@ -251,6 +251,7 @@
     "followUpQuestions": "Folgefragen:",
     "eventLabels": {
       "askDetransitioners": "Detransitionierende fragen",
+      "askTransPeople": "Trans-identifizierte Personen fragen",
       "videoArchive": "Video-Archiv",
       "userStories": "Nutzergeschichten",
       "queryStudies": "Studien durchsuchen",
@@ -335,7 +336,9 @@
   "chatInput": {
     "placeholder": "Frag detrans.ai...",
     "deepResearch": "Tiefenforschung",
-    "suggestions": "Vorschläge:"
+    "suggestions": "Vorschläge:",
+    "transPerspectivesLabel": "Trans-Perspektiven einbeziehen (Beta)",
+    "transPerspectivesDesc": "Aufgrund großer Nachfrage kann detrans.ai jetzt /r/mtf und /r/ftm durchsuchen, um einzubeziehen und zu erforschen, wie sich Trans-Perspektiven mit Detrans-Perspektiven zu Geschlechtsidentität und Transition vergleichen."
   },
   "deepResearchEvents": {
     "errorTitle": "Tiefenforschungsfehler",

@@ -254,6 +254,7 @@
     "followUpQuestions": "שאלות המשך:",
     "eventLabels": {
       "askDetransitioners": "שאל מדטרנזישנרים",
+      "askTransPeople": "שאל אנשים המזדהים כטרנס",
       "videoArchive": "ארכיון וידאו",
       "userStories": "סיפורי משתמשים",
       "queryStudies": "שאילתת מחקרים",
@@ -338,7 +339,9 @@
   "chatInput": {
     "placeholder": "שאל/י את detrans.ai...",
     "deepResearch": "מחקר עמוק",
-    "suggestions": "הצעות:"
+    "suggestions": "הצעות:",
+    "transPerspectivesLabel": "כלול נקודות מבט טרנס (בטא)",
+    "transPerspectivesDesc": "לפי דרישה פופולרית, detrans.ai יכול כעת לחפש ב-/r/mtf ו-/r/ftm כדי לכלול ולחקור כיצד נקודות מבט טרנס משתוות לנקודות מבט דטרנזישן על זהות מגדרית ומעבר."
   },
   "deepResearchEvents": {
     "errorTitle": "שגיאת מחקר עמוק",
