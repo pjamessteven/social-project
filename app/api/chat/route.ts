@@ -304,7 +304,7 @@ export async function POST(req: NextRequest) {
             await pauseForHumanInput(context, responseEvent, requestId); // use requestId to save snapshot
           },
           onFinal: async (messages: UIMessage[], dataStreamWriter) => {
-            await saveConversation(chatUuid, messages, ipAddress, username);
+            await saveConversation(chatUuid, messages, ipAddress, username, includeTransPerspectives);
             // Increment message count for CAPTCHA tracking
             if (!cachedResponse) {
               await incrementMessageCount(ipAddress);
@@ -412,6 +412,7 @@ export async function GET(request: NextRequest) {
         conversationSummary: chatConversations.conversationSummary,
         conversationSummaryTranslation:
           chatConversations.conversationSummaryTranslation,
+        includeTransPerspectives: chatConversations.includeTransPerspectives,
         country: chatConversations.country,
         username: chatConversations.username,
       })
@@ -510,6 +511,7 @@ async function saveConversation(
   messages: UIMessage[],
   ipAddress?: string | null,
   username?: string | null,
+  includeTransPerspectives?: boolean,
 ): Promise<void> {
   try {
     // Check if user is logged in
@@ -597,6 +599,8 @@ async function saveConversation(
       if (existing.username !== undefined) {
         updateData.username = existing.username;
       }
+      // Update includeTransPerspectives from latest request
+      updateData.includeTransPerspectives = includeTransPerspectives ?? false;
     } else {
       updateData.title = defaultTitle;
       // Set country and IP address for new conversations
@@ -625,6 +629,7 @@ async function saveConversation(
         country: updateData.country || null,
         ipAddress: updateData.ipAddress || null,
         username: updateData.username || null,
+        includeTransPerspectives: includeTransPerspectives ?? false,
         createdAt: new Date(),
         updatedAt: new Date(),
       })

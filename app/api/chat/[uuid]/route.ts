@@ -454,6 +454,7 @@ export async function GET(
         conversationSummary: chatConversations.conversationSummary,
         conversationSummaryTranslation:
           chatConversations.conversationSummaryTranslation,
+        includeTransPerspectives: chatConversations.includeTransPerspectives,
         createdAt: chatConversations.createdAt,
         updatedAt: chatConversations.updatedAt,
         country: chatConversations.country,
@@ -506,6 +507,7 @@ export async function GET(
       archived: chatData.archived,
       conversationSummary: localizedSummary,
       conversationSummaryTranslation: chatData.conversationSummaryTranslation,
+      includeTransPerspectives: chatData.includeTransPerspectives ?? false,
       country: chatData.country,
       createdAt: chatData.createdAt,
       updatedAt: chatData.updatedAt,

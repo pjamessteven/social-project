@@ -90,7 +90,7 @@ export const workflowFactory = async (
   const systemPrompt = includeTransPerspectives
     ? agentPrompt.replace(
         "- Make liberal use of the queryCommentsTool",
-        "- Make liberal use of the queryCommentsTool\n  - Use the queryTransCommentsTool to find experiences of transgender people. Include, explore and compare how trans perspectives relate and contrast to detrans perspectives on gender identity and transition.",
+        "- Make liberal use of the queryCommentsTool\n  - Use the queryTransCommentsTool to find experiences of transgender people. Include, explore and compare **in depth** how trans perspectives relate and contrast to detrans perspectives on gender identity and transition.",
       ) + tagList
     : agentPrompt + tagList;
 

@@ -31,6 +31,7 @@ interface FeaturedConversation {
   conversationSummary: string | null;
   conversationSummaryTranslation: string | null;
   titleTranslation: string | null;
+  includeTransPerspectives?: boolean | null;
   country: string | null; // Country from IP geolocation
   username?: string | null;
 }
@@ -1175,6 +1176,12 @@ export function FeaturedConversations() {
             selectedConversationId
               ? conversations.find((c) => c.uuid === selectedConversationId)
                   ?.conversationSummaryTranslation
+              : undefined
+          }
+          includeTransPerspectives={
+            selectedConversationId
+              ? conversations.find((c) => c.uuid === selectedConversationId)
+                  ?.includeTransPerspectives
               : undefined
           }
         />

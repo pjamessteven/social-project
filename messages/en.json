@@ -252,6 +252,7 @@
     "analysingResults": "Analysing results...",
     "detransPerspective": "-> What are detrans perspectives on this topic?",
     "transPerspective": "-> What are trans perspectives on this topic?",
+    "transPerspectivesIncluded": "Trans perspectives included",
     "backToPortal": "<- Back to Portal",
     "captchaRequired": "Captcha required to continue chat.",
     "chatArchived": "This chat is archived. Start a new one.",

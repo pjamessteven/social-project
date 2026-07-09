@@ -2,9 +2,9 @@
 
 import { Dialog, DialogContent } from "@/app/components/ui/dialog";
 import { formatCountryDisplay } from "@/app/lib/countries";
-import { cn, formatDate } from "@/app/lib/utils";
+import { formatDate } from "@/app/lib/utils";
 import { Check, Loader2, Share2, X } from "lucide-react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -32,6 +32,7 @@ interface ConversationDialogProps {
   country?: string | null;
   conversationSummary?: string | null;
   conversationSummaryTranslation?: string | null;
+  includeTransPerspectives?: boolean | null;
 }
 
 export function ConversationDialog({
@@ -43,8 +44,10 @@ export function ConversationDialog({
   country,
   conversationSummary,
   conversationSummaryTranslation,
+  includeTransPerspectives,
 }: ConversationDialogProps) {
   const locale = useLocale();
+  const t = useTranslations("chat");
   const [isLoading, setIsLoading] = useState(false);
   const [internalOpen, setInternalOpen] = useState(open);
   const [showId, setShowId] = useState(false);
@@ -59,7 +62,10 @@ export function ConversationDialog({
     }
 
     try {
-      const translations = JSON.parse(conversationSummaryTranslation) as Record<string, string>;
+      const translations = JSON.parse(conversationSummaryTranslation) as Record<
+        string,
+        string
+      >;
       setLocalizedSummary(translations[locale] || conversationSummary || null);
     } catch {
       setLocalizedSummary(conversationSummary ?? null);
@@ -222,22 +228,19 @@ export function ConversationDialog({
                 <Loader2 className="text-muted-foreground h-10 w-10 animate-spin" />
               </div>
             ) : conversationId ? (
-              <div className="h-full pb-4">
+              <div className="h-full overflow-y-auto pb-4">
                 {localizedSummary && (
                   <div className="text-muted-foreground bg-primary-foreground px-4 pb-4">
                     {localizedSummary}
                   </div>
                 )}
-                {localizedSummary && (
-                  <div className="border-primary sticky top-0 z-20 w-full border-t p-4"></div>
+                {includeTransPerspectives && (
+                  <div className="text-muted-foreground bg-primary-foreground px-4 pb-4 text-xs">
+                    🏳️‍⚧️ {t("transPerspectivesIncluded")}
+                  </div>
                 )}
-                {!localizedSummary && <div className="mt-4" />}
-                <div
-                  className={cn(
-                    "z-10 overflow-x-hidden px-4 sm:px-0",
-                    localizedSummary ? "-mt-4" : "",
-                  )}
-                >
+                <div className="bg-background border-primary sticky top-0 z-20 h-px w-full border-t" />
+                <div className="px-4 sm:px-0">
                   <ChatSection
                     conversationId={conversationId}
                     readOnly={true}

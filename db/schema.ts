@@ -69,6 +69,7 @@ export const chatConversations = pgTable(
     country: varchar("country", { length: 100 }), // Country from IP geolocation
     ipAddress: varchar("ip_address", { length: 45 }), // IPv4 (max 15) or IPv6 (max 45)
     username: varchar("username", { length: 255 }), // Username of logged-in user who created the conversation
+    includeTransPerspectives: boolean("include_trans_perspectives").default(false),
     messages: text("messages").notNull(), // JSON string of the conversation messages
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),

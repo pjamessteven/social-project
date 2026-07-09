@@ -286,6 +286,11 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   };
 
   const showResearch = false;
+
+  const isDisabled =
+    (path.includes("/chat") || path.includes("/research")) &&
+    (chatStatus === "streaming" || chatStatus === "submitted");
+
   return (
     <div
       className={cn(
@@ -297,7 +302,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
         <div className="hidden h-full w-full bg-gradient-to-t from-white via-white/70 to-transparent sm:absolute sm:block dark:from-black dark:via-black/40" />
         <form
           onSubmit={handleSubmit}
-          className="sm:bg-secondary flex w-3xl items-center gap-2 sm:mb-6 sm:rounded-full sm:border sm:border-white sm:p-2 sm:shadow-[0_10px_36px_0_rgba(0,0,0,0.16),0_0_0_1px_rgba(0,0,0,0.06)] sm:backdrop-blur-lg sm:dark:border-white/10 sm:dark:supports-[backdrop-filter]:bg-gray-900/90"
+          className="sm:bg-secondary flex w-3xl items-center gap-2 sm:mb-6 sm:rounded-[38px] sm:border sm:border-white sm:p-2 sm:shadow-[0_10px_36px_0_rgba(0,0,0,0.16),0_0_0_1px_rgba(0,0,0,0.06)] sm:backdrop-blur-lg sm:dark:border-white/10 sm:dark:supports-[backdrop-filter]:bg-gray-900/90"
         >
           <div ref={containerRef} className="relative flex-1 grow">
             <Textarea
@@ -306,17 +311,14 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                 boxShadow: "rgba(0, 0, 0, 0.2) 0px 18px 50px -10px",
               }}
               className={cn(
-                "!placeholder-opacity-100 border-slate relative z-20 flex max-h-48 min-h-12 w-full cursor-text resize-none overflow-hidden rounded-[32px] bg-white py-4 pl-5 shadow-sm disabled:cursor-default dark:border dark:border-white/5 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white dark:focus:border-white/10",
+                "!placeholder-opacity-100 border-slate relative z-20 flex max-h-48 min-h-12 w-full cursor-text resize-none overflow-hidden rounded-[32px] bg-white py-4 !pr-[60px] pl-5 shadow-sm disabled:cursor-default dark:border dark:border-white/5 dark:bg-gray-800 dark:placeholder-white dark:placeholder:text-white dark:focus:border-white/10",
               )}
               value={inputText}
               onChange={(event) => setInputText(event.target.value)}
               onKeyDown={handleKeyDown}
               onFocus={handleFocus}
               placeholder={"🦎  " + placeholder}
-              disabled={
-                (path.includes("/chat") || path.includes("/research")) &&
-                (chatStatus === "streaming" || chatStatus === "submitted")
-              }
+              disabled={isDisabled}
               rows={1}
               maxLength={!isAuthenticated ? MAX_MESSAGE_LENGTH : undefined}
             />
@@ -364,15 +366,24 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
+                  disabled={isDisabled}
                   className={cn(
-                    "absolute right-2 bottom-2 z-30 flex items-center gap-0.5 rounded-full px-2 py-1 pl-3 text-2xl transition-colors sm:text-3xl",
+                    "absolute right-2 bottom-2 z-30 flex items-center gap-0.5 rounded-full px-2 py-1.5 pl-3 text-xl transition-colors sm:py-1.5 sm:text-2xl",
                     includeTransPerspectives
-                      ? "bg-trans-gradient shadow-md"
+                      ? "bg-trans-gradient shadow-md outline outline-black/10 dark:outline-white/20"
                       : "hover:bg-gray-100 dark:hover:bg-gray-700",
+                    isDisabled && "pointer-events-none opacity-50",
                   )}
                 >
                   <span>🏳️‍⚧️</span>
-                  <EllipsisVertical className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                  <EllipsisVertical
+                    className={cn(
+                      includeTransPerspectives
+                        ? "dark:text-white"
+                        : "text-gray-500 dark:text-gray-400",
+                      "h-4 w-4",
+                    )}
+                  />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent
@@ -380,12 +391,12 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                 align="end"
                 className="rounded-xl"
               >
-                <div className="text-muted-foreground max-w-xs border-b p-2 text-sm">
+                <div className="text-muted-foreground relative max-w-xs border-b p-3 text-xs sm:max-w-xs">
                   {t("transPerspectivesDesc")}
                 </div>
                 <DropdownMenuCheckboxItem
                   checked={includeTransPerspectives}
-                  className="cursor-pointer"
+                  className="cursor-pointer p-3"
                   onCheckedChange={setIncludeTransPerspectives}
                 >
                   {t("transPerspectivesLabel")}

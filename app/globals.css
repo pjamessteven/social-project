@@ -418,9 +418,9 @@ body,
 }
 
 .bg-trans-gradient {
-  background: linear-gradient(135deg, #5BCEFA 0%, #F5A9B8 100%);
+  background: linear-gradient(135deg, #5bcdfa9b 0%, #f5a9b8b1 100%);
 }
 
 .dark .bg-trans-gradient {
-  background: linear-gradient(135deg, #3a9bc1 0%, #c47d8e 100%);
+  background: linear-gradient(135deg, #3a9bc1b8 0%, #c47d8eb3 100%);
 }

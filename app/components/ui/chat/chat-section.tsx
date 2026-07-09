@@ -34,7 +34,7 @@ export default function ChatSection({
   starterQuestion?: string;
   apiEndpoint?: string;
 }) {
-  const { setChatHandler, setChatStatus, setInputText, includeTransPerspectives } =
+  const { setChatHandler, setChatStatus, setInputText, setIncludeTransPerspectives, includeTransPerspectives } =
     useChatStore();
   const searchParams = useSearchParams();
   const starterSentRef = useRef(false);
@@ -315,6 +315,7 @@ export default function ChatSection({
           // Set the messages directly using the setMessages function
           useChatHandler.setMessages(data.messages);
           setIsArchived(data.archived);
+          setIncludeTransPerspectives(data.includeTransPerspectives ?? false);
 
           // Handle summary translation
           let localizedSummary = data.conversationSummary;
