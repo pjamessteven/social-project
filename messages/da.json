@@ -533,7 +533,7 @@
         "title": "Oplysninger Vi Indsamler",
         "chatMessages": {
           "title": "Chatbeskeder:",
-          "content": "Vi bevarer alle chatoptegnelser samt svarene på alle spørgsmål stillet i Dyb Forskningsmodus. Chatoptegnelser er ikke knyttet til din IP-adresse eller nogen data, der potentielt kunne bruges til at identificere dig. Chatoptegnelser kan blive analyseret og brugt til forskningsformål i fremtiden. Undgå venligst at dele følsomme oplysninger."
+          "content": "Alle samtaler er offentlige og kan vises på detrans.ai's forside. Samtaler inkluderer landet forbundet med din IP-adresse på tidspunktet for skrivning. Alle chatoptegnelser kan blive analyseret og brugt til forskningsformål. Undgå venligst at dele følsomme eller identificerende oplysninger."
         },
         "cookies": {
           "title": "Cookies / Sporingsteknologier:",
@@ -541,11 +541,19 @@
         },
         "ipAddresses": {
           "title": "IP-adresser:",
-          "content": "Når du sender en anmodning til vores servere, gemmer vi din IP-adresse for at tælle anmodninger og håndhæve hastighedsgrænser, der forhindrer misbrug."
+          "content": "Vi gemmer din IP-adresse for at forhindre misbrug og håndhæve hastighedsgrænser. For anonyme offentlige samtaler bruger vi din IP-adresse til at bestemme dit land, som vises sammen med samtalen. IP-adresser gemmes med samtaleoptegnelser og bevares for at forhindre misbrug af tjenesten."
         },
         "optionalData": {
           "title": "Valgfrie Data:",
           "content": "Hvis du vælger at kontakte os, kan vi indsamle de oplysninger, du frivilligt angiver (f.eks. e-mailadresse, navn). At give disse oplysninger er valgfrit, medmindre det udtrykkeligt er angivet."
+        },
+        "aiProviders": {
+          "title": "AI-behandling:",
+          "content": "Dine beskeder behandles af tredjeparts AI-udbydere (i øjeblikket OpenRouter) til at generere svar. Træning på dine samtaler er deaktiveret. Se venligst OpenRouters privatlivspolitik for detaljer om, hvordan de håndterer data."
+        },
+        "captcha": {
+          "title": "Bot-detektion (hCaptcha):",
+          "content": "Vi bruger hCaptcha, en tredjepartstjeneste leveret af Intuition Machines, Inc., til at beskytte mod automatiseret misbrug. hCaptcha kan indsamle din IP-adresse, browseroplysninger og interaktionsdata (såsom musebevægelser og tastaturmønstre) for at afgøre, om du er et menneske. Disse data er underlagt hCaptchas egen privatlivspolitik. hCaptcha bruger kun samtykkefri cookies, der er nødvendige for dens tjeneste."
         }
       },
       "legalBases": {
@@ -555,11 +563,11 @@
       },
       "dataRetention": {
         "title": "Hvor Længe Vi Opbevarer Data",
-        "content": "Alle chatoptegnelser vil blive bevaret. IP-adresser brugt til hastighedsbegrænsning slettes automatisk inden for minutter efter den sidste anmodning eller ved afslutningen af hastighedsbegrænsningsvinduet, alt efter hvad der kommer først. Frivillige oplysninger (f.eks. support-e-mails) opbevares kun så længe det er nødvendigt for at løse din henvendelse eller opfylde juridiske forpligtelser."
+        "content": "Alle chatoptegnelser, inklusive tilknyttede IP-adresser og landeoplysninger, bevares. Frivillige oplysninger (f.eks. support-e-mails) opbevares kun så længe det er nødvendigt for at løse din henvendelse eller opfylde juridiske forpligtelser."
       },
       "thirdPartySharing": {
         "title": "Tredjepartsdeling",
-        "content": "Vi kan vælge at dele anonymiserede chatoptegnelser med akademikere og forskere, der forsøger at forbedre resultaterne for mennesker, der oplever kønsdysfori. Vi kan kun videregive IP-adresser eller andre data, når det kræves ved lov eller for at beskytte vores rettigheder, brugere eller offentligheden (f.eks. svindelbekæmpelse, retskendelse)."
+        "content": "Vi kan vælge at dele anonymiserede chatoptegnelser med akademikere og forskere, der forsøger at forbedre resultaterne for mennesker, der oplever kønsdysfori. Dine beskeder behandles af tredjeparts AI-udbydere (i øjeblikket OpenRouter) til at generere svar — træning på samtaler er deaktiveret. Vi bruger hCaptcha (Intuition Machines, Inc.) til bot-detektion, som kan behandle din IP-adresse og interaktionsdata. Vi kan kun videregive IP-adresser eller andre data, når det kræves ved lov eller for at beskytte vores rettigheder, brugere eller offentligheden (f.eks. svindelbekæmpelse, retskendelse)."
       },
       "security": {
         "title": "Sikkerhed",
@@ -580,6 +588,32 @@
       "contact": {
         "title": "Kontakt Os",
         "content": "Hvis du har spørgsmål, bekymringer eller klager, så brug enten kontaktformularen, eller send en e-mail til <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "termsOfService": {
+    "title": "Servicevilkår",
+    "intro": "Ved at bruge detrans.ai accepterer du følgende vilkår.",
+    "sections": {
+      "acceptableUse": {
+        "title": "Acceptabel brug",
+        "content": "detrans.ai er beregnet til spørgsmål og diskussioner relateret til køn, kønsidentitet, detransition og relaterede emner. Du må ikke bruge tjenesten til spam, ulovligt indhold, prompt injection-angreb eller ethvert forsøg på at manipulere eller misbruge systemet. Vi forbeholder os retten til at blokere IP-adresser og udelukke brugere, der overtræder disse vilkår."
+      },
+      "publicConversations": {
+        "title": "Offentlige samtaler",
+        "content": "Alle samtaler er offentlige og kan vises på detrans.ai's forside. Del ikke følsomme, personligt identificerbare eller fortrolige oplysninger. Samtaler kan bruges til forskningsformål i anonymiseret form."
+      },
+      "disclaimer": {
+        "title": "Ansvarsfraskrivelse",
+        "content": "Tjenesten leveres som den er og tilgængelig uden garantier af nogen art. detrans.ai er ikke en erstatning for professionel medicinsk eller psykologisk rådgivning. Konsulter altid en kvalificeret sundhedspersonale for personlige sundhedsbeslutninger."
+      },
+      "liability": {
+        "title": "Begrænsning af ansvar",
+        "content": "I det omfang det er tilladt ved lov, er detrans.ai og dets operatører ikke ansvarlige for indirekte, tilfældige eller følgeskader, der opstår som følge af din brug af tjenesten."
+      },
+      "changes": {
+        "title": "Ændringer af disse vilkår",
+        "content": "Vi kan opdatere disse vilkår fra tid til anden. Fortsat brug af tjenesten efter ændringer udgør accept af de opdaterede vilkår."
       }
     }
   },

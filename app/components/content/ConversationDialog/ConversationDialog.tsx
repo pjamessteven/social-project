@@ -222,7 +222,7 @@ export function ConversationDialog({
           </div>
 
           {/* Content */}
-          <div className="min-h-0 flex-1 overflow-y-auto">
+          <div className="min-h-0 flex-1 overflow-y-auto pt-8">
             {isLoading ? (
               <div className="flex h-full items-center justify-center">
                 <Loader2 className="text-muted-foreground h-10 w-10 animate-spin" />

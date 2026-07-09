@@ -88,10 +88,15 @@ export const workflowFactory = async (
       ? `\n\n### Available Study Tags\nThe following tags should be used to filter studies with the getStudies tool: ${tagNames.join(", ")}`
       : "";
   const systemPrompt = includeTransPerspectives
-    ? agentPrompt.replace(
-        "- Make liberal use of the queryCommentsTool",
-        "- Make liberal use of the queryCommentsTool\n  - Use the queryTransCommentsTool to find experiences of transgender people. Include, explore and compare **in depth** how trans perspectives relate and contrast to detrans perspectives on gender identity and transition.",
-      ) + tagList
+    ? agentPrompt
+        .replace(
+          "- Make liberal use of the queryCommentsTool",
+          "- Make liberal use of the queryCommentsTool\n  - Use the queryTransCommentsTool to find experiences of transgender people. Include, explore and compare **in depth** how trans perspectives relate and contrast to detrans perspectives on gender identity and transition.",
+        )
+        .replace(
+          "**If the user wants to include trans perspectives, tell them they can enable this option by clicking the trans flag in the chat input**\n",
+          "",
+        ) + tagList
     : agentPrompt + tagList;
 
   const llm = new CachedOpenAI({

@@ -539,7 +539,7 @@
         "title": "Information We Collect",
         "chatMessages": {
           "title": "Chat Messages:",
-          "content": "We preserve all chat records as well as the responses to all questions asked in Deep Research mode. Chat records are not associated with your IP address or any data that could potentially be used to identify you. Chat records may analysed and used for research purposes in the future. Please avoid sharing any sensitive information."
+          "content": "All conversations are public and may be displayed on the detrans.ai homepage. Conversations include the country associated with your IP address at the time of writing. All chat records may be analysed and used for research purposes. Please avoid sharing any sensitive or identifying information."
         },
         "cookies": {
           "title": "Cookies / Tracking Technologies:",
@@ -547,11 +547,19 @@
         },
         "ipAddresses": {
           "title": "IP Addresses:",
-          "content": "When you make a request to our servers we store your IP address in order to count requests and enforce rate limits that prevent abuse."
+          "content": "We store your IP address to prevent abuse and enforce rate limits. For anonymous public conversations, we use your IP address to determine your country, which is displayed alongside the conversation. IP addresses are stored with conversation records and retained in order to prevent abuse of the service."
         },
         "optionalData": {
           "title": "Optional Data:",
           "content": "If you choose to contact us , we may collect the information you voluntarily supply (e.g., email address, name). Providing this information is optional unless explicitly stated."
+        },
+        "aiProviders": {
+          "title": "AI Processing:",
+          "content": "Your messages are processed by third-party AI providers (currently OpenRouter) to generate responses. Training on your conversations is disabled. Please refer to OpenRouter's privacy policy for details on how they handle data."
+        },
+        "captcha": {
+          "title": "Bot Detection (hCaptcha):",
+          "content": "We use hCaptcha, a third-party service provided by Intuition Machines, Inc., to protect against automated abuse. hCaptcha may collect your IP address, browser information, and interaction data (such as mouse movements and keystroke patterns) to determine whether you are human. This data is subject to hCaptcha's own privacy policy. hCaptcha uses only consent-exempt cookies necessary for its service."
         }
       },
       "legalBases": {
@@ -561,11 +569,11 @@
       },
       "dataRetention": {
         "title": "How Long We Keep Data",
-        "content": "All chat records will be preserved. IP addresses used for rate limiting are automatically deleted within minutes after the last request or at the end of the rate-limit window, whichever comes first. Voluntary information (e.g., support emails) is retained only as long as needed to resolve your inquiry or satisfy legal obligations."
+        "content": "All chat records, including associated IP addresses and country data, are preserved. Voluntary information (e.g., support emails) is retained only as long as needed to resolve your inquiry or satisfy legal obligations."
       },
       "thirdPartySharing": {
         "title": "Third-Party Sharing",
-        "content": "We may choose to share anonymised chat records with academics and researchers who are looking to improve outcomes for people experiencing gender dysphoria. We may disclose IP addresses or other data only when required by law or to protect our rights, users, or the public (e.g., fraud prevention, court order)."
+        "content": "We may choose to share anonymised chat records with academics and researchers who are looking to improve outcomes for people experiencing gender dysphoria. Your messages are processed by third-party AI providers (currently OpenRouter) to generate responses — training on conversations is disabled. We use hCaptcha (Intuition Machines, Inc.) for bot detection, which may process your IP address and interaction data. We may disclose IP addresses or other data only when required by law or to protect our rights, users, or the public (e.g., fraud prevention, court order)."
       },
       "security": {
         "title": "Security",
@@ -586,6 +594,32 @@
       "contact": {
         "title": "Contact Us",
         "content": "If you have questions, concerns, or complaints, either use the contact form, or email <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "termsOfService": {
+    "title": "Terms of Service",
+    "intro": "By using detrans.ai, you agree to the following terms.",
+    "sections": {
+      "acceptableUse": {
+        "title": "Acceptable Use",
+        "content": "detrans.ai is intended for questions and discussions related to gender, gender identity, detransition, and related topics. You must not use the service for spam, illegal content, prompt injection attacks, or any attempt to manipulate or abuse the system. We reserve the right to block IP addresses and ban users who violate these terms."
+      },
+      "publicConversations": {
+        "title": "Public Conversations",
+        "content": "All conversations are public and may be displayed on the detrans.ai homepage. Do not share sensitive, personally identifiable, or confidential information. Conversations may be used for research purposes in anonymised form."
+      },
+      "disclaimer": {
+        "title": "Disclaimer",
+        "content": "The service is provided on an \"as-is\" and \"as-available\" basis without warranties of any kind. detrans.ai is not a substitute for professional medical or psychological advice. Always consult a qualified healthcare provider for personal health decisions."
+      },
+      "liability": {
+        "title": "Limitation of Liability",
+        "content": "To the fullest extent permitted by law, detrans.ai and its operators shall not be liable for any indirect, incidental, or consequential damages arising from your use of the service."
+      },
+      "changes": {
+        "title": "Changes to These Terms",
+        "content": "We may update these terms from time to time. Continued use of the service after changes constitutes acceptance of the updated terms."
       }
     }
   },

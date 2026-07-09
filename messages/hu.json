@@ -534,7 +534,7 @@
         "title": "Milyen Információkat Gyűjtünk",
         "chatMessages": {
           "title": "Chat Üzenetek:",
-          "content": "Megőrizzük az összes chat rekordot, valamint a Mélykutatás módban feltett összes kérdésre adott válaszokat. A chat rekordok nem kapcsolódnak az IP címedhez vagy bármely olyan adathoz, amelyet potenciálisan fel lehetne használni a személyazonosságod megállapítására. A chat rekordokat később elemezhetik és használhatják kutatási célokra. Kérlek, kerüld minden érzékeny információ megosztását."
+          "content": "Minden beszélgetés nyilvános, és megjelenhet a detrans.ai kezdőlapján. A beszélgetések tartalmazzák az IP-címedhez társított országot az írás időpontjában. Minden chatrekordot elemezhetnek és felhasználhatnak kutatási célokra. Kérjük, kerüld az érzékeny vagy azonosító információk megosztását."
         },
         "cookies": {
           "title": "Sütik / Követési Technológiák:",
@@ -542,12 +542,28 @@
         },
         "ipAddresses": {
           "title": "IP Címek:",
-          "content": "Amikor kérést küldesz a szervereinknek, eltároljuk az IP címed, hogy megszámoljuk a kéréseket és érvényesítsük a visszaélést megelőző korlátozásokat."
+          "content": "Az IP-címedet a visszaélések megelőzése és a sebességkorlátozások érvényesítése érdekében tároljuk. Névtelen nyilvános beszélgetések esetén az IP-címedet használjuk az országod meghatározására, amely a beszélgetés mellett jelenik meg. Az IP-címeket a beszélgetési rekordokkal együtt tároljuk, és a szolgáltatás visszaéléseinek megelőzése érdekében megőrizzük."
         },
         "optionalData": {
           "title": "Opcionális Adatok:",
           "content": "Ha úgy döntesz, hogy kapcsolatba lépsz velünk, gyűjthetjük az önként megadott információkat (pl. email cím, név). Ezen információk megadása opcionális, kivéve, ha kifejezetten másként jelezzük."
+        },
+        "aiProviders": {
+          "title": "AI-feldolgozás:",
+          "content": "Az üzeneteidet harmadik fél AI-szolgáltatók (jelenleg OpenRouter) dolgozzák fel a válaszok generálására. A beszélgetéseiden való tanítás le van tiltva. Kérlek, tekintsd meg az OpenRouter adatvédelmi szabályzatát azzal kapcsolatban, hogyan kezelik az adatokat."
+        },
+        "captcha": {
+          "title": "Botészlelés (hCaptcha):",
+          "content": "Az automatizált visszaélések elleni védelem érdekében hCaptcha-t használunk, amelyet az Intuition Machines, Inc. nyújt harmadik fél szolgáltatásként. Az hCaptcha begyűjtheti az IP-címedet, böngészőinformációidat és az interakciós adataidat (például egérmozgásokat és billentyűleütési mintákat), hogy megállapítsa, ember vagy-e. Ezek az adatok az hCaptcha saját adatvédelmi szabályzatának hatálya alá tartoznak. Az hCaptcha csak a szolgáltatásához szükséges, hozzájárulásmentes sütiket használ."
         }
+      },
+      "aiProviders": {
+        "title": "AI-feldolgozás:",
+        "content": "Az üzeneteidet harmadik fél AI-szolgáltatók (jelenleg OpenRouter) dolgozzák fel a válaszok generálására. A beszélgetéseiden való tanítás le van tiltva. Kérlek, tekintsd meg az OpenRouter adatvédelmi szabályzatát azzal kapcsolatban, hogyan kezelik az adatokat."
+      },
+      "captcha": {
+        "title": "Botészlelés (hCaptcha):",
+        "content": "Az automatizált visszaélések elleni védelem érdekében hCaptcha-t használunk, amelyet az Intuition Machines, Inc. nyújt harmadik fél szolgáltatásként. Az hCaptcha begyűjtheti az IP-címedet, böngészőinformációidat és az interakciós adataidat (például egérmozgásokat és billentyűleütési mintákat), hogy megállapítsa, ember vagy-e. Ezek az adatok az hCaptcha saját adatvédelmi szabályzatának hatálya alá tartoznak. Az hCaptcha csak a szolgáltatásához szükséges, hozzájárulásmentes sütiket használ."
       },
       "legalBases": {
         "title": "Feldolgozás Jogi Alapjai (EU/EGT látogatók)",
@@ -556,11 +572,11 @@
       },
       "dataRetention": {
         "title": "Mennyi Ideig Őrzünk Adatokat",
-        "content": "Minden chat rekordot megőrzünk. A korlátozáshoz használt IP címek automatikusan törlésre kerülnek perceken belül az utolsó kérés után vagy a korlátozási időszak végén, amelyik hamarabb bekövetkezik. Az önkéntes információkat (pl. támogatási email-ek) csak addig őrizzük meg, amíg szükséges a kérdésed megoldásához vagy jogi kötelezettségek teljesítéséhez."
+        "content": "Minden chatrekordot megőrzünk, beleértve a kapcsolódó IP-címeket és országadatokat is. Az önkéntes információkat (pl. támogatási e-mailek) csak addig őrizzük meg, amíg szükséges a kérdésed megoldásához vagy a jogi kötelezettségek teljesítéséhez."
       },
       "thirdPartySharing": {
         "title": "Harmadik Féllel Történő Megosztás",
-        "content": "Anonimizált chat rekordokat megoszthatunk akadémikusokkal és kutatókkal, akik a nemi diszfóriát tapasztaló emberek eredményeinek javítására törekszenek. IP címeket vagy más adatokat csak törvény által megkövetelt esetekben vagy jogaink, felhasználóink vagy a nyilvánosság védelme érdekében (pl. csalás megelőzése, bírósági végzés) hozhatunk nyilvánosságra."
+        "content": "Az anonimizált chatrekordokat megoszthatjuk akadémikusokkal és kutatókkal, akik a nemi diszfóriát tapasztaló emberek eredményeinek javítására törekszenek. Az üzeneteidet harmadik fél AI-szolgáltatók (jelenleg OpenRouter) dolgozzák fel a válaszok generálására — a beszélgetéseken való tanítás le van tiltva. A botok észlelésére hCaptcha-t (Intuition Machines, Inc.) használunk, amely feldolgozhatja az IP-címedet és az interakciós adataidat. Az IP-címeket vagy más adatokat csak törvény által megkövetelt esetekben vagy jogaink, felhasználóink vagy a nyilvánosság védelme érdekében (pl. csalásmegelőzés, bírósági végzés) hozhatjuk nyilvánosságra."
       },
       "security": {
         "title": "Biztonság",
@@ -581,6 +597,32 @@
       "contact": {
         "title": "Kapcsolat",
         "content": "Ha kérdéseid, aggályaid vagy panaszaid vannak, használd a kapcsolatfelvételi űrlapot, vagy írj email-t a következő címre: <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "termsOfService": {
+    "title": "Felhasználási feltételek",
+    "intro": "A detrans.ai használatával elfogadod az alábbi feltételeket.",
+    "sections": {
+      "acceptableUse": {
+        "title": "Megengedett használat",
+        "content": "A detrans.ai a nemmel, nemi identitással, detransícióval és kapcsolódó témákkal kapcsolatos kérdések és beszélgetések számára készült. Nem használhatod a szolgáltatást spamre, illegális tartalomra, promptinjekciós támadásokra, vagy a rendszer manipulálására vagy visszaélésére irányuló bármilyen kísérletre. Fenntartjuk a jogot, hogy blokkoljuk az IP-címeket és kitiltsuk azokat a felhasználókat, akik megsértik ezeket a feltételeket."
+      },
+      "publicConversations": {
+        "title": "Nyilvános beszélgetések",
+        "content": "Minden beszélgetés nyilvános, és megjelenhet a detrans.ai kezdőlapján. Ne ossz meg érzékeny, személyazonosításra alkalmas vagy bizalmas információkat. A beszélgetéseket anonimizált formában kutatási célokra használhatják fel."
+      },
+      "disclaimer": {
+        "title": "Jogi nyilatkozat",
+        "content": "A szolgáltatás mindenféle garancia nélkül, \"ahogy van\" és \"ahogy elérhető\" alapon nyújtható. A detrans.ai nem helyettesíti a szakmai orvosi vagy pszichológiai tanácsadást. Személyes egészségügyi döntésekhez mindig forduljon képzett egészségügyi szolgáltatóhoz."
+      },
+      "liability": {
+        "title": "A felelősség korlátozása",
+        "content": "A törvény által megengedett maximális mértékben a detrans.ai és üzemeltetői nem vállalnak felelősséget a szolgáltatás használatából eredő közvetett, véletlen vagy következményes károkért."
+      },
+      "changes": {
+        "title": "A feltételek módosításai",
+        "content": "Időről időre frissíthetjük ezeket a feltételeket. A szolgáltatás módosítások utáni további használata a frissített feltételek elfogadásának minősül."
       }
     }
   },

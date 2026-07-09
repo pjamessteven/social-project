@@ -531,7 +531,7 @@
         "title": "Informazioni che Raccogliamo",
         "chatMessages": {
           "title": "Messaggi di Chat:",
-          "content": "Conserviamo tutti i record di chat così come le risposte a tutte le domande fatte in modalità Ricerca Approfondita. I record di chat non sono associati al tuo indirizzo IP o a nessun dato che potrebbe essere usato per identificarti. I record di chat possono essere analizzati e usati per scopi di ricerca in futuro. Per favore evita di condividere informazioni sensibili."
+          "content": "Tutte le conversazioni sono pubbliche e possono essere visualizzate sulla homepage di detrans.ai. Le conversazioni includono il paese associato al tuo indirizzo IP al momento della scrittura. Tutti i record di chat possono essere analizzati e utilizzati per scopi di ricerca. Si prega di evitare di condividere informazioni sensibili o identificative."
         },
         "cookies": {
           "title": "Cookie / Tecnologie di Tracciamento:",
@@ -539,12 +539,28 @@
         },
         "ipAddresses": {
           "title": "Indirizzi IP:",
-          "content": "Quando fai una richiesta ai nostri server memorizziamo il tuo indirizzo IP per contare le richieste e far rispettare i limiti di rate che prevengono abusi."
+          "content": "Memorizziamo il tuo indirizzo IP per prevenire abusi e applicare limiti di frequenza. Per le conversazioni pubbliche anonime, utilizziamo il tuo indirizzo IP per determinare il tuo paese, che viene visualizzato accanto alla conversazione. Gli indirizzi IP sono memorizzati insieme ai record delle conversazioni e conservati per prevenire abusi del servizio."
         },
         "optionalData": {
           "title": "Dati Opzionali:",
           "content": "Se scegli di contattarci, potremmo raccogliere le informazioni che fornisci volontariamente (es. indirizzo email, nome). Fornire queste informazioni è opzionale a meno che non esplicitamente dichiarato."
+        },
+        "aiProviders": {
+          "title": "Elaborazione AI:",
+          "content": "I tuoi messaggi sono elaborati da provider AI di terze parti (attualmente OpenRouter) per generare risposte. L'addestramento sulle tue conversazioni è disabilitato. Si prega di consultare l'informativa sulla privacy di OpenRouter per i dettagli su come gestiscono i dati."
+        },
+        "captcha": {
+          "title": "Rilevamento Bot (hCaptcha):",
+          "content": "Utilizziamo hCaptcha, un servizio di terze parti fornito da Intuition Machines, Inc., per proteggere contro gli abusi automatizzati. hCaptcha potrebbe raccogliere il tuo indirizzo IP, le informazioni del browser e i dati di interazione (come movimenti del mouse e schemi di digitazione) per determinare se sei umano. Questi dati sono soggetti all'informativa sulla privacy di hCaptcha. hCaptcha utilizza solo cookie esenti dal consenso necessari per il suo servizio."
         }
+      },
+      "aiProviders": {
+        "title": "Elaborazione AI:",
+        "content": "I tuoi messaggi sono elaborati da provider AI di terze parti (attualmente OpenRouter) per generare risposte. L'addestramento sulle tue conversazioni è disabilitato. Si prega di consultare l'informativa sulla privacy di OpenRouter per i dettagli su come gestiscono i dati."
+      },
+      "captcha": {
+        "title": "Rilevamento Bot (hCaptcha):",
+        "content": "Utilizziamo hCaptcha, un servizio di terze parti fornito da Intuition Machines, Inc., per proteggere contro gli abusi automatizzati. hCaptcha potrebbe raccogliere il tuo indirizzo IP, le informazioni del browser e i dati di interazione (come movimenti del mouse e schemi di digitazione) per determinare se sei umano. Questi dati sono soggetti all'informativa sulla privacy di hCaptcha. hCaptcha utilizza solo cookie esenti dal consenso necessari per il suo servizio."
       },
       "legalBases": {
         "title": "Basi Legali per il Trattamento (visitatori EU/EEA)",
@@ -553,11 +569,11 @@
       },
       "dataRetention": {
         "title": "Per Quanto Tempo Conserviamo i Dati",
-        "content": "Tutti i record di chat saranno conservati. Gli indirizzi IP usati per i limiti di rate sono automaticamente cancellati entro minuti dopo l'ultima richiesta o alla fine della finestra di rate limit, a seconda di quale avvenga prima. Le informazioni volontarie (es. email di supporto) sono conservate solo per il tempo necessario a risolvere la tua richiesta o soddisfare obblighi legali."
+        "content": "Tutti i record di chat, inclusi gli indirizzi IP e i dati relativi al paese associati, vengono conservati. Le informazioni volontarie (ad es. email di supporto) sono conservate solo per il tempo necessario a risolvere la tua richiesta o soddisfare obblighi legali."
       },
       "thirdPartySharing": {
         "title": "Condivisione con Terze Parti",
-        "content": "Potremmo scegliere di condividere record di chat anonimizzati con accademici e ricercatori che cercano di migliorare gli esiti per le persone che vivono disforia di genere. Potremmo divulgare indirizzi IP o altri dati solo quando richiesto dalla legge o per proteggere i nostri diritti, utenti o il pubblico (es. prevenzione frodi, ordine del tribunale)."
+        "content": "Potremmo scegliere di condividere record di chat anonimizzati con accademici e ricercatori che cercano di migliorare gli esiti per le persone che vivono disforia di genere. I tuoi messaggi sono elaborati da provider AI di terze parti (attualmente OpenRouter) per generare risposte — l'addestramento sulle conversazioni è disabilitato. Utilizziamo hCaptcha (Intuition Machines, Inc.) per il rilevamento dei bot, che potrebbe elaborare il tuo indirizzo IP e i dati di interazione. Potremmo divulgare indirizzi IP o altri dati solo quando richiesto dalla legge o per proteggere i nostri diritti, utenti o il pubblico (ad es. prevenzione frodi, ordinanza del tribunale)."
       },
       "security": {
         "title": "Sicurezza",
@@ -578,6 +594,32 @@
       "contact": {
         "title": "Contattaci",
         "content": "Se hai domande, preoccupazioni o reclami, usa il modulo di contatto o invia un'email a <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "termsOfService": {
+    "title": "Termini di Servizio",
+    "intro": "Utilizzando detrans.ai, accetti i seguenti termini.",
+    "sections": {
+      "acceptableUse": {
+        "title": "Uso Accettabile",
+        "content": "detrans.ai è destinato a domande e discussioni relative al genere, all'identità di genere, alla detransizione e ad argomenti correlati. Non devi utilizzare il servizio per spam, contenuti illegali, attacchi di injection di prompt o qualsiasi tentativo di manipolare o abusare del sistema. Ci riserviamo il diritto di bloccare gli indirizzi IP e di bandire gli utenti che violano questi termini."
+      },
+      "publicConversations": {
+        "title": "Conversazioni Pubbliche",
+        "content": "Tutte le conversazioni sono pubbliche e possono essere visualizzate sulla homepage di detrans.ai. Non condividere informazioni sensibili, personalmente identificabili o riservate. Le conversazioni possono essere utilizzate per scopi di ricerca in forma anonimizzata."
+      },
+      "disclaimer": {
+        "title": "Esclusione di Responsabilità",
+        "content": "Il servizio è fornito su base \"così com'è\" e \"come disponibile\" senza garanzie di alcun tipo. detrans.ai non è un sostituto di consulenza medica o psicologica professionale. Consulta sempre un operatore sanitario qualificato per decisioni sulla salute personale."
+      },
+      "liability": {
+        "title": "Limitazione di Responsabilità",
+        "content": "Nella misura massima consentita dalla legge, detrans.ai e i suoi operatori non saranno responsabili per eventuali danni indiretti, incidentali o consequenziali derivanti dall'uso del servizio."
+      },
+      "changes": {
+        "title": "Modifiche a Questi Termini",
+        "content": "Potremmo aggiornare questi termini di tanto in tanto. L'uso continuato del servizio dopo le modifiche costituisce accettazione dei termini aggiornati."
       }
     }
   },

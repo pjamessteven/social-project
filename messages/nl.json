@@ -532,7 +532,7 @@
         "title": "Informatie Die We Verzamelen",
         "chatMessages": {
           "title": "Chatberichten:",
-          "content": "We bewaren alle chatrecords evenals de antwoorden op alle vragen die in Diepgaand Onderzoek modus zijn gesteld. Chatrecords zijn niet gekoppeld aan je IP-adres of geen enkele data die mogelijk zou kunnen worden gebruikt om je te identificeren. Chatrecords kunnen in de toekomst worden geanalyseerd en gebruikt voor onderzoeksdoeleinden. Vermijd het delen van gevoelige informatie."
+          "content": "Alle gesprekken zijn openbaar en kunnen worden weergegeven op de detrans.ai homepage. Gesprekken bevatten het land dat is gekoppeld aan je IP-adres op het moment van schrijven. Alle chatrecords kunnen worden geanalyseerd en gebruikt voor onderzoeksdoeleinden. Vermijd het delen van gevoelige of identificeerbare informatie."
         },
         "cookies": {
           "title": "Cookies / Tracking Technologieën:",
@@ -540,12 +540,28 @@
         },
         "ipAddresses": {
           "title": "IP-adressen:",
-          "content": "Wanneer je een verzoek doet aan onze servers, slaan we je IP-adres op om verzoeken te tellen en rate limits af te dwingen die misbruik voorkomen."
+          "content": "We slaan je IP-adres op om misbruik te voorkomen en snelheidslimieten af te dwingen. Voor anonieme openbare gesprekken gebruiken we je IP-adres om je land te bepalen, dat naast het gesprek wordt weergegeven. IP-adressen worden opgeslagen met gespreksrecords en bewaard om misbruik van de dienst te voorkomen."
         },
         "optionalData": {
           "title": "Optionele Data:",
           "content": "Als je ervoor kiest om contact met ons op te nemen, kunnen we de informatie verzamelen die je vrijwillig verstrekt (bijv. e-mailadres, naam). Het verstrekken van deze informatie is optioneel tenzij expliciet vermeld."
+        },
+        "aiProviders": {
+          "title": "AI-verwerking:",
+          "content": "Je berichten worden verwerkt door AI-providers van derden (momenteel OpenRouter) om antwoorden te genereren. Training op je gesprekken is uitgeschakeld. Raadpleeg het privacybeleid van OpenRouter voor details over hoe zij gegevens verwerken."
+        },
+        "captcha": {
+          "title": "Botdetectie (hCaptcha):",
+          "content": "We gebruiken hCaptcha, een dienst van derden geleverd door Intuition Machines, Inc., om te beschermen tegen geautomatiseerd misbruik. hCaptcha kan je IP-adres, browserinformatie en interactiegegevens (zoals muusbewegingen en toetsaanslagpatronen) verzamelen om te bepalen of je een mens bent. Deze gegevens vallen onder het eigen privacybeleid van hCaptcha. hCaptcha gebruikt alleen toestemmingsvrije cookies die nodig zijn voor haar dienst."
         }
+      },
+      "aiProviders": {
+        "title": "AI-verwerking:",
+        "content": "Je berichten worden verwerkt door AI-providers van derden (momenteel OpenRouter) om antwoorden te genereren. Training op je gesprekken is uitgeschakeld. Raadpleeg het privacybeleid van OpenRouter voor details over hoe zij gegevens verwerken."
+      },
+      "captcha": {
+        "title": "Botdetectie (hCaptcha):",
+        "content": "We gebruiken hCaptcha, een dienst van derden geleverd door Intuition Machines, Inc., om te beschermen tegen geautomatiseerd misbruik. hCaptcha kan je IP-adres, browserinformatie en interactiegegevens (zoals muusbewegingen en toetsaanslagpatronen) verzamelen om te bepalen of je een mens bent. Deze gegevens vallen onder het eigen privacybeleid van hCaptcha. hCaptcha gebruikt alleen toestemmingsvrije cookies die nodig zijn voor haar dienst."
       },
       "legalBases": {
         "title": "Wettelijke Gronden voor Verwerking (EU/EEA bezoekers)",
@@ -554,11 +570,11 @@
       },
       "dataRetention": {
         "title": "Hoe Lang We Data Bewaren",
-        "content": "Alle chatrecords worden bewaard. IP-adressen die worden gebruikt voor rate limiting worden automatisch verwijderd binnen enkele minuten na het laatste verzoek of aan het einde van het rate-limit venster, wat het eerst komt. Vrijwillige informatie (bijv. ondersteunings-e-mails) wordt alleen bewaard zolang als nodig is om je verzoek op te lossen of om wettelijke verplichtingen na te komen."
+        "content": "Alle chatrecords, inclusief bijbehorende IP-adressen en landgegevens, worden bewaard. Vrijwillige informatie (bijv. ondersteunings-e-mails) wordt alleen bewaard zo lang als nodig is om je vraag op te lossen of wettelijke verplichtingen na te komen."
       },
       "thirdPartySharing": {
         "title": "Derden Delen",
-        "content": "We kunnen ervoor kiezen om geanonimiseerde chatrecords te delen met academici en onderzoekers die gericht zijn op het verbeteren van resultaten voor mensen die genderdysforie ervaren. We kunnen IP-adressen of andere gegevens alleen bekendmaken wanneer dit wettelijk vereist is of om onze rechten, gebruikers, of het publiek te beschermen (bijv. fraudepreventie, gerechtelijk bevel)."
+        "content": "We kunnen ervoor kiezen om geanonimiseerde chatrecords te delen met academici en onderzoekers die gericht zijn op het verbeteren van resultaten voor mensen die genderdysforie ervaren. Je berichten worden verwerkt door AI-providers van derden (momenteel OpenRouter) om antwoorden te genereren — training op gesprekken is uitgeschakeld. We gebruiken hCaptcha (Intuition Machines, Inc.) voor botdetectie, die je IP-adres en interactiegegevens kan verwerken. We kunnen IP-adressen of andere gegevens alleen bekendmaken wanneer dit wettelijk vereist is of om onze rechten, gebruikers of het publiek te beschermen (bijv. fraudepreventie, gerechtelijk bevel)."
       },
       "security": {
         "title": "Veiligheid",
@@ -579,6 +595,32 @@
       "contact": {
         "title": "Neem Contact Met Ons Op",
         "content": "Als je vragen, zorgen of klachten hebt, gebruik dan het contactformulier, of e-mail <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "termsOfService": {
+    "title": "Servicevoorwaarden",
+    "intro": "Door detrans.ai te gebruiken, ga je akkoord met de volgende voorwaarden.",
+    "sections": {
+      "acceptableUse": {
+        "title": "Toelaatbaar Gebruik",
+        "content": "detrans.ai is bedoeld voor vragen en discussies over gender, genderidentiteit, detransitie en gerelateerde onderwerpen. Je mag de dienst niet gebruiken voor spam, illegale inhoud, promptinjectie-aanvallen of enige poging om het systeem te manipuleren of te misbruiken. We behouden ons het recht voor om IP-adressen te blokkeren en gebruikers te verbannen die deze voorwaarden schenden."
+      },
+      "publicConversations": {
+        "title": "Openbare Gesprekken",
+        "content": "Alle gesprekken zijn openbaar en kunnen worden weergegeven op de detrans.ai homepage. Deel geen gevoelige, persoonlijk identificeerbare of vertrouwelijke informatie. Gesprekken kunnen worden gebruikt voor onderzoeksdoeleinden in geanonimiseerde vorm."
+      },
+      "disclaimer": {
+        "title": "Disclaimer",
+        "content": "De dienst wordt geleverd op een \"as-is\" en \"as-available\" basis zonder garanties van welke aard dan ook. detrans.ai is geen vervanging voor professioneel medisch of psychologisch advies. Raadpleeg altijd een gekwalificeerde zorgverlener voor persoonlijke gezondheidsbeslissingen."
+      },
+      "liability": {
+        "title": "Beperking van Aansprakelijkheid",
+        "content": "Voor zover maximaal toegestaan door de wet, zijn detrans.ai en haar exploitanten niet aansprakelijk voor indirecte, incidentele of gevolgschade voortvloeiend uit je gebruik van de dienst."
+      },
+      "changes": {
+        "title": "Wijzigingen in Deze Voorwaarden",
+        "content": "We kunnen deze voorwaarden van tijd tot tijd bijwerken. Voortgezet gebruik van de dienst na wijzigingen vormt acceptatie van de bijgewerkte voorwaarden."
       }
     }
   },

@@ -534,7 +534,7 @@
         "title": "Keräämämme Tiedot",
         "chatMessages": {
           "title": "Chat-Viestit:",
-          "content": "Säilytämme kaikki chat-tallenteet sekä vastaukset kaikkiin Syvän Tutkimuksen tilassa kysyttyihin kysymyksiin. Chat-tallenteita ei liitetä IP-osoitteeseesi tai mihinkään tietoon, jota voitaisiin mahdollisesti käyttää sinun tunnistamiseesi. Chat-tallenteita voidaan analysoida ja käyttää tutkimustarkoituksiin tulevaisuudessa. Vältä arkaluontoisen tiedon jakamista."
+          "content": "Kaikki keskustelut ovat julkisia ja voidaan näyttää detrans.ai:n etusivulla. Keskustelut sisältävät IP-osoitteeseesi kirjoitushetkellä liittyvän maan. Kaikki chat-tallenteet voidaan analysoida ja käyttää tutkimustarkoituksiin. Vältä arkaluontoisten tai tunnistettavien tietojen jakamista."
         },
         "cookies": {
           "title": "Evästeet / Seurantateknologiat:",
@@ -542,11 +542,19 @@
         },
         "ipAddresses": {
           "title": "IP-osoitteet:",
-          "content": "Kun teet pyynnön palvelimillemme, tallennamme IP-osoitteesi pyyntöjen laskemiseksi ja väärinkäytön estämiseksi käytettävien nopeusrajojen täytäntöönpanemiseksi."
+          "content": "Tallennamme IP-osoitteesi väärinkäytön estämiseksi ja nopeusrajojen täytäntöönpanemiseksi. Anonyymeissä julkisissa keskusteluissa käytämme IP-osoitteesi maasi määrittämiseksi, mikä näytetään keskustelun rinnalla. IP-osoitteet tallennetaan keskustelutallenteiden kanssa ja säilytetään palvelun väärinkäytön estämiseksi."
         },
         "optionalData": {
           "title": "Valinnaiset Tiedot:",
           "content": "Jos päätät ottaa meihin yhteyttä, voimme kerätä vapaaehtoisesti antamasi tiedot (esim. sähköpostiosoite, nimi). Näiden tietojen antaminen on vapaaehtoista, ellei sitä nimenomaan mainita."
+        },
+        "aiProviders": {
+          "title": "AI-käsittely:",
+          "content": "Viestisi käsittelevät kolmannen osapuolen AI-palveluntarjoajat (tällä hetkellä OpenRouter) vastausten tuottamiseen. Koulutus keskusteluihisi on poistettu käytöstä. Katso OpenRouterin tietosuojakäytäntöä saadaksesi tietoja siitä, miten he käsittelevät tietoja."
+        },
+        "captcha": {
+          "title": "Bottien havaitseminen (hCaptcha):",
+          "content": "Käytämme hCaptcha:a, Intuition Machines, Inc.:n tarjoamaa kolmannen osapuolen palvelua, suojautuaksemme automatisoitua väärinkäyttöä vastaan. hCaptcha voi kerätä IP-osoitteesi, selaintietosi ja vuorovaikutustietosi (kuten hiiren liikkeet ja näppäilymallit) määrittääkseen, oletko ihminen. Nämä tiedot kuuluvat hCaptchan omalle tietosuojakäytännölle. hCaptcha käyttää vain suostumuksesta vapautettuja evästeitä, jotka ovat välttämättömiä sen palvelulle."
         }
       },
       "legalBases": {
@@ -556,11 +564,11 @@
       },
       "dataRetention": {
         "title": "Kuinka Kauan Säilytämme Tietoja",
-        "content": "Kaikki chat-tallenteet säilytetään. Nopeusrajoitukseen käytetyt IP-osoitteet poistetaan automaattisesti minuuttien kuluessa viimeisestä pyynnöstä tai nopeusrajoitusikkunan lopussa, kumpi tulee ensin. Vapaaehtoiset tiedot (esim. tukisähköpostit) säilytetään vain niin kauan kuin on tarpeen kysymyksesi ratkaisemiseksi tai oikeudellisten velvoitteiden täyttämiseksi."
+        "content": "Kaikki chat-tallenteet, mukaan lukien niihin liittyvät IP-osoitteet ja maatiedot, säilytetään. Vapaaehtoiset tiedot (esim. tukisähköpostit) säilytetään vain niin kauan kuin on tarpeen kysymyksesi ratkaisemiseksi tai oikeudellisten velvoitteiden täyttämiseksi."
       },
       "thirdPartySharing": {
         "title": "Kolmansien Osapuolien Jakaminen",
-        "content": "Voimme halutessamme jakaa anonymisoituja chat-tallenteita akateemikoiden ja tutkijoiden kanssa, jotka pyrkivät parantamaan tuloksia ihmisille, jotka kokevat sukupuolidysforiaa. Voimme paljastaa IP-osoitteita tai muita tietoja vain, kun laki vaatii sitä tai suojellaksemme oikeuksiamme, käyttäjiämme tai yleisöä (esim. petosten estäminen, tuomioistuimen määräys)."
+        "content": "Voimme halutessamme jakaa anonymisoituja chat-tallenteita akateemikoiden ja tutkijoiden kanssa, jotka pyrkivät parantamaan tuloksia ihmisille, jotka kokevat sukupuolidysforiaa. Viestisi käsittelevät kolmannen osapuolen AI-palveluntarjoajat (tällä hetkellä OpenRouter) vastausten tuottamiseen — keskustelujen koulutus on poistettu käytöstä. Käytämme hCaptcha:a (Intuition Machines, Inc.) bottien havaitsemiseen, joka voi käsitellä IP-osoitteesi ja vuorovaikutustietosi. Voimme paljastaa IP-osoitteita tai muita tietoja vain, kun laki vaatii sitä tai suojellaksemme oikeuksiamme, käyttäjiämme tai yleisöä (esim. petosten estäminen, tuomioistuimen määräys)."
       },
       "security": {
         "title": "Turvallisuus",
@@ -581,6 +589,32 @@
       "contact": {
         "title": "Ota Yhteyttä",
         "content": "Jos sinulla on kysymyksiä, huolenaiheita tai valituksia, käytä joko yhteydenottolomaketta tai lähetä sähköpostia osoitteeseen <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "termsOfService": {
+    "title": "Käyttöehdot",
+    "intro": "Käyttämällä detrans.ai:ta hyväksyt seuraavat ehdot.",
+    "sections": {
+      "acceptableUse": {
+        "title": "Hyväksyttävä käyttö",
+        "content": "detrans.ai on tarkoitettu sukupuoleen, sukupuoli-identiteettiin, detransitioon ja niihin liittyviin aiheisiin liittyviin kysymyksiin ja keskusteluihin. Et saa käyttää palvelua roskapostittamiseen, laittomaan sisältöön, kehotteen ruiskutusiskuihin tai mihinkään yritykseen manipuloida tai väärinkäyttää järjestelmäämme. Pidätämme oikeuden estää IP-osoitteita ja asettaa porttikieltoja käyttäjille, jotka rikkovat näitä ehtoja."
+      },
+      "publicConversations": {
+        "title": "Julkiset keskustelut",
+        "content": "Kaikki keskustelut ovat julkisia ja voidaan näyttää detrans.ai:n etusivulla. Älä jaa arkaluontoisia, henkilökohtaisesti tunnistettavia tai luottamuksellisia tietoja. Keskusteluja voidaan käyttää tutkimustarkoituksiin anonymisoituna."
+      },
+      "disclaimer": {
+        "title": "Vastuuvapauslauseke",
+        "content": "Palvelu tarjotaan sellaisenaan ja saatavuuden mukaan ilman minkäänlaisia takuita. detrans.ai ei korvaa ammattimaista lääketieteellistä tai psykologista neuvontaa. Kääny aina ammattitaitoisen terveydenhuollon ammattilaisen puoleen henkilökohtaisissa terveyteen liittyvissä päätöksissä."
+      },
+      "liability": {
+        "title": "Vastuun rajoitus",
+        "content": "Lainsäädännön sallimassa laajuudessa detrans.ai ja sen ylläpitäjät eivät ole vastuussa välillisistä, satunnaisista tai seuraavista vahingoista, jotka johtuvat palvelun käytöstäsi."
+      },
+      "changes": {
+        "title": "Muutokset näihin ehtoihin",
+        "content": "Voimme päivittää näitä ehtoja ajoittain. Palvelun jatkaminen muutosten jälkeen merkitsee päivitettyjen ehtojen hyväksyntää."
       }
     }
   },

@@ -571,7 +571,7 @@
         "title": "Información que Recopilamos",
         "chatMessages": {
           "title": "Mensajes de Chat:",
-          "content": "Preservamos todos los registros de chat así como las respuestas a todas las preguntas hechas en el modo de Investigación Profunda. Los registros de chat no están asociados con tu dirección IP ni ningún dato que potencialmente podría usarse para identificarte. Los registros de chat pueden ser analizados y usados para fines de investigación en el futuro. Por favor evita compartir información sensible."
+          "content": "Todas las conversaciones son públicas y pueden mostrarse en la página principal de detrans.ai. Las conversaciones incluyen el país asociado con tu dirección IP en el momento de escribir. Todos los registros de chat pueden ser analizados y usados para fines de investigación. Por favor evita compartir información sensible o identificadora."
         },
         "cookies": {
           "title": "Cookies / Tecnologías de Seguimiento:",
@@ -579,11 +579,19 @@
         },
         "ipAddresses": {
           "title": "Direcciones IP:",
-          "content": "Cuando haces una solicitud a nuestros servidores, almacenamos tu dirección IP para contar solicitudes y hacer cumplir límites de tasa que previenen abusos."
+          "content": "Almacenamos tu dirección IP para prevenir abusos y hacer cumplir límites de tasa. Para conversaciones públicas anónimas, usamos tu dirección IP para determinar tu país, que se muestra junto a la conversación. Las direcciones IP se almacenan con los registros de conversación y se retienen para prevenir el abuso del servicio."
         },
         "optionalData": {
           "title": "Datos Opcionales:",
           "content": "Si eliges contactarnos, podemos recopilar la información que voluntariamente proporciones (por ejemplo, dirección de correo electrónico, nombre). Proporcionar esta información es opcional a menos que se indique explícitamente."
+        },
+        "aiProviders": {
+          "title": "Procesamiento de IA:",
+          "content": "Tus mensajes son procesados por proveedores de IA de terceros (actualmente OpenRouter) para generar respuestas. El entrenamiento en tus conversaciones está deshabilitado. Consulta la política de privacidad de OpenRouter para obtener detalles sobre cómo manejan los datos."
+        },
+        "captcha": {
+          "title": "Detección de bots (hCaptcha):",
+          "content": "Usamos hCaptcha, un servicio de terceros proporcionado por Intuition Machines, Inc., para proteger contra el abuso automatizado. hCaptcha puede recopilar tu dirección IP, información del navegador y datos de interacción (como movimientos del mouse y patrones de escritura) para determinar si eres humano. Estos datos están sujetos a la propia política de privacidad de hCaptcha. hCaptcha utiliza únicamente cookies exentas de consentimiento necesarias para su servicio."
         }
       },
       "legalBases": {
@@ -593,11 +601,11 @@
       },
       "dataRetention": {
         "title": "Cuánto Tiempo Conservamos los Datos",
-        "content": "Todos los registros de chat se conservarán. Las direcciones IP usadas para limitación de tasa se eliminan automáticamente dentro de minutos después de la última solicitud o al final de la ventana de limitación de tasa, lo que ocurra primero. La información voluntaria (por ejemplo, correos de soporte) se conserva solo el tiempo necesario para resolver tu consulta o satisfacer obligaciones legales."
+        "content": "Todos los registros de chat, incluidas las direcciones IP asociadas y los datos del país, se conservan. La información voluntaria (por ejemplo, correos de soporte) se conserva solo el tiempo necesario para resolver tu consulta o satisfacer obligaciones legales."
       },
       "thirdPartySharing": {
         "title": "Compartir con Terceros",
-        "content": "Podemos elegir compartir registros de chat anonimizados con académicos e investigadores que buscan mejorar los resultados para personas que experimentan disforia de género. Podemos divulgar direcciones IP u otros datos solo cuando sea requerido por ley o para proteger nuestros derechos, usuarios o el público (por ejemplo, prevención de fraude, orden judicial)."
+        "content": "Podemos elegir compartir registros de chat anonimizados con académicos e investigadores que buscan mejorar los resultados para personas que experimentan disforia de género. Tus mensajes son procesados por proveedores de IA de terceros (actualmente OpenRouter) para generar respuestas — el entrenamiento en conversaciones está deshabilitado. Usamos hCaptcha (Intuition Machines, Inc.) para la detección de bots, que puede procesar tu dirección IP y datos de interacción. Podemos divulgar direcciones IP u otros datos solo cuando sea requerido por ley o para proteger nuestros derechos, usuarios o el público (por ejemplo, prevención de fraude, orden judicial)."
       },
       "security": {
         "title": "Seguridad",
@@ -618,6 +626,32 @@
       "contact": {
         "title": "Contáctanos",
         "content": "Si tienes preguntas, inquietudes o quejas, usa el formulario de contacto o envía un correo a peter@detrans.ai."
+      }
+    }
+  },
+  "termsOfService": {
+    "title": "Términos de Servicio",
+    "intro": "Al usar detrans.ai, aceptas los siguientes términos.",
+    "sections": {
+      "acceptableUse": {
+        "title": "Uso Aceptable",
+        "content": "detrans.ai está destinado a preguntas y discusiones relacionadas con el género, la identidad de género, la destransición y temas relacionados. No debes usar el servicio para spam, contenido ilegal, ataques de inyección de prompts o cualquier intento de manipular o abusar del sistema. Nos reservamos el derecho de bloquear direcciones IP y prohibir usuarios que violen estos términos."
+      },
+      "publicConversations": {
+        "title": "Conversaciones Públicas",
+        "content": "Todas las conversaciones son públicas y pueden mostrarse en la página principal de detrans.ai. No compartas información sensible, identificable o confidencial. Las conversaciones pueden usarse para fines de investigación en forma anonimizada."
+      },
+      "disclaimer": {
+        "title": "Descargo de Responsabilidad",
+        "content": "El servicio se proporciona tal cual y según disponibilidad sin garantías de ningún tipo. detrans.ai no es un sustituto del asesoramiento médico o psicológico profesional. Siempre consulta a un profesional de la salud calificado para decisiones de salud personales."
+      },
+      "liability": {
+        "title": "Limitación de Responsabilidad",
+        "content": "En la máxima medida permitida por la ley, detrans.ai y sus operadores no serán responsables de ningún daño indirecto, incidental o consecuente que surja del uso del servicio."
+      },
+      "changes": {
+        "title": "Cambios a Estos Términos",
+        "content": "Podemos actualizar estos términos de vez en cuando. El uso continuado del servicio después de los cambios constituye la aceptación de los términos actualizados."
       }
     }
   },

@@ -533,7 +533,7 @@
         "title": "Topladığımız Bilgiler",
         "chatMessages": {
           "title": "Sohbet Mesajları:",
-          "content": "Tüm sohbet kayıtlarını ve Derin Araştırma modundaki tüm sorulara verilen yanıtları saklarız. Sohbet kayıtları IP adresiniz veya sizi tanımlamak için kullanılabilecek herhangi bir veri ile ilişkilendirilmez. Sohbet kayıtları gelecekte araştırma amaçları için analiz edilebilir ve kullanılabilir. Lütfen hassas bilgiler paylaşmaktan kaçının."
+          "content": "Tüm konuşmalar herkese açıktır ve detrans.ai ana sayfasında görüntülenebilir. Konuşmalar, yazma sırasında IP adresinizle ilişkili ülkeyi içerir. Tüm sohbet kayıtları analiz edilebilir ve araştırma amaçları için kullanılabilir. Lütfen hassas veya tanımlayıcı bilgiler paylaşmaktan kaçının."
         },
         "cookies": {
           "title": "Çerezler / İzleme Teknolojileri:",
@@ -541,11 +541,19 @@
         },
         "ipAddresses": {
           "title": "IP Adresleri:",
-          "content": "Sunucularımıza bir istek yaptığınızda, istekleri saymak ve kötüye kullanımı önleyen hız sınırlamalarını uygulamak için IP adresinizi saklarız."
+          "content": "Kötye kullanımı önlemek ve hız sınırlamalarını uygulamak için IP adresinizi saklıyoruz. Anonim herkese açık konuşmalar için, konuşmayla birlikte görüntülenen ülkenizi belirlemek için IP adresinizi kullanıyoruz. IP adresleri konuşma kayıtlarıyla birlikte saklanır ve hizmetin kötüye kullanımını önlemek için korunur."
         },
         "optionalData": {
           "title": "İsteğe Bağlı Veriler:",
           "content": "Bizimle iletişime geçmeyi seçerseniz, gönüllü olarak verdiğiniz bilgileri (örneğin e-posta adresi, isim) toplayabiliriz. Bu bilgileri sağlamak isteğe bağlıdır, açıkça belirtilmediği sürece."
+        },
+        "aiProviders": {
+          "title": "AI İşleme:",
+          "content": "Mesajlarınız yanıt üretmek için üçüncü taraf AI sağlayıcıları (şu anda OpenRouter) tarafından işlenir. Konuşmalarınız üzerinde eğitim devre dışıdır. Verileri nasıl işledikleri hakkında ayrıntılar için lütfen OpenRouter'ın gizlilik politikasına bakın."
+        },
+        "captcha": {
+          "title": "Bot Tespiti (hCaptcha):",
+          "content": "Otomatik kötüye kullanıma karşı koruma sağlamak için Intuition Machines, Inc. tarafından sağlanan üçüncü taraf bir hizmet olan hCaptcha kullanıyoruz. hCaptcha, insan olup olmadığınızı belirlemek için IP adresinizi, tarayıcı bilgilerinizi ve etkileşim verilerinizi (fare hareketleri ve tuş vuruşu desenleri gibi) toplayabilir. Bu veriler hCaptcha'nın kendi gizlilik politikasına tabidir. hCaptcha yalnızca hizmeti için gerekli olan onay muafiyeti çerezlerini kullanır."
         }
       },
       "legalBases": {
@@ -555,11 +563,11 @@
       },
       "dataRetention": {
         "title": "Verileri Ne Kadar Saklıyoruz",
-        "content": "Tüm sohbet kayıtları saklanacaktır. Hız sınırlama için kullanılan IP adresleri, son istekten sonra dakikalar içinde veya hız sınırı penceresinin sonunda, hangisi önce gelirse, otomatik olarak silinir. Gönüllü bilgiler (örneğin destek e-postaları) yalnızca sorgunuzu çözmek veya yasal yükümlülükleri karşılamak için gerekli olduğu sürece saklanır."
+        "content": "Tüm sohbet kayıtları, ilişkili IP adresleri ve ülke verileri dahil olmak üzere saklanır. Gönüllü bilgiler (örneğin destek e-postaları) yalnızca sorgunuzu çözmek veya yasal yükümlülükleri karşılamak için gerekli olduğu sürece saklanır."
       },
       "thirdPartySharing": {
         "title": "Üçüncü Taraf Paylaşımı",
-        "content": "Cinsiyet disforisi yaşayan insanlar için sonuçları iyileştirmek isteyen akademisyenler ve araştırmacılarla anonimleştirilmiş sohbet kayıtlarını paylaşmayı seçebiliriz. IP adreslerini veya diğer verileri yalnızca yasalar gerektiğinde veya haklarımızı, kullanıcılarımızı veya kamuoyunu korumak için (örneğin dolandırıcılık önleme, mahkeme kararı) açıklayabiliriz."
+        "content": "Cinsiyet disforisi yaşayan insanlar için sonuçları iyileştirmek isteyen akademisyenler ve araştırmacılarla anonimleştirilmiş sohbet kayıtlarını paylaşmayı seçebiliriz. Mesajlarınız yanıt üretmek için üçüncü taraf AI sağlayıcıları (şu anda OpenRouter) tarafından işlenir — konuşmalar üzerinde eğitim devre dışıdır. Bot tespiti için hCaptcha (Intuition Machines, Inc.) kullanıyoruz; bu, IP adresinizi ve etkileşim verilerinizi işleyebilir. IP adreslerini veya diğer verileri yalnızca yasalar gerektiğinde veya haklarımızı, kullanıcılarımızı veya kamuoyunu korumak için (örneğin dolandırıcılık önleme, mahkeme kararı) açıklayabiliriz."
       },
       "security": {
         "title": "Güvenlik",
@@ -581,6 +589,17 @@
         "title": "Bizimle İletişime Geçin",
         "content": "Sorularınız, endişeleriniz veya şikayetleriniz varsa, iletişim formunu kullanın veya <email>peter@detrans.ai</email> adresine e-posta gönderin."
       }
+    }
+  },
+  "termsOfService": {
+    "title": "Hizmet Şartları",
+    "intro": "detrans.ai'yi kullanarak aşağıdaki şartları kabul etmiş olursunuz.",
+    "sections": {
+      "acceptableUse": { "title": "Kabul Edilebilir Kullanım", "content": "detrans.ai, cinsiyet, cinsiyet kimliği, detransisyon ve ilgili konularla ilgili sorular ve tartışmalar için tasarlanmıştır. Hizmeti spam, yasadışı içerik, komut enjeksiyon saldırıları veya sistemi manipüle etme veya kötüye kullanma girişimleri için kullanmamalısınız. Bu şartları ihlal eden IP adreslerini engelleme ve kullanıcıları yasaklama hakkını saklı tutarız." },
+      "publicConversations": { "title": "Herkese Açık Konuşmalar", "content": "Tüm konuşmalar herkese açıktır ve detrans.ai ana sayfasında görüntülenebilir. Hassas, kişisel olarak tanımlayıcı veya gizli bilgileri paylaşmayın. Konuşmalar araştırma amaçları için anonimleştirilmiş biçimde kullanılabilir." },
+      "disclaimer": { "title": "Sorumluluk Reddi", "content": "Hizmet, hiçbir tür garanti olmaksızın 'olduğu gibi' ve 'mevcut olduğu gibi' esasına göre sağlanır. detrans.ai profesyonel tıbbi veya psikolojik tavsiye yerine geçmez. Kişisel sağlık kararları için her zaman nitelikli bir sağlık uzmanına danışın." },
+      "liability": { "title": "Sorumluluğun Sınırlandırılması", "content": "Yasanın izin verdiği azami ölçüde, detrans.ai ve operatörleri hizmetin kullanımınızdan kaynaklanan dolaylı, arızi veya sonuç olarak ortaya çıkan zararlardan sorumlu olmayacaktır." },
+      "changes": { "title": "Bu Şartlardaki Değişiklikler", "content": "Bu şartları zaman zaman güncelleyebiliriz. Değişikliklerden sonra hizmetin kullanılmaya devam edilmesi, güncellenmiş şartların kabul edildiği anlamına gelir." }
     }
   },
   "videos": {

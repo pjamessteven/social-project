@@ -534,7 +534,7 @@
         "title": "Informasi yang Kami Kumpulkan",
         "chatMessages": {
           "title": "Pesan Chat:",
-          "content": "Kami menyimpan semua catatan chat serta respons untuk semua pertanyaan yang diajukan dalam Mode Riset Mendalam. Catatan chat tidak dikaitkan dengan alamat IP Anda atau data apa pun yang berpotensi digunakan untuk mengidentifikasi Anda. Catatan chat dapat dianalisis dan digunakan untuk tujuan penelitian di masa depan. Harap hindari berbagi informasi sensitif apa pun."
+          "content": "Semua percakapan bersifat publik dan dapat ditampilkan di beranda detrans.ai. Percakapan mencakup negara yang terkait dengan alamat IP Anda saat menulis. Semua catatan chat dapat dianalisis dan digunakan untuk tujuan penelitian. Harap hindari berbagi informasi sensitif atau yang dapat mengidentifikasi Anda."
         },
         "cookies": {
           "title": "Cookie / Teknologi Pelacakan:",
@@ -542,12 +542,28 @@
         },
         "ipAddresses": {
           "title": "Alamat IP:",
-          "content": "Ketika Anda membuat permintaan ke server kami, kami menyimpan alamat IP Anda untuk menghitung permintaan dan menegakkan batas tingkat yang mencegah penyalahgunaan."
+          "content": "Kami menyimpan alamat IP Anda untuk mencegah penyalahgunaan dan menegakkan batas tingkat. Untuk percakapan publik anonim, kami menggunakan alamat IP Anda untuk menentukan negara Anda, yang ditampilkan bersama percakapan. Alamat IP disimpan bersama catatan percakapan dan dipertahankan untuk mencegah penyalahgunaan layanan."
         },
         "optionalData": {
           "title": "Data Opsional:",
           "content": "Jika Anda memilih untuk menghubungi kami, kami dapat mengumpulkan informasi yang Anda berikan secara sukarela (misalnya, alamat email, nama). Memberikan informasi ini bersifat opsional kecuali dinyatakan secara eksplisit."
+        },
+        "aiProviders": {
+          "title": "Pemrosesan AI:",
+          "content": "Pesan Anda diproses oleh penyedia AI pihak ketiga (saat ini OpenRouter) untuk menghasilkan respons. Pelatihan pada percakapan Anda dinonaktifkan. Silakan merujuk kebijakan privasi OpenRouter untuk detail tentang cara mereka menangani data."
+        },
+        "captcha": {
+          "title": "Deteksi Bot (hCaptcha):",
+          "content": "Kami menggunakan hCaptcha, layanan pihak ketiga yang disediakan oleh Intuition Machines, Inc., untuk melindungi dari penyalahgunaan otomatis. hCaptcha mungkin mengumpulkan alamat IP, informasi browser, dan data interaksi Anda (seperti gerakan mouse dan pola pengetikan) untuk menentukan apakah Anda manusia. Data ini tunduk pada kebijakan privasi hCaptcha sendiri. hCaptcha hanya menggunakan cookie yang dikecualikan dari persetujuan yang diperlukan untuk layanannya."
         }
+      },
+      "aiProviders": {
+        "title": "Pemrosesan AI:",
+        "content": "Pesan Anda diproses oleh penyedia AI pihak ketiga (saat ini OpenRouter) untuk menghasilkan respons. Pelatihan pada percakapan Anda dinonaktifkan. Silakan merujuk kebijakan privasi OpenRouter untuk detail tentang cara mereka menangani data."
+      },
+      "captcha": {
+        "title": "Deteksi Bot (hCaptcha):",
+        "content": "Kami menggunakan hCaptcha, layanan pihak ketiga yang disediakan oleh Intuition Machines, Inc., untuk melindungi dari penyalahgunaan otomatis. hCaptcha mungkin mengumpulkan alamat IP, informasi browser, dan data interaksi Anda (seperti gerakan mouse dan pola pengetikan) untuk menentukan apakah Anda manusia. Data ini tunduk pada kebijakan privasi hCaptcha sendiri. hCaptcha hanya menggunakan cookie yang dikecualikan dari persetujuan yang diperlukan untuk layanannya."
       },
       "legalBases": {
         "title": "Dasar Hukum untuk Pemrosesan (pengunjung UE/EEA)",
@@ -556,11 +572,11 @@
       },
       "dataRetention": {
         "title": "Berapa Lama Kami Menyimpan Data",
-        "content": "Semua catatan chat akan disimpan. Alamat IP yang digunakan untuk pembatasan tingkat dihapus secara otomatis dalam beberapa menit setelah permintaan terakhir atau di akhir jendela batas tingkat, mana yang lebih dulu. Informasi sukarela (misalnya, email dukungan) disimpan hanya selama diperlukan untuk menyelesaikan pertanyaan Anda atau memenuhi kewajiban hukum."
+        "content": "Semua catatan chat, termasuk alamat IP dan data negara terkait, dipertahankan. Informasi sukarela (misalnya, email dukungan) disimpan hanya selama diperlukan untuk menyelesaikan pertanyaan Anda atau memenuhi kewajiban hukum."
       },
       "thirdPartySharing": {
         "title": "Berbagi Pihak Ketiga",
-        "content": "Kami dapat memilih untuk berbagi catatan chat yang dianonimkan dengan akademisi dan peneliti yang ingin meningkatkan hasil bagi orang yang mengalami disforia gender. Kami dapat mengungkapkan alamat IP atau data lain hanya ketika diwajibkan oleh hukum atau untuk melindungi hak, pengguna, atau publik kami (misalnya, pencegahan penipuan, perintah pengadilan)."
+        "content": "Kami dapat memilih untuk berbagi catatan chat yang dianonimkan dengan akademisi dan peneliti yang ingin meningkatkan hasil bagi orang yang mengalami disforia gender. Pesan Anda diproses oleh penyedia AI pihak ketiga (saat ini OpenRouter) untuk menghasilkan respons — pelatihan pada percakapan dinonaktifkan. Kami menggunakan hCaptcha (Intuition Machines, Inc.) untuk deteksi bot, yang mungkin memproses alamat IP dan data interaksi Anda. Kami dapat mengungkapkan alamat IP atau data lain hanya ketika diwajibkan oleh hukum atau untuk melindungi hak, pengguna, atau publik kami (misalnya, pencegahan penipuan, perintah pengadilan)."
       },
       "security": {
         "title": "Keamanan",
@@ -581,6 +597,32 @@
       "contact": {
         "title": "Hubungi Kami",
         "content": "Jika Anda memiliki pertanyaan, kekhawatiran, atau keluhan, gunakan formulir kontak, atau email <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "termsOfService": {
+    "title": "Ketentuan Layanan",
+    "intro": "Dengan menggunakan detrans.ai, Anda menyetujui ketentuan berikut.",
+    "sections": {
+      "acceptableUse": {
+        "title": "Penggunaan yang Dapat Diterima",
+        "content": "detrans.ai ditujukan untuk pertanyaan dan diskusi yang berkaitan dengan gender, identitas gender, detransisi, dan topik terkait. Anda tidak boleh menggunakan layanan ini untuk spam, konten ilegal, serangan injeksi prompt, atau upaya apa pun untuk memanipulasi atau menyalahgunakan sistem. Kami berhak memblokir alamat IP dan melarang pengguna yang melanggar ketentuan ini."
+      },
+      "publicConversations": {
+        "title": "Percakapan Publik",
+        "content": "Semua percakapan bersifat publik dan dapat ditampilkan di beranda detrans.ai. Jangan berbagi informasi sensitif, yang dapat mengidentifikasi secara pribadi, atau rahasia. Percakapan dapat digunakan untuk tujuan penelitian dalam bentuk yang dianonimkan."
+      },
+      "disclaimer": {
+        "title": "Penafian",
+        "content": "Layanan ini disediakan berdasarkan \"apa adanya\" dan \"sebagaimana tersedia\" tanpa jaminan dalam bentuk apa pun. detrans.ai bukan pengganti nasihat medis atau psikologis profesional. Selalu konsultasikan dengan penyedia layanan kesehatan yang berkualitas untuk keputusan kesehatan pribadi."
+      },
+      "liability": {
+        "title": "Batasan Tanggung Jawab",
+        "content": "Sejauh yang diizinkan oleh hukum, detrans.ai dan operatornya tidak akan bertanggung jawab atas kerugian tidak langsung, insidental, atau konsekuensial yang timbul dari penggunaan layanan Anda."
+      },
+      "changes": {
+        "title": "Perubahan pada Ketentuan Ini",
+        "content": "Kami dapat memperbarui ketentuan ini dari waktu ke waktu. Penggunaan layanan yang berkelanjutan setelah perubahan merupakan penerimaan ketentuan yang diperbarui."
       }
     }
   },

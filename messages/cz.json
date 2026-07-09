@@ -535,7 +535,7 @@
         "title": "Informace, které shromažďujeme",
         "chatMessages": {
           "title": "Chatovací zprávy:",
-          "content": "Uchováváme všechny záznamy chatu stejně jako odpovědi na všechny otázky položené v režimu hlubokého výzkumu. Záznamy chatu nejsou spojeny s vaší IP adresou nebo žádnými daty, která by mohla být potenciálně použita k vaší identifikaci. Záznamy chatu mohou být v budoucnosti analyzovány a použity pro výzkumné účely. Prosím vyhněte se sdílení jakýchkoli citlivých informací."
+          "content": "Všechny konverzace jsou veřejné a mohou být zobrazeny na úvodní stránce detrans.ai. Konverzace zahrnují zemi spojenou s vaší IP adresou v době psaní. Všechny záznamy chatu mohou být analyzovány a použity pro výzkumné účely. Prosím vyhněte se sdílení jakýchkoli citlivých nebo identifikujících informací."
         },
         "cookies": {
           "title": "Cookies / Sledovací technologie:",
@@ -543,11 +543,19 @@
         },
         "ipAddresses": {
           "title": "IP adresy:",
-          "content": "Když provedete požadavek na naše servery, ukládáme vaši IP adresu za účelem počítání požadavků a vynucování limitů, které zabraňují zneužití."
+          "content": "Ukládáme vaši IP adresu, abychom zabránili zneužití a vynutili limity požadavků. Pro anonymní veřejné konverzace používáme vaši IP adresu k určení vaší země, která je zobrazena vedle konverzace. IP adresy jsou uloženy se záznamy konverzací a uchovávány za účelem prevence zneužití služby."
         },
         "optionalData": {
           "title": "Volitelná data:",
           "content": "Pokud se rozhodnete nás kontaktovat, můžeme shromáždit informace, které dobrovolně poskytnete (např. e-mailová adresa, jméno). Poskytnutí těchto informací je volitelné, pokud není výslovně uvedeno jinak."
+        },
+        "aiProviders": {
+          "title": "Zpracování AI:",
+          "content": "Vaše zprávy jsou zpracovávány poskytovateli AI třetích stran (v současnosti OpenRouter) k generování odpovědí. Trénování na vašich konverzacích je zakázáno. Podrobnosti o tom, jak OpenRouter zpracovává data, naleznete v jejich zásadách ochrany osobních údajů."
+        },
+        "captcha": {
+          "title": "Detekce botů (hCaptcha):",
+          "content": "Používáme hCaptcha, službu třetí strany poskytovanou společností Intuition Machines, Inc., k ochraně proti automatizovanému zneužití. hCaptcha může shromažďovat vaši IP adresu, informace o prohlížeči a interakční data (jako jsou pohyby myši a vzory psaní) k určení, zda jste člověk. Tato data podléhají vlastním zásadám ochrany osobních údajů služby hCaptcha. hCaptcha používá pouze cookies bez nutnosti souhlasu, které jsou nezbytné pro její službu."
         }
       },
       "legalBases": {
@@ -557,11 +565,11 @@
       },
       "dataRetention": {
         "title": "Jak dlouho uchováváme data",
-        "content": "Všechny záznamy chatu budou uchovány. IP adresy použité pro limitování jsou automaticky smazány do několika minut po posledním požadavku nebo na konci limitního okna, podle toho, co nastane dříve. Dobrovolné informace (např. e-maily podpory) jsou uchovány pouze tak dlouho, jak je potřeba k vyřešení vašeho dotazu nebo splnění právních povinností."
+        "content": "Všechny záznamy chatu, včetně přidružených IP adres a údajů o zemi, jsou uchovány. Dobrovolné informace (např. e-maily podpory) jsou uchovány pouze tak dlouho, jak je potřeba k vyřešení vašeho dotazu nebo splnění právních povinností."
       },
       "thirdPartySharing": {
         "title": "Sdílení s třetími stranami",
-        "content": "Můžeme se rozhodnout sdílet anonymizované záznamy chatu s akademiky a výzkumníky, kteří se snaží zlepšit výsledky pro lidi zažívající genderovou dysforii. Můžeme zpřístupnit IP adresy nebo jiná data pouze v případě, že to vyžaduje zákon nebo pro ochranu našich práv, uživatelů nebo veřejnosti (např. prevence podvodů, soudní příkaz)."
+        "content": "Můžeme se rozhodnout sdílet anonymizované záznamy chatu s akademiky a výzkumníky, kteří se snaží zlepšit výsledky pro lidi zažívající genderovou dysforii. Vaše zprávy jsou zpracovávány poskytovateli AI třetích stran (v současnosti OpenRouter) k generování odpovědí — trénování na konverzacích je zakázáno. Používáme hCaptcha (Intuition Machines, Inc.) k detekci botů, který může zpracovávat vaši IP adresu a interakční data. Můžeme zpřístupnit IP adresy nebo jiná data pouze v případě, že to vyžaduje zákon nebo pro ochranu našich práv, uživatelů nebo veřejnosti (např. prevence podvodů, soudní příkaz)."
       },
       "security": {
         "title": "Bezpečnost",
@@ -582,6 +590,32 @@
       "contact": {
         "title": "Kontaktujte nás",
         "content": "Pokud máte otázky, obavy nebo stížnosti, použijte kontaktní formulář nebo napište na <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "termsOfService": {
+    "title": "Podmínky služby",
+    "intro": "Používáním detrans.ai souhlasíte s následujícími podmínkami.",
+    "sections": {
+      "acceptableUse": {
+        "title": "Přijatelné použití",
+        "content": "detrans.ai je určen pro otázky a diskuse týkající se pohlaví, genderové identity, detranzice a souvisejících témat. Nesmíte službu používat pro spam, nelegální obsah, útoky s podněcováním promptů nebo jakýkoli pokus o manipulaci se systémem nebo zneužití systému. Vyhrazujeme si právo blokovat IP adresy a zakazovat uživatele, kteří tyto podmínky porušují."
+      },
+      "publicConversations": {
+        "title": "Veřejné konverzace",
+        "content": "Všechny konverzace jsou veřejné a mohou být zobrazeny na úvodní stránce detrans.ai. Nesdílejte citlivé, osobně identifikující ani důvěrné informace. Konverzace mohou být použity pro výzkumné účely v anonymizované podobě."
+      },
+      "disclaimer": {
+        "title": "Prohlášení o vyloučení odpovědnosti",
+        "content": "Služba je poskytována tak, jak je, a na základě dostupnosti bez jakýchkoli záruk jakéhokoli druhu. detrans.ai není náhradou za odbornou lékařskou nebo psychologickou pomoc. Pro osobní zdravotní rozhodnutí se vždy poraďte s kvalifikovaným zdravotnickým pracovníkem."
+      },
+      "liability": {
+        "title": "Omezení odpovědnosti",
+        "content": "V maximálním rozsahu povoleném zákonem nebudou detrans.ai a jeho provozovatelé odpovědní za žádné nepřímé, náhodné nebo následné škody vyplývající z vašeho používání služby."
+      },
+      "changes": {
+        "title": "Změny těchto podmínek",
+        "content": "Tyto podmínky můžeme čas od času aktualizovat. Pokračování v používání služby po změnách představuje přijetí aktualizovaných podmínek."
       }
     }
   },

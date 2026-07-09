@@ -534,7 +534,7 @@
         "title": "Informasjon vi samler inn",
         "chatMessages": {
           "title": "Chatmeldinger:",
-          "content": "Vi bevarer alle chatopptak så vel som svarene på alle spørsmål stilt i dyp forskningsmodus. Chatopptak er ikke tilknyttet din IP-adresse eller data som potensielt kunne blitt brukt til å identifisere deg. Chatopptak kan analyseres og brukes til forskningsformål i fremtiden. Vennligst unngå å dele sensitiv informasjon."
+          "content": "Alle samtaler er offentlige og kan vises på detrans.ai-forsiden. Samtaler inkluderer landet som er knyttet til IP-adressen din på tidspunktet for skriving. Alle chattposter kan analyseres og brukes til forskningsformål. Vennligst unngå å dele sensitiv eller identifiserbar informasjon."
         },
         "cookies": {
           "title": "Informasjonskapsler / Sporingsteknologier:",
@@ -542,12 +542,28 @@
         },
         "ipAddresses": {
           "title": "IP-adresser:",
-          "content": "Når du gjør en forespørsel til serverne våre, lagrer vi din IP-adresse for å telle forespørsler og håndheve hastighetsbegrensninger som forhindrer misbruk."
+          "content": "Vi lagrer IP-adressen din for å forhindre misbruk og håndheve hastighetsbegrensninger. For anonyme offentlige samtaler bruker vi IP-adressen din til å bestemme landet ditt, som vises ved siden av samtalen. IP-adresser lagres sammen med samtaleposter og beholdes for å forhindre misbruk av tjenesten."
         },
         "optionalData": {
           "title": "Valgfri data:",
           "content": "Hvis du velger å kontakte oss, kan vi samle inn informasjonen du frivillig oppgir (f.eks. e-postadresse, navn). Å gi denne informasjonen er valgfritt med mindre det uttrykkelig er angitt."
+        },
+        "aiProviders": {
+          "title": "AI-behandling:",
+          "content": "Meldingene dine behandles av tredjeparts AI-leverandører (for øyeblikket OpenRouter) for å generere svar. Trening på samtalene dine er deaktivert. Vennligst se OpenRouters personvernpolicy for detaljer om hvordan de håndterer data."
+        },
+        "captcha": {
+          "title": "Botdeteksjon (hCaptcha):",
+          "content": "Vi bruker hCaptcha, en tredjepartstjeneste levert av Intuition Machines, Inc., for å beskytte mot automatisert misbruk. hCaptcha kan samle inn IP-adressen din, nettleserinformasjon og interaksjonsdata (som musebevegelser og tastetrykkmønstre) for å avgjøre om du er menneskelig. Disse dataene er underlagt hCaptchas egen personvernpolicy. hCaptcha bruker bare samtykkefrie informasjonskapsler som er nødvendige for tjenesten."
         }
+      },
+      "aiProviders": {
+        "title": "AI-behandling:",
+        "content": "Meldingene dine behandles av tredjeparts AI-leverandører (for øyeblikket OpenRouter) for å generere svar. Trening på samtalene dine er deaktivert. Vennligst se OpenRouters personvernpolicy for detaljer om hvordan de håndterer data."
+      },
+      "captcha": {
+        "title": "Botdeteksjon (hCaptcha):",
+        "content": "Vi bruker hCaptcha, en tredjepartstjeneste levert av Intuition Machines, Inc., for å beskytte mot automatisert misbruk. hCaptcha kan samle inn IP-adressen din, nettleserinformasjon og interaksjonsdata (som musebevegelser og tastetrykkmønstre) for å avgjøre om du er menneskelig. Disse dataene er underlagt hCaptchas egen personvernpolicy. hCaptcha bruker bare samtykkefrie informasjonskapsler som er nødvendige for tjenesten."
       },
       "legalBases": {
         "title": "Juridiske grunnlag for behandling (EU/EØS-besøkende)",
@@ -556,11 +572,11 @@
       },
       "dataRetention": {
         "title": "Hvor lenge vi beholder data",
-        "content": "Alle chatopptak vil bli bevart. IP-adresser brukt til hastighetsbegrensning slettes automatisk innen minutter etter siste forespørsel eller ved slutten av hastighetsbegrensningsvinduet, avhengig av hva som kommer først. Frivillig informasjon (f.eks. støtte-e-poster) beholdes bare så lenge som nødvendig for å løse din henvendelse eller tilfredsstille juridiske forpliktelser."
+        "content": "Alle chattposter, inkludert tilhørende IP-adresser og landdata, bevares. Frivillig informasjon (f.eks. støtte-e-poster) beholdes bare så lenge som nødvendig for å løse henvendelsen din eller tilfredsstille juridiske forpliktelser."
       },
       "thirdPartySharing": {
         "title": "Tredjepartsdeling",
-        "content": "Vi kan velge å dele anonymiserte chatopptak med akademikere og forskere som ser etter å forbedre resultatene for mennesker som opplever kjønnsdysfori. Vi kan avsløre IP-adresser eller annen data bare når det kreves ved lov eller for å beskytte våre rettigheter, brukere eller offentligheten (f.eks. svindelforebygging, rettsbeslutning)."
+        "content": "Vi kan velge å dele anonymiserte chattposter med akademikere og forskere som søker å forbedre resultatene for mennesker som opplever kjønnsdysfori. Meldingene dine behandles av tredjeparts AI-leverandører (for øyeblikket OpenRouter) for å generere svar — trening på samtaler er deaktivert. Vi bruker hCaptcha (Intuition Machines, Inc.) for botdeteksjon, som kan behandle IP-adressen din og interaksjonsdata. Vi kan utlevere IP-adresser eller andre data bare når det kreves ved lov eller for å beskytte våre rettigheter, brukere eller offentligheten (f.eks. svindelforebygging, rettsbeslutning)."
       },
       "security": {
         "title": "Sikkerhet",
@@ -581,6 +597,32 @@
       "contact": {
         "title": "Kontakt oss",
         "content": "Hvis du har spørsmål, bekymringer eller klager, bruk enten kontaktskjemaet, eller send e-post til <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "termsOfService": {
+    "title": "Vilkår for bruk",
+    "intro": "Ved å bruke detrans.ai godtar du følgende vilkår.",
+    "sections": {
+      "acceptableUse": {
+        "title": "Akseptabel bruk",
+        "content": "detrans.ai er beregnet på spørsmål og diskusjoner relatert til kjønn, kjønnsidentitet, detransisjon og relaterte emner. Du må ikke bruke tjenesten for spam, ulovlig innhold, promptinjeksjonsangrep eller noe forsøk på å manipulere eller misbruke systemet. Vi forbeholder oss retten til å blokkere IP-adresser og utestenge brukere som bryter disse vilkårene."
+      },
+      "publicConversations": {
+        "title": "Offentlige samtaler",
+        "content": "Alle samtaler er offentlige og kan vises på detrans.ai-forsiden. Ikke del sensitiv, personlig identifiserbar eller konfidensiell informasjon. Samtaler kan brukes til forskningsformål i anonymisert form."
+      },
+      "disclaimer": {
+        "title": "Ansvarsfraskrivelse",
+        "content": "Tjenesten leveres på en \"som den er\" og \"som tilgjengelig\" basis uten garantier av noe slag. detrans.ai er ikke en erstatning for profesjonell medisinsk eller psykologisk rådgivning. Rådfør deg alltid med en kvalifisert helsepersonell for personlige helsebeslutninger."
+      },
+      "liability": {
+        "title": "Ansvarsbegrensning",
+        "content": "I den grad det er tillatt ved lov, skal detrans.ai og dets operatører ikke være ansvarlige for indirekte, tilfeldige eller følgeskader som følge av din bruk av tjenesten."
+      },
+      "changes": {
+        "title": "Endringer i disse vilkårene",
+        "content": "Vi kan oppdatere disse vilkårene fra tid til annen. Fortsatt bruk av tjenesten etter endringer utgjør aksept av de oppdaterte vilkårene."
       }
     }
   },

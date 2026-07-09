@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 
 export default function TermsPage() {
   const t = useTranslations("terms");
+  const tOS = useTranslations("termsOfService");
 
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
@@ -33,6 +34,18 @@ export default function TermsPage() {
               <b>{t("sections.informationWeCollect.optionalData.title")}</b>
               <br />
               {t("sections.informationWeCollect.optionalData.content")}
+            </li>
+            <li>
+              <b>{t("sections.informationWeCollect.aiProviders.title")}</b>
+              <br />
+              {t("sections.informationWeCollect.aiProviders.content")}
+            </li>
+            <li>
+              <b>{t("sections.informationWeCollect.captcha.title")}</b>
+              <br />
+              {t.rich("sections.informationWeCollect.captcha.content", {
+                em: (chunks) => <em>{chunks}</em>,
+              })}
             </li>
           </ol>
         </li>
@@ -95,6 +108,38 @@ export default function TermsPage() {
           })}
         </li>
       </ol>
+
+      <div className="mt-12 border-t pt-8">
+        <h2 className="text-2xl font-bold">{tOS("title")}</h2>
+        <p>{tOS("intro")}</p>
+        <ol>
+          <li>
+            <b>{tOS("sections.acceptableUse.title")}</b>
+            <br />
+            {tOS("sections.acceptableUse.content")}
+          </li>
+          <li>
+            <b>{tOS("sections.publicConversations.title")}</b>
+            <br />
+            {tOS("sections.publicConversations.content")}
+          </li>
+          <li>
+            <b>{tOS("sections.disclaimer.title")}</b>
+            <br />
+            {tOS("sections.disclaimer.content")}
+          </li>
+          <li>
+            <b>{tOS("sections.liability.title")}</b>
+            <br />
+            {tOS("sections.liability.content")}
+          </li>
+          <li>
+            <b>{tOS("sections.changes.title")}</b>
+            <br />
+            {tOS("sections.changes.content")}
+          </li>
+        </ol>
+      </div>
     </div>
   );
 }

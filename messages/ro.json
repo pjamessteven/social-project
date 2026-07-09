@@ -534,7 +534,7 @@
         "title": "Informațiile pe Care le Colectăm",
         "chatMessages": {
           "title": "Mesaje de Chat:",
-          "content": "Păstrăm toate înregistrările de chat, precum și răspunsurile la toate întrebările puse în modul Cercetare Profundă. Înregistrările de chat nu sunt asociate cu adresa ta IP sau cu niciun fel de date care ar putea fi folosite pentru a te identifica. Înregistrările de chat pot fi analizate și folosite în scopuri de cercetare în viitor. Te rugăm să eviți să împărtășești informații sensibile."
+          "content": "Toate conversațiile sunt publice și pot fi afișate pe pagina principală detrans.ai. Conversațiile includ țara asociată adresei tale IP în momentul scrierii. Toate înregistrările de chat pot fi analizate și folosite în scopuri de cercetare. Te rugăm să eviți să partajezi informații sensibile sau de identificare."
         },
         "cookies": {
           "title": "Cookie-uri / Tehnologii de Urmărire:",
@@ -542,11 +542,19 @@
         },
         "ipAddresses": {
           "title": "Adrese IP:",
-          "content": "Când faci o cerere către serverele noastre, stocăm adresa ta IP pentru a număra cererile și a aplica limite de rată care previn abuzul."
+          "content": "Stocăm adresa ta IP pentru a preveni abuzul și a aplica limite de rată. Pentru conversațiile publice anonime, folosim adresa ta IP pentru a determina țara ta, care este afișată alături de conversație. Adresele IP sunt stocate cu înregistrările conversațiilor și reținute pentru a preveni abuzul serviciului."
         },
         "optionalData": {
           "title": "Date Opționale:",
           "content": "Dacă alegi să ne contactezi, putem colecta informațiile pe care le furnizezi voluntar (de ex., adresă de email, nume). Furnizarea acestor informații este opțională, cu excepția cazului în care se specifică în mod explicit."
+        },
+        "aiProviders": {
+          "title": "Procesare AI:",
+          "content": "Mesajele tale sunt procesate de furnizori terți de AI (în prezent OpenRouter) pentru a genera răspunsuri. Antrenarea pe conversațiile tale este dezactivată. Te rugăm să consulți politica de confidențialitate OpenRouter pentru detalii despre modul în care aceștia gestionează datele."
+        },
+        "captcha": {
+          "title": "Detectare Boți (hCaptcha):",
+          "content": "Folosim hCaptcha, un serviciu terț furnizat de Intuition Machines, Inc., pentru protecția împotriva abuzului automatizat. hCaptcha poate colecta adresa ta IP, informații despre browser și date de interacțiune (cum ar fi mișcările mouse-ului și tiparele de tastare) pentru a determina dacă ești uman. Aceste date sunt supuse propriei politici de confidențialitate hCaptcha. hCaptcha folosește doar cookie-uri scutite de consimțământ, necesare pentru serviciul său."
         }
       },
       "legalBases": {
@@ -556,11 +564,11 @@
       },
       "dataRetention": {
         "title": "Cât Timp Păstrăm Datele",
-        "content": "Toate înregistrările de chat vor fi păstrate. Adresele IP folosite pentru limitarea ratei sunt șterse automat în câteva minute după ultima cerere sau la sfârșitul ferestrei de limitare a ratei, oricare vine prima. Informațiile voluntare (de ex., emailuri de suport) sunt păstrate doar atât timp cât este necesar pentru a-ți rezolva întrebarea sau pentru a satisface obligațiile legale."
+          "content": "Toate înregistrările de chat, inclusiv adresele IP și datele despre țară asociate, sunt păstrate. Informațiile voluntare (de ex., emailuri de suport) sunt reținute doar atât timp cât este necesar pentru a-ți rezolva solicitarea sau pentru a satisface obligațiile legale."
       },
       "thirdPartySharing": {
         "title": "Partajarea cu Terți",
-        "content": "Putem alege să împărtășim înregistrările de chat anonimizate cu academicieni și cercetători care caută să îmbunătățească rezultatele pentru persoanele care experimentează disforie de gen. Putem divulga adrese IP sau alte date doar atunci când este cerut de lege sau pentru a ne proteja drepturile, utilizatorii sau publicul (de ex., prevenirea fraudelor, ordin judecătoresc)."
+          "content": "Putem alege să partajăm înregistrările de chat anonimizate cu academicieni și cercetători care caută să îmbunătățească rezultatele pentru persoanele care experimentează disforie de gen. Mesajele tale sunt procesate de furnizori terți de AI (în prezent OpenRouter) pentru a genera răspunsuri — antrenarea pe conversații este dezactivată. Folosim hCaptcha (Intuition Machines, Inc.) pentru detectarea boților, care poate procesa adresa ta IP și datele de interacțiune. Putem divulga adrese IP sau alte date doar atunci când este cerut de lege sau pentru a ne proteja drepturile, utilizatorii sau publicul (de ex., prevenirea fraudelor, ordin judecătoresc)."
       },
       "security": {
         "title": "Securitate",
@@ -581,6 +589,32 @@
       "contact": {
         "title": "Contactează-ne",
         "content": "Dacă ai întrebări, nelămuriri sau reclamații, folosește formularul de contact sau trimite un email la <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "termsOfService": {
+    "title": "Termeni și Condiții",
+    "intro": "Prin utilizarea detrans.ai, ești de acord cu următorii termeni.",
+    "sections": {
+      "acceptableUse": {
+        "title": "Utilizare Acceptabilă",
+        "content": "detrans.ai este destinat întrebărilor și discuțiilor legate de gen, identitate de gen, detransiție și subiecte conexe. Nu trebuie să folosești serviciul pentru spam, conținut ilegal, atacuri de injectare de prompt-uri sau orice încercare de a manipula sau abuza sistemul. Ne rezervăm dreptul de a bloca adresele IP și de a interzice utilizatorii care încalcă acești termeni."
+      },
+      "publicConversations": {
+        "title": "Conversații Publice",
+        "content": "Toate conversațiile sunt publice și pot fi afișate pe pagina principală detrans.ai. Nu partaja informații sensibile, de identificare personală sau confidențiale. Conversațiile pot fi folosite în scopuri de cercetare în formă anonimizată."
+      },
+      "disclaimer": {
+        "title": "Declinarea Răspunderii",
+        "content": "Serviciul este furnizat „ca atare\" și „disponibil\" fără garanții de niciun fel. detrans.ai nu este un substitut pentru sfatul medical sau psihologic profesionist. Consultă întotdeauna un furnizor de servicii medicale calificat pentru deciziile privind sănătatea personală."
+      },
+      "liability": {
+        "title": "Limitarea Răspunderii",
+        "content": "În măsura permisă de lege, detrans.ai și operatorii săi nu vor fi răspunzători pentru daune indirecte, incidentale sau consecvente care decurg din utilizarea serviciului de către tine."
+      },
+      "changes": {
+        "title": "Modificări ale Acestor Termeni",
+        "content": "Putem actualiza acești termeni din când în când. Continuarea utilizării serviciului după modificări constituie acceptarea termenilor actualizați."
       }
     }
   },

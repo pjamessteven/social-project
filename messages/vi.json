@@ -534,7 +534,7 @@
         "title": "Thông Tin Chúng Tôi Thu Thập",
         "chatMessages": {
           "title": "Tin Nhắn Trò Chuyện:",
-          "content": "Chúng tôi lưu giữ tất cả hồ sơ trò chuyện cũng như các câu trả lời cho tất cả các câu hỏi được đặt trong chế độ Nghiên Cứu Sâu. Hồ sơ trò chuyện không được liên kết với địa chỉ IP của bạn hoặc bất kỳ dữ liệu nào có thể được sử dụng để xác định bạn. Hồ sơ trò chuyện có thể được phân tích và sử dụng cho mục đích nghiên cứu trong tương lai. Vui lòng tránh chia sẻ bất kỳ thông tin nhạy cảm nào."
+          "content": "Tất cả các cuộc trò chuyện đều công khai và có thể được hiển thị trên trang chủ detrans.ai. Các cuộc trò chuyện bao gồm quốc gia liên kết với địa chỉ IP của bạn tại thời điểm viết. Tất cả hồ sơ trò chuyện có thể được phân tích và sử dụng cho mục đích nghiên cứu. Vui lòng tránh chia sẻ bất kỳ thông tin nhạy cảm hoặc có thể xác định danh tính."
         },
         "cookies": {
           "title": "Cookie / Công Nghệ Theo Dõi:",
@@ -542,11 +542,19 @@
         },
         "ipAddresses": {
           "title": "Địa Chỉ IP:",
-          "content": "Khi bạn gửi yêu cầu đến máy chủ của chúng tôi, chúng tôi lưu trữ địa chỉ IP của bạn để đếm số yêu cầu và thực thi giới hạn tốc độ ngăn chặn lạm dụng."
+          "content": "Chúng tôi lưu trữ địa chỉ IP của bạn để ngăn chặn lạm dụng và thực thi giới hạn tốc độ. Đối với các cuộc trò chuyện công khai ẩn danh, chúng tôi sử dụng địa chỉ IP của bạn để xác định quốc gia của bạn, được hiển thị cùng với cuộc trò chuyện. Địa chỉ IP được lưu trữ cùng với hồ sơ trò chuyện và được giữ lại để ngăn chặn lạm dụng dịch vụ."
         },
         "optionalData": {
           "title": "Dữ Liệu Tùy Chọn:",
           "content": "Nếu bạn chọn liên hệ với chúng tôi, chúng tôi có thể thu thập thông tin bạn tự nguyện cung cấp (ví dụ: địa chỉ email, tên). Việc cung cấp thông tin này là tùy chọn trừ khi được nêu rõ ràng."
+        },
+        "aiProviders": {
+          "title": "Xử Lý AI:",
+          "content": "Tin nhắn của bạn được xử lý bởi các nhà cung cấp AI bên thứ ba (hiện tại là OpenRouter) để tạo phản hồi. Việc huấn luyện trên các cuộc trò chuyện của bạn bị vô hiệu hóa. Vui lòng tham khảo chính sách riêng tư của OpenRouter để biết chi tiết về cách họ xử lý dữ liệu."
+        },
+        "captcha": {
+          "title": "Phát Hiện Bot (hCaptcha):",
+          "content": "Chúng tôi sử dụng hCaptcha, một dịch vụ bên thứ ba được cung cấp bởi Intuition Machines, Inc., để bảo vệ chống lại lạm dụng tự động. hCaptcha có thể thu thập địa chỉ IP, thông tin trình duyệt và dữ liệu tương tác của bạn (chẳng hạn như chuyển động chuột và mẫu gõ phím) để xác định xem bạn có phải là con người hay không. Dữ liệu này chịu sự điều chỉnh của chính sách riêng tư của hCaptcha. hCaptcha chỉ sử dụng cookie miễn trừ sự đồng ý cần thiết cho dịch vụ của mình."
         }
       },
       "legalBases": {
@@ -556,11 +564,11 @@
       },
       "dataRetention": {
         "title": "Chúng Tôi Giữ Dữ Liệu Trong Bao Lâu",
-        "content": "Tất cả hồ sơ trò chuyện sẽ được lưu giữ. Địa chỉ IP được sử dụng để giới hạn tốc độ tự động bị xóa trong vòng vài phút sau yêu cầu cuối cùng hoặc vào cuối cửa sổ giới hạn tốc độ, tùy điều kiện nào đến trước. Thông tin tự nguyện (ví dụ: email hỗ trợ) chỉ được giữ chừng nào cần thiết để giải quyết yêu cầu của bạn hoặc thỏa mãn các nghĩa vụ pháp lý."
+        "content": "Tất cả hồ sơ trò chuyện, bao gồm địa chỉ IP và dữ liệu quốc gia liên quan, đều được lưu giữ. Thông tin tự nguyện (ví dụ: email hỗ trợ) chỉ được giữ chừng nào cần thiết để giải quyết yêu cầu của bạn hoặc thỏa mãn các nghĩa vụ pháp lý."
       },
       "thirdPartySharing": {
         "title": "Chia Sẻ Bên Thứ Ba",
-        "content": "Chúng tôi có thể chọn chia sẻ hồ sơ trò chuyện ẩn danh với các nhà học thuật và nhà nghiên cứu đang tìm cách cải thiện kết quả cho ngưởi trải qua khủng hoảng giới tính. Chúng tôi chỉ tiết lộ địa chỉ IP hoặc dữ liệu khác khi được pháp luật yêu cầu hoặc để bảo vệ quyền, ngưởi dùng hoặc công chúng của chúng tôi (ví dụ: ngăn chặn gian lận, lệnh của tòa án)."
+        "content": "Chúng tôi có thể chọn chia sẻ hồ sơ trò chuyện ẩn danh với các nhà học thuật và nhà nghiên cứu đang tìm cách cải thiện kết quả cho ngưởi trải qua khủng hoảng giới tính. Tin nhắn của bạn được xử lý bởi các nhà cung cấp AI bên thứ ba (hiện tại là OpenRouter) để tạo phản hồi — việc huấn luyện trên các cuộc trò chuyện bị vô hiệu hóa. Chúng tôi sử dụng hCaptcha (Intuition Machines, Inc.) để phát hiện bot, có thể xử lý địa chỉ IP và dữ liệu tương tác của bạn. Chúng tôi chỉ tiết lộ địa chỉ IP hoặc dữ liệu khác khi được pháp luật yêu cầu hoặc để bảo vệ quyền, ngưởi dùng hoặc công chúng của chúng tôi (ví dụ: ngăn chặn gian lận, lệnh của tòa án)."
       },
       "security": {
         "title": "Bảo Mật",
@@ -582,6 +590,17 @@
         "title": "Liên Hệ Với Chúng Tôi",
         "content": "Nếu bạn có câu hỏi, lo ngại hoặc khiếu nại, hãy sử dụng biểu mẫu liên hệ hoặc email <email>peter@detrans.ai</email>."
       }
+    }
+  },
+  "termsOfService": {
+    "title": "Điều Khoản Dịch Vụ",
+    "intro": "Bằng cách sử dụng detrans.ai, bạn đồng ý với các điều khoản sau.",
+    "sections": {
+      "acceptableUse": { "title": "Sử Dụng Hợp Lệ", "content": "detrans.ai được thiết kế cho các câu hỏi và thảo luận liên quan đến giới tính, bản dạng giới, chuyển giới trở lại và các chủ đề liên quan. Bạn không được sử dụng dịch vụ cho spam, nội dung bất hợp pháp, tấn công tiêm lệnh hoặc bất kỳ nỗ lực nào để thao túng hoặc lạm dụng hệ thống. Chúng tôi bảo lưu quyền chặn địa chỉ IP và cấm người dùng vi phạm các điều khoản này." },
+      "publicConversations": { "title": "Cuộc Trò Chuyện Công Khai", "content": "Tất cả các cuộc trò chuyện đều công khai và có thể được hiển thị trên trang chủ detrans.ai. Không chia sẻ thông tin nhạy cảm, có thể xác định danh tính hoặc thông tin bí mật. Các cuộc trò chuyện có thể được sử dụng cho mục đích nghiên cứu ở dạng ẩn danh." },
+      "disclaimer": { "title": "Tuyên Bố Miễn Trừ Trách Nhiệm", "content": "Dịch vụ được cung cấp trên cơ sở 'nguyên trạng' và 'có sẵn' mà không có bất kỳ bảo đảm nào. detrans.ai không phải là sự thay thế cho lời khuyên y tế hoặc tâm lý chuyên nghiệp. Luôn tham khảo ý kiến của nhà cung cấp dịch vụ chăm sóc sức khỏe có trình độ cho các quyết định sức khỏe cá nhân." },
+      "liability": { "title": "Giới Hạn Trách Nhiệm", "content": "Trong phạm vi tối đa được pháp luật cho phép, detrans.ai và các nhà điều hành của nó sẽ không chịu trách nhiệm cho bất kỳ thiệt hại gián tiếp, ngẫu nhiên hoặc do hậu quả nào phát sinh từ việc bạn sử dụng dịch vụ." },
+      "changes": { "title": "Thay Đổi Các Điều Khoản Này", "content": "Chúng tôi có thể cập nhật các điều khoản này theo thời gian. Việc tiếp tục sử dụng dịch vụ sau các thay đổi cấu thành sự chấp nhận các điều khoản đã cập nhật." }
     }
   },
   "videos": {

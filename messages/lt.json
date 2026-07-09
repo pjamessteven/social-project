@@ -534,7 +534,7 @@
         "title": "Informacija, kurią renkame",
         "chatMessages": {
           "title": "Pokalbių žinutės:",
-          "content": "Mes išsaugome visus pokalbių įrašus, taip pat atsakymus į visus klausimus, užduotus Giluminio tyrimo režimu. Pokalbių įrašai nėra susieti su jūsų IP adresu ar bet kuriais duomenimis, kurie potencialiai galėtų būti naudojami jus identifikuoti. Pokalbių įrašai gali būti analizuojami ir naudojami tyrimo tikslais ateityje. Prašome vengti dalintis jautria informacija."
+          "content": "Visi pokalbiai yra vieši ir gali būti rodomi detrans.ai pagrindiniame puslapyje. Pokalbiai apima šalį, susietą su jūsų IP adresu rašymo metu. Visi pokalbių įrašai gali būti analizuojami ir naudojami mokslinių tyrimų tikslais. Prašome vengti dalintis bet kokia jautria ar identifikavimo informacija."
         },
         "cookies": {
           "title": "Slapukai / Sekimo technologijos:",
@@ -542,12 +542,28 @@
         },
         "ipAddresses": {
           "title": "IP adresai:",
-          "content": "Kai pateikiate užklausą mūsų serveriams, mes saugome jūsų IP adresą, kad suskaičiuotume užklausas ir įvykdytume greičio apribojimus, kurie užkerta kelią piktnaudžiavimui."
+          "content": "Mes saugome jūsų IP adresą, kad užkirstume kelią piktnaudžiavimui ir įgyvendintume greičio apribojimus. Anoniminiams viešiems pokalbiams naudojame jūsų IP adresą jūsų šaliai nustatyti, kuri rodoma šalia pokalbio. IP adresai saugomi kartu su pokalbių įrašais ir išlaikomi siekiant užkirsti kelią paslaugos piktnaudžiavimui."
         },
         "optionalData": {
           "title": "Pasirenkami duomenys:",
           "content": "Jei pasirinksite susisiekti su mumis, mes galime rinkti informaciją, kurią savanoriškai pateikiate (pvz., el. pašto adresą, vardą). Šios informacijos pateikimas yra pasirenkamas, nebent aiškiai nurodyta kitaip."
+        },
+        "aiProviders": {
+          "title": "AI apdorojimas:",
+          "content": "Jūsų žinutės apdorojamos trečiųjų šalių AI teikėjų (šiuo metu OpenRouter), kad būtų generuojami atsakymai. Mokymas su jūsų pokalbiais yra išjungtas. Prašome žiūrėti OpenRouter privatumo politiką dėl informacijos, kaip jie tvarko duomenis."
+        },
+        "captcha": {
+          "title": "Botų aptikimas (hCaptcha):",
+          "content": "Mes naudojame hCaptcha, trečiosios šalies paslaugą, kurią teikia Intuition Machines, Inc., apsaugai nuo automatizuoto piktnaudžiavimo. hCaptcha gali rinkti jūsų IP adresą, naršyklės informaciją ir sąveikos duomenis (pvz., pelės judesius ir klavišų paspaudimų modelius), kad nustatytų, ar esate žmogus. Šie duomenys yra taikomi hCaptcha savo privatumo politikai. hCaptcha naudoja tik sutikimo išimties slapukus, būtinus jos paslaugai."
         }
+      },
+      "aiProviders": {
+        "title": "AI apdorojimas:",
+        "content": "Jūsų žinutės apdorojamos trečiųjų šalių AI teikėjų (šiuo metu OpenRouter), kad būtų generuojami atsakymai. Mokymas su jūsų pokalbiais yra išjungtas. Prašome žiūrėti OpenRouter privatumo politiką dėl informacijos, kaip jie tvarko duomenis."
+      },
+      "captcha": {
+        "title": "Botų aptikimas (hCaptcha):",
+        "content": "Mes naudojame hCaptcha, trečiosios šalies paslaugą, kurią teikia Intuition Machines, Inc., apsaugai nuo automatizuoto piktnaudžiavimo. hCaptcha gali rinkti jūsų IP adresą, naršyklės informaciją ir sąveikos duomenis (pvz., pelės judesius ir klavišų paspaudimų modelius), kad nustatytų, ar esate žmogus. Šie duomenys yra taikomi hCaptcha savo privatumo politikai. hCaptcha naudoja tik sutikimo išimties slapukus, būtinus jos paslaugai."
       },
       "legalBases": {
         "title": "Teisiniai apdorojimo pagrindai (ES/EEE lankytojams)",
@@ -556,11 +572,11 @@
       },
       "dataRetention": {
         "title": "Kiek laiko saugome duomenis",
-        "content": "Visi pokalbių įrašai bus išsaugoti. IP adresai, naudojami greičio apribojimui, yra automatiškai ištrinami per kelias minutes po paskutinės užklausos arba pasibaigus greičio apribojimo langui, priklausomai nuo to, kas įvyksta anksčiau. Savanoriška informacija (pvz., palaikymo el. laiškai) saugoma tik tiek, kiek reikia išspręsti jūsų užklausą arba tenkinti teisinius įsipareigojimus."
+        "content": "Visi pokalbių įrašai, įskaitant susijusius IP adresus ir šalies duomenis, yra išsaugomi. Savanoriška informacija (pvz., palaikymo el. laiškai) saugoma tik tiek, kiek reikia jūsų užklausai išspręsti arba teisiniams įsipareigojimams patenkinti."
       },
       "thirdPartySharing": {
         "title": "Trečiųjų šalių bendrinimas",
-        "content": "Mes galime pasirinkti bendrinti anonimizuotus pokalbių įrašus su akademikais ir tyrėjais, kurie ieško pagerinti rezultatus žmonėms, patiriantiems genderinę disforiją. Mes galime atskleisti IP adresus ar kitus duomenis tik kai to reikalauja įstatymai arba siekiant apsaugoti mūsų teises, vartotojus ar visuomenę (pvz., sukčiavimo prevencija, teismo orderis)."
+        "content": "Mes galime pasirinkti bendrinti anonimizuotus pokalbių įrašus su akademikais ir tyrėjais, kurie siekia pagerinti rezultatus žmonėms, patiriantiems genderinę disforiją. Jūsų žinutės apdorojamos trečiųjų šalių AI teikėjų (šiuo metu OpenRouter), kad būtų generuojami atsakymai – mokymas su pokalbiais yra išjungtas. Mes naudojame hCaptcha (Intuition Machines, Inc.) botų aptikimui, kuris gali apdoroti jūsų IP adresą ir sąveikos duomenis. Mes galime atskleisti IP adresus ar kitus duomenis tik tada, kai to reikalauja įstatymai arba siekiant apsaugoti mūsų teises, vartotojus ar visuomenę (pvz., sukčiavimo prevencija, teismo orderis)."
       },
       "security": {
         "title": "Saugumas",
@@ -581,6 +597,32 @@
       "contact": {
         "title": "Susisiekite su mumis",
         "content": "Jei turite klausimų, susirūpinimų ar skundų, naudokite kontaktinę formą arba rašykite el. paštu <email>peter@detrans.ai</email>."
+      }
+    }
+  },
+  "termsOfService": {
+    "title": "Paslaugos teikimo sąlygos",
+    "intro": "Naudodamiesi detrans.ai, jūs sutinkate su šiomis sąlygomis.",
+    "sections": {
+      "acceptableUse": {
+        "title": "Leistinas naudojimas",
+        "content": "detrans.ai skirtas klausimams ir diskusijoms, susijusioms su lytimi, genderine tapatybe, detranzicija ir susijusiomis temomis. Jūs negalite naudoti paslaugos šlamštui, neteisėtam turiniui, promptų injekcijos atakoms ar bet kokiems bandymams manipuliuoti ar piktnaudžiauti sistema. Mes pasiliekame teisę blokuoti IP adresus ir uždrausti vartotojus, kurie pažeidžia šias sąlygas."
+      },
+      "publicConversations": {
+        "title": "Vieši pokalbiai",
+        "content": "Visi pokalbiai yra vieši ir gali būti rodomi detrans.ai pagrindiniame puslapyje. Nesiųskite jautrios, asmeniškai identifikuojančios ar konfidencialios informacijos. Pokalbiai gali būti naudojami mokslinių tyrimų tikslais anonimizuota forma."
+      },
+      "disclaimer": {
+        "title": "Atsakomybės apribojimas",
+        "content": "Paslauga teikiama pagal principą „kaip yra\" ir „kaip prieinama\" be jokių garantijų. detrans.ai nėra profesionalių medicininių ar psichologinių konsultacijų pakaitalas. Visada pasitarkite su kvalifikuotu sveikatos priežiūros paslaugų teikėju dėl asmeninių sveikatos sprendimų."
+      },
+      "liability": {
+        "title": "Atsakomybės apribojimas",
+        "content": "Iki maksimalios įstatymų leidžiamos ribos detrans.ai ir jo operatoriai nebus atsakingi už jokius netiesioginius, atsitiktinius ar pasekminius nuostolius, kylančius dėl jūsų naudojimosi paslauga."
+      },
+      "changes": {
+        "title": "Šių sąlygų pakeitimai",
+        "content": "Mes galime atnaujinti šias sąlygas nuo laiko iki laiko. Tęstinis naudojimasis paslauga po pakeitimų reiškia atnaujintų sąlygų priėmimą."
       }
     }
   },

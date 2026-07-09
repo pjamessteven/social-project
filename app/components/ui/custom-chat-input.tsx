@@ -368,7 +368,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                   type="button"
                   disabled={isDisabled}
                   className={cn(
-                    "absolute right-2 bottom-2 z-30 flex items-center gap-0.5 rounded-full px-2 py-1.5 pl-3 text-xl transition-colors sm:py-1.5 sm:text-2xl",
+                    "absolute right-2 bottom-2 z-30 flex items-center gap-0.5 rounded-full px-2 py-1.5 pl-3 text-lg transition-colors sm:py-1.5 sm:text-2xl",
                     includeTransPerspectives
                       ? "bg-trans-gradient shadow-md outline outline-black/10 dark:outline-white/20"
                       : "hover:bg-gray-100 dark:hover:bg-gray-700",

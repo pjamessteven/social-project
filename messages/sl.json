@@ -534,7 +534,7 @@
         "title": "Informacije, ki jih zbiramo",
         "chatMessages": {
           "title": "Sporočila klepeta:",
-          "content": "Ohranjamo vse zapise klepeta ter odgovore na vsa vprašanja, zastavljena v načinu globoke raziskave. Zapisi klepeta niso povezani z vašim naslovom IP ali kakršnimikoli podatki, ki bi jih bilo mogoče uporabiti za vašo identifikacijo. Zapisi klepeta so lahko analizirani in uporabljeni za raziskovalne namene v prihodnosti. Prosimo, izogibajte se deljenju občutljivih informacij."
+          "content": "Vsi pogovori so javni in so lahko prikazani na domači strani detrans.ai. Pogovori vključujejo državo, povezano z vašim naslovom IP v času pisanja. Vsi zapisi klepeta so lahko analizirani in uporabljeni za raziskovalne namene. Prosimo, izogibajte se deljenju občutljivih ali identifikacijskih informacij."
         },
         "cookies": {
           "title": "Piškotki / Sledilne tehnologije:",
@@ -542,11 +542,19 @@
         },
         "ipAddresses": {
           "title": "Naslovi IP:",
-          "content": "Ko naredite zahtevek našim strežnikom, shranimo vaš naslov IP, da štejemo zahtevke in uveljavljamo omejitve hitrosti, ki preprečujejo zlorabo."
+          "content": "Shranimo vaš naslov IP za preprečevanje zlorab in uveljavljanje omejitev hitrosti. Za anonimne javne pogovore uporabljamo vaš naslov IP za določitev vaše države, ki je prikazana ob pogovoru. Naslovi IP so shranjeni skupaj z zapisi pogovorov in obdržani za preprečevanje zlorabe storitve."
         },
         "optionalData": {
           "title": "Neobvezni podatki:",
           "content": "Če se odločite stopiti v stik z nami, lahko zbiramo informacije, ki jih prostovoljno posredujete (npr. e-poštni naslov, ime). Zagotovitev teh informacij je neobvezna, razen če je izrecno navedeno."
+        },
+        "aiProviders": {
+          "title": "Obdelava z AI:",
+          "content": "Vaša sporočila obdelujejo zunanji ponudniki AI (trenutno OpenRouter) za generiranje odgovorov. Učenje na vaših pogovorih je onemogočeno. Za podrobnosti o tem, kako obdelujejo podatke, se prosimo sklicujte na politiko zasebnosti OpenRouter."
+        },
+        "captcha": {
+          "title": "Zaznavanje botov (hCaptcha):",
+          "content": "Uporabljamo hCaptcha, zunanjo storitev, ki jo ponuja Intuition Machines, Inc., za zaščito pred avtomatiziranimi zlorabami. hCaptcha lahko zbira vaš naslov IP, informacije o brskalniku in podatke o interakciji (kot so premiki miške in vzorci pritiskov tipk) za določitev, ali ste človek. Ti podatki so predmet lastne politike zasebnosti hCaptcha. hCaptcha uporablja samo piškotke, ki ne zahtevajo soglasja, potrebne za njeno storitev."
         }
       },
       "legalBases": {
@@ -556,11 +564,11 @@
       },
       "dataRetention": {
         "title": "Kako dolgo hranimo podatke",
-        "content": "Vsi zapisi klepeta bodo ohranjeni. Naslovi IP, uporabljeni za omejevanje hitrosti, se samodejno izbrišejo v nekaj minutah po zadnjem zahtevku ali ob koncu okna omejevanja hitrosti, kar nastopi prej. Prostovoljne informacije (npr. e-poštna sporočila za podporo) se hranijo samo tako dolgo, kot je potrebno za rešitev vaše poizvedbe ali izpolnitev zakonskih obveznosti."
+        "content": "Vsi zapisi klepeta, vključno s povezanimi naslovi IP in podatki o državi, so ohranjeni. Prostovoljne informacije (npr. e-poštna sporočila za podporo) se hranijo samo tako dolgo, kot je potrebno za rešitev vaše poizvedbe ali izpolnitev zakonskih obveznosti."
       },
       "thirdPartySharing": {
         "title": "Deljenje s tretjimi osebami",
-        "content": "Lahko izberemo deljenje anonimiziranih zapisov klepeta z akademiki in raziskovalci, ki želijo izboljšati rezultate za ljudi, ki doživljajo spolno nelagodje. Naslove IP ali druge podatke lahko razkrijemo samo, kadar to zahteva zakon ali za zaščito naših pravic, uporabnikov ali javnosti (npr. preprečevanje goljufij, sodni nalog)."
+        "content": "Lahko izberemo deljenje anonimiziranih zapisov klepeta z akademiki in raziskovalci, ki želijo izboljšati rezultate za ljudi, ki doživljajo spolno nelagodje. Vaša sporočila obdelujejo zunanji ponudniki AI (trenutno OpenRouter) za generiranje odgovorov – učenje na pogovorih je onemogočeno. Uporabljamo hCaptcha (Intuition Machines, Inc.) za zaznavanje botov, ki lahko obdela vaš naslov IP in podatke o interakciji. Naslove IP ali druge podatke lahko razkrijemo samo, kadar to zahteva zakon ali za zaščito naših pravic, uporabnikov ali javnosti (npr. preprečevanje goljufij, sodni nalog)."
       },
       "security": {
         "title": "Varnost",
@@ -582,6 +590,17 @@
         "title": "Stopite v stik z nami",
         "content": "Če imate vprašanja, pomisleke ali pritožbe, uporabite kontaktni obrazec ali pošljite e-pošto na <email>peter@detrans.ai</email>."
       }
+    }
+  },
+  "termsOfService": {
+    "title": "Pogoji storitve",
+    "intro": "Z uporabo detrans.ai se strinjate z naslednjimi pogoji.",
+    "sections": {
+      "acceptableUse": { "title": "Dopustna uporaba", "content": "detrans.ai je namenjen vprašanjem in razpravam, povezanim s spolom, spolno identiteto, detranzicijo in sorodnimi temami. Storitve ne smete uporabljati za neželeno pošto, nezakonito vsebino, napade z vstavljanjem pozivov ali kakršnokoli poskuso manipulacije ali zlorabe sistema. Pridržujemo si pravico do blokiranja naslovov IP in prepovedi uporabnikov, ki kršijo te pogoje." },
+      "publicConversations": { "title": "Javni pogovori", "content": "Vsi pogovori so javni in so lahko prikazani na domači strani detrans.ai. Ne delite občutljivih, osebno identifikacijskih ali zaupnih informacij. Pogovori so lahko uporabljeni za raziskovalne namene v anonimizirani obliki." },
+      "disclaimer": { "title": "Zavrnitev odgovornosti", "content": "Storitev je na voljo na osnovi 'kot je' in 'kot je na voljo' brez kakršnihkoli zagotovil. detrans.ai ni nadomestilo za profesionalno medicinsko ali psihološko svetovanje. Vedno se posvetujte s kvalificiranim zdravstvenim delavcem za osebne zdravstvene odločitve." },
+      "liability": { "title": "Omejitev odgovornosti", "content": "V največjem obsegu, ki ga dopušča zakon, detrans.ai in njegovi operaterji ne odgovarjajo za kakršnekoli posredne, naključne ali posledične škode, ki izhajajo iz vaše uporabe storitve." },
+      "changes": { "title": "Spremembe teh pogojev", "content": "Te pogoje lahko občasno posodobimo. Nadaljnja uporaba storitve po spremembah pomeni sprejem posodobljenih pogojev." }
     }
   },
   "videos": {
