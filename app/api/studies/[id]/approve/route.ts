@@ -1,4 +1,4 @@
-import { isAdmin } from "@/app/lib/auth/auth";
+import { requireAuth } from "@/app/lib/auth/middleware";
 import { extractPdfText } from "@/app/lib/pdf";
 import { db } from "@/db";
 import { studies, studyTags, studyTagRelations } from "@/db/schema";
@@ -175,13 +175,10 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const admin = await isAdmin();
-    if (!admin) {
-      return NextResponse.json(
-        { error: "Admin access required" },
-        { status: 403 },
-      );
-    }
+    const { errorResponse } = await requireAuth(request, {
+      requireAdmin: true,
+    });
+    if (errorResponse) return errorResponse;
 
     const { id } = await params;
     const studyId = parseInt(id, 10);

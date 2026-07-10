@@ -3,12 +3,10 @@ import {
   MAX_STUDY_URL_LENGTH,
   VALID_LOCALES,
 } from "@/app/lib/constants";
-import { checkIpBan, getIpFromRequest } from "@/app/lib/ipBan";
+import { withApiSecurity } from "@/app/lib/apiSecurity";
 import {
   incrementMessageCount,
-  isCaptchaRequired,
 } from "@/app/lib/messageCounter";
-import { checkRateLimit } from "@/app/lib/rateLimit";
 import {
   sanitizeLocale,
   sanitizeString,
@@ -20,6 +18,12 @@ import { desc, eq, inArray } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { isAdmin } from "@/app/lib/auth/auth";
 import { getMailer } from "@/app/lib/mailer";
+import { z } from "zod";
+
+const submitStudySchema = z.object({
+  url: z.string().url().max(MAX_STUDY_URL_LENGTH),
+  title: z.string().max(MAX_STUDY_TITLE_LENGTH).optional(),
+});
 
 interface StudyWithTranslations {
   id: number;
@@ -225,28 +229,16 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    // Apply rate limiting (10/min, 100/hour)
-    const rateLimitResponse = await checkRateLimit(request);
-    if (rateLimitResponse) return rateLimitResponse;
+    // Centralized security: rate limit + IP ban + captcha + validation
+    const { ip: ipAddress, validatedBody, error: securityError } = await withApiSecurity(request, {
+      rateLimit: true,
+      ipBan: true,
+      captcha: true,
+      validation: { schema: submitStudySchema },
+    });
+    if (securityError) return securityError;
 
-    // Check if IP is banned before processing request
-    await checkIpBan(request);
-
-    // Check CAPTCHA requirement
-    const ipAddress = getIpFromRequest(request);
-    const captchaRequired = await isCaptchaRequired(ipAddress);
-    if (captchaRequired) {
-      return NextResponse.json(
-        {
-          requiresCaptcha: true,
-          error: "CAPTCHA verification required",
-        },
-        { status: 402 },
-      );
-    }
-
-    const body = await request.json();
-    const { url: rawUrl, title: rawSuggestedTitle } = body;
+    const { url: rawUrl, title: rawSuggestedTitle } = validatedBody as z.infer<typeof submitStudySchema>;
 
     // Sanitize inputs
     const url = sanitizeUrl(rawUrl, MAX_STUDY_URL_LENGTH);

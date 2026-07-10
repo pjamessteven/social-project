@@ -67,11 +67,6 @@
       "howItWorks": "Wie es funktioniert",
       "statistics": "Verifizierte Statistiken"
     },
-    "deepResearch": {
-      "title": "Tiefenforschungsmodus",
-      "description": "Der Tiefenforschungsmodus erweitert deine Frage, um dir eine Antwort zu geben, die das Thema aus verschiedenen Blickwinkeln beleuchtet.",
-      "note": "Tiefenforschung ist langsamer und nicht konversationell. Für Chat, lass sie ausgeschaltet."
-    },
     "disclaimer": {
       "trigger": "Erfahrungen und Perspektiven auf dieser Seite stammen von Reddit und YouTube.",
       "title": "Quellenhaftungsausschluss",
@@ -239,11 +234,9 @@
     "analysingExperiences": "Analysiere Erfahrungen",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analyse der Websuche-Ergebnisse",
-    "analysingResearchResults": "Analyse der Forschungsergebnisse",
     "detransPerspective": "-> Was sind die Perspektiven von Detransitionierenden zu diesem Thema?",
     "transPerspective": "-> Was sind die Perspektiven von Trans-Personen zu diesem Thema?",
     "transPerspectivesIncluded": "Trans-Perspektiven einbezogen",
-    "backToPortal": "<- Zurück zum Portal",
     "captchaRequired": "Captcha erforderlich, um den Chat fortzusetzen.",
     "chatArchived": "Dieser Chat ist archiviert. Starten Sie einen neuen.",
     "rateLimitExceeded": "Zu viele Anfragen, verlangsamen Sie und versuchen Sie es später erneut.",
@@ -254,66 +247,24 @@
       "askDetransitioners": "Detransitionierende fragen",
       "askTransPeople": "Trans-identifizierte Personen fragen",
       "videoArchive": "Video-Archiv",
-      "userStories": "Nutzergeschichten",
       "queryStudies": "Studien durchsuchen",
-      "topicHierarchy": "Themenhierarchie",
-      "pageCatalog": "Seitenkatalog",
-      "deepResearch": "Tiefenforschung",
-      "linkPages": "Seiten verknüpfen",
       "webSearch": "Websuche",
       "queryStudyCatalogue": "Detransition-Studienkatalog abfragen",
-      "studyDetail": "Studiendetails",
-      "searchResearchCache": "Forschungscache durchsuchen",
-      "fetchCachedResearch": "Gespeicherte Forschung abrufen",
-      "proposedContent": "Vorgeschlagener Inhalt"
+      "studyDetail": "Studiendetails"
     },
     "eventStatus": {
-      "analysingVideos": "Analysiere Videos",
-      "loadingUserProfiles": "Lade Nutzerprofile...",
-      "searchingForResponses": "Suche nach Antworten",
-      "viewResults": "Ergebnisse anzeigen",
-      "failedToResearch": "Forschung fehlgeschlagen",
-      "suggestionSubmitted": "Vorschlag eingereicht! Weiterleitung...",
-      "submitting": "Wird eingereicht..."
+      "analysingVideos": "Analysiere Videos"
     },
     "eventErrors": {
       "errorOccurred": "Fehler aufgetreten",
       "invalidYoutubeUrl": "Ungültige YouTube-URL",
-      "failed": "Fehlgeschlagen",
-      "failedToCreatePage": "Seite konnte nicht erstellt werden",
-      "linkCouldNotBeCreated": "Link konnte nicht erstellt werden.",
-      "failedToCreateLink": "Link konnte nicht erstellt werden",
       "webSearchFailed": "Websuche fehlgeschlagen",
       "failedToFetchStudies": "Studien konnten nicht abgerufen werden",
-      "failedToFetchStudy": "Studie konnte nicht abgerufen werden",
-      "failedToSearchCache": "Cache-Suche fehlgeschlagen",
-      "failedToFetchCachedResearch": "Gespeicherte Forschung konnte nicht abgerufen werden",
-      "saveFailed": "Speichern fehlgeschlagen",
-      "submitFailed": "Einreichung fehlgeschlagen"
+      "failedToFetchStudy": "Studie konnte nicht abgerufen werden"
     },
     "eventEmptyStates": {
       "noVideosFound": "Keine Videos gefunden",
-      "noResultsFound": "Keine Ergebnisse gefunden",
-      "studyNotFound": "Studie nicht gefunden",
-      "noCachedResearchFound": "Keine gespeicherte Forschung gefunden",
-      "notFound": "Nicht gefunden",
-      "noResults": "Keine Ergebnisse",
-      "noMatchingPagesFound": "Keine passenden Seiten gefunden."
-    },
-    "eventFieldLabels": {
-      "title": "Titel:",
-      "page": "Seite:",
-      "version": "Version:",
-      "found": "Gefunden:",
-      "findings": "Ergebnisse:",
-      "abstract": "Zusammenfassung:",
-      "conclusion": "Fazit:",
-      "keyPoints": "Kernpunkte:",
-      "limitations": "Einschränkungen:",
-      "created": "Erstellt:",
-      "preview": "Vorschau:",
-      "cachedResearchFound": "Gespeicherte Forschung gefunden:",
-      "success": "Erfolg"
+      "noResultsFound": "Keine Ergebnisse gefunden"
     },
     "eventCounts": {
       "page": "Seite",
@@ -946,8 +897,7 @@
     },
     "chat": {
       "subtitle": "Fragen und Antworten für Menschen, die ihre Geschlechtsidentität hinterfragen.",
-      "freedomMessage": "Die Wahrheit ist, dass Gender-Nonkonformität uns alle befreien wird!",
-      "moreQuestions": "Weitere Fragen zu \"{question}\""
+      "freedomMessage": "Die Wahrheit ist, dass Gender-Nonkonformität uns alle befreien wird!"
     },
     "videos": {
       "title": "Transition- & Detransition-Videos",
@@ -972,7 +922,6 @@
     "prompts": "/de/prompts",
     "participate": "/de/participate",
     "conversations": "/de/conversations",
-    "research": "/de/research",
     "chat": "/de/chat",
     "login": "/de/login"
   },

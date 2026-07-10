@@ -67,11 +67,6 @@
       "howItWorks": "Hur Det Fungerar",
       "statistics": "Verified Statistics"
     },
-    "deepResearch": {
-      "title": "Djup Forskningsläge",
-      "description": "Djup forskningsläge expanderar din fråga för att ge dig ett svar som närmar sig ämnet från olika vinklar.",
-      "note": "Djup forskning är långsammare och icke-konversationell. För chatt, lämna det avstängt."
-    },
     "disclaimer": {
       "trigger": "Erfarenheter och perspektiv på denna webbplats hämtas från Reddit och YouTube.",
       "title": "Källansvarighet",
@@ -242,11 +237,9 @@
     "analysingExperiences": "Analyserar Erfarenheter",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analyserar webbresultat",
-    "analysingResearchResults": "Analyserar forskningsresultat",
     "detransPerspective": "-> Vilka är detrans-perspektiven på detta ämne?",
     "transPerspective": "-> Vilka är trans-perspektiven på detta ämne?",
     "transPerspectivesIncluded": "Transperspektiv inkluderade",
-    "backToPortal": "<- Tillbaka till Portalen",
     "captchaRequired": "Captcha krävs för att fortsätta chattandet.",
     "chatArchived": "Denna chatt är arkiverad. Starta en ny.",
     "rateLimitExceeded": "För många förfrågningar, sakta ner och försök igen senare.",
@@ -257,66 +250,24 @@
       "askDetransitioners": "Fråga Detransitionerare",
       "askTransPeople": "Fråga transidentifierade personer",
       "videoArchive": "Videoarkiv",
-      "userStories": "Användarberättelser",
       "queryStudies": "Sök Studier",
-      "topicHierarchy": "Ämneshierarki",
-      "pageCatalog": "Sidkatalog",
-      "deepResearch": "Djup Forskning",
-      "linkPages": "Länka Sidor",
       "webSearch": "Webbsökning",
       "queryStudyCatalogue": "Sök Detransitionsstudiekatalogen",
-      "studyDetail": "Studiedetalj",
-      "searchResearchCache": "Sök forskningscache",
-      "fetchCachedResearch": "Hämta cachad forskning",
-      "proposedContent": "Föreslaget innehåll"
+      "studyDetail": "Studiedetalj"
     },
     "eventStatus": {
-      "analysingVideos": "Analyserar Videor",
-      "loadingUserProfiles": "Laddar användarprofiler...",
-      "searchingForResponses": "Söker efter svar",
-      "viewResults": "Visa resultat",
-      "failedToResearch": "Forskning misslyckades",
-      "suggestionSubmitted": "Förslag inskickat! Omdirigerar...",
-      "submitting": "Skickar in..."
+      "analysingVideos": "Analyserar Videor"
     },
     "eventErrors": {
       "errorOccurred": "Ett fel inträffade",
       "invalidYoutubeUrl": "Ogiltig YouTube-URL",
-      "failed": "Misslyckades",
-      "failedToCreatePage": "Kunde inte skapa sida",
-      "linkCouldNotBeCreated": "Länken kunde inte skapas.",
-      "failedToCreateLink": "Kunde inte skapa länk",
       "webSearchFailed": "Webbsökning misslyckades",
       "failedToFetchStudies": "Kunde inte hämta studier",
-      "failedToFetchStudy": "Kunde inte hämta studie",
-      "failedToSearchCache": "Kunde inte söka i cache",
-      "failedToFetchCachedResearch": "Kunde inte hämta cachad forskning",
-      "saveFailed": "Sparning misslyckades",
-      "submitFailed": "Inskickning misslyckades"
+      "failedToFetchStudy": "Kunde inte hämta studie"
     },
     "eventEmptyStates": {
       "noVideosFound": "Inga videor hittades",
-      "noResultsFound": "Inga resultat hittades",
-      "studyNotFound": "Studie hittades inte",
-      "noCachedResearchFound": "Ingen cachad forskning hittades",
-      "notFound": "Hittades inte",
-      "noResults": "Inga resultat",
-      "noMatchingPagesFound": "Inga matchande sidor hittades."
-    },
-    "eventFieldLabels": {
-      "title": "Titel:",
-      "page": "Sida:",
-      "version": "Version:",
-      "found": "Hittade:",
-      "findings": "Fynd:",
-      "abstract": "Sammanfattning:",
-      "conclusion": "Slutsats:",
-      "keyPoints": "Nyckelpunkter:",
-      "limitations": "Begränsningar:",
-      "created": "Skapad:",
-      "preview": "Förhandsvisning:",
-      "cachedResearchFound": "Cachad forskning hittad:",
-      "success": "Framgång"
+      "noResultsFound": "Inga resultat hittades"
     },
     "eventCounts": {
       "page": "sida",
@@ -949,8 +900,7 @@
     },
     "chat": {
       "subtitle": "Frågor och svar för personer som ifrågasätter sin könsidentitet.",
-      "freedomMessage": "Sanningen är att könsöverträdelse kommer att befria oss alla!",
-      "moreQuestions": "Fler frågor relaterade till \"{question}\""
+      "freedomMessage": "Sanningen är att könsöverträdelse kommer att befria oss alla!"
     },
     "videos": {
       "title": "Transitions- & Detransitionsvideor",
@@ -975,7 +925,6 @@
     "prompts": "/prompter",
     "participate": "/delta",
     "conversations": "/konversationer",
-    "research": "/forskning",
     "chat": "/chatt",
     "login": "/loggain"
   },

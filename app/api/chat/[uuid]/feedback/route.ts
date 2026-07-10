@@ -1,10 +1,10 @@
+import { withApiSecurity } from "@/app/lib/apiSecurity";
 import { getCurrentSession } from "@/app/lib/auth/auth";
-import { checkIpBan, getIpFromRequest } from "@/app/lib/ipBan";
+import { getIpFromRequest } from "@/app/lib/ipBan";
 import {
   incrementMessageCount,
   isCaptchaRequired,
 } from "@/app/lib/messageCounter";
-import { checkRateLimit } from "@/app/lib/rateLimit";
 import { db } from "@/db";
 import { chatFeedback, chatConversations } from "@/db/schema";
 import { and, eq } from "drizzle-orm";
@@ -35,12 +35,14 @@ export async function POST(
   { params }: { params: Promise<{ uuid: string }> },
 ) {
   try {
-    // Rate limiting
-    const rateLimitResponse = await checkRateLimit(request);
-    if (rateLimitResponse) return rateLimitResponse;
-
-    // IP ban check
-    await checkIpBan(request);
+    // Centralized security: rate limit + IP ban + session + validation
+    const { session, ip: ipAddress, validatedBody, error: securityError } = await withApiSecurity(request, {
+      rateLimit: true,
+      ipBan: true,
+      getSession: true,
+      validation: { schema: feedbackRequestSchema },
+    });
+    if (securityError) return securityError;
 
     const { uuid } = await params;
     if (!uuid) {
@@ -50,22 +52,9 @@ export async function POST(
       );
     }
 
-    // Parse and validate body
-    const body = await request.json();
-    const validationResult = feedbackRequestSchema.safeParse(body);
-    if (!validationResult.success) {
-      return NextResponse.json(
-        { error: "Invalid request", details: validationResult.error.format() },
-        { status: 400 },
-      );
-    }
+    const { messageId, vote, feedbackText } = validatedBody as z.infer<typeof feedbackRequestSchema>;
 
-    const { messageId, vote, feedbackText } = validationResult.data;
-
-    // Get user info
-    const session = await getCurrentSession();
     const username = session?.username || null;
-    const ipAddress = getIpFromRequest(request);
 
     // Verify conversation exists
     const conversation = await db

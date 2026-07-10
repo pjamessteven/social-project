@@ -1,4 +1,4 @@
-import { isAdmin } from "@/app/lib/auth/auth";
+import { requireAuth } from "@/app/lib/auth/middleware";
 import { db } from "@/db";
 import { studies, studyTagRelations } from "@/db/schema";
 import { eq } from "drizzle-orm";
@@ -51,13 +51,10 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const admin = await isAdmin();
-    if (!admin) {
-      return NextResponse.json(
-        { error: "Admin access required" },
-        { status: 403 },
-      );
-    }
+    const { errorResponse } = await requireAuth(request, {
+      requireAdmin: true,
+    });
+    if (errorResponse) return errorResponse;
 
     const { id } = await params;
     const studyId = parseInt(id, 10);

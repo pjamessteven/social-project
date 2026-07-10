@@ -67,11 +67,6 @@
       "howItWorks": "วิธีการทำงาน",
       "statistics": "สถิติที่ตรวจสอบแล้ว"
     },
-    "deepResearch": {
-      "title": "โหมดวิจัยลึก",
-      "description": "โหมดวิจัยลึกขยายคำถามของคุณเพื่อให้คำตอบที่เข้าถึงหัวข้อจากมุมมองต่างๆ",
-      "note": "วิจัยลึกช้ากว่าและไม่ใช่การสนทนา สำหรับการแชท ให้ปิดมัน"
-    },
     "disclaimer": {
       "trigger": "ประสบการณ์และมุมมองในไซต์นี้มาจาก Reddit และ YouTube",
       "title": "ข้อจำกัดความรับผิดชอบแหล่งที่มา",
@@ -243,11 +238,9 @@
     "analysingExperiences": "กำลังวิเคราะห์ประสบการณ์",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "กำลังวิเคราะห์ผลลัพธ์จากเว็บ",
-    "analysingResearchResults": "กำลังวิเคราะห์ผลการวิจัย",
     "detransPerspective": "-> มุมมองของผู้เลิกเปลี่ยนเพศเกี่ยวกับหัวข้อนี้คืออะไร?",
     "transPerspective": "-> มุมมองของคนข้ามเพศเกี่ยวกับหัวข้อนี้คืออะไร?",
     "transPerspectivesIncluded": "รวมมุมมองของคนข้ามเพศ",
-    "backToPortal": "<- กลับไปยังพอร์ทัล",
     "captchaRequired": "ต้องใช้แคปช่าถึงจะแชทต่อได้",
     "chatArchived": "แชทนี้ถูกเก็บถาวรแล้ว เริ่มใหม่ได้เลย",
     "rateLimitExceeded": "คำขอมากเกินไป ชะลอตัวลงและลองอีกครั้งในภายหลัง",
@@ -258,66 +251,24 @@
       "askDetransitioners": "ถามผู้เลิกเปลี่ยนเพศ",
       "askTransPeople": "ถามผู้ที่ระบุว่าเป็นคนข้ามเพศ",
       "videoArchive": "คลังวิดีโอ",
-      "userStories": "เรื่องราวของผู้ใช้",
       "queryStudies": "ค้นคว้าการศึกษา",
-      "topicHierarchy": "ลำดับชั้นหัวข้อ",
-      "pageCatalog": "แคตตาล็อกหน้า",
-      "deepResearch": "วิจัยลึก",
-      "linkPages": "เชื่อมโยงหน้า",
       "webSearch": "ค้นหาเว็บ",
       "queryStudyCatalogue": "ค้นหาแคตตาล็อกการศึกษาการเลิกเปลี่ยนเพศ",
-      "studyDetail": "รายละเอียดการศึกษา",
-      "searchResearchCache": "ค้นหาแคชงานวิจัย",
-      "fetchCachedResearch": "ดึงงานวิจัยที่แคชไว้",
-      "proposedContent": "เนื้อหาที่เสนอ"
+      "studyDetail": "รายละเอียดการศึกษา"
     },
     "eventStatus": {
-      "analysingVideos": "กำลังวิเคราะห์วิดีโอ",
-      "loadingUserProfiles": "กำลังโหลดโปรไฟล์ผู้ใช้...",
-      "searchingForResponses": "กำลังค้นหาคำตอบ",
-      "viewResults": "ดูผลลัพธ์",
-      "failedToResearch": "การวิจัยล้มเหลว",
-      "suggestionSubmitted": "ส่งคำแนะนำแล้ว! กำลังเปลี่ยนเส้นทาง...",
-      "submitting": "กำลังส่ง..."
+      "analysingVideos": "กำลังวิเคราะห์วิดีโอ"
     },
     "eventErrors": {
       "errorOccurred": "เกิดข้อผิดพลาด",
       "invalidYoutubeUrl": "URL YouTube ไม่ถูกต้อง",
-      "failed": "ล้มเหลว",
-      "failedToCreatePage": "สร้างหน้าไม่สำเร็จ",
-      "linkCouldNotBeCreated": "ไม่สามารถสร้างลิงก์ได้",
-      "failedToCreateLink": "สร้างลิงก์ไม่สำเร็จ",
       "webSearchFailed": "ค้นหาเว็บล้มเหลว",
       "failedToFetchStudies": "ดึงข้อมูลการศึกษาไม่สำเร็จ",
-      "failedToFetchStudy": "ดึงข้อมูลการศึกษาไม่สำเร็จ",
-      "failedToSearchCache": "ค้นหาแคชไม่สำเร็จ",
-      "failedToFetchCachedResearch": "ดึงงานวิจัยที่แคชไว้ไม่สำเร็จ",
-      "saveFailed": "บันทึกล้มเหลว",
-      "submitFailed": "ส่งล้มเหลว"
+      "failedToFetchStudy": "ดึงข้อมูลการศึกษาไม่สำเร็จ"
     },
     "eventEmptyStates": {
       "noVideosFound": "ไม่พบวิดีโอ",
-      "noResultsFound": "ไม่พบผลลัพธ์",
-      "studyNotFound": "ไม่พบการศึกษา",
-      "noCachedResearchFound": "ไม่พบงานวิจัยที่แคชไว้",
-      "notFound": "ไม่พบ",
-      "noResults": "ไม่มีผลลัพธ์",
-      "noMatchingPagesFound": "ไม่พบหน้าที่ตรงกัน"
-    },
-    "eventFieldLabels": {
-      "title": "ชื่อเรื่อง:",
-      "page": "หน้า:",
-      "version": "เวอร์ชัน:",
-      "found": "พบ:",
-      "findings": "ผลการวิจัย:",
-      "abstract": "บทคัดย่อ:",
-      "conclusion": "สรุป:",
-      "keyPoints": "ประเด็นสำคัญ:",
-      "limitations": "ข้อจำกัด:",
-      "created": "สร้างเมื่อ:",
-      "preview": "ตัวอย่าง:",
-      "cachedResearchFound": "พบงานวิจัยที่แคชไว้:",
-      "success": "สำเร็จ"
+      "noResultsFound": "ไม่พบผลลัพธ์"
     },
     "eventCounts": {
       "page": "หน้า",
@@ -950,8 +901,7 @@
     },
     "chat": {
       "subtitle": "คำถามและคำตอบสำหรับผู้ที่ตั้งคำถามเกี่ยวกับตัวตนทางเพศ",
-      "freedomMessage": "ความจริงคือการไม่ปฏิบัติตามเพศภาวะจะปลดปล่อยเราทุกคน!",
-      "moreQuestions": "คำถามเพิ่มเติมที่เกี่ยวข้องกับ \"{question}\""
+      "freedomMessage": "ความจริงคือการไม่ปฏิบัติตามเพศภาวะจะปลดปล่อยเราทุกคน!"
     },
     "videos": {
       "title": "วิดีโอการเปลี่ยนเพศและเลิกเปลี่ยนเพศ",
@@ -976,7 +926,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

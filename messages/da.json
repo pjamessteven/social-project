@@ -67,11 +67,6 @@
       "howItWorks": "Hvordan Det Fungerer",
       "statistics": "Verified Statistics"
     },
-    "deepResearch": {
-      "title": "Dyb Forskningsmodus",
-      "description": "Dyb forskningsmodus udvider dit spørgsmål for at give dig et svar, der nærmer sig emnet fra forskellige vinkler.",
-      "note": "Dyb forskning er langsommere og ikke-samtalepræget. Til chat, lad den være slukket."
-    },
     "disclaimer": {
       "trigger": "Erfaringer og perspektiver på dette site kommer fra Reddit og YouTube.",
       "title": "Kildeansvarsfraskrivelse",
@@ -242,11 +237,9 @@
     "analysingExperiences": "Analyserer Erfaringer",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analyserer søgeresultater",
-    "analysingResearchResults": "Analyserer forskningsresultater",
     "detransPerspective": "-> Hvad er detransperspektiver på dette emne?",
     "transPerspective": "-> Hvad er transperspektiver på dette emne?",
     "transPerspectivesIncluded": "Transperspektiver inkluderet",
-    "backToPortal": "<- Tilbage til Portalen",
     "captchaRequired": "Captcha påkrævet for at fortsætte chatten.",
     "chatArchived": "Denne chat er arkiveret. Start en ny.",
     "rateLimitExceeded": "For mange anmodninger, tag det roligt og prøv igen senere.",
@@ -257,66 +250,24 @@
       "askDetransitioners": "Spørg Detransitionister",
       "askTransPeople": "Spørg trans-identificerede personer",
       "videoArchive": "Videoarkiv",
-      "userStories": "Brugerhistorier",
       "queryStudies": "Søg i studier",
-      "topicHierarchy": "Emnehierarki",
-      "pageCatalog": "Sidekatalog",
-      "deepResearch": "Dyb Forskning",
-      "linkPages": "Link sider",
       "webSearch": "Websøgning",
       "queryStudyCatalogue": "Forespørg i Detransitionsstudiekataloget",
-      "studyDetail": "Studiedetaljer",
-      "searchResearchCache": "Søg i forskningscachen",
-      "fetchCachedResearch": "Hent cachelagret forskning",
-      "proposedContent": "Foreslået indhold"
+      "studyDetail": "Studiedetaljer"
     },
     "eventStatus": {
-      "analysingVideos": "Analyserer videoer",
-      "loadingUserProfiles": "Indlæser brugerprofiler...",
-      "searchingForResponses": "Søger efter svar",
-      "viewResults": "Se resultater",
-      "failedToResearch": "Forskning mislykkedes",
-      "suggestionSubmitted": "Forslag indsendt! Omdirigerer...",
-      "submitting": "Indsender..."
+      "analysingVideos": "Analyserer videoer"
     },
     "eventErrors": {
       "errorOccurred": "Der opstod en fejl",
       "invalidYoutubeUrl": "Ugyldig YouTube-URL",
-      "failed": "Mislykkedes",
-      "failedToCreatePage": "Oprettelse af side mislykkedes",
-      "linkCouldNotBeCreated": "Link kunne ikke oprettes.",
-      "failedToCreateLink": "Oprettelse af link mislykkedes",
       "webSearchFailed": "Websøgning mislykkedes",
       "failedToFetchStudies": "Hentning af studier mislykkedes",
-      "failedToFetchStudy": "Hentning af studie mislykkedes",
-      "failedToSearchCache": "Søgning i cache mislykkedes",
-      "failedToFetchCachedResearch": "Hentning af cachelagret forskning mislykkedes",
-      "saveFailed": "Gemning mislykkedes",
-      "submitFailed": "Indsendelse mislykkedes"
+      "failedToFetchStudy": "Hentning af studie mislykkedes"
     },
     "eventEmptyStates": {
       "noVideosFound": "Ingen videoer fundet",
-      "noResultsFound": "Ingen resultater fundet",
-      "studyNotFound": "Studie ikke fundet",
-      "noCachedResearchFound": "Ingen cachelagret forskning fundet",
-      "notFound": "Ikke fundet",
-      "noResults": "Ingen resultater",
-      "noMatchingPagesFound": "Ingen matchende sider fundet."
-    },
-    "eventFieldLabels": {
-      "title": "Titel:",
-      "page": "Side:",
-      "version": "Version:",
-      "found": "Fundet:",
-      "findings": "Fund:",
-      "abstract": "Abstrakt:",
-      "conclusion": "Konklusion:",
-      "keyPoints": "Nøglepunkter:",
-      "limitations": "Begrænsninger:",
-      "created": "Oprettet:",
-      "preview": "Forhåndsvisning:",
-      "cachedResearchFound": "Cachelagret forskning fundet:",
-      "success": "Succes"
+      "noResultsFound": "Ingen resultater fundet"
     },
     "eventCounts": {
       "page": "side",
@@ -949,8 +900,7 @@
     },
     "chat": {
       "subtitle": "Spørgsmål og svar til personer, der sætter spørgsmålstegn ved deres kønsidentitet.",
-      "freedomMessage": "Sandheden er, at kønsnon-konformitet vil sætte os alle fri!",
-      "moreQuestions": "Flere spørgsmål relateret til \"{question}\""
+      "freedomMessage": "Sandheden er, at kønsnon-konformitet vil sætte os alle fri!"
     },
     "videos": {
       "title": "Transition & Detransitionsvideoer",
@@ -975,7 +925,6 @@
     "prompts": "/prompts",
     "participate": "/deltag",
     "conversations": "/samtaler",
-    "research": "/forskning",
     "chat": "/chat",
     "login": "/login"
   },

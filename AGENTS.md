@@ -81,7 +81,7 @@ The codebase has two captcha verification approaches:
 - Tracks request count per IP in Redis
 - Requires captcha after 10 requests (count resets after captcha verification)
 - Logged-in users bypass captcha entirely
-- Used by: `/api/chat`, `/api/research`, `/api/videos/submit`, `/api/studies`, `/api/contact`
+- Used by: `/api/chat`, `/api/videos/submit`, `/api/studies`, `/api/contact`
 
 ### Frontend implementation
 

@@ -67,11 +67,6 @@
       "howItWorks": "Come Funziona",
       "statistics": "Statistiche Verificate"
     },
-    "deepResearch": {
-      "title": "Modalità Ricerca Approfondita",
-      "description": "La modalità Ricerca Approfondita espande la tua domanda per fornirti una risposta che affronta l'argomento da diverse angolazioni.",
-      "note": "La Ricerca Approfondita è più lenta e non conversazionale. Per chattare, lasciala disattivata."
-    },
     "disclaimer": {
       "trigger": "Le esperienze e le prospettive su questo sito provengono da Reddit e YouTube.",
       "title": "Dichiarazione sulla Fonte",
@@ -240,11 +235,9 @@
     "analysingExperiences": "Analisi delle Esperienze",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analisi dei risultati web",
-    "analysingResearchResults": "Analisi dei risultati della ricerca",
     "detransPerspective": "-> Quali sono le prospettive di chi ha fatto detransition su questo argomento?",
     "transPerspective": "-> Quali sono le prospettive trans su questo argomento?",
     "transPerspectivesIncluded": "Prospettive trans incluse",
-    "backToPortal": "<- Torna al Portale",
     "captchaRequired": "Captcha richiesto per continuare la chat.",
     "chatArchived": "Questa chat è archiviata. Iniziane una nuova.",
     "rateLimitExceeded": "Troppe richieste, rallenta e riprova più tardi.",
@@ -254,67 +247,25 @@
     "eventLabels": {
       "askDetransitioners": "Chiedi a Chi ha fatto Detransition",
       "videoArchive": "Archivio Video",
-      "userStories": "Storie degli Utenti",
       "queryStudies": "Interroga Studi",
-      "topicHierarchy": "Gerarchia degli Argomenti",
-      "pageCatalog": "Catalogo Pagine",
-      "deepResearch": "Ricerca Approfondita",
-      "linkPages": "Collega Pagine",
       "webSearch": "Ricerca Web",
       "queryStudyCatalogue": "Interroga Catalogo Studi sulla Detransition",
       "studyDetail": "Dettaglio Studio",
-      "searchResearchCache": "Cerca nella Cache di Ricerca",
-      "fetchCachedResearch": "Recupera Ricerca dalla Cache",
-      "proposedContent": "Contenuto Proposto",
       "askTransPeople": "Chiedi alle Persone Trans-identificate"
     },
     "eventStatus": {
-      "analysingVideos": "Analisi dei Video",
-      "loadingUserProfiles": "Caricamento profili utente...",
-      "searchingForResponses": "Ricerca di risposte",
-      "viewResults": "Visualizza risultati",
-      "failedToResearch": "Ricerca fallita",
-      "suggestionSubmitted": "Suggerimento inviato! Reindirizzamento...",
-      "submitting": "Invio in corso..."
+      "analysingVideos": "Analisi dei Video"
     },
     "eventErrors": {
       "errorOccurred": "Si è verificato un errore",
       "invalidYoutubeUrl": "URL YouTube non valido",
-      "failed": "Fallito",
-      "failedToCreatePage": "Creazione pagina fallita",
-      "linkCouldNotBeCreated": "Il link non può essere creato.",
-      "failedToCreateLink": "Creazione link fallita",
       "webSearchFailed": "Ricerca web fallita",
       "failedToFetchStudies": "Recupero studi fallito",
-      "failedToFetchStudy": "Recupero studio fallito",
-      "failedToSearchCache": "Ricerca nella cache fallita",
-      "failedToFetchCachedResearch": "Recupero ricerca dalla cache fallito",
-      "saveFailed": "Salvataggio fallito",
-      "submitFailed": "Invio fallito"
+      "failedToFetchStudy": "Recupero studio fallito"
     },
     "eventEmptyStates": {
       "noVideosFound": "Nessun video trovato",
-      "noResultsFound": "Nessun risultato trovato",
-      "studyNotFound": "Studio non trovato",
-      "noCachedResearchFound": "Nessuna ricerca in cache trovata",
-      "notFound": "Non trovato",
-      "noResults": "Nessun risultato",
-      "noMatchingPagesFound": "Nessuna pagina corrispondente trovata."
-    },
-    "eventFieldLabels": {
-      "title": "Titolo:",
-      "page": "Pagina:",
-      "version": "Versione:",
-      "found": "Trovato:",
-      "findings": "Risultati:",
-      "abstract": "Abstract:",
-      "conclusion": "Conclusione:",
-      "keyPoints": "Punti Chiave:",
-      "limitations": "Limitazioni:",
-      "created": "Creato:",
-      "preview": "Anteprima:",
-      "cachedResearchFound": "Ricerca in cache trovata:",
-      "success": "Successo"
+      "noResultsFound": "Nessun risultato trovato"
     },
     "eventCounts": {
       "page": "pagina",
@@ -955,8 +906,7 @@
     },
     "chat": {
       "subtitle": "Domande e risposte per persone che stanno mettendo in discussione la loro identità di genere.",
-      "freedomMessage": "La verità è che la non conformità di genere ci libererà tutti!",
-      "moreQuestions": "Altre domande correlate a \"{question}\""
+      "freedomMessage": "La verità è che la non conformità di genere ci libererà tutti!"
     },
     "videos": {
       "title": "Video di Transizione e Detransition",
@@ -981,7 +931,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

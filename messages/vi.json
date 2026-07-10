@@ -67,11 +67,6 @@
       "howItWorks": "Cách Hoạt Động",
       "statistics": "Thống kê đã xác minh"
     },
-    "deepResearch": {
-      "title": "Chế Độ Nghiên Cứu Sâu",
-      "description": "Chế độ Nghiên Cứu Sâu mở rộng câu hỏi của bạn để đưa ra câu trả lời tiếp cận chủ đề từ các góc độ khác nhau.",
-      "note": "Nghiên Cứu Sâu chậm hơn và không mang tính đối thoại. Để trò chuyện, hãy tắt tính năng này."
-    },
     "disclaimer": {
       "trigger": "Kinh nghiệm và quan điểm trên trang này được lấy từ Reddit và YouTube.",
       "title": "Tuyên Bố Từ Chối Trách Nhiệm Về Nguồn",
@@ -243,11 +238,9 @@
     "analysingExperiences": "Đang Phân Tích Kinh Nghiệm",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Phân tích kết quả web",
-    "analysingResearchResults": "Phân tích kết quả nghiên cứu",
     "detransPerspective": "-> Quan điểm của ngưởi chuyển giới trở lại về chủ đề này là gì?",
     "transPerspective": "-> Quan điểm của ngưởi chuyển giới về chủ đề này là gì?",
     "transPerspectivesIncluded": "Bao gồm quan điểm của người chuyển giới",
-    "backToPortal": "<- Quay lại Cổng Thông Tin",
     "captchaRequired": "Yêu cầu captcha để tiếp tục trò chuyện.",
     "chatArchived": "Cuộc trò chuyện này đã được lưu trữ. Bắt đầu một cuộc trò chuyện mới.",
     "rateLimitExceeded": "Quá nhiều yêu cầu, hãy chậm lại và thử lại sau.",
@@ -258,66 +251,24 @@
       "askDetransitioners": "Hỏi Người Chuyển Giới Trở Lại",
       "askTransPeople": "Hỏi Người Tự Nhận Là Chuyển Giới",
       "videoArchive": "Lưu Trữ Video",
-      "userStories": "Câu Chuyện Người Dùng",
       "queryStudies": "Truy Vấn Nghiên Cứu",
-      "topicHierarchy": "Phân Cấp Chủ Đề",
-      "pageCatalog": "Danh Mục Trang",
-      "deepResearch": "Nghiên Cứu Sâu",
-      "linkPages": "Liên Kết Trang",
       "webSearch": "Tìm Kiếm Web",
       "queryStudyCatalogue": "Truy Vấn Danh Mục Nghiên Cứu Chuyển Giới Trở Lại",
-      "studyDetail": "Chi Tiết Nghiên Cứu",
-      "searchResearchCache": "Tìm Kiếm Bộ Nhớ Đệm Nghiên Cứu",
-      "fetchCachedResearch": "Lấy Nghiên Cứu Đã Lưu",
-      "proposedContent": "Nội Dung Đề Xuất"
+      "studyDetail": "Chi Tiết Nghiên Cứu"
     },
     "eventStatus": {
-      "analysingVideos": "Đang Phân Tích Video",
-      "loadingUserProfiles": "Đang tải hồ sơ người dùng...",
-      "searchingForResponses": "Đang tìm kiếm phản hồi",
-      "viewResults": "Xem kết quả",
-      "failedToResearch": "Nghiên cứu thất bại",
-      "suggestionSubmitted": "Đã gửi đề xuất! Đang chuyển hướng...",
-      "submitting": "Đang gửi..."
+      "analysingVideos": "Đang Phân Tích Video"
     },
     "eventErrors": {
       "errorOccurred": "Đã xảy ra lỗi",
       "invalidYoutubeUrl": "URL YouTube không hợp lệ",
-      "failed": "Thất bại",
-      "failedToCreatePage": "Tạo trang thất bại",
-      "linkCouldNotBeCreated": "Không thể tạo liên kết.",
-      "failedToCreateLink": "Tạo liên kết thất bại",
       "webSearchFailed": "Tìm kiếm web thất bại",
       "failedToFetchStudies": "Lấy nghiên cứu thất bại",
-      "failedToFetchStudy": "Lấy nghiên cứu thất bại",
-      "failedToSearchCache": "Tìm kiếm bộ nhớ đệm thất bại",
-      "failedToFetchCachedResearch": "Lấy nghiên cứu đã lưu thất bại",
-      "saveFailed": "Lưu thất bại",
-      "submitFailed": "Gửi thất bại"
+      "failedToFetchStudy": "Lấy nghiên cứu thất bại"
     },
     "eventEmptyStates": {
       "noVideosFound": "Không tìm thấy video",
-      "noResultsFound": "Không tìm thấy kết quả",
-      "studyNotFound": "Không tìm thấy nghiên cứu",
-      "noCachedResearchFound": "Không tìm thấy nghiên cứu đã lưu",
-      "notFound": "Không tìm thấy",
-      "noResults": "Không có kết quả",
-      "noMatchingPagesFound": "Không tìm thấy trang phù hợp."
-    },
-    "eventFieldLabels": {
-      "title": "Tiêu đề:",
-      "page": "Trang:",
-      "version": "Phiên bản:",
-      "found": "Tìm thấy:",
-      "findings": "Kết quả:",
-      "abstract": "Tóm tắt:",
-      "conclusion": "Kết luận:",
-      "keyPoints": "Điểm chính:",
-      "limitations": "Hạn chế:",
-      "created": "Tạo lúc:",
-      "preview": "Xem trước:",
-      "cachedResearchFound": "Tìm thấy nghiên cứu đã lưu:",
-      "success": "Thành công"
+      "noResultsFound": "Không tìm thấy kết quả"
     },
     "eventCounts": {
       "page": "trang",
@@ -950,8 +901,7 @@
     },
     "chat": {
       "subtitle": "Câu hỏi và câu trả lời cho ngưởi đang đặt câu hỏi về bản dạng giới của họ.",
-      "freedomMessage": "Sự thật là không tuân thủ giới sẽ giải phóng tất cả chúng ta!",
-      "moreQuestions": "Thêm câu hỏi liên quan đến \"{question}\""
+      "freedomMessage": "Sự thật là không tuân thủ giới sẽ giải phóng tất cả chúng ta!"
     },
     "videos": {
       "title": "Video Chuyển Giới & Chuyển Giới Trở Lại",
@@ -976,7 +926,6 @@
     "prompts": "/lenh",
     "participate": "/tham-gia",
     "conversations": "/cuoc-tro-chuyen",
-    "research": "/nghien-cuu",
     "chat": "/tro-chuyen",
     "login": "/dang-nhap"
   },

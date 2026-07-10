@@ -62,22 +62,10 @@ export async function StartPage({
       display: t("starters.familyMember.display"),
       full: t("starters.familyMember.full"),
     },
-    /*
-    {
-      display: t("starters.researcher.display"),
-      full: t("starters.researcher.full"),
-    },
-    */
     {
       display: t("starters.learnChallenges.display"),
       full: t("starters.learnChallenges.full"),
     },
-    /*
-    {
-      display: t("starters.understandTransition.display"),
-      full: t("starters.understandTransition.full"),
-    },
-    */
     {
       display: t("starters.debunkMisinfo.display"),
       full: t("starters.debunkMisinfo.full"),
@@ -337,10 +325,6 @@ export async function StartPage({
                 <div className="absolute inset-0"></div>
               </div>
 
-              {/*
-          <p className="mt-8 sm:mt-8">{t("footer.poem.line1")}</p>
-          <p className="mt-1">{t("footer.poem.line2")}</p>
-           */}
               <div className="text-muted-foreground/70 border-l pl-4">
                 <p className="">{t("footer.poem.line3")}</p>
                 <p className="mt-1">{t("footer.poem.line4")}</p>
@@ -396,10 +380,6 @@ export async function StartPage({
                   {t("footer.beKind")}
                 </div>
               </div>
-              {/*
-              <div className="mt-8">
-                <RedditEmbeds mode={"detrans"} />
-              </div> */}
             </div>
           </div>
         </div>

@@ -67,11 +67,6 @@
       "howItWorks": "Hogyan Működik",
       "statistics": "Verified Statistics"
     },
-    "deepResearch": {
-      "title": "Mélykutatás Mód",
-      "description": "A Mélykutatás mód kibővíti a kérdésed, hogy választ adjon, amely a témát különböző szögekből közelíti meg.",
-      "note": "A Mélykutatás lassabb és nem beszélgetési jellegű. Csevegéshez hagyd ki."
-    },
     "disclaimer": {
       "trigger": "A tapasztalatok és nézőpontok ezen az oldalon a Redditről és a YouTube-ról származnak.",
       "title": "Forrás Jogi Nyilatkozat",
@@ -243,11 +238,9 @@
     "analysingExperiences": "Tapasztalatok Elemzése",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Webes eredmények elemzése",
-    "analysingResearchResults": "Kutatási eredmények elemzése",
     "detransPerspective": "-> Mik a detrans nézőpontok erről a témáról?",
     "transPerspective": "-> Mik a transz nézőpontok erről a témáról?",
     "transPerspectivesIncluded": "Transz nézőpontok beépítve",
-    "backToPortal": "<- Vissza a Portálra",
     "captchaRequired": "Captcha szükséges a chat folytatásához.",
     "chatArchived": "Ez a chat archiválva van. Kezdj egy újat.",
     "rateLimitExceeded": "Túl sok kérés, lassítson és próbálkozzon újra később.",
@@ -257,67 +250,25 @@
     "eventLabels": {
       "askDetransitioners": "Kérdezd a Detransitionálókat",
       "videoArchive": "Videó Archívum",
-      "userStories": "Felhasználói Történetek",
       "queryStudies": "Tanulmányok Lekérdezése",
-      "topicHierarchy": "Téma Hierarchia",
-      "pageCatalog": "Oldal Katalógus",
-      "deepResearch": "Mélykutatás",
-      "linkPages": "Oldalak Összekapcsolása",
       "webSearch": "Webes Keresés",
       "queryStudyCatalogue": "Detransition Tanulmányi Katalógus Lekérdezése",
       "studyDetail": "Tanulmány Részletei",
-      "searchResearchCache": "Kutatási Gyorsítótár Keresése",
-      "fetchCachedResearch": "Gyorsítótárazott Kutatás Lekérése",
-      "proposedContent": "Javasolt Tartalom",
       "askTransPeople": "Kérdezd a Transznemű Embereket"
     },
     "eventStatus": {
-      "analysingVideos": "Videók Elemzése",
-      "loadingUserProfiles": "Felhasználói profilok betöltése...",
-      "searchingForResponses": "Válaszok keresése",
-      "viewResults": "Eredmények megtekintése",
-      "failedToResearch": "Kutatás sikertelen",
-      "suggestionSubmitted": "Javaslat elküldve! Átirányítás...",
-      "submitting": "Beküldés..."
+      "analysingVideos": "Videók Elemzése"
     },
     "eventErrors": {
       "errorOccurred": "Hiba történt",
       "invalidYoutubeUrl": "Érvénytelen YouTube URL",
-      "failed": "Sikertelen",
-      "failedToCreatePage": "Az oldal létrehozása sikertelen",
-      "linkCouldNotBeCreated": "A link nem hozható létre.",
-      "failedToCreateLink": "A link létrehozása sikertelen",
       "webSearchFailed": "A webes keresés sikertelen",
       "failedToFetchStudies": "A tanulmányok lekérése sikertelen",
-      "failedToFetchStudy": "A tanulmány lekérése sikertelen",
-      "failedToSearchCache": "A gyorsítótár keresése sikertelen",
-      "failedToFetchCachedResearch": "A gyorsítótárazott kutatás lekérése sikertelen",
-      "saveFailed": "Mentés sikertelen",
-      "submitFailed": "Beküldés sikertelen"
+      "failedToFetchStudy": "A tanulmány lekérése sikertelen"
     },
     "eventEmptyStates": {
       "noVideosFound": "Nem találhatók videók",
-      "noResultsFound": "Nem találhatók eredmények",
-      "studyNotFound": "A tanulmány nem található",
-      "noCachedResearchFound": "Nem található gyorsítótárazott kutatás",
-      "notFound": "Nem található",
-      "noResults": "Nincs eredmény",
-      "noMatchingPagesFound": "Nem találhatók megfelelő oldalak."
-    },
-    "eventFieldLabels": {
-      "title": "Cím:",
-      "page": "Oldal:",
-      "version": "Verzió:",
-      "found": "Megtalálva:",
-      "findings": "Eredmények:",
-      "abstract": "Absztrakt:",
-      "conclusion": "Következtetés:",
-      "keyPoints": "Kulcspontok:",
-      "limitations": "Korlátok:",
-      "created": "Létrehozva:",
-      "preview": "Előnézet:",
-      "cachedResearchFound": "Gyorsítótárazott kutatás találva:",
-      "success": "Sikeres"
+      "noResultsFound": "Nem találhatók eredmények"
     },
     "eventCounts": {
       "page": "oldal",
@@ -958,8 +909,7 @@
     },
     "chat": {
       "subtitle": "Kérdések és válaszok azoknak, akik a nemi identitásukat kérdőjelezik meg.",
-      "freedomMessage": "Az igazság az, hogy a nem-konformitás mindannyiunkat felszabadít!",
-      "moreQuestions": "További kérdések ehhez: \"{question}\""
+      "freedomMessage": "Az igazság az, hogy a nem-konformitás mindannyiunkat felszabadít!"
     },
     "videos": {
       "title": "Transition és Detransition Videók",
@@ -984,7 +934,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

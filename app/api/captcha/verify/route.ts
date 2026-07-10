@@ -1,19 +1,26 @@
 import { verifyCaptchaToken } from "@/app/lib/captcha";
-import { getIpFromRequest } from "@/app/lib/ipBan";
+import { withApiSecurity } from "@/app/lib/apiSecurity";
 import { initializeMessageCount } from "@/app/lib/messageCounter";
 import { connectRedis } from "@/app/lib/redis";
+import { getIP } from "@/app/lib/getIp";
 import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
+
+const captchaVerifySchema = z.object({
+  token: z.string().min(1).max(10000),
+});
 
 export async function POST(req: NextRequest) {
   try {
-    const { token } = await req.json();
+    // Rate limit + IP ban + input validation
+    const { ip, validatedBody, error: securityError } = await withApiSecurity(req, {
+      rateLimit: { perMinute: 5, perHour: 20 },
+      ipBan: true,
+      validation: { schema: captchaVerifySchema },
+    });
+    if (securityError) return securityError;
 
-    if (!token) {
-      return NextResponse.json(
-        { success: false, error: "CAPTCHA token required" },
-        { status: 400 },
-      );
-    }
+    const { token } = validatedBody as z.infer<typeof captchaVerifySchema>;
 
     const isValid = await verifyCaptchaToken(token);
 
@@ -25,9 +32,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Mark this IP as verified in Redis (expires after 1 hour)
-    // Also reset the message counter for this IP
     const redis = await connectRedis();
-    const ip = getIpFromRequest(req);
 
     if (redis) {
       const key = `captcha:verified:${ip}`;

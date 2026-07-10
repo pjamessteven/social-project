@@ -67,11 +67,6 @@
       "howItWorks": "運作原理",
       "statistics": "經核實的統計數據"
     },
-    "deepResearch": {
-      "title": "深度研究模式",
-      "description": "深度研究模式會擴展你的問題，從不同角度給出答案。",
-      "note": "深度研究速度較慢且非對話式。如需聊天，請保持關閉。"
-    },
     "disclaimer": {
       "trigger": "本網站上的經歷和觀點來自Reddit和YouTube。",
       "title": "來源聲明",
@@ -243,11 +238,9 @@
     "analysingExperiences": "正在分析經歷",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "正在分析網頁搜尋結果",
-    "analysingResearchResults": "正在分析研究結果",
     "detransPerspective": "-> 去過渡者對這個話題有什麼看法？",
     "transPerspective": "-> 跨性別者對這個話題有什麼看法？",
     "transPerspectivesIncluded": "包含跨性別視角",
-    "backToPortal": "<- 返回入口",
     "captchaRequired": "需要驗證碼才能繼續聊天。",
     "chatArchived": "此聊天已存檔。開始一個新的。",
     "rateLimitExceeded": "請求過多，請放慢速度稍後再試。",
@@ -258,66 +251,24 @@
       "askDetransitioners": "詢問去過渡者",
       "askTransPeople": "詢問跨性別認同者",
       "videoArchive": "影片檔案",
-      "userStories": "使用者故事",
       "queryStudies": "查詢研究",
-      "topicHierarchy": "主題層級",
-      "pageCatalog": "頁面目錄",
-      "deepResearch": "深度研究",
-      "linkPages": "連結頁面",
       "webSearch": "網路搜尋",
       "queryStudyCatalogue": "查詢去過渡研究目錄",
-      "studyDetail": "研究詳情",
-      "searchResearchCache": "搜尋研究快取",
-      "fetchCachedResearch": "取得快取的研究",
-      "proposedContent": "建議內容"
+      "studyDetail": "研究詳情"
     },
     "eventStatus": {
-      "analysingVideos": "正在分析影片",
-      "loadingUserProfiles": "正在載入使用者資料...",
-      "searchingForResponses": "正在搜尋回覆",
-      "viewResults": "檢視結果",
-      "failedToResearch": "研究失敗",
-      "suggestionSubmitted": "建議已提交！正在跳轉...",
-      "submitting": "正在提交..."
+      "analysingVideos": "正在分析影片"
     },
     "eventErrors": {
       "errorOccurred": "發生錯誤",
       "invalidYoutubeUrl": "無效的YouTube URL",
-      "failed": "失敗",
-      "failedToCreatePage": "建立頁面失敗",
-      "linkCouldNotBeCreated": "無法建立連結。",
-      "failedToCreateLink": "建立連結失敗",
       "webSearchFailed": "網路搜尋失敗",
       "failedToFetchStudies": "取得研究失敗",
-      "failedToFetchStudy": "取得研究失敗",
-      "failedToSearchCache": "搜尋快取失敗",
-      "failedToFetchCachedResearch": "取得快取研究失敗",
-      "saveFailed": "儲存失敗",
-      "submitFailed": "提交失敗"
+      "failedToFetchStudy": "取得研究失敗"
     },
     "eventEmptyStates": {
       "noVideosFound": "未找到影片",
-      "noResultsFound": "未找到結果",
-      "studyNotFound": "未找到研究",
-      "noCachedResearchFound": "未找到快取的研究",
-      "notFound": "未找到",
-      "noResults": "無結果",
-      "noMatchingPagesFound": "未找到符合的頁面。"
-    },
-    "eventFieldLabels": {
-      "title": "標題：",
-      "page": "頁面：",
-      "version": "版本：",
-      "found": "已找到：",
-      "findings": "發現：",
-      "abstract": "摘要：",
-      "conclusion": "結論：",
-      "keyPoints": "關鍵點：",
-      "limitations": "限制：",
-      "created": "建立時間：",
-      "preview": "預覽：",
-      "cachedResearchFound": "找到快取的研究：",
-      "success": "成功"
+      "noResultsFound": "未找到結果"
     },
     "eventCounts": {
       "page": "頁",
@@ -950,8 +901,7 @@
     },
     "chat": {
       "subtitle": "為質疑性別認同的人提供問答。",
-      "freedomMessage": "事實是，性別不一致將使我們所有人自由！",
-      "moreQuestions": "更多與\"{question}\"相關的問題"
+      "freedomMessage": "事實是，性別不一致將使我們所有人自由！"
     },
     "videos": {
       "title": "過渡與去過渡影片",
@@ -976,7 +926,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

@@ -105,7 +105,6 @@ export default async function LocaleLayout({
       <NextIntlClientProvider messages={messages} locale={locale}>
         <AuthInitializer />
         <ScrollRestoration />
-        {/*!bot && <ContentWarningDialog host={host} />*/}
         <div className="relative flex h-[100dvh] flex-col">
           <Header mode="detrans" locale={locale} />
           <Toaster />

@@ -67,11 +67,6 @@
       "howItWorks": "Kako deluje",
       "statistics": "Verified Statistics"
     },
-    "deepResearch": {
-      "title": "Način globoke raziskave",
-      "description": "Način globoke raziskave razširi vaše vprašanje, da vam da odgovor, ki pristopa k temi z različnih zornih kotov.",
-      "note": "Globoka raziskava je počasnejša in ni pogovorne narave. Za klepet jo izklopite."
-    },
     "disclaimer": {
       "trigger": "Izkušnje in perspektive na tem spletnem mestu so črpane z Reddita in YouTuba.",
       "title": "Zavrnitev odgovornosti glede virov",
@@ -243,11 +238,9 @@
     "analysingExperiences": "Analiziranje izkušenj",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analiziranje spletnih rezultatov",
-    "analysingResearchResults": "Analiziranje raziskovalnih rezultatov",
     "detransPerspective": "-> Kakšne so detranz perspektive o tej temi?",
     "transPerspective": "-> Kakšne so trans perspektive o tej temi?",
     "transPerspectivesIncluded": "Trans perspektive vključene",
-    "backToPortal": "<- Nazaj na portal",
     "captchaRequired": "Za nadaljevanje klepeta je potrebna captcha.",
     "chatArchived": "Ta klepet je arhiviran. Začnite novega.",
     "rateLimitExceeded": "Preveč zahtev, upočasnite in poskusite znova pozneje.",
@@ -258,66 +251,24 @@
       "askDetransitioners": "Vprašajte detranzicionarje",
       "askTransPeople": "Vprašajte trans-identificirane osebe",
       "videoArchive": "Arhiv videov",
-      "userStories": "Zgodbe uporabnikov",
       "queryStudies": "Poizvedba po študijah",
-      "topicHierarchy": "Hierarhija tem",
-      "pageCatalog": "Katalog strani",
-      "deepResearch": "Globoka raziskava",
-      "linkPages": "Poveži strani",
       "webSearch": "Iskanje po spletu",
       "queryStudyCatalogue": "Poizvedba po katalogu študij detranzicije",
-      "studyDetail": "Podrobnosti študije",
-      "searchResearchCache": "Iskanje po predpomnilniku raziskav",
-      "fetchCachedResearch": "Pridobi predpomnjene raziskave",
-      "proposedContent": "Predlagana vsebina"
+      "studyDetail": "Podrobnosti študije"
     },
     "eventStatus": {
-      "analysingVideos": "Analiziranje videov",
-      "loadingUserProfiles": "Nalaganje profilov uporabnikov...",
-      "searchingForResponses": "Iskanje odgovorov",
-      "viewResults": "Oglejte si rezultate",
-      "failedToResearch": "Raziskava ni uspela",
-      "suggestionSubmitted": "Predlog oddan! Preusmerjanje...",
-      "submitting": "Oddajanje..."
+      "analysingVideos": "Analiziranje videov"
     },
     "eventErrors": {
       "errorOccurred": "Prišlo je do napake",
       "invalidYoutubeUrl": "Neveljaven URL YouTuba",
-      "failed": "Ni uspelo",
-      "failedToCreatePage": "Ustvarjanje strani ni uspelo",
-      "linkCouldNotBeCreated": "Povezave ni bilo mogoče ustvariti.",
-      "failedToCreateLink": "Ustvarjanje povezave ni uspelo",
       "webSearchFailed": "Iskanje po spletu ni uspelo",
       "failedToFetchStudies": "Pridobivanje študij ni uspelo",
-      "failedToFetchStudy": "Pridobivanje študije ni uspelo",
-      "failedToSearchCache": "Iskanje po predpomnilniku ni uspelo",
-      "failedToFetchCachedResearch": "Pridobivanje predpomnjenih raziskav ni uspelo",
-      "saveFailed": "Shranjevanje ni uspelo",
-      "submitFailed": "Oddaja ni uspela"
+      "failedToFetchStudy": "Pridobivanje študije ni uspelo"
     },
     "eventEmptyStates": {
       "noVideosFound": "Ni najdenih videov",
-      "noResultsFound": "Ni najdenih rezultatov",
-      "studyNotFound": "Študija ni najdena",
-      "noCachedResearchFound": "Ni najdenih predpomnjenih raziskav",
-      "notFound": "Ni najdeno",
-      "noResults": "Ni rezultatov",
-      "noMatchingPagesFound": "Ni najdenih ujemajočih se strani."
-    },
-    "eventFieldLabels": {
-      "title": "Naslov:",
-      "page": "Stran:",
-      "version": "Različica:",
-      "found": "Najdeno:",
-      "findings": "Ugotovitve:",
-      "abstract": "Povzetek:",
-      "conclusion": "Sklep:",
-      "keyPoints": "Ključne točke:",
-      "limitations": "Omejitve:",
-      "created": "Ustvarjeno:",
-      "preview": "Predogled:",
-      "cachedResearchFound": "Najdene predpomnjene raziskave:",
-      "success": "Uspeh"
+      "noResultsFound": "Ni najdenih rezultatov"
     },
     "eventCounts": {
       "page": "stran",
@@ -950,8 +901,7 @@
     },
     "chat": {
       "subtitle": "Vprašanja in odgovori za ljudi, ki raziskujejo svojo spolno identiteto.",
-      "freedomMessage": "Resnica je, da nas bo neujemanje s pričakovanji družbenega spola osvobodilo vse!",
-      "moreQuestions": "Več vprašanj, povezanih z \"{question}\""
+      "freedomMessage": "Resnica je, da nas bo neujemanje s pričakovanji družbenega spola osvobodilo vse!"
     },
     "videos": {
       "title": "Videi o tranziciji in detranziciji",
@@ -976,7 +926,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

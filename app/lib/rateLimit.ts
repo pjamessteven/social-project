@@ -34,7 +34,7 @@ interface DualWindowResult {
   retryAfter?: number; // seconds until next allowed request
 }
 
-interface RateLimitConfig {
+export interface RateLimitConfig {
   perMinute: number;
   perHour: number;
 }

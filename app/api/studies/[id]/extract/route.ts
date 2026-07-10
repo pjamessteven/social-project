@@ -1,4 +1,4 @@
-import { isAdmin } from "@/app/lib/auth/auth";
+import { requireAuth } from "@/app/lib/auth/middleware";
 import { extractPdfText } from "@/app/lib/pdf";
 import { db } from "@/db";
 import { studyTags } from "@/db/schema";
@@ -170,14 +170,10 @@ export async function POST(
 ) {
   console.log("[Extract API] Route handler started");
   try {
-    const admin = await isAdmin();
-    console.log("[Extract API] Auth check complete, isAdmin:", admin);
-    if (!admin) {
-      return NextResponse.json(
-        { error: "Admin access required" },
-        { status: 403 },
-      );
-    }
+    const { errorResponse } = await requireAuth(request, {
+      requireAdmin: true,
+    });
+    if (errorResponse) return errorResponse;
 
     const formData = await request.formData();
     console.log("[Extract API] FormData parsed");

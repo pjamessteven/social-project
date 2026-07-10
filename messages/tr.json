@@ -67,11 +67,6 @@
       "howItWorks": "Nasıl Çalışır",
       "statistics": "Doğrulanmış İstatistikler"
     },
-    "deepResearch": {
-      "title": "Derin Araştırma Modu",
-      "description": "Derin Araştırma modu, konuya farklı açılardan yaklaşan bir yanıt vermek için sorunuzu genişletir.",
-      "note": "Derin Araştırma daha yavaştır ve konuşma odaklı değildir. Sohbet için kapalı bırakın."
-    },
     "disclaimer": {
       "trigger": "Bu sitedeki deneyimler ve bakış açıları Reddit'ten ve YouTube'tan alınmıştır.",
       "title": "Kaynak Sorumluluk Reddi",
@@ -242,11 +237,9 @@
     "analysingExperiences": "Deneyimler Analiz Ediliyor",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Web Sonuçları Analiz Ediliyor",
-    "analysingResearchResults": "Araştırma Sonuçları Analiz Ediliyor",
     "detransPerspective": "-> Bu konuda detrans bakış açıları nedir?",
     "transPerspective": "-> Bu konuda trans bakış açıları nedir?",
     "transPerspectivesIncluded": "Trans bakış açıları dahil",
-    "backToPortal": "<- Portala Geri Dön",
     "captchaRequired": "Sohbeti devam ettirmek için captcha gerekiyor.",
     "chatArchived": "Bu sohbet arşivlendi. Yeni bir tane başlatın.",
     "rateLimitExceeded": "Çok fazla istek, yavaşlayın ve daha sonra tekrar deneyin.",
@@ -257,66 +250,24 @@
       "askDetransitioners": "Detransitioner'lara Sor",
       "askTransPeople": "Trans Olarak Tanımlanan Kişilere Sor",
       "videoArchive": "Video Arşivi",
-      "userStories": "Kullanıcı Hikayeleri",
       "queryStudies": "Çalışmaları Sorgula",
-      "topicHierarchy": "Konu Hiyerarşisi",
-      "pageCatalog": "Sayfa Kataloğu",
-      "deepResearch": "Derin Araştırma",
-      "linkPages": "Sayfaları Bağla",
       "webSearch": "Web Araması",
       "queryStudyCatalogue": "Detransisyon Çalışma Kataloğunu Sorgula",
-      "studyDetail": "Çalışma Detayı",
-      "searchResearchCache": "Araştırma Önbelleğini Ara",
-      "fetchCachedResearch": "Önbelleğe Alınmış Araştırmayı Getir",
-      "proposedContent": "Önerilen İçerik"
+      "studyDetail": "Çalışma Detayı"
     },
     "eventStatus": {
-      "analysingVideos": "Videolar Analiz Ediliyor",
-      "loadingUserProfiles": "Kullanıcı profilleri yükleniyor...",
-      "searchingForResponses": "Yanıtlar aranıyor",
-      "viewResults": "Sonuçları görüntüle",
-      "failedToResearch": "Araştırma başarısız oldu",
-      "suggestionSubmitted": "Öneri gönderildi! Yönlendiriliyor...",
-      "submitting": "Gönderiliyor..."
+      "analysingVideos": "Videolar Analiz Ediliyor"
     },
     "eventErrors": {
       "errorOccurred": "Hata oluştu",
       "invalidYoutubeUrl": "Geçersiz YouTube URL'si",
-      "failed": "Başarısız",
-      "failedToCreatePage": "Sayfa oluşturulamadı",
-      "linkCouldNotBeCreated": "Bağlantı oluşturulamadı.",
-      "failedToCreateLink": "Bağlantı oluşturulamadı",
       "webSearchFailed": "Web araması başarısız oldu",
       "failedToFetchStudies": "Çalışmalar getirilemedi",
-      "failedToFetchStudy": "Çalışma getirilemedi",
-      "failedToSearchCache": "Önbellekte arama başarısız oldu",
-      "failedToFetchCachedResearch": "Önbelleğe alınan araştırma getirilemedi",
-      "saveFailed": "Kaydetme başarısız oldu",
-      "submitFailed": "Gönderme başarısız oldu"
+      "failedToFetchStudy": "Çalışma getirilemedi"
     },
     "eventEmptyStates": {
       "noVideosFound": "Video bulunamadı",
-      "noResultsFound": "Sonuç bulunamadı",
-      "studyNotFound": "Çalışma bulunamadı",
-      "noCachedResearchFound": "Önbelleğe alınan araştırma bulunamadı",
-      "notFound": "Bulunamadı",
-      "noResults": "Sonuç yok",
-      "noMatchingPagesFound": "Eşleşen sayfa bulunamadı."
-    },
-    "eventFieldLabels": {
-      "title": "Başlık:",
-      "page": "Sayfa:",
-      "version": "Sürüm:",
-      "found": "Bulundu:",
-      "findings": "Bulgular:",
-      "abstract": "Özet:",
-      "conclusion": "Sonuç:",
-      "keyPoints": "Ana Noktalar:",
-      "limitations": "Sınırlamalar:",
-      "created": "Oluşturulma:",
-      "preview": "Önizleme:",
-      "cachedResearchFound": "Önbelleğe alınan araştırma bulundu:",
-      "success": "Başarılı"
+      "noResultsFound": "Sonuç bulunamadı"
     },
     "eventCounts": {
       "page": "sayfa",
@@ -949,8 +900,7 @@
     },
     "chat": {
       "subtitle": "Cinsiyet kimliğini sorgulayan insanlar için sorular ve yanıtlar.",
-      "freedomMessage": "Gerçek şu ki cinsiyet uygunsuzluğu hepimizi özgür kılacak!",
-      "moreQuestions": "\"{question}\" ile ilgili daha fazla soru"
+      "freedomMessage": "Gerçek şu ki cinsiyet uygunsuzluğu hepimizi özgür kılacak!"
     },
     "videos": {
       "title": "Geçiş ve Detransisyon Videoları",
@@ -975,7 +925,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

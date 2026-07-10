@@ -67,11 +67,6 @@
       "howItWorks": "Kuinka Se Toimii",
       "statistics": "Verified Statistics"
     },
-    "deepResearch": {
-      "title": "Syvätutkimustila",
-      "description": "Syvätutkimustila laajentaa kysymystäsi antaaksesi vastauksen, joka lähestyy aihetta eri kulmista.",
-      "note": "Syvä tutkimus on hitaampaa ja ei-keskustelevaa. Keskusteluun jätä se pois päältä."
-    },
     "disclaimer": {
       "trigger": "Kokemukset ja näkökulmat tällä sivustolla ovat peräisin Reddistä ja YouTubesta.",
       "title": "Lähteen Vastuuvapaus",
@@ -243,11 +238,9 @@
     "analysingExperiences": "Analysoidaan Kokemuksia",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analysoitaessa verkkotuloksia",
-    "analysingResearchResults": "Analysoitaessa tutkimustuloksia",
     "detransPerspective": "-> Mitä ovat detrans-näkökulmat tähän aiheeseen?",
     "transPerspective": "-> Mitä ovat trans-näkökulmat tähän aiheeseen?",
     "transPerspectivesIncluded": "Trans-näkökulmat sisällytetty",
-    "backToPortal": "<- Takaisin Portaaliin",
     "captchaRequired": "Captcha vaaditaan chat-jatkamiseen.",
     "chatArchived": "Tämä keskustelu on arkistoitu. Aloita uusi.",
     "rateLimitExceeded": "Liian monta pyyntöä, hidasta ja yritä myöhemmin uudelleen.",
@@ -258,66 +251,24 @@
       "askDetransitioners": "Kysy Detransitioneilta",
       "askTransPeople": "Kysy trans-identifioituneilta",
       "videoArchive": "Videoarkisto",
-      "userStories": "Käyttäjätarinat",
       "queryStudies": "Kysy Tutkimuksia",
-      "topicHierarchy": "Aihehierarkia",
-      "pageCatalog": "Sivukatalogi",
-      "deepResearch": "Syvä Tutkimus",
-      "linkPages": "Linkitä Sivut",
       "webSearch": "Verkkohaku",
       "queryStudyCatalogue": "Kysy Detransitiotutkimusluetteloa",
-      "studyDetail": "Tutkimuksen Yksityiskohdat",
-      "searchResearchCache": "Hae Tutkimusvälimuistista",
-      "fetchCachedResearch": "Hae Välimuistissa Oleva Tutkimus",
-      "proposedContent": "Ehdotettu Sisältö"
+      "studyDetail": "Tutkimuksen Yksityiskohdat"
     },
     "eventStatus": {
-      "analysingVideos": "Analysoidaan Videoita",
-      "loadingUserProfiles": "Ladataan käyttäjäprofiileja...",
-      "searchingForResponses": "Etsitään vastauksia",
-      "viewResults": "Katso tulokset",
-      "failedToResearch": "Tutkimus epäonnistui",
-      "suggestionSubmitted": "Ehdotus lähetetty! Uudelleenohjataan...",
-      "submitting": "Lähetetään..."
+      "analysingVideos": "Analysoidaan Videoita"
     },
     "eventErrors": {
       "errorOccurred": "Tapahtui virhe",
       "invalidYoutubeUrl": "Virheellinen YouTube-URL",
-      "failed": "Epäonnistui",
-      "failedToCreatePage": "Sivun luominen epäonnistui",
-      "linkCouldNotBeCreated": "Linkkiä ei voitu luoda.",
-      "failedToCreateLink": "Linkin luominen epäonnistui",
       "webSearchFailed": "Verkkohaku epäonnistui",
       "failedToFetchStudies": "Tutkimusten haku epäonnistui",
-      "failedToFetchStudy": "Tutkimuksen haku epäonnistui",
-      "failedToSearchCache": "Välimuistin haku epäonnistui",
-      "failedToFetchCachedResearch": "Välimuistissa olevan tutkimuksen haku epäonnistui",
-      "saveFailed": "Tallennus epäonnistui",
-      "submitFailed": "Lähetys epäonnistui"
+      "failedToFetchStudy": "Tutkimuksen haku epäonnistui"
     },
     "eventEmptyStates": {
       "noVideosFound": "Videoita ei löytynyt",
-      "noResultsFound": "Tuloksia ei löytynyt",
-      "studyNotFound": "Tutkimusta ei löytynyt",
-      "noCachedResearchFound": "Välimuistissa olevaa tutkimusta ei löytynyt",
-      "notFound": "Ei löytynyt",
-      "noResults": "Ei tuloksia",
-      "noMatchingPagesFound": "Vastaavia sivuja ei löytynyt."
-    },
-    "eventFieldLabels": {
-      "title": "Otsikko:",
-      "page": "Sivu:",
-      "version": "Versio:",
-      "found": "Löydetty:",
-      "findings": "Löydökset:",
-      "abstract": "Tiivistelmä:",
-      "conclusion": "Johtopäätös:",
-      "keyPoints": "Keskeiset Kohdat:",
-      "limitations": "Rajoitukset:",
-      "created": "Luotu:",
-      "preview": "Esikatselu:",
-      "cachedResearchFound": "Välimuistista löydetty tutkimus:",
-      "success": "Onnistui"
+      "noResultsFound": "Tuloksia ei löytynyt"
     },
     "eventCounts": {
       "page": "sivu",
@@ -950,8 +901,7 @@
     },
     "chat": {
       "subtitle": "Kysymyksiä ja vastauksia ihmisille, jotka kyselevät sukupuoli-identiteettiään.",
-      "freedomMessage": "Totuus on, että sukupuolenvastaisuus vapauttaa meidät kaikki!",
-      "moreQuestions": "Lisää kysymyksiä liittyen \"{question}\""
+      "freedomMessage": "Totuus on, että sukupuolenvastaisuus vapauttaa meidät kaikki!"
     },
     "videos": {
       "title": "Siirtymis- ja Detransitio-Videot",
@@ -976,7 +926,6 @@
     "prompts": "/kyselyt",
     "participate": "/osallistu",
     "conversations": "/keskustelut",
-    "research": "/tutkimus",
     "chat": "/keskustelu",
     "login": "/kirjautuminen"
   },

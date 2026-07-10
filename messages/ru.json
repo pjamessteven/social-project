@@ -67,11 +67,6 @@
       "howItWorks": "Как это работает",
       "statistics": "Проверенная статистика"
     },
-    "deepResearch": {
-      "title": "Режим глубокого исследования",
-      "description": "Режим глубокого исследования расширяет ваш вопрос, чтобы дать ответ, рассматривающий тему с разных сторон.",
-      "note": "Глубокое исследование медленнее и не является диалогом. Для чата оставьте его выключенным."
-    },
     "disclaimer": {
       "trigger": "Опыт и взгляды на этом сайте взяты с Reddit и YouTube.",
       "title": "Отказ от ответственности за источники",
@@ -241,11 +236,9 @@
     "analysingExperiences": "Анализирую опыт",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Анализ веб-результатов",
-    "analysingResearchResults": "Анализ результатов исследований",
     "detransPerspective": "-> Каковы взгляды детрансионеров на эту тему?",
     "transPerspective": "-> Каковы взгляды трансгендерных людей на эту тему?",
     "transPerspectivesIncluded": "Транс-перспективы включены",
-    "backToPortal": "<- Вернуться к порталу",
     "captchaRequired": "Требуется капча для продолжения чата.",
     "chatArchived": "Этот чат архивирован. Начните новый.",
     "rateLimitExceeded": "Слишком много запросов, замедлитесь и попробуйте позже.",
@@ -256,66 +249,24 @@
       "askDetransitioners": "Спросить детрансионеров",
       "askTransPeople": "Спросить транс-идентифицированных людей",
       "videoArchive": "Видеоархив",
-      "userStories": "Истории пользователей",
       "queryStudies": "Поиск исследований",
-      "topicHierarchy": "Иерархия тем",
-      "pageCatalog": "Каталог страниц",
-      "deepResearch": "Глубокое исследование",
-      "linkPages": "Связать страницы",
       "webSearch": "Поиск в интернете",
       "queryStudyCatalogue": "Поиск в каталоге исследований детрансишена",
-      "studyDetail": "Детали исследования",
-      "searchResearchCache": "Поиск в кеше исследований",
-      "fetchCachedResearch": "Получить кешированное исследование",
-      "proposedContent": "Предлагаемый контент"
+      "studyDetail": "Детали исследования"
     },
     "eventStatus": {
-      "analysingVideos": "Анализ видео",
-      "loadingUserProfiles": "Загрузка профилей пользователей...",
-      "searchingForResponses": "Поиск ответов",
-      "viewResults": "Посмотреть результаты",
-      "failedToResearch": "Исследование не удалось",
-      "suggestionSubmitted": "Предложение отправлено! Перенаправление...",
-      "submitting": "Отправка..."
+      "analysingVideos": "Анализ видео"
     },
     "eventErrors": {
       "errorOccurred": "Произошла ошибка",
       "invalidYoutubeUrl": "Неверный URL YouTube",
-      "failed": "Ошибка",
-      "failedToCreatePage": "Не удалось создать страницу",
-      "linkCouldNotBeCreated": "Не удалось создать ссылку.",
-      "failedToCreateLink": "Не удалось создать ссылку",
       "webSearchFailed": "Поиск в интернете не удался",
       "failedToFetchStudies": "Не удалось получить исследования",
-      "failedToFetchStudy": "Не удалось получить исследование",
-      "failedToSearchCache": "Не удалось поискать в кеше",
-      "failedToFetchCachedResearch": "Не удалось получить кешированное исследование",
-      "saveFailed": "Сохранение не удалось",
-      "submitFailed": "Отправка не удалась"
+      "failedToFetchStudy": "Не удалось получить исследование"
     },
     "eventEmptyStates": {
       "noVideosFound": "Видео не найдены",
-      "noResultsFound": "Результаты не найдены",
-      "studyNotFound": "Исследование не найдено",
-      "noCachedResearchFound": "Кешированные исследования не найдены",
-      "notFound": "Не найдено",
-      "noResults": "Нет результатов",
-      "noMatchingPagesFound": "Подходящие страницы не найдены."
-    },
-    "eventFieldLabels": {
-      "title": "Заголовок:",
-      "page": "Страница:",
-      "version": "Версия:",
-      "found": "Найдено:",
-      "findings": "Находки:",
-      "abstract": "Аннотация:",
-      "conclusion": "Заключение:",
-      "keyPoints": "Ключевые моменты:",
-      "limitations": "Ограничения:",
-      "created": "Создано:",
-      "preview": "Предпросмотр:",
-      "cachedResearchFound": "Найдено кешированное исследование:",
-      "success": "Успех"
+      "noResultsFound": "Результаты не найдены"
     },
     "eventCounts": {
       "page": "страница",
@@ -948,8 +899,7 @@
     },
     "chat": {
       "subtitle": "Вопросы и ответы для людей, сомневающихся в своей гендерной идентичности.",
-      "freedomMessage": "Правда в том, что гендерная неконформность освободит нас всех!",
-      "moreQuestions": "Больше вопросов, связанных с «{question}»"
+      "freedomMessage": "Правда в том, что гендерная неконформность освободит нас всех!"
     },
     "videos": {
       "title": "Видео о трансишене и детрансишене",
@@ -974,7 +924,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

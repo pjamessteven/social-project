@@ -67,11 +67,6 @@
       "howItWorks": "工作原理",
       "statistics": "经核实的统计数据"
     },
-    "deepResearch": {
-      "title": "深度研究模式",
-      "description": "深度研究模式会扩展你的问题，从不同角度给出答案。",
-      "note": "深度研究速度较慢且非对话式。如需聊天，请保持关闭。"
-    },
     "disclaimer": {
       "trigger": "本网站上的经历和观点来自Reddit和YouTube。",
       "title": "来源声明",
@@ -242,11 +237,9 @@
     "analysingExperiences": "正在分析经历",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "正在分析网页搜索结果",
-    "analysingResearchResults": "正在分析研究结果",
     "detransPerspective": "-> 去过渡者对这个话题有什么看法？",
     "transPerspective": "-> 跨性别者对这个话题有什么看法？",
     "transPerspectivesIncluded": "包含跨性别视角",
-    "backToPortal": "<- 返回门户",
     "captchaRequired": "需要验证码才能继续聊天。",
     "chatArchived": "此聊天已存档。开始一个新的。",
     "rateLimitExceeded": "请求过多，请放慢速度稍后再试。",
@@ -257,66 +250,24 @@
       "askDetransitioners": "询问去过渡者",
       "askTransPeople": "询问跨性别认同者",
       "videoArchive": "视频档案",
-      "userStories": "用户故事",
       "queryStudies": "查询研究",
-      "topicHierarchy": "主题层级",
-      "pageCatalog": "页面目录",
-      "deepResearch": "深度研究",
-      "linkPages": "链接页面",
       "webSearch": "网络搜索",
       "queryStudyCatalogue": "查询去过渡研究目录",
-      "studyDetail": "研究详情",
-      "searchResearchCache": "搜索研究缓存",
-      "fetchCachedResearch": "获取缓存的研究",
-      "proposedContent": "建议内容"
+      "studyDetail": "研究详情"
     },
     "eventStatus": {
-      "analysingVideos": "正在分析视频",
-      "loadingUserProfiles": "正在加载用户资料...",
-      "searchingForResponses": "正在搜索回复",
-      "viewResults": "查看结果",
-      "failedToResearch": "研究失败",
-      "suggestionSubmitted": "建议已提交！正在跳转...",
-      "submitting": "正在提交..."
+      "analysingVideos": "正在分析视频"
     },
     "eventErrors": {
       "errorOccurred": "发生错误",
       "invalidYoutubeUrl": "无效的YouTube URL",
-      "failed": "失败",
-      "failedToCreatePage": "创建页面失败",
-      "linkCouldNotBeCreated": "无法创建链接。",
-      "failedToCreateLink": "创建链接失败",
       "webSearchFailed": "网络搜索失败",
       "failedToFetchStudies": "获取研究失败",
-      "failedToFetchStudy": "获取研究失败",
-      "failedToSearchCache": "搜索缓存失败",
-      "failedToFetchCachedResearch": "获取缓存研究失败",
-      "saveFailed": "保存失败",
-      "submitFailed": "提交失败"
+      "failedToFetchStudy": "获取研究失败"
     },
     "eventEmptyStates": {
       "noVideosFound": "未找到视频",
-      "noResultsFound": "未找到结果",
-      "studyNotFound": "未找到研究",
-      "noCachedResearchFound": "未找到缓存的研究",
-      "notFound": "未找到",
-      "noResults": "无结果",
-      "noMatchingPagesFound": "未找到匹配页面。"
-    },
-    "eventFieldLabels": {
-      "title": "标题：",
-      "page": "页面：",
-      "version": "版本：",
-      "found": "已找到：",
-      "findings": "发现：",
-      "abstract": "摘要：",
-      "conclusion": "结论：",
-      "keyPoints": "关键点：",
-      "limitations": "局限性：",
-      "created": "创建时间：",
-      "preview": "预览：",
-      "cachedResearchFound": "找到缓存的研究：",
-      "success": "成功"
+      "noResultsFound": "未找到结果"
     },
     "eventCounts": {
       "page": "页",
@@ -949,8 +900,7 @@
     },
     "chat": {
       "subtitle": "为质疑性别认同的人提供问答。",
-      "freedomMessage": "事实是，性别不一致将使我们所有人自由！",
-      "moreQuestions": "更多与\"{question}\"相关的问题"
+      "freedomMessage": "事实是，性别不一致将使我们所有人自由！"
     },
     "videos": {
       "title": "过渡与去过渡视频",
@@ -975,7 +925,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

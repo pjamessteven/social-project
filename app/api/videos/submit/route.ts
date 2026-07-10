@@ -3,12 +3,10 @@ import {
   MAX_VIDEO_TITLE_LENGTH,
   MAX_VIDEO_URL_LENGTH,
 } from "@/app/lib/constants";
-import { checkIpBan, getIpFromRequest } from "@/app/lib/ipBan";
+import { withApiSecurity } from "@/app/lib/apiSecurity";
 import {
   incrementMessageCount,
-  isCaptchaRequired,
 } from "@/app/lib/messageCounter";
-import { checkRateLimit } from "@/app/lib/rateLimit";
 import { sanitizeString, sanitizeUrl } from "@/app/lib/sanitization";
 import { db } from "@/db";
 import { videos } from "@/db/schema";
@@ -68,32 +66,20 @@ async function getYouTubeMetadata(videoId: string) {
 
 export async function POST(request: NextRequest) {
   try {
-    // Apply rate limiting (10/min, 100/hour)
-    const rateLimitResponse = await checkRateLimit(request);
-    if (rateLimitResponse) return rateLimitResponse;
+    // Centralized security: rate limit + IP ban + captcha + validation
+    const { ip: ipAddress, validatedBody, error: securityError } = await withApiSecurity(request, {
+      rateLimit: true,
+      ipBan: true,
+      captcha: true,
+      validation: { schema: submitVideoSchema },
+    });
+    if (securityError) return securityError;
 
-    // Check if IP is banned before processing request
-    await checkIpBan(request);
-
-    // Check CAPTCHA requirement
-    const ipAddress = getIpFromRequest(request);
-    const captchaRequired = await isCaptchaRequired(ipAddress);
-    if (captchaRequired) {
-      return NextResponse.json(
-        {
-          requiresCaptcha: true,
-          error: "CAPTCHA verification required",
-        },
-        { status: 402 },
-      );
-    }
-
-    const body = await request.json();
     const {
       url: rawUrl,
       title: rawProvidedTitle,
       author: rawProvidedAuthor,
-    } = submitVideoSchema.parse(body);
+    } = validatedBody as z.infer<typeof submitVideoSchema>;
 
     // Sanitize URL and optional fields
     const url = sanitizeUrl(rawUrl, MAX_VIDEO_URL_LENGTH);

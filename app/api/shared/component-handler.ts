@@ -31,20 +31,47 @@ function filterDuplicateFiles(files: string[]): string[] {
   return Array.from(fileMap.values());
 }
 
+/**
+ * Validates that the resolved directory path is within the expected base
+ * directory. Prevents path traversal attacks (e.g., ../../etc/passwd).
+ */
+function validateDirectoryPath(directory: string): string | null {
+  const resolved = path.resolve(directory);
+  const baseResolved = path.resolve(
+    process.env.DETRANS_COMPONENTS_DIR || "components/detrans",
+  );
+
+  // The resolved path must start with the base directory
+  if (!resolved.startsWith(baseResolved + path.sep) && resolved !== baseResolved) {
+    return null;
+  }
+
+  return resolved;
+}
+
 export async function handleComponentRoute(
   directory: string,
   itemTypes?: readonly string[],
 ): Promise<NextResponse> {
   try {
-    const exists = await promisify(fs.exists)(directory);
+    // Validate path to prevent traversal
+    const safePath = validateDirectoryPath(directory);
+    if (!safePath) {
+      return NextResponse.json(
+        { error: "Invalid directory path" },
+        { status: 403 },
+      );
+    }
+
+    const exists = await promisify(fs.exists)(safePath);
     if (!exists) {
       return NextResponse.json(
-        { error: `Directory not found at ${directory}` },
+        { error: `Directory not found at ${safePath}` },
         { status: 404 },
       );
     }
 
-    const filesInDir = await promisify(fs.readdir)(directory);
+    const filesInDir = await promisify(fs.readdir)(safePath);
     const validFiles = filesInDir.filter((file) =>
       VALID_EXTENSIONS.includes(path.extname(file)),
     );
@@ -59,7 +86,7 @@ export async function handleComponentRoute(
 
     const items: Item[] = await Promise.all(
       filesToProcess.map(async (file) => {
-        const filePath = path.join(directory, file);
+        const filePath = path.join(safePath, file);
         const content = await promisify(fs.readFile)(filePath, "utf-8");
         return {
           type: path.basename(file, path.extname(file)),

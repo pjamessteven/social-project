@@ -67,11 +67,6 @@
       "howItWorks": "چگونه کار می‌کند",
       "statistics": "آمار تأیید شده"
     },
-    "deepResearch": {
-      "title": "حالت پژوهش عمیق",
-      "description": "حالت پژوهش عمیق سوال شما را گسترش می‌دهد تا پاسخی به شما بدهد که موضوع را از زوایای مختلف بررسی کند.",
-      "note": "پژوهش عمیق کندتر و غیرگفتگویی است. برای چت، آن را خاموش بگذارید."
-    },
     "disclaimer": {
       "trigger": "تجربیات و دیدگاه‌های این سایت از ردیت و یوتیوب گرفته شده‌اند.",
       "title": "سلب مسئولیت منبع",
@@ -244,11 +239,9 @@
     "analysingExperiences": "در حال تجزیه و تحلیل تجربیات",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "تحلیل نتایج وب",
-    "analysingResearchResults": "تحلیل نتایج تحقیقات",
     "detransPerspective": "-> دیدگاه‌های دترنز درباره این موضوع چیست؟",
     "transPerspective": "-> دیدگاه‌های ترنس درباره این موضوع چیست؟",
     "transPerspectivesIncluded": "دیدگاه‌های ترنس گنجانده شده",
-    "backToPortal": "<- بازگشت به پورتال",
     "captchaRequired": "برای ادامه چت نیاز به کپچا است.",
     "chatArchived": "این چت بایگانی شده است. یک چت جدید شروع کنید.",
     "rateLimitExceeded": "درخواست‌های زیادی وجود دارد، سرعت خود را کم کنید و بعداً دوباره امتحان کنید.",
@@ -259,66 +252,24 @@
       "askDetransitioners": "پرسش از دترنزیشنرها",
       "askTransPeople": "پرسش از افراد ترنس‌شناسی‌شده",
       "videoArchive": "آرشیو ویدیو",
-      "userStories": "داستان‌های کاربران",
       "queryStudies": "جستجوی مطالعات",
-      "topicHierarchy": "سلسله‌مراتب موضوعات",
-      "pageCatalog": "کاتالوگ صفحات",
-      "deepResearch": "پژوهش عمیق",
-      "linkPages": "پیوند صفحات",
       "webSearch": "جستجوی وب",
       "queryStudyCatalogue": "پرسش از کاتالوگ مطالعات دترنزیشن",
-      "studyDetail": "جزئیات مطالعه",
-      "searchResearchCache": "جستجو در حافظه پنهان پژوهش",
-      "fetchCachedResearch": "دریافت پژوهش ذخیره‌شده",
-      "proposedContent": "محتوای پیشنهادی"
+      "studyDetail": "جزئیات مطالعه"
     },
     "eventStatus": {
-      "analysingVideos": "در حال تجزیه و تحلیل ویدیوها",
-      "loadingUserProfiles": "در حال بارگذاری پروفایل‌های کاربران...",
-      "searchingForResponses": "در حال جستجوی پاسخ‌ها",
-      "viewResults": "مشاهده نتایج",
-      "failedToResearch": "پژوهش ناموفق بود",
-      "suggestionSubmitted": "پیشنهاد ارسال شد! در حال انتقال...",
-      "submitting": "در حال ارسال..."
+      "analysingVideos": "در حال تجزیه و تحلیل ویدیوها"
     },
     "eventErrors": {
       "errorOccurred": "خطایی رخ داد",
       "invalidYoutubeUrl": "URL یوتیوب نامعتبر است",
-      "failed": "ناموفق",
-      "failedToCreatePage": "ایجاد صفحه ناموفق بود",
-      "linkCouldNotBeCreated": "لینک قابل ایجاد نبود.",
-      "failedToCreateLink": "ایجاد لینک ناموفق بود",
       "webSearchFailed": "جستجوی وب ناموفق بود",
       "failedToFetchStudies": "دریافت مطالعات ناموفق بود",
-      "failedToFetchStudy": "دریافت مطالعه ناموفق بود",
-      "failedToSearchCache": "جستجو در حافظه پنهان ناموفق بود",
-      "failedToFetchCachedResearch": "دریافت پژوهش ذخیره‌شده ناموفق بود",
-      "saveFailed": "ذخیره ناموفق بود",
-      "submitFailed": "ارسال ناموفق بود"
+      "failedToFetchStudy": "دریافت مطالعه ناموفق بود"
     },
     "eventEmptyStates": {
       "noVideosFound": "ویدیویی یافت نشد",
-      "noResultsFound": "نتیجه‌ای یافت نشد",
-      "studyNotFound": "مطالعه یافت نشد",
-      "noCachedResearchFound": "پژوهش ذخیره‌شده‌ای یافت نشد",
-      "notFound": "یافت نشد",
-      "noResults": "بدون نتیجه",
-      "noMatchingPagesFound": "صفحه مطابقی یافت نشد."
-    },
-    "eventFieldLabels": {
-      "title": "عنوان:",
-      "page": "صفحه:",
-      "version": "نسخه:",
-      "found": "یافت شده:",
-      "findings": "یافته‌ها:",
-      "abstract": "چکیده:",
-      "conclusion": "نتیجه‌گیری:",
-      "keyPoints": "نکات کلیدی:",
-      "limitations": "محدودیت‌ها:",
-      "created": "ایجاد شده:",
-      "preview": "پیش‌نمایش:",
-      "cachedResearchFound": "پژوهش ذخیره‌شده یافت شده:",
-      "success": "موفقیت"
+      "noResultsFound": "نتیجه‌ای یافت نشد"
     },
     "eventCounts": {
       "page": "صفحه",
@@ -951,8 +902,7 @@
     },
     "chat": {
       "subtitle": "سؤالات و پاسخ‌ها برای افرادی که درباره هویت جنسیتی خود سؤال می‌کنند.",
-      "freedomMessage": "حقیقت این است که ناهم‌خوانی جنسیتی همه ما را آزاد خواهد کرد!",
-      "moreQuestions": "سؤالات بیشتر مرتبط با \"{question}\""
+      "freedomMessage": "حقیقت این است که ناهم‌خوانی جنسیتی همه ما را آزاد خواهد کرد!"
     },
     "videos": {
       "title": "ویدیوهای ترنزیشن و دترنزیشن",
@@ -977,7 +927,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

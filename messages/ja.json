@@ -67,11 +67,6 @@
       "howItWorks": "仕組み",
       "statistics": "検証済み統計"
     },
-    "deepResearch": {
-      "title": "ディープリサーチモード",
-      "description": "ディープリサーチモードは、質問を拡張し、異なる角度からアプローチする回答を提供します。",
-      "note": "ディープリサーチは遅く、会話形式ではありません。チャットの場合はオフにしてください。"
-    },
     "disclaimer": {
       "trigger": "このサイトの経験と視点はRedditとYouTubeから引用されています。",
       "title": "ソース免責事項",
@@ -240,11 +235,9 @@
     "analysingExperiences": "経験を分析中",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Web検索結果を分析中",
-    "analysingResearchResults": "リサーチ結果を分析中",
     "detransPerspective": "→ デトランスの視点は？",
     "transPerspective": "→ トランスの視点は？",
     "transPerspectivesIncluded": "トランスの視点を含む",
-    "backToPortal": "← ポータルに戻る",
     "captchaRequired": "チャットを続行するにはキャプチャが必要です。",
     "chatArchived": "このチャットはアーカイブされています。新しいものを開始してください。",
     "rateLimitExceeded": "リクエストが多すぎます。速度を落として後でもう一度試してください。",
@@ -254,67 +247,25 @@
     "eventLabels": {
       "askDetransitioners": "デトランジショナーに聞く",
       "videoArchive": "動画アーカイブ",
-      "userStories": "ユーザーストーリー",
       "queryStudies": "研究を検索",
-      "topicHierarchy": "トピック階層",
-      "pageCatalog": "ページカタログ",
-      "deepResearch": "ディープリサーチ",
-      "linkPages": "ページをリンク",
       "webSearch": "Web検索",
       "queryStudyCatalogue": "デトランジション研究カタログを検索",
       "studyDetail": "研究詳細",
-      "searchResearchCache": "研究キャッシュを検索",
-      "fetchCachedResearch": "キャッシュされた研究を取得",
-      "proposedContent": "提案されたコンテンツ",
       "askTransPeople": "トランスと識別する人々に聞く"
     },
     "eventStatus": {
-      "analysingVideos": "動画を分析中",
-      "loadingUserProfiles": "ユーザープロファイルを読み込み中...",
-      "searchingForResponses": "回答を検索中",
-      "viewResults": "結果を表示",
-      "failedToResearch": "リサーチに失敗しました",
-      "suggestionSubmitted": "提案が送信されました！リダイレクト中...",
-      "submitting": "送信中..."
+      "analysingVideos": "動画を分析中"
     },
     "eventErrors": {
       "errorOccurred": "エラーが発生しました",
       "invalidYoutubeUrl": "無効なYouTube URL",
-      "failed": "失敗",
-      "failedToCreatePage": "ページの作成に失敗しました",
-      "linkCouldNotBeCreated": "リンクを作成できませんでした。",
-      "failedToCreateLink": "リンクの作成に失敗しました",
       "webSearchFailed": "Web検索に失敗しました",
       "failedToFetchStudies": "研究の取得に失敗しました",
-      "failedToFetchStudy": "研究の取得に失敗しました",
-      "failedToSearchCache": "キャッシュの検索に失敗しました",
-      "failedToFetchCachedResearch": "キャッシュされた研究の取得に失敗しました",
-      "saveFailed": "保存に失敗しました",
-      "submitFailed": "送信に失敗しました"
+      "failedToFetchStudy": "研究の取得に失敗しました"
     },
     "eventEmptyStates": {
       "noVideosFound": "動画が見つかりません",
-      "noResultsFound": "結果が見つかりません",
-      "studyNotFound": "研究が見つかりません",
-      "noCachedResearchFound": "キャッシュされた研究が見つかりません",
-      "notFound": "見つかりません",
-      "noResults": "結果なし",
-      "noMatchingPagesFound": "一致するページが見つかりません。"
-    },
-    "eventFieldLabels": {
-      "title": "タイトル：",
-      "page": "ページ：",
-      "version": "バージョン：",
-      "found": "検索結果：",
-      "findings": "知見：",
-      "abstract": "要約：",
-      "conclusion": "結論：",
-      "keyPoints": "要点：",
-      "limitations": "限界：",
-      "created": "作成日：",
-      "preview": "プレビュー：",
-      "cachedResearchFound": "キャッシュされた研究が見つかりました：",
-      "success": "成功"
+      "noResultsFound": "結果が見つかりません"
     },
     "eventCounts": {
       "page": "ページ",
@@ -955,8 +906,7 @@
     },
     "chat": {
       "subtitle": "性別アイデンティティについて悩んでいる人々のための質問と回答。",
-      "freedomMessage": "真実は、ジェンダー非適合が私たちすべてを自由にしてくれるということです！",
-      "moreQuestions": "「{question}」に関連するさらなる質問"
+      "freedomMessage": "真実は、ジェンダー非適合が私たちすべてを自由にしてくれるということです！"
     },
     "videos": {
       "title": "遷移とデトランジション動画",
@@ -981,7 +931,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

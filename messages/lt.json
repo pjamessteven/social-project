@@ -67,11 +67,6 @@
       "howItWorks": "Kaip tai veikia",
       "statistics": "Verified Statistics"
     },
-    "deepResearch": {
-      "title": "Giluminio tyrimo režimas",
-      "description": "Giluminio tyrimo režimas išplečia jūsų klausimą, kad suteiktų atsakymą, kuris nagrinėja temą iš skirtingų kampų.",
-      "note": "Giluminis tyrimas yra lėtesnis ir ne pokalbių pobūdžio. Pokalbiui palikite jį išjungtą."
-    },
     "disclaimer": {
       "trigger": "Patirtys ir požiūriai šioje svetainėje paimti iš Reddito ir YouTube.",
       "title": "Šaltinio atsakomybės apribojimas",
@@ -243,11 +238,9 @@
     "analysingExperiences": "Analizuojamos patirtys",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analizuojami žiniatinklio rezultatai",
-    "analysingResearchResults": "Analizuojami tyrimų rezultatai",
     "detransPerspective": "-> Kokie detranzicijos požiūriai į šią temą?",
     "transPerspective": "-> Kokie translyčio požiūriai į šią temą?",
     "transPerspectivesIncluded": "Translyčių požiūriai įtraukti",
-    "backToPortal": "<- Atgal į portalą",
     "captchaRequired": "Norint tęsti pokalbį, reikalinga captcha.",
     "chatArchived": "Šis pokalbis yra archyvuotas. Pradėkite naują.",
     "rateLimitExceeded": "Per daug užklausų, sulėtinkite ir bandykite vėliau.",
@@ -257,67 +250,25 @@
     "eventLabels": {
       "askDetransitioners": "Klausti detranzicionierių",
       "videoArchive": "Vaizdo įrašų archyvas",
-      "userStories": "Vartotojų istorijos",
       "queryStudies": "Ieškoti tyrimų",
-      "topicHierarchy": "Temos hierarchija",
-      "pageCatalog": "Puslapių katalogas",
-      "deepResearch": "Giluminis tyrimas",
-      "linkPages": "Susieti puslapius",
       "webSearch": "Paieška internete",
       "queryStudyCatalogue": "Detranzicijos tyrimų katalogo užklausa",
       "studyDetail": "Tyrimo detalės",
-      "searchResearchCache": "Ieškoti tyrimų podėlyje",
-      "fetchCachedResearch": "Gauti podėlyje saugomą tyrimą",
-      "proposedContent": "Siūlomas turinys",
       "askTransPeople": "Klausti translyčių asmenų"
     },
     "eventStatus": {
-      "analysingVideos": "Analizuojami vaizdo įrašai",
-      "loadingUserProfiles": "Įkeliami vartotojų profiliai...",
-      "searchingForResponses": "Ieškoma atsakymų",
-      "viewResults": "Peržiūrėti rezultatus",
-      "failedToResearch": "Nepavyko ištirti",
-      "suggestionSubmitted": "Pasiūlymas pateiktas! Nukreipiama...",
-      "submitting": "Pateikiama..."
+      "analysingVideos": "Analizuojami vaizdo įrašai"
     },
     "eventErrors": {
       "errorOccurred": "Įvyko klaida",
       "invalidYoutubeUrl": "Neteisingas YouTube URL",
-      "failed": "Nepavyko",
-      "failedToCreatePage": "Nepavyko sukurti puslapio",
-      "linkCouldNotBeCreated": "Nepavyko sukurti nuorodos.",
-      "failedToCreateLink": "Nepavyko sukurti nuorodos",
       "webSearchFailed": "Interneto paieška nepavyko",
       "failedToFetchStudies": "Nepavyko gauti tyrimų",
-      "failedToFetchStudy": "Nepavyko gauti tyrimo",
-      "failedToSearchCache": "Nepavyko ieškoti podėlyje",
-      "failedToFetchCachedResearch": "Nepavyko gauti podėlyje saugomo tyrimo",
-      "saveFailed": "Išsaugoti nepavyko",
-      "submitFailed": "Pateikti nepavyko"
+      "failedToFetchStudy": "Nepavyko gauti tyrimo"
     },
     "eventEmptyStates": {
       "noVideosFound": "Vaizdo įrašų nerasta",
-      "noResultsFound": "Rezultatų nerasta",
-      "studyNotFound": "Tyrimas nerastas",
-      "noCachedResearchFound": "Podėlyje saugomų tyrimų nerasta",
-      "notFound": "Nerasta",
-      "noResults": "Nėra rezultatų",
-      "noMatchingPagesFound": "Atitinkančių puslapių nerasta."
-    },
-    "eventFieldLabels": {
-      "title": "Pavadinimas:",
-      "page": "Puslapis:",
-      "version": "Versija:",
-      "found": "Rasta:",
-      "findings": "Išvados:",
-      "abstract": "Santrauka:",
-      "conclusion": "Išvada:",
-      "keyPoints": "Pagrindiniai punktai:",
-      "limitations": "Apribojimai:",
-      "created": "Sukurta:",
-      "preview": "Peržiūra:",
-      "cachedResearchFound": "Rastas podėlyje saugomas tyrimas:",
-      "success": "Sėkmė"
+      "noResultsFound": "Rezultatų nerasta"
     },
     "eventCounts": {
       "page": "puslapis",
@@ -958,8 +909,7 @@
     },
     "chat": {
       "subtitle": "Klausimai ir atsakymai žmonėms, kurie abejoja savo genderine tapatybe.",
-      "freedomMessage": "Tiesa yra ta, kad genderinis nesilaikymas išlaisvins mus visus!",
-      "moreQuestions": "Daugiau klausimų, susijusių su \"{question}\""
+      "freedomMessage": "Tiesa yra ta, kad genderinis nesilaikymas išlaisvins mus visus!"
     },
     "videos": {
       "title": "Perėjimo ir detranzicijos vaizdo įrašai",
@@ -984,7 +934,6 @@
     "prompts": "/raginimai",
     "participate": "/dalyvauti",
     "conversations": "/pokalbiai",
-    "research": "/tyrimas",
     "chat": "/pokalbis",
     "login": "/prisijungti"
   },

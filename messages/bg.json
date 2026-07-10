@@ -67,11 +67,6 @@
       "howItWorks": "Как работи",
       "statistics": "Verified Statistics"
     },
-    "deepResearch": {
-      "title": "Режим на дълбочинно изследване",
-      "description": "Режимът на дълбочинно изследване разширява въпроса ви, за да ви даде отговор, който подхожда към темата от различни ъгли.",
-      "note": "Дълбочинното изследване е по-бавно и несъздателно. За чат, оставете го изключено."
-    },
     "disclaimer": {
       "trigger": "Преживяванията и гледните точки на този сайт са взети от Reddit и YouTube.",
       "title": "Отказ от отговорност за източника",
@@ -243,11 +238,9 @@
     "analysingExperiences": "Анализиране на преживявания",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Анализиране на уеб резултати",
-    "analysingResearchResults": "Анализиране на резултати от изследвания",
     "detransPerspective": "-> Какви са детранс гледните точки по тази тема?",
     "transPerspective": "-> Какви са транс гледните точки по тази тема?",
     "transPerspectivesIncluded": "Транс перспективите са включени",
-    "backToPortal": "<- Обратно към портала",
     "captchaRequired": "Изисква се капча за продължаване на чата.",
     "chatArchived": "Този чат е архивиран. Започнете нов.",
     "rateLimitExceeded": "Твърде много заявки, забавете се и опитайте отново по-късно.",
@@ -258,66 +251,24 @@
       "askDetransitioners": "Попитай детрансишънъри",
       "askTransPeople": "Попитай транс-идентифицирани хора",
       "videoArchive": "Видео архив",
-      "userStories": "Потребителски истории",
       "queryStudies": "Търсене в изследвания",
-      "topicHierarchy": "Йерархия на темите",
-      "pageCatalog": "Каталог на страниците",
-      "deepResearch": "Дълбочинно изследване",
-      "linkPages": "Свържи страници",
       "webSearch": "Търсене в мрежата",
       "queryStudyCatalogue": "Заявка към каталога с изследвания за детранзиция",
-      "studyDetail": "Детайли на изследването",
-      "searchResearchCache": "Търсене в кеша на изследванията",
-      "fetchCachedResearch": "Извличане на кеширани изследвания",
-      "proposedContent": "Предложено съдържание"
+      "studyDetail": "Детайли на изследването"
     },
     "eventStatus": {
-      "analysingVideos": "Анализиране на видеа",
-      "loadingUserProfiles": "Зареждане на потребителски профили...",
-      "searchingForResponses": "Търсене на отговори",
-      "viewResults": "Виж резултатите",
-      "failedToResearch": "Неуспешно изследване",
-      "suggestionSubmitted": "Предложението е изпратено! Пренасочване...",
-      "submitting": "Изпращане..."
+      "analysingVideos": "Анализиране на видеа"
     },
     "eventErrors": {
       "errorOccurred": "Възникна грешка",
       "invalidYoutubeUrl": "Невалиден YouTube URL",
-      "failed": "Неуспешно",
-      "failedToCreatePage": "Неуспешно създаване на страница",
-      "linkCouldNotBeCreated": "Връзката не можа да бъде създадена.",
-      "failedToCreateLink": "Неуспешно създаване на връзка",
       "webSearchFailed": "Неуспешно търсене в мрежата",
       "failedToFetchStudies": "Неуспешно извличане на изследвания",
-      "failedToFetchStudy": "Неуспешно извличане на изследване",
-      "failedToSearchCache": "Неуспешно търсене в кеша",
-      "failedToFetchCachedResearch": "Неуспешно извличане на кеширани изследвания",
-      "saveFailed": "Неуспешно запазване",
-      "submitFailed": "Неуспешно изпращане"
+      "failedToFetchStudy": "Неуспешно извличане на изследване"
     },
     "eventEmptyStates": {
       "noVideosFound": "Няма намерени видеа",
-      "noResultsFound": "Няма намерени резултати",
-      "studyNotFound": "Изследването не е намерено",
-      "noCachedResearchFound": "Няма намерени кеширани изследвания",
-      "notFound": "Не е намерено",
-      "noResults": "Няма резултати",
-      "noMatchingPagesFound": "Няма намерени съответстващи страници."
-    },
-    "eventFieldLabels": {
-      "title": "Заглавие:",
-      "page": "Страница:",
-      "version": "Версия:",
-      "found": "Намерено:",
-      "findings": "Находки:",
-      "abstract": "Резюме:",
-      "conclusion": "Заключение:",
-      "keyPoints": "Ключови точки:",
-      "limitations": "Ограничения:",
-      "created": "Създадено:",
-      "preview": "Преглед:",
-      "cachedResearchFound": "Намерени кеширани изследвания:",
-      "success": "Успех"
+      "noResultsFound": "Няма намерени резултати"
     },
     "eventCounts": {
       "page": "страница",
@@ -950,8 +901,7 @@
     },
     "chat": {
       "subtitle": "Въпроси и отговори за хора, които поставят под въпрос половата си идентичност.",
-      "freedomMessage": "Истината е, че несъответствието с половата принадлежност ще ни освободи всички!",
-      "moreQuestions": "Още въпроси, свързани с \"{question}\""
+      "freedomMessage": "Истината е, че несъответствието с половата принадлежност ще ни освободи всички!"
     },
     "videos": {
       "title": "Видеа за преход и детранзиция",
@@ -976,7 +926,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

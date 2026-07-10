@@ -67,11 +67,6 @@
       "howItWorks": "작동 방식",
       "statistics": "검증된 통계"
     },
-    "deepResearch": {
-      "title": "심층 연구 모드",
-      "description": "심층 연구 모드는 질문을 확장하여 다양한 각도에서 주제에 접근하는 답변을 제공합니다.",
-      "note": "심층 연구는 더 느리고 대화형이 아닙니다. 채팅을 위해선 꺼두세요."
-    },
     "disclaimer": {
       "trigger": "이 사이트의 경험과 관점은 Reddit과 YouTube에서 출처됩니다.",
       "title": "출처 면책 조항",
@@ -240,11 +235,9 @@
     "analysingExperiences": "경험 분석 중",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "웹 검색 결과 분석 중",
-    "analysingResearchResults": "연구 결과 분석 중",
     "detransPerspective": "-> 이 주제에 대한 디트랜스 관점은 무엇인가?",
     "transPerspective": "-> 이 주제에 대한 트랜스 관점은 무엇인가?",
     "transPerspectivesIncluded": "트랜스 관점 포함",
-    "backToPortal": "<- 포털로 돌아가기",
     "captchaRequired": "채팅을 계속하려면 캡차가 필요합니다.",
     "chatArchived": "이 채팅은 보관되었습니다. 새 채팅을 시작하세요.",
     "rateLimitExceeded": "요청이 너무 많습니다. 속도를 늦추고 나중에 다시 시도하세요.",
@@ -254,67 +247,25 @@
     "eventLabels": {
       "askDetransitioners": "디트랜지셔너에게 묻기",
       "videoArchive": "비디오 아카이브",
-      "userStories": "사용자 이야기",
       "queryStudies": "연구 검색",
-      "topicHierarchy": "주제 계층",
-      "pageCatalog": "페이지 카탈로그",
-      "deepResearch": "심층 연구",
-      "linkPages": "페이지 연결",
       "webSearch": "웹 검색",
       "queryStudyCatalogue": "디트랜지션 연구 카탈로그 검색",
       "studyDetail": "연구 상세",
-      "searchResearchCache": "연구 캐시 검색",
-      "fetchCachedResearch": "캐시된 연구 가져오기",
-      "proposedContent": "제안된 콘텐츠",
       "askTransPeople": "트랜스로 식별하는 사람들에게 묻기"
     },
     "eventStatus": {
-      "analysingVideos": "비디오 분석 중",
-      "loadingUserProfiles": "사용자 프로필 로딩 중...",
-      "searchingForResponses": "응답 검색 중",
-      "viewResults": "결과 보기",
-      "failedToResearch": "연구 실패",
-      "suggestionSubmitted": "제안 제출됨! 리디렉션 중...",
-      "submitting": "제출 중..."
+      "analysingVideos": "비디오 분석 중"
     },
     "eventErrors": {
       "errorOccurred": "오류 발생",
       "invalidYoutubeUrl": "유효하지 않은 YouTube URL",
-      "failed": "실패",
-      "failedToCreatePage": "페이지 생성 실패",
-      "linkCouldNotBeCreated": "링크를 생성할 수 없습니다.",
-      "failedToCreateLink": "링크 생성 실패",
       "webSearchFailed": "웹 검색 실패",
       "failedToFetchStudies": "연구 가져오기 실패",
-      "failedToFetchStudy": "연구 가져오기 실패",
-      "failedToSearchCache": "캐시 검색 실패",
-      "failedToFetchCachedResearch": "캐시된 연구 가져오기 실패",
-      "saveFailed": "저장 실패",
-      "submitFailed": "제출 실패"
+      "failedToFetchStudy": "연구 가져오기 실패"
     },
     "eventEmptyStates": {
       "noVideosFound": "비디오를 찾을 수 없음",
-      "noResultsFound": "결과를 찾을 수 없음",
-      "studyNotFound": "연구를 찾을 수 없음",
-      "noCachedResearchFound": "캐시된 연구를 찾을 수 없음",
-      "notFound": "찾을 수 없음",
-      "noResults": "결과 없음",
-      "noMatchingPagesFound": "일치하는 페이지를 찾을 수 없습니다."
-    },
-    "eventFieldLabels": {
-      "title": "제목:",
-      "page": "페이지:",
-      "version": "버전:",
-      "found": "발견:",
-      "findings": "발견 사항:",
-      "abstract": "초록:",
-      "conclusion": "결론:",
-      "keyPoints": "핵심 사항:",
-      "limitations": "한계:",
-      "created": "생성일:",
-      "preview": "미리보기:",
-      "cachedResearchFound": "캐시된 연구 발견:",
-      "success": "성공"
+      "noResultsFound": "결과를 찾을 수 없음"
     },
     "eventCounts": {
       "page": "페이지",
@@ -955,8 +906,7 @@
     },
     "chat": {
       "subtitle": "성별 정체성에 대해 고민하는 사람들을 위한 질문과 답변.",
-      "freedomMessage": "진실은 성별 비순응이 우리 모두를 자유롭게 할 것이라는 것입니다!",
-      "moreQuestions": "\"{question}\"와(과) 관련된 더 많은 질문"
+      "freedomMessage": "진실은 성별 비순응이 우리 모두를 자유롭게 할 것이라는 것입니다!"
     },
     "videos": {
       "title": "전환 및 디트랜지션 영상",
@@ -981,7 +931,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

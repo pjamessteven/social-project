@@ -67,11 +67,6 @@
       "howItWorks": "Jak to funguje",
       "statistics": "Verified Statistics"
     },
-    "deepResearch": {
-      "title": "Režim hlubokého výzkumu",
-      "description": "Režim hlubokého výzkumu rozšiřuje vaši otázku, aby vám poskytl odpověď, která přistupuje k tématu z různých úhlů.",
-      "note": "Hluboký výzkum je pomalejší a nekonverzační. Pro chat nechte vypnuté."
-    },
     "disclaimer": {
       "trigger": "Zkušenosti a perspektivy na tomto webu pocházejí z Redditu a YouTube.",
       "title": "Upozornění na zdroj",
@@ -244,11 +239,9 @@
     "analysingExperiences": "Analýza zkušeností",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analyzování webových výsledků",
-    "analysingResearchResults": "Analyzování výsledků výzkumu",
     "detransPerspective": "-> Jaké jsou detranzicionistické perspektivy na toto téma?",
     "transPerspective": "-> Jaké jsou transgender perspektivy na toto téma?",
     "transPerspectivesIncluded": "Trans perspektivy zahrnuty",
-    "backToPortal": "<- Zpět na portál",
     "captchaRequired": "Pro pokračování v chatu je vyžadována captcha.",
     "chatArchived": "Tento chat je archivován. Začněte nový.",
     "rateLimitExceeded": "Příliš mnoho požadavků, zpomalte a zkuste to znovu později.",
@@ -259,66 +252,24 @@
       "askDetransitioners": "Zeptej se detranzicionistů",
       "askTransPeople": "Zeptej se trans-identifikovaných lidí",
       "videoArchive": "Video archiv",
-      "userStories": "Příběhy uživatelů",
       "queryStudies": "Vyhledat studie",
-      "topicHierarchy": "Hierarchie témat",
-      "pageCatalog": "Katalog stránek",
-      "deepResearch": "Hluboký výzkum",
-      "linkPages": "Propojit stránky",
       "webSearch": "Vyhledávání na webu",
       "queryStudyCatalogue": "Dotaz na katalog studií o detranzici",
-      "studyDetail": "Detail studie",
-      "searchResearchCache": "Prohledat mezipaměť výzkumu",
-      "fetchCachedResearch": "Načíst uložený výzkum",
-      "proposedContent": "Navrhovaný obsah"
+      "studyDetail": "Detail studie"
     },
     "eventStatus": {
-      "analysingVideos": "Analyzování videí",
-      "loadingUserProfiles": "Načítání uživatelských profilů...",
-      "searchingForResponses": "Hledání odpovědí",
-      "viewResults": "Zobrazit výsledky",
-      "failedToResearch": "Výzkum selhal",
-      "suggestionSubmitted": "Návrh odeslán! Přesměrování...",
-      "submitting": "Odesílání..."
+      "analysingVideos": "Analyzování videí"
     },
     "eventErrors": {
       "errorOccurred": "Došlo k chybě",
       "invalidYoutubeUrl": "Neplatná YouTube URL",
-      "failed": "Selhání",
-      "failedToCreatePage": "Vytvoření stránky selhalo",
-      "linkCouldNotBeCreated": "Odkaz nemohl být vytvořen.",
-      "failedToCreateLink": "Vytvoření odkazu selhalo",
       "webSearchFailed": "Vyhledávání na webu selhalo",
       "failedToFetchStudies": "Načtení studií selhalo",
-      "failedToFetchStudy": "Načtení studie selhalo",
-      "failedToSearchCache": "Prohledání mezipaměti selhalo",
-      "failedToFetchCachedResearch": "Načtení uloženého výzkumu selhalo",
-      "saveFailed": "Uložení selhalo",
-      "submitFailed": "Odeslání selhalo"
+      "failedToFetchStudy": "Načtení studie selhalo"
     },
     "eventEmptyStates": {
       "noVideosFound": "Žádná videa nenalezena",
-      "noResultsFound": "Žádné výsledky nenalezeny",
-      "studyNotFound": "Studie nenalezena",
-      "noCachedResearchFound": "Žádný uložený výzkum nenalezen",
-      "notFound": "Nenalezeno",
-      "noResults": "Žádné výsledky",
-      "noMatchingPagesFound": "Žádné odpovídající stránky nenalezeny."
-    },
-    "eventFieldLabels": {
-      "title": "Název:",
-      "page": "Stránka:",
-      "version": "Verze:",
-      "found": "Nalezeno:",
-      "findings": "Zjištění:",
-      "abstract": "Abstrakt:",
-      "conclusion": "Závěr:",
-      "keyPoints": "Klíčové body:",
-      "limitations": "Omezení:",
-      "created": "Vytvořeno:",
-      "preview": "Náhled:",
-      "cachedResearchFound": "Nalezený uložený výzkum:",
-      "success": "Úspěch"
+      "noResultsFound": "Žádné výsledky nenalezeny"
     },
     "eventCounts": {
       "page": "stránka",
@@ -951,8 +902,7 @@
     },
     "chat": {
       "subtitle": "Otázky a odpovědi pro lidi, kteří zpochybňují svou genderovou identitu.",
-      "freedomMessage": "Pravdou je, že nekonformita genderu nás všechny osvobodí!",
-      "moreQuestions": "Další otázky související s \"{question}\""
+      "freedomMessage": "Pravdou je, že nekonformita genderu nás všechny osvobodí!"
     },
     "videos": {
       "title": "Videa o tranzici a detranzici",
@@ -977,7 +927,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

@@ -67,11 +67,6 @@
       "howItWorks": "איך זה עובד",
       "statistics": "סטטיסטיקות מאומתות"
     },
-    "deepResearch": {
-      "title": "מצב מחקר עמוק",
-      "description": "מצב מחקר עמוק מרחיב את השאלה שלך כדי לתת לך תשובה המתקרבת לנושא מזוויות שונות.",
-      "note": "מחקר עמוק הוא איטי יותר ולא שיחתי. לשיחה, השאירו אותו כבוי."
-    },
     "disclaimer": {
       "trigger": "החוויות ונקודות המבט באתר זה מגיעות מרדיט ומיוטיוב.",
       "title": "כתב ויתור על מקורות",
@@ -242,11 +237,9 @@
     "analysingExperiences": "מנתח חוויות",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "מנתח תוצאות אינטרנט",
-    "analysingResearchResults": "מנתח תוצאות מחקר",
     "detransPerspective": "-> מהן נקודות המבט של מדטרנזישנרים על נושא זה?",
     "transPerspective": "-> מהן נקודות המבט של אנשים טרנס על נושא זה?",
     "transPerspectivesIncluded": "נקודות מבט טרנס נכללות",
-    "backToPortal": "<- חזרה לפורטל",
     "captchaRequired": "נדרש קפצ'ה להמשך הצ'אט.",
     "chatArchived": "צ'אט זה הועבר לארכיון. התחל אחד חדש.",
     "rateLimitExceeded": "יותר מדי בקשות, האט ונסה שוב מאוחר יותר.",
@@ -257,66 +250,24 @@
       "askDetransitioners": "שאל מדטרנזישנרים",
       "askTransPeople": "שאל אנשים המזדהים כטרנס",
       "videoArchive": "ארכיון וידאו",
-      "userStories": "סיפורי משתמשים",
       "queryStudies": "שאילתת מחקרים",
-      "topicHierarchy": "היררכיית נושאים",
-      "pageCatalog": "קטלוג דפים",
-      "deepResearch": "מחקר עמוק",
-      "linkPages": "קשר דפים",
       "webSearch": "חיפוש באינטרנט",
       "queryStudyCatalogue": "שאילתת קטלוג מחקרי דטרנזישן",
-      "studyDetail": "פרטי מחקר",
-      "searchResearchCache": "חפש במטמון המחקר",
-      "fetchCachedResearch": "הבא מחקר ממטמון",
-      "proposedContent": "תוכן מוצע"
+      "studyDetail": "פרטי מחקר"
     },
     "eventStatus": {
-      "analysingVideos": "מנתח סרטונים",
-      "loadingUserProfiles": "טוען פרופילי משתמשים...",
-      "searchingForResponses": "מחפש תגובות",
-      "viewResults": "צפה בתוצאות",
-      "failedToResearch": "המחקר נכשל",
-      "suggestionSubmitted": "הצעה הוגשה! מפנה מחדש...",
-      "submitting": "שולח..."
+      "analysingVideos": "מנתח סרטונים"
     },
     "eventErrors": {
       "errorOccurred": "אירעה שגיאה",
       "invalidYoutubeUrl": "כתובת URL לא חוקית של YouTube",
-      "failed": "נכשל",
-      "failedToCreatePage": "יצירת הדף נכשלה",
-      "linkCouldNotBeCreated": "לא ניתן היה ליצור קישור.",
-      "failedToCreateLink": "יצירת קישור נכשלה",
       "webSearchFailed": "חיפוש באינטרנט נכשל",
       "failedToFetchStudies": "הבאת מחקרים נכשלה",
-      "failedToFetchStudy": "הבאת מחקר נכשלה",
-      "failedToSearchCache": "חיפוש במטמון נכשל",
-      "failedToFetchCachedResearch": "הבאת מחקר ממטמון נכשלה",
-      "saveFailed": "שמירה נכשלה",
-      "submitFailed": "שליחה נכשלה"
+      "failedToFetchStudy": "הבאת מחקר נכשלה"
     },
     "eventEmptyStates": {
       "noVideosFound": "לא נמצאו סרטונים",
-      "noResultsFound": "לא נמצאו תוצאות",
-      "studyNotFound": "מחקר לא נמצא",
-      "noCachedResearchFound": "לא נמצא מחקר במטמון",
-      "notFound": "לא נמצא",
-      "noResults": "אין תוצאות",
-      "noMatchingPagesFound": "לא נמצאו דפים תואמים."
-    },
-    "eventFieldLabels": {
-      "title": "כותרת:",
-      "page": "דף:",
-      "version": "גרסה:",
-      "found": "נמצא:",
-      "findings": "ממצאים:",
-      "abstract": "תקציר:",
-      "conclusion": "מסקנה:",
-      "keyPoints": "נקודות מפתח:",
-      "limitations": "מגבלות:",
-      "created": "נוצר:",
-      "preview": "תצוגה מקדימה:",
-      "cachedResearchFound": "מחקר שנמצא במטמון:",
-      "success": "הצלחה"
+      "noResultsFound": "לא נמצאו תוצאות"
     },
     "eventCounts": {
       "page": "דף",
@@ -949,8 +900,7 @@
     },
     "chat": {
       "subtitle": "שאלות ותשובות לאנשים המתבוננים בזהותם המגדרית.",
-      "freedomMessage": "האמת היא שאי-התאמה מגדרית תשחרר את כולנו!",
-      "moreQuestions": "עוד שאלות הקשורות ל-\"{question}\""
+      "freedomMessage": "האמת היא שאי-התאמה מגדרית תשחרר את כולנו!"
     },
     "videos": {
       "title": "סרטוני מעבר ודטרנזישן",
@@ -975,7 +925,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

@@ -1,6 +1,6 @@
 import { requestMagicLink } from "@/app/lib/auth/auth";
 import { sendMagicLinkEmail } from "@/app/lib/auth/email";
-import { checkIpBan } from "@/app/lib/ipBan";
+import { withApiSecurity } from "@/app/lib/apiSecurity";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -11,25 +11,15 @@ const magicLinkSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
-    // Check if IP is banned before processing request
-    await checkIpBan(request);
+    // Centralized security: rate limit (aggressive) + IP ban + validation
+    const { validatedBody, error: securityError } = await withApiSecurity(request, {
+      rateLimit: { perMinute: 3, perHour: 10 },
+      ipBan: true,
+      validation: { schema: magicLinkSchema },
+    });
+    if (securityError) return securityError;
 
-    // Parse and validate request body
-    const body = await request.json();
-    const validationResult = magicLinkSchema.safeParse(body);
-
-    if (!validationResult.success) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: "Invalid email address",
-          details: validationResult.error.format(),
-        },
-        { status: 400 },
-      );
-    }
-
-    const { email } = validationResult.data;
+    const { email } = validatedBody as z.infer<typeof magicLinkSchema>;
 
     // Request magic link (creates token in database)
     const result = await requestMagicLink(email);

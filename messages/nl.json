@@ -67,11 +67,6 @@
       "howItWorks": "Hoe Het Werkt",
       "statistics": "Geverifieerde Statistieken"
     },
-    "deepResearch": {
-      "title": "Diepgaand Onderzoek Modus",
-      "description": "De Diepgaand Onderzoek modus breidt je vraag uit om een antwoord te geven dat het onderwerp vanuit verschillende hoeken benadert.",
-      "note": "Diepgaand Onderzoek is langzamer en niet-conversationeel. Voor chat, laat het uit."
-    },
     "disclaimer": {
       "trigger": "Ervaringen en perspectieven op deze site komen van Reddit en YouTube.",
       "title": "Bronvermelding",
@@ -241,11 +236,9 @@
     "analysingExperiences": "Ervaringen Analyseren",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Zoekresultaten analyseren",
-    "analysingResearchResults": "Onderzoeksresultaten analyseren",
     "detransPerspective": "-> Wat zijn detrans-perspectieven op dit onderwerp?",
     "transPerspective": "-> Wat zijn trans-perspectieven op dit onderwerp?",
     "transPerspectivesIncluded": "Trans-perspectieven opgenomen",
-    "backToPortal": "<- Terug naar Portaal",
     "captchaRequired": "Captcha vereist om door te gaan met chatten.",
     "chatArchived": "Deze chat is gearchiveerd. Start een nieuwe.",
     "rateLimitExceeded": "Te veel verzoeken, vertraag en probeer het later opnieuw.",
@@ -255,67 +248,25 @@
     "eventLabels": {
       "askDetransitioners": "Vraag Detransitioners",
       "videoArchive": "Video-archief",
-      "userStories": "Gebruikersverhalen",
       "queryStudies": "Studies zoeken",
-      "topicHierarchy": "Onderwerp-hiërarchie",
-      "pageCatalog": "Paginacatalogus",
-      "deepResearch": "Diepgaand Onderzoek",
-      "linkPages": "Pagina's koppelen",
       "webSearch": "Web zoeken",
       "queryStudyCatalogue": "Detransitie Studiecatalogus doorzoeken",
       "studyDetail": "Studiedetails",
-      "searchResearchCache": "Onderzoekscache doorzoeken",
-      "fetchCachedResearch": "Gecached onderzoek ophalen",
-      "proposedContent": "Voorgestelde inhoud",
       "askTransPeople": "Vraag Trans-geïdentificeerde Mensen"
     },
     "eventStatus": {
-      "analysingVideos": "Video's analyseren",
-      "loadingUserProfiles": "Gebruikersprofielen laden...",
-      "searchingForResponses": "Zoeken naar antwoorden",
-      "viewResults": "Resultaten bekijken",
-      "failedToResearch": "Onderzoek mislukt",
-      "suggestionSubmitted": "Suggestie ingediend! Doorverwijzen...",
-      "submitting": "Indienen..."
+      "analysingVideos": "Video's analyseren"
     },
     "eventErrors": {
       "errorOccurred": "Er is een fout opgetreden",
       "invalidYoutubeUrl": "Ongeldige YouTube-URL",
-      "failed": "Mislukt",
-      "failedToCreatePage": "Pagina aanmaken mislukt",
-      "linkCouldNotBeCreated": "Link kon niet worden aangemaakt.",
-      "failedToCreateLink": "Link aanmaken mislukt",
       "webSearchFailed": "Web zoeken mislukt",
       "failedToFetchStudies": "Studies ophalen mislukt",
-      "failedToFetchStudy": "Studie ophalen mislukt",
-      "failedToSearchCache": "Cache doorzoeken mislukt",
-      "failedToFetchCachedResearch": "Gecached onderzoek ophalen mislukt",
-      "saveFailed": "Opslaan mislukt",
-      "submitFailed": "Indienen mislukt"
+      "failedToFetchStudy": "Studie ophalen mislukt"
     },
     "eventEmptyStates": {
       "noVideosFound": "Geen video's gevonden",
-      "noResultsFound": "Geen resultaten gevonden",
-      "studyNotFound": "Studie niet gevonden",
-      "noCachedResearchFound": "Geen gecached onderzoek gevonden",
-      "notFound": "Niet gevonden",
-      "noResults": "Geen resultaten",
-      "noMatchingPagesFound": "Geen overeenkomende pagina's gevonden."
-    },
-    "eventFieldLabels": {
-      "title": "Titel:",
-      "page": "Pagina:",
-      "version": "Versie:",
-      "found": "Gevonden:",
-      "findings": "Bevindingen:",
-      "abstract": "Samenvatting:",
-      "conclusion": "Conclusie:",
-      "keyPoints": "Kernpunten:",
-      "limitations": "Beperkingen:",
-      "created": "Aangemaakt:",
-      "preview": "Voorbeeld:",
-      "cachedResearchFound": "Gecached onderzoek gevonden:",
-      "success": "Succes"
+      "noResultsFound": "Geen resultaten gevonden"
     },
     "eventCounts": {
       "page": "pagina",
@@ -956,8 +907,7 @@
     },
     "chat": {
       "subtitle": "Vragen en antwoorden voor mensen die zich afvragen over hun genderidentiteit.",
-      "freedomMessage": "De waarheid is dat gendernon-conformiteit ons allemaal zal bevrijden!",
-      "moreQuestions": "Meer vragen gerelateerd aan \"{question}\""
+      "freedomMessage": "De waarheid is dat gendernon-conformiteit ons allemaal zal bevrijden!"
     },
     "videos": {
       "title": "Transitie & Detransitie Video's",
@@ -982,7 +932,6 @@
     "prompts": "/prompts",
     "participate": "/doe-mee",
     "conversations": "/gesprekken",
-    "research": "/onderzoek",
     "chat": "/chat",
     "login": "/login"
   },

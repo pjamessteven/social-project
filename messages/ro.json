@@ -67,11 +67,6 @@
       "howItWorks": "Cum Funcționează",
       "statistics": "Statistici Verificate"
     },
-    "deepResearch": {
-      "title": "Modul Cercetare Profundă",
-      "description": "Modul Cercetare Profundă îți extinde întrebarea pentru a-ți oferi un răspuns care abordează subiectul din diferite unghiuri.",
-      "note": "Cercetarea Profundă este mai lentă și non-conversațională. Pentru chat, lasă-l dezactivat."
-    },
     "disclaimer": {
       "trigger": "Experiențele și perspectivele de pe acest site sunt preluate de pe Reddit și YouTube.",
       "title": "Disclaimer Sursă",
@@ -243,11 +238,9 @@
     "analysingExperiences": "Se analizează Experiențele",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Se analizează rezultatele web",
-    "analysingResearchResults": "Se analizează rezultatele cercetării",
     "detransPerspective": "-> Care sunt perspectivele detrans asupra acestui subiect?",
     "transPerspective": "-> Care sunt perspectivele trans asupra acestui subiect?",
     "transPerspectivesIncluded": "Perspective trans incluse",
-    "backToPortal": "<- Înapoi la Portal",
     "captchaRequired": "Captcha necesar pentru a continua chat-ul.",
     "chatArchived": "Acest chat este arhivat. Începeți unul nou.",
     "rateLimitExceeded": "Prea multe solicitări, încetiniți și încercați din nou mai târziu.",
@@ -258,66 +251,24 @@
       "askDetransitioners": "Întreabă persoanele care au făcut detransiția",
       "askTransPeople": "Întreabă persoanele care se identifică drept trans",
       "videoArchive": "Arhivă video",
-      "userStories": "Povești ale utilizatorilor",
       "queryStudies": "Caută studii",
-      "topicHierarchy": "Ierarhia subiectelor",
-      "pageCatalog": "Catalog de pagini",
-      "deepResearch": "Cercetare Profundă",
-      "linkPages": "Leagă pagini",
       "webSearch": "Căutare pe web",
       "queryStudyCatalogue": "Caută în catalogul de studii despre detransiție",
-      "studyDetail": "Detalii studiu",
-      "searchResearchCache": "Caută în cache-ul de cercetare",
-      "fetchCachedResearch": "Preia cercetarea din cache",
-      "proposedContent": "Conținut propus"
+      "studyDetail": "Detalii studiu"
     },
     "eventStatus": {
-      "analysingVideos": "Se analizează videoclipurile",
-      "loadingUserProfiles": "Se încarcă profilurile utilizatorilor...",
-      "searchingForResponses": "Se caută răspunsuri",
-      "viewResults": "Vezi rezultatele",
-      "failedToResearch": "Cercetarea a eșuat",
-      "suggestionSubmitted": "Sugestie trimisă! Se redirecționează...",
-      "submitting": "Se trimite..."
+      "analysingVideos": "Se analizează videoclipurile"
     },
     "eventErrors": {
       "errorOccurred": "A apărut o eroare",
       "invalidYoutubeUrl": "URL YouTube invalid",
-      "failed": "Eșuat",
-      "failedToCreatePage": "Nu s-a putut crea pagina",
-      "linkCouldNotBeCreated": "Linkul nu a putut fi creat.",
-      "failedToCreateLink": "Nu s-a putut crea linkul",
       "webSearchFailed": "Căutarea pe web a eșuat",
       "failedToFetchStudies": "Nu s-au putut prelua studiile",
-      "failedToFetchStudy": "Nu s-a putut prelua studiul",
-      "failedToSearchCache": "Nu s-a putut căuta în cache",
-      "failedToFetchCachedResearch": "Nu s-a putut prelua cercetarea din cache",
-      "saveFailed": "Salvarea a eșuat",
-      "submitFailed": "Trimiterea a eșuat"
+      "failedToFetchStudy": "Nu s-a putut prelua studiul"
     },
     "eventEmptyStates": {
       "noVideosFound": "Nu s-au găsit videoclipuri",
-      "noResultsFound": "Nu s-au găsit rezultate",
-      "studyNotFound": "Studiul nu a fost găsit",
-      "noCachedResearchFound": "Nu s-a găsit cercetare în cache",
-      "notFound": "Nu a fost găsit",
-      "noResults": "Fără rezultate",
-      "noMatchingPagesFound": "Nu s-au găsit pagini corespunzătoare."
-    },
-    "eventFieldLabels": {
-      "title": "Titlu:",
-      "page": "Pagina:",
-      "version": "Versiunea:",
-      "found": "Găsit:",
-      "findings": "Descoperiri:",
-      "abstract": "Rezumat:",
-      "conclusion": "Concluzie:",
-      "keyPoints": "Puncte cheie:",
-      "limitations": "Limitări:",
-      "created": "Creat:",
-      "preview": "Previzualizare:",
-      "cachedResearchFound": "Cercetare în cache găsită:",
-      "success": "Succes"
+      "noResultsFound": "Nu s-au găsit rezultate"
     },
     "eventCounts": {
       "page": "pagină",
@@ -950,8 +901,7 @@
     },
     "chat": {
       "subtitle": "Întrebări și răspunsuri pentru persoane care se questionează asupra identității lor de gen.",
-      "freedomMessage": "Adevărul este că non-conformitatea de gen ne va elibera pe toți!",
-      "moreQuestions": "Mai multe întrebări legate de \"{question}\""
+      "freedomMessage": "Adevărul este că non-conformitatea de gen ne va elibera pe toți!"
     },
     "videos": {
       "title": "Videoclipuri despre Tranziție și Detransiție",
@@ -976,7 +926,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

@@ -1,11 +1,10 @@
+import { withApiSecurity } from "@/app/lib/apiSecurity";
 import { getCurrentSession } from "@/app/lib/auth/auth";
 import { getCountryFromIP } from "@/app/lib/geolocation";
-import { checkIpBan, getIpFromRequest } from "@/app/lib/ipBan";
 import {
   incrementMessageCount,
   isCaptchaRequired,
 } from "@/app/lib/messageCounter";
-import { checkRateLimit } from "@/app/lib/rateLimit";
 import { db } from "@/db";
 import { chatConversations } from "@/db/schema";
 import { createUIMessageStreamResponse, type UIMessage } from "ai";
@@ -40,21 +39,16 @@ const chatRequestSchema = z.object({
 export async function POST(req: NextRequest) {
   try {
     initSettings();
-    // Check if IP is banned before processing request
-    await checkIpBan(req);
 
-    // Get current session for username tracking
-    const session = await getCurrentSession();
+    // Centralized security: rate limit + IP ban + session retrieval
+    const { session, ip: ipAddress, error: securityError } = await withApiSecurity(req, {
+      rateLimit: true,
+      ipBan: true,
+      getSession: true,
+    });
+    if (securityError) return securityError;
+
     const username = session?.username || null;
-
-    const ipAddress = getIpFromRequest(req);
-
-    // Apply rate limiting (10/min, 100/hour)
-    const rateLimitResponse = await checkRateLimit(req);
-    console.log(
-      `[CHAT API] Rate limit check - IP: ${ipAddress}, Allowed: ${rateLimitResponse ? "BLOCKED" : "ALLOWED"}`,
-    );
-    if (rateLimitResponse) return rateLimitResponse;
 
     const reqBody = await req.json();
     const suggestNextQuestions = process.env.SUGGEST_NEXT_QUESTIONS === "true";

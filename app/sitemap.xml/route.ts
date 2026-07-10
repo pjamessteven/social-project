@@ -115,12 +115,6 @@ export async function GET(request: NextRequest) {
       priority: 0.5,
     },
     {
-      url: `${baseUrl}/compare`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "weekly",
-      priority: 0.6,
-    },
-    {
       url: `${baseUrl}/participate`,
       lastModified: new Date().toISOString(),
       changeFrequency: "monthly",

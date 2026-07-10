@@ -1,3 +1,4 @@
+import { withApiSecurity } from "@/app/lib/apiSecurity";
 import { chatConversations, db } from "@/db";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
@@ -168,6 +169,12 @@ export async function GET(
   { params }: { params: Promise<{ uuid: string }> },
 ) {
   try {
+    const { error: securityError } = await withApiSecurity(request, {
+      rateLimit: true,
+      ipBan: true,
+    });
+    if (securityError) return securityError;
+
     const { uuid } = await params;
 
     if (!uuid) {

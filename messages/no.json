@@ -67,11 +67,6 @@
       "howItWorks": "Hvordan det fungerer",
       "statistics": "Verified Statistics"
     },
-    "deepResearch": {
-      "title": "Dyp forskningsmodus",
-      "description": "Dyp forskningsmodus utvider spørsmålet ditt for å gi deg et svar som nærmer seg temaet fra ulike vinkler.",
-      "note": "Dyp forskning er tregere og ikke samtalebasert. For chat, la den være av."
-    },
     "disclaimer": {
       "trigger": "Erfaringer og perspektiver på dette nettstedet er hentet fra Reddit og YouTube.",
       "title": "Kildeansvarsfraskrivelse",
@@ -243,11 +238,9 @@
     "analysingExperiences": "Analyserer erfaringer",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analyserer søkeresultater",
-    "analysingResearchResults": "Analyserer forskningsresultater",
     "detransPerspective": "-> Hva er detransisjonerte perspektiver på dette temaet?",
     "transPerspective": "-> Hva er transpersoners perspektiver på dette temaet?",
     "transPerspectivesIncluded": "Transpersoners perspektiver inkludert",
-    "backToPortal": "<- Tilbake til portalen",
     "captchaRequired": "Captcha kreves for å fortsette chatten.",
     "chatArchived": "Denne chatten er arkivert. Start en ny.",
     "rateLimitExceeded": "For mange forespørsler, brems og prøv igjen senere.",
@@ -257,67 +250,25 @@
     "eventLabels": {
       "askDetransitioners": "Spør detransisjonerte",
       "videoArchive": "Videoarkiv",
-      "userStories": "Brukerhistorier",
       "queryStudies": "Søk i studier",
-      "topicHierarchy": "Emnehierarki",
-      "pageCatalog": "Sidekatalog",
-      "deepResearch": "Dyp forskning",
-      "linkPages": "Koble sider",
       "webSearch": "Nettsøk",
       "queryStudyCatalogue": "Søk i detransisjonsstudiekatalogen",
       "studyDetail": "Studiedetaljer",
-      "searchResearchCache": "Søk i forskningsbuffer",
-      "fetchCachedResearch": "Hent bufret forskning",
-      "proposedContent": "Foreslått innhold",
       "askTransPeople": "Spør transpersoner"
     },
     "eventStatus": {
-      "analysingVideos": "Analyserer videoer",
-      "loadingUserProfiles": "Laster brukerprofiler...",
-      "searchingForResponses": "Søker etter svar",
-      "viewResults": "Se resultater",
-      "failedToResearch": "Kunne ikke forske",
-      "suggestionSubmitted": "Forslag sendt! Omdirigerer...",
-      "submitting": "Sender inn..."
+      "analysingVideos": "Analyserer videoer"
     },
     "eventErrors": {
       "errorOccurred": "Det oppsto en feil",
       "invalidYoutubeUrl": "Ugyldig YouTube-URL",
-      "failed": "Mislyktes",
-      "failedToCreatePage": "Kunne ikke opprette side",
-      "linkCouldNotBeCreated": "Lenken kunne ikke opprettes.",
-      "failedToCreateLink": "Kunne ikke opprette lenke",
       "webSearchFailed": "Nettsøk mislyktes",
       "failedToFetchStudies": "Kunne ikke hente studier",
-      "failedToFetchStudy": "Kunne ikke hente studie",
-      "failedToSearchCache": "Kunne ikke søke i buffer",
-      "failedToFetchCachedResearch": "Kunne ikke hente bufret forskning",
-      "saveFailed": "Lagring mislyktes",
-      "submitFailed": "Innsending mislyktes"
+      "failedToFetchStudy": "Kunne ikke hente studie"
     },
     "eventEmptyStates": {
       "noVideosFound": "Ingen videoer funnet",
-      "noResultsFound": "Ingen resultater funnet",
-      "studyNotFound": "Studie ikke funnet",
-      "noCachedResearchFound": "Ingen bufret forskning funnet",
-      "notFound": "Ikke funnet",
-      "noResults": "Ingen resultater",
-      "noMatchingPagesFound": "Ingen matchende sider funnet."
-    },
-    "eventFieldLabels": {
-      "title": "Tittel:",
-      "page": "Side:",
-      "version": "Versjon:",
-      "found": "Funnet:",
-      "findings": "Funn:",
-      "abstract": "Sammendrag:",
-      "conclusion": "Konklusjon:",
-      "keyPoints": "Nøkkelpunkter:",
-      "limitations": "Begrensninger:",
-      "created": "Opprettet:",
-      "preview": "Forhåndsvisning:",
-      "cachedResearchFound": "Bufret forskning funnet:",
-      "success": "Suksess"
+      "noResultsFound": "Ingen resultater funnet"
     },
     "eventCounts": {
       "page": "side",
@@ -958,8 +909,7 @@
     },
     "chat": {
       "subtitle": "Spørsmål og svar for personer som stiller spørsmål ved sin kjønnsidentitet.",
-      "freedomMessage": "Sannheten er at kjønnsavvik vil sette oss alle fri!",
-      "moreQuestions": "Flere spørsmål relatert til \"{question}\""
+      "freedomMessage": "Sannheten er at kjønnsavvik vil sette oss alle fri!"
     },
     "videos": {
       "title": "Kjønnsovergangs- og detransisjonsvideoer",
@@ -984,7 +934,6 @@
     "prompts": "/sporring",
     "participate": "/delta",
     "conversations": "/samtaler",
-    "research": "/forskning",
     "chat": "/chat",
     "login": "/logg-inn"
   },

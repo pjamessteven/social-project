@@ -67,11 +67,6 @@
       "howItWorks": "Як це працює",
       "statistics": "Перевірена статистика"
     },
-    "deepResearch": {
-      "title": "Режим глибокого дослідження",
-      "description": "Режим глибокого дослідження розширює ваше запитання, щоб дати відповідь, яка розглядає тему з різних кутів.",
-      "note": "Глибоке дослідження повільніше і не є розмовним. Для чату залиште його вимкненим."
-    },
     "disclaimer": {
       "trigger": "Досвід і перспективи на цьому сайті взяті з Reddit та YouTube.",
       "title": "Відмова від джерел",
@@ -243,11 +238,9 @@
     "analysingExperiences": "Аналіз досвіду",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Аналіз веб-результатів",
-    "analysingResearchResults": "Аналіз результатів досліджень",
     "detransPerspective": "-> Які погляди детранзішнерів на цю тему?",
     "transPerspective": "-> Які погляди трансгендерних людей на цю тему?",
     "transPerspectivesIncluded": "Транс-перспективи включені",
-    "backToPortal": "<- Назад до порталу",
     "captchaRequired": "Потрібна капча для продовження чату.",
     "chatArchived": "Цей чат архівовано. Почніть новий.",
     "rateLimitExceeded": "Забагато запитів, уповільніться і спробуйте пізніше.",
@@ -258,66 +251,24 @@
       "askDetransitioners": "Запитати детранзішнерів",
       "askTransPeople": "Запитати транс-ідентифікованих осіб",
       "videoArchive": "Архів відео",
-      "userStories": "Історії користувачів",
       "queryStudies": "Пошук досліджень",
-      "topicHierarchy": "Ієрархія тем",
-      "pageCatalog": "Каталог сторінок",
-      "deepResearch": "Глибоке дослідження",
-      "linkPages": "Пов'язати сторінки",
       "webSearch": "Веб-пошук",
       "queryStudyCatalogue": "Пошук у каталозі досліджень детранзішну",
-      "studyDetail": "Деталі дослідження",
-      "searchResearchCache": "Пошук у кеші досліджень",
-      "fetchCachedResearch": "Отримати кешовані дослідження",
-      "proposedContent": "Запропонований контент"
+      "studyDetail": "Деталі дослідження"
     },
     "eventStatus": {
-      "analysingVideos": "Аналіз відео",
-      "loadingUserProfiles": "Завантаження профілів користувачів...",
-      "searchingForResponses": "Пошук відповідей",
-      "viewResults": "Переглянути результати",
-      "failedToResearch": "Дослідження не вдалося",
-      "suggestionSubmitted": "Пропозицію надіслано! Перенаправлення...",
-      "submitting": "Надсилання..."
+      "analysingVideos": "Аналіз відео"
     },
     "eventErrors": {
       "errorOccurred": "Сталася помилка",
       "invalidYoutubeUrl": "Невірний URL YouTube",
-      "failed": "Помилка",
-      "failedToCreatePage": "Не вдалося створити сторінку",
-      "linkCouldNotBeCreated": "Посилання не вдалося створити.",
-      "failedToCreateLink": "Не вдалося створити посилання",
       "webSearchFailed": "Веб-пошук не вдався",
       "failedToFetchStudies": "Не вдалося отримати дослідження",
-      "failedToFetchStudy": "Не вдалося отримати дослідження",
-      "failedToSearchCache": "Не вдалося знайти в кеші",
-      "failedToFetchCachedResearch": "Не вдалося отримати кешовані дослідження",
-      "saveFailed": "Збереження не вдалося",
-      "submitFailed": "Надсилання не вдалося"
+      "failedToFetchStudy": "Не вдалося отримати дослідження"
     },
     "eventEmptyStates": {
       "noVideosFound": "Відео не знайдено",
-      "noResultsFound": "Результатів не знайдено",
-      "studyNotFound": "Дослідження не знайдено",
-      "noCachedResearchFound": "Кешованих досліджень не знайдено",
-      "notFound": "Не знайдено",
-      "noResults": "Немає результатів",
-      "noMatchingPagesFound": "Відповідних сторінок не знайдено."
-    },
-    "eventFieldLabels": {
-      "title": "Назва:",
-      "page": "Сторінка:",
-      "version": "Версія:",
-      "found": "Знайдено:",
-      "findings": "Результати:",
-      "abstract": "Анотація:",
-      "conclusion": "Висновок:",
-      "keyPoints": "Ключові моменти:",
-      "limitations": "Обмеження:",
-      "created": "Створено:",
-      "preview": "Попередній перегляд:",
-      "cachedResearchFound": "Знайдено кешовані дослідження:",
-      "success": "Успіх"
+      "noResultsFound": "Результатів не знайдено"
     },
     "eventCounts": {
       "page": "сторінка",
@@ -950,8 +901,7 @@
     },
     "chat": {
       "subtitle": "Запитання та відповіді для людей, які сумніваються щодо своєї гендерної ідентичності.",
-      "freedomMessage": "Правда полягає в тому, що гендерна нонконформність звільнить нас усіх!",
-      "moreQuestions": "Більше запитань, пов'язаних з «{question}»"
+      "freedomMessage": "Правда полягає в тому, що гендерна нонконформність звільнить нас усіх!"
     },
     "videos": {
       "title": "Відео про транзішн та детранзішн",
@@ -976,7 +926,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

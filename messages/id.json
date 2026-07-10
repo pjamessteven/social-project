@@ -67,11 +67,6 @@
       "howItWorks": "Cara Kerjanya",
       "statistics": "Statistik Terverifikasi"
     },
-    "deepResearch": {
-      "title": "Mode Riset Mendalam",
-      "description": "Mode Riset Mendalam memperluas pertanyaan Anda untuk memberikan jawaban yang mendekati topik dari berbagai sudut pandang.",
-      "note": "Riset Mendalam lebih lambat dan non-konversasional. Untuk obrolan, matikan fitur ini."
-    },
     "disclaimer": {
       "trigger": "Pengalaman dan perspektif di situs ini bersumber dari Reddit dan YouTube.",
       "title": "Penafian Sumber",
@@ -243,11 +238,9 @@
     "analysingExperiences": "Menganalisis Pengalaman",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Menganalisis Hasil Web",
-    "analysingResearchResults": "Menganalisis Hasil Penelitian",
     "detransPerspective": "-> Apa perspektif orang yang berhenti transisi tentang topik ini?",
     "transPerspective": "-> Apa perspektif trans tentang topik ini?",
     "transPerspectivesIncluded": "Perspektif trans disertakan",
-    "backToPortal": "<- Kembali ke Portal",
     "captchaRequired": "Captcha diperlukan untuk melanjutkan obrolan.",
     "chatArchived": "Obrolan ini diarsipkan. Mulai yang baru.",
     "rateLimitExceeded": "Terlalu banyak permintaan, pelan-pelan dan coba lagi nanti.",
@@ -257,67 +250,25 @@
     "eventLabels": {
       "askDetransitioners": "Tanyakan kepada Detransitioner",
       "videoArchive": "Arsip Video",
-      "userStories": "Cerita Pengguna",
       "queryStudies": "Kueri Studi",
-      "topicHierarchy": "Hierarki Topik",
-      "pageCatalog": "Katalog Halaman",
-      "deepResearch": "Riset Mendalam",
-      "linkPages": "Tautkan Halaman",
       "webSearch": "Pencarian Web",
       "queryStudyCatalogue": "Kueri Katalog Studi Detransisi",
       "studyDetail": "Detail Studi",
-      "searchResearchCache": "Cari Cache Riset",
-      "fetchCachedResearch": "Ambil Riset dari Cache",
-      "proposedContent": "Konten yang Diusulkan",
       "askTransPeople": "Tanyakan kepada Orang yang Mengidentifikasi sebagai Trans"
     },
     "eventStatus": {
-      "analysingVideos": "Menganalisis Video",
-      "loadingUserProfiles": "Memuat profil pengguna...",
-      "searchingForResponses": "Mencari respons",
-      "viewResults": "Lihat hasil",
-      "failedToResearch": "Gagal melakukan riset",
-      "suggestionSubmitted": "Saran dikirim! Mengalihkan...",
-      "submitting": "Mengirim..."
+      "analysingVideos": "Menganalisis Video"
     },
     "eventErrors": {
       "errorOccurred": "Terjadi kesalahan",
       "invalidYoutubeUrl": "URL YouTube tidak valid",
-      "failed": "Gagal",
-      "failedToCreatePage": "Gagal membuat halaman",
-      "linkCouldNotBeCreated": "Tautan tidak dapat dibuat.",
-      "failedToCreateLink": "Gagal membuat tautan",
       "webSearchFailed": "Pencarian web gagal",
       "failedToFetchStudies": "Gagal mengambil studi",
-      "failedToFetchStudy": "Gagal mengambil studi",
-      "failedToSearchCache": "Gagal mencari cache",
-      "failedToFetchCachedResearch": "Gagal mengambil riset dari cache",
-      "saveFailed": "Gagal menyimpan",
-      "submitFailed": "Gagal mengirim"
+      "failedToFetchStudy": "Gagal mengambil studi"
     },
     "eventEmptyStates": {
       "noVideosFound": "Tidak ada video ditemukan",
-      "noResultsFound": "Tidak ada hasil ditemukan",
-      "studyNotFound": "Studi tidak ditemukan",
-      "noCachedResearchFound": "Tidak ada riset di cache ditemukan",
-      "notFound": "Tidak ditemukan",
-      "noResults": "Tidak ada hasil",
-      "noMatchingPagesFound": "Tidak ada halaman yang cocok ditemukan."
-    },
-    "eventFieldLabels": {
-      "title": "Judul:",
-      "page": "Halaman:",
-      "version": "Versi:",
-      "found": "Ditemukan:",
-      "findings": "Temuan:",
-      "abstract": "Abstrak:",
-      "conclusion": "Kesimpulan:",
-      "keyPoints": "Poin Utama:",
-      "limitations": "Keterbatasan:",
-      "created": "Dibuat:",
-      "preview": "Pratinjau:",
-      "cachedResearchFound": "Riset di cache ditemukan:",
-      "success": "Berhasil"
+      "noResultsFound": "Tidak ada hasil ditemukan"
     },
     "eventCounts": {
       "page": "halaman",
@@ -958,8 +909,7 @@
     },
     "chat": {
       "subtitle": "Pertanyaan dan jawaban untuk orang yang mempertanyakan identitas gender mereka.",
-      "freedomMessage": "Yang sebenarnya adalah bahwa non-konformitas gender akan membebaskan kita semua!",
-      "moreQuestions": "Pertanyaan lain terkait \"{question}\""
+      "freedomMessage": "Yang sebenarnya adalah bahwa non-konformitas gender akan membebaskan kita semua!"
     },
     "videos": {
       "title": "Video Transisi & Berhenti Transisi",
@@ -984,7 +934,6 @@
     "prompts": "/prompt",
     "participate": "/partisipasi",
     "conversations": "/percakapan",
-    "research": "/riset",
     "chat": "/chat",
     "login": "/masuk"
   },

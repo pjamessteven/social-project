@@ -28,8 +28,13 @@ export async function GET(request: NextRequest) {
     await setSessionCookie(result.user);
 
     // Redirect to conversations page or redirect URL if provided
-    const redirectTo = searchParams.get("redirect") || appUrl;
-    return NextResponse.redirect(new URL(redirectTo, request.url));
+    // Only allow relative paths starting with "/" to prevent open redirects
+    const redirectTo = searchParams.get("redirect");
+    const safeRedirect =
+      redirectTo && redirectTo.startsWith("/") && !redirectTo.startsWith("//")
+        ? redirectTo
+        : appUrl;
+    return NextResponse.redirect(new URL(safeRedirect, request.url));
   } catch (error) {
     console.error("Magic link verification endpoint error:", error);
     // Redirect to login page with error

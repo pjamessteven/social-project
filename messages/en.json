@@ -67,11 +67,6 @@
       "howItWorks": "How It Works",
       "statistics": "Verified Statistics"
     },
-    "deepResearch": {
-      "title": "Deep Research Mode",
-      "description": "Deep Research mode expands your question to give you an answer that approachs the topic from different angles.",
-      "note": "Deep Research is slower and non-conversational. For chat, leave it off."
-    },
     "disclaimer": {
       "trigger": "Experiences and perspectives on this site are sourced from Reddit and YouTube.",
       "title": "Source Disclaimer",
@@ -248,12 +243,10 @@
     "analysingExperiences": "Analysing Experiences",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analysing Web Results",
-    "analysingResearchResults": "Analysing Research Results",
     "analysingResults": "Analysing results...",
     "detransPerspective": "-> What are detrans perspectives on this topic?",
     "transPerspective": "-> What are trans perspectives on this topic?",
     "transPerspectivesIncluded": "Trans perspectives included",
-    "backToPortal": "<- Back to Portal",
     "captchaRequired": "Captcha required to continue chat.",
     "chatArchived": "This chat is archived. Start a new one.",
     "rateLimitExceeded": "Too many requests, slow down and try again later.",
@@ -263,67 +256,24 @@
       "askDetransitioners": "Ask Detransitioners",
       "askTransPeople": "Ask Trans-identified People",
       "videoArchive": "Video Archive",
-      "userStories": "User Stories",
       "queryStudies": "Query Studies",
-      "topicHierarchy": "Topic Hierarchy",
-      "pageCatalog": "Page Catalog",
-      "deepResearch": "Deep Research",
-      "linkPages": "Link Pages",
       "webSearch": "Web Search",
       "queryStudyCatalogue": "Search Studies",
-      "studyDetail": "Study Detail",
-      "searchResearchCache": "Search Research Cache",
-      "fetchCachedResearch": "Fetch Cached Research",
-      "proposedContent": "Proposed Content",
-      "followUpQuestions": "Follow-up Questions"
+      "studyDetail": "Study Detail"
     },
     "eventStatus": {
-      "analysingVideos": "Analysing Videos",
-      "loadingUserProfiles": "Loading user profiles...",
-      "searchingForResponses": "Searching for responses",
-      "viewResults": "View results",
-      "failedToResearch": "Failed to research",
-      "suggestionSubmitted": "Suggestion submitted! Redirecting...",
-      "submitting": "Submitting..."
+      "analysingVideos": "Analysing Videos"
     },
     "eventErrors": {
       "errorOccurred": "Error occurred",
       "invalidYoutubeUrl": "Invalid YouTube URL",
-      "failed": "Failed",
-      "failedToCreatePage": "Failed to create page",
-      "linkCouldNotBeCreated": "Link could not be created.",
-      "failedToCreateLink": "Failed to create link",
       "webSearchFailed": "Web search failed",
       "failedToFetchStudies": "Failed to fetch studies",
-      "failedToFetchStudy": "Failed to fetch study",
-      "failedToSearchCache": "Failed to search cache",
-      "failedToFetchCachedResearch": "Failed to fetch cached research",
-      "saveFailed": "Save failed",
-      "submitFailed": "Submit failed"
+      "failedToFetchStudy": "Failed to fetch study"
     },
     "eventEmptyStates": {
       "noVideosFound": "No videos found",
-      "noResultsFound": "No results found",
-      "studyNotFound": "Study not found",
-      "noCachedResearchFound": "No cached research found",
-      "notFound": "Not found",
-      "noResults": "No results",
-      "noMatchingPagesFound": "No matching pages found."
-    },
-    "eventFieldLabels": {
-      "title": "Title:",
-      "page": "Page:",
-      "version": "Version:",
-      "found": "Found:",
-      "findings": "Findings:",
-      "abstract": "Abstract:",
-      "conclusion": "Conclusion:",
-      "keyPoints": "Key Points:",
-      "limitations": "Limitations:",
-      "created": "Created:",
-      "preview": "Preview:",
-      "cachedResearchFound": "Cached research found:",
-      "success": "Success"
+      "noResultsFound": "No results found"
     },
     "eventCounts": {
       "page": "page",
@@ -957,8 +907,7 @@
     },
     "chat": {
       "subtitle": "Questions and answers for people who are questioning their gender identity.",
-      "freedomMessage": "The truth is that gender non-conformity will set us all free!",
-      "moreQuestions": "More questions related to \"{question}\""
+      "freedomMessage": "The truth is that gender non-conformity will set us all free!"
     },
     "videos": {
       "title": "Transition & Detransition Videos",
@@ -983,7 +932,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

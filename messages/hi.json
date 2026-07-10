@@ -67,11 +67,6 @@
       "howItWorks": "यह कैसे काम करता है",
       "statistics": "सत्यापित आंकड़े"
     },
-    "deepResearch": {
-      "title": "डीप रिसर्च मोड",
-      "description": "डीप रिसर्च मोड आपके प्रश्न का विस्तार करता है ताकि विभिन्न कोणों से विषय पर एक उत्तर दिया जा सके।",
-      "note": "डीप रिसर्च धीमा और गैर-वार्तालापी है। चैट के लिए इसे बंद रखें।"
-    },
     "disclaimer": {
       "trigger": "इस साइट के अनुभव और दृष्टिकोण Reddit और YouTube से हैं।",
       "title": "स्रोत अस्वीकरण",
@@ -242,11 +237,9 @@
     "analysingExperiences": "अनुभवों का विश्लेषण",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "वेब परिणामों का विश्लेषण",
-    "analysingResearchResults": "अनुसंधान परिणामों का विश्लेषण",
     "detransPerspective": "-> इस विषय पर डीट्रांज दृष्टिकोण क्या हैं?",
     "transPerspective": "-> इस विषय पर ट्रांस दृष्टिकोण क्या हैं?",
     "transPerspectivesIncluded": "ट्रांस दृष्टिकोण शामिल",
-    "backToPortal": "<- पोर्टल पर वापस",
     "captchaRequired": "चैट जारी रखने के लिए कैप्चा आवश्यक है।",
     "chatArchived": "यह चैट संग्रहीत है। एक नया शुरू करें।",
     "rateLimitExceeded": "बहुत अधिक अनुरोध, धीमा करें और बाद में पुनः प्रयास करें।",
@@ -256,67 +249,25 @@
     "eventLabels": {
       "askDetransitioners": "डीट्रांजिशनर्स से पूछें",
       "videoArchive": "वीडियो आर्काइव",
-      "userStories": "उपयोगकर्ता कहानियां",
       "queryStudies": "अध्ययन क्वेरी करें",
-      "topicHierarchy": "विषय पदानुक्रम",
-      "pageCatalog": "पृष्ठ कैटलॉग",
-      "deepResearch": "डीप रिसर्च",
-      "linkPages": "लिंक पृष्ठ",
       "webSearch": "वेब खोज",
       "queryStudyCatalogue": "डीट्रांजिशन अध्ययन कैटलॉग क्वेरी करें",
       "studyDetail": "अध्ययन विवरण",
-      "searchResearchCache": "अनुसंधान कैश खोजें",
-      "fetchCachedResearch": "कैश किया गया अनुसंधान प्राप्त करें",
-      "proposedContent": "प्रस्तावित सामग्री",
       "askTransPeople": "ट्रांस-पहचान वाले लोगों से पूछें"
     },
     "eventStatus": {
-      "analysingVideos": "वीडियो का विश्लेषण",
-      "loadingUserProfiles": "उपयोगकर्ता प्रोफाइल लोड हो रहे हैं...",
-      "searchingForResponses": "उत्तर खोज रहे हैं",
-      "viewResults": "परिणाम देखें",
-      "failedToResearch": "अनुसंधान विफल",
-      "suggestionSubmitted": "सुझाव सबमिट किया गया! पुनर्निर्देशित कर रहे हैं...",
-      "submitting": "सबमिट हो रहा है..."
+      "analysingVideos": "वीडियो का विश्लेषण"
     },
     "eventErrors": {
       "errorOccurred": "त्रुटि हुई",
       "invalidYoutubeUrl": "अमान्य YouTube URL",
-      "failed": "विफल",
-      "failedToCreatePage": "पृष्ठ बनाना विफल",
-      "linkCouldNotBeCreated": "लिंक नहीं बनाया जा सका।",
-      "failedToCreateLink": "लिंक बनाना विफल",
       "webSearchFailed": "वेब खोज विफल",
       "failedToFetchStudies": "अध्ययन प्राप्त करना विफल",
-      "failedToFetchStudy": "अध्ययन प्राप्त करना विफल",
-      "failedToSearchCache": "कैश खोजना विफल",
-      "failedToFetchCachedResearch": "कैश किया गया अनुसंधान प्राप्त करना विफल",
-      "saveFailed": "सहेजना विफल",
-      "submitFailed": "सबमिट करना विफल"
+      "failedToFetchStudy": "अध्ययन प्राप्त करना विफल"
     },
     "eventEmptyStates": {
       "noVideosFound": "कोई वीडियो नहीं मिला",
-      "noResultsFound": "कोई परिणाम नहीं मिला",
-      "studyNotFound": "अध्ययन नहीं मिला",
-      "noCachedResearchFound": "कैश किया गया अनुसंधान नहीं मिला",
-      "notFound": "नहीं मिला",
-      "noResults": "कोई परिणाम नहीं",
-      "noMatchingPagesFound": "कोई मेल खाता पृष्ठ नहीं मिला।"
-    },
-    "eventFieldLabels": {
-      "title": "शीर्षक:",
-      "page": "पृष्ठ:",
-      "version": "संस्करण:",
-      "found": "मिला:",
-      "findings": "निष्कर्ष:",
-      "abstract": "सारांश:",
-      "conclusion": "निष्कर्ष:",
-      "keyPoints": "मुख्य बिंदु:",
-      "limitations": "सीमाएं:",
-      "created": "बनाया गया:",
-      "preview": "पूर्वावलोकन:",
-      "cachedResearchFound": "कैश किया गया अनुसंधान मिला:",
-      "success": "सफल"
+      "noResultsFound": "कोई परिणाम नहीं मिला"
     },
     "eventCounts": {
       "page": "पृष्ठ",
@@ -957,8 +908,7 @@
     },
     "chat": {
       "subtitle": "जो लोग अपनी लिंग पहचान पर विचार कर रहे हैं उनके लिए प्रश्न और उत्तर।",
-      "freedomMessage": "सच्चाई यह है कि लिंग असहमति हम सभी को मुक्त करेगी!",
-      "moreQuestions": "\"{question}\" से संबंधित और प्रश्न"
+      "freedomMessage": "सच्चाई यह है कि लिंग असहमति हम सभी को मुक्त करेगी!"
     },
     "videos": {
       "title": "ट्रांजिशन और डीट्रांजिशन वीडियो",
@@ -983,7 +933,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

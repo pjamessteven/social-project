@@ -1,18 +1,15 @@
-import { isAdmin } from "@/app/lib/auth/auth";
+import { requireAuth } from "@/app/lib/auth/middleware";
 import { extractPdfText } from "@/app/lib/pdf";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   console.log("[PDF Extract API] Route handler started");
   try {
-    const admin = await isAdmin();
-    console.log("[PDF Extract API] Auth check complete, isAdmin:", admin);
-    if (!admin) {
-      return NextResponse.json(
-        { error: "Admin access required" },
-        { status: 403 },
-      );
-    }
+    const { errorResponse } = await requireAuth(request, {
+      requireAdmin: true,
+    });
+    if (errorResponse) return errorResponse;
+    console.log("[PDF Extract API] Auth check complete");
 
     const formData = await request.formData();
     console.log("[PDF Extract API] FormData parsed");

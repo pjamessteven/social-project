@@ -1,11 +1,17 @@
-import { checkIpBan, getIpFromRequest } from "@/app/lib/ipBan";
-import {
-  incrementMessageCount,
-  isCaptchaRequired,
-} from "@/app/lib/messageCounter";
-import { checkRateLimit } from "@/app/lib/rateLimit";
+import { incrementMessageCount } from "@/app/lib/messageCounter";
+import { withApiSecurity } from "@/app/lib/apiSecurity";
+import { sanitizeString } from "@/app/lib/sanitization";
 import { NextRequest, NextResponse } from "next/server";
 import { ZohoMailer } from "../../lib/mailer";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().min(1, "Name is required").max(200),
+  email: z.string().email("Invalid email address").max(320),
+  subject: z.string().min(1, "Subject is required").max(500),
+  message: z.string().min(1, "Message is required").max(5000),
+  site: z.string().optional(), // honeypot field
+});
 
 function getMailer() {
   return new ZohoMailer({
@@ -19,39 +25,39 @@ function getMailer() {
 
 export async function POST(request: NextRequest) {
   try {
-    // Apply rate limiting (10/min, 100/hour)
-    const rateLimitResponse = await checkRateLimit(request);
-    if (rateLimitResponse) return rateLimitResponse;
+    const { ip, validatedBody, error } = await withApiSecurity(request, {
+      rateLimit: true,
+      ipBan: true,
+      captcha: true,
+      validation: { schema: contactSchema },
+    });
+    if (error) return error;
 
-    // Check if IP is banned before processing request
-    await checkIpBan(request);
+    const { name, email, subject, message, site } = validatedBody as z.infer<typeof contactSchema>;
 
-    // Check CAPTCHA requirement
-    const ipAddress = getIpFromRequest(request);
-    const captchaRequired = await isCaptchaRequired(ipAddress);
-    if (captchaRequired) {
-      return NextResponse.json(
-        {
-          requiresCaptcha: true,
-          error: "CAPTCHA verification required",
-        },
-        { status: 402 },
-      );
+    // Reject honeypot submissions
+    if (site) {
+      return NextResponse.json({ success: true });
     }
 
-    const { name, email, subject, message, site } = await request.json();
+    // Sanitize all fields before interpolating into HTML
+    const safeName = sanitizeString(name, 200);
+    const safeEmail = sanitizeString(email, 320);
+    const safeSubject = sanitizeString(subject, 500);
+    const safeMessage = sanitizeString(message, 5000);
 
     const ok = await getMailer().sendMail({
       to: process.env.ZOHO_EMAIL!,
-      subject: `${"detrans.ai"} Contact Form: ${name}: ${subject}`,
-      content: `<p><b>From:</b> ${name} (${email}): <br/><b>Subject:</b>${subject}</p><p>${message}</p>`,
+      subject: `detrans.ai Contact Form: ${safeName}: ${safeSubject}`,
+      content: `<p><b>From:</b> ${safeName} (${safeEmail}): <br/><b>Subject:</b>${safeSubject}</p><p>${safeMessage}</p>`,
     });
 
     // Increment message count for CAPTCHA tracking
-    await incrementMessageCount(ipAddress);
+    await incrementMessageCount(ip);
 
     return NextResponse.json({ success: ok });
-  } catch (error) {
+  } catch (err) {
+    console.error("Contact form error:", err);
     return NextResponse.json(
       { success: false, error: "Failed to send email" },
       { status: 500 },

@@ -67,11 +67,6 @@
       "howItWorks": "كيف يعمل",
       "statistics": "إحصائيات موثقة"
     },
-    "deepResearch": {
-      "title": "وضع البحث العميق",
-      "description": "يوسع وضع البحث العميق سؤالك ليعطيك إجابة تقترب من الموضوع من زوايا مختلفة.",
-      "note": "البحث العميق أبطأ وغير محادث. للدردشة، اتركه متوقفاً."
-    },
     "disclaimer": {
       "trigger": "التجارب والوجهات نظر الموجودة على هذا الموقع مأخوذة من Reddit و YouTube.",
       "title": "إخلاء مسؤولية المصدر",
@@ -244,11 +239,9 @@
     "analysingExperiences": "جاري تحليل التجارب",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "تحليل نتائج الويب",
-    "analysingResearchResults": "تحليل نتائج البحث",
     "detransPerspective": "-> ما هي وجهات نظر الأشخاص الذين تراجعوا عن التحول حول هذا الموضوع؟",
     "transPerspective": "-> ما هي وجهات نظر المتحولين حول هذا الموضوع؟",
     "transPerspectivesIncluded": "تم تضمين وجهات نظر المتحولين",
-    "backToPortal": "<- العودة إلى البوابة",
     "captchaRequired": "مطلوب كابتشا لمواصلة الدردشة.",
     "chatArchived": "تم أرشفة هذه الدردشة. ابدأ واحدة جديدة.",
     "rateLimitExceeded": "طلبات كثيرة جدًا، أبطئ وحاول مرة أخرى لاحقًا.",
@@ -259,66 +252,24 @@
       "askDetransitioners": "اسأل المتراجعين عن التحول",
       "askTransPeople": "اسأل الأشخاص المعرّفين كمتحولين",
       "videoArchive": "أرشيف الفيديو",
-      "userStories": "قصص المستخدمين",
       "queryStudies": "البحث في الدراسات",
-      "topicHierarchy": "التسلسل الهرمي للمواضيع",
-      "pageCatalog": "فهرس الصفحات",
-      "deepResearch": "البحث العميق",
-      "linkPages": "ربط الصفحات",
       "webSearch": "البحث في الويب",
       "queryStudyCatalogue": "الاستعلام في كتالوج دراسات التراجع عن التحول",
-      "studyDetail": "تفاصيل الدراسة",
-      "searchResearchCache": "البحث في ذاكرة التخزين المؤقت للأبحاث",
-      "fetchCachedResearch": "جلب الأبحاث المخزنة مؤقتاً",
-      "proposedContent": "المحتوى المقترح"
+      "studyDetail": "تفاصيل الدراسة"
     },
     "eventStatus": {
-      "analysingVideos": "جاري تحليل مقاطع الفيديو",
-      "loadingUserProfiles": "جاري تحميل ملفات المستخدمين...",
-      "searchingForResponses": "جاري البحث عن ردود",
-      "viewResults": "عرض النتائج",
-      "failedToResearch": "فشل البحث",
-      "suggestionSubmitted": "تم إرسال الاقتراح! جاري إعادة التوجيه...",
-      "submitting": "جاري الإرسال..."
+      "analysingVideos": "جاري تحليل مقاطع الفيديو"
     },
     "eventErrors": {
       "errorOccurred": "حدث خطأ",
       "invalidYoutubeUrl": "رابط YouTube غير صالح",
-      "failed": "فشل",
-      "failedToCreatePage": "فشل إنشاء الصفحة",
-      "linkCouldNotBeCreated": "تعذر إنشاء الرابط.",
-      "failedToCreateLink": "فشل إنشاء الرابط",
       "webSearchFailed": "فشل البحث في الويب",
       "failedToFetchStudies": "فشل جلب الدراسات",
-      "failedToFetchStudy": "فشل جلب الدراسة",
-      "failedToSearchCache": "فشل البحث في ذاكرة التخزين المؤقت",
-      "failedToFetchCachedResearch": "فشل جلب الأبحاث المخزنة مؤقتاً",
-      "saveFailed": "فشل الحفظ",
-      "submitFailed": "فشل الإرسال"
+      "failedToFetchStudy": "فشل جلب الدراسة"
     },
     "eventEmptyStates": {
       "noVideosFound": "لم يتم العثور على مقاطع فيديو",
-      "noResultsFound": "لم يتم العثور على نتائج",
-      "studyNotFound": "لم يتم العثور على الدراسة",
-      "noCachedResearchFound": "لم يتم العثور على أبحاث مخزنة مؤقتاً",
-      "notFound": "غير موجود",
-      "noResults": "لا توجد نتائج",
-      "noMatchingPagesFound": "لم يتم العثور على صفحات مطابقة."
-    },
-    "eventFieldLabels": {
-      "title": "العنوان:",
-      "page": "الصفحة:",
-      "version": "الإصدار:",
-      "found": "تم العثور:",
-      "findings": "النتائج:",
-      "abstract": "الملخص:",
-      "conclusion": "الاستنتاج:",
-      "keyPoints": "النقاط الرئيسية:",
-      "limitations": "القيود:",
-      "created": "تم الإنشاء:",
-      "preview": "المعاينة:",
-      "cachedResearchFound": "تم العثور على أبحاث مخزنة مؤقتاً:",
-      "success": "نجاح"
+      "noResultsFound": "لم يتم العثور على نتائج"
     },
     "eventCounts": {
       "page": "صفحة",
@@ -951,8 +902,7 @@
     },
     "chat": {
       "subtitle": "أسئلة وأجوبة للأشخاص الذين يشكون في هويتهم الجندرية.",
-      "freedomMessage": "الحقيقة هي أن عدم التوافق الجندري سيحررنا جميعًا!",
-      "moreQuestions": "المزيد من الأسئلة المتعلقة بـ \"{question}\""
+      "freedomMessage": "الحقيقة هي أن عدم التوافق الجندري سيحررنا جميعًا!"
     },
     "videos": {
       "title": "مقاطع فيديو التحول والتراجع عنه",
@@ -977,7 +927,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },

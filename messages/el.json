@@ -67,11 +67,6 @@
       "howItWorks": "Πώς Λειτουργεί",
       "statistics": "Verified Statistics"
     },
-    "deepResearch": {
-      "title": "Λειτουργία Βαθιάς Έρευνας",
-      "description": "Η λειτουργία Βαθιάς Έρευνας επεκτείνει την ερώτησή σου για να σου δώσει μια απάντηση που προσεγγίζει το θέμα από διαφορετικές γωνίες.",
-      "note": "Η Βαθιά Έρευνα είναι πιο αργή και όχι συνομιλιακή. Για συνομιλία, άφησέ την απενεργοποιημένη."
-    },
     "disclaimer": {
       "trigger": "Οι εμπειρίες και οι απόψεις σε αυτόν τον ιστότοπο προέρχονται από το Reddit και το YouTube.",
       "title": "Αποποίηση Ευθύνης Πηγής",
@@ -245,11 +240,9 @@
     "analysingExperiences": "Ανάλυση Εμπειριών",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Ανάλυση αποτελεσμάτων ιστού",
-    "analysingResearchResults": "Ανάλυση αποτελεσμάτων έρευνας",
     "detransPerspective": "-> Ποιες είναι οι απόψεις των ατόμων που αποχώρησαν από την αλλαγή φύλου γι' αυτό το θέμα;",
     "transPerspective": "-> Ποιες είναι οι απόψεις των τρανς ατόμων γι' αυτό το θέμα;",
     "transPerspectivesIncluded": "Οι τρανς απόψεις περιλαμβάνονται",
-    "backToPortal": "<- Επιστροφή στην Πύλη",
     "captchaRequired": "Απαιτείται captcha για να συνεχίσετε τη συνομιλία.",
     "chatArchived": "Αυτή η συνομιλία έχει αρχειοθετηθεί. Ξεκινήστε μια νέα.",
     "rateLimitExceeded": "Πάρα πολλά αιτήματα, επιβραδύνετε και δοκιμάστε ξανά αργότερα.",
@@ -260,66 +253,24 @@
       "askDetransitioners": "Ρώτησε Άτομα που Αποχώρησαν",
       "askTransPeople": "Ρώτησε Άτομα που Ταυτίζονται ως Τρανς",
       "videoArchive": "Αρχείο Βίντεο",
-      "userStories": "Ιστορίες Χρηστών",
       "queryStudies": "Αναζήτηση Μελετών",
-      "topicHierarchy": "Ιεραρχία Θεμάτων",
-      "pageCatalog": "Κατάλογος Σελίδων",
-      "deepResearch": "Βαθιά Έρευνα",
-      "linkPages": "Σύνδεση Σελίδων",
       "webSearch": "Αναζήτηση στο Web",
       "queryStudyCatalogue": "Ερώτημα στον Κατάλογο Μελετών Αποχώρησης",
-      "studyDetail": "Λεπτομέρειες Μελέτης",
-      "searchResearchCache": "Αναζήτηση στην Προσωρινή Μνήμη Έρευνας",
-      "fetchCachedResearch": "Λήψη Αποθηκευμένης Έρευνας",
-      "proposedContent": "Προτεινόμενο Περιεχόμενο"
+      "studyDetail": "Λεπτομέρειες Μελέτης"
     },
     "eventStatus": {
-      "analysingVideos": "Ανάλυση Βίντεο",
-      "loadingUserProfiles": "Φόρτωση προφίλ χρηστών...",
-      "searchingForResponses": "Αναζήτηση απαντήσεων",
-      "viewResults": "Προβολή αποτελεσμάτων",
-      "failedToResearch": "Αποτυχία έρευνας",
-      "suggestionSubmitted": "Η πρόταση υποβλήθηκε! Ανακατεύθυνση...",
-      "submitting": "Υποβολή..."
+      "analysingVideos": "Ανάλυση Βίντεο"
     },
     "eventErrors": {
       "errorOccurred": "Προέκυψε σφάλμα",
       "invalidYoutubeUrl": "Μη έγκυρο URL YouTube",
-      "failed": "Αποτυχία",
-      "failedToCreatePage": "Αποτυχία δημιουργίας σελίδας",
-      "linkCouldNotBeCreated": "Ο σύνδεσμος δεν μπόρεσε να δημιουργηθεί.",
-      "failedToCreateLink": "Αποτυχία δημιουργίας συνδέσμου",
       "webSearchFailed": "Η αναζήτηση στο web απέτυχε",
       "failedToFetchStudies": "Αποτυχία λήψης μελετών",
-      "failedToFetchStudy": "Αποτυχία λήψης μελέτης",
-      "failedToSearchCache": "Αποτυχία αναζήτησης στην προσωρινή μνήμη",
-      "failedToFetchCachedResearch": "Αποτυχία λήψης αποθηκευμένης έρευνας",
-      "saveFailed": "Αποτυχία αποθήκευσης",
-      "submitFailed": "Αποτυχία υποβολής"
+      "failedToFetchStudy": "Αποτυχία λήψης μελέτης"
     },
     "eventEmptyStates": {
       "noVideosFound": "Δεν βρέθηκαν βίντεο",
-      "noResultsFound": "Δεν βρέθηκαν αποτελέσματα",
-      "studyNotFound": "Η μελέτη δεν βρέθηκε",
-      "noCachedResearchFound": "Δεν βρέθηκε αποθηκευμένη έρευνα",
-      "notFound": "Δεν βρέθηκε",
-      "noResults": "Χωρίς αποτελέσματα",
-      "noMatchingPagesFound": "Δεν βρέθηκαν αντίστοιχες σελίδες."
-    },
-    "eventFieldLabels": {
-      "title": "Τίτλος:",
-      "page": "Σελίδα:",
-      "version": "Έκδοση:",
-      "found": "Βρέθηκε:",
-      "findings": "Ευρήματα:",
-      "abstract": "Περίληψη:",
-      "conclusion": "Συμπέρασμα:",
-      "keyPoints": "Βασικά Σημεία:",
-      "limitations": "Περιορισμοί:",
-      "created": "Δημιουργήθηκε:",
-      "preview": "Προεπισκόπηση:",
-      "cachedResearchFound": "Αποθηκευμένη έρευνα βρέθηκε:",
-      "success": "Επιτυχία"
+      "noResultsFound": "Δεν βρέθηκαν αποτελέσματα"
     },
     "eventCounts": {
       "page": "σελίδα",
@@ -952,8 +903,7 @@
     },
     "chat": {
       "subtitle": "Ερωτήσεις και απαντήσεις για άτομα που αμφισβητούν την ταυτότητα φύλου τους.",
-      "freedomMessage": "Η αλήθεια είναι ότι η μη συμμόρφωση φύλου θα μας απελευθερώσει όλους!",
-      "moreQuestions": "Περισσότερες ερωτήσεις σχετικά με \"{question}\""
+      "freedomMessage": "Η αλήθεια είναι ότι η μη συμμόρφωση φύλου θα μας απελευθερώσει όλους!"
     },
     "videos": {
       "title": "Βίντεο Αλλαγής και Αποχώρησης από την Αλλαγή Φύλου",
@@ -978,7 +928,6 @@
     "prompts": "/prompts",
     "participate": "/participate",
     "conversations": "/conversations",
-    "research": "/research",
     "chat": "/chat",
     "login": "/login"
   },
