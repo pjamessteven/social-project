@@ -345,12 +345,6 @@
     "transPerspectivesLabel": "شامل دیدگاه‌های ترنس (آزمایشی)",
     "transPerspectivesDesc": "به درخواست پرتکرار، detrans.ai اکنون می‌تواند در /r/mtf و /r/ftm جستجو کند تا دیدگاه‌های ترنس را با دیدگاه‌های دترنز درباره هویت جنسیتی و ترنزیشن مقایسه و بررسی کند."
   },
-  "questionTabs": {
-    "topics": "موضوعات",
-    "generated": "تولید شده",
-    "recent": "اخیر",
-    "top": "برتر"
-  },
   "conversations": {
     "title": "گفتگوهای اخیر",
     "subtitle": "ببینید چگونه detrans.ai به افراد از سراسر جهان کمک می‌کند.",

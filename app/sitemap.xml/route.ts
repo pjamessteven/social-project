@@ -1,4 +1,3 @@
-import { questionCategories } from "@/app/lib/questions";
 import { slugify } from "@/app/lib/utils";
 import { generateVideoSlug } from "@/app/lib/video-utils";
 import { db } from "@/db";
@@ -24,11 +23,6 @@ export async function GET(request: NextRequest) {
   const host = request.headers.get("host") || "detrans.ai";
   const protocol = request.headers.get("x-forwarded-proto") || "https";
   const baseUrl = `${protocol}://${host}`;
-
-  // Extract all questions from question categories
-  const allQuestions = questionCategories.flatMap(
-    (category) => category.questions,
-  );
 
   // Fetch all users from database
   const users = await db

@@ -341,12 +341,6 @@
     "transPerspectivesLabel": "トランスの視点を含める (beta)",
     "transPerspectivesDesc": "多くのご要望により、detrans.aiは/r/mtfと/r/ftmを検索し、ジェンダーアイデンティティと遷移についてトランスの視点がデトランスの視点とどのように比較されるかを探求できるようになりました。"
   },
-  "questionTabs": {
-    "topics": "トピック",
-    "generated": "生成済み",
-    "recent": "最近",
-    "top": "トップ"
-  },
   "conversations": {
     "title": "最近の会話",
     "subtitle": "detrans.aiが世界中の人々をどのように助けているか、ご自分の目でご確認ください。",

@@ -343,12 +343,6 @@
     "transPerspectivesLabel": "ट्रांस दृष्टिकोण शामिल करें (beta)",
     "transPerspectivesDesc": "लोकप्रिय मांग के कारण, detrans.ai अब /r/mtf और /r/ftm को खोज सकता है ताकि ट्रांस दृष्टिकोण की तुलना डीट्रांज दृष्टिकोण से लिंग पहचान और ट्रांजिशन पर की जा सके।"
   },
-  "questionTabs": {
-    "topics": "विषय",
-    "generated": "उत्पन्न",
-    "recent": "हाल के",
-    "top": "शीर्ष"
-  },
   "conversations": {
     "title": "हाल की वार्तालाप",
     "subtitle": "देखें कि detrans.ai दुनिया भर के लोगों की कैसे मदद कर रहा है।",

@@ -344,12 +344,6 @@
     "transPerspectivesLabel": "Įtraukti translyčių požiūrius (beta)",
     "transPerspectivesDesc": "Dėl didelio populiarumo detrans.ai dabar gali ieškoti /r/mtf ir /r/ftm, kad įtrauktų ir ištirtų, kaip translyčių požiūriai lyginami su detranzicijos požiūriais į genderinę tapatybę ir perėjimą."
   },
-  "questionTabs": {
-    "topics": "Temos",
-    "generated": "Sugeneruota",
-    "recent": "Naujausi",
-    "top": "Populiariausi"
-  },
   "conversations": {
     "title": "Naujausi pokalbiai",
     "subtitle": "Pamatykite patys, kaip detrans.ai padeda žmonėms iš viso pasaulio.",

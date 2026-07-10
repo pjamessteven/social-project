@@ -343,12 +343,6 @@
     "transPerspectivesLabel": "Trans perspektiflerini dahil et (beta)",
     "transPerspectivesDesc": "Yoğun talep üzerine, detrans.ai artık /r/mtf ve /r/ftm'de arama yaparak trans perspektiflerin cinsiyet kimliği ve geçiş konularında detrans perspektifleriyle nasıl karşılaştırıldığını dahil edebilir ve keşfedebilir."
   },
-  "questionTabs": {
-    "topics": "Konular",
-    "generated": "Oluşturulan",
-    "recent": "Son",
-    "top": "En İyi"
-  },
   "conversations": {
     "title": "Son Konuşmalar",
     "subtitle": "Detrans.ai'nin dünyanın dört bir yanından gelen insanlara nasıl yardımcı olduğunu kendiniz görün.",

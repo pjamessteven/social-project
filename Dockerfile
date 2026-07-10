@@ -45,7 +45,6 @@ RUN addgroup --system --gid 1001 nodejs && \
 # Source + deps (needed for tsx script execution and ad-hoc scripts)
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
 COPY --from=builder --chown=nextjs:nodejs /app/app ./app
-COPY --from=builder --chown=nextjs:nodejs /app/components ./components
 COPY --from=builder --chown=nextjs:nodejs /app/db ./db
 COPY --from=builder --chown=nextjs:nodejs /app/scripts ./scripts
 COPY --from=builder --chown=nextjs:nodejs /app/stores ./stores

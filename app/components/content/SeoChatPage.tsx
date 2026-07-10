@@ -3,7 +3,6 @@
 import type { Locale } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { marked } from "marked";
-import { QuestionCategories } from "./QuestionCategories";
 
 interface SeoPageProps {
   mode: "detrans";
@@ -41,14 +40,6 @@ export default async function SeoChatPage({
       <h2 className="mt-4">
         {t("freedomMessage")}
       </h2>
-
-      <h1 className="mt-16 text-3xl font-bold">
-        {t("moreQuestions", { question: question ?? "" })}
-      </h1>
-      <br />
-      <div className="my-16">
-        <QuestionCategories mode={mode} locale={locale} />
-      </div>
     </>
   );
 }

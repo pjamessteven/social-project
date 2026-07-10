@@ -344,12 +344,6 @@
     "transPerspectivesLabel": "Sisällytä trans-näkökulmat (beta)",
     "transPerspectivesDesc": "Kysynnän vuoksi detrans.ai voi nyt hakea /r/mtf:stä ja /r/ftm:stä sisällyttääkseen ja tutkiakseen, kuinka trans-näkökulmat vertautuvat detrans-näkökulmiin sukupuoli-identiteetistä ja siirtymästä."
   },
-  "questionTabs": {
-    "topics": "Aiheet",
-    "generated": "Luodut",
-    "recent": "Viimeisimmät",
-    "top": "Suosituimmat"
-  },
   "conversations": {
     "title": "Viimeisimmät Keskustelut",
     "subtitle": "Katso itse, kuinka detrans.ai auttaa ihmisiä ympäri maailmaa.",

@@ -343,12 +343,6 @@
     "transPerspectivesLabel": "包含跨性别视角（beta）",
     "transPerspectivesDesc": "应广大用户要求，detrans.ai 现在可以搜索 /r/mtf 和 /r/ftm，以包含并探索跨性别视角与去过渡视角在性别认同和过渡方面的比较。"
   },
-  "questionTabs": {
-    "topics": "话题",
-    "generated": "生成的",
-    "recent": "最近的",
-    "top": "热门"
-  },
   "conversations": {
     "title": "最近对话",
     "subtitle": "看看detrans.ai如何帮助来自世界各地的人们。",

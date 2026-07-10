@@ -344,12 +344,6 @@
     "transPerspectivesLabel": "Inkluder transperspektiver (beta)",
     "transPerspectivesDesc": "På grunn av stor etterspørsel kan detrans.ai nå søke i /r/mtf og /r/ftm for å inkludere og utforske hvordan transperspektiver sammenlignes med detransperspektiver på kjønnsidentitet og kjønnsovergang."
   },
-  "questionTabs": {
-    "topics": "Emner",
-    "generated": "Generert",
-    "recent": "Nylig",
-    "top": "Topp"
-  },
   "conversations": {
     "title": "Nylige samtaler",
     "subtitle": "Se selv hvordan detrans.ai hjelper mennesker fra hele verden.",

@@ -206,12 +206,6 @@
     "placeholder": "Demandez à detrans.ai...",
     "suggestions": "Suggestions:"
   },
-  "questionTabs": {
-    "topics": "Sujets",
-    "generated": "Généré",
-    "recent": "Récent",
-    "top": "Top"
-  },
   "conversations": {
     "title": "Conversations Récentes",
     "subtitle": "Voyez par vous-même comment detrans.ai aide les gens du monde entier.",

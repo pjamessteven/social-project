@@ -335,12 +335,6 @@
     "transPerspectivesLabel": "Incluir perspectivas trans (beta)",
     "transPerspectivesDesc": "Por demanda popular, detrans.ai ahora puede buscar en /r/mtf y /r/ftm para incluir y explorar cómo las perspectivas trans se comparan con las perspectivas de destransición sobre la identidad de género y la transición."
   },
-  "questionTabs": {
-    "topics": "Temas",
-    "generated": "Generado",
-    "recent": "Reciente",
-    "top": "Top"
-  },
   "conversations": {
     "title": "Conversaciones Recientes",
     "subtitle": "Vea usted mismo cómo detrans.ai está ayudando a personas de todo el mundo.",

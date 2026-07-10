@@ -343,12 +343,6 @@
     "transPerspectivesLabel": "כלול נקודות מבט טרנס (בטא)",
     "transPerspectivesDesc": "לפי דרישה פופולרית, detrans.ai יכול כעת לחפש ב-/r/mtf ו-/r/ftm כדי לכלול ולחקור כיצד נקודות מבט טרנס משתוות לנקודות מבט דטרנזישן על זהות מגדרית ומעבר."
   },
-  "questionTabs": {
-    "topics": "נושאים",
-    "generated": "נוצרו",
-    "recent": "אחרונים",
-    "top": "מובילים"
-  },
   "conversations": {
     "title": "שיחות אחרונות",
     "subtitle": "ראה/י בעצמך איך detrans.ai עוזר לאנשים מרחבי העולם.",

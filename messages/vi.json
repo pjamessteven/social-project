@@ -344,12 +344,6 @@
     "transPerspectivesLabel": "Bao gồm quan điểm chuyển giới (beta)",
     "transPerspectivesDesc": "Theo yêu cầu phổ biến, detrans.ai hiện có thể tìm kiếm trên /r/mtf và /r/ftm để bao gồm và khám phá cách quan điểm chuyển giới so sánh với quan điểm chuyển giới trở lại về bản dạng giới và quá trình chuyển đổi."
   },
-  "questionTabs": {
-    "topics": "Chủ Đề",
-    "generated": "Được Tạo",
-    "recent": "Gần Đây",
-    "top": "Hàng Đầu"
-  },
   "conversations": {
     "title": "Cuộc Trò Chuyện Gần Đây",
     "subtitle": "Xem detrans.ai đang giúp đỡ mọi ngưởi từ khắp nơi trên thế giới như thế nào.",

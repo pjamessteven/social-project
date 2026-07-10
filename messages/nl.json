@@ -342,12 +342,6 @@
     "transPerspectivesLabel": "Trans-perspectieven opnemen (beta)",
     "transPerspectivesDesc": "Op veler verzoek kan detrans.ai nu zoeken in /r/mtf en /r/ftm om te onderzoeken hoe trans-perspectieven zich verhouden tot detrans-perspectieven over genderidentiteit en transitie."
   },
-  "questionTabs": {
-    "topics": "Onderwerpen",
-    "generated": "Gegenereerd",
-    "recent": "Recent",
-    "top": "Top"
-  },
   "conversations": {
     "title": "Recente Gesprekken",
     "subtitle": "Zie zelf hoe detrans.ai mensen over de hele wereld helpt.",

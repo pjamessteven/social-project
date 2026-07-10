@@ -345,12 +345,6 @@
     "transPerspectivesLabel": "Zahrnout trans perspektivy (beta)",
     "transPerspectivesDesc": "Na vyžádání uživatelů nyní detrans.ai může prohledávat /r/mtf a /r/ftm, aby zahrnul a prozkoumal, jak se trans perspektivy porovnávají s detrans perspektivami ohledně genderové identity a tranzice."
   },
-  "questionTabs": {
-    "topics": "Témata",
-    "generated": "Generováno",
-    "recent": "Nedávné",
-    "top": "Nejlepší"
-  },
   "conversations": {
     "title": "Nedávné konverzace",
     "subtitle": "Podívejte se, jak detrans.ai pomáhá lidem z celého světa.",

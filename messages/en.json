@@ -350,12 +350,6 @@
     "transPerspectivesLabel": "Include trans perspectives (beta)",
     "transPerspectivesDesc": "Due to popular demand, detrans.ai can now search /r/mtf and /r/ftm to include trans perspectives and explore how they compare to detrans perspectives."
   },
-  "questionTabs": {
-    "topics": "Topics",
-    "generated": "Generated",
-    "recent": "Recent",
-    "top": "Top"
-  },
   "conversations": {
     "title": "Recent Conversations",
     "subtitle": "See for yourself how detrans.ai is helping people from around the world.",

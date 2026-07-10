@@ -242,33 +242,6 @@ export async function StartPage({
           </div>
         )}
 
-        {/*
-        <div className="sm:prose-base prose dark:prose-invert max-w-full sm:mt-4">
-          <div className="flex items-center justify-start gap-2 lg:mt-2">
-            <BookOpen className="mx-2 h-6 w-6 text-black dark:text-white" />
-
-            <h3 className="my-0! py-0! text-xl font-bold">
-              {t("deepResearch.title")}
-            </h3>
-          </div>
-          <p className="text-muted-foreground prose-sm sm:prose-base mb-0">
-            {t("deepResearch.description")}
-            <br className="hidden" /> {t("deepResearch.note")}
-          </p>
-        </div>
-
-        <>
-          {!bot ? (
-            <div className="mt-6">
-              <QuestionTabs mode="detrans" />
-            </div>
-          ) : (
-            <div className="mt-8">
-              <QuestionCategories mode="detrans" locale={locale} />
-            </div>
-          )}
-        </>
- */}
         <div className="relative mt-4 -mb-16 pb-16 sm:mt-8">
           <div className="from-secondary/50 dark:from-secondary/50 absolute -left-[5000px] z-0 h-full w-[10000px] border-t bg-linear-to-b to-white dark:to-black" />
           <div className="relative z-20 -mt-20 pt-8 sm:pt-12">

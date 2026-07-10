@@ -344,12 +344,6 @@
     "transPerspectivesLabel": "Transz nézőpontok bevonása (beta)",
     "transPerspectivesDesc": "Nagy népszerűségnek örvendve a detrans.ai most már képes keresni a /r/mtf és /r/ftm közösségekben, hogy bemutassa és feltárja, hogyan viszonyulnak a transz nézőpontok a detrans nézőpontokhoz a nemi identitás és az átmenet témáiban."
   },
-  "questionTabs": {
-    "topics": "Témák",
-    "generated": "Generált",
-    "recent": "Friss",
-    "top": "Legnépszerűbb"
-  },
   "conversations": {
     "title": "Legfrissebb Beszélgetések",
     "subtitle": "Lásd saját szemmel, hogyan segít a detrans.ai az embereknek a világ minden tájáról.",
