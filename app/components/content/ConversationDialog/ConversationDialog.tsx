@@ -222,7 +222,7 @@ export function ConversationDialog({
           </div>
 
           {/* Content */}
-          <div className="min-h-0 flex-1 overflow-y-auto pt-8">
+          <div className="min-h-0 flex-1 overflow-y-auto">
             {isLoading ? (
               <div className="flex h-full items-center justify-center">
                 <Loader2 className="text-muted-foreground h-10 w-10 animate-spin" />
@@ -240,7 +240,7 @@ export function ConversationDialog({
                   </div>
                 )}
                 <div className="bg-background border-primary sticky top-0 z-20 h-px w-full border-t" />
-                <div className="px-4 sm:px-0">
+                <div className="px-4 pt-6 sm:px-0">
                   <ChatSection
                     conversationId={conversationId}
                     readOnly={true}
