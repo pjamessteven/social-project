@@ -6,8 +6,8 @@ import { detransUsers, detransTags, detransUserTags } from "@/db/schema";
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const minAge = parseInt(searchParams.get("minAge") || "10");
-    const maxAge = parseInt(searchParams.get("maxAge") || "50");
+    const minAge = Math.max(Math.min(parseInt(searchParams.get("minAge") || "10") || 10, 120), 0);
+    const maxAge = Math.max(Math.min(parseInt(searchParams.get("maxAge") || "50") || 50, 120), minAge);
     const sex = searchParams.get("sex");
     const tag = searchParams.get("tag");
 

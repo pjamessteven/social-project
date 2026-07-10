@@ -60,7 +60,8 @@ export async function GET(request: NextRequest) {
       })
       .from(videos)
       .where(eq(videos.processed, true))
-      .orderBy(desc(videos.createdAt));
+      .orderBy(desc(videos.createdAt))
+      .limit(100);
 
     return NextResponse.json({
       videos: allVideos as Video[],

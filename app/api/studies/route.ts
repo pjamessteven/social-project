@@ -115,14 +115,16 @@ export async function GET(request: NextRequest) {
       allStudies = await db
         .select()
         .from(studies)
-        .orderBy(desc(studies.year));
+        .orderBy(desc(studies.year))
+        .limit(100);
     } else {
       // Public sees only approved studies
       allStudies = await db
         .select()
         .from(studies)
         .where(eq(studies.approved, true))
-        .orderBy(desc(studies.year));
+        .orderBy(desc(studies.year))
+        .limit(100);
     }
 
     let filteredStudies = allStudies as StudyWithTranslations[];

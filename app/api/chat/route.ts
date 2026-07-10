@@ -361,8 +361,8 @@ function getLocalizedField(
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const page = parseInt(searchParams.get("page") || "1", 10);
-    const limit = parseInt(searchParams.get("limit") || "20", 10);
+    const page = Math.max(parseInt(searchParams.get("page") || "1", 10) || 1, 1);
+    const limit = Math.min(Math.max(parseInt(searchParams.get("limit") || "20", 10) || 20, 1), 100);
     const offset = (page - 1) * limit;
     const locale = searchParams.get("locale") || "en";
     const featuredParam = searchParams.get("featured");
