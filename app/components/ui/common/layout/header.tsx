@@ -70,57 +70,52 @@ export default function Header({
   mode,
   locale,
 }: {
-  mode: "detrans" | "affirm";
+  mode: "detrans";
   locale?: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const isDev = process.env.NODE_ENV === "development";
-  const devAffirm = isDev && mode === "affirm";
   const t = useTranslations("header");
   const tHome = useTranslations("home");
   const { scrollPosition } = useMainStore();
   const { isAuthenticated } = useUserStore();
 
   const isChatActive =
-    pathname === "/" || pathname === "/affirm" || pathname.startsWith("/chat");
+    pathname === "/" || pathname.startsWith("/chat");
 
   const baseTabs: TabDef[] = [
     {
       key: "chat",
-      href: !devAffirm ? "/" : "/affirm",
+      href: "/",
       label: t("navigation.chat"),
       isActive: isChatActive,
       icon: <MessageCircleHeart className="h-3.5 w-3.5" />,
     },
   ];
 
-  const detransTabs: TabDef[] =
-    mode === "detrans"
-      ? [
-          {
-            key: "videos",
-            href: "/videos",
-            label: t("navigation.videos"),
-            isActive: pathname === "/videos",
-            icon: <Youtube className="h-3.5 w-3.5" />,
-          },
-          {
-            key: "studies",
-            href: "/studies",
-            label: t("navigation.studies"),
-            isActive: pathname === "/studies",
-            icon: <BookText className="h-3.5 w-3.5" />,
-          },
-          {
-            key: "stats",
-            href: "/stats",
-            label: t("navigation.stats"),
-            isActive: pathname === "/stats",
-            icon: <ChartNoAxesCombined className="h-3.5 w-3.5" />,
-          },
-        ]
-      : [];
+  const detransTabs: TabDef[] = [
+    {
+      key: "videos",
+      href: "/videos",
+      label: t("navigation.videos"),
+      isActive: pathname === "/videos",
+      icon: <Youtube className="h-3.5 w-3.5" />,
+    },
+    {
+      key: "studies",
+      href: "/studies",
+      label: t("navigation.studies"),
+      isActive: pathname === "/studies",
+      icon: <BookText className="h-3.5 w-3.5" />,
+    },
+    {
+      key: "stats",
+      href: "/stats",
+      label: t("navigation.stats"),
+      isActive: pathname === "/stats",
+      icon: <ChartNoAxesCombined className="h-3.5 w-3.5" />,
+    },
+  ];
 
   const allTabs = [...baseTabs, ...detransTabs];
 
@@ -137,7 +132,7 @@ export default function Header({
       {/* Left side: Logo - takes equal space to balance center */}
       <div className="flex flex-1 items-center gap-2">
         <Link
-          href={isDev && mode === "affirm" ? "/affirm" : "/"}
+          href="/"
           className="!cursor-pointer"
         >
           <div className="flex items-center gap-2">
@@ -155,8 +150,7 @@ export default function Header({
           tabClassName=""
           tabs={allTabs}
           moreDropdown={
-            mode === "detrans" ? (
-              <NavigationMenu>
+            <NavigationMenu>
                 <NavigationMenuList>
                   <NavigationMenuItem>
                     <NavigationMenuTrigger className="-ml-1 flex items-center gap-1 rounded-full !bg-transparent px-4 py-1 text-sm font-medium hover:bg-transparent">
@@ -195,7 +189,7 @@ export default function Header({
                         </div>
                         <NavigationMenuLink asChild>
                           <Link
-                            href={!devAffirm ? "/contact" : "/affirm/contact"}
+                            href="/contact"
                             className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                           >
                             <Mail className="h-5 w-5" />
@@ -227,7 +221,7 @@ export default function Header({
                         </NavigationMenuLink>
                         <NavigationMenuLink asChild>
                           <Link
-                            href={!devAffirm ? "/terms" : "/affirm/terms"}
+                            href="/terms"
                             className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                           >
                             <HelpCircle className="h-5 w-5" />
@@ -262,7 +256,6 @@ export default function Header({
                   </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
-            ) : undefined
           }
         />
       </div>
@@ -337,7 +330,7 @@ export default function Header({
                 </h3>
                 {/* Chat */}
                 <Link
-                  href={!devAffirm ? "/" : "/affirm"}
+                  href="/"
                   onClick={() => setIsOpen(false)}
                 >
                   <Button
@@ -353,16 +346,13 @@ export default function Header({
                         {t("navigation.chat")}
                       </div>
                       <div className="text-muted-foreground text-xs">
-                        {mode === "detrans"
-                          ? "Detrans AI Chat & Starter Questions"
-                          : "GenderAffirming AI Chat"}
+                        Detrans AI Chat & Starter Questions
                       </div>
                     </div>
                   </Button>
                 </Link>
 
                 {/* Videos, Wiki, Studies, Support */}
-                {mode === "detrans" && (
                   <>
                     <Link href="/videos" onClick={() => setIsOpen(false)}>
                       <Button
@@ -537,7 +527,7 @@ export default function Header({
                           </Button>
                         </Link>
                         <Link
-                          href={!devAffirm ? "/terms" : "/affirm/terms"}
+                          href="/terms"
                           onClick={() => setIsOpen(false)}
                         >
                           <Button
@@ -580,7 +570,6 @@ export default function Header({
                       </div>
                     </div>
                   </>
-                )}
               </div>
               <div className="mt-4 pb-16" onClick={() => setIsOpen(false)}>
                 <DonationCard mode={mode} />

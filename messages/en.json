@@ -346,23 +346,9 @@
   },
   "chatInput": {
     "placeholder": "Ask detrans.ai...",
-    "deepResearch": "Deep Research",
     "suggestions": "Suggestions:",
     "transPerspectivesLabel": "Include trans perspectives (beta)",
     "transPerspectivesDesc": "Due to popular demand, detrans.ai can now search /r/mtf and /r/ftm to include trans perspectives and explore how they compare to detrans perspectives."
-  },
-  "deepResearchEvents": {
-    "errorTitle": "Deep research error",
-    "retrieving": "Retrieving detrans experiences...",
-    "generatingQuestions": "Generating meta questions...",
-    "findingAnswers": "Finding answers to meta questions",
-    "completed": "Deep research completed",
-    "retrieveError": "Error retrieving detrans experiences!",
-    "analyzeError": "We've run out of money to pay for the AI that analyses detrans experiences and answers questions. If you can, please donate so we can keep the service running. Please try again later. For now, you can still try the questions in the portal.",
-    "generatingAnswer": "Generating answer...",
-    "waitingForAnswer": "Waiting for answer",
-    "questionsAnswered": "{answered} of {total} meta questions answered",
-    "generatingSummary": "Generating summary of answers"
   },
   "questionTabs": {
     "topics": "Topics",

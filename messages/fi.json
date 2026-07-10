@@ -340,23 +340,9 @@
   },
   "chatInput": {
     "placeholder": "Kysy detrans.ai:lta...",
-    "deepResearch": "Syvä Tutkimus",
     "suggestions": "Ehdotukset:",
     "transPerspectivesLabel": "Sisällytä trans-näkökulmat (beta)",
     "transPerspectivesDesc": "Kysynnän vuoksi detrans.ai voi nyt hakea /r/mtf:stä ja /r/ftm:stä sisällyttääkseen ja tutkiakseen, kuinka trans-näkökulmat vertautuvat detrans-näkökulmiin sukupuoli-identiteetistä ja siirtymästä."
-  },
-  "deepResearchEvents": {
-    "errorTitle": "Syvän tutkimuksen virhe",
-    "retrieving": "Haetaan detrans-kokemuksia...",
-    "generatingQuestions": "Luodaan metakysymyksiä...",
-    "findingAnswers": "Etsitään vastauksia metakysymyksiin",
-    "completed": "Syvä tutkimus valmis",
-    "retrieveError": "Virhe detrans-kokemusten haussa!",
-    "analyzeError": "Rahamme ovat loppuneet detrans-kokemuksia analysoivan tekoälyn ja kysymyksiin vastaavan tekoälyn maksamiseen. Jos voit, ole hyvä ja lahjoita, jotta voimme pitää palvelun käynnissä. Yritä myöhemmin uudelleen. Toistaiseksi voit silti kokeilla portaalin kysymyksiä.",
-    "generatingAnswer": "Luodaan vastausta...",
-    "waitingForAnswer": "Odotetaan vastausta",
-    "questionsAnswered": "{answered}/{total} metakysymystä vastattu",
-    "generatingSummary": "Luodaan vastausten yhteenvetoa"
   },
   "questionTabs": {
     "topics": "Aiheet",

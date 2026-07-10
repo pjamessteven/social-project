@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getIP } from "./getIp";
 import { connectRedis } from "./redis";
 const LIMIT = Number(process.env.RATE_LIMIT_REQUESTS_PER_DAY);
 const WINDOW = 24 * 3600; // seconds
@@ -111,32 +112,6 @@ export async function rateLimit(
   };
 }
 
-// Helper to extract IP from request
-export function getClientIP(request: Request): string {
-  const headers = request.headers;
-
-  // Check various headers for the real IP (common proxy/CDN headers)
-  const forwardedFor = headers.get("x-forwarded-for");
-  if (forwardedFor) {
-    // Handle IPv6-mapped IPv4 addresses by stripping ::ffff: prefix
-    const ip = forwardedFor.split(",")[0].trim();
-    return ip.replace(/^::ffff:/, "");
-  }
-
-  const realIP = headers.get("x-real-ip");
-  if (realIP) {
-    return realIP;
-  }
-
-  const cfConnectingIP = headers.get("cf-connecting-ip");
-  if (cfConnectingIP) {
-    return cfConnectingIP;
-  }
-
-  // Fallback (in dev, this will be ::1 or 127.0.0.1)
-  return "unknown";
-}
-
 /**
  * Helper function to enforce rate limiting in API routes.
  * Returns null if request is allowed, or a NextResponse if rate limited.
@@ -155,7 +130,7 @@ export async function checkRateLimit(
   request: Request,
   config?: Partial<RateLimitConfig>,
 ): Promise<NextResponse | null> {
-  const ip = getClientIP(request);
+  const ip = getIP(request);
   const result = await rateLimit(ip, config);
 
   if (!result.allowed) {

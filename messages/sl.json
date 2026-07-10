@@ -340,23 +340,9 @@
   },
   "chatInput": {
     "placeholder": "Vprašajte detrans.ai...",
-    "deepResearch": "Globoka raziskava",
     "suggestions": "Predlogi:",
     "transPerspectivesLabel": "Vključi trans perspektive (beta)",
     "transPerspectivesDesc": "Na zahtevo uporabnikov lahko detrans.ai zdaj išče po /r/mtf in /r/ftm, da vključi in razišče, kako se trans perspektive primerjajo z detrans perspektivami o spolni identiteti in tranziciji."
-  },
-  "deepResearchEvents": {
-    "errorTitle": "Napaka globoke raziskave",
-    "retrieving": "Pridobivanje detranz izkušenj...",
-    "generatingQuestions": "Generiranje meta vprašanj...",
-    "findingAnswers": "Iskanje odgovorov na meta vprašanja",
-    "completed": "Globoka raziskava zaključena",
-    "retrieveError": "Napaka pri pridobivanju detranz izkušenj!",
-    "analyzeError": "Zmanjkalo nam je denarja za plačilo umetne inteligence, ki analizira detranz izkušnje in odgovarja na vprašanja. Če lahko, prosimo, donirajte, da lahko ohranimo storitev v teku. Poskusite znova pozneje. Zaenkrat lahko še vedno poskusite vprašanja v portalu.",
-    "generatingAnswer": "Generiranje odgovora...",
-    "waitingForAnswer": "Čakanje na odgovor",
-    "questionsAnswered": "{answered} od {total} meta vprašanj odgovorjenih",
-    "generatingSummary": "Generiranje povzetka odgovorov"
   },
   "questionTabs": {
     "topics": "Teme",
@@ -596,11 +582,26 @@
     "title": "Pogoji storitve",
     "intro": "Z uporabo detrans.ai se strinjate z naslednjimi pogoji.",
     "sections": {
-      "acceptableUse": { "title": "Dopustna uporaba", "content": "detrans.ai je namenjen vprašanjem in razpravam, povezanim s spolom, spolno identiteto, detranzicijo in sorodnimi temami. Storitve ne smete uporabljati za neželeno pošto, nezakonito vsebino, napade z vstavljanjem pozivov ali kakršnokoli poskuso manipulacije ali zlorabe sistema. Pridržujemo si pravico do blokiranja naslovov IP in prepovedi uporabnikov, ki kršijo te pogoje." },
-      "publicConversations": { "title": "Javni pogovori", "content": "Vsi pogovori so javni in so lahko prikazani na domači strani detrans.ai. Ne delite občutljivih, osebno identifikacijskih ali zaupnih informacij. Pogovori so lahko uporabljeni za raziskovalne namene v anonimizirani obliki." },
-      "disclaimer": { "title": "Zavrnitev odgovornosti", "content": "Storitev je na voljo na osnovi 'kot je' in 'kot je na voljo' brez kakršnihkoli zagotovil. detrans.ai ni nadomestilo za profesionalno medicinsko ali psihološko svetovanje. Vedno se posvetujte s kvalificiranim zdravstvenim delavcem za osebne zdravstvene odločitve." },
-      "liability": { "title": "Omejitev odgovornosti", "content": "V največjem obsegu, ki ga dopušča zakon, detrans.ai in njegovi operaterji ne odgovarjajo za kakršnekoli posredne, naključne ali posledične škode, ki izhajajo iz vaše uporabe storitve." },
-      "changes": { "title": "Spremembe teh pogojev", "content": "Te pogoje lahko občasno posodobimo. Nadaljnja uporaba storitve po spremembah pomeni sprejem posodobljenih pogojev." }
+      "acceptableUse": {
+        "title": "Dopustna uporaba",
+        "content": "detrans.ai je namenjen vprašanjem in razpravam, povezanim s spolom, spolno identiteto, detranzicijo in sorodnimi temami. Storitve ne smete uporabljati za neželeno pošto, nezakonito vsebino, napade z vstavljanjem pozivov ali kakršnokoli poskuso manipulacije ali zlorabe sistema. Pridržujemo si pravico do blokiranja naslovov IP in prepovedi uporabnikov, ki kršijo te pogoje."
+      },
+      "publicConversations": {
+        "title": "Javni pogovori",
+        "content": "Vsi pogovori so javni in so lahko prikazani na domači strani detrans.ai. Ne delite občutljivih, osebno identifikacijskih ali zaupnih informacij. Pogovori so lahko uporabljeni za raziskovalne namene v anonimizirani obliki."
+      },
+      "disclaimer": {
+        "title": "Zavrnitev odgovornosti",
+        "content": "Storitev je na voljo na osnovi 'kot je' in 'kot je na voljo' brez kakršnihkoli zagotovil. detrans.ai ni nadomestilo za profesionalno medicinsko ali psihološko svetovanje. Vedno se posvetujte s kvalificiranim zdravstvenim delavcem za osebne zdravstvene odločitve."
+      },
+      "liability": {
+        "title": "Omejitev odgovornosti",
+        "content": "V največjem obsegu, ki ga dopušča zakon, detrans.ai in njegovi operaterji ne odgovarjajo za kakršnekoli posredne, naključne ali posledične škode, ki izhajajo iz vaše uporabe storitve."
+      },
+      "changes": {
+        "title": "Spremembe teh pogojev",
+        "content": "Te pogoje lahko občasno posodobimo. Nadaljnja uporaba storitve po spremembah pomeni sprejem posodobljenih pogojev."
+      }
     }
   },
   "videos": {

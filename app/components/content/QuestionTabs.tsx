@@ -10,7 +10,7 @@ import { DynamicQuestionCategories } from "./DynamicQuestionCategories";
 import { QuestionCategoriesClient } from "./QuestionCategoriesClient";
 
 interface QuestionTabsProps {
-  mode: "affirm" | "detrans" | "compare";
+  mode: "detrans";
 }
 
 export function QuestionTabs({ mode }: QuestionTabsProps) {

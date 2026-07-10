@@ -22,7 +22,7 @@ export interface Cache {
 export class RedisCache implements Cache {
   private prefix: string;
 
-  constructor(private mode: "detrans_chat" | "deep_research") {
+  constructor(private mode: "detrans_chat") {
     this.prefix = `cache:${mode}:`;
   }
 
@@ -71,7 +71,7 @@ export function makeCacheKey(
   options: any,
   mode?: string,
 ): string {
-  return mode === "detrans_chat" || mode === "deep_research"
+  return mode === "detrans_chat"
     ? JSON.stringify({
         messages,
         tools: options.tools?.map((t: any) => t?.name || null),

@@ -32,8 +32,7 @@ import { questionCategories as questionCategoriesUk } from "@/app/lib/questions.
 import { questionCategories as questionCategoriesVi } from "@/app/lib/questions.vi";
 import { questionCategories as questionCategoriesZhCn } from "@/app/lib/questions.zh-cn";
 import { questionCategories as questionCategoriesZhTw } from "@/app/lib/questions.zh-tw";
-import { cn, slugify } from "@/app/lib/utils";
-import { Link } from "@/i18n/routing";
+import { cn } from "@/app/lib/utils";
 import { useLocale } from "next-intl";
 import {
   Accordion,
@@ -80,7 +79,7 @@ const questionCategoriesMap: Record<string, typeof questionCategoriesEn> = {
 export function QuestionCategoriesClient({
   mode,
 }: {
-  mode?: "detrans" | "affirm" | "compare";
+  mode?: "detrans";
 }) {
   const locale = useLocale();
   const isRtl = useIsRtl();
@@ -125,43 +124,38 @@ export function QuestionCategoriesClient({
               <div className="grid gap-1">
                 {category.questions.map(
                   (question: string, questionIndex: number) => (
-                    <Link
-                      prefetch={false}
-                      href={("/research/" + slugify(question)) as any}
+                    <div
                       key={questionIndex}
+                      className={cn(
+                        "flex flex-row items-center pt-1",
+                        questionIndex < category.questions.length - 1 &&
+                          "border-b pb-2",
+                      )}
                     >
                       <div
                         className={cn(
-                          "flex flex-row items-center pt-1",
-                          questionIndex < category.questions.length - 1 &&
-                            "border-b pb-2",
+                          "text-muted-foreground flex flex-row items-start text-lg italic opacity-90",
+                          isRtl && "flex-row-reverse",
                         )}
                       >
-                        <div
+                        <span
                           className={cn(
-                            "text-muted-foreground hover:text-primary flex cursor-pointer flex-row items-start text-lg italic opacity-90 transition-colors",
-                            isRtl && "flex-row-reverse",
+                            "whitespace-nowrap",
+                            isRtl ? "ml-2" : "mr-2",
                           )}
                         >
-                          <span
-                            className={cn(
-                              "whitespace-nowrap",
-                              isRtl ? "ml-2" : "mr-2",
-                            )}
-                          >
-                            {isRtl ? "<-" : "->"}
-                          </span>
-                          <span
-                            className={cn(
-                              isRtl ? "pl-2" : "pr-2",
-                              isRtl && "text-right",
-                            )}
-                          >
-                            {question}
-                          </span>
-                        </div>
+                          {isRtl ? "<-" : "->"}
+                        </span>
+                        <span
+                          className={cn(
+                            isRtl ? "pl-2" : "pr-2",
+                            isRtl && "text-right",
+                          )}
+                        >
+                          {question}
+                        </span>
                       </div>
-                    </Link>
+                    </div>
                   ),
                 )}
               </div>

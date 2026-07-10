@@ -340,23 +340,9 @@
   },
   "chatInput": {
     "placeholder": "Klauskite detrans.ai...",
-    "deepResearch": "Giluminis tyrimas",
     "suggestions": "Pasiūlymai:",
     "transPerspectivesLabel": "Įtraukti translyčių požiūrius (beta)",
     "transPerspectivesDesc": "Dėl didelio populiarumo detrans.ai dabar gali ieškoti /r/mtf ir /r/ftm, kad įtrauktų ir ištirtų, kaip translyčių požiūriai lyginami su detranzicijos požiūriais į genderinę tapatybę ir perėjimą."
-  },
-  "deepResearchEvents": {
-    "errorTitle": "Giluminio tyrimo klaida",
-    "retrieving": "Gaunamos detranzicijos patirtys...",
-    "generatingQuestions": "Generuojami meta klausimai...",
-    "findingAnswers": "Randami atsakymai į meta klausimus",
-    "completed": "Giluminis tyrimas baigtas",
-    "retrieveError": "Klaida gaunant detranzicijos patirtis!",
-    "analyzeError": "Mes išnaudojome pinigus, skirtus AI, kuris analizuoja detranzicijos patirtis ir atsako į klausimus. Jei galite, prašome paaukoti, kad galėtume išlaikyti paslaugą veikiančią. Prašome bandyti vėliau. Kol kas galite bandyti klausimus portale.",
-    "generatingAnswer": "Generuojamas atsakymas...",
-    "waitingForAnswer": "Laukiama atsakymo",
-    "questionsAnswered": "Atsakyta į {answered} iš {total} meta klausimų",
-    "generatingSummary": "Generuojama atsakymų santrauka"
   },
   "questionTabs": {
     "topics": "Temos",

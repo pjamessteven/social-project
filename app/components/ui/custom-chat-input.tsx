@@ -4,13 +4,12 @@ import { slugify } from "@/app/lib/utils";
 import {
   Link,
   locales,
-  redirect,
   usePathname,
   useRouter,
 } from "@/i18n/routing";
 import { useChatStore } from "@/stores/chat-store";
 import { useUserStore } from "@/stores/user-store";
-import { EllipsisVertical, Send, Square, UserSearch, X } from "lucide-react";
+import { EllipsisVertical, Send, Square, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "./button";
@@ -35,8 +34,6 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     chatHandler,
     sendMessage,
     chatStatus,
-    isResearch,
-    setIsResearch,
     includeTransPerspectives,
     setIncludeTransPerspectives,
     setChatStatus,
@@ -55,10 +52,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   const showChatInput =
     path == "/" ||
     locales.some((locale) => path == `/${locale}`) ||
-    path.includes("/chat") ||
-    path.includes("/research");
-
-  const mode = "detrans" as "detrans" | "affirm";
+    path.includes("/chat");
 
   const placeholder = t("placeholder");
 
@@ -74,45 +68,6 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     return () => window.removeEventListener("resize", checkIsDesktop);
   }, []);
 
-  // Update research state based on current path
-  useEffect(() => {
-    // require user manually selects this mode in order to save costs
-    //  setIsResearch(path.includes("/research"));
-  }, [path, setIsResearch]);
-
-  /*
-  // Fetch suggestions when value changes
-  useEffect(() => {
-    const fetchSuggestions = async () => {
-      if (inputText.trim().length < 2) {
-        setSuggestions([]);
-        setShowSuggestions(false);
-        return;
-      }
-
-      try {
-        const response = await fetch(
-          `/api/questions/top?mode=${mode}&q=${encodeURIComponent(inputText.trim())}&limit=5`,
-        );
-        const data = await response.json();
-
-        if (data.items) {
-          setSuggestions(data.items.map((item: any) => item.page));
-          setShowSuggestions(true);
-          setSelectedSuggestion(-1);
-        }
-      } catch (error) {
-        console.error("Error fetching suggestions:", error);
-        setSuggestions([]);
-        setShowSuggestions(false);
-      }
-    };
-
-    const debounceTimer = setTimeout(fetchSuggestions, 300);
-    return () => clearTimeout(debounceTimer);
-  }, [inputText, mode]);
-
-*/
   // Auto-expand textarea based on content
   useEffect(() => {
     const textarea = textareaRef.current;
@@ -186,32 +141,17 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
       setInputText("");
       setShowSuggestions(false);
 
-      if (path.includes("/research") && !path.includes("/chat")) {
-        // Research page - navigate to new research URL
-        router.push(("/research/" + slugify(val)) as any);
-      } else if (isResearch || path.includes("/compare") || mode === "affirm") {
-        // Research mode - redirect to research routes
-        if (path.includes("compare")) {
-          redirect(("/compare/research/" + slugify(val)) as any);
-        } else if (mode == "affirm") {
-          redirect(("/affirm/research/" + slugify(val)) as any);
-        } else {
-          redirect(("/research/" + slugify(val)) as any);
+      if (chatHandler && path.includes("/chat")) {
+        // We're on chat page and have handler, send message directly
+        try {
+          await sendMessage(val);
+        } catch (e) {
+          // Error handled in store, message was removed from UI
         }
       } else {
-        // Chat mode - use chat handler or navigate to chat
-        if (chatHandler && path.includes("/chat")) {
-          // We're on chat page and have handler, send message directly
-          try {
-            await sendMessage(val);
-          } catch (e) {
-            // Error handled in store, message was removed from UI
-          }
-        } else {
-          // Navigate to chat page
-          router.push(("/chat?starter=" + slugify(val)) as any);
-          // Store the message to send after navigation
-        }
+        // Navigate to chat page
+        router.push(("/chat?starter=" + slugify(val)) as any);
+        // Store the message to send after navigation
       }
     }
   };
@@ -285,10 +225,8 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     setInputText("");
   };
 
-  const showResearch = false;
-
   const isDisabled =
-    (path.includes("/chat") || path.includes("/research")) &&
+    path.includes("/chat") &&
     (chatStatus === "streaming" || chatStatus === "submitted");
 
   return (
@@ -323,33 +261,6 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               maxLength={!isAuthenticated ? MAX_MESSAGE_LENGTH : undefined}
             />
 
-            {/* Research toggle button */}
-            {showResearch && (
-              <Button
-                variant="chatOutline"
-                type="button"
-                onClick={() => setIsResearch(!isResearch)}
-                size={"xs"}
-                className={cn(
-                  "absolute top-1/2 right-3 z-30 -translate-y-1/2 rounded-xl px-0 py-0 transition-colors",
-                  isResearch
-                    ? "border-blue-300 bg-blue-100 !text-blue-400 hover:bg-blue-200 dark:border-blue-900 dark:bg-blue-900 dark:text-blue-400 hover:dark:bg-blue-800"
-                    : "text-gray-500 hover:bg-gray-100 dark:bg-gray-700 dark:text-gray-400 hover:dark:bg-gray-600",
-                )}
-              >
-                <div className="flex flex-row items-center px-3 text-xs">
-                  {inputText.length === 0 && (
-                    <div className="mr-2 flex flex-row">
-                      <span className="hidden sm:inline">
-                        {t("deepResearch").split(" ")[0]}&nbsp;
-                      </span>
-                      {t("deepResearch").split(" ")[1] || ""}
-                    </div>
-                  )}
-                  <UserSearch className="h-3 w-3 sm:h-4 sm:w-4" />
-                </div>
-              </Button>
-            )}
             {/* Clear button */}
             {inputText.trim() && (
               <button
@@ -414,13 +325,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                   <Link
                     onClick={handleClickSuggestion}
                     prefetch={false}
-                    href={
-                      (mode === "detrans"
-                        ? "/research/" + slugify(question)
-                        : mode === "affirm"
-                          ? "/affirm/research/" + slugify(question)
-                          : "/compare/research/" + slugify(question)) as any
-                    }
+                    href={("/chat?starter=" + slugify(question)) as any}
                     key={index}
                   >
                     <div

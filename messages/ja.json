@@ -337,23 +337,9 @@
   },
   "chatInput": {
     "placeholder": "detrans.aiに質問...",
-    "deepResearch": "ディープリサーチ",
     "suggestions": "提案：",
     "transPerspectivesLabel": "トランスの視点を含める (beta)",
     "transPerspectivesDesc": "多くのご要望により、detrans.aiは/r/mtfと/r/ftmを検索し、ジェンダーアイデンティティと遷移についてトランスの視点がデトランスの視点とどのように比較されるかを探求できるようになりました。"
-  },
-  "deepResearchEvents": {
-    "errorTitle": "ディープリサーチエラー",
-    "retrieving": "デトランズ経験を取得中...",
-    "generatingQuestions": "メタ質問を生成中...",
-    "findingAnswers": "メタ質問への回答を見つけ中",
-    "completed": "ディープリサーチ完了",
-    "retrieveError": "デトランズ経験の取得エラー！",
-    "analyzeError": "デトランズ経験を分析し質問に答えるAIの費用が尽きました。可能であれば、サービスを維持するために寄付をご検討ください。後でもう一度お試しください。現時点では、ポータルの質問はまだお試しいただけます。",
-    "generatingAnswer": "回答を生成中...",
-    "waitingForAnswer": "回答を待っています",
-    "questionsAnswered": "{answered}/{total}のメタ質問に回答済み",
-    "generatingSummary": "回答の要約を生成中"
   },
   "questionTabs": {
     "topics": "トピック",

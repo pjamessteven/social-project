@@ -337,23 +337,9 @@
   },
   "chatInput": {
     "placeholder": "detrans.ai에게 질문하세요...",
-    "deepResearch": "심층 연구",
     "suggestions": "제안:",
     "transPerspectivesLabel": "트랜스 관점 포함 (beta)",
     "transPerspectivesDesc": "많은 요청에 따라, detrans.ai는 이제 /r/mtf와 /r/ftm을 검색하여 성별 정체성과 전환에 대해 트랜스 관점이 디트랜스 관점과 어떻게 비교되는지 포함하고 탐구할 수 있습니다."
-  },
-  "deepResearchEvents": {
-    "errorTitle": "심층 연구 오류",
-    "retrieving": "디트랜스 경험 검색 중...",
-    "generatingQuestions": "메타 질문 생성 중...",
-    "findingAnswers": "메타 질문에 대한 답변 찾는 중",
-    "completed": "심층 연구 완료",
-    "retrieveError": "디트랜스 경험 검색 오류!",
-    "analyzeError": "디트랜스 경험을 분석하고 질문에 답하는 AI 비용을 지불할 돈이 떨어졌습니다. 가능하다면 서비스를 유지하기 위해 기부해 주세요. 나중에 다시 시도하세요. 지금은 포털의 질문을 시도할 수 있습니다.",
-    "generatingAnswer": "답변 생성 중...",
-    "waitingForAnswer": "답변 대기 중",
-    "questionsAnswered": "{total}개 중 {answered}개 메타 질문 답변됨",
-    "generatingSummary": "답변 요약 생성 중"
   },
   "questionTabs": {
     "topics": "주제",

@@ -339,23 +339,9 @@
   },
   "chatInput": {
     "placeholder": "detrans.ai'ye sorun...",
-    "deepResearch": "Derin Araştırma",
     "suggestions": "Öneriler:",
     "transPerspectivesLabel": "Trans perspektiflerini dahil et (beta)",
     "transPerspectivesDesc": "Yoğun talep üzerine, detrans.ai artık /r/mtf ve /r/ftm'de arama yaparak trans perspektiflerin cinsiyet kimliği ve geçiş konularında detrans perspektifleriyle nasıl karşılaştırıldığını dahil edebilir ve keşfedebilir."
-  },
-  "deepResearchEvents": {
-    "errorTitle": "Derin araştırma hatası",
-    "retrieving": "Detrans deneyimleri alınıyor...",
-    "generatingQuestions": "Meta sorular oluşturuluyor...",
-    "findingAnswers": "Meta sorulara yanıtlar bulunuyor",
-    "completed": "Derin araştırma tamamlandı",
-    "retrieveError": "Detrans deneyimleri alınırken hata oluştu!",
-    "analyzeError": "Detrans deneyimlerini analiz eden ve soruları yanıtlayan AI için ödeme yapacak paramız kalmadı. Eğer yapabiliyorsanız, hizmeti ayakta tutmamıza yardımcı olmak için lütfen bağış yapın. Lütfen daha sonra tekrar deneyin. Şimdilik, portaldaki soruları deneyebilirsiniz.",
-    "generatingAnswer": "Yanıt oluşturuluyor...",
-    "waitingForAnswer": "Yanıt bekleniyor",
-    "questionsAnswered": "{answered} / {total} meta soru yanıtlandı",
-    "generatingSummary": "Yanıtların özeti oluşturuluyor"
   },
   "questionTabs": {
     "topics": "Konular",
@@ -595,11 +581,26 @@
     "title": "Hizmet Şartları",
     "intro": "detrans.ai'yi kullanarak aşağıdaki şartları kabul etmiş olursunuz.",
     "sections": {
-      "acceptableUse": { "title": "Kabul Edilebilir Kullanım", "content": "detrans.ai, cinsiyet, cinsiyet kimliği, detransisyon ve ilgili konularla ilgili sorular ve tartışmalar için tasarlanmıştır. Hizmeti spam, yasadışı içerik, komut enjeksiyon saldırıları veya sistemi manipüle etme veya kötüye kullanma girişimleri için kullanmamalısınız. Bu şartları ihlal eden IP adreslerini engelleme ve kullanıcıları yasaklama hakkını saklı tutarız." },
-      "publicConversations": { "title": "Herkese Açık Konuşmalar", "content": "Tüm konuşmalar herkese açıktır ve detrans.ai ana sayfasında görüntülenebilir. Hassas, kişisel olarak tanımlayıcı veya gizli bilgileri paylaşmayın. Konuşmalar araştırma amaçları için anonimleştirilmiş biçimde kullanılabilir." },
-      "disclaimer": { "title": "Sorumluluk Reddi", "content": "Hizmet, hiçbir tür garanti olmaksızın 'olduğu gibi' ve 'mevcut olduğu gibi' esasına göre sağlanır. detrans.ai profesyonel tıbbi veya psikolojik tavsiye yerine geçmez. Kişisel sağlık kararları için her zaman nitelikli bir sağlık uzmanına danışın." },
-      "liability": { "title": "Sorumluluğun Sınırlandırılması", "content": "Yasanın izin verdiği azami ölçüde, detrans.ai ve operatörleri hizmetin kullanımınızdan kaynaklanan dolaylı, arızi veya sonuç olarak ortaya çıkan zararlardan sorumlu olmayacaktır." },
-      "changes": { "title": "Bu Şartlardaki Değişiklikler", "content": "Bu şartları zaman zaman güncelleyebiliriz. Değişikliklerden sonra hizmetin kullanılmaya devam edilmesi, güncellenmiş şartların kabul edildiği anlamına gelir." }
+      "acceptableUse": {
+        "title": "Kabul Edilebilir Kullanım",
+        "content": "detrans.ai, cinsiyet, cinsiyet kimliği, detransisyon ve ilgili konularla ilgili sorular ve tartışmalar için tasarlanmıştır. Hizmeti spam, yasadışı içerik, komut enjeksiyon saldırıları veya sistemi manipüle etme veya kötüye kullanma girişimleri için kullanmamalısınız. Bu şartları ihlal eden IP adreslerini engelleme ve kullanıcıları yasaklama hakkını saklı tutarız."
+      },
+      "publicConversations": {
+        "title": "Herkese Açık Konuşmalar",
+        "content": "Tüm konuşmalar herkese açıktır ve detrans.ai ana sayfasında görüntülenebilir. Hassas, kişisel olarak tanımlayıcı veya gizli bilgileri paylaşmayın. Konuşmalar araştırma amaçları için anonimleştirilmiş biçimde kullanılabilir."
+      },
+      "disclaimer": {
+        "title": "Sorumluluk Reddi",
+        "content": "Hizmet, hiçbir tür garanti olmaksızın 'olduğu gibi' ve 'mevcut olduğu gibi' esasına göre sağlanır. detrans.ai profesyonel tıbbi veya psikolojik tavsiye yerine geçmez. Kişisel sağlık kararları için her zaman nitelikli bir sağlık uzmanına danışın."
+      },
+      "liability": {
+        "title": "Sorumluluğun Sınırlandırılması",
+        "content": "Yasanın izin verdiği azami ölçüde, detrans.ai ve operatörleri hizmetin kullanımınızdan kaynaklanan dolaylı, arızi veya sonuç olarak ortaya çıkan zararlardan sorumlu olmayacaktır."
+      },
+      "changes": {
+        "title": "Bu Şartlardaki Değişiklikler",
+        "content": "Bu şartları zaman zaman güncelleyebiliriz. Değişikliklerden sonra hizmetin kullanılmaya devam edilmesi, güncellenmiş şartların kabul edildiği anlamına gelir."
+      }
     }
   },
   "videos": {

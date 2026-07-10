@@ -340,23 +340,9 @@
   },
   "chatInput": {
     "placeholder": "Tanyakan detrans.ai...",
-    "deepResearch": "Riset Mendalam",
     "suggestions": "Saran:",
     "transPerspectivesLabel": "Sertakan perspektif trans (beta)",
     "transPerspectivesDesc": "Karena permintaan yang tinggi, detrans.ai sekarang dapat mencari /r/mtf dan /r/ftm untuk menyertakan dan mengeksplorasi bagaimana perspektif trans dibandingkan dengan perspektif detrans tentang identitas gender dan transisi."
-  },
-  "deepResearchEvents": {
-    "errorTitle": "Kesalahan riset mendalam",
-    "retrieving": "Mengambil pengalaman berhenti transisi...",
-    "generatingQuestions": "Menghasilkan pertanyaan meta...",
-    "findingAnswers": "Menemukan jawaban atas pertanyaan meta",
-    "completed": "Riset mendalam selesai",
-    "retrieveError": "Kesalahan mengambil pengalaman berhenti transisi!",
-    "analyzeError": "Kami telah kehabisan uang untuk membayar AI yang menganalisis pengalaman berhenti transisi dan menjawab pertanyaan. Jika Anda bisa, harap berdonasi agar kami dapat terus menjalankan layanan. Harap coba lagi nanti. Untuk saat ini, Anda masih dapat mencoba pertanyaan-pertanyaan di portal.",
-    "generatingAnswer": "Menghasilkan jawaban...",
-    "waitingForAnswer": "Menunggu jawaban",
-    "questionsAnswered": "{answered} dari {total} pertanyaan meta dijawab",
-    "generatingSummary": "Menghasilkan ringkasan jawaban"
   },
   "questionTabs": {
     "topics": "Topik",

@@ -146,14 +146,6 @@ export async function GET(request: NextRequest) {
     },
   ];
 
-  // Generate chat routes for top questions from database
-  const topQuestionResearchRoutes = topQuestions.map((question) => ({
-    url: `${baseUrl}/research/${slugify(question.name)}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "weekly",
-    priority: 0.8,
-  }));
-
   // Generate routes for featured conversations
   const featuredConversationRoutes = featuredConversations.map(
     (conversation) => ({
@@ -225,7 +217,6 @@ export async function GET(request: NextRequest) {
         (br) =>
           br.url === route.url ||
           (route.url.startsWith(`${baseUrl}/`) &&
-            !route.url.includes("/research/") &&
             !route.url.includes("/chat/")),
       );
 

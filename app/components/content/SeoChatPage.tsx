@@ -6,7 +6,7 @@ import { marked } from "marked";
 import { QuestionCategories } from "./QuestionCategories";
 
 interface SeoPageProps {
-  mode: "detrans" | "affirm";
+  mode: "detrans";
   question?: string;
   answer?: string;
   locale?: string;

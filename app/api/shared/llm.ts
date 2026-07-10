@@ -15,13 +15,13 @@ import { Cache, makeCacheKey, makeHashedKey } from "./cache";
 
 export class CachedOpenAI extends OpenAI {
   private cache: Cache;
-  private mode: "detrans_chat" | "deep_research";
+  private mode: "detrans_chat";
   private conversationId: string | undefined;
   private requestId: string | undefined;
   constructor(
     init: ConstructorParameters<typeof OpenAI>[0] & {
       cache: Cache;
-      mode: "detrans_chat" | "deep_research";
+      mode: "detrans_chat";
       conversationId?: string;
       requestId?: string;
     },

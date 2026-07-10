@@ -339,23 +339,9 @@
   },
   "chatInput": {
     "placeholder": "Zapytaj detrans.ai...",
-    "deepResearch": "Głębokie badanie",
     "suggestions": "Sugestie:",
     "transPerspectivesLabel": "Uwzględnij perspektywy trans (beta)",
     "transPerspectivesDesc": "Na skutek licznych próśb detrans.ai może teraz przeszukiwać /r/mtf i /r/ftm, aby uwzględnić i zbadać, jak perspektywy trans wypadają w porównaniu z perspektywami osób po detransycji w kwestii tożsamości płciowej i tranzycji."
-  },
-  "deepResearchEvents": {
-    "errorTitle": "Błąd głębokiego badania",
-    "retrieving": "Pobieranie doświadczeń osób po detransycji...",
-    "generatingQuestions": "Generowanie pytań meta...",
-    "findingAnswers": "Znajdowanie odpowiedzi na pytania meta",
-    "completed": "Głębokie badanie zakończone",
-    "retrieveError": "Błąd podczas pobierania doświadczeń osób po detransycji!",
-    "analyzeError": "Skończyły się pieniądze na opłacenie AI, która analizuje doświadczenia osób po detransycji i odpowiada na pytania. Jeśli możesz, rozważ darowiznę, abyśmy mogli utrzymać usługę w działaniu. Spróbuj ponownie później. Na razie nadal możesz wypróbować pytania w portalu.",
-    "generatingAnswer": "Generowanie odpowiedzi...",
-    "waitingForAnswer": "Oczekiwanie na odpowiedź",
-    "questionsAnswered": "{answered} z {total} pytań meta udzielonych",
-    "generatingSummary": "Generowanie podsumowania odpowiedzi"
   },
   "questionTabs": {
     "topics": "Tematy",

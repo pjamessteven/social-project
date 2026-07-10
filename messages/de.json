@@ -336,23 +336,9 @@
   },
   "chatInput": {
     "placeholder": "Frag detrans.ai...",
-    "deepResearch": "Tiefenforschung",
     "suggestions": "Vorschläge:",
     "transPerspectivesLabel": "Trans-Perspektiven einbeziehen (Beta)",
     "transPerspectivesDesc": "Aufgrund großer Nachfrage kann detrans.ai jetzt /r/mtf und /r/ftm durchsuchen, um einzubeziehen und zu erforschen, wie sich Trans-Perspektiven mit Detrans-Perspektiven zu Geschlechtsidentität und Transition vergleichen."
-  },
-  "deepResearchEvents": {
-    "errorTitle": "Tiefenforschungsfehler",
-    "retrieving": "Rufe Detrans-Erfahrungen ab...",
-    "generatingQuestions": "Generiere Meta-Fragen...",
-    "findingAnswers": "Finde Antworten auf Meta-Fragen",
-    "completed": "Tiefenforschung abgeschlossen",
-    "retrieveError": "Fehler beim Abrufen von Detrans-Erfahrungen!",
-    "analyzeError": "Uns sind das Geld ausgegangen, um die KI zu bezahlen, die Detrans-Erfahrungen analysiert und Fragen beantwortet. Wenn du kannst, bitte spende, damit wir den Service weiterführen können. Bitte versuche es später erneut. Vorerst kannst du immer noch die Fragen im Portal ausprobieren.",
-    "generatingAnswer": "Generiere Antwort...",
-    "waitingForAnswer": "Warte auf Antwort",
-    "questionsAnswered": "{answered} von {total} Meta-Fragen beantwortet",
-    "generatingSummary": "Generiere Zusammenfassung der Antworten"
   },
   "questionTabs": {
     "topics": "Themen",

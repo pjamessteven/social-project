@@ -340,23 +340,9 @@
   },
   "chatInput": {
     "placeholder": "Hỏi detrans.ai...",
-    "deepResearch": "Nghiên Cứu Sâu",
     "suggestions": "Gợi ý:",
     "transPerspectivesLabel": "Bao gồm quan điểm chuyển giới (beta)",
     "transPerspectivesDesc": "Theo yêu cầu phổ biến, detrans.ai hiện có thể tìm kiếm trên /r/mtf và /r/ftm để bao gồm và khám phá cách quan điểm chuyển giới so sánh với quan điểm chuyển giới trở lại về bản dạng giới và quá trình chuyển đổi."
-  },
-  "deepResearchEvents": {
-    "errorTitle": "Lỗi nghiên cứu sâu",
-    "retrieving": "Đang truy xuất kinh nghiệm chuyển giới trở lại...",
-    "generatingQuestions": "Đang tạo câu hỏi meta...",
-    "findingAnswers": "Đang tìm câu trả lời cho các câu hỏi meta",
-    "completed": "Nghiên cứu sâu đã hoàn thành",
-    "retrieveError": "Lỗi truy xuất kinh nghiệm chuyển giới trở lại!",
-    "analyzeError": "Chúng tôi đã hết tiền để trả cho AI phân tích kinh nghiệm chuyển giới trở lại và trả lời câu hỏi. Nếu bạn có thể, vui lòng quyên góp để chúng tôi có thể duy trì dịch vụ. Vui lòng thử lại sau. Hiện tại, bạn vẫn có thể thử các câu hỏi trong cổng thông tin.",
-    "generatingAnswer": "Đang tạo câu trả lời...",
-    "waitingForAnswer": "Đang chờ câu trả lời",
-    "questionsAnswered": "Đã trả lời {answered} trong số {total} câu hỏi meta",
-    "generatingSummary": "Đang tạo tóm tắt câu trả lời"
   },
   "questionTabs": {
     "topics": "Chủ Đề",
@@ -596,11 +582,26 @@
     "title": "Điều Khoản Dịch Vụ",
     "intro": "Bằng cách sử dụng detrans.ai, bạn đồng ý với các điều khoản sau.",
     "sections": {
-      "acceptableUse": { "title": "Sử Dụng Hợp Lệ", "content": "detrans.ai được thiết kế cho các câu hỏi và thảo luận liên quan đến giới tính, bản dạng giới, chuyển giới trở lại và các chủ đề liên quan. Bạn không được sử dụng dịch vụ cho spam, nội dung bất hợp pháp, tấn công tiêm lệnh hoặc bất kỳ nỗ lực nào để thao túng hoặc lạm dụng hệ thống. Chúng tôi bảo lưu quyền chặn địa chỉ IP và cấm người dùng vi phạm các điều khoản này." },
-      "publicConversations": { "title": "Cuộc Trò Chuyện Công Khai", "content": "Tất cả các cuộc trò chuyện đều công khai và có thể được hiển thị trên trang chủ detrans.ai. Không chia sẻ thông tin nhạy cảm, có thể xác định danh tính hoặc thông tin bí mật. Các cuộc trò chuyện có thể được sử dụng cho mục đích nghiên cứu ở dạng ẩn danh." },
-      "disclaimer": { "title": "Tuyên Bố Miễn Trừ Trách Nhiệm", "content": "Dịch vụ được cung cấp trên cơ sở 'nguyên trạng' và 'có sẵn' mà không có bất kỳ bảo đảm nào. detrans.ai không phải là sự thay thế cho lời khuyên y tế hoặc tâm lý chuyên nghiệp. Luôn tham khảo ý kiến của nhà cung cấp dịch vụ chăm sóc sức khỏe có trình độ cho các quyết định sức khỏe cá nhân." },
-      "liability": { "title": "Giới Hạn Trách Nhiệm", "content": "Trong phạm vi tối đa được pháp luật cho phép, detrans.ai và các nhà điều hành của nó sẽ không chịu trách nhiệm cho bất kỳ thiệt hại gián tiếp, ngẫu nhiên hoặc do hậu quả nào phát sinh từ việc bạn sử dụng dịch vụ." },
-      "changes": { "title": "Thay Đổi Các Điều Khoản Này", "content": "Chúng tôi có thể cập nhật các điều khoản này theo thời gian. Việc tiếp tục sử dụng dịch vụ sau các thay đổi cấu thành sự chấp nhận các điều khoản đã cập nhật." }
+      "acceptableUse": {
+        "title": "Sử Dụng Hợp Lệ",
+        "content": "detrans.ai được thiết kế cho các câu hỏi và thảo luận liên quan đến giới tính, bản dạng giới, chuyển giới trở lại và các chủ đề liên quan. Bạn không được sử dụng dịch vụ cho spam, nội dung bất hợp pháp, tấn công tiêm lệnh hoặc bất kỳ nỗ lực nào để thao túng hoặc lạm dụng hệ thống. Chúng tôi bảo lưu quyền chặn địa chỉ IP và cấm người dùng vi phạm các điều khoản này."
+      },
+      "publicConversations": {
+        "title": "Cuộc Trò Chuyện Công Khai",
+        "content": "Tất cả các cuộc trò chuyện đều công khai và có thể được hiển thị trên trang chủ detrans.ai. Không chia sẻ thông tin nhạy cảm, có thể xác định danh tính hoặc thông tin bí mật. Các cuộc trò chuyện có thể được sử dụng cho mục đích nghiên cứu ở dạng ẩn danh."
+      },
+      "disclaimer": {
+        "title": "Tuyên Bố Miễn Trừ Trách Nhiệm",
+        "content": "Dịch vụ được cung cấp trên cơ sở 'nguyên trạng' và 'có sẵn' mà không có bất kỳ bảo đảm nào. detrans.ai không phải là sự thay thế cho lời khuyên y tế hoặc tâm lý chuyên nghiệp. Luôn tham khảo ý kiến của nhà cung cấp dịch vụ chăm sóc sức khỏe có trình độ cho các quyết định sức khỏe cá nhân."
+      },
+      "liability": {
+        "title": "Giới Hạn Trách Nhiệm",
+        "content": "Trong phạm vi tối đa được pháp luật cho phép, detrans.ai và các nhà điều hành của nó sẽ không chịu trách nhiệm cho bất kỳ thiệt hại gián tiếp, ngẫu nhiên hoặc do hậu quả nào phát sinh từ việc bạn sử dụng dịch vụ."
+      },
+      "changes": {
+        "title": "Thay Đổi Các Điều Khoản Này",
+        "content": "Chúng tôi có thể cập nhật các điều khoản này theo thời gian. Việc tiếp tục sử dụng dịch vụ sau các thay đổi cấu thành sự chấp nhận các điều khoản đã cập nhật."
+      }
     }
   },
   "videos": {

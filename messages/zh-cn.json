@@ -339,23 +339,9 @@
   },
   "chatInput": {
     "placeholder": "询问detrans.ai...",
-    "deepResearch": "深度研究",
     "suggestions": "建议：",
     "transPerspectivesLabel": "包含跨性别视角（beta）",
     "transPerspectivesDesc": "应广大用户要求，detrans.ai 现在可以搜索 /r/mtf 和 /r/ftm，以包含并探索跨性别视角与去过渡视角在性别认同和过渡方面的比较。"
-  },
-  "deepResearchEvents": {
-    "errorTitle": "深度研究错误",
-    "retrieving": "正在检索去过渡经历...",
-    "generatingQuestions": "正在生成元问题...",
-    "findingAnswers": "正在寻找元问题的答案",
-    "completed": "深度研究完成",
-    "retrieveError": "检索去过渡经历时出错！",
-    "analyzeError": "我们已经用完了支付分析去过渡经历和回答问题的AI的费用。如果可以的话，请捐赠以帮助我们保持服务运行。请稍后再试。目前，你仍然可以尝试门户中的问题。",
-    "generatingAnswer": "正在生成答案...",
-    "waitingForAnswer": "等待答案",
-    "questionsAnswered": "已回答{answered}个，共{total}个元问题",
-    "generatingSummary": "正在生成答案摘要"
   },
   "questionTabs": {
     "topics": "话题",
@@ -595,11 +581,26 @@
     "title": "服务条款",
     "intro": "使用 detrans.ai 即表示您同意以下条款。",
     "sections": {
-      "acceptableUse": { "title": "可接受的使用", "content": "detrans.ai 旨在用于与性别、性别认同、去过渡及相关主题有关的问题和讨论。您不得将该服务用于垃圾邮件、非法内容、提示注入攻击或任何操纵或滥用系统的尝试。我们保留封锁 IP 地址和禁止违反这些条款的用户的权利。" },
-      "publicConversations": { "title": "公开对话", "content": "所有对话均为公开，可能会显示在 detrans.ai 首页上。请勿分享敏感、个人身份或机密信息。对话可能会以匿名形式用于研究目的。" },
-      "disclaimer": { "title": "免责声明", "content": "该服务按\"原样\"和\"可用\"基础提供，不附带任何形式的保证。detrans.ai 不能替代专业医疗或心理建议。个人健康决策请务必咨询合格的医疗保健提供者。" },
-      "liability": { "title": "责任限制", "content": "在法律允许的最大范围内，detrans.ai 及其运营商对因您使用服务而产生的任何间接、附带或后果性损害不承担任何责任。" },
-      "changes": { "title": "条款变更", "content": "我们可能会不时更新这些条款。在变更后继续使用服务即表示接受更新后的条款。" }
+      "acceptableUse": {
+        "title": "可接受的使用",
+        "content": "detrans.ai 旨在用于与性别、性别认同、去过渡及相关主题有关的问题和讨论。您不得将该服务用于垃圾邮件、非法内容、提示注入攻击或任何操纵或滥用系统的尝试。我们保留封锁 IP 地址和禁止违反这些条款的用户的权利。"
+      },
+      "publicConversations": {
+        "title": "公开对话",
+        "content": "所有对话均为公开，可能会显示在 detrans.ai 首页上。请勿分享敏感、个人身份或机密信息。对话可能会以匿名形式用于研究目的。"
+      },
+      "disclaimer": {
+        "title": "免责声明",
+        "content": "该服务按\"原样\"和\"可用\"基础提供，不附带任何形式的保证。detrans.ai 不能替代专业医疗或心理建议。个人健康决策请务必咨询合格的医疗保健提供者。"
+      },
+      "liability": {
+        "title": "责任限制",
+        "content": "在法律允许的最大范围内，detrans.ai 及其运营商对因您使用服务而产生的任何间接、附带或后果性损害不承担任何责任。"
+      },
+      "changes": {
+        "title": "条款变更",
+        "content": "我们可能会不时更新这些条款。在变更后继续使用服务即表示接受更新后的条款。"
+      }
     }
   },
   "videos": {

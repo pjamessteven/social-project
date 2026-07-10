@@ -340,23 +340,9 @@
   },
   "chatInput": {
     "placeholder": "詢問detrans.ai...",
-    "deepResearch": "深度研究",
     "suggestions": "建議：",
     "transPerspectivesLabel": "包含跨性別視角（beta）",
     "transPerspectivesDesc": "應廣大用戶要求，detrans.ai 現在可以搜尋 /r/mtf 和 /r/ftm，以包含並探索跨性別視角與去過渡視角在性別認同和過渡方面的比較。"
-  },
-  "deepResearchEvents": {
-    "errorTitle": "深度研究錯誤",
-    "retrieving": "正在檢索去過渡經歷...",
-    "generatingQuestions": "正在生成元問題...",
-    "findingAnswers": "正在尋找元問題的答案",
-    "completed": "深度研究完成",
-    "retrieveError": "檢索去過渡經歷時出錯！",
-    "analyzeError": "我們已經用完了支付分析去過渡經歷和回答問題的AI的費用。如果可以的話，請捐款以幫助我們保持服務運作。請稍後再試。目前，你仍然可以嘗試入口中的問題。",
-    "generatingAnswer": "正在生成答案...",
-    "waitingForAnswer": "等待答案",
-    "questionsAnswered": "已回答{answered}個，共{total}個元問題",
-    "generatingSummary": "正在生成答案摘要"
   },
   "questionTabs": {
     "topics": "話題",
@@ -596,11 +582,26 @@
     "title": "服務條款",
     "intro": "使用 detrans.ai 即表示您同意以下條款。",
     "sections": {
-      "acceptableUse": { "title": "可接受的使用", "content": "detrans.ai 旨在用於與性別、性別認同、去過渡及相關主題有關的問題和討論。您不得將該服務用於垃圾郵件、非法內容、提示注入攻擊或任何操縱或濫用系統的嘗試。我們保留封鎖 IP 位址和禁止違反這些條款的使用者的權利。" },
-      "publicConversations": { "title": "公開對話", "content": "所有對話均為公開，可能會顯示在 detrans.ai 首頁上。請勿分享敏感、個人身份或機密資訊。對話可能會以匿名形式用於研究目的。" },
-      "disclaimer": { "title": "免責聲明", "content": "該服務按「原樣」和「可用」基礎提供，不附帶任何形式的保證。detrans.ai 不能替代專業醫療或心理建議。個人健康決策請務必諮詢合格的醫療保健提供者。" },
-      "liability": { "title": "責任限制", "content": "在法律允許的最大範圍內，detrans.ai 及其運營商對因您使用服務而產生的任何間接、附帶或後果性損害不承擔任何責任。" },
-      "changes": { "title": "條款變更", "content": "我們可能會不時更新這些條款。在變更後繼續使用服務即表示接受更新後的條款。" }
+      "acceptableUse": {
+        "title": "可接受的使用",
+        "content": "detrans.ai 旨在用於與性別、性別認同、去過渡及相關主題有關的問題和討論。您不得將該服務用於垃圾郵件、非法內容、提示注入攻擊或任何操縱或濫用系統的嘗試。我們保留封鎖 IP 位址和禁止違反這些條款的使用者的權利。"
+      },
+      "publicConversations": {
+        "title": "公開對話",
+        "content": "所有對話均為公開，可能會顯示在 detrans.ai 首頁上。請勿分享敏感、個人身份或機密資訊。對話可能會以匿名形式用於研究目的。"
+      },
+      "disclaimer": {
+        "title": "免責聲明",
+        "content": "該服務按「原樣」和「可用」基礎提供，不附帶任何形式的保證。detrans.ai 不能替代專業醫療或心理建議。個人健康決策請務必諮詢合格的醫療保健提供者。"
+      },
+      "liability": {
+        "title": "責任限制",
+        "content": "在法律允許的最大範圍內，detrans.ai 及其運營商對因您使用服務而產生的任何間接、附帶或後果性損害不承擔任何責任。"
+      },
+      "changes": {
+        "title": "條款變更",
+        "content": "我們可能會不時更新這些條款。在變更後繼續使用服務即表示接受更新後的條款。"
+      }
     }
   },
   "videos": {

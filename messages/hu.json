@@ -340,23 +340,9 @@
   },
   "chatInput": {
     "placeholder": "Kérdezd a detrans.ai-t...",
-    "deepResearch": "Mélykutatás",
     "suggestions": "Javaslatok:",
     "transPerspectivesLabel": "Transz nézőpontok bevonása (beta)",
     "transPerspectivesDesc": "Nagy népszerűségnek örvendve a detrans.ai most már képes keresni a /r/mtf és /r/ftm közösségekben, hogy bemutassa és feltárja, hogyan viszonyulnak a transz nézőpontok a detrans nézőpontokhoz a nemi identitás és az átmenet témáiban."
-  },
-  "deepResearchEvents": {
-    "errorTitle": "Mélykutatás hiba",
-    "retrieving": "Detrans tapasztalatok lekérése...",
-    "generatingQuestions": "Meta kérdések generálása...",
-    "findingAnswers": "Válaszok keresése a meta kérdésekre",
-    "completed": "Mélykutatás befejezve",
-    "retrieveError": "Hiba a detrans tapasztalatok lekérésekor!",
-    "analyzeError": "Elfogyott a pénzünk az AI fizetésére, amely elemzi a detrans tapasztalatokat és válaszol a kérdésekre. Ha tudsz, kérlek adományozz, hogy fenntarthassuk a szolgáltatást. Kérlek, próbáld újra később. Egyelőre még mindig kipróbálhatod a kérdéseket a portálban.",
-    "generatingAnswer": "Válasz generálása...",
-    "waitingForAnswer": "Várakozás a válaszra",
-    "questionsAnswered": "{answered} / {total} meta kérdés megválaszolva",
-    "generatingSummary": "A válaszok összefoglalásának generálása"
   },
   "questionTabs": {
     "topics": "Témák",

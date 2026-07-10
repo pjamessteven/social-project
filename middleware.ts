@@ -1,18 +1,11 @@
 import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
+import { getIP } from "./app/lib/getIp";
 import { getLogger } from "./app/lib/logger";
 import { detectBrowserLocale } from "./i18n/detect-locale";
 import { locales, defaultLocale, routing } from "./i18n/routing";
 
 const intlMiddleware = createMiddleware(routing);
-
-function getIP(req: NextRequest): string {
-  return (
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    req.headers.get("x-real-ip") ||
-    "unknown"
-  );
-}
 
 export async function middleware(req: NextRequest) {
   const { pathname, searchParams } = req.nextUrl;

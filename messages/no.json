@@ -340,23 +340,9 @@
   },
   "chatInput": {
     "placeholder": "Spør detrans.ai...",
-    "deepResearch": "Dyp forskning",
     "suggestions": "Forslag:",
     "transPerspectivesLabel": "Inkluder transperspektiver (beta)",
     "transPerspectivesDesc": "På grunn av stor etterspørsel kan detrans.ai nå søke i /r/mtf og /r/ftm for å inkludere og utforske hvordan transperspektiver sammenlignes med detransperspektiver på kjønnsidentitet og kjønnsovergang."
-  },
-  "deepResearchEvents": {
-    "errorTitle": "Dyp forskningsfeil",
-    "retrieving": "Henter detransisjonserfaringer...",
-    "generatingQuestions": "Genererer meta-spørsmål...",
-    "findingAnswers": "Finner svar på meta-spørsmål",
-    "completed": "Dyp forskning fullført",
-    "retrieveError": "Feil ved henting av detransisjonserfaringer!",
-    "analyzeError": "Vi har gått tom for penger til å betale for AI-en som analyserer detransisjonserfaringer og besvarer spørsmål. Hvis du kan, vennligst doner slik at vi kan holde tjenesten i drift. Prøv igjen senere. For nå kan du fortsatt prøve spørsmålene i portalen.",
-    "generatingAnswer": "Genererer svar...",
-    "waitingForAnswer": "Venter på svar",
-    "questionsAnswered": "{answered} av {total} meta-spørsmål besvart",
-    "generatingSummary": "Genererer oppsummering av svar"
   },
   "questionTabs": {
     "topics": "Emner",

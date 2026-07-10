@@ -47,7 +47,7 @@ export function DynamicQuestionCategories({
   mode,
   questionMode = "top",
 }: {
-  mode: "affirm" | "detrans" | "compare";
+  mode: "detrans";
   questionMode?: "top" | "recent";
 }) {
   const [topQuestions, setTopQuestions] = useState<TopQuestion[]>([]);
@@ -102,14 +102,7 @@ export function DynamicQuestionCategories({
 
   const getQuestionUrl = (question: string) => {
     const slug = slugify(question);
-    switch (mode) {
-      case "affirm":
-        return `/affirm/research/${slug}`;
-      case "compare":
-        return `/compare/research/${slug}`;
-      default:
-        return `/research/${slug}`;
-    }
+    return `/chat?starter=${slug}`;
   };
 
   if (loading) {

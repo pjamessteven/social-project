@@ -357,8 +357,8 @@ const TRANS_EMBEDS = [
   },
 ];
 */
-export default function RedditEmbeds({ mode }: { mode: "detrans" | "affirm" }) {
-  const EMBEDS = mode === "detrans" ? DETRANS_EMBEDS : [];
+export default function RedditEmbeds({ mode }: { mode: "detrans" }) {
+  const EMBEDS = DETRANS_EMBEDS;
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

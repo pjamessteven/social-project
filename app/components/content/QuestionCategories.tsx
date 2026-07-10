@@ -93,8 +93,7 @@ import {
 import {
   questionCategories as questionCategoriesZhTw,
 } from "@/app/lib/questions.zh-tw";
-import { slugify } from "@/app/lib/utils";
-import { Link } from "@/i18n/routing";
+
 
 // Question categories map for all supported locales
 const questionCategoriesMap: Record<string, typeof questionCategoriesEn> = {
@@ -137,7 +136,7 @@ export async function QuestionCategories({
   mode,
 }: {
   locale?: string;
-  mode?: "detrans" | "affirm" | "compare";
+  mode?: "detrans";
 }) {
   const isDev = process.env.NODE_ENV === "development";
 
@@ -164,18 +163,15 @@ export async function QuestionCategories({
             <div className="grid gap-1">
               {category.questions.map(
                 (question: string, questionIndex: number) => (
-                  <Link
-                    prefetch={false}
-                    href={"/research/" + slugify(question) as any}
+                  <div
                     key={questionIndex}
+                    className="flex flex-row items-center border-b pt-1 pb-2"
                   >
-                    <div className="flex flex-row items-center border-b pt-1 pb-2">
-                      <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-lg italic opacity-90">
-                        <div className="mr-2 whitespace-nowrap">{"->"}</div>
-                        <div>{question}</div>
-                      </div>
+                    <div className="text-muted-foreground no-wrap flex flex-row items-start text-lg italic opacity-90">
+                      <div className="mr-2 whitespace-nowrap">{"->"}</div>
+                      <div>{question}</div>
                     </div>
-                  </Link>
+                  </div>
                 ),
               )}
             </div>

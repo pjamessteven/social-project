@@ -6,7 +6,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 export default function DonationCard({
   mode,
 }: {
-  mode: "detrans" | "affirm" | "compare";
+  mode: "detrans";
 }) {
   const t = useTranslations("home.donate.card");
   return (

@@ -204,7 +204,6 @@
   },
   "chatInput": {
     "placeholder": "Demandez à detrans.ai...",
-    "deepResearch": "Recherche Approfondie",
     "suggestions": "Suggestions:"
   },
   "questionTabs": {

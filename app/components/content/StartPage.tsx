@@ -316,7 +316,7 @@ export async function StartPage({
                   a: (chunks) => (
                     <Link
                       href={
-                        "/research/why-are-detransition-statistics-unreliable-and-who-runs-us-transgender-survey" as any
+                        "/chat?starter=why-are-detransition-statistics-unreliable-and-who-runs-us-transgender-survey" as any
                       }
                       className="underline"
                     >

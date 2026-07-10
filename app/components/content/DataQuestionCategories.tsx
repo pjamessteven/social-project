@@ -40,7 +40,7 @@ function TopicNode({
   onToggleSubcategory,
 }: {
   topic: TopicChild;
-  mode: "affirm" | "detrans" | "compare";
+  mode: "detrans";
   level?: number;
   expandedSubcategories: Set<string>;
   onToggleSubcategory: (subcategoryId: string) => void;
@@ -50,30 +50,9 @@ function TopicNode({
   const hasQuestions = topic.questions && topic.questions.length > 0;
   const hasChildren = topic.children && topic.children.length > 0;
 
-  const getHref = (question: string) => {
-    const slug = slugify(question);
-    switch (mode) {
-      case "detrans":
-        return "/research/" + slug;
-      case "affirm":
-        return "/affirm/research/" + slug;
-      case "compare":
-        return "/compare/research/" + slug;
-      default:
-        return "/research/" + slug;
-    }
-  };
-
   const getTopicHref = (topicId: number, topicString: string) => {
     const slug = slugify(topicString);
-    switch (mode) {
-      case "detrans":
-        return "/topic/" + topicId + "?" + slug;
-      case "affirm":
-        return "/affirm/topic/" + topicId + "?" + slug;
-      default:
-        return "/topic/" + topicId + "?" + slug;
-    }
+    return "/topic/" + topicId + "?" + slug;
   };
 
   return (
@@ -119,18 +98,15 @@ function TopicNode({
             <div className="mb-4 grid gap-1">
               {topic.questions!.map(
                 (question: string, questionIndex: number) => (
-                  <Link
-                    prefetch={false}
-                    href={getHref(question) as any}
+                  <div
                     key={questionIndex}
+                    className="ml-0 pl-2 flex flex-row items-center border-b pt-1 pb-2"
                   >
-                    <div className="ml-0 pl-2 flex flex-row items-center border-b pt-1 pb-2">
-                      <div className="text-muted-foreground hover:text-primary no-wrap flex cursor-pointer flex-row items-start text-base italic opacity-90 sm:text-lg">
-                        <div className="mr-2 whitespace-nowrap">{"->"}</div>
-                        <div>{question}</div>
-                      </div>
+                    <div className="text-muted-foreground no-wrap flex flex-row items-start text-base italic opacity-90 sm:text-lg">
+                      <div className="mr-2 whitespace-nowrap">{"->"}</div>
+                      <div>{question}</div>
                     </div>
-                  </Link>
+                  </div>
                 ),
               )}
             </div>
@@ -157,7 +133,7 @@ function TopicNode({
 export function DataQuestionCategories({
   mode,
 }: {
-  mode: "affirm" | "detrans" | "compare";
+  mode: "detrans";
 }) {
   const isDev = process.env.NODE_ENV === "development";
   const fullHierarchy = topicsHierarchy as TopicsHierarchy[];

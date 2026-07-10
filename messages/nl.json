@@ -338,23 +338,9 @@
   },
   "chatInput": {
     "placeholder": "Vraag detrans.ai...",
-    "deepResearch": "Diepgaand Onderzoek",
     "suggestions": "Suggesties:",
     "transPerspectivesLabel": "Trans-perspectieven opnemen (beta)",
     "transPerspectivesDesc": "Op veler verzoek kan detrans.ai nu zoeken in /r/mtf en /r/ftm om te onderzoeken hoe trans-perspectieven zich verhouden tot detrans-perspectieven over genderidentiteit en transitie."
-  },
-  "deepResearchEvents": {
-    "errorTitle": "Diepgaand onderzoek fout",
-    "retrieving": "Detrans-ervaringen ophalen...",
-    "generatingQuestions": "Meta-vragen genereren...",
-    "findingAnswers": "Antwoorden vinden op meta-vragen",
-    "completed": "Diepgaand onderzoek voltooid",
-    "retrieveError": "Fout bij het ophalen van detrans-ervaringen!",
-    "analyzeError": "We zijn door ons geld heen om de AI te betalen die detrans-ervaringen analyseert en vragen beantwoordt. Als je kunt, doneer dan zodat we de service draaiende kunnen houden. Probeer het later opnieuw. Voor nu kun je nog steeds de vragen in het portaal proberen.",
-    "generatingAnswer": "Antwoord genereren...",
-    "waitingForAnswer": "Wachten op antwoord",
-    "questionsAnswered": "{answered} van {total} meta-vragen beantwoord",
-    "generatingSummary": "Samenvatting van antwoorden genereren"
   },
   "questionTabs": {
     "topics": "Onderwerpen",

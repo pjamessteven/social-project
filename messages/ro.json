@@ -340,23 +340,9 @@
   },
   "chatInput": {
     "placeholder": "Întreabă detrans.ai...",
-    "deepResearch": "Cercetare Profundă",
     "suggestions": "Sugestii:",
     "transPerspectivesLabel": "Include perspectivelor trans (beta)",
     "transPerspectivesDesc": "La cerere populară, detrans.ai poate acum căuta pe /r/mtf și /r/ftm pentru a include și explora cum se compară perspectivele trans cu perspectivele detrans asupra identității de gen și tranziției."
-  },
-  "deepResearchEvents": {
-    "errorTitle": "Eroare cercetare profundă",
-    "retrieving": "Se preiau experiențe detrans...",
-    "generatingQuestions": "Se generează întrebări meta...",
-    "findingAnswers": "Se găsesc răspunsuri la întrebările meta",
-    "completed": "Cercetare profundă finalizată",
-    "retrieveError": "Eroare la preluarea experiențelor detrans!",
-    "analyzeError": "Am rămas fără bani pentru a plăti AI-ul care analizează experiențele detrans și răspunde la întrebări. Dacă poți, te rugăm să donezi pentru a putea menține serviciul activ. Te rugăm să încerci din nou mai târziu. Deocamdată, poți încerca întrebările din portal.",
-    "generatingAnswer": "Se generează răspunsul...",
-    "waitingForAnswer": "Se așteaptă răspunsul",
-    "questionsAnswered": "{answered} din {total} întrebări meta răspunse",
-    "generatingSummary": "Se generează rezumatul răspunsurilor"
   },
   "questionTabs": {
     "topics": "Subiecte",
@@ -564,11 +550,11 @@
       },
       "dataRetention": {
         "title": "Cât Timp Păstrăm Datele",
-          "content": "Toate înregistrările de chat, inclusiv adresele IP și datele despre țară asociate, sunt păstrate. Informațiile voluntare (de ex., emailuri de suport) sunt reținute doar atât timp cât este necesar pentru a-ți rezolva solicitarea sau pentru a satisface obligațiile legale."
+        "content": "Toate înregistrările de chat, inclusiv adresele IP și datele despre țară asociate, sunt păstrate. Informațiile voluntare (de ex., emailuri de suport) sunt reținute doar atât timp cât este necesar pentru a-ți rezolva solicitarea sau pentru a satisface obligațiile legale."
       },
       "thirdPartySharing": {
         "title": "Partajarea cu Terți",
-          "content": "Putem alege să partajăm înregistrările de chat anonimizate cu academicieni și cercetători care caută să îmbunătățească rezultatele pentru persoanele care experimentează disforie de gen. Mesajele tale sunt procesate de furnizori terți de AI (în prezent OpenRouter) pentru a genera răspunsuri — antrenarea pe conversații este dezactivată. Folosim hCaptcha (Intuition Machines, Inc.) pentru detectarea boților, care poate procesa adresa ta IP și datele de interacțiune. Putem divulga adrese IP sau alte date doar atunci când este cerut de lege sau pentru a ne proteja drepturile, utilizatorii sau publicul (de ex., prevenirea fraudelor, ordin judecătoresc)."
+        "content": "Putem alege să partajăm înregistrările de chat anonimizate cu academicieni și cercetători care caută să îmbunătățească rezultatele pentru persoanele care experimentează disforie de gen. Mesajele tale sunt procesate de furnizori terți de AI (în prezent OpenRouter) pentru a genera răspunsuri — antrenarea pe conversații este dezactivată. Folosim hCaptcha (Intuition Machines, Inc.) pentru detectarea boților, care poate procesa adresa ta IP și datele de interacțiune. Putem divulga adrese IP sau alte date doar atunci când este cerut de lege sau pentru a ne proteja drepturile, utilizatorii sau publicul (de ex., prevenirea fraudelor, ordin judecătoresc)."
       },
       "security": {
         "title": "Securitate",

@@ -2,6 +2,7 @@ import { db } from "@/db";
 import { bannedUsers } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { NextRequest } from "next/server";
+import { getIP } from "./getIp";
 
 /**
  * Check if an IP address is banned
@@ -30,51 +31,9 @@ export async function isIpBanned(ipAddress: string): Promise<boolean> {
 }
 
 /**
- * Get IP address from request with comprehensive header checking
- * @param req The NextRequest object
- * @returns The IP address or "unknown" if not found
+ * Re-export getIP as getIpFromRequest for backward compatibility
  */
-export function getIpFromRequest(req: NextRequest): string {
-  // Try x-forwarded-for first (common in proxy setups)
-  const forwardedFor = req.headers.get("x-forwarded-for");
-  if (forwardedFor) {
-    // x-forwarded-for can contain multiple IPs, the first one is the client
-    const ips = forwardedFor.split(",").map((ip) => ip.trim());
-    return ips[0];
-  }
-
-  // Try x-real-ip
-  const realIp = req.headers.get("x-real-ip");
-  if (realIp) {
-    return realIp;
-  }
-
-  // Try forwarded header (standard format)
-  const forwardedHeader = req.headers.get("forwarded");
-  if (forwardedHeader) {
-    // Parse Forwarded header format: for=192.0.2.60;proto=http;by=203.0.113.43
-    const forMatch = forwardedHeader.match(/for=([^;,\s]+)/i);
-    if (forMatch && forMatch[1]) {
-      // Remove quotes if present
-      return forMatch[1].replace(/"/g, "");
-    }
-  }
-
-  // Try cf-connecting-ip (Cloudflare)
-  const cfConnectingIp = req.headers.get("cf-connecting-ip");
-  if (cfConnectingIp) {
-    return cfConnectingIp;
-  }
-
-  // Try true-client-ip (Akamai and some other proxies)
-  const trueClientIp = req.headers.get("true-client-ip");
-  if (trueClientIp) {
-    return trueClientIp;
-  }
-
-  // Fallback for local development or when no headers are available
-  return "unknown";
-}
+export const getIpFromRequest = getIP;
 
 /**
  * Check if request comes from a banned IP and throw an error if banned
@@ -82,7 +41,7 @@ export function getIpFromRequest(req: NextRequest): string {
  * @throws {Error} If the IP is banned
  */
 export async function checkIpBan(req: NextRequest): Promise<void> {
-  const ipAddress = getIpFromRequest(req);
+  const ipAddress = getIP(req);
 
   if (await isIpBanned(ipAddress)) {
     throw new Error();

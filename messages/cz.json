@@ -341,23 +341,9 @@
   },
   "chatInput": {
     "placeholder": "Zeptejte se detrans.ai...",
-    "deepResearch": "Hluboký výzkum",
     "suggestions": "Návrhy:",
     "transPerspectivesLabel": "Zahrnout trans perspektivy (beta)",
     "transPerspectivesDesc": "Na vyžádání uživatelů nyní detrans.ai může prohledávat /r/mtf a /r/ftm, aby zahrnul a prozkoumal, jak se trans perspektivy porovnávají s detrans perspektivami ohledně genderové identity a tranzice."
-  },
-  "deepResearchEvents": {
-    "errorTitle": "Chyba hlubokého výzkumu",
-    "retrieving": "Načítání detranzicionistických zkušeností...",
-    "generatingQuestions": "Generování meta otázek...",
-    "findingAnswers": "Hledání odpovědí na meta otázky",
-    "completed": "Hluboký výzkum dokončen",
-    "retrieveError": "Chyba při načítání detranzicionistických zkušeností!",
-    "analyzeError": "Došly nám peníze na platbu za AI, která analyzuje detranzicionistické zkušenosti a odpovídá na otázky. Pokud můžete, prosím přispějte, abychom mohli udržet službu v provozu. Zkuste to prosím později znovu. Prozatím můžete stále vyzkoušet otázky na portálu.",
-    "generatingAnswer": "Generování odpovědi...",
-    "waitingForAnswer": "Čekání na odpověď",
-    "questionsAnswered": "{answered} z {total} meta otázek zodpovězeno",
-    "generatingSummary": "Generování shrnutí odpovědí"
   },
   "questionTabs": {
     "topics": "Témata",

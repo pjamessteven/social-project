@@ -1,6 +1,3 @@
-import { db, detransQuestions } from "@/db";
-import { eq } from "drizzle-orm";
-import { agentPrompt as researchAgentPrompt } from "../../research/utils/prompts";
 import { RedisCache, makeCacheKey, makeHashedKey } from "../../shared/cache";
 import { agentPrompt as chatAgentPrompt } from "./prompts";
 
@@ -34,18 +31,6 @@ export function generateChatCacheKey(message: string): string {
 }
 
 /**
- * Generates a cache key that matches what llm.ts would generate for research
- */
-export function generateResearchCacheKey(message: string): string {
-  const transformedMessages = transformMessageForCache(
-    message,
-    researchAgentPrompt,
-  );
-  const options = { tools: [null] };
-  return makeCacheKey(transformedMessages, options, "deep_research");
-}
-
-/**
  * Checks if there's a cached response for chat
  * Only caches single-turn conversations (no conversationId)
  */
@@ -63,30 +48,6 @@ export async function getChatCachedResponse(
   const hashedKey = makeHashedKey(cacheKey);
   const cache = new RedisCache("detrans_chat");
   return cache.get(hashedKey);
-}
-
-/**
- * Checks if there's a cached response for research
- * Research is always single-turn, so we can cache it
- */
-export async function getResearchCachedResponse(
-  message: string,
-): Promise<string | null> {
-  // Check if there's an entry in the detrans_questions table
-  const result = await db
-    .select({
-      name: detransQuestions.name,
-      finalResponse: detransQuestions.finalResponse,
-    })
-    .from(detransQuestions)
-    .where(eq(detransQuestions.name, message))
-    .limit(1);
-
-  if (!result[0]) {
-    return null;
-  }
-
-  return result[0].finalResponse;
 }
 
 /**

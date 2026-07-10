@@ -331,7 +331,6 @@
   },
   "chatInput": {
     "placeholder": "Pregunta a detrans.ai...",
-    "deepResearch": "Investigación Profunda",
     "suggestions": "Sugerencias:",
     "transPerspectivesLabel": "Incluir perspectivas trans (beta)",
     "transPerspectivesDesc": "Por demanda popular, detrans.ai ahora puede buscar en /r/mtf y /r/ftm para incluir y explorar cómo las perspectivas trans se comparan con las perspectivas de destransición sobre la identidad de género y la transición."
@@ -533,19 +532,6 @@
     "light": "Claro",
     "dark": "Oscuro",
     "auto": "Auto"
-  },
-  "deepResearchEvents": {
-    "errorTitle": "Error de investigación profunda",
-    "retrieving": "Recuperando experiencias de destransición...",
-    "generatingQuestions": "Generando meta preguntas...",
-    "findingAnswers": "Encontrando respuestas a meta preguntas",
-    "completed": "Investigación profunda completada",
-    "retrieveError": "¡Error recuperando experiencias de destransición!",
-    "analyzeError": "Nos hemos quedado sin dinero para pagar por la IA que analiza experiencias de destransición y responde preguntas. Si puedes, por favor dona para que podamos mantener el servicio funcionando. Por favor, intenta de nuevo más tarde. Por ahora, aún puedes probar las preguntas en el portal.",
-    "generatingAnswer": "Generando respuesta...",
-    "waitingForAnswer": "Esperando respuesta",
-    "questionsAnswered": "{answered} de {total} meta preguntas respondidas",
-    "generatingSummary": "Generando resumen de respuestas"
   },
   "donatePage": {
     "title": "Mantén Detrans.AI en Funcionamiento",

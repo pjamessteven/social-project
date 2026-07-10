@@ -339,23 +339,9 @@
   },
   "chatInput": {
     "placeholder": "Fråga detrans.ai...",
-    "deepResearch": "Djup Forskning",
     "suggestions": "Förslag:",
     "transPerspectivesLabel": "Inkludera transperspektiv (beta)",
     "transPerspectivesDesc": "Efter populär efterfrågan kan detrans.ai nu söka i /r/mtf och /r/ftm för att inkludera och utforska hur transperspektiv jämförs med detransperspektiv på könsidentitet och transition."
-  },
-  "deepResearchEvents": {
-    "errorTitle": "Djup forskningsfel",
-    "retrieving": "Hämtar detrans-erfarenheter...",
-    "generatingQuestions": "Genererar meta-frågor...",
-    "findingAnswers": "Hittar svar på meta-frågor",
-    "completed": "Djup forskning slutförd",
-    "retrieveError": "Fel vid hämtning av detrans-erfarenheter!",
-    "analyzeError": "Vi har fått slut på pengar för att betala för AI:n som analyserar detrans-erfarenheter och besvarar frågor. Om du kan, vänligen donera så att vi kan hålla tjänsten igång. Vänligen försök igen senare. För tillfället kan du fortfarande prova frågorna i portalen.",
-    "generatingAnswer": "Genererar svar...",
-    "waitingForAnswer": "Väntar på svar",
-    "questionsAnswered": "{answered} av {total} meta-frågor besvarade",
-    "generatingSummary": "Genererar sammanfattning av svar"
   },
   "questionTabs": {
     "topics": "Ämnen",
@@ -595,11 +581,26 @@
     "title": "Användarvillkor",
     "intro": "Genom att använda detrans.ai godkänner du följande villkor.",
     "sections": {
-      "acceptableUse": { "title": "Tillåten användning", "content": "detrans.ai är avsett för frågor och diskussioner relaterade till kön, könsidentitet, detransition och relaterade ämnen. Du får inte använda tjänsten för spam, olagligt innehåll, promptinjektionsattacker eller något försök att manipulera eller missbruka systemet. Vi förbehåller oss rätten att blockera IP-adresser och bannlysna användare som bryter mot dessa villkor." },
-      "publicConversations": { "title": "Offentliga konversationer", "content": "Alla konversationer är offentliga och kan visas på detrans.ai:s hemsida. Dela inte känslig, personligt identifierbar eller konfidentiell information. Konversationer kan användas för forskningsändamål i anonymiserad form." },
-      "disclaimer": { "title": "Ansvarsfriskrivning", "content": "Tjänsten tillhandahålls på en 'som den är' och 'som tillgänglig' basis utan garantier av något slag. detrans.ai är inte ett substitut för professionell medicinsk eller psykologisk rådgivning. Rådgör alltid med en kvalificerad vårdgivare för personliga hälsobeslut." },
-      "liability": { "title": "Ansvarsbegränsning", "content": "I den utsträckning som tillåts enligt lag ska detrans.ai och dess operatörer inte hållas ansvariga för några indirekta, tillfälliga eller följdskador som uppstår från din användning av tjänsten." },
-      "changes": { "title": "Ändringar av dessa villkor", "content": "Vi kan uppdatera dessa villkor från tid till annan. Fortsatt användning av tjänsten efter ändringar innebär godkännande av de uppdaterade villkoren." }
+      "acceptableUse": {
+        "title": "Tillåten användning",
+        "content": "detrans.ai är avsett för frågor och diskussioner relaterade till kön, könsidentitet, detransition och relaterade ämnen. Du får inte använda tjänsten för spam, olagligt innehåll, promptinjektionsattacker eller något försök att manipulera eller missbruka systemet. Vi förbehåller oss rätten att blockera IP-adresser och bannlysna användare som bryter mot dessa villkor."
+      },
+      "publicConversations": {
+        "title": "Offentliga konversationer",
+        "content": "Alla konversationer är offentliga och kan visas på detrans.ai:s hemsida. Dela inte känslig, personligt identifierbar eller konfidentiell information. Konversationer kan användas för forskningsändamål i anonymiserad form."
+      },
+      "disclaimer": {
+        "title": "Ansvarsfriskrivning",
+        "content": "Tjänsten tillhandahålls på en 'som den är' och 'som tillgänglig' basis utan garantier av något slag. detrans.ai är inte ett substitut för professionell medicinsk eller psykologisk rådgivning. Rådgör alltid med en kvalificerad vårdgivare för personliga hälsobeslut."
+      },
+      "liability": {
+        "title": "Ansvarsbegränsning",
+        "content": "I den utsträckning som tillåts enligt lag ska detrans.ai och dess operatörer inte hållas ansvariga för några indirekta, tillfälliga eller följdskador som uppstår från din användning av tjänsten."
+      },
+      "changes": {
+        "title": "Ändringar av dessa villkor",
+        "content": "Vi kan uppdatera dessa villkor från tid till annan. Fortsatt användning av tjänsten efter ändringar innebär godkännande av de uppdaterade villkoren."
+      }
     }
   },
   "videos": {

@@ -339,23 +339,9 @@
   },
   "chatInput": {
     "placeholder": "שאל/י את detrans.ai...",
-    "deepResearch": "מחקר עמוק",
     "suggestions": "הצעות:",
     "transPerspectivesLabel": "כלול נקודות מבט טרנס (בטא)",
     "transPerspectivesDesc": "לפי דרישה פופולרית, detrans.ai יכול כעת לחפש ב-/r/mtf ו-/r/ftm כדי לכלול ולחקור כיצד נקודות מבט טרנס משתוות לנקודות מבט דטרנזישן על זהות מגדרית ומעבר."
-  },
-  "deepResearchEvents": {
-    "errorTitle": "שגיאת מחקר עמוק",
-    "retrieving": "משיג חוויות דטרנזישן...",
-    "generatingQuestions": "מייצר שאלות מטא...",
-    "findingAnswers": "מוצא תשובות לשאלות מטא",
-    "completed": "מחקר עמוק הושלם",
-    "retrieveError": "שגיאה באחזור חוויות דטרנזישן!",
-    "analyzeError": "נגמר הכסף לשלם עבור הבינה המלאכותית שמנתחת חוויות דטרנזישן ועונה על שאלות. אם את/ה יכול/ה, אנא תרום/י כדי שנוכל להמשיך להפעיל את השירות. אנא נסה/י שוב מאוחר יותר. לעת עתה, את/ה עדיין יכול/ה לנסות את השאלות בפורטל.",
-    "generatingAnswer": "מייצר תשובה...",
-    "waitingForAnswer": "ממתין לתשובה",
-    "questionsAnswered": "{answered} מתוך {total} שאלות מטא נענו",
-    "generatingSummary": "מייצר סיכום של התשובות"
   },
   "questionTabs": {
     "topics": "נושאים",
