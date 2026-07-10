@@ -1,11 +1,12 @@
 import { withApiSecurity } from "@/app/lib/apiSecurity";
 import { getCurrentSession } from "@/app/lib/auth/auth";
+import { tryAcquireWorkflow, releaseWorkflow } from "@/app/lib/concurrency";
 import { getCountryFromIP } from "@/app/lib/geolocation";
 import {
   incrementMessageCount,
   isCaptchaRequired,
 } from "@/app/lib/messageCounter";
-import { db } from "@/db";
+import { db, withDbTimeout } from "@/db";
 import { chatConversations } from "@/db/schema";
 import { createUIMessageStreamResponse, type UIMessage } from "ai";
 import { and, desc, eq, isNull, sql } from "drizzle-orm";
@@ -87,11 +88,9 @@ export async function POST(req: NextRequest) {
 
     // Check if conversation exists and is archived
     if (chatUuid) {
-      const existingConversation = await db
-        .select()
-        .from(chatConversations)
-        .where(eq(chatConversations.uuid, chatUuid))
-        .limit(1);
+      const existingConversation = await withDbTimeout(
+        db.select().from(chatConversations).where(eq(chatConversations.uuid, chatUuid)).limit(1)
+      );
 
       if (existingConversation[0]) {
         const conversation = existingConversation[0];
@@ -166,11 +165,9 @@ export async function POST(req: NextRequest) {
     // Get existing conversation messages if conversation exists
     let existingMessages: UIMessage[] = [];
     if (conversationId) {
-      const existingConversation = await db
-        .select()
-        .from(chatConversations)
-        .where(eq(chatConversations.uuid, chatUuid))
-        .limit(1);
+      const existingConversation = await withDbTimeout(
+        db.select().from(chatConversations).where(eq(chatConversations.uuid, chatUuid)).limit(1)
+      );
 
       if (existingConversation[0]) {
         try {
@@ -234,7 +231,7 @@ export async function POST(req: NextRequest) {
     const newUserMessage: UIMessage = {
       id: uuidv4(),
       role: "user",
-      parts: [{ type: "text", text: message }],
+      parts: [{ type: "text", text: userInput }],
     };
 
     // Combine existing messages with new user message
@@ -267,6 +264,13 @@ export async function POST(req: NextRequest) {
       abortController.abort("Connection closed"),
     );
 
+    if (!tryAcquireWorkflow()) {
+      return NextResponse.json(
+        { error: "Server is busy. Please try again shortly." },
+        { status: 503 },
+      );
+    }
+
     try {
       const context = await runWorkflow({
         workflow: await workflowFactory(
@@ -298,7 +302,7 @@ export async function POST(req: NextRequest) {
             await pauseForHumanInput(context, responseEvent, requestId); // use requestId to save snapshot
           },
           onFinal: async (messages: UIMessage[], dataStreamWriter) => {
-            await saveConversation(chatUuid, messages, ipAddress, username, includeTransPerspectives);
+            await withDbTimeout(saveConversation(chatUuid, messages, ipAddress, username, includeTransPerspectives));
             // Increment message count for CAPTCHA tracking
             if (!cachedResponse) {
               await incrementMessageCount(ipAddress);
@@ -324,6 +328,8 @@ export async function POST(req: NextRequest) {
       console.error("Workflow execution error:", workflowError);
       // Re-throw to be caught by outer catch block
       throw workflowError;
+    } finally {
+      releaseWorkflow();
     }
   } catch (error) {
     console.error("Chat handler error:", error);

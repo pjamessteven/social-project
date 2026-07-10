@@ -173,7 +173,34 @@ export class CachedOpenAI extends OpenAI {
         let lastChunk: ChatResponseChunk | undefined;
         const seenToolCallIds = new Set<string>();
 
-        for await (const chunk of rawStream as AsyncGenerator<ChatResponseChunk>) {
+        const STREAM_TIMEOUT_MS = Number(process.env.LLM_STREAM_TIMEOUT_MS) || 180_000;
+        const iterator = (rawStream as AsyncGenerator<ChatResponseChunk>)[Symbol.asyncIterator]();
+        let lastChunkTime = Date.now();
+
+        while (true) {
+          let result: IteratorResult<ChatResponseChunk>;
+          try {
+            result = await Promise.race([
+              iterator.next(),
+              new Promise<never>((_, reject) => {
+                const remaining = STREAM_TIMEOUT_MS - (Date.now() - lastChunkTime);
+                if (remaining <= 0) {
+                  reject(new Error("LLM stream timeout: no chunks received"));
+                  return;
+                }
+                setTimeout(() => reject(new Error("LLM stream timeout")), remaining);
+              }),
+            ]);
+          } catch (err) {
+            // Attempt to clean up the iterator on timeout
+            try { await iterator.return?.(undefined as any); } catch {}
+            throw err;
+          }
+
+          if (result.done) break;
+
+          const chunk = result.value;
+          lastChunkTime = Date.now();
           fullText += chunk.delta;
 
           // Collect tool calls if present

@@ -9,7 +9,7 @@ import {
   createQueryVideosTool,
   createWebSearchTool,
 } from "@/app/lib/agents/tools";
-import { db } from "@/db";
+import { db, withDbTimeout } from "@/db";
 import { studyTags } from "@/db/schema";
 import { agent } from "@llamaindex/workflow";
 import { CachedOpenAI } from "../../shared/llm";
@@ -81,7 +81,7 @@ export const workflowFactory = async (
     tools.push(queryTransCommentsTool);
   }
 
-  const tags = await db.select({ name: studyTags.name }).from(studyTags);
+  const tags = await withDbTimeout(db.select({ name: studyTags.name }).from(studyTags));
   const tagNames = tags.map((t) => t.name).filter(Boolean);
   const tagList =
     tagNames.length > 0
