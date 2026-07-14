@@ -71,7 +71,7 @@ export default async function ParticipatePage() {
         experiences are valuable and deserve to be heard.
       </p>
       <p className="mb-8">
-        <i>Updated 2/11/25</i>
+        <i>Updated 14/7/26</i>
       </p>
 
       <Studies />

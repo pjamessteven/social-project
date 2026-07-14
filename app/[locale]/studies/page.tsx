@@ -12,6 +12,7 @@ import { headers } from "next/headers";
 import Link from "next/link";
 import { StudiesList } from "../../components/StudiesList";
 import StudySubmitForm from "../../components/StudySubmitForm";
+import ParticipateCard from "../../components/content/ParticipateCard";
 
 export async function generateMetadata({
   params,
@@ -320,6 +321,10 @@ export default async function StudiesPage({
       <p className="text-muted-foreground max-w-3xl">{t("description")}</p>
 
       <StudySubmitForm />
+
+      <div className="not-prose mt-8">
+        <ParticipateCard />
+      </div>
 
       <div className="mt-8">
         <StudiesList studies={studiesData} isAdmin={admin} locale={locale} />

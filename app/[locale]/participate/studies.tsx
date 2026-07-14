@@ -11,6 +11,119 @@ export default function Studies() {
   return (
     <Accordion type="single" collapsible className="not-prose w-full space-y-8">
       <AccordionItem
+        value="study-3"
+        className="bg-secondary rounded-lg border border-gray-200 dark:border-gray-700 dark:bg-gray-900"
+      >
+        <AccordionTrigger className="p-6 hover:no-underline">
+          <div className="text-left">
+            <h2 className="mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
+              Experiences and Social Support Needs of LGB Detransitioners (New!)
+            </h2>
+            <p className="text-muted-foreground font-normal italic">
+              "A study on the experiences and social support needs of LGB
+              detransitioners and how they may differ from the needs of other
+              detransitioners"
+            </p>
+          </div>
+        </AccordionTrigger>
+        <AccordionContent className="p-6 pt-0">
+          <div className="space-y-8">
+            <section>
+              <h3 className="mb-4 text-xl font-semibold text-gray-800 dark:text-gray-200">
+                Who Can Participate
+              </h3>
+              <div className="rounded-lg border bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+                <h4 className="mb-2 font-semibold text-gray-900 dark:text-gray-100">
+                  LGB Detransitioners
+                </h4>
+                <p className="text-muted-foreground text-sm text-gray-700 dark:text-gray-300">
+                  Individuals who have detransitioned and identify as lesbian,
+                  gay, or bisexual.
+                </p>
+              </div>
+            </section>
+
+            <section>
+              <h3 className="mb-4 text-xl font-semibold text-gray-800 dark:text-gray-200">
+                Study Goals
+              </h3>
+              <div className="rounded-lg border bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  Our findings will inform organisations like LGB Alliance,
+                  policymakers, and healthcare services in the UK and
+                  internationally to be better able to support LGB
+                  detransitioners.
+                </p>
+              </div>
+            </section>
+
+            <section>
+              <h3 className="mb-4 text-xl font-semibold text-gray-800 dark:text-gray-200">
+                What's Involved
+              </h3>
+              <div className="rounded-lg border border-green-200 bg-green-50 p-4 dark:border-green-800 dark:bg-green-900/20">
+                <ul className="space-y-3 text-sm text-green-800 dark:text-green-200">
+                  <li className="flex items-start">
+                    <span className="mr-3 font-bold text-green-600 dark:text-green-400">
+                      ✓
+                    </span>
+                    90-minute interview held online
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-3 font-bold text-green-600 dark:text-green-400">
+                      ✓
+                    </span>
+                    We'll ask about your transition and detransition journey
+                    including any challenges, for example with healthcare or in
+                    your relationships
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-3 font-bold text-green-600 dark:text-green-400">
+                      ✓
+                    </span>
+                    Participation is entirely voluntary and confidential
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            <section>
+              <h3 className="mb-4 text-xl font-semibold text-gray-800 dark:text-gray-200">
+                Participant Incentive
+              </h3>
+              <div className="rounded-lg border border-yellow-200 bg-yellow-50 p-4 dark:border-yellow-800 dark:bg-yellow-900/20">
+                <p className="text-sm text-yellow-800 dark:text-yellow-200">
+                  You'll receive a <strong>£40 voucher</strong> (redeemable
+                  internationally) as a thank you for participating.
+                </p>
+              </div>
+            </section>
+
+            <div className="rounded-lg border bg-white p-4 text-white dark:border-gray-700 dark:bg-gray-800">
+              <h3 className="mb-3 text-xl font-semibold">
+                Ready to Share Your Experience?
+              </h3>
+              <p className="mb-4">
+                If you would like to take part or find out more, please get in
+                touch.
+              </p>
+              <div className="space-y-2">
+                <p className="font-medium">
+                  Contact:{" "}
+                  <a
+                    href="mailto:info@amartaresearch.com"
+                    className="underline hover:no-underline"
+                  >
+                    info@amartaresearch.com
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </AccordionContent>
+      </AccordionItem>
+
+      <AccordionItem
         value="study-1"
         className="bg-secondary rounded-lg border border-gray-200 dark:border-gray-700 dark:bg-gray-900"
       >
