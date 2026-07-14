@@ -238,7 +238,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "מנתח תוצאות אינטרנט",
     "detransPerspective": "-> מהן נקודות המבט של מדטרנזישנרים על נושא זה?",
-    "transPerspective": "-> מהן נקודות המבט של אנשים טרנס על נושא זה?",
     "transPerspectivesIncluded": "נקודות מבט טרנס נכללות",
     "captchaRequired": "נדרש קפצ'ה להמשך הצ'אט.",
     "chatArchived": "צ'אט זה הועבר לארכיון. התחל אחד חדש.",
@@ -290,9 +289,7 @@
   },
   "chatInput": {
     "placeholder": "שאל/י את detrans.ai...",
-    "suggestions": "הצעות:",
-    "transPerspectivesLabel": "כלול נקודות מבט טרנס (בטא)",
-    "transPerspectivesDesc": "לפי דרישה פופולרית, detrans.ai יכול כעת לחפש ב-/r/mtf ו-/r/ftm כדי לכלול ולחקור כיצד נקודות מבט טרנס משתוות לנקודות מבט דטרנזישן על זהות מגדרית ומעבר."
+    "suggestions": "הצעות:"
   },
   "conversations": {
     "title": "שיחות אחרונות",

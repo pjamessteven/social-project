@@ -239,7 +239,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Menganalisis Hasil Web",
     "detransPerspective": "-> Apa perspektif orang yang berhenti transisi tentang topik ini?",
-    "transPerspective": "-> Apa perspektif trans tentang topik ini?",
     "transPerspectivesIncluded": "Perspektif trans disertakan",
     "captchaRequired": "Captcha diperlukan untuk melanjutkan obrolan.",
     "chatArchived": "Obrolan ini diarsipkan. Mulai yang baru.",
@@ -291,9 +290,7 @@
   },
   "chatInput": {
     "placeholder": "Tanyakan detrans.ai...",
-    "suggestions": "Saran:",
-    "transPerspectivesLabel": "Sertakan perspektif trans (beta)",
-    "transPerspectivesDesc": "Karena permintaan yang tinggi, detrans.ai sekarang dapat mencari /r/mtf dan /r/ftm untuk menyertakan dan mengeksplorasi bagaimana perspektif trans dibandingkan dengan perspektif detrans tentang identitas gender dan transisi."
+    "suggestions": "Saran:"
   },
   "conversations": {
     "title": "Percakapan Terbaru",

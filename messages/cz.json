@@ -240,7 +240,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analyzování webových výsledků",
     "detransPerspective": "-> Jaké jsou detranzicionistické perspektivy na toto téma?",
-    "transPerspective": "-> Jaké jsou transgender perspektivy na toto téma?",
     "transPerspectivesIncluded": "Trans perspektivy zahrnuty",
     "captchaRequired": "Pro pokračování v chatu je vyžadována captcha.",
     "chatArchived": "Tento chat je archivován. Začněte nový.",
@@ -292,9 +291,7 @@
   },
   "chatInput": {
     "placeholder": "Zeptejte se detrans.ai...",
-    "suggestions": "Návrhy:",
-    "transPerspectivesLabel": "Zahrnout trans perspektivy (beta)",
-    "transPerspectivesDesc": "Na vyžádání uživatelů nyní detrans.ai může prohledávat /r/mtf a /r/ftm, aby zahrnul a prozkoumal, jak se trans perspektivy porovnávají s detrans perspektivami ohledně genderové identity a tranzice."
+    "suggestions": "Návrhy:"
   },
   "conversations": {
     "title": "Nedávné konverzace",

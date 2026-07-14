@@ -239,7 +239,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Аналіз веб-результатів",
     "detransPerspective": "-> Які погляди детранзішнерів на цю тему?",
-    "transPerspective": "-> Які погляди трансгендерних людей на цю тему?",
     "transPerspectivesIncluded": "Транс-перспективи включені",
     "captchaRequired": "Потрібна капча для продовження чату.",
     "chatArchived": "Цей чат архівовано. Почніть новий.",
@@ -291,9 +290,7 @@
   },
   "chatInput": {
     "placeholder": "Запитайте detrans.ai...",
-    "suggestions": "Пропозиції:",
-    "transPerspectivesLabel": "Включити транс-перспективи (beta)",
-    "transPerspectivesDesc": "На численні прохання detrans.ai тепер може шукати в /r/mtf та /r/ftm, щоб включити та дослідити, як транс-перспективи порівнюються з детранс-перспективами щодо гендерної ідентичності та переходу."
+    "suggestions": "Пропозиції:"
   },
   "conversations": {
     "title": "Недавні розмови",

@@ -239,7 +239,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analiziranje spletnih rezultatov",
     "detransPerspective": "-> Kakšne so detranz perspektive o tej temi?",
-    "transPerspective": "-> Kakšne so trans perspektive o tej temi?",
     "transPerspectivesIncluded": "Trans perspektive vključene",
     "captchaRequired": "Za nadaljevanje klepeta je potrebna captcha.",
     "chatArchived": "Ta klepet je arhiviran. Začnite novega.",
@@ -291,9 +290,7 @@
   },
   "chatInput": {
     "placeholder": "Vprašajte detrans.ai...",
-    "suggestions": "Predlogi:",
-    "transPerspectivesLabel": "Vključi trans perspektive (beta)",
-    "transPerspectivesDesc": "Na zahtevo uporabnikov lahko detrans.ai zdaj išče po /r/mtf in /r/ftm, da vključi in razišče, kako se trans perspektive primerjajo z detrans perspektivami o spolni identiteti in tranziciji."
+    "suggestions": "Predlogi:"
   },
   "conversations": {
     "title": "Nedavni pogovori",

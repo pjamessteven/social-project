@@ -238,7 +238,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analyserar webbresultat",
     "detransPerspective": "-> Vilka är detrans-perspektiven på detta ämne?",
-    "transPerspective": "-> Vilka är trans-perspektiven på detta ämne?",
     "transPerspectivesIncluded": "Transperspektiv inkluderade",
     "captchaRequired": "Captcha krävs för att fortsätta chattandet.",
     "chatArchived": "Denna chatt är arkiverad. Starta en ny.",
@@ -290,9 +289,7 @@
   },
   "chatInput": {
     "placeholder": "Fråga detrans.ai...",
-    "suggestions": "Förslag:",
-    "transPerspectivesLabel": "Inkludera transperspektiv (beta)",
-    "transPerspectivesDesc": "Efter populär efterfrågan kan detrans.ai nu söka i /r/mtf och /r/ftm för att inkludera och utforska hur transperspektiv jämförs med detransperspektiv på könsidentitet och transition."
+    "suggestions": "Förslag:"
   },
   "conversations": {
     "title": "Nyliga Konversationer",

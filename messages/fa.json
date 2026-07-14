@@ -240,7 +240,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "تحلیل نتایج وب",
     "detransPerspective": "-> دیدگاه‌های دترنز درباره این موضوع چیست؟",
-    "transPerspective": "-> دیدگاه‌های ترنس درباره این موضوع چیست؟",
     "transPerspectivesIncluded": "دیدگاه‌های ترنس گنجانده شده",
     "captchaRequired": "برای ادامه چت نیاز به کپچا است.",
     "chatArchived": "این چت بایگانی شده است. یک چت جدید شروع کنید.",
@@ -292,9 +291,7 @@
   },
   "chatInput": {
     "placeholder": "از detrans.ai بپرسید...",
-    "suggestions": "پیشنهادات:",
-    "transPerspectivesLabel": "شامل دیدگاه‌های ترنس (آزمایشی)",
-    "transPerspectivesDesc": "به درخواست پرتکرار، detrans.ai اکنون می‌تواند در /r/mtf و /r/ftm جستجو کند تا دیدگاه‌های ترنس را با دیدگاه‌های دترنز درباره هویت جنسیتی و ترنزیشن مقایسه و بررسی کند."
+    "suggestions": "پیشنهادات:"
   },
   "conversations": {
     "title": "گفتگوهای اخیر",

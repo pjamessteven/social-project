@@ -238,7 +238,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "正在分析网页搜索结果",
     "detransPerspective": "-> 去过渡者对这个话题有什么看法？",
-    "transPerspective": "-> 跨性别者对这个话题有什么看法？",
     "transPerspectivesIncluded": "包含跨性别视角",
     "captchaRequired": "需要验证码才能继续聊天。",
     "chatArchived": "此聊天已存档。开始一个新的。",
@@ -290,9 +289,7 @@
   },
   "chatInput": {
     "placeholder": "询问detrans.ai...",
-    "suggestions": "建议：",
-    "transPerspectivesLabel": "包含跨性别视角（beta）",
-    "transPerspectivesDesc": "应广大用户要求，detrans.ai 现在可以搜索 /r/mtf 和 /r/ftm，以包含并探索跨性别视角与去过渡视角在性别认同和过渡方面的比较。"
+    "suggestions": "建议："
   },
   "conversations": {
     "title": "最近对话",

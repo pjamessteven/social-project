@@ -239,7 +239,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "กำลังวิเคราะห์ผลลัพธ์จากเว็บ",
     "detransPerspective": "-> มุมมองของผู้เลิกเปลี่ยนเพศเกี่ยวกับหัวข้อนี้คืออะไร?",
-    "transPerspective": "-> มุมมองของคนข้ามเพศเกี่ยวกับหัวข้อนี้คืออะไร?",
     "transPerspectivesIncluded": "รวมมุมมองของคนข้ามเพศ",
     "captchaRequired": "ต้องใช้แคปช่าถึงจะแชทต่อได้",
     "chatArchived": "แชทนี้ถูกเก็บถาวรแล้ว เริ่มใหม่ได้เลย",
@@ -291,9 +290,7 @@
   },
   "chatInput": {
     "placeholder": "ถาม detrans.ai...",
-    "suggestions": "คำแนะนำ:",
-    "transPerspectivesLabel": "รวมมุมมองของคนข้ามเพศ (beta)",
-    "transPerspectivesDesc": "ตามคำเรียกร้องอย่างมาก detrans.ai สามารถค้นหา /r/mtf และ /r/ftm เพื่อรวมและสำรวจว่ามุมมองของคนข้ามเพศเปรียบเทียบกับมุมมองของผู้เลิกเปลี่ยนเพศเกี่ยวกับตัวตนทางเพศและการเปลี่ยนเพศอย่างไร"
+    "suggestions": "คำแนะนำ:"
   },
   "conversations": {
     "title": "การสนทนาล่าสุด",

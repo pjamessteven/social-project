@@ -239,7 +239,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Анализиране на уеб резултати",
     "detransPerspective": "-> Какви са детранс гледните точки по тази тема?",
-    "transPerspective": "-> Какви са транс гледните точки по тази тема?",
     "transPerspectivesIncluded": "Транс перспективите са включени",
     "captchaRequired": "Изисква се капча за продължаване на чата.",
     "chatArchived": "Този чат е архивиран. Започнете нов.",
@@ -291,9 +290,7 @@
   },
   "chatInput": {
     "placeholder": "Попитайте detrans.ai...",
-    "suggestions": "Предложения:",
-    "transPerspectivesLabel": "Включи транс перспективи (бета)",
-    "transPerspectivesDesc": "По популярно търсене, detrans.ai вече може да търси в /r/mtf и /r/ftm, за да включи и проучи как транс перспективите се сравняват с детранс перспективите относно полова идентичност и преход."
+    "suggestions": "Предложения:"
   },
   "conversations": {
     "title": "Скорошни разговори",

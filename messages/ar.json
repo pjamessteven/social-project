@@ -240,7 +240,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "تحليل نتائج الويب",
     "detransPerspective": "-> ما هي وجهات نظر الأشخاص الذين تراجعوا عن التحول حول هذا الموضوع؟",
-    "transPerspective": "-> ما هي وجهات نظر المتحولين حول هذا الموضوع؟",
     "transPerspectivesIncluded": "تم تضمين وجهات نظر المتحولين",
     "captchaRequired": "مطلوب كابتشا لمواصلة الدردشة.",
     "chatArchived": "تم أرشفة هذه الدردشة. ابدأ واحدة جديدة.",
@@ -292,9 +291,7 @@
   },
   "chatInput": {
     "placeholder": "اسأل detrans.ai...",
-    "suggestions": "الاقتراحات:",
-    "transPerspectivesLabel": "تضمين وجهات نظر المتحولين (تجريبي)",
-    "transPerspectivesDesc": "بطلب شعبي، يمكن لـ detrans.ai الآن البحث في /r/mtf و /r/ftm لتضمين واستكشاف كيف تختلف وجهات نظر المتحولين عن وجهات نظر المتراجعين عن التحول حول هوية الجندر والتحول."
+    "suggestions": "الاقتراحات:"
   },
   "conversations": {
     "title": "المحادثات الأخيرة",

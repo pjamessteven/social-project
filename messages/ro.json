@@ -239,7 +239,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Se analizează rezultatele web",
     "detransPerspective": "-> Care sunt perspectivele detrans asupra acestui subiect?",
-    "transPerspective": "-> Care sunt perspectivele trans asupra acestui subiect?",
     "transPerspectivesIncluded": "Perspective trans incluse",
     "captchaRequired": "Captcha necesar pentru a continua chat-ul.",
     "chatArchived": "Acest chat este arhivat. Începeți unul nou.",
@@ -291,9 +290,7 @@
   },
   "chatInput": {
     "placeholder": "Întreabă detrans.ai...",
-    "suggestions": "Sugestii:",
-    "transPerspectivesLabel": "Include perspectivelor trans (beta)",
-    "transPerspectivesDesc": "La cerere populară, detrans.ai poate acum căuta pe /r/mtf și /r/ftm pentru a include și explora cum se compară perspectivele trans cu perspectivele detrans asupra identității de gen și tranziției."
+    "suggestions": "Sugestii:"
   },
   "conversations": {
     "title": "Conversații Recente",

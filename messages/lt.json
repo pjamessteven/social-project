@@ -239,7 +239,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analizuojami žiniatinklio rezultatai",
     "detransPerspective": "-> Kokie detranzicijos požiūriai į šią temą?",
-    "transPerspective": "-> Kokie translyčio požiūriai į šią temą?",
     "transPerspectivesIncluded": "Translyčių požiūriai įtraukti",
     "captchaRequired": "Norint tęsti pokalbį, reikalinga captcha.",
     "chatArchived": "Šis pokalbis yra archyvuotas. Pradėkite naują.",
@@ -291,9 +290,7 @@
   },
   "chatInput": {
     "placeholder": "Klauskite detrans.ai...",
-    "suggestions": "Pasiūlymai:",
-    "transPerspectivesLabel": "Įtraukti translyčių požiūrius (beta)",
-    "transPerspectivesDesc": "Dėl didelio populiarumo detrans.ai dabar gali ieškoti /r/mtf ir /r/ftm, kad įtrauktų ir ištirtų, kaip translyčių požiūriai lyginami su detranzicijos požiūriais į genderinę tapatybę ir perėjimą."
+    "suggestions": "Pasiūlymai:"
   },
   "conversations": {
     "title": "Naujausi pokalbiai",

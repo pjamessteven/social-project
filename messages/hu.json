@@ -239,7 +239,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Webes eredmények elemzése",
     "detransPerspective": "-> Mik a detrans nézőpontok erről a témáról?",
-    "transPerspective": "-> Mik a transz nézőpontok erről a témáról?",
     "transPerspectivesIncluded": "Transz nézőpontok beépítve",
     "captchaRequired": "Captcha szükséges a chat folytatásához.",
     "chatArchived": "Ez a chat archiválva van. Kezdj egy újat.",
@@ -291,9 +290,7 @@
   },
   "chatInput": {
     "placeholder": "Kérdezd a detrans.ai-t...",
-    "suggestions": "Javaslatok:",
-    "transPerspectivesLabel": "Transz nézőpontok bevonása (beta)",
-    "transPerspectivesDesc": "Nagy népszerűségnek örvendve a detrans.ai most már képes keresni a /r/mtf és /r/ftm közösségekben, hogy bemutassa és feltárja, hogyan viszonyulnak a transz nézőpontok a detrans nézőpontokhoz a nemi identitás és az átmenet témáiban."
+    "suggestions": "Javaslatok:"
   },
   "conversations": {
     "title": "Legfrissebb Beszélgetések",

@@ -238,7 +238,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Web Sonuçları Analiz Ediliyor",
     "detransPerspective": "-> Bu konuda detrans bakış açıları nedir?",
-    "transPerspective": "-> Bu konuda trans bakış açıları nedir?",
     "transPerspectivesIncluded": "Trans bakış açıları dahil",
     "captchaRequired": "Sohbeti devam ettirmek için captcha gerekiyor.",
     "chatArchived": "Bu sohbet arşivlendi. Yeni bir tane başlatın.",
@@ -290,9 +289,7 @@
   },
   "chatInput": {
     "placeholder": "detrans.ai'ye sorun...",
-    "suggestions": "Öneriler:",
-    "transPerspectivesLabel": "Trans perspektiflerini dahil et (beta)",
-    "transPerspectivesDesc": "Yoğun talep üzerine, detrans.ai artık /r/mtf ve /r/ftm'de arama yaparak trans perspektiflerin cinsiyet kimliği ve geçiş konularında detrans perspektifleriyle nasıl karşılaştırıldığını dahil edebilir ve keşfedebilir."
+    "suggestions": "Öneriler:"
   },
   "conversations": {
     "title": "Son Konuşmalar",

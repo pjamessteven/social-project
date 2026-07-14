@@ -238,7 +238,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "वेब परिणामों का विश्लेषण",
     "detransPerspective": "-> इस विषय पर डीट्रांज दृष्टिकोण क्या हैं?",
-    "transPerspective": "-> इस विषय पर ट्रांस दृष्टिकोण क्या हैं?",
     "transPerspectivesIncluded": "ट्रांस दृष्टिकोण शामिल",
     "captchaRequired": "चैट जारी रखने के लिए कैप्चा आवश्यक है।",
     "chatArchived": "यह चैट संग्रहीत है। एक नया शुरू करें।",
@@ -290,9 +289,7 @@
   },
   "chatInput": {
     "placeholder": "detrans.ai से पूछें...",
-    "suggestions": "सुझाव:",
-    "transPerspectivesLabel": "ट्रांस दृष्टिकोण शामिल करें (beta)",
-    "transPerspectivesDesc": "लोकप्रिय मांग के कारण, detrans.ai अब /r/mtf और /r/ftm को खोज सकता है ताकि ट्रांस दृष्टिकोण की तुलना डीट्रांज दृष्टिकोण से लिंग पहचान और ट्रांजिशन पर की जा सके।"
+    "suggestions": "सुझाव:"
   },
   "conversations": {
     "title": "हाल की वार्तालाप",

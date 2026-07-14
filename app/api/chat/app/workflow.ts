@@ -92,10 +92,6 @@ export const workflowFactory = async (
         .replace(
           "- Make liberal use of the queryCommentsTool",
           "- Make liberal use of the queryCommentsTool\n  - Use the queryTransCommentsTool to find experiences of transgender people. Include, explore and compare **in depth** how trans perspectives relate and contrast to detrans perspectives on gender identity and transition.",
-        )
-        .replace(
-          "**If the user wants to include trans perspectives, tell them they can enable this option by clicking the trans flag in the chat input**\n",
-          "",
         ) + tagList
     : agentPrompt + tagList;
 

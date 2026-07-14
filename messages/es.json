@@ -230,7 +230,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analizando resultados web",
     "detransPerspective": "-> ¿Cuáles son las perspectivas de destransición sobre este tema?",
-    "transPerspective": "-> ¿Cuáles son las perspectivas trans sobre este tema?",
     "transPerspectivesIncluded": "Perspectivas trans incluidas",
     "captchaRequired": "Se requiere captcha para continuar el chat.",
     "chatArchived": "Este chat está archivado. Comience uno nuevo.",
@@ -282,9 +281,7 @@
   },
   "chatInput": {
     "placeholder": "Pregunta a detrans.ai...",
-    "suggestions": "Sugerencias:",
-    "transPerspectivesLabel": "Incluir perspectivas trans (beta)",
-    "transPerspectivesDesc": "Por demanda popular, detrans.ai ahora puede buscar en /r/mtf y /r/ftm para incluir y explorar cómo las perspectivas trans se comparan con las perspectivas de destransición sobre la identidad de género y la transición."
+    "suggestions": "Sugerencias:"
   },
   "conversations": {
     "title": "Conversaciones Recientes",

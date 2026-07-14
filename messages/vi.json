@@ -239,7 +239,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Phân tích kết quả web",
     "detransPerspective": "-> Quan điểm của ngưởi chuyển giới trở lại về chủ đề này là gì?",
-    "transPerspective": "-> Quan điểm của ngưởi chuyển giới về chủ đề này là gì?",
     "transPerspectivesIncluded": "Bao gồm quan điểm của người chuyển giới",
     "captchaRequired": "Yêu cầu captcha để tiếp tục trò chuyện.",
     "chatArchived": "Cuộc trò chuyện này đã được lưu trữ. Bắt đầu một cuộc trò chuyện mới.",
@@ -291,9 +290,7 @@
   },
   "chatInput": {
     "placeholder": "Hỏi detrans.ai...",
-    "suggestions": "Gợi ý:",
-    "transPerspectivesLabel": "Bao gồm quan điểm chuyển giới (beta)",
-    "transPerspectivesDesc": "Theo yêu cầu phổ biến, detrans.ai hiện có thể tìm kiếm trên /r/mtf và /r/ftm để bao gồm và khám phá cách quan điểm chuyển giới so sánh với quan điểm chuyển giới trở lại về bản dạng giới và quá trình chuyển đổi."
+    "suggestions": "Gợi ý:"
   },
   "conversations": {
     "title": "Cuộc Trò Chuyện Gần Đây",

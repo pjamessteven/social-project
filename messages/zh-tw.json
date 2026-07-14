@@ -239,7 +239,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "正在分析網頁搜尋結果",
     "detransPerspective": "-> 去過渡者對這個話題有什麼看法？",
-    "transPerspective": "-> 跨性別者對這個話題有什麼看法？",
     "transPerspectivesIncluded": "包含跨性別視角",
     "captchaRequired": "需要驗證碼才能繼續聊天。",
     "chatArchived": "此聊天已存檔。開始一個新的。",
@@ -291,9 +290,7 @@
   },
   "chatInput": {
     "placeholder": "詢問detrans.ai...",
-    "suggestions": "建議：",
-    "transPerspectivesLabel": "包含跨性別視角（beta）",
-    "transPerspectivesDesc": "應廣大用戶要求，detrans.ai 現在可以搜尋 /r/mtf 和 /r/ftm，以包含並探索跨性別視角與去過渡視角在性別認同和過渡方面的比較。"
+    "suggestions": "建議："
   },
   "conversations": {
     "title": "最近對話",

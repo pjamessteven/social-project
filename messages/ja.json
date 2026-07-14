@@ -236,7 +236,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Web検索結果を分析中",
     "detransPerspective": "→ デトランスの視点は？",
-    "transPerspective": "→ トランスの視点は？",
     "transPerspectivesIncluded": "トランスの視点を含む",
     "captchaRequired": "チャットを続行するにはキャプチャが必要です。",
     "chatArchived": "このチャットはアーカイブされています。新しいものを開始してください。",
@@ -288,9 +287,7 @@
   },
   "chatInput": {
     "placeholder": "detrans.aiに質問...",
-    "suggestions": "提案：",
-    "transPerspectivesLabel": "トランスの視点を含める (beta)",
-    "transPerspectivesDesc": "多くのご要望により、detrans.aiは/r/mtfと/r/ftmを検索し、ジェンダーアイデンティティと遷移についてトランスの視点がデトランスの視点とどのように比較されるかを探求できるようになりました。"
+    "suggestions": "提案："
   },
   "conversations": {
     "title": "最近の会話",

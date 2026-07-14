@@ -237,7 +237,6 @@
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Zoekresultaten analyseren",
     "detransPerspective": "-> Wat zijn detrans-perspectieven op dit onderwerp?",
-    "transPerspective": "-> Wat zijn trans-perspectieven op dit onderwerp?",
     "transPerspectivesIncluded": "Trans-perspectieven opgenomen",
     "captchaRequired": "Captcha vereist om door te gaan met chatten.",
     "chatArchived": "Deze chat is gearchiveerd. Start een nieuwe.",
@@ -289,9 +288,7 @@
   },
   "chatInput": {
     "placeholder": "Vraag detrans.ai...",
-    "suggestions": "Suggesties:",
-    "transPerspectivesLabel": "Trans-perspectieven opnemen (beta)",
-    "transPerspectivesDesc": "Op veler verzoek kan detrans.ai nu zoeken in /r/mtf en /r/ftm om te onderzoeken hoe trans-perspectieven zich verhouden tot detrans-perspectieven over genderidentiteit en transitie."
+    "suggestions": "Suggesties:"
   },
   "conversations": {
     "title": "Recente Gesprekken",
