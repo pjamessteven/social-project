@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { useCaptcha } from "@/app/hooks/useCaptcha";
+import { HCaptchaDialog } from "../../components/ui/hcaptcha-dialog";
 import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
 
@@ -15,24 +17,64 @@ export default function ContactForm() {
   });
   const [status, setStatus] = useState("");
 
+  const { showCaptchaDialog, setShowCaptchaDialog, verifyCaptcha } =
+    useCaptcha();
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus(t("form.sending"));
-
+  const submitForm = async () => {
     const res = await fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...form, site: "detrans" }),
     });
 
-    const data = await res.json();
-    setStatus(data.success ? t("form.success") : t("form.error"));
+    return res;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus(t("form.sending"));
+
+    try {
+      const res = await submitForm();
+      const data = await res.json();
+
+      if (res.status === 402 && data.requiresCaptcha) {
+        setShowCaptchaDialog(true);
+        setStatus("");
+        return;
+      }
+
+      setStatus(data.success ? t("form.success") : t("form.error"));
+    } catch {
+      setStatus(t("form.error"));
+    }
+  };
+
+  const handleCaptchaVerify = async (token: string) => {
+    const result = await verifyCaptcha(token);
+
+    if (result.success) {
+      setShowCaptchaDialog(false);
+      setStatus(t("form.sending"));
+
+      try {
+        const res = await submitForm();
+        const data = await res.json();
+        setStatus(data.success ? t("form.success") : t("form.error"));
+      } catch {
+        setStatus(t("form.error"));
+      }
+    }
+  };
+
+  const handleCaptchaClose = () => {
+    setShowCaptchaDialog(false);
   };
 
   return (
@@ -127,6 +169,13 @@ export default function ContactForm() {
           </p>
         )}
       </div>
+
+      <HCaptchaDialog
+        isOpen={showCaptchaDialog}
+        onClose={handleCaptchaClose}
+        onVerify={handleCaptchaVerify}
+        siteKey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ""}
+      />
     </div>
   );
 }
