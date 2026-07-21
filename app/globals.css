@@ -342,6 +342,27 @@ body,
       radial-gradient(at 8% 40%, rgba(251, 218, 239, 0.46) 0, transparent 50%);
   }
 
+  .checkerboard-bg {
+    background: repeating-conic-gradient(
+        currentColor 0% 25%,
+        transparent 0% 50%
+      )
+      0 0 / 16rem 16rem;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), transparent);
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.2),
+      transparent
+    );
+    transform: rotate(-15deg);
+  }
+
+  @media (max-width: 639px) {
+    .checkerboard-bg {
+      background-size: 8rem 8rem;
+    }
+  }
+
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -416,4 +437,3 @@ body,
     }
   }
 }
-

@@ -404,7 +404,7 @@
     },
     "title": "它是如何運作的？",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> 聊天是一個由RAG（檢索增強生成）驅動的智慧體，它通過從<reddit>/r/detrans</reddit> 子版塊和YouTube中提取和整合去變性者的思考與經歷來生成元問題並回答。它使用<llamaIndex>LlamaIndex</llamaIndex>框架和開源的DeepSeek V4 Flash模型構建，以減少西方政治偏見。",
+      "paragraph1": "<bold>detrans.ai</bold> 聊天是一個由RAG（檢索增強生成）驅動的智慧體，它通過從<reddit>/r/detrans</reddit> 子版塊和YouTube中提取和整合去變性者的思考與經歷來生成元問題並回答。它使用<llamaIndex>LlamaIndex</llamaIndex>框架和開源的Xiaomi Mimo-V2.5模型構建，以減少西方政治偏見。",
       "paragraph2": "ChatGPT和大多數其他西方大型語言模型在推廣和維護性別觀念方面相當激進。事實證明，無法在這個專案中使用OpenAI的GPT模型，因為這些模型會不斷削弱和反駁被要求總結的去過渡經歷。如果你想要一個更加肯定的經歷，請參見<chatgpt>ChatGPT</chatgpt>。"
     },
     "dataCutoff": {

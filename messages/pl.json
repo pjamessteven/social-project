@@ -403,7 +403,7 @@
     },
     "title": "Jak to działa?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> chat to agent oparty na RAG (generacja wzbogacona o odzyskiwanie), który generuje meta-pytania i odpowiada na nie, odkrywając i integrując myśli i doświadczenia detransycji z subreddit <reddit>/r/detrans</reddit> i YouTube. Został zbudowany z frameworkiem <llamaIndex>LlamaIndex</llamaIndex> i modelem open-source DeepSeek V4 Flash w celu zmniejszenia zachodnich uprzedzeń politycznych.",
+      "paragraph1": "<bold>detrans.ai</bold> chat to agent oparty na RAG (generacja wzbogacona o odzyskiwanie), który generuje meta-pytania i odpowiada na nie, odkrywając i integrując myśli i doświadczenia detransycji z subreddit <reddit>/r/detrans</reddit> i YouTube. Został zbudowany z frameworkiem <llamaIndex>LlamaIndex</llamaIndex> i modelem open-source Xiaomi Mimo-V2.5 w celu zmniejszenia zachodnich uprzedzeń politycznych.",
       "paragraph2": "ChatGPT i większość innych zachodnich LLM jest dość agresywna w sposobie promowania i podtrzymywania przekonań dotyczących płci. Okazało się niemożliwe użycie modeli GPT OpenAI do tego projektu, ponieważ modele stale podważały i zaprzeczały doświadczeniom osób po detransycji, które miały podsumować. Jeśli chcesz bardziej afirmującego doświadczenia, zobacz <chatgpt>ChatGPT</chatgpt>."
     },
     "dataCutoff": {

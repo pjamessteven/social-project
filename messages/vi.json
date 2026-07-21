@@ -404,7 +404,7 @@
     },
     "title": "Cách hoạt động?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> chat là một tác tử được hỗ trợ bởi RAG (tạo tăng cường truy xuất) tạo ra các câu hỏi meta và trả lời chúng bằng cách tìm kiếm và tích hợp các suy nghĩ và trải nghiệm detransision từ subreddit <reddit>/r/detrans</reddit> và YouTube. Nó được xây dựng bằng framework <llamaIndex>LlamaIndex</llamaIndex> và mô hình mã nguồn mở DeepSeek V4 Flash để giảm thiên vị chính trị phương Tây.",
+      "paragraph1": "<bold>detrans.ai</bold> chat là một tác tử được hỗ trợ bởi RAG (tạo tăng cường truy xuất) tạo ra các câu hỏi meta và trả lời chúng bằng cách tìm kiếm và tích hợp các suy nghĩ và trải nghiệm detransision từ subreddit <reddit>/r/detrans</reddit> và YouTube. Nó được xây dựng bằng framework <llamaIndex>LlamaIndex</llamaIndex> và mô hình mã nguồn mở Xiaomi Mimo-V2.5 để giảm thiên vị chính trị phương Tây.",
       "paragraph2": "ChatGPT và hầu hết các LLM phương Tây khác khá quyết liệt trong cách họ quảng bá và duy trì các niềm tin về giới. Việc sử dụng các mô hình GPT của OpenAI cho dự án này đã chứng minh là không thể, vì các mô hình liên tục phá hoại và mâu thuẫn với các kinh nghiệm chuyển giới trở lại mà chúng được giao tóm tắt. Nếu bạn muốn có trải nghiệm khẳng định hơn, hãy xem <chatgpt>ChatGPT</chatgpt>."
     },
     "dataCutoff": {

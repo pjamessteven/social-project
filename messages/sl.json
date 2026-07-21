@@ -404,7 +404,7 @@
     },
     "title": "Kako deluje?",
     "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> klepet je RAG-agent (generacija z razširjenim iskanjem), ki generira meta-vprašanja in nanje odgovarja z odkrivanjem in integriranjem misli in izkušenj detranzicije iz subreddit <reddit>/r/detrans</reddit> in YouTube. Zgrajen je z ogrodjem <llamaIndex>LlamaIndex</llamaIndex> in odprtokodnim modelom DeepSeek V4 Flash za zmanjšanje zahodnopolitične pristranskosti.",
+      "paragraph1": "<bold>detrans.ai</bold> klepet je RAG-agent (generacija z razširjenim iskanjem), ki generira meta-vprašanja in nanje odgovarja z odkrivanjem in integriranjem misli in izkušenj detranzicije iz subreddit <reddit>/r/detrans</reddit> in YouTube. Zgrajen je z ogrodjem <llamaIndex>LlamaIndex</llamaIndex> in odprtokodnim modelom Xiaomi Mimo-V2.5 za zmanjšanje zahodnopolitične pristranskosti.",
       "paragraph2": "ChatGPT in večina drugih zahodnih LLMjev so precej agresivni v načinu, kako promovirajo in vzdržujejo prepričanja o spolu. Izkaže se, da je bilo nemogoče uporabiti OpenAI-jeve GPT modele za ta projekt, saj bi modeli nenehno podrivali in nasprotovali detranz izkušnjam, ki jih je bilo treba povzeti. Če želite bolj potrjevalno izkušnjo, glejte <chatgpt>ChatGPT</chatgpt>."
     },
     "dataCutoff": {
