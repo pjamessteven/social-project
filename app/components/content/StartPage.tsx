@@ -17,6 +17,7 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import LizardAnimation from "../ui/lizard-animation";
+import CheckerboardBg from "../ui/checkerboard-bg";
 import ChatBubbleButton from "./ChatBubbleButton";
 import DonationCard from "./DonationCard";
 import { FeaturedConversations } from "./FeaturedConversations/FeaturedConversations";
@@ -79,6 +80,7 @@ export async function StartPage({
   return (
     <>
       <div className="relative flex flex-col pb-[88px]">
+        <CheckerboardBg />
         <div className="z-10 mt-[20vh]">
           <div className="mb-8 flex justify-start">
             <span className="bg-destructive text-destructive-foreground hidden rounded-full px-3 py-1 text-xs font-semibold shadow-sm select-none">
