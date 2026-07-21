@@ -81,19 +81,15 @@ export const workflowFactory = async (
     tools.push(queryTransCommentsTool);
   }
 
-  const tags = await withDbTimeout(db.select({ name: studyTags.name }).from(studyTags));
+  const tags = await withDbTimeout(
+    db.select({ name: studyTags.name }).from(studyTags),
+  );
   const tagNames = tags.map((t) => t.name).filter(Boolean);
   const tagList =
     tagNames.length > 0
-      ? `\n\n### Available Study Tags\nThe following tags should be used to filter studies with the getStudies tool: ${tagNames.join(", ")}`
+      ? `\n\n### Available Study Tags\nThe following tags can be used to filter studies with the getStudies tool: ${tagNames.join(", ")}`
       : "";
-  const systemPrompt = includeTransPerspectives
-    ? agentPrompt
-        .replace(
-          "- Make liberal use of the queryCommentsTool",
-          "- Make liberal use of the queryCommentsTool\n  - Use the queryTransCommentsTool to find experiences of transgender people. Include, explore and compare **in depth** how trans perspectives relate and contrast to detrans perspectives on gender identity and transition.",
-        ) + tagList
-    : agentPrompt + tagList;
+  const systemPrompt = agentPrompt + tagList;
 
   const llm = new CachedOpenAI({
     cache,
