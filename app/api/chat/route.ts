@@ -413,6 +413,7 @@ export async function GET(request: NextRequest) {
           { status: 402 },
         );
       }
+      await incrementMessageCount(ipAddress);
     }
 
     // Build conversations query with conditional where clause

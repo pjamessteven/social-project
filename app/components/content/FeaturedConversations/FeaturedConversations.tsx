@@ -74,7 +74,6 @@ export function FeaturedConversations() {
     setShowCaptchaDialog,
     verifyCaptcha,
   } = useCaptcha();
-  const [pendingTabChange, setPendingTabChange] = useState<"featured" | "all" | "mine" | null>(null);
 
   // Initialize tab from URL query parameter, defaulting to "featured"
   const getInitialTab = useCallback((): "featured" | "all" | "mine" => {
@@ -98,23 +97,23 @@ export function FeaturedConversations() {
   );
 
   // Captcha handlers
+  const fetchConversationsRef = useRef<((page?: number, append?: boolean) => Promise<void>) | null>(null);
+
   const handleCaptchaVerify = useCallback(async (token: string) => {
     const result = await verifyCaptcha(token);
-    if (result.success && pendingTabChange) {
+    if (result.success) {
       setShowCaptchaDialog(false);
-      setPendingTabChange(null);
-      // Proceed with the tab change after captcha verification
-      performTabChange(pendingTabChange);
+      // Retry fetching conversations after captcha verification
+      fetchConversationsRef.current?.(1);
     }
-  }, [verifyCaptcha, pendingTabChange, setShowCaptchaDialog]);
+  }, [verifyCaptcha, setShowCaptchaDialog]);
 
   const handleCaptchaClose = useCallback(() => {
     setShowCaptchaDialog(false);
-    setPendingTabChange(null);
   }, [setShowCaptchaDialog]);
 
-  // Perform the actual tab change (same logic as before but extracted)
-  const performTabChange = useCallback(
+  // Update URL when tab changes
+  const handleTabChange = useCallback(
     (value: "featured" | "all" | "mine") => {
       // Update URL FIRST before any state changes to avoid sync-effect race
       const params = new URLSearchParams(searchParams.toString());
@@ -149,30 +148,6 @@ export function FeaturedConversations() {
       sessionStorage.setItem("portalTab", value);
     },
     [router, searchParams],
-  );
-
-  // Update URL when tab changes
-  const handleTabChange = useCallback(
-    async (value: "featured" | "all" | "mine") => {
-      // Check if captcha is required for "all" tab (anonymous user)
-      if (value === "all" && !isAuthenticated) {
-        try {
-          const response = await fetch(`/api/chat?featured=false&limit=1&page=1`);
-          if (response.status === 402) {
-            // Captcha required - show dialog
-            setPendingTabChange(value);
-            setShowCaptchaDialog(true);
-            return;
-          }
-        } catch (err) {
-          console.error("Error checking captcha requirement:", err);
-        }
-      }
-
-      // No captcha required - proceed with tab change
-      performTabChange(value);
-    },
-    [isAuthenticated, performTabChange, setShowCaptchaDialog],
   );
   const [showAllMobile, setShowAllMobile] = useState(false);
   const [shuffle, setShuffle] = useState(false);
@@ -482,6 +457,13 @@ export function FeaturedConversations() {
         });
 
         if (!response.ok) {
+          if (response.status === 402) {
+            // Captcha required - show dialog and stop loading
+            setShowCaptchaDialog(true);
+            setLoading(false);
+            setLoadingMore(false);
+            return;
+          }
           if (response.status === 403) {
             // If unauthorized for all conversations, fall back to featured
             if (!isFeatured) {
@@ -548,8 +530,12 @@ export function FeaturedConversations() {
       setLoadingMore,
       setConversations,
       setPagination,
+      setShowCaptchaDialog,
     ],
   );
+
+  // Keep ref in sync with fetchConversations for captcha retry
+  fetchConversationsRef.current = fetchConversations;
 
   useEffect(() => {
     fetchConversations(1);
