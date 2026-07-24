@@ -928,7 +928,8 @@
   },
   "hcaptcha": {
     "title": "Vahvista, että olet ihminen",
-    "description": "Suorita CAPTCHA jatkaaksesi chatin käyttöä. Tämä auttaa meitä estämään väärinkäytökset ja pitämään palvelun käynnissä.",
+    "description": "Valitettavasti tämä on tarpeen pahantahtoisten toimijoiden vuoksi. Suorita CAPTCHA jatkaaksesi keskustelua.",
+    "descriptionConversations": "Yritän pitää moderoinnin ajan tasalla, mutta pahantahtoisia toimijoita voi esiintyä. Suorita captcha jatkaaksesi.",
     "error": {
       "title": "CAPTCHA-virhe",
       "description": "CAPTCHAn lataaminen epäonnistui. Päivitä sivu ja yritä uudelleen."

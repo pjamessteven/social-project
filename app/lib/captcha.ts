@@ -5,8 +5,10 @@
 export async function verifyCaptchaToken(token: string): Promise<boolean> {
   const secret = process.env.HCAPTCHA_SECRET_KEY;
   if (!secret) {
-    console.warn("[CAPTCHA] HCAPTCHA_SECRET_KEY not set, skipping verification");
-    return process.env.NODE_ENV === "development";
+    console.warn(
+      "[CAPTCHA] HCAPTCHA_SECRET_KEY not set, skipping verification",
+    );
+    return false; //process.env.NODE_ENV === "development";
   }
 
   try {

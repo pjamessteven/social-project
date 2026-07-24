@@ -929,7 +929,8 @@
   },
   "hcaptcha": {
     "title": "Ověřte, že jste člověk",
-    "description": "Prosím dokončete CAPTCHA pro pokračování v chatu. Tím nám pomáháte předcházet zneužití a udržovat službu v provozu.",
+    "description": "Bohužel je to nutné kvůli škodlivým aktérům. Prosím dokončete CAPTCHA pro pokračování v chatu.",
+    "descriptionConversations": "Snažím se udržovat moderování, ale mohou se vyskytnout škodliví aktéři. Prosím dokončete captcha pro pokračování.",
     "error": {
       "title": "CAPTCHA chyba",
       "description": "Nepodařilo se načíst CAPTCHA. Prosím obnovte stránku a zkuste to znovu."

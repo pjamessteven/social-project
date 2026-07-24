@@ -927,7 +927,8 @@
   },
   "hcaptcha": {
     "title": "Bekræft at du er et menneske",
-    "description": "Udfyld venligst CAPTCHA for at fortsætte med at bruge chatten. Dette hjælper os med at forhindre misbrug og holde tjenesten kørende.",
+    "description": "Desværre er dette nødvendigt på grund af brugere med dårlige hensigter. Udfyld venligst CAPTCHA for at fortsætte chatten.",
+    "descriptionConversations": "Jeg prøver at holde øje med modereringen, men der kan være brugere med dårlige hensigter. Udfyld venligst CAPTCHA for at fortsætte.",
     "error": {
       "title": "CAPTCHA-fejl",
       "description": "Kunne ikke indlæse CAPTCHA. Opdater venligst siden og prøv igen."

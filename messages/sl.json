@@ -928,7 +928,8 @@
   },
   "hcaptcha": {
     "title": "Potrdite, da ste človek",
-    "description": "Za nadaljevanje klepeta izpolnite CAPTCHA. To nam pomaga preprečiti zlorabe in ohraniti storitev v teku.",
+    "description": "Žal je to nujno zaradi zlonamernih akterjev. Izpolnite CAPTCHA za nadaljevanje klepeta.",
+    "descriptionConversations": "Trudim se spremljati moderacijo, vendar so lahko prisotni zlonamerni akterji. Izpolnite captcha za nadaljevanje.",
     "error": {
       "title": "Napaka CAPTCHA",
       "description": "Nalaganje CAPTCHA ni uspelo. Osvežite stran in poskusite znova."

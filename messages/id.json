@@ -936,7 +936,8 @@
   },
   "hcaptcha": {
     "title": "Verifikasi bahwa Anda manusia",
-    "description": "Harap selesaikan CAPTCHA untuk melanjutkan menggunakan chat. Ini membantu kami mencegah penyalahgunaan dan menjaga layanan tetap berjalan.",
+    "description": "Sayangnya ini diperlukan karena adanya pihak yang tidak bertanggung jawab. Harap selesaikan CAPTCHA untuk melanjutkan obrolan.",
+    "descriptionConversations": "Saya berusaha tetap mengawasi moderasi, tetapi mungkin ada pihak yang tidak bertanggung jawab. Harap selesaikan CAPTCHA untuk melanjutkan.",
     "error": {
       "title": "Kesalahan CAPTCHA",
       "description": "Gagal memuat CAPTCHA. Harap segarkan halaman dan coba lagi."

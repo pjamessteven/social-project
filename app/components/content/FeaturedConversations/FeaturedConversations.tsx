@@ -17,6 +17,8 @@ import {
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useCaptcha } from "@/app/hooks/useCaptcha";
+import { HCaptchaDialog } from "../../ui/hcaptcha-dialog";
 import { SlidingNavGroup } from "../../ui/sliding-nav-group";
 import { ConversationCard } from "../ConversationCard/ConversationCard";
 import { ConversationDialog } from "../ConversationDialog/ConversationDialog";
@@ -66,6 +68,14 @@ export function FeaturedConversations() {
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Captcha state management
+  const {
+    showCaptchaDialog,
+    setShowCaptchaDialog,
+    verifyCaptcha,
+  } = useCaptcha();
+  const [pendingTabChange, setPendingTabChange] = useState<"featured" | "all" | "mine" | null>(null);
+
   // Initialize tab from URL query parameter, defaulting to "featured"
   const getInitialTab = useCallback((): "featured" | "all" | "mine" => {
     const tabFromUrl = searchParams.get("tab");
@@ -87,8 +97,24 @@ export function FeaturedConversations() {
     getInitialTab(),
   );
 
-  // Update URL when tab changes
-  const handleTabChange = useCallback(
+  // Captcha handlers
+  const handleCaptchaVerify = useCallback(async (token: string) => {
+    const result = await verifyCaptcha(token);
+    if (result.success && pendingTabChange) {
+      setShowCaptchaDialog(false);
+      setPendingTabChange(null);
+      // Proceed with the tab change after captcha verification
+      performTabChange(pendingTabChange);
+    }
+  }, [verifyCaptcha, pendingTabChange, setShowCaptchaDialog]);
+
+  const handleCaptchaClose = useCallback(() => {
+    setShowCaptchaDialog(false);
+    setPendingTabChange(null);
+  }, [setShowCaptchaDialog]);
+
+  // Perform the actual tab change (same logic as before but extracted)
+  const performTabChange = useCallback(
     (value: "featured" | "all" | "mine") => {
       // Update URL FIRST before any state changes to avoid sync-effect race
       const params = new URLSearchParams(searchParams.toString());
@@ -123,6 +149,30 @@ export function FeaturedConversations() {
       sessionStorage.setItem("portalTab", value);
     },
     [router, searchParams],
+  );
+
+  // Update URL when tab changes
+  const handleTabChange = useCallback(
+    async (value: "featured" | "all" | "mine") => {
+      // Check if captcha is required for "all" tab (anonymous user)
+      if (value === "all" && !isAuthenticated) {
+        try {
+          const response = await fetch(`/api/chat?featured=false&limit=1&page=1`);
+          if (response.status === 402) {
+            // Captcha required - show dialog
+            setPendingTabChange(value);
+            setShowCaptchaDialog(true);
+            return;
+          }
+        } catch (err) {
+          console.error("Error checking captcha requirement:", err);
+        }
+      }
+
+      // No captcha required - proceed with tab change
+      performTabChange(value);
+    },
+    [isAuthenticated, performTabChange, setShowCaptchaDialog],
   );
   const [showAllMobile, setShowAllMobile] = useState(false);
   const [shuffle, setShuffle] = useState(false);
@@ -1223,6 +1273,15 @@ export function FeaturedConversations() {
           </div>
         )}
       </div>
+
+      {/* hCaptcha Dialog */}
+      <HCaptchaDialog
+        isOpen={showCaptchaDialog}
+        onClose={handleCaptchaClose}
+        onVerify={handleCaptchaVerify}
+        siteKey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ""}
+        descriptionKey="descriptionConversations"
+      />
     </div>
   );
 }

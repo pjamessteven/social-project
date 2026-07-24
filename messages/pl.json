@@ -935,7 +935,8 @@
   },
   "hcaptcha": {
     "title": "Potwierdź, że jesteś człowiekiem",
-    "description": "Proszę wypełnić CAPTCHA, aby kontynuować korzystanie z czatu. Pomaga nam to zapobiegać nadużyciom i utrzymać usługę w działaniu.",
+    "description": "Niestety jest to konieczne ze względu na złośliwych aktorów. Proszę wypełnić CAPTCHA, aby kontynuować czat.",
+    "descriptionConversations": "Staram się utrzymywać moderację na bieżąco, ale mogą pojawić się złośliwi aktorzy. Proszę wypełnić captcha, aby kontynuować.",
     "error": {
       "title": "Błąd CAPTCHA",
       "description": "Nie udało się załadować CAPTCHA. Proszę odświeżyć stronę i spróbować ponownie."

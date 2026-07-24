@@ -928,7 +928,8 @@
   },
   "hcaptcha": {
     "title": "Verifică că ești om",
-    "description": "Te rugăm să completezi CAPTCHA pentru a continua să folosești chat-ul. Acest lucru ne ajută să prevenim abuzul și să menținem serviciul activ.",
+    "description": "Din păcate, acest lucru este necesar din cauza persoanelor rău-intenționate. Te rugăm să completezi CAPTCHA pentru a continua conversația.",
+    "descriptionConversations": "Încercăm să ținem moderarea sub control, dar este posibil să existe persoane rău-intenționate. Te rugăm să completezi CAPTCHA pentru a continua.",
     "error": {
       "title": "Eroare CAPTCHA",
       "description": "Nu s-a putut încărca CAPTCHA. Te rugăm să reîmprospătezi pagina și să încerci din nou."

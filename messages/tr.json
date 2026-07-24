@@ -927,7 +927,8 @@
   },
   "hcaptcha": {
     "title": "İnsan Olduğunu Doğrula",
-    "description": "Sohbeti kullanmaya devam etmek için lütfen CAPTCHA'yı tamamlayın. Bu, kötüye kullanımı önlememize ve hizmeti çalışır durumda tutmamıza yardımcı olur.",
+    "description": "Maalesef kötü niyetli kişiler nedeniyle bu gereklidir. Sohbete devam etmek için lütfen CAPTCHA'yı tamamlayın.",
+    "descriptionConversations": "Moderasyonu takip etmeye çalışıyorum, ancak kötü niyetli kişiler olabilir. Devam etmek için lütfen captcha'yı tamamlayın.",
     "error": {
       "title": "CAPTCHA Hatası",
       "description": "CAPTCHA yüklenemedi. Lütfen sayfayı yenileyin ve tekrar deneyin."

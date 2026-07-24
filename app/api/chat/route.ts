@@ -2,6 +2,7 @@ import { withApiSecurity } from "@/app/lib/apiSecurity";
 import { getCurrentSession } from "@/app/lib/auth/auth";
 import { tryAcquireWorkflow, releaseWorkflow } from "@/app/lib/concurrency";
 import { getCountryFromIP } from "@/app/lib/geolocation";
+import { getIP } from "@/app/lib/getIp";
 import {
   incrementMessageCount,
   isCaptchaRequired,
@@ -397,6 +398,21 @@ export async function GET(request: NextRequest) {
         { error: "Authentication required to view your conversations" },
         { status: 401 },
       );
+    }
+
+    // Captcha check for "all" conversations (not featured, not mine, anonymous user)
+    if (!isFeatured && !isMine && !isLoggedIn) {
+      const ipAddress = getIP(request);
+      const captchaRequired = await isCaptchaRequired(ipAddress);
+      if (captchaRequired) {
+        return NextResponse.json(
+          {
+            requiresCaptcha: true,
+            error: "CAPTCHA verification required",
+          },
+          { status: 402 },
+        );
+      }
     }
 
     // Build conversations query with conditional where clause

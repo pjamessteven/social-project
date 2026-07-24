@@ -924,7 +924,8 @@
   },
   "hcaptcha": {
     "title": "Bestätige, dass du ein Mensch bist",
-    "description": "Bitte fülle das CAPTCHA aus, um den Chat weiter zu nutzen. Dies hilft uns, Missbrauch zu verhindern und den Service am Laufen zu halten.",
+    "description": "Leider ist dies aufgrund böswilliger Akteure notwendig. Bitte fülle das CAPTCHA aus, um den Chat fortzusetzen.",
+    "descriptionConversations": "Ich versuche, die Moderation im Blick zu behalten, aber es kann böswillige Akteure geben. Bitte fülle das CAPTCHA aus, um fortzufahren.",
     "error": {
       "title": "CAPTCHA-Fehler",
       "description": "CAPTCHA konnte nicht geladen werden. Bitte aktualisiere die Seite und versuche es erneut."

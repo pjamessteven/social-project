@@ -933,8 +933,9 @@
     "login": "/login"
   },
   "hcaptcha": {
-    "title": "Verify You're Human",
-    "description": "Please complete the CAPTCHA to continue using the chat. This helps us prevent abuse and keep the service running.",
+    "title": "Service Interruption",
+    "description": "Unfortunately this is necessary because of bad actors. Please complete the CAPTCHA to continue the chat. ",
+    "descriptionConversations": "I try to keep on top of moderation, but there may be bad actors. Please complete the captcha to continue.",
     "error": {
       "title": "CAPTCHA Error",
       "description": "Failed to load CAPTCHA. Please refresh the page and try again."

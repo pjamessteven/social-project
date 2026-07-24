@@ -936,7 +936,8 @@
   },
   "hcaptcha": {
     "title": "Igazolja, hogy Ön ember",
-    "description": "Kérjük, töltse ki a CAPTCHA-t a chat használatának folytatásához. Ez segít megelőzni a visszaéléseket és fenntartani a szolgáltatást.",
+    "description": "Sajnos ez a rosszindulatú szereplők miatt szükséges. Kérjük, töltse ki a CAPTCHA-t a chat folytatásához.",
+    "descriptionConversations": "Igyekszem figyelemmel kísérni a moderációt, de előfordulhatnak rosszindulatú szereplők. Kérjük, töltse ki a captcha-t a folytatáshoz.",
     "error": {
       "title": "CAPTCHA hiba",
       "description": "A CAPTCHA betöltése sikertelen. Kérjük, frissítse az oldalt és próbálja újra."

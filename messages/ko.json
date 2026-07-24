@@ -933,7 +933,8 @@
   },
   "hcaptcha": {
     "title": "사용자 확인",
-    "description": "채팅을 계속 사용하려면 CAPTCHA를 완료해 주세요. 이는 남용을 방지하고 서비스를 유지하는 데 도움이 됩니다.",
+    "description": "안타깝지만 악의적인 사용자로 인해 이것이 필요합니다. 채팅을 계속하려면 CAPTCHA를 완료해 주세요.",
+    "descriptionConversations": "관리에 최선을 다하고 있지만, 악의적인 사용자가 있을 수 있습니다. 계속하려면 CAPTCHA를 완료해 주세요.",
     "error": {
       "title": "CAPTCHA 오류",
       "description": "CAPTCHA를 로드하지 못했습니다. 페이지를 새로고침하고 다시 시도해 주세요."

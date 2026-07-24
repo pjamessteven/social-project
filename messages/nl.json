@@ -934,7 +934,8 @@
   },
   "hcaptcha": {
     "title": "Verifieer dat u een mens bent",
-    "description": "Vul de CAPTCHA in om verder te gaan met chatten. Dit helpt ons misbruik te voorkomen en de service draaiende te houden.",
+    "description": "Helaas is dit noodzakelijk vanwege kwaadwillenden. Vul de CAPTCHA in om verder te chatten.",
+    "descriptionConversations": "Ik probeer de moderatie bij te houden, maar er kunnen kwaadwillenden tussen zitten. Vul de captcha in om verder te gaan.",
     "error": {
       "title": "CAPTCHA Fout",
       "description": "CAPTCHA laden mislukt. Vernieuw de pagina en probeer het opnieuw."

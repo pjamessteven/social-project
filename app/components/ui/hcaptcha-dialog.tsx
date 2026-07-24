@@ -18,6 +18,7 @@ interface HCaptchaDialogProps {
   onVerify: (token: string) => void;
   onError?: (error: Error) => void;
   siteKey: string;
+  descriptionKey?: "description" | "descriptionConversations";
 }
 
 export function HCaptchaDialog({
@@ -26,6 +27,7 @@ export function HCaptchaDialog({
   onVerify,
   onError,
   siteKey,
+  descriptionKey = "description",
 }: HCaptchaDialogProps) {
   const t = useTranslations("hcaptcha");
   const { theme } = useTheme();
@@ -50,7 +52,7 @@ export function HCaptchaDialog({
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="mb-2">{t("title")}</DialogTitle>
-          <DialogDescription>{t("description")}</DialogDescription>
+          <DialogDescription>{t(descriptionKey)}</DialogDescription>
         </DialogHeader>
         <div className="flex justify-start pt-2">
           <HCaptcha

@@ -936,7 +936,8 @@
   },
   "hcaptcha": {
     "title": "Patvirtinkite, kad esate žmogus",
-    "description": "Norėdami toliau naudotis pokalbiu, užpildykite CAPTCHA. Tai padeda mums užkirsti kelią piktnaudžiavimui ir išlaikyti paslaugą veikiančią.",
+    "description": "Deja, tai būtina dėl piktnaudžiaujančių asmenų. Prašome atlikti CAPTCHA patvirtinimą, kad galėtumėte tęsti pokalbį.",
+    "descriptionConversations": "Stengiuosi prižiūrėti moderavimą, bet čia gali būti piktnaudžiaujančių asmenų. Prašome atlikti CAPTCHA patvirtinimą, kad galėtumėte tęsti.",
     "error": {
       "title": "CAPTCHA klaida",
       "description": "Nepavyko įkelti CAPTCHA. Atnaujinkite puslapį ir bandykite dar kartą."

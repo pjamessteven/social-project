@@ -1,6 +1,9 @@
 import { connectRedis } from "./redis";
 
-const MESSAGE_COUNT_LIMIT = 10;
+const MESSAGE_COUNT_LIMIT = parseInt(
+  process.env.CAPTCHA_MESSAGE_LIMIT || "1",
+  10,
+);
 const MESSAGE_COUNT_TTL = 24 * 60 * 60; // 24 hours in seconds
 
 /**
@@ -62,7 +65,7 @@ export async function initializeMessageCount(ipAddress: string): Promise<void> {
 export async function isCaptchaRequired(ipAddress: string): Promise<boolean> {
   // Skip CAPTCHA in development mode
   if (process.env.NODE_ENV === "development") {
-    return false;
+    //return false;
   }
 
   const count = await getMessageCount(ipAddress);
@@ -73,7 +76,7 @@ export async function isCaptchaRequired(ipAddress: string): Promise<boolean> {
     return true;
   }
 
-  // Require CAPTCHA after 10 messages
+  // Require CAPTCHA after configured message limit
   return count >= MESSAGE_COUNT_LIMIT;
 }
 

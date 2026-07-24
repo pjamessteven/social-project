@@ -933,7 +933,8 @@
   },
   "hcaptcha": {
     "title": "Verifica che sei umano",
-    "description": "Completa il CAPTCHA per continuare a usare la chat. Questo ci aiuta a prevenire abusi e mantenere il servizio attivo.",
+    "description": "Purtroppo questo è necessario a causa di soggetti malintenzionati. Completa il CAPTCHA per continuare la chat.",
+    "descriptionConversations": "Cerco di mantenere la moderazione, ma potrebbero esserci soggetti malintenzionati. Completa il captcha per continuare.",
     "error": {
       "title": "Errore CAPTCHA",
       "description": "Impossibile caricare il CAPTCHA. Aggiorna la pagina e riprova."

@@ -928,7 +928,8 @@
   },
   "hcaptcha": {
     "title": "Xác nhận bạn là con người",
-    "description": "Vui lòng hoàn thành CAPTCHA để tiếp tục sử dụng trò chuyện. Điều này giúp chúng tôi ngăn chặn lạm dụng và duy trì dịch vụ.",
+    "description": "Thật không may, điều này là cần thiết do những đối tượng xấu. Vui lòng hoàn thành CAPTCHA để tiếp tục trò chuyện.",
+    "descriptionConversations": "Tôi cố gắng kiểm duyệt tốt nhất có thể, nhưng có thể có những đối tượng xấu. Vui lòng hoàn thành CAPTCHA để tiếp tục.",
     "error": {
       "title": "Lỗi CAPTCHA",
       "description": "Không thể tải CAPTCHA. Vui lòng làm mới trang và thử lại."
