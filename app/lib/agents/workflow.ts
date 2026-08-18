@@ -70,19 +70,6 @@ export function processWorkflowStream(
             controller.enqueue(transformedEvent);
           } catch (transformError) {
             console.error("Transform stream error:", transformError);
-            if (
-              transformError instanceof Error &&
-              transformError.message.includes(
-                "401 No cookie auth credentials found",
-              )
-            ) {
-              controller.error(
-                new Error(
-                  "Authentication failed: Please check your LLM API credentials",
-                ),
-              );
-              return;
-            }
             controller.error(transformError);
           }
         },

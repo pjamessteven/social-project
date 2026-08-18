@@ -43,6 +43,17 @@ const CAPTCHA_DECIDE_TIMEOUT_MS = 20_000;
 
 const captchaDecidePollMs = 15;
 
+// Safety net: the workflow runtime surfaces async handler rejections as
+// process-level unhandled rejections (it does not propagate them to its
+// stream). Log them so a rare non-LLM handler failure can't crash the server
+// silently. Guarded so this only registers once per process.
+if (!(globalThis as any).__chatUnhandledRejectionInstalled) {
+  (globalThis as any).__chatUnhandledRejectionInstalled = true;
+  process.on("unhandledRejection", (reason) => {
+    console.error("[chat] unhandledRejection:", reason);
+  });
+}
+
 export async function POST(req: NextRequest) {
   try {
     initSettings();
@@ -310,6 +321,7 @@ export async function POST(req: NextRequest) {
       }
 
       const dataStream = toDataStream(allMessages, stream, chatUuid, {
+        errorProvider: llm,
         callbacks: {
           onPauseForHumanInput: async (responseEvent) => {
             await pauseForHumanInput(context, responseEvent, requestId); // use requestId to save snapshot

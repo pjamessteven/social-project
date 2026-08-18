@@ -9,7 +9,6 @@ import { createUIMessageStream, UIMessage, UIMessageStreamWriter } from "ai";
 import { randomUUID } from "crypto";
 import type { ChatMessage, ChatResponseChunk } from "llamaindex";
 import { humanInputEvent, type HumanResponseEventData } from "./hitl";
-import { generateNextQuestions } from "../../api/chat/utils/suggestion";
 
 export interface StreamCallbacks {
   onStart?: (dataStreamWriter: UIMessageStreamWriter) => Promise<void> | void;
@@ -138,6 +137,12 @@ export function toDataStream(
     callbacks?: StreamCallbacks;
     chatHistory?: ChatMessage[];
     suggestNextQuestions?: boolean;
+    /**
+     * Supplies an LLM error captured and swallowed by the LLM layer (the
+     * workflow cannot propagate async handler errors). If present, the first
+     * such error is re-thrown after the stream ends so it surfaces via onError.
+     */
+    errorProvider?: { takeError(): Error | null };
   } = {},
 ) {
   const { callbacks, chatHistory, suggestNextQuestions } = options;
@@ -243,6 +248,12 @@ export function toDataStream(
             }
           }
         }
+
+        // If the LLM layer captured an error (swallowed so the workflow could
+        // complete), re-throw it here so it surfaces as a stream error instead
+        // of a silent, truncated response.
+        const capturedError = options.errorProvider?.takeError();
+        if (capturedError) throw capturedError;
 
         // TODO: Re-enable when we have a faster model or caching
         // Generate follow-up questions as a second pass after the main stream

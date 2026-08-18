@@ -24,6 +24,7 @@ export class CachedOpenAI extends OpenAI {
   private captchaGateConsumed = false;
   private llmBlockedByCaptcha = false;
   private servedFromCache = false;
+  private capturedError: Error | null = null;
   constructor(
     init: ConstructorParameters<typeof OpenAI>[0] & {
       cache: Cache;
@@ -79,6 +80,34 @@ export class CachedOpenAI extends OpenAI {
    */
   get didServeFromCache() {
     return this.servedFromCache;
+  }
+
+  /**
+   * The last error captured from an underlying LLM call, if any. Recorded
+   * (instead of throwing into the workflow) so the agent completes gracefully
+   * and the stream ends, letting the caller surface the error to the client.
+   */
+  get lastError(): Error | null {
+    return this.capturedError;
+  }
+
+  /**
+   * Records the first LLM error for this instance. Subsequent errors are
+   * ignored so the first (root-cause) error is what gets surfaced.
+   */
+  private recordError(err: unknown) {
+    if (this.capturedError) return;
+    this.capturedError = err instanceof Error ? err : new Error(String(err));
+  }
+
+  /**
+   * Returns the recorded error and clears it. The route calls this after the
+   * stream completes to convert a swallowed LLM error back into a stream error.
+   */
+  takeError(): Error | null {
+    const err = this.capturedError;
+    this.capturedError = null;
+    return err;
   }
 
   /**
@@ -221,12 +250,20 @@ export class CachedOpenAI extends OpenAI {
       }
       this.ranLlm = true;
 
-      // Call underlying LLM in streaming mode
-      const rawStream = await super.chat({
-        messages,
-        stream: true,
-        ...options,
-      });
+      let rawStream;
+      try {
+        // Call underlying LLM in streaming mode
+        rawStream = await super.chat({
+          messages,
+          stream: true,
+          ...options,
+        });
+      } catch (err) {
+        // Capture the error and end gracefully so the workflow completes
+        // instead of hanging on an unpropagated handler rejection.
+        this.recordError(err);
+        return (async function* (): AsyncGenerator<ChatResponseChunk> {})();
+      }
 
       // Capture the stream and build a full response object
       const captureStream = async function* (
@@ -264,11 +301,13 @@ export class CachedOpenAI extends OpenAI {
               }),
             ]);
           } catch (err) {
-            // Attempt to clean up the iterator on timeout
+            // Attempt to clean up the iterator, then capture the error and end
+            // the stream gracefully (the workflow must complete, not hang).
             try {
               await iterator.return?.(undefined as any);
             } catch {}
-            throw err;
+            this.recordError(err);
+            return;
           }
 
           if (result.done) break;
@@ -372,8 +411,17 @@ export class CachedOpenAI extends OpenAI {
     }
     this.ranLlm = true;
 
-    // Generate new response
-    const response = await super.chat({ messages, ...options });
+    let response;
+    try {
+      // Generate new response
+      response = await super.chat({ messages, ...options });
+    } catch (err) {
+      this.recordError(err);
+      return {
+        message: { role: "assistant", content: "" },
+        raw: null,
+      } as ChatResponse;
+    }
 
     // Fetch and store metadata
     const metadata = await this.prepareMetadata(
@@ -479,12 +527,18 @@ export class CachedOpenAI extends OpenAI {
       );
 
       // Call underlying LLM in streaming mode
-      const rawStream = await super.complete({
-        prompt,
-        responseFormat,
-        stream: true,
-        ...options,
-      });
+      let rawStream;
+      try {
+        rawStream = await super.complete({
+          prompt,
+          responseFormat,
+          stream: true,
+          ...options,
+        });
+      } catch (err) {
+        this.recordError(err);
+        return (async function* (): AsyncIterable<CompletionResponse> {})();
+      }
 
       // Capture the stream and build a full response object
       const captureStream = async function* (
@@ -494,16 +548,21 @@ export class CachedOpenAI extends OpenAI {
         let generationId: string | undefined;
         let lastChunk: CompletionResponse | undefined;
 
-        for await (const chunk of rawStream as AsyncIterable<CompletionResponse>) {
-          fullText += chunk.text || "";
+        try {
+          for await (const chunk of rawStream as AsyncIterable<CompletionResponse>) {
+            fullText += chunk.text || "";
 
-          // Extract generation ID if available
-          if (!generationId && chunk.raw && "id" in chunk.raw) {
-            generationId = (chunk.raw as any).id;
+            // Extract generation ID if available
+            if (!generationId && chunk.raw && "id" in chunk.raw) {
+              generationId = (chunk.raw as any).id;
+            }
+
+            lastChunk = chunk;
+            yield chunk;
           }
-
-          lastChunk = chunk;
-          yield chunk;
+        } catch (err) {
+          this.recordError(err);
+          return;
         }
 
         // Build the complete response object
@@ -554,11 +613,17 @@ export class CachedOpenAI extends OpenAI {
     );
 
     // Generate new response
-    const response = await super.complete({
-      prompt,
-      responseFormat,
-      ...options,
-    });
+    let response;
+    try {
+      response = await super.complete({
+        prompt,
+        responseFormat,
+        ...options,
+      });
+    } catch (err) {
+      this.recordError(err);
+      return { text: "", raw: null } as CompletionResponse;
+    }
 
     // Fetch and store metadata
     const metadata = await this.prepareMetadata(
