@@ -1,12 +1,11 @@
 import { withApiSecurity } from "@/app/lib/apiSecurity";
 import { getCurrentSession } from "@/app/lib/auth/auth";
-import { tryAcquireWorkflow, releaseWorkflow } from "@/app/lib/concurrency";
+import { releaseWorkflow, tryAcquireWorkflow } from "@/app/lib/concurrency";
 import { getCountryFromIP } from "@/app/lib/geolocation";
 import { getIP } from "@/app/lib/getIp";
 import {
   consumeConversationsPass,
   incrementConversationCount,
-  isConversationCaptchaRequired,
 } from "@/app/lib/messageCounter";
 import { db, withDbTimeout } from "@/db";
 import { chatConversations } from "@/db/schema";
@@ -24,11 +23,10 @@ import {
   toDataStream,
 } from "@/app/lib/agents";
 
+import { initSettings } from "@/app/lib/agents/settings";
 import { MAX_MESSAGE_LENGTH } from "@/app/lib/constants";
 import { stopAgentEvent } from "@llamaindex/workflow";
-import { initSettings } from "@/app/lib/agents/settings";
 import { workflowFactory } from "./app/workflow";
-import { getChatCachedResponse } from "./utils/cacheHelpers";
 
 // Schema for chat request validation
 const chatRequestSchema = z.object({
@@ -39,12 +37,22 @@ const chatRequestSchema = z.object({
   includeTransPerspectives: z.boolean().optional(),
 });
 
+// How long the route waits for the LLM captcha gate to decide before assuming
+// the request may proceed (safety net; the gate resolves far quicker).
+const CAPTCHA_DECIDE_TIMEOUT_MS = 20_000;
+
+const captchaDecidePollMs = 15;
+
 export async function POST(req: NextRequest) {
   try {
     initSettings();
 
     // Centralized security: rate limit + IP ban + session retrieval
-    const { session, ip: ipAddress, error: securityError } = await withApiSecurity(req, {
+    const {
+      session,
+      ip: ipAddress,
+      error: securityError,
+    } = await withApiSecurity(req, {
       rateLimit: true,
       ipBan: true,
       getSession: true,
@@ -52,6 +60,8 @@ export async function POST(req: NextRequest) {
     if (securityError) return securityError;
 
     const username = session?.username || null;
+    // Logged-in users bypass CAPTCHA entirely
+    const enforceCaptcha = !username;
 
     const reqBody = await req.json();
     const suggestNextQuestions = process.env.SUGGEST_NEXT_QUESTIONS === "true";
@@ -91,7 +101,11 @@ export async function POST(req: NextRequest) {
     // Check if conversation exists and is archived
     if (chatUuid) {
       const existingConversation = await withDbTimeout(
-        db.select().from(chatConversations).where(eq(chatConversations.uuid, chatUuid)).limit(1)
+        db
+          .select()
+          .from(chatConversations)
+          .where(eq(chatConversations.uuid, chatUuid))
+          .limit(1),
       );
 
       if (existingConversation[0]) {
@@ -168,7 +182,11 @@ export async function POST(req: NextRequest) {
     let existingMessages: UIMessage[] = [];
     if (conversationId) {
       const existingConversation = await withDbTimeout(
-        db.select().from(chatConversations).where(eq(chatConversations.uuid, chatUuid)).limit(1)
+        db
+          .select()
+          .from(chatConversations)
+          .where(eq(chatConversations.uuid, chatUuid))
+          .limit(1),
       );
 
       if (existingConversation[0]) {
@@ -183,51 +201,11 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Check if we can return the first response from cache
-
-    let cachedResponse: string | null;
-    if (existingMessages.length == 0) {
-      cachedResponse = await getChatCachedResponse(userInput);
-
-      if (!cachedResponse) {
-        console.log("[CHAT API] Cache miss - checking captcha ");
-        // Require captcha if not in cache and user is not logged in
-        // Logged-in users bypass CAPTCHA
-        if (!username) {
-          const captchaRequired = await isConversationCaptchaRequired(chatUuid);
-          if (captchaRequired) {
-            return NextResponse.json(
-              {
-                requiresCaptcha: true,
-                error: "CAPTCHA verification required",
-              },
-              { status: 402 },
-            );
-          }
-        } else {
-          console.log("[CHAT API] Logged-in user - bypassing captcha ");
-        }
-      } else {
-        console.log("[CHAT API] Cache hit - bypass captcha ");
-      }
-    } else {
-      // Check CAPTCHA status only for anonymous users
-      // Logged-in users bypass CAPTCHA
-      if (!username) {
-        const captchaRequired = await isConversationCaptchaRequired(chatUuid);
-        if (captchaRequired) {
-          return NextResponse.json(
-            {
-              requiresCaptcha: true,
-              error: "CAPTCHA verification required",
-            },
-            { status: 402 },
-          );
-        }
-      } else {
-        console.log("[CHAT API] Logged-in user - bypassing captcha ");
-      }
-    }
+    // CAPTCHA is enforced inside the LLM gate (app/api/shared/llm.ts): it only
+    // fires when the LLM would actually run (cache miss), so fully cached
+    // responses and logged-in users bypass it. The LLM records its decision on
+    // the instance, and the route waits for it below to return a clean 402 for
+    // blocked conversations.
 
     // Create new user message in UIMessage format
     const newUserMessage: UIMessage = {
@@ -274,17 +252,20 @@ export async function POST(req: NextRequest) {
     }
 
     try {
+      const { workflow: chatWorkflow, llm } = await workflowFactory(
+        { messages: allMessages, id: requestId, conversationId, locale },
+        userInput,
+        chatUuid,
+        requestId,
+        userMessages.length,
+        locale,
+        ipAddress,
+        includeTransPerspectives,
+        enforceCaptcha,
+      );
+
       const context = await runWorkflow({
-        workflow: await workflowFactory(
-          { messages: allMessages, id: requestId, conversationId, locale },
-          userInput,
-          chatUuid,
-          requestId,
-          userMessages.length,
-          locale,
-          ipAddress,
-          includeTransPerspectives,
-        ),
+        workflow: chatWorkflow,
         input: { userInput: userInput, chatHistory: chatHistory },
         human: {
           snapshotId: requestId, // use requestId to restore snapshot
@@ -298,15 +279,54 @@ export async function POST(req: NextRequest) {
           abortController.signal.aborted || stopAgentEvent.include(event),
       );
 
+      // The LLM's one-shot captcha gate records its decision on the instance
+      // before any model cost: blocked (402), ran (LLM executing on cache
+      // miss), or cache-served (no LLM needed). For anonymous users we wait
+      // for that decision so a blocked conversation returns a clean 402
+      // instead of a 200 stream.
+      if (enforceCaptcha) {
+        const deadline = Date.now() + CAPTCHA_DECIDE_TIMEOUT_MS;
+        let captchaRequired = false;
+        while (true) {
+          if (llm.captchaBlocked) {
+            captchaRequired = true;
+            break;
+          }
+          if (llm.didRunLlm || llm.didServeFromCache) break;
+          if (Date.now() > deadline) break; // defensive: proceed to stream
+          await new Promise((resolve) =>
+            setTimeout(resolve, captchaDecidePollMs),
+          );
+        }
+        if (captchaRequired) {
+          return NextResponse.json(
+            {
+              requiresCaptcha: true,
+              error: "CAPTCHA verification required",
+            },
+            { status: 402 },
+          );
+        }
+      }
+
       const dataStream = toDataStream(allMessages, stream, chatUuid, {
         callbacks: {
           onPauseForHumanInput: async (responseEvent) => {
             await pauseForHumanInput(context, responseEvent, requestId); // use requestId to save snapshot
           },
           onFinal: async (messages: UIMessage[], dataStreamWriter) => {
-            await withDbTimeout(saveConversation(chatUuid, messages, ipAddress, username, includeTransPerspectives));
-            // Increment conversation message count for CAPTCHA tracking
-            if (!cachedResponse) {
+            await withDbTimeout(
+              saveConversation(
+                chatUuid,
+                messages,
+                ipAddress,
+                username,
+                includeTransPerspectives,
+              ),
+            );
+            // Increment conversation message count for CAPTCHA tracking only
+            // when the LLM actually generated new content (cache hits are free)
+            if (llm.didRunLlm) {
               await incrementConversationCount(chatUuid);
             }
           },
@@ -363,8 +383,14 @@ function getLocalizedField(
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const page = Math.max(parseInt(searchParams.get("page") || "1", 10) || 1, 1);
-    const limit = Math.min(Math.max(parseInt(searchParams.get("limit") || "20", 10) || 20, 1), 100);
+    const page = Math.max(
+      parseInt(searchParams.get("page") || "1", 10) || 1,
+      1,
+    );
+    const limit = Math.min(
+      Math.max(parseInt(searchParams.get("limit") || "20", 10) || 20, 1),
+      100,
+    );
     const offset = (page - 1) * limit;
     const locale = searchParams.get("locale") || "en";
     const featuredParam = searchParams.get("featured");

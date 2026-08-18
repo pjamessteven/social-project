@@ -1,4 +1,5 @@
 import { getLogger } from "@/app/lib/logger";
+import { isConversationCaptchaRequired } from "@/app/lib/messageCounter";
 import { rateLimiter } from "@/app/lib/rateLimit";
 import { replayCached } from "@/app/lib/replayCached";
 import { OpenAI } from "@llamaindex/openai";
@@ -18,20 +19,34 @@ export class CachedOpenAI extends OpenAI {
   private mode: "detrans_chat";
   private conversationId: string | undefined;
   private requestId: string | undefined;
+  private enforceCaptcha: boolean;
+  private ranLlm = false;
+  private captchaGateConsumed = false;
+  private llmBlockedByCaptcha = false;
+  private servedFromCache = false;
   constructor(
     init: ConstructorParameters<typeof OpenAI>[0] & {
       cache: Cache;
       mode: "detrans_chat";
       conversationId?: string;
       requestId?: string;
+      enforceCaptcha?: boolean;
     },
   ) {
-    const { cache, mode, conversationId, requestId, ...openAIInit } = init;
+    const {
+      cache,
+      mode,
+      conversationId,
+      requestId,
+      enforceCaptcha,
+      ...openAIInit
+    } = init;
     super(openAIInit);
     this.cache = cache;
     this.mode = mode;
     this.conversationId = conversationId;
     this.requestId = requestId;
+    this.enforceCaptcha = enforceCaptcha ?? false;
   }
 
   get metadata() {
@@ -39,6 +54,46 @@ export class CachedOpenAI extends OpenAI {
       ...super.metadata,
       contextWindow: 256000, // Set Kimi K2's actual context window
     };
+  }
+
+  /**
+   * Whether a real (non-cached) LLM call was made on this instance.
+   */
+  get didRunLlm() {
+    return this.ranLlm;
+  }
+
+  /**
+   * Whether the conversation captcha gate blocked the LLM. Set (instead of
+   * throwing) on the first cache-miss LLM call when the conversation requires
+   * CAPTCHA, so no model cost is incurred and the workflow ends gracefully
+   * instead of raising an error the workflow stream cannot propagate.
+   */
+  get captchaBlocked() {
+    return this.llmBlockedByCaptcha;
+  }
+
+  /**
+   * Whether the current request was fully served from cache (a cache hit on
+   * the first LLM call), meaning no LLM call will run and no CAPTCHA applies.
+   */
+  get didServeFromCache() {
+    return this.servedFromCache;
+  }
+
+  /**
+   * One-shot captcha gate. Consumed on the first cache-miss LLM call. Returns
+   * true when the conversation requires CAPTCHA (the caller must return a
+   * benign response instead of calling the LLM).
+   */
+  private async shouldBlockConversation(): Promise<boolean> {
+    if (this.captchaGateConsumed) return false;
+    this.captchaGateConsumed = true;
+
+    if (this.enforceCaptcha && this.conversationId) {
+      return await isConversationCaptchaRequired(this.conversationId);
+    }
+    return false;
   }
 
   private async fetchGenerationMetadata(generationId: string): Promise<{
@@ -115,6 +170,7 @@ export class CachedOpenAI extends OpenAI {
           },
           "LLM cache hit (streaming)",
         );
+        this.servedFromCache = true;
 
         // Parse the cached full response object
         const cachedResponse = JSON.parse(cached) as ChatResponse;
@@ -156,6 +212,15 @@ export class CachedOpenAI extends OpenAI {
         "LLM cache miss, generating new (streaming)",
       );
 
+      // Captcha gate: one-shot, before any LLM cost. If blocked, return an
+      // empty benign stream (workflow ends gracefully, nothing is cached).
+      const blocked = await this.shouldBlockConversation();
+      if (blocked) {
+        this.llmBlockedByCaptcha = true;
+        return (async function* (): AsyncGenerator<ChatResponseChunk> {})();
+      }
+      this.ranLlm = true;
+
       // Call underlying LLM in streaming mode
       const rawStream = await super.chat({
         messages,
@@ -173,8 +238,11 @@ export class CachedOpenAI extends OpenAI {
         let lastChunk: ChatResponseChunk | undefined;
         const seenToolCallIds = new Set<string>();
 
-        const STREAM_TIMEOUT_MS = Number(process.env.LLM_STREAM_TIMEOUT_MS) || 180_000;
-        const iterator = (rawStream as AsyncGenerator<ChatResponseChunk>)[Symbol.asyncIterator]();
+        const STREAM_TIMEOUT_MS =
+          Number(process.env.LLM_STREAM_TIMEOUT_MS) || 180_000;
+        const iterator = (rawStream as AsyncGenerator<ChatResponseChunk>)[
+          Symbol.asyncIterator
+        ]();
         let lastChunkTime = Date.now();
 
         while (true) {
@@ -183,17 +251,23 @@ export class CachedOpenAI extends OpenAI {
             result = await Promise.race([
               iterator.next(),
               new Promise<never>((_, reject) => {
-                const remaining = STREAM_TIMEOUT_MS - (Date.now() - lastChunkTime);
+                const remaining =
+                  STREAM_TIMEOUT_MS - (Date.now() - lastChunkTime);
                 if (remaining <= 0) {
                   reject(new Error("LLM stream timeout: no chunks received"));
                   return;
                 }
-                setTimeout(() => reject(new Error("LLM stream timeout")), remaining);
+                setTimeout(
+                  () => reject(new Error("LLM stream timeout")),
+                  remaining,
+                );
               }),
             ]);
           } catch (err) {
             // Attempt to clean up the iterator on timeout
-            try { await iterator.return?.(undefined as any); } catch {}
+            try {
+              await iterator.return?.(undefined as any);
+            } catch {}
             throw err;
           }
 
@@ -280,10 +354,23 @@ export class CachedOpenAI extends OpenAI {
         },
         "LLM cache hit",
       );
+      this.servedFromCache = true;
 
       // Return the cached full response object
       return JSON.parse(cached) as ChatResponse;
     }
+
+    // Captcha gate: one-shot, before any LLM cost. If blocked, return an
+    // empty benign response (nothing is cached).
+    const blocked = await this.shouldBlockConversation();
+    if (blocked) {
+      this.llmBlockedByCaptcha = true;
+      return {
+        message: { role: "assistant", content: "" },
+        raw: null,
+      } as ChatResponse;
+    }
+    this.ranLlm = true;
 
     // Generate new response
     const response = await super.chat({ messages, ...options });
@@ -312,7 +399,6 @@ export class CachedOpenAI extends OpenAI {
 
     return response;
   }
-
   /* ---------- complete ---------- */
   async complete(
     params: LLMCompletionParamsNonStreaming & {

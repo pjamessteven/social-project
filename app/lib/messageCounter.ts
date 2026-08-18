@@ -200,7 +200,11 @@ export async function grantConversationsPass(ipAddress: string): Promise<void> {
   const redis = await connectRedis();
   if (!redis) return;
 
-  await redis.setEx(conversationsPassKey(ipAddress), CONVERSATIONS_PASS_TTL, "1");
+  await redis.setEx(
+    conversationsPassKey(ipAddress),
+    CONVERSATIONS_PASS_TTL,
+    "1",
+  );
 }
 
 /**

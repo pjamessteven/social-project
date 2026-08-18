@@ -24,6 +24,7 @@ export const workflowFactory = async (
   locale?: string,
   ipAddress?: string,
   includeTransPerspectives?: boolean,
+  enforceCaptcha?: boolean,
 ) => {
   initSettings();
 
@@ -101,9 +102,10 @@ export const workflowFactory = async (
     // topP: 0.95,
     conversationId,
     requestId,
+    enforceCaptcha,
     apiKey: process.env.OPENROUTER_KEY,
     baseURL: "https://openrouter.ai/api/v1",
-    model: "xiaomi/mimo-v2.5",
+    model: "dots-studio/dots-3-note-preview:free",
     temperature: 1,
     additionalSessionOptions: {
       thinking: { type: "disabled" },
@@ -113,10 +115,13 @@ export const workflowFactory = async (
     } as any,
   });
 
-  return agent({
+  return {
+    workflow: agent({
+      llm,
+      tools,
+      systemPrompt,
+      timeout: 30,
+    }),
     llm,
-    tools,
-    systemPrompt,
-    timeout: 30,
-  });
+  };
 };
