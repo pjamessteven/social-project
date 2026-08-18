@@ -1,6 +1,10 @@
 import { verifyCaptchaToken } from "@/app/lib/captcha";
 import { withApiSecurity } from "@/app/lib/apiSecurity";
-import { initializeMessageCount } from "@/app/lib/messageCounter";
+import {
+  grantConversationsPass,
+  initializeConversationCount,
+  initializeMessageCount,
+} from "@/app/lib/messageCounter";
 import { connectRedis } from "@/app/lib/redis";
 import { getIP } from "@/app/lib/getIp";
 import { NextRequest, NextResponse } from "next/server";
@@ -8,6 +12,8 @@ import { z } from "zod";
 
 const captchaVerifySchema = z.object({
   token: z.string().min(1).max(10000),
+  conversationId: z.string().uuid().optional(),
+  purpose: z.enum(["allConversations"]).optional(),
 });
 
 export async function POST(req: NextRequest) {
@@ -20,7 +26,9 @@ export async function POST(req: NextRequest) {
     });
     if (securityError) return securityError;
 
-    const { token } = validatedBody as z.infer<typeof captchaVerifySchema>;
+    const { token, conversationId, purpose } = validatedBody as z.infer<
+      typeof captchaVerifySchema
+    >;
 
     const isValid = await verifyCaptchaToken(token);
 
@@ -31,16 +39,31 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Mark this IP as verified in Redis (expires after 1 hour)
-    const redis = await connectRedis();
+    if (purpose === "allConversations") {
+      // Grant a one-time pass for the next "All conversations" page fetch
+      await grantConversationsPass(ip);
+    } else if (conversationId) {
+      // Reset the message count for this chat so verified user can continue
+      await initializeConversationCount(conversationId);
+      // Mark this IP as verified in Redis (expires after 1 hour)
+      const redis = await connectRedis();
 
-    if (redis) {
-      const key = `captcha:verified:${ip}`;
-      await redis.setEx(key, 3600, "1"); // 1 hour TTL
+      if (redis) {
+        const key = `captcha:verified:${ip}`;
+        await redis.setEx(key, 3600, "1"); // 1 hour TTL
+      }
+    } else {
+      // Mark this IP as verified in Redis (expires after 1 hour)
+      const redis = await connectRedis();
+
+      if (redis) {
+        const key = `captcha:verified:${ip}`;
+        await redis.setEx(key, 3600, "1"); // 1 hour TTL
+      }
+
+      // Initialize message count for this IP after CAPTCHA verification (sets to 0)
+      await initializeMessageCount(ip);
     }
-
-    // Initialize message count for this IP after CAPTCHA verification (sets to 0)
-    await initializeMessageCount(ip);
 
     return NextResponse.json({
       success: true,

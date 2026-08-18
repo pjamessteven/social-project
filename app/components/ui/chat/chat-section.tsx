@@ -202,7 +202,9 @@ export default function ChatSection({
   const handleCaptchaVerify = async (token: string) => {
     console.log("[Captcha Verify] Starting verification with token");
 
-    const result = await verifyCaptcha(token);
+    const result = await verifyCaptcha(token, {
+      conversationId: pendingMessage?.conversationId ?? conversationId,
+    });
     console.log("[Captcha Verify] Success:", result.success);
 
     if (result.success) {

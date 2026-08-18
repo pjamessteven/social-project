@@ -4,8 +4,9 @@ import { tryAcquireWorkflow, releaseWorkflow } from "@/app/lib/concurrency";
 import { getCountryFromIP } from "@/app/lib/geolocation";
 import { getIP } from "@/app/lib/getIp";
 import {
-  incrementMessageCount,
-  isCaptchaRequired,
+  consumeConversationsPass,
+  incrementConversationCount,
+  isConversationCaptchaRequired,
 } from "@/app/lib/messageCounter";
 import { db, withDbTimeout } from "@/db";
 import { chatConversations } from "@/db/schema";
@@ -193,7 +194,7 @@ export async function POST(req: NextRequest) {
         // Require captcha if not in cache and user is not logged in
         // Logged-in users bypass CAPTCHA
         if (!username) {
-          const captchaRequired = await isCaptchaRequired(ipAddress);
+          const captchaRequired = await isConversationCaptchaRequired(chatUuid);
           if (captchaRequired) {
             return NextResponse.json(
               {
@@ -213,7 +214,7 @@ export async function POST(req: NextRequest) {
       // Check CAPTCHA status only for anonymous users
       // Logged-in users bypass CAPTCHA
       if (!username) {
-        const captchaRequired = await isCaptchaRequired(ipAddress);
+        const captchaRequired = await isConversationCaptchaRequired(chatUuid);
         if (captchaRequired) {
           return NextResponse.json(
             {
@@ -304,9 +305,9 @@ export async function POST(req: NextRequest) {
           },
           onFinal: async (messages: UIMessage[], dataStreamWriter) => {
             await withDbTimeout(saveConversation(chatUuid, messages, ipAddress, username, includeTransPerspectives));
-            // Increment message count for CAPTCHA tracking
+            // Increment conversation message count for CAPTCHA tracking
             if (!cachedResponse) {
-              await incrementMessageCount(ipAddress);
+              await incrementConversationCount(chatUuid);
             }
           },
         },
@@ -400,11 +401,12 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Captcha check for "all" conversations (not featured, not mine, anonymous user)
+    // Captcha check for "all" conversations (not featured, not mine, anonymous user).
+    // Every page fetch requires a fresh CAPTCHA verification (one-time pass).
     if (!isFeatured && !isMine && !isLoggedIn) {
       const ipAddress = getIP(request);
-      const captchaRequired = await isCaptchaRequired(ipAddress);
-      if (captchaRequired) {
+      const hasPass = await consumeConversationsPass(ipAddress);
+      if (!hasPass) {
         return NextResponse.json(
           {
             requiresCaptcha: true,
@@ -413,7 +415,6 @@ export async function GET(request: NextRequest) {
           { status: 402 },
         );
       }
-      await incrementMessageCount(ipAddress);
     }
 
     // Build conversations query with conditional where clause

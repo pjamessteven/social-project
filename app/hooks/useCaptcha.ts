@@ -12,7 +12,10 @@ interface UseCaptchaReturn {
   setPendingMessage: (
     message: { text: string; conversationId?: string } | null,
   ) => void;
-  verifyCaptcha: (token: string) => Promise<{ success: boolean; token: string }>;
+  verifyCaptcha: (
+    token: string,
+    options?: { conversationId?: string; purpose?: string },
+  ) => Promise<{ success: boolean; token: string }>;
   resetCaptcha: () => void;
 }
 
@@ -29,7 +32,10 @@ export function useCaptcha(): UseCaptchaReturn {
   } | null>(null);
 
   const verifyCaptcha = useCallback(
-    async (token: string): Promise<{ success: boolean; token: string }> => {
+    async (
+      token: string,
+      options?: { conversationId?: string; purpose?: string },
+    ): Promise<{ success: boolean; token: string }> => {
       setIsVerifying(true);
       try {
         const response = await fetch("/api/captcha/verify", {
@@ -37,7 +43,13 @@ export function useCaptcha(): UseCaptchaReturn {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ token }),
+          body: JSON.stringify({
+            token,
+            ...(options?.conversationId
+              ? { conversationId: options.conversationId }
+              : {}),
+            ...(options?.purpose ? { purpose: options.purpose } : {}),
+          }),
         });
 
         const data = await response.json();

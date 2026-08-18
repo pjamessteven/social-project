@@ -98,13 +98,19 @@ export function FeaturedConversations() {
 
   // Captcha handlers
   const fetchConversationsRef = useRef<((page?: number, append?: boolean) => Promise<void>) | null>(null);
+  const pendingFetchRef = useRef<{ page: number; append: boolean }>({
+    page: 1,
+    append: false,
+  });
 
   const handleCaptchaVerify = useCallback(async (token: string) => {
-    const result = await verifyCaptcha(token);
+    const result = await verifyCaptcha(token, { purpose: "allConversations" });
     if (result.success) {
       setShowCaptchaDialog(false);
-      // Retry fetching conversations after captcha verification
-      fetchConversationsRef.current?.(1);
+      const { page, append } = pendingFetchRef.current;
+      pendingFetchRef.current = { page: 1, append: false };
+      // Retry the page load that triggered the captcha after verification
+      fetchConversationsRef.current?.(page, append);
     }
   }, [verifyCaptcha, setShowCaptchaDialog]);
 
@@ -459,6 +465,7 @@ export function FeaturedConversations() {
         if (!response.ok) {
           if (response.status === 402) {
             // Captcha required - show dialog and stop loading
+            pendingFetchRef.current = { page, append };
             setShowCaptchaDialog(true);
             setLoading(false);
             setLoadingMore(false);
