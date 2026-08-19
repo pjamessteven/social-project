@@ -17,6 +17,7 @@ import {
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
 import { useCaptcha } from "@/app/hooks/useCaptcha";
 import { HCaptchaDialog } from "../../ui/hcaptcha-dialog";
 import { SlidingNavGroup } from "../../ui/sliding-nav-group";
@@ -102,20 +103,37 @@ export function FeaturedConversations() {
     page: 1,
     append: false,
   });
+  const [captchaError, setCaptchaError] = useState<string | null>(null);
+  const [captchaResetSignal, setCaptchaResetSignal] = useState(0);
+  const tCaptcha = useTranslations("hcaptcha");
 
   const handleCaptchaVerify = useCallback(async (token: string) => {
     const result = await verifyCaptcha(token, { purpose: "allConversations" });
-    if (result.success) {
-      setShowCaptchaDialog(false);
-      const { page, append } = pendingFetchRef.current;
-      pendingFetchRef.current = { page: 1, append: false };
-      // Retry the page load that triggered the captcha after verification
-      fetchConversationsRef.current?.(page, append);
+    if (!result.success) {
+      setCaptchaError(
+        result.status === 429
+          ? tCaptcha("rateLimited")
+          : tCaptcha("verifyFailed"),
+      );
+      setCaptchaResetSignal((s) => s + 1);
+      toast.error(
+        result.status === 429
+          ? tCaptcha("rateLimited")
+          : tCaptcha("verifyFailed"),
+      );
+      return;
     }
-  }, [verifyCaptcha, setShowCaptchaDialog]);
+    setShowCaptchaDialog(false);
+    setCaptchaError(null);
+    const { page, append } = pendingFetchRef.current;
+    pendingFetchRef.current = { page: 1, append: false };
+    // Retry the page load that triggered the captcha after verification
+    fetchConversationsRef.current?.(page, append);
+  }, [verifyCaptcha, setShowCaptchaDialog, tCaptcha]);
 
   const handleCaptchaClose = useCallback(() => {
     setShowCaptchaDialog(false);
+    setCaptchaError(null);
   }, [setShowCaptchaDialog]);
 
   // Update URL when tab changes
@@ -1274,6 +1292,8 @@ export function FeaturedConversations() {
         onVerify={handleCaptchaVerify}
         siteKey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ""}
         descriptionKey="descriptionConversations"
+        errorMessage={captchaError}
+        resetSignal={captchaResetSignal}
       />
     </div>
   );

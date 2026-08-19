@@ -173,6 +173,11 @@ export function toDataStream(
           // Text streaming
           if (agentStreamEvent.include(event) && event.data.delta) {
             if (!textId) {
+              // Skip leading whitespace deltas so an empty or whitespace-only
+              // response (e.g. when the LLM errors before producing content)
+              // never creates an empty text block, which renders as an empty
+              // markdown bubble.
+              if (!event.data.delta.trim()) continue;
               textId = `text-${randomUUID()}`;
               writer.write({ type: "text-start", id: textId });
             }

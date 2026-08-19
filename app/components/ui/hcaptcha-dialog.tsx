@@ -10,7 +10,7 @@ import {
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface HCaptchaDialogProps {
   isOpen: boolean;
@@ -19,6 +19,8 @@ interface HCaptchaDialogProps {
   onError?: (error: Error) => void;
   siteKey: string;
   descriptionKey?: "description" | "descriptionConversations";
+  errorMessage?: string | null;
+  resetSignal?: number;
 }
 
 export function HCaptchaDialog({
@@ -28,10 +30,19 @@ export function HCaptchaDialog({
   onError,
   siteKey,
   descriptionKey = "description",
+  errorMessage,
+  resetSignal = 0,
 }: HCaptchaDialogProps) {
   const t = useTranslations("hcaptcha");
   const { theme } = useTheme();
   const captchaRef = useRef<HCaptcha>(null);
+
+  // Reset the hCaptcha widget when signaled (e.g. after a failed verify)
+  useEffect(() => {
+    if (resetSignal > 0) {
+      captchaRef.current?.resetCaptcha();
+    }
+  }, [resetSignal]);
 
   const handleVerify = (token: string) => {
     onVerify(token);
@@ -54,7 +65,12 @@ export function HCaptchaDialog({
           <DialogTitle className="mb-2">{t("title")}</DialogTitle>
           <DialogDescription>{t(descriptionKey)}</DialogDescription>
         </DialogHeader>
-        <div className="flex justify-start pt-2">
+        <div className="flex flex-col gap-3 pt-2">
+          {errorMessage && (
+            <p className="text-destructive text-sm font-medium" role="alert">
+              {errorMessage}
+            </p>
+          )}
           <HCaptcha
             ref={captchaRef}
             sitekey={siteKey}

@@ -939,7 +939,9 @@
     "error": {
       "title": "CAPTCHA Error",
       "description": "Failed to load CAPTCHA. Please refresh the page and try again."
-    }
+    },
+    "verifyFailed": "Verification failed. Please try again.",
+    "rateLimited": "Too many verifications. Please wait a moment and try again."
   },
   "feedback": {
     "title": "Feedback",

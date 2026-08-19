@@ -37,9 +37,12 @@ export function FeedbackDialog({
   messageId,
 }: FeedbackDialogProps) {
   const t = useTranslations("feedback");
+  const tCaptcha = useTranslations("hcaptcha");
   const [feedbackText, setFeedbackText] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showCaptcha, setShowCaptcha] = useState(false);
+  const [captchaError, setCaptchaError] = useState<string | null>(null);
+  const [captchaResetSignal, setCaptchaResetSignal] = useState(0);
 
   const submitFeedback = async (text: string) => {
     setIsSubmitting(true);
@@ -96,22 +99,36 @@ export function FeedbackDialog({
         body: JSON.stringify({ token }),
       });
 
-      const verifyData = await verifyResponse.json();
-      if (verifyData.success) {
+      const verifyData = await verifyResponse.json().catch(() => ({}));
+      if (verifyResponse.ok && verifyData.success) {
         setShowCaptcha(false);
+        setCaptchaError(null);
         // Retry feedback submission after captcha verification
         await submitFeedback(feedbackText);
       } else {
-        toast.error(t("error"));
+        setCaptchaError(
+          verifyResponse.status === 429
+            ? tCaptcha("rateLimited")
+            : tCaptcha("verifyFailed"),
+        );
+        setCaptchaResetSignal((s) => s + 1);
+        toast.error(
+          verifyResponse.status === 429
+            ? tCaptcha("rateLimited")
+            : tCaptcha("verifyFailed"),
+        );
       }
     } catch (error) {
       console.error("Captcha verification error:", error);
-      toast.error(t("error"));
+      setCaptchaError(tCaptcha("verifyFailed"));
+      setCaptchaResetSignal((s) => s + 1);
+      toast.error(tCaptcha("verifyFailed"));
     }
   };
 
   const handleCaptchaClose = () => {
     setShowCaptcha(false);
+    setCaptchaError(null);
   };
 
   return (
@@ -155,6 +172,8 @@ export function FeedbackDialog({
         onClose={handleCaptchaClose}
         onVerify={handleCaptchaVerify}
         siteKey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ""}
+        errorMessage={captchaError}
+        resetSignal={captchaResetSignal}
       />
     </>
   );

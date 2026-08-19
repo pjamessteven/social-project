@@ -60,6 +60,9 @@ export default function ChatSection({
     verifyCaptcha,
     resetCaptcha,
   } = useCaptcha();
+  const [captchaError, setCaptchaError] = useState<string | null>(null);
+  const [captchaResetSignal, setCaptchaResetSignal] = useState(0);
+  const tCaptcha = useTranslations("hcaptcha");
 
   // Helper function to restore failed user message to input field
   const restoreFailedMessage = (setPending = false) => {
@@ -207,37 +210,54 @@ export default function ChatSection({
     });
     console.log("[Captcha Verify] Success:", result.success);
 
-    if (result.success) {
-      // Close dialog first
-      setShowCaptchaDialog(false);
+    if (!result.success) {
+      // Verification failed (e.g. rate limited). Show feedback and reset the
+      // widget so the user can retry; keep the pending message.
+      setCaptchaError(
+        result.status === 429
+          ? tCaptcha("rateLimited")
+          : tCaptcha("verifyFailed"),
+      );
+      setCaptchaResetSignal((s) => s + 1);
+      toast.error(
+        result.status === 429
+          ? t("rateLimitExceeded")
+          : tCaptcha("verifyFailed"),
+      );
+      return;
+    }
 
-      if (pendingMessage?.text) {
-        const textToSend = pendingMessage.text;
-        console.log("[Captcha Verify] Retrying message:", textToSend);
+    // Close dialog and clear any prior error
+    setShowCaptchaDialog(false);
+    setCaptchaError(null);
 
-        // Small delay to ensure dialog closes and state updates
-        setTimeout(() => {
-          try {
-            // Clear the error state before retrying (required by useChat API)
-            clearError?.();
-            useChatHandler.sendMessage({
-              text: textToSend,
-            });
-            console.log("[Captcha Verify] Message sent successfully");
-          } catch (sendError) {
-            console.error("[Captcha Verify] Error sending message:", sendError);
-          }
-        }, 100);
+    if (pendingMessage?.text) {
+      const textToSend = pendingMessage.text;
+      console.log("[Captcha Verify] Retrying message:", textToSend);
 
-        setPendingMessage(null);
-      } else {
-        console.log("[Captcha Verify] No pending message to retry");
-      }
+      // Small delay to ensure dialog closes and state updates
+      setTimeout(() => {
+        try {
+          // Clear the error state before retrying (required by useChat API)
+          clearError?.();
+          useChatHandler.sendMessage({
+            text: textToSend,
+          });
+          console.log("[Captcha Verify] Message sent successfully");
+        } catch (sendError) {
+          console.error("[Captcha Verify] Error sending message:", sendError);
+        }
+      }, 100);
+
+      setPendingMessage(null);
+    } else {
+      console.log("[Captcha Verify] No pending message to retry");
     }
   };
 
   const handleCaptchaClose = () => {
     setShowCaptchaDialog(false);
+    setCaptchaError(null);
     // Don't clear pending message - user might want to try again
   };
 
@@ -413,6 +433,8 @@ export default function ChatSection({
         onClose={handleCaptchaClose}
         onVerify={handleCaptchaVerify}
         siteKey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ""}
+        errorMessage={captchaError}
+        resetSignal={captchaResetSignal}
       />
     </>
   );

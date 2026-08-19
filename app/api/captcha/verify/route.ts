@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
   try {
     // Rate limit + IP ban + input validation
     const { ip, validatedBody, error: securityError } = await withApiSecurity(req, {
-      rateLimit: { perMinute: 5, perHour: 20 },
+      rateLimit: { perMinute: 15, perHour: 360 },
       ipBan: true,
       validation: { schema: captchaVerifySchema },
     });
