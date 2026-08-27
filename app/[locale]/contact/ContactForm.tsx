@@ -14,6 +14,7 @@ export default function ContactForm() {
     subject: "",
     email: "",
     message: "",
+    site: "",
   });
   const [status, setStatus] = useState("");
 
@@ -30,7 +31,7 @@ export default function ContactForm() {
     const res = await fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...form, site: "detrans" }),
+      body: JSON.stringify(form),
     });
 
     return res;
@@ -152,6 +153,24 @@ export default function ContactForm() {
               required
               rows={5}
               className="w-full rounded-lg border-gray-300 p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
+            />
+          </div>
+
+          <div
+            className="hidden"
+            aria-hidden="true"
+          >
+            <label htmlFor="site">
+              Leave this field empty
+            </label>
+            <input
+              id="site"
+              name="site"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={form.site}
+              onChange={handleChange}
             />
           </div>
 

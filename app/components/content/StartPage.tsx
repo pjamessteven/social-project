@@ -80,7 +80,6 @@ export async function StartPage({
   return (
     <>
       <div className="relative flex flex-col pb-[88px]">
-        <CheckerboardBg />
         <div className="z-10 mt-[20vh]">
           <div className="mb-8 flex justify-start">
             <span className="bg-destructive text-destructive-foreground hidden rounded-full px-3 py-1 text-xs font-semibold shadow-sm select-none">
