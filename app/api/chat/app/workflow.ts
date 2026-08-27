@@ -95,24 +95,23 @@ export const workflowFactory = async (
   const llm = new CachedOpenAI({
     cache,
     mode: "detrans_chat",
-    // apiKey: process.env.KIMI_KEY,
-    // baseURL: "https://api.moonshot.ai/v1",
-    // model: "kimi-k2.6",
-    // temperature: 0.6,
-    // topP: 0.95,
     conversationId,
     requestId,
     enforceCaptcha,
-    apiKey: process.env.OPENROUTER_KEY,
-    baseURL: "https://openrouter.ai/api/v1",
-    model: "dots-studio/dots-3-note-preview:free",
-    temperature: 1,
-    additionalSessionOptions: {
-      thinking: { type: "disabled" },
-    } as any,
+    apiKey: process.env.HETZNER_KEY,
+    baseURL: "https://inference.hetzner.com/api/v1",
+    model: "Qwen3.8-27B",
     additionalChatOptions: {
-      thinking: { type: "disabled" },
+      chat_template_kwargs: { enable_thinking: false },
     } as any,
+    fallback: {
+      apiKey: process.env.OPENROUTER_KEY,
+      baseURL: "https://openrouter.ai/api/v1",
+      model: "xiaomi/mimo-v2.5",
+      additionalChatOptions: {
+        thinking: { type: "disabled" },
+      } as any,
+    },
   });
 
   return {

@@ -13,6 +13,16 @@ import type {
   LLMCompletionParamsStreaming,
 } from "llamaindex";
 import { Cache, makeCacheKey, makeHashedKey } from "./cache";
+import { Agent, fetch as undiciFetch } from "undici";
+
+// Force IPv4 for outbound LLM requests. This environment has no routable IPv6,
+// and the target (e.g. Hetzner inference) returns an AAAA record before A, so
+// Node's default verbatim DNS resolution would try the unreachable IPv6 first
+// and hang (ETIMEDOUT). Routing via an undici Agent pinned to IPv4 fixes it.
+const ipv4Agent = new Agent({ connect: { family: 4 } as any });
+
+export const ipv4Fetch: typeof fetch = ((input: any, init?: any) =>
+  undiciFetch(input as any, { ...init, dispatcher: ipv4Agent } as any)) as any;
 
 export class CachedOpenAI extends OpenAI {
   private cache: Cache;
@@ -25,6 +35,11 @@ export class CachedOpenAI extends OpenAI {
   private llmBlockedByCaptcha = false;
   private servedFromCache = false;
   private capturedError: Error | null = null;
+  private fallbackInit?: Omit<
+    ConstructorParameters<typeof OpenAI>[0],
+    "cache" | "mode"
+  >;
+  private fallbackClient: OpenAI | null = null;
   constructor(
     init: ConstructorParameters<typeof OpenAI>[0] & {
       cache: Cache;
@@ -32,6 +47,7 @@ export class CachedOpenAI extends OpenAI {
       conversationId?: string;
       requestId?: string;
       enforceCaptcha?: boolean;
+      fallback?: ConstructorParameters<typeof OpenAI>[0];
     },
   ) {
     const {
@@ -40,14 +56,59 @@ export class CachedOpenAI extends OpenAI {
       conversationId,
       requestId,
       enforceCaptcha,
+      fallback,
       ...openAIInit
     } = init;
+    // Route LLM connections over IPv4 (or ipv4Fetch above).
+    openAIInit.additionalSessionOptions = {
+      ...(openAIInit.additionalSessionOptions as any),
+      fetch: ipv4Fetch as any,
+    };
     super(openAIInit);
     this.cache = cache;
     this.mode = mode;
     this.conversationId = conversationId;
     this.requestId = requestId;
     this.enforceCaptcha = enforceCaptcha ?? false;
+    if (fallback) {
+      this.fallbackInit = {
+        ...fallback,
+        additionalSessionOptions: {
+          ...(fallback.additionalSessionOptions as any),
+          fetch: ipv4Fetch as any,
+        },
+      };
+    }
+  }
+
+  private getFallbackClient(): OpenAI | null {
+    if (!this.fallbackInit) return null;
+    if (!this.fallbackClient) {
+      this.fallbackClient = new OpenAI(this.fallbackInit);
+    }
+    return this.fallbackClient;
+  }
+
+  /**
+   * Whether the given error is transient (rate limit, 5xx, or network
+   * timeout/reset). These are candidates for retrying on the fallback provider.
+   */
+  private isTransientError(err: unknown): boolean {
+    const e = err as any;
+    if (!e) return false;
+    const status = e.status ?? e.response?.status;
+    if (typeof status === "number") {
+      if (status === 429) return true;
+      if (status >= 500) return true;
+    }
+    const code = e.code ?? e.error?.code;
+    if (code === "ETIMEDOUT" || code === "ECONNRESET" || code === "ECONNREFUSED") {
+      return true;
+    }
+    const name = e.name;
+    if (name === "TimeoutError" || name === "AbortError") return true;
+    const msg = e.message ? String(e.message) : "";
+    return /429|rate ?limit|timeout|econnreset|etimedout/i.test(msg);
   }
 
   get metadata() {
@@ -259,10 +320,31 @@ export class CachedOpenAI extends OpenAI {
           ...options,
         });
       } catch (err) {
-        // Capture the error and end gracefully so the workflow completes
-        // instead of hanging on an unpropagated handler rejection.
-        this.recordError(err);
-        return (async function* (): AsyncGenerator<ChatResponseChunk> {})();
+        // On transient failure (429/5xx/timeout), retry on the fallback provider.
+        const fallback = this.getFallbackClient();
+        if (this.isTransientError(err) && fallback) {
+          try {
+            rawStream = await fallback.chat({
+              messages,
+              stream: true,
+              ...options,
+            });
+            console.warn(
+              "[CachedOpenAI] Primary provider failed, using fallback provider",
+              String((err as Error)?.message || err),
+            );
+          } catch (fallbackErr) {
+            // Both providers failed. Capture the fallback error and end
+            // gracefully so the workflow completes instead of hanging.
+            this.recordError(fallbackErr);
+            return (async function* (): AsyncGenerator<ChatResponseChunk> {})();
+          }
+        } else {
+          // Capture the error and end gracefully so the workflow completes
+          // instead of hanging on an unpropagated handler rejection.
+          this.recordError(err);
+          return (async function* (): AsyncGenerator<ChatResponseChunk> {})();
+        }
       }
 
       // Capture the stream and build a full response object
@@ -416,11 +498,29 @@ export class CachedOpenAI extends OpenAI {
       // Generate new response
       response = await super.chat({ messages, ...options });
     } catch (err) {
-      this.recordError(err);
-      return {
-        message: { role: "assistant", content: "" },
-        raw: null,
-      } as ChatResponse;
+      // On transient failure (429/5xx/timeout), retry on the fallback provider.
+      const fallback = this.getFallbackClient();
+      if (this.isTransientError(err) && fallback) {
+        try {
+          response = await fallback.chat({ messages, ...options });
+          console.warn(
+            "[CachedOpenAI] Primary provider failed, using fallback provider (non-streaming)",
+            String((err as Error)?.message || err),
+          );
+        } catch (fallbackErr) {
+          this.recordError(fallbackErr);
+          return {
+            message: { role: "assistant", content: "" },
+            raw: null,
+          } as ChatResponse;
+        }
+      } else {
+        this.recordError(err);
+        return {
+          message: { role: "assistant", content: "" },
+          raw: null,
+        } as ChatResponse;
+      }
     }
 
     // Fetch and store metadata
