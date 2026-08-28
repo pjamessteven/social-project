@@ -98,20 +98,12 @@ export const workflowFactory = async (
     conversationId,
     requestId,
     enforceCaptcha,
-    apiKey: process.env.HETZNER_KEY,
-    baseURL: "https://inference.hetzner.com/api/v1",
-    model: "Qwen3.8-27B",
+    apiKey: process.env.OPENROUTER_KEY,
+    baseURL: "https://openrouter.ai/api/v1",
+    model: "xiaomi/mimo-v2.5",
     additionalChatOptions: {
-      chat_template_kwargs: { enable_thinking: false },
+      thinking: { type: "disabled" },
     } as any,
-    fallback: {
-      apiKey: process.env.OPENROUTER_KEY,
-      baseURL: "https://openrouter.ai/api/v1",
-      model: "xiaomi/mimo-v2.5",
-      additionalChatOptions: {
-        thinking: { type: "disabled" },
-      } as any,
-    },
   });
 
   return {
