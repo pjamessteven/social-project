@@ -43,8 +43,8 @@ export async function createTwitterWorkflow() {
 
   const llm = new CustomOpenAI({
     apiKey: process.env.OPENROUTER_KEY,
-    baseURL: "https://openrouter.ai/api/v1",
-    model: "xiaomi/mimo-v2.5",
+    baseURL: "https://token-plan-sgp.xiaomimimo.com/v1",
+    model: "mimo-v2.5-pro",
     temperature: 1,
     contextWindow: 256000,
     additionalChatOptions: {
