@@ -100,14 +100,14 @@ export const workflowFactory = async (
     enforceCaptcha,
     apiKey: process.env.XIAOMI_KEY,
     baseURL: "https://token-plan-sgp.xiaomimimo.com/v1",
-    model: "mimo-v2.5-pro",
+    model: "mimo-v2.5",
     additionalChatOptions: {
       thinking: { type: "disabled" },
     } as any,
     fallback: {
       apiKey: process.env.OPENROUTER_KEY,
       baseURL: "https://openrouter.ai/api/v1",
-      model: "xiaomi/mimo-v2.5-pro",
+      model: "xiaomi/mimo-v2.5",
       additionalChatOptions: {
         thinking: { type: "disabled" },
       } as any,
