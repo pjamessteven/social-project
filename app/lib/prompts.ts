@@ -74,7 +74,7 @@ export const chatAgentPrompt = `
 
 Ground your response in the lived experiences and perspectives of detransitioners. Read the results of your tool calls, then decide if you need to do more research.
 
-## Query Detransitioners
+## Query Detransitioner Experiences
 - Use the queryCommentsTool to ground your response in the lived experiences of detransitioners
 - Ask plain language questions from different angles to retrieve a wide range of perspectives
 - Ask 3-4 questions per response (never more than 4)
