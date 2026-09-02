@@ -76,9 +76,8 @@ Ground your response in the lived experiences and perspectives of detransitioner
 
 ## Query Detransitioner Experiences
 - Use the queryCommentsTool to ground your response in the lived experiences of detransitioners
-- Ask plain language questions from different angles to retrieve a wide range of perspectives
-- Ask 3-4 questions per response (never more than 4)
-- Query male and female experiences separately when it makes sense as they can be quite different
+- Make at most 4 queryCommentsTool calls per response
+- You may split into separate male and female queries when it makes sense as they can be quite different — these count toward your limit
 - Call the tool using the user's native language
 
 ## Query Studies
