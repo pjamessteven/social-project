@@ -21,16 +21,9 @@ interface ToolConfig {
 
 export function createQueryCommentsTool(config: ToolConfig) {
   const { cache, index, userInput, metadata, similarityTopK = 20 } = config;
-  const QUERY_COMMENTS_HARD_MAX = 6;
-  let calls = 0;
+
   return tool(
     async ({ query, keyword }: { query: string; keyword?: string }) => {
-      calls += 1;
-      if (calls > QUERY_COMMENTS_HARD_MAX) {
-        return JSON.stringify({
-          error: `queryComments research limit reached this turn (max ${QUERY_COMMENTS_HARD_MAX}). Stop querying and answer from the detransitioner experiences already gathered.`,
-        });
-      }
 
       const cacheKey = `tool:queryComments:${JSON.stringify({ query, keyword })}`;
       const hashedKey = makeHashedKey(cacheKey);
@@ -235,16 +228,9 @@ interface WebSearchToolConfig {
 
 export function createWebSearchTool(config: WebSearchToolConfig) {
   const { cache, userInput, metadata } = config;
-  const WEB_SEARCH_HARD_MAX = 4;
-  let calls = 0;
+
   return tool(
     async ({ query, count = 10 }: { query: string; count?: number }) => {
-      calls += 1;
-      if (calls > WEB_SEARCH_HARD_MAX) {
-        return JSON.stringify({
-          error: `webSearch limit reached this turn (max ${WEB_SEARCH_HARD_MAX}). Stop searching and answer from results already gathered.`,
-        });
-      }
 
       const cacheKey = `tool:webSearch:${JSON.stringify({ query, count })}`;
       const hashedKey = makeHashedKey(cacheKey);
