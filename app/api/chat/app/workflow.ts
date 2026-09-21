@@ -103,16 +103,16 @@ export const workflowFactory = async (
    // model: "mimo-v2.5",
    //
    //
-   apiKey: process.env.OPENROUTER_KEY,
-   baseURL: "https://openrouter.ai/api/v1",
-   model: "xiaomi/mimo-v2.5",
+    apiKey: process.env.OPENROUTER_KEY,
+    baseURL: "https://openrouter.ai/api/v1",
+    model: "xiaomi/mimo-v2.6-flash",
     additionalChatOptions: {
       thinking: { type: "disabled" },
     } as any,
     fallback: {
       apiKey: process.env.OPENROUTER_KEY,
       baseURL: "https://openrouter.ai/api/v1",
-      model: "xiaomi/mimo-v2.5",
+      model: "xiaomi/mimo-v2.6-flash",
       additionalChatOptions: {
         thinking: { type: "disabled" },
       } as any,

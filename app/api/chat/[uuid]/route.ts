@@ -64,7 +64,7 @@ async function generateConversationTitleAndSummary(messages: string): Promise<{
     const llm = new OpenAI({
       apiKey: process.env.OPENROUTER_KEY,
       baseURL: "https://openrouter.ai/api/v1",
-      model: "deepseek/deepseek-v4-flash",
+      model: "xiaomi/mimo-v2.6-flash",
     });
 
     // Create a prompt for generating both title and summary

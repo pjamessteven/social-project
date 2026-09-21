@@ -6,8 +6,8 @@ services:
     ports:
       - "6380:6379"
     volumes:
-      - ./redis-data:/data
-      - ./redis.conf:/usr/local/etc/redis/redis.conf
+      - ./redis-data:/data:z
+      - ./redis.conf:/usr/local/etc/redis/redis.conf:ro,z
     command: redis-server /usr/local/etc/redis/redis.conf
     restart: unless-stopped
   qdrant:
@@ -15,7 +15,7 @@ services:
     ports:
       - "6334:6333"
     volumes:
-      - ./qdrant-storage:/qdrant/storage
+      - ./qdrant-storage:/qdrant/storage:z
     restart: unless-stopped
 
   postgres:
@@ -28,8 +28,8 @@ services:
       - POSTGRES_PASSWORD=postgres
       - PGDATA=/var/lib/postgresql/data/
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
-      - ./scripts/init-pgvector.sql:/docker-entrypoint-initdb.d/init-pgvector.sql
+      - ./postgres-data:/var/lib/postgresql/data:z
+      - ./scripts/init-pgvector.sql:/docker-entrypoint-initdb.d/init-pgvector.sql:ro,z
     restart: unless-stopped
 
   nextjs:
@@ -41,7 +41,7 @@ services:
     ports:
       - "3001:3000"
     volumes:
-      - .:/app
+      - .:/app:z
       - next_node_modules:/app/node_modules # container-managed node_modules
       - next_cache:/app/.next # container-managed build cache
     command: npm run dev
