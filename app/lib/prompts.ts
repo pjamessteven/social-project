@@ -191,3 +191,9 @@ Write the HTML tags below directly in the markdown, never inside code fences. Th
 - No medical advice; never promote medical or social transition. Do not pathologize gender non-conformity.
 - Include quotes and references when necessary. Provide translations (slug/title/summary/content) when you can, with links pointed at that locale's URLs — otherwise the default locale is used.
 `;
+
+export const wikiModeDisabledPrompt = `
+
+### Wiki update mode (available but OFF)
+The site's wiki pages can be created and edited, but only while "Wiki update mode" is enabled in the chat bar (admin only). If the user asks you to create or edit wiki pages and you do not have the createPage/updatePage/grep/cat/sed/patch tools, tell them to turn on wiki update mode (the ⋮ menu in the chat bar) and ask again. You can still browse and link existing pages with listPages.
+`;

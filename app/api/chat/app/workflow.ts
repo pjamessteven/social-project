@@ -21,7 +21,11 @@ import { db, withDbTimeout } from "@/db";
 import { studyTags } from "@/db/schema";
 import { agent } from "@llamaindex/workflow";
 import { CachedOpenAI } from "../../shared/llm";
-import { agentPrompt, wikiUpdateModePrompt } from "../utils/prompts";
+import {
+  agentPrompt,
+  wikiModeDisabledPrompt,
+  wikiUpdateModePrompt,
+} from "../utils/prompts";
 
 export const workflowFactory = async (
   reqBody: any,
@@ -121,10 +125,21 @@ export const workflowFactory = async (
     tagNames.length > 0
       ? `\n\n### Available Study Tags\nThe following tags can be used to filter studies with the getStudies tool: ${tagNames.join(", ")}`
       : "";
+  // Observability: make tool registration visible per request (this is the
+  // first place to look when the agent claims it "has no tools"). LlamaIndex
+  // tool() objects carry their identity on .metadata, not .name.
+  console.log(
+    `[WORKFLOW] tools=[${tools.map((t: any) => t?.metadata?.name ?? t?.name ?? "?").join(",")}] wikiMode=${!!wikiMode} admin=${adminUsername ?? "-"} pro=${!!proModel}`,
+  );
+
   const systemPrompt =
     agentPrompt +
     tagList +
-    (wikiMode && adminUsername ? wikiUpdateModePrompt : "");
+    (adminUsername
+      ? wikiMode
+        ? wikiUpdateModePrompt
+        : wikiModeDisabledPrompt
+      : "");
 
   // Model selection: admins can opt into the Pro model per message.
   const chatModel = proModel
