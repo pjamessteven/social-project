@@ -100,6 +100,28 @@ const TOOL_UI_MAP: Record<
     titleStart: "Deleting wiki page...",
     titleEnd: "Deleted wiki page",
   },
+  // Unix-style wiki editing tools
+  grep: {
+    type: "data-wiki-page-event",
+    titleStart: "Searching wiki pages...",
+    titleEnd: "Searched wiki pages",
+    displayQuery: "auto",
+  },
+  cat: {
+    type: "data-wiki-page-event",
+    titleStart: "Reading wiki page...",
+    titleEnd: "Read wiki page",
+  },
+  sed: {
+    type: "data-wiki-page-event",
+    titleStart: "Editing wiki page...",
+    titleEnd: "Edited wiki page",
+  },
+  patch: {
+    type: "data-wiki-page-event",
+    titleStart: "Patching wiki page...",
+    titleEnd: "Patched wiki page",
+  },
 };
 
 /**

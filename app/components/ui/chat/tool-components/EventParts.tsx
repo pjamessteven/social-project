@@ -644,6 +644,9 @@ export function WikiPageEventPart() {
   const pageTitle: string | undefined = parsed?.title;
   const summary: string | undefined = parsed?.summary;
   const contentPreview: string | undefined = parsed?.contentPreview;
+  const output: string | undefined = parsed?.output;
+  const changedLines: number | undefined =
+    typeof parsed?.changedLines === "number" ? parsed.changedLines : undefined;
   const updatedFields: string[] = Array.isArray(parsed?.updatedFields)
     ? parsed.updatedFields
     : [];
@@ -654,32 +657,43 @@ export function WikiPageEventPart() {
     <EventWrapper
       eventType="data-wiki-page-event"
       label={actionLabel}
-      query={path || undefined}
+      query={path || eventPart.data.query || undefined}
       disableExpand
     >
       <div className="not-prose my-2 w-full text-xs">
-        {isSuccess && !isDeleted && !pages && path && (
+        {isSuccess && !isDeleted && !pages && (path || output) && (
           <div
             className="bg-muted/50 cursor-pointer rounded border px-3 py-2"
             onClick={() => setExpanded(!expanded)}
           >
             <div className="flex items-center justify-between gap-2">
               <div className="flex min-w-0 items-center gap-1.5">
-                <a
-                  href={`/${locale}/topics/${path}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="truncate font-medium text-blue-600 hover:underline dark:text-blue-400"
-                >
-                  {pageTitle || `/${path}`}
-                </a>
+                {path ? (
+                  <a
+                    href={`/${locale}/topics/${path}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="truncate font-medium text-blue-600 hover:underline dark:text-blue-400"
+                  >
+                    {pageTitle || `/${path}`}
+                  </a>
+                ) : (
+                  <span className="truncate font-medium">
+                    {eventPart.data.query || "grep"}
+                  </span>
+                )}
                 {parsed?.published === false && (
                   <span className="text-muted-foreground shrink-0">
                     (draft)
                   </span>
                 )}
                 {parsed?.isStub && <WikiStubBadge />}
+                {changedLines !== undefined && (
+                  <span className="text-muted-foreground shrink-0">
+                    {changedLines} line{changedLines === 1 ? "" : "s"}
+                  </span>
+                )}
               </div>
               <span className="text-muted-foreground shrink-0 text-xs">
                 {expanded ? "▲" : "▼"}
@@ -688,7 +702,7 @@ export function WikiPageEventPart() {
 
             {expanded && (
               <div className="mt-2 space-y-2 border-t pt-2">
-                <div className="text-muted-foreground">/{path}</div>
+                {path && <div className="text-muted-foreground">/{path}</div>}
                 {summary && <p className="text-muted-foreground">{summary}</p>}
                 {updatedFields.length > 0 && (
                   <div className="flex flex-wrap gap-1">
@@ -702,9 +716,9 @@ export function WikiPageEventPart() {
                     ))}
                   </div>
                 )}
-                {contentPreview && (
+                {(output || contentPreview) && (
                   <pre className="bg-background max-h-40 overflow-auto rounded border p-2 text-[11px] whitespace-pre-wrap">
-                    {contentPreview}
+                    {output ?? contentPreview}
                   </pre>
                 )}
               </div>

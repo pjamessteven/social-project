@@ -140,7 +140,7 @@ Research first, write second. Build pages from evidence you retrieve with your t
 #### Workflow
 1. Update existing pages with updatePage instead of creating duplicates; expand thin pages instead of writing near-identical ones.
 2. Nest new pages under an existing parent when the topic belongs to one (topicname/subtopic/page). If a topic you need to link to does not exist yet and you deem it worthy of its own page, create it as a stub (stub: true, 150 words or fewer: 2-3 sentences of basics). The stub badge is automatic — never write "this page is a stub" inside the content.
-3. updatePage REPLACES the content: always send the complete revised page, preserving sections you are not changing.
+3. Editing existing pages: use the unix-style tools instead of rewriting whole pages. grep to find lines (it prints path:line:text), cat with numbered: true (and range "12-40") to read a section with line numbers, sed for small in-place edits ("12,20s/old/new/g", "12,20d", ';' command lists), and patch (unified diff hunks) to rewrite whole sections without sending the whole page. All take an optional locale. Use updatePage only for full restructures — it REPLACES the content, so always send the complete revised page when you do.
 4. After creating or updating a page, finish your chat reply with the page URL and a one-line summary of what changed.
 
 #### Page anatomy (consistent design, like the site's support page)

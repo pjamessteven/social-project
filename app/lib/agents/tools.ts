@@ -2,12 +2,21 @@ import { banIp, isIpBanned } from "@/app/lib/ipBan";
 import {
   createPage,
   deletePage,
+  getAllPagesWithSlugs,
+  getLocalizedValue,
   getPageByPath,
   listPagesTree,
   updatePage,
 } from "@/app/lib/pages";
+import {
+  applyUnifiedPatch,
+  grepContent,
+  runCat,
+  runSed,
+} from "@/app/lib/wiki-edit";
 import { db } from "@/db";
 import { studies, studyTagRelations, studyTags } from "@/db/schema";
+import { defaultLocale } from "@/i18n/locales";
 import { eq, inArray, sql } from "drizzle-orm";
 import { Settings, tool, type VectorStoreIndex } from "llamaindex";
 import z from "zod";
@@ -759,6 +768,333 @@ export function createDeletePageTool(config: {
         "Delete a wiki page (child pages are kept and become top-level pages). Only use this for pages that should not exist (spam, duplicates, out-of-scope). Prefer updating or unpublishing otherwise.",
       parameters: z.object({
         path: z.string().describe("Page path to delete"),
+      }),
+    },
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Unix-style editing tools (admin-only, wiki update mode): edit page sections
+// without rewriting whole pages. Page paths behave like file paths.
+// Also STATEFUL on writes: no result caching.
+// ---------------------------------------------------------------------------
+
+const wikiLocaleSchema = z
+  .string()
+  .optional()
+  .describe(
+    'Locale of the content to operate on, e.g. "de". Defaults to the default locale.',
+  );
+
+function readPageContent(
+  page: { content: string; contentTranslation: string | null },
+  locale?: string,
+): string {
+  return (
+    getLocalizedValue(
+      page.contentTranslation,
+      locale ?? defaultLocale,
+      page.content,
+    ) ?? ""
+  );
+}
+
+async function writePageContent(
+  path: string,
+  content: string,
+  locale: string | undefined,
+  adminUsername?: string | null,
+) {
+  return locale && locale !== defaultLocale
+    ? updatePage(path, {
+        translations: { [locale]: { content } },
+        updatedBy: adminUsername,
+      })
+    : updatePage(path, { content, updatedBy: adminUsername });
+}
+
+export function createGrepTool(config: { adminUsername?: string | null }) {
+  return tool(
+    async ({
+      pattern,
+      path,
+      locale,
+      ignoreCase,
+      maxResults,
+    }: {
+      pattern: string;
+      path?: string;
+      locale?: string;
+      ignoreCase?: boolean;
+      maxResults?: number;
+    }) => {
+      const denied = wikiDenied(config.adminUsername);
+      if (denied) return denied;
+      try {
+        const limit = Math.min(maxResults ?? 50, 200);
+        const out: string[] = [];
+        let matches = 0;
+        let truncated = false;
+
+        const searchPage = (
+          item: Awaited<ReturnType<typeof getPageByPath>>,
+        ) => {
+          if (!item || truncated) return;
+          const result = grepContent(
+            readPageContent(item.page, locale),
+            pattern,
+            {
+              ignoreCase,
+            },
+          );
+          if (result.error) throw new Error(result.error);
+          for (const match of result.matches) {
+            if (matches >= limit) {
+              truncated = true;
+              return;
+            }
+            out.push(`${item.page.path}:${match.line}:${match.text}`);
+            matches++;
+          }
+        };
+
+        if (path) {
+          const item = await getPageByPath(path);
+          if (!item) {
+            return JSON.stringify({
+              success: false,
+              error: `grep: ${path}: No such file or directory`,
+            });
+          }
+          searchPage(item);
+        } else {
+          for (const item of await getAllPagesWithSlugs()) {
+            searchPage(item);
+            if (truncated) break;
+          }
+        }
+
+        out.push(`-- ${matches} match(es)${truncated ? " (truncated)" : ""}`);
+        return JSON.stringify({
+          success: true,
+          output: out.join("\n"),
+          matches,
+          path,
+        });
+      } catch (error) {
+        return wikiError("grep", error);
+      }
+    },
+    {
+      name: "grep",
+      description:
+        "Search wiki page content like grep. Prints 'path:line:text' lines with 1-based line numbers (use them to target sed/patch). Without path, searches every page; with path, searches one page.",
+      parameters: z.object({
+        pattern: z
+          .string()
+          .describe("Regular expression to search for (JavaScript syntax)"),
+        path: z
+          .string()
+          .optional()
+          .describe("Limit the search to one page path (optional)"),
+        locale: wikiLocaleSchema,
+        ignoreCase: z.boolean().optional(),
+        maxResults: z
+          .number()
+          .optional()
+          .describe("Cap the matches (default 50)"),
+      }),
+    },
+  );
+}
+
+export function createCatTool(config: { adminUsername?: string | null }) {
+  return tool(
+    async ({
+      path,
+      numbered,
+      range,
+      locale,
+    }: {
+      path: string;
+      numbered?: boolean;
+      range?: string;
+      locale?: string;
+    }) => {
+      const denied = wikiDenied(config.adminUsername);
+      if (denied) return denied;
+      try {
+        const item = await getPageByPath(path);
+        if (!item) {
+          return JSON.stringify({
+            success: false,
+            error: `cat: ${path}: No such file or directory`,
+          });
+        }
+        const result = runCat(readPageContent(item.page, locale), {
+          numbered,
+          range,
+        });
+        return JSON.stringify({
+          success: result.ok,
+          path: item.page.path,
+          title: item.page.title,
+          output: result.output,
+          ...(result.error ? { error: result.error } : {}),
+        });
+      } catch (error) {
+        return wikiError("cat", error);
+      }
+    },
+    {
+      name: "cat",
+      description:
+        "Print a wiki page's markdown like cat. Use numbered: true (cat -n) to get line numbers for sed/patch edits, and range like '12-40' to read just one section.",
+      parameters: z.object({
+        path: z.string().describe("Page path, e.g. 'hormones/testosterone'"),
+        numbered: z
+          .boolean()
+          .optional()
+          .describe("Prefix lines with line numbers (like cat -n)"),
+        range: z
+          .string()
+          .optional()
+          .describe('Only print this line range, e.g. "12-40"'),
+        locale: wikiLocaleSchema,
+      }),
+    },
+  );
+}
+
+export function createSedTool(config: { adminUsername?: string | null }) {
+  return tool(
+    async ({
+      path,
+      script,
+      locale,
+    }: {
+      path: string;
+      script: string;
+      locale?: string;
+    }) => {
+      const denied = wikiDenied(config.adminUsername);
+      if (denied) return denied;
+      try {
+        const item = await getPageByPath(path);
+        if (!item) {
+          return JSON.stringify({
+            success: false,
+            error: `sed: ${path}: No such file or directory`,
+          });
+        }
+        const result = runSed(readPageContent(item.page, locale), script);
+        if (!result.ok) {
+          return JSON.stringify({ success: false, error: result.output });
+        }
+        if (result.changed === 0) {
+          return JSON.stringify({
+            success: true,
+            path: item.page.path,
+            title: item.page.title,
+            output: result.output,
+            changedLines: 0,
+          });
+        }
+        const updated = await writePageContent(
+          path,
+          result.content,
+          locale,
+          config.adminUsername,
+        );
+        return JSON.stringify({
+          success: true,
+          path: updated.page.path,
+          url: `/topics/${updated.page.path}`,
+          title: updated.page.title,
+          summary: updated.page.summary,
+          updatedFields: ["content"],
+          changedLines: result.changed,
+          output: result.output,
+        });
+      } catch (error) {
+        return wikiError("sed", error);
+      }
+    },
+    {
+      name: "sed",
+      description:
+        "Edit a wiki page in place like sed -i. Supports s/pattern/replacement/flags (g, i) and d, optional N,M line addresses, and ';' command lists. Supports &, \\1-\\9 and \\n in replacements. Examples: 's/old/new/g', '12,40s/old/new/gi', '12,20d', 's/a/b/;5,8d'. Small edits only — use patch for multi-hunk rewrites.",
+      parameters: z.object({
+        path: z.string().describe("Page path to edit"),
+        script: z
+          .string()
+          .describe("sed script, e.g. '12,40s/old/new/g' or '12,20d'"),
+        locale: wikiLocaleSchema,
+      }),
+    },
+  );
+}
+
+export function createPatchTool(config: { adminUsername?: string | null }) {
+  return tool(
+    async ({
+      path,
+      patch,
+      locale,
+    }: {
+      path: string;
+      patch: string;
+      locale?: string;
+    }) => {
+      const denied = wikiDenied(config.adminUsername);
+      if (denied) return denied;
+      try {
+        const item = await getPageByPath(path);
+        if (!item) {
+          return JSON.stringify({
+            success: false,
+            error: `patch: ${path}: No such file or directory`,
+          });
+        }
+        const result = applyUnifiedPatch(
+          readPageContent(item.page, locale),
+          patch,
+        );
+        if (!result.ok) {
+          return JSON.stringify({ success: false, error: result.output });
+        }
+        const updated = await writePageContent(
+          path,
+          result.content,
+          locale,
+          config.adminUsername,
+        );
+        return JSON.stringify({
+          success: true,
+          path: updated.page.path,
+          url: `/topics/${updated.page.path}`,
+          title: updated.page.title,
+          summary: updated.page.summary,
+          updatedFields: ["content"],
+          changedLines: result.changed,
+          output: result.output,
+        });
+      } catch (error) {
+        return wikiError("patch", error);
+      }
+    },
+    {
+      name: "patch",
+      description:
+        "Apply a unified diff to a wiki page in place — rewrite whole sections without sending the whole page. Write standard @@ -a,b +c,d @@ hunks with a few lines of unchanged context around each edit, based on the current content (from cat). Hunk context must match; on failure re-read the page and retry.",
+      parameters: z.object({
+        path: z.string().describe("Page path to patch"),
+        patch: z
+          .string()
+          .describe(
+            "Unified diff against the page content (one or more @@ hunks)",
+          ),
+        locale: wikiLocaleSchema,
       }),
     },
   );

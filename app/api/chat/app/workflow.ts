@@ -3,13 +3,17 @@ import { getTransCommentsIndex, getVideosIndex } from "@/app/lib/agents/data";
 import { initSettings } from "@/app/lib/agents/settings";
 import {
   createBanUserTool,
+  createCatTool,
   createCreatePageTool,
   createDeletePageTool,
   createGetStudiesTool,
+  createGrepTool,
   createListPagesTool,
+  createPatchTool,
   createQueryCommentsTool,
   createQueryTransCommentsTool,
   createQueryVideosTool,
+  createSedTool,
   createUpdatePageTool,
   createWebSearchTool,
 } from "@/app/lib/agents/tools";
@@ -87,6 +91,11 @@ export const workflowFactory = async (
       createCreatePageTool({ adminUsername }),
       createUpdatePageTool({ adminUsername }),
       createDeletePageTool({ adminUsername }),
+      // Unix-style section editing (grep/cat/sed/patch)
+      createGrepTool({ adminUsername }),
+      createCatTool({ adminUsername }),
+      createSedTool({ adminUsername }),
+      createPatchTool({ adminUsername }),
     );
   }
 
