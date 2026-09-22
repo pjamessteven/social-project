@@ -138,7 +138,7 @@ function PageLinkList({
   if (compact) {
     return (
       <section>
-        <h2 className="mt-2 mb-2 ml-2 text-sm font-semibold">{heading}</h2>
+        <h2 className="mt-2 mb-2 ml-2 text-sm font-semibold">{heading}:</h2>
         <ul className="space-y-0.5">
           {items.map((item) => (
             <li key={item.key}>
@@ -157,7 +157,7 @@ function PageLinkList({
 
   return (
     <section>
-      <h2 className="mb-3 text-xl font-semibold">{heading}</h2>
+      <h2 className="mb-3 text-xl font-semibold">{heading}:</h2>
       <ul className="space-y-2">
         {items.map((item) => (
           <li key={item.key}>
@@ -343,7 +343,7 @@ export default async function WikiTopicPage({
           {/* Related-page navigation: sidebar on desktop (see sidebarExtras),
               in the page body on mobile with a divider above */}
           {hasRelated && (
-            <div className="not-prose mt-10 border-t pt-8 lg:hidden">
+            <div className="not-prose mt-6 border-t pt-8 lg:hidden">
               <div className="space-y-8">
                 {childrenItems.length > 0 && (
                   <PageLinkList

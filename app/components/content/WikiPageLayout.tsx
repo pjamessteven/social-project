@@ -58,13 +58,13 @@ export function WikiPageLayout({
         {tocItems.length > 0 && (
           <SidebarGroup>
             <SidebarGroupContent>
-              <div className="mt-2 mb-1 ml-2 font-semibold">On this page</div>
+              <div className="mt-2 mb-1 ml-2 font-semibold">On this page:</div>
               <WikiTocLinks items={tocItems} variant="sidebar" />
             </SidebarGroupContent>
           </SidebarGroup>
         )}
         {sidebarExtras && (
-          <SidebarGroup>
+          <SidebarGroup className="pt-0">
             <SidebarGroupContent>
               <div className="bg-border mb-4 h-px" />
               {sidebarExtras}
@@ -84,7 +84,7 @@ export function WikiPageLayout({
             {tocItems.length > 0 && (
               <div className="prose-none bg-muted/50 mb-8 rounded-lg border p-4 lg:hidden">
                 <h3 className="mt-0 mb-3 text-sm font-semibold">
-                  On this page
+                  On this page:
                 </h3>
                 <WikiTocLinks items={tocItems} variant="mobile" />
               </div>
