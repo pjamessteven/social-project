@@ -139,12 +139,12 @@ function PageLinkList({
     return (
       <section>
         <h2 className="mt-2 mb-2 ml-2 text-sm font-semibold">{heading}</h2>
-        <ul className="space-y-1">
+        <ul className="space-y-0.5">
           {items.map((item) => (
             <li key={item.key}>
               <SidebarMenuButton
                 asChild
-                className="h-auto overflow-visible whitespace-normal"
+                className="h-auto overflow-visible py-1 whitespace-normal"
               >
                 <a href={item.href}>{item.title}</a>
               </SidebarMenuButton>

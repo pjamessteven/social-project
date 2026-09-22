@@ -1,24 +1,13 @@
 import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/app/components/ui/collapsible";
-import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
   SidebarProvider,
 } from "@/app/components/ui/sidebar";
 import type { WikiTocItem } from "@/app/lib/markdown";
-import { ChevronRight } from "lucide-react";
 import type { ReactNode } from "react";
+import { WikiTocLinks, type WikiTocNode } from "./WikiToc";
 
 /**
  * Support-page-style shell for wiki pages: desktop sidebar table of contents
@@ -36,16 +25,22 @@ export function WikiPageLayout({
   children: ReactNode;
 }) {
   // Group h3s under the preceding h2 (flat when no h2 exists)
-  const nested: Array<{ item: WikiTocItem; children: WikiTocItem[] }> = [];
+  const grouped: Array<{ item: WikiTocItem; children: WikiTocItem[] }> = [];
   for (const entry of toc) {
-    if (entry.level === 2 || nested.length === 0) {
-      nested.push({ item: entry, children: [] });
+    if (entry.level === 2 || grouped.length === 0) {
+      grouped.push({ item: entry, children: [] });
     } else {
-      nested[nested.length - 1].children.push(entry);
+      grouped[grouped.length - 1].children.push(entry);
     }
   }
 
-  if (!nested.length && !sidebarExtras) {
+  const tocItems: WikiTocNode[] = grouped.map(({ item, children }) => ({
+    id: item.id,
+    text: item.text,
+    children: children.map((child) => ({ id: child.id, text: child.text })),
+  }));
+
+  if (!tocItems.length && !sidebarExtras) {
     return (
       <div className="flex min-h-full w-full">
         <main className="w-full flex-1">
@@ -57,80 +52,14 @@ export function WikiPageLayout({
     );
   }
 
-  const jumpLinks = (
-    <div className="space-y-2">
-      {nested.map(({ item, children }) => (
-        <div key={item.id}>
-          <a
-            href={`#${item.id}`}
-            className="text-muted-foreground hover:text-foreground block text-sm"
-          >
-            {item.text}
-          </a>
-          {children.length > 0 && (
-            <div className="mt-2 ml-4 space-y-2">
-              {children.map((child) => (
-                <a
-                  key={child.id}
-                  href={`#${child.id}`}
-                  className="text-muted-foreground hover:text-foreground block text-sm"
-                >
-                  {child.text}
-                </a>
-              ))}
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-
   const sidebar = (
     <Sidebar className="to-secondary w-64 bg-gradient-to-b from-white dark:from-black">
       <SidebarContent>
-        {nested.length > 0 && (
+        {tocItems.length > 0 && (
           <SidebarGroup>
             <SidebarGroupContent>
-              <SidebarMenu className="gap-2">
-                <div className="mt-2 mb-1 ml-2 font-semibold">On this page</div>
-                {nested.map(({ item, children }) => (
-                  <SidebarMenuItem key={item.id}>
-                    {children.length > 0 ? (
-                      <Collapsible defaultOpen className="group/collapsible">
-                        <CollapsibleTrigger asChild>
-                          <SidebarMenuButton className="h-auto w-full justify-between overflow-visible whitespace-normal">
-                            <a href={`#${item.id}`} className="flex-1">
-                              {item.text}
-                            </a>
-                            <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
-                          </SidebarMenuButton>
-                        </CollapsibleTrigger>
-                        <CollapsibleContent>
-                          <SidebarMenuSub className="mt-2 gap-2">
-                            {children.map((child) => (
-                              <SidebarMenuSubItem key={child.id}>
-                                <SidebarMenuSubButton
-                                  asChild
-                                  className="h-auto overflow-visible whitespace-normal"
-                                >
-                                  <a href={`#${child.id}`}>{child.text}</a>
-                                </SidebarMenuSubButton>
-                              </SidebarMenuSubItem>
-                            ))}
-                          </SidebarMenuSub>
-                        </CollapsibleContent>
-                      </Collapsible>
-                    ) : (
-                      <SidebarMenuButton
-                        asChild
-                        className="h-auto overflow-visible whitespace-normal"
-                      >
-                        <a href={`#${item.id}`}>{item.text}</a>
-                      </SidebarMenuButton>
-                    )}
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
+              <div className="mt-2 mb-1 ml-2 font-semibold">On this page</div>
+              <WikiTocLinks items={tocItems} variant="sidebar" />
             </SidebarGroupContent>
           </SidebarGroup>
         )}
@@ -152,12 +81,12 @@ export function WikiPageLayout({
         <div className="hidden lg:block">{sidebar}</div>
         <main className="w-full flex-1">
           <div className="prose dark:prose-invert w-full pb-16 lg:pt-8 [&_.wiki-callout_p]:my-1 [&_.wiki-callout>*:first-child]:mt-0 [&_.wiki-callout>*:last-child]:mb-0 [&_details]:cursor-pointer [&_summary]:cursor-pointer">
-            {nested.length > 0 && (
+            {tocItems.length > 0 && (
               <div className="prose-none bg-muted/50 mb-8 rounded-lg border p-4 lg:hidden">
                 <h3 className="mt-0 mb-3 text-sm font-semibold">
                   On this page
                 </h3>
-                {jumpLinks}
+                <WikiTocLinks items={tocItems} variant="mobile" />
               </div>
             )}
             {children}
