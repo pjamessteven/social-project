@@ -252,7 +252,8 @@
       "webSearch": "वेब खोज",
       "queryStudyCatalogue": "डीट्रांजिशन अध्ययन कैटलॉग क्वेरी करें",
       "studyDetail": "अध्ययन विवरण",
-      "askTransPeople": "ट्रांस-पहचान वाले लोगों से पूछें"
+      "askTransPeople": "ट्रांस-पहचान वाले लोगों से पूछें",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "वीडियो का विश्लेषण"
@@ -262,7 +263,8 @@
       "invalidYoutubeUrl": "अमान्य YouTube URL",
       "webSearchFailed": "वेब खोज विफल",
       "failedToFetchStudies": "अध्ययन प्राप्त करना विफल",
-      "failedToFetchStudy": "अध्ययन प्राप्त करना विफल"
+      "failedToFetchStudy": "अध्ययन प्राप्त करना विफल",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "कोई वीडियो नहीं मिला",
@@ -289,7 +291,10 @@
   },
   "chatInput": {
     "placeholder": "detrans.ai से पूछें...",
-    "suggestions": "सुझाव:"
+    "suggestions": "सुझाव:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "हाल की वार्तालाप",

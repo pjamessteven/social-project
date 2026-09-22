@@ -251,7 +251,8 @@
       "webSearch": "Web zoeken",
       "queryStudyCatalogue": "Detransitie Studiecatalogus doorzoeken",
       "studyDetail": "Studiedetails",
-      "askTransPeople": "Vraag Trans-geïdentificeerde Mensen"
+      "askTransPeople": "Vraag Trans-geïdentificeerde Mensen",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Video's analyseren"
@@ -261,7 +262,8 @@
       "invalidYoutubeUrl": "Ongeldige YouTube-URL",
       "webSearchFailed": "Web zoeken mislukt",
       "failedToFetchStudies": "Studies ophalen mislukt",
-      "failedToFetchStudy": "Studie ophalen mislukt"
+      "failedToFetchStudy": "Studie ophalen mislukt",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Geen video's gevonden",
@@ -288,7 +290,10 @@
   },
   "chatInput": {
     "placeholder": "Vraag detrans.ai...",
-    "suggestions": "Suggesties:"
+    "suggestions": "Suggesties:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Recente Gesprekken",

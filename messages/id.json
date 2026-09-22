@@ -253,7 +253,8 @@
       "webSearch": "Pencarian Web",
       "queryStudyCatalogue": "Kueri Katalog Studi Detransisi",
       "studyDetail": "Detail Studi",
-      "askTransPeople": "Tanyakan kepada Orang yang Mengidentifikasi sebagai Trans"
+      "askTransPeople": "Tanyakan kepada Orang yang Mengidentifikasi sebagai Trans",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Menganalisis Video"
@@ -263,7 +264,8 @@
       "invalidYoutubeUrl": "URL YouTube tidak valid",
       "webSearchFailed": "Pencarian web gagal",
       "failedToFetchStudies": "Gagal mengambil studi",
-      "failedToFetchStudy": "Gagal mengambil studi"
+      "failedToFetchStudy": "Gagal mengambil studi",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Tidak ada video ditemukan",
@@ -290,7 +292,10 @@
   },
   "chatInput": {
     "placeholder": "Tanyakan detrans.ai...",
-    "suggestions": "Saran:"
+    "suggestions": "Saran:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Percakapan Terbaru",

@@ -252,7 +252,8 @@
       "queryStudies": "שאילתת מחקרים",
       "webSearch": "חיפוש באינטרנט",
       "queryStudyCatalogue": "שאילתת קטלוג מחקרי דטרנזישן",
-      "studyDetail": "פרטי מחקר"
+      "studyDetail": "פרטי מחקר",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "מנתח סרטונים"
@@ -262,7 +263,8 @@
       "invalidYoutubeUrl": "כתובת URL לא חוקית של YouTube",
       "webSearchFailed": "חיפוש באינטרנט נכשל",
       "failedToFetchStudies": "הבאת מחקרים נכשלה",
-      "failedToFetchStudy": "הבאת מחקר נכשלה"
+      "failedToFetchStudy": "הבאת מחקר נכשלה",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "לא נמצאו סרטונים",
@@ -289,7 +291,10 @@
   },
   "chatInput": {
     "placeholder": "שאל/י את detrans.ai...",
-    "suggestions": "הצעות:"
+    "suggestions": "הצעות:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "שיחות אחרונות",

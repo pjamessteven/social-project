@@ -253,7 +253,8 @@
       "queryStudies": "Poizvedba po študijah",
       "webSearch": "Iskanje po spletu",
       "queryStudyCatalogue": "Poizvedba po katalogu študij detranzicije",
-      "studyDetail": "Podrobnosti študije"
+      "studyDetail": "Podrobnosti študije",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Analiziranje videov"
@@ -263,7 +264,8 @@
       "invalidYoutubeUrl": "Neveljaven URL YouTuba",
       "webSearchFailed": "Iskanje po spletu ni uspelo",
       "failedToFetchStudies": "Pridobivanje študij ni uspelo",
-      "failedToFetchStudy": "Pridobivanje študije ni uspelo"
+      "failedToFetchStudy": "Pridobivanje študije ni uspelo",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Ni najdenih videov",
@@ -290,7 +292,10 @@
   },
   "chatInput": {
     "placeholder": "Vprašajte detrans.ai...",
-    "suggestions": "Predlogi:"
+    "suggestions": "Predlogi:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Nedavni pogovori",

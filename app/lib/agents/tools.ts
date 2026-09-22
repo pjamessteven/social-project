@@ -1,4 +1,10 @@
 import { banIp, isIpBanned } from "@/app/lib/ipBan";
+import {
+  createPage,
+  deletePage,
+  listPagesTree,
+  updatePage,
+} from "@/app/lib/pages";
 import { db } from "@/db";
 import { studies, studyTagRelations, studyTags } from "@/db/schema";
 import { eq, inArray, sql } from "drizzle-orm";
@@ -24,7 +30,6 @@ export function createQueryCommentsTool(config: ToolConfig) {
 
   return tool(
     async ({ query, keyword }: { query: string; keyword?: string }) => {
-
       const cacheKey = `tool:queryComments:${JSON.stringify({ query, keyword })}`;
       const hashedKey = makeHashedKey(cacheKey);
       const cachedResult = await cache.get(hashedKey);
@@ -231,7 +236,6 @@ export function createWebSearchTool(config: WebSearchToolConfig) {
 
   return tool(
     async ({ query, count = 10 }: { query: string; count?: number }) => {
-
       const cacheKey = `tool:webSearch:${JSON.stringify({ query, count })}`;
       const hashedKey = makeHashedKey(cacheKey);
       const cachedResult = await cache.get(hashedKey);
@@ -471,6 +475,265 @@ export function createBanUserTool(config: BanUserToolConfig) {
           description:
             "A brief reason for the ban (e.g. 'Spamming malicious prompts', 'Off topic', 'Harassment')",
         }),
+      }),
+    },
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Wiki page tools (admin-only, wiki update mode)
+//
+// These tools are STATEFUL: they intentionally do NOT use the tool-result
+// cache used by the query tools — a cached update/delete would silently skip
+// execution. Registration is gated by wiki mode + admin in the workflow; the
+// handlers re-check the admin identity passed from the request session.
+// ---------------------------------------------------------------------------
+
+const wikiTranslationsSchema = z
+  .record(
+    z.string(),
+    z.object({
+      slug: z
+        .string()
+        .optional()
+        .describe(
+          "Translated URL slug segment for this locale (lowercase, hyphenated)",
+        ),
+      title: z.string().optional(),
+      summary: z.string().optional(),
+      content: z
+        .string()
+        .optional()
+        .describe("Full markdown content in this locale"),
+    }),
+  )
+  .describe(
+    'Optional per-locale translations keyed by locale code, e.g. { "de": { "slug": "hormone", "title": "...", "summary": "...", "content": "..." } }',
+  );
+
+function wikiDenied(adminUsername?: string | null): string | null {
+  if (adminUsername) return null;
+  return JSON.stringify({
+    success: false,
+    error: "Admin access required for wiki page tools",
+  });
+}
+
+function wikiError(action: string, error: unknown): string {
+  const message = error instanceof Error ? error.message : "Unknown error";
+  console.error(`[wiki:${action}]`, error);
+  return JSON.stringify({ success: false, error: message });
+}
+
+export function createListPagesTool(config: { adminUsername?: string | null }) {
+  return tool(
+    async ({ includeDrafts }: { includeDrafts?: boolean }) => {
+      const denied = wikiDenied(config.adminUsername);
+      if (denied) return denied;
+      try {
+        const { tree, total, truncated } = await listPagesTree({
+          includeDrafts: includeDrafts ?? false,
+        });
+        return JSON.stringify({ success: true, total, truncated, pages: tree });
+      } catch (error) {
+        return wikiError("listPages", error);
+      }
+    },
+    {
+      name: "listPages",
+      description:
+        "List the site's wiki pages as a nested tree (children nested under parents). Each page has its path, URL path under /topics, summary, stub flag, and localized paths where translated slugs exist. Use this FIRST to see what exists, avoid duplicates, and pick internal link targets. Never includes full page content.",
+      parameters: z.object({
+        includeDrafts: z
+          .boolean()
+          .optional()
+          .describe(
+            "Include unpublished draft pages in the listing (default false)",
+          ),
+      }),
+    },
+  );
+}
+
+export function createCreatePageTool(config: {
+  adminUsername?: string | null;
+}) {
+  return tool(
+    async ({
+      path,
+      title,
+      summary,
+      content,
+      translations,
+      publish,
+      stub,
+    }: {
+      path: string;
+      title: string;
+      summary: string;
+      content: string;
+      translations?: Record<
+        string,
+        { slug?: string; title?: string; summary?: string; content?: string }
+      >;
+      publish?: boolean;
+      stub?: boolean;
+    }) => {
+      const denied = wikiDenied(config.adminUsername);
+      if (denied) return denied;
+      try {
+        const created = await createPage({
+          path,
+          title,
+          summary,
+          content,
+          translations,
+          publish,
+          stub,
+          createdBy: config.adminUsername,
+        });
+        return JSON.stringify({
+          success: true,
+          path: created.page.path,
+          url: `/topics/${created.page.path}`,
+          published: created.page.published,
+          isStub: created.page.isStub,
+          localizedPaths: created.slugs,
+        });
+      } catch (error) {
+        return wikiError("createPage", error);
+      }
+    },
+    {
+      name: "createPage",
+      description:
+        'Create a new wiki page at a (optionally nested) path — e.g. "hormones" or "hormones/testosterone". Pages are markdown, written like the site\'s support page: clear ## / ### sections, tables, and <details><summary> blocks for References and optional deep dives. Link to other existing pages (use listPages paths). Nests under an existing parent when the path prefix matches one. If a worthy topic has no page yet, create a stub (stub: true) with its basics instead of leaving a dead link. Provide translations (slug/title/summary/content) where you can; they fall back to the default locale.',
+      parameters: z.object({
+        path: z
+          .string()
+          .describe(
+            'Full page path, e.g. "hormones" or "hormones/testosterone" (max 6 nested segments; segments are slugified automatically)',
+          ),
+        title: z.string().describe("Page title (default locale)"),
+        summary: z
+          .string()
+          .describe(
+            "Short 1-2 sentence summary of the page — powers its SEO meta description and appears in page listings",
+          ),
+        content: z.string().describe("Full markdown content (default locale)"),
+        translations: wikiTranslationsSchema.optional(),
+        publish: z
+          .boolean()
+          .optional()
+          .describe(
+            "Publish immediately (default true); pass false for a draft",
+          ),
+        stub: z
+          .boolean()
+          .optional()
+          .describe(
+            "Mark as a stub page: a short placeholder for a worthy topic that does not exist yet",
+          ),
+      }),
+    },
+  );
+}
+
+export function createUpdatePageTool(config: {
+  adminUsername?: string | null;
+}) {
+  return tool(
+    async ({
+      path,
+      newPath,
+      title,
+      summary,
+      content,
+      translations,
+      publish,
+      stub,
+    }: {
+      path: string;
+      newPath?: string;
+      title?: string;
+      summary?: string;
+      content?: string;
+      translations?: Record<
+        string,
+        { slug?: string; title?: string; summary?: string; content?: string }
+      >;
+      publish?: boolean;
+      stub?: boolean;
+    }) => {
+      const denied = wikiDenied(config.adminUsername);
+      if (denied) return denied;
+      try {
+        const updated = await updatePage(path, {
+          newPath,
+          title,
+          summary,
+          content,
+          translations,
+          publish,
+          stub,
+          updatedBy: config.adminUsername,
+        });
+        return JSON.stringify({
+          success: true,
+          path: updated.page.path,
+          url: `/topics/${updated.page.path}`,
+          published: updated.page.published,
+          isStub: updated.page.isStub,
+          localizedPaths: updated.slugs,
+        });
+      } catch (error) {
+        return wikiError("updatePage", error);
+      }
+    },
+    {
+      name: "updatePage",
+      description:
+        'Update an existing wiki page (partial update — only the fields you pass are changed). Identify the page by its existing path. Use newPath to move/rename it (descendant paths update automatically). Existing translations are merged; pass a blank slug ("" ) to remove a locale\'s translated slug. Prefer updating/extending existing pages over creating duplicates.',
+      parameters: z.object({
+        path: z.string().describe("Existing page path"),
+        newPath: z
+          .string()
+          .optional()
+          .describe("New path if moving/renaming the page"),
+        title: z.string().optional(),
+        summary: z.string().optional(),
+        content: z.string().optional().describe("Replacement markdown content"),
+        translations: wikiTranslationsSchema.optional(),
+        publish: z.boolean().optional(),
+        stub: z
+          .boolean()
+          .optional()
+          .describe("Set false once a stub has been expanded into a full page"),
+      }),
+    },
+  );
+}
+
+export function createDeletePageTool(config: {
+  adminUsername?: string | null;
+}) {
+  return tool(
+    async ({ path }: { path: string }) => {
+      const denied = wikiDenied(config.adminUsername);
+      if (denied) return denied;
+      try {
+        await deletePage(path);
+        return JSON.stringify({ success: true, deleted: path });
+      } catch (error) {
+        return wikiError("deletePage", error);
+      }
+    },
+    {
+      name: "deletePage",
+      description:
+        "Delete a wiki page (child pages are kept and become top-level pages). Only use this for pages that should not exist (spam, duplicates, out-of-scope). Prefer updating or unpublishing otherwise.",
+      parameters: z.object({
+        path: z.string().describe("Page path to delete"),
       }),
     },
   );

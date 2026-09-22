@@ -11,6 +11,7 @@ import {
   TransCommentQueryEventPart,
   VideoQueryEventPart,
   WebSearchEventPart,
+  WikiPageEventPart,
 } from "./tool-components/EventParts";
 
 /**
@@ -46,6 +47,7 @@ export function ChatMessageContent({
         <TransCommentQueryEventPart />
         <WebSearchEventPart />
         <GetStudiesEventPart />
+        <WikiPageEventPart />
         <QuestionsEventPart />
       </ChatMessage.Content>
     </div>

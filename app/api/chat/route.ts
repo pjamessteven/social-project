@@ -35,6 +35,7 @@ const chatRequestSchema = z.object({
   locale: z.string().optional(),
   id: z.string().optional(),
   includeTransPerspectives: z.boolean().optional(),
+  wikiMode: z.boolean().optional(),
 });
 
 // How long the route waits for the LLM captcha gate to decide before assuming
@@ -95,7 +96,17 @@ export async function POST(req: NextRequest) {
       locale,
       id: requestId,
       includeTransPerspectives,
+      wikiMode,
     } = validationResult.data;
+
+    // Admin-only chat modes: silently coerce off for non-admin sessions so
+    // regular users are never blocked or told about restricted features.
+    const isAdminUser = session?.role === "admin";
+    const adminUsername = isAdminUser ? (session?.username ?? null) : null;
+    const effectiveIncludeTransPerspectives = isAdminUser
+      ? (includeTransPerspectives ?? false)
+      : false;
+    const effectiveWikiMode = isAdminUser && wikiMode === true;
 
     let userInput = message;
 
@@ -271,8 +282,10 @@ export async function POST(req: NextRequest) {
         userMessages.length,
         locale,
         ipAddress,
-        includeTransPerspectives,
+        effectiveIncludeTransPerspectives,
         enforceCaptcha,
+        adminUsername,
+        effectiveWikiMode,
       );
 
       const context = await runWorkflow({
@@ -333,7 +346,7 @@ export async function POST(req: NextRequest) {
                 messages,
                 ipAddress,
                 username,
-                includeTransPerspectives,
+                effectiveIncludeTransPerspectives,
               ),
             );
             // Increment conversation message count for CAPTCHA tracking only

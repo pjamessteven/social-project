@@ -244,7 +244,8 @@
       "queryStudies": "Buscar Estudios",
       "webSearch": "Búsqueda Web",
       "queryStudyCatalogue": "Consultar Catálogo de Estudios de Destransición",
-      "studyDetail": "Detalle del Estudio"
+      "studyDetail": "Detalle del Estudio",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Analizando Videos"
@@ -254,7 +255,8 @@
       "invalidYoutubeUrl": "URL de YouTube no válida",
       "webSearchFailed": "Error en la búsqueda web",
       "failedToFetchStudies": "Error al obtener estudios",
-      "failedToFetchStudy": "Error al obtener el estudio"
+      "failedToFetchStudy": "Error al obtener el estudio",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "No se encontraron videos",
@@ -281,7 +283,10 @@
   },
   "chatInput": {
     "placeholder": "Pregunta a detrans.ai...",
-    "suggestions": "Sugerencias:"
+    "suggestions": "Sugerencias:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Conversaciones Recientes",

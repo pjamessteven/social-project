@@ -1,3 +1,4 @@
+import { buildLocalizedAlternates, SITE_URL } from "@/app/lib/seo";
 import { locales } from "@/i18n/routing";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -54,6 +55,10 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
+    alternates: {
+      canonical: `${SITE_URL}/${locale}`,
+      languages: buildLocalizedAlternates("/"),
+    },
   };
 }
 

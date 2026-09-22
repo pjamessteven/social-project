@@ -4,4 +4,5 @@ export {
   SummaryPrompt,
   chatAgentPrompt as agentPrompt,
   questionPrompt,
+  wikiUpdateModePrompt,
 } from "../../../lib/prompts";

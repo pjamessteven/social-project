@@ -253,7 +253,8 @@
       "queryStudies": "Caută studii",
       "webSearch": "Căutare pe web",
       "queryStudyCatalogue": "Caută în catalogul de studii despre detransiție",
-      "studyDetail": "Detalii studiu"
+      "studyDetail": "Detalii studiu",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Se analizează videoclipurile"
@@ -263,7 +264,8 @@
       "invalidYoutubeUrl": "URL YouTube invalid",
       "webSearchFailed": "Căutarea pe web a eșuat",
       "failedToFetchStudies": "Nu s-au putut prelua studiile",
-      "failedToFetchStudy": "Nu s-a putut prelua studiul"
+      "failedToFetchStudy": "Nu s-a putut prelua studiul",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Nu s-au găsit videoclipuri",
@@ -290,7 +292,10 @@
   },
   "chatInput": {
     "placeholder": "Întreabă detrans.ai...",
-    "suggestions": "Sugestii:"
+    "suggestions": "Sugestii:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Conversații Recente",

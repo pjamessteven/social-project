@@ -252,7 +252,8 @@
       "queryStudies": "查询研究",
       "webSearch": "网络搜索",
       "queryStudyCatalogue": "查询去过渡研究目录",
-      "studyDetail": "研究详情"
+      "studyDetail": "研究详情",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "正在分析视频"
@@ -262,7 +263,8 @@
       "invalidYoutubeUrl": "无效的YouTube URL",
       "webSearchFailed": "网络搜索失败",
       "failedToFetchStudies": "获取研究失败",
-      "failedToFetchStudy": "获取研究失败"
+      "failedToFetchStudy": "获取研究失败",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "未找到视频",
@@ -289,7 +291,10 @@
   },
   "chatInput": {
     "placeholder": "询问detrans.ai...",
-    "suggestions": "建议："
+    "suggestions": "建议：",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "最近对话",

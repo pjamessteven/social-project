@@ -253,7 +253,8 @@
       "queryStudies": "Truy Vấn Nghiên Cứu",
       "webSearch": "Tìm Kiếm Web",
       "queryStudyCatalogue": "Truy Vấn Danh Mục Nghiên Cứu Chuyển Giới Trở Lại",
-      "studyDetail": "Chi Tiết Nghiên Cứu"
+      "studyDetail": "Chi Tiết Nghiên Cứu",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Đang Phân Tích Video"
@@ -263,7 +264,8 @@
       "invalidYoutubeUrl": "URL YouTube không hợp lệ",
       "webSearchFailed": "Tìm kiếm web thất bại",
       "failedToFetchStudies": "Lấy nghiên cứu thất bại",
-      "failedToFetchStudy": "Lấy nghiên cứu thất bại"
+      "failedToFetchStudy": "Lấy nghiên cứu thất bại",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Không tìm thấy video",
@@ -290,7 +292,10 @@
   },
   "chatInput": {
     "placeholder": "Hỏi detrans.ai...",
-    "suggestions": "Gợi ý:"
+    "suggestions": "Gợi ý:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Cuộc Trò Chuyện Gần Đây",

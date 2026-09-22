@@ -253,7 +253,8 @@
       "webSearch": "Paieška internete",
       "queryStudyCatalogue": "Detranzicijos tyrimų katalogo užklausa",
       "studyDetail": "Tyrimo detalės",
-      "askTransPeople": "Klausti translyčių asmenų"
+      "askTransPeople": "Klausti translyčių asmenų",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Analizuojami vaizdo įrašai"
@@ -263,7 +264,8 @@
       "invalidYoutubeUrl": "Neteisingas YouTube URL",
       "webSearchFailed": "Interneto paieška nepavyko",
       "failedToFetchStudies": "Nepavyko gauti tyrimų",
-      "failedToFetchStudy": "Nepavyko gauti tyrimo"
+      "failedToFetchStudy": "Nepavyko gauti tyrimo",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Vaizdo įrašų nerasta",
@@ -290,7 +292,10 @@
   },
   "chatInput": {
     "placeholder": "Klauskite detrans.ai...",
-    "suggestions": "Pasiūlymai:"
+    "suggestions": "Pasiūlymai:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Naujausi pokalbiai",

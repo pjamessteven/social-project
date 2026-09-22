@@ -558,3 +558,146 @@ export function QuestionsEventPart() {
     </div>
   );
 }
+
+// =====================
+// Wiki page events (admin-only wiki update mode)
+// =====================
+
+interface WikiTreeNode {
+  title: string;
+  path: string;
+  published?: boolean;
+  isStub?: boolean;
+  children?: WikiTreeNode[];
+}
+
+function WikiStubBadge() {
+  return (
+    <span className="ml-1.5 rounded bg-amber-100 px-1.5 py-0.5 text-[10px] font-medium text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
+      stub
+    </span>
+  );
+}
+
+function WikiTreeList({
+  nodes,
+  locale,
+  depth = 0,
+}: {
+  nodes: WikiTreeNode[];
+  locale: string;
+  depth?: number;
+}) {
+  return (
+    <ul className={depth ? "mt-1 ml-4 space-y-1" : "space-y-1"}>
+      {nodes.map((node) => (
+        <li key={node.path}>
+          <a
+            href={`/${locale}/topics/${node.path}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-blue-600 hover:underline dark:text-blue-400"
+          >
+            {node.title}
+          </a>
+          <span className="text-muted-foreground ml-1.5">/{node.path}</span>
+          {node.published === false && (
+            <span className="text-muted-foreground ml-1.5">(draft)</span>
+          )}
+          {node.isStub && <WikiStubBadge />}
+          {node.children && node.children.length > 0 && (
+            <WikiTreeList
+              nodes={node.children}
+              locale={locale}
+              depth={depth + 1}
+            />
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export function WikiPageEventPart() {
+  const eventPart = usePart<EventPartData>("data-wiki-page-event");
+  const locale = useLocale();
+  const t = useTranslations("chat");
+
+  const parsed = useMemo(
+    () => parseResult(eventPart?.data?.result),
+    [eventPart?.data?.result],
+  );
+
+  if (!eventPart) return null;
+
+  const isPending = !eventPart.data.status;
+  const isError =
+    eventPart.data.status === "error" || parsed?.success === false;
+  const isSuccess = !isPending && !isError;
+  const errorMessage: string | undefined = parsed?.error;
+  const path: string | undefined = parsed?.path ?? eventPart.data.query;
+  const pages: WikiTreeNode[] | undefined = parsed?.pages;
+
+  return (
+    <EventWrapper
+      eventType="data-wiki-page-event"
+      label={t("eventLabels.wikiPage")}
+      query={path || undefined}
+      disableExpand
+    >
+      <div className="not-prose my-2 w-full text-xs">
+        {isSuccess && path && (
+          <div className="bg-muted/50 rounded border px-3 py-2">
+            <a
+              href={`/${locale}/topics/${path}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-blue-600 hover:underline dark:text-blue-400"
+            >
+              /{path}
+            </a>
+            {parsed?.published === false && (
+              <span className="text-muted-foreground ml-1.5">(draft)</span>
+            )}
+            {parsed?.isStub && <WikiStubBadge />}
+          </div>
+        )}
+
+        {isSuccess && Array.isArray(pages) && pages.length > 0 && (
+          <div className="bg-muted/50 rounded border px-3 py-2">
+            <WikiTreeList nodes={pages} locale={locale} />
+            {parsed?.truncated && (
+              <div className="text-muted-foreground mt-1">
+                +{Math.max(0, (parsed.total ?? 0) - countTreeNodes(pages))} more
+                pages (truncated)
+              </div>
+            )}
+          </div>
+        )}
+
+        {isSuccess && Array.isArray(pages) && pages.length === 0 && (
+          <div className="bg-muted/50 text-muted-foreground rounded border px-3 py-2">
+            No pages yet.
+          </div>
+        )}
+
+        {isError && (
+          <div className="mt-1 rounded border border-red-200 bg-red-50 px-3 py-2 text-red-700 dark:border-red-900/30 dark:bg-red-950/20 dark:text-red-300">
+            <div className="flex items-center gap-1 font-medium">
+              <AlertCircle className="h-3 w-3" />
+              {errorMessage || t("eventErrors.wikiPageFailed")}
+            </div>
+          </div>
+        )}
+      </div>
+    </EventWrapper>
+  );
+}
+
+function countTreeNodes(nodes: WikiTreeNode[]): number {
+  return nodes.reduce(
+    (total, node) =>
+      total + 1 + (node.children ? countTreeNodes(node.children) : 0),
+    0,
+  );
+}

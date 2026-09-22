@@ -255,7 +255,8 @@
       "queryStudies": "Αναζήτηση Μελετών",
       "webSearch": "Αναζήτηση στο Web",
       "queryStudyCatalogue": "Ερώτημα στον Κατάλογο Μελετών Αποχώρησης",
-      "studyDetail": "Λεπτομέρειες Μελέτης"
+      "studyDetail": "Λεπτομέρειες Μελέτης",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Ανάλυση Βίντεο"
@@ -265,7 +266,8 @@
       "invalidYoutubeUrl": "Μη έγκυρο URL YouTube",
       "webSearchFailed": "Η αναζήτηση στο web απέτυχε",
       "failedToFetchStudies": "Αποτυχία λήψης μελετών",
-      "failedToFetchStudy": "Αποτυχία λήψης μελέτης"
+      "failedToFetchStudy": "Αποτυχία λήψης μελέτης",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Δεν βρέθηκαν βίντεο",
@@ -292,7 +294,10 @@
   },
   "chatInput": {
     "placeholder": "Ρώτησε το detrans.ai...",
-    "suggestions": "Προτάσεις:"
+    "suggestions": "Προτάσεις:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Πρόσφατες Συνομιλίες",

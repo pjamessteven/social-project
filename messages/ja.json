@@ -250,7 +250,8 @@
       "webSearch": "Web検索",
       "queryStudyCatalogue": "デトランジション研究カタログを検索",
       "studyDetail": "研究詳細",
-      "askTransPeople": "トランスと識別する人々に聞く"
+      "askTransPeople": "トランスと識別する人々に聞く",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "動画を分析中"
@@ -260,7 +261,8 @@
       "invalidYoutubeUrl": "無効なYouTube URL",
       "webSearchFailed": "Web検索に失敗しました",
       "failedToFetchStudies": "研究の取得に失敗しました",
-      "failedToFetchStudy": "研究の取得に失敗しました"
+      "failedToFetchStudy": "研究の取得に失敗しました",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "動画が見つかりません",
@@ -287,7 +289,10 @@
   },
   "chatInput": {
     "placeholder": "detrans.aiに質問...",
-    "suggestions": "提案："
+    "suggestions": "提案：",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "最近の会話",

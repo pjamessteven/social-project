@@ -249,7 +249,8 @@
       "queryStudies": "Interroger les Études",
       "webSearch": "Recherche Web",
       "queryStudyCatalogue": "Interroger le Catalogue d'Études sur la Détransition",
-      "studyDetail": "Détail de l'Étude"
+      "studyDetail": "Détail de l'Étude",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Analyse des Vidéos"
@@ -259,7 +260,8 @@
       "invalidYoutubeUrl": "URL YouTube invalide",
       "webSearchFailed": "La recherche web a échoué",
       "failedToFetchStudies": "Échec de la récupération des études",
-      "failedToFetchStudy": "Échec de la récupération de l'étude"
+      "failedToFetchStudy": "Échec de la récupération de l'étude",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Aucune vidéo trouvée",
@@ -286,7 +288,10 @@
   },
   "chatInput": {
     "placeholder": "Demandez à detrans.ai...",
-    "suggestions": "Suggestions :"
+    "suggestions": "Suggestions :",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Conversations Récentes",

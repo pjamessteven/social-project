@@ -709,6 +709,41 @@ export const pathnames = {
     "zh-cn": "/topic/[id]",
     "zh-tw": "/topic/[id]",
   },
+  "/topics/[...slug]": {
+    en: "/topics/[...slug]",
+    ar: "/topics/[...slug]",
+    bg: "/topics/[...slug]",
+    cz: "/topics/[...slug]",
+    da: "/topics/[...slug]",
+    de: "/topics/[...slug]",
+    el: "/topics/[...slug]",
+    es: "/topics/[...slug]",
+    fa: "/topics/[...slug]",
+    fi: "/topics/[...slug]",
+    fr: "/topics/[...slug]",
+    he: "/topics/[...slug]",
+    hi: "/topics/[...slug]",
+    hu: "/topics/[...slug]",
+    id: "/topics/[...slug]",
+    it: "/topics/[...slug]",
+    ja: "/topics/[...slug]",
+    ko: "/topics/[...slug]",
+    lt: "/topics/[...slug]",
+    nl: "/topics/[...slug]",
+    no: "/topics/[...slug]",
+    pl: "/topics/[...slug]",
+    pt: "/topics/[...slug]",
+    ro: "/topics/[...slug]",
+    ru: "/topics/[...slug]",
+    sl: "/topics/[...slug]",
+    sv: "/topics/[...slug]",
+    th: "/topics/[...slug]",
+    tr: "/topics/[...slug]",
+    uk: "/topics/[...slug]",
+    vi: "/topics/[...slug]",
+    "zh-cn": "/topics/[...slug]",
+    "zh-tw": "/topics/[...slug]",
+  },
 } as const;
 
 export const routing = defineRouting({
@@ -716,6 +751,11 @@ export const routing = defineRouting({
   defaultLocale,
   localePrefix: "always", // Use "as-needed" if you don't want /en in URL for default locale
   pathnames,
+  // Hreflang alternates are defined per-page in `generateMetadata`
+  // (verified across the site's content routes). next-intl's automatic
+  // alternate links are generated from route *patterns* and produce broken
+  // URLs for dynamic routes (e.g. `/topics/[...slug]`, `/videos/[slug]`).
+  alternateLinks: false,
 });
 
 // Lightweight wrappers around Next.js' navigation APIs

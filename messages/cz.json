@@ -254,7 +254,8 @@
       "queryStudies": "Vyhledat studie",
       "webSearch": "Vyhledávání na webu",
       "queryStudyCatalogue": "Dotaz na katalog studií o detranzici",
-      "studyDetail": "Detail studie"
+      "studyDetail": "Detail studie",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Analyzování videí"
@@ -264,7 +265,8 @@
       "invalidYoutubeUrl": "Neplatná YouTube URL",
       "webSearchFailed": "Vyhledávání na webu selhalo",
       "failedToFetchStudies": "Načtení studií selhalo",
-      "failedToFetchStudy": "Načtení studie selhalo"
+      "failedToFetchStudy": "Načtení studie selhalo",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Žádná videa nenalezena",
@@ -291,7 +293,10 @@
   },
   "chatInput": {
     "placeholder": "Zeptejte se detrans.ai...",
-    "suggestions": "Návrhy:"
+    "suggestions": "Návrhy:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Nedávné konverzace",

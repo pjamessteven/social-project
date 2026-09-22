@@ -78,6 +78,28 @@ const TOOL_UI_MAP: Record<
     titleEnd: "Studies loaded",
     displayQuery: "none",
   },
+  // Wiki page tools (admin-only, wiki update mode)
+  listPages: {
+    type: "data-wiki-page-event",
+    titleStart: "Listing wiki pages...",
+    titleEnd: "Listed wiki pages",
+    displayQuery: "none",
+  },
+  createPage: {
+    type: "data-wiki-page-event",
+    titleStart: "Creating wiki page...",
+    titleEnd: "Created wiki page",
+  },
+  updatePage: {
+    type: "data-wiki-page-event",
+    titleStart: "Updating wiki page...",
+    titleEnd: "Updated wiki page",
+  },
+  deletePage: {
+    type: "data-wiki-page-event",
+    titleStart: "Deleting wiki page...",
+    titleEnd: "Deleted wiki page",
+  },
 };
 
 /**
@@ -92,7 +114,7 @@ function extractDisplayQuery(
 
   // Find the primary query string
   let query = "";
-  for (const key of ["query", "name", "slug", "title"]) {
+  for (const key of ["query", "name", "slug", "title", "path"]) {
     if (toolKwargs[key] && typeof toolKwargs[key] === "string") {
       query = toolKwargs[key];
       break;

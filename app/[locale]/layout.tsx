@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 import { locales, type Locale } from "@/i18n/routing";
-import { localesInfo } from "@/i18n/locales";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { headers } from "next/headers";
@@ -43,25 +42,6 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: (messages.metadata as { title: string }).title,
       description: (messages.metadata as { description: string }).description,
-    },
-    alternates: {
-      canonical: `https://detrans.ai/${locale}/`,
-      languages: Object.fromEntries(
-        localesInfo.map((l) => [
-          l.code === "en"
-            ? "en-US"
-            : l.code === "es"
-              ? "es-ES"
-              : l.code === "fr"
-                ? "fr-FR"
-                : l.code === "zh-cn"
-                  ? "zh-CN"
-                  : l.code === "zh-tw"
-                    ? "zh-TW"
-                    : `${l.code}-${l.code.toUpperCase()}`,
-          `https://detrans.ai/${l.code}/`,
-        ]),
-      ),
     },
   };
 }

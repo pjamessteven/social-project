@@ -252,7 +252,8 @@
       "queryStudies": "Søg i studier",
       "webSearch": "Websøgning",
       "queryStudyCatalogue": "Forespørg i Detransitionsstudiekataloget",
-      "studyDetail": "Studiedetaljer"
+      "studyDetail": "Studiedetaljer",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Analyserer videoer"
@@ -262,7 +263,8 @@
       "invalidYoutubeUrl": "Ugyldig YouTube-URL",
       "webSearchFailed": "Websøgning mislykkedes",
       "failedToFetchStudies": "Hentning af studier mislykkedes",
-      "failedToFetchStudy": "Hentning af studie mislykkedes"
+      "failedToFetchStudy": "Hentning af studie mislykkedes",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Ingen videoer fundet",
@@ -289,7 +291,10 @@
   },
   "chatInput": {
     "placeholder": "Spørg detrans.ai...",
-    "suggestions": "Forslag:"
+    "suggestions": "Forslag:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Seneste Samtaler",

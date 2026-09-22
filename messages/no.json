@@ -253,7 +253,8 @@
       "webSearch": "Nettsøk",
       "queryStudyCatalogue": "Søk i detransisjonsstudiekatalogen",
       "studyDetail": "Studiedetaljer",
-      "askTransPeople": "Spør transpersoner"
+      "askTransPeople": "Spør transpersoner",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Analyserer videoer"
@@ -263,7 +264,8 @@
       "invalidYoutubeUrl": "Ugyldig YouTube-URL",
       "webSearchFailed": "Nettsøk mislyktes",
       "failedToFetchStudies": "Kunne ikke hente studier",
-      "failedToFetchStudy": "Kunne ikke hente studie"
+      "failedToFetchStudy": "Kunne ikke hente studie",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Ingen videoer funnet",
@@ -290,7 +292,10 @@
   },
   "chatInput": {
     "placeholder": "Spør detrans.ai...",
-    "suggestions": "Forslag:"
+    "suggestions": "Forslag:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Nylige samtaler",

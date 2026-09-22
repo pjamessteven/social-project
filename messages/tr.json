@@ -252,7 +252,8 @@
       "queryStudies": "Çalışmaları Sorgula",
       "webSearch": "Web Araması",
       "queryStudyCatalogue": "Detransisyon Çalışma Kataloğunu Sorgula",
-      "studyDetail": "Çalışma Detayı"
+      "studyDetail": "Çalışma Detayı",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Videolar Analiz Ediliyor"
@@ -262,7 +263,8 @@
       "invalidYoutubeUrl": "Geçersiz YouTube URL'si",
       "webSearchFailed": "Web araması başarısız oldu",
       "failedToFetchStudies": "Çalışmalar getirilemedi",
-      "failedToFetchStudy": "Çalışma getirilemedi"
+      "failedToFetchStudy": "Çalışma getirilemedi",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Video bulunamadı",
@@ -289,7 +291,10 @@
   },
   "chatInput": {
     "placeholder": "detrans.ai'ye sorun...",
-    "suggestions": "Öneriler:"
+    "suggestions": "Öneriler:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Son Konuşmalar",

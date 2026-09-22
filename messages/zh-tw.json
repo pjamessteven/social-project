@@ -253,7 +253,8 @@
       "queryStudies": "查詢研究",
       "webSearch": "網路搜尋",
       "queryStudyCatalogue": "查詢去過渡研究目錄",
-      "studyDetail": "研究詳情"
+      "studyDetail": "研究詳情",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "正在分析影片"
@@ -263,7 +264,8 @@
       "invalidYoutubeUrl": "無效的YouTube URL",
       "webSearchFailed": "網路搜尋失敗",
       "failedToFetchStudies": "取得研究失敗",
-      "failedToFetchStudy": "取得研究失敗"
+      "failedToFetchStudy": "取得研究失敗",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "未找到影片",
@@ -290,7 +292,10 @@
   },
   "chatInput": {
     "placeholder": "詢問detrans.ai...",
-    "suggestions": "建議："
+    "suggestions": "建議：",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "最近對話",

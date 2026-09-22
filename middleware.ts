@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getIP } from "./app/lib/getIp";
 import { getLogger } from "./app/lib/logger";
 import { detectBrowserLocale } from "./i18n/detect-locale";
-import { locales, defaultLocale, routing } from "./i18n/routing";
+import { defaultLocale, locales, routing } from "./i18n/routing";
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -49,7 +49,8 @@ export async function middleware(req: NextRequest) {
 
     // Check if pathname starts with a locale
     const pathnameHasLocale = locales.some(
-      (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
+      (locale) =>
+        pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
     );
 
     // If no locale in pathname, detect from browser and redirect

@@ -253,7 +253,8 @@
       "queryStudies": "ค้นคว้าการศึกษา",
       "webSearch": "ค้นหาเว็บ",
       "queryStudyCatalogue": "ค้นหาแคตตาล็อกการศึกษาการเลิกเปลี่ยนเพศ",
-      "studyDetail": "รายละเอียดการศึกษา"
+      "studyDetail": "รายละเอียดการศึกษา",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "กำลังวิเคราะห์วิดีโอ"
@@ -263,7 +264,8 @@
       "invalidYoutubeUrl": "URL YouTube ไม่ถูกต้อง",
       "webSearchFailed": "ค้นหาเว็บล้มเหลว",
       "failedToFetchStudies": "ดึงข้อมูลการศึกษาไม่สำเร็จ",
-      "failedToFetchStudy": "ดึงข้อมูลการศึกษาไม่สำเร็จ"
+      "failedToFetchStudy": "ดึงข้อมูลการศึกษาไม่สำเร็จ",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "ไม่พบวิดีโอ",
@@ -290,7 +292,10 @@
   },
   "chatInput": {
     "placeholder": "ถาม detrans.ai...",
-    "suggestions": "คำแนะนำ:"
+    "suggestions": "คำแนะนำ:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "การสนทนาล่าสุด",

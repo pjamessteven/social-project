@@ -253,7 +253,8 @@
       "queryStudies": "Kysy Tutkimuksia",
       "webSearch": "Verkkohaku",
       "queryStudyCatalogue": "Kysy Detransitiotutkimusluetteloa",
-      "studyDetail": "Tutkimuksen Yksityiskohdat"
+      "studyDetail": "Tutkimuksen Yksityiskohdat",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Analysoidaan Videoita"
@@ -263,7 +264,8 @@
       "invalidYoutubeUrl": "Virheellinen YouTube-URL",
       "webSearchFailed": "Verkkohaku epäonnistui",
       "failedToFetchStudies": "Tutkimusten haku epäonnistui",
-      "failedToFetchStudy": "Tutkimuksen haku epäonnistui"
+      "failedToFetchStudy": "Tutkimuksen haku epäonnistui",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Videoita ei löytynyt",
@@ -290,7 +292,10 @@
   },
   "chatInput": {
     "placeholder": "Kysy detrans.ai:lta...",
-    "suggestions": "Ehdotukset:"
+    "suggestions": "Ehdotukset:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Viimeisimmät Keskustelut",

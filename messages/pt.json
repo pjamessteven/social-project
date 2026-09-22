@@ -250,7 +250,8 @@
       "webSearch": "Pesquisa na Web",
       "queryStudyCatalogue": "Pesquisar Catálogo de Estudos de Desransição",
       "studyDetail": "Detalhes do Estudo",
-      "askTransPeople": "Perguntar a Pessoas Trans-identificadas"
+      "askTransPeople": "Perguntar a Pessoas Trans-identificadas",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Analisando Vídeos"
@@ -260,7 +261,8 @@
       "invalidYoutubeUrl": "URL do YouTube inválido",
       "webSearchFailed": "Pesquisa na web falhou",
       "failedToFetchStudies": "Falha ao buscar estudos",
-      "failedToFetchStudy": "Falha ao buscar estudo"
+      "failedToFetchStudy": "Falha ao buscar estudo",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Nenhum vídeo encontrado",
@@ -287,7 +289,10 @@
   },
   "chatInput": {
     "placeholder": "Pergunte ao detrans.ai...",
-    "suggestions": "Sugestões:"
+    "suggestions": "Sugestões:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Conversas Recentes",

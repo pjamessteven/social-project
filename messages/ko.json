@@ -250,7 +250,8 @@
       "webSearch": "웹 검색",
       "queryStudyCatalogue": "디트랜지션 연구 카탈로그 검색",
       "studyDetail": "연구 상세",
-      "askTransPeople": "트랜스로 식별하는 사람들에게 묻기"
+      "askTransPeople": "트랜스로 식별하는 사람들에게 묻기",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "비디오 분석 중"
@@ -260,7 +261,8 @@
       "invalidYoutubeUrl": "유효하지 않은 YouTube URL",
       "webSearchFailed": "웹 검색 실패",
       "failedToFetchStudies": "연구 가져오기 실패",
-      "failedToFetchStudy": "연구 가져오기 실패"
+      "failedToFetchStudy": "연구 가져오기 실패",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "비디오를 찾을 수 없음",
@@ -287,7 +289,10 @@
   },
   "chatInput": {
     "placeholder": "detrans.ai에게 질문하세요...",
-    "suggestions": "제안:"
+    "suggestions": "제안:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "최근 대화",

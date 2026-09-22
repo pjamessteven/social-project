@@ -254,7 +254,8 @@
       "queryStudies": "جستجوی مطالعات",
       "webSearch": "جستجوی وب",
       "queryStudyCatalogue": "پرسش از کاتالوگ مطالعات دترنزیشن",
-      "studyDetail": "جزئیات مطالعه"
+      "studyDetail": "جزئیات مطالعه",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "در حال تجزیه و تحلیل ویدیوها"
@@ -264,7 +265,8 @@
       "invalidYoutubeUrl": "URL یوتیوب نامعتبر است",
       "webSearchFailed": "جستجوی وب ناموفق بود",
       "failedToFetchStudies": "دریافت مطالعات ناموفق بود",
-      "failedToFetchStudy": "دریافت مطالعه ناموفق بود"
+      "failedToFetchStudy": "دریافت مطالعه ناموفق بود",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "ویدیویی یافت نشد",
@@ -291,7 +293,10 @@
   },
   "chatInput": {
     "placeholder": "از detrans.ai بپرسید...",
-    "suggestions": "پیشنهادات:"
+    "suggestions": "پیشنهادات:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "گفتگوهای اخیر",

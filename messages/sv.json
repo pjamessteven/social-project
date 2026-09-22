@@ -252,7 +252,8 @@
       "queryStudies": "Sök Studier",
       "webSearch": "Webbsökning",
       "queryStudyCatalogue": "Sök Detransitionsstudiekatalogen",
-      "studyDetail": "Studiedetalj"
+      "studyDetail": "Studiedetalj",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Analyserar Videor"
@@ -262,7 +263,8 @@
       "invalidYoutubeUrl": "Ogiltig YouTube-URL",
       "webSearchFailed": "Webbsökning misslyckades",
       "failedToFetchStudies": "Kunde inte hämta studier",
-      "failedToFetchStudy": "Kunde inte hämta studie"
+      "failedToFetchStudy": "Kunde inte hämta studie",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Inga videor hittades",
@@ -289,7 +291,10 @@
   },
   "chatInput": {
     "placeholder": "Fråga detrans.ai...",
-    "suggestions": "Förslag:"
+    "suggestions": "Förslag:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Nyliga Konversationer",

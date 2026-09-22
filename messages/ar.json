@@ -254,7 +254,8 @@
       "queryStudies": "البحث في الدراسات",
       "webSearch": "البحث في الويب",
       "queryStudyCatalogue": "الاستعلام في كتالوج دراسات التراجع عن التحول",
-      "studyDetail": "تفاصيل الدراسة"
+      "studyDetail": "تفاصيل الدراسة",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "جاري تحليل مقاطع الفيديو"
@@ -264,7 +265,8 @@
       "invalidYoutubeUrl": "رابط YouTube غير صالح",
       "webSearchFailed": "فشل البحث في الويب",
       "failedToFetchStudies": "فشل جلب الدراسات",
-      "failedToFetchStudy": "فشل جلب الدراسة"
+      "failedToFetchStudy": "فشل جلب الدراسة",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "لم يتم العثور على مقاطع فيديو",
@@ -291,7 +293,10 @@
   },
   "chatInput": {
     "placeholder": "اسأل detrans.ai...",
-    "suggestions": "الاقتراحات:"
+    "suggestions": "الاقتراحات:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "المحادثات الأخيرة",

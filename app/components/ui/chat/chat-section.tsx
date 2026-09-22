@@ -34,8 +34,14 @@ export default function ChatSection({
   starterQuestion?: string;
   apiEndpoint?: string;
 }) {
-  const { setChatHandler, setChatStatus, setInputText, setIncludeTransPerspectives, includeTransPerspectives } =
-    useChatStore();
+  const {
+    setChatHandler,
+    setChatStatus,
+    setInputText,
+    setIncludeTransPerspectives,
+    includeTransPerspectives,
+    wikiUpdateMode,
+  } = useChatStore();
   const searchParams = useSearchParams();
   const starterSentRef = useRef(false);
   const router = useRouter();
@@ -294,6 +300,7 @@ export default function ChatSection({
             ...options.body,
             message: messageText,
             includeTransPerspectives,
+            wikiMode: wikiUpdateMode,
           },
         };
       },

@@ -253,7 +253,8 @@
       "queryStudies": "Търсене в изследвания",
       "webSearch": "Търсене в мрежата",
       "queryStudyCatalogue": "Заявка към каталога с изследвания за детранзиция",
-      "studyDetail": "Детайли на изследването"
+      "studyDetail": "Детайли на изследването",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Анализиране на видеа"
@@ -263,7 +264,8 @@
       "invalidYoutubeUrl": "Невалиден YouTube URL",
       "webSearchFailed": "Неуспешно търсене в мрежата",
       "failedToFetchStudies": "Неуспешно извличане на изследвания",
-      "failedToFetchStudy": "Неуспешно извличане на изследване"
+      "failedToFetchStudy": "Неуспешно извличане на изследване",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Няма намерени видеа",
@@ -290,7 +292,10 @@
   },
   "chatInput": {
     "placeholder": "Попитайте detrans.ai...",
-    "suggestions": "Предложения:"
+    "suggestions": "Предложения:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Скорошни разговори",

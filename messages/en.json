@@ -258,7 +258,8 @@
       "queryStudies": "Query Studies",
       "webSearch": "Web Search",
       "queryStudyCatalogue": "Search Studies",
-      "studyDetail": "Study Detail"
+      "studyDetail": "Study Detail",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Analysing Videos"
@@ -268,7 +269,8 @@
       "invalidYoutubeUrl": "Invalid YouTube URL",
       "webSearchFailed": "Web search failed",
       "failedToFetchStudies": "Failed to fetch studies",
-      "failedToFetchStudy": "Failed to fetch study"
+      "failedToFetchStudy": "Failed to fetch study",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "No videos found",
@@ -295,7 +297,10 @@
   },
   "chatInput": {
     "placeholder": "Ask detrans.ai...",
-    "suggestions": "Suggestions:"
+    "suggestions": "Suggestions:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Recent Conversations",

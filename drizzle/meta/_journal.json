@@ -22,6 +22,13 @@
       "when": 1749340800000,
       "tag": "0009_add_chat_feedback",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1790035200000,
+      "tag": "0010_add_pages",
+      "breakpoints": true
     }
   ]
 }

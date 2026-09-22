@@ -10,6 +10,7 @@ import {
   text,
   timestamp,
   varchar,
+  type AnyPgColumn,
 } from "drizzle-orm/pg-core";
 import { z } from "zod/v3";
 
@@ -69,7 +70,9 @@ export const chatConversations = pgTable(
     country: varchar("country", { length: 100 }), // Country from IP geolocation
     ipAddress: varchar("ip_address", { length: 45 }), // IPv4 (max 15) or IPv6 (max 45)
     username: varchar("username", { length: 255 }), // Username of logged-in user who created the conversation
-    includeTransPerspectives: boolean("include_trans_perspectives").default(false),
+    includeTransPerspectives: boolean("include_trans_perspectives").default(
+      false,
+    ),
     messages: text("messages").notNull(), // JSON string of the conversation messages
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
@@ -604,3 +607,87 @@ export const chatFeedbackSchema = z.object({
 });
 
 export type ChatFeedback = z.infer<typeof chatFeedbackSchema>;
+
+// ---------------------------------------------------------------------------
+// Wiki pages (agent-managed, admin-only CRUD; public at /topics/[...slug])
+// ---------------------------------------------------------------------------
+
+export const pages = pgTable(
+  "pages",
+  {
+    id: serial("id").primaryKey(),
+    // Default-locale segment (slugified)
+    slug: varchar("slug", { length: 255 }).notNull(),
+    // Self-referencing hierarchy; children survive parent deletion as orphans
+    parentId: integer("parent_id").references((): AnyPgColumn => pages.id, {
+      onDelete: "set null",
+    }),
+    // Materialized default-locale full path, e.g. "topicname/subtopic/page"
+    path: text("path").notNull().unique(),
+    title: varchar("title", { length: 500 }).notNull(),
+    titleTranslation: text("title_translation"), // JSON { locale: title }
+    // Short blurb: meta description + og:description + listPages snippet
+    summary: text("summary"),
+    summaryTranslation: text("summary_translation"), // JSON { locale: summary }
+    content: text("content").notNull(), // markdown (default locale)
+    contentTranslation: text("content_translation"), // JSON { locale: markdown }
+    published: boolean("published").default(false).notNull(),
+    isStub: boolean("is_stub").default(false).notNull(),
+    createdBy: varchar("created_by", { length: 255 }),
+    updatedBy: varchar("updated_by", { length: 255 }),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    pathIdx: index("idx_pages_path").on(table.path),
+    parentIdIdx: index("idx_pages_parent_id").on(table.parentId),
+    publishedIdx: index("idx_pages_published").on(table.published),
+  }),
+);
+
+// Per-locale translated slug segments (only stored when they differ from default)
+export const pageSlugs = pgTable(
+  "page_slugs",
+  {
+    pageId: integer("page_id")
+      .notNull()
+      .references(() => pages.id, { onDelete: "cascade" }),
+    locale: varchar("locale", { length: 10 }).notNull(),
+    slug: varchar("slug", { length: 255 }).notNull(),
+  },
+  (table) => ({
+    pk: primaryKey({ columns: [table.pageId, table.locale] }),
+    localeSlugIdx: index("idx_page_slugs_locale_slug").on(
+      table.locale,
+      table.slug,
+    ),
+  }),
+);
+
+export const pageSchema = z.object({
+  id: z.number().int(),
+  slug: z.string().max(255),
+  parentId: z.number().int().nullable(),
+  path: z.string(),
+  title: z.string().max(500),
+  titleTranslation: z.string().nullable(),
+  summary: z.string().nullable(),
+  summaryTranslation: z.string().nullable(),
+  content: z.string(),
+  contentTranslation: z.string().nullable(),
+  published: z.boolean(),
+  isStub: z.boolean(),
+  createdBy: z.string().max(255).nullable(),
+  updatedBy: z.string().max(255).nullable(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+
+export const pageSlugSchema = z.object({
+  pageId: z.number().int(),
+  locale: z.string().max(10),
+  slug: z.string().max(255),
+});
+
+export type Page = z.infer<typeof pageSchema>;
+export type PageSlug = z.infer<typeof pageSlugSchema>;

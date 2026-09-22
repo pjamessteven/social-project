@@ -1,18 +1,20 @@
 "use client";
 import { MAX_MESSAGE_LENGTH } from "@/app/lib/constants";
 import { slugify } from "@/app/lib/utils";
-import {
-  Link,
-  locales,
-  usePathname,
-  useRouter,
-} from "@/i18n/routing";
+import { Link, locales, usePathname, useRouter } from "@/i18n/routing";
 import { useChatStore } from "@/stores/chat-store";
 import { useUserStore } from "@/stores/user-store";
-import { Send, Square, X } from "lucide-react";
+import { MoreVertical, Send, Square, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "./button";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "./dropdown-menu";
 import { cn } from "./lib/utils";
 import { Textarea } from "./textarea";
 
@@ -31,6 +33,10 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     setChatStatus,
     inputText,
     setInputText,
+    includeTransPerspectives,
+    setIncludeTransPerspectives,
+    wikiUpdateMode,
+    setWikiUpdateMode,
   } = useChatStore();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
@@ -39,7 +45,8 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { isAuthenticated } = useUserStore();
+  const { isAuthenticated, user } = useUserStore();
+  const isAdmin = user?.role === "admin";
 
   const showChatInput =
     path == "/" ||
@@ -290,6 +297,45 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
               </div>
             )}
           </div>
+          {isAdmin && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  title={t("adminOptions")}
+                  className="relative h-14 w-14 flex-shrink-0 rounded-full"
+                >
+                  <MoreVertical className="h-5 w-5" />
+                  {(includeTransPerspectives || wikiUpdateMode) && (
+                    <span className="absolute top-3 right-3 h-2.5 w-2.5 rounded-full bg-blue-500" />
+                  )}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" side="top" className="w-64">
+                <DropdownMenuLabel>{t("adminOptions")}</DropdownMenuLabel>
+                <DropdownMenuCheckboxItem
+                  checked={includeTransPerspectives}
+                  onCheckedChange={(checked) =>
+                    setIncludeTransPerspectives(checked === true)
+                  }
+                  onSelect={(event) => event.preventDefault()}
+                >
+                  🏳️‍⚧️ {t("transPerspectives")}
+                </DropdownMenuCheckboxItem>
+                <DropdownMenuCheckboxItem
+                  checked={wikiUpdateMode}
+                  onCheckedChange={(checked) =>
+                    setWikiUpdateMode(checked === true)
+                  }
+                  onSelect={(event) => event.preventDefault()}
+                >
+                  📚 {t("wikiUpdateMode")}
+                </DropdownMenuCheckboxItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
           <Button
             type={
               chatStatus === "streaming" || chatStatus === "submitted"

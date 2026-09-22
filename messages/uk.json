@@ -253,7 +253,8 @@
       "queryStudies": "Пошук досліджень",
       "webSearch": "Веб-пошук",
       "queryStudyCatalogue": "Пошук у каталозі досліджень детранзішну",
-      "studyDetail": "Деталі дослідження"
+      "studyDetail": "Деталі дослідження",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Аналіз відео"
@@ -263,7 +264,8 @@
       "invalidYoutubeUrl": "Невірний URL YouTube",
       "webSearchFailed": "Веб-пошук не вдався",
       "failedToFetchStudies": "Не вдалося отримати дослідження",
-      "failedToFetchStudy": "Не вдалося отримати дослідження"
+      "failedToFetchStudy": "Не вдалося отримати дослідження",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Відео не знайдено",
@@ -290,7 +292,10 @@
   },
   "chatInput": {
     "placeholder": "Запитайте detrans.ai...",
-    "suggestions": "Пропозиції:"
+    "suggestions": "Пропозиції:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Недавні розмови",

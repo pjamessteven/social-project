@@ -3,17 +3,21 @@ import { getTransCommentsIndex, getVideosIndex } from "@/app/lib/agents/data";
 import { initSettings } from "@/app/lib/agents/settings";
 import {
   createBanUserTool,
+  createCreatePageTool,
+  createDeletePageTool,
   createGetStudiesTool,
+  createListPagesTool,
   createQueryCommentsTool,
   createQueryTransCommentsTool,
   createQueryVideosTool,
+  createUpdatePageTool,
   createWebSearchTool,
 } from "@/app/lib/agents/tools";
 import { db, withDbTimeout } from "@/db";
 import { studyTags } from "@/db/schema";
 import { agent } from "@llamaindex/workflow";
 import { CachedOpenAI } from "../../shared/llm";
-import { agentPrompt } from "../utils/prompts";
+import { agentPrompt, wikiUpdateModePrompt } from "../utils/prompts";
 
 export const workflowFactory = async (
   reqBody: any,
@@ -25,6 +29,8 @@ export const workflowFactory = async (
   ipAddress?: string,
   includeTransPerspectives?: boolean,
   enforceCaptcha?: boolean,
+  adminUsername?: string | null,
+  wikiMode?: boolean,
 ) => {
   initSettings();
 
@@ -68,6 +74,17 @@ export const workflowFactory = async (
     tools.push(banUserTool);
   }
 
+  // Wiki page tools: admin-only and only in wiki update mode. Stateful tools —
+  // they intentionally bypass the result cache used by query tools.
+  if (wikiMode && adminUsername) {
+    tools.push(
+      createListPagesTool({ adminUsername }),
+      createCreatePageTool({ adminUsername }),
+      createUpdatePageTool({ adminUsername }),
+      createDeletePageTool({ adminUsername }),
+    );
+  }
+
   if (includeTransPerspectives) {
     const transCommentsIndex = await getTransCommentsIndex(
       reqBody?.data,
@@ -90,7 +107,10 @@ export const workflowFactory = async (
     tagNames.length > 0
       ? `\n\n### Available Study Tags\nThe following tags can be used to filter studies with the getStudies tool: ${tagNames.join(", ")}`
       : "";
-  const systemPrompt = agentPrompt + tagList;
+  const systemPrompt =
+    agentPrompt +
+    tagList +
+    (wikiMode && adminUsername ? wikiUpdateModePrompt : "");
 
   const llm = new CachedOpenAI({
     cache,
@@ -98,11 +118,11 @@ export const workflowFactory = async (
     conversationId,
     requestId,
     enforceCaptcha,
-   // apiKey: process.env.XIAOMI_KEY,
-   // baseURL: "https://token-plan-sgp.xiaomimimo.com/v1",
-   // model: "mimo-v2.5",
-   //
-   //
+    // apiKey: process.env.XIAOMI_KEY,
+    // baseURL: "https://token-plan-sgp.xiaomimimo.com/v1",
+    // model: "mimo-v2.5",
+    //
+    //
     apiKey: process.env.OPENROUTER_KEY,
     baseURL: "https://openrouter.ai/api/v1",
     model: "xiaomi/mimo-v2.6-flash",

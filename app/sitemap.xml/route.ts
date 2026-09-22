@@ -1,4 +1,4 @@
-import { slugify } from "@/app/lib/utils";
+import { buildLocalizedPath, getPublishedPages } from "@/app/lib/pages";
 import { generateVideoSlug } from "@/app/lib/video-utils";
 import { db } from "@/db";
 import {
@@ -18,6 +18,11 @@ const localizedPaths = pathnames as Record<
   string,
   string | Record<string, string>
 >;
+
+// Static routes don't change per-request; a fixed date avoids "lastmod
+// inflation" (which makes crawlers distrust the whole sitemap). Dynamic
+// entries use their real updatedAt timestamps instead.
+const STATIC_LAST_MODIFIED = "2026-01-01T00:00:00.000Z";
 
 export async function GET(request: NextRequest) {
   const host = request.headers.get("host") || "detrans.ai";
@@ -39,7 +44,10 @@ export async function GET(request: NextRequest) {
 
   // Fetch featured conversations (limit to 2000 for sitemap)
   const featuredConversations = await db
-    .select({ uuid: chatConversations.uuid })
+    .select({
+      uuid: chatConversations.uuid,
+      updatedAt: chatConversations.updatedAt,
+    })
     .from(chatConversations)
     .where(
       and(
@@ -55,7 +63,7 @@ export async function GET(request: NextRequest) {
 
   // Fetch all processed videos for sitemap
   const allVideos = await db
-    .select({ id: videos.id, title: videos.title })
+    .select({ id: videos.id, title: videos.title, updatedAt: videos.updatedAt })
     .from(videos)
     .where(eq(videos.processed, true));
 
@@ -68,67 +76,67 @@ export async function GET(request: NextRequest) {
   const baseRoutes = [
     {
       url: baseUrl,
-      lastModified: new Date().toISOString(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: "daily",
       priority: 1,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date().toISOString(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/terms`,
-      lastModified: new Date().toISOString(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${baseUrl}/videos`,
-      lastModified: new Date().toISOString(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/definitions`,
-      lastModified: new Date().toISOString(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${baseUrl}/studies`,
-      lastModified: new Date().toISOString(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/support`,
-      lastModified: new Date().toISOString(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/prompts`,
-      lastModified: new Date().toISOString(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: `${baseUrl}/participate`,
-      lastModified: new Date().toISOString(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${baseUrl}/donate`,
-      lastModified: new Date().toISOString(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${baseUrl}/stats`,
-      lastModified: new Date().toISOString(),
+      lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: "weekly",
       priority: 0.5,
     },
@@ -138,7 +146,7 @@ export async function GET(request: NextRequest) {
   const featuredConversationRoutes = featuredConversations.map(
     (conversation) => ({
       url: `${baseUrl}/chat/${conversation.uuid}`,
-      lastModified: new Date().toISOString(),
+      lastModified: conversation.updatedAt.toISOString(),
       changeFrequency: "weekly",
       priority: 0.7,
     }),
@@ -147,7 +155,7 @@ export async function GET(request: NextRequest) {
   // Generate routes for all videos
   const videoRoutes = allVideos.map((video) => ({
     url: `${baseUrl}/videos/${generateVideoSlug(video.id, video.title)}`,
-    lastModified: new Date().toISOString(),
+    lastModified: video.updatedAt.toISOString(),
     changeFrequency: "weekly",
     priority: 0.7,
   }));
@@ -256,6 +264,52 @@ export async function GET(request: NextRequest) {
   ];
 
   const localizedRoutes = generateLocalizedRoutes(allRoutes);
+
+  // ---------------------------------------------------------------------
+  // Wiki topic pages: generated as true per-locale variants because slug
+  // segments are translated per locale. Each URL self-canonicalizes and its
+  // hreflang alternates point at the other locales' translated paths.
+  // ---------------------------------------------------------------------
+  const wikiPages = await getPublishedPages();
+  const wikiById = new Map(wikiPages.map((entry) => [entry.page.id, entry]));
+  const sitemapLocales = locales as readonly string[];
+
+  const topicRoutes: Array<{
+    url: string;
+    lastModified: string;
+    changeFrequency: string;
+    priority: number;
+    alternates?: Record<string, string>;
+  }> = [];
+
+  for (const entry of wikiPages) {
+    const alternates: Record<string, string> = {};
+    for (const locale of sitemapLocales) {
+      alternates[locale] = `${baseUrl}/${locale}/topics/${buildLocalizedPath(
+        entry,
+        wikiById,
+        locale,
+      )}`;
+    }
+    alternates["x-default"] =
+      `${baseUrl}/${defaultLocale}/topics/${buildLocalizedPath(
+        entry,
+        wikiById,
+        defaultLocale,
+      )}`;
+
+    for (const locale of sitemapLocales) {
+      topicRoutes.push({
+        url: alternates[locale],
+        lastModified: entry.page.updatedAt.toISOString(),
+        changeFrequency: "weekly",
+        priority: 0.7,
+        alternates,
+      });
+    }
+  }
+
+  localizedRoutes.push(...topicRoutes);
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">

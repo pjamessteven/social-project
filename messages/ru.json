@@ -251,7 +251,8 @@
       "queryStudies": "Поиск исследований",
       "webSearch": "Поиск в интернете",
       "queryStudyCatalogue": "Поиск в каталоге исследований детрансишена",
-      "studyDetail": "Детали исследования"
+      "studyDetail": "Детали исследования",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Анализ видео"
@@ -261,7 +262,8 @@
       "invalidYoutubeUrl": "Неверный URL YouTube",
       "webSearchFailed": "Поиск в интернете не удался",
       "failedToFetchStudies": "Не удалось получить исследования",
-      "failedToFetchStudy": "Не удалось получить исследование"
+      "failedToFetchStudy": "Не удалось получить исследование",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Видео не найдены",
@@ -288,7 +290,10 @@
   },
   "chatInput": {
     "placeholder": "Спросите detrans.ai...",
-    "suggestions": "Предложения:"
+    "suggestions": "Предложения:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Недавние разговоры",

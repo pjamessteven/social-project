@@ -253,7 +253,8 @@
       "webSearch": "Webes Keresés",
       "queryStudyCatalogue": "Detransition Tanulmányi Katalógus Lekérdezése",
       "studyDetail": "Tanulmány Részletei",
-      "askTransPeople": "Kérdezd a Transznemű Embereket"
+      "askTransPeople": "Kérdezd a Transznemű Embereket",
+      "wikiPage": "Wiki page"
     },
     "eventStatus": {
       "analysingVideos": "Videók Elemzése"
@@ -263,7 +264,8 @@
       "invalidYoutubeUrl": "Érvénytelen YouTube URL",
       "webSearchFailed": "A webes keresés sikertelen",
       "failedToFetchStudies": "A tanulmányok lekérése sikertelen",
-      "failedToFetchStudy": "A tanulmány lekérése sikertelen"
+      "failedToFetchStudy": "A tanulmány lekérése sikertelen",
+      "wikiPageFailed": "Wiki page update failed"
     },
     "eventEmptyStates": {
       "noVideosFound": "Nem találhatók videók",
@@ -290,7 +292,10 @@
   },
   "chatInput": {
     "placeholder": "Kérdezd a detrans.ai-t...",
-    "suggestions": "Javaslatok:"
+    "suggestions": "Javaslatok:",
+    "adminOptions": "Admin options",
+    "transPerspectives": "Trans perspectives",
+    "wikiUpdateMode": "Wiki update mode"
   },
   "conversations": {
     "title": "Legfrissebb Beszélgetések",
