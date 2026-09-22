@@ -46,7 +46,7 @@ export function WikiPageLayout({
     return (
       <div className="flex min-h-full w-full">
         <main className="w-full flex-1">
-          <div className="prose dark:prose-invert w-full pb-16 lg:pt-8">
+          <div className="prose dark:prose-invert w-full pb-16 lg:pt-8 [&_details]:cursor-pointer [&_summary]:cursor-pointer">
             {children}
           </div>
         </main>
@@ -132,7 +132,7 @@ export function WikiPageLayout({
       <div className="flex min-h-full w-full">
         <div className="hidden lg:block">{sidebar}</div>
         <main className="w-full flex-1">
-          <div className="prose dark:prose-invert w-full pb-16 lg:pt-8">
+          <div className="prose dark:prose-invert w-full pb-16 lg:pt-8 [&_details]:cursor-pointer [&_summary]:cursor-pointer">
             <div className="prose-none bg-muted/50 mb-8 rounded-lg border p-4 lg:hidden">
               <h3 className="mt-0 mb-3 text-sm font-semibold">On this page</h3>
               {jumpLinks}
