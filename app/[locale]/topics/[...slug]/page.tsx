@@ -206,22 +206,29 @@ export default async function WikiTopicPage({
           </div>
         )}
 
-        <nav aria-label="Breadcrumb" className="not-prose mb-4 text-sm">
-          <ol className="text-muted-foreground flex flex-wrap items-center gap-1.5">
-            {ancestors.map((ancestor) => (
-              <li key={ancestor.page.id} className="flex items-center gap-1.5">
-                <a
-                  href={`/${locale}/topics/${buildLocalizedPath(ancestor, byId, locale)}`}
-                  className="hover:text-foreground underline-offset-2 hover:underline"
+        {/* Breadcrumb trail only on subpages — on top-level pages it just
+            duplicates the H1. JSON-LD breadcrumbs are always emitted. */}
+        {ancestors.length > 0 && (
+          <nav aria-label="Breadcrumb" className="not-prose mb-4 text-sm">
+            <ol className="text-muted-foreground flex flex-wrap items-center gap-1.5">
+              {ancestors.map((ancestor) => (
+                <li
+                  key={ancestor.page.id}
+                  className="flex items-center gap-1.5"
                 >
-                  {localizedTitle(ancestor, locale)}
-                </a>
-                <span aria-hidden="true">/</span>
-              </li>
-            ))}
-            <li aria-current="page">{title}</li>
-          </ol>
-        </nav>
+                  <a
+                    href={`/${locale}/topics/${buildLocalizedPath(ancestor, byId, locale)}`}
+                    className="hover:text-foreground underline-offset-2 hover:underline"
+                  >
+                    {localizedTitle(ancestor, locale)}
+                  </a>
+                  <span aria-hidden="true">/</span>
+                </li>
+              ))}
+              <li aria-current="page">{title}</li>
+            </ol>
+          </nav>
+        )}
 
         <article>
           <h1 className="text-3xl font-bold">{title}</h1>
@@ -251,7 +258,7 @@ export default async function WikiTopicPage({
                   <li key={child.page.id}>
                     <a
                       href={`/${locale}/topics/${buildLocalizedPath(child, byId, locale)}`}
-                      className="font-medium text-blue-600 hover:underline dark:text-blue-400"
+                      className="font-medium underline underline-offset-2"
                     >
                       {localizedTitle(child, locale)}
                     </a>
@@ -274,7 +281,7 @@ export default async function WikiTopicPage({
                   <li key={sibling.page.id}>
                     <a
                       href={`/${locale}/topics/${buildLocalizedPath(sibling, byId, locale)}`}
-                      className="text-blue-600 hover:underline dark:text-blue-400"
+                      className="underline underline-offset-2"
                     >
                       {localizedTitle(sibling, locale)}
                     </a>

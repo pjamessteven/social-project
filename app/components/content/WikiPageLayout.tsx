@@ -94,7 +94,7 @@ export function WikiPageLayout({
                   {children.length > 0 ? (
                     <Collapsible defaultOpen className="group/collapsible">
                       <CollapsibleTrigger asChild>
-                        <SidebarMenuButton className="w-full justify-between">
+                        <SidebarMenuButton className="h-auto w-full justify-between overflow-visible whitespace-normal">
                           <a href={`#${item.id}`} className="flex-1">
                             {item.text}
                           </a>
@@ -105,7 +105,10 @@ export function WikiPageLayout({
                         <SidebarMenuSub className="mt-2 gap-2">
                           {children.map((child) => (
                             <SidebarMenuSubItem key={child.id}>
-                              <SidebarMenuSubButton asChild>
+                              <SidebarMenuSubButton
+                                asChild
+                                className="h-auto overflow-visible whitespace-normal"
+                              >
                                 <a href={`#${child.id}`}>{child.text}</a>
                               </SidebarMenuSubButton>
                             </SidebarMenuSubItem>
@@ -114,7 +117,10 @@ export function WikiPageLayout({
                       </CollapsibleContent>
                     </Collapsible>
                   ) : (
-                    <SidebarMenuButton asChild>
+                    <SidebarMenuButton
+                      asChild
+                      className="h-auto overflow-visible whitespace-normal"
+                    >
                       <a href={`#${item.id}`}>{item.text}</a>
                     </SidebarMenuButton>
                   )}
