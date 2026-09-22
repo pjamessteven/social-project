@@ -363,15 +363,21 @@ export class CachedOpenAI extends OpenAI {
         let lastChunk: ChatResponseChunk | undefined;
         const seenToolCallIds = new Set<string>();
 
+        // Inactivity budget per LLM stream. Mimo pro regularly falls silent
+        // for several minutes mid-generation (long synthesis/thinking pauses
+        // after big tool-result rounds), so the idle gap we tolerate must be
+        // generous — a too-tight budget kills wiki deep-research runs midway.
         const STREAM_TIMEOUT_MS =
-          Number(process.env.LLM_STREAM_TIMEOUT_MS) || 300_000;
+          Number(process.env.LLM_STREAM_TIMEOUT_MS) || 600_000;
         const iterator = (rawStream as AsyncGenerator<ChatResponseChunk>)[
           Symbol.asyncIterator
         ]();
         let lastChunkTime = Date.now();
+        let chunkCount = 0;
 
         while (true) {
           let result: IteratorResult<ChatResponseChunk>;
+          let timeoutId: ReturnType<typeof setTimeout> | undefined;
           try {
             result = await Promise.race([
               iterator.next(),
@@ -382,8 +388,13 @@ export class CachedOpenAI extends OpenAI {
                   reject(new Error("LLM stream timeout: no chunks received"));
                   return;
                 }
-                setTimeout(
-                  () => reject(new Error("LLM stream timeout")),
+                timeoutId = setTimeout(
+                  () =>
+                    reject(
+                      new Error(
+                        `LLM stream timeout: no chunks for ${Math.round(STREAM_TIMEOUT_MS / 1000)}s after ${chunkCount} chunks`,
+                      ),
+                    ),
                   remaining,
                 );
               }),
@@ -396,12 +407,15 @@ export class CachedOpenAI extends OpenAI {
             } catch {}
             this.recordError(err);
             return;
+          } finally {
+            clearTimeout(timeoutId);
           }
 
           if (result.done) break;
 
           const chunk = result.value;
           lastChunkTime = Date.now();
+          chunkCount++;
           fullText += chunk.delta;
 
           // Collect tool calls if present
