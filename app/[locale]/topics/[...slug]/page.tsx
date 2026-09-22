@@ -123,6 +123,57 @@ export async function generateMetadata({
   };
 }
 
+function PageLinkList({
+  heading,
+  items,
+  compact = false,
+}: {
+  heading: string;
+  items: { key: string; href: string; title: string; summary: string | null }[];
+  compact?: boolean;
+}) {
+  return (
+    <section>
+      <h2
+        className={
+          compact
+            ? "mb-2 ml-2 text-sm font-semibold"
+            : "mb-3 text-xl font-semibold"
+        }
+      >
+        {heading}
+      </h2>
+      <ul className={compact ? "space-y-2.5" : "space-y-2"}>
+        {items.map((item) => (
+          <li key={item.key}>
+            <a
+              href={item.href}
+              className={
+                compact
+                  ? "text-sm font-medium underline underline-offset-2"
+                  : "font-medium underline underline-offset-2"
+              }
+            >
+              {item.title}
+            </a>
+            {item.summary && (
+              <p
+                className={
+                  compact
+                    ? "text-muted-foreground mt-0.5 line-clamp-2 text-xs"
+                    : "text-muted-foreground mt-0.5 text-sm"
+                }
+              >
+                {item.summary}
+              </p>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 export default async function WikiTopicPage({
   params,
 }: {
@@ -150,6 +201,20 @@ export default async function WikiTopicPage({
   );
   const children = getPageChildren(item, published);
   const siblings = getPageSiblings(item, published);
+
+  const childrenItems = children.map((child) => ({
+    key: String(child.page.id),
+    href: `/${locale}/topics/${buildLocalizedPath(child, byId, locale)}`,
+    title: localizedTitle(child, locale),
+    summary: localizedSummary(child, locale),
+  }));
+  const siblingItems = siblings.slice(0, 12).map((sibling) => ({
+    key: String(sibling.page.id),
+    href: `/${locale}/topics/${buildLocalizedPath(sibling, byId, locale)}`,
+    title: localizedTitle(sibling, locale),
+    summary: localizedSummary(sibling, locale),
+  }));
+  const hasRelated = childrenItems.length > 0 || siblingItems.length > 0;
 
   const canonical = publicUrl(item, byId, locale);
   const isDraftPreview = includeDrafts && !page.published;
@@ -198,7 +263,29 @@ export default async function WikiTopicPage({
           __html: safeJsonLd([articleJsonLd, breadcrumbJsonLd]),
         }}
       />
-      <WikiPageLayout toc={toc}>
+      <WikiPageLayout
+        toc={toc}
+        sidebarExtras={
+          hasRelated ? (
+            <div className="space-y-4">
+              {childrenItems.length > 0 && (
+                <PageLinkList
+                  compact
+                  heading="Pages in this section"
+                  items={childrenItems}
+                />
+              )}
+              {siblingItems.length > 0 && (
+                <PageLinkList
+                  compact
+                  heading="Related pages"
+                  items={siblingItems}
+                />
+              )}
+            </div>
+          ) : undefined
+        }
+      >
         {isDraftPreview && (
           <div className="not-prose mb-4 rounded-lg border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-800 dark:border-amber-900/40 dark:bg-amber-950/20 dark:text-amber-300">
             Draft preview — this page is not published and is only visible to
@@ -248,47 +335,22 @@ export default async function WikiTopicPage({
             {page.isStub && " · This page is a stub and will be expanded."}
           </p>
 
-          {children.length > 0 && (
-            <section className="not-prose mt-10">
-              <h2 className="mb-3 text-xl font-semibold">
-                Pages in this section
-              </h2>
-              <ul className="space-y-2">
-                {children.map((child) => (
-                  <li key={child.page.id}>
-                    <a
-                      href={`/${locale}/topics/${buildLocalizedPath(child, byId, locale)}`}
-                      className="font-medium underline underline-offset-2"
-                    >
-                      {localizedTitle(child, locale)}
-                    </a>
-                    {localizedSummary(child, locale) && (
-                      <p className="text-muted-foreground mt-0.5 text-sm">
-                        {localizedSummary(child, locale)}
-                      </p>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-
-          {siblings.length > 0 && (
-            <nav aria-label="Related pages" className="not-prose mt-10">
-              <h2 className="mb-3 text-xl font-semibold">Related pages</h2>
-              <ul className="flex flex-wrap gap-x-4 gap-y-1.5 text-sm">
-                {siblings.slice(0, 12).map((sibling) => (
-                  <li key={sibling.page.id}>
-                    <a
-                      href={`/${locale}/topics/${buildLocalizedPath(sibling, byId, locale)}`}
-                      className="underline underline-offset-2"
-                    >
-                      {localizedTitle(sibling, locale)}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+          {/* Related-page navigation: sidebar on desktop (see sidebarExtras),
+              in the page body on mobile with a divider above */}
+          {hasRelated && (
+            <div className="not-prose mt-10 border-t pt-6 lg:hidden">
+              <div className="space-y-8">
+                {childrenItems.length > 0 && (
+                  <PageLinkList
+                    heading="Pages in this section"
+                    items={childrenItems}
+                  />
+                )}
+                {siblingItems.length > 0 && (
+                  <PageLinkList heading="Related pages" items={siblingItems} />
+                )}
+              </div>
+            </div>
           )}
         </article>
       </WikiPageLayout>

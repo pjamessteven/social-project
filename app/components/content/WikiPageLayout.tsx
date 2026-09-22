@@ -27,9 +27,12 @@ import type { ReactNode } from "react";
  */
 export function WikiPageLayout({
   toc,
+  sidebarExtras,
   children,
 }: {
   toc: WikiTocItem[];
+  /** Compact sections (e.g. child/related pages) shown under the TOC. */
+  sidebarExtras?: React.ReactNode;
   children: ReactNode;
 }) {
   // Group h3s under the preceding h2 (flat when no h2 exists)
@@ -42,7 +45,7 @@ export function WikiPageLayout({
     }
   }
 
-  if (!nested.length) {
+  if (!nested.length && !sidebarExtras) {
     return (
       <div className="flex min-h-full w-full">
         <main className="w-full flex-1">
@@ -85,50 +88,60 @@ export function WikiPageLayout({
   const sidebar = (
     <Sidebar className="to-secondary w-64 bg-gradient-to-b from-white dark:from-black">
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu className="gap-2">
-              <div className="mt-2 mb-1 ml-2 font-semibold">On this page</div>
-              {nested.map(({ item, children }) => (
-                <SidebarMenuItem key={item.id}>
-                  {children.length > 0 ? (
-                    <Collapsible defaultOpen className="group/collapsible">
-                      <CollapsibleTrigger asChild>
-                        <SidebarMenuButton className="h-auto w-full justify-between overflow-visible whitespace-normal">
-                          <a href={`#${item.id}`} className="flex-1">
-                            {item.text}
-                          </a>
-                          <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
-                        </SidebarMenuButton>
-                      </CollapsibleTrigger>
-                      <CollapsibleContent>
-                        <SidebarMenuSub className="mt-2 gap-2">
-                          {children.map((child) => (
-                            <SidebarMenuSubItem key={child.id}>
-                              <SidebarMenuSubButton
-                                asChild
-                                className="h-auto overflow-visible whitespace-normal"
-                              >
-                                <a href={`#${child.id}`}>{child.text}</a>
-                              </SidebarMenuSubButton>
-                            </SidebarMenuSubItem>
-                          ))}
-                        </SidebarMenuSub>
-                      </CollapsibleContent>
-                    </Collapsible>
-                  ) : (
-                    <SidebarMenuButton
-                      asChild
-                      className="h-auto overflow-visible whitespace-normal"
-                    >
-                      <a href={`#${item.id}`}>{item.text}</a>
-                    </SidebarMenuButton>
-                  )}
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        {nested.length > 0 && (
+          <SidebarGroup>
+            <SidebarGroupContent>
+              <SidebarMenu className="gap-2">
+                <div className="mt-2 mb-1 ml-2 font-semibold">On this page</div>
+                {nested.map(({ item, children }) => (
+                  <SidebarMenuItem key={item.id}>
+                    {children.length > 0 ? (
+                      <Collapsible defaultOpen className="group/collapsible">
+                        <CollapsibleTrigger asChild>
+                          <SidebarMenuButton className="h-auto w-full justify-between overflow-visible whitespace-normal">
+                            <a href={`#${item.id}`} className="flex-1">
+                              {item.text}
+                            </a>
+                            <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
+                          </SidebarMenuButton>
+                        </CollapsibleTrigger>
+                        <CollapsibleContent>
+                          <SidebarMenuSub className="mt-2 gap-2">
+                            {children.map((child) => (
+                              <SidebarMenuSubItem key={child.id}>
+                                <SidebarMenuSubButton
+                                  asChild
+                                  className="h-auto overflow-visible whitespace-normal"
+                                >
+                                  <a href={`#${child.id}`}>{child.text}</a>
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+                            ))}
+                          </SidebarMenuSub>
+                        </CollapsibleContent>
+                      </Collapsible>
+                    ) : (
+                      <SidebarMenuButton
+                        asChild
+                        className="h-auto overflow-visible whitespace-normal"
+                      >
+                        <a href={`#${item.id}`}>{item.text}</a>
+                      </SidebarMenuButton>
+                    )}
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
+        {sidebarExtras && (
+          <SidebarGroup>
+            <SidebarGroupContent>
+              <div className="bg-border mb-3 h-px" />
+              {sidebarExtras}
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
       </SidebarContent>
     </Sidebar>
   );
@@ -139,10 +152,14 @@ export function WikiPageLayout({
         <div className="hidden lg:block">{sidebar}</div>
         <main className="w-full flex-1">
           <div className="prose dark:prose-invert w-full pb-16 lg:pt-8 [&_details]:cursor-pointer [&_summary]:cursor-pointer">
-            <div className="prose-none bg-muted/50 mb-8 rounded-lg border p-4 lg:hidden">
-              <h3 className="mt-0 mb-3 text-sm font-semibold">On this page</h3>
-              {jumpLinks}
-            </div>
+            {nested.length > 0 && (
+              <div className="prose-none bg-muted/50 mb-8 rounded-lg border p-4 lg:hidden">
+                <h3 className="mt-0 mb-3 text-sm font-semibold">
+                  On this page
+                </h3>
+                {jumpLinks}
+              </div>
+            )}
             {children}
           </div>
         </main>
