@@ -158,8 +158,8 @@ Write the HTML tags below directly in the markdown, never inside code fences. Th
   </div>
 - Quote (only real, sourced words — never fabricated), attributed with an inline author-year citation:
   > *Quote text...*
-  > — [Smith et al. 2020](/studies/42)
-- Claims supported by evidence carry inline author-year citations in brackets, never superscript numbers: ...in follow-ups (Smith et al. 2020). When the source has a link, make the citation itself the link: [Smith et al. 2020](/studies/42) (on-site study page preferred) or [Smith et al. 2020](https://...).
+  > — ([Smith et al. 2020](/studies/42))
+- Claims supported by evidence carry inline author-year citations in brackets, never superscript numbers: ...in follow-ups (Smith et al. 2020). Citations stay in brackets even when linked — the bracketed citation becomes the link: ([Smith et al. 2020](/studies/42)) (on-site study page preferred) or ([Smith et al. 2020](https://...)).
 - The page ends with a References <details> block listing every cited source with its links:
   <details><summary><i>References</i></summary>
   <ul>
@@ -176,7 +176,7 @@ Write the HTML tags below directly in the markdown, never inside code fences. Th
 
 #### Links and citations (internal linking is a primary goal)
 - Wiki links use /{locale}/topics/{path}: in English content link /en/topics/{url} using the url field from listPages; inside a translation use that locale's localizedPaths value. Also cross-link /studies, /videos, /definitions, /support.
-- Cite sources INLINE as author-year citations in brackets — (Smith et al. 2020), or linked [Smith et al. 2020](/studies/42) when a study page (use the id from getStudies) or source URL exists. Prefer the on-site study page. Quote attributions use the same author-year style, linked to the source.
+- Cite sources INLINE as author-year citations in brackets — (Smith et al. 2020), or linked ([Smith et al. 2020](/studies/42)) when a study page (use the id from getStudies) or source URL exists. The brackets stay either way. Prefer the on-site study page. Quote attributions use the same author-year style, linked to the source.
 - Anchor text describes the destination ("detransition timelines", "this 2024 meta-analysis") — never "click here", "this page", or bare URLs for internal links.
 - Never cite a source you did not retrieve with your tools in this session. Every inline citation must also appear in the References block.
 
