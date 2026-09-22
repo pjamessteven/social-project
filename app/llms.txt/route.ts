@@ -1,4 +1,4 @@
-import { buildLocalizedPath, getPublishedPages } from "@/app/lib/pages";
+import { buildLocalizedPath, getAllPagesWithSlugs } from "@/app/lib/pages";
 import { SITE_URL } from "@/app/lib/seo";
 import { NextRequest } from "next/server";
 
@@ -6,8 +6,10 @@ import { NextRequest } from "next/server";
  * llms.txt — a concise, LLM-friendly index of the site's wiki pages.
  */
 export async function GET(_request: NextRequest) {
-  const pages = await getPublishedPages();
-  const byId = new Map(pages.map((entry) => [entry.page.id, entry]));
+  // Full page set for path-chain lookups; only published entries are listed.
+  const allPages = await getAllPagesWithSlugs();
+  const byId = new Map(allPages.map((entry) => [entry.page.id, entry]));
+  const pages = allPages.filter((entry) => entry.page.published);
 
   const lines = [
     "# detrans.ai",

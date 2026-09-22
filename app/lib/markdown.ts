@@ -111,7 +111,7 @@ export function renderWikiMarkdown(markdown: string): {
   const html = sanitizeHtml(withHeadingIds, {
     allowedTags: ALLOWED_TAGS,
     allowedAttributes: {
-      a: ["href", "title"],
+      a: ["href", "title", "rel"],
       img: ["src", "alt", "title", "width", "height"],
       h1: ["id"],
       h2: ["id"],

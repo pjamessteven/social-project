@@ -12,6 +12,7 @@ import Header from "../components/ui/common/layout/header";
 import { CustomChatInput } from "../components/ui/custom-chat-input";
 import { Toaster } from "../components/ui/sonner";
 import { isBot } from "../lib/isBot";
+import { getTopLevelTopics } from "../lib/pages";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -66,6 +67,9 @@ export default async function LocaleLayout({
   // Load messages for the current locale
   const messages = await getMessages({ locale });
 
+  // Top-level wiki topics for the header nav (desktop dropdown + mobile list)
+  const topics = await getTopLevelTopics(locale);
+
   const h = await headers();
   const host = h.get("host") ?? "";
   const ua = h.get("user-agent");
@@ -86,7 +90,7 @@ export default async function LocaleLayout({
         <AuthInitializer />
         <ScrollRestoration />
         <div className="relative flex h-[100dvh] flex-col">
-          <Header mode="detrans" locale={locale} />
+          <Header mode="detrans" locale={locale} topics={topics} />
           <Toaster />
           <main
             className={

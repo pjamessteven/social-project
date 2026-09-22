@@ -1,4 +1,4 @@
-import { buildLocalizedPath, getPublishedPages } from "@/app/lib/pages";
+import { buildLocalizedPath, getAllPagesWithSlugs } from "@/app/lib/pages";
 import { generateVideoSlug } from "@/app/lib/video-utils";
 import { db } from "@/db";
 import {
@@ -270,8 +270,12 @@ export async function GET(request: NextRequest) {
   // segments are translated per locale. Each URL self-canonicalizes and its
   // hreflang alternates point at the other locales' translated paths.
   // ---------------------------------------------------------------------
-  const wikiPages = await getPublishedPages();
-  const wikiById = new Map(wikiPages.map((entry) => [entry.page.id, entry]));
+  // Ancestor lookups use ALL pages (drafts included) so a published child of
+  // an unpublished parent still gets its full path; only published entries
+  // are emitted.
+  const allWikiPages = await getAllPagesWithSlugs();
+  const wikiById = new Map(allWikiPages.map((entry) => [entry.page.id, entry]));
+  const wikiPages = allWikiPages.filter((entry) => entry.page.published);
   const sitemapLocales = locales as readonly string[];
 
   const topicRoutes: Array<{

@@ -7,6 +7,7 @@ import {
   getLocalizedValue,
   getPageAncestors,
   getPageChildren,
+  getPageSiblings,
   resolvePageBySegments,
 } from "@/app/lib/pages";
 import { localeToBcp47 } from "@/app/lib/seo";
@@ -64,6 +65,15 @@ function publicUrl(
   locale: string,
 ): string {
   return `${SITE_URL}/${locale}/topics/${buildLocalizedPath(entry, byId, locale)}`;
+}
+
+/**
+ * JSON safe to embed in a <script> tag: JSON.stringify leaves `</script>`
+ * untouched, which would end the script element early (XSS via page
+ * titles/summaries). Escaping `<` as \u003c is inert inside JSON strings.
+ */
+function safeJsonLd(value: unknown): string {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
 }
 
 export async function generateMetadata({
@@ -149,18 +159,7 @@ export default async function WikiTopicPage({
     (entry) => entry.page.published,
   );
   const children = getPageChildren(item, published);
-
-  const parentPath = page.path.includes("/")
-    ? page.path.slice(0, page.path.lastIndexOf("/"))
-    : null;
-  const parentEntry = parentPath
-    ? published.find((entry) => entry.page.path === parentPath)
-    : undefined;
-  const siblings = (
-    parentEntry
-      ? getPageChildren(parentEntry, published)
-      : published.filter((entry) => !entry.page.path.includes("/"))
-  ).filter((entry) => entry.page.id !== page.id);
+  const siblings = getPageSiblings(item, published);
 
   const canonical = publicUrl(item, byId, locale);
   const isDraftPreview = includeDrafts && !page.published;
@@ -206,7 +205,7 @@ export default async function WikiTopicPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([articleJsonLd, breadcrumbJsonLd]),
+          __html: safeJsonLd([articleJsonLd, breadcrumbJsonLd]),
         }}
       />
       <WikiPageLayout toc={toc}>
