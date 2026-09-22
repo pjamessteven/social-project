@@ -47,8 +47,14 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { isAuthenticated, user } = useUserStore();
+  const { isAuthenticated, user, checkAuth } = useUserStore();
   const isAdmin = user?.role === "admin";
+
+  // Ensure auth state is populated even if the global AuthInitializer ran
+  // before the session existed (cross-tab login, stale store, load order).
+  useEffect(() => {
+    if (!user) checkAuth();
+  }, [user, checkAuth]);
 
   const showChatInput =
     path == "/" ||
