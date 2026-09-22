@@ -49,7 +49,7 @@ export function WikiPageLayout({
     return (
       <div className="flex min-h-full w-full">
         <main className="w-full flex-1">
-          <div className="prose dark:prose-invert w-full pb-16 lg:pt-8 [&_details]:cursor-pointer [&_summary]:cursor-pointer">
+          <div className="prose dark:prose-invert w-full pb-16 lg:pt-8 [&_.wiki-callout_p]:my-1 [&_.wiki-callout>*:first-child]:mt-0 [&_.wiki-callout>*:last-child]:mb-0 [&_details]:cursor-pointer [&_summary]:cursor-pointer">
             {children}
           </div>
         </main>
@@ -137,7 +137,7 @@ export function WikiPageLayout({
         {sidebarExtras && (
           <SidebarGroup>
             <SidebarGroupContent>
-              <div className="bg-border mb-3 h-px" />
+              <div className="bg-border mb-4 h-px" />
               {sidebarExtras}
             </SidebarGroupContent>
           </SidebarGroup>
@@ -151,7 +151,7 @@ export function WikiPageLayout({
       <div className="flex min-h-full w-full">
         <div className="hidden lg:block">{sidebar}</div>
         <main className="w-full flex-1">
-          <div className="prose dark:prose-invert w-full pb-16 lg:pt-8 [&_details]:cursor-pointer [&_summary]:cursor-pointer">
+          <div className="prose dark:prose-invert w-full pb-16 lg:pt-8 [&_.wiki-callout_p]:my-1 [&_.wiki-callout>*:first-child]:mt-0 [&_.wiki-callout>*:last-child]:mb-0 [&_details]:cursor-pointer [&_summary]:cursor-pointer">
             {nested.length > 0 && (
               <div className="prose-none bg-muted/50 mb-8 rounded-lg border p-4 lg:hidden">
                 <h3 className="mt-0 mb-3 text-sm font-semibold">

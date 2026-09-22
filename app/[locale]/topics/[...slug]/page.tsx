@@ -1,4 +1,5 @@
 import { WikiPageLayout } from "@/app/components/content/WikiPageLayout";
+import { SidebarMenuButton } from "@/app/components/ui/sidebar";
 import { isAdmin } from "@/app/lib/auth/auth";
 import { renderWikiMarkdown } from "@/app/lib/markdown";
 import {
@@ -132,38 +133,42 @@ function PageLinkList({
   items: { key: string; href: string; title: string; summary: string | null }[];
   compact?: boolean;
 }) {
+  // Sidebar variant: match the "On this page" links exactly (no underline,
+  // same padding/typography, no summaries) by reusing SidebarMenuButton.
+  if (compact) {
+    return (
+      <section>
+        <h2 className="mt-2 mb-2 ml-2 text-sm font-semibold">{heading}</h2>
+        <ul className="space-y-1">
+          {items.map((item) => (
+            <li key={item.key}>
+              <SidebarMenuButton
+                asChild
+                className="h-auto overflow-visible whitespace-normal"
+              >
+                <a href={item.href}>{item.title}</a>
+              </SidebarMenuButton>
+            </li>
+          ))}
+        </ul>
+      </section>
+    );
+  }
+
   return (
     <section>
-      <h2
-        className={
-          compact
-            ? "mb-2 ml-2 text-sm font-semibold"
-            : "mb-3 text-xl font-semibold"
-        }
-      >
-        {heading}
-      </h2>
-      <ul className={compact ? "space-y-2.5" : "space-y-2"}>
+      <h2 className="mb-3 text-xl font-semibold">{heading}</h2>
+      <ul className="space-y-2">
         {items.map((item) => (
           <li key={item.key}>
             <a
               href={item.href}
-              className={
-                compact
-                  ? "text-sm font-medium underline underline-offset-2"
-                  : "font-medium underline underline-offset-2"
-              }
+              className="font-medium underline underline-offset-2"
             >
               {item.title}
             </a>
             {item.summary && (
-              <p
-                className={
-                  compact
-                    ? "text-muted-foreground mt-0.5 line-clamp-2 text-xs"
-                    : "text-muted-foreground mt-0.5 text-sm"
-                }
-              >
+              <p className="text-muted-foreground mt-0.5 text-sm">
                 {item.summary}
               </p>
             )}
@@ -338,7 +343,7 @@ export default async function WikiTopicPage({
           {/* Related-page navigation: sidebar on desktop (see sidebarExtras),
               in the page body on mobile with a divider above */}
           {hasRelated && (
-            <div className="not-prose mt-10 border-t pt-6 lg:hidden">
+            <div className="not-prose mt-10 border-t pt-8 lg:hidden">
               <div className="space-y-8">
                 {childrenItems.length > 0 && (
                   <PageLinkList

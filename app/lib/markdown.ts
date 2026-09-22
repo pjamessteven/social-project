@@ -138,13 +138,15 @@ export function renderWikiMarkdown(markdown: string): {
       }),
       // Callouts: enforce compact, small-text styling regardless of what the
       // authoring model writes (support-page look, reduced vertical padding).
+      // The wiki-callout class lets the layout zero the prose text margins.
       div: (tagName: string, attribs: Record<string, string>) =>
         attribs.class?.includes("bg-muted/30")
           ? {
               tagName,
               attribs: {
                 ...attribs,
-                class: "bg-muted/30 my-4 rounded-lg border px-4 py-2 text-sm",
+                class:
+                  "wiki-callout bg-muted/30 my-4 rounded-lg border px-4 py-2 text-sm",
               },
             }
           : { tagName, attribs },
