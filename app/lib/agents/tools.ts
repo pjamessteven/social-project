@@ -17,8 +17,13 @@ import {
 import { db } from "@/db";
 import { studies, studyTagRelations, studyTags } from "@/db/schema";
 import { defaultLocale } from "@/i18n/locales";
-import { eq, inArray, sql } from "drizzle-orm";
-import { Settings, tool, type VectorStoreIndex } from "llamaindex";
+import { and, eq, inArray, sql } from "drizzle-orm";
+import {
+  MetadataMode,
+  Settings,
+  tool,
+  type VectorStoreIndex,
+} from "llamaindex";
 import z from "zod";
 import { type Cache, makeHashedKey } from "./cache";
 import { queryCommentsV2 } from "./data";
@@ -26,6 +31,31 @@ import allKeywords from "./keywords.json";
 
 // Top 200 keywords by frequency, for injection into the tool description
 const TOP_KEYWORDS = Object.keys(allKeywords).slice(0, 300).join(", ");
+
+// --- Result compaction helpers -------------------------------------------
+// Retriever nodes serialize with embeddings and class internals (~26KB per
+// node — measured). The LLM only needs text + score + metadata, so retriever
+// results must go through compactNodes instead of JSON.stringify(nodes).
+
+function compactNodes(
+  items: Array<{ node?: any; score?: number | null }>,
+): string {
+  return JSON.stringify(
+    items.map((item) => ({
+      text:
+        typeof item.node?.getContent === "function"
+          ? item.node.getContent(MetadataMode.NONE)
+          : (item.node?.text ?? ""),
+      score: item.score ?? null,
+      metadata: item.node?.metadata ?? {},
+    })),
+  );
+}
+
+function clampText(value: string | null, max = 600): string | null {
+  if (!value) return value;
+  return value.length > max ? `${value.slice(0, max)}…` : value;
+}
 
 interface ToolConfig {
   cache: Cache;
@@ -87,14 +117,14 @@ export function createQueryTransCommentsTool(config: ToolConfig) {
   const { cache, index, userInput, metadata, similarityTopK = 15 } = config;
   return tool(
     async ({ query }: { query: string }) => {
-      const cacheKey = `tool:queryTransComments:${JSON.stringify({ query })}`;
+      const cacheKey = `tool:queryTransComments:v2:${JSON.stringify({ query })}`;
       const hashedKey = makeHashedKey(cacheKey);
       const cachedResult = await cache.get(hashedKey);
       if (cachedResult) return cachedResult;
 
       const retriever = index!.asRetriever({ similarityTopK });
       const nodes = await retriever.retrieve({ query });
-      const result = JSON.stringify(nodes);
+      const result = compactNodes(nodes);
       await cache.set(hashedKey, cacheKey, result, userInput, metadata);
       return result;
     },
@@ -116,14 +146,14 @@ export function createQueryStoriesTool(config: ToolConfig) {
   const { cache, index, userInput, metadata, similarityTopK = 15 } = config;
   return tool(
     async ({ query }: { query: string }) => {
-      const cacheKey = `tool:queryStories:${JSON.stringify({ query })}`;
+      const cacheKey = `tool:queryStories:v2:${JSON.stringify({ query })}`;
       const hashedKey = makeHashedKey(cacheKey);
       const cachedResult = await cache.get(hashedKey);
       if (cachedResult) return cachedResult;
 
       const retriever = index!.asRetriever({ similarityTopK });
       const nodes = await retriever.retrieve({ query });
-      const result = JSON.stringify(nodes);
+      const result = compactNodes(nodes);
       await cache.set(hashedKey, cacheKey, result, userInput, metadata);
       return result;
     },
@@ -144,7 +174,7 @@ export function createQueryVideosTool(config: ToolConfig) {
   const { cache, index, userInput, metadata, similarityTopK = 10 } = config;
   return tool(
     async ({ query, sex }: { query: string; sex?: "m" | "f" }) => {
-      const cacheKey = `tool:queryVideos:${JSON.stringify({ query, sex })}`;
+      const cacheKey = `tool:queryVideos:v2:${JSON.stringify({ query, sex })}`;
       const hashedKey = makeHashedKey(cacheKey);
       const cachedResult = await cache.get(hashedKey);
       if (cachedResult) return cachedResult;
@@ -170,7 +200,7 @@ export function createQueryVideosTool(config: ToolConfig) {
         { seen: new Set<string>(), items: [] },
       ).items;
 
-      const result = JSON.stringify(unique.slice(0, 3));
+      const result = compactNodes(unique.slice(0, 3));
       await cache.set(hashedKey, cacheKey, result, userInput, metadata);
       return result;
     },
@@ -196,7 +226,7 @@ export function createQueryStudiesTool(config: ToolConfig) {
   const { cache, index, userInput, metadata, similarityTopK = 15 } = config;
   return tool(
     async ({ query }: { query: string }) => {
-      const cacheKey = `tool:queryStudies:${JSON.stringify({ query })}`;
+      const cacheKey = `tool:queryStudies:v2:${JSON.stringify({ query })}`;
       const hashedKey = makeHashedKey(cacheKey);
       const cachedResult = await cache.get(hashedKey);
       if (cachedResult) return cachedResult;
@@ -218,7 +248,7 @@ export function createQueryStudiesTool(config: ToolConfig) {
         { seen: new Set<string>(), items: [] },
       ).items;
 
-      const result = JSON.stringify(unique.slice(0, 5));
+      const result = compactNodes(unique.slice(0, 5));
       await cache.set(hashedKey, cacheKey, result, userInput, metadata);
       return result;
     },
@@ -324,7 +354,15 @@ export function createWebSearchTool(config: WebSearchToolConfig) {
 
 export function createGetStudiesTool() {
   return tool(
-    async ({ limit = 50, tags }: { limit?: number; tags: string[] }) => {
+    async ({
+      id,
+      limit = 50,
+      tags,
+    }: {
+      id?: number;
+      limit?: number;
+      tags?: string[];
+    }) => {
       const baseSelect = {
         id: studies.id,
         title: studies.title,
@@ -340,10 +378,27 @@ export function createGetStudiesTool() {
         limitations: studies.limitations,
       };
 
+      // Full record for a single study (used when citing a study in depth).
+      if (id != null) {
+        const [study] = await db
+          .select(baseSelect)
+          .from(studies)
+          .where(and(eq(studies.id, id), eq(studies.approved, true)))
+          .limit(1);
+        if (!study) {
+          return JSON.stringify({
+            success: false,
+            error: `Study ${id} not found or not approved`,
+          });
+        }
+        return JSON.stringify({ success: true, study });
+      }
+
       let results;
 
-      if (tags.length > 0) {
-        const tagFilter = inArray(studyTags.name, tags);
+      const tagList = tags ?? [];
+      if (tagList.length > 0) {
+        const tagFilter = inArray(studyTags.name, tagList);
         const studyIdsFromTags = db
           .select({ studyId: studyTagRelations.studyId })
           .from(studyTagRelations)
@@ -399,6 +454,19 @@ export function createGetStudiesTool() {
         results = results.map((r) => ({ ...r, tags: [] }));
       }
 
+      // Compact listing mode: clamp long text fields so a 50-study listing
+      // doesn't serialize to tens of thousands of tokens. Pass `id` for the
+      // full record of a single study.
+      results = results.map((r) => ({
+        ...r,
+        description: clampText(r.description),
+        abstract: clampText(r.abstract),
+        conclusion: clampText(r.conclusion),
+        summary: clampText(r.summary),
+        limitations: r.limitations?.slice(0, 8).map((k) => clampText(k, 300)),
+        keyPoints: r.keyPoints?.slice(0, 8).map((k) => clampText(k, 300)),
+      }));
+
       return JSON.stringify({
         success: true,
         count: results.length,
@@ -408,12 +476,19 @@ export function createGetStudiesTool() {
     {
       name: "getStudies",
       description:
-        "List approved studies from the database. Filter by tags (OR logic). Returns study IDs, titles, authors, year, journal, descriptions, abstracts, summaries, conclusions, key points, limitations, and associated tags.",
+        "List approved studies (compact: long abstracts/conclusions are truncated). Filter by tags (OR logic). Pass `id` to fetch ONE study's full record — complete abstract, conclusion, key points and limitations — for studies you cite in depth. Returns study ids (for /studies/{id} links), titles, authors, year, journal, descriptions, and tags.",
       parameters: z.object({
+        id: z
+          .number()
+          .optional()
+          .describe(
+            "Fetch the full record for a single study by its id (ignores tags/limit).",
+          ),
         tags: z
           .array(z.string())
+          .optional()
           .describe(
-            "Filter studies by these tag names (OR logic — returns studies matching any of the provided tags). Pass an empty array to return all studies.",
+            "Filter studies by these tag names (OR logic — returns studies matching any of the provided tags). Omit or pass an empty array to return all studies.",
           ),
         limit: z
           .number()

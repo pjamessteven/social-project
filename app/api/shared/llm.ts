@@ -364,7 +364,7 @@ export class CachedOpenAI extends OpenAI {
         const seenToolCallIds = new Set<string>();
 
         const STREAM_TIMEOUT_MS =
-          Number(process.env.LLM_STREAM_TIMEOUT_MS) || 180_000;
+          Number(process.env.LLM_STREAM_TIMEOUT_MS) || 300_000;
         const iterator = (rawStream as AsyncGenerator<ChatResponseChunk>)[
           Symbol.asyncIterator
         ]();
