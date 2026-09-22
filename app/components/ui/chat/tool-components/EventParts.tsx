@@ -620,6 +620,7 @@ function WikiTreeList({
 
 export function WikiPageEventPart() {
   const eventPart = usePart<EventPartData>("data-wiki-page-event");
+  const [expanded, setExpanded] = useState(false);
   const locale = useLocale();
   const t = useTranslations("chat");
 
@@ -635,49 +636,113 @@ export function WikiPageEventPart() {
     eventPart.data.status === "error" || parsed?.success === false;
   const isSuccess = !isPending && !isError;
   const errorMessage: string | undefined = parsed?.error;
-  const path: string | undefined = parsed?.path ?? eventPart.data.query;
+  // Action name from the tool event: "Created wiki page", "Updated wiki page",
+  // "Deleted wiki page" or "Listed wiki pages" (falls back while loading).
+  const actionLabel = eventPart.data.title || t("eventLabels.wikiPage");
+  const path: string | undefined =
+    parsed?.path ?? parsed?.deleted ?? eventPart.data.query;
+  const pageTitle: string | undefined = parsed?.title;
+  const summary: string | undefined = parsed?.summary;
+  const contentPreview: string | undefined = parsed?.contentPreview;
+  const updatedFields: string[] = Array.isArray(parsed?.updatedFields)
+    ? parsed.updatedFields
+    : [];
+  const isDeleted = !!parsed?.deleted;
   const pages: WikiTreeNode[] | undefined = parsed?.pages;
 
   return (
     <EventWrapper
       eventType="data-wiki-page-event"
-      label={t("eventLabels.wikiPage")}
+      label={actionLabel}
       query={path || undefined}
       disableExpand
     >
       <div className="not-prose my-2 w-full text-xs">
-        {isSuccess && path && (
-          <div className="bg-muted/50 rounded border px-3 py-2">
-            <a
-              href={`/${locale}/topics/${path}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-blue-600 hover:underline dark:text-blue-400"
-            >
-              /{path}
-            </a>
-            {parsed?.published === false && (
-              <span className="text-muted-foreground ml-1.5">(draft)</span>
-            )}
-            {parsed?.isStub && <WikiStubBadge />}
-          </div>
-        )}
+        {isSuccess && !isDeleted && !pages && path && (
+          <div
+            className="bg-muted/50 cursor-pointer rounded border px-3 py-2"
+            onClick={() => setExpanded(!expanded)}
+          >
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex min-w-0 items-center gap-1.5">
+                <a
+                  href={`/${locale}/topics/${path}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="truncate font-medium text-blue-600 hover:underline dark:text-blue-400"
+                >
+                  {pageTitle || `/${path}`}
+                </a>
+                {parsed?.published === false && (
+                  <span className="text-muted-foreground shrink-0">
+                    (draft)
+                  </span>
+                )}
+                {parsed?.isStub && <WikiStubBadge />}
+              </div>
+              <span className="text-muted-foreground shrink-0 text-xs">
+                {expanded ? "▲" : "▼"}
+              </span>
+            </div>
 
-        {isSuccess && Array.isArray(pages) && pages.length > 0 && (
-          <div className="bg-muted/50 rounded border px-3 py-2">
-            <WikiTreeList nodes={pages} locale={locale} />
-            {parsed?.truncated && (
-              <div className="text-muted-foreground mt-1">
-                +{Math.max(0, (parsed.total ?? 0) - countTreeNodes(pages))} more
-                pages (truncated)
+            {expanded && (
+              <div className="mt-2 space-y-2 border-t pt-2">
+                <div className="text-muted-foreground">/{path}</div>
+                {summary && <p className="text-muted-foreground">{summary}</p>}
+                {updatedFields.length > 0 && (
+                  <div className="flex flex-wrap gap-1">
+                    {updatedFields.map((field) => (
+                      <span
+                        key={field}
+                        className="bg-background rounded border px-1.5 py-0.5 text-[10px]"
+                      >
+                        changed: {field}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                {contentPreview && (
+                  <pre className="bg-background max-h-40 overflow-auto rounded border p-2 text-[11px] whitespace-pre-wrap">
+                    {contentPreview}
+                  </pre>
+                )}
               </div>
             )}
           </div>
         )}
 
-        {isSuccess && Array.isArray(pages) && pages.length === 0 && (
-          <div className="bg-muted/50 text-muted-foreground rounded border px-3 py-2">
-            No pages yet.
+        {isSuccess && isDeleted && path && (
+          <div className="bg-muted/50 rounded border px-3 py-2">
+            <span className="text-muted-foreground line-through">/{path}</span>
+            {pageTitle && (
+              <span className="text-muted-foreground ml-1.5">{pageTitle}</span>
+            )}
+          </div>
+        )}
+
+        {isSuccess && Array.isArray(pages) && (
+          <div
+            className="bg-muted/50 cursor-pointer rounded border px-3 py-2"
+            onClick={() => setExpanded(!expanded)}
+          >
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-muted-foreground">
+                {pages.length === 0
+                  ? "No pages yet."
+                  : parsed?.truncated
+                    ? `Showing ${countTreeNodes(pages)} of ${parsed.total} pages`
+                    : `${pages.length} top-level ${pages.length === 1 ? "page" : "pages"}`}
+              </span>
+              <span className="text-muted-foreground shrink-0 text-xs">
+                {expanded ? "▲" : "▼"}
+              </span>
+            </div>
+            {expanded && pages.length > 0 && (
+              <div className="mt-2 border-t pt-2">
+                <WikiTreeList nodes={pages} locale={locale} />
+              </div>
+            )}
           </div>
         )}
 

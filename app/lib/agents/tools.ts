@@ -2,6 +2,7 @@ import { banIp, isIpBanned } from "@/app/lib/ipBan";
 import {
   createPage,
   deletePage,
+  getPageByPath,
   listPagesTree,
   updatePage,
 } from "@/app/lib/pages";
@@ -596,6 +597,9 @@ export function createCreatePageTool(config: {
           success: true,
           path: created.page.path,
           url: `/topics/${created.page.path}`,
+          title: created.page.title,
+          summary: created.page.summary,
+          contentPreview: created.page.content.slice(0, 400),
           published: created.page.published,
           isStub: created.page.isStub,
           localizedPaths: created.slugs,
@@ -678,10 +682,26 @@ export function createUpdatePageTool(config: {
           stub,
           updatedBy: config.adminUsername,
         });
+        const updatedFields = (
+          [
+            newPath !== undefined && newPath !== path && "path",
+            title !== undefined && "title",
+            summary !== undefined && "summary",
+            content !== undefined && "content",
+            translations !== undefined && "translations",
+            publish !== undefined && "published",
+            stub !== undefined && "stub",
+          ] as Array<string | false>
+        ).filter((field): field is string => typeof field === "string");
+
         return JSON.stringify({
           success: true,
           path: updated.page.path,
           url: `/topics/${updated.page.path}`,
+          title: updated.page.title,
+          summary: updated.page.summary,
+          contentPreview: updated.page.content.slice(0, 400),
+          updatedFields,
           published: updated.page.published,
           isStub: updated.page.isStub,
           localizedPaths: updated.slugs,
@@ -722,8 +742,13 @@ export function createDeletePageTool(config: {
       const denied = wikiDenied(config.adminUsername);
       if (denied) return denied;
       try {
+        const existing = await getPageByPath(path);
         await deletePage(path);
-        return JSON.stringify({ success: true, deleted: path });
+        return JSON.stringify({
+          success: true,
+          deleted: path,
+          title: existing?.page.title,
+        });
       } catch (error) {
         return wikiError("deletePage", error);
       }
