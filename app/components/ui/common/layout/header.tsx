@@ -155,11 +155,11 @@ export default function Header({
                   <NavigationMenuItem>
                     <NavigationMenuTrigger
                       className={cn(
-                        "-ml-1 flex items-center gap-1 rounded-full !bg-transparent px-4 py-1 text-sm font-medium hover:bg-transparent",
+                        "-ml-1 flex items-center gap-1.5 rounded-full !bg-transparent px-4 py-2 text-sm font-medium hover:bg-transparent",
                         pathname.startsWith("/topics") && "bg-muted",
                       )}
                     >
-                      <BookOpen className="mr-1 h-4 w-4" />
+                      <BookOpen className="h-3.5 w-3.5" />
                       {t("navigation.topics")}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent className="">
@@ -205,8 +205,8 @@ export default function Header({
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="-ml-1 flex items-center gap-1 rounded-full !bg-transparent px-4 py-1 text-sm font-medium hover:bg-transparent">
-                    <Info className="mr-1 h-4 w-4" />
+                  <NavigationMenuTrigger className="-ml-1 flex items-center gap-1.5 rounded-full !bg-transparent px-4 py-2 text-sm font-medium hover:bg-transparent">
+                    <Info className="h-3.5 w-3.5" />
                     {t("navigation.about")}
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="">
