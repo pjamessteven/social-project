@@ -21,6 +21,8 @@ export interface TabDef {
 
 interface SlidingNavGroupProps {
   tabs: TabDef[];
+  /** Optional dropdown rendered after the tabs and before moreDropdown. */
+  extraDropdown?: React.ReactNode;
   moreDropdown?: React.ReactNode;
   onTabClick?: (key: string) => void;
   className?: string;
@@ -31,6 +33,7 @@ interface SlidingNavGroupProps {
 
 export function SlidingNavGroup({
   tabs,
+  extraDropdown,
   moreDropdown,
   onTabClick,
   className,
@@ -39,17 +42,23 @@ export function SlidingNavGroup({
   tabClassName,
 }: SlidingNavGroupProps) {
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
+  const [extraHovered, setExtraHovered] = useState(false);
   const [moreHovered, setMoreHovered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<Map<string, HTMLElement>>(new Map());
+  const extraRef = useRef<HTMLDivElement>(null);
   const moreRef = useRef<HTMLDivElement>(null);
 
   const activeKey = useMemo(
     () => tabs.find((t) => t.isActive)?.key ?? null,
     [tabs.map((t) => `${t.key}:${t.isActive}`).join(",")],
   );
-  const targetKey = moreHovered ? "more" : (hoveredKey ?? activeKey);
+  const targetKey = extraHovered
+    ? "extra"
+    : moreHovered
+      ? "more"
+      : (hoveredKey ?? activeKey);
 
   const moveBg = useCallback((key: string | null) => {
     if (!bgRef.current || !containerRef.current) return;
@@ -57,7 +66,12 @@ export function SlidingNavGroup({
       bgRef.current.style.opacity = "0";
       return;
     }
-    const el = key === "more" ? moreRef.current : tabRefs.current.get(key);
+    const el =
+      key === "more"
+        ? moreRef.current
+        : key === "extra"
+          ? extraRef.current
+          : tabRefs.current.get(key);
     if (!el) return;
     const containerRect = containerRef.current.getBoundingClientRect();
     const elRect = el.getBoundingClientRect();
@@ -97,6 +111,7 @@ export function SlidingNavGroup({
       )}
       onMouseLeave={() => {
         setHoveredKey(null);
+        setExtraHovered(false);
         setMoreHovered(false);
       }}
     >
@@ -152,10 +167,31 @@ export function SlidingNavGroup({
         );
       })}
 
+      {extraDropdown && (
+        <div
+          ref={extraRef}
+          onMouseEnter={() => {
+            setExtraHovered(true);
+            setHoveredKey(null);
+          }}
+          className={cn(
+            "relative z-10 rounded-full py-1 text-sm font-medium transition-colors",
+            targetKey === "extra"
+              ? activeTextClassName
+              : "text-muted-foreground hover:text-foreground",
+          )}
+        >
+          {extraDropdown}
+        </div>
+      )}
+
       {moreDropdown && (
         <div
           ref={moreRef}
-          onMouseEnter={() => setMoreHovered(true)}
+          onMouseEnter={() => {
+            setMoreHovered(true);
+            setExtraHovered(false);
+          }}
           className={cn(
             "relative z-10 rounded-full py-1 text-sm font-medium transition-colors",
             targetKey === "more"

@@ -1,5 +1,5 @@
 import { withApiSecurity } from "@/app/lib/apiSecurity";
-import { getCurrentSession } from "@/app/lib/auth/auth";
+import { getCurrentSession, getFreshRole } from "@/app/lib/auth/auth";
 import { releaseWorkflow, tryAcquireWorkflow } from "@/app/lib/concurrency";
 import { getCountryFromIP } from "@/app/lib/geolocation";
 import { getIP } from "@/app/lib/getIp";
@@ -36,6 +36,7 @@ const chatRequestSchema = z.object({
   id: z.string().optional(),
   includeTransPerspectives: z.boolean().optional(),
   wikiMode: z.boolean().optional(),
+  proModel: z.boolean().optional(),
 });
 
 // How long the route waits for the LLM captcha gate to decide before assuming
@@ -97,16 +98,21 @@ export async function POST(req: NextRequest) {
       id: requestId,
       includeTransPerspectives,
       wikiMode,
+      proModel,
     } = validationResult.data;
 
     // Admin-only chat modes: silently coerce off for non-admin sessions so
     // regular users are never blocked or told about restricted features.
-    const isAdminUser = session?.role === "admin";
+    // DB-fresh role: JWT sessions can outlive role changes.
+    const isAdminUser = session
+      ? (await getFreshRole(session.userId, session.role)) === "admin"
+      : false;
     const adminUsername = isAdminUser ? (session?.username ?? null) : null;
     const effectiveIncludeTransPerspectives = isAdminUser
       ? (includeTransPerspectives ?? false)
       : false;
     const effectiveWikiMode = isAdminUser && wikiMode === true;
+    const effectiveProModel = isAdminUser && proModel === true;
 
     let userInput = message;
 
@@ -286,6 +292,7 @@ export async function POST(req: NextRequest) {
         enforceCaptcha,
         adminUsername,
         effectiveWikiMode,
+        effectiveProModel,
       );
 
       const context = await runWorkflow({

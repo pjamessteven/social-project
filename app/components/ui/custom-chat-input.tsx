@@ -37,6 +37,8 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
     setIncludeTransPerspectives,
     wikiUpdateMode,
     setWikiUpdateMode,
+    proModel,
+    setProModel,
   } = useChatStore();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
@@ -308,7 +310,7 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                   className="relative h-14 w-14 flex-shrink-0 rounded-full"
                 >
                   <MoreVertical className="h-5 w-5" />
-                  {(includeTransPerspectives || wikiUpdateMode) && (
+                  {(includeTransPerspectives || wikiUpdateMode || proModel) && (
                     <span className="absolute top-3 right-3 h-2.5 w-2.5 rounded-full bg-blue-500" />
                   )}
                 </Button>
@@ -332,6 +334,13 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
                   onSelect={(event) => event.preventDefault()}
                 >
                   📚 {t("wikiUpdateMode")}
+                </DropdownMenuCheckboxItem>
+                <DropdownMenuCheckboxItem
+                  checked={proModel}
+                  onCheckedChange={(checked) => setProModel(checked === true)}
+                  onSelect={(event) => event.preventDefault()}
+                >
+                  ⚡ {t("proModel")}
                 </DropdownMenuCheckboxItem>
               </DropdownMenuContent>
             </DropdownMenu>

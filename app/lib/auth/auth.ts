@@ -108,16 +108,42 @@ export async function getCurrentSession(): Promise<SessionPayload | null> {
   return result.payload;
 }
 
+/**
+ * Role changes (promotion/demotion) don't propagate through long-lived JWT
+ * sessions, so privileged checks read the current role from the database and
+ * only fall back to the session claim.
+ */
+export async function getFreshRole(
+  userId: number,
+  fallbackRole: string,
+): Promise<string> {
+  try {
+    const rows = await db
+      .select({ role: users.role })
+      .from(users)
+      .where(eq(users.id, userId))
+      .limit(1);
+    return rows[0]?.role ?? fallbackRole;
+  } catch (error) {
+    console.error("Fresh role lookup failed:", error);
+    return fallbackRole;
+  }
+}
+
 // Check if user is admin
 export async function isAdmin(): Promise<boolean> {
   const session = await getCurrentSession();
-  return session?.role === "admin";
+  if (!session) return false;
+  const role = await getFreshRole(session.userId, session.role);
+  return role === "admin";
 }
 
 // Check if user is moderator or admin
 export async function isModeratorOrAdmin(): Promise<boolean> {
   const session = await getCurrentSession();
-  return session?.role === "admin" || session?.role === "moderator";
+  if (!session) return false;
+  const role = await getFreshRole(session.userId, session.role);
+  return role === "admin" || role === "moderator";
 }
 
 // Generate a secure random magic link token

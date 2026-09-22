@@ -1,4 +1,4 @@
-import { getCurrentSession } from "@/app/lib/auth/auth";
+import { getCurrentSession, getFreshRole } from "@/app/lib/auth/auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -22,7 +22,8 @@ export async function GET(request: NextRequest) {
         id: session.userId,
         username: session.username,
         email: session.username, // Email is stored in username field
-        role: session.role,
+        // DB-fresh: JWT sessions can outlive role changes
+        role: await getFreshRole(session.userId, session.role),
       },
     });
   } catch (error) {

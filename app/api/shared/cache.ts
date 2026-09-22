@@ -70,9 +70,11 @@ export function makeCacheKey(
   messages: any[],
   options: any,
   mode?: string,
+  model?: string,
 ): string {
   return mode === "detrans_chat"
     ? JSON.stringify({
+        model: model ?? null,
         messages,
         tools: options.tools?.map((t: any) => t?.name || null),
       })

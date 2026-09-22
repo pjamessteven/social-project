@@ -148,168 +148,166 @@ export default function Header({
           className=""
           tabClassName=""
           tabs={allTabs}
-          moreDropdown={
-            <>
-              {topics.length > 0 && (
-                <NavigationMenu>
-                  <NavigationMenuList>
-                    <NavigationMenuItem>
-                      <NavigationMenuTrigger
-                        className={cn(
-                          "-ml-1 flex items-center gap-1 rounded-full !bg-transparent px-4 py-1 text-sm font-medium hover:bg-transparent",
-                          pathname.startsWith("/topics") && "bg-muted",
-                        )}
-                      >
-                        <BookOpen className="mr-1 h-4 w-4" />
-                        {t("navigation.topics")}
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent className="">
-                        <div className="grid max-h-[70vh] w-72 gap-1 overflow-y-auto p-2">
-                          <NavigationMenuLink asChild>
-                            <a
-                              href={`/${locale}/topics`}
-                              className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                            >
-                              <BookOpen className="h-5 w-5" />
-                              <div className="text-sm leading-none font-medium">
-                                {t("navigation.allTopics")}
-                              </div>
-                            </a>
-                          </NavigationMenuLink>
-                          <div className="bg-border my-1 h-px" />
-                          {topics.map((topic) => (
-                            <NavigationMenuLink asChild key={topic.path}>
-                              <a
-                                href={`/${locale}/topics/${topic.path}`}
-                                className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                              >
-                                <BookOpen className="mt-0.5 h-5 w-5" />
-                                <div className="flex flex-col space-y-1">
-                                  <div className="text-sm leading-none font-medium">
-                                    {topic.title}
-                                  </div>
-                                  {topic.summary && (
-                                    <p className="text-muted-foreground line-clamp-3 text-xs leading-snug">
-                                      {topic.summary}
-                                    </p>
-                                  )}
-                                </div>
-                              </a>
-                            </NavigationMenuLink>
-                          ))}
-                        </div>
-                      </NavigationMenuContent>
-                    </NavigationMenuItem>
-                  </NavigationMenuList>
-                </NavigationMenu>
-              )}
+          extraDropdown={
+            topics.length > 0 ? (
               <NavigationMenu>
                 <NavigationMenuList>
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger className="-ml-1 flex items-center gap-1 rounded-full !bg-transparent px-4 py-1 text-sm font-medium hover:bg-transparent">
-                      <Info className="mr-1 h-4 w-4" />
-                      {t("navigation.about")}
+                    <NavigationMenuTrigger
+                      className={cn(
+                        "-ml-1 flex items-center gap-1 rounded-full !bg-transparent px-4 py-1 text-sm font-medium hover:bg-transparent",
+                        pathname.startsWith("/topics") && "bg-muted",
+                      )}
+                    >
+                      <BookOpen className="mr-1 h-4 w-4" />
+                      {t("navigation.topics")}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent className="">
-                      <div className="grid w-72 gap-1 p-2">
-                        {/* Support Section */}
-                        <div className="text-muted-foreground px-3 pt-1 pb-1 text-xs font-semibold tracking-wider uppercase">
-                          {t("navigation.support")}
-                        </div>
+                      <div className="grid max-h-[70vh] w-72 gap-1 overflow-y-auto p-2">
                         <NavigationMenuLink asChild>
-                          <Link
-                            href="/support"
+                          <a
+                            href={`/${locale}/topics`}
                             className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
                           >
-                            <Heart className="h-5 w-5" />
-                            <div className="flex flex-col space-y-1">
-                              <div className="text-sm leading-none font-medium">
-                                {t("navigation.support")}
-                              </div>
-                              <p className="text-muted-foreground line-clamp-2 text-xs leading-snug">
-                                {t("resources.genderSupportDesc")}
-                              </p>
+                            <div className="text-sm leading-none font-medium">
+                              {t("navigation.allTopics")}
                             </div>
-                          </Link>
+                          </a>
                         </NavigationMenuLink>
-
-                        {/* Divider */}
                         <div className="bg-border my-1 h-px" />
-
-                        {/* About Section */}
-                        <div className="text-muted-foreground px-3 pt-2 pb-1 text-xs font-semibold tracking-wider uppercase">
-                          {t("navigation.about")}
-                        </div>
-                        <NavigationMenuLink asChild>
-                          <Link
-                            href="/contact"
-                            className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                          >
-                            <Mail className="h-5 w-5" />
-                            <div className="flex flex-col space-y-1">
-                              <div className="text-sm leading-none font-medium">
-                                {t("about.contact")}
+                        {topics.map((topic) => (
+                          <NavigationMenuLink asChild key={topic.path}>
+                            <a
+                              href={`/${locale}/topics/${topic.path}`}
+                              className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                            >
+                              <div className="flex flex-col space-y-1">
+                                <div className="text-sm leading-none font-medium">
+                                  {topic.title}
+                                </div>
+                                {topic.summary && (
+                                  <p className="text-muted-foreground line-clamp-3 text-xs leading-snug">
+                                    {topic.summary}
+                                  </p>
+                                )}
                               </div>
-                              <p className="text-muted-foreground line-clamp-2 text-xs leading-snug">
-                                {t("about.contactDesc")}
-                              </p>
-                            </div>
-                          </Link>
-                        </NavigationMenuLink>
-                        <NavigationMenuLink asChild>
-                          <Link
-                            href="/prompts"
-                            className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                          >
-                            <Settings className="h-5 w-5" />
-                            <div className="flex flex-col space-y-1">
-                              <div className="text-sm leading-none font-medium">
-                                {t("about.systemPrompts")}
-                              </div>
-                              <p className="text-muted-foreground line-clamp-2 text-xs leading-snug">
-                                {t("about.systemPromptsDesc")}
-                              </p>
-                            </div>
-                          </Link>
-                        </NavigationMenuLink>
-                        <NavigationMenuLink asChild>
-                          <Link
-                            href="/terms"
-                            className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                          >
-                            <HelpCircle className="h-5 w-5" />
-                            <div className="flex flex-col space-y-1">
-                              <div className="text-sm leading-none font-medium">
-                                {t("about.terms")}
-                              </div>
-                              <p className="text-muted-foreground line-clamp-2 text-xs leading-snug">
-                                {t("about.termsDesc")}
-                              </p>
-                            </div>
-                          </Link>
-                        </NavigationMenuLink>
-                        <NavigationMenuLink asChild>
-                          <Link
-                            href="/donate"
-                            className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                          >
-                            <DollarSign className="h-5 w-5" />
-                            <div className="flex flex-col space-y-1">
-                              <div className="text-sm leading-none font-medium">
-                                {t("donate")}
-                              </div>
-                              <p className="text-muted-foreground line-clamp-2 text-xs leading-snug">
-                                {tHome("donate.card.button")}
-                              </p>
-                            </div>
-                          </Link>
-                        </NavigationMenuLink>
+                            </a>
+                          </NavigationMenuLink>
+                        ))}
                       </div>
                     </NavigationMenuContent>
                   </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
-            </>
+            ) : undefined
+          }
+          moreDropdown={
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="-ml-1 flex items-center gap-1 rounded-full !bg-transparent px-4 py-1 text-sm font-medium hover:bg-transparent">
+                    <Info className="mr-1 h-4 w-4" />
+                    {t("navigation.about")}
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="">
+                    <div className="grid w-72 gap-1 p-2">
+                      {/* Support Section */}
+                      <div className="text-muted-foreground px-3 pt-1 pb-1 text-xs font-semibold tracking-wider uppercase">
+                        {t("navigation.support")}
+                      </div>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href="/support"
+                          className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        >
+                          <Heart className="h-5 w-5" />
+                          <div className="flex flex-col space-y-1">
+                            <div className="text-sm leading-none font-medium">
+                              {t("navigation.support")}
+                            </div>
+                            <p className="text-muted-foreground line-clamp-2 text-xs leading-snug">
+                              {t("resources.genderSupportDesc")}
+                            </p>
+                          </div>
+                        </Link>
+                      </NavigationMenuLink>
+
+                      {/* Divider */}
+                      <div className="bg-border my-1 h-px" />
+
+                      {/* About Section */}
+                      <div className="text-muted-foreground px-3 pt-2 pb-1 text-xs font-semibold tracking-wider uppercase">
+                        {t("navigation.about")}
+                      </div>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href="/contact"
+                          className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        >
+                          <Mail className="h-5 w-5" />
+                          <div className="flex flex-col space-y-1">
+                            <div className="text-sm leading-none font-medium">
+                              {t("about.contact")}
+                            </div>
+                            <p className="text-muted-foreground line-clamp-2 text-xs leading-snug">
+                              {t("about.contactDesc")}
+                            </p>
+                          </div>
+                        </Link>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href="/prompts"
+                          className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        >
+                          <Settings className="h-5 w-5" />
+                          <div className="flex flex-col space-y-1">
+                            <div className="text-sm leading-none font-medium">
+                              {t("about.systemPrompts")}
+                            </div>
+                            <p className="text-muted-foreground line-clamp-2 text-xs leading-snug">
+                              {t("about.systemPromptsDesc")}
+                            </p>
+                          </div>
+                        </Link>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href="/terms"
+                          className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        >
+                          <HelpCircle className="h-5 w-5" />
+                          <div className="flex flex-col space-y-1">
+                            <div className="text-sm leading-none font-medium">
+                              {t("about.terms")}
+                            </div>
+                            <p className="text-muted-foreground line-clamp-2 text-xs leading-snug">
+                              {t("about.termsDesc")}
+                            </p>
+                          </div>
+                        </Link>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href="/donate"
+                          className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                        >
+                          <DollarSign className="h-5 w-5" />
+                          <div className="flex flex-col space-y-1">
+                            <div className="text-sm leading-none font-medium">
+                              {t("donate")}
+                            </div>
+                            <p className="text-muted-foreground line-clamp-2 text-xs leading-snug">
+                              {tHome("donate.card.button")}
+                            </p>
+                          </div>
+                        </Link>
+                      </NavigationMenuLink>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
           }
         />
       </div>
@@ -637,8 +635,7 @@ export default function Header({
                           variant="ghost"
                           className="h-auto w-full flex-row items-center justify-start py-3"
                         >
-                          <BookOpen className="h-4 w-4" />
-                          <div className="ml-4 flex flex-col items-start">
+                          <div className="flex flex-col items-start">
                             <div className="text-sm font-medium">
                               {t("navigation.allTopics")}
                             </div>
@@ -655,8 +652,7 @@ export default function Header({
                             variant="ghost"
                             className="h-auto w-full flex-row items-center justify-start py-3"
                           >
-                            <BookOpen className="h-4 w-4" />
-                            <div className="ml-4 flex flex-col items-start">
+                            <div className="flex flex-col items-start">
                               <div className="text-sm font-medium">
                                 {topic.title}
                               </div>

@@ -31,6 +31,7 @@ export const workflowFactory = async (
   enforceCaptcha?: boolean,
   adminUsername?: string | null,
   wikiMode?: boolean,
+  proModel?: boolean,
 ) => {
   initSettings();
 
@@ -116,6 +117,11 @@ export const workflowFactory = async (
     tagList +
     (wikiMode && adminUsername ? wikiUpdateModePrompt : "");
 
+  // Model selection: admins can opt into the Pro model per message.
+  const chatModel = proModel
+    ? "xiaomi/mimo-v2.6-pro"
+    : "xiaomi/mimo-v2.6-flash";
+
   const llm = new CachedOpenAI({
     cache,
     mode: "detrans_chat",
@@ -129,14 +135,14 @@ export const workflowFactory = async (
     //
     apiKey: process.env.OPENROUTER_KEY,
     baseURL: "https://openrouter.ai/api/v1",
-    model: "xiaomi/mimo-v2.6-flash",
+    model: chatModel,
     additionalChatOptions: {
       thinking: { type: "disabled" },
     } as any,
     fallback: {
       apiKey: process.env.OPENROUTER_KEY,
       baseURL: "https://openrouter.ai/api/v1",
-      model: "xiaomi/mimo-v2.6-flash",
+      model: chatModel,
       additionalChatOptions: {
         thinking: { type: "disabled" },
       } as any,

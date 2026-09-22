@@ -293,7 +293,8 @@
     "suggestions": "Suggestions :",
     "adminOptions": "Admin options",
     "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode"
+    "wikiUpdateMode": "Wiki update mode",
+    "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
     "title": "Conversations Récentes",

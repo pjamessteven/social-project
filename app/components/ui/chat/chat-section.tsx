@@ -41,6 +41,7 @@ export default function ChatSection({
     setIncludeTransPerspectives,
     includeTransPerspectives,
     wikiUpdateMode,
+    proModel,
   } = useChatStore();
   const searchParams = useSearchParams();
   const starterSentRef = useRef(false);
@@ -301,6 +302,7 @@ export default function ChatSection({
             message: messageText,
             includeTransPerspectives,
             wikiMode: wikiUpdateMode,
+            proModel,
           },
         };
       },

@@ -12,8 +12,8 @@ import type {
   LLMCompletionParamsNonStreaming,
   LLMCompletionParamsStreaming,
 } from "llamaindex";
-import { Cache, makeCacheKey, makeHashedKey } from "./cache";
 import { Agent, fetch as undiciFetch } from "undici";
+import { Cache, makeCacheKey, makeHashedKey } from "./cache";
 
 // Force IPv4 for outbound LLM requests. This environment has no routable IPv6,
 // and the target (e.g. Hetzner inference) returns an AAAA record before A, so
@@ -27,6 +27,7 @@ export const ipv4Fetch: typeof fetch = ((input: any, init?: any) =>
 export class CachedOpenAI extends OpenAI {
   private cache: Cache;
   private mode: "detrans_chat";
+  private cacheModel: string | undefined;
   private conversationId: string | undefined;
   private requestId: string | undefined;
   private enforceCaptcha: boolean;
@@ -67,6 +68,7 @@ export class CachedOpenAI extends OpenAI {
     super(openAIInit);
     this.cache = cache;
     this.mode = mode;
+    this.cacheModel = openAIInit.model as string | undefined;
     this.conversationId = conversationId;
     this.requestId = requestId;
     this.enforceCaptcha = enforceCaptcha ?? false;
@@ -102,7 +104,11 @@ export class CachedOpenAI extends OpenAI {
       if (status >= 500) return true;
     }
     const code = e.code ?? e.error?.code;
-    if (code === "ETIMEDOUT" || code === "ECONNRESET" || code === "ECONNREFUSED") {
+    if (
+      code === "ETIMEDOUT" ||
+      code === "ECONNRESET" ||
+      code === "ECONNREFUSED"
+    ) {
       return true;
     }
     const name = e.name;
@@ -239,7 +245,7 @@ export class CachedOpenAI extends OpenAI {
     const lastUserMessage = String(lastMessage.content).slice(0, 100);
 
     // Create cache key from messages and options
-    const key = makeCacheKey(messages, options, this.mode);
+    const key = makeCacheKey(messages, options, this.mode, this.cacheModel);
     const hashedKey = makeHashedKey(key);
 
     const logger = getLogger();
@@ -573,7 +579,7 @@ export class CachedOpenAI extends OpenAI {
     // Create messages-like structure for consistent caching
     const messages = [{ role: "user", content: promptString }];
 
-    const key = makeCacheKey(messages, options, this.mode);
+    const key = makeCacheKey(messages, options, this.mode, this.cacheModel);
     const hashedKey = makeHashedKey(key);
 
     const logger = getLogger();
