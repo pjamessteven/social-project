@@ -139,7 +139,8 @@
       "support": "پشتیبانی",
       "stats": "آمار",
       "statsDesc": "آمار بازگشت جنسیت ناشناس از /r/detrans",
-      "topics": "Topics"
+      "topics": "Topics",
+      "allTopics": "All topics"
     },
     "resources": {
       "genderSupport": "یافتن درمانگران",
@@ -959,5 +960,10 @@
       "title": "آمار ناشناس | detrans.ai",
       "description": "آمار ناشناس الگوهای بازگشت از ترنزیشن و ترنزیشن، شامل توزیع سنی، مدت زمان، دلایل و مسیرها."
     }
+  },
+  "topicsPage": {
+    "title": "Topics",
+    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
+    "empty": "No topics have been published yet."
   }
 }

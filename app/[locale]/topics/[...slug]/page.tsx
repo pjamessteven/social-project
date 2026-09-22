@@ -10,13 +10,12 @@ import {
   getPageSiblings,
   resolvePageBySegments,
 } from "@/app/lib/pages";
-import { localeToBcp47 } from "@/app/lib/seo";
+import { localeToBcp47, safeJsonLd, SITE_URL } from "@/app/lib/seo";
 import { localesInfo } from "@/i18n/locales";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 
-const SITE_URL = "https://detrans.ai";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/x_card_lg.png`;
 
 type PageParams = Promise<{ locale: string; slug: string[] }>;
@@ -65,15 +64,6 @@ function publicUrl(
   locale: string,
 ): string {
   return `${SITE_URL}/${locale}/topics/${buildLocalizedPath(entry, byId, locale)}`;
-}
-
-/**
- * JSON safe to embed in a <script> tag: JSON.stringify leaves `</script>`
- * untouched, which would end the script element early (XSS via page
- * titles/summaries). Escaping `<` as \u003c is inert inside JSON strings.
- */
-function safeJsonLd(value: unknown): string {
-  return JSON.stringify(value).replace(/</g, "\\u003c");
 }
 
 export async function generateMetadata({

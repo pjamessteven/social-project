@@ -139,7 +139,8 @@
       "support": "Suport",
       "stats": "Statistici",
       "statsDesc": "Statistici de detranziție anonimizate din /r/detrans",
-      "topics": "Topics"
+      "topics": "Topics",
+      "allTopics": "All topics"
     },
     "resources": {
       "genderSupport": "Găsește Terapeuți",
@@ -958,5 +959,10 @@
       "title": "Statistici anonimizate | detrans.ai",
       "description": "Statistici anonimizate privind modelele de detranziție și tranziție, inclusiv distribuția pe vârstă, durata, motivele și traiectoriile."
     }
+  },
+  "topicsPage": {
+    "title": "Topics",
+    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
+    "empty": "No topics have been published yet."
   }
 }

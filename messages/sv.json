@@ -139,7 +139,8 @@
       "support": "Support",
       "stats": "Statistik",
       "statsDesc": "Anonymiserade detransitionsstatistik från /r/detrans",
-      "topics": "Topics"
+      "topics": "Topics",
+      "allTopics": "All topics"
     },
     "resources": {
       "genderSupport": "Hitta Terapeuter",
@@ -957,5 +958,10 @@
       "title": "Anonymiserad statistik | detrans.ai",
       "description": "Anonymiserad statistik om detransition- och transitionsmönster, inklusive åldersfördelning, varaktighet, orsaker och vägar."
     }
+  },
+  "topicsPage": {
+    "title": "Topics",
+    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
+    "empty": "No topics have been published yet."
   }
 }

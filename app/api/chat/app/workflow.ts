@@ -74,11 +74,15 @@ export const workflowFactory = async (
     tools.push(banUserTool);
   }
 
-  // Wiki page tools: admin-only and only in wiki update mode. Stateful tools —
-  // they intentionally bypass the result cache used by query tools.
+  // Read-only wiki listing is available in every conversation (published
+  // pages only unless the caller is an admin) so the agent can show and link
+  // topics for all users.
+  tools.push(createListPagesTool({ adminUsername }));
+
+  // Wiki page WRITE tools: admin-only and only in wiki update mode. Stateful
+  // tools — they intentionally bypass the result cache used by query tools.
   if (wikiMode && adminUsername) {
     tools.push(
-      createListPagesTool({ adminUsername }),
       createCreatePageTool({ adminUsername }),
       createUpdatePageTool({ adminUsername }),
       createDeletePageTool({ adminUsername }),

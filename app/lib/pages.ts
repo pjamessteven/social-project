@@ -842,3 +842,54 @@ function truncateSummary(summary: string | null): string | null {
     ? `${summary.slice(0, LIST_SUMMARY_LIMIT - 1)}…`
     : summary;
 }
+
+export interface LocalizedTopicNode {
+  path: string;
+  title: string;
+  summary: string | null;
+  children: LocalizedTopicNode[];
+}
+
+/** Localized nested topic tree (published pages) for the /topics hub. */
+export async function getLocalizedPageTree(
+  locale: string,
+): Promise<LocalizedTopicNode[]> {
+  const all = await getAllPagesWithSlugs();
+  const published = all.filter((entry) => entry.page.published);
+
+  const nodesByPath = new Map<string, LocalizedTopicNode>();
+  for (const entry of published) {
+    nodesByPath.set(entry.page.path, {
+      path: entry.page.path,
+      title:
+        getLocalizedValue(
+          entry.page.titleTranslation,
+          locale,
+          entry.page.title,
+        ) ?? entry.page.title,
+      summary: getLocalizedValue(
+        entry.page.summaryTranslation,
+        locale,
+        entry.page.summary,
+      ),
+      children: [],
+    });
+  }
+
+  const roots: LocalizedTopicNode[] = [];
+  for (const entry of published) {
+    const node = nodesByPath.get(entry.page.path);
+    if (!node) continue;
+    const parent = nodesByPath.get(parentPathOf(entry.page.path));
+    if (parent) parent.children.push(node);
+    else roots.push(node);
+  }
+
+  const sortTree = (nodes: LocalizedTopicNode[]) => {
+    nodes.sort((a, b) => a.path.localeCompare(b.path));
+    for (const node of nodes) sortTree(node.children);
+  };
+  sortTree(roots);
+
+  return roots;
+}

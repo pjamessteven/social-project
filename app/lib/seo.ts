@@ -6,6 +6,15 @@ import { getPathname } from "@/i18n/routing";
 export const SITE_URL = "https://detrans.ai";
 
 /**
+ * JSON safe to embed in a <script> tag: JSON.stringify leaves `</script>`
+ * untouched, which would end the script element early (XSS via page
+ * titles/summaries). Escaping `<` as \u003c is inert inside JSON strings.
+ */
+export function safeJsonLd(value: unknown): string {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
+
+/**
  * Builds a `generateMetadata().alternates.languages` map for a static route,
  * using the localized pathnames table with an explicit `x-default`.
  */

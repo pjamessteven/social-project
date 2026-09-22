@@ -139,7 +139,8 @@
       "support": "การสนับสนุน",
       "stats": "สถิติ",
       "statsDesc": "สถิติการเปลี่ยนกลับโดยไม่เปิดเผยตัวจาก /r/detrans",
-      "topics": "Topics"
+      "topics": "Topics",
+      "allTopics": "All topics"
     },
     "resources": {
       "genderSupport": "ค้นหานักบำบัด",
@@ -958,5 +959,10 @@
       "title": "สถิติที่ไม่ระบุตัวตน | detrans.ai",
       "description": "สถิติที่ไม่ระบุตัวตนเกี่ยวกับรูปแบบ detransition และ transition รวมถึงการกระจายตามอายุ ระยะเวลา เหตุผล และเส้นทาง"
     }
+  },
+  "topicsPage": {
+    "title": "Topics",
+    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
+    "empty": "No topics have been published yet."
   }
 }

@@ -139,7 +139,8 @@
       "support": "समर्थन",
       "stats": "आंकड़े",
       "statsDesc": "/r/detrans अनाम detransition आंकड़े",
-      "topics": "Topics"
+      "topics": "Topics",
+      "allTopics": "All topics"
     },
     "resources": {
       "genderSupport": "चिकित्सक खोजें",
@@ -965,5 +966,10 @@
       "title": "गुमनाम आंकड़े | detrans.ai",
       "description": "डिट्रांज़िशन और ट्रांज़िशन पैटर्न पर गुमनाम आंकड़े, जिसमें आयु वितरण, अवधि, कारण और मार्ग शामिल हैं।"
     }
+  },
+  "topicsPage": {
+    "title": "Topics",
+    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
+    "empty": "No topics have been published yet."
   }
 }

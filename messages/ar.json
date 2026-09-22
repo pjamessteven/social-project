@@ -139,7 +139,8 @@
       "support": "دعم",
       "stats": "إحصائيات",
       "statsDesc": "إحصائيات التحول المجهولة من /r/detrans",
-      "topics": "Topics"
+      "topics": "Topics",
+      "allTopics": "All topics"
     },
     "resources": {
       "genderSupport": "البحث عن معالجين",
@@ -959,5 +960,10 @@
       "title": "إحصائيات مجهولة الهوية | detrans.ai",
       "description": "إحصائيات مجهولة الهوية عن أنماط التراجع عن التحول والتحول، بما في ذلك توزيع الأعمار والمدة والأسباب والمسارات."
     }
+  },
+  "topicsPage": {
+    "title": "Topics",
+    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
+    "empty": "No topics have been published yet."
   }
 }

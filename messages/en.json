@@ -143,7 +143,8 @@
       "support": "Support",
       "stats": "Stats",
       "statsDesc": "/r/detrans anonymised detransition stats",
-      "topics": "Topics"
+      "topics": "Topics",
+      "allTopics": "All topics"
     },
     "resources": {
       "genderSupport": "Get Support",
@@ -966,5 +967,10 @@
       "title": "Anonymised Statistics | detrans.ai",
       "description": "Anonymised statistics on detransition and transition patterns, including age distribution, duration, reasons, and pathways."
     }
+  },
+  "topicsPage": {
+    "title": "Topics",
+    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
+    "empty": "No topics have been published yet."
   }
 }

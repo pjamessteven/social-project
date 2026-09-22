@@ -139,7 +139,8 @@
       "support": "תמיכה",
       "stats": "סטטיסטיקה",
       "statsDesc": "סטטיסטיקת דיטרנזיציה אנונימית מ-/r/detrans",
-      "topics": "Topics"
+      "topics": "Topics",
+      "allTopics": "All topics"
     },
     "resources": {
       "genderSupport": "מצא מטפלים",
@@ -957,5 +958,10 @@
       "title": "סטטיסטיקות אנונימיות | detrans.ai",
       "description": "סטטיסטיקות אנונימיות על דפוסי דה-טרנזיציה וטרנזיציה, כולל התפלגות גילאים, משך, סיבות ומסלולים."
     }
+  },
+  "topicsPage": {
+    "title": "Topics",
+    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
+    "empty": "No topics have been published yet."
   }
 }

@@ -139,7 +139,8 @@
       "support": "Hỗ trợ",
       "stats": "Thống kê",
       "statsDesc": "Thống kê detransition ẩn danh từ /r/detrans",
-      "topics": "Topics"
+      "topics": "Topics",
+      "allTopics": "All topics"
     },
     "resources": {
       "genderSupport": "Tìm Nhà Trị Liệu",
@@ -958,5 +959,10 @@
       "title": "Thống kê ẩn danh | detrans.ai",
       "description": "Thống kê ẩn danh về các mô hình detransition và transition, bao gồm phân bố độ tuổi, thời gian, lý do và con đường."
     }
+  },
+  "topicsPage": {
+    "title": "Topics",
+    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
+    "empty": "No topics have been published yet."
   }
 }

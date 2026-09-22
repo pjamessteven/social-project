@@ -139,7 +139,8 @@
       "support": "Pagalba",
       "stats": "Statistika",
       "statsDesc": "Anonimizuota detranzicijos statistika iš /r/detrans",
-      "topics": "Topics"
+      "topics": "Topics",
+      "allTopics": "All topics"
     },
     "resources": {
       "genderSupport": "Rasti Terapeutus",
@@ -966,5 +967,10 @@
       "title": "Anoniminė statistika | detrans.ai",
       "description": "Anoniminė detranzicijos ir tranzicijos modelių statistika, įskaitant amžiaus pasiskirstymą, trukmę, priežastis ir kelius."
     }
+  },
+  "topicsPage": {
+    "title": "Topics",
+    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
+    "empty": "No topics have been published yet."
   }
 }

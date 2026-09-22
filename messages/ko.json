@@ -138,7 +138,8 @@
       "support": "지원",
       "stats": "통계",
       "statsDesc": "/r/detrans 익명 전환 해제 통계",
-      "topics": "Topics"
+      "topics": "Topics",
+      "allTopics": "All topics"
     },
     "resources": {
       "genderSupport": "상담사 찾기",
@@ -963,5 +964,10 @@
       "title": "익명 통계 | detrans.ai",
       "description": "연령 분포, 기간, 사유, 경로를 포함한 전환 취소 및 전환 패턴에 대한 익명 통계입니다."
     }
+  },
+  "topicsPage": {
+    "title": "Topics",
+    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
+    "empty": "No topics have been published yet."
   }
 }

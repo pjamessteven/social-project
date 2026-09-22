@@ -165,6 +165,18 @@ export default function Header({
                       </NavigationMenuTrigger>
                       <NavigationMenuContent className="">
                         <div className="grid max-h-[70vh] w-72 gap-1 overflow-y-auto p-2">
+                          <NavigationMenuLink asChild>
+                            <a
+                              href={`/${locale}/topics`}
+                              className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
+                            >
+                              <BookOpen className="h-5 w-5" />
+                              <div className="text-sm leading-none font-medium">
+                                {t("navigation.allTopics")}
+                              </div>
+                            </a>
+                          </NavigationMenuLink>
+                          <div className="bg-border my-1 h-px" />
                           {topics.map((topic) => (
                             <NavigationMenuLink asChild key={topic.path}>
                               <a
@@ -617,6 +629,22 @@ export default function Header({
                       {t("navigation.topics")}
                     </h3>
                     <div className="space-y-1">
+                      <a
+                        href={`/${locale}/topics`}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <Button
+                          variant="ghost"
+                          className="h-auto w-full flex-row items-center justify-start py-3"
+                        >
+                          <BookOpen className="h-4 w-4" />
+                          <div className="ml-4 flex flex-col items-start">
+                            <div className="text-sm font-medium">
+                              {t("navigation.allTopics")}
+                            </div>
+                          </div>
+                        </Button>
+                      </a>
                       {topics.map((topic) => (
                         <a
                           key={topic.path}

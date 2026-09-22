@@ -139,7 +139,8 @@
       "support": "サポート",
       "stats": "統計",
       "statsDesc": "/r/detrans 匿名デトランジション統計",
-      "topics": "Topics"
+      "topics": "Topics",
+      "allTopics": "All topics"
     },
     "resources": {
       "genderSupport": "セラピストを探す",
@@ -963,5 +964,10 @@
       "title": "匿名化された統計 | detrans.ai",
       "description": "デトランジションとトランジションのパターンに関する匿名化された統計。年齢分布、期間、理由、経路を含みます。"
     }
+  },
+  "topicsPage": {
+    "title": "Topics",
+    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
+    "empty": "No topics have been published yet."
   }
 }

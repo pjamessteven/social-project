@@ -528,11 +528,11 @@ function wikiError(action: string, error: unknown): string {
 export function createListPagesTool(config: { adminUsername?: string | null }) {
   return tool(
     async ({ includeDrafts }: { includeDrafts?: boolean }) => {
-      const denied = wikiDenied(config.adminUsername);
-      if (denied) return denied;
       try {
+        // Read-only and available to every conversation; drafts are only
+        // ever listed for admins.
         const { tree, total, truncated } = await listPagesTree({
-          includeDrafts: includeDrafts ?? false,
+          includeDrafts: includeDrafts === true && !!config.adminUsername,
         });
         return JSON.stringify({ success: true, total, truncated, pages: tree });
       } catch (error) {
@@ -542,13 +542,13 @@ export function createListPagesTool(config: { adminUsername?: string | null }) {
     {
       name: "listPages",
       description:
-        "List the site's wiki pages as a nested tree (children nested under parents). Each page has its path, URL path under /topics, summary, stub flag, and localized paths where translated slugs exist. Use this FIRST to see what exists, avoid duplicates, and pick internal link targets. Never includes full page content.",
+        "List the site's wiki pages as a nested tree (children nested under parents). Each page has its path, URL path under /topics, summary, stub flag, and localized paths where translated slugs exist. Use this to see what topics exist and to build internal links to them. Never includes full page content. includeDrafts only works for admins.",
       parameters: z.object({
         includeDrafts: z
           .boolean()
           .optional()
           .describe(
-            "Include unpublished draft pages in the listing (default false)",
+            "Include unpublished draft pages in the listing (admin only, default false)",
           ),
       }),
     },

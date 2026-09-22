@@ -139,7 +139,8 @@
       "support": "支持",
       "stats": "統計",
       "statsDesc": "/r/detrans 匿名去轉性別統計",
-      "topics": "Topics"
+      "topics": "Topics",
+      "allTopics": "All topics"
     },
     "resources": {
       "genderSupport": "尋找治療師",
@@ -958,5 +959,10 @@
       "title": "匿名統計 | detrans.ai",
       "description": "關於去轉換和轉換模式的匿名統計資料，包括年齡分佈、持續時間、原因和途徑。"
     }
+  },
+  "topicsPage": {
+    "title": "Topics",
+    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
+    "empty": "No topics have been published yet."
   }
 }

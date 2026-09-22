@@ -139,7 +139,8 @@
       "support": "Υποστήριξη",
       "stats": "Στατιστικά",
       "statsDesc": "Ανωνυμοποιημένα στατιστικά απομετάβασης από /r/detrans",
-      "topics": "Topics"
+      "topics": "Topics",
+      "allTopics": "All topics"
     },
     "resources": {
       "genderSupport": "Βρες Θεραπευτές",
@@ -960,5 +961,10 @@
       "title": "Ανωνυμοποιημένα στατιστικά | detrans.ai",
       "description": "Ανωνυμοποιημένα στατιστικά για μοτίβα απομετάβασης και μετάβασης, συμπεριλαμβανομένης της κατανομής ηλικίας, της διάρκειας, των αιτιών και των διαδρομών."
     }
+  },
+  "topicsPage": {
+    "title": "Topics",
+    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
+    "empty": "No topics have been published yet."
   }
 }

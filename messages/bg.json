@@ -139,7 +139,8 @@
       "support": "Подкрепа",
       "stats": "Статистика",
       "statsDesc": "Анонимизирана статистика за детранзиция от /r/detrans",
-      "topics": "Topics"
+      "topics": "Topics",
+      "allTopics": "All topics"
     },
     "resources": {
       "genderSupport": "Намери Терапевти",
@@ -958,5 +959,10 @@
       "title": "Анонимизирана статистика | detrans.ai",
       "description": "Анонимизирана статистика за моделите на детранзиция и транзиция, включително разпределение по възраст, продължителност, причини и пътища."
     }
+  },
+  "topicsPage": {
+    "title": "Topics",
+    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
+    "empty": "No topics have been published yet."
   }
 }

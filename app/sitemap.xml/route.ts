@@ -313,6 +313,27 @@ export async function GET(request: NextRequest) {
     }
   }
 
+  // Public /topics hub index
+  const hubAlternates: Record<string, string> = {};
+  for (const locale of sitemapLocales) {
+    hubAlternates[locale] = `${baseUrl}/${locale}/topics`;
+  }
+  hubAlternates["x-default"] = `${baseUrl}/${defaultLocale}/topics`;
+  const newestWikiUpdate = wikiPages.reduce(
+    (latest, entry) =>
+      entry.page.updatedAt > latest ? entry.page.updatedAt : latest,
+    new Date(STATIC_LAST_MODIFIED),
+  );
+  for (const locale of sitemapLocales) {
+    topicRoutes.push({
+      url: hubAlternates[locale],
+      lastModified: newestWikiUpdate.toISOString(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+      alternates: hubAlternates,
+    });
+  }
+
   localizedRoutes.push(...topicRoutes);
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
