@@ -73,7 +73,7 @@ export function WikiTocLinks({
               href={`#${item.id}`}
               className={cn(
                 "text-muted-foreground hover:text-foreground block text-sm",
-                activeId === item.id && "text-foreground font-semibold",
+                activeId === item.id && "text-foreground",
               )}
             >
               {item.text}
@@ -86,7 +86,7 @@ export function WikiTocLinks({
                     href={`#${child.id}`}
                     className={cn(
                       "text-muted-foreground hover:text-foreground block text-sm",
-                      activeId === child.id && "text-foreground font-semibold",
+                      activeId === child.id && "text-foreground",
                     )}
                   >
                     {child.text}
@@ -110,7 +110,7 @@ export function WikiTocLinks({
                 <SidebarMenuButton
                   className={cn(
                     "h-auto w-full justify-between overflow-visible py-1 whitespace-normal",
-                    activeId === item.id && "font-semibold",
+                    activeId === item.id && "text-sidebar-foreground",
                   )}
                 >
                   <a href={`#${item.id}`} className="flex-1">
@@ -127,7 +127,7 @@ export function WikiTocLinks({
                         asChild
                         className={cn(
                           "h-auto overflow-visible py-1 whitespace-normal",
-                          activeId === child.id && "font-semibold",
+                          activeId === child.id && "text-sidebar-foreground",
                         )}
                       >
                         <a href={`#${child.id}`}>{child.text}</a>
@@ -142,7 +142,7 @@ export function WikiTocLinks({
               asChild
               className={cn(
                 "h-auto overflow-visible py-1 whitespace-normal",
-                activeId === item.id && "font-semibold",
+                activeId === item.id && "text-sidebar-foreground",
               )}
             >
               <a href={`#${item.id}`}>{item.text}</a>
