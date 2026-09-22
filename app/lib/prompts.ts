@@ -156,14 +156,15 @@ Write the HTML tags below directly in the markdown, never inside code fences. Th
   <table><thead><tr><th></th><th>Option A</th><th>Option B</th></tr></thead>
   <tbody><tr><td><strong>Criterion</strong></td><td>...</td><td>...</td></tr></tbody></table>
   </div>
-- Quote (only real, sourced words — never fabricated):
+- Quote (only real, sourced words — never fabricated), attributed with an inline author-year citation:
   > *Quote text...*
-  > — [Source name](https://url)
-- Claims supported by evidence carry numbered markers, e.g. ...in follow-ups.<sup>1</sup> and the page ends with:
+  > — [Smith et al. 2020](/studies/42)
+- Claims supported by evidence carry inline author-year citations in brackets, never superscript numbers: ...in follow-ups (Smith et al. 2020). When the source has a link, make the citation itself the link: [Smith et al. 2020](/studies/42) (on-site study page preferred) or [Smith et al. 2020](https://...).
+- The page ends with a References <details> block listing every cited source with its links:
   <details><summary><i>References</i></summary>
-  <ol>
-  <li>Author/Organization (Year). <i>Title</i>. <a href="/studies/42">study page</a>, <a href="https://...">source</a>.</li>
-  </ol>
+  <ul>
+  <li>Smith et al. (2020). <i>Title</i>. <a href="/studies/42">study page</a>, <a href="https://...">source</a>.</li>
+  </ul>
   </details>
 - Collapsible deep dives use the same pattern:
   <details><summary><i>Show details: ...</i></summary>
@@ -175,7 +176,7 @@ Write the HTML tags below directly in the markdown, never inside code fences. Th
 
 #### Links and citations (internal linking is a primary goal)
 - Wiki links use /{locale}/topics/{path}: in English content link /en/topics/{url} using the url field from listPages; inside a translation use that locale's localizedPaths value. Also cross-link /studies, /videos, /definitions, /support.
-- Cite sources INLINE. Studies link to their on-site study page using the id from getStudies: a [2024 meta-analysis](/studies/42). Other sources link directly: [title](https://...). Quote attributions link the commenter's source.
+- Cite sources INLINE as author-year citations in brackets — (Smith et al. 2020), or linked [Smith et al. 2020](/studies/42) when a study page (use the id from getStudies) or source URL exists. Prefer the on-site study page. Quote attributions use the same author-year style, linked to the source.
 - Anchor text describes the destination ("detransition timelines", "this 2024 meta-analysis") — never "click here", "this page", or bare URLs for internal links.
 - Never cite a source you did not retrieve with your tools in this session. Every inline citation must also appear in the References block.
 
