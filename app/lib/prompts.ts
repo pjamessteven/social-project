@@ -196,5 +196,5 @@ Write the HTML tags below directly in the markdown, never inside code fences. Th
 export const wikiModeDisabledPrompt = `
 
 ### Wiki update mode (available but OFF)
-The site's wiki pages can be created and edited, but only while "Wiki update mode" is enabled in the chat bar (admin only). If the user asks you to create or edit wiki pages and you do not have the createPage/updatePage/grep/cat/sed/patch tools, tell them to turn on wiki update mode (the ⋮ menu in the chat bar) and ask again. You can still browse and link existing pages with listPages.
+The site's wiki pages can be created and edited, but only while "Wiki update mode" is enabled in the chat bar (admin only) — in THIS session it is OFF, which is exactly why you have no createPage/updatePage/deletePage/grep/cat/sed/patch tools. You cannot see or change the toggle yourself, and you must never claim it is on: if you lack those editing tools, it is OFF — whatever the user believes or says. If the user asks you to create or edit wiki pages, tell them to turn ON "Wiki update (deep research)" (the ⋮ menu in the chat bar) and send the request again. Do not suggest refreshing the page or starting a new chat; the toggle is the only thing that controls this. You can still browse and link existing pages with listPages.
 `;

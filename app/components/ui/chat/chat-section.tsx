@@ -38,7 +38,6 @@ export default function ChatSection({
     setChatHandler,
     setChatStatus,
     setInputText,
-    setIncludeTransPerspectives,
     includeTransPerspectives,
     wikiUpdateMode,
     proModel,
@@ -346,7 +345,6 @@ export default function ChatSection({
           // Set the messages directly using the setMessages function
           useChatHandler.setMessages(data.messages);
           setIsArchived(data.archived);
-          setIncludeTransPerspectives(data.includeTransPerspectives ?? false);
 
           // Handle summary translation
           let localizedSummary = data.conversationSummary;
