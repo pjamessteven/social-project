@@ -524,16 +524,17 @@ export class CachedOpenAI extends OpenAI {
       ): AsyncGenerator<ChatResponseChunk> {
         let result = yield* drainStream.call(this, rawStream);
 
-        // Silent-empty stream (no text, no tools): retry exactly once with a
-        // fresh connection before declaring failure.
-        if (
-          !result.errored &&
-          !result.fullText.trim() &&
-          result.toolCalls.length === 0
-        ) {
+        // Nothing usable came back (no text, no tools) — either a
+        // silent-empty stream or a wedged one (e.g. timed out before the
+        // first chunk). Retry exactly once with a fresh connection before
+        // declaring failure.
+        if (!result.fullText.trim() && result.toolCalls.length === 0) {
           console.warn(
-            `[CachedOpenAI] empty stream (finish_reason=${result.finishReason ?? "unknown"}) — retrying once`,
+            `[CachedOpenAI] empty stream (errored=${result.errored}, finish_reason=${result.finishReason ?? "unknown"}) — retrying once`,
           );
+          // Discard the stale error from the dead attempt so a successful
+          // retry is not poisoned by it.
+          this.takeError();
           const retryStream = await this.openStreamWithFallback(
             messages,
             options,

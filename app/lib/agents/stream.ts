@@ -125,6 +125,15 @@ const TOOL_UI_MAP: Record<
 };
 
 /**
+ * Wiki/edit tools report failures as JSON payloads ({success:false,...})
+ * instead of throwing — detect those so the UI shows an error instead of a
+ * green checkmark.
+ */
+function isFailureResult(raw: unknown): boolean {
+  return typeof raw === "string" && /"success"\s*:\s*false/.test(raw);
+}
+
+/**
  * Extract a display-friendly query string from tool kwargs.
  * Returns the most meaningful string field for display in the UI.
  * Appends keyword filters if present.
@@ -280,7 +289,11 @@ export function toDataStream(
                     event.data.toolKwargs,
                   ),
                   result: event.data.raw,
-                  status: event.data.toolOutput.isError ? "error" : "success",
+                  status:
+                    event.data.toolOutput.isError ||
+                    isFailureResult(event.data.raw)
+                      ? "error"
+                      : "success",
                 },
               });
             } else {
@@ -291,7 +304,11 @@ export function toDataStream(
                   title: "Done",
                   query: event.data.toolKwargs.query,
                   result: event.data.raw,
-                  status: event.data.toolOutput.isError ? "error" : "success",
+                  status:
+                    event.data.toolOutput.isError ||
+                    isFailureResult(event.data.raw)
+                      ? "error"
+                      : "success",
                 },
               });
             }

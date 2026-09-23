@@ -1098,7 +1098,7 @@ export function createSedTool(config: { adminUsername?: string | null }) {
     {
       name: "sed",
       description:
-        "Edit a wiki page in place like sed -i. Supports s/pattern/replacement/flags (g, i) and d, optional N,M line addresses, and ';' command lists. Supports &, \\1-\\9 and \\n in replacements. Examples: 's/old/new/g', '12,40s/old/new/gi', '12,20d', 's/a/b/;5,8d'. Small edits only — use patch for multi-hunk rewrites.",
+        "Edit a wiki page in place like sed -i. Supports s/pattern/replacement/flags (g, i) and d, optional N,M line addresses, and multiple commands separated by ';' or newlines. Flags are exactly 'g' and/or 'i' — nothing else (whitespace is ignored). Supports &, \\1-\\9 and \\n in replacements. Examples: 's/old/new/g', '12,40s/old/new/gi', '12,20d', 's/a/b/;5,8d'. Small edits only — use patch for multi-hunk rewrites.",
       parameters: z.object({
         path: z.string().describe("Page path to edit"),
         script: z
@@ -1161,7 +1161,7 @@ export function createPatchTool(config: { adminUsername?: string | null }) {
     {
       name: "patch",
       description:
-        "Apply a unified diff to a wiki page in place — rewrite whole sections without sending the whole page. Write standard @@ -a,b +c,d @@ hunks with a few lines of unchanged context around each edit, based on the current content (from cat). Hunk context must match; on failure re-read the page and retry.",
+        "Apply a unified diff to a wiki page in place — rewrite whole sections without sending the whole page. Write standard @@ -a,b +c,d @@ hunks with a few lines of unchanged context around each edit, based on the CURRENT content — cat the section immediately before composing the patch. Context must match the file's wording exactly (leading/trailing whitespace and line-number drift are tolerated). On failure the error shows the expected vs found line — fix the context and retry.",
       parameters: z.object({
         path: z.string().describe("Page path to patch"),
         patch: z

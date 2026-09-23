@@ -154,14 +154,16 @@ function splitSedCommands(script: string): string[] {
         j++;
         if (c === delim) fields++;
       }
-      while (j < script.length && script[j] !== ";") {
+      while (j < script.length && script[j] !== ";" && script[j] !== "\n") {
         current += script[j];
         j++;
       }
       i = j - 1;
       continue;
     }
-    if (ch === ";") {
+    // ';' and newlines both separate commands (models write multi-line sed
+    // scripts the way real sed expects).
+    if (ch === ";" || ch === "\n") {
       out.push(current);
       current = "";
       continue;
@@ -229,12 +231,14 @@ function parseSed(script: string): { commands: SedCommand[]; error?: string } {
         return { commands, error: `sed: malformed s command '${text}'` };
       }
       const [pattern, replacement] = fields;
-      const flags = field;
+      // Models routinely append stray whitespace/newlines to flag strings —
+      // strip them before validating.
+      const flags = field.replace(/\s+/g, "");
       for (const flag of flags) {
         if (!"gi".includes(flag)) {
           return {
             commands,
-            error: `sed: unsupported flag '${flag}' (supported: g, i)`,
+            error: `sed: unsupported flag '${flag}' (supported: g, i — nothing else)`,
           };
         }
       }
@@ -397,9 +401,14 @@ function findHunkStart(
   work: string[],
   hunk: PatchHunk,
   expected: number,
+  loose = false,
 ): number {
-  const matchesAt = (start: number) =>
-    hunk.oldBlock.every((line, i) => work[start + i] === line);
+  const eq = (a: string | undefined, b: string) =>
+    a !== undefined && (loose ? a.trim() === b.trim() : a === b);
+  const matchesAt = (start: number) => {
+    if (start < 0 || start + hunk.oldBlock.length > work.length) return false;
+    return hunk.oldBlock.every((line, i) => eq(work[start + i], line));
+  };
 
   if (expected >= 0 && matchesAt(expected)) return expected;
   // Fuzz: search outwards from the expected position, then the whole file
@@ -437,9 +446,18 @@ export function applyUnifiedPatch(
 
   for (const hunk of parsed.hunks) {
     const expected = hunk.oldStart - 1 + offset;
-    const start = findHunkStart(work, hunk, expected);
+    // Exact match first, then whitespace-tolerant (model re-flows leave
+    // trailing-whitespace drift in the context lines).
+    let start = findHunkStart(work, hunk, expected);
     if (start < 0) {
-      const error = `patch: hunk @@ -${hunk.oldStart},${hunk.oldCount} @@ failed — context not found (cat the section and retry)`;
+      start = findHunkStart(work, hunk, expected, true);
+    }
+    if (start < 0) {
+      const want = (hunk.oldBlock.find((l) => l.trim()) ?? "").trim();
+      const got = (work[expected] ?? "(end of file)").trim();
+      const error =
+        `patch: hunk @@ -${hunk.oldStart},${hunk.oldCount} @@ failed — context not found (cat the section and retry). ` +
+        `expected '${want.slice(0, 70)}' but line ${expected + 1} is '${got.slice(0, 70)}'`;
       return { ok: false, content, changed: 0, output: error, error };
     }
     work.splice(start, hunk.oldBlock.length, ...hunk.newBlock);
