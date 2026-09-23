@@ -68,7 +68,12 @@ export class CachedOpenAI extends OpenAI {
     super(openAIInit);
     this.cache = cache;
     this.mode = mode;
-    this.cacheModel = openAIInit.model as string | undefined;
+    // Include the output budget in the cache identity: admins get a much
+    // larger maxTokens and their (longer) completions must not be replayed to
+    // default-budget users, or vice versa.
+    this.cacheModel = openAIInit.model
+      ? `${openAIInit.model}:${openAIInit.maxTokens ?? "default"}`
+      : undefined;
     this.conversationId = conversationId;
     this.requestId = requestId;
     this.enforceCaptcha = enforceCaptcha ?? false;
@@ -175,6 +180,47 @@ export class CachedOpenAI extends OpenAI {
     const err = this.capturedError;
     this.capturedError = null;
     return err;
+  }
+
+  /**
+   * Opens a streaming LLM connection, falling back to the secondary provider
+   * on transient failures. Returns null when every provider failed (the error
+   * is recorded on the instance).
+   */
+  private async openStreamWithFallback(
+    messages: LLMChatParamsStreaming["messages"],
+    options: Record<string, unknown>,
+  ): Promise<AsyncGenerator<ChatResponseChunk> | null> {
+    try {
+      // Call underlying LLM in streaming mode
+      return (await super.chat({
+        messages,
+        stream: true,
+        ...options,
+      } as LLMChatParamsStreaming)) as AsyncGenerator<ChatResponseChunk>;
+    } catch (err) {
+      // On transient failure (429/5xx/timeout), retry on the fallback provider.
+      const fallback = this.getFallbackClient();
+      if (this.isTransientError(err) && fallback) {
+        try {
+          const stream = (await fallback.chat({
+            messages,
+            stream: true,
+            ...options,
+          } as any)) as AsyncGenerator<ChatResponseChunk>;
+          console.warn(
+            "[CachedOpenAI] Primary provider failed, using fallback provider",
+            String((err as Error)?.message || err),
+          );
+          return stream;
+        } catch (fallbackErr) {
+          this.recordError(fallbackErr);
+          return null;
+        }
+      }
+      this.recordError(err);
+      return null;
+    }
   }
 
   /**
@@ -317,51 +363,41 @@ export class CachedOpenAI extends OpenAI {
       }
       this.ranLlm = true;
 
-      let rawStream;
-      try {
-        // Call underlying LLM in streaming mode
-        rawStream = await super.chat({
-          messages,
-          stream: true,
-          ...options,
-        });
-      } catch (err) {
-        // On transient failure (429/5xx/timeout), retry on the fallback provider.
-        const fallback = this.getFallbackClient();
-        if (this.isTransientError(err) && fallback) {
-          try {
-            rawStream = await fallback.chat({
-              messages,
-              stream: true,
-              ...options,
-            });
-            console.warn(
-              "[CachedOpenAI] Primary provider failed, using fallback provider",
-              String((err as Error)?.message || err),
-            );
-          } catch (fallbackErr) {
-            // Both providers failed. Capture the fallback error and end
-            // gracefully so the workflow completes instead of hanging.
-            this.recordError(fallbackErr);
-            return (async function* (): AsyncGenerator<ChatResponseChunk> {})();
-          }
-        } else {
-          // Capture the error and end gracefully so the workflow completes
-          // instead of hanging on an unpropagated handler rejection.
-          this.recordError(err);
-          return (async function* (): AsyncGenerator<ChatResponseChunk> {})();
-        }
+      let rawStream = await this.openStreamWithFallback(messages, options);
+      if (!rawStream) {
+        // Every provider failed (error already recorded). End gracefully so
+        // the workflow completes instead of hanging.
+        return (async function* (): AsyncGenerator<ChatResponseChunk> {})();
       }
 
-      // Capture the stream and build a full response object
-      const captureStream = async function* (
+      // Drain one raw stream into text + tool calls, yielding every chunk. A
+      // stream that completes with NO text and NO tool calls is a silent
+      // failure (e.g. reasoning burned the whole max_tokens budget and the
+      // provider returned finish_reason=length with empty content) — those
+      // are retried exactly once upstream, and a second empty stream surfaces
+      // as an error instead of being saved as an empty assistant message.
+      const drainStream = async function* (
         this: CachedOpenAI,
-      ): AsyncGenerator<ChatResponseChunk> {
+        rawStream: AsyncGenerator<ChatResponseChunk>,
+      ): AsyncGenerator<
+        ChatResponseChunk,
+        {
+          fullText: string;
+          toolCalls: any[];
+          generationId?: string;
+          lastChunk?: ChatResponseChunk;
+          finishReason?: string;
+          usage: any;
+          errored: boolean;
+        }
+      > {
         let fullText = "";
         const toolCalls: any[] = [];
         let generationId: string | undefined;
         let lastChunk: ChatResponseChunk | undefined;
-        const seenToolCallIds = new Set<string>();
+        let finishReason: string | undefined;
+        let usage: any;
+        let errored = false;
 
         // Inactivity budget per LLM stream. Mimo pro regularly falls silent
         // for several minutes mid-generation (long synthesis/thinking pauses
@@ -406,7 +442,16 @@ export class CachedOpenAI extends OpenAI {
               await iterator.return?.(undefined as any);
             } catch {}
             this.recordError(err);
-            return;
+            errored = true;
+            return {
+              fullText,
+              toolCalls,
+              generationId,
+              lastChunk,
+              finishReason,
+              usage,
+              errored,
+            };
           } finally {
             clearTimeout(timeoutId);
           }
@@ -427,18 +472,20 @@ export class CachedOpenAI extends OpenAI {
               : [chunkOptions.toolCall];
 
             for (const call of calls) {
+              // Some upstreams send tool calls without ids — synthesize one so
+              // the call is never silently dropped.
+              if (!call.id) {
+                call.id = `call-synthetic-${toolCalls.length}-${chunkCount}`;
+              }
               const toolCallId = call.id;
-              if (toolCallId) {
-                // Overwrite existing entry with latest version (which has fully parsed input)
-                const existingIndex = toolCalls.findIndex(
-                  (t) => t.id === toolCallId,
-                );
-                if (existingIndex >= 0) {
-                  toolCalls[existingIndex] = call;
-                } else {
-                  toolCalls.push(call);
-                }
-                seenToolCallIds.add(toolCallId);
+              // Overwrite existing entry with latest version (which has fully parsed input)
+              const existingIndex = toolCalls.findIndex(
+                (t) => t.id === toolCallId,
+              );
+              if (existingIndex >= 0) {
+                toolCalls[existingIndex] = call;
+              } else {
+                toolCalls.push(call);
               }
             }
           }
@@ -448,24 +495,95 @@ export class CachedOpenAI extends OpenAI {
             generationId = (chunk.raw as any).id;
           }
 
+          // Capture finish reason and token usage when the provider reports
+          // them (OpenRouter puts usage on the final chunk).
+          const rawChunk = chunk.raw as any;
+          if (rawChunk?.choices?.[0]?.finish_reason) {
+            finishReason = rawChunk.choices[0].finish_reason;
+          }
+          if (rawChunk?.usage) {
+            usage = rawChunk.usage;
+          }
+
           lastChunk = chunk;
           yield chunk;
         }
-        console.log("TOOLA CALLS: ", JSON.stringify(toolCalls));
+        return {
+          fullText,
+          toolCalls,
+          generationId,
+          lastChunk,
+          finishReason,
+          usage,
+          errored,
+        };
+      }.bind(this);
+
+      const captureStream = async function* (
+        this: CachedOpenAI,
+      ): AsyncGenerator<ChatResponseChunk> {
+        let result = yield* drainStream.call(this, rawStream);
+
+        // Silent-empty stream (no text, no tools): retry exactly once with a
+        // fresh connection before declaring failure.
+        if (
+          !result.errored &&
+          !result.fullText.trim() &&
+          result.toolCalls.length === 0
+        ) {
+          console.warn(
+            `[CachedOpenAI] empty stream (finish_reason=${result.finishReason ?? "unknown"}) — retrying once`,
+          );
+          const retryStream = await this.openStreamWithFallback(
+            messages,
+            options,
+          );
+          if (retryStream) {
+            result = yield* drainStream.call(this, retryStream);
+          }
+        }
+
+        // Guardrail: reasoning must stay disabled (see additionalChatOptions).
+        // If it ever leaks back on it silently eats max_tokens and produces
+        // empty responses — make that loudly visible in the logs.
+        const reasoningTokens: number =
+          result.usage?.completion_tokens_details?.reasoning_tokens ?? 0;
+        if (reasoningTokens > 0) {
+          console.warn(
+            `[CachedOpenAI] ${reasoningTokens} reasoning tokens generated despite disable — check additionalChatOptions`,
+          );
+        }
+
+        console.log("TOOLA CALLS: ", JSON.stringify(result.toolCalls));
+
+        // Never let a fully empty response pass as success: surface it as a
+        // retryable error instead of saving an empty assistant message.
+        if (!result.fullText.trim() && result.toolCalls.length === 0) {
+          this.recordError(
+            new Error(
+              `The model returned an empty response (finish_reason=${result.finishReason ?? "unknown"}, reasoningTokens=${reasoningTokens}). Please retry.`,
+            ),
+          );
+          return;
+        }
+
         // Build the complete response object
         const response: ChatResponse = {
           message: {
             role: "assistant",
-            content: fullText,
-            ...(toolCalls.length > 0
-              ? { options: { toolCall: toolCalls } }
+            content: result.fullText,
+            ...(result.toolCalls.length > 0
+              ? { options: { toolCall: result.toolCalls } }
               : {}),
           },
-          raw: lastChunk?.raw || null,
+          raw: result.lastChunk?.raw || null,
         };
 
         // Fetch and store metadata
-        const metadata = await this.prepareMetadata(generationId, response);
+        const metadata = await this.prepareMetadata(
+          result.generationId,
+          response,
+        );
 
         // Cache the full response object
         await this.cache.set(

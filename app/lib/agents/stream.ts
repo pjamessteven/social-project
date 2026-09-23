@@ -333,6 +333,18 @@ export function toDataStream(
         ) {
           // Client disconnected — close gracefully
         } else {
+          // Surface the failure as a visible assistant message first — an
+          // error the user can actually read beats a silently empty
+          // transcript that looks like the run is stuck.
+          closeTextBlock(writer);
+          const id = `text-${randomUUID()}`;
+          const message =
+            error instanceof Error
+              ? error.message
+              : "An unknown error occurred during stream finalization";
+          writer.write({ type: "text-start", id });
+          writer.write({ type: "text-delta", id, delta: `⚠ ${message}` });
+          writer.write({ type: "text-end", id });
           throw error;
         }
       } finally {

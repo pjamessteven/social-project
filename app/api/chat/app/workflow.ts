@@ -21,11 +21,7 @@ import { db, withDbTimeout } from "@/db";
 import { studyTags } from "@/db/schema";
 import { agent } from "@llamaindex/workflow";
 import { CachedOpenAI } from "../../shared/llm";
-import {
-  agentPrompt,
-  wikiModeDisabledPrompt,
-  wikiUpdateModePrompt,
-} from "../utils/prompts";
+import { agentPrompt, wikiUpdateModePrompt } from "../utils/prompts";
 
 export const workflowFactory = async (
   reqBody: any,
@@ -135,11 +131,7 @@ export const workflowFactory = async (
   const systemPrompt =
     agentPrompt +
     tagList +
-    (adminUsername
-      ? wikiMode
-        ? wikiUpdateModePrompt
-        : wikiModeDisabledPrompt
-      : "");
+    (adminUsername ? (wikiMode ? wikiUpdateModePrompt : "") : "");
 
   // Model selection: admins can opt into the Pro model per message.
   const chatModel = proModel
@@ -160,7 +152,19 @@ export const workflowFactory = async (
     apiKey: process.env.OPENROUTER_KEY,
     baseURL: "https://openrouter.ai/api/v1",
     model: chatModel,
+    // Admins (wiki maintenance) generate very long pages and tool payloads;
+    // everyone else keeps the library's default output budget.
+    ...(adminUsername ? { maxTokens: 50_000 } : {}),
     additionalChatOptions: {
+      // OpenRouter-native reasoning kill switch. Both mimo-v2.6 models report
+      // reasoning.mandatory=false, so disabling is accepted. This MUST go
+      // through `reasoning` — the Xiaomi-native `thinking` switch is not a
+      // supported OpenRouter parameter and gets ignored, leaving thinking on;
+      // its tokens then eat max_tokens and the response comes back as
+      // finish_reason=length with EMPTY content.
+      reasoning: { enabled: false, effort: "none" },
+      // Xiaomi-native switch — kept as provider passthrough for direct-Xiaomi
+      // fallback configs (harmless when ignored).
       thinking: { type: "disabled" },
     } as any,
     fallback: {
