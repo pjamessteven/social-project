@@ -93,6 +93,10 @@
       "description": "Vaša izkušnja lahko pomaga drugim razumeti zapletenost spolne identitete.",
       "button": "Sodelujte"
     },
+    "xCard": {
+      "title": "Detrans.ai je na X, aplikaciji za vse",
+      "description": "Omenite @DetransAI v svoji objavi ali odgovoru, da vključite detrans.ai v pogovor."
+    },
     "footer": {
       "poem": {
         "line1": "Svoboden/-a si lahko postaneš,",

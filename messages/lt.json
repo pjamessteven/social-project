@@ -93,6 +93,10 @@
       "description": "Jūsų patirtis gali padėti kitiems suprasti genderinės tapatybės sudėtingumą.",
       "button": "Dalyvauti"
     },
+    "xCard": {
+      "title": "Detrans.ai yra X – visko programėlėje",
+      "description": "Paminėkite @DetransAI savo įraše ar atsakyme, kad įtrauktumėte detrans.ai į pokalbį."
+    },
     "footer": {
       "poem": {
         "line1": "Tu gali išsilaisvinti,",

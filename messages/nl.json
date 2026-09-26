@@ -93,6 +93,10 @@
       "description": "Jouw ervaring kan anderen helpen de complexiteit van genderidentiteit te begrijpen.",
       "button": "Doe Mee"
     },
+    "xCard": {
+      "title": "Detrans.ai is op X, de alles-app",
+      "description": "Vermeld @DetransAI in je bericht of reactie om detrans.ai in het gesprek op te nemen."
+    },
     "footer": {
       "poem": {
         "line1": "Je kunt jezelf bevrijden,",

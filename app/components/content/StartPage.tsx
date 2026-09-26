@@ -80,7 +80,9 @@ export async function StartPage({
   return (
     <>
       <div className="relative flex flex-col pb-[88px]">
-        <div className="z-10 mt-[20vh]">
+        <div
+          className={`z-10 mt-[210px] sm:mt-[20vh] ${isRTL(locale) ? "sm:pl-[220px] lg:pl-[320px]" : "sm:pr-[220px] lg:pr-[320px]"}`}
+        >
           <div className="mb-8 flex justify-start">
             <span className="bg-destructive text-destructive-foreground hidden rounded-full px-3 py-1 text-xs font-semibold shadow-sm select-none">
               Warning: Chat may be unavailable due to lack of funds, should be
@@ -192,9 +194,22 @@ export async function StartPage({
           <div className="mt-1 w-full border-t" />
           <div className="mt-1 w-full border-t" />
         </div>
-        <div className="absolute top-0 right-0 z-0 w-[170px] rotate-15 sm:top-8 sm:-right-32 sm:w-[220px]">
-          <LizardAnimation />
-          <div className="absolute inset-0 dark:bg-black/20"></div>
+        <div
+          className={`absolute top-0 z-0 w-[240px] sm:top-32 sm:w-[360px] lg:w-[280px] ${isRTL(locale) ? "left-0 sm:-left-40 lg:-left-32" : "right-0 sm:-right-40 lg:-right-32"}`}
+        >
+          <div className="relative flex aspect-square items-center justify-center rounded-3xl rounded-es-none border-t border-white bg-white/50 px- py-8 shadow-[0px_0px_0px_1px_rgba(14,63,126,0.06),0px_1px_1px_-0.5px_rgba(42,51,70,0.03),0px_2px_2px_-1px_rgba(42,51,70,0.04),0px_3px_3px_-1.5px_rgba(42,51,70,0.04),0px_5px_5px_-2.5px_rgba(42,51,70,0.03),0px_10px_10px_-5px_rgba(42,51,70,0.03),0px_24px_24px_-8px_rgba(42,51,70,0.03)] backdrop-blur-lg supports-[backdrop-filter]:bg-accent/80 sm:px-8 sm:py-10 lg:px-10 lg:py-6 dark:border-white/5 dark:bg-secondary dark:supports-[backdrop-filter]:bg-gray-900/80 sm:dark:border-white/10 sm:dark:supports-[backdrop-filter]:bg-gray-900/90">
+            <div className="relative w-full">
+              <LizardAnimation className="rotate-15" />
+              <div className="absolute inset-0 dark:bg-black/20"></div>
+            </div>
+          </div>
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 44 36"
+            className={`absolute top-full start-[-10px] h-9 w-11 -translate-y-[2px] fill-white/50 stroke-[rgba(14,63,126,0.06)] stroke-1 supports-[backdrop-filter]:fill-accent/80 dark:fill-secondary dark:supports-[backdrop-filter]:fill-gray-900/80 sm:dark:supports-[backdrop-filter]:fill-gray-900/90 ${isRTL(locale) ? "-scale-x-100" : ""}`}
+          >
+            <path d="M10 0 L44 0 L0 34 Z" />
+          </svg>
         </div>
 
         <div className="">

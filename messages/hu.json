@@ -93,6 +93,10 @@
       "description": "A tapasztalatod segíthet másoknak megérteni a nemi identitás összetettségét.",
       "button": "Részvétel"
     },
+    "xCard": {
+      "title": "A Detrans.ai az X-en van, a minden alkalmazásban",
+      "description": "Említsd meg a @DetransAI-t a bejegyzésedben vagy válaszodban, hogy bekerüljön a detrans.ai is a beszélgetésbe."
+    },
     "footer": {
       "poem": {
         "line1": "Felszabadíthatod magad,",

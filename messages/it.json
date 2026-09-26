@@ -93,6 +93,10 @@
       "description": "La tua esperienza può aiutare altri a comprendere le complessità dell'identità di genere.",
       "button": "Partecipa"
     },
+    "xCard": {
+      "title": "Detrans.ai è su X, l'app di tutto",
+      "description": "Menziona @DetransAI nel tuo post o nella tua risposta per includere detrans.ai nella conversazione."
+    },
     "footer": {
       "poem": {
         "line1": "Puoi liberare te stesso,",

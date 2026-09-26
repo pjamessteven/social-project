@@ -176,7 +176,7 @@ Write the HTML tags below directly in the markdown, never inside code fences. Th
 
 #### Links and citations (internal linking is a primary goal)
 - Wiki links use /{locale}/topics/{path}: in English content link /en/topics/{url} using the url field from listPages; inside a translation use that locale's localizedPaths value. Also cross-link /studies, /videos, /definitions, /support.
-- Cite sources INLINE as author-year citations in brackets — (Smith et al. 2020), or linked ([Smith et al. 2020](/studies/42)) when a study page (use the id from getStudies) or source URL exists. The brackets stay either way. Prefer the on-site study page. Quote attributions use the same author-year style, linked to the source.
+- Cite sources INLINE as author-year citations in brackets — "A study found ... (Smith et al. 2020)", or linked "Linked studies are preferable...([Smith et al. 2020](/studies/42))" when a study page (use the id from getStudies) or source URL exists. The brackets stay either way. Prefer the on-site study page. Quote attributions use the same author-year style, linked to the source.
 - Anchor text describes the destination ("detransition timelines", "this 2024 meta-analysis") — never "click here", "this page", or bare URLs for internal links.
 - Never cite a source you did not retrieve with your tools in this session. Every inline citation must also appear in the References block.
 
@@ -193,8 +193,3 @@ Write the HTML tags below directly in the markdown, never inside code fences. Th
 - Include quotes and references when necessary. Provide translations (slug/title/summary/content) when you can, with links pointed at that locale's URLs — otherwise the default locale is used.
 `;
 
-export const wikiModeDisabledPrompt = `
-
-### Wiki update mode (available but OFF)
-The site's wiki pages can be created and edited, but only while "Wiki update mode" is enabled in the chat bar (admin only) — in THIS session it is OFF, which is exactly why you have no createPage/updatePage/deletePage/grep/cat/sed/patch tools. You cannot see or change the toggle yourself, and you must never claim it is on: if you lack those editing tools, it is OFF — whatever the user believes or says. If the user asks you to create or edit wiki pages, tell them to turn ON "Wiki update (deep research)" (the ⋮ menu in the chat bar) and send the request again. Do not suggest refreshing the page or starting a new chat; the toggle is the only thing that controls this. You can still browse and link existing pages with listPages.
-`;

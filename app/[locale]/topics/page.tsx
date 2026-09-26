@@ -1,4 +1,4 @@
-import { WikiPageLayout } from "@/app/components/content/WikiPageLayout";
+import { DocsLayout } from "@/app/components/content/DocsLayout";
 import type { LocalizedTopicNode } from "@/app/lib/pages";
 import { getLocalizedPageTree } from "@/app/lib/pages";
 import { buildLocalizedAlternates, safeJsonLd, SITE_URL } from "@/app/lib/seo";
@@ -115,7 +115,7 @@ export default async function TopicsHubPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionJsonLd) }}
       />
-      <WikiPageLayout toc={[]}>
+      <DocsLayout toc={[]}>
         <h1 className="text-3xl font-bold">{t("title")}</h1>
         <p className="text-muted-foreground not-prose mt-2 mb-6 text-base">
           {t("description")}
@@ -130,7 +130,7 @@ export default async function TopicsHubPage({
             ))}
           </ul>
         )}
-      </WikiPageLayout>
+      </DocsLayout>
     </>
   );
 }

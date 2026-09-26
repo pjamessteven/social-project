@@ -1,5 +1,5 @@
-import { WikiPageLayout } from "@/app/components/content/WikiPageLayout";
-import { SidebarMenuButton } from "@/app/components/ui/sidebar";
+import { DocsLayout } from "@/app/components/content/DocsLayout";
+import { WikiTocLink } from "@/app/components/content/WikiTocLink";
 import { isAdmin } from "@/app/lib/auth/auth";
 import { renderWikiMarkdown } from "@/app/lib/markdown";
 import {
@@ -133,8 +133,8 @@ function PageLinkList({
   items: { key: string; href: string; title: string; summary: string | null }[];
   compact?: boolean;
 }) {
-  // Sidebar variant: match the "On this page" links exactly (no underline,
-  // same padding/typography, no summaries) by reusing SidebarMenuButton.
+  // Sidebar variant: match the sidebar TOC links exactly (no underline,
+  // same padding/typography, no summaries) by reusing WikiTocLink.
   if (compact) {
     return (
       <section>
@@ -142,12 +142,7 @@ function PageLinkList({
         <ul className="space-y-0.5">
           {items.map((item) => (
             <li key={item.key}>
-              <SidebarMenuButton
-                asChild
-                className="h-auto overflow-visible py-1 whitespace-normal"
-              >
-                <a href={item.href}>{item.title}</a>
-              </SidebarMenuButton>
+              <WikiTocLink href={item.href}>{item.title}</WikiTocLink>
             </li>
           ))}
         </ul>
@@ -268,7 +263,7 @@ export default async function WikiTopicPage({
           __html: safeJsonLd([articleJsonLd, breadcrumbJsonLd]),
         }}
       />
-      <WikiPageLayout
+      <DocsLayout
         toc={toc}
         sidebarExtras={
           hasRelated ? (
@@ -341,9 +336,10 @@ export default async function WikiTopicPage({
           </p>
 
           {/* Related-page navigation: sidebar on desktop (see sidebarExtras),
-              in the page body on mobile with a divider above */}
+              in the page body when the sidebar is hidden (below xl) with a
+              divider above */}
           {hasRelated && (
-            <div className="not-prose mt-6 border-t pt-8 lg:hidden">
+            <div className="not-prose mt-6 border-t pt-8 xl:hidden">
               <div className="space-y-8">
                 {childrenItems.length > 0 && (
                   <PageLinkList
@@ -358,7 +354,7 @@ export default async function WikiTopicPage({
             </div>
           )}
         </article>
-      </WikiPageLayout>
+      </DocsLayout>
     </>
   );
 }

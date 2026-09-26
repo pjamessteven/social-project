@@ -93,6 +93,10 @@
       "description": "يمكن أن تساعد تجربتك الآخرين على فهم تعقيدات هوية الجندر.",
       "button": "شارك"
     },
+    "xCard": {
+      "title": "Detrans.ai على X، تطبيق كل شيء",
+      "description": "اذكر @DetransAI في منشورك أو ردّك لتضمين detrans.ai في المحادثة."
+    },
     "footer": {
       "poem": {
         "line1": "يمكنك أن تحرر نفسك،",

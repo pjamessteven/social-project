@@ -93,6 +93,10 @@
       "description": "Vaše zkušenost může pomoci ostatním pochopit složitosti genderové identity.",
       "button": "Zúčastnit se"
     },
+    "xCard": {
+      "title": "Detrans.ai je na X, aplikaci pro všechno",
+      "description": "Zmínka o @DetransAI ve vašem příspěvku nebo odpovědi zahrne detrans.ai do konverzace."
+    },
     "footer": {
       "poem": {
         "line1": "Můžete se osvobodit,",

@@ -93,6 +93,10 @@
       "description": "Kinh nghiệm của bạn có thể giúp ngưởi khác hiểu về sự phức tạp của bản dạng giới.",
       "button": "Tham Gia"
     },
+    "xCard": {
+      "title": "Detrans.ai có mặt trên X, ứng dụng của mọi thứ",
+      "description": "Đề cập @DetransAI trong bài đăng hoặc phản hồi của bạn để đưa detrans.ai vào cuộc trò chuyện."
+    },
     "footer": {
       "poem": {
         "line1": "Bạn có thể tự giải phóng mình,",

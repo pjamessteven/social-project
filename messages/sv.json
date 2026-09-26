@@ -93,6 +93,10 @@
       "description": "Din erfarenhet kan hjälpa andra att förstå komplexiteten i könsidentitet.",
       "button": "Delta"
     },
+    "xCard": {
+      "title": "Detrans.ai är på X, appen för allt",
+      "description": "Nämn @DetransAI i ditt inlägg eller svar för att inkludera detrans.ai i samtalet."
+    },
     "footer": {
       "poem": {
         "line1": "Du kan befria dig själv,",

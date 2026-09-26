@@ -93,6 +93,10 @@
       "description": "你的經歷可以幫助他人理解性別認同的複雜性。",
       "button": "參與"
     },
+    "xCard": {
+      "title": "Detrans.ai 已進駐 X，萬物應用",
+      "description": "在你的貼文或回覆中提及 @DetransAI，即可將 detrans.ai 納入對話。"
+    },
     "footer": {
       "poem": {
         "line1": "你可以讓自己自由，",

@@ -93,6 +93,10 @@
       "description": "Kokemuksesi voi auttaa muita ymmärtämään sukupuoli-identiteetin monimutkaisuutta.",
       "button": "Osallistu"
     },
+    "xCard": {
+      "title": "Detrans.ai on X:ssä, kaiken sovelluksessa",
+      "description": "Mainitse @DetransAI julkaisussasi tai vastauksessasi, niin detrans.ai tulee mukaan keskusteluun."
+    },
     "footer": {
       "poem": {
         "line1": "Voit vapauttaa itsesi,",

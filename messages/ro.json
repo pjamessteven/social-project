@@ -93,6 +93,10 @@
       "description": "Experiența ta poate ajuta alții să înțeleagă complexitățile identității de gen.",
       "button": "Participă"
     },
+    "xCard": {
+      "title": "Detrans.ai este pe X, aplicația pentru orice",
+      "description": "Menționează @DetransAI în postarea sau răspunsul tău pentru a include detrans.ai în conversație."
+    },
     "footer": {
       "poem": {
         "line1": "Te poți elibera,",

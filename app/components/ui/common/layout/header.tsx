@@ -3,7 +3,6 @@
 import DonationCard from "@/app/components/content/DonationCard";
 import type { TopLevelTopic } from "@/app/lib/pages";
 import { Link, usePathname } from "@/i18n/routing";
-import { useMainStore } from "@/stores/main-store";
 import { useUserStore } from "@/stores/user-store";
 import { clsx } from "clsx";
 import {
@@ -80,7 +79,6 @@ export default function Header({
   const pathname = usePathname();
   const t = useTranslations("header");
   const tHome = useTranslations("home");
-  const { scrollPosition } = useMainStore();
   const { isAuthenticated } = useUserStore();
 
   const isChatActive = pathname === "/" || pathname.startsWith("/chat");
@@ -123,14 +121,6 @@ export default function Header({
 
   return (
     <div className="relative top-0 right-0 left-0 z-50 flex items-center bg-transparent p-2 px-4 shadow-none transition-all">
-      {/* Shadow and border overlay that fades in/out on scroll */}
-      <div
-        className={cn(
-          "pointer-events-none absolute inset-0 h-full w-full shadow transition-opacity duration-300 dark:border-b",
-          scrollPosition > 1 ? "opacity-100" : "opacity-0",
-        )}
-      />
-
       {/* Left side: Logo - takes equal space to balance center */}
       <div className="z-50 flex flex-1 items-center gap-2">
         <Link href="/" className="!cursor-pointer">

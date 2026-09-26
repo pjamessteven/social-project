@@ -1,46 +1,23 @@
 "use client";
 
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/app/components/ui/collapsible";
-import { cn } from "@/app/components/ui/lib/utils";
-import {
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
-} from "@/app/components/ui/sidebar";
-import { ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { WikiTocLink } from "./WikiTocLink";
 
 export interface WikiTocNode {
   id: string;
   text: string;
-  children: { id: string; text: string }[];
 }
 
 /**
- * Wiki table-of-contents links ("sidebar" desktop or "mobile" jump-to
- * variant) with scroll-spy: the currently viewed section renders bold.
+ * Wiki table-of-contents links with scroll-spy: the currently viewed section
+ * renders bold. Only h2 sections are listed (DocsLayout filters the heading
+ * data), so the list is flat — h3 subsections never appear.
  */
-export function WikiTocLinks({
-  items,
-  variant,
-}: {
-  items: WikiTocNode[];
-  variant: "sidebar" | "mobile";
-}) {
+export function WikiTocLinks({ items }: { items: WikiTocNode[] }) {
   const [activeId, setActiveId] = useState<string | null>(null);
 
   useEffect(() => {
-    const ids = items.flatMap((item) => [
-      item.id,
-      ...item.children.map((child) => child.id),
-    ]);
+    const ids = items.map((item) => item.id);
     const elements = ids
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => Boolean(el));
@@ -64,92 +41,17 @@ export function WikiTocLinks({
     return () => observer.disconnect();
   }, [items]);
 
-  if (variant === "mobile") {
-    return (
-      <div className="space-y-0.5">
-        {items.map((item) => (
-          <div key={item.id}>
-            <a
-              href={`#${item.id}`}
-              className={cn(
-                "text-muted-foreground hover:text-foreground block text-sm",
-                activeId === item.id && "text-foreground",
-              )}
-            >
-              {item.text}
-            </a>
-            {item.children.length > 0 && (
-              <div className="mt-0.5 ml-4 space-y-0.5">
-                {item.children.map((child) => (
-                  <a
-                    key={child.id}
-                    href={`#${child.id}`}
-                    className={cn(
-                      "text-muted-foreground hover:text-foreground block text-sm",
-                      activeId === child.id && "text-foreground",
-                    )}
-                  >
-                    {child.text}
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-    );
-  }
-
   return (
-    <SidebarMenu className="gap-0.5">
+    <div className="space-y-0.5">
       {items.map((item) => (
-        <SidebarMenuItem key={item.id}>
-          {item.children.length > 0 ? (
-            <Collapsible defaultOpen className="group/collapsible">
-              <CollapsibleTrigger asChild>
-                <SidebarMenuButton
-                  className={cn(
-                    "h-auto w-full justify-between overflow-visible py-1 whitespace-normal",
-                    activeId === item.id && "text-sidebar-foreground",
-                  )}
-                >
-                  <a href={`#${item.id}`} className="flex-1">
-                    {item.text}
-                  </a>
-                  <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
-                </SidebarMenuButton>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <SidebarMenuSub className="mt-0.5 gap-0.5">
-                  {item.children.map((child) => (
-                    <SidebarMenuSubItem key={child.id}>
-                      <SidebarMenuSubButton
-                        asChild
-                        className={cn(
-                          "h-auto overflow-visible py-1 whitespace-normal",
-                          activeId === child.id && "text-sidebar-foreground",
-                        )}
-                      >
-                        <a href={`#${child.id}`}>{child.text}</a>
-                      </SidebarMenuSubButton>
-                    </SidebarMenuSubItem>
-                  ))}
-                </SidebarMenuSub>
-              </CollapsibleContent>
-            </Collapsible>
-          ) : (
-            <SidebarMenuButton
-              asChild
-              className={cn(
-                "h-auto overflow-visible py-1 whitespace-normal",
-                activeId === item.id && "text-sidebar-foreground",
-              )}
-            >
-              <a href={`#${item.id}`}>{item.text}</a>
-            </SidebarMenuButton>
-          )}
-        </SidebarMenuItem>
+        <WikiTocLink
+          key={item.id}
+          href={`#${item.id}`}
+          active={activeId === item.id}
+        >
+          {item.text}
+        </WikiTocLink>
       ))}
-    </SidebarMenu>
+    </div>
   );
 }

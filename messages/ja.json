@@ -93,6 +93,10 @@
       "description": "あなたの経験は、他の人々がジェンダーアイデンティティの複雑さを理解するのに役立ちます。",
       "button": "参加する"
     },
+    "xCard": {
+      "title": "Detrans.ai は「すべてのアプリ」X に登場",
+      "description": "投稿や返信で @DetransAI に言及すると、会話に detrans.ai を含められます。"
+    },
     "footer": {
       "poem": {
         "line1": "自分自身を解放できる、",

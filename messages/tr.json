@@ -93,6 +93,10 @@
       "description": "Deneyiminiz, başkalarının cinsiyet kimliğinin karmaşıklıklarını anlamasına yardımcı olabilir.",
       "button": "Katıl"
     },
+    "xCard": {
+      "title": "Detrans.ai, her şeyin uygulaması X'te",
+      "description": "Sohbete detrans.ai'yi dahil etmek için gönderinizde veya yanıtınızda @DetransAI'yı anın."
+    },
     "footer": {
       "poem": {
         "line1": "Kendini özgür bırakabilirsin,",

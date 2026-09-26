@@ -93,6 +93,10 @@
       "description": "Pengalaman Anda dapat membantu orang lain memahami kompleksitas identitas gender.",
       "button": "Berpartisipasi"
     },
+    "xCard": {
+      "title": "Detrans.ai ada di X, aplikasi segalanya",
+      "description": "Sebutkan @DetransAI di unggahan atau balasan Anda untuk menyertakan detrans.ai dalam percakapan."
+    },
     "footer": {
       "poem": {
         "line1": "Anda dapat membebaskan diri sendiri,",

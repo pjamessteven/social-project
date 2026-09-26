@@ -2,9 +2,9 @@
 
 import { Badge } from "@/app/components/ui/badge";
 import { slugify } from "@/app/lib/utils";
-import { Loader2 } from "lucide-react";
 import { Link } from "@/i18n/routing";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Loader2 } from "lucide-react";
+import { use, useCallback, useEffect, useRef, useState } from "react";
 
 interface Question {
   id: string;
@@ -44,11 +44,8 @@ interface SavedPageState {
   hasMore: boolean;
 }
 
-export default function TopicPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default function TopicPage(props: { params: Promise<{ id: string }> }) {
+  const params = use(props.params);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [pagination, setPagination] = useState<PaginationInfo | null>(null);
   const [topicInfo, setTopicInfo] = useState<TopicInfo | null>(null);
@@ -169,9 +166,7 @@ export default function TopicPage({
 
   // Resolve params and set topicId
   useEffect(() => {
-    params.then((resolvedParams) => {
-      setTopicId(resolvedParams.id);
-    });
+    setTopicId(params.id);
   }, [params]);
 
   // Initial load - check for saved state first
@@ -258,7 +253,7 @@ export default function TopicPage({
             : `Topic ${topicId}`}
         </h1>
         {topicInfo && (
-          <div className="mt-4  mb-4 gap-2 flex flex-wrap">
+          <div className="mt-4 mb-4 flex flex-wrap gap-2">
             {topicInfo.keywords &&
               topicInfo.keywords.length > 0 &&
               topicInfo.keywords.map((tag) => (
