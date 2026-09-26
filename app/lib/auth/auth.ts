@@ -8,11 +8,27 @@ import { cookies } from "next/headers";
 if (process.env.NODE_ENV === "production" && !process.env.JWT_SECRET) {
   throw new Error("JWT_SECRET environment variable is required in production");
 }
+if (process.env.NODE_ENV !== "production" && !process.env.JWT_SECRET) {
+  // Keep the stable dev fallback below (an ephemeral secret would log you out
+  // on every restart), but never let it pass silently.
+  console.warn(
+    "[auth] JWT_SECRET is not set — sessions are signed with a well-known dev fallback. Fine locally, never deploy like this.",
+  );
+}
 
 const JWT_SECRET = new TextEncoder().encode(
   process.env.JWT_SECRET || "your-secret-key-change-in-production",
 );
-const SESSION_COOKIE_NAME = "session_token";
+// Cookie names are shared per HOST — ports do not isolate them. Both the
+// detrans dev server (localhost:3001) and other local apps (e.g. agent-wiki on
+// localhost:3000) would otherwise fight over "session_token", each overwriting
+// the other's token and logging you out. Production keeps the plain name: the
+// other detrans.ai apps deliberately clear it on logout (shared sign-out).
+const SESSION_COOKIE_NAME =
+  process.env.SESSION_COOKIE_NAME ||
+  (process.env.NODE_ENV === "production"
+    ? "session_token"
+    : "detrans_session_token");
 const SESSION_MAX_AGE = 60 * 60 * 24 * 30; // 30 days in seconds
 const SESSION_REFRESH_THRESHOLD = 60 * 60 * 24 * 14; // Refresh if less than 14 days remaining
 const MAGIC_LINK_EXPIRY_MINUTES = 15; // Magic links expire after 15 minutes
@@ -21,6 +37,27 @@ export interface SessionPayload {
   userId: number;
   username: string; // This is the email address
   role: string;
+}
+
+/**
+ * The origin the browser used to reach us (including its port) — needed for
+ * building host-facing links and redirects. `request.nextUrl.origin` is NOT
+ * reliable here: behind Docker's port publish (host :3001 -> container :3000)
+ * it reports the container's internal port, so use the Host header.
+ */
+export function getRequestOrigin(request: {
+  headers: { get(name: string): string | null };
+  nextUrl: { origin: string; protocol: string };
+}): string {
+  const host =
+    request.headers.get("x-forwarded-host") ?? request.headers.get("host");
+  if (!host) return request.nextUrl.origin;
+  const proto = (
+    request.headers.get("x-forwarded-proto") ??
+    request.nextUrl.protocol ??
+    "http:"
+  ).replace(/:$/, "");
+  return `${proto}://${host}`;
 }
 
 // Create JWT token
@@ -274,7 +311,11 @@ export async function setSessionCookie(
   cookieStore.set(SESSION_COOKIE_NAME, token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
+    // "lax" (not "strict"): strict cookies are not sent on top-level
+    // navigations from outside the site, so arriving via an email/magic link
+    // or a link from another app looks like a logout. Lax keeps that working
+    // while still withholding cookies from cross-site non-GET requests.
+    sameSite: "lax",
     maxAge: SESSION_MAX_AGE,
     path: "/",
   });
@@ -283,7 +324,11 @@ export async function setSessionCookie(
 // Clear session cookie (logout)
 export async function clearSessionCookie(): Promise<void> {
   const cookieStore = await cookies();
-  cookieStore.delete(SESSION_COOKIE_NAME);
+  // Also sweep the legacy/shared name: older builds (and the cross-app shared
+  // cookie) used "session_token", and a stale copy would keep being sent.
+  for (const name of new Set([SESSION_COOKIE_NAME, "session_token"])) {
+    cookieStore.delete(name);
+  }
 }
 
 // Create admin user (for initial setup) - now just email, no password

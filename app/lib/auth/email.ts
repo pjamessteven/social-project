@@ -5,6 +5,11 @@ export interface MagicLinkEmailData {
   email: string;
   magicToken: string;
   userId: number;
+  /**
+   * Host-facing origin for the magic link. Supplied by the caller (dev derives
+   * it from the request; production must use NEXT_PUBLIC_APP_URL).
+   */
+  appUrl?: string;
 }
 
 /**
@@ -14,7 +19,8 @@ export async function sendMagicLinkEmail(
   data: MagicLinkEmailData,
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    const appUrl =
+      data.appUrl || process.env.NEXT_PUBLIC_APP_URL || "https://detrans.ai";
     const magicLink = `${appUrl}/api/auth/verify?token=${data.magicToken}`;
 
     const subject = "Your Magic Login Link";

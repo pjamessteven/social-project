@@ -1,4 +1,7 @@
-import { requestMagicLink } from "@/app/lib/auth/auth";
+import {
+  getRequestOrigin,
+  requestMagicLink,
+} from "@/app/lib/auth/auth";
 import { sendMagicLinkEmail } from "@/app/lib/auth/email";
 import { withApiSecurity } from "@/app/lib/apiSecurity";
 import { NextRequest, NextResponse } from "next/server";
@@ -36,10 +39,21 @@ export async function POST(request: NextRequest) {
 
     // If we have a magic token, send the email
     if (result.magicToken && result.userId) {
+      // The emailed link must be host-correct. In development that is whatever
+      // origin this request arrived on (localhost:3001 in Docker dev). Never
+      // derive it from the Host header in production: a poisoned magic link
+      // would leak the token to an attacker-controlled domain.
+      const appUrl =
+        process.env.NEXT_PUBLIC_APP_URL ||
+        (process.env.NODE_ENV !== "production"
+          ? getRequestOrigin(request)
+          : "https://detrans.ai");
+
       const emailResult = await sendMagicLinkEmail({
         email,
         magicToken: result.magicToken,
         userId: result.userId,
+        appUrl,
       });
 
       if (!emailResult.success) {

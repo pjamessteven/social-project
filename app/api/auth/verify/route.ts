@@ -1,11 +1,17 @@
-import { setSessionCookie, verifyMagicLink } from "@/app/lib/auth/auth";
+import {
+  getRequestOrigin,
+  setSessionCookie,
+  verifyMagicLink,
+} from "@/app/lib/auth/auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const token = searchParams.get("token");
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    // Fall back to the origin the browser actually used: dev runs on whatever
+    // port the dev server is on (localhost:3001 in Docker), never hardcode one.
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || getRequestOrigin(request);
 
     if (!token) {
       // Redirect to login page with error
