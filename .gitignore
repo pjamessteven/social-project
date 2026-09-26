@@ -51,3 +51,5 @@ storage/
 
 !lib/
 .aider*
+# next-agents-md
+.next-docs/

@@ -7,7 +7,7 @@ import { defaultLocale, locales, routing } from "./i18n/routing";
 
 const intlMiddleware = createMiddleware(routing);
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname, searchParams } = req.nextUrl;
   const isDev = process.env.NODE_ENV === "development";
   const host = req.headers.get("host");

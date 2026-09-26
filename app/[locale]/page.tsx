@@ -62,19 +62,17 @@ export async function generateMetadata({
   };
 }
 
-export default async function HomePage({
-  params,
-  searchParams,
-}: {
+export default async function HomePage(props: {
   params: Promise<{ locale: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const { locale } = await params;
+  const searchParams = await props.searchParams;
+  const { locale } = await props.params;
 
   // Enable static rendering
   setRequestLocale(locale);
 
-  const resolvedSearchParams = await searchParams;
+  const resolvedSearchParams = searchParams;
 
   const tMetadata = await getTranslations({ locale, namespace: "metadata" });
   const tHome = await getTranslations({ locale, namespace: "home" });

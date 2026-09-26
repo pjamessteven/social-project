@@ -200,13 +200,12 @@ async function main() {
   }
 
   let processed = ckpt.processedCount;
-  let failedUuids = [...ckpt.failedUuids];
+  const failedUuids = [...ckpt.failedUuids];
   let lastUuid = ckpt.lastProcessedUuid;
   let batchNum = 0;
 
   while (true) {
     // Fetch next batch from PG
-    let rows: CommentRow[];
     const conditions = and(
       isNotNull(detransComments.summary),
       isNotNull(detransComments.questions),
@@ -215,7 +214,7 @@ async function main() {
         : undefined,
     );
 
-    rows = await db
+    const rows: CommentRow[] = await db
       .select()
       .from(detransComments)
       .where(conditions)
