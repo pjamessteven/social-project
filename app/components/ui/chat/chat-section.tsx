@@ -387,18 +387,23 @@ export default function ChatSection({
       !starterSentRef.current
     ) {
       starterSentRef.current = true;
+
+      // Remove the starter parameter from the URL BEFORE sending (only if it
+      // came from the URL). Doing this with router.replace() right after
+      // sendMessage() triggers an RSC navigation that races the stream; a
+      // history.replaceState() does not navigate and keeps the URL clean.
+      if (!starterQuestion && typeof window !== "undefined") {
+        const newParams = new URLSearchParams(window.location.search);
+        newParams.delete("starter");
+        const queryString = newParams.toString();
+        const newUrl = `${window.location.pathname}${queryString ? `?${queryString}` : ""}`;
+        window.history.replaceState(window.history.state, "", newUrl);
+      }
+
       const messageText = starterQuestion || deslugify(starterMessage);
       useChatHandler.sendMessage({
         text: messageText,
       });
-
-      // Remove the starter parameter from the URL to prevent loops (only if from URL)
-      if (!starterQuestion && typeof window !== "undefined") {
-        const newParams = new URLSearchParams(searchParams.toString());
-        newParams.delete("starter");
-        const newUrl = `${window.location.pathname}${newParams.toString() ? `?${newParams.toString()}` : ""}`;
-        router.replace(newUrl);
-      }
     }
   }, [searchParams, useChatHandler, router, starterQuestion]);
 

@@ -36,6 +36,7 @@ export class CachedOpenAI extends OpenAI {
   private llmBlockedByCaptcha = false;
   private servedFromCache = false;
   private capturedError: Error | null = null;
+  private cancelledReason: string | null = null;
   private fallbackInit?: Omit<
     ConstructorParameters<typeof OpenAI>[0],
     "cache" | "mode"
@@ -152,6 +153,31 @@ export class CachedOpenAI extends OpenAI {
    */
   get didServeFromCache() {
     return this.servedFromCache;
+  }
+
+  /**
+   * Cancel this LLM (and thereby the agent loop that drives it): every
+   * subsequent chat()/complete() call returns an empty benign response, which
+   * makes the agent workflow finish with no tool calls (stopAgentEvent) instead
+   * of continuing to burn tokens with nobody listening. Also aborts an
+   * in-flight stream at the next chunk.
+   *
+   * The workflow runtime's own AbortController is NOT sufficient for this —
+   * nothing in @llamaindex/workflow consumes its signal to stop the loop.
+   */
+  cancel(reason = "cancelled") {
+    if (this.cancelledReason === null) {
+      this.cancelledReason = reason;
+      console.warn(`[CachedOpenAI] LLM cancelled: ${reason}`);
+    }
+  }
+
+  get isCancelled(): boolean {
+    return this.cancelledReason !== null;
+  }
+
+  get cancelReason(): string | null {
+    return this.cancelledReason;
   }
 
   /**
@@ -298,6 +324,12 @@ export class CachedOpenAI extends OpenAI {
 
     /* --- Streaming mode --- */
     if (stream) {
+      // Cancelled runs must not touch the cache or the model: return an empty
+      // benign stream so the agent workflow ends with no tool calls.
+      if (this.cancelledReason !== null) {
+        return (async function* (): AsyncGenerator<ChatResponseChunk> {})();
+      }
+
       // Check cache first
       const cached = await this.cache.get(hashedKey);
 
@@ -363,7 +395,7 @@ export class CachedOpenAI extends OpenAI {
       }
       this.ranLlm = true;
 
-      let rawStream = await this.openStreamWithFallback(messages, options);
+      const rawStream = await this.openStreamWithFallback(messages, options);
       if (!rawStream) {
         // Every provider failed (error already recorded). End gracefully so
         // the workflow completes instead of hanging.
@@ -389,6 +421,7 @@ export class CachedOpenAI extends OpenAI {
           finishReason?: string;
           usage: any;
           errored: boolean;
+          cancelled: boolean;
         }
       > {
         let fullText = "";
@@ -398,6 +431,7 @@ export class CachedOpenAI extends OpenAI {
         let finishReason: string | undefined;
         let usage: any;
         let errored = false;
+        let cancelled = false;
 
         // Inactivity budget per LLM stream. Mimo pro regularly falls silent
         // for several minutes mid-generation (long synthesis/thinking pauses
@@ -412,6 +446,17 @@ export class CachedOpenAI extends OpenAI {
         let chunkCount = 0;
 
         while (true) {
+          // Cancellation (client disconnect, superseded turn, loop guard, time
+          // limit): drop the in-flight stream immediately and report it so the
+          // caller neither caches nor retries a partial response.
+          if (this.cancelledReason !== null) {
+            cancelled = true;
+            try {
+              await iterator.return?.(undefined as any);
+            } catch {}
+            break;
+          }
+
           let result: IteratorResult<ChatResponseChunk>;
           let timeoutId: ReturnType<typeof setTimeout> | undefined;
           try {
@@ -451,6 +496,7 @@ export class CachedOpenAI extends OpenAI {
               finishReason,
               usage,
               errored,
+              cancelled,
             };
           } finally {
             clearTimeout(timeoutId);
@@ -516,6 +562,7 @@ export class CachedOpenAI extends OpenAI {
           finishReason,
           usage,
           errored,
+          cancelled,
         };
       }.bind(this);
 
@@ -523,6 +570,11 @@ export class CachedOpenAI extends OpenAI {
         this: CachedOpenAI,
       ): AsyncGenerator<ChatResponseChunk> {
         let result = yield* drainStream.call(this, rawStream);
+
+        // Cancelled mid-stream (client disconnect, superseded turn, loop
+        // guard, time limit): drop the partial response — no retry, no cache
+        // write, no recorded error.
+        if (result.cancelled) return;
 
         // Nothing usable came back (no text, no tools) — either a
         // silent-empty stream or a wedged one (e.g. timed out before the
@@ -543,6 +595,8 @@ export class CachedOpenAI extends OpenAI {
             result = yield* drainStream.call(this, retryStream);
           }
         }
+
+        if (result.cancelled) return;
 
         // Guardrail: reasoning must stay disabled (see additionalChatOptions).
         // If it ever leaks back on it silently eats max_tokens and produces
@@ -600,6 +654,13 @@ export class CachedOpenAI extends OpenAI {
     }
 
     /* --- Non-streaming mode --- */
+    // Cancelled runs must not touch the cache or the model.
+    if (this.cancelledReason !== null) {
+      return {
+        message: { role: "assistant", content: "" },
+        raw: null,
+      } as ChatResponse;
+    }
     // Check cache first
     const cached = await this.cache.get(hashedKey);
 
@@ -723,6 +784,13 @@ export class CachedOpenAI extends OpenAI {
       !(await rateLimiter(rateLimit.userIp, rateLimit.mode)).allowed
     ) {
       throw new Error("Rate limit exceeded");
+    }
+
+    // Cancelled runs must not touch the cache or the model.
+    if (this.cancelledReason !== null) {
+      return stream
+        ? ((async function* (): AsyncIterable<CompletionResponse> {})() as any)
+        : ({ text: "", raw: null } as CompletionResponse);
     }
 
     /* --- Streaming mode --- */

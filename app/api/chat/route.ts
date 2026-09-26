@@ -1,6 +1,6 @@
 import { withApiSecurity } from "@/app/lib/apiSecurity";
 import { getCurrentSession, getFreshRole } from "@/app/lib/auth/auth";
-import { releaseWorkflow, tryAcquireWorkflow } from "@/app/lib/concurrency";
+import { beginRun, getActiveRun } from "@/app/lib/concurrency";
 import { getCountryFromIP } from "@/app/lib/geolocation";
 import { getIP } from "@/app/lib/getIp";
 import {
@@ -245,6 +245,21 @@ export async function POST(req: NextRequest) {
     // Combine existing messages with new user message
     const allMessages = [...existingMessages, newUserMessage];
 
+    // Persist the user turn immediately (not only on completion): if this run
+    // is later cancelled — superseded by a follow-up message or cut off by a
+    // client disconnect — the message would otherwise vanish from the
+    // transcript, because the follow-up request already snapshotted the
+    // history before any save happened.
+    await withDbTimeout(
+      saveConversation(
+        chatUuid,
+        allMessages,
+        ipAddress,
+        username,
+        effectiveIncludeTransPerspectives,
+      ),
+    );
+
     // Convert to ChatMessage format for workflow
     // Collect all text parts, not just the first one (data events may come before text)
     const chatHistory: ChatMessage[] = allMessages
@@ -268,16 +283,34 @@ export async function POST(req: NextRequest) {
     // userInput already defined above after validation
 
     const abortController = new AbortController();
-    req.signal.addEventListener("abort", () =>
-      abortController.abort("Connection closed"),
-    );
 
-    if (!tryAcquireWorkflow()) {
+    // One active run per conversation: a follow-up message supersedes (and
+    // cancels) the previous run instead of letting two agents race on the same
+    // conversation and wiki pages. The global concurrency cap is enforced too.
+    const run = beginRun(chatUuid);
+    if (!run) {
       return NextResponse.json(
         { error: "Server is busy. Please try again shortly." },
         { status: 503 },
       );
     }
+
+    req.signal.addEventListener("abort", () => {
+      // Client disconnect must stop the agent, not just the event stream —
+      // otherwise the workflow keeps running (and burning tokens) as a zombie
+      // with nobody listening.
+      console.warn(`[CHAT API] client disconnected: ${chatUuid}`);
+      abortController.abort("Connection closed");
+      run.cancel("client disconnected");
+    });
+
+    // Safety net: if the response stream never winds down cleanly, release the
+    // global slot after a grace period instead of leaking it.
+    let streamHandedOff = false;
+    const finishRun = () => {
+      streamHandedOff = true;
+      run.finish();
+    };
 
     try {
       const { workflow: chatWorkflow, llm } = await workflowFactory(
@@ -294,6 +327,12 @@ export async function POST(req: NextRequest) {
         effectiveWikiMode,
         effectiveProModel,
       );
+
+      // Cancelling the run must cancel the LLM too: the workflow runtime does
+      // not consume its own AbortSignal to stop the agent loop, so the LLM
+      // short-circuit is what actually ends it (empty response → no tool calls
+      // → stopAgentEvent).
+      run.onCancel((reason) => llm.cancel(reason));
 
       const context = await runWorkflow({
         workflow: chatWorkflow,
@@ -342,11 +381,20 @@ export async function POST(req: NextRequest) {
 
       const dataStream = toDataStream(allMessages, stream, chatUuid, {
         errorProvider: llm,
+        cancelRun: (reason) => run.cancel(reason),
         callbacks: {
           onPauseForHumanInput: async (responseEvent) => {
             await pauseForHumanInput(context, responseEvent, requestId); // use requestId to save snapshot
           },
           onFinal: async (messages: UIMessage[], dataStreamWriter) => {
+            // A superseded run must not clobber the newer run's transcript.
+            const current = getActiveRun(chatUuid);
+            if (current && current !== run) {
+              console.warn(
+                `[CHAT API] skipping save for superseded run: ${chatUuid}`,
+              );
+              return;
+            }
             await withDbTimeout(
               saveConversation(
                 chatUuid,
@@ -367,8 +415,36 @@ export async function POST(req: NextRequest) {
         suggestNextQuestions,
       });
 
+      // Release the run's global slot when the response stream actually ends
+      // (or errors, or is cancelled by the client) — NOT when this handler
+      // returns, which is long before the stream completes.
+      const sourceReader = dataStream.getReader();
+      const trackedStream = new ReadableStream({
+        async start(controller) {
+          try {
+            for (;;) {
+              const { done, value } = await sourceReader.read();
+              if (done) break;
+              controller.enqueue(value);
+            }
+            controller.close();
+          } catch (error) {
+            try {
+              controller.error(error);
+            } catch {}
+          } finally {
+            finishRun();
+          }
+        },
+        cancel(reason) {
+          finishRun();
+          void sourceReader.cancel(reason).catch(() => {});
+        },
+      });
+
+      streamHandedOff = true;
       return createUIMessageStreamResponse({
-        stream: dataStream,
+        stream: trackedStream,
         status: 200,
         headers: {
           "Content-Type": "text/plain; charset=utf-8",
@@ -383,7 +459,9 @@ export async function POST(req: NextRequest) {
       // Re-throw to be caught by outer catch block
       throw workflowError;
     } finally {
-      releaseWorkflow();
+      // If the stream never got handed to the response (setup failed), release
+      // the slot here instead.
+      if (!streamHandedOff) run.finish();
     }
   } catch (error) {
     console.error("Chat handler error:", error);

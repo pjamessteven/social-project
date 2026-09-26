@@ -20,6 +20,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { DynamicComponentErrorBoundary } from "./error-boundary";
 import { ComponentDef } from "./types";
+import { BUILT_IN_DATA_EVENT_TYPES } from "../../tool-components/EventParts";
 
 type EventComponent = ComponentDef & {
   events: JSONValue[];
@@ -59,9 +60,12 @@ export const DynamicEvents = ({
 
       const events = getParts(message, type);
 
-      // Skip if it's a built-in component or if we've already shown the warning
+      // Skip built-in renderers (chat-ui parts and our own EventParts) and
+      // types we've already warned about — otherwise every data event logs a
+      // bogus "no component found" warning on each render.
       if (
         BUILT_IN_CHATUI_COMPONENTS.includes(type) ||
+        (BUILT_IN_DATA_EVENT_TYPES as readonly string[]).includes(type) ||
         shownWarningsRef.current.has(type)
       ) {
         return;

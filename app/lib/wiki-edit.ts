@@ -397,14 +397,38 @@ function parseUnifiedPatch(patchText: string): {
   return { hunks };
 }
 
+/**
+ * Normalization used only for *matching* hunk context (never for writing):
+ * models routinely mangle quotes and backslashes when they copy page text into
+ * tool arguments (observed: `\\\retransition\\\` where the page has plain
+ * `"retransition"`), which makes an otherwise-correct hunk fail to match.
+ */
+function normalizeForMatch(line: string, ignoreQuotes = false): string {
+  let out = line
+    .replace(/\\+(.)/g, "$1") // collapse escape runs: \\' -> ', \\ -> \
+    .replace(/[‘’‚′]/g, "'")
+    .replace(/[“”„″]/g, '"')
+    .replace(/\s+/g, " ")
+    .trim();
+  if (ignoreQuotes) out = out.replace(/['"]/g, "");
+  return out;
+}
+
+type MatchMode = "exact" | "trim" | "normalize" | "loose";
+
 function findHunkStart(
   work: string[],
   hunk: PatchHunk,
   expected: number,
-  loose = false,
+  mode: MatchMode = "exact",
 ): number {
-  const eq = (a: string | undefined, b: string) =>
-    a !== undefined && (loose ? a.trim() === b.trim() : a === b);
+  const eq = (a: string | undefined, b: string) => {
+    if (a === undefined) return false;
+    if (mode === "exact") return a === b;
+    if (mode === "trim") return a.trim() === b.trim();
+    const ignoreQuotes = mode === "loose";
+    return normalizeForMatch(a, ignoreQuotes) === normalizeForMatch(b, ignoreQuotes);
+  };
   const matchesAt = (start: number) => {
     if (start < 0 || start + hunk.oldBlock.length > work.length) return false;
     return hunk.oldBlock.every((line, i) => eq(work[start + i], line));
@@ -446,18 +470,37 @@ export function applyUnifiedPatch(
 
   for (const hunk of parsed.hunks) {
     const expected = hunk.oldStart - 1 + offset;
-    // Exact match first, then whitespace-tolerant (model re-flows leave
-    // trailing-whitespace drift in the context lines).
+    // Exact match first, then progressively fuzzier tiers: whitespace
+    // tolerance (model re-flows leave trailing-whitespace drift), escape
+    // normalization (models double-escape quotes/backslashes in tool
+    // arguments), and finally quote-insensitive matching (models sometimes
+    // replace quote characters with escape noise entirely).
     let start = findHunkStart(work, hunk, expected);
     if (start < 0) {
-      start = findHunkStart(work, hunk, expected, true);
+      start = findHunkStart(work, hunk, expected, "trim");
+    }
+    if (start < 0) {
+      start = findHunkStart(work, hunk, expected, "normalize");
+    }
+    if (start < 0) {
+      start = findHunkStart(work, hunk, expected, "loose");
     }
     if (start < 0) {
       const want = (hunk.oldBlock.find((l) => l.trim()) ?? "").trim();
       const got = (work[expected] ?? "(end of file)").trim();
+      // Show the actual surrounding lines so the model can rebuild its context
+      // instead of retrying the same broken hunk over and over.
+      const from = Math.max(0, expected - 2);
+      const to = Math.min(work.length, expected + 3);
+      const actual = work
+        .slice(from, to)
+        .map((line, i) => `  ${from + i + 1}: ${truncateLine(line)}`)
+        .join("\n");
       const error =
-        `patch: hunk @@ -${hunk.oldStart},${hunk.oldCount} @@ failed — context not found (cat the section and retry). ` +
-        `expected '${want.slice(0, 70)}' but line ${expected + 1} is '${got.slice(0, 70)}'`;
+        `patch: hunk @@ -${hunk.oldStart},${hunk.oldCount} @@ failed — context not found. ` +
+        `expected '${want.slice(0, 70)}' but line ${expected + 1} is '${got.slice(0, 70)}'. ` +
+        `The page currently reads around that line:\n${actual}\n` +
+        `Do NOT retry the identical patch — rewrite the context lines from this actual content (copy them verbatim, without re-escaping quotes).`;
       return { ok: false, content, changed: 0, output: error, error };
     }
     work.splice(start, hunk.oldBlock.length, ...hunk.newBlock);

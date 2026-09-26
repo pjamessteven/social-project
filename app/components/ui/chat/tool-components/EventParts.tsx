@@ -15,6 +15,22 @@ import ChatBubbleButton from "../../../content/ChatBubbleButton";
 import { StudyCard } from "../../../content/StudyCard/StudyCard";
 import { EventWrapper, type EventPartData } from "./EventWrapper";
 
+/**
+ * Data event types rendered by the built-in event parts below. Events of these
+ * types must not be reported as "missing dynamic component" warnings — they
+ * have first-class renderers and never come from the components directory.
+ */
+export const BUILT_IN_DATA_EVENT_TYPES = [
+  "data-comment-query-event",
+  "data-trans-comment-query-event",
+  "data-video-query-event",
+  "data-study-query-event",
+  "data-web-search-event",
+  "data-get-studies-event",
+  "data-questions-event",
+  "data-wiki-page-event",
+] as const;
+
 function useLocale() {
   const pathname = usePathname();
   const segments = pathname.split("/").filter(Boolean);

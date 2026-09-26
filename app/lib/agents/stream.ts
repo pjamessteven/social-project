@@ -196,9 +196,67 @@ export function toDataStream(
      * such error is re-thrown after the stream ends so it surfaces via onError.
      */
     errorProvider?: { takeError(): Error | null };
+    /**
+     * Stops the underlying agent run. Called when a loop guard trips, so the
+     * workflow does not keep burning tokens after the stream is cut.
+     */
+    cancelRun?: (reason: string) => void;
   } = {},
 ) {
   const { callbacks, chatHistory, suggestNextQuestions } = options;
+
+  // Loop guards. An unguarded agent that degenerates into in-context
+  // repetition can re-issue the same tool call hundreds of times (observed:
+  // 724 identical greps and 533 identical failing patches in one turn) —
+  // cap both the total work and the identical repeats.
+  const MAX_TOOL_RESULTS = Number(process.env.CHAT_MAX_TOOL_RESULTS) || 200;
+  const MAX_IDENTICAL_TOOL_RESULTS = 3;
+  let totalToolResults = 0;
+  const toolResultCounts = new Map<string, number>();
+
+  // Collapse identical repeated events: a message should not accumulate
+  // hundreds of indistinguishable "Searched wiki pages" cards.
+  const MAX_DUPLICATE_EVENTS = 2;
+  const writtenEventCounts = new Map<string, number>();
+
+  const writeDataEvent = (
+    writer: UIMessageStreamWriter,
+    part: { type: string; id: string; data: any },
+  ) => {
+    const signature = `${part.type}|${part.data?.title}|${part.data?.query}|${String(
+      part.data?.result ?? "",
+    ).slice(0, 2000)}`;
+    const seen = writtenEventCounts.get(signature) ?? 0;
+    if (seen >= MAX_DUPLICATE_EVENTS) return;
+    writtenEventCounts.set(signature, seen + 1);
+    writer.write(part as any);
+  };
+
+  const checkToolLoop = (
+    toolName: string,
+    toolKwargs: Record<string, any> | undefined,
+    raw: unknown,
+  ) => {
+    totalToolResults++;
+    const signature = `${toolName}|${JSON.stringify(toolKwargs ?? {})}|${String(
+      raw ?? "",
+    ).slice(0, 5000)}`;
+    const seen = (toolResultCounts.get(signature) ?? 0) + 1;
+    toolResultCounts.set(signature, seen);
+
+    if (seen >= MAX_IDENTICAL_TOOL_RESULTS) {
+      const reason = `the agent repeated an identical ${toolName} call (same arguments, same result) ${seen} times`;
+      options.cancelRun?.(reason);
+      throw new Error(
+        `Stopped the run: ${reason}. This is a model repetition loop, not progress — please retry.`,
+      );
+    }
+    if (totalToolResults > MAX_TOOL_RESULTS) {
+      const reason = `the turn exceeded ${MAX_TOOL_RESULTS} tool calls`;
+      options.cancelRun?.(reason);
+      throw new Error(`Stopped the run: ${reason}. Please retry.`);
+    }
+  };
 
   let completionText = "";
   let hasStarted = false;
@@ -277,9 +335,14 @@ export function toDataStream(
           // Tool call result — emit data event for UI
           if (agentToolCallResultEvent.include(event)) {
             closeTextBlock(writer);
+            checkToolLoop(
+              event.data.toolName,
+              event.data.toolKwargs,
+              event.data.raw,
+            );
             const config = TOOL_UI_MAP[event.data.toolName];
             if (config) {
-              writer.write({
+              writeDataEvent(writer, {
                 type: config.type as any,
                 id: event.data.toolId,
                 data: {
@@ -297,7 +360,7 @@ export function toDataStream(
                 },
               });
             } else {
-              writer.write({
+              writeDataEvent(writer, {
                 type: "data-default-event" as any,
                 id: event.data.toolId,
                 data: {
