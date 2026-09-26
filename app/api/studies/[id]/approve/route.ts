@@ -1,5 +1,6 @@
 import { requireAuth } from "@/app/lib/auth/middleware";
 import { extractPdfText } from "@/app/lib/pdf";
+import { syncStudySlugs } from "@/app/lib/study-slugs";
 import { db } from "@/db";
 import { studies, studyTags, studyTagRelations } from "@/db/schema";
 import { eq, inArray, sql } from "drizzle-orm";
@@ -310,6 +311,9 @@ export async function POST(
 
     // Upsert normalized tags
     await upsertTags(studyId, tags);
+
+    // Keep per-locale URL slugs in sync with the (possibly edited) headline
+    await syncStudySlugs(studyId);
 
     // Only regenerate embeddings for new approvals or when explicitly requested
     const shouldEmbed = !study.approved || regenerateEmbedding;

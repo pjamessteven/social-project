@@ -1,6 +1,15 @@
 import { DeleteStudyButton } from "@/app/components/DeleteStudyButton";
 import { StudyApprovalForm } from "@/app/components/StudyApprovalForm";
 import { isAdmin } from "@/app/lib/auth/auth";
+import { getLocalizedValue } from "@/app/lib/pages";
+import { localeToBcp47, safeJsonLd, SITE_URL } from "@/app/lib/seo";
+import {
+  getStudiesPath,
+  getStudyPath,
+  localizedStudyName,
+  pickStudySlug,
+  resolveStudySlugParam,
+} from "@/app/lib/study-slugs";
 import { Study } from "@/app/types/study";
 import { db } from "@/db";
 import { studies, studyTagRelations, studyTags } from "@/db/schema";
@@ -8,100 +17,128 @@ import { localesInfo } from "@/i18n/locales";
 import { eq } from "drizzle-orm";
 import { Metadata } from "next";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
+import { cache } from "react";
+
+type PageParams = Promise<{ locale: string; slug: string }>;
+
+/**
+ * Resolve the requested study (cached per request so metadata + render share
+ * one lookup). Accepts the canonical per-locale headline slug, a legacy
+ * numeric id (/studies/42 — what the chat cites), or another locale's slug
+ * for the same study; the latter two redirect to the canonical slug URL.
+ */
+const loadStudy = cache(async (locale: string, slugParam: string) => {
+  const resolution = await resolveStudySlugParam(locale, slugParam);
+  if (!resolution) return null;
+
+  const rawStudy = (
+    await db
+      .select()
+      .from(studies)
+      .where(eq(studies.id, resolution.studyId))
+      .limit(1)
+  )[0];
+  if (!rawStudy) return null;
+
+  return {
+    rawStudy,
+    slugs: resolution.slugs,
+    canonicalSlug: pickStudySlug(resolution.slugs, locale, resolution.studyId),
+    isCanonical: resolution.canonical,
+  };
+});
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string; id: string }>;
+  params: PageParams;
 }): Promise<Metadata> {
-  const { locale, id } = await params;
-  const studyId = parseInt(id, 10);
+  const { locale, slug } = await params;
+  const data = await loadStudy(locale, slug);
 
-  if (isNaN(studyId)) {
-    return { title: "Study Not Found" };
+  if (!data || !data.isCanonical) {
+    // Numeric/foreign-slug URLs redirect (no body is served); unknown slugs
+    // get the "moved" 404 page. Neither should be indexed.
+    return {
+      title: "Study | detrans.ai",
+      robots: { index: false, follow: false },
+    };
   }
 
-  const existingStudy = await db
-    .select()
-    .from(studies)
-    .where(eq(studies.id, studyId))
-    .limit(1);
+  const { rawStudy, slugs, canonicalSlug } = data;
+  const title = localizedStudyName(rawStudy, locale) || "Study";
+  const description =
+    getLocalizedValue(
+      rawStudy.descriptionTranslation,
+      locale,
+      rawStudy.description,
+    ) ||
+    rawStudy.summary ||
+    rawStudy.abstract ||
+    undefined;
+  const canonical = `${SITE_URL}${getStudyPath(locale, canonicalSlug)}`;
 
-  const study = existingStudy[0];
-  const title = study
-    ? `${study.headline || study.title || "Study"} | detrans.ai`
-    : "Study Not Found";
-  const description = study?.summary || study?.abstract || undefined;
+  const languages: Record<string, string> = {};
+  for (const info of localesInfo) {
+    languages[localeToBcp47[info.code] ?? info.code] =
+      `${SITE_URL}${getStudyPath(
+        info.code,
+        pickStudySlug(slugs, info.code, rawStudy.id),
+      )}`;
+  }
+  languages["x-default"] = `${SITE_URL}${getStudyPath(
+    "en",
+    pickStudySlug(slugs, "en", rawStudy.id),
+  )}`;
 
   return {
-    title,
+    title: `${title} | detrans.ai`,
     description,
+    // Unapproved studies (admin edit view) must never be indexed
+    robots: rawStudy.approved ? undefined : { index: false, follow: false },
     openGraph: {
-      title,
+      title: `${title} | detrans.ai`,
       description,
-      url: `https://detrans.ai/${locale}/studies/${studyId}`,
+      url: canonical,
       siteName: "detrans.ai",
-      images: ["https://detrans.ai/x_card_lg.png"],
+      images: [`${SITE_URL}/x_card_lg.png`],
       type: "article",
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: `${title} | detrans.ai`,
       description,
     },
     alternates: {
-      canonical: `https://detrans.ai/${locale}/studies/${studyId}`,
-      languages: Object.fromEntries(
-        localesInfo.map((l) => [
-          l.code === "en"
-            ? "en-US"
-            : l.code === "es"
-              ? "es-ES"
-              : l.code === "fr"
-                ? "fr-FR"
-                : l.code === "zh-cn"
-                  ? "zh-CN"
-                  : l.code === "zh-tw"
-                    ? "zh-TW"
-                    : `${l.code}-${l.code.toUpperCase()}`,
-          `https://detrans.ai/${l.code}/studies/${studyId}`,
-        ]),
-      ),
+      canonical,
+      languages,
     },
   };
 }
 
-export default async function StudyPage({
-  params,
-}: {
-  params: Promise<{ locale: string; id: string }>;
-}) {
-  const { locale, id } = await params;
-  const studyId = parseInt(id, 10);
+export default async function StudyPage({ params }: { params: PageParams }) {
+  const { locale, slug } = await params;
+  const data = await loadStudy(locale, slug);
 
-  if (isNaN(studyId)) {
-    redirect(`/${locale}/studies`);
+  if (!data) {
+    notFound();
   }
 
-  const existingStudy = await db
-    .select()
-    .from(studies)
-    .where(eq(studies.id, studyId))
-    .limit(1);
-
-  if (!existingStudy[0]) {
-    redirect(`/${locale}/studies`);
+  // Legacy numeric ids, other locales' slugs and non-normalized encodings
+  // all land on the canonical URL
+  if (encodeURIComponent(data.canonicalSlug) !== slug) {
+    permanentRedirect(getStudyPath(locale, data.canonicalSlug));
   }
 
-  const rawStudy = existingStudy[0];
+  const rawStudy = data.rawStudy;
 
   // Load tags from normalized tables with translations
   const tagRecords = await db
     .select({ name: studyTags.name, translations: studyTags.translations })
     .from(studyTagRelations)
     .innerJoin(studyTags, eq(studyTagRelations.tagId, studyTags.id))
-    .where(eq(studyTagRelations.studyId, studyId));
+    .where(eq(studyTagRelations.studyId, rawStudy.id));
 
   const localizedTags = tagRecords.map((t) => {
     if (!t.translations) return t.name;
@@ -129,10 +166,24 @@ export default async function StudyPage({
 
   const study: Study = {
     ...rawStudy,
+    headline: getLocalizedValue(
+      rawStudy.headlineTranslation,
+      locale,
+      rawStudy.headline,
+    ),
+    title: getLocalizedValue(rawStudy.titleTranslation, locale, rawStudy.title),
+    description: getLocalizedValue(
+      rawStudy.descriptionTranslation,
+      locale,
+      rawStudy.description,
+    ),
     tags: localizedTags,
     keyPoints: localizedKeyPoints,
+    slug: data.canonicalSlug,
   };
   const admin = await isAdmin();
+
+  const studyUrl = `${SITE_URL}${getStudyPath(locale, data.canonicalSlug)}`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -150,12 +201,12 @@ export default async function StudyPage({
     publisher: {
       "@type": "Organization",
       name: "detrans.ai",
-      url: "https://detrans.ai",
+      url: SITE_URL,
     },
-    url: `https://detrans.ai/${locale}/studies/${study.id}`,
+    url: studyUrl,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://detrans.ai/${locale}/studies/${study.id}`,
+      "@id": studyUrl,
     },
     keywords: study.tags?.join(", "),
     about: {
@@ -168,11 +219,11 @@ export default async function StudyPage({
     <div className="pb-16 lg:pt-8">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
       />
       <div className="mb-4">
         <Link
-          href={`/${locale}/studies`}
+          href={getStudiesPath(locale)}
           className="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
         >
           ← Back to studies

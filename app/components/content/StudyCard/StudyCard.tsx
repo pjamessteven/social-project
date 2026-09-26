@@ -1,3 +1,4 @@
+import { getStudyPath } from "@/app/lib/study-urls";
 import { Study } from "@/app/types/study";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -17,9 +18,11 @@ export function StudyCard({
   showDescription = true,
 }: StudyCardProps) {
   const t = useTranslations("studiesPage");
+  // Localized slug when known; numeric ids stay valid (they redirect server-side)
+  const slugOrId = study.slug || String(study.id);
   const detailHref = locale
-    ? `/${locale}/studies/${study.id}`
-    : `/studies/${study.id}`;
+    ? getStudyPath(locale, slugOrId)
+    : `/studies/${slugOrId}`;
 
   const hasKeyPoints =
     study.approved && study.keyPoints && study.keyPoints.length > 0;

@@ -1,6 +1,13 @@
 "use server";
 import { isAdmin } from "@/app/lib/auth/auth";
 import { isBot } from "@/app/lib/isBot";
+import { localeToBcp47, safeJsonLd, SITE_URL } from "@/app/lib/seo";
+import {
+  getStudiesPath,
+  getStudyPath,
+  getStudySlugMaps,
+  pickStudySlug,
+} from "@/app/lib/study-slugs";
 import { Study } from "@/app/types/study";
 import { db } from "@/db";
 import { studies, studyTagRelations, studyTags } from "@/db/schema";
@@ -28,7 +35,7 @@ export async function generateMetadata({
     openGraph: {
       title: t("metadata.ogTitle"),
       description: t("metadata.ogDescription"),
-      url: `https://detrans.ai/${locale}/studies`,
+      url: `${SITE_URL}${getStudiesPath(locale)}`,
       siteName: "detrans.ai",
       images: ["https://detrans.ai/x_card_lg.png"],
       locale: locale === "en" ? "en_US" : locale === "fr" ? "fr_FR" : "es_ES",
@@ -40,23 +47,16 @@ export async function generateMetadata({
       description: t("metadata.ogDescription"),
     },
     alternates: {
-      canonical: `https://detrans.ai/${locale}/studies`,
-      languages: Object.fromEntries(
-        localesInfo.map((l) => [
-          l.code === "en"
-            ? "en-US"
-            : l.code === "es"
-              ? "es-ES"
-              : l.code === "fr"
-                ? "fr-FR"
-                : l.code === "zh-cn"
-                  ? "zh-CN"
-                  : l.code === "zh-tw"
-                    ? "zh-TW"
-                    : `${l.code}-${l.code.toUpperCase()}`,
-          `https://detrans.ai/${l.code}/studies`,
-        ]),
-      ),
+      canonical: `${SITE_URL}${getStudiesPath(locale)}`,
+      languages: {
+        ...Object.fromEntries(
+          localesInfo.map((l) => [
+            localeToBcp47[l.code] ?? l.code,
+            `${SITE_URL}${getStudiesPath(l.code)}`,
+          ]),
+        ),
+        "x-default": `${SITE_URL}${getStudiesPath("en")}`,
+      },
     },
   };
 }
@@ -141,6 +141,9 @@ export default async function StudiesPage({
           .where(inArray(studyTagRelations.studyId, studyIds))
       : [];
 
+  // Per-locale URL slugs for detail links
+  const slugMaps = await getStudySlugMaps(studyIds);
+
   const localizedTagsByStudyId = new Map<number, string[]>();
 
   for (const row of allTagsQuery) {
@@ -185,6 +188,7 @@ export default async function StudiesPage({
     summary: study.summary,
     tags: localizedTagsByStudyId.get(study.id) || [],
     limitations: study.limitations,
+    slug: pickStudySlug(slugMaps.get(study.id) ?? {}, locale, study.id),
   }));
 
   // For bots: render pure SSR card grid (no client components)
@@ -199,7 +203,10 @@ export default async function StudiesPage({
 
         <div className="not-prose mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
           {approvedStudies.map((study) => {
-            const detailHref = `/${locale}/studies/${study.id}`;
+            const detailHref = getStudyPath(
+              locale,
+              study.slug || String(study.id),
+            );
             return (
               <article
                 key={study.id}
@@ -286,7 +293,7 @@ export default async function StudiesPage({
     "@type": "CollectionPage",
     name: t("metadata.title"),
     description: t("metadata.description"),
-    url: `https://detrans.ai/${locale}/studies`,
+    url: `${SITE_URL}${getStudiesPath(locale)}`,
     publisher: {
       "@type": "Organization",
       name: "detrans.ai",
@@ -301,7 +308,7 @@ export default async function StudiesPage({
         item: {
           "@type": "ScholarlyArticle",
           name: study.headline || study.title,
-          url: `https://detrans.ai/${locale}/studies/${study.id}`,
+          url: `${SITE_URL}${getStudyPath(locale, study.slug || String(study.id))}`,
           author: study.authors
             ? { "@type": "Person", name: study.authors }
             : undefined,
@@ -315,7 +322,7 @@ export default async function StudiesPage({
     <div className="prose dark:prose-invert pb-16 lg:-mx-48 lg:max-w-none lg:pt-8">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
       />
       <h1 className="text-3xl font-bold">{t("title")}</h1>
       <p className="text-muted-foreground max-w-3xl">{t("description")}</p>

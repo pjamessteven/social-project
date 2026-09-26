@@ -29,6 +29,13 @@
       "when": 1790035200000,
       "tag": "0010_add_pages",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1790047954000,
+      "tag": "0011_add_study_slugs",
+      "breakpoints": true
     }
   ]
 }

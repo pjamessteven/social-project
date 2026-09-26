@@ -9,6 +9,7 @@ import {
   serial,
   text,
   timestamp,
+  uniqueIndex,
   varchar,
   type AnyPgColumn,
 } from "drizzle-orm/pg-core";
@@ -556,6 +557,36 @@ export const studyTagRelationSchema = z.object({
 
 export type StudyTag = z.infer<typeof studyTagSchema>;
 export type StudyTagRelation = z.infer<typeof studyTagRelationSchema>;
+
+// Per-locale translated slug segments for study detail URLs (/studies/[slug]).
+// Rows are regenerated from the localized headline/title whenever a study is
+// created or edited (see app/lib/study-slugs.ts).
+export const studySlugs = pgTable(
+  "study_slugs",
+  {
+    studyId: integer("study_id")
+      .notNull()
+      .references(() => studies.id, { onDelete: "cascade" }),
+    locale: varchar("locale", { length: 10 }).notNull(),
+    slug: varchar("slug", { length: 255 }).notNull(),
+  },
+  (table) => ({
+    pk: primaryKey({ columns: [table.studyId, table.locale] }),
+    // Unique per locale so two studies can never share a public URL
+    localeSlugIdx: uniqueIndex("idx_study_slugs_locale_slug").on(
+      table.locale,
+      table.slug,
+    ),
+  }),
+);
+
+export const studySlugSchema = z.object({
+  studyId: z.number().int(),
+  locale: z.string().max(10),
+  slug: z.string().max(255),
+});
+
+export type StudySlug = z.infer<typeof studySlugSchema>;
 
 export type Video = z.infer<typeof videoSchema>;
 export type UserTag = z.infer<typeof userTagSchema>;

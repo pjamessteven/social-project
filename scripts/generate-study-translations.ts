@@ -3,6 +3,7 @@ import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import { studies } from "../db/schema";
+import { syncStudySlugs } from "../app/lib/study-slugs";
 import { OpenAI } from "openai";
 import { locales } from "../i18n/routing";
 
@@ -249,6 +250,9 @@ async function generateTranslations() {
           updatedAt: new Date(),
         })
         .where(eq(studies.id, study.id));
+
+      // Localized slugs derive from translated headlines
+      await syncStudySlugs(study.id);
 
       console.log(`  ✅ Updated translations for study ID: ${study.id}`);
       updatedCount++;

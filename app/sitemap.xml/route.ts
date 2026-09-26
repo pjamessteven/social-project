@@ -1,4 +1,9 @@
 import { buildLocalizedPath, getAllPagesWithSlugs } from "@/app/lib/pages";
+import {
+  getStudyPath,
+  getStudySlugMaps,
+  pickStudySlug,
+} from "@/app/lib/study-slugs";
 import { generateVideoSlug } from "@/app/lib/video-utils";
 import { db } from "@/db";
 import {
@@ -160,14 +165,6 @@ export async function GET(request: NextRequest) {
     priority: 0.7,
   }));
 
-  // Generate routes for all approved studies
-  const studyRoutes = approvedStudies.map((study) => ({
-    url: `${baseUrl}/studies/${study.id}`,
-    lastModified: study.updatedAt.toISOString(),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
   // Helper function to get localized path
   const getLocalizedPath = (path: string, locale: string): string => {
     // Extract the path part after baseUrl
@@ -260,7 +257,6 @@ export async function GET(request: NextRequest) {
     //...topQuestionResearchRoutes,
     ...featuredConversationRoutes,
     ...videoRoutes,
-    ...studyRoutes,
   ];
 
   const localizedRoutes = generateLocalizedRoutes(allRoutes);
@@ -335,6 +331,51 @@ export async function GET(request: NextRequest) {
   }
 
   localizedRoutes.push(...topicRoutes);
+
+  // ---------------------------------------------------------------------
+  // Study pages: true per-locale variants because both the /studies base
+  // and the headline slug segment are translated per locale. Each URL
+  // self-canonicalizes and its hreflang alternates point at the other
+  // locales' translated slugs. Legacy numeric URLs (/studies/42) redirect
+  // and are intentionally not listed.
+  // ---------------------------------------------------------------------
+  const studySlugMaps = await getStudySlugMaps(
+    approvedStudies.map((s) => s.id),
+  );
+  const studyRoutes: Array<{
+    url: string;
+    lastModified: string;
+    changeFrequency: string;
+    priority: number;
+    alternates?: Record<string, string>;
+  }> = [];
+
+  for (const study of approvedStudies) {
+    const slugs = studySlugMaps.get(study.id) ?? {};
+    const alternates: Record<string, string> = {};
+    for (const locale of sitemapLocales) {
+      alternates[locale] = `${baseUrl}${getStudyPath(
+        locale,
+        pickStudySlug(slugs, locale, study.id),
+      )}`;
+    }
+    alternates["x-default"] = `${baseUrl}${getStudyPath(
+      defaultLocale,
+      pickStudySlug(slugs, defaultLocale, study.id),
+    )}`;
+
+    for (const locale of sitemapLocales) {
+      studyRoutes.push({
+        url: alternates[locale],
+        lastModified: study.updatedAt.toISOString(),
+        changeFrequency: "monthly",
+        priority: 0.7,
+        alternates,
+      });
+    }
+  }
+
+  localizedRoutes.push(...studyRoutes);
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">

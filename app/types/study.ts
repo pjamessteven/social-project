@@ -17,4 +17,6 @@ export interface Study {
   summary?: string | null;
   tags?: string[] | null;
   limitations?: string[] | null;
+  /** Locale-resolved slug for /studies/[slug] links (falls back to the id) */
+  slug?: string | null;
 }

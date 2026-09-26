@@ -12,6 +12,7 @@ import {
   sanitizeString,
   sanitizeUrl,
 } from "@/app/lib/sanitization";
+import { syncStudySlugs } from "@/app/lib/study-slugs";
 import { db } from "@/db";
 import { studies, studyTags, studyTagRelations } from "@/db/schema";
 import { desc, eq, inArray } from "drizzle-orm";
@@ -277,6 +278,9 @@ export async function POST(request: NextRequest) {
         processed: false,
       })
       .returning();
+
+    // Keep per-locale URL slugs in sync with the headline
+    await syncStudySlugs(result[0].id);
 
     // Notify admin of new submission (non-blocking)
     try {
