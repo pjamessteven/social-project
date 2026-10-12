@@ -136,7 +136,7 @@ export const workflowFactory = async (
   // Model selection: admins can opt into the Pro model per message.
   const chatModel = proModel
     ? "xiaomi/mimo-v2.6-pro"
-    : "xiaomi/mimo-v2.6-flash";
+    : "xiaomi/mimo-v2.5";
 
   const llm = new CachedOpenAI({
     cache,
