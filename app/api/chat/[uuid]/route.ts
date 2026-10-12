@@ -8,6 +8,7 @@ import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { initSettings } from "../app/settings";
+import { openRouterProvider } from "@/app/lib/openrouter";
 
 // Schema for the update request
 const updateConversationSchema = z.object({
@@ -64,7 +65,8 @@ async function generateConversationTitleAndSummary(messages: string): Promise<{
     const llm = new OpenAI({
       apiKey: process.env.OPENROUTER_KEY,
       baseURL: "https://openrouter.ai/api/v1",
-      model: "xiaomi/mimo-v2.5",
+      model: "xiaomi/mimo-v2.6-flash",
+      additionalChatOptions: { provider: openRouterProvider } as any,
     });
 
     // Create a prompt for generating both title and summary

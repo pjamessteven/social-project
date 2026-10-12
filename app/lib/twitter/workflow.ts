@@ -11,6 +11,7 @@ import {
   createGetStudiesTool,
 } from "@/app/lib/agents/tools";
 import { agent } from "@llamaindex/workflow";
+import { openRouterProvider } from "@/app/lib/openrouter";
 import { twitterBotPrompt } from "./prompt";
 
 export async function createTwitterWorkflow() {
@@ -44,10 +45,11 @@ export async function createTwitterWorkflow() {
   const llm = new CustomOpenAI({
     apiKey: process.env.OPENROUTER_KEY,
       baseURL: "https://openrouter.ai/api/v1",
-      model: "xiaomi/mimo-v2.5",
+      model: "xiaomi/mimo-v2.6-flash",
     temperature: 1,
     contextWindow: 256000,
     additionalChatOptions: {
+      provider: openRouterProvider,
       thinking: { type: "disabled" },
     } as any,
   });

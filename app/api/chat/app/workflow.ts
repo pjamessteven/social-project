@@ -20,6 +20,7 @@ import {
 import { db, withDbTimeout } from "@/db";
 import { studyTags } from "@/db/schema";
 import { agent } from "@llamaindex/workflow";
+import { openRouterProvider } from "@/app/lib/openrouter";
 import { CachedOpenAI } from "../../shared/llm";
 import { agentPrompt, wikiUpdateModePrompt } from "../utils/prompts";
 
@@ -136,7 +137,7 @@ export const workflowFactory = async (
   // Model selection: admins can opt into the Pro model per message.
   const chatModel = proModel
     ? "xiaomi/mimo-v2.6-pro"
-    : "xiaomi/mimo-v2.5";
+    : "xiaomi/mimo-v2.6-flash";
 
   const llm = new CachedOpenAI({
     cache,
@@ -163,6 +164,7 @@ export const workflowFactory = async (
       // its tokens then eat max_tokens and the response comes back as
       // finish_reason=length with EMPTY content.
       reasoning: { enabled: false, effort: "none" },
+      provider: openRouterProvider,
       // Xiaomi-native switch — kept as provider passthrough for direct-Xiaomi
       // fallback configs (harmless when ignored).
       thinking: { type: "disabled" },
@@ -172,6 +174,7 @@ export const workflowFactory = async (
       baseURL: "https://openrouter.ai/api/v1",
       model: chatModel,
       additionalChatOptions: {
+        provider: openRouterProvider,
         thinking: { type: "disabled" },
       } as any,
     },
