@@ -709,7 +709,8 @@
       "genderAffirmingCare": {
         "title": "Genderį patvirtinanti priežiūra: kas tai?",
         "description": "Genderį patvirtinanti priežiūra šiuo metu yra standartinė (ir dažnai vienintelė) gydymo galimybė genderinei disforijai, siūloma sveikatos priežiūros teikėjų Vakarų pasaulyje. Genderį patvirtinanti priežiūra iš esmės pripažįsta visuomenės genderinius lūkesčius ir tada pritaiko pacientą prie jų. Tai etapinis požiūris, prasidedantis socialiniu perėjimu (vardas, įvardžiai, drabužiai), tada hormonų terapija, o paskui kai kuriems – negrįžtamos chirurginės procedūros. Genderį patvirtinanti priežiūra gali suteikti palengvėjimą nuo genderinės disforijos, bet tai ateina su rimtomis sveikatos rizikomis ir dažnai nuolatinėmis šalutinėmis poveikiais. Tęskite su dideliu atsargumu ir įsitikinkite, kad",
-        "watchTestimonies": "žiūrėkite kai kuriuos liudijimus"
+        "watchTestimonies": "žiūrėkite kai kuriuos liudijimus",
+        "afterTestimonies": "žmonių, kurie jau nuėjo šį kelią, prieš patys juo pasukdami."
       },
       "genderExploratoryTherapy": {
         "title": "Genderinė tyrinėjamoji terapija: kas tai?",
@@ -762,6 +763,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "Pagalba Australijoje ir Naujojoje Zelandijoje",
+        "sidebar": "Australija ir Naujoji Zelandija",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "Detrans Hub – visuomeninė organizacija, kuriai vadovauja detranzicijos patirtį turintys žmonės. Ji teikia bendraamžių paramą, praktinius išteklius ir atstovauja suaugusiųjų (18+) Australijoje ir Aotearoa Naujojoje Zelandijoje interesams – tų, kurie detranzicijuoja, atsisako tranzicijos, ją permąsto arba keičia su lytimi susijusios sveikatos priežiūros tikslus. Jų šūkis – „Būkite malonūs. Būkite smalsūs.“ Jie niekieno nekreipia tranzicijos, detranzicijos ar kokios nors konkrečios tapatybės link, o norėdami susisiekti neturite vartoti konkrečios etiketės ar turėti viską išsiaiškinę.",
+          "peerSupport": "<b>Bendraamžių parama:</b> privati Discord bendruomenė, tik su kvietimu, suaugusiesiems Australijoje ir Aotearoa Naujojoje Zelandijoje. Nusiųskite trumpą žinutę per jų pagalbos formą, ir prieš pakviesdami jie patvirtins, ar atitinkate sąlygas.",
+          "resources": "<b>Praktiniai ištekliai:</b> gidai kiekvienai Australijos valstijai ir teritorijai apie vardo ir dokumentų keitimą, prieigą prie medicininių įrašų ir skundų dėl sveikatos priežiūros teikimą, taip pat vizitų planuoklis, klausimai, kuriuos galite pasiimti, ir redaguojamas el. laiškas klausimams klinikai užduoti prieš užsiregistruojant.",
+          "directory": "<b>Directory Project:</b> specialistų Australijoje ir Naujojoje Zelandijoje, pasirengusių dirbti su žmonėmis, kurie keičia, nutraukia, atšaukia ar permąsto su lytimi susijusią sveikatos priežiūrą, katalogas. Jis dar kuriamas ir kol kas nėra viešas.",
+          "advocacy": "<b>Atstovavimas:</b> darbas Australijoje siekiant priežiūros tęstinumo, kai keičiasi gydymo tikslai, tyrimų, kurie atspindėtų detranzicijos patirtis, ir aiškesnės informacijos apie pacientų teises, medicininius įrašus ir skundus.",
+          "note": "Detrans Hub neteikia medicininių konsultacijų ar skubios pagalbos. Jei jums reikia skubios pagalbos, peržiūrėkite jų krizinės pagalbos puslapį.",
+          "getSupport": "Gaukite pagalbą iš Detrans Hub",
+          "peerSupportLink": "Prisijunkite prie Detrans Hub bendruomenės",
+          "resourcesLink": "Detrans Hub ištekliai",
+          "crisisLink": "Krizinė pagalba Australijoje ir Naujojoje Zelandijoje",
+          "about": "Apie Detrans Hub"
+        }
+      },
+      "northAmerica": {
+        "title": "Pagalba Šiaurės Amerikoje",
+        "sidebar": "Šiaurės Amerika",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "JAV · visame pasaulyje",
+            "description": "Ne pelno organizacija, kurią valdo detranzicijos patirtį turintys žmonės, skirta detranzicijos patirtį turintiems žmonėms. Detrans Help įsikūrusi JAV, tačiau atvira žmonėms iš viso pasaulio: ji padeda rasti bendraamžių paramą, psichikos sveikatos konsultacijas, gydytojus, paslaugas šeimoms ir teisinius išteklius, taip pat seka susijusius tyrimus ir teismų bylas.",
+            "link": "Apsilankykite Detrans Help"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "JAV",
+            "description": "Ne pelno sveikatos priežiūros specialistų tinklas, padedantis žmonėms, norintiems nutraukti brendimo blokatorių ar priešingos lyties hormonų vartojimą ir atkurti natūralią hormonų funkciją, įskaitant pagalbą stebint pakaitinę hormonų terapiją. Jis taip pat skelbia rekomendacijas ir detranzicijos patirtį turinčių žmonių istorijas.",
+            "link": "Apsilankykite Resilience Health Network"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "Kanada",
+            "description": "Kanados tinklas, jungiantis detranzicijos patirtį turinčius žmones, tranzicijos atsisakiusius ar dėl jos besigailinčius žmones ir jų draugus, kurie padeda vieni kitiems rasti medicinos paslaugas, reikalingas atsigauti po tranzicijos. Jis taip pat padeda teisiniais klausimais, teikia bendruomenės paramą ir atstovauja detranzicijos patirtį turinčių žmonių interesams Kanados politikoje.",
+            "link": "Apsilankykite Detrans Alliance Canada"
+          }
+        }
+      },
+      "europe": {
+        "title": "Pagalba Europoje",
+        "sidebar": "Europa",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "Tarptautinis · 9 kalbos",
+            "description": "Moterų, turinčių detranzicijos patirtį, ir tranzicijos atsisakiusių moterų istorijų rinkinys anglų, prancūzų, vokiečių, ispanų, rusų, italų, serbų, portugalų ir nyderlandų kalbomis. Post Trans taip pat leidžia informacinę brošiūrą apie detranziciją, o jūs galite pateikti savo istoriją.",
+            "link": "Apsilankykite Post Trans"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "Suomija · suomių k.",
+            "description": "Suomių kalba veikianti svetainė su informacija apie detranziciją, detranzicijos proceso gidu ir asmeninėmis patirtimis. Ji taip pat administruoja suomių kalbos Discord serverį detranzicijos patirtį turinčioms moterims.",
+            "link": "Apsilankykite Detrans.fi",
+            "discord": "Suomių kalbos Discord serveris detranzicijos patirtį turinčioms moterims"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "Pagalba Lotynų Amerikoje",
+        "sidebar": "Lotynų Amerika",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "Čilė · ispanų k.",
+            "description": "Ispanų kalba vykdomas projektas, kuriam vadovauja asmeninę detranzicijos patirtį turintis tyrėjas. Jame skelbiami tyrimai, straipsniai ir asmeniniai liudijimai apie detranziciją Čilėje ir Lotynų Amerikoje.",
+            "link": "Apsilankykite Detrans Chile"
+          }
+        }
+      },
       "forParents": {
         "title": "Ištekliai tėvams",
         "intro": "Jei jūsų vaikas neseniai pasiskelbė translyčiu, jūs galite jaustis sutrikę, sunerimę ir nežinote, kaip geriausiai juos paremti, tuo pačiu saugodami jų ilgalaikę sveikatą ir gerovę.",
@@ -781,7 +855,9 @@
           },
           "coupon": "Naudokite šį kupono kodą, kad gautumėte",
           "couponCode": "DETRANSAI",
-          "learnMore": "Sužinokite daugiau ir užsiregistruokite į ROGD Repair"
+          "learnMore": "Sužinokite daugiau ir užsiregistruokite į ROGD Repair",
+          "couponDiscount": "50 % nuolaidą pirmam mėnesiui",
+          "couponSuffix": "ROGD Repair narystei."
         }
       }
     },
@@ -1961,9 +2037,14 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "title": "Temos",
+    "description": "Išsamiai apie detranziciją, lyties mediciną ir susijusias temas.",
+    "empty": "Kol kas nepaskelbta jokių temų.",
+    "pagesInSection": "Šio skyriaus puslapiai",
+    "relatedPages": "Susiję puslapiai",
+    "lastUpdated": "Paskutinį kartą atnaujinta:",
+    "stubNotice": "Šis puslapis dar nebaigtas ir bus išplėstas.",
+    "views": "{count, plural, one {# peržiūra} few {# peržiūros} many {# peržiūros} other {# peržiūrų}}"
   },
   "storiesPage": {
     "metadata": {

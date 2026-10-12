@@ -350,7 +350,9 @@ function parseUnifiedPatch(patchText: string): {
   hunks: PatchHunk[];
   error?: string;
 } {
-  const patchLines = patchText.split("\n");
+  // A trailing newline would otherwise become a bare "" context line that
+  // can never match the end of the hunk.
+  const patchLines = patchText.replace(/\n+$/, "").split("\n");
   const hunks: PatchHunk[] = [];
   for (let i = 0; i < patchLines.length; i++) {
     const header = /^@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@/.exec(
@@ -373,7 +375,9 @@ function parseUnifiedPatch(patchText: string): {
       }
       const tag = line[0];
       const text = line.slice(1);
-      if (tag === "-") {
+      if (tag === "\\") {
+        // "\ No newline at end of file" marker
+      } else if (tag === "-") {
         oldBlock.push(text);
       } else if (tag === "+") {
         newBlock.push(text);

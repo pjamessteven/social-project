@@ -702,7 +702,8 @@
       "genderAffirmingCare": {
         "title": "性别肯定护理：是什么？",
         "description": "性别肯定护理目前是世界范围内医疗保健提供者为性别焦虑提供的标准（而且往往是唯一）治疗选择。性别肯定护理本质上承认社会的性别期望，然后使患者适应它们。这是一种分阶段的方法，从社会过渡（姓名、代词、服装）开始，然后是激素治疗，然后对于一些人来说是不可逆的手术程序。性别肯定护理可以缓解性别焦虑，但确实存在严重的健康风险和通常是永久性的副作用。极其谨慎地继续，并确保你",
-        "watchTestimonies": "观看一些证词"
+        "watchTestimonies": "观看一些证词",
+        "afterTestimonies": "（这些证词来自在你之前走过这条路的人），然后再决定是否踏上这条路。"
       },
       "genderExploratoryTherapy": {
         "title": "性别探索性治疗：是什么？",
@@ -755,6 +756,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "澳大利亚和新西兰的支持",
+        "sidebar": "澳大利亚和新西兰",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "Detrans Hub 是一个由去过渡者主导的草根组织，为澳大利亚和奥特亚罗瓦新西兰正在去过渡、放弃过渡、重新考虑过渡或改变性别相关医疗目标的成年人（18岁及以上）提供同伴支持、实用资源和倡导服务。他们的座右铭是“保持善意，保持好奇。”他们不会引导任何人走向过渡、去过渡或任何特定身份；联系他们时，你不需要使用特定的标签，也不需要已经想清楚一切。",
+          "peerSupport": "<b>同伴支持：</b>一个仅限邀请的私密 Discord 社区，面向澳大利亚和奥特亚罗瓦新西兰的成年人。通过他们的支持表单发送一条简短消息，他们会在邀请你之前确认你是否符合条件。",
+          "resources": "<b>实用资源：</b>针对澳大利亚每个州和领地的指南，内容涵盖更改姓名和证件、查阅医疗记录以及就医疗服务提出投诉；此外还有就诊计划工具、可随身携带的问题清单，以及在预约前向诊所提问的可编辑邮件模板。",
+          "directory": "<b>Directory Project：</b>一份澳大利亚和新西兰专业人士名录，收录愿意与正在改变、停止、逆转或重新考虑性别相关医疗的人合作的专业人士。该名录仍在开发中，尚未公开。",
+          "advocacy": "<b>倡导：</b>在澳大利亚推动治疗目标改变时的护理连续性、能够反映去过渡经历的研究，以及关于患者权利、医疗记录和投诉的更清晰信息。",
+          "note": "Detrans Hub 不提供医疗建议或紧急支持。如果你需要紧急帮助，请查看他们的危机支持页面。",
+          "getSupport": "获取 Detrans Hub 的支持",
+          "peerSupportLink": "加入 Detrans Hub 同伴社区",
+          "resourcesLink": "Detrans Hub 资源",
+          "crisisLink": "澳大利亚和新西兰的危机支持",
+          "about": "关于 Detrans Hub"
+        }
+      },
+      "northAmerica": {
+        "title": "北美的支持",
+        "sidebar": "北美",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "美国 · 面向全球",
+            "description": "一个由去过渡者创办、为去过渡者服务的非营利组织。Detrans Help 总部位于美国，但向全球的去过渡者开放，帮助人们对接同伴支持、心理健康咨询、临床医生、家庭服务和法律资源，并持续关注相关研究和法律案件。",
+            "link": "访问 Detrans Help"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "美国",
+            "description": "一个由医疗专业人员组成的非营利网络，帮助希望停用青春期阻断剂或跨性别激素、恢复自身天然激素功能的人，包括协助监测激素替代治疗。该网络还发布指导文件和去过渡者的故事。",
+            "link": "访问 Resilience Health Network"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "加拿大",
+            "description": "一个由去过渡者、放弃或后悔过渡的人及其朋友组成的加拿大网络，彼此帮助寻找从过渡中恢复所需的医疗服务。该网络还协助了解法律途径，提供社区支持，并在加拿大政坛为去过渡者发声。",
+            "link": "访问 Detrans Alliance Canada"
+          }
+        }
+      },
+      "europe": {
+        "title": "欧洲的支持",
+        "sidebar": "欧洲",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "国际 · 9种语言",
+            "description": "一个收集女性去过渡者和放弃过渡的女性故事的网站，提供英语、法语、德语、西班牙语、俄语、意大利语、塞尔维亚语、葡萄牙语和荷兰语版本。Post Trans 还出版了一本关于去过渡的信息手册，你也可以投稿分享自己的故事。",
+            "link": "访问 Post Trans"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "芬兰 · 芬兰语",
+            "description": "一个芬兰语网站，提供有关去过渡的信息、去过渡流程指南和个人经历。该网站还运营一个面向去过渡女性的芬兰语 Discord 服务器。",
+            "link": "访问 Detrans.fi",
+            "discord": "面向去过渡女性的芬兰语 Discord 服务器"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "拉丁美洲的支持",
+        "sidebar": "拉丁美洲",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "智利 · 西班牙语",
+            "description": "一个由有亲身去过渡经历的研究者主导的西班牙语项目，发布有关智利和拉丁美洲去过渡的研究、文章和亲历者证词。",
+            "link": "访问 Detrans Chile"
+          }
+        }
+      },
       "forParents": {
         "title": "父母资源",
         "intro": "如果你的孩子最近出柜为跨性别者，你可能会感到困惑、担忧，不确定如何最好地支持他们，同时保护他们的长期健康和福祉。",
@@ -774,7 +848,9 @@
           },
           "coupon": "使用此优惠券代码可获得",
           "couponCode": "DETRANSAI",
-          "learnMore": "了解更多并注册ROGD修复"
+          "learnMore": "了解更多并注册ROGD修复",
+          "couponDiscount": "首月 50% 折扣",
+          "couponSuffix": "（ROGD Repair 会员）。"
         }
       }
     },
@@ -1954,9 +2030,14 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "title": "主题",
+    "description": "深入探讨去过渡、性别医学及相关主题。",
+    "empty": "尚未发布任何主题。",
+    "pagesInSection": "本节页面",
+    "relatedPages": "相关页面",
+    "lastUpdated": "最后更新：",
+    "stubNotice": "此页面尚不完整，将会扩充。",
+    "views": "{count, plural, other {# 次浏览}}"
   },
   "storiesPage": {
     "metadata": {

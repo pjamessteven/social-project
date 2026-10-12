@@ -710,7 +710,8 @@
       "genderAffirmingCare": {
         "title": "Gender Affirming Care: Mi ez?",
         "description": "A gender affirming care jelenleg a szabványos (és gyakran az egyetlen) kezelési lehetőség a nemi diszfóriára a nyugati világ egészségügyi szolgáltatói által kínálva. A gender affirming care lényegében felismeri a társadalom gender elvárásait, majd alkalmazkodik hozzájuk a páciens. Ez egy szakaszos megközelítés, amely a társadalmi transitionnel kezdődik (név, névmások, öltözködés), majd hormonterápiával folytatódik, és aztán egyeseknél visszafordíthatatlan sebészeti beavatkozásokkal. A gender affirming care enyhülést nyújthat a nemi diszfóriára, de komoly egészségügyi kockázatokkal és gyakran végleges mellékhatásokkal jár. Rendkívüli óvatossággal haladj, és győződj meg róla, hogy",
-        "watchTestimonies": "nézz meg néhány tanúságtételt"
+        "watchTestimonies": "nézz meg néhány tanúságtételt",
+        "afterTestimonies": "olyanoktól, akik már végigjárták ezt az utat, mielőtt te magad elindulnál rajta."
       },
       "genderExploratoryTherapy": {
         "title": "Gender Exploratory Therapy: Mi ez?",
@@ -763,6 +764,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "Támogatás Ausztráliában és Új-Zélandon",
+        "sidebar": "Ausztrália és Új-Zéland",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "A Detrans Hub egy detranzícionált emberek által vezetett alulról szerveződő szervezet, amely sorstársi támogatást, gyakorlati forrásokat és érdekképviseletet nyújt azoknak a felnőtteknek (18+) Ausztráliában és Aotearoa Új-Zélandon, akik detranzícionálnak, felhagynak a tranzícióval, újragondolják azt, vagy megváltoztatják a nemi vonatkozású egészségügyi céljaikat. Mottójuk: „Légy kedves. Légy kíváncsi.” Senkit nem terelnek a tranzíció, a detranzíció vagy bármilyen identitás felé, és ahhoz, hogy felvedd velük a kapcsolatot, nem kell semmilyen címkét használnod, és nem kell, hogy mindent tisztán láss.",
+          "peerSupport": "<b>Sorstársi támogatás:</b> zárt, csak meghívással elérhető Discord-közösség felnőtteknek Ausztráliában és Aotearoa Új-Zélandon. Küldj egy rövid üzenetet a támogatási űrlapjukon keresztül, és a meghívás előtt megerősítik, hogy megfelelsz-e a feltételeknek.",
+          "resources": "<b>Gyakorlati források:</b> útmutatók minden ausztrál államhoz és territóriumhoz a név és az iratok megváltoztatásáról, az egészségügyi dokumentációhoz való hozzáférésről és az egészségügyi panaszokról, valamint időpont-tervező, magaddal vihető kérdések és egy szerkeszthető e-mail, amellyel foglalás előtt kérdezhetsz egy rendelőtől.",
+          "directory": "<b>Directory Project:</b> azoknak a szakembereknek a jegyzéke Ausztráliában és Új-Zélandon, akik hajlandók olyan emberekkel dolgozni, akik megváltoztatják, leállítják, visszafordítják vagy újragondolják a nemi vonatkozású egészségügyi ellátásukat. Még fejlesztés alatt áll, és egyelőre nem nyilvános.",
+          "advocacy": "<b>Érdekképviselet:</b> munka Ausztráliában az ellátás folytonosságáért, amikor a kezelési célok változnak, a detranzíciós tapasztalatokat is feltáró kutatásokért, valamint a betegjogokról, a dokumentációról és a panaszokról szóló világosabb tájékoztatásért.",
+          "note": "A Detrans Hub nem nyújt orvosi tanácsadást vagy sürgősségi segítséget. Ha sürgős segítségre van szükséged, nézd meg a krízistámogatási oldalukat.",
+          "getSupport": "Kérj támogatást a Detrans Hubtól",
+          "peerSupportLink": "Csatlakozz a Detrans Hub közösségéhez",
+          "resourcesLink": "A Detrans Hub forrásai",
+          "crisisLink": "Krízistámogatás Ausztráliában és Új-Zélandon",
+          "about": "A Detrans Hubról"
+        }
+      },
+      "northAmerica": {
+        "title": "Támogatás Észak-Amerikában",
+        "sidebar": "Észak-Amerika",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "USA · világszerte",
+            "description": "Detranzícionált emberek által, detranzícionált embereknek működtetett nonprofit szervezet. A Detrans Help az USA-ban működik, de a világ minden tájáról fogad detranzícionált embereket: sorstársi támogatáshoz, mentálhigiénés tanácsadáshoz, klinikusokhoz, családi szolgáltatásokhoz és jogi forrásokhoz segít eljutni, valamint nyomon követi a kapcsolódó kutatásokat és jogi ügyeket.",
+            "link": "A Detrans Help meglátogatása"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "USA",
+            "description": "Egészségügyi szakemberek nonprofit hálózata, amely azoknak segít, akik abba szeretnék hagyni a pubertásblokkolók vagy az ellenkező nemű hormonok szedését, és helyre szeretnék állítani természetes hormonműködésüket, beleértve a hormonpótló kezelés nyomon követését is. Útmutatókat és detranzícionált emberek történeteit is közzéteszi.",
+            "link": "A Resilience Health Network meglátogatása"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "Kanada",
+            "description": "Detranzícionált emberek, a tranzícióval felhagyók vagy azt megbánók és barátaik kanadai hálózata, akik segítenek egymásnak megtalálni a tranzícióból való felépüléshez szükséges egészségügyi szolgáltatásokat. Jogi lehetőségekkel kapcsolatban is segít, közösségi támogatást nyújt, és kiáll a detranzícionált emberekért a kanadai politikában.",
+            "link": "A Detrans Alliance Canada meglátogatása"
+          }
+        }
+      },
+      "europe": {
+        "title": "Támogatás Európában",
+        "sidebar": "Európa",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "Nemzetközi · 9 nyelven",
+            "description": "Detranzícionált és a tranzícióval felhagyó nők történeteinek gyűjteménye angol, francia, német, spanyol, orosz, olasz, szerb, portugál és holland nyelven. A Post Trans tájékoztató füzetet is kiad a detranzícióról, és a saját történetedet is beküldheted.",
+            "link": "A Post Trans meglátogatása"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "Finnország · finnül",
+            "description": "Finn nyelvű oldal a detranzícióval kapcsolatos információkkal, a detranzíciós folyamatot bemutató útmutatóval és személyes tapasztalatokkal. Finn nyelvű Discord-szervert is működtet detranzícionált nőknek.",
+            "link": "A Detrans.fi meglátogatása",
+            "discord": "Finn nyelvű Discord-szerver detranzícionált nőknek"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "Támogatás Latin-Amerikában",
+        "sidebar": "Latin-Amerika",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "Chile · spanyolul",
+            "description": "Spanyol nyelvű projekt, amelyet egy saját detranzíciós tapasztalattal rendelkező kutató vezet, és amely kutatásokat, cikkeket és első kézből származó beszámolókat tesz közzé a detranzícióról Chilében és Latin-Amerikában.",
+            "link": "A Detrans Chile meglátogatása"
+          }
+        }
+      },
       "forParents": {
         "title": "Források Szülőknek",
         "intro": "Ha a gyermeked nemrég jött ki transzneműként, lehet, hogy zavarban érzed magad, aggódsz, és bizonytalan vagy abban, hogyan támogathatod a legjobban, miközben véded hosszú távú egészségét és jólétét.",
@@ -782,7 +856,9 @@
           },
           "coupon": "Használd ezt a kuponkódot",
           "couponCode": "DETRANSAI",
-          "learnMore": "Tudj meg többet és iratkozz fel a ROGD Repair-re"
+          "learnMore": "Tudj meg többet és iratkozz fel a ROGD Repair-re",
+          "couponDiscount": "50% kedvezményért az első hónapodra",
+          "couponSuffix": "a ROGD Repair tagságból."
         }
       }
     },
@@ -1962,9 +2038,14 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "title": "Témák",
+    "description": "Részletes áttekintés a detranzícióról, a nemi orvoslásról és kapcsolódó témákról.",
+    "empty": "Még nincsenek közzétett témák.",
+    "pagesInSection": "Oldalak ebben a részben",
+    "relatedPages": "Kapcsolódó oldalak",
+    "lastUpdated": "Utoljára frissítve:",
+    "stubNotice": "Ez az oldal csonk, és bővíteni fogjuk.",
+    "views": "{count, plural, other {# megtekintés}}"
   },
   "storiesPage": {
     "metadata": {

@@ -1,7 +1,7 @@
 import { db } from "@/db";
 import { pageSlugs, pages, type Page } from "@/db/schema";
 import { locales } from "@/i18n/locales";
-import { pathnames } from "@/i18n/routing";
+import { defaultLocale, pathnames } from "@/i18n/routing";
 import { and, asc, eq, inArray, isNull, like, notLike, sql } from "drizzle-orm";
 
 /**
@@ -102,14 +102,18 @@ function buildReservedTopSegments(): ReadonlySet<string> {
   return reserved;
 }
 
-/** Unicode-safe slug segment: keeps letters/numbers from any script + hyphens. */
+/**
+ * Unicode-safe slug segment: keeps letters/numbers from any script + hyphens,
+ * plus combining marks (Devanagari/Thai vowel signs and tone marks are \p{M};
+ * dropping them garbles the word).
+ */
 export function normalizeSegment(input: string): string {
   return input
     .normalize("NFKC")
     .trim()
     .toLowerCase()
     .replace(/[\s_]+/g, "-")
-    .replace(/[^\p{L}\p{N}-]/gu, "")
+    .replace(/[^\p{L}\p{M}\p{N}-]/gu, "")
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "");
 }
@@ -321,6 +325,19 @@ export async function createPage(
         })),
       );
     }
+
+    // Adopt existing orphans that were created under this path before the
+    // parent existed (e.g. "hormones/testosterone" before "hormones").
+    await tx
+      .update(pages)
+      .set({ parentId: created.id })
+      .where(
+        and(
+          isNull(pages.parentId),
+          like(pages.path, `${path}/%`),
+          notLike(pages.path, `${path}/%/%`),
+        ),
+      );
 
     return { page: created, slugs: parsed.slugTranslations };
   });
@@ -754,9 +771,78 @@ export async function resolvePageBySegments(
   return null;
 }
 
+/**
+ * Fallback for URLs that don't resolve in the request locale, so the caller
+ * can redirect to the canonical URL:
+ *
+ * 1. The full path in another locale's slugs (the language switcher keeps the
+ *    current locale's segments, e.g. /fr/.../proces -> /de/...).
+ * 2. A moved page or a link written without its parent segments: the unique
+ *    page whose final segment matches the request's final segment in any
+ *    locale (or the default slug).
+ *
+ * Ambiguous matches return null.
+ */
+export async function findPageByFinalSegment(
+  segments: string[],
+  locale: string,
+  options?: { includeDrafts?: boolean },
+): Promise<PageWithSlugs | null> {
+  if (!segments?.length) return null;
+  const wanted = segments.map((segment) => {
+    try {
+      return normalizeSegment(decodeURIComponent(segment));
+    } catch {
+      return normalizeSegment(segment);
+    }
+  });
+  const last = wanted[wanted.length - 1];
+  if (!last) return null;
+
+  const all = await getAllPagesWithSlugs();
+  const candidates = all.filter(
+    (item) => options?.includeDrafts || item.page.published,
+  );
+  const byId = new Map(candidates.map((item) => [item.page.id, item]));
+
+  const otherLocales = locales.filter((code) => code !== locale);
+  const fullMatches = new Set<PageWithSlugs>();
+  for (const item of candidates) {
+    for (const code of otherLocales) {
+      const localized = getLocalizedSegments(item, byId, code).map(
+        (segment) => normalizeSegment(segment),
+      );
+      if (
+        localized.length === wanted.length &&
+        localized.every((segment, index) => segment === wanted[index])
+      ) {
+        fullMatches.add(item);
+        break;
+      }
+    }
+  }
+  if (fullMatches.size === 1) return [...fullMatches][0];
+
+  const matches = candidates.filter(
+    (item) =>
+      item.page.slug === last || Object.values(item.slugs).includes(last),
+  );
+  return matches.length === 1 ? matches[0] : null;
+}
+
 /** Locales that have an explicit translated slug for a page. */
 export function getTranslatedLocales(item: PageWithSlugs): string[] {
   return Object.keys(item.slugs);
+}
+
+/**
+ * Locales whose page body is actually written in that language: the default
+ * (English) content plus every locale with a content translation. Other
+ * locales serve the English body and canonicalize to the English URL.
+ */
+export function getContentLocales(page: Page): string[] {
+  const translated = Object.keys(parseJsonRecord(page.contentTranslation));
+  return [defaultLocale, ...translated.filter((l) => l !== defaultLocale)];
 }
 
 /** Ancestor chain (root-first) as full PageWithSlugs entries. */
@@ -826,6 +912,8 @@ function truncateSummary(summary: string | null): string | null {
 
 export interface LocalizedTopicNode {
   path: string;
+  /** Localized path under /topics (translated slug segments for `locale`) */
+  localizedPath: string;
   title: string;
   summary: string | null;
   children: LocalizedTopicNode[];
@@ -837,11 +925,14 @@ export async function getLocalizedPageTree(
 ): Promise<LocalizedTopicNode[]> {
   const all = await getAllPagesWithSlugs();
   const published = all.filter((entry) => entry.page.published);
+  // Ancestor slugs come from all pages (drafts too), like the sitemap.
+  const byId = new Map(all.map((entry) => [entry.page.id, entry]));
 
   const nodesByPath = new Map<string, LocalizedTopicNode>();
   for (const entry of published) {
     nodesByPath.set(entry.page.path, {
       path: entry.page.path,
+      localizedPath: buildLocalizedPath(entry, byId, locale),
       title:
         getLocalizedValue(
           entry.page.titleTranslation,
@@ -873,4 +964,21 @@ export async function getLocalizedPageTree(
   sortTree(roots);
 
   return roots;
+}
+
+// ---------------------------------------------------------------------------
+// View counts
+// ---------------------------------------------------------------------------
+
+/**
+ * Increment a published page's view counter. Raw SQL increment so it never
+ * touches `updated_at` (which drives "Last updated" and the sitemap lastmod).
+ */
+export async function recordPageView(pageId: number): Promise<boolean> {
+  const rows = await db
+    .update(pages)
+    .set({ viewsCount: sql`${pages.viewsCount} + 1` })
+    .where(and(eq(pages.id, pageId), eq(pages.published, true)))
+    .returning({ id: pages.id });
+  return rows.length > 0;
 }

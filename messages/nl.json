@@ -709,7 +709,8 @@
       "genderAffirmingCare": {
         "title": "Genderbevestigende Zorg: Wat is het?",
         "description": "Genderbevestigende zorg is momenteel de standaard (en vaak de enige) behandelingsoptie voor genderdysforie aangeboden door zorgverleners in de Westerse wereld. Genderbevestigende zorg erkent in wezen de genderverwachtingen van de samenleving en past dan de patiënt daaraan aan. Het is een gefaseerde aanpak die begint met sociale transitie (naam, voornaamwoorden, kleding), dan hormoontherapie, en dan voor sommigen, onomkeerbare chirurgische ingrepen. Genderbevestigende zorg kan verlichting bieden voor genderdysforie, maar het brengt wel ernstige gezondheidsrisico's en vaak permanente bijwerkingen met zich mee. Ga met extreme voorzichtigheid te werk, en zorg ervoor dat je",
-        "watchTestimonies": "getuigenissen bekijkt"
+        "watchTestimonies": "getuigenissen bekijkt",
+        "afterTestimonies": "van mensen die deze weg al zijn gegaan, voordat je hem zelf inslaat."
       },
       "genderExploratoryTherapy": {
         "title": "Gender Explorerende Therapie: Wat is het?",
@@ -762,6 +763,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "Steun in Australië en Nieuw-Zeeland",
+        "sidebar": "Australië en Nieuw-Zeeland",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "Detrans Hub is een door detransitioners geleide basisorganisatie die lotgenotensteun, praktische hulpmiddelen en belangenbehartiging biedt aan volwassenen (18+) in Australië en Aotearoa Nieuw-Zeeland die detransitioneren, desisteren, hun transitie heroverwegen of hun gendergerelateerde zorgdoelen veranderen. Hun motto is: 'Wees vriendelijk. Wees nieuwsgierig.' Ze sturen niemand richting transitie, detransitie of een bepaalde identiteit, en je hoeft geen bepaald label te gebruiken of alles op een rijtje te hebben om contact op te nemen.",
+          "peerSupport": "<b>Lotgenotensteun:</b> een besloten Discord-community, alleen op uitnodiging, voor volwassenen in Australië en Aotearoa Nieuw-Zeeland. Stuur een kort bericht via hun steunformulier; ze bevestigen of je in aanmerking komt voordat ze je uitnodigen.",
+          "resources": "<b>Praktische hulpmiddelen:</b> gidsen voor elke Australische staat en elk territorium over het wijzigen van je naam en documenten, toegang tot je medisch dossier en het indienen van klachten over zorg, plus een afsprakenplanner, vragen om mee te nemen en een bewerkbare e-mail om een praktijk vragen te stellen voordat je boekt.",
+          "directory": "<b>Directory Project:</b> een overzicht van professionals in Australië en Nieuw-Zeeland die willen werken met mensen die hun gendergerelateerde zorg veranderen, stoppen, terugdraaien of heroverwegen. Het is nog in ontwikkeling en nog niet openbaar.",
+          "advocacy": "<b>Belangenbehartiging:</b> zet zich in Australië in voor continuïteit van zorg wanneer behandeldoelen veranderen, voor onderzoek dat detransitie-ervaringen in kaart brengt en voor duidelijkere informatie over patiëntenrechten, dossiers en klachten.",
+          "note": "Detrans Hub biedt geen medisch advies of noodhulp. Heb je dringend hulp nodig, bekijk dan hun pagina over crisisondersteuning.",
+          "getSupport": "Steun krijgen van Detrans Hub",
+          "peerSupportLink": "Word lid van de lotgenotencommunity van Detrans Hub",
+          "resourcesLink": "Hulpmiddelen van Detrans Hub",
+          "crisisLink": "Crisisondersteuning in Australië en Nieuw-Zeeland",
+          "about": "Over Detrans Hub"
+        }
+      },
+      "northAmerica": {
+        "title": "Steun in Noord-Amerika",
+        "sidebar": "Noord-Amerika",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "Verenigde Staten · wereldwijd",
+            "description": "Een non-profitorganisatie door detransitioners, voor detransitioners. Detrans Help is gevestigd in de VS maar staat open voor detransitioners wereldwijd, en brengt mensen in contact met lotgenotensteun, geestelijke gezondheidszorg, clinici, gezinsondersteuning en juridische hulp. Daarnaast houdt de organisatie relevant onderzoek en rechtszaken bij.",
+            "link": "Bezoek Detrans Help"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "Verenigde Staten",
+            "description": "Een non-profitnetwerk van zorgprofessionals dat mensen helpt die willen stoppen met puberteitsremmers of cross-sekse hormonen en hun natuurlijke hormoonfunctie willen herstellen, inclusief begeleiding bij het monitoren van hormoonvervangingstherapie. Het publiceert ook richtlijnen en ervaringsverhalen van detransitioners.",
+            "link": "Bezoek Resilience Health Network"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "Canada",
+            "description": "Een Canadees netwerk van detransitioners, desisters, mensen met spijt en vrienden die elkaar helpen de medische zorg te vinden die ze nodig hebben om te herstellen van hun transitie. Het helpt ook met juridische mogelijkheden, biedt steun vanuit de gemeenschap en komt in de Canadese politiek op voor detransitioners.",
+            "link": "Bezoek Detrans Alliance Canada"
+          }
+        }
+      },
+      "europe": {
+        "title": "Steun in Europa",
+        "sidebar": "Europa",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "Internationaal · 9 talen",
+            "description": "Een verzameling verhalen van vrouwelijke detransitioners en desisters, beschikbaar in het Engels, Frans, Duits, Spaans, Russisch, Italiaans, Servisch, Portugees en Nederlands. Post Trans publiceert ook een informatiebrochure over detransitie, en je kunt je eigen verhaal insturen.",
+            "link": "Bezoek Post Trans"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "Finland · Fins",
+            "description": "Een Finstalige website met informatie over detransitie, een gids voor het detransitieproces en persoonlijke ervaringen. De site beheert ook een Finstalige Discord-server voor gedetransitioneerde vrouwen.",
+            "link": "Bezoek Detrans.fi",
+            "discord": "Finstalige Discord-server voor gedetransitioneerde vrouwen"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "Steun in Latijns-Amerika",
+        "sidebar": "Latijns-Amerika",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "Chili · Spaans",
+            "description": "Een Spaanstalig project onder leiding van een onderzoeker met eigen ervaring met detransitie, dat onderzoek, artikelen en persoonlijke getuigenissen publiceert over detransitie in Chili en Latijns-Amerika.",
+            "link": "Bezoek Detrans Chile"
+          }
+        }
+      },
       "forParents": {
         "title": "Bronnen Voor Ouders",
         "intro": "Als je kind recent is uitgekomen als transgender, voel je je misschien verward, bezorgd, en onzeker hoe je hen het beste kunt ondersteunen terwijl je ook hun langetermijngezondheid en welzijn beschermt.",
@@ -781,7 +855,9 @@
           },
           "coupon": "Gebruik deze couponcode om",
           "couponCode": "DETRANSAI",
-          "learnMore": "Leer meer en meld je aan voor ROGD Repair"
+          "learnMore": "Leer meer en meld je aan voor ROGD Repair",
+          "couponDiscount": "50% korting op je eerste maand",
+          "couponSuffix": "van je ROGD Repair-lidmaatschap te krijgen."
         }
       }
     },
@@ -1961,9 +2037,14 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "title": "Onderwerpen",
+    "description": "Diepgaande uitleg over detransitie, gendergeneeskunde en verwante onderwerpen.",
+    "empty": "Er zijn nog geen onderwerpen gepubliceerd.",
+    "pagesInSection": "Pagina's in deze sectie",
+    "relatedPages": "Gerelateerde pagina's",
+    "lastUpdated": "Laatst bijgewerkt:",
+    "stubNotice": "Deze pagina is een beginnetje en wordt nog uitgebreid.",
+    "views": "{count, plural, one {# weergave} other {# weergaven}}"
   },
   "storiesPage": {
     "metadata": {

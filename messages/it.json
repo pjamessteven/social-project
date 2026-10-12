@@ -709,7 +709,8 @@
       "genderAffirmingCare": {
         "title": "Gender Affirming Care: Cos'è?",
         "description": "La Gender Affirming Care è attualmente lo standard (e spesso l'unico) trattamento per la disforia di genere offerto dai provider sanitari nel mondo occidentale. La Gender Affirming Care riconosce essenzialmente le aspettative di genere della società e poi adatta il paziente ad esse. È un approccio a stadi che inizia con la transizione sociale (nome, pronomi, abbigliamento), poi terapia ormonale, e poi per alcuni, procedure chirurgiche irreversibili. La Gender Affirming Care può fornire sollievo per la disforia di genere ma comporta seri rischi per la salute e spesso effetti collaterali permanenti. Procedi con estrema cautela, e assicurati di",
-        "watchTestimonies": "guardare alcune testimonianze"
+        "watchTestimonies": "guardare alcune testimonianze",
+        "afterTestimonies": "di persone che hanno già percorso questa strada prima di intraprenderla tu stesso."
       },
       "genderExploratoryTherapy": {
         "title": "Gender Exploratory Therapy: Cos'è?",
@@ -762,6 +763,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "Supporto in Australia e Nuova Zelanda",
+        "sidebar": "Australia e Nuova Zelanda",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "Detrans Hub è un'organizzazione di base guidata da persone detransizionate che offre supporto tra pari, risorse pratiche e advocacy per adulti (dai 18 anni in su) in Australia e Aotearoa Nuova Zelanda che stanno detransizionando, desistendo, riconsiderando la transizione o cambiando i propri obiettivi di cura legati al genere. Il loro motto è «Sii gentile. Sii curioso». Non indirizzano nessuno verso la transizione, la detransizione o un'identità particolare, e non serve usare un'etichetta precisa né avere tutto chiaro per contattarli.",
+          "peerSupport": "<b>Supporto tra pari:</b> una comunità Discord privata, su invito, per adulti in Australia e Aotearoa Nuova Zelanda. Invia un breve messaggio tramite il loro modulo di supporto e verificheranno i requisiti prima di invitarti.",
+          "resources": "<b>Risorse pratiche:</b> guide per ogni stato e territorio australiano sul cambio di nome e documenti, sull'accesso alla cartella clinica e sui reclami sanitari, oltre a un pianificatore di appuntamenti, domande da portare con sé e un'e-mail modificabile per fare domande a uno studio prima di prenotare.",
+          "directory": "<b>Directory Project:</b> un elenco di professionisti in Australia e Nuova Zelanda disposti a lavorare con persone che modificano, interrompono, invertono o riconsiderano le cure legate al genere. È ancora in fase di sviluppo e non è ancora pubblico.",
+          "advocacy": "<b>Advocacy:</b> lavorano in Australia per la continuità delle cure quando cambiano gli obiettivi di trattamento, per una ricerca che includa le esperienze di detransizione e per informazioni più chiare su diritti dei pazienti, cartelle cliniche e reclami.",
+          "note": "Detrans Hub non fornisce consulenza medica né supporto di emergenza. Se hai bisogno di aiuto urgente, consulta la loro pagina di supporto in caso di crisi.",
+          "getSupport": "Ricevi supporto da Detrans Hub",
+          "peerSupportLink": "Unisciti alla comunità di pari di Detrans Hub",
+          "resourcesLink": "Risorse di Detrans Hub",
+          "crisisLink": "Supporto in caso di crisi in Australia e Nuova Zelanda",
+          "about": "Informazioni su Detrans Hub"
+        }
+      },
+      "northAmerica": {
+        "title": "Supporto in Nord America",
+        "sidebar": "Nord America",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "Stati Uniti · disponibile in tutto il mondo",
+            "description": "Un'organizzazione no profit gestita da persone detransizionate, per persone detransizionate. Con sede negli Stati Uniti ma aperta a persone detransizionate di tutto il mondo, Detrans Help mette in contatto con supporto tra pari, consulenza per la salute mentale, clinici, servizi per le famiglie e risorse legali, e tiene traccia di ricerche e cause legali correlate.",
+            "link": "Visita Detrans Help"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "Stati Uniti",
+            "description": "Una rete no profit di professionisti sanitari che aiuta chi vuole sospendere i bloccanti della pubertà o gli ormoni cross-sex e ripristinare la propria funzione ormonale naturale, incluso il supporto nel monitoraggio della terapia ormonale sostitutiva. Pubblica anche documenti informativi e testimonianze di persone detransizionate.",
+            "link": "Visita Resilience Health Network"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "Canada",
+            "description": "Una rete canadese di persone detransizionate, desistenti, pentite e amici che si aiutano a vicenda a trovare i servizi medici di cui hanno bisogno per riprendersi dalla transizione. Aiuta anche con le opzioni legali, offre supporto comunitario e sostiene le persone detransizionate nella politica canadese.",
+            "link": "Visita Detrans Alliance Canada"
+          }
+        }
+      },
+      "europe": {
+        "title": "Supporto in Europa",
+        "sidebar": "Europa",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "Internazionale · 9 lingue",
+            "description": "Una raccolta di testimonianze di donne detransizionate e desistenti, disponibile in inglese, francese, tedesco, spagnolo, russo, italiano, serbo, portoghese e olandese. Post Trans pubblica anche un opuscolo informativo sulla detransizione e puoi inviare la tua storia.",
+            "link": "Visita Post Trans"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "Finlandia · finlandese",
+            "description": "Un sito in finlandese con informazioni sulla detransizione, una guida al processo di detransizione ed esperienze personali. Gestisce anche un server Discord in finlandese per donne detransizionate.",
+            "link": "Visita Detrans.fi",
+            "discord": "Server Discord in finlandese per donne detransizionate"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "Supporto in America Latina",
+        "sidebar": "America Latina",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "Cile · spagnolo",
+            "description": "Un progetto in spagnolo guidato da un ricercatore con esperienza personale di detransizione, che pubblica ricerche, articoli e testimonianze in prima persona sulla detransizione in Cile e in America Latina.",
+            "link": "Visita Detrans Chile"
+          }
+        }
+      },
       "forParents": {
         "title": "Risorse per Genitori",
         "intro": "Se tuo figlio si è recentemente dichiarato transgender, potresti sentirti confuso/a, preoccupato/a e incerto/a su come sostenerlo al meglio proteggendo allo stesso tempo la sua salute e il suo benessere a lungo termine.",
@@ -781,7 +855,9 @@
           },
           "coupon": "Usa questo codice coupon per ottenere",
           "couponCode": "DETRANSAI",
-          "learnMore": "Scopri di più e iscriviti a ROGD Repair"
+          "learnMore": "Scopri di più e iscriviti a ROGD Repair",
+          "couponDiscount": "50% di sconto sul primo mese",
+          "couponSuffix": "di abbonamento a ROGD Repair."
         }
       }
     },
@@ -1961,9 +2037,14 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "title": "Argomenti",
+    "description": "Approfondimenti sulla detransizione, la medicina di genere e temi correlati.",
+    "empty": "Non è stato ancora pubblicato alcun argomento.",
+    "pagesInSection": "Pagine in questa sezione",
+    "relatedPages": "Pagine correlate",
+    "lastUpdated": "Ultimo aggiornamento:",
+    "stubNotice": "Questa pagina è una bozza e verrà ampliata.",
+    "views": "{count, plural, one {# visualizzazione} other {# visualizzazioni}}"
   },
   "storiesPage": {
     "metadata": {

@@ -710,7 +710,8 @@
       "genderAffirmingCare": {
         "title": "Perawatan Mengafirmasi Gender: Apa itu?",
         "description": "Perawatan mengafirmasi gender saat ini adalah standar (dan seringkali satu-satunya) pilihan perawatan untuk disforia gender yang ditawarkan oleh penyedia layanan kesehatan di dunia Barat. Perawatan mengafirmasi gender pada dasarnya mengakui ekspektasi gender dari masyarakat dan kemudian menyesuaikan pasien dengannya. Ini adalah pendekatan bertahap yang dimulai dengan transisi sosial (nama, kata ganti, pakaian), kemudian terapi hormon, dan kemudian untuk beberapa orang, prosedur bedah yang ireversibel. Perawatan mengafirmasi gender dapat memberikan peredaan untuk disforia gender tetapi datang dengan risiko kesehatan yang serius dan seringkali efek samping permanen. Lanjutkan dengan sangat hati-hati, dan pastikan Anda",
-        "watchTestimonies": "menonton beberapa kesaksian"
+        "watchTestimonies": "menonton beberapa kesaksian",
+        "afterTestimonies": "dari orang-orang yang sudah menempuh jalan ini sebelum Anda sendiri menempuhnya."
       },
       "genderExploratoryTherapy": {
         "title": "Terapi Eksplorasi Gender: Apa itu?",
@@ -763,6 +764,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "Dukungan di Australia dan Selandia Baru",
+        "sidebar": "Australia dan Selandia Baru",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "Detrans Hub adalah organisasi akar rumput yang dipimpin oleh orang-orang yang berhenti transisi, yang menawarkan dukungan sebaya, sumber daya praktis, dan advokasi bagi orang dewasa (18+) di Australia dan Aotearoa Selandia Baru yang sedang berhenti transisi, mengurungkan transisi, mempertimbangkan ulang transisi, atau mengubah tujuan perawatan kesehatan terkait gender mereka. Semboyan mereka adalah \"Bersikaplah baik. Tetaplah ingin tahu.\" Mereka tidak mengarahkan siapa pun ke transisi, berhenti transisi, atau identitas tertentu, dan Anda tidak perlu menggunakan label tertentu atau sudah memahami semuanya untuk menghubungi mereka.",
+          "peerSupport": "<b>Dukungan sebaya:</b> komunitas Discord pribadi, hanya dengan undangan, untuk orang dewasa di Australia dan Aotearoa Selandia Baru. Kirim pesan singkat melalui formulir dukungan mereka, dan mereka akan memastikan kelayakan Anda sebelum mengundang Anda.",
+          "resources": "<b>Sumber daya praktis:</b> panduan untuk setiap negara bagian dan teritori Australia tentang mengganti nama dan dokumen, mengakses rekam medis, dan mengajukan keluhan layanan kesehatan, ditambah perencana janji temu, daftar pertanyaan untuk dibawa, dan email yang dapat diedit untuk bertanya kepada klinik sebelum membuat janji.",
+          "directory": "<b>Directory Project:</b> direktori profesional di Australia dan Selandia Baru yang bersedia bekerja dengan orang-orang yang mengubah, menghentikan, membalikkan, atau mempertimbangkan ulang perawatan kesehatan terkait gender. Direktori ini masih dalam pengembangan dan belum dibuka untuk umum.",
+          "advocacy": "<b>Advokasi:</b> bekerja di Australia untuk kesinambungan perawatan ketika tujuan pengobatan berubah, untuk penelitian yang mencakup pengalaman berhenti transisi, dan untuk informasi yang lebih jelas tentang hak pasien, rekam medis, dan keluhan.",
+          "note": "Detrans Hub tidak memberikan nasihat medis atau dukungan darurat. Jika Anda membutuhkan bantuan mendesak, lihat halaman dukungan krisis mereka.",
+          "getSupport": "Dapatkan dukungan dari Detrans Hub",
+          "peerSupportLink": "Bergabung dengan komunitas sebaya Detrans Hub",
+          "resourcesLink": "Sumber daya Detrans Hub",
+          "crisisLink": "Dukungan krisis di Australia dan Selandia Baru",
+          "about": "Tentang Detrans Hub"
+        }
+      },
+      "northAmerica": {
+        "title": "Dukungan di Amerika Utara",
+        "sidebar": "Amerika Utara",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "Amerika Serikat · seluruh dunia",
+            "description": "Organisasi nirlaba yang dijalankan oleh orang-orang yang berhenti transisi, untuk orang-orang yang berhenti transisi. Detrans Help berbasis di AS tetapi terbuka bagi orang dari seluruh dunia, menghubungkan mereka dengan dukungan sebaya, konseling kesehatan mental, klinisi, layanan keluarga, dan sumber daya hukum, serta memantau penelitian dan kasus hukum terkait.",
+            "link": "Kunjungi Detrans Help"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "Amerika Serikat",
+            "description": "Jaringan nirlaba tenaga kesehatan yang membantu orang-orang yang ingin berhenti menggunakan penghambat pubertas atau hormon lintas jenis kelamin dan memulihkan fungsi hormon alami mereka, termasuk dukungan dalam memantau terapi penggantian hormon. Jaringan ini juga menerbitkan dokumen panduan dan kisah orang-orang yang berhenti transisi.",
+            "link": "Kunjungi Resilience Health Network"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "Kanada",
+            "description": "Jaringan di Kanada yang terdiri dari orang-orang yang berhenti transisi, yang mengurungkan atau menyesali transisi, serta teman-teman mereka, yang saling membantu menemukan layanan medis yang dibutuhkan untuk pulih dari transisi. Jaringan ini juga membantu terkait pilihan hukum, menawarkan dukungan komunitas, dan memperjuangkan kepentingan mereka dalam politik Kanada.",
+            "link": "Kunjungi Detrans Alliance Canada"
+          }
+        }
+      },
+      "europe": {
+        "title": "Dukungan di Eropa",
+        "sidebar": "Eropa",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "Internasional · 9 bahasa",
+            "description": "Kumpulan kisah perempuan yang berhenti transisi atau mengurungkan transisi, tersedia dalam bahasa Inggris, Prancis, Jerman, Spanyol, Rusia, Italia, Serbia, Portugis, dan Belanda. Post Trans juga menerbitkan buklet informasi tentang berhenti transisi, dan Anda dapat mengirimkan kisah Anda sendiri.",
+            "link": "Kunjungi Post Trans"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "Finlandia · bahasa Finlandia",
+            "description": "Situs berbahasa Finlandia berisi informasi tentang berhenti transisi, panduan proses berhenti transisi, dan pengalaman pribadi. Situs ini juga mengelola server Discord berbahasa Finlandia untuk perempuan yang telah berhenti transisi.",
+            "link": "Kunjungi Detrans.fi",
+            "discord": "Server Discord berbahasa Finlandia untuk perempuan yang telah berhenti transisi"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "Dukungan di Amerika Latin",
+        "sidebar": "Amerika Latin",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "Chili · bahasa Spanyol",
+            "description": "Proyek berbahasa Spanyol yang dipimpin oleh seorang peneliti dengan pengalaman pribadi berhenti transisi, yang menerbitkan penelitian, artikel, dan kesaksian langsung tentang berhenti transisi di Chili dan Amerika Latin.",
+            "link": "Kunjungi Detrans Chile"
+          }
+        }
+      },
       "forParents": {
         "title": "Sumber Daya untuk Orang Tua",
         "intro": "Jika anak Anda baru saja menyatakan diri sebagai transgender, Anda mungkin merasa bingung, khawatir, dan tidak yakin bagaimana cara terbaik mendukung mereka sambil juga melindungi kesehatan dan kesejahteraan jangka panjang mereka.",
@@ -782,7 +856,9 @@
           },
           "coupon": "Gunakan kode kupon ini untuk mendapatkan",
           "couponCode": "DETRANSAI",
-          "learnMore": "Pelajari lebih lanjut dan daftar untuk ROGD Repair"
+          "learnMore": "Pelajari lebih lanjut dan daftar untuk ROGD Repair",
+          "couponDiscount": "diskon 50% untuk bulan pertama",
+          "couponSuffix": "keanggotaan ROGD Repair."
         }
       }
     },
@@ -1962,9 +2038,14 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "title": "Topik",
+    "description": "Penjelasan mendalam tentang detransisi, kedokteran gender, dan topik terkait.",
+    "empty": "Belum ada topik yang diterbitkan.",
+    "pagesInSection": "Halaman di bagian ini",
+    "relatedPages": "Halaman terkait",
+    "lastUpdated": "Terakhir diperbarui:",
+    "stubNotice": "Halaman ini masih rintisan dan akan dikembangkan.",
+    "views": "{count, plural, other {# kali dilihat}}"
   },
   "storiesPage": {
     "metadata": {

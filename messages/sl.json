@@ -702,7 +702,8 @@
       "genderAffirmingCare": {
         "title": "Potrjevalna oskrba spola: Kaj je to?",
         "description": "Potrjevalna oskrba spola je trenutno standardna (in pogosto edina) možnost zdravljenja za spolno nelagodje, ki jo ponujajo zdravstveni ponudniki v zahodnem svetu. Potrjevalna oskrba spola v bistvu priznava družbena pričakovanja glede spola in nato pacienta prilagodi temu. To je stopnjevan pristop, ki se začne s družbeno tranzicijo (ime, zaimki, oblačila), nato hormonsko terapijo in nato za nekatere nepovratne kirurške posege. Potrjevalna oskrba spola lahko zagotovi olajšanje za spolno nelagodje, vendar prinaša resna zdravstvena tveganja in pogosto trajne stranske učinke. Nadaljujte s skrajno previdnostjo in se prepričajte, da",
-        "watchTestimonies": "ogledate si nekatere pričevanja"
+        "watchTestimonies": "ogledate si nekatere pričevanja",
+        "afterTestimonies": "ljudi, ki so to pot že prehodili, preden se nanjo podate sami."
       },
       "genderExploratoryTherapy": {
         "title": "Raziskovalna terapija spola: Kaj je to?",
@@ -755,6 +756,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "Podpora v Avstraliji in na Novi Zelandiji",
+        "sidebar": "Avstralija in Nova Zelandija",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "Detrans Hub je organizacija, ki deluje od spodaj navzgor in jo vodijo ljudje z izkušnjo detranzicije. Ponuja podporo vrstnikov, praktične vire in zagovorništvo za odrasle (18+) v Avstraliji in Aotearoi Novi Zelandiji, ki so v detranziciji, opuščajo tranzicijo, jo ponovno premišljujejo ali spreminjajo svoje cilje glede zdravstvene oskrbe, povezane s spolom. Njihov moto je »Bodite prijazni. Bodite radovedni.« Nikogar ne usmerjajo k tranziciji, detranziciji ali kateri koli identiteti, in da se obrnete nanje, vam ni treba uporabljati določene oznake ali imeti vsega razčiščenega.",
+          "peerSupport": "<b>Podpora vrstnikov:</b> zasebna skupnost na Discordu, samo s povabilom, za odrasle v Avstraliji in Aotearoi Novi Zelandiji. Pošljite kratko sporočilo prek njihovega obrazca za podporo in pred povabilom bodo preverili, ali izpolnjujete pogoje.",
+          "resources": "<b>Praktični viri:</b> vodniki za vsako avstralsko zvezno državo in ozemlje o spremembi imena in dokumentov, dostopu do zdravstvene dokumentacije in pritožbah glede zdravstvene oskrbe, poleg tega pa načrtovalnik obiskov, vprašanja, ki jih lahko vzamete s seboj, in urejevalno e-sporočilo, s katerim lahko ordinaciji postavite vprašanja pred naročilom.",
+          "directory": "<b>Directory Project:</b> imenik strokovnjakov v Avstraliji in na Novi Zelandiji, ki so pripravljeni delati z ljudmi, ki spreminjajo, prekinjajo, obračajo ali ponovno premišljujejo zdravstveno oskrbo, povezano s spolom. Še je v razvoju in še ni javen.",
+          "advocacy": "<b>Zagovorništvo:</b> delo v Avstraliji za neprekinjenost oskrbe, ko se cilji zdravljenja spremenijo, za raziskave, ki zajamejo izkušnje detranzicije, in za jasnejše informacije o pravicah pacientov, zdravstveni dokumentaciji in pritožbah.",
+          "note": "Detrans Hub ne nudi zdravniških nasvetov ali nujne pomoči. Če potrebujete nujno pomoč, si oglejte njihovo stran o krizni podpori.",
+          "getSupport": "Pridobite podporo pri Detrans Hub",
+          "peerSupportLink": "Pridružite se skupnosti Detrans Hub",
+          "resourcesLink": "Viri Detrans Hub",
+          "crisisLink": "Krizna podpora v Avstraliji in na Novi Zelandiji",
+          "about": "O Detrans Hub"
+        }
+      },
+      "northAmerica": {
+        "title": "Podpora v Severni Ameriki",
+        "sidebar": "Severna Amerika",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "ZDA · po vsem svetu",
+            "description": "Neprofitna organizacija, ki jo vodijo ljudje z izkušnjo detranzicije, za ljudi z izkušnjo detranzicije. Detrans Help ima sedež v ZDA, vendar je odprta za ljudi z vsega sveta in povezuje s podporo vrstnikov, svetovanjem na področju duševnega zdravja, kliniki, storitvami za družine in pravnimi viri, spremlja pa tudi povezane raziskave in sodne primere.",
+            "link": "Obiščite Detrans Help"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "ZDA",
+            "description": "Neprofitna mreža zdravstvenih strokovnjakov, ki pomaga ljudem, ki želijo prenehati jemati zaviralce pubertete ali hormone nasprotnega spola in obnoviti svoje naravno hormonsko delovanje, vključno s spremljanjem hormonskega nadomestnega zdravljenja. Objavlja tudi smernice in zgodbe ljudi z izkušnjo detranzicije.",
+            "link": "Obiščite Resilience Health Network"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "Kanada",
+            "description": "Kanadska mreža ljudi z izkušnjo detranzicije, ljudi, ki so tranzicijo opustili ali jo obžalujejo, in njihovih prijateljev, ki si med seboj pomagajo najti zdravstvene storitve, ki jih potrebujejo za okrevanje po tranziciji. Pomaga tudi pri pravnih možnostih, nudi podporo skupnosti in zagovarja ljudi z izkušnjo detranzicije v kanadski politiki.",
+            "link": "Obiščite Detrans Alliance Canada"
+          }
+        }
+      },
+      "europe": {
+        "title": "Podpora v Evropi",
+        "sidebar": "Evropa",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "Mednarodno · 9 jezikov",
+            "description": "Zbirka zgodb žensk z izkušnjo detranzicije in žensk, ki so opustile tranzicijo, v angleščini, francoščini, nemščini, španščini, ruščini, italijanščini, srbščini, portugalščini in nizozemščini. Post Trans izdaja tudi informativno brošuro o detranziciji, svojo zgodbo pa lahko pošljete tudi vi.",
+            "link": "Obiščite Post Trans"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "Finska · v finščini",
+            "description": "Spletna stran v finščini z informacijami o detranziciji, vodnikom po procesu detranzicije in osebnimi izkušnjami. Upravlja tudi strežnik na Discordu v finščini za ženske z izkušnjo detranzicije.",
+            "link": "Obiščite Detrans.fi",
+            "discord": "Strežnik na Discordu v finščini za ženske z izkušnjo detranzicije"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "Podpora v Latinski Ameriki",
+        "sidebar": "Latinska Amerika",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "Čile · v španščini",
+            "description": "Projekt v španščini, ki ga vodi raziskovalec z osebno izkušnjo detranzicije in ki objavlja raziskave, članke in pričevanja iz prve roke o detranziciji v Čilu in Latinski Ameriki.",
+            "link": "Obiščite Detrans Chile"
+          }
+        }
+      },
       "forParents": {
         "title": "Viri za starše",
         "intro": "Če se je vaš otrok nedavno izpostavil/-a kot transgender, se morda počutite zmedene, zaskrbljene in ne veste, kako ga/-jo najbolje podpreti, hkrati pa zaščititi njegovo/-njo dolgoročno zdravje in dobro počutje.",
@@ -774,7 +848,9 @@
           },
           "coupon": "Uporabite to kodo kupona, da dobite",
           "couponCode": "DETRANSAI",
-          "learnMore": "Izvedite več in se prijavite za ROGD Repair"
+          "learnMore": "Izvedite več in se prijavite za ROGD Repair",
+          "couponDiscount": "50 % popusta za prvi mesec",
+          "couponSuffix": "članstva v ROGD Repair."
         }
       }
     },
@@ -1954,9 +2030,14 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "title": "Teme",
+    "description": "Poglobljen pregled detranzicije, spolne medicine in sorodnih tem.",
+    "empty": "Objavljena ni še nobena tema.",
+    "pagesInSection": "Strani v tem razdelku",
+    "relatedPages": "Sorodne strani",
+    "lastUpdated": "Nazadnje posodobljeno:",
+    "stubNotice": "Ta stran je škrbina in bo razširjena.",
+    "views": "{count, plural, one {# ogled} two {# ogleda} few {# ogledi} other {# ogledov}}"
   },
   "storiesPage": {
     "metadata": {

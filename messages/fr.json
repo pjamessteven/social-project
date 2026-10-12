@@ -701,7 +701,8 @@
       "genderAffirmingCare": {
         "title": "Soins d'Affirmation de Genre : Qu'est-ce que c'est ?",
         "description": "Les soins d'affirmation de genre sont actuellement le traitement standard (et souvent le seul) pour la dysphorie de genre offert par les professionnels de santé dans le monde occidental. Les soins d'affirmation de genre reconnaissent essentiellement les attentes genrées de la société et adaptent ensuite le patient à celles-ci. C'est une approche par étapes qui commence par la transition sociale (nom, pronoms, vêtements), puis l'hormonothérapie, et ensuite pour certains, des procédures chirurgicales irréversibles. Les soins d'affirmation de genre peuvent apporter un soulagement pour la dysphorie de genre mais ils comportent de sérieux risques pour la santé et souvent des effets secondaires permanents. Procédez avec une extrême prudence, et assurez-vous de",
-        "watchTestimonies": "regarder des témoignages"
+        "watchTestimonies": "regarder des témoignages",
+        "afterTestimonies": "de personnes qui ont déjà emprunté ce chemin avant de vous y engager vous-même."
       },
       "genderExploratoryTherapy": {
         "title": "Thérapie d'Exploration de Genre : Qu'est-ce que c'est ?",
@@ -754,6 +755,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "Soutien en Australie et en Nouvelle-Zélande",
+        "sidebar": "Australie et Nouvelle-Zélande",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "Detrans Hub est une organisation communautaire dirigée par des personnes détransitionnées, qui offre du soutien entre pairs, des ressources pratiques et un travail de plaidoyer aux adultes (18 ans et plus) d'Australie et d'Aotearoa Nouvelle-Zélande qui détransitionnent, renoncent à leur transition, la remettent en question ou changent leurs objectifs de soins liés au genre. Leur devise est « Soyez bienveillant. Soyez curieux. » Ils n'orientent personne vers la transition, la détransition ou une identité particulière, et vous n'avez pas besoin d'utiliser une étiquette précise ni d'avoir tout compris pour les contacter.",
+          "peerSupport": "<b>Soutien entre pairs :</b> une communauté Discord privée, sur invitation, pour les adultes d'Australie et d'Aotearoa Nouvelle-Zélande. Envoyez un court message via leur formulaire de soutien ; ils confirmeront votre éligibilité avant de vous inviter.",
+          "resources": "<b>Ressources pratiques :</b> des guides pour chaque État et territoire australien sur le changement de nom et de documents, l'accès au dossier médical et les plaintes concernant les soins de santé, ainsi qu'un planificateur de rendez-vous, des questions à emporter et un e-mail modifiable pour poser des questions à un cabinet avant de prendre rendez-vous.",
+          "directory": "<b>Directory Project :</b> un annuaire de professionnels en Australie et en Nouvelle-Zélande disposés à accompagner les personnes qui modifient, arrêtent, inversent ou reconsidèrent leurs soins liés au genre. Il est encore en développement et pas encore public.",
+          "advocacy": "<b>Plaidoyer :</b> un travail en Australie pour la continuité des soins lorsque les objectifs de traitement changent, pour une recherche qui prenne en compte les expériences de détransition, et pour une information plus claire sur les droits des patients, les dossiers médicaux et les plaintes.",
+          "note": "Detrans Hub ne fournit ni avis médical ni soutien d'urgence. Si vous avez besoin d'aide urgente, consultez leur page de soutien en cas de crise.",
+          "getSupport": "Obtenir du soutien auprès de Detrans Hub",
+          "peerSupportLink": "Rejoindre la communauté de pairs de Detrans Hub",
+          "resourcesLink": "Ressources de Detrans Hub",
+          "crisisLink": "Soutien en cas de crise en Australie et en Nouvelle-Zélande",
+          "about": "À propos de Detrans Hub"
+        }
+      },
+      "northAmerica": {
+        "title": "Soutien en Amérique du Nord",
+        "sidebar": "Amérique du Nord",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "États-Unis · accessible dans le monde entier",
+            "description": "Une association à but non lucratif gérée par des personnes détransitionnées, pour des personnes détransitionnées. Basée aux États-Unis mais ouverte aux personnes détransitionnées du monde entier, Detrans Help met en relation avec du soutien entre pairs, un accompagnement en santé mentale, des cliniciens, des services pour les familles et des ressources juridiques, et suit les recherches et affaires judiciaires pertinentes.",
+            "link": "Visiter Detrans Help"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "États-Unis",
+            "description": "Une association à but non lucratif regroupant des professionnels de santé qui aident les personnes souhaitant arrêter les bloqueurs de puberté ou les hormones croisées et rétablir leur fonction hormonale naturelle, y compris pour le suivi d'un traitement hormonal substitutif. Elle publie aussi des guides et des témoignages de personnes détransitionnées.",
+            "link": "Visiter Resilience Health Network"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "Canada",
+            "description": "Un réseau canadien de personnes détransitionnées, de personnes ayant renoncé à leur transition ou la regrettant, et de leurs amis, qui s'entraident pour trouver les services médicaux dont elles ont besoin pour se rétablir de la transition. Il aide aussi pour les démarches juridiques, offre un soutien communautaire et défend les personnes détransitionnées dans la vie politique canadienne.",
+            "link": "Visiter Detrans Alliance Canada"
+          }
+        }
+      },
+      "europe": {
+        "title": "Soutien en Europe",
+        "sidebar": "Europe",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "International · 9 langues",
+            "description": "Un recueil de témoignages de femmes détransitionnées et de femmes ayant renoncé à leur transition, disponible en anglais, français, allemand, espagnol, russe, italien, serbe, portugais et néerlandais. Post Trans publie aussi une brochure d'information sur la détransition, et vous pouvez y partager votre propre histoire.",
+            "link": "Visiter Post Trans"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "Finlande · finnois",
+            "description": "Un site en finnois proposant des informations sur la détransition, un guide du processus de détransition et des témoignages. Il gère aussi un serveur Discord en finnois pour les femmes détransitionnées.",
+            "link": "Visiter Detrans.fi",
+            "discord": "Serveur Discord finnois pour les femmes détransitionnées"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "Soutien en Amérique latine",
+        "sidebar": "Amérique latine",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "Chili · espagnol",
+            "description": "Un projet en espagnol dirigé par un chercheur ayant lui-même vécu une détransition, qui publie des recherches, des articles et des témoignages à la première personne sur la détransition au Chili et en Amérique latine.",
+            "link": "Visiter Detrans Chile"
+          }
+        }
+      },
       "forParents": {
         "title": "Ressources pour les Parents",
         "intro": "Si votre enfant a récemment fait son coming out comme transgenre, vous vous sentez peut-être confus, inquiet et incertain de la meilleure façon de le soutenir tout en protégeant sa santé et son bien-être à long terme.",
@@ -773,7 +847,9 @@
           },
           "coupon": "Utilisez ce code de réduction pour obtenir",
           "couponCode": "DETRANSAI",
-          "learnMore": "En savoir plus et s'inscrire à ROGD Repair"
+          "learnMore": "En savoir plus et s'inscrire à ROGD Repair",
+          "couponDiscount": "50 % de réduction sur votre premier mois",
+          "couponSuffix": "d'abonnement à ROGD Repair."
         }
       }
     },
@@ -1953,9 +2029,14 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "title": "Sujets",
+    "description": "Exploration approfondie de la détransition, de la médecine du genre et de sujets connexes.",
+    "empty": "Aucun sujet n’a encore été publié.",
+    "pagesInSection": "Pages de cette section",
+    "relatedPages": "Pages associées",
+    "lastUpdated": "Dernière mise à jour :",
+    "stubNotice": "Cette page est une ébauche et sera complétée.",
+    "views": "{count, plural, one {# vue} other {# vues}}"
   },
   "storiesPage": {
     "metadata": {

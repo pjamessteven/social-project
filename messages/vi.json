@@ -702,7 +702,8 @@
       "genderAffirmingCare": {
         "title": "Chăm Sóc Khẳng Định Giới: Nó là gì?",
         "description": "Chăm sóc khẳng định giới hiện là tiêu chuẩn (và thường là lựa chọn duy nhất) cho điều trị khủng hoảng giới được cung cấp bởi các nhà cung cấp dịch vụ chăm sóc sức khỏe trên thế giới phương Tây. Chăm sóc khẳng định giới về cơ bản công nhận các kỳ vọng mang tính giới của xã hội và sau đó thích ứng bệnh nhân với chúng. Đó là một cách tiếp cận theo giai đoạn bắt đầu bằng chuyển đổi xã hội (tên, đại từ, trang phục), sau đó là liệu pháp hormone, và sau đó đối với một số ngưởi, các thủ thuật phẫu thuật không thể đảo ngược. Chăm sóc khẳng định giới có thể cung cấp sự giảm nhẹ cho khủng hoảng giới tính nhưng nó đi kèm với các rủi ro sức khỏe nghiêm trọng và thường là các tác dụng phụ vĩnh viễn. Tiến hành với sự thận trọng cực độ và đảm bảo bạn",
-        "watchTestimonies": "xem một số lời chứng thực"
+        "watchTestimonies": "xem một số lời chứng thực",
+        "afterTestimonies": "từ những người đã đi qua con đường này trước khi chính bạn bước vào."
       },
       "genderExploratoryTherapy": {
         "title": "Liệu Pháp Khám Phá Giới: Nó là gì?",
@@ -755,6 +756,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "Hỗ trợ tại Úc và New Zealand",
+        "sidebar": "Úc và New Zealand",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "Detrans Hub là một tổ chức cộng đồng do những người chuyển giới trở lại dẫn dắt, cung cấp hỗ trợ đồng đẳng, tài nguyên thiết thực và vận động chính sách cho người trưởng thành (từ 18 tuổi) tại Úc và Aotearoa New Zealand đang chuyển giới trở lại, từ bỏ chuyển giới, cân nhắc lại việc chuyển giới hoặc thay đổi mục tiêu chăm sóc sức khỏe liên quan đến giới. Phương châm của họ là \"Hãy tử tế. Hãy tò mò.\" Họ không hướng bất kỳ ai tới việc chuyển giới, chuyển giới trở lại hay một bản dạng cụ thể nào, và bạn không cần dùng một nhãn cụ thể hay đã hiểu rõ mọi thứ mới có thể liên hệ.",
+          "peerSupport": "<b>Hỗ trợ đồng đẳng:</b> một cộng đồng Discord riêng tư, chỉ tham gia qua lời mời, dành cho người trưởng thành tại Úc và Aotearoa New Zealand. Gửi một tin nhắn ngắn qua biểu mẫu hỗ trợ của họ và họ sẽ xác nhận bạn đủ điều kiện trước khi mời bạn.",
+          "resources": "<b>Tài nguyên thiết thực:</b> hướng dẫn cho từng tiểu bang và vùng lãnh thổ của Úc về việc đổi tên và giấy tờ, truy cập hồ sơ y tế và khiếu nại về dịch vụ y tế, cùng với công cụ lên kế hoạch cuộc hẹn, danh sách câu hỏi mang theo và một email có thể chỉnh sửa để hỏi phòng khám trước khi đặt lịch.",
+          "directory": "<b>Directory Project:</b> danh bạ các chuyên gia tại Úc và New Zealand sẵn sàng làm việc với những người đang thay đổi, dừng, đảo ngược hoặc cân nhắc lại việc chăm sóc sức khỏe liên quan đến giới. Danh bạ vẫn đang được phát triển và chưa công khai.",
+          "advocacy": "<b>Vận động chính sách:</b> hoạt động tại Úc vì sự liên tục trong chăm sóc khi mục tiêu điều trị thay đổi, vì các nghiên cứu ghi nhận trải nghiệm chuyển giới trở lại, và vì thông tin rõ ràng hơn về quyền của bệnh nhân, hồ sơ y tế và khiếu nại.",
+          "note": "Detrans Hub không cung cấp tư vấn y tế hay hỗ trợ khẩn cấp. Nếu bạn cần giúp đỡ gấp, hãy xem trang hỗ trợ khủng hoảng của họ.",
+          "getSupport": "Nhận hỗ trợ từ Detrans Hub",
+          "peerSupportLink": "Tham gia cộng đồng đồng đẳng của Detrans Hub",
+          "resourcesLink": "Tài nguyên của Detrans Hub",
+          "crisisLink": "Hỗ trợ khủng hoảng tại Úc và New Zealand",
+          "about": "Về Detrans Hub"
+        }
+      },
+      "northAmerica": {
+        "title": "Hỗ trợ tại Bắc Mỹ",
+        "sidebar": "Bắc Mỹ",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "Hoa Kỳ · toàn thế giới",
+            "description": "Một tổ chức phi lợi nhuận do những người chuyển giới trở lại điều hành, dành cho những người chuyển giới trở lại. Detrans Help có trụ sở tại Hoa Kỳ nhưng mở cửa cho mọi người trên toàn thế giới, kết nối với hỗ trợ đồng đẳng, tư vấn sức khỏe tâm thần, bác sĩ lâm sàng, dịch vụ cho gia đình và tài nguyên pháp lý, đồng thời theo dõi các nghiên cứu và vụ kiện liên quan.",
+            "link": "Truy cập Detrans Help"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "Hoa Kỳ",
+            "description": "Một mạng lưới phi lợi nhuận gồm các chuyên gia y tế giúp những người muốn ngừng thuốc ức chế dậy thì hoặc hormone chuyển giới và khôi phục chức năng hormone tự nhiên, bao gồm hỗ trợ theo dõi liệu pháp thay thế hormone. Mạng lưới cũng xuất bản tài liệu hướng dẫn và câu chuyện của những người chuyển giới trở lại.",
+            "link": "Truy cập Resilience Health Network"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "Canada",
+            "description": "Một mạng lưới tại Canada gồm những người chuyển giới trở lại, những người từ bỏ hoặc hối tiếc về việc chuyển giới và bạn bè của họ, cùng giúp nhau tìm các dịch vụ y tế cần thiết để hồi phục sau chuyển giới. Mạng lưới cũng hỗ trợ về các lựa chọn pháp lý, cung cấp hỗ trợ cộng đồng và vận động cho người chuyển giới trở lại trong chính trường Canada.",
+            "link": "Truy cập Detrans Alliance Canada"
+          }
+        }
+      },
+      "europe": {
+        "title": "Hỗ trợ tại Châu Âu",
+        "sidebar": "Châu Âu",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "Quốc tế · 9 ngôn ngữ",
+            "description": "Tuyển tập câu chuyện của những phụ nữ chuyển giới trở lại và phụ nữ từ bỏ chuyển giới, có bằng tiếng Anh, Pháp, Đức, Tây Ban Nha, Nga, Ý, Serbia, Bồ Đào Nha và Hà Lan. Post Trans cũng xuất bản một cuốn cẩm nang thông tin về chuyển giới trở lại, và bạn có thể gửi câu chuyện của riêng mình.",
+            "link": "Truy cập Post Trans"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "Phần Lan · tiếng Phần Lan",
+            "description": "Một trang web tiếng Phần Lan cung cấp thông tin về chuyển giới trở lại, hướng dẫn về quá trình chuyển giới trở lại và trải nghiệm cá nhân. Trang cũng điều hành một máy chủ Discord tiếng Phần Lan dành cho phụ nữ đã chuyển giới trở lại.",
+            "link": "Truy cập Detrans.fi",
+            "discord": "Máy chủ Discord tiếng Phần Lan dành cho phụ nữ đã chuyển giới trở lại"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "Hỗ trợ tại Mỹ Latinh",
+        "sidebar": "Mỹ Latinh",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "Chile · tiếng Tây Ban Nha",
+            "description": "Một dự án bằng tiếng Tây Ban Nha do một nhà nghiên cứu có trải nghiệm chuyển giới trở lại dẫn dắt, đăng tải các nghiên cứu, bài viết và lời kể trực tiếp về việc chuyển giới trở lại tại Chile và Mỹ Latinh.",
+            "link": "Truy cập Detrans Chile"
+          }
+        }
+      },
       "forParents": {
         "title": "Tài Nguyên Cho Cha Mẹ",
         "intro": "Nếu con bạn vừa công khai là ngưởi chuyển giới, bạn có thể cảm thấy bối rối, lo lắng và không chắc chắn cách hỗ trợ họ tốt nhất trong khi cũng bảo vệ sức khỏe và phúc lợi lâu dài của họ.",
@@ -774,7 +848,9 @@
           },
           "coupon": "Sử dụng mã giảm giá này để được",
           "couponCode": "DETRANSAI",
-          "learnMore": "Tìm hiểu thêm và đăng ký ROGD Repair"
+          "learnMore": "Tìm hiểu thêm và đăng ký ROGD Repair",
+          "couponDiscount": "giảm 50% tháng đầu tiên",
+          "couponSuffix": "khi đăng ký thành viên ROGD Repair."
         }
       }
     },
@@ -1954,9 +2030,14 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "title": "Chủ đề",
+    "description": "Tìm hiểu chuyên sâu về detransition, y học giới tính và các chủ đề liên quan.",
+    "empty": "Chưa có chủ đề nào được xuất bản.",
+    "pagesInSection": "Các trang trong mục này",
+    "relatedPages": "Trang liên quan",
+    "lastUpdated": "Cập nhật lần cuối:",
+    "stubNotice": "Trang này còn sơ khai và sẽ được mở rộng.",
+    "views": "{count, plural, other {# lượt xem}}"
   },
   "storiesPage": {
     "metadata": {

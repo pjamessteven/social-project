@@ -701,7 +701,8 @@
       "genderAffirmingCare": {
         "title": "Cinsiyet Onaylayıcı Bakım: Nedir?",
         "description": "Cinsiyet onaylayıcı bakım, şu anda Batı dünyasında sağlık hizmeti sağlayıcıları tarafından sunulan cinsiyet disforisi için standart (ve genellikle tek) tedavi seçeneğidir. Cinsiyet onaylayıcı bakım esasen toplumun cinsiyetle ilgili beklentilerini tanır ve ardından hastayı bunlara uyarlar. Toplumsal geçiş (isim, zamirler, kıyafet), ardından hormon tedavisi ve ardından bazıları için geri alınamaz cerrahi prosedürlerle başlayan aşamalı bir yaklaşımdır. Cinsiyet onaylayıcı bakım cinsiyet disforisine rahatlama sağlayabilir ancak ciddi sağlık riskleri ve genellikle kalıcı yan etkileri vardır. Aşırı dikkatle ilerleyin ve",
-        "watchTestimonies": "bazı tanıklıkları izlediğinizden emin olun"
+        "watchTestimonies": "bazı tanıklıkları izlediğinizden emin olun",
+        "afterTestimonies": "— bu yolu sizden önce yürümüş insanları dinlemeden bu yola girmeyin."
       },
       "genderExploratoryTherapy": {
         "title": "Cinsiyet Keşifsel Terapi: Nedir?",
@@ -754,6 +755,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "Avustralya ve Yeni Zelanda'da Destek",
+        "sidebar": "Avustralya ve Yeni Zelanda",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "Detrans Hub, detransitioner'lar tarafından yönetilen tabandan bir kuruluştur. Avustralya ve Aotearoa Yeni Zelanda'da detransisyon yapan, transisyondan vazgeçen, transisyonu yeniden düşünen veya cinsiyetle ilgili sağlık bakımı hedeflerini değiştiren yetişkinlere (18+) akran desteği, pratik kaynaklar ve savunuculuk sunar. Sloganları: \"Nazik ol. Meraklı ol.\" Kimseyi transisyona, detransisyona ya da belirli bir kimliğe yönlendirmezler; onlarla iletişime geçmek için belirli bir etiket kullanmanız ya da her şeyi çözmüş olmanız gerekmez.",
+          "peerSupport": "<b>Akran desteği:</b> Avustralya ve Aotearoa Yeni Zelanda'daki yetişkinler için yalnızca davetle katılınabilen özel bir Discord topluluğu. Destek formları aracılığıyla kısa bir mesaj gönderin; sizi davet etmeden önce uygunluğunuzu teyit edecekler.",
+          "resources": "<b>Pratik kaynaklar:</b> Avustralya'nın her eyaleti ve bölgesi için ad ve belge değişikliği, tıbbi kayıtlara erişim ve sağlık hizmetleriyle ilgili şikâyetler hakkında rehberler; ayrıca bir randevu planlayıcısı, yanınızda götürebileceğiniz sorular ve randevu almadan önce bir muayenehaneye soru sormak için düzenlenebilir bir e-posta.",
+          "directory": "<b>Directory Project:</b> Avustralya ve Yeni Zelanda'da cinsiyetle ilgili sağlık bakımını değiştiren, durduran, tersine çeviren veya yeniden düşünen kişilerle çalışmaya istekli profesyonellerin bir rehberi. Hâlâ geliştirme aşamasındadır ve henüz herkese açık değildir.",
+          "advocacy": "<b>Savunuculuk:</b> Avustralya'da tedavi hedefleri değiştiğinde bakımın sürekliliği, detransisyon deneyimlerini yansıtan araştırmalar ve hasta hakları, tıbbi kayıtlar ve şikâyetler hakkında daha açık bilgi için çalışmalar.",
+          "note": "Detrans Hub tıbbi tavsiye veya acil durum desteği sağlamaz. Acil yardıma ihtiyacınız varsa kriz desteği sayfalarına göz atın.",
+          "getSupport": "Detrans Hub'dan destek alın",
+          "peerSupportLink": "Detrans Hub akran topluluğuna katılın",
+          "resourcesLink": "Detrans Hub kaynakları",
+          "crisisLink": "Avustralya ve Yeni Zelanda'da kriz desteği",
+          "about": "Detrans Hub hakkında"
+        }
+      },
+      "northAmerica": {
+        "title": "Kuzey Amerika'da Destek",
+        "sidebar": "Kuzey Amerika",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "ABD · dünya genelinde",
+            "description": "Detransitioner'lar tarafından, detransitioner'lar için yürütülen kâr amacı gütmeyen bir kuruluş. ABD merkezli olan ancak dünyanın her yerinden detransitioner'lara açık olan Detrans Help, insanları akran desteği, ruh sağlığı danışmanlığı, klinisyenler, aile hizmetleri ve hukuki kaynaklarla buluşturur; ilgili araştırmaları ve davaları da takip eder.",
+            "link": "Detrans Help'i ziyaret edin"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "ABD",
+            "description": "Ergenlik baskılayıcılarını veya karşı cins hormonlarını bırakmak ve doğal hormon işlevini geri kazanmak isteyen kişilere yardım eden, hormon replasman tedavisinin takibinde de destek veren, kâr amacı gütmeyen bir sağlık profesyonelleri ağı. Ayrıca rehber belgeler ve detransitioner hikâyeleri yayımlar.",
+            "link": "Resilience Health Network'ü ziyaret edin"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "Kanada",
+            "description": "Detransitioner'lar, transisyondan vazgeçenler, pişmanlık yaşayanlar ve arkadaşlarından oluşan; transisyondan sonra iyileşmek için ihtiyaç duydukları tıbbi hizmetleri bulmalarında birbirlerine yardım eden Kanadalı bir ağ. Hukuki seçenekler konusunda da yardımcı olur, topluluk desteği sunar ve Kanada siyasetinde detransitioner'ları savunur.",
+            "link": "Detrans Alliance Canada'yı ziyaret edin"
+          }
+        }
+      },
+      "europe": {
+        "title": "Avrupa'da Destek",
+        "sidebar": "Avrupa",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "Uluslararası · 9 dil",
+            "description": "Kadın detransitioner'ların ve transisyondan vazgeçen kadınların hikâyelerinden oluşan; İngilizce, Fransızca, Almanca, İspanyolca, Rusça, İtalyanca, Sırpça, Portekizce ve Felemenkçe olarak sunulan bir derleme. Post Trans ayrıca detransisyon hakkında bir bilgilendirme kitapçığı yayımlar ve kendi hikâyenizi de gönderebilirsiniz.",
+            "link": "Post Trans'ı ziyaret edin"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "Finlandiya · Fince",
+            "description": "Detransisyon hakkında bilgiler, detransisyon süreci rehberi ve kişisel deneyimler içeren Fince bir site. Ayrıca detransisyon yapmış kadınlar için Fince bir Discord sunucusu yürütür.",
+            "link": "Detrans.fi'yi ziyaret edin",
+            "discord": "Detransisyon yapmış kadınlar için Fince Discord sunucusu"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "Latin Amerika'da Destek",
+        "sidebar": "Latin Amerika",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "Şili · İspanyolca",
+            "description": "Kişisel detransisyon deneyimine sahip bir araştırmacının yönettiği, Şili ve Latin Amerika'da detransisyon hakkında araştırmalar, makaleler ve birinci ağızdan tanıklıklar yayımlayan İspanyolca bir proje.",
+            "link": "Detrans Chile'yi ziyaret edin"
+          }
+        }
+      },
       "forParents": {
         "title": "Ebeveynler İçin Kaynaklar",
         "intro": "Çocuğunuz yakın zamanda trans olarak açıldıysa, kafanız karışmış, endişeli ve onları desteklerken aynı zamanda uzun vadeli sağlıklarını ve esenliklerini koruyabileceğiniz en iyi yol konusunda emin olamayabilirsiniz.",
@@ -773,7 +847,9 @@
           },
           "coupon": "Şu kupon kodunu kullanarak şu indirimden yararlanın:",
           "couponCode": "DETRANSAI",
-          "learnMore": "ROGD Repair hakkında daha fazla bilgi edinin ve kaydolun"
+          "learnMore": "ROGD Repair hakkında daha fazla bilgi edinin ve kaydolun",
+          "couponDiscount": "ilk ayınızda %50 indirim",
+          "couponSuffix": "(ROGD Repair üyeliği)."
         }
       }
     },
@@ -1953,9 +2029,14 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "title": "Konular",
+    "description": "Detransizyon, cinsiyet tıbbı ve ilgili konular üzerine kapsamlı içerikler.",
+    "empty": "Henüz yayımlanmış konu yok.",
+    "pagesInSection": "Bu bölümdeki sayfalar",
+    "relatedPages": "İlgili sayfalar",
+    "lastUpdated": "Son güncelleme:",
+    "stubNotice": "Bu sayfa taslak hâlindedir ve genişletilecektir.",
+    "views": "{count, plural, other {# görüntülenme}}"
   },
   "storiesPage": {
     "metadata": {

@@ -702,7 +702,8 @@
       "genderAffirmingCare": {
         "title": "Genderově potvrzující péče: Co to je?",
         "description": "Genderově potvrzující péče je v současnosti standardní (a často jedinou) možností léčby genderové dysforie nabízenou zdravotnickými poskytovateli v západním světě. Genderově potvrzující péče v podstatě uznává společenská genderová očekávání a poté na ně adaptuje pacienta. Je to přístup s postupnými kroky, který začíná sociální tranzicí (jméno, zájmena, oblečení), pak hormonální terapií a poté pro některé nevratné chirurgické zákroky. Genderově potvrzující péče může poskytnout úlevu od genderové dysforie, ale přichází s vážnými zdravotními riziky a často trvalými vedlejšími účinky. Postupujte s maximální opatrností a ujistěte se, že",
-        "watchTestimonies": "shlédněte nějaká svědectví"
+        "watchTestimonies": "shlédněte nějaká svědectví",
+        "afterTestimonies": "lidí, kteří už touto cestou prošli, než se na ni vydáte sami."
       },
       "genderExploratoryTherapy": {
         "title": "Genderově explorační terapie: Co to je?",
@@ -755,6 +756,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "Podpora v Austrálii a na Novém Zélandu",
+        "sidebar": "Austrálie a Nový Zéland",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "Detrans Hub je komunitní organizace vedená lidmi po detranzici, která nabízí vrstevnickou podporu, praktické zdroje a obhajobu zájmů dospělým (18+) v Austrálii a Aotearoa na Novém Zélandu, kteří procházejí detranzicí, od tranzice upouštějí, přehodnocují ji nebo mění své cíle v péči související s pohlavím. Jejich motto zní „Buďte laskaví. Buďte zvídaví.“ Nikoho nesměřují k tranzici, detranzici ani k žádné konkrétní identitě a k tomu, abyste se ozvali, nepotřebujete používat žádné konkrétní označení ani mít vše vyřešené.",
+          "peerSupport": "<b>Vrstevnická podpora:</b> soukromá komunita na Discordu, pouze na pozvání, pro dospělé v Austrálii a Aotearoa na Novém Zélandu. Pošlete krátkou zprávu přes jejich formulář podpory a před pozváním ověří, zda splňujete podmínky.",
+          "resources": "<b>Praktické zdroje:</b> průvodce pro každý australský stát a teritorium ke změně jména a dokladů, přístupu ke zdravotnické dokumentaci a podávání stížností na zdravotní péči, a také plánovač návštěv, otázky, které si můžete vzít s sebou, a upravitelný e-mail, kterým se můžete ordinace zeptat ještě před objednáním.",
+          "directory": "<b>Directory Project:</b> adresář odborníků v Austrálii a na Novém Zélandu, kteří jsou ochotni pracovat s lidmi, kteří mění, ukončují, zvracejí nebo přehodnocují péči související s pohlavím. Je stále ve vývoji a zatím není veřejný.",
+          "advocacy": "<b>Obhajoba zájmů:</b> v Austrálii usilují o kontinuitu péče při změně léčebných cílů, o výzkum, který zachycuje zkušenosti s detranzicí, a o srozumitelnější informace o právech pacientů, zdravotnické dokumentaci a stížnostech.",
+          "note": "Detrans Hub neposkytuje lékařské rady ani krizovou pomoc. Pokud potřebujete naléhavou pomoc, podívejte se na jejich stránku krizové podpory.",
+          "getSupport": "Získejte podporu od Detrans Hub",
+          "peerSupportLink": "Připojte se ke komunitě Detrans Hub",
+          "resourcesLink": "Zdroje Detrans Hub",
+          "crisisLink": "Krizová podpora v Austrálii a na Novém Zélandu",
+          "about": "O Detrans Hub"
+        }
+      },
+      "northAmerica": {
+        "title": "Podpora v Severní Americe",
+        "sidebar": "Severní Amerika",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "USA · celosvětově",
+            "description": "Nezisková organizace vedená lidmi po detranzici, pro lidi po detranzici. Detrans Help sídlí v USA, ale je otevřená lidem po detranzici z celého světa a zprostředkovává vrstevnickou podporu, poradenství v oblasti duševního zdraví, kliniky, služby pro rodiny a právní zdroje. Sleduje také související výzkum a soudní případy.",
+            "link": "Navštívit Detrans Help"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "USA",
+            "description": "Nezisková síť zdravotníků, která pomáhá lidem, kteří chtějí vysadit blokátory puberty nebo hormony opačného pohlaví a obnovit svou přirozenou hormonální funkci, včetně podpory při sledování hormonální substituční terapie. Zveřejňuje také informační materiály a příběhy lidí po detranzici.",
+            "link": "Navštívit Resilience Health Network"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "Kanada",
+            "description": "Kanadská síť lidí po detranzici, lidí, kteří od tranzice upustili nebo jí litují, a jejich přátel, kteří si navzájem pomáhají najít zdravotní služby potřebné k zotavení po tranzici. Pomáhá také s právními možnostmi, nabízí komunitní podporu a hájí zájmy lidí po detranzici v kanadské politice.",
+            "link": "Navštívit Detrans Alliance Canada"
+          }
+        }
+      },
+      "europe": {
+        "title": "Podpora v Evropě",
+        "sidebar": "Evropa",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "Mezinárodní · 9 jazyků",
+            "description": "Sbírka příběhů žen po detranzici a žen, které od tranzice upustily, dostupná v angličtině, francouzštině, němčině, španělštině, ruštině, italštině, srbštině, portugalštině a nizozemštině. Post Trans vydává také informační brožuru o detranzici a můžete zaslat i svůj vlastní příběh.",
+            "link": "Navštívit Post Trans"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "Finsko · finsky",
+            "description": "Finskojazyčný web s informacemi o detranzici, průvodcem procesem detranzice a osobními zkušenostmi. Provozuje také finskojazyčný server na Discordu pro ženy po detranzici.",
+            "link": "Navštívit Detrans.fi",
+            "discord": "Finskojazyčný server na Discordu pro ženy po detranzici"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "Podpora v Latinské Americe",
+        "sidebar": "Latinská Amerika",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "Chile · španělsky",
+            "description": "Španělskojazyčný projekt vedený výzkumníkem s vlastní zkušeností s detranzicí, který publikuje výzkum, články a osobní svědectví o detranzici v Chile a Latinské Americe.",
+            "link": "Navštívit Detrans Chile"
+          }
+        }
+      },
       "forParents": {
         "title": "Zdroje pro rodiče",
         "intro": "Pokud vaše dítě nedávno vyšlo jako transgender, můžete se cítit zmatení, znepokojení a nevědět, jak mu nejlépe poskytnout podporu, zatímco chráníte jeho dlouhodobé zdraví a pohodu.",
@@ -774,7 +848,9 @@
           },
           "coupon": "Použijte tento kód kupónu pro získání",
           "couponCode": "DETRANSAI",
-          "learnMore": "Dozvědět se více a přihlásit se do ROGD Repair"
+          "learnMore": "Dozvědět se více a přihlásit se do ROGD Repair",
+          "couponDiscount": "slevy 50 % na první měsíc",
+          "couponSuffix": "členství v ROGD Repair."
         }
       }
     },
@@ -1954,9 +2030,14 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "title": "Témata",
+    "description": "Podrobný pohled na detranzici, genderovou medicínu a související témata.",
+    "empty": "Zatím nebyla zveřejněna žádná témata.",
+    "pagesInSection": "Stránky v této sekci",
+    "relatedPages": "Související stránky",
+    "lastUpdated": "Naposledy aktualizováno:",
+    "stubNotice": "Tato stránka je zatím pahýl a bude rozšířena.",
+    "views": "{count, plural, one {# zobrazení} few {# zobrazení} many {# zobrazení} other {# zobrazení}}"
   },
   "storiesPage": {
     "metadata": {

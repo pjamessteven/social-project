@@ -699,7 +699,8 @@
       "genderAffirmingCare": {
         "title": "Gender Affirming Care: What is it?",
         "description": "Gender affirming care is currently the standard (and often the only) treatment option for gender dysphoria offered by healthcare providers in the Western world. Gender affirming care essentially recognises societies gendered expectations and then adapts the patient to them. It is a staged approach that begins with social transition (name, pronouns, clothing), then hormone therapy, and then for some, irreversible surgical procedures. Gender affirming care can provide relief for gender dysphoria but it does come with serious health risks and often permanent side-effects. Proceed with extreme caution, and make sure you",
-        "watchTestimonies": "watch some testimonies"
+        "watchTestimonies": "watch some testimonies",
+        "afterTestimonies": "from people who have been down this path before going down it yourself."
       },
       "genderExploratoryTherapy": {
         "title": "Gender Exploratory Therapy: What is it?",
@@ -752,6 +753,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "Support in Australia & New Zealand",
+        "sidebar": "Australia & New Zealand",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "Detrans Hub is a grassroots, detransitioner-led organisation offering peer support, practical resources and advocacy for adults (18+) in Australia and Aotearoa New Zealand who are detransitioning, desisting, reconsidering transition or changing their gender-related healthcare goals. Their motto is \"Be kind. Be curious.\" They don't steer anyone towards transition, detransition or any particular identity, and you don't need to use a particular label or have everything figured out to reach out.",
+          "peerSupport": "<b>Peer support:</b> a private, invitation-based Discord community for adults in Australia and Aotearoa New Zealand. Send a brief message through their support form and they will confirm eligibility before inviting you.",
+          "resources": "<b>Practical resources:</b> guides for every Australian state and territory on changing your name and documents, accessing medical records and making healthcare complaints, plus an appointment planner, questions to take with you and an editable email for asking a practice questions before booking.",
+          "directory": "<b>Directory Project:</b> a directory of professionals in Australia and New Zealand willing to work with people changing, stopping, reversing or reconsidering gender-related healthcare. It is still in development and not yet public.",
+          "advocacy": "<b>Advocacy:</b> working in Australia for continuity of care when treatment goals change, research that captures detransition experiences, and clearer information about patient rights, records and complaints.",
+          "note": "Detrans Hub does not provide medical advice or emergency support. If you need urgent help, see their crisis support page.",
+          "getSupport": "Get support from Detrans Hub",
+          "peerSupportLink": "Join the Detrans Hub peer community",
+          "resourcesLink": "Detrans Hub resources",
+          "crisisLink": "Crisis support in Australia & New Zealand",
+          "about": "About Detrans Hub"
+        }
+      },
+      "northAmerica": {
+        "title": "Support in North America",
+        "sidebar": "North America",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "United States · serves worldwide",
+            "description": "A non-profit run by detransitioners, for detransitioners. Based in the US but open to detransitioners worldwide, Detrans Help connects people with peer support, mental health counselling, clinicians, family services and legal resources, and keeps track of related research and legal cases.",
+            "link": "Visit Detrans Help"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "United States",
+            "description": "A non-profit network of healthcare professionals helping people who want to stop puberty blockers or cross-sex hormones and restore their natural hormone function, including support with monitoring hormone replacement therapy. It also publishes guidance documents and detransitioner stories.",
+            "link": "Visit Resilience Health Network"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "Canada",
+            "description": "A Canadian network of detransitioners, desisters, regretters and friends helping each other find the medical services they need to recover from transition. It also helps with legal options, offers community support and advocates for detransitioners in Canadian politics.",
+            "link": "Visit Detrans Alliance Canada"
+          }
+        }
+      },
+      "europe": {
+        "title": "Support in Europe",
+        "sidebar": "Europe",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "International · 9 languages",
+            "description": "A collection of stories from female detransitioners and desisters, available in English, French, German, Spanish, Russian, Italian, Serbian, Portuguese and Dutch. Post Trans also publishes an information booklet on detransition, and you can submit your own story.",
+            "link": "Visit Post Trans"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "Finland · Finnish",
+            "description": "A Finnish-language site with information about detransition, a guide to the detransition process and personal experiences. It also runs a Finnish-language Discord server for detransitioned women.",
+            "link": "Visit Detrans.fi",
+            "discord": "Finnish Discord server for detransitioned women"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "Support in Latin America",
+        "sidebar": "Latin America",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "Chile · Spanish",
+            "description": "A Spanish-language project led by a researcher with personal experience of detransition, publishing research, articles and first-person testimonies about detransition in Chile and Latin America.",
+            "link": "Visit Detrans Chile"
+          }
+        }
+      },
       "forParents": {
         "title": "Resources For Parents",
         "intro": "If your child has recently come out as transgender, you may be feeling confused, worried, and unsure how to best support them while also protecting their long-term health and well-being.",
@@ -771,7 +845,9 @@
           },
           "coupon": "Use this coupon code to get",
           "couponCode": "DETRANSAI",
-          "learnMore": "Learn more and sign up for ROGD Repair"
+          "learnMore": "Learn more and sign up for ROGD Repair",
+          "couponDiscount": "50% off your first month",
+          "couponSuffix": "of ROGD Repair membership."
         }
       }
     },
@@ -1952,8 +2028,13 @@
   },
   "topicsPage": {
     "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "description": "In-depth exploration of detransition, gender medicine, and related topics.",
+    "empty": "No topics have been published yet.",
+    "pagesInSection": "Pages in this section",
+    "relatedPages": "Related pages",
+    "lastUpdated": "Last updated:",
+    "stubNotice": "This page is a stub and will be expanded.",
+    "views": "{count, plural, one {# view} other {# views}}"
   },
   "storiesPage": {
     "metadata": {

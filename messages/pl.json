@@ -710,7 +710,8 @@
       "genderAffirmingCare": {
         "title": "Opieka afirmująca płeć: Co to jest?",
         "description": "Opieka afirmująca płeć jest obecnie standardową (i często jedyną) opcją leczenia dysforii płciowej oferowaną przez dostawców opieki zdrowotnej na Zachodzie. Opieka afirmująca płeć w zasadzie uznaje społeczne oczekiwania wobec płci, a następnie dostosowuje do nich pacjenta. Jest to podejście etapowe, które zaczyna się od tranzycji społecznej (imię, zaimki, ubrania), potem terapii hormonalnej, a następnie dla niektórych nieodwracalnych zabiegów chirurgicznych. Opieka afirmująca płeć może zapewnić ulgę w dysforii płciowej, ale wiąże się z poważnymi ryzykami zdrowotnymi i często trwałymi skutkami ubocznymi. Postępuj z ekstremalną ostrożnością i upewnij się, że",
-        "watchTestimonies": "obejrzysz kilka świadectw"
+        "watchTestimonies": "obejrzysz kilka świadectw",
+        "afterTestimonies": "osób, które przeszły już tę drogę, zanim sam na nią wejdziesz."
       },
       "genderExploratoryTherapy": {
         "title": "Terapia eksploracyjna płci: Co to jest?",
@@ -763,6 +764,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "Wsparcie w Australii i Nowej Zelandii",
+        "sidebar": "Australia i Nowa Zelandia",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "Detrans Hub to oddolna organizacja prowadzona przez osoby po detransycji, która oferuje wsparcie rówieśnicze, praktyczne zasoby i rzecznictwo dla dorosłych (18+) w Australii i Aotearoa Nowej Zelandii, którzy przechodzą detransycję, rezygnują z tranzycji, przemyśliwują ją na nowo lub zmieniają swoje cele dotyczące opieki zdrowotnej związanej z płcią. Ich motto to „Bądź życzliwy. Bądź ciekawy”. Nie kierują nikogo w stronę tranzycji, detransycji ani żadnej konkretnej tożsamości, a żeby się z nimi skontaktować, nie musisz używać żadnej konkretnej etykiety ani mieć wszystkiego przemyślanego.",
+          "peerSupport": "<b>Wsparcie rówieśnicze:</b> prywatna społeczność na Discordzie, dostępna tylko na zaproszenie, dla dorosłych w Australii i Aotearoa Nowej Zelandii. Wyślij krótką wiadomość przez ich formularz wsparcia, a przed zaproszeniem potwierdzą, czy spełniasz kryteria.",
+          "resources": "<b>Praktyczne zasoby:</b> poradniki dla każdego australijskiego stanu i terytorium dotyczące zmiany imienia i dokumentów, dostępu do dokumentacji medycznej i składania skarg na opiekę zdrowotną, a także planer wizyt, pytania do zabrania ze sobą i edytowalny e-mail, aby zadać pytania placówce przed umówieniem wizyty.",
+          "directory": "<b>Directory Project:</b> katalog specjalistów w Australii i Nowej Zelandii gotowych pracować z osobami, które zmieniają, przerywają, odwracają lub przemyśliwują na nowo opiekę zdrowotną związaną z płcią. Jest wciąż w przygotowaniu i nie jest jeszcze publiczny.",
+          "advocacy": "<b>Rzecznictwo:</b> działania w Australii na rzecz ciągłości opieki, gdy zmieniają się cele leczenia, badań uwzględniających doświadczenia detransycji oraz jaśniejszych informacji o prawach pacjenta, dokumentacji medycznej i skargach.",
+          "note": "Detrans Hub nie udziela porad medycznych ani pomocy w nagłych wypadkach. Jeśli potrzebujesz pilnej pomocy, zajrzyj na ich stronę wsparcia kryzysowego.",
+          "getSupport": "Uzyskaj wsparcie od Detrans Hub",
+          "peerSupportLink": "Dołącz do społeczności Detrans Hub",
+          "resourcesLink": "Zasoby Detrans Hub",
+          "crisisLink": "Wsparcie kryzysowe w Australii i Nowej Zelandii",
+          "about": "O Detrans Hub"
+        }
+      },
+      "northAmerica": {
+        "title": "Wsparcie w Ameryce Północnej",
+        "sidebar": "Ameryka Północna",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "Stany Zjednoczone · cały świat",
+            "description": "Organizacja non-profit prowadzona przez osoby po detransycji, dla osób po detransycji. Detrans Help ma siedzibę w USA, ale jest otwarta dla osób po detransycji z całego świata i kieruje do wsparcia rówieśniczego, poradnictwa w zakresie zdrowia psychicznego, klinicystów, usług dla rodzin i zasobów prawnych. Śledzi też powiązane badania i sprawy sądowe.",
+            "link": "Odwiedź Detrans Help"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "Stany Zjednoczone",
+            "description": "Sieć non-profit pracowników ochrony zdrowia pomagająca osobom, które chcą odstawić blokery dojrzewania lub hormony płci przeciwnej i przywrócić naturalną funkcję hormonalną, w tym wsparcie w monitorowaniu hormonalnej terapii zastępczej. Publikuje też materiały informacyjne i historie osób po detransycji.",
+            "link": "Odwiedź Resilience Health Network"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "Kanada",
+            "description": "Kanadyjska sieć osób po detransycji, osób, które zrezygnowały z tranzycji lub jej żałują, oraz ich przyjaciół, którzy pomagają sobie nawzajem znaleźć usługi medyczne potrzebne do powrotu do zdrowia po tranzycji. Pomaga też w kwestiach prawnych, oferuje wsparcie społeczności i działa na rzecz osób po detransycji w kanadyjskiej polityce.",
+            "link": "Odwiedź Detrans Alliance Canada"
+          }
+        }
+      },
+      "europe": {
+        "title": "Wsparcie w Europie",
+        "sidebar": "Europa",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "Międzynarodowo · 9 języków",
+            "description": "Zbiór historii kobiet po detransycji i kobiet, które zrezygnowały z tranzycji, dostępny po angielsku, francusku, niemiecku, hiszpańsku, rosyjsku, włosku, serbsku, portugalsku i niderlandzku. Post Trans publikuje też broszurę informacyjną o detransycji, a Ty możesz przesłać własną historię.",
+            "link": "Odwiedź Post Trans"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "Finlandia · fiński",
+            "description": "Fińskojęzyczna strona z informacjami o detransycji, przewodnikiem po procesie detransycji i osobistymi doświadczeniami. Prowadzi też fińskojęzyczny serwer Discord dla kobiet po detransycji.",
+            "link": "Odwiedź Detrans.fi",
+            "discord": "Fińskojęzyczny serwer Discord dla kobiet po detransycji"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "Wsparcie w Ameryce Łacińskiej",
+        "sidebar": "Ameryka Łacińska",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "Chile · hiszpański",
+            "description": "Hiszpańskojęzyczny projekt prowadzony przez badacza z własnym doświadczeniem detransycji, publikujący badania, artykuły i relacje z pierwszej ręki o detransycji w Chile i Ameryce Łacińskiej.",
+            "link": "Odwiedź Detrans Chile"
+          }
+        }
+      },
       "forParents": {
         "title": "Zasoby dla rodziców",
         "intro": "Jeśli Twoje dziecko niedawno wyznało, że jest osobą transpłciową, możesz czuć się zdezorientowany/zdezorientowana, zaniepokojony/zaniepokojona i niepewny/a, jak najlepiej je wspierać, jednocześnie chroniąc jego długoterminowe zdrowie i dobrostan.",
@@ -782,7 +856,9 @@
           },
           "coupon": "Użyj tego kodu kuponu, aby uzyskać",
           "couponCode": "DETRANSAI",
-          "learnMore": "Dowiedz się więcej i zapisz się na ROGD Repair"
+          "learnMore": "Dowiedz się więcej i zapisz się na ROGD Repair",
+          "couponDiscount": "50% zniżki na pierwszy miesiąc",
+          "couponSuffix": "członkostwa w ROGD Repair."
         }
       }
     },
@@ -1962,9 +2038,14 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "title": "Tematy",
+    "description": "Dogłębne omówienie detranzycji, medycyny płci i powiązanych tematów.",
+    "empty": "Nie opublikowano jeszcze żadnych tematów.",
+    "pagesInSection": "Strony w tej sekcji",
+    "relatedPages": "Powiązane strony",
+    "lastUpdated": "Ostatnia aktualizacja:",
+    "stubNotice": "Ta strona jest szkicem i zostanie rozbudowana.",
+    "views": "{count, plural, one {# wyświetlenie} few {# wyświetlenia} many {# wyświetleń} other {# wyświetlenia}}"
   },
   "storiesPage": {
     "metadata": {

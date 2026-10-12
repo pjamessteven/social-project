@@ -702,7 +702,8 @@
       "genderAffirmingCare": {
         "title": "Îngrijirea Afirmatoare de Gen: Ce este?",
         "description": "Îngrijirea afirmatoare de gen este în prezent opțiunea standard (și adesea singura) de tratament pentru disforie de gen oferită de furnizorii de servicii medicale în lumea occidentală. Îngrijirea afirmatoare de gen recunoaște în esență așteptările genului societății și apoi adaptează pacientul la ele. Este o abordare etapizată care începe cu tranziția socială (nume, pronume, îmbrăcăminte), apoi terapia hormonală și apoi, pentru unii, proceduri chirurgicale ireversibile. Îngrijirea afirmatoare de gen poate oferi relief pentru disforie de gen, dar vine cu riscuri serioase pentru sănătate și adesea efecte secundare permanente. Procedează cu precauție extremă și asigură-te că",
-        "watchTestimonies": "urmărești câteva mărturii"
+        "watchTestimonies": "urmărești câteva mărturii",
+        "afterTestimonies": "ale unor persoane care au parcurs deja acest drum, înainte de a porni tu însuți pe el."
       },
       "genderExploratoryTherapy": {
         "title": "Terapia Exploratorie de Gen: Ce este?",
@@ -755,6 +756,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "Sprijin în Australia și Noua Zeelandă",
+        "sidebar": "Australia și Noua Zeelandă",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "Detrans Hub este o organizație comunitară condusă de persoane detransiționate, care oferă sprijin între egali, resurse practice și advocacy pentru adulții (18+) din Australia și Aotearoa Noua Zeelandă care detransiționează, renunță la tranziție, o reconsideră sau își schimbă obiectivele de îngrijire medicală legate de gen. Motto-ul lor este „Fii bun. Fii curios.” Nu îndrumă pe nimeni spre tranziție, detransiție sau vreo identitate anume, iar pentru a-i contacta nu trebuie să folosești o anumită etichetă sau să ai totul lămurit.",
+          "peerSupport": "<b>Sprijin între egali:</b> o comunitate privată pe Discord, doar pe bază de invitație, pentru adulții din Australia și Aotearoa Noua Zeelandă. Trimite un scurt mesaj prin formularul lor de sprijin, iar înainte să te invite îți vor confirma eligibilitatea.",
+          "resources": "<b>Resurse practice:</b> ghiduri pentru fiecare stat și teritoriu australian despre schimbarea numelui și a documentelor, accesul la dosarul medical și depunerea plângerilor privind îngrijirea medicală, plus un planificator de programări, întrebări pe care să le iei cu tine și un e-mail editabil pentru a pune întrebări unui cabinet înainte de programare.",
+          "directory": "<b>Directory Project:</b> un director de profesioniști din Australia și Noua Zeelandă dispuși să lucreze cu persoane care își schimbă, opresc, inversează sau reconsideră îngrijirea medicală legată de gen. Este încă în dezvoltare și nu este încă public.",
+          "advocacy": "<b>Advocacy:</b> activitate în Australia pentru continuitatea îngrijirii atunci când obiectivele tratamentului se schimbă, pentru cercetări care surprind experiențele de detransiție și pentru informații mai clare despre drepturile pacienților, dosarele medicale și plângeri.",
+          "note": "Detrans Hub nu oferă sfaturi medicale sau sprijin de urgență. Dacă ai nevoie de ajutor urgent, consultă pagina lor de sprijin în criză.",
+          "getSupport": "Primește sprijin de la Detrans Hub",
+          "peerSupportLink": "Alătură-te comunității Detrans Hub",
+          "resourcesLink": "Resursele Detrans Hub",
+          "crisisLink": "Sprijin în criză în Australia și Noua Zeelandă",
+          "about": "Despre Detrans Hub"
+        }
+      },
+      "northAmerica": {
+        "title": "Sprijin în America de Nord",
+        "sidebar": "America de Nord",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "Statele Unite · la nivel mondial",
+            "description": "O organizație non-profit condusă de persoane detransiționate, pentru persoane detransiționate. Detrans Help are sediul în SUA, dar este deschisă persoanelor detransiționate din întreaga lume și facilitează accesul la sprijin între egali, consiliere pentru sănătatea mintală, clinicieni, servicii pentru familii și resurse juridice, urmărind totodată cercetările și cazurile juridice relevante.",
+            "link": "Vizitează Detrans Help"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "Statele Unite",
+            "description": "O rețea non-profit de profesioniști din domeniul sănătății care ajută persoanele ce doresc să oprească blocantele pubertății sau hormonii sexului opus și să își refacă funcția hormonală naturală, inclusiv cu monitorizarea terapiei de substituție hormonală. Publică, de asemenea, ghiduri și povești ale persoanelor detransiționate.",
+            "link": "Vizitează Resilience Health Network"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "Canada",
+            "description": "O rețea canadiană de persoane detransiționate, persoane care au renunțat la tranziție sau o regretă și prieteni care se ajută reciproc să găsească serviciile medicale de care au nevoie pentru a se recupera după tranziție. Ajută și cu opțiunile juridice, oferă sprijin comunitar și susține persoanele detransiționate în politica canadiană.",
+            "link": "Vizitează Detrans Alliance Canada"
+          }
+        }
+      },
+      "europe": {
+        "title": "Sprijin în Europa",
+        "sidebar": "Europa",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "Internațional · 9 limbi",
+            "description": "O colecție de povești ale femeilor detransiționate și ale femeilor care au renunțat la tranziție, disponibilă în engleză, franceză, germană, spaniolă, rusă, italiană, sârbă, portugheză și neerlandeză. Post Trans publică și o broșură informativă despre detransiție, iar tu îți poți trimite propria poveste.",
+            "link": "Vizitează Post Trans"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "Finlanda · în finlandeză",
+            "description": "Un site în limba finlandeză cu informații despre detransiție, un ghid al procesului de detransiție și experiențe personale. Administrează și un server Discord în finlandeză pentru femeile detransiționate.",
+            "link": "Vizitează Detrans.fi",
+            "discord": "Server Discord în finlandeză pentru femeile detransiționate"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "Sprijin în America Latină",
+        "sidebar": "America Latină",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "Chile · în spaniolă",
+            "description": "Un proiect în limba spaniolă condus de un cercetător cu experiență personală de detransiție, care publică cercetări, articole și mărturii la persoana întâi despre detransiție în Chile și America Latină.",
+            "link": "Vizitează Detrans Chile"
+          }
+        }
+      },
       "forParents": {
         "title": "Resurse pentru Părinți",
         "intro": "Dacă copilul tău a devenit recent transgender, s-ar putea să te simți confuz, îngrijorat și nesigur cum să îl sprijini cel mai bine, protejându-i în același timp sănătatea și bunăstarea pe termen lung.",
@@ -774,7 +848,9 @@
           },
           "coupon": "Folosește acest cod de cupon pentru a obține",
           "couponCode": "DETRANSAI",
-          "learnMore": "Află mai multe și înscrie-te la ROGD Repair"
+          "learnMore": "Află mai multe și înscrie-te la ROGD Repair",
+          "couponDiscount": "50% reducere la prima lună",
+          "couponSuffix": "de abonament ROGD Repair."
         }
       }
     },
@@ -1954,9 +2030,14 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "title": "Subiecte",
+    "description": "Explorare aprofundată a detranziției, a medicinei de gen și a subiectelor conexe.",
+    "empty": "Nu a fost publicat încă niciun subiect.",
+    "pagesInSection": "Pagini din această secțiune",
+    "relatedPages": "Pagini similare",
+    "lastUpdated": "Ultima actualizare:",
+    "stubNotice": "Această pagină este o schiță și va fi extinsă.",
+    "views": "{count, plural, one {# vizualizare} few {# vizualizări} other {# de vizualizări}}"
   },
   "storiesPage": {
     "metadata": {

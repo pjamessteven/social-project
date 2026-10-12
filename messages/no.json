@@ -710,7 +710,8 @@
       "genderAffirmingCare": {
         "title": "Kjønnsbekreftende behandling: Hva er det?",
         "description": "Kjønnsbekreftende behandling er for øyeblikket standarden (og ofte den eneste) behandlingsmuligheten for kjønnsdysfori som tilbys av helsepersonell i den vestlige verden. Kjønnsbekreftende behandling gjenkjenner i essens samfunnets kjønnede forventninger og tilpasser deretter pasienten til dem. Det er en trinnvis tilnærming som begynner med sosial kjønnsovergang (navn, pronomen, klær), deretter hormonterapi, og så for noen, irreversible kirurgiske inngrep. Kjønnsbekreftende behandling kan gi lindring for kjønnsdysfori, men det medfører alvorlige helserisikoer og ofte permanente bivirkninger. Gå fram med ekstrem forsiktighet, og sørg for at du",
-        "watchTestimonies": "ser noen vitnesbyrd"
+        "watchTestimonies": "ser noen vitnesbyrd",
+        "afterTestimonies": "fra folk som har gått denne veien før du går den selv."
       },
       "genderExploratoryTherapy": {
         "title": "Kjønnsutforskende terapi: Hva er det?",
@@ -763,6 +764,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "Støtte i Australia og New Zealand",
+        "sidebar": "Australia og New Zealand",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "Detrans Hub er en grasrotorganisasjon ledet av detransisjonerte som tilbyr likepersonsstøtte, praktiske ressurser og påvirkningsarbeid for voksne (18+) i Australia og Aotearoa New Zealand som detransisjonerer, avbryter, revurderer transisjonen eller endrer sine kjønnsrelaterte behandlingsmål. Mottoet deres er «Vær snill. Vær nysgjerrig.» De styrer ingen mot transisjon, detransisjon eller noen bestemt identitet, og du trenger ikke bruke en bestemt merkelapp eller ha alt klart for å ta kontakt.",
+          "peerSupport": "<b>Likepersonsstøtte:</b> et privat Discord-fellesskap, kun etter invitasjon, for voksne i Australia og Aotearoa New Zealand. Send en kort melding via støtteskjemaet deres, så bekrefter de at du oppfyller kravene før de inviterer deg.",
+          "resources": "<b>Praktiske ressurser:</b> veiledninger for hver australsk delstat og hvert territorium om å endre navn og dokumenter, få tilgang til journalen sin og klage på helsetjenester, samt en timeplanlegger, spørsmål å ta med og en redigerbar e-post for å stille en klinikk spørsmål før du bestiller time.",
+          "directory": "<b>Directory Project:</b> en oversikt over fagpersoner i Australia og New Zealand som er villige til å jobbe med personer som endrer, stopper, reverserer eller revurderer kjønnsrelatert behandling. Den er fortsatt under utvikling og ikke offentlig ennå.",
+          "advocacy": "<b>Påvirkningsarbeid:</b> jobber i Australia for kontinuitet i behandlingen når behandlingsmål endres, for forskning som fanger opp erfaringer med detransisjon, og for tydeligere informasjon om pasientrettigheter, journaler og klager.",
+          "note": "Detrans Hub gir ikke medisinske råd eller akutt støtte. Hvis du trenger hjelp raskt, se siden deres om krisestøtte.",
+          "getSupport": "Få støtte fra Detrans Hub",
+          "peerSupportLink": "Bli med i Detrans Hubs likepersonsfellesskap",
+          "resourcesLink": "Detrans Hubs ressurser",
+          "crisisLink": "Krisestøtte i Australia og New Zealand",
+          "about": "Om Detrans Hub"
+        }
+      },
+      "northAmerica": {
+        "title": "Støtte i Nord-Amerika",
+        "sidebar": "Nord-Amerika",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "USA · hele verden",
+            "description": "En ideell organisasjon drevet av detransisjonerte, for detransisjonerte. Detrans Help holder til i USA, men er åpen for detransisjonerte over hele verden og formidler kontakt med likepersonsstøtte, psykisk helsehjelp, klinikere, familietilbud og juridiske ressurser. Organisasjonen følger også relevant forskning og rettssaker.",
+            "link": "Besøk Detrans Help"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "USA",
+            "description": "Et ideelt nettverk av helsepersonell som hjelper personer som vil slutte med pubertetsblokkere eller krysskjønnshormoner og gjenopprette sin naturlige hormonfunksjon, inkludert hjelp med oppfølging av hormonerstatningsbehandling. Nettverket publiserer også veiledninger og fortellinger fra detransisjonerte.",
+            "link": "Besøk Resilience Health Network"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "Canada",
+            "description": "Et kanadisk nettverk av detransisjonerte, personer som har avbrutt eller angrer transisjonen, og venner som hjelper hverandre med å finne helsetjenestene de trenger for å komme seg etter transisjonen. Det hjelper også med juridiske muligheter, tilbyr fellesskapsstøtte og jobber for detransisjonerte i kanadisk politikk.",
+            "link": "Besøk Detrans Alliance Canada"
+          }
+        }
+      },
+      "europe": {
+        "title": "Støtte i Europa",
+        "sidebar": "Europa",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "Internasjonalt · 9 språk",
+            "description": "En samling fortellinger fra kvinnelige detransisjonerte og kvinner som har avbrutt transisjonen, tilgjengelig på engelsk, fransk, tysk, spansk, russisk, italiensk, serbisk, portugisisk og nederlandsk. Post Trans gir også ut en informasjonsbrosjyre om detransisjon, og du kan sende inn din egen historie.",
+            "link": "Besøk Post Trans"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "Finland · finsk",
+            "description": "Et finskspråklig nettsted med informasjon om detransisjon, en veiledning til detransisjonsprosessen og personlige erfaringer. Det driver også en finskspråklig Discord-server for detransisjonerte kvinner.",
+            "link": "Besøk Detrans.fi",
+            "discord": "Finskspråklig Discord-server for detransisjonerte kvinner"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "Støtte i Latin-Amerika",
+        "sidebar": "Latin-Amerika",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "Chile · spansk",
+            "description": "Et spanskspråklig prosjekt ledet av en forsker med egen erfaring med detransisjon, som publiserer forskning, artikler og førstehåndsfortellinger om detransisjon i Chile og Latin-Amerika.",
+            "link": "Besøk Detrans Chile"
+          }
+        }
+      },
       "forParents": {
         "title": "Ressurser for foreldre",
         "intro": "Hvis barnet ditt nylig har kommet ut som transperson, kan du føle deg forvirret, bekymret og usikker på hvordan du best kan støtte dem samtidig som du beskytter deres langsiktige helse og velvære.",
@@ -782,7 +856,9 @@
           },
           "coupon": "Bruk denne kupongkoden for å få",
           "couponCode": "DETRANSAI",
-          "learnMore": "Lær mer og meld deg på ROGD Repair"
+          "learnMore": "Lær mer og meld deg på ROGD Repair",
+          "couponDiscount": "50 % rabatt på din første måned",
+          "couponSuffix": "av ROGD Repair-medlemskapet."
         }
       }
     },
@@ -1962,9 +2038,14 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "title": "Emner",
+    "description": "Grundig gjennomgang av detransisjon, kjønnsmedisin og relaterte emner.",
+    "empty": "Ingen emner er publisert ennå.",
+    "pagesInSection": "Sider i denne delen",
+    "relatedPages": "Relaterte sider",
+    "lastUpdated": "Sist oppdatert:",
+    "stubNotice": "Denne siden er en stubb og vil bli utvidet.",
+    "views": "{count, plural, one {# visning} other {# visninger}}"
   },
   "storiesPage": {
     "metadata": {

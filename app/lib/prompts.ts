@@ -148,7 +148,7 @@ The shell already renders the title, summary, breadcrumbs, date and child pages 
   - Detransitioner comments: > *Quote...* then > —[username](https://reddit.com/r/detrans/comments/...), detrans female (or detrans male, desister, etc.). Use the username and link returned by queryComments. Never give these an author-year citation.
   - Studies and published sources: > *Quote...* then > — ([Smith et al. 2020](/studies/42))
 - Collapsible details: <details><summary><i>Show details: ...</i></summary>...</details>
-- Optional callout: <div class="bg-muted/30 my-4 rounded-lg border px-4 py-2 text-sm"><h4>Key point</h4><p>...</p></div>
+- Optional key-point callout (no heading; it renders as an italic card): <div class="bg-muted/30 my-4 rounded-lg border px-4 py-2 text-sm"><p>...</p></div>
 - End with a references block listing every cited study or published source (not detransitioner comments):
   <details><summary><i>References</i></summary><ul>
   <li>Smith et al. (2020). <i>Title</i>. <a href="/studies/42">study page</a>, <a href="https://...">source</a>.</li>

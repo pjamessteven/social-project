@@ -126,11 +126,31 @@ const wikiMarked: Marked = new Marked({
   },
 });
 
-export function renderWikiMarkdown(markdown: string): {
+/**
+ * Drop the generic "Key point" heading the authoring model puts at the top of
+ * callouts; the card styling already marks them. Meaningful callout headings
+ * ("Not medical advice", ...) are kept.
+ */
+function stripKeyPointHeadings(html: string): string {
+  return html.replace(
+    /(<div\s+class="[^"]*bg-muted\/30[^"]*"[^>]*>)\s*<h4[^>]*>\s*Key points?\s*<\/h4>/gi,
+    "$1",
+  );
+}
+
+export function renderWikiMarkdown(
+  markdown: string,
+  options?: {
+    /** Maps an internal (root-relative) href to its canonical form. */
+    rewriteHref?: (href: string) => string;
+  },
+): {
   html: string;
   toc: WikiTocItem[];
 } {
-  const rawHtml = wikiMarked.parse(markdown, { async: false }) as string;
+  const rawHtml = stripKeyPointHeadings(
+    wikiMarked.parse(markdown, { async: false }) as string,
+  );
   const { html: withHeadingIds, toc } = extractHeadings(rawHtml);
 
   const html = sanitizeHtml(withHeadingIds, {
@@ -157,13 +177,28 @@ export function renderWikiMarkdown(markdown: string): {
     allowedSchemes: ["http", "https", "mailto"],
     allowProtocolRelative: false,
     transformTags: {
-      a: (tagName: string, attribs: Record<string, string>) => ({
-        tagName,
-        attribs: { ...attribs, rel: "noopener noreferrer" },
-      }),
-      // Callouts: enforce compact, small-text styling regardless of what the
-      // authoring model writes (support-page look, reduced vertical padding).
-      // The wiki-callout class lets the layout zero the prose text margins.
+      // Internal links are rewritten to their canonical URL (no redirect
+      // hops for crawlers); only external links get rel attributes.
+      a: (tagName: string, attribs: Record<string, string>) => {
+        const href = attribs.href ?? "";
+        if (href.startsWith("/") && !href.startsWith("//")) {
+          const { rel: _rel, ...rest } = attribs;
+          return {
+            tagName,
+            attribs: {
+              ...rest,
+              href: options?.rewriteHref?.(href) ?? href,
+            },
+          };
+        }
+        return {
+          tagName,
+          attribs: { ...attribs, rel: "noopener noreferrer" },
+        };
+      },
+      // Callouts: enforce the card look (same surface as the videos/studies/
+      // stats cards) regardless of what the authoring model writes. The
+      // wiki-callout class lets the layout zero the prose text margins.
       div: (tagName: string, attribs: Record<string, string>) =>
         attribs.class?.includes("bg-muted/30")
           ? {
@@ -171,7 +206,7 @@ export function renderWikiMarkdown(markdown: string): {
               attribs: {
                 ...attribs,
                 class:
-                  "wiki-callout bg-muted/30 my-4 rounded-lg border px-4 py-2 text-sm",
+                  "wiki-callout my-6 rounded-2xl border bg-white px-5 py-4 italic text-muted-foreground shadow-sm dark:bg-secondary",
               },
             }
           : { tagName, attribs },

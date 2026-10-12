@@ -1,11 +1,14 @@
 import { DocsLayout } from "@/app/components/content/DocsLayout";
 import { WikiAdminActions } from "@/app/components/content/WikiAdminActions";
 import { WikiTocLink } from "@/app/components/content/WikiTocLink";
+import { WikiViewTracker } from "@/app/components/content/WikiViewTracker";
 import { isAdmin } from "@/app/lib/auth/auth";
 import { renderWikiMarkdown } from "@/app/lib/markdown";
 import {
   buildLocalizedPath,
+  findPageByFinalSegment,
   getAllPagesWithSlugs,
+  getContentLocales,
   getLocalizedValue,
   getPageAncestors,
   getPageChildren,
@@ -13,12 +16,17 @@ import {
   resolvePageBySegments,
 } from "@/app/lib/pages";
 import { localeToBcp47, safeJsonLd, SITE_URL } from "@/app/lib/seo";
+import { buildWikiHrefRewriter } from "@/app/lib/wiki-links";
 import { localesInfo } from "@/i18n/locales";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
+import { notFound, permanentRedirect } from "next/navigation";
 import { cache } from "react";
 
-const DEFAULT_OG_IMAGE = `${SITE_URL}/x_card_lg.png`;
+const LOGO_URL = `${SITE_URL}/web-app-manifest-512x512.png`;
+const SITE_NAME = "detrans.ai";
+/** Longest <title> before the " | detrans.ai" suffix is dropped. */
+const MAX_TITLE_LENGTH = 60;
 
 type PageParams = Promise<{ locale: string; slug: string[] }>;
 
@@ -60,6 +68,28 @@ function localizedSummary(
   );
 }
 
+/**
+ * Locale whose URL is canonical for this page in `locale`: the locale itself
+ * when the body is translated, otherwise English (untranslated locales serve
+ * the English body, so indexing them would be 32 duplicates).
+ */
+function canonicalLocaleFor(
+  entry: { page: Parameters<typeof getContentLocales>[0] },
+  locale: string,
+): string {
+  return getContentLocales(entry.page).includes(locale) ? locale : "en";
+}
+
+function documentTitle(title: string): string {
+  const full = `${title} | ${SITE_NAME}`;
+  return full.length <= MAX_TITLE_LENGTH ? full : title;
+}
+
+function ogImageUrl(path: string, locale: string): string {
+  const params = new URLSearchParams({ path, locale });
+  return `${SITE_URL}/api/og/topic?${params.toString()}`;
+}
+
 function publicUrl(
   entry: Parameters<typeof buildLocalizedPath>[0],
   byId: Map<number, Parameters<typeof buildLocalizedPath>[0]>,
@@ -87,8 +117,11 @@ export async function generateMetadata({
   const title = localizedTitle(item, locale);
   const summary = localizedSummary(item, locale);
 
+  // hreflang only lists locales with a translated body.
+  const contentLocales = getContentLocales(item.page);
   const languages: Record<string, string> = {};
   for (const info of localesInfo) {
+    if (!contentLocales.includes(info.code)) continue;
     languages[localeToBcp47[info.code] ?? info.code] = publicUrl(
       item,
       byId,
@@ -97,10 +130,11 @@ export async function generateMetadata({
   }
   languages["x-default"] = publicUrl(item, byId, "en");
 
-  const canonical = publicUrl(item, byId, locale);
+  const canonical = publicUrl(item, byId, canonicalLocaleFor(item, locale));
+  const image = ogImageUrl(item.page.path, locale);
 
   return {
-    title: `${title} | detrans.ai`,
+    title: documentTitle(title),
     description: summary ?? undefined,
     alternates: {
       canonical,
@@ -110,8 +144,10 @@ export async function generateMetadata({
       title,
       description: summary ?? undefined,
       url: canonical,
-      siteName: "detrans.ai",
-      images: [DEFAULT_OG_IMAGE],
+      siteName: SITE_NAME,
+      // The layout's default og:locale only knows en/es/fr.
+      locale: (localeToBcp47[locale] ?? locale).replace("-", "_"),
+      images: [{ url: image, width: 1200, height: 630, alt: title }],
       type: "article",
       publishedTime: item.page.createdAt.toISOString(),
       modifiedTime: item.page.updatedAt.toISOString(),
@@ -120,6 +156,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description: summary ?? undefined,
+      images: [image],
     },
     robots: { index: true, follow: true },
   };
@@ -159,7 +196,7 @@ function PageLinkList({
           <li key={item.key}>
             <a
               href={item.href}
-              className="font-medium underline underline-offset-2"
+              className="font-medium no-underline decoration-1 underline-offset-4 hover:underline"
             >
               {item.title}
             </a>
@@ -182,18 +219,51 @@ export default async function WikiTopicPage({
 }) {
   const { locale, slug } = await params;
   const data = await loadWikiPage(locale, slug ?? []);
-  if (!data) notFound();
+  if (!data) {
+    // Moved pages and links missing their parent segments: 308 to the
+    // canonical URL when the final segment identifies exactly one page.
+    const moved = await findPageByFinalSegment(slug ?? [], locale, {
+      includeDrafts: await isAdmin(),
+    });
+    if (moved) {
+      const all = await getAllPagesWithSlugs();
+      const byId = new Map(all.map((entry) => [entry.page.id, entry]));
+      permanentRedirect(
+        `/${locale}/topics/${buildLocalizedPath(moved, byId, locale)}`,
+      );
+    }
+    notFound();
+  }
 
   const { item, byId, includeDrafts } = data;
   const { page } = item;
+  const t = await getTranslations({ locale, namespace: "topicsPage" });
+
+  // One URL per page and locale: the default-language path under a locale
+  // with its own translated slugs 308s to the localized path.
+  const localizedPath = buildLocalizedPath(item, byId, locale);
+  const requestedPath = (slug ?? [])
+    .map((segment) => {
+      try {
+        return decodeURIComponent(segment);
+      } catch {
+        return segment;
+      }
+    })
+    .join("/");
+  if (requestedPath !== localizedPath) {
+    permanentRedirect(`/${locale}/topics/${localizedPath}`);
+  }
 
   const title = localizedTitle(item, locale);
   const summary = localizedSummary(item, locale);
+  const contentLocale = canonicalLocaleFor(item, locale);
   const content =
     getLocalizedValue(page.contentTranslation, locale, page.content) ??
     page.content;
 
-  const { html, toc } = renderWikiMarkdown(content);
+  const rewriteHref = await buildWikiHrefRewriter(content, locale, byId);
+  const { html, toc } = renderWikiMarkdown(content, { rewriteHref });
 
   // Navigation: ancestors (breadcrumbs), children (hub index), siblings
   const ancestors = getPageAncestors(item, byId);
@@ -217,7 +287,7 @@ export default async function WikiTopicPage({
   }));
   const hasRelated = childrenItems.length > 0 || siblingItems.length > 0;
 
-  const canonical = publicUrl(item, byId, locale);
+  const canonical = publicUrl(item, byId, contentLocale);
   const isDraftPreview = includeDrafts && !page.published;
 
   const articleJsonLd = {
@@ -228,19 +298,20 @@ export default async function WikiTopicPage({
     datePublished: page.createdAt.toISOString(),
     dateModified: page.updatedAt.toISOString(),
     mainEntityOfPage: canonical,
-    inLanguage: localeToBcp47[locale] ?? locale,
+    inLanguage: localeToBcp47[contentLocale] ?? contentLocale,
+    image: ogImageUrl(page.path, locale),
     author: {
       "@type": "Organization",
-      name: "detrans.ai",
+      name: SITE_NAME,
       url: SITE_URL,
     },
     publisher: {
       "@type": "Organization",
-      name: "detrans.ai",
+      name: SITE_NAME,
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: DEFAULT_OG_IMAGE,
+        url: LOGO_URL,
       },
     },
   };
@@ -248,12 +319,20 @@ export default async function WikiTopicPage({
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [...ancestors, item].map((entry, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: localizedTitle(entry, locale),
-      item: publicUrl(entry, byId, locale),
-    })),
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: t("title"),
+        item: `${SITE_URL}/${locale}/topics`,
+      },
+      ...[...ancestors, item].map((entry, index) => ({
+        "@type": "ListItem",
+        position: index + 2,
+        name: localizedTitle(entry, locale),
+        item: publicUrl(entry, byId, canonicalLocaleFor(entry, locale)),
+      })),
+    ],
   };
 
   return (
@@ -272,69 +351,69 @@ export default async function WikiTopicPage({
               {childrenItems.length > 0 && (
                 <PageLinkList
                   compact
-                  heading="Pages in this section"
+                  heading={t("pagesInSection")}
                   items={childrenItems}
                 />
               )}
               {siblingItems.length > 0 && (
                 <PageLinkList
                   compact
-                  heading="Related pages"
+                  heading={t("relatedPages")}
                   items={siblingItems}
                 />
               )}
             </div>
           ) : undefined
         }
+        header={
+          <header
+            lang={contentLocale === locale ? undefined : contentLocale}
+            dir={contentLocale === locale ? undefined : "ltr"}
+          >
+            <h1 className="text-3xl font-bold">{title}</h1>
+            {summary && (
+              <p className="text-muted-foreground not-prose mt-2 mb-6 text-base">
+                {summary}
+              </p>
+            )}
+          </header>
+        }
+        // Breadcrumbs are hidden (JSON-LD BreadcrumbList is still emitted).
+        preface={
+          isDraftPreview && (
+            <div className="not-prose mb-4 rounded-lg border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-800 dark:border-amber-900/40 dark:bg-amber-950/20 dark:text-amber-300">
+              Draft preview — this page is not published and is only visible to
+              admins.
+            </div>
+          )
+        }
       >
-        {isDraftPreview && (
-          <div className="not-prose mb-4 rounded-lg border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-800 dark:border-amber-900/40 dark:bg-amber-950/20 dark:text-amber-300">
-            Draft preview — this page is not published and is only visible to
-            admins.
-          </div>
-        )}
-
-        {/* Breadcrumb trail only on subpages — on top-level pages it just
-            duplicates the H1. JSON-LD breadcrumbs are always emitted. */}
-        {ancestors.length > 0 && (
-          <nav aria-label="Breadcrumb" className="not-prose mb-4 text-sm">
-            <ol className="text-muted-foreground flex flex-wrap items-center gap-1.5">
-              {ancestors.map((ancestor) => (
-                <li
-                  key={ancestor.page.id}
-                  className="flex items-center gap-1.5"
-                >
-                  <a
-                    href={`/${locale}/topics/${buildLocalizedPath(ancestor, byId, locale)}`}
-                    className="hover:text-foreground underline-offset-2 hover:underline"
-                  >
-                    {localizedTitle(ancestor, locale)}
-                  </a>
-                  <span aria-hidden="true">/</span>
-                </li>
-              ))}
-              <li aria-current="page">{title}</li>
-            </ol>
-          </nav>
-        )}
-
-        <article>
-          <h1 className="text-3xl font-bold">{title}</h1>
-          {summary && (
-            <p className="text-muted-foreground not-prose mt-2 mb-6 text-base">
-              {summary}
-            </p>
-          )}
-
+        {/* Untranslated locales serve the English body: say so for crawlers
+            and screen readers. */}
+        <article
+          lang={contentLocale === locale ? undefined : contentLocale}
+          dir={contentLocale === locale ? undefined : "ltr"}
+        >
           <div dangerouslySetInnerHTML={{ __html: html }} />
 
           <p className="not-prose text-muted-foreground mt-10 text-sm">
-            Last updated:{" "}
+            {t("lastUpdated")}{" "}
             <time dateTime={page.updatedAt.toISOString()}>
               {page.updatedAt.toISOString().slice(0, 10)}
             </time>
-            {page.isStub && " · This page is a stub and will be expanded."}
+            {page.published && page.viewsCount > 0 && (
+              <>
+                {" · "}
+                {t("views", { count: page.viewsCount })}
+              </>
+            )}
+            {page.isStub && ` · ${t("stubNotice")}`}
           </p>
+
+          {/* Admins previewing/editing shouldn't inflate the count. */}
+          {page.published && !includeDrafts && (
+            <WikiViewTracker pageId={page.id} />
+          )}
 
           {includeDrafts && (
             <WikiAdminActions
@@ -352,12 +431,15 @@ export default async function WikiTopicPage({
               <div className="space-y-8">
                 {childrenItems.length > 0 && (
                   <PageLinkList
-                    heading="Pages in this section"
+                    heading={t("pagesInSection")}
                     items={childrenItems}
                   />
                 )}
                 {siblingItems.length > 0 && (
-                  <PageLinkList heading="Related pages" items={siblingItems} />
+                  <PageLinkList
+                    heading={t("relatedPages")}
+                    items={siblingItems}
+                  />
                 )}
               </div>
             </div>

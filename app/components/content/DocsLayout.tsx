@@ -18,6 +18,8 @@ export function DocsLayout({
   sidebarTitle,
   mobileTitle,
   sidebarExtras,
+  preface,
+  header,
   children,
 }: {
   toc: WikiTocItem[];
@@ -27,6 +29,13 @@ export function DocsLayout({
   mobileTitle?: ReactNode;
   /** Compact sections (e.g. child/related pages) shown under the TOC. */
   sidebarExtras?: ReactNode;
+  /**
+   * Content above the title (breadcrumbs, notices). Rendered above the
+   * TOC/article block so the desktop TOC lines up with the title.
+   */
+  preface?: ReactNode;
+  /** Title block; on narrow screens it renders above the jump-to box. */
+  header?: ReactNode;
   children: ReactNode;
 }) {
   // Only h2 sections are listed; h3+ subsections stay out of the TOC.
@@ -35,7 +44,8 @@ export function DocsLayout({
     .map((entry) => ({ id: entry.id, text: entry.text }));
 
   const prose = (
-    <div className="prose dark:prose-invert w-full !max-w-4xl pb-16 lg:pt-8 [&_.wiki-callout_p]:my-1 [&_.wiki-callout>*:first-child]:mt-0 [&_.wiki-callout>*:last-child]:mb-0 [&_details]:cursor-pointer [&_summary]:cursor-pointer">
+    <div className="prose dark:prose-invert w-full !max-w-4xl pb-16 [&_.wiki-callout_p]:my-1 [&_.wiki-callout>*:first-child]:mt-0 [&_.wiki-callout>*:last-child]:mb-0 [&_details]:cursor-pointer [&_summary]:cursor-pointer">
+      {header}
       {tocItems.length > 0 && (
         <div className="prose-none bg-muted/50 mb-8 rounded-lg border p-4 xl:hidden">
           {mobileTitle && (
@@ -55,15 +65,18 @@ export function DocsLayout({
     // out of flow, so it never pushes the prose off-center; its inner box is
     // what sticks while scrolling.
     <div className="flex min-h-full w-full justify-center">
-      <div className="relative w-full max-w-4xl 2xl:-mx-16 2xl:w-[calc(100%_+_8rem)]">
-        {(tocItems.length > 0 || sidebarExtras) && (
-          <WikiTocAside
-            items={tocItems}
-            title={sidebarTitle}
-            extras={sidebarExtras}
-          />
-        )}
-        {prose}
+      <div className="w-full max-w-4xl lg:pt-8 2xl:-mx-16 2xl:w-[calc(100%_+_8rem)]">
+        {preface && <div className="max-w-4xl">{preface}</div>}
+        <div className="relative">
+          {(tocItems.length > 0 || sidebarExtras) && (
+            <WikiTocAside
+              items={tocItems}
+              title={sidebarTitle}
+              extras={sidebarExtras}
+            />
+          )}
+          {prose}
+        </div>
       </div>
     </div>
   );

@@ -732,6 +732,7 @@ export const pages = pgTable(
     contentTranslation: text("content_translation"), // JSON { locale: markdown }
     published: boolean("published").default(false).notNull(),
     isStub: boolean("is_stub").default(false).notNull(),
+    viewsCount: integer("views_count").default(0).notNull(),
     createdBy: varchar("created_by", { length: 255 }),
     updatedBy: varchar("updated_by", { length: 255 }),
     createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -776,6 +777,7 @@ export const pageSchema = z.object({
   contentTranslation: z.string().nullable(),
   published: z.boolean(),
   isStub: z.boolean(),
+  viewsCount: z.number().int().min(0).default(0),
   createdBy: z.string().max(255).nullable(),
   updatedBy: z.string().max(255).nullable(),
   createdAt: z.date(),

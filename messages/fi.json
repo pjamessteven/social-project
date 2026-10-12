@@ -702,7 +702,8 @@
       "genderAffirmingCare": {
         "title": "Sukupuolen Vahvistava Hoito: Mikä se on?",
         "description": "Sukupuolen vahvistava hoito on tällä hetkellä standardi (ja usein ainoa) hoitovaihtoehto sukupuolidysforialle, jota terveydenhuollon tarjoajat tarjoavat länsimaissa. Sukupuolen vahvistava hoito tunnistaa käytännössä yhteiskunnan sukupuoliodotukset ja sopeuttaa sitten potilaan niihin. Se on vaiheittainen lähestymistapa, joka alkaa sosiaalisella siirtymällä (nimi, pronominit, vaatetus), sitten hormoniterapialla ja sitten joillekin, peruuttamattomilla kirurgisilla toimenpiteillä. Sukupuolen vahvistava hoito voi tarjota helpotusta sukupuolidysforiaan, mutta se tulee vakavien terveysriskien ja usein pysyvien sivuvaikutusten kanssa. Edetään äärimmäisellä varovaisuudella ja varmista, että",
-        "watchTestimonies": "katsoit joitakin todistuksia"
+        "watchTestimonies": "katsoit joitakin todistuksia",
+        "afterTestimonies": "ihmisiltä, jotka ovat kulkeneet tämän polun ennen kuin lähdet itse sille."
       },
       "genderExploratoryTherapy": {
         "title": "Sukupuolen Tutkiva Terapia: Mikä se on?",
@@ -755,6 +756,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "Tukea Australiassa ja Uudessa-Seelannissa",
+        "sidebar": "Australia ja Uusi-Seelanti",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "Detrans Hub on detransitioituneiden johtama ruohonjuuritason järjestö, joka tarjoaa vertaistukea, käytännön resursseja ja vaikuttamistyötä aikuisille (18+) Australiassa ja Aotearoa Uudessa-Seelannissa, jotka detransitioituvat, luopuvat transitiosta, harkitsevat sitä uudelleen tai muuttavat sukupuoleen liittyviä hoitotavoitteitaan. Heidän mottonsa on ”Ole ystävällinen. Ole utelias.” He eivät ohjaa ketään kohti transitiota, detransitiota tai mitään tiettyä identiteettiä, eikä sinun tarvitse käyttää tiettyä nimitystä tai tietää kaikkea etukäteen ottaaksesi yhteyttä.",
+          "peerSupport": "<b>Vertaistuki:</b> yksityinen, vain kutsulla avoin Discord-yhteisö aikuisille Australiassa ja Aotearoa Uudessa-Seelannissa. Lähetä lyhyt viesti heidän tukilomakkeensa kautta, niin he varmistavat kelpoisuutesi ennen kutsun lähettämistä.",
+          "resources": "<b>Käytännön resurssit:</b> oppaat jokaiseen Australian osavaltioon ja territorioon nimen ja asiakirjojen muuttamisesta, potilastietojen saamisesta ja terveydenhuoltoa koskevista valituksista, sekä vastaanottosuunnittelija, mukaan otettavia kysymyksiä ja muokattava sähköposti, jolla voit kysyä vastaanotolta asioita ennen ajanvarausta.",
+          "directory": "<b>Directory Project:</b> luettelo ammattilaisista Australiassa ja Uudessa-Seelannissa, jotka ovat valmiita työskentelemään ihmisten kanssa, jotka muuttavat, lopettavat, perääntyvät tai harkitsevat uudelleen sukupuoleen liittyvää hoitoa. Se on vielä kehitteillä eikä vielä julkinen.",
+          "advocacy": "<b>Vaikuttamistyö:</b> työtä Australiassa hoidon jatkuvuuden puolesta, kun hoitotavoitteet muuttuvat, tutkimuksen puolesta, joka tavoittaa detransitiokokemukset, sekä selkeämmän tiedon puolesta potilaan oikeuksista, potilastiedoista ja valituksista.",
+          "note": "Detrans Hub ei tarjoa lääketieteellistä neuvontaa eikä kriisiapua. Jos tarvitset kiireellistä apua, katso heidän kriisituen sivunsa.",
+          "getSupport": "Hae tukea Detrans Hubilta",
+          "peerSupportLink": "Liity Detrans Hubin vertaisyhteisöön",
+          "resourcesLink": "Detrans Hubin resurssit",
+          "crisisLink": "Kriisituki Australiassa ja Uudessa-Seelannissa",
+          "about": "Tietoa Detrans Hubista"
+        }
+      },
+      "northAmerica": {
+        "title": "Tukea Pohjois-Amerikassa",
+        "sidebar": "Pohjois-Amerikka",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "Yhdysvallat · palvelee maailmanlaajuisesti",
+            "description": "Detransitioituneiden ylläpitämä voittoa tavoittelematon järjestö detransitioituneille. Detrans Help toimii Yhdysvalloissa, mutta on avoin detransitioituneille kaikkialla maailmassa. Se ohjaa vertaistuen, mielenterveysneuvonnan, kliinikoiden, perheille suunnattujen palvelujen ja oikeudellisten resurssien pariin sekä seuraa aiheeseen liittyvää tutkimusta ja oikeustapauksia.",
+            "link": "Vieraile Detrans Helpissä"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "Yhdysvallat",
+            "description": "Voittoa tavoittelematon terveydenhuollon ammattilaisten verkosto, joka auttaa ihmisiä, jotka haluavat lopettaa murrosiän estäjät tai vastakkaisen sukupuolen hormonit ja palauttaa luonnollisen hormonitoimintansa, mukaan lukien tuki hormonikorvaushoidon seurannassa. Se julkaisee myös ohjeita ja detransitioituneiden kertomuksia.",
+            "link": "Vieraile Resilience Health Networkissa"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "Kanada",
+            "description": "Kanadalainen verkosto, jossa detransitioituneet, transitiosta luopuneet tai sitä katuvat sekä heidän ystävänsä auttavat toisiaan löytämään lääketieteelliset palvelut, joita he tarvitsevat toipuakseen transitiosta. Se auttaa myös oikeudellisissa kysymyksissä, tarjoaa yhteisön tukea ja ajaa detransitioituneiden asiaa Kanadan politiikassa.",
+            "link": "Vieraile Detrans Alliance Canadassa"
+          }
+        }
+      },
+      "europe": {
+        "title": "Tukea Euroopassa",
+        "sidebar": "Eurooppa",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "Kansainvälinen · 9 kieltä",
+            "description": "Kokoelma naispuolisten detransitioituneiden ja transitiosta luopuneiden kertomuksia englanniksi, ranskaksi, saksaksi, espanjaksi, venäjäksi, italiaksi, serbiaksi, portugaliksi ja hollanniksi. Post Trans julkaisee myös tietovihkosen detransitiosta, ja voit lähettää oman tarinasi.",
+            "link": "Vieraile Post Transissa"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "Suomi · suomeksi",
+            "description": "Suomenkielinen sivusto, jossa on tietoa detransitiosta, opas detransitioprosessiin ja henkilökohtaisia kokemuksia. Sivusto ylläpitää myös suomenkielistä Discord-palvelinta detransitioituneille naisille.",
+            "link": "Vieraile Detrans.fi-sivustolla",
+            "discord": "Suomenkielinen Discord-palvelin detransitioituneille naisille"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "Tukea Latinalaisessa Amerikassa",
+        "sidebar": "Latinalainen Amerikka",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "Chile · espanjaksi",
+            "description": "Espanjankielinen hanke, jota johtaa tutkija, jolla on omakohtaista kokemusta detransitiosta. Hanke julkaisee tutkimusta, artikkeleita ja omakohtaisia kertomuksia detransitiosta Chilessä ja Latinalaisessa Amerikassa.",
+            "link": "Vieraile Detrans Chilessä"
+          }
+        }
+      },
       "forParents": {
         "title": "Resurssit Vanhemmille",
         "intro": "Jos lapsesi on äskettäin tullut ulos transsukupuolisena, saatat tuntea hämmennystä, huolta ja epävarmuutta siitä, kuinka parhaiten tukea häntä samalla suojellen hänen pitkän aikavälin terveyttään ja hyvinvointiaan.",
@@ -774,7 +848,9 @@
           },
           "coupon": "Käytä tätä kuponkikoodia saadaksesi",
           "couponCode": "DETRANSAI",
-          "learnMore": "Lisätietoja ja ilmoittautuminen ROGD Repairiin"
+          "learnMore": "Lisätietoja ja ilmoittautuminen ROGD Repairiin",
+          "couponDiscount": "50 %:n alennuksen",
+          "couponSuffix": "ROGD Repair -jäsenyyden ensimmäisestä kuukaudesta."
         }
       }
     },
@@ -1954,9 +2030,14 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "title": "Aiheet",
+    "description": "Perusteellisia artikkeleita detransitiosta, sukupuolilääketieteestä ja niihin liittyvistä aiheista.",
+    "empty": "Aiheita ei ole vielä julkaistu.",
+    "pagesInSection": "Tämän osion sivut",
+    "relatedPages": "Aiheeseen liittyvät sivut",
+    "lastUpdated": "Päivitetty viimeksi:",
+    "stubNotice": "Tämä sivu on tynkä, ja sitä laajennetaan.",
+    "views": "{count, plural, one {# katselu} other {# katselua}}"
   },
   "storiesPage": {
     "metadata": {

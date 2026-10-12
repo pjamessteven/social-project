@@ -64,6 +64,63 @@ export default async function SupportPage({
   const t = await getTranslations({ locale, namespace: "supportPage" });
   const isEnglish = locale === "en";
 
+  const regionalSupport = [
+    {
+      key: "northAmerica",
+      id: "north-america",
+      organizations: [
+        {
+          key: "detransHelp",
+          id: "detrans-help",
+          links: [{ key: "link", href: "https://detranshelp.org/" }],
+        },
+        {
+          key: "resilienceHealth",
+          id: "resilience-health-network",
+          links: [{ key: "link", href: "https://resiliencehealth.network/" }],
+        },
+        {
+          key: "detransAllianceCanada",
+          id: "detrans-alliance-canada",
+          links: [{ key: "link", href: "https://detransalliancecanada.com/" }],
+        },
+      ],
+    },
+    {
+      key: "europe",
+      id: "europe",
+      organizations: [
+        {
+          key: "postTrans",
+          id: "post-trans",
+          links: [{ key: "link", href: "https://post-trans.com/" }],
+        },
+        {
+          key: "detransFi",
+          id: "detrans-fi",
+          links: [
+            {
+              key: "discord",
+              href: "https://www.detrans.fi/pages/posts/suomenkielinen-discord-serveri-detransitioituville-naisille",
+            },
+            { key: "link", href: "https://www.detrans.fi/" },
+          ],
+        },
+      ],
+    },
+    {
+      key: "latinAmerica",
+      id: "latin-america",
+      organizations: [
+        {
+          key: "detransChile",
+          id: "detrans-chile",
+          links: [{ key: "link", href: "https://detransch.substack.com/" }],
+        },
+      ],
+    },
+  ];
+
   const navigationItems = [
     {
       title: t("sections.onlineSupport.title"),
@@ -101,6 +158,24 @@ export default async function SupportPage({
         },
       ],
     },
+    {
+      title: t("sections.australiaNewZealand.sidebar"),
+      href: "#australia-new-zealand",
+      children: [
+        {
+          title: t("sections.australiaNewZealand.detransHub.name"),
+          href: "#detrans-hub",
+        },
+      ],
+    },
+    ...regionalSupport.map(({ key, id, organizations }) => ({
+      title: t(`sections.${key}.sidebar`),
+      href: `#${id}`,
+      children: organizations.map((org) => ({
+        title: t(`sections.${key}.organizations.${org.key}.name`),
+        href: `#${org.id}`,
+      })),
+    })),
     {
       title: t("sections.forParents.title"),
       href: "#for-parents",
@@ -180,7 +255,7 @@ export default async function SupportPage({
         <Link prefetch={false} href="/videos" className="underline">
           {t("sections.genderAffirmingCare.watchTestimonies")}
         </Link>{" "}
-        from people who have been down this path before going down it yourself.
+        {t("sections.genderAffirmingCare.afterTestimonies")}
       </p>
 
       <h2 id="gender-exploratory-therapy">
@@ -267,7 +342,7 @@ export default async function SupportPage({
         </div>
       </details>
 
-      <p>
+      <div>
         {t("sections.genderExploratoryTherapy.florenceAshley.description")}
         <details className="mt-4 cursor-pointer">
           <summary>
@@ -435,7 +510,7 @@ export default async function SupportPage({
             </table>
           </div>
         </details>
-      </p>
+      </div>
 
       <h2 id="find-a-therapist">{t("sections.findTherapist.title")}</h2>
 
@@ -639,6 +714,84 @@ export default async function SupportPage({
         </a>
       </p>
 
+      <h2 id="australia-new-zealand">
+        {t("sections.australiaNewZealand.title")}
+      </h2>
+
+      <a href="https://detranshub.org/" target="_blank" className="underline">
+        <h3 id="detrans-hub">
+          <b>{t("sections.australiaNewZealand.detransHub.name")}</b>
+        </h3>
+      </a>
+      <p>{t("sections.australiaNewZealand.detransHub.description")}</p>
+      <ul>
+        {(["peerSupport", "resources", "directory", "advocacy"] as const).map(
+          (key) => (
+            <li key={key}>
+              {t.rich(`sections.australiaNewZealand.detransHub.${key}`, {
+                b: (chunks) => <b>{chunks}</b>,
+              })}
+            </li>
+          ),
+        )}
+      </ul>
+      <p>
+        <em>{t("sections.australiaNewZealand.detransHub.note")}</em>
+      </p>
+      {(
+        [
+          ["getSupport", "https://detranshub.org/support/"],
+          ["peerSupportLink", "https://detranshub.org/peer-support/"],
+          ["resourcesLink", "https://detranshub.org/resources/"],
+          ["crisisLink", "https://detranshub.org/crisis-support/"],
+          ["about", "https://detranshub.org/about/"],
+        ] as const
+      ).map(([key, href]) => (
+        <p key={key}>
+          <a href={href} target="_blank" className="underline">
+            <b>
+              {t(`sections.australiaNewZealand.detransHub.${key}`)} {"->"}
+            </b>
+          </a>
+        </p>
+      ))}
+
+      {regionalSupport.map(({ key, id, organizations }) => (
+        <section key={key}>
+          <h2 id={id}>{t(`sections.${key}.title`)}</h2>
+          {organizations.map((org, i) => (
+            <div key={org.key}>
+              {i > 0 && <div className="border-t" />}
+              <a
+                href={org.links.at(-1)!.href}
+                target="_blank"
+                className="underline"
+              >
+                <h3 id={org.id}>
+                  <b>{t(`sections.${key}.organizations.${org.key}.name`)}</b>
+                </h3>
+              </a>
+              <p>
+                <em>{t(`sections.${key}.organizations.${org.key}.region`)}</em>
+              </p>
+              <p>{t(`sections.${key}.organizations.${org.key}.description`)}</p>
+              {org.links.map((link) => (
+                <p key={link.key}>
+                  <a href={link.href} target="_blank" className="underline">
+                    <b>
+                      {t(
+                        `sections.${key}.organizations.${org.key}.${link.key}`,
+                      )}{" "}
+                      {"->"}
+                    </b>
+                  </a>
+                </p>
+              ))}
+            </div>
+          ))}
+        </section>
+      ))}
+
       <h2 id="for-parents">{t("sections.forParents.title")}</h2>
       <p>{t("sections.forParents.intro")}</p>
 
@@ -680,9 +833,9 @@ export default async function SupportPage({
               <p className="mt-0 mb-0">
                 {t("sections.forParents.rogdRepair.coupon")}{" "}
                 <strong className="text-green-800 dark:text-green-300">
-                  50% off your first month
+                  {t("sections.forParents.rogdRepair.couponDiscount")}
                 </strong>{" "}
-                of ROGD Repair membership.
+                {t("sections.forParents.rogdRepair.couponSuffix")}
               </p>
             </div>
 

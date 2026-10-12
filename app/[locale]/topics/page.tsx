@@ -50,27 +50,35 @@ function TopicEntry({
   locale: string;
   heading: boolean;
 }) {
-  const href = `/${locale}/topics/${node.path}`;
+  const href = `/${locale}/topics/${node.localizedPath}`;
   return (
-    <li>
-      {heading ? (
-        <h2 className="mt-6 mb-1">
-          <a href={href} className="no-underline hover:underline">
+    // Prose sets li margins, so the gap after a top-level section has to win
+    // over it explicitly.
+    <li className={heading ? "!mb-12 pl-0" : "pl-0"}>
+      {/* Title and summary form one link target; hovering anywhere in it
+          underlines the title. */}
+      <a href={href} className="group block font-normal no-underline">
+        {heading ? (
+          <h2
+            id={node.path}
+            className="mt-6 mb-1 decoration-1 underline-offset-4 group-hover:underline"
+          >
             {node.title}
-          </a>
-        </h2>
-      ) : (
-        <a href={href} className="font-medium">
-          {node.title}
-        </a>
-      )}
-      {node.summary && (
-        <p className="text-muted-foreground mt-0 mb-2 text-sm">
-          {node.summary}
-        </p>
-      )}
+          </h2>
+        ) : (
+          <span className="font-medium decoration-1 underline-offset-4 group-hover:underline">
+            {node.title}
+          </span>
+        )}
+        {node.summary && (
+          <p className="text-muted-foreground mt-0 mb-2 text-sm">
+            {node.summary}
+          </p>
+        )}
+      </a>
       {node.children.length > 0 && (
-        <ul className="mt-2 ml-5 space-y-3">
+        // A thin rule down the side ties each level to its parent.
+        <ul className="border-muted-foreground/25 mt-2 mb-6 ml-0.5 list-none space-y-3 border-l pl-3 sm:pl-5">
           {node.children.map((child) => (
             <TopicEntry
               key={child.path}
@@ -105,9 +113,16 @@ export default async function TopicsHubPage({
       "@type": "Article",
       name: node.title,
       description: node.summary ?? undefined,
-      url: `${SITE_URL}/${locale}/topics/${node.path}`,
+      url: `${SITE_URL}/${locale}/topics/${node.localizedPath}`,
     })),
   };
+
+  // Sidebar TOC covers the top-level topics only (their h2s carry the ids).
+  const toc = tree.map((node) => ({
+    id: node.path,
+    text: node.title,
+    level: 2,
+  }));
 
   return (
     <>
@@ -115,16 +130,21 @@ export default async function TopicsHubPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionJsonLd) }}
       />
-      <DocsLayout toc={[]}>
-        <h1 className="text-3xl font-bold">{t("title")}</h1>
-        <p className="text-muted-foreground not-prose mt-2 mb-6 text-base">
-          {t("description")}
-        </p>
-
+      <DocsLayout
+        toc={toc}
+        header={
+          <header>
+            <h1 className="text-3xl font-bold">{t("title")}</h1>
+            <p className="text-muted-foreground not-prose mt-2 mb-6 text-base">
+              {t("description")}
+            </p>
+          </header>
+        }
+      >
         {tree.length === 0 ? (
           <p className="text-muted-foreground">{t("empty")}</p>
         ) : (
-          <ul className="space-y-4">
+          <ul className="list-none pl-0">
             {tree.map((node) => (
               <TopicEntry key={node.path} node={node} locale={locale} heading />
             ))}

@@ -710,7 +710,8 @@
       "genderAffirmingCare": {
         "title": "성별 확정적 치료: 무엇인가?",
         "description": "성별 확정적 치료는 현재 서양의 의료 제공자가 제공하는 성별 불쾌감에 대한 표준(그리고 종종 유일한) 치료 옵션입니다. 성별 확정적 치료는 본질적으로 사회의 성별화된 기대를 인식한 다음 환자를 그에 적응시킵니다. 사회적 전환(이름, 대명사, 의류)으로 시작하여 호르몬 치료로 이어지고, 일부에게는 되돌릴 수 없는 수술 절차로 이어지는 단계별 접근 방식입니다. 성별 확정적 치료는 성별 불쾌감에 대한 완화를 제공할 수 있지만 심각한 건강 위험이 있으며 종종 영구적인 부작용이 따릅니다. 극도로 주의하고",
-        "watchTestimonies": "증언을 보세요"
+        "watchTestimonies": "증언을 보세요",
+        "afterTestimonies": "(직접 이 길을 걷기 전에, 이미 이 길을 걸어온 사람들의 증언입니다)."
       },
       "genderExploratoryTherapy": {
         "title": "성별 탐구적 치료: 무엇인가?",
@@ -763,6 +764,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "호주 및 뉴질랜드의 지원",
+        "sidebar": "호주 및 뉴질랜드",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "Detrans Hub는 디트랜지셔너가 이끄는 풀뿌리 단체로, 호주와 아오테아로아 뉴질랜드에서 디트랜지션 중이거나, 트랜지션을 그만두었거나, 트랜지션을 재고하고 있거나, 성별 관련 의료 목표를 바꾸고 있는 성인(18세 이상)에게 동료 지원, 실용적인 자료, 옹호 활동을 제공합니다. 이들의 모토는 \"친절하라. 호기심을 가져라.\"입니다. 누구도 트랜지션, 디트랜지션 또는 특정 정체성 쪽으로 이끌지 않으며, 연락하기 위해 특정한 명칭을 쓰거나 모든 것을 정리해 둘 필요가 없습니다.",
+          "peerSupport": "<b>동료 지원:</b> 호주와 아오테아로아 뉴질랜드의 성인을 위한 초대제 비공개 Discord 커뮤니티입니다. 지원 양식을 통해 짧은 메시지를 보내면, 초대하기 전에 참여 자격을 확인합니다.",
+          "resources": "<b>실용적인 자료:</b> 호주의 각 주와 준주별로 이름 및 서류 변경, 의료 기록 열람, 의료 관련 민원 제기에 관한 안내서가 있으며, 진료 계획 도구, 가져갈 질문 목록, 예약 전에 병원에 문의할 수 있는 편집 가능한 이메일도 제공합니다.",
+          "directory": "<b>Directory Project:</b> 성별 관련 의료를 변경, 중단, 되돌리거나 재고하는 사람들과 기꺼이 함께 일하려는 호주와 뉴질랜드 전문가의 명부입니다. 아직 개발 중이며 공개되지 않았습니다.",
+          "advocacy": "<b>옹호 활동:</b> 호주에서 치료 목표가 바뀔 때의 돌봄 연속성, 디트랜지션 경험을 담아내는 연구, 그리고 환자 권리·의료 기록·민원에 관한 더 명확한 정보를 위해 활동합니다.",
+          "note": "Detrans Hub는 의학적 조언이나 긴급 지원을 제공하지 않습니다. 긴급한 도움이 필요하다면 이들의 위기 지원 페이지를 확인하세요.",
+          "getSupport": "Detrans Hub에서 지원 받기",
+          "peerSupportLink": "Detrans Hub 동료 커뮤니티 참여하기",
+          "resourcesLink": "Detrans Hub 자료",
+          "crisisLink": "호주 및 뉴질랜드의 위기 지원",
+          "about": "Detrans Hub 소개"
+        }
+      },
+      "northAmerica": {
+        "title": "북미의 지원",
+        "sidebar": "북미",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "미국 · 전 세계 대상",
+            "description": "디트랜지셔너가 운영하는, 디트랜지셔너를 위한 비영리 단체입니다. Detrans Help는 미국에 기반을 두고 있지만 전 세계의 디트랜지셔너에게 열려 있으며, 동료 지원, 정신 건강 상담, 임상의, 가족 서비스, 법률 자료와 연결해 줍니다. 관련 연구와 소송도 추적합니다.",
+            "link": "Detrans Help 방문하기"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "미국",
+            "description": "사춘기 차단제나 교차 성호르몬을 중단하고 본래의 호르몬 기능을 회복하려는 사람들을 돕는 의료 전문가 비영리 네트워크로, 호르몬 대체 요법 모니터링 지원도 포함합니다. 안내 자료와 디트랜지셔너들의 이야기도 게시합니다.",
+            "link": "Resilience Health Network 방문하기"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "캐나다",
+            "description": "디트랜지셔너, 트랜지션을 그만두었거나 후회하는 사람들, 그리고 그 친구들로 이루어진 캐나다 네트워크로, 트랜지션에서 회복하는 데 필요한 의료 서비스를 찾도록 서로 돕습니다. 법적 선택지에 대한 도움, 공동체 지원, 캐나다 정치에서 디트랜지셔너를 위한 옹호 활동도 합니다.",
+            "link": "Detrans Alliance Canada 방문하기"
+          }
+        }
+      },
+      "europe": {
+        "title": "유럽의 지원",
+        "sidebar": "유럽",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "국제 · 9개 언어",
+            "description": "여성 디트랜지셔너와 트랜지션을 그만둔 여성들의 이야기를 모은 곳으로, 영어, 프랑스어, 독일어, 스페인어, 러시아어, 이탈리아어, 세르비아어, 포르투갈어, 네덜란드어로 제공됩니다. Post Trans는 디트랜지션에 관한 정보 책자도 발행하며, 자신의 이야기를 보낼 수도 있습니다.",
+            "link": "Post Trans 방문하기"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "핀란드 · 핀란드어",
+            "description": "디트랜지션에 관한 정보, 디트랜지션 과정 안내, 개인 경험담을 담은 핀란드어 사이트입니다. 디트랜지션한 여성을 위한 핀란드어 Discord 서버도 운영합니다.",
+            "link": "Detrans.fi 방문하기",
+            "discord": "디트랜지션한 여성을 위한 핀란드어 Discord 서버"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "라틴아메리카의 지원",
+        "sidebar": "라틴아메리카",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "칠레 · 스페인어",
+            "description": "디트랜지션을 직접 경험한 연구자가 이끄는 스페인어 프로젝트로, 칠레와 라틴아메리카의 디트랜지션에 관한 연구, 기사, 당사자 증언을 발표합니다.",
+            "link": "Detrans Chile 방문하기"
+          }
+        }
+      },
       "forParents": {
         "title": "부모를 위한 자원",
         "intro": "귀하의 자녀가 최근 트랜스젠더로 커밍아웃했다면 혼란스럽고 걱정되며 장기적인 건강과 안녕을 보호하면서도 그들을 가장 잘 지원하는 방법을 잘 모르겠을 수 있습니다.",
@@ -782,7 +856,9 @@
           },
           "coupon": "이 쿠폰 코드를 사용하여",
           "couponCode": "DETRANSAI",
-          "learnMore": "ROGD 리페어에 대해 자세히 알아보고 가입하기"
+          "learnMore": "ROGD 리페어에 대해 자세히 알아보고 가입하기",
+          "couponDiscount": "첫 달 50% 할인",
+          "couponSuffix": "혜택으로 ROGD Repair 멤버십을 시작하세요."
         }
       }
     },
@@ -1962,9 +2038,14 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "title": "주제",
+    "description": "탈전환, 젠더 의학 및 관련 주제에 대한 심층 탐구.",
+    "empty": "아직 게시된 주제가 없습니다.",
+    "pagesInSection": "이 섹션의 페이지",
+    "relatedPages": "관련 페이지",
+    "lastUpdated": "마지막 업데이트:",
+    "stubNotice": "이 페이지는 아직 미완성이며 확장될 예정입니다.",
+    "views": "{count, plural, other {조회수 #회}}"
   },
   "storiesPage": {
     "metadata": {

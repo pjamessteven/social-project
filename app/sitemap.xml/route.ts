@@ -1,4 +1,8 @@
-import { buildLocalizedPath, getAllPagesWithSlugs } from "@/app/lib/pages";
+import {
+  buildLocalizedPath,
+  getAllPagesWithSlugs,
+  getContentLocales,
+} from "@/app/lib/pages";
 import { getListedStories } from "@/app/lib/stories";
 import { getStoryPath } from "@/app/lib/story-urls";
 import {
@@ -284,9 +288,15 @@ export async function GET(request: NextRequest) {
     alternates?: Record<string, string>;
   }> = [];
 
+  // Only locales with a translated body are emitted (untranslated locales
+  // canonicalize to English on the page itself).
   for (const entry of wikiPages) {
+    const contentLocales = getContentLocales(entry.page);
+    const pageLocales = sitemapLocales.filter((locale) =>
+      contentLocales.includes(locale),
+    );
     const alternates: Record<string, string> = {};
-    for (const locale of sitemapLocales) {
+    for (const locale of pageLocales) {
       alternates[locale] = `${baseUrl}/${locale}/topics/${buildLocalizedPath(
         entry,
         wikiById,
@@ -300,7 +310,7 @@ export async function GET(request: NextRequest) {
         defaultLocale,
       )}`;
 
-    for (const locale of sitemapLocales) {
+    for (const locale of pageLocales) {
       topicRoutes.push({
         url: alternates[locale],
         lastModified: entry.page.updatedAt.toISOString(),

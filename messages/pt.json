@@ -710,7 +710,8 @@
       "genderAffirmingCare": {
         "title": "Atendimento de Afirmação de Gênero: O que é?",
         "description": "O atendimento de afirmação de gênero é atualmente o padrão (e frequentemente o único) opção de tratamento para disforia de gênero oferecida por provedores de saúde no mundo ocidental. O atendimento de afirmação de gênero essencialmente reconhece as expectativas de gênero da sociedade e então adapta o paciente a elas. É uma abordagem em estágios que começa com transição social (nome, pronomes, roupas), depois terapia hormonal, e então para alguns, procedimentos cirúrgicos irreversíveis. O atendimento de afirmação de gênero pode fornecer alívio para disforia de gênero, mas vem com sérios riscos à saúde e frequentemente efeitos colaterais permanentes. Proceda com extrema cautela, e certifique-se de",
-        "watchTestimonies": "assistir alguns testemunhos"
+        "watchTestimonies": "assistir alguns testemunhos",
+        "afterTestimonies": "de pessoas que já percorreram esse caminho antes de você seguir por ele."
       },
       "genderExploratoryTherapy": {
         "title": "Terapia Exploratória de Gênero: O que é?",
@@ -763,6 +764,79 @@
           }
         }
       },
+      "australiaNewZealand": {
+        "title": "Apoio na Austrália e Nova Zelândia",
+        "sidebar": "Austrália e Nova Zelândia",
+        "detransHub": {
+          "name": "Detrans Hub",
+          "description": "O Detrans Hub é uma organização comunitária liderada por pessoas destransicionadas que oferece apoio entre pares, recursos práticos e defesa de direitos para adultos (18+) na Austrália e em Aotearoa Nova Zelândia que estão destransicionando, desistindo, reconsiderando a transição ou mudando seus objetivos de cuidados de saúde relacionados ao gênero. O lema deles é \"Seja gentil. Seja curioso.\" Eles não direcionam ninguém para a transição, a destransição ou qualquer identidade específica, e você não precisa usar um rótulo específico nem ter tudo resolvido para entrar em contato.",
+          "peerSupport": "<b>Apoio entre pares:</b> uma comunidade privada no Discord, apenas por convite, para adultos na Austrália e em Aotearoa Nova Zelândia. Envie uma mensagem curta pelo formulário de apoio deles e eles confirmarão sua elegibilidade antes de convidar você.",
+          "resources": "<b>Recursos práticos:</b> guias para cada estado e território australiano sobre mudança de nome e documentos, acesso a prontuários médicos e reclamações sobre serviços de saúde, além de um planejador de consultas, perguntas para levar com você e um e-mail editável para fazer perguntas a um consultório antes de marcar.",
+          "directory": "<b>Directory Project:</b> um diretório de profissionais na Austrália e na Nova Zelândia dispostos a trabalhar com pessoas que estão mudando, interrompendo, revertendo ou reconsiderando cuidados de saúde relacionados ao gênero. Ainda está em desenvolvimento e não é público.",
+          "advocacy": "<b>Defesa de direitos:</b> trabalham na Austrália pela continuidade do cuidado quando os objetivos do tratamento mudam, por pesquisas que captem as experiências de destransição e por informações mais claras sobre direitos dos pacientes, prontuários e reclamações.",
+          "note": "O Detrans Hub não oferece aconselhamento médico nem apoio de emergência. Se você precisa de ajuda urgente, consulte a página de apoio em crise deles.",
+          "getSupport": "Obtenha apoio do Detrans Hub",
+          "peerSupportLink": "Participe da comunidade de pares do Detrans Hub",
+          "resourcesLink": "Recursos do Detrans Hub",
+          "crisisLink": "Apoio em crise na Austrália e Nova Zelândia",
+          "about": "Sobre o Detrans Hub"
+        }
+      },
+      "northAmerica": {
+        "title": "Apoio na América do Norte",
+        "sidebar": "América do Norte",
+        "organizations": {
+          "detransHelp": {
+            "name": "Detrans Help",
+            "region": "Estados Unidos · atende o mundo todo",
+            "description": "Uma organização sem fins lucrativos criada por pessoas destransicionadas, para pessoas destransicionadas. Sediada nos EUA, mas aberta a pessoas destransicionadas de todo o mundo, a Detrans Help conecta pessoas a apoio entre pares, aconselhamento em saúde mental, clínicos, serviços para famílias e recursos jurídicos, além de acompanhar pesquisas e processos judiciais relacionados.",
+            "link": "Visitar Detrans Help"
+          },
+          "resilienceHealth": {
+            "name": "Resilience Health Network",
+            "region": "Estados Unidos",
+            "description": "Uma rede sem fins lucrativos de profissionais de saúde que ajuda pessoas que querem parar os bloqueadores da puberdade ou os hormônios cruzados e restaurar sua função hormonal natural, incluindo apoio no monitoramento da terapia de reposição hormonal. Também publica documentos de orientação e relatos de pessoas destransicionadas.",
+            "link": "Visitar Resilience Health Network"
+          },
+          "detransAllianceCanada": {
+            "name": "Detrans Alliance Canada",
+            "region": "Canadá",
+            "description": "Uma rede canadense de pessoas destransicionadas, desistentes, arrependidas e amigos que se ajudam a encontrar os serviços médicos de que precisam para se recuperar da transição. Também ajuda com opções jurídicas, oferece apoio comunitário e defende pessoas destransicionadas na política canadense.",
+            "link": "Visitar Detrans Alliance Canada"
+          }
+        }
+      },
+      "europe": {
+        "title": "Apoio na Europa",
+        "sidebar": "Europa",
+        "organizations": {
+          "postTrans": {
+            "name": "Post Trans",
+            "region": "Internacional · 9 idiomas",
+            "description": "Uma coleção de relatos de mulheres destransicionadas e desistentes, disponível em inglês, francês, alemão, espanhol, russo, italiano, sérvio, português e holandês. O Post Trans também publica um folheto informativo sobre destransição, e você pode enviar sua própria história.",
+            "link": "Visitar Post Trans"
+          },
+          "detransFi": {
+            "name": "Detrans.fi",
+            "region": "Finlândia · finlandês",
+            "description": "Um site em finlandês com informações sobre destransição, um guia do processo de destransição e experiências pessoais. Também mantém um servidor no Discord em finlandês para mulheres destransicionadas.",
+            "link": "Visitar Detrans.fi",
+            "discord": "Servidor no Discord em finlandês para mulheres destransicionadas"
+          }
+        }
+      },
+      "latinAmerica": {
+        "title": "Apoio na América Latina",
+        "sidebar": "América Latina",
+        "organizations": {
+          "detransChile": {
+            "name": "Detrans Chile",
+            "region": "Chile · espanhol",
+            "description": "Um projeto em espanhol liderado por um pesquisador com experiência pessoal de destransição, que publica pesquisas, artigos e relatos em primeira pessoa sobre destransição no Chile e na América Latina.",
+            "link": "Visitar Detrans Chile"
+          }
+        }
+      },
       "forParents": {
         "title": "Recursos Para Pais",
         "intro": "Se seu filho recentemente se declarou transgênero, você pode estar se sentindo confuso, preocupado e incerto de como melhor apoiá-lo enquanto também protege sua saúde e bem-estar de longo prazo.",
@@ -782,7 +856,9 @@
           },
           "coupon": "Use este código de cupom para obter",
           "couponCode": "DETRANSAI",
-          "learnMore": "Saiba mais e inscreva-se no ROGD Repair"
+          "learnMore": "Saiba mais e inscreva-se no ROGD Repair",
+          "couponDiscount": "50% de desconto no primeiro mês",
+          "couponSuffix": "de assinatura do ROGD Repair."
         }
       }
     },
@@ -1962,9 +2038,14 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
-    "empty": "No topics have been published yet."
+    "title": "Tópicos",
+    "description": "Exploração aprofundada da destransição, da medicina de género e de temas relacionados.",
+    "empty": "Ainda não foram publicados tópicos.",
+    "pagesInSection": "Páginas nesta secção",
+    "relatedPages": "Páginas relacionadas",
+    "lastUpdated": "Última atualização:",
+    "stubNotice": "Esta página é um esboço e será ampliada.",
+    "views": "{count, plural, one {# visualização} other {# visualizações}}"
   },
   "storiesPage": {
     "metadata": {
