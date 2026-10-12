@@ -242,8 +242,21 @@ export async function POST(req: NextRequest) {
       parts: [{ type: "text", text: userInput }],
     };
 
-    // Combine existing messages with new user message
-    const allMessages = [...existingMessages, newUserMessage];
+    // Combine existing messages with new user message. The user turn is
+    // persisted before the CAPTCHA gate (below), so a resend after a 402 — or
+    // any retry of an unanswered turn — finds its own message already at the
+    // end of the history. Reuse it instead of appending a duplicate.
+    const lastExisting = existingMessages[existingMessages.length - 1];
+    const isResend =
+      lastExisting?.role === "user" &&
+      lastExisting.parts
+        .filter((part) => part.type === "text")
+        .map((part) => part.text)
+        .join("\n")
+        .trim() === userInput.trim();
+    const allMessages = isResend
+      ? existingMessages
+      : [...existingMessages, newUserMessage];
 
     // Persist the user turn immediately (not only on completion): if this run
     // is later cancelled — superseded by a follow-up message or cut off by a
