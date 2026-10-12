@@ -71,14 +71,14 @@ function TopicEntry({
           </span>
         )}
         {node.summary && (
-          <p className="text-muted-foreground mt-0 mb-2 text-sm">
+          <p className="text-muted-foreground mt-0 mb-2 text-base">
             {node.summary}
           </p>
         )}
       </a>
       {node.children.length > 0 && (
         // A thin rule down the side ties each level to its parent.
-        <ul className="border-muted-foreground/25 mt-2 mb-6 ml-0.5 list-none space-y-3 border-l pl-3 sm:pl-5">
+        <ul className="border-muted-foreground/25 mt-2 mb-6 ml-0.5 list-none space-y-6 border-l pl-3 sm:pl-5">
           {node.children.map((child) => (
             <TopicEntry
               key={child.path}
@@ -117,13 +117,6 @@ export default async function TopicsHubPage({
     })),
   };
 
-  // Sidebar TOC covers the top-level topics only (their h2s carry the ids).
-  const toc = tree.map((node) => ({
-    id: node.path,
-    text: node.title,
-    level: 2,
-  }));
-
   return (
     <>
       <script
@@ -131,7 +124,7 @@ export default async function TopicsHubPage({
         dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionJsonLd) }}
       />
       <DocsLayout
-        toc={toc}
+        toc={[]}
         header={
           <header>
             <h1 className="text-3xl font-bold">{t("title")}</h1>
