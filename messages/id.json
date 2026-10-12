@@ -1510,6 +1510,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive}% menjawab ya untuk setidaknya satu pertanyaan di bawah (n = {n})"
       },
+      "scale": {
+        "title": "Seberapa mendukung keluarga mereka?",
+        "mean": "Rata-rata dukungan {value} / {max}",
+        "levels": {
+          "level0": "Sangat tidak mendukung atau menolak",
+          "level1": "Sebagian besar tidak mendukung",
+          "level2": "Campuran atau netral",
+          "level3": "Sebagian besar mendukung",
+          "level4": "Sangat mendukung"
+        }
+      },
       "statements": {
         "title": "Pertanyaan yang diajukan",
         "description": "Setiap kisah diperiksa terhadap pertanyaan-pertanyaan persis ini. Sebuah kisah dihitung jika jawabannya jelas ya."
@@ -1719,6 +1730,7 @@
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "{unclear}% lainnya tidak jelas.",
       "regretLadder": "{surgery}% dari mereka yang menjalani operasi mengaku menyesali transisi, dibandingkan {hormones}% setelah hormon atau penghambat dan {socialOnly}% setelah transisi sosial saja (n = {n}).",
+      "regretLadderNote": "Sisanya tidak menyatakan salah satunya.",
       "improvement": "{better}% mengatakan kualitas hidup mereka membaik setelah detransisi; {worse}% mengatakan memburuk (n = {n}).",
       "journey": "Perjalanan umum: disforia pertama pada usia {dysphoria} → transisi pada usia {transition} → detransisi pada usia {detransition} (n = {n}).",
       "minorShare": "{percent}% kisah yang mencantumkan usia mulai transisi di bawah 18 (n = {n} dari {total}).",

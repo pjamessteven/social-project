@@ -156,16 +156,18 @@ export function cohortCte(filters: FeatureFilters): SQL {
       FROM detrans_user_profiles
       ORDER BY username, run_id DESC
     ),
+    -- Ages outside 0-120 are extraction errors (usually a year read as an
+    -- age); null them so every chart and highlight drops them alike.
     latest_timelines AS (
       SELECT DISTINCT ON (username)
         username,
-        transition_age,
-        detransition_age,
-        first_dysphoria_age,
-        hormones_age,
-        puberty_blockers_age,
-        top_surgery_age,
-        bottom_surgery_age,
+        CASE WHEN transition_age BETWEEN 0 AND 120 THEN transition_age END AS transition_age,
+        CASE WHEN detransition_age BETWEEN 0 AND 120 THEN detransition_age END AS detransition_age,
+        CASE WHEN first_dysphoria_age BETWEEN 0 AND 120 THEN first_dysphoria_age END AS first_dysphoria_age,
+        CASE WHEN hormones_age BETWEEN 0 AND 120 THEN hormones_age END AS hormones_age,
+        CASE WHEN puberty_blockers_age BETWEEN 0 AND 120 THEN puberty_blockers_age END AS puberty_blockers_age,
+        CASE WHEN top_surgery_age BETWEEN 0 AND 120 THEN top_surgery_age END AS top_surgery_age,
+        CASE WHEN bottom_surgery_age BETWEEN 0 AND 120 THEN bottom_surgery_age END AS bottom_surgery_age,
         transition_year,
         detransition_year
       FROM detrans_user_timelines
@@ -250,6 +252,11 @@ export const FEATURE_CACHE_HEADERS = {
   "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
 } as const;
 
+/**
+ * When selecting a threshold to compare in JS, cast it `::real` (the column
+ * type), never `::float`: 0.8::real::float is 0.800000011920929, which drops
+ * answers scored exactly at the threshold.
+ */
 export const NOUL_THRESHOLD = DEFAULT_NOUL_THRESHOLD;
 
 /** Features that place a story on the medical-involvement ladder. */

@@ -1502,6 +1502,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive}% يجيبون بنعم عن سؤال واحد على الأقل من الأسئلة أدناه (n = {n})"
       },
+      "scale": {
+        "title": "ما مدى دعم عائلاتهم؟",
+        "mean": "متوسط الدعم {value} / {max}",
+        "levels": {
+          "level0": "غير داعمة بشدة أو رافضة",
+          "level1": "غير داعمة في الغالب",
+          "level2": "مختلطة أو محايدة",
+          "level3": "داعمة في الغالب",
+          "level4": "داعمة بشدة"
+        }
+      },
       "statements": {
         "title": "الأسئلة المطروحة",
         "description": "فُحصت كل قصة مقابل هذه الأسئلة بعينها. تُحتسب القصة عندما تكون الإجابة نعم واضحة."
@@ -1711,6 +1722,7 @@
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "و{unclear}% أخرى غير واضحة.",
       "regretLadder": "{surgery}% ممن خضعوا لجراحة يقولون إنهم نادمون على التحول، مقارنة بـ {hormones}% بعد الهرمونات أو حاصرات البلوغ و{socialOnly}% بعد تحول اجتماعي فقط (n = {n}).",
+      "regretLadderNote": "والباقون لا يقولون في أي من الاتجاهين.",
       "improvement": "{better}% يقولون إن جودة حياتهم تحسّنت بعد التراجع عن التحول؛ و{worse}% يقولون إنها ساءت (n = {n}).",
       "journey": "المسار النموذجي: أول عدم ارتياح جندري في سن {dysphoria} → التحول في سن {transition} → التراجع عن التحول في سن {detransition} (n = {n}).",
       "minorShare": "{percent}% من القصص التي تذكر العمر بدأ أصحابها التحول قبل سن 18 (n = {n} من {total}).",

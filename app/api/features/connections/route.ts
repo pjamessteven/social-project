@@ -2,6 +2,7 @@ import { riskRatio } from "@/app/lib/stats-math";
 import { db } from "@/db";
 import { sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
+import { withFeatureCache } from "../cache";
 import {
   cohortCte,
   FEATURE_CACHE_HEADERS,
@@ -32,7 +33,8 @@ const scoreAtLeast =
   (key: string, min: number): Probe =>
   (story) => {
     const value = story.score.get(key);
-    return value == null ? null : value >= min;
+    // Round to the nearest scale level, as the after-detransition chart does.
+    return value == null ? null : Math.round(value) >= min;
   };
 
 const choiceIn =
@@ -196,7 +198,7 @@ const MIN_GROUP_N = 30;
  * stories with vs without the predictor, with a risk ratio and 95%
  * interval. Respects the stats filters.
  */
-export async function GET(request: NextRequest) {
+async function getFeature(request: NextRequest) {
   try {
     const filters = parseFeatureFilters(request);
     const keyList = sql.join(
@@ -303,3 +305,5 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+export const GET = withFeatureCache(getFeature);

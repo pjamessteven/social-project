@@ -1501,6 +1501,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive} % beantworten mindestens eine der folgenden Fragen mit Ja (n = {n})"
       },
+      "scale": {
+        "title": "Wie unterstützend war die Familie?",
+        "mean": "{value} / {max} durchschnittliche Unterstützung",
+        "levels": {
+          "level0": "Stark ablehnend oder zurückweisend",
+          "level1": "Überwiegend nicht unterstützend",
+          "level2": "Gemischt oder neutral",
+          "level3": "Überwiegend unterstützend",
+          "level4": "Stark unterstützend"
+        }
+      },
       "statements": {
         "title": "Gestellte Fragen",
         "description": "Jede Geschichte wurde anhand genau dieser Fragen geprüft. Eine Geschichte zählt, wenn die Antwort ein klares Ja ist."
@@ -1710,6 +1721,7 @@
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Weitere {unclear} % sind unklar.",
       "regretLadder": "{surgery} % derjenigen, die operiert wurden, bereuen ihre Transition – gegenüber {hormones} % nach Hormonen oder Blockern und {socialOnly} % nach einer rein sozialen Transition (n = {n}).",
+      "regretLadderNote": "Die übrigen äußern sich weder in die eine noch in die andere Richtung.",
       "improvement": "{better} % sagen, dass sich ihre Lebensqualität nach der Detransition verbessert hat; {worse} % sagen, dass sie sich verschlechtert hat (n = {n}).",
       "journey": "Der typische Verlauf: erste Dysphorie mit {dysphoria} → Transition mit {transition} → Detransition mit {detransition} (n = {n}).",
       "minorShare": "{percent} % der Geschichten mit Altersangabe begannen die Transition unter 18 (n = {n} von {total}).",

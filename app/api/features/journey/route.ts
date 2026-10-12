@@ -1,6 +1,7 @@
 import { db } from "@/db";
 import { sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
+import { withFeatureCache } from "../cache";
 import {
   cohortCte,
   FEATURE_CACHE_HEADERS,
@@ -29,7 +30,7 @@ function median(values: number[]): number | null {
  * Age distributions for the main journey milestones across the filtered
  * cohort. Powers the "Journey" ridgeline of mini histograms.
  */
-export async function GET(request: NextRequest) {
+async function getFeature(request: NextRequest) {
   try {
     const filters = parseFeatureFilters(request);
 
@@ -118,3 +119,5 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+export const GET = withFeatureCache(getFeature);

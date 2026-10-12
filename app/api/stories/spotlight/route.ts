@@ -205,7 +205,7 @@ export async function GET(request: NextRequest) {
           f.tag_name AS "tagName",
           a.noul,
           a.score,
-          COALESCE(f.threshold, ${NOUL_THRESHOLD})::float AS threshold
+          COALESCE(f.threshold, ${NOUL_THRESHOLD})::real AS threshold
         FROM answers a
         JOIN detrans_features f ON f.id = a.feature_id
         WHERE f.enabled = true

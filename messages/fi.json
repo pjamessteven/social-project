@@ -1502,6 +1502,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive} % vastaa kyllä vähintään yhteen alla olevista kysymyksistä (n = {n})"
       },
+      "scale": {
+        "title": "Kuinka tukeva heidän perheensä oli?",
+        "mean": "{value} / {max} keskimääräinen tuki",
+        "levels": {
+          "level0": "Erittäin tukematon tai torjuva",
+          "level1": "Enimmäkseen tukematon",
+          "level2": "Vaihteleva tai neutraali",
+          "level3": "Enimmäkseen tukeva",
+          "level4": "Erittäin tukeva"
+        }
+      },
       "statements": {
         "title": "Esitetyt kysymykset",
         "description": "Jokainen tarina arvioitiin juuri näiden kysymysten perusteella. Tarina lasketaan mukaan, kun vastaus on selvä kyllä."
@@ -1711,6 +1722,7 @@
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Lisäksi {unclear} % on epäselviä.",
       "regretLadder": "{surgery} % leikkauksessa käyneistä sanoo katuvansa transitiota, kun hormonien tai salpaajien jälkeen osuus on {hormones} % ja pelkän sosiaalisen transition jälkeen {socialOnly} % (n = {n}).",
+      "regretLadderNote": "Muut eivät sano kumpaankaan suuntaan.",
       "improvement": "{better} % kertoo elämänlaatunsa parantuneen detransition jälkeen; {worse} % kertoo sen heikentyneen (n = {n}).",
       "journey": "Tyypillinen polku: ensimmäinen dysforia {dysphoria}-vuotiaana → transitio {transition}-vuotiaana → detransitio {detransition}-vuotiaana (n = {n}).",
       "minorShare": "{percent} % tarinoista, joissa on ikä, aloitti transition alle 18-vuotiaana (n = {n}/{total}).",

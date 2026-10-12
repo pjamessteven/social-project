@@ -1509,6 +1509,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive} % atsako „taip“ bent į vieną iš toliau pateiktų klausimų (n = {n})"
       },
+      "scale": {
+        "title": "Kiek juos palaikė šeima?",
+        "mean": "Vidutinis palaikymas {value} / {max}",
+        "levels": {
+          "level0": "Visiškai nepalaikanti arba atstumianti",
+          "level1": "Daugiausia nepalaikanti",
+          "level2": "Mišri arba neutrali",
+          "level3": "Daugiausia palaikanti",
+          "level4": "Labai palaikanti"
+        }
+      },
       "statements": {
         "title": "Užduoti klausimai",
         "description": "Kiekviena istorija buvo patikrinta pagal būtent šiuos klausimus. Istorija įskaičiuojama, kai atsakymas aiškiai „taip“."
@@ -1718,6 +1729,7 @@
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Dar {unclear} % neaiškūs.",
       "regretLadder": "{surgery} % operaciją patyrusių teigia gailintys tranzicijos, palyginti su {hormones} % po hormonų ar blokatorių ir {socialOnly} % po vien socialinės tranzicijos (n = {n}).",
+      "regretLadderNote": "Kiti nepasako nei vieno, nei kito.",
       "improvement": "{better} % teigia, kad jų gyvenimo kokybė po detranzicijos pagerėjo; {worse} % teigia, kad pablogėjo (n = {n}).",
       "journey": "Tipinis kelias: pirmoji disforija {dysphoria} m. → tranzicija {transition} m. → detranzicija {detransition} m. (n = {n}).",
       "minorShare": "{percent} % istorijų su nurodytu amžiumi tranziciją pradėjo iki 18 metų (n = {n} iš {total}).",

@@ -1502,6 +1502,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive}% răspund da la cel puțin una dintre întrebările de mai jos (n = {n})"
       },
+      "scale": {
+        "title": "Cât de mult i-a susținut familia?",
+        "mean": "Susținere medie {value} / {max}",
+        "levels": {
+          "level0": "Deloc susținătoare sau respingătoare",
+          "level1": "Mai degrabă nesusținătoare",
+          "level2": "Mixtă sau neutră",
+          "level3": "Mai degrabă susținătoare",
+          "level4": "Foarte susținătoare"
+        }
+      },
       "statements": {
         "title": "Întrebări puse",
         "description": "Fiecare poveste a fost verificată exact după aceste întrebări. O poveste contează atunci când răspunsul este un da clar."
@@ -1711,6 +1722,7 @@
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Încă {unclear}% sunt neclare.",
       "regretLadder": "{surgery}% dintre cei care au făcut o operație spun că regretă tranziția, față de {hormones}% după hormoni sau blocante și {socialOnly}% după o tranziție doar socială (n = {n}).",
+      "regretLadderNote": "Ceilalți nu spun nici una, nici alta.",
       "improvement": "{better}% spun că le-a crescut calitatea vieții după detranziție; {worse}% spun că s-a înrăutățit (n = {n}).",
       "journey": "Parcursul tipic: prima disforie la {dysphoria} ani → tranziție la {transition} → detranziție la {detransition} (n = {n}).",
       "minorShare": "{percent}% dintre poveștile cu vârstă au început tranziția sub 18 ani (n = {n} din {total}).",

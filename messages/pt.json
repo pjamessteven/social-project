@@ -1510,6 +1510,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive}% respondem sim a pelo menos uma das perguntas abaixo (n = {n})"
       },
+      "scale": {
+        "title": "Quanto apoio receberam da família?",
+        "mean": "{value} / {max} de apoio médio",
+        "levels": {
+          "level0": "Nenhum apoio ou rejeição",
+          "level1": "Pouco apoio na maioria",
+          "level2": "Misto ou neutro",
+          "level3": "Apoio na maioria",
+          "level4": "Muito apoio"
+        }
+      },
       "statements": {
         "title": "Perguntas feitas",
         "description": "Cada história foi verificada com estas perguntas exatas. Uma história conta quando a resposta é um sim claro."
@@ -1719,6 +1730,7 @@
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Outros {unclear}% são incertos.",
       "regretLadder": "{surgery}% de quem fez cirurgia diz se arrepender da transição, contra {hormones}% após hormônios ou bloqueadores e {socialOnly}% após uma transição apenas social (n = {n}).",
+      "regretLadderNote": "Os demais não dizem nem uma coisa nem outra.",
       "improvement": "{better}% dizem que sua qualidade de vida melhorou após a destransição; {worse}% dizem que piorou (n = {n}).",
       "journey": "A trajetória típica: primeira disforia aos {dysphoria} → transição aos {transition} → destransição aos {detransition} (n = {n}).",
       "minorShare": "{percent}% das histórias com idade começaram a transição antes dos 18 (n = {n} de {total}).",

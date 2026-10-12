@@ -1,6 +1,7 @@
 import { db } from "@/db";
 import { sql, type SQL } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
+import { withFeatureCache } from "../cache";
 import {
   cohortCte,
   FEATURE_CACHE_HEADERS,
@@ -26,7 +27,7 @@ interface SplitInfo {
  * women vs men when split=sex — then returns the prevalence of every other
  * yes/no feature in both halves. Powers the dumbbell "Compare" view.
  */
-export async function GET(request: NextRequest) {
+async function getFeature(request: NextRequest) {
   try {
     const filters = parseFeatureFilters(request);
     const { searchParams } = new URL(request.url);
@@ -53,7 +54,7 @@ export async function GET(request: NextRequest) {
             id,
             key,
             label,
-            COALESCE(threshold, ${NOUL_THRESHOLD})::float AS threshold
+            COALESCE(threshold, ${NOUL_THRESHOLD})::real AS threshold
           FROM detrans_features
           WHERE key = ${splitKey} AND enabled = true AND kind = 'noul'
           LIMIT 1
@@ -225,3 +226,5 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+export const GET = withFeatureCache(getFeature);

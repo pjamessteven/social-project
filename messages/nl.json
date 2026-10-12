@@ -1509,6 +1509,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive}% antwoordt ja op ten minste één van de onderstaande vragen (n = {n})"
       },
+      "scale": {
+        "title": "Hoe steunend was hun familie?",
+        "mean": "{value} / {max} gemiddelde steun",
+        "levels": {
+          "level0": "Sterk niet-steunend of afwijzend",
+          "level1": "Overwegend niet-steunend",
+          "level2": "Gemengd of neutraal",
+          "level3": "Overwegend steunend",
+          "level4": "Sterk steunend"
+        }
+      },
       "statements": {
         "title": "Gestelde vragen",
         "description": "Elk verhaal is getoetst aan precies deze vragen. Een verhaal telt mee als het antwoord een duidelijk ja is."
@@ -1718,6 +1729,7 @@
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Nog eens {unclear}% is onduidelijk.",
       "regretLadder": "{surgery}% van wie een operatie had, zegt spijt te hebben van de transitie, tegenover {hormones}% na hormonen of blokkers en {socialOnly}% na alleen een sociale transitie (n = {n}).",
+      "regretLadderNote": "De rest zegt geen van beide.",
       "improvement": "{better}% zegt dat de levenskwaliteit na detransitie verbeterde; {worse}% zegt dat die verslechterde (n = {n}).",
       "journey": "Het typische traject: eerste dysforie op {dysphoria} → transitie op {transition} → detransitie op {detransition} (n = {n}).",
       "minorShare": "{percent}% van de verhalen met een leeftijd begon de transitie onder 18 (n = {n} van {total}).",

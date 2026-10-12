@@ -2,6 +2,7 @@ import { bucketFor, YEAR_BUCKETS } from "@/app/lib/year-buckets";
 import { db } from "@/db";
 import { sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
+import { withFeatureCache } from "../cache";
 import {
   cohortCte,
   FEATURE_CACHE_HEADERS,
@@ -45,7 +46,7 @@ function median(values: number[]): number | null {
  * Feature shares by transition-year cohort: how the reasons behind transition
  * and its outcomes differ across eras of the dataset.
  */
-export async function GET(request: NextRequest) {
+async function getFeature(request: NextRequest) {
   try {
     const filters = parseFeatureFilters(request);
     const seriesKeys = parseSeriesKeys(
@@ -66,7 +67,7 @@ export async function GET(request: NextRequest) {
           a.username,
           f.key,
           a.noul,
-          COALESCE(f.threshold, ${NOUL_THRESHOLD})::float AS threshold
+          COALESCE(f.threshold, ${NOUL_THRESHOLD})::real AS threshold
         FROM filtered_answers a
         JOIN detrans_features f ON f.id = a.feature_id
         WHERE f.enabled = true
@@ -173,3 +174,5 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+export const GET = withFeatureCache(getFeature);

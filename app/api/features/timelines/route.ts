@@ -1,6 +1,7 @@
 import { db } from "@/db";
 import { sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
+import { withFeatureCache } from "../cache";
 import {
   cohortCte,
   FEATURE_CACHE_HEADERS,
@@ -35,7 +36,7 @@ function age(value: unknown): Age {
  * `years` is time from transition to detransition: year difference when
  * both years are known, age difference otherwise.
  */
-export async function GET(request: NextRequest) {
+async function getFeature(request: NextRequest) {
   try {
     const filters = parseFeatureFilters(request);
 
@@ -101,3 +102,5 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+export const GET = withFeatureCache(getFeature);

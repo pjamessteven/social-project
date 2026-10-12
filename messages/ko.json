@@ -1510,6 +1510,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive}%가 아래 질문 중 하나 이상에 “예”라고 답함(n = {n})"
       },
+      "scale": {
+        "title": "가족은 얼마나 지지해 주었나요?",
+        "mean": "평균 지지도 {value} / {max}",
+        "levels": {
+          "level0": "매우 비지지적이거나 거부적",
+          "level1": "대체로 비지지적",
+          "level2": "혼재 또는 중립",
+          "level3": "대체로 지지적",
+          "level4": "매우 지지적"
+        }
+      },
       "statements": {
         "title": "확인한 질문",
         "description": "각 이야기를 이 질문들과 그대로 대조했습니다. 답이 명확한 “예”일 때 해당하는 것으로 셉니다."
@@ -1719,6 +1730,7 @@
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "추가로 {unclear}%는 불명확합니다.",
       "regretLadder": "수술을 받은 사람의 {surgery}%가 전환을 후회한다고 말했으며, 호르몬이나 차단제 이후는 {hormones}%, 사회적 전환만 한 경우는 {socialOnly}%였습니다(n = {n}).",
+      "regretLadderNote": "나머지는 어느 쪽도 밝히지 않았습니다.",
       "improvement": "{better}%는 디트랜지션 후 삶의 질이 나아졌다고 말하고, {worse}%는 나빠졌다고 말합니다(n = {n}).",
       "journey": "전형적인 여정: {dysphoria}세에 첫 성별 불쾌감 → {transition}세에 전환 → {detransition}세에 디트랜지션(n = {n}).",
       "minorShare": "나이가 있는 이야기의 {percent}%가 18세 미만에 전환을 시작했습니다({total}건 중 n = {n}).",

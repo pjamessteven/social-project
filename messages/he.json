@@ -1501,6 +1501,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive}% עונים כן לפחות על אחת מהשאלות שלהלן (n = {n})"
       },
+      "scale": {
+        "title": "עד כמה המשפחה תמכה בהם?",
+        "mean": "תמיכה ממוצעת {value} / {max}",
+        "levels": {
+          "level0": "לא תומכת כלל או דוחה",
+          "level1": "לרוב לא תומכת",
+          "level2": "מעורבת או ניטרלית",
+          "level3": "לרוב תומכת",
+          "level4": "תומכת מאוד"
+        }
+      },
       "statements": {
         "title": "השאלות שנשאלו",
         "description": "כל סיפור נבדק מול השאלות המדויקות האלה. סיפור נספר כאשר התשובה היא כן ברור."
@@ -1710,6 +1721,7 @@
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "עוד {unclear}% אינם ברורים.",
       "regretLadder": "{surgery}% מאלה שעברו ניתוח אומרים שהם מתחרטים על המעבר, לעומת {hormones}% אחרי הורמונים או חוסמים ו-{socialOnly}% אחרי מעבר חברתי בלבד (n = {n}).",
+      "regretLadderNote": "השאר אינם אומרים לכאן או לכאן.",
       "improvement": "{better}% אומרים שאיכות חייהם השתפרה אחרי הדטרנזישן; {worse}% אומרים שהיא הורעה (n = {n}).",
       "journey": "המסלול האופייני: דיספוריה ראשונה בגיל {dysphoria} → מעבר בגיל {transition} → דטרנזישן בגיל {detransition} (n = {n}).",
       "minorShare": "{percent}% מהסיפורים עם גיל התחילו מעבר לפני גיל 18 (n = {n} מתוך {total}).",

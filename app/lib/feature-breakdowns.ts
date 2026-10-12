@@ -28,6 +28,12 @@ export interface BreakdownConfig {
   /** Keep statements in config order instead of ranking by prevalence. */
   keepOrder?: boolean;
   composition: BreakdownComposition;
+  /**
+   * Only count stories with a confirmed transition step (social only,
+   * hormones/blockers or surgery), so stories whose path is unclear don't
+   * dilute the shares.
+   */
+  transitionedOnly?: boolean;
   /** Colour direction for the scale: severity ramps up red, support is diverging. */
   scaleTone?: "severity" | "support";
 }
@@ -51,6 +57,7 @@ export const FEATURE_BREAKDOWNS: BreakdownConfig[] = [
       positiveKey: "regret_transition",
       negativeKey: "no_regret",
     },
+    transitionedOnly: true,
   },
   {
     id: "complications",

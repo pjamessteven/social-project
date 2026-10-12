@@ -2,6 +2,7 @@ import { breakdownById } from "@/app/lib/feature-breakdowns";
 import { db } from "@/db";
 import { sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
+import { withFeatureCache } from "../cache";
 import {
   cohortCte,
   FEATURE_CACHE_HEADERS,
@@ -83,7 +84,7 @@ function buildChoiceDistribution(rows: DetailRow[]) {
  * composition line, numeric scale distribution, choice distributions and
  * ranked statements for one view.
  */
-export async function GET(request: NextRequest) {
+async function getFeature(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const viewId = searchParams.get("view");
@@ -98,6 +99,12 @@ export async function GET(request: NextRequest) {
       view.choiceKey,
       view.secondaryChoiceKey,
     ].filter((key): key is string => Boolean(key));
+
+    // Restricts every query below to stories with a confirmed transition
+    // step (transition_evidence comes from cohortCte).
+    const inScope = view.transitionedOnly
+      ? sql`AND a.username IN (SELECT username FROM transition_evidence)`
+      : sql``;
 
     const compositionQuery =
       view.composition.mode === "pair"
@@ -120,6 +127,7 @@ export async function GET(request: NextRequest) {
               CROSS JOIN pos
               CROSS JOIN neg
               WHERE a.feature_id IN (pos.id, neg.id)
+                ${inScope}
               GROUP BY a.username
             )
             SELECT
@@ -143,6 +151,7 @@ export async function GET(request: NextRequest) {
                 SELECT a.username, bool_or(a.noul >= ids.threshold) AS positive
                 FROM filtered_answers a
                 JOIN ids ON ids.id = a.feature_id
+                WHERE true ${inScope}
                 GROUP BY a.username
               )
               SELECT
@@ -172,6 +181,7 @@ export async function GET(request: NextRequest) {
                   detailKeys.map((key) => sql`${key}`),
                   sql`, `,
                 )})
+                ${inScope}
             `)
           : Promise.resolve([]),
         view.statementKeys.length > 0
@@ -214,13 +224,15 @@ export async function GET(request: NextRequest) {
                   view.statementKeys.map((key) => sql`${key}`),
                   sql`, `,
                 )})
+                ${inScope}
               GROUP BY f.id
             `)
           : Promise.resolve([]),
         compositionQuery ?? Promise.resolve([]),
         db.execute(sql`
           WITH ${cohortCte(filters)}
-          SELECT count(*)::int AS c FROM cohort
+          SELECT count(*)::int AS c FROM cohort a
+          WHERE true ${inScope}
         `),
       ]);
 
@@ -361,3 +373,5 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+export const GET = withFeatureCache(getFeature);

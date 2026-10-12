@@ -1,6 +1,7 @@
 import { db } from "@/db";
 import { sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
+import { withFeatureCache } from "../cache";
 import {
   cohortCte,
   FEATURE_CACHE_HEADERS,
@@ -15,7 +16,7 @@ import {
  * explorer list (prevalence at threshold, modal choice, mean score) without
  * fetching each feature individually.
  */
-export async function GET(request: NextRequest) {
+async function getFeature(request: NextRequest) {
   try {
     const filters = parseFeatureFilters(request);
 
@@ -30,7 +31,7 @@ export async function GET(request: NextRequest) {
           f.tier,
           f.kind,
           f.tag_name AS "tagName",
-          COALESCE(f.threshold, ${NOUL_THRESHOLD})::float AS threshold,
+          COALESCE(f.threshold, ${NOUL_THRESHOLD})::real AS threshold,
           (
             CASE
               WHEN jsonb_typeof(f.question->'criteria') = 'array'
@@ -139,3 +140,5 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+export const GET = withFeatureCache(getFeature);

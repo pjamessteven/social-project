@@ -1502,6 +1502,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive} % odpovídá ano alespoň na jednu z níže uvedených otázek (n = {n})"
       },
+      "scale": {
+        "title": "Jak moc je rodina podporovala?",
+        "mean": "{value} / {max} průměrná podpora",
+        "levels": {
+          "level0": "Silně nepodporující nebo odmítavá",
+          "level1": "Spíše nepodporující",
+          "level2": "Smíšená nebo neutrální",
+          "level3": "Spíše podporující",
+          "level4": "Silně podporující"
+        }
+      },
       "statements": {
         "title": "Položené otázky",
         "description": "Každý příběh byl posouzen podle přesně těchto otázek. Příběh se započítá, když je odpověď jednoznačně ano."
@@ -1711,6 +1722,7 @@
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Dalších {unclear} % je nejasných.",
       "regretLadder": "{surgery} % těch, kdo podstoupili operaci, uvádí, že tranzice litují, oproti {hormones} % po hormonech či blokátorech a {socialOnly} % po pouze sociální tranzici (n = {n}).",
+      "regretLadderNote": "Ostatní se nevyjadřují ani jedním směrem.",
       "improvement": "{better} % uvádí, že se jejich kvalita života po detranzici zlepšila; {worse} % uvádí, že se zhoršila (n = {n}).",
       "journey": "Typický průběh: první dysforie v {dysphoria} → tranzice v {transition} → detranzice v {detransition} (n = {n}).",
       "minorShare": "{percent} % příběhů s uvedeným věkem zahájilo tranzici před 18. rokem (n = {n} z {total}).",

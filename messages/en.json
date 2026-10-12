@@ -1499,6 +1499,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive}% answer yes to at least one of the questions below (n = {n})"
       },
+      "scale": {
+        "title": "How supportive was their family?",
+        "mean": "{value} / {max} average support",
+        "levels": {
+          "level0": "Strongly unsupportive or rejecting",
+          "level1": "Mostly unsupportive",
+          "level2": "Mixed or neutral",
+          "level3": "Mostly supportive",
+          "level4": "Strongly supportive"
+        }
+      },
       "statements": {
         "title": "Questions asked",
         "description": "Each story was checked against these exact questions. A story counts when the answer is a clear yes."
@@ -1708,6 +1719,7 @@
       "prevalence": "{percent}% of stories mention {label} (n = {n}).",
       "prevalenceUnclear": "Another {unclear}% are unclear.",
       "regretLadder": "{surgery}% of those who had surgery say they regret transitioning, compared with {hormones}% after hormones or blockers and {socialOnly}% after a social transition only (n = {n}).",
+      "regretLadderNote": "The rest don't say either way.",
       "improvement": "{better}% say their quality of life improved after detransitioning; {worse}% say it got worse (n = {n}).",
       "journey": "The typical journey: first dysphoria at {dysphoria} → transition at {transition} → detransition at {detransition} (n = {n}).",
       "minorShare": "{percent}% of stories with an age started transitioning under 18 (n = {n} of {total}).",

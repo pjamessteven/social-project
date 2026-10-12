@@ -1510,6 +1510,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive}% が以下の質問の少なくとも1つに「はい」と回答（n = {n}）"
       },
+      "scale": {
+        "title": "家族はどの程度支えてくれたか？",
+        "mean": "平均支援度 {value} / {max}",
+        "levels": {
+          "level0": "強く非協力的または拒絶的",
+          "level1": "おおむね非協力的",
+          "level2": "どちらともいえない・中立",
+          "level3": "おおむね支援的",
+          "level4": "非常に支援的"
+        }
+      },
       "statements": {
         "title": "確認した質問",
         "description": "各体験談をこれらの質問とそのまま照合しました。答えが明確に「はい」の場合にカウントしています。"
@@ -1719,6 +1730,7 @@
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "さらに {unclear}% は不明確です。",
       "regretLadder": "手術を受けた人の{surgery}%が移行を後悔していると述べており、ホルモンやブロッカーの後では{hormones}%、社会的移行のみでは{socialOnly}%です（n = {n}）。",
+      "regretLadderNote": "残りの人はどちらとも述べていません。",
       "improvement": "{better}% がデトランジション後に生活の質が向上したと述べ、{worse}% が悪化したと述べています（n = {n}）。",
       "journey": "典型的な経過：{dysphoria} 歳で最初の性別違和 → {transition} 歳でトランジション → {detransition} 歳でデトランジション（n = {n}）。",
       "minorShare": "年齢のある体験談の {percent}% が18歳未満でトランジションを始めています（{total} 件中 n = {n}）。",

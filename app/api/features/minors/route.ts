@@ -2,6 +2,7 @@ import { bucketFor, YEAR_BUCKETS } from "@/app/lib/year-buckets";
 import { db } from "@/db";
 import { sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
+import { withFeatureCache } from "../cache";
 import {
   cohortCte,
   FEATURE_CACHE_HEADERS,
@@ -34,7 +35,7 @@ function median(values: number[]): number | null {
  * people who later detransitioned or desisted, so nothing here describes
  * people who stayed in transition.
  */
-export async function GET(request: NextRequest) {
+async function getFeature(request: NextRequest) {
   try {
     const filters = parseFeatureFilters(request);
 
@@ -148,3 +149,5 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+export const GET = withFeatureCache(getFeature);

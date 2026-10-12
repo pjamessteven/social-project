@@ -148,12 +148,22 @@ export default function HighlightsRibbon({
           </>
         );
       case "regretLadder":
-        return t("regretLadder", {
-          socialOnly: highlight.socialOnly,
-          hormones: highlight.hormones,
-          surgery: highlight.surgery,
-          n: highlight.n,
-        });
+        // Shares of everyone at each step, not only those who say either
+        // way (the medical chart's headline), so flag the silent remainder.
+        return (
+          <>
+            {t("regretLadder", {
+              socialOnly: highlight.socialOnly,
+              hormones: highlight.hormones,
+              surgery: highlight.surgery,
+              n: highlight.n,
+            })}
+            <span className="text-muted-foreground">
+              {" "}
+              {t("regretLadderNote")}
+            </span>
+          </>
+        );
       case "improvement":
         return t("improvement", {
           better: highlight.betterPercent,

@@ -1,6 +1,7 @@
 import { db } from "@/db";
 import { sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
+import { withFeatureCache } from "../cache";
 import {
   cohortCte,
   FEATURE_CACHE_HEADERS,
@@ -46,7 +47,7 @@ interface AnswerRow {
   threshold: number;
 }
 
-export async function GET(request: NextRequest) {
+async function getFeature(request: NextRequest) {
   try {
     const filters = parseFeatureFilters(request);
 
@@ -59,7 +60,7 @@ export async function GET(request: NextRequest) {
           a.noul,
           a.choice,
           a.probabilities,
-          COALESCE(f.threshold, ${NOUL_THRESHOLD})::float AS threshold
+          COALESCE(f.threshold, ${NOUL_THRESHOLD})::real AS threshold
         FROM filtered_answers a
         JOIN detrans_features f ON f.id = a.feature_id
         WHERE f.enabled = true
@@ -190,3 +191,5 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+export const GET = withFeatureCache(getFeature);

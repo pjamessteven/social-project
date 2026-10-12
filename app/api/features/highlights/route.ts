@@ -1,6 +1,7 @@
 import { db } from "@/db";
 import { sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
+import { withFeatureCache } from "../cache";
 import {
   cohortCte,
   FEATURE_CACHE_HEADERS,
@@ -13,10 +14,8 @@ import {
 /** Regret by most invasive step reached (see medical-gradient). */
 const REGRET_LADDER_KEYS = [...MEDICAL_TIER_KEYS, "regret_transition"];
 
-const IMPROVEMENT_KEYS = [
-  "outcome_quality_of_life",
-  "mh_change_after_detransition",
-] as const;
+/** The card's copy says "quality of life", so only that question feeds it. */
+const IMPROVEMENT_KEYS = ["outcome_quality_of_life"] as const;
 
 /**
  * Taxonomy labels that carry editorial disambiguation and read badly inside a
@@ -39,7 +38,7 @@ interface AnswerRow {
  * ranked by effect size x sample size with minimum-n gates, and the result
  * is one card per category. Descriptive only, not significance-tested.
  */
-export async function GET(request: NextRequest) {
+async function getFeature(request: NextRequest) {
   try {
     const filters = parseFeatureFilters(request);
 
@@ -81,7 +80,7 @@ export async function GET(request: NextRequest) {
           )::int AS above,
           (
             count(*) FILTER (
-              WHERE a.noul >= 0.2
+              WHERE a.noul > 0.2
                 AND a.noul < COALESCE(f.threshold, ${NOUL_THRESHOLD})
             )
           )::int AS uncertain
@@ -100,7 +99,7 @@ export async function GET(request: NextRequest) {
           a.username,
           f.key,
           a.noul,
-          COALESCE(f.threshold, ${NOUL_THRESHOLD})::float AS threshold
+          COALESCE(f.threshold, ${NOUL_THRESHOLD})::real AS threshold
         FROM filtered_answers a
         JOIN detrans_features f ON f.id = a.feature_id
         WHERE f.enabled = true
@@ -295,8 +294,11 @@ export async function GET(request: NextRequest) {
         .map((row) => row.score)
         .filter((score): score is number => typeof score === "number");
       if (scores.length < minN) continue;
-      const better = scores.filter((score) => score >= 3).length;
-      const worse = scores.filter((score) => score <= 1).length;
+      // Scores are continuous (0-4); bucket to the nearest level like the
+      // after-detransition chart so the card matches the bars.
+      const levels = scores.map((score) => Math.round(score));
+      const better = levels.filter((level) => level >= 3).length;
+      const worse = levels.filter((level) => level <= 1).length;
       highlights.push({
         type: "improvement",
         featureKey: key,
@@ -369,3 +371,5 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+export const GET = withFeatureCache(getFeature);

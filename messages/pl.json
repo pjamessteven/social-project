@@ -1510,6 +1510,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive}% odpowiada twierdząco na co najmniej jedno z poniższych pytań (n = {n})"
       },
+      "scale": {
+        "title": "Na ile wspierała ich rodzina?",
+        "mean": "Średnie wsparcie {value} / {max}",
+        "levels": {
+          "level0": "Zdecydowanie niewspierająca lub odrzucająca",
+          "level1": "Raczej niewspierająca",
+          "level2": "Mieszana lub neutralna",
+          "level3": "Raczej wspierająca",
+          "level4": "Zdecydowanie wspierająca"
+        }
+      },
       "statements": {
         "title": "Zadane pytania",
         "description": "Każdą historię sprawdzono pod kątem dokładnie tych pytań. Historia jest liczona, gdy odpowiedź jest wyraźnie twierdząca."
@@ -1719,6 +1730,7 @@
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Kolejne {unclear}% jest niejasnych.",
       "regretLadder": "{surgery}% osób po operacji mówi, że żałuje tranzycji, wobec {hormones}% po hormonach lub blokerach i {socialOnly}% po wyłącznie społecznej tranzycji (n = {n}).",
+      "regretLadderNote": "Pozostali nie wypowiadają się w żadną stronę.",
       "improvement": "{better}% mówi, że ich jakość życia poprawiła się po detransycji; {worse}% mówi, że się pogorszyła (n = {n}).",
       "journey": "Typowa ścieżka: pierwsza dysforia w wieku {dysphoria} → tranzycja w wieku {transition} → detransycja w wieku {detransition} (n = {n}).",
       "minorShare": "{percent}% historii z podanym wiekiem rozpoczęło tranzycję przed 18. rokiem życia (n = {n} z {total}).",

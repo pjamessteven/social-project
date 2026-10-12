@@ -1503,6 +1503,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive}% 對以下至少一個問題回答「是」（n = {n}）"
       },
+      "scale": {
+        "title": "家人的支持程度如何？",
+        "mean": "平均支持度 {value} / {max}",
+        "levels": {
+          "level0": "強烈不支持或排斥",
+          "level1": "大多不支持",
+          "level2": "褒貶不一或中立",
+          "level3": "大多支持",
+          "level4": "非常支持"
+        }
+      },
       "statements": {
         "title": "所提問題",
         "description": "每個故事都依這些原樣問題進行了核對。答案明確為「是」時才計入。"
@@ -1712,6 +1723,7 @@
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "另有 {unclear}% 不明確。",
       "regretLadder": "做過手術的人中有 {surgery}% 表示後悔過渡，而使用荷爾蒙或阻斷劑後為 {hormones}%，僅社會過渡後為 {socialOnly}%（n = {n}）。",
+      "regretLadderNote": "其餘的人沒有表明是否後悔。",
       "improvement": "{better}% 表示去過渡後生活品質提高；{worse}% 表示變差（n = {n}）。",
       "journey": "典型歷程：{dysphoria} 歲首次性別焦慮 → {transition} 歲過渡 → {detransition} 歲去過渡（n = {n}）。",
       "minorShare": "在有年齡資訊的故事中，{percent}% 在 18 歲前開始過渡（n = {n}，共 {total}）。",

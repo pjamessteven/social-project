@@ -1510,6 +1510,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive}% válaszol igennel legalább az egyik alábbi kérdésre (n = {n})"
       },
+      "scale": {
+        "title": "Mennyire volt támogató a családjuk?",
+        "mean": "{value} / {max} átlagos támogatás",
+        "levels": {
+          "level0": "Erősen nem támogató vagy elutasító",
+          "level1": "Többnyire nem támogató",
+          "level2": "Vegyes vagy semleges",
+          "level3": "Többnyire támogató",
+          "level4": "Erősen támogató"
+        }
+      },
       "statements": {
         "title": "Feltett kérdések",
         "description": "Minden történetet pontosan ezekkel a kérdésekkel vetettünk össze. Egy történet akkor számít, ha a válasz egyértelmű igen."
@@ -1719,6 +1730,7 @@
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "További {unclear}% nem egyértelmű.",
       "regretLadder": "A műtéten átesettek {surgery}%-a mondja, hogy megbánta a tranzíciót, szemben a hormonok vagy blokkolók utáni {hormones}%-kal és a csak társadalmi tranzíció utáni {socialOnly}%-kal (n = {n}).",
+      "regretLadderNote": "A többiek egyik irányban sem nyilatkoznak.",
       "improvement": "{better}% szerint javult az életminősége a detranzíció után; {worse}% szerint romlott (n = {n}).",
       "journey": "A tipikus út: első diszfória {dysphoria} évesen → tranzíció {transition} évesen → detranzíció {detransition} évesen (n = {n}).",
       "minorShare": "Az életkort tartalmazó történetek {percent}%-ában 18 év előtt kezdődött a tranzíció (n = {n} / {total}).",

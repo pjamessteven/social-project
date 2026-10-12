@@ -1502,6 +1502,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive} % odgovori pritrdilno na vsaj eno od spodnjih vprašanj (n = {n})"
       },
+      "scale": {
+        "title": "Kako podporna je bila njihova družina?",
+        "mean": "Povprečna podpora {value} / {max}",
+        "levels": {
+          "level0": "Močno nepodporna ali zavračajoča",
+          "level1": "Večinoma nepodporna",
+          "level2": "Mešana ali nevtralna",
+          "level3": "Večinoma podporna",
+          "level4": "Močno podporna"
+        }
+      },
       "statements": {
         "title": "Zastavljena vprašanja",
         "description": "Vsaka zgodba je bila preverjena glede na natanko ta vprašanja. Zgodba šteje, ko je odgovor jasno pritrdilen."
@@ -1711,6 +1722,7 @@
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Nadaljnjih {unclear} % je nejasnih.",
       "regretLadder": "{surgery} % tistih, ki so imeli operacijo, pravi, da obžalujejo tranzicijo, v primerjavi s {hormones} % po hormonih ali blokatorjih in {socialOnly} % po zgolj socialni tranziciji (n = {n}).",
+      "regretLadderNote": "Ostali ne povedo ne enega ne drugega.",
       "improvement": "{better} % pravi, da se je njihova kakovost življenja po detranziciji izboljšala; {worse} % pravi, da se je poslabšala (n = {n}).",
       "journey": "Tipična pot: prva disforija pri {dysphoria} → tranzicija pri {transition} → detranzicija pri {detransition} (n = {n}).",
       "minorShare": "{percent} % zgodb s starostjo je tranzicijo začelo pred 18. letom (n = {n} od {total}).",

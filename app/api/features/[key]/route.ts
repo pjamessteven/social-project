@@ -1,6 +1,7 @@
 import { db } from "@/db";
 import { sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
+import { withFeatureCache } from "../cache";
 import {
   cohortCte,
   FEATURE_CACHE_HEADERS,
@@ -41,7 +42,7 @@ function round(value: number, digits = 3): number {
  * feature are bounded by the cohort size, and choice/score answers carry
  * JSONB probability payloads that are far easier to merge here than in SQL.
  */
-export async function GET(
+async function getFeature(
   request: NextRequest,
   { params }: { params: Promise<{ key: string }> },
 ) {
@@ -66,7 +67,7 @@ export async function GET(
           tag_name AS "tagName",
           tag_type AS "tagType",
           choice_tag_map AS "choiceTagMap",
-          COALESCE(threshold, ${NOUL_THRESHOLD})::float AS threshold
+          COALESCE(threshold, ${NOUL_THRESHOLD})::real AS threshold
         FROM detrans_features
         WHERE key = ${key} AND enabled = true
         LIMIT 1
@@ -338,3 +339,5 @@ export async function GET(
     );
   }
 }
+
+export const GET = withFeatureCache(getFeature);

@@ -1510,6 +1510,17 @@
         "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
         "any": "{positive} % svarer ja på minst ett av spørsmålene nedenfor (n = {n})"
       },
+      "scale": {
+        "title": "Hvor støttende var familien?",
+        "mean": "{value} / {max} gjennomsnittlig støtte",
+        "levels": {
+          "level0": "Svært lite støttende eller avvisende",
+          "level1": "Stort sett ikke støttende",
+          "level2": "Blandet eller nøytral",
+          "level3": "Stort sett støttende",
+          "level4": "Svært støttende"
+        }
+      },
       "statements": {
         "title": "Spørsmål som ble stilt",
         "description": "Hver historie ble vurdert opp mot nøyaktig disse spørsmålene. En historie teller når svaret er et tydelig ja."
@@ -1719,6 +1730,7 @@
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Ytterligere {unclear} % er uklare.",
       "regretLadder": "{surgery} % av dem som ble operert sier de angrer på transisjonen, mot {hormones} % etter hormoner eller blokkere og {socialOnly} % etter kun sosial transisjon (n = {n}).",
+      "regretLadderNote": "Resten sier verken det ene eller det andre.",
       "improvement": "{better} % sier at livskvaliteten ble bedre etter detransisjon; {worse} % sier at den ble verre (n = {n}).",
       "journey": "Det typiske forløpet: første dysfori ved {dysphoria} → transisjon ved {transition} → detransisjon ved {detransition} (n = {n}).",
       "minorShare": "{percent} % av historiene med en alder startet transisjon under 18 år (n = {n} av {total}).",

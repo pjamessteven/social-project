@@ -2,6 +2,7 @@ import { riskRatio } from "@/app/lib/stats-math";
 import { db } from "@/db";
 import { sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
+import { withFeatureCache } from "../cache";
 import {
   cohortCte,
   FEATURE_CACHE_HEADERS,
@@ -31,7 +32,7 @@ function parseKeys(raw: string | null): string[] {
  * interval), and the older lift against the column's cohort-wide base rate. Only yes/no features are
  * supported so every cell has the same interpretation.
  */
-export async function GET(request: NextRequest) {
+async function getFeature(request: NextRequest) {
   try {
     const filters = parseFeatureFilters(request);
     const { searchParams } = new URL(request.url);
@@ -162,3 +163,5 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+export const GET = withFeatureCache(getFeature);
