@@ -4,41 +4,14 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   cohortCte,
   FEATURE_CACHE_HEADERS,
+  MEDICAL_TIER_KEYS,
+  medicalTier,
   NOUL_THRESHOLD,
   parseFeatureFilters,
 } from "../helpers";
 
-const CAUSE_KEYS = [
-  "contributed_online_influence",
-  "contributed_peer_influence",
-  "contributed_coercion",
-  "contributed_rapid_onset",
-  "contributed_escapism",
-  "contributed_porn",
-  "contributed_anime_fandom",
-  "internalised_homophobia",
-  "internalised_misogyny_misandry",
-  "mh_autism",
-  "mh_adhd",
-  "mh_depression",
-  "adv_childhood_abuse",
-  "adv_trauma_history",
-  "puberty_discomfort",
-  "gender_nonconformity_childhood",
-];
-
-const OUTCOME_KEYS = [
-  "regret_transition",
-  "no_regret",
-  "retransition",
-  "mh_suicidality_since_detransition",
-  "social_isolation",
-  "community_disillusionment",
-  "outcome_body_reconciliation",
-  "outcome_detrans_support_network",
-  "still_identifies_trans",
-  "currently_on_hormones",
-];
+/** Regret by most invasive step reached (see medical-gradient). */
+const REGRET_LADDER_KEYS = [...MEDICAL_TIER_KEYS, "regret_transition"];
 
 const IMPROVEMENT_KEYS = [
   "outcome_quality_of_life",
@@ -86,12 +59,11 @@ export async function GET(request: NextRequest) {
 
     const minN = Math.max(5, Math.min(50, Math.floor(cohort * 0.3)));
     const minSide = Math.max(4, Math.floor(minN / 2));
-    const pairKeys = [...new Set([...CAUSE_KEYS, ...OUTCOME_KEYS])];
 
     // The candidate queries are independent; run them in parallel.
     const [
       prevalenceRowsRaw,
-      pairRowsRaw,
+      regretRowsRaw,
       improvementRowsRaw,
       journeyRowsRaw,
       minorsRowsRaw,
@@ -134,7 +106,7 @@ export async function GET(request: NextRequest) {
         WHERE f.enabled = true
           AND f.kind = 'noul'
           AND f.key IN (${sql.join(
-            pairKeys.map((key) => sql`${key}`),
+            REGRET_LADDER_KEYS.map((key) => sql`${key}`),
             sql`, `,
           )})
       `),
@@ -268,76 +240,47 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // ── Strongest pair (lift) between causes and outcomes ─────────────────
-    const pairRows = Array.from(pairRowsRaw) as unknown as AnswerRow[];
+    // ── Regret rises with medical involvement ─────────────────────────────
+    const regretRows = Array.from(regretRowsRaw) as unknown as AnswerRow[];
     const truthByUser = new Map<string, Set<string>>();
-    for (const row of pairRows) {
-      if (typeof row.noul !== "number" || row.noul < row.threshold) continue;
+    for (const row of regretRows) {
       let set = truthByUser.get(row.username);
       if (!set) {
         set = new Set();
         truthByUser.set(row.username, set);
       }
-      set.add(row.key);
-    }
-    const users = [...truthByUser.values()];
-    const countTrue = (key: string) =>
-      users.reduce((sum, set) => sum + (set.has(key) ? 1 : 0), 0);
-    const countBoth = (a: string, b: string) =>
-      users.reduce((sum, set) => sum + (set.has(a) && set.has(b) ? 1 : 0), 0);
-
-    const labelByKey = new Map<string, string>();
-    for (const row of prevalenceRows) {
-      const key = row.key as string;
-      labelByKey.set(key, DISPLAY_LABELS[key] ?? (row.label as string));
-    }
-
-    let bestPair: {
-      a: string;
-      b: string;
-      lift: number;
-      percent: number;
-      n: number;
-    } | null = null;
-    for (const causeKey of CAUSE_KEYS) {
-      const nA = countTrue(causeKey);
-      if (nA < minSide) continue;
-      for (const outcomeKey of OUTCOME_KEYS) {
-        const nB = countTrue(outcomeKey);
-        if (nB < minSide) continue;
-        const both = countBoth(causeKey, outcomeKey);
-        if (both < minSide) continue;
-        const rate = both / nA;
-        const base = nB / users.length;
-        if (base <= 0) continue;
-        const lift = rate / base;
-        if (lift < 1.25) continue;
-        if (
-          !bestPair ||
-          lift * Math.log(2 + both) > bestPair.lift * Math.log(2 + bestPair.n)
-        ) {
-          bestPair = {
-            a: causeKey,
-            b: outcomeKey,
-            lift: Math.round(lift * 100) / 100,
-            percent: Math.round(rate * 100),
-            n: both,
-          };
-        }
+      if (typeof row.noul === "number" && row.noul >= row.threshold) {
+        set.add(row.key);
       }
     }
-
-    if (bestPair) {
-      highlights.push({
-        type: "pair",
-        aKey: bestPair.a,
-        aLabel: labelByKey.get(bestPair.a) ?? bestPair.a,
-        bKey: bestPair.b,
-        bLabel: labelByKey.get(bestPair.b) ?? bestPair.b,
-        lift: bestPair.lift,
-        percent: bestPair.percent,
-        n: bestPair.n,
-      });
+    const ladder = {
+      social_only: { n: 0, regret: 0 },
+      hormones: { n: 0, regret: 0 },
+      surgery: { n: 0, regret: 0 },
+    };
+    for (const set of truthByUser.values()) {
+      const tier = medicalTier((key) => set.has(key));
+      if (!(tier in ladder)) continue;
+      const bucket = ladder[tier as keyof typeof ladder];
+      bucket.n += 1;
+      if (set.has("regret_transition")) bucket.regret += 1;
+    }
+    const rungs = Object.values(ladder);
+    const share = (bucket: { n: number; regret: number }) =>
+      Math.round((bucket.regret / bucket.n) * 100);
+    if (rungs.every((bucket) => bucket.n >= minSide)) {
+      const socialOnly = share(ladder.social_only);
+      const surgery = share(ladder.surgery);
+      // Only a finding when regret actually climbs with involvement.
+      if (surgery - socialOnly >= 10) {
+        highlights.push({
+          type: "regretLadder",
+          socialOnly,
+          hormones: share(ladder.hormones),
+          surgery,
+          n: rungs.reduce((sum, bucket) => sum + bucket.n, 0),
+        });
+      }
     }
 
     // ── Life-after-detransition improvement ───────────────────────────────

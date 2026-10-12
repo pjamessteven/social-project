@@ -1623,7 +1623,7 @@
       "title": "Что выделяется",
       "types": {
         "prevalence": "Чаще всего",
-        "pair": "Встречаются вместе",
+        "regretLadder": "Сожаление и медицинские шаги",
         "improvement": "Жизнь после детранзиции",
         "journey": "Типичный путь",
         "minorShare": "Начали до 18 лет",
@@ -1634,7 +1634,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Ещё {unclear}% — неясно.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery}% перенёсших операцию говорят, что сожалеют о переходе, против {hormones}% после гормонов или блокаторов и {socialOnly}% после только социального перехода (n = {n}).",
       "improvement": "{better}% говорят, что качество их жизни улучшилось после детранзиции; {worse}% — что ухудшилось (n = {n}).",
       "journey": "Типичный путь: первая дисфория в {dysphoria} → транзиция в {transition} → детранзиция в {detransition} (n = {n}).",
       "minorShare": "{percent}% историй с указанным возрастом начали транзицию до 18 лет (n = {n} из {total}).",

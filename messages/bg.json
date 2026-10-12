@@ -1623,7 +1623,7 @@
       "title": "Какво се откроява",
       "types": {
         "prevalence": "Най-често",
-        "pair": "Вървят заедно",
+        "regretLadder": "Съжаление и медицински стъпки",
         "improvement": "Животът след детранзицията",
         "journey": "Типичен път",
         "minorShare": "Започнали преди 18",
@@ -1634,7 +1634,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Още {unclear}% са неясни.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery}% от преминалите през операция казват, че съжаляват за прехода, в сравнение с {hormones}% след хормони или блокери и {socialOnly}% след само социален преход (n = {n}).",
       "improvement": "{better}% казват, че качеството им на живот се е подобрило след детранзицията; {worse}% казват, че се е влошило (n = {n}).",
       "journey": "Типичният път: първа дисфория на {dysphoria} → транзиция на {transition} → детранзиция на {detransition} (n = {n}).",
       "minorShare": "{percent}% от историите с посочена възраст са започнали транзиция преди 18 (n = {n} от {total}).",

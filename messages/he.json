@@ -1622,7 +1622,7 @@
       "title": "מה בולט",
       "types": {
         "prevalence": "הנפוץ ביותר",
-        "pair": "מופיעים יחד",
+        "regretLadder": "חרטה וצעדים רפואיים",
         "improvement": "החיים אחרי הדטרנזישן",
         "journey": "המסלול האופייני",
         "minorShare": "התחילו לפני גיל 18",
@@ -1633,7 +1633,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "עוד {unclear}% אינם ברורים.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery}% מאלה שעברו ניתוח אומרים שהם מתחרטים על המעבר, לעומת {hormones}% אחרי הורמונים או חוסמים ו-{socialOnly}% אחרי מעבר חברתי בלבד (n = {n}).",
       "improvement": "{better}% אומרים שאיכות חייהם השתפרה אחרי הדטרנזישן; {worse}% אומרים שהיא הורעה (n = {n}).",
       "journey": "המסלול האופייני: דיספוריה ראשונה בגיל {dysphoria} → מעבר בגיל {transition} → דטרנזישן בגיל {detransition} (n = {n}).",
       "minorShare": "{percent}% מהסיפורים עם גיל התחילו מעבר לפני גיל 18 (n = {n} מתוך {total}).",

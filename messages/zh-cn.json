@@ -1623,7 +1623,7 @@
       "title": "突出发现",
       "types": {
         "prevalence": "最常见",
-        "pair": "相伴出现",
+        "regretLadder": "后悔与医疗步骤",
         "improvement": "去过渡后的生活",
         "journey": "典型历程",
         "minorShare": "18 岁前开始",
@@ -1634,7 +1634,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "另有 {unclear}% 不明确。",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "做过手术的人中有 {surgery}% 表示后悔过渡，而使用激素或阻断剂后为 {hormones}%，仅社会过渡后为 {socialOnly}%（n = {n}）。",
       "improvement": "{better}% 表示去过渡后生活质量提高；{worse}% 表示变差（n = {n}）。",
       "journey": "典型历程：{dysphoria} 岁首次性别焦虑 → {transition} 岁过渡 → {detransition} 岁去过渡（n = {n}）。",
       "minorShare": "在有年龄信息的故事中，{percent}% 在 18 岁前开始过渡（n = {n}，共 {total}）。",

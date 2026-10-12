@@ -1624,7 +1624,7 @@
       "title": "آنچه برجسته است",
       "types": {
         "prevalence": "رایج‌ترین",
-        "pair": "با هم می‌آیند",
+        "regretLadder": "پشیمانی و مراحل پزشکی",
         "improvement": "زندگی پس از دترنزیشن",
         "journey": "مسیر معمول",
         "minorShare": "شروع پیش از 18 سالگی",
@@ -1635,7 +1635,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "{unclear}% دیگر نامشخص‌اند.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery}% از کسانی که جراحی کرده‌اند می‌گویند از گذار پشیمان‌اند، در مقایسه با {hormones}% پس از هورمون یا مهارکننده و {socialOnly}% پس از گذار صرفاً اجتماعی (n = {n}).",
       "improvement": "{better}% می‌گویند کیفیت زندگی‌شان پس از دترنزیشن بهتر شد؛ {worse}% می‌گویند بدتر شد (n = {n}).",
       "journey": "مسیر معمول: نخستین دیسفوریا در {dysphoria} سالگی → ترنزیشن در {transition} سالگی → دترنزیشن در {detransition} سالگی (n = {n}).",
       "minorShare": "{percent}% از داستان‌های دارای سن، ترنزیشن را پیش از 18 سالگی شروع کردند (n = {n} از {total}).",

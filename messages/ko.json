@@ -1631,7 +1631,7 @@
       "title": "눈에 띄는 점",
       "types": {
         "prevalence": "가장 흔함",
-        "pair": "함께 나타남",
+        "regretLadder": "후회와 의료적 단계",
         "improvement": "디트랜지션 이후의 삶",
         "journey": "전형적인 여정",
         "minorShare": "18세 이전 시작",
@@ -1642,7 +1642,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "추가로 {unclear}%는 불명확합니다.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "수술을 받은 사람의 {surgery}%가 전환을 후회한다고 말했으며, 호르몬이나 차단제 이후는 {hormones}%, 사회적 전환만 한 경우는 {socialOnly}%였습니다(n = {n}).",
       "improvement": "{better}%는 디트랜지션 후 삶의 질이 나아졌다고 말하고, {worse}%는 나빠졌다고 말합니다(n = {n}).",
       "journey": "전형적인 여정: {dysphoria}세에 첫 성별 불쾌감 → {transition}세에 전환 → {detransition}세에 디트랜지션(n = {n}).",
       "minorShare": "나이가 있는 이야기의 {percent}%가 18세 미만에 전환을 시작했습니다({total}건 중 n = {n}).",

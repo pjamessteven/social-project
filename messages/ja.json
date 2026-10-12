@@ -1631,7 +1631,7 @@
       "title": "注目点",
       "types": {
         "prevalence": "最も多い",
-        "pair": "同時に見られる",
+        "regretLadder": "後悔と医療的ステップ",
         "improvement": "デトランジション後の生活",
         "journey": "典型的な経過",
         "minorShare": "18歳未満で開始",
@@ -1642,7 +1642,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "さらに {unclear}% は不明確です。",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "手術を受けた人の{surgery}%が移行を後悔していると述べており、ホルモンやブロッカーの後では{hormones}%、社会的移行のみでは{socialOnly}%です（n = {n}）。",
       "improvement": "{better}% がデトランジション後に生活の質が向上したと述べ、{worse}% が悪化したと述べています（n = {n}）。",
       "journey": "典型的な経過：{dysphoria} 歳で最初の性別違和 → {transition} 歳でトランジション → {detransition} 歳でデトランジション（n = {n}）。",
       "minorShare": "年齢のある体験談の {percent}% が18歳未満でトランジションを始めています（{total} 件中 n = {n}）。",

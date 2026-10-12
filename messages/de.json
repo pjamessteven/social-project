@@ -1622,7 +1622,7 @@
       "title": "Was auffällt",
       "types": {
         "prevalence": "Am häufigsten",
-        "pair": "Tritt gemeinsam auf",
+        "regretLadder": "Reue und medizinische Schritte",
         "improvement": "Leben nach der Detransition",
         "journey": "Typischer Verlauf",
         "minorShare": "Vor 18 begonnen",
@@ -1633,7 +1633,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Weitere {unclear} % sind unklar.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery} % derjenigen, die operiert wurden, bereuen ihre Transition – gegenüber {hormones} % nach Hormonen oder Blockern und {socialOnly} % nach einer rein sozialen Transition (n = {n}).",
       "improvement": "{better} % sagen, dass sich ihre Lebensqualität nach der Detransition verbessert hat; {worse} % sagen, dass sie sich verschlechtert hat (n = {n}).",
       "journey": "Der typische Verlauf: erste Dysphorie mit {dysphoria} → Transition mit {transition} → Detransition mit {detransition} (n = {n}).",
       "minorShare": "{percent} % der Geschichten mit Altersangabe begannen die Transition unter 18 (n = {n} von {total}).",

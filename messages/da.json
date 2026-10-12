@@ -1623,7 +1623,7 @@
       "title": "Det, der skiller sig ud",
       "types": {
         "prevalence": "Mest almindeligt",
-        "pair": "Hænger sammen",
+        "regretLadder": "Fortrydelse og medicinske skridt",
         "improvement": "Livet efter detransition",
         "journey": "Typisk forløb",
         "minorShare": "Startede før 18",
@@ -1634,7 +1634,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Yderligere {unclear}% er uklare.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery}% af dem, der fik en operation, siger, at de fortryder deres transition, mod {hormones}% efter hormoner eller blokkere og {socialOnly}% efter kun social transition (n = {n}).",
       "improvement": "{better}% siger, at deres livskvalitet blev bedre efter detransition; {worse}% siger, at den blev værre (n = {n}).",
       "journey": "Det typiske forløb: første dysfori som {dysphoria} → transition som {transition} → detransition som {detransition} (n = {n}).",
       "minorShare": "{percent}% af historierne med en alder begyndte transition under 18 år (n = {n} af {total}).",

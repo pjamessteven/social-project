@@ -1631,7 +1631,7 @@
       "title": "Det som skiller seg ut",
       "types": {
         "prevalence": "Vanligst",
-        "pair": "Henger sammen",
+        "regretLadder": "Anger og medisinske steg",
         "improvement": "Livet etter detransisjon",
         "journey": "Typisk forløp",
         "minorShare": "Startet før 18",
@@ -1642,7 +1642,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Ytterligere {unclear} % er uklare.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery} % av dem som ble operert sier de angrer på transisjonen, mot {hormones} % etter hormoner eller blokkere og {socialOnly} % etter kun sosial transisjon (n = {n}).",
       "improvement": "{better} % sier at livskvaliteten ble bedre etter detransisjon; {worse} % sier at den ble verre (n = {n}).",
       "journey": "Det typiske forløpet: første dysfori ved {dysphoria} → transisjon ved {transition} → detransisjon ved {detransition} (n = {n}).",
       "minorShare": "{percent} % av historiene med en alder startet transisjon under 18 år (n = {n} av {total}).",

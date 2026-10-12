@@ -1623,7 +1623,7 @@
       "title": "Ce iese în evidență",
       "types": {
         "prevalence": "Cel mai frecvent",
-        "pair": "Apar împreună",
+        "regretLadder": "Regret și pași medicali",
         "improvement": "Viața după detranziție",
         "journey": "Parcurs tipic",
         "minorShare": "Început înainte de 18 ani",
@@ -1634,7 +1634,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Încă {unclear}% sunt neclare.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery}% dintre cei care au făcut o operație spun că regretă tranziția, față de {hormones}% după hormoni sau blocante și {socialOnly}% după o tranziție doar socială (n = {n}).",
       "improvement": "{better}% spun că le-a crescut calitatea vieții după detranziție; {worse}% spun că s-a înrăutățit (n = {n}).",
       "journey": "Parcursul tipic: prima disforie la {dysphoria} ani → tranziție la {transition} → detranziție la {detransition} (n = {n}).",
       "minorShare": "{percent}% dintre poveștile cu vârstă au început tranziția sub 18 ani (n = {n} din {total}).",

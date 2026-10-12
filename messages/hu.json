@@ -1631,7 +1631,7 @@
       "title": "Ami kiemelkedik",
       "types": {
         "prevalence": "Leggyakoribb",
-        "pair": "Együtt jár",
+        "regretLadder": "Megbánás és orvosi lépések",
         "improvement": "Élet a detranzíció után",
         "journey": "Tipikus út",
         "minorShare": "18 év előtt kezdte",
@@ -1642,7 +1642,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "További {unclear}% nem egyértelmű.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "A műtéten átesettek {surgery}%-a mondja, hogy megbánta a tranzíciót, szemben a hormonok vagy blokkolók utáni {hormones}%-kal és a csak társadalmi tranzíció utáni {socialOnly}%-kal (n = {n}).",
       "improvement": "{better}% szerint javult az életminősége a detranzíció után; {worse}% szerint romlott (n = {n}).",
       "journey": "A tipikus út: első diszfória {dysphoria} évesen → tranzíció {transition} évesen → detranzíció {detransition} évesen (n = {n}).",
       "minorShare": "Az életkort tartalmazó történetek {percent}%-ában 18 év előtt kezdődött a tranzíció (n = {n} / {total}).",

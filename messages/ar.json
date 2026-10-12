@@ -1623,7 +1623,7 @@
       "title": "ما يلفت الانتباه",
       "types": {
         "prevalence": "الأكثر شيوعًا",
-        "pair": "يظهران معًا",
+        "regretLadder": "الندم والخطوات الطبية",
         "improvement": "الحياة بعد التراجع عن التحول",
         "journey": "المسار النموذجي",
         "minorShare": "بدأوا قبل سن 18",
@@ -1634,7 +1634,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "و{unclear}% أخرى غير واضحة.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery}% ممن خضعوا لجراحة يقولون إنهم نادمون على التحول، مقارنة بـ {hormones}% بعد الهرمونات أو حاصرات البلوغ و{socialOnly}% بعد تحول اجتماعي فقط (n = {n}).",
       "improvement": "{better}% يقولون إن جودة حياتهم تحسّنت بعد التراجع عن التحول؛ و{worse}% يقولون إنها ساءت (n = {n}).",
       "journey": "المسار النموذجي: أول عدم ارتياح جندري في سن {dysphoria} → التحول في سن {transition} → التراجع عن التحول في سن {detransition} (n = {n}).",
       "minorShare": "{percent}% من القصص التي تذكر العمر بدأ أصحابها التحول قبل سن 18 (n = {n} من {total}).",

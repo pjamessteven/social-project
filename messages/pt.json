@@ -1631,7 +1631,7 @@
       "title": "O que se destaca",
       "types": {
         "prevalence": "Mais comum",
-        "pair": "Andam juntos",
+        "regretLadder": "Arrependimento e etapas médicas",
         "improvement": "A vida após a destransição",
         "journey": "Trajetória típica",
         "minorShare": "Começaram antes dos 18",
@@ -1642,7 +1642,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Outros {unclear}% são incertos.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery}% de quem fez cirurgia diz se arrepender da transição, contra {hormones}% após hormônios ou bloqueadores e {socialOnly}% após uma transição apenas social (n = {n}).",
       "improvement": "{better}% dizem que sua qualidade de vida melhorou após a destransição; {worse}% dizem que piorou (n = {n}).",
       "journey": "A trajetória típica: primeira disforia aos {dysphoria} → transição aos {transition} → destransição aos {detransition} (n = {n}).",
       "minorShare": "{percent}% das histórias com idade começaram a transição antes dos 18 (n = {n} de {total}).",

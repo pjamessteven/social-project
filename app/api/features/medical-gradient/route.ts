@@ -4,19 +4,15 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   cohortCte,
   FEATURE_CACHE_HEADERS,
+  MEDICAL_TIER_KEYS,
+  medicalTier,
   NOUL_THRESHOLD,
   parseFeatureFilters,
+  type MedicalTier,
 } from "../helpers";
 
 const RELEVANT_KEYS = [
-  "never_transitioned",
-  "only_social_transition",
-  "took_hormones",
-  "diy_hormones",
-  "took_puberty_blockers",
-  "top_surgery",
-  "bottom_surgery",
-  "facial_surgery",
+  ...MEDICAL_TIER_KEYS,
   "regret_transition",
   "no_regret",
 ] as const;
@@ -27,9 +23,9 @@ const TIER_ORDER = [
   "hormones",
   "surgery",
   "unclear",
-] as const;
+] as const satisfies readonly MedicalTier[];
 
-type TierKey = (typeof TIER_ORDER)[number];
+type TierKey = MedicalTier;
 
 interface AnswerRow {
   username: string;
@@ -90,26 +86,7 @@ export async function GET(request: NextRequest) {
 
     for (const answers of byUser.values()) {
       const truth = (key: string) => answers.get(key) === true;
-
-      let tier: TierKey = "unclear";
-      if (
-        truth("top_surgery") ||
-        truth("bottom_surgery") ||
-        truth("facial_surgery")
-      ) {
-        tier = "surgery";
-      } else if (
-        truth("took_hormones") ||
-        truth("diy_hormones") ||
-        truth("took_puberty_blockers")
-      ) {
-        tier = "hormones";
-      } else if (truth("only_social_transition")) {
-        tier = "social_only";
-      } else if (truth("never_transitioned")) {
-        tier = "no_transition";
-      }
-
+      const tier = medicalTier(truth);
       const bucket = tiers.get(tier)!;
       bucket.n += 1;
       if (truth("regret_transition")) bucket.regrets += 1;

@@ -20,9 +20,12 @@ import type { NextRequest } from "next/server";
  * Stats are always computed against `cohort`, so coverage reads
  * "n of evaluated stories" instead of being diluted by users the processing
  * pipeline has not reached yet. The stats dataset only covers people who
- * left transition behind: the latest current_status must be detransitioned
- * or desisted, and anyone flagged never_transitioned is dropped (the
- * "desisted" label also admits people who never started transitioning).
+ * actually transitioned and then left it behind:
+ *   - latest current_status is detransitioned (implies a medical step), or
+ *     desisted with a social or medical transition step on record ("desisted"
+ *     also admits people who never started transitioning);
+ *   - anyone flagged never_transitioned, still_identifies_trans or
+ *     no_detransition_occurred is dropped.
  */
 
 /** quality_detail_level score (0-3) needed for the "detailed only" filter. */
@@ -62,6 +65,24 @@ export function parseFeatureFilters(request: NextRequest): FeatureFilters {
     detailedOnly: searchParams.get("detail") === "high",
   };
 }
+
+/** Any of these marks a story as having actually started transitioning. */
+const TRANSITION_STEP_KEYS = [
+  "only_social_transition",
+  "took_hormones",
+  "diy_hormones",
+  "took_puberty_blockers",
+  "top_surgery",
+  "bottom_surgery",
+  "facial_surgery",
+] as const;
+
+/** Any of these marks a story as outside the stats population. */
+const NOT_DETRANSITIONED_KEYS = [
+  "never_transitioned",
+  "still_identifies_trans",
+  "no_detransition_occurred",
+];
 
 /** CTE chain shared by every feature stats query. Always followed by SELECT. */
 export function cohortCte(filters: FeatureFilters): SQL {
@@ -150,18 +171,37 @@ export function cohortCte(filters: FeatureFilters): SQL {
       FROM detrans_user_timelines
       ORDER BY username, run_id DESC
     ),
+    transition_evidence AS MATERIALIZED (
+      SELECT DISTINCT ea.username
+      FROM answers ea
+      JOIN detrans_features ef ON ef.id = ea.feature_id
+      WHERE ef.key IN (${sql.join(
+        TRANSITION_STEP_KEYS.map((key) => sql`${key}`),
+        sql`, `,
+      )})
+        AND ea.noul >= COALESCE(ef.threshold, ${DEFAULT_NOUL_THRESHOLD})
+    ),
     stats_status AS MATERIALIZED (
       SELECT sa.username
       FROM answers sa
       JOIN detrans_features sf ON sf.id = sa.feature_id
       WHERE sf.key = 'current_status'
-        AND sa.choice IN ('detransitioned', 'desisted')
+        AND (
+          sa.choice = 'detransitioned'
+          OR (
+            sa.choice = 'desisted'
+            AND sa.username IN (SELECT username FROM transition_evidence)
+          )
+        )
     ),
-    never_transitioned AS MATERIALIZED (
+    not_detransitioned AS MATERIALIZED (
       SELECT na.username
       FROM answers na
       JOIN detrans_features nf ON nf.id = na.feature_id
-      WHERE nf.key = 'never_transitioned'
+      WHERE nf.key IN (${sql.join(
+        NOT_DETRANSITIONED_KEYS.map((key) => sql`${key}`),
+        sql`, `,
+      )})
         AND na.noul >= COALESCE(nf.threshold, ${DEFAULT_NOUL_THRESHOLD})
     ),
     suspicious_users AS MATERIALIZED (
@@ -187,7 +227,7 @@ export function cohortCte(filters: FeatureFilters): SQL {
       JOIN filtered_users fu ON fu.username = a.username
       JOIN stats_status ss ON ss.username = a.username
       WHERE NOT EXISTS (
-        SELECT 1 FROM never_transitioned nt WHERE nt.username = a.username
+        SELECT 1 FROM not_detransitioned nd WHERE nd.username = a.username
       )
     ),
     filtered_answers AS (
@@ -211,3 +251,35 @@ export const FEATURE_CACHE_HEADERS = {
 } as const;
 
 export const NOUL_THRESHOLD = DEFAULT_NOUL_THRESHOLD;
+
+/** Features that place a story on the medical-involvement ladder. */
+export const MEDICAL_TIER_KEYS = [
+  "never_transitioned",
+  ...TRANSITION_STEP_KEYS,
+] as const;
+
+export type MedicalTier =
+  | "no_transition"
+  | "social_only"
+  | "hormones"
+  | "surgery"
+  | "unclear";
+
+/** The most invasive step a story reached, from its yes/no answers. */
+export function medicalTier(truth: (key: string) => boolean): MedicalTier {
+  if (
+    truth("top_surgery") ||
+    truth("bottom_surgery") ||
+    truth("facial_surgery")
+  )
+    return "surgery";
+  if (
+    truth("took_hormones") ||
+    truth("diy_hormones") ||
+    truth("took_puberty_blockers")
+  )
+    return "hormones";
+  if (truth("only_social_transition")) return "social_only";
+  if (truth("never_transitioned")) return "no_transition";
+  return "unclear";
+}

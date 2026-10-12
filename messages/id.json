@@ -1631,7 +1631,7 @@
       "title": "Yang menonjol",
       "types": {
         "prevalence": "Paling umum",
-        "pair": "Muncul bersama",
+        "regretLadder": "Penyesalan dan langkah medis",
         "improvement": "Hidup setelah detransisi",
         "journey": "Perjalanan umum",
         "minorShare": "Mulai sebelum 18",
@@ -1642,7 +1642,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "{unclear}% lainnya tidak jelas.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery}% dari mereka yang menjalani operasi mengaku menyesali transisi, dibandingkan {hormones}% setelah hormon atau penghambat dan {socialOnly}% setelah transisi sosial saja (n = {n}).",
       "improvement": "{better}% mengatakan kualitas hidup mereka membaik setelah detransisi; {worse}% mengatakan memburuk (n = {n}).",
       "journey": "Perjalanan umum: disforia pertama pada usia {dysphoria} → transisi pada usia {transition} → detransisi pada usia {detransition} (n = {n}).",
       "minorShare": "{percent}% kisah yang mencantumkan usia mulai transisi di bawah 18 (n = {n} dari {total}).",

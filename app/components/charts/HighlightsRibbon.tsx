@@ -6,6 +6,12 @@ import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CARD_SURFACE, SECTION_TITLE } from "./ChartParts";
+import {
+  MINI_COLORS,
+  MiniBars,
+  MiniDonut,
+  MiniTimeline,
+} from "./HighlightMiniChart";
 import { buildFeatureParams, prettifyKey } from "./useFeatureData";
 import { useFeatureLabels } from "./useFeatureLabels";
 
@@ -20,13 +26,10 @@ type Highlight =
       n: number;
     }
   | {
-      type: "pair";
-      aKey: string;
-      aLabel: string;
-      bKey: string;
-      bLabel: string;
-      lift: number;
-      percent: number;
+      type: "regretLadder";
+      socialOnly: number;
+      hormones: number;
+      surgery: number;
       n: number;
     }
   | {
@@ -144,11 +147,11 @@ export default function HighlightsRibbon({
             )}
           </>
         );
-      case "pair":
-        return t("pair", {
-          a: feature(highlight.aKey, highlight.aLabel),
-          b: feature(highlight.bKey, highlight.bLabel),
-          lift: highlight.lift,
+      case "regretLadder":
+        return t("regretLadder", {
+          socialOnly: highlight.socialOnly,
+          hormones: highlight.hormones,
+          surgery: highlight.surgery,
           n: highlight.n,
         });
       case "improvement":
@@ -194,12 +197,82 @@ export default function HighlightsRibbon({
     }
   };
 
+  const renderChart = (highlight: Highlight) => {
+    switch (highlight.type) {
+      case "prevalence":
+        return (
+          <MiniDonut
+            primary={highlight.percent}
+            secondary={highlight.unclearPercent}
+          />
+        );
+      case "regretLadder":
+        return (
+          <MiniBars
+            values={[
+              highlight.socialOnly,
+              highlight.hormones,
+              highlight.surgery,
+            ]}
+            colors={[
+              MINI_COLORS.SECONDARY,
+              MINI_COLORS.PRIMARY,
+              MINI_COLORS.PRIMARY,
+            ]}
+            max={100}
+          />
+        );
+      case "improvement":
+        return (
+          <MiniBars
+            values={[
+              highlight.betterPercent,
+              Math.max(
+                0,
+                100 - highlight.betterPercent - highlight.worsePercent,
+              ),
+              highlight.worsePercent,
+            ]}
+            colors={[MINI_COLORS.PRIMARY, "#94a3b8", MINI_COLORS.NEGATIVE]}
+          />
+        );
+      case "journey":
+        return (
+          <MiniTimeline
+            ages={[
+              highlight.dysphoria,
+              highlight.transition,
+              highlight.detransition,
+            ]}
+          />
+        );
+      case "orientation":
+        return (
+          <MiniDonut
+            primary={highlight.sameSexPercent}
+            secondary={highlight.percent - highlight.sameSexPercent}
+          />
+        );
+      case "minorShare":
+      case "minorLe15":
+      case "minorDysphoria":
+        return <MiniDonut primary={highlight.percent} />;
+      case "minorFemale":
+        return (
+          <MiniBars
+            values={[highlight.percent, 100 - highlight.percent]}
+            colors={[MINI_COLORS.PRIMARY, MINI_COLORS.SECONDARY]}
+          />
+        );
+    }
+  };
+
   const renderAction = (highlight: Highlight) => {
     switch (highlight.type) {
       case "prevalence":
         return () => explore({}, "features");
-      case "pair":
-        return () => explore({ split: highlight.aKey }, "compare");
+      case "regretLadder":
+        return () => explore({}, "medical");
       case "improvement":
         return () => explore({}, "after");
       case "journey":
@@ -221,8 +294,11 @@ export default function HighlightsRibbon({
         {highlights.map((highlight) => (
           <div
             key={highlight.type}
-            className={`flex flex-col p-4 ${CARD_SURFACE}`}
+            className={`relative flex flex-col p-4 ${CARD_SURFACE}`}
           >
+            <div className="pointer-events-none absolute right-4 bottom-3">
+              {renderChart(highlight)}
+            </div>
             <span className="text-base font-semibold">
               {t(`types.${highlight.type}`)}
             </span>

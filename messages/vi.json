@@ -1623,7 +1623,7 @@
       "title": "Điểm nổi bật",
       "types": {
         "prevalence": "Phổ biến nhất",
-        "pair": "Đi cùng nhau",
+        "regretLadder": "Hối tiếc và các bước y tế",
         "improvement": "Cuộc sống sau khi chuyển giới trở lại",
         "journey": "Hành trình điển hình",
         "minorShare": "Bắt đầu trước 18 tuổi",
@@ -1634,7 +1634,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Thêm {unclear}% không rõ ràng.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery}% người đã phẫu thuật cho biết họ hối tiếc vì chuyển giới, so với {hormones}% sau hormone hoặc thuốc ức chế và {socialOnly}% sau khi chỉ chuyển đổi xã hội (n = {n}).",
       "improvement": "{better}% nói chất lượng cuộc sống của họ được cải thiện sau khi chuyển giới trở lại; {worse}% nói nó tệ đi (n = {n}).",
       "journey": "Hành trình điển hình: phiền muộn giới lần đầu ở tuổi {dysphoria} → chuyển giới ở tuổi {transition} → chuyển giới trở lại ở tuổi {detransition} (n = {n}).",
       "minorShare": "{percent}% câu chuyện có tuổi bắt đầu chuyển giới dưới 18 tuổi (n = {n} trong {total}).",

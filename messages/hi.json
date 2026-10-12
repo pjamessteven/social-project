@@ -1631,7 +1631,7 @@
       "title": "क्या अलग दिखता है",
       "types": {
         "prevalence": "सबसे आम",
-        "pair": "साथ-साथ",
+        "regretLadder": "पछतावा और चिकित्सीय कदम",
         "improvement": "डीट्रांज़िशन के बाद जीवन",
         "journey": "सामान्य यात्रा",
         "minorShare": "18 से पहले शुरू किया",
@@ -1642,7 +1642,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "अन्य {unclear}% अस्पष्ट हैं।",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "सर्जरी करवाने वालों में से {surgery}% कहते हैं कि उन्हें ट्रांज़िशन का पछतावा है, जबकि हार्मोन या ब्लॉकर के बाद {hormones}% और केवल सामाजिक ट्रांज़िशन के बाद {socialOnly}% (n = {n})।",
       "improvement": "{better}% कहते हैं कि डीट्रांज़िशन के बाद उनके जीवन की गुणवत्ता सुधरी; {worse}% कहते हैं कि बिगड़ी (n = {n})।",
       "journey": "सामान्य यात्रा: {dysphoria} पर पहला डिस्फोरिया → {transition} पर ट्रांज़िशन → {detransition} पर डीट्रांज़िशन (n = {n})।",
       "minorShare": "आयु वाली {percent}% कहानियों में ट्रांज़िशन 18 से कम आयु में शुरू हुआ (n = {total} में से {n})।",

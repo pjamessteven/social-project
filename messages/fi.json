@@ -1623,7 +1623,7 @@
       "title": "Mikä erottuu",
       "types": {
         "prevalence": "Yleisin",
-        "pair": "Kulkevat yhdessä",
+        "regretLadder": "Katumus ja lääketieteelliset vaiheet",
         "improvement": "Elämä detransition jälkeen",
         "journey": "Tyypillinen polku",
         "minorShare": "Aloitti ennen 18 vuoden ikää",
@@ -1634,7 +1634,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Lisäksi {unclear} % on epäselviä.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery} % leikkauksessa käyneistä sanoo katuvansa transitiota, kun hormonien tai salpaajien jälkeen osuus on {hormones} % ja pelkän sosiaalisen transition jälkeen {socialOnly} % (n = {n}).",
       "improvement": "{better} % kertoo elämänlaatunsa parantuneen detransition jälkeen; {worse} % kertoo sen heikentyneen (n = {n}).",
       "journey": "Tyypillinen polku: ensimmäinen dysforia {dysphoria}-vuotiaana → transitio {transition}-vuotiaana → detransitio {detransition}-vuotiaana (n = {n}).",
       "minorShare": "{percent} % tarinoista, joissa on ikä, aloitti transition alle 18-vuotiaana (n = {n}/{total}).",

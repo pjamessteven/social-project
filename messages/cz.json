@@ -1623,7 +1623,7 @@
       "title": "Co vyniká",
       "types": {
         "prevalence": "Nejčastější",
-        "pair": "Jde ruku v ruce",
+        "regretLadder": "Lítost a lékařské kroky",
         "improvement": "Život po detranzici",
         "journey": "Typický průběh",
         "minorShare": "Začátek před 18. rokem",
@@ -1634,7 +1634,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Dalších {unclear} % je nejasných.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery} % těch, kdo podstoupili operaci, uvádí, že tranzice litují, oproti {hormones} % po hormonech či blokátorech a {socialOnly} % po pouze sociální tranzici (n = {n}).",
       "improvement": "{better} % uvádí, že se jejich kvalita života po detranzici zlepšila; {worse} % uvádí, že se zhoršila (n = {n}).",
       "journey": "Typický průběh: první dysforie v {dysphoria} → tranzice v {transition} → detranzice v {detransition} (n = {n}).",
       "minorShare": "{percent} % příběhů s uvedeným věkem zahájilo tranzici před 18. rokem (n = {n} z {total}).",

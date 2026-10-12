@@ -1624,7 +1624,7 @@
       "title": "重點發現",
       "types": {
         "prevalence": "最常見",
-        "pair": "相伴出現",
+        "regretLadder": "後悔與醫療步驟",
         "improvement": "去過渡後的生活",
         "journey": "典型歷程",
         "minorShare": "18 歲前開始",
@@ -1635,7 +1635,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "另有 {unclear}% 不明確。",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "做過手術的人中有 {surgery}% 表示後悔過渡，而使用荷爾蒙或阻斷劑後為 {hormones}%，僅社會過渡後為 {socialOnly}%（n = {n}）。",
       "improvement": "{better}% 表示去過渡後生活品質提高；{worse}% 表示變差（n = {n}）。",
       "journey": "典型歷程：{dysphoria} 歲首次性別焦慮 → {transition} 歲過渡 → {detransition} 歲去過渡（n = {n}）。",
       "minorShare": "在有年齡資訊的故事中，{percent}% 在 18 歲前開始過渡（n = {n}，共 {total}）。",

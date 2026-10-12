@@ -1623,7 +1623,7 @@
       "title": "Що вирізняється",
       "types": {
         "prevalence": "Найпоширеніше",
-        "pair": "Трапляються разом",
+        "regretLadder": "Жаль і медичні кроки",
         "improvement": "Життя після детранзиції",
         "journey": "Типовий шлях",
         "minorShare": "Почали до 18 років",
@@ -1634,7 +1634,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Ще {unclear}% — неясно.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery}% тих, хто переніс операцію, кажуть, що шкодують про перехід, проти {hormones}% після гормонів чи блокаторів і {socialOnly}% після лише соціального переходу (n = {n}).",
       "improvement": "{better}% кажуть, що якість їхнього життя покращилася після детранзиції; {worse}% — що погіршилася (n = {n}).",
       "journey": "Типовий шлях: перша дисфорія у {dysphoria} → транзиція у {transition} → детранзиція у {detransition} (n = {n}).",
       "minorShare": "{percent}% історій із зазначеним віком почали транзицію до 18 років (n = {n} з {total}).",

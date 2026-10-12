@@ -1630,7 +1630,7 @@
       "title": "Wat opvalt",
       "types": {
         "prevalence": "Meest voorkomend",
-        "pair": "Gaan samen",
+        "regretLadder": "Spijt en medische stappen",
         "improvement": "Leven na detransitie",
         "journey": "Typisch traject",
         "minorShare": "Vóór 18 begonnen",
@@ -1641,7 +1641,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Nog eens {unclear}% is onduidelijk.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery}% van wie een operatie had, zegt spijt te hebben van de transitie, tegenover {hormones}% na hormonen of blokkers en {socialOnly}% na alleen een sociale transitie (n = {n}).",
       "improvement": "{better}% zegt dat de levenskwaliteit na detransitie verbeterde; {worse}% zegt dat die verslechterde (n = {n}).",
       "journey": "Het typische traject: eerste dysforie op {dysphoria} → transitie op {transition} → detransitie op {detransition} (n = {n}).",
       "minorShare": "{percent}% van de verhalen met een leeftijd begon de transitie onder 18 (n = {n} van {total}).",

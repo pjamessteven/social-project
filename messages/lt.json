@@ -1630,7 +1630,7 @@
       "title": "Kas išsiskiria",
       "types": {
         "prevalence": "Dažniausia",
-        "pair": "Eina kartu",
+        "regretLadder": "Gailestis ir medicininiai žingsniai",
         "improvement": "Gyvenimas po detranzicijos",
         "journey": "Tipinis kelias",
         "minorShare": "Pradėjo iki 18 metų",
@@ -1641,7 +1641,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Dar {unclear} % neaiškūs.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery} % operaciją patyrusių teigia gailintys tranzicijos, palyginti su {hormones} % po hormonų ar blokatorių ir {socialOnly} % po vien socialinės tranzicijos (n = {n}).",
       "improvement": "{better} % teigia, kad jų gyvenimo kokybė po detranzicijos pagerėjo; {worse} % teigia, kad pablogėjo (n = {n}).",
       "journey": "Tipinis kelias: pirmoji disforija {dysphoria} m. → tranzicija {transition} m. → detranzicija {detransition} m. (n = {n}).",
       "minorShare": "{percent} % istorijų su nurodytu amžiumi tranziciją pradėjo iki 18 metų (n = {n} iš {total}).",

@@ -1622,7 +1622,7 @@
       "title": "Öne çıkanlar",
       "types": {
         "prevalence": "En yaygın",
-        "pair": "Birlikte görülür",
+        "regretLadder": "Pişmanlık ve tıbbi adımlar",
         "improvement": "Detransisyondan sonra yaşam",
         "journey": "Tipik süreç",
         "minorShare": "18'den önce başladı",
@@ -1633,7 +1633,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Bir %{unclear} daha belirsiz.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "Ameliyat olanların %{surgery}'i geçişten pişman olduğunu söylüyor; bu oran hormon veya blokerlerden sonra %{hormones}, yalnızca sosyal geçişten sonra %{socialOnly} (n = {n}).",
       "improvement": "%{better} detransisyondan sonra yaşam kalitesinin iyileştiğini söylüyor; %{worse} kötüleştiğini söylüyor (n = {n}).",
       "journey": "Tipik süreç: {dysphoria} yaşında ilk disfori → {transition} yaşında geçiş → {detransition} yaşında detransisyon (n = {n}).",
       "minorShare": "Yaş belirten hikâyelerin %{percent} kadarında geçiş 18 yaşından önce başladı (n = {n} / {total}).",

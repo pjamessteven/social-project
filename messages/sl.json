@@ -1623,7 +1623,7 @@
       "title": "Kaj izstopa",
       "types": {
         "prevalence": "Najpogostejše",
-        "pair": "Gre skupaj",
+        "regretLadder": "Obžalovanje in medicinski koraki",
         "improvement": "Življenje po detranziciji",
         "journey": "Tipična pot",
         "minorShare": "Začetek pred 18. letom",
@@ -1634,7 +1634,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Nadaljnjih {unclear} % je nejasnih.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery} % tistih, ki so imeli operacijo, pravi, da obžalujejo tranzicijo, v primerjavi s {hormones} % po hormonih ali blokatorjih in {socialOnly} % po zgolj socialni tranziciji (n = {n}).",
       "improvement": "{better} % pravi, da se je njihova kakovost življenja po detranziciji izboljšala; {worse} % pravi, da se je poslabšala (n = {n}).",
       "journey": "Tipična pot: prva disforija pri {dysphoria} → tranzicija pri {transition} → detranzicija pri {detransition} (n = {n}).",
       "minorShare": "{percent} % zgodb s starostjo je tranzicijo začelo pred 18. letom (n = {n} od {total}).",

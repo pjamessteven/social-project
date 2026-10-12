@@ -1631,7 +1631,7 @@
       "title": "Co się wyróżnia",
       "types": {
         "prevalence": "Najczęstsze",
-        "pair": "Idą w parze",
+        "regretLadder": "Żal a kroki medyczne",
         "improvement": "Życie po detransycji",
         "journey": "Typowa ścieżka",
         "minorShare": "Rozpoczęcie przed 18. rokiem",
@@ -1642,7 +1642,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Kolejne {unclear}% jest niejasnych.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery}% osób po operacji mówi, że żałuje tranzycji, wobec {hormones}% po hormonach lub blokerach i {socialOnly}% po wyłącznie społecznej tranzycji (n = {n}).",
       "improvement": "{better}% mówi, że ich jakość życia poprawiła się po detransycji; {worse}% mówi, że się pogorszyła (n = {n}).",
       "journey": "Typowa ścieżka: pierwsza dysforia w wieku {dysphoria} → tranzycja w wieku {transition} → detransycja w wieku {detransition} (n = {n}).",
       "minorShare": "{percent}% historii z podanym wiekiem rozpoczęło tranzycję przed 18. rokiem życia (n = {n} z {total}).",

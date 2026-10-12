@@ -1630,7 +1630,7 @@
       "title": "Cosa emerge",
       "types": {
         "prevalence": "Più comune",
-        "pair": "Vanno insieme",
+        "regretLadder": "Rimpianto e passi medici",
         "improvement": "La vita dopo la detransizione",
         "journey": "Percorso tipico",
         "minorShare": "Iniziato prima dei 18 anni",
@@ -1641,7 +1641,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Un altro {unclear}% non è chiaro.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "Il {surgery}% di chi si è sottoposto a chirurgia dice di rimpiangere la transizione, contro il {hormones}% dopo ormoni o bloccanti e il {socialOnly}% dopo una transizione solo sociale (n = {n}).",
       "improvement": "Il {better}% dice che la sua qualità della vita è migliorata dopo la detransizione; il {worse}% dice che è peggiorata (n = {n}).",
       "journey": "Il percorso tipico: prima disforia a {dysphoria} anni → transizione a {transition} → detransizione a {detransition} (n = {n}).",
       "minorShare": "Il {percent}% delle storie con un'età ha iniziato la transizione prima dei 18 anni (n = {n} su {total}).",

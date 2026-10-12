@@ -1623,7 +1623,7 @@
       "title": "ประเด็นที่โดดเด่น",
       "types": {
         "prevalence": "พบบ่อยที่สุด",
-        "pair": "มักมาคู่กัน",
+        "regretLadder": "ความเสียใจและขั้นตอนทางการแพทย์",
         "improvement": "ชีวิตหลังเลิกเปลี่ยนเพศ",
         "journey": "เส้นทางทั่วไป",
         "minorShare": "เริ่มก่อนอายุ 18",
@@ -1634,7 +1634,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "อีก {unclear}% ไม่ชัดเจน",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "{surgery}% ของผู้ที่ผ่าตัดบอกว่าเสียใจที่ข้ามเพศ เทียบกับ {hormones}% หลังใช้ฮอร์โมนหรือยาชะลอ และ {socialOnly}% หลังการข้ามเพศทางสังคมเท่านั้น (n = {n})",
       "improvement": "{better}% บอกว่าคุณภาพชีวิตดีขึ้นหลังเลิกเปลี่ยนเพศ ส่วน {worse}% บอกว่าแย่ลง (n = {n})",
       "journey": "เส้นทางทั่วไป: ไม่สบายใจทางเพศครั้งแรกเมื่ออายุ {dysphoria} → เปลี่ยนเพศเมื่ออายุ {transition} → เลิกเปลี่ยนเพศเมื่ออายุ {detransition} (n = {n})",
       "minorShare": "{percent}% ของเรื่องราวที่ระบุอายุเริ่มเปลี่ยนเพศก่อนอายุ 18 (n = {n} จาก {total})",

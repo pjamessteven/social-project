@@ -1624,7 +1624,7 @@
       "title": "Τι ξεχωρίζει",
       "types": {
         "prevalence": "Πιο συχνό",
-        "pair": "Πάνε μαζί",
+        "regretLadder": "Μεταμέλεια και ιατρικά βήματα",
         "improvement": "Η ζωή μετά την απομετάβαση",
         "journey": "Τυπική διαδρομή",
         "minorShare": "Ξεκίνησαν πριν τα 18",
@@ -1635,7 +1635,7 @@
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
       "prevalenceUnclear": "Ένα επιπλέον {unclear}% είναι ασαφές.",
-      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "regretLadder": "Το {surgery}% όσων υποβλήθηκαν σε χειρουργείο λένε ότι μετανιώνουν για τη μετάβαση, έναντι {hormones}% μετά από ορμόνες ή αναστολείς και {socialOnly}% μετά από μόνο κοινωνική μετάβαση (n = {n}).",
       "improvement": "Το {better}% λέει ότι η ποιότητα ζωής του βελτιώθηκε μετά την απομετάβαση· το {worse}% λέει ότι χειροτέρεψε (n = {n}).",
       "journey": "Η τυπική διαδρομή: πρώτη δυσφορία στα {dysphoria} → μετάβαση στα {transition} → απομετάβαση στα {detransition} (n = {n}).",
       "minorShare": "Το {percent}% των ιστοριών με ηλικία ξεκίνησε τη μετάβαση κάτω των 18 (n = {n} από {total}).",

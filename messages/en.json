@@ -1620,7 +1620,7 @@
       "title": "What stands out",
       "types": {
         "prevalence": "Most common",
-        "pair": "Goes together",
+        "regretLadder": "Regret and medical steps",
         "improvement": "Life after detransition",
         "journey": "Typical journey",
         "minorShare": "Started before 18",
@@ -1631,7 +1631,7 @@
       },
       "prevalence": "{percent}% of stories mention {label} (n = {n}).",
       "prevalenceUnclear": "Another {unclear}% are unclear.",
-      "pair": "Stories that mention {a} are {lift}× more likely to also mention {b} (n = {n}).",
+      "regretLadder": "{surgery}% of those who had surgery say they regret transitioning, compared with {hormones}% after hormones or blockers and {socialOnly}% after a social transition only (n = {n}).",
       "improvement": "{better}% say their quality of life improved after detransitioning; {worse}% say it got worse (n = {n}).",
       "journey": "The typical journey: first dysphoria at {dysphoria} → transition at {transition} → detransition at {detransition} (n = {n}).",
       "minorShare": "{percent}% of stories with an age started transitioning under 18 (n = {n} of {total}).",
