@@ -21,6 +21,7 @@ import {
   Menu,
   MessageCircleHeart,
   Settings,
+  Users,
   X,
   Youtube,
 } from "lucide-react";
@@ -110,6 +111,13 @@ export default function Header({
       label: t("navigation.studies"),
       isActive: pathname === "/studies",
       icon: <BookText className={tabIconClass} />,
+    },
+    {
+      key: "stories",
+      href: "/stories",
+      label: t("navigation.stories"),
+      isActive: pathname === "/stories" || pathname.startsWith("/stories/"),
+      icon: <Users className={tabIconClass} />,
     },
     {
       key: "stats",
@@ -391,6 +399,27 @@ export default function Header({
                         </div>
                         <div className="text-muted-foreground text-xs">
                           {t("resources.studiesDesc")}
+                        </div>
+                      </div>
+                    </Button>
+                  </Link>
+                  <Link href="/stories" onClick={() => setIsOpen(false)}>
+                    <Button
+                      variant="ghost"
+                      className={cn(
+                        "h-auto w-full flex-row items-center justify-start py-2",
+                        (pathname === "/stories" ||
+                          pathname.startsWith("/stories/")) &&
+                          "bg-muted",
+                      )}
+                    >
+                      <Users className="h-4 w-4" />
+                      <div className="ml-4 flex flex-col items-start">
+                        <div className="text-sm font-medium">
+                          {t("navigation.stories")}
+                        </div>
+                        <div className="text-muted-foreground text-xs">
+                          {t("navigation.storiesDesc")}
                         </div>
                       </div>
                     </Button>

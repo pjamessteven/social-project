@@ -76,6 +76,12 @@ When adding new public routes to the application:
 - Do **not** link `/studies/{id}` in site UI or the sitemap — numeric ids are a legacy alias only. They stay functional (chat citations) and 308-redirect to the canonical slug URL.
 - Sitemap study entries are built by the dedicated `studyRoutes` builder in `/app/sitemap.xml/route.ts` (true per-locale variants like `topicRoutes`); do not push them through `generateLocalizedRoutes`.
 
+### Story Pages (`/stories/[slug]`)
+
+- Story URLs are `/{locale}/{localized-stories-base}/{id}-{title-slug}` (e.g. `/fr/histoires/3f2a9c1e-mastectomy-at-20`). The id is a salted username hash from `storyIdSql()` (`app/lib/story-id.ts`, secret `STORY_ID_SALT` — required in production, and changing it changes every story URL); **never put usernames in URLs, page output or API responses.** Only the id is used for lookup — any other slug 308-redirects to the canonical one. URL helpers are client-safe in `app/lib/story-urls.ts`; server lookups live in `app/lib/stories.ts`.
+- Story text is usually English-only: locale variants without a translated summary canonicalize to the English URL, and only translated locales are listed in hreflang/sitemap.
+- Only "listed" stories (same rules as the `/stories` spotlight: confirmed detransition/desistance, not suspicious, enough detail) are indexed and emitted by the `storyRoutes` builder in `/app/sitemap.xml/route.ts`. Do not push them through `generateLocalizedRoutes`.
+
 ### Wiki Pages (`/topics/[...slug]` + `/topics` hub)
 
 - Public wiki pages are **database-driven** (`pages` + `page_slugs` tables) and rendered by `app/[locale]/topics/[...slug]/page.tsx`. The public hub index lives at `app/[locale]/topics/page.tsx`. **Reading is public for all users; editing is admin-only** (agent write tools + `/api/pages`).

@@ -144,7 +144,9 @@
       "stats": "Statistici",
       "statsDesc": "Statistici de detranziție anonimizate din /r/detrans",
       "topics": "Topics",
-      "topicsDesc": "Ghiduri detaliate despre subiecte cheie"
+      "topicsDesc": "Ghiduri detaliate despre subiecte cheie",
+      "stories": "Povești",
+      "storiesDesc": "De la utilizatorii /r/detrans"
     },
     "resources": {
       "genderSupport": "Găsește Terapeuți",
@@ -183,6 +185,7 @@
     "de": "Germană",
     "he": "Ebraică",
     "it": "Italiană",
+    "lt": "Lithuanian",
     "nl": "Olandeză",
     "tr": "Turcă",
     "ro": "Română"
@@ -240,17 +243,18 @@
   },
   "chat": {
     "lookingForComments": "Se caută comentarii relevante...",
+    "lookingForStudies": "Looking for relevant studies...",
     "errorOccurred": "A apărut o eroare, încearcă din nou... Contactează-mă dacă acest lucru continuă să se întâmple.",
     "analysingExperiences": "Se analizează Experiențele",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Se analizează rezultatele web",
+    "analysingResults": "Se analizează rezultatele...",
     "detransPerspective": "-> Care sunt perspectivele detrans asupra acestui subiect?",
     "transPerspectivesIncluded": "Perspective trans incluse",
     "captchaRequired": "Captcha necesar pentru a continua chat-ul.",
     "chatArchived": "Acest chat este arhivat. Începeți unul nou.",
     "rateLimitExceeded": "Prea multe solicitări, încetiniți și încercați din nou mai târziu.",
     "ipMismatchError": "Adresa ta IP s-a schimbat. Pentru a preveni abuzul, trebuie să începi o nouă conversație.",
-    "analysingResults": "Se analizează rezultatele...",
     "followUpQuestions": "Întrebări de urmărire:",
     "eventLabels": {
       "askDetransitioners": "Întreabă persoanele care au făcut detransiția",
@@ -345,7 +349,21 @@
       "delete": "Șterge Conversația",
       "banning": "Se blochează...",
       "ban": "Blochează Utilizatorul (IP)"
+    },
+    "dialog": {
+      "title": "Conversație",
+      "toggleIdHint": "Fă clic pentru a comuta între dată/țară și ID",
+      "shareText": "Vezi această conversație",
+      "share": "Distribuie conversația",
+      "copyLink": "Copiază linkul conversației",
+      "noneSelected": "Nicio conversație selectată"
     }
+  },
+  "readingDialog": {
+    "share": "Distribuie",
+    "copyLink": "Copiază linkul",
+    "copied": "Link copiat în clipboard",
+    "close": "Închide fereastra"
   },
   "stories": {
     "metadata": {
@@ -385,9 +403,9 @@
       "ageRangeYears": "{min} - {max} ani",
       "sex": {
         "all": "Masculin și Feminin",
-        "mine": "Mine",
         "female": "Feminin",
-        "male": "Masculin"
+        "male": "Masculin",
+        "mine": "Mine"
       },
       "tagsPlaceholder": "Selectează etichete pentru filtrare...",
       "clearFilters": "Șterge Filtrele"
@@ -582,12 +600,15 @@
   },
   "videoList": {
     "loading": "Se încarcă videoclipurile...",
+    "searchPlaceholder": "Search videos...",
+    "result": "video",
+    "results": "videos",
     "filters": {
       "all": "Toate Povestirile",
-      "mine": "Mine",
       "female": "Feminin",
       "male": "Masculin",
-      "detransitioners": "Persoane care au Făcut Detransiția"
+      "detransitioners": "Persoane care au Făcut Detransiția",
+      "mine": "Mine"
     },
     "thumbnailAlt": "Miniatură pentru {title}",
     "by": "de",
@@ -801,7 +822,9 @@
       "legend": {
         "transition": "Vârsta la Tranziție",
         "detransition": "Vârsta la Detransiție"
-      }
+      },
+      "median": "mediana {age}",
+      "coverage": "Pe baza a {transition} vârste la tranziție și {detransition} vârste la detranziție."
     },
     "transitionDuration": {
       "title": "Durata Tranziției: Vârsta la Tranziție vs Vârsta la Detransiție",
@@ -825,7 +848,8 @@
       "female": "Feminin",
       "yearsAvg": "ani în medie",
       "user": "utilizator",
-      "users": "utilizatori"
+      "users": "utilizatori",
+      "coverage": "Pe baza a {count} povești cu ambele vârste înregistrate."
     },
     "pathways": {
       "title": "Fluxul Căilor de Detransiție",
@@ -945,7 +969,9 @@
     "error": {
       "title": "Eroare CAPTCHA",
       "description": "Nu s-a putut încărca CAPTCHA. Te rugăm să reîmprospătezi pagina și să încerci din nou."
-    }
+    },
+    "verifyFailed": "Verification failed. Please try again.",
+    "rateLimited": "Too many verifications. Please wait a moment and try again."
   },
   "feedback": {
     "title": "Feedback",
@@ -963,11 +989,990 @@
     "metadata": {
       "title": "Statistici anonimizate | detrans.ai",
       "description": "Statistici anonimizate privind modelele de detranziție și tranziție, inclusiv distribuția pe vârstă, durata, motivele și traiectoriile."
+    },
+    "toc": {
+      "title": "Pe această pagină"
+    },
+    "filters": {
+      "title": "Filtre",
+      "edit": "Editează filtrele",
+      "hide": "Ascunde filtrele",
+      "summary": {
+        "none": "Fără filtre",
+        "age": "Vârsta {min}–{max}",
+        "tags": "{count, plural, =0 {nicio etichetă} =1 {1 etichetă} few {# etichete} other {# de etichete}}",
+        "detailed": "Doar detaliate"
+      },
+      "detailed": "Doar povești detaliate",
+      "detailedHint": "Include doar poveștile pe care AI-ul le-a evaluat ca destul de detaliate sau foarte detaliate."
+    },
+    "sections": {
+      "age": {
+        "title": "Vârstă",
+        "description": "Când au făcut persoanele detransiționate tranziția și detranziția."
+      },
+      "journey": {
+        "title": "Vârste",
+        "description": "Când au simțit oamenii prima dată disforie, când au făcut tranziția, au început hormonii și au făcut detranziția."
+      },
+      "duration": {
+        "title": "Durată",
+        "description": "Cât timp au rămas oamenii în tranziție înainte să se oprească."
+      },
+      "minors": {
+        "title": "Tranziție înainte de 18 ani",
+        "description": "Ce arată poveștile despre începerea tranziției în copilărie sau adolescență."
+      },
+      "reasons": {
+        "title": "Motive",
+        "description": "De ce spun persoanele detransiționate că au făcut tranziția – și de ce au făcut detranziția."
+      },
+      "pathways": {
+        "title": "Traiectorii",
+        "description": "Dacă regretul diferă în funcție de motivul tranziției și ce pași medicali au făcut oamenii."
+      },
+      "regret": {
+        "title": "Regret",
+        "description": "Cât de intens este regretul, cum se schimbă în timp și ce anume regretă oamenii."
+      },
+      "medical": {
+        "title": "Intervenții medicale",
+        "description": "Cum se leagă regretul de cât de departe a mers tranziția."
+      },
+      "complications": {
+        "title": "Complicații",
+        "description": "Complicații medicale și probleme de sănătate persistente după tranziție."
+      },
+      "mental_health": {
+        "title": "Sănătate mintală",
+        "description": "Imaginea sănătății mintale din povești, înainte și după detranziție."
+      },
+      "suicidality": {
+        "title": "Suicidalitate",
+        "description": "Cât de des descriu poveștile gânduri suicidare sau autovătămare și când."
+      },
+      "after": {
+        "title": "După detranziție",
+        "description": "Cum s-au schimbat sănătatea mintală, calitatea vieții și relațiile de familie."
+      },
+      "current_status": {
+        "title": "Where are they now",
+        "description": "Current identities and situations after detransitioning."
+      },
+      "family_community": {
+        "title": "Costul social al detranziției",
+        "description": "Izolare și ostracizare cauzate de detranziție și deziluzie față de comunitatea trans. Întrebările care nu au separat tranziția de detranziție (sprijinul familiei, relații, carieră) sunt omise; relațiile de familie de la detranziție încoace sunt tratate la „După detranziție”."
+      },
+      "sexuality": {
+        "title": "Sexualitate",
+        "description": "Orientarea sexuală raportată la sexul de la naștere, înainte de tranziție și după detranziție."
+      },
+      "trends": {
+        "title": "De-a lungul anilor",
+        "description": "Cum s-au schimbat poveștile – și motivele lor – între cohortele după anul tranziției."
+      },
+      "features": {
+        "title": "Caracteristici",
+        "description": "Every statement the AI evaluated across the stories — causes, processes and outcomes."
+      },
+      "compare": {
+        "title": "Comparație",
+        "description": "Cum se modifică prevalența caracteristicilor între două jumătăți ale cohortei."
+      },
+      "matrix": {
+        "title": "Legături",
+        "description": "Răspunsuri la întrebări controversate – inclusiv acolo unde o diferență așteptată nu apare."
+      },
+      "stories": {
+        "title": "Povești",
+        "description": "Fragmente anonime de la oamenii din spatele acestor cifre.",
+        "browse": "Vezi toate poveștile"
+      },
+      "methodology": {
+        "title": "Metodologie",
+        "description": "Cum este construit setul de date și cum se citesc aceste grafice."
+      },
+      "overview": {
+        "title": "Pe scurt",
+        "description": "Fiecare afirmație da/nu evaluată de AI, ordonată după numărul de povești pentru care este clar adevărată."
+      },
+      "lives": {
+        "title": "Cronologii individuale",
+        "description": "Fiecare linie este o persoană, de la vârsta la care a început tranziția până la vârsta la care s-a oprit."
+      },
+      "drivers": {
+        "title": "Factori mai puțin discutați",
+        "description": "Imaginea corporală, instabilitatea identității și factorii sexuali descriși ca având un rol în tranziție."
+      },
+      "adversity": {
+        "title": "Traumă și adversitate",
+        "description": "Cât de des descriu poveștile o traumă și cât de des este trauma numită drept motiv principal."
+      },
+      "online": {
+        "title": "Influența online și a anturajului",
+        "description": "Ce platforme au contat cel mai mult și cum apare influența online și a anturajului în povești."
+      },
+      "process": {
+        "title": "Puncte de cotitură",
+        "description": "Ce i-a ajutat pe oameni să treacă de la tranziție spre detranziție."
+      }
+    },
+    "features": {
+      "search": "Caută caracteristici…",
+      "sort": {
+        "prevalence": "Prevalență",
+        "alpha": "A–Z"
+      },
+      "tiers": {
+        "cause": "Cauză",
+        "process": "Proces",
+        "outcome": "Rezultat"
+      },
+      "kinds": {
+        "noul": "Da / nu",
+        "choice": "Alegere",
+        "score": "Scală"
+      },
+      "groups": {
+        "reasons": "Motive",
+        "causes": "Cauze",
+        "processes": "Procese",
+        "regret": "Regret",
+        "medical": "Medical",
+        "mental_health": "Sănătate mintală",
+        "adversity": "Adversitate",
+        "social": "Social",
+        "sexuality": "Sexualitate",
+        "online": "Online",
+        "identity": "Identitate",
+        "outcomes": "Rezultate",
+        "attitudes": "Atitudini",
+        "quality": "Calitate"
+      },
+      "basedOn": "Din {cohort} povești evaluate.",
+      "coverageNote": "{n} din {cohort} povești evaluate ({percent}%) conțin un răspuns.",
+      "question": "Cum a fost măsurat?",
+      "confidence": "Încrederea mediană a AI-ului pentru această caracteristică: {value}%.",
+      "filterByTag": "Doar poveștile etichetate „{tag}”",
+      "placeholder": "Alege o caracteristică din listă pentru a o explora.",
+      "backToList": "Toate caracteristicile",
+      "noResults": "Nicio caracteristică nu corespunde căutării.",
+      "noData": "Niciun răspuns pentru filtrele curente.",
+      "loading": "Se încarcă…",
+      "error": "Datele caracteristicii nu au putut fi încărcate",
+      "noul": {
+        "prevalenceLabel": "dintre poveștile evaluate sunt peste prag",
+        "range": "probabilitate {from} – {to}",
+        "count": "{count} povești ({percent}%)",
+        "thresholdShort": "prag {threshold}",
+        "legend": {
+          "yes": "Probabil adevărat",
+          "maybe": "Incert",
+          "no": "Probabil fals"
+        },
+        "above": "Probabil adevărat",
+        "uncertain": "Incert",
+        "below": "Probabil fals"
+      },
+      "choice": {
+        "soft": "Masă de probabilitate",
+        "hard": "Opțiunea câștigătoare",
+        "softTooltip": "≈{percent}% (≈{count} povești ca masă de probabilitate)",
+        "hardTooltip": "{percent}% ({count} povești)",
+        "softNote": "Barele arată probabilitatea AI însumată pe care o primește fiecare opțiune în toate poveștile, astfel încât răspunsurile mixte contează proporțional.",
+        "hardNote": "Barele numără doar opțiunea cea mai probabilă a fiecărei povești."
+      },
+      "score": {
+        "meanLabel": "Media {value} pe o scală de 0–{max}",
+        "range": "Scor {from} – {to}",
+        "count": "{count} povești",
+        "meanShort": "media {value}"
+      },
+      "related": {
+        "title": "Apar des împreună",
+        "lift": "de {lift}× mai frecvent ({percent}%)"
+      },
+      "listNote": "Punctele arată ponderea poveștilor în care fiecare afirmație este clar adevărată (probabilitate AI ≥ 0,8); liniile arată intervalul de 95%. Rândurile estompate au mai puțin de 30 de răspunsuri. Selectează un rând pentru a citi poveștile corespunzătoare. Pe baza a {cohort} povești evaluate."
+    },
+    "compare": {
+      "splitLabel": "Împarte după",
+      "thresholdNote": "Poveștile peste pragul AI de {threshold} comparate cu cele sub prag.",
+      "filter": {
+        "all": "Toate răspunsurile",
+        "clear": "Doar semnale clare"
+      },
+      "clearNote": "{excluded} povești neclare excluse de pe ambele părți.",
+      "cohortTrue": "{label}: prezent (n = {n})",
+      "cohortFalse": "Absent (n = {n})",
+      "splitSex": "Sex biologic",
+      "sexNote": "Comparație între poveștile femeilor și ale bărbaților.",
+      "cohortWomen": "Femei (n = {n})",
+      "cohortMen": "Bărbați (n = {n})",
+      "splitAge": "Vârsta la tranziție",
+      "ageNote": "Comparație între poveștile în care tranziția a început sub 18 ani și cele de la 18 ani în sus.",
+      "cohortUnder18": "Sub 18 ani (n = {n})",
+      "cohortAdult": "18 ani sau mai mult (n = {n})",
+      "rowTooltip": "{label}: {pctTrue}% din {nTrue} față de {pctFalse}% din {nFalse}",
+      "empty": "Încă nu există suficiente povești cu răspunsuri de ambele părți ale acestei împărțiri.",
+      "showSmallSamples": "Arată eșantioanele mici",
+      "hideSmallSamples": "Ascunde eșantioanele mici",
+      "hiddenNote": "{count, plural, =1 {1 caracteristică este ascunsă} few {# caracteristici sunt ascunse} other {# de caracteristici sunt ascunse}} deoarece au mai puțin de 3 povești pe una dintre părți.",
+      "error": "Datele comparației nu au putut fi încărcate",
+      "ratio": "frecvență relativă {ratio}",
+      "ratioNote": "Rândurile sunt ordonate după cât de mult diferă cele două grupuri (risc relativ), iar caracteristicile rare de ambele părți sunt omise. Liniile arată intervale de 95%; rândurile estompate au mai puțin de 30 de povești pe una dintre părți.",
+      "showAll": "Arată toate caracteristicile"
+    },
+    "matrix": {
+      "presetLabel": "Vizualizare",
+      "presets": {
+        "outcomesByCause": "Rezultate după cauză",
+        "outcomesByProcess": "Rezultate după punctul de cotitură"
+      },
+      "metric": {
+        "rate": "Rată",
+        "lift": "Lift față de medie"
+      },
+      "swap": "Inversează axele",
+      "legendRate": "Ponderea poveștilor corespunzătoare în care caracteristica coloanei este adevărată.",
+      "legendLift": "Comparat cu media întregii cohorte (albastru peste, roșu sub).",
+      "sampleNote": "Fiecare celulă compară poveștile cu caracteristica rândului cu poveștile fără ea. Poveștile mai lungi și mai detaliate menționează mai multe caracteristici de orice fel, așa că majoritatea raporturilor sunt peste 1× – compară celulele între ele, nu cu 1×. Celulele cu mai puțin de 30 de povești pe oricare parte rămân goale.",
+      "basedOn": "{cohort} povești evaluate în această vizualizare.",
+      "cellTooltip": "{row} → {col}: {percent}% din {n} povești · {lift}× media cohortei",
+      "cellTooltipNoLift": "{row} → {col}: {percent}% din {n} povești",
+      "cellMasked": "{row} → {col}: nu sunt suficiente povești",
+      "empty": "Încă nu există suficiente povești cu răspunsuri pentru această vizualizare.",
+      "error": "Datele matricei nu au putut fi încărcate",
+      "presetDescriptions": {
+        "outcomesByCause": "Cu cât mai frecvent (sau mai rar) este fiecare rezultat în poveștile cu o anumită cauză decât în cele fără ea.",
+        "outcomesByProcess": "Cu cât mai frecvent (sau mai rar) este fiecare rezultat în poveștile cu un anumit punct de cotitură decât în cele fără el."
+      },
+      "legendMore": "Mai frecvent cu caracteristica rândului",
+      "legendLess": "Mai rar",
+      "legendNone": "Nicio diferență clară (intervalul de 95% include 1×)",
+      "cellTooltipRatio": "{row} → {col}: {percent}% din {n} povești cu factorul vs. {percentWithout}% fără · {ratio} (interval de 95% {low}–{high})",
+      "legendWith": "Cu factorul",
+      "legendWithout": "Fără el",
+      "themes": {
+        "medical": "Parcurs medical",
+        "helped": "Ce a ajutat",
+        "who": "Cine regretă, cine revine",
+        "views": "Opinii despre tranziția altora"
+      },
+      "predictors": {
+        "under18": "A început tranziția înainte de 18 ani",
+        "women": "Femei (vs. bărbați)",
+        "sameSex": "Atras(ă) de același sex înainte de tranziție",
+        "took_puberty_blockers": "A luat blocante ale pubertății",
+        "took_hormones": "A luat hormoni",
+        "top_surgery": "A avut o operație la piept",
+        "process_benefited_from_therapy": "Terapia exploratorie a ajutat",
+        "gender_nonconformity_childhood": "Nonconformist(ă) de gen în copilărie",
+        "process_spiritual_experience": "O experiență spirituală",
+        "autogynephilia": "Autoginefilie",
+        "adv_trauma_history": "Un istoric de traumă",
+        "contributed_online_influence": "Influență online"
+      },
+      "outcomes": {
+        "regret": "regretă tranziția",
+        "bodyReconciliation": "și-a acceptat corpul",
+        "retransitioned": "a refăcut tranziția",
+        "mentalHealthBetter": "sănătate mintală mai bună după detranziție",
+        "critical": "critic(ă) sau împotriva tranziției pentru alții"
+      },
+      "ratio": "frecvență relativă {ratio}",
+      "noDifference": "Nicio diferență clară",
+      "rowTooltip": "{with} din {nWith} povești cu factorul vs. {without} din {nWithout} fără",
+      "note": "Liniile arată intervale de 95%. „Nicio diferență clară” înseamnă că intervalul include și lipsa totală a vreunei diferențe. Acestea sunt asocieri în ceea ce scriu oamenii, nu cauze, iar cei care scriu povești mai lungi și mai detaliate menționează mai mult din toate. Pe baza a {cohort} povești evaluate."
+    },
+    "regret": {
+      "composition": {
+        "pair": "{positive}% dintre povești exprimă regret față de tranziție și {negative}% spun că nu o regretă; restul nu precizează. Dintre cei care precizează, {statedShare}% o regretă (n = {stated}).",
+        "any": "{positive}% exprimă regret (n = {n})"
+      },
+      "scale": {
+        "title": "Cât de intens este regretul?",
+        "mean": "{value} / {max} intensitate medie",
+        "levels": {
+          "level0": "Niciun regret exprimat",
+          "level1": "Ușor sau trecător",
+          "level2": "Moderat, recurent",
+          "level3": "Sever, persistent"
+        }
+      },
+      "choice": {
+        "title": "Cum se schimbă regretul în timp?",
+        "options": {
+          "resolved": "În mare parte depășit",
+          "improving": "În ameliorare",
+          "stable": "Stabil",
+          "worsening": "În agravare",
+          "mixed": "Mixt sau ciclic"
+        }
+      },
+      "statements": {
+        "title": "Ce regretă oamenii, concret"
+      },
+      "count": "n = {n}",
+      "basedOn": "Pe baza a {cohort} povești evaluate.",
+      "empty": "Încă nu există răspunsuri despre regret pentru filtrele curente.",
+      "error": "Datele despre regret nu au putut fi încărcate"
+    },
+    "complications": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% raportează cel puțin o complicație medicală sau o problemă de sănătate persistentă (n = {n})"
+      },
+      "scale": {
+        "title": "Cât de grave au fost complicațiile?",
+        "mean": "{value} / {max} gravitate medie",
+        "levels": {
+          "level0": "Fără complicații",
+          "level1": "Efecte secundare ușoare sau gestionabile",
+          "level2": "Complicații semnificative",
+          "level3": "Daune grave sau permanente"
+        }
+      },
+      "statements": {
+        "title": "Probleme medicale specifice"
+      },
+      "count": "n = {n}",
+      "basedOn": "Pe baza a {cohort} povești evaluate.",
+      "empty": "Încă nu există răspunsuri medicale pentru filtrele curente.",
+      "error": "Datele despre complicații nu au putut fi încărcate"
+    },
+    "mental_health": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% prezintă cel puțin o afecțiune psihică sau o criză (n = {n})"
+      },
+      "scale": {
+        "title": "Cât de gravă este situația sănătății mintale?",
+        "mean": "{value} / {max} gravitate medie",
+        "levels": {
+          "level0": "Nicio problemă notabilă",
+          "level1": "Suferință ușoară sau situațională",
+          "level2": "Afecțiuni semnificative, tratate",
+          "level3": "Afecțiuni grave sau criză"
+        }
+      },
+      "statements": {
+        "title": "Afecțiuni și crize"
+      },
+      "count": "n = {n}",
+      "basedOn": "Pe baza a {cohort} povești evaluate.",
+      "empty": "Încă nu există răspunsuri despre sănătatea mintală pentru filtrele curente.",
+      "error": "Datele despre sănătatea mintală nu au putut fi încărcate"
+    },
+    "suicidality": {
+      "during": "În timpul tranziției",
+      "since": "De la detranziție",
+      "duringDescription": "Cât de probabil consideră modelul că o poveste descrie gânduri suicidare, autovătămare sau o tentativă de suicid în perioada tranziției.",
+      "sinceDescription": "Cât de probabil consideră modelul că o poveste descrie gânduri suicidare, autovătămare sau o tentativă de suicid de la detranziție încoace.",
+      "splitNote": "Împărțit după statutul actual · axă cu rădăcină pătrată",
+      "overall": "Toate poveștile",
+      "sqrtNote": "Axa verticală folosește o scală cu rădăcină pătrată, astfel încât intervalele de probabilitate mai mici să rămână vizibile lângă vârful de la zero.",
+      "tooltipBin": "Probabilitate {range}",
+      "tooltipCount": "{count, plural, =1 {1 poveste} few {# povești} other {# de povești}}",
+      "bands": {
+        "no": "Probabil fals (< 0,2)",
+        "mixed": "Incert (0,2–0,8)",
+        "yes": "Probabil adevărat (≥ 0,8)"
+      },
+      "count": "n = {n}",
+      "basedOn": "Pe baza a {cohort} povești cu răspuns.",
+      "empty": "Încă nu există răspunsuri despre suicidalitate pentru filtrele curente.",
+      "error": "Datele despre suicidalitate nu au putut fi încărcate",
+      "statements": {
+        "title": "Gânduri suicidare și autovătămare"
+      }
+    },
+    "current_status": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% (n = {n})"
+      },
+      "choice": {
+        "title": "Where are they now?",
+        "options": {
+          "detransitioned": "A făcut detranziția",
+          "desisted": "Desistență înainte de tranziția medicală",
+          "retransitioned": "A refăcut tranziția",
+          "still_trans_questioning": "Încă trans, cu îndoieli",
+          "questioning": "Cu îndoieli",
+          "unclear": "Neclar",
+          "supportive": "Susține tranziția pentru alții",
+          "conditional": "Susține în anumite condiții",
+          "critical": "Critic(ă) față de tranziție",
+          "opposed": "Împotrivă",
+          "not_addressed": "Nu abordează"
+        },
+        "description": "Dintre poveștile care abordează subiectul, de la susținere la opoziție."
+      },
+      "secondaryChoice": {
+        "title": "Cum privesc tranziția pentru alte persoane?"
+      },
+      "statements": {
+        "title": "Situația actuală"
+      },
+      "count": "n = {n}",
+      "basedOn": "Pe baza a {cohort} povești evaluate.",
+      "empty": "Încă nu există răspunsuri despre statut pentru filtrele curente.",
+      "error": "Datele despre statut nu au putut fi încărcate",
+      "headline": "{percent}% sunt critici față de tranziția altor persoane sau se opun acesteia (n ≈ {n}).",
+      "note": "Ponderi ajustate după probabilitate. Poveștile care nu abordează întrebarea sunt omise."
+    },
+    "family_community": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% răspund da la cel puțin una dintre întrebările de mai jos (n = {n})"
+      },
+      "statements": {
+        "title": "Întrebări puse",
+        "description": "Fiecare poveste a fost verificată exact după aceste întrebări. O poveste contează atunci când răspunsul este un da clar."
+      },
+      "count": "n = {n}",
+      "basedOn": "Pe baza a {cohort} povești evaluate.",
+      "empty": "Încă nu există răspunsuri pentru filtrele curente.",
+      "error": "Datele nu au putut fi încărcate"
+    },
+    "sexuality": {
+      "beforeLabel": "Înainte de tranziție",
+      "afterLabel": "După detranziție",
+      "options": {
+        "homosexual": "Homosexual",
+        "bisexual": "Bisexual(ă)",
+        "heterosexual": "Heterosexual",
+        "asexual": "Asexual(ă)",
+        "other": "Altele sau în schimbare"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 poveste} few {# povești} other {# de povești}}",
+      "statements": {
+        "title": "Orientation and attraction"
+      },
+      "count": "n = {n}",
+      "basedOn": "Flux pe baza a {cohort} povești cu ambele răspunsuri despre orientare.",
+      "empty": "Not enough orientation answers for the current filters yet.",
+      "error": "Datele despre sexualitate nu au putut fi încărcate",
+      "hero": {
+        "statement": "dintre persoanele detransiționate care își declară orientarea actuală sunt gay, lesbiene sau bisexuale (n = {n}).",
+        "bySex": "B {men} gay sau bisexuali ({menSame} gay) | F {women} lesbiene sau bisexuale ({womenSame} lesbiene)"
+      },
+      "mix": {
+        "title": "Orientarea înainte de tranziție și după detranziție",
+        "description": "Raportată la sexul de la naștere, dintre poveștile care o precizează.",
+        "women": "Femei",
+        "men": "Bărbați",
+        "all": "Toți",
+        "before": "înainte",
+        "after": "după"
+      },
+      "matrix": {
+        "title": "S-a schimbat orientarea?",
+        "description": "Fiecare rând este o orientare înainte de tranziție; celulele arată ce descriu acești oameni după detranziție.",
+        "headline": "{percent}% descriu aceeași orientare înainte de tranziție și după detranziție (n = {n}).",
+        "corner": "Înainte ↓ · După →",
+        "cell": "{from} înainte → {to} după: {percent}% ({count})",
+        "note": "Doar poveștile care precizează orientarea în ambele momente. Rândurile cu mai puțin de 30 de povești rămân goale."
+      },
+      "coverage": "Orientarea este precizată înainte de tranziție în {before} povești și după detranziție în {after}, din {cohort} povești evaluate."
+    },
+    "trends": {
+      "series": {
+        "contributed_online_influence": "Influență online",
+        "contributed_rapid_onset": "Debut rapid (ROGD)",
+        "regret_transition": "Regret",
+        "took_puberty_blockers": "Blocante ale pubertății"
+      },
+      "tooltip": "{bucket} · n = {n}",
+      "mode": {
+        "strict": "Semnal binar",
+        "soft": "Probabilitate medie",
+        "strictNote": "Ponderea poveștilor despre care modelul este sigur (≥ 0,8).",
+        "softNote": "Probabilitatea medie în toate poveștile – poveștile neclare rămân incluse în tendință."
+      },
+      "seriesTooltip": "{strict} binar · {mean} medie",
+      "medianAge": "Vârsta mediană la tranziție pe cohortă",
+      "coverageNote": "Fiecare punct folosește poveștile cu răspuns ale cohortei; cele mai vechi cohorte au cele mai mici eșantioane.",
+      "basedOn": "Din {cohort} povești cu un an al tranziției.",
+      "empty": "Încă nu există ani ai tranziției pentru filtrele curente.",
+      "error": "Datele despre tendințe nu au putut fi încărcate",
+      "linesTitle": "Caracteristici după anul tranziției",
+      "linesDescription": "Ponderea poveștilor în care fiecare afirmație este clar adevărată, grupate după anul în care a început tranziția. Adaugă sau elimină caracteristici pentru a compara.",
+      "reasonsTitle": "Motivul principal al tranziției, pe perioade",
+      "reasonsDescription": "Cum se schimbă cele mai frecvente motive principale între cohortele după anul tranziției.",
+      "add": "Adaugă o caracteristică…",
+      "remove": "Elimină {label}",
+      "strictNote": "Ponderea poveștilor în care AI-ul este sigur că afirmația este adevărată (≥ 0,8). Punctele goale provin din mai puțin de 30 de povești. Cohortele recente au avut mai puțin timp de la tranziție – mai puțin timp pentru a ajunge la operații sau la efecte pe termen lung și, de obicei, povești mai scurte – așa că multe caracteristici scad la capătul din dreapta; o caracteristică ce crește totuși, precum anxietatea, iese în evidență."
+    },
+    "uncertainty": {
+      "binary": "Binar",
+      "bands": "Trei niveluri",
+      "likelyFalse": "Probabil fals (< 0,2)",
+      "unclear": "Neclar (0,2–0,8)",
+      "unclearShort": "neclar",
+      "likelyTrue": "Probabil adevărat (≥ 0,8)",
+      "rowTooltip": "{false}% probabil fals · {unclear}% neclar · {true}% probabil adevărat"
+    },
+    "minors": {
+      "tiles": {
+        "minor": "au început sub 18 ani ({n} din {total} povești cu vârstă)",
+        "le15": "au început la 15 ani sau mai devreme",
+        "dysphoria": "au simțit prima dată disforie la 12 ani sau mai devreme (n = {n})",
+        "female": "dintre cei care au început sub 18 ani sunt de sex feminin"
+      },
+      "early": "În aceste povești, blocantele pubertății apar de la vârsta de {min} ani, cu o mediană de {median} (n = {n}). {hormones} au început hormonii până la 16 ani, iar {detrans} făcuseră deja detranziția până la 18 ani.",
+      "empty": "Încă nu există date despre vârstă pentru filtrele curente.",
+      "error": "Datele despre tranziția timpurie nu au putut fi încărcate",
+      "byEra": {
+        "title": "Început înainte de 18 ani, după anul tranziției",
+        "description": "Ponderea poveștilor în care tranziția a început înainte de 18 ani, grupate după anul în care a început.",
+        "note": "Liniile arată intervalul de 95%. Cohortele mai recente includ mai mulți oameni care au făcut tranziția recent și la vârste mici, așa că tendința trebuie citită cu prudență."
+      }
+    },
+    "journey": {
+      "milestones": {
+        "first_dysphoria": "Prima disforie",
+        "transition": "Tranziție",
+        "hormones": "Hormoni",
+        "detransition": "Detranziție",
+        "in_transition": "Ani în tranziție"
+      },
+      "median": "mediana {age}",
+      "count": "n = {n}",
+      "tooltip": "Vârsta {age}: {count, plural, =1 {1 poveste} few {# povești} other {# de povești}}",
+      "yearsTooltip": "{years, plural, =1 {1 an} few {# ani} other {# de ani}} în tranziție: {count, plural, =1 {1 poveste} few {# povești} other {# de povești}}",
+      "basedOn": "Fiecare rând numără doar poveștile care precizează vârsta respectivă. Axa este tăiată la percentila 99.",
+      "empty": "Încă nu există date cronologice pentru filtrele curente.",
+      "error": "Datele despre parcurs nu au putut fi încărcate"
+    },
+    "gradient": {
+      "regret": "Regret",
+      "noRegret": "Fără regret",
+      "notStated": "Neprecizat",
+      "tiers": {
+        "no_transition": "Fără tranziție",
+        "social_only": "Doar socială",
+        "hormones": "Hormoni sau blocante",
+        "surgery": "Operație",
+        "unclear": "Neclar"
+      },
+      "tierTooltip": "{n} povești: {regrets} regret, {noRegret} fără regret, {notStated} neprecizat",
+      "count": "n = {n}",
+      "selectionNote": "Cei care fac detranziția devreme nu ajung niciodată la pașii următori, așa că graficul arată unde duc diferitele parcursuri – nu că pașii medicali cauzează regretul.",
+      "basedOn": "Pe baza a {cohort} povești evaluate.",
+      "empty": "Încă nu există răspunsuri pentru filtrele curente.",
+      "error": "Datele despre intervențiile medicale nu au putut fi încărcate",
+      "statedNote": "Numărul din dreapta este regretul în rândul poveștilor care se pronunță într-un sens sau altul (regret sau fără regret).",
+      "headline": "{percent}% dintre persoanele care au avut o operație spun că regretă tranziția, dintre cele care se pronunță (n = {n}).",
+      "headlineCompare": "{percent}% dintre persoanele care au avut o operație spun că regretă tranziția, față de {hormones}% dintre cele care s-au oprit la hormoni sau blocante (n = {n} / {nHormones}). Sunt numărate doar poveștile care se pronunță."
+    },
+    "after": {
+      "levels": {
+        "muchWorse": "Mult mai rău",
+        "worse": "Ceva mai rău",
+        "same": "Cam la fel",
+        "better": "Ceva mai bine",
+        "muchBetter": "Mult mai bine"
+      },
+      "panels": {
+        "mh_change_after_detransition": "Sănătate mintală",
+        "outcome_quality_of_life": "Calitatea vieții",
+        "outcome_family_relationship_change": "Relații de familie"
+      },
+      "summary": "{better}% mai bine · {worse}% mai rău",
+      "count": "n = {n}",
+      "basedOn": "Pe baza a {cohort} povești evaluate.",
+      "empty": "Încă nu există răspunsuri pentru filtrele curente.",
+      "error": "Datele despre schimbări nu au putut fi încărcate",
+      "worseSide": "Mai rău",
+      "betterSide": "Mai bine",
+      "headline": "{better}% descriu o sănătate mintală mai bună după detranziție; {worse}% o descriu ca fiind mai proastă (n = {n})."
+    },
+    "stories": {
+      "excerptNote": "Rezumate AI anonime ale postărilor publice de pe /r/detrans.",
+      "agesCaption": "Vârste: prima disforie → tranziție → {outcome}",
+      "ages": {
+        "firstDysphoria": "Prima disforie",
+        "transition": "Tranziție",
+        "detransition": "Detranziție",
+        "desistance": "Desistență",
+        "socialTransition": "Tranziție socială"
+      },
+      "female": "Feminin",
+      "male": "Masculin",
+      "basedOn": "Din {cohort} povești corespunzătoare.",
+      "empty": "Încă nu există povești pentru filtrele curente.",
+      "error": "Poveștile nu au putut fi încărcate",
+      "loadMore": "Încarcă mai multe povești",
+      "loading": "Se încarcă…",
+      "upvotesLabel": "Voturi pozitive totale: {count}",
+      "dialog": {
+        "title": "Poveste",
+        "summary": "Rezumat",
+        "fullStory": "Povestea completă",
+        "close": "Închide povestea",
+        "error": "Povestea completă nu a putut fi încărcată",
+        "openPage": "Deschide pagina poveștii"
+      },
+      "status": {
+        "detransitioned": "Detranziționat",
+        "desisted": "Desistat"
+      }
+    },
+    "highlights": {
+      "title": "Ce iese în evidență",
+      "types": {
+        "prevalence": "Cel mai frecvent",
+        "pair": "Apar împreună",
+        "improvement": "Viața după detranziție",
+        "journey": "Parcurs tipic",
+        "minorShare": "Început înainte de 18 ani",
+        "minorLe15": "Început la 15 ani sau mai devreme",
+        "minorDysphoria": "Prima disforie până la 12 ani",
+        "minorFemale": "Cine începe de tânăr",
+        "orientation": "Orientare sexuală"
+      },
+      "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
+      "prevalenceUnclear": "Încă {unclear}% sunt neclare.",
+      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "improvement": "{better}% spun că le-a crescut calitatea vieții după detranziție; {worse}% spun că s-a înrăutățit (n = {n}).",
+      "journey": "Parcursul tipic: prima disforie la {dysphoria} ani → tranziție la {transition} → detranziție la {detransition} (n = {n}).",
+      "minorShare": "{percent}% dintre poveștile cu vârstă au început tranziția sub 18 ani (n = {n} din {total}).",
+      "minorLe15": "{percent}% au început la 15 ani sau mai devreme (n = {n}).",
+      "minorDysphoria": "{percent}% au simțit prima dată disforie la 12 ani sau mai devreme (n = {n}).",
+      "minorFemale": "{percent}% dintre cei care au început sub 18 ani sunt de sex feminin (n = {n}).",
+      "explore": "Explorează",
+      "orientation": "{percent}% dintre persoanele detransiționate care își declară orientarea sunt gay, lesbiene sau bisexuale ({sameSex}% gay sau lesbiene; n = {n})."
+    },
+    "pathways": {
+      "journey": "Cauză → Proces → Rezultat",
+      "medical": "Parcurs medical",
+      "stages": {
+        "cause": "Motiv principal",
+        "process": "Punct de cotitură",
+        "outcome": "Regret astăzi"
+      },
+      "causes": {
+        "social_role_discomfort": "Disconfort față de rolul social",
+        "internalised_homophobia": "Homofobie interiorizată",
+        "internalised_misogyny_misandry": "Misoginie / misandrie interiorizată",
+        "trauma": "Traumă",
+        "mental_health_issues": "Sănătate mintală",
+        "neurodivergence": "Neurodivergență",
+        "body_dysmorphia": "Dismorfie corporală",
+        "online_influence": "Influență online",
+        "peer_influence": "Influența anturajului",
+        "sexual_factors": "Factori sexuali",
+        "parental_or_medical_pressure": "Presiune din partea părinților sau a medicilor",
+        "other_unclear": "Altele / neclar",
+        "unclear": "Neclar"
+      },
+      "processes": {
+        "process_benefited_from_therapy": "Terapie exploratorie",
+        "process_detrans_community_exposure": "Comunitatea detrans",
+        "process_research_consumption": "Cercetare și media",
+        "process_self_reflection": "Autoreflecție",
+        "process_time_off_hormones": "Pauză de la hormoni",
+        "process_medical_scare": "Sperietură medicală",
+        "process_family_partner_intervention": "Familie sau partener",
+        "process_spiritual_experience": "Experiență spirituală",
+        "other": "Altele / neclar"
+      },
+      "outcomes": {
+        "regrets": "Regretă",
+        "no_regret": "Fără regret",
+        "not_stated": "Neprecizat"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 poveste} few {# povești} other {# de povești}}",
+      "basedOn": "Pe baza a {cohort} povești evaluate cu răspunsuri în această vizualizare.",
+      "empty": "Încă nu există suficiente povești cu răspunsuri pentru această vizualizare.",
+      "error": "Datele despre traiectorii nu au putut fi încărcate",
+      "journeyDescription": "Cum se leagă motivele principale, punctele de cotitură și regretul în povești.",
+      "medicalDescription": "Ce pași medicali au făcut oamenii înainte de detranziție.",
+      "regretByReason": {
+        "title": "Regretul după motivul principal al tranziției",
+        "description": "Dintre poveștile care spun dacă regretă sau nu tranziția, ponderea celor care o regretă – grupate după motivul principal invocat pentru tranziție.",
+        "headline": "În total, {percent}% dintre poveștile care abordează regretul îl exprimă (n = {n}).",
+        "note": "Punctele arată ponderea celor care exprimă regret dintre poveștile care se pronunță clar; liniile arată intervalul de 95%. Rândurile estompate au mai puțin de 30 de povești.",
+        "error": "Regretul după motiv nu a putut fi încărcat",
+        "empty": "Încă nu există răspunsuri pentru filtrele curente."
+      }
+    },
+    "methodology": {
+      "p1": "detrans.ai construiește acest set de date din povești publice de pe /r/detrans. Un AI rescrie comentariile și postările dispersate ale fiecărui utilizator într-o singură narațiune la persoana întâi și extrage din ea o cronologie a vârstelor-cheie. Sunt incluși doar utilizatorii care au împărtășit suficient pentru a alcătui o poveste completă.",
+      "p1b": "Aceste statistici acoperă doar poveștile în care persoana a confirmat clar că a făcut detranziția sau desistența. De la corpusul brut la grafice:",
+      "table": {
+        "comments": "Comentarii colectate de pe /r/detrans",
+        "posts": "Postări colectate de pe /r/detrans",
+        "authors": "Autori distincți în corpus",
+        "selected": "Autori cu cel puțin 5 comentarii cu 3+ voturi pozitive",
+        "removed": "Eliminate: detranziția sau desistența nu este confirmată clar",
+        "remaining": "Povești păstrate după aceea",
+        "cohort": "Incluse în graficele de mai jos (conturile semnalate excluse)"
+      },
+      "p2": "Fiecare poveste este apoi evaluată de Jev, un model probabilistic de răspuns la întrebări, pe baza a aproximativ o sută de afirmații despre cauze, experiențe și rezultate. Întrebările da/nu returnează o probabilitate între 0 și 1, întrebările cu opțiuni returnează o probabilitate pentru fiecare opțiune, iar întrebările pe scală returnează o valoare așteptată pe scala afișată sub fiecare grafic.",
+      "p3": "Pentru caracteristicile da/nu marcăm o poveste ca „adevărată” când probabilitatea atinge pragul (implicit 0,8). Histograma fiecărei caracteristici arată distribuția completă a probabilităților, astfel încât o caracteristică cu multe răspunsuri intermediare apare ca fiind cu adevărat incertă, nu clar adevărată sau falsă.",
+      "p4": "Toate graficele respectă filtrele de mai sus. Deoarece setul de întrebări s-a schimbat în timp și poveștile sunt reanalizate în rundele de procesare, fiecare grafic arată câte dintre poveștile filtrate au efectiv un răspuns la întrebarea respectivă.",
+      "p5": "Conturile care par neautentice, inventate sau automatizate sunt semnalate de model și excluse din aceste statistici. Datele extrase de AI pot conține totuși greșeli – prompturile de sistem sunt publicate pe <prompts>pagina de prompturi</prompts>, iar rezumatele sunt comparate cu comentariile originale.",
+      "threshold": {
+        "title": "Cât contează pragul",
+        "description": "Graficele consideră o afirmație adevărată când probabilitatea AI este de cel puțin 0,8. Praguri mai mici ar arăta cifre mai mari; acest grafic arată cu cât.",
+        "error": "Datele despre prag nu au putut fi încărcate",
+        "tooltip": "Prag {threshold}",
+        "xAxis": "Prag de probabilitate",
+        "siteThreshold": "Folosit pe această pagină",
+        "note": "Ponderea poveștilor la sau peste fiecare prag. Pragul de 0,8 este ales intenționat conservator."
+      },
+      "accountType": {
+        "title": "Cine scrie",
+        "description": "Dacă fiecare relatare descrie experiența proprie a autorului.",
+        "options": {
+          "personal_experience": "Experiență proprie",
+          "parent": "Un părinte",
+          "friend": "Un prieten sau partener",
+          "researcher_journalist": "Cercetător, jurnalist sau clinician",
+          "other": "Altele sau mixt"
+        }
+      },
+      "detail": {
+        "title": "Cât de detaliate sunt poveștile",
+        "description": "Evaluarea AI-ului privind cât de specifică este fiecare relatare la persoana întâi. Folosește „Doar povești detaliate” din filtre pentru a limita toate graficele la cele două niveluri superioare.",
+        "levels": {
+          "level0": "Vag sau generic",
+          "level1": "Câteva detalii personale",
+          "level2": "Detaliat, evenimente concrete",
+          "level3": "Foarte detaliat, relatare pe mai mulți ani"
+        }
+      }
+    },
+    "prevalence": {
+      "women": "Femei",
+      "men": "Bărbați",
+      "interval": "{group} {percent} (interval de 95% {low}–{high}, n = {n})",
+      "smallSample": "n = {n}",
+      "openStories": "Arată poveștile",
+      "showAll": "Arată toate cele {count}",
+      "showFewer": "Arată mai puține",
+      "note": "Punctele arată ponderea poveștilor în care afirmația este clar adevărată (probabilitate AI ≥ 0,8); liniile arată intervalul de 95%. Rândurile estompate au mai puțin de 30 de răspunsuri.",
+      "noteWithStories": "Punctele arată ponderea poveștilor în care afirmația este clar adevărată (probabilitate AI ≥ 0,8); liniile arată intervalul de 95%. Rândurile estompate au mai puțin de 30 de răspunsuri. Selectează un rând pentru a citi poveștile corespunzătoare.",
+      "gap": "Cea mai mare diferență: {label} – {higher} dintre {higherGroup} vs. {lower} dintre {lowerGroup}.",
+      "womenLower": "femei",
+      "menLower": "bărbați",
+      "m": "B",
+      "f": "F",
+      "menLegend": "B · bărbați",
+      "womenLegend": "F · femei"
+    },
+    "storyPeek": {
+      "title": "Povești: {label}",
+      "meta": "{count, plural, =1 {1 poveste corespunzătoare} few {# povești corespunzătoare} other {# de povești corespunzătoare}}",
+      "error": "Poveștile nu au putut fi încărcate.",
+      "empty": "Nicio poveste corespunzătoare pentru filtrele curente.",
+      "readFull": "Citește povestea completă",
+      "note": "Fragmente anonime, cele mai apreciate primele. Lista completă se află în secțiunea Povești de la finalul paginii."
+    },
+    "reasons": {
+      "transitionTitle": "Motivul principal al tranziției",
+      "transitionDescription": "Cel mai important motiv pe care îl dă fiecare persoană pentru începerea tranziției.",
+      "detransitionTitle": "Motivul principal al detranziției",
+      "detransitionDescription": "Cel mai important motiv pe care îl dă fiecare persoană pentru oprire."
+    },
+    "byYear": {
+      "error": "Datele pe ani nu au putut fi încărcate",
+      "empty": "Încă nu există ani ai tranziției pentru filtrele curente.",
+      "other": "Altele",
+      "n": "n = {n}",
+      "note": "Ponderi ajustate după probabilitate pentru fiecare cohortă după anul tranziției. Rândurile estompate au mai puțin de 30 de povești."
+    },
+    "overview": {
+      "error": "Prezentarea generală nu a putut fi încărcată",
+      "basedOn": "Pe baza a {cohort} povești evaluate."
+    },
+    "drivers": {
+      "statements": {
+        "title": "Descrise ca având un rol în tranziție"
+      },
+      "count": "n = {n}",
+      "basedOn": "Pe baza a {cohort} povești evaluate.",
+      "empty": "Încă nu există răspunsuri pentru filtrele curente.",
+      "error": "Aceste date nu au putut fi încărcate"
+    },
+    "adversity": {
+      "composition": {
+        "any": "{positive}% descriu cel puțin o formă de traumă sau adversitate (n = {n})"
+      },
+      "statements": {
+        "title": "Tipuri de adversitate descrise"
+      },
+      "contrast": {
+        "title": "Istoric de traumă vs. trauma ca motiv principal",
+        "description": "Mult mai multe povești menționează o traumă decât o numesc drept motorul principal al tranziției sau detranziției.",
+        "history": "Descriu un istoric de traumă",
+        "transitionReason": "Numesc trauma drept motivul principal al tranziției",
+        "detransitionReason": "Numesc conștientizarea traumei drept motivul principal al detranziției",
+        "note": "Punctele arată ponderea poveștilor; liniile arată intervalul de 95%. Rândurile despre motive numără un singur motiv principal pentru fiecare poveste."
+      },
+      "count": "n = {n}",
+      "basedOn": "Pe baza a {cohort} povești evaluate.",
+      "empty": "Încă nu există răspunsuri despre adversitate pentru filtrele curente.",
+      "error": "Datele despre adversitate nu au putut fi încărcate"
+    },
+    "online": {
+      "choice": {
+        "title": "Cea mai influentă platformă",
+        "description": "Dintre poveștile care menționează o influență online. Poveștile fără o influență online semnificativă sunt omise.",
+        "options": {
+          "reddit": "Reddit",
+          "tumblr": "Tumblr",
+          "tiktok": "TikTok",
+          "twitter": "Twitter / X",
+          "youtube": "YouTube",
+          "discord": "Discord",
+          "other": "Altă platformă sau spațiu de fandom"
+        }
+      },
+      "statements": {
+        "title": "Influența online și a anturajului"
+      },
+      "byYear": {
+        "title": "Platforma după anul tranziției",
+        "description": "Cum s-a schimbat cea mai influentă platformă între cohortele după anul tranziției."
+      },
+      "count": "n = {n}",
+      "basedOn": "Pe baza a {cohort} povești evaluate.",
+      "empty": "Încă nu există răspunsuri despre influența online pentru filtrele curente.",
+      "error": "Datele despre influența online nu au putut fi încărcate"
+    },
+    "process": {
+      "composition": {
+        "any": "{positive}% descriu cel puțin unul dintre aceste puncte de cotitură (n = {n})"
+      },
+      "statements": {
+        "title": "Ce i-a îndreptat pe oameni spre detranziție"
+      },
+      "count": "n = {n}",
+      "basedOn": "Pe baza a {cohort} povești evaluate.",
+      "empty": "Încă nu există răspunsuri despre punctele de cotitură pentru filtrele curente.",
+      "error": "Datele despre punctele de cotitură nu au putut fi încărcate"
+    },
+    "lives": {
+      "error": "Cronologiile nu au putut fi încărcate",
+      "empty": "Încă nu există povești cu vârstă atât la tranziție, cât și la detranziție pentru filtrele curente.",
+      "legend": {
+        "transition": "În tranziție",
+        "blockers": "Blocante ale pubertății",
+        "hormones": "Hormoni",
+        "surgery": "Operație"
+      },
+      "ariaLabel": "Grafic în benzi cu {n} cronologii individuale de la tranziție la detranziție",
+      "tooltip": {
+        "woman": "Femeie",
+        "man": "Bărbat",
+        "person": "Persoană",
+        "firstDysphoria": "Prima disforie la {age} ani",
+        "transition": "Tranziție la {age} ani",
+        "pubertyBlockers": "Blocante ale pubertății la {age} ani",
+        "hormones": "Hormoni la {age} ani",
+        "topSurgery": "Operație la piept la {age} ani",
+        "bottomSurgery": "Operație genitală la {age} ani",
+        "detransition": "Detranziție la {age} ani"
+      },
+      "note": "{n} persoane a căror poveste precizează ambele vârste, ordonate după vârsta la tranziție. Vârstele reflectă interpretarea AI-ului pentru fiecare poveste și pot fi aproximative."
+    },
+    "duration": {
+      "error": "Duratele nu au putut fi încărcate",
+      "empty": "Încă nu există durate ale tranziției pentru filtrele curente.",
+      "all": "Toți",
+      "women": "Femei",
+      "men": "Bărbați",
+      "legend": "{label}: mediana {median} ani (n = {n})",
+      "tooltipTitle": "În {years, plural, =1 {1 an} few {# ani} other {# de ani}}",
+      "xAxis": "Ani de la începutul tranziției",
+      "note": "Ponderea persoanelor care se opriseră într-un anumit număr de ani. Toți cei de aici au făcut în cele din urmă detranziția, așa că graficul arată cât a durat tranziția pentru ei – nu câți dintre cei care fac tranziția se opresc ulterior.",
+      "headline": "{one}% se opriseră în primul an și {five}% în primii cinci ani de la început (mediana {median} ani, n = {n})."
+    },
+    "optionLabels": {
+      "reddit": "Reddit",
+      "tumblr": "Tumblr",
+      "tiktok": "TikTok",
+      "twitter": "Twitter / X",
+      "youtube": "YouTube",
+      "discord": "Discord",
+      "social_role_discomfort": "Disconfort față de rolul social",
+      "internalised_homophobia": "Homofobie interiorizată",
+      "internalised_misogyny_misandry": "Misoginie / misandrie interiorizată",
+      "trauma": "Traumă",
+      "mental_health_issues": "Sănătate mintală",
+      "neurodivergence": "Neurodivergență",
+      "body_dysmorphia": "Dismorfie corporală",
+      "online_influence": "Influență online",
+      "peer_influence": "Influența anturajului",
+      "sexual_factors": "Factori sexuali (AGP / AAP)",
+      "parental_or_medical_pressure": "Presiune din partea părinților sau a medicilor",
+      "other_unclear": "Altele / neclar",
+      "accepted_sexed_body": "Și-a acceptat corpul sexuat",
+      "social_construct_realisation": "A văzut rolurile de gen ca problemă",
+      "trauma_realisation": "A realizat că trauma era cauza",
+      "mental_health_realisation": "A realizat că sănătatea mintală era cauza",
+      "neurodivergence_realisation": "A realizat că neurodivergența era cauza",
+      "fantasy_reality_disillusionment": "Realitatea nu s-a ridicat la nivelul așteptărilor",
+      "surgery_regret_medical_complications": "Regretul operației sau complicații medicale",
+      "ideological_disillusionment": "Deziluzie față de ideologie sau comunitate",
+      "social_pressure_ostracism": "Presiune socială sau ostracizare",
+      "failure_to_pass": "Nu a reușit să treacă drept celălalt sex",
+      "internalised_homophobia_realisation": "A conștientizat homofobia interiorizată",
+      "internalised_misogyny_misandry_realisation": "A conștientizat misoginia / misandria interiorizată",
+      "sexual_factors_realisation": "A conștientizat factorii sexuali (AGP / AAP)",
+      "religious_or_spiritual_change": "Schimbare religioasă sau spirituală",
+      "fertility_or_family_desires": "Fertilitate sau dorința de a avea familie"
+    },
+    "choiceSplit": {
+      "error": "Acest grafic nu a putut fi încărcat",
+      "empty": "Încă nu există răspunsuri pentru filtrele curente.",
+      "women": "F · femei (n = {n})",
+      "men": "B · bărbați (n = {n})",
+      "headline": "Femeile numesc mai des „{womenOption}” ({womenShare} vs. {womenMen} dintre bărbați); bărbații numesc mai des „{menOption}” ({menShare} vs. {menWomen} dintre femei).",
+      "note": "Ajustat după probabilitate: o poveste pe care AI-ul o împarte 60/40 între două motive contează 0,6 și 0,4.",
+      "m": "B",
+      "f": "F"
+    },
+    "ordinal": {
+      "error": "Acest grafic nu a putut fi încărcat",
+      "empty": "Încă nu există răspunsuri pentru filtrele curente.",
+      "all": "Toți",
+      "women": "Femei",
+      "men": "Bărbați"
+    },
+    "medical_steps": {
+      "statements": {
+        "title": "Pași medicali făcuți"
+      },
+      "count": "n = {n}",
+      "basedOn": "Pe baza a {cohort} povești evaluate.",
+      "empty": "Încă nu există răspunsuri pentru filtrele curente.",
+      "error": "Pașii medicali nu au putut fi încărcați"
     }
   },
   "topicsPage": {
     "title": "Topics",
     "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
     "empty": "No topics have been published yet."
+  },
+  "storiesPage": {
+    "metadata": {
+      "title": "Povești de detranziție | detrans.ai",
+      "description": "Citește mii de povești anonimizate de detranziție și desistență din comunitatea /r/detrans, rezumate de AI. Filtrează după vârstă, sex și experiență."
+    },
+    "title": "Povești de detranziție",
+    "description": "{count, plural, one {# poveste anonimizată} few {# povești anonimizate} other {# de povești anonimizate}} ale unor oameni care au făcut tranziția și ulterior au detranziționat sau au renunțat, reconstituite de AI din postările și comentariile lor de pe /r/detrans.",
+    "statsLink": "Explorează statisticile",
+    "allStories": "Toate poveștile",
+    "story": {
+      "metaTitle": "{title} – Poveste de detranziție | detrans.ai",
+      "untitled": "O poveste de detranziție",
+      "notFound": "Povestea nu a fost găsită | detrans.ai",
+      "tags": "Etichete",
+      "moreStories": "Citește mai multe povești"
+    }
   }
 }

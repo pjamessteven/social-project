@@ -18,15 +18,6 @@ const nextConfig = {
   output: "standalone",
   reactStrictMode: true,
   productionBrowserSourceMaps: false,
-  async redirects() {
-    return [
-      {
-        source: "/stories",
-        destination: "/stats",
-        permanent: true,
-      },
-    ];
-  },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },

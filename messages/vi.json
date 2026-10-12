@@ -144,7 +144,9 @@
       "stats": "Thống kê",
       "statsDesc": "Thống kê detransition ẩn danh từ /r/detrans",
       "topics": "Topics",
-      "topicsDesc": "Hướng dẫn chuyên sâu về các chủ đề chính"
+      "topicsDesc": "Hướng dẫn chuyên sâu về các chủ đề chính",
+      "stories": "Câu chuyện",
+      "storiesDesc": "Từ ngưởi dùng /r/detrans"
     },
     "resources": {
       "genderSupport": "Tìm Nhà Trị Liệu",
@@ -183,6 +185,7 @@
     "de": "Tiếng Đức",
     "he": "Tiếng Do Thái",
     "it": "Tiếng Ý",
+    "lt": "Lithuanian",
     "nl": "Tiếng Hà Lan",
     "tr": "Tiếng Thổ Nhĩ Kỳ",
     "vi": "Tiếng Việt"
@@ -240,17 +243,18 @@
   },
   "chat": {
     "lookingForComments": "Đang tìm bình luận liên quan...",
+    "lookingForStudies": "Looking for relevant studies...",
     "errorOccurred": "Đã xảy ra lỗi, hãy thử lại... Liên hệ với tôi nếu điều này tiếp tục xảy ra.",
     "analysingExperiences": "Đang Phân Tích Kinh Nghiệm",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Phân tích kết quả web",
+    "analysingResults": "Đang phân tích kết quả...",
     "detransPerspective": "-> Quan điểm của ngưởi chuyển giới trở lại về chủ đề này là gì?",
     "transPerspectivesIncluded": "Bao gồm quan điểm của người chuyển giới",
     "captchaRequired": "Yêu cầu captcha để tiếp tục trò chuyện.",
     "chatArchived": "Cuộc trò chuyện này đã được lưu trữ. Bắt đầu một cuộc trò chuyện mới.",
     "rateLimitExceeded": "Quá nhiều yêu cầu, hãy chậm lại và thử lại sau.",
     "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
-    "analysingResults": "Đang phân tích kết quả...",
     "followUpQuestions": "Câu hỏi tiếp theo:",
     "eventLabels": {
       "askDetransitioners": "Hỏi Người Chuyển Giới Trở Lại",
@@ -345,7 +349,21 @@
       "delete": "Xóa Cuộc Trò Chuyện",
       "banning": "Đang cấm...",
       "ban": "Cấm Ngưởi Dùng (IP)"
+    },
+    "dialog": {
+      "title": "Cuộc trò chuyện",
+      "toggleIdHint": "Nhấp để chuyển giữa ngày/quốc gia và ID",
+      "shareText": "Xem cuộc trò chuyện này",
+      "share": "Chia sẻ cuộc trò chuyện",
+      "copyLink": "Sao chép liên kết cuộc trò chuyện",
+      "noneSelected": "Chưa chọn cuộc trò chuyện nào"
     }
+  },
+  "readingDialog": {
+    "share": "Chia sẻ",
+    "copyLink": "Sao chép liên kết",
+    "copied": "Đã sao chép liên kết vào bộ nhớ tạm",
+    "close": "Đóng hộp thoại"
   },
   "stories": {
     "metadata": {
@@ -385,9 +403,9 @@
       "ageRangeYears": "{min} - {max} tuổi",
       "sex": {
         "all": "Nam và Nữ",
-        "mine": "Mine",
         "female": "Nữ",
-        "male": "Nam"
+        "male": "Nam",
+        "mine": "Mine"
       },
       "tagsPlaceholder": "Chọn thẻ để lọc...",
       "clearFilters": "Xóa Bộ Lọc"
@@ -582,12 +600,15 @@
   },
   "videoList": {
     "loading": "Đang tải video...",
+    "searchPlaceholder": "Search videos...",
+    "result": "video",
+    "results": "videos",
     "filters": {
       "all": "Tất Cả Câu Chuyện",
-      "mine": "Mine",
       "female": "Nữ",
       "male": "Nam",
-      "detransitioners": "Ngưởi Chuyển Giới Trở Lại"
+      "detransitioners": "Ngưởi Chuyển Giới Trở Lại",
+      "mine": "Mine"
     },
     "thumbnailAlt": "Hình thu nhỏ cho {title}",
     "by": "bởi",
@@ -635,15 +656,15 @@
       "ogDescription": "Tìm trên trang này một lựa chọn các nghiên cứu học thuật, bài báo tạp chí đã được bình duyệt và thống kê đã được xác minh liên quan đến xu hướng bản dạng giới và chuyển giới trở lại."
     },
     "title": "Nghiên Cứu Học Thuật và Nghiên Cứu",
+    "description": "Nghiên cứu về chuyển giới trở lại là một lĩnh vực mới nổi. Sự gia tăng nhanh chóng của các chẩn đoán khủng hoảng giới tính trong thập kỷ qua—đặc biệt là ở các bé gái tuổi vị thành niên—đã tạo ra một dân số ngưởi chuyển giới trở lại ngày càng lớn, mặc dù việc thu thập dữ liệu vẫn còn đầy thách thức do tỷ lệ mất liên lạc cao, sự phân chia ý thức hệ và các hạn chế về phương pháp luận.",
+    "segmNote": "Trên trang này bạn sẽ tìm thấy các nghiên cứu học thuật, nghiên cứu đã được bình duyệt, và bài báo tạp chí đặt câu hỏi về hiệu quả và đạo đức của chăm sóc khẳng định giới. Xem thêm tại <a>Society for Evidence-Based Gender Medicine (SEGM)</a>, bao gồm phân tích toàn diện về các nghiên cứu ủng hộ.",
     "searchPlaceholder": "Tìm kiếm nghiên cứu...",
     "methodology": "Phương Pháp Luận",
     "topic": "Chủ Đề",
     "noResults": "Không tìm thấy nghiên cứu nào.",
     "noStudies": "Chưa có nghiên cứu nào được phê duyệt.",
     "pendingReview": "Đang Chờ Duyệt",
-    "keyFindings": "Các Phát Hiện Chính:",
-    "description": "Nghiên cứu về chuyển giới trở lại là một lĩnh vực mới nổi. Sự gia tăng nhanh chóng của các chẩn đoán khủng hoảng giới tính trong thập kỷ qua—đặc biệt là ở các bé gái tuổi vị thành niên—đã tạo ra một dân số ngưởi chuyển giới trở lại ngày càng lớn, mặc dù việc thu thập dữ liệu vẫn còn đầy thách thức do tỷ lệ mất liên lạc cao, sự phân chia ý thức hệ và các hạn chế về phương pháp luận.",
-    "segmNote": "Trên trang này bạn sẽ tìm thấy các nghiên cứu học thuật, nghiên cứu đã được bình duyệt, và bài báo tạp chí đặt câu hỏi về hiệu quả và đạo đức của chăm sóc khẳng định giới. Xem thêm tại <a>Society for Evidence-Based Gender Medicine (SEGM)</a>, bao gồm phân tích toàn diện về các nghiên cứu ủng hộ."
+    "keyFindings": "Các Phát Hiện Chính:"
   },
   "contentWarning": {
     "title": "Cảnh Báo Nội Dung:",
@@ -801,7 +822,9 @@
       "legend": {
         "transition": "Tuổi Chuyển Giới",
         "detransition": "Tuổi Chuyển Giới Trở Lại"
-      }
+      },
+      "median": "trung vị {age}",
+      "coverage": "Dựa trên {transition} độ tuổi chuyển giới và {detransition} độ tuổi chuyển giới trở lại."
     },
     "transitionDuration": {
       "title": "Thời Lượng Chuyển Giới: Tuổi Khi Chuyển Giới vs Tuổi Khi Chuyển Giới Trở Lại",
@@ -825,7 +848,8 @@
       "female": "Nữ",
       "yearsAvg": "năm TB",
       "user": "ngưởi dùng",
-      "users": "ngưởi dùng"
+      "users": "ngưởi dùng",
+      "coverage": "Dựa trên {count} câu chuyện ghi nhận cả hai độ tuổi."
     },
     "pathways": {
       "title": "Dòng Chảy Các Con Đường Chuyển Giới Trở Lại",
@@ -945,7 +969,9 @@
     "error": {
       "title": "Lỗi CAPTCHA",
       "description": "Không thể tải CAPTCHA. Vui lòng làm mới trang và thử lại."
-    }
+    },
+    "verifyFailed": "Verification failed. Please try again.",
+    "rateLimited": "Too many verifications. Please wait a moment and try again."
   },
   "feedback": {
     "title": "Phản hồi",
@@ -963,11 +989,990 @@
     "metadata": {
       "title": "Thống kê ẩn danh | detrans.ai",
       "description": "Thống kê ẩn danh về các mô hình detransition và transition, bao gồm phân bố độ tuổi, thời gian, lý do và con đường."
+    },
+    "toc": {
+      "title": "Trên trang này"
+    },
+    "filters": {
+      "title": "Bộ lọc",
+      "edit": "Chỉnh bộ lọc",
+      "hide": "Ẩn bộ lọc",
+      "summary": {
+        "none": "Không có bộ lọc",
+        "age": "Tuổi {min}–{max}",
+        "tags": "{count, plural, =0 {không có thẻ} =1 {1 thẻ} other {# thẻ}}",
+        "detailed": "Chỉ chi tiết"
+      },
+      "detailed": "Chỉ câu chuyện chi tiết",
+      "detailedHint": "Chỉ bao gồm các câu chuyện được AI đánh giá là khá hoặc rất chi tiết."
+    },
+    "sections": {
+      "age": {
+        "title": "Độ tuổi",
+        "description": "Thời điểm những người chuyển giới trở lại đã chuyển giới và chuyển giới trở lại."
+      },
+      "journey": {
+        "title": "Các độ tuổi",
+        "description": "Thời điểm mọi người lần đầu cảm thấy phiền muộn giới, chuyển giới, bắt đầu dùng hormone và chuyển giới trở lại."
+      },
+      "duration": {
+        "title": "Thời gian",
+        "description": "Mọi người duy trì chuyển giới bao lâu trước khi dừng lại."
+      },
+      "minors": {
+        "title": "Chuyển giới trước 18 tuổi",
+        "description": "Những câu chuyện cho thấy điều gì về việc bắt đầu chuyển giới khi còn là trẻ em hoặc thiếu niên."
+      },
+      "reasons": {
+        "title": "Lý do",
+        "description": "Vì sao những người chuyển giới trở lại nói họ đã chuyển giới — và vì sao họ chuyển giới trở lại."
+      },
+      "pathways": {
+        "title": "Con đường",
+        "description": "Sự hối hận có khác nhau theo lý do chuyển giới hay không, và mọi người đã thực hiện những bước y tế nào."
+      },
+      "regret": {
+        "title": "Hối hận",
+        "description": "Mức độ hối hận, sự thay đổi theo thời gian và điều mọi người hối hận."
+      },
+      "medical": {
+        "title": "Can thiệp y tế",
+        "description": "Sự hối hận liên quan thế nào đến mức độ tiến xa của quá trình chuyển giới."
+      },
+      "complications": {
+        "title": "Biến chứng",
+        "description": "Biến chứng y tế và vấn đề sức khỏe kéo dài sau khi chuyển giới."
+      },
+      "mental_health": {
+        "title": "Sức khỏe tâm thần",
+        "description": "Bức tranh sức khỏe tâm thần trong các câu chuyện, trước và sau khi chuyển giới trở lại."
+      },
+      "suicidality": {
+        "title": "Ý định tự tử",
+        "description": "Tần suất các câu chuyện mô tả ý nghĩ tự tử hoặc tự gây hại, và vào thời điểm nào."
+      },
+      "after": {
+        "title": "Sau khi chuyển giới trở lại",
+        "description": "Sức khỏe tâm thần, chất lượng cuộc sống và quan hệ gia đình đã thay đổi thế nào."
+      },
+      "current_status": {
+        "title": "Where are they now",
+        "description": "Current identities and situations after detransitioning."
+      },
+      "family_community": {
+        "title": "Cái giá xã hội của việc chuyển giới trở lại",
+        "description": "Sự cô lập và bị xa lánh do chuyển giới trở lại, và sự vỡ mộng với cộng đồng chuyển giới. Các câu hỏi không phân biệt giữa chuyển giới và chuyển giới trở lại (hỗ trợ từ gia đình, các mối quan hệ, sự nghiệp) không được đưa vào; quan hệ gia đình kể từ khi chuyển giới trở lại được trình bày trong mục “Sau khi chuyển giới trở lại”."
+      },
+      "sexuality": {
+        "title": "Tính dục",
+        "description": "Xu hướng tính dục so với giới tính khi sinh, trước khi chuyển giới và sau khi chuyển giới trở lại."
+      },
+      "trends": {
+        "title": "Qua các năm",
+        "description": "Các câu chuyện — và lý do của chúng — đã thay đổi thế nào giữa các nhóm theo năm chuyển giới."
+      },
+      "features": {
+        "title": "Đặc điểm",
+        "description": "Every statement the AI evaluated across the stories — causes, processes and outcomes."
+      },
+      "compare": {
+        "title": "So sánh",
+        "description": "Mức độ phổ biến của các đặc điểm thay đổi thế nào giữa hai nửa của nhóm."
+      },
+      "matrix": {
+        "title": "Mối liên hệ",
+        "description": "Câu trả lời cho những câu hỏi gây tranh cãi — kể cả khi một khác biệt được dự đoán lại không xuất hiện."
+      },
+      "stories": {
+        "title": "Câu chuyện",
+        "description": "Trích đoạn ẩn danh từ những người đứng sau các con số này.",
+        "browse": "Xem tất cả câu chuyện"
+      },
+      "methodology": {
+        "title": "Phương pháp",
+        "description": "Cách xây dựng bộ dữ liệu và cách đọc các biểu đồ này."
+      },
+      "overview": {
+        "title": "Tổng quan",
+        "description": "Mọi nhận định có/không mà AI đã đánh giá, xếp theo số câu chuyện mà nhận định đó rõ ràng đúng."
+      },
+      "lives": {
+        "title": "Dòng thời gian cá nhân",
+        "description": "Mỗi đường là một người, từ tuổi bắt đầu chuyển giới đến tuổi dừng lại."
+      },
+      "drivers": {
+        "title": "Những động lực ít được bàn đến",
+        "description": "Hình ảnh cơ thể, bản dạng không ổn định và các yếu tố tình dục được mô tả là góp phần dẫn đến chuyển giới."
+      },
+      "adversity": {
+        "title": "Sang chấn & nghịch cảnh",
+        "description": "Tần suất các câu chuyện mô tả sang chấn, và tần suất sang chấn được nêu là lý do chính."
+      },
+      "online": {
+        "title": "Ảnh hưởng trực tuyến & bạn bè",
+        "description": "Nền tảng nào có ảnh hưởng nhất, và ảnh hưởng trực tuyến cũng như từ bạn bè thể hiện thế nào trong các câu chuyện."
+      },
+      "process": {
+        "title": "Bước ngoặt",
+        "description": "Điều gì đã giúp mọi người chuyển từ chuyển giới sang chuyển giới trở lại."
+      }
+    },
+    "features": {
+      "search": "Tìm đặc điểm…",
+      "sort": {
+        "prevalence": "Mức phổ biến",
+        "alpha": "A–Z"
+      },
+      "tiers": {
+        "cause": "Nguyên nhân",
+        "process": "Quá trình",
+        "outcome": "Kết quả"
+      },
+      "kinds": {
+        "noul": "Có / không",
+        "choice": "Lựa chọn",
+        "score": "Thang đo"
+      },
+      "groups": {
+        "reasons": "Lý do",
+        "causes": "Nguyên nhân",
+        "processes": "Quá trình",
+        "regret": "Hối hận",
+        "medical": "Y tế",
+        "mental_health": "Sức khỏe tâm thần",
+        "adversity": "Nghịch cảnh",
+        "social": "Xã hội",
+        "sexuality": "Tính dục",
+        "online": "Trực tuyến",
+        "identity": "Bản dạng",
+        "outcomes": "Kết quả",
+        "attitudes": "Quan điểm",
+        "quality": "Chất lượng"
+      },
+      "basedOn": "Trên {cohort} câu chuyện đã được đánh giá.",
+      "coverageNote": "{n} trong {cohort} câu chuyện đã đánh giá ({percent}%) có câu trả lời.",
+      "question": "Điều này được đo như thế nào?",
+      "confidence": "Độ tin cậy trung vị của AI cho đặc điểm này: {value}%.",
+      "filterByTag": "Chỉ câu chuyện có thẻ “{tag}”",
+      "placeholder": "Chọn một đặc điểm trong danh sách để khám phá.",
+      "backToList": "Tất cả đặc điểm",
+      "noResults": "Không có đặc điểm nào khớp với tìm kiếm.",
+      "noData": "Không có câu trả lời cho bộ lọc hiện tại.",
+      "loading": "Đang tải…",
+      "error": "Không thể tải dữ liệu đặc điểm",
+      "noul": {
+        "prevalenceLabel": "câu chuyện đã đánh giá vượt ngưỡng",
+        "range": "xác suất {from} – {to}",
+        "count": "{count} câu chuyện ({percent}%)",
+        "thresholdShort": "ngưỡng {threshold}",
+        "legend": {
+          "yes": "Có thể đúng",
+          "maybe": "Không chắc chắn",
+          "no": "Có thể sai"
+        },
+        "above": "Có thể đúng",
+        "uncertain": "Không chắc chắn",
+        "below": "Có thể sai"
+      },
+      "choice": {
+        "soft": "Tổng xác suất",
+        "hard": "Lựa chọn cao nhất",
+        "softTooltip": "≈{percent}% (≈{count} câu chuyện tính theo tổng xác suất)",
+        "hardTooltip": "{percent}% ({count} câu chuyện)",
+        "softNote": "Các cột thể hiện tổng xác suất AI dành cho mỗi lựa chọn trên mọi câu chuyện, nên các câu trả lời hỗn hợp được tính theo tỷ lệ.",
+        "hardNote": "Các cột chỉ đếm một lựa chọn có khả năng cao nhất của mỗi câu chuyện."
+      },
+      "score": {
+        "meanLabel": "Trung bình {value} trên thang 0–{max}",
+        "range": "Điểm {from} – {to}",
+        "count": "{count} câu chuyện",
+        "meanShort": "trung bình {value}"
+      },
+      "related": {
+        "title": "Thường xuất hiện cùng nhau",
+        "lift": "phổ biến hơn {lift}× ({percent}%)"
+      },
+      "listNote": "Các chấm thể hiện tỷ lệ câu chuyện mà mỗi nhận định rõ ràng đúng (xác suất AI ≥ 0.8); các đường thể hiện khoảng tin cậy 95%. Các hàng mờ có ít hơn 30 câu trả lời. Chọn một hàng để đọc các câu chuyện phù hợp. Dựa trên {cohort} câu chuyện đã đánh giá."
+    },
+    "compare": {
+      "splitLabel": "Chia theo",
+      "thresholdNote": "Hiển thị các câu chuyện trên ngưỡng AI {threshold} so với dưới ngưỡng.",
+      "filter": {
+        "all": "Tất cả câu trả lời",
+        "clear": "Chỉ tín hiệu rõ ràng"
+      },
+      "clearNote": "{excluded} câu chuyện không rõ ràng đã bị loại khỏi cả hai bên.",
+      "cohortTrue": "{label}: có (n = {n})",
+      "cohortFalse": "Không có (n = {n})",
+      "splitSex": "Giới tính sinh học",
+      "sexNote": "So sánh câu chuyện của nữ và nam.",
+      "cohortWomen": "Nữ (n = {n})",
+      "cohortMen": "Nam (n = {n})",
+      "splitAge": "Tuổi khi chuyển giới",
+      "ageNote": "So sánh các câu chuyện bắt đầu chuyển giới dưới 18 tuổi với từ 18 tuổi trở lên.",
+      "cohortUnder18": "Dưới 18 (n = {n})",
+      "cohortAdult": "Từ 18 trở lên (n = {n})",
+      "rowTooltip": "{label}: {pctTrue}% trong {nTrue} so với {pctFalse}% trong {nFalse}",
+      "empty": "Chưa đủ câu chuyện có câu trả lời ở cả hai bên của cách chia này.",
+      "showSmallSamples": "Hiện mẫu nhỏ",
+      "hideSmallSamples": "Ẩn mẫu nhỏ",
+      "hiddenNote": "{count, plural, =1 {1 đặc điểm} other {# đặc điểm}} bị ẩn vì có ít hơn 3 câu chuyện ở một bên.",
+      "error": "Không thể tải dữ liệu so sánh",
+      "ratio": "mức phổ biến {ratio}",
+      "ratioNote": "Các hàng được xếp theo mức khác biệt giữa hai nhóm (tỷ số nguy cơ); các đặc điểm hiếm ở cả hai bên bị loại bỏ. Các đường thể hiện khoảng tin cậy 95%; hàng mờ có ít hơn 30 câu chuyện ở một bên.",
+      "showAll": "Hiện tất cả đặc điểm"
+    },
+    "matrix": {
+      "presetLabel": "Chế độ xem",
+      "presets": {
+        "outcomesByCause": "Kết quả theo nguyên nhân",
+        "outcomesByProcess": "Kết quả theo bước ngoặt"
+      },
+      "metric": {
+        "rate": "Tỷ lệ",
+        "lift": "So với trung bình"
+      },
+      "swap": "Đổi trục",
+      "legendRate": "Tỷ lệ câu chuyện phù hợp mà đặc điểm ở cột là đúng.",
+      "legendLift": "So với mức trung bình của toàn nhóm (xanh là cao hơn, đỏ là thấp hơn).",
+      "sampleNote": "Mỗi ô so sánh các câu chuyện có đặc điểm ở hàng với các câu chuyện không có. Những câu chuyện dài và chi tiết hơn nhắc đến nhiều đặc điểm thuộc mọi loại, nên phần lớn tỷ số nằm trên 1× — hãy so sánh các ô với nhau thay vì với 1×. Các ô có ít hơn 30 câu chuyện ở một trong hai bên được để trống.",
+      "basedOn": "{cohort} câu chuyện đã đánh giá trong chế độ xem này.",
+      "cellTooltip": "{row} → {col}: {percent}% trong {n} câu chuyện · {lift}× trung bình của nhóm",
+      "cellTooltipNoLift": "{row} → {col}: {percent}% trong {n} câu chuyện",
+      "cellMasked": "{row} → {col}: không đủ câu chuyện",
+      "empty": "Chưa đủ câu chuyện có câu trả lời cho chế độ xem này.",
+      "error": "Không thể tải dữ liệu ma trận",
+      "presetDescriptions": {
+        "outcomesByCause": "Mỗi kết quả phổ biến hơn (hoặc ít hơn) bao nhiêu trong các câu chuyện có một nguyên nhân nhất định so với các câu chuyện không có nguyên nhân đó.",
+        "outcomesByProcess": "Mỗi kết quả phổ biến hơn (hoặc ít hơn) bao nhiêu trong các câu chuyện có một bước ngoặt nhất định so với các câu chuyện không có bước ngoặt đó."
+      },
+      "legendMore": "Phổ biến hơn khi có đặc điểm ở hàng",
+      "legendLess": "Ít phổ biến hơn",
+      "legendNone": "Không có khác biệt rõ ràng (khoảng tin cậy 95% bao gồm 1×)",
+      "cellTooltipRatio": "{row} → {col}: {percent}% trong {n} câu chuyện có yếu tố này so với {percentWithout}% không có · {ratio} (khoảng tin cậy 95% {low}–{high})",
+      "legendWith": "Có yếu tố",
+      "legendWithout": "Không có",
+      "themes": {
+        "medical": "Con đường y tế",
+        "helped": "Điều đã giúp ích",
+        "who": "Ai hối hận, ai quay lại",
+        "views": "Quan điểm về chuyển giới đối với người khác"
+      },
+      "predictors": {
+        "under18": "Bắt đầu chuyển giới trước 18 tuổi",
+        "women": "Nữ (so với nam)",
+        "sameSex": "Hấp dẫn bởi người cùng giới trước khi chuyển giới",
+        "took_puberty_blockers": "Đã dùng thuốc chặn dậy thì",
+        "took_hormones": "Đã dùng hormone",
+        "top_surgery": "Đã phẫu thuật phần trên",
+        "process_benefited_from_therapy": "Trị liệu khám phá có ích",
+        "gender_nonconformity_childhood": "Không theo chuẩn giới khi còn nhỏ",
+        "process_spiritual_experience": "Một trải nghiệm tâm linh",
+        "autogynephilia": "Autogynephilia",
+        "adv_trauma_history": "Tiền sử sang chấn",
+        "contributed_online_influence": "Ảnh hưởng trực tuyến"
+      },
+      "outcomes": {
+        "regret": "hối hận về chuyển giới",
+        "bodyReconciliation": "đã chấp nhận cơ thể mình",
+        "retransitioned": "đã chuyển giới lại",
+        "mentalHealthBetter": "sức khỏe tâm thần tốt hơn sau khi chuyển giới trở lại",
+        "critical": "phê phán hoặc phản đối chuyển giới đối với người khác"
+      },
+      "ratio": "mức phổ biến {ratio}",
+      "noDifference": "Không có khác biệt rõ ràng",
+      "rowTooltip": "{with} trong {nWith} câu chuyện có yếu tố này so với {without} trong {nWithout} không có",
+      "note": "Các đường thể hiện khoảng tin cậy 95%. “Không có khác biệt rõ ràng” nghĩa là khoảng tin cậy bao gồm khả năng hoàn toàn không có khác biệt. Đây là mối liên hệ trong những gì mọi người viết, không phải nguyên nhân, và những người viết câu chuyện dài, chi tiết hơn sẽ nhắc đến mọi thứ nhiều hơn. Dựa trên {cohort} câu chuyện đã đánh giá."
+    },
+    "regret": {
+      "composition": {
+        "pair": "{positive}% câu chuyện bày tỏ hối hận về việc chuyển giới và {negative}% nói rằng họ không hối hận; số còn lại không đề cập. Trong số những người có đề cập, {statedShare}% hối hận (n = {stated}).",
+        "any": "{positive}% bày tỏ hối hận (n = {n})"
+      },
+      "scale": {
+        "title": "Mức độ hối hận như thế nào?",
+        "mean": "cường độ trung bình {value} / {max}",
+        "levels": {
+          "level0": "Không bày tỏ hối hận",
+          "level1": "Nhẹ hoặc thoáng qua",
+          "level2": "Vừa phải, lặp lại",
+          "level3": "Nặng, dai dẳng"
+        }
+      },
+      "choice": {
+        "title": "Sự hối hận thay đổi theo thời gian thế nào?",
+        "options": {
+          "resolved": "Phần lớn đã qua",
+          "improving": "Đang cải thiện",
+          "stable": "Ổn định",
+          "worsening": "Đang xấu đi",
+          "mixed": "Lẫn lộn hoặc theo chu kỳ"
+        }
+      },
+      "statements": {
+        "title": "Cụ thể mọi người hối hận điều gì"
+      },
+      "count": "n = {n}",
+      "basedOn": "Dựa trên {cohort} câu chuyện đã đánh giá.",
+      "empty": "Chưa có câu trả lời về hối hận cho bộ lọc hiện tại.",
+      "error": "Không thể tải dữ liệu hối hận"
+    },
+    "complications": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% báo cáo ít nhất một biến chứng y tế hoặc vấn đề sức khỏe kéo dài (n = {n})"
+      },
+      "scale": {
+        "title": "Các biến chứng nghiêm trọng đến mức nào?",
+        "mean": "mức độ nghiêm trọng trung bình {value} / {max}",
+        "levels": {
+          "level0": "Không có biến chứng",
+          "level1": "Tác dụng phụ nhẹ hoặc kiểm soát được",
+          "level2": "Biến chứng đáng kể",
+          "level3": "Tổn hại nghiêm trọng hoặc vĩnh viễn"
+        }
+      },
+      "statements": {
+        "title": "Các vấn đề y tế cụ thể"
+      },
+      "count": "n = {n}",
+      "basedOn": "Dựa trên {cohort} câu chuyện đã đánh giá.",
+      "empty": "Chưa có câu trả lời về y tế cho bộ lọc hiện tại.",
+      "error": "Không thể tải dữ liệu biến chứng"
+    },
+    "mental_health": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% cho thấy ít nhất một tình trạng hoặc khủng hoảng sức khỏe tâm thần (n = {n})"
+      },
+      "scale": {
+        "title": "Bức tranh sức khỏe tâm thần nghiêm trọng đến mức nào?",
+        "mean": "mức độ nghiêm trọng trung bình {value} / {max}",
+        "levels": {
+          "level0": "Không có vấn đề đáng kể",
+          "level1": "Căng thẳng nhẹ hoặc theo hoàn cảnh",
+          "level2": "Tình trạng đáng kể, đã điều trị",
+          "level3": "Tình trạng nặng hoặc khủng hoảng"
+        }
+      },
+      "statements": {
+        "title": "Tình trạng và khủng hoảng"
+      },
+      "count": "n = {n}",
+      "basedOn": "Dựa trên {cohort} câu chuyện đã đánh giá.",
+      "empty": "Chưa có câu trả lời về sức khỏe tâm thần cho bộ lọc hiện tại.",
+      "error": "Không thể tải dữ liệu sức khỏe tâm thần"
+    },
+    "suicidality": {
+      "during": "Trong khi chuyển giới",
+      "since": "Kể từ khi chuyển giới trở lại",
+      "duringDescription": "Khả năng, theo đánh giá của mô hình, một câu chuyện mô tả ý nghĩ tự tử, tự gây hại hoặc cố gắng tự tử trong thời gian người đó chuyển giới.",
+      "sinceDescription": "Khả năng, theo đánh giá của mô hình, một câu chuyện mô tả ý nghĩ tự tử, tự gây hại hoặc cố gắng tự tử kể từ khi chuyển giới trở lại.",
+      "splitNote": "Chia theo tình trạng hiện tại · trục căn bậc hai",
+      "overall": "Tất cả câu chuyện",
+      "sqrtNote": "Trục dọc dùng thang căn bậc hai để các khoảng xác suất nhỏ vẫn hiển thị rõ bên cạnh cột cao vọt tại số không.",
+      "tooltipBin": "Xác suất {range}",
+      "tooltipCount": "{count, plural, =1 {1 câu chuyện} other {# câu chuyện}}",
+      "bands": {
+        "no": "Có thể sai (< 0.2)",
+        "mixed": "Không chắc chắn (0.2–0.8)",
+        "yes": "Có thể đúng (≥ 0.8)"
+      },
+      "count": "n = {n}",
+      "basedOn": "Dựa trên {cohort} câu chuyện có câu trả lời.",
+      "empty": "Chưa có câu trả lời về ý định tự tử cho bộ lọc hiện tại.",
+      "error": "Không thể tải dữ liệu về ý định tự tử",
+      "statements": {
+        "title": "Ý nghĩ tự tử và tự gây hại"
+      }
+    },
+    "current_status": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% (n = {n})"
+      },
+      "choice": {
+        "title": "Where are they now?",
+        "options": {
+          "detransitioned": "Đã chuyển giới trở lại",
+          "desisted": "Từ bỏ trước khi chuyển giới y tế",
+          "retransitioned": "Đã chuyển giới lại",
+          "still_trans_questioning": "Vẫn là người chuyển giới, đang băn khoăn",
+          "questioning": "Đang băn khoăn",
+          "unclear": "Không rõ",
+          "supportive": "Ủng hộ chuyển giới đối với người khác",
+          "conditional": "Ủng hộ có điều kiện",
+          "critical": "Phê phán chuyển giới",
+          "opposed": "Phản đối",
+          "not_addressed": "Không đề cập"
+        },
+        "description": "Trong các câu chuyện có đề cập, từ ủng hộ đến phản đối."
+      },
+      "secondaryChoice": {
+        "title": "Họ nhìn nhận việc chuyển giới đối với người khác ra sao?"
+      },
+      "statements": {
+        "title": "Tình hình hiện tại"
+      },
+      "count": "n = {n}",
+      "basedOn": "Dựa trên {cohort} câu chuyện đã đánh giá.",
+      "empty": "Chưa có câu trả lời về tình trạng cho bộ lọc hiện tại.",
+      "error": "Không thể tải dữ liệu tình trạng",
+      "headline": "{percent}% phê phán hoặc phản đối chuyển giới đối với người khác (n ≈ {n}).",
+      "note": "Tỷ lệ có trọng số theo xác suất. Các câu chuyện không đề cập đến câu hỏi này không được tính."
+    },
+    "family_community": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% trả lời có cho ít nhất một câu hỏi bên dưới (n = {n})"
+      },
+      "statements": {
+        "title": "Các câu hỏi đã đặt ra",
+        "description": "Mỗi câu chuyện được kiểm tra theo đúng các câu hỏi này. Một câu chuyện được tính khi câu trả lời rõ ràng là có."
+      },
+      "count": "n = {n}",
+      "basedOn": "Dựa trên {cohort} câu chuyện đã đánh giá.",
+      "empty": "Chưa có câu trả lời cho bộ lọc hiện tại.",
+      "error": "Không thể tải dữ liệu"
+    },
+    "sexuality": {
+      "beforeLabel": "Trước khi chuyển giới",
+      "afterLabel": "Sau khi chuyển giới trở lại",
+      "options": {
+        "homosexual": "Homosexual",
+        "bisexual": "Song tính",
+        "heterosexual": "Heterosexual",
+        "asexual": "Vô tính",
+        "other": "Khác hoặc thay đổi"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 câu chuyện} other {# câu chuyện}}",
+      "statements": {
+        "title": "Orientation and attraction"
+      },
+      "count": "n = {n}",
+      "basedOn": "Dòng chảy dựa trên {cohort} câu chuyện có cả hai câu trả lời về xu hướng tính dục.",
+      "empty": "Not enough orientation answers for the current filters yet.",
+      "error": "Không thể tải dữ liệu tính dục",
+      "hero": {
+        "statement": "những người chuyển giới trở lại có nêu xu hướng tính dục hiện tại là đồng tính nam, đồng tính nữ hoặc song tính (n = {n}).",
+        "bySex": "Nam {men} đồng tính hoặc song tính ({menSame} đồng tính) | Nữ {women} đồng tính nữ hoặc song tính ({womenSame} đồng tính nữ)"
+      },
+      "mix": {
+        "title": "Xu hướng tính dục trước khi chuyển giới và sau khi chuyển giới trở lại",
+        "description": "So với giới tính khi sinh, trong các câu chuyện có nêu.",
+        "women": "Nữ",
+        "men": "Nam",
+        "all": "Tất cả",
+        "before": "trước",
+        "after": "sau"
+      },
+      "matrix": {
+        "title": "Xu hướng tính dục có thay đổi không?",
+        "description": "Mỗi hàng là một xu hướng tính dục trước khi chuyển giới; các ô cho thấy những người đó mô tả gì sau khi chuyển giới trở lại.",
+        "headline": "{percent}% mô tả cùng một xu hướng tính dục trước khi chuyển giới và sau khi chuyển giới trở lại (n = {n}).",
+        "corner": "Trước ↓ · Sau →",
+        "cell": "{from} trước → {to} sau: {percent}% ({count})",
+        "note": "Chỉ các câu chuyện nêu xu hướng tính dục ở cả hai thời điểm. Các hàng có ít hơn 30 câu chuyện được để trống."
+      },
+      "coverage": "Xu hướng tính dục được nêu trước khi chuyển giới trong {before} câu chuyện và sau khi chuyển giới trở lại trong {after}, trên tổng {cohort} câu chuyện đã đánh giá."
+    },
+    "trends": {
+      "series": {
+        "contributed_online_influence": "Ảnh hưởng trực tuyến",
+        "contributed_rapid_onset": "Khởi phát nhanh (ROGD)",
+        "regret_transition": "Hối hận",
+        "took_puberty_blockers": "Thuốc chặn dậy thì"
+      },
+      "tooltip": "{bucket} · n = {n}",
+      "mode": {
+        "strict": "Tín hiệu nhị phân",
+        "soft": "Xác suất trung bình",
+        "strictNote": "Tỷ lệ câu chuyện mà mô hình tin chắc (≥ 0.8).",
+        "softNote": "Xác suất trung bình trên mọi câu chuyện — giữ cả các câu chuyện không rõ ràng trong xu hướng."
+      },
+      "seriesTooltip": "{strict} nhị phân · {mean} TB",
+      "medianAge": "Tuổi chuyển giới trung vị theo nhóm",
+      "coverageNote": "Mỗi điểm dùng các câu chuyện có câu trả lời của nhóm đó; các nhóm sớm nhất có mẫu nhỏ nhất.",
+      "basedOn": "Trên {cohort} câu chuyện có năm chuyển giới.",
+      "empty": "Chưa có năm chuyển giới cho bộ lọc hiện tại.",
+      "error": "Không thể tải dữ liệu xu hướng",
+      "linesTitle": "Đặc điểm theo năm chuyển giới",
+      "linesDescription": "Tỷ lệ câu chuyện mà mỗi nhận định rõ ràng đúng, nhóm theo năm bắt đầu chuyển giới. Thêm hoặc bớt đặc điểm để so sánh.",
+      "reasonsTitle": "Lý do chính để chuyển giới, theo thời kỳ",
+      "reasonsDescription": "Các lý do chính phổ biến nhất thay đổi thế nào giữa các nhóm theo năm chuyển giới.",
+      "add": "Thêm đặc điểm…",
+      "remove": "Xóa {label}",
+      "strictNote": "Tỷ lệ câu chuyện mà AI tin chắc nhận định là đúng (≥ 0.8). Các điểm rỗng đến từ ít hơn 30 câu chuyện. Các nhóm gần đây có ít thời gian hơn kể từ khi chuyển giới — ít thời gian hơn để đến bước phẫu thuật hoặc gặp tác động lâu dài, và thường có câu chuyện ngắn hơn — nên nhiều đặc điểm giảm ở phía bên phải; một đặc điểm vẫn tăng, như lo âu, sẽ nổi bật."
+    },
+    "uncertainty": {
+      "binary": "Nhị phân",
+      "bands": "Ba trạng thái",
+      "likelyFalse": "Có thể sai (< 0.2)",
+      "unclear": "Không rõ (0.2–0.8)",
+      "unclearShort": "không rõ",
+      "likelyTrue": "Có thể đúng (≥ 0.8)",
+      "rowTooltip": "{false}% có thể sai · {unclear}% không rõ · {true}% có thể đúng"
+    },
+    "minors": {
+      "tiles": {
+        "minor": "bắt đầu dưới 18 tuổi ({n} trong {total} câu chuyện có tuổi)",
+        "le15": "bắt đầu khi 15 tuổi trở xuống",
+        "dysphoria": "lần đầu cảm thấy phiền muộn giới khi 12 tuổi trở xuống (n = {n})",
+        "female": "trong số người bắt đầu dưới 18 tuổi là nữ"
+      },
+      "early": "Trong các câu chuyện này, thuốc chặn dậy thì xuất hiện từ {min} tuổi, trung vị {median} (n = {n}). {hormones} bắt đầu dùng hormone trước 16 tuổi, và {detrans} đã chuyển giới trở lại trước 18 tuổi.",
+      "empty": "Chưa có dữ liệu tuổi cho bộ lọc hiện tại.",
+      "error": "Không thể tải dữ liệu chuyển giới sớm",
+      "byEra": {
+        "title": "Bắt đầu trước 18 tuổi, theo năm chuyển giới",
+        "description": "Tỷ lệ câu chuyện bắt đầu chuyển giới trước 18 tuổi, nhóm theo năm bắt đầu.",
+        "note": "Các đường thể hiện khoảng tin cậy 95%. Các nhóm gần đây có nhiều người mới chuyển giới và chuyển giới khi còn trẻ hơn, vì vậy cần thận trọng khi đọc xu hướng."
+      }
+    },
+    "journey": {
+      "milestones": {
+        "first_dysphoria": "Phiền muộn giới lần đầu",
+        "transition": "Chuyển giới",
+        "hormones": "Hormone",
+        "detransition": "Chuyển giới trở lại",
+        "in_transition": "Số năm chuyển giới"
+      },
+      "median": "trung vị {age}",
+      "count": "n = {n}",
+      "tooltip": "Tuổi {age}: {count, plural, =1 {1 câu chuyện} other {# câu chuyện}}",
+      "yearsTooltip": "{years, plural, =1 {1 năm} other {# năm}} chuyển giới: {count, plural, =1 {1 câu chuyện} other {# câu chuyện}}",
+      "basedOn": "Mỗi hàng chỉ tính các câu chuyện có nêu độ tuổi đó. Trục được cắt ở phân vị thứ 99.",
+      "empty": "Chưa có dữ liệu dòng thời gian cho bộ lọc hiện tại.",
+      "error": "Không thể tải dữ liệu hành trình"
+    },
+    "gradient": {
+      "regret": "Hối hận",
+      "noRegret": "Không hối hận",
+      "notStated": "Không nêu",
+      "tiers": {
+        "no_transition": "Không chuyển giới",
+        "social_only": "Chỉ về mặt xã hội",
+        "hormones": "Hormone hoặc thuốc chặn",
+        "surgery": "Phẫu thuật",
+        "unclear": "Không rõ"
+      },
+      "tierTooltip": "{n} câu chuyện: {regrets} hối hận, {noRegret} không hối hận, {notStated} không nêu",
+      "count": "n = {n}",
+      "selectionNote": "Những người chuyển giới trở lại sớm không bao giờ đến được các bước sau, nên biểu đồ này cho thấy con đường nào dẫn đến đâu — không phải các bước y tế gây ra hối hận.",
+      "basedOn": "Dựa trên {cohort} câu chuyện đã đánh giá.",
+      "empty": "Chưa có câu trả lời cho bộ lọc hiện tại.",
+      "error": "Không thể tải dữ liệu can thiệp y tế",
+      "statedNote": "Con số bên phải là tỷ lệ hối hận trong các câu chuyện có nêu rõ (hối hận hoặc không hối hận).",
+      "headline": "{percent}% những người đã phẫu thuật nói rằng họ hối hận về việc chuyển giới, trong số những người có nêu rõ (n = {n}).",
+      "headlineCompare": "{percent}% những người đã phẫu thuật nói rằng họ hối hận về việc chuyển giới, so với {hormones}% những người dừng ở hormone hoặc thuốc chặn (n = {n} / {nHormones}). Chỉ tính các câu chuyện có nêu rõ."
+    },
+    "after": {
+      "levels": {
+        "muchWorse": "Tệ hơn nhiều",
+        "worse": "Tệ hơn một chút",
+        "same": "Gần như không đổi",
+        "better": "Tốt hơn một chút",
+        "muchBetter": "Tốt hơn nhiều"
+      },
+      "panels": {
+        "mh_change_after_detransition": "Sức khỏe tâm thần",
+        "outcome_quality_of_life": "Chất lượng cuộc sống",
+        "outcome_family_relationship_change": "Quan hệ gia đình"
+      },
+      "summary": "{better}% tốt hơn · {worse}% tệ hơn",
+      "count": "n = {n}",
+      "basedOn": "Dựa trên {cohort} câu chuyện đã đánh giá.",
+      "empty": "Chưa có câu trả lời cho bộ lọc hiện tại.",
+      "error": "Không thể tải dữ liệu thay đổi",
+      "worseSide": "Tệ hơn",
+      "betterSide": "Tốt hơn",
+      "headline": "{better}% mô tả sức khỏe tâm thần tốt hơn sau khi chuyển giới trở lại; {worse}% mô tả là tệ hơn (n = {n})."
+    },
+    "stories": {
+      "excerptNote": "Bản tóm tắt ẩn danh do AI tạo từ các bài đăng công khai trên /r/detrans.",
+      "agesCaption": "Độ tuổi: phiền muộn giới lần đầu → chuyển giới → {outcome}",
+      "ages": {
+        "firstDysphoria": "Phiền muộn giới lần đầu",
+        "transition": "Chuyển giới",
+        "detransition": "Chuyển giới trở lại",
+        "desistance": "Từ bỏ",
+        "socialTransition": "Chuyển giới xã hội"
+      },
+      "female": "Nữ",
+      "male": "Nam",
+      "basedOn": "Từ {cohort} câu chuyện phù hợp.",
+      "empty": "Chưa có câu chuyện nào phù hợp với bộ lọc hiện tại.",
+      "error": "Không thể tải câu chuyện",
+      "loadMore": "Tải thêm câu chuyện",
+      "loading": "Đang tải…",
+      "upvotesLabel": "Tổng lượt upvote: {count}",
+      "dialog": {
+        "title": "Câu chuyện",
+        "summary": "Tóm tắt",
+        "fullStory": "Toàn bộ câu chuyện",
+        "close": "Đóng câu chuyện",
+        "error": "Không thể tải toàn bộ câu chuyện",
+        "openPage": "Mở trang câu chuyện"
+      },
+      "status": {
+        "detransitioned": "Đã detransition",
+        "desisted": "Đã từ bỏ"
+      }
+    },
+    "highlights": {
+      "title": "Điểm nổi bật",
+      "types": {
+        "prevalence": "Phổ biến nhất",
+        "pair": "Đi cùng nhau",
+        "improvement": "Cuộc sống sau khi chuyển giới trở lại",
+        "journey": "Hành trình điển hình",
+        "minorShare": "Bắt đầu trước 18 tuổi",
+        "minorLe15": "Bắt đầu khi 15 tuổi trở xuống",
+        "minorDysphoria": "Phiền muộn giới lần đầu trước 12 tuổi",
+        "minorFemale": "Ai bắt đầu khi còn nhỏ",
+        "orientation": "Xu hướng tính dục"
+      },
+      "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
+      "prevalenceUnclear": "Thêm {unclear}% không rõ ràng.",
+      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "improvement": "{better}% nói chất lượng cuộc sống của họ được cải thiện sau khi chuyển giới trở lại; {worse}% nói nó tệ đi (n = {n}).",
+      "journey": "Hành trình điển hình: phiền muộn giới lần đầu ở tuổi {dysphoria} → chuyển giới ở tuổi {transition} → chuyển giới trở lại ở tuổi {detransition} (n = {n}).",
+      "minorShare": "{percent}% câu chuyện có tuổi bắt đầu chuyển giới dưới 18 tuổi (n = {n} trong {total}).",
+      "minorLe15": "{percent}% bắt đầu khi 15 tuổi trở xuống (n = {n}).",
+      "minorDysphoria": "{percent}% lần đầu cảm thấy phiền muộn giới khi 12 tuổi trở xuống (n = {n}).",
+      "minorFemale": "{percent}% người bắt đầu dưới 18 tuổi là nữ (n = {n}).",
+      "explore": "Khám phá",
+      "orientation": "{percent}% người chuyển giới trở lại có nêu xu hướng tính dục là đồng tính nam, đồng tính nữ hoặc song tính ({sameSex}% đồng tính nam hoặc nữ; n = {n})."
+    },
+    "pathways": {
+      "journey": "Nguyên nhân → Quá trình → Kết quả",
+      "medical": "Con đường y tế",
+      "stages": {
+        "cause": "Lý do chính",
+        "process": "Bước ngoặt",
+        "outcome": "Hối hận hiện tại"
+      },
+      "causes": {
+        "social_role_discomfort": "Khó chịu với vai trò xã hội",
+        "internalised_homophobia": "Kỳ thị đồng tính nội tâm hóa",
+        "internalised_misogyny_misandry": "Ghét nữ / ghét nam nội tâm hóa",
+        "trauma": "Sang chấn",
+        "mental_health_issues": "Sức khỏe tâm thần",
+        "neurodivergence": "Đa dạng thần kinh",
+        "body_dysmorphia": "Rối loạn mặc cảm ngoại hình",
+        "online_influence": "Ảnh hưởng trực tuyến",
+        "peer_influence": "Ảnh hưởng từ bạn bè",
+        "sexual_factors": "Yếu tố tình dục",
+        "parental_or_medical_pressure": "Áp lực từ cha mẹ hoặc y tế",
+        "other_unclear": "Khác / không rõ",
+        "unclear": "Không rõ"
+      },
+      "processes": {
+        "process_benefited_from_therapy": "Trị liệu khám phá",
+        "process_detrans_community_exposure": "Cộng đồng detrans",
+        "process_research_consumption": "Nghiên cứu & truyền thông",
+        "process_self_reflection": "Tự suy ngẫm",
+        "process_time_off_hormones": "Tạm ngừng hormone",
+        "process_medical_scare": "Sự cố sức khỏe đáng lo",
+        "process_family_partner_intervention": "Gia đình hoặc bạn đời",
+        "process_spiritual_experience": "Trải nghiệm tâm linh",
+        "other": "Khác / không rõ"
+      },
+      "outcomes": {
+        "regrets": "Hối hận",
+        "no_regret": "Không hối hận",
+        "not_stated": "Không nêu"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 câu chuyện} other {# câu chuyện}}",
+      "basedOn": "Dựa trên {cohort} câu chuyện đã đánh giá có câu trả lời trong chế độ xem này.",
+      "empty": "Chưa đủ câu chuyện có câu trả lời cho chế độ xem này.",
+      "error": "Không thể tải dữ liệu con đường",
+      "journeyDescription": "Lý do chính, bước ngoặt và sự hối hận kết nối với nhau thế nào trong các câu chuyện.",
+      "medicalDescription": "Mọi người đã thực hiện những bước y tế nào trước khi chuyển giới trở lại.",
+      "regretByReason": {
+        "title": "Hối hận theo lý do chính để chuyển giới",
+        "description": "Trong các câu chuyện có nói rõ việc có hối hận về chuyển giới hay không, tỷ lệ hối hận — nhóm theo lý do chính họ đưa ra để chuyển giới.",
+        "headline": "Nhìn chung, {percent}% câu chuyện có đề cập đến hối hận bày tỏ sự hối hận (n = {n}).",
+        "note": "Các chấm thể hiện tỷ lệ bày tỏ hối hận trong các câu chuyện nói rõ một trong hai; các đường thể hiện khoảng tin cậy 95%. Các hàng mờ có ít hơn 30 câu chuyện.",
+        "error": "Không thể tải dữ liệu hối hận theo lý do",
+        "empty": "Chưa có câu trả lời cho bộ lọc hiện tại."
+      }
+    },
+    "methodology": {
+      "p1": "detrans.ai xây dựng bộ dữ liệu này từ các câu chuyện công khai trên /r/detrans. AI viết lại các bình luận và bài đăng rời rạc của mỗi người dùng thành một câu chuyện kể ở ngôi thứ nhất, và trích xuất dòng thời gian các độ tuổi quan trọng từ đó. Chỉ những người dùng chia sẻ đủ để ghép thành một câu chuyện hoàn chỉnh mới được đưa vào.",
+      "p1b": "Các thống kê này chỉ bao gồm những câu chuyện mà người viết đã xác nhận rõ ràng rằng họ đã chuyển giới trở lại hoặc từ bỏ. Từ kho dữ liệu thô đến các biểu đồ:",
+      "table": {
+        "comments": "Bình luận thu thập từ /r/detrans",
+        "posts": "Bài đăng thu thập từ /r/detrans",
+        "authors": "Số tác giả khác nhau trong kho dữ liệu",
+        "selected": "Tác giả có ít nhất 5 bình luận đạt từ 3 upvote trở lên",
+        "removed": "Đã loại: chưa xác nhận rõ việc chuyển giới trở lại hoặc từ bỏ",
+        "remaining": "Số câu chuyện được giữ lại sau đó",
+        "cohort": "Được đưa vào các biểu đồ bên dưới (đã loại các tài khoản bị gắn cờ)"
+      },
+      "p2": "Sau đó, mỗi câu chuyện được đánh giá bởi Jev, một mô hình trả lời câu hỏi theo xác suất, dựa trên khoảng một trăm nhận định về nguyên nhân, trải nghiệm và kết quả. Câu hỏi có/không trả về xác suất từ 0 đến 1, câu hỏi lựa chọn trả về xác suất cho từng lựa chọn, và câu hỏi thang đo trả về giá trị kỳ vọng trên thang được hiển thị dưới mỗi biểu đồ.",
+      "p3": "Với các đặc điểm có/không, chúng tôi đánh dấu một câu chuyện là “đúng” khi xác suất đạt ngưỡng (mặc định là 0.8). Biểu đồ tần suất trong mỗi đặc điểm cho thấy toàn bộ phân phối xác suất, nên một đặc điểm có nhiều câu trả lời ở khoảng giữa sẽ được hiểu là thực sự không chắc chắn, thay vì rõ ràng đúng hay sai.",
+      "p4": "Mọi biểu đồ đều áp dụng các bộ lọc ở trên. Vì bộ câu hỏi đã thay đổi theo thời gian và các câu chuyện được xử lý lại qua nhiều lượt, mỗi biểu đồ cho biết có bao nhiêu câu chuyện đã lọc thực sự có câu trả lời cho câu hỏi đó.",
+      "p5": "Các tài khoản có vẻ không xác thực, bịa đặt hoặc giống bot sẽ bị mô hình gắn cờ và loại khỏi các thống kê này. Dữ liệu do AI trích xuất vẫn có thể có sai sót — các lời nhắc hệ thống được công bố trên <prompts>trang lời nhắc</prompts>, và các bản tóm tắt được đối chiếu với bình luận gốc.",
+      "threshold": {
+        "title": "Ngưỡng cắt ảnh hưởng đến mức nào",
+        "description": "Các biểu đồ tính một nhận định là đúng khi xác suất của AI ít nhất là 0.8. Ngưỡng thấp hơn sẽ cho ra con số cao hơn; biểu đồ này cho thấy cao hơn bao nhiêu.",
+        "error": "Không thể tải dữ liệu ngưỡng",
+        "tooltip": "Ngưỡng {threshold}",
+        "xAxis": "Ngưỡng xác suất",
+        "siteThreshold": "Dùng trên trang này",
+        "note": "Tỷ lệ câu chuyện đạt hoặc vượt mỗi ngưỡng. Ngưỡng 0.8 được chọn có chủ đích để thận trọng."
+      },
+      "accountType": {
+        "title": "Ai là người viết",
+        "description": "Mỗi tài khoản có mô tả trải nghiệm của chính người viết hay không.",
+        "options": {
+          "personal_experience": "Trải nghiệm bản thân",
+          "parent": "Cha mẹ",
+          "friend": "Bạn bè hoặc bạn đời",
+          "researcher_journalist": "Nhà nghiên cứu, nhà báo hoặc bác sĩ",
+          "other": "Khác hoặc hỗn hợp"
+        }
+      },
+      "detail": {
+        "title": "Mức độ chi tiết của các câu chuyện",
+        "description": "Đánh giá của AI về mức độ cụ thể của mỗi lời kể ở ngôi thứ nhất. Dùng “Chỉ câu chuyện chi tiết” trong bộ lọc để giới hạn mọi biểu đồ ở hai mức cao nhất.",
+        "levels": {
+          "level0": "Mơ hồ hoặc chung chung",
+          "level1": "Có một số chi tiết cá nhân",
+          "level2": "Chi tiết, sự kiện cụ thể",
+          "level3": "Rất chi tiết, trải dài nhiều năm"
+        }
+      }
+    },
+    "prevalence": {
+      "women": "Nữ",
+      "men": "Nam",
+      "interval": "{group} {percent} (khoảng tin cậy 95% {low}–{high}, n = {n})",
+      "smallSample": "n = {n}",
+      "openStories": "Xem câu chuyện",
+      "showAll": "Hiện tất cả {count}",
+      "showFewer": "Thu gọn",
+      "note": "Các chấm thể hiện tỷ lệ câu chuyện mà nhận định rõ ràng đúng (xác suất AI ≥ 0.8); các đường thể hiện khoảng tin cậy 95%. Các hàng mờ có ít hơn 30 câu trả lời.",
+      "noteWithStories": "Các chấm thể hiện tỷ lệ câu chuyện mà nhận định rõ ràng đúng (xác suất AI ≥ 0.8); các đường thể hiện khoảng tin cậy 95%. Các hàng mờ có ít hơn 30 câu trả lời. Chọn một hàng để đọc các câu chuyện phù hợp.",
+      "gap": "Khác biệt lớn nhất: {label} — {higher} ở {higherGroup} so với {lower} ở {lowerGroup}.",
+      "womenLower": "nữ",
+      "menLower": "nam",
+      "m": "Nam",
+      "f": "Nữ",
+      "menLegend": "Nam",
+      "womenLegend": "Nữ"
+    },
+    "storyPeek": {
+      "title": "Câu chuyện: {label}",
+      "meta": "{count, plural, =1 {1 câu chuyện phù hợp} other {# câu chuyện phù hợp}}",
+      "error": "Không thể tải câu chuyện.",
+      "empty": "Không có câu chuyện phù hợp với bộ lọc hiện tại.",
+      "readFull": "Đọc toàn bộ câu chuyện",
+      "note": "Trích đoạn ẩn danh, xếp theo đánh giá cao nhất. Danh sách đầy đủ nằm ở mục Câu chuyện cuối trang."
+    },
+    "reasons": {
+      "transitionTitle": "Lý do chính để chuyển giới",
+      "transitionDescription": "Lý do quan trọng nhất mà mỗi người đưa ra cho việc bắt đầu chuyển giới.",
+      "detransitionTitle": "Lý do chính để chuyển giới trở lại",
+      "detransitionDescription": "Lý do quan trọng nhất mà mỗi người đưa ra cho việc dừng lại."
+    },
+    "byYear": {
+      "error": "Không thể tải dữ liệu theo năm",
+      "empty": "Chưa có năm chuyển giới cho bộ lọc hiện tại.",
+      "other": "Khác",
+      "n": "n = {n}",
+      "note": "Tỷ lệ có trọng số theo xác suất cho mỗi nhóm theo năm chuyển giới. Các hàng mờ có ít hơn 30 câu chuyện."
+    },
+    "overview": {
+      "error": "Không thể tải phần tổng quan",
+      "basedOn": "Dựa trên {cohort} câu chuyện đã đánh giá."
+    },
+    "drivers": {
+      "statements": {
+        "title": "Được mô tả là góp phần dẫn đến chuyển giới"
+      },
+      "count": "n = {n}",
+      "basedOn": "Dựa trên {cohort} câu chuyện đã đánh giá.",
+      "empty": "Chưa có câu trả lời cho bộ lọc hiện tại.",
+      "error": "Không thể tải dữ liệu này"
+    },
+    "adversity": {
+      "composition": {
+        "any": "{positive}% mô tả ít nhất một dạng sang chấn hoặc nghịch cảnh (n = {n})"
+      },
+      "statements": {
+        "title": "Các loại nghịch cảnh được mô tả"
+      },
+      "contrast": {
+        "title": "Tiền sử sang chấn so với sang chấn là lý do chính",
+        "description": "Số câu chuyện nhắc đến sang chấn nhiều hơn hẳn số câu chuyện nêu nó là động lực chính để chuyển giới hoặc chuyển giới trở lại.",
+        "history": "Mô tả tiền sử sang chấn",
+        "transitionReason": "Nêu sang chấn là lý do chính để chuyển giới",
+        "detransitionReason": "Nêu việc nhận ra sang chấn là lý do chính để chuyển giới trở lại",
+        "note": "Các chấm thể hiện tỷ lệ câu chuyện; các đường thể hiện khoảng tin cậy 95%. Các hàng lý do chỉ tính một lý do chính của mỗi câu chuyện."
+      },
+      "count": "n = {n}",
+      "basedOn": "Dựa trên {cohort} câu chuyện đã đánh giá.",
+      "empty": "Chưa có câu trả lời về nghịch cảnh cho bộ lọc hiện tại.",
+      "error": "Không thể tải dữ liệu nghịch cảnh"
+    },
+    "online": {
+      "choice": {
+        "title": "Nền tảng có ảnh hưởng nhất",
+        "description": "Trong các câu chuyện có nêu ảnh hưởng trực tuyến. Các câu chuyện không có ảnh hưởng trực tuyến đáng kể không được tính.",
+        "options": {
+          "reddit": "Reddit",
+          "tumblr": "Tumblr",
+          "tiktok": "TikTok",
+          "twitter": "Twitter / X",
+          "youtube": "YouTube",
+          "discord": "Discord",
+          "other": "Nền tảng khác hoặc không gian fandom"
+        }
+      },
+      "statements": {
+        "title": "Ảnh hưởng trực tuyến và từ bạn bè"
+      },
+      "byYear": {
+        "title": "Nền tảng theo năm chuyển giới",
+        "description": "Nền tảng có ảnh hưởng nhất đã thay đổi thế nào giữa các nhóm theo năm chuyển giới."
+      },
+      "count": "n = {n}",
+      "basedOn": "Dựa trên {cohort} câu chuyện đã đánh giá.",
+      "empty": "Chưa có câu trả lời về ảnh hưởng trực tuyến cho bộ lọc hiện tại.",
+      "error": "Không thể tải dữ liệu ảnh hưởng trực tuyến"
+    },
+    "process": {
+      "composition": {
+        "any": "{positive}% mô tả ít nhất một trong các bước ngoặt này (n = {n})"
+      },
+      "statements": {
+        "title": "Điều gì đưa mọi người đến với việc chuyển giới trở lại"
+      },
+      "count": "n = {n}",
+      "basedOn": "Dựa trên {cohort} câu chuyện đã đánh giá.",
+      "empty": "Chưa có câu trả lời về bước ngoặt cho bộ lọc hiện tại.",
+      "error": "Không thể tải dữ liệu bước ngoặt"
+    },
+    "lives": {
+      "error": "Không thể tải dòng thời gian",
+      "empty": "Chưa có câu chuyện nào có cả tuổi chuyển giới và tuổi chuyển giới trở lại cho bộ lọc hiện tại.",
+      "legend": {
+        "transition": "Đang chuyển giới",
+        "blockers": "Thuốc chặn dậy thì",
+        "hormones": "Hormone",
+        "surgery": "Phẫu thuật"
+      },
+      "ariaLabel": "Biểu đồ dải gồm {n} dòng thời gian cá nhân từ chuyển giới đến chuyển giới trở lại",
+      "tooltip": {
+        "woman": "Nữ",
+        "man": "Nam",
+        "person": "Người",
+        "firstDysphoria": "Phiền muộn giới lần đầu ở tuổi {age}",
+        "transition": "Chuyển giới ở tuổi {age}",
+        "pubertyBlockers": "Thuốc chặn dậy thì ở tuổi {age}",
+        "hormones": "Hormone ở tuổi {age}",
+        "topSurgery": "Phẫu thuật phần trên ở tuổi {age}",
+        "bottomSurgery": "Phẫu thuật phần dưới ở tuổi {age}",
+        "detransition": "Chuyển giới trở lại ở tuổi {age}"
+      },
+      "note": "{n} người có câu chuyện nêu cả hai độ tuổi, sắp xếp theo tuổi khi chuyển giới. Độ tuổi là cách AI đọc từng câu chuyện và có thể chỉ là ước lượng."
+    },
+    "duration": {
+      "error": "Không thể tải dữ liệu thời gian",
+      "empty": "Chưa có thời gian chuyển giới cho bộ lọc hiện tại.",
+      "all": "Tất cả",
+      "women": "Nữ",
+      "men": "Nam",
+      "legend": "{label}: trung vị {median} năm (n = {n})",
+      "tooltipTitle": "Trong vòng {years, plural, =1 {1 năm} other {# năm}}",
+      "xAxis": "Số năm kể từ khi bắt đầu chuyển giới",
+      "note": "Tỷ lệ người đã dừng lại trong một số năm nhất định. Mọi người ở đây cuối cùng đều chuyển giới trở lại, nên biểu đồ cho thấy quá trình chuyển giới của họ kéo dài bao lâu — không phải bao nhiêu người chuyển giới sẽ dừng lại.",
+      "headline": "{one}% đã dừng lại trong vòng một năm và {five}% trong vòng năm năm kể từ khi bắt đầu (trung vị {median} năm, n = {n})."
+    },
+    "optionLabels": {
+      "reddit": "Reddit",
+      "tumblr": "Tumblr",
+      "tiktok": "TikTok",
+      "twitter": "Twitter / X",
+      "youtube": "YouTube",
+      "discord": "Discord",
+      "social_role_discomfort": "Khó chịu với vai trò xã hội",
+      "internalised_homophobia": "Kỳ thị đồng tính nội tâm hóa",
+      "internalised_misogyny_misandry": "Ghét nữ / ghét nam nội tâm hóa",
+      "trauma": "Sang chấn",
+      "mental_health_issues": "Sức khỏe tâm thần",
+      "neurodivergence": "Đa dạng thần kinh",
+      "body_dysmorphia": "Rối loạn mặc cảm ngoại hình",
+      "online_influence": "Ảnh hưởng trực tuyến",
+      "peer_influence": "Ảnh hưởng từ bạn bè",
+      "sexual_factors": "Yếu tố tình dục (AGP / AAP)",
+      "parental_or_medical_pressure": "Áp lực từ cha mẹ hoặc y tế",
+      "other_unclear": "Khác / không rõ",
+      "accepted_sexed_body": "Chấp nhận cơ thể theo giới tính sinh học",
+      "social_construct_realisation": "Nhận ra vai trò giới mới là vấn đề",
+      "trauma_realisation": "Nhận ra sang chấn là động lực",
+      "mental_health_realisation": "Nhận ra sức khỏe tâm thần là động lực",
+      "neurodivergence_realisation": "Nhận ra đa dạng thần kinh là động lực",
+      "fantasy_reality_disillusionment": "Thực tế không như kỳ vọng",
+      "surgery_regret_medical_complications": "Hối hận về phẫu thuật hoặc biến chứng y tế",
+      "ideological_disillusionment": "Vỡ mộng với hệ tư tưởng hoặc cộng đồng",
+      "social_pressure_ostracism": "Áp lực xã hội hoặc bị xa lánh",
+      "failure_to_pass": "Không thể “pass”",
+      "internalised_homophobia_realisation": "Nhận ra kỳ thị đồng tính nội tâm hóa",
+      "internalised_misogyny_misandry_realisation": "Nhận ra ghét nữ / ghét nam nội tâm hóa",
+      "sexual_factors_realisation": "Nhận ra yếu tố tình dục (AGP / AAP)",
+      "religious_or_spiritual_change": "Thay đổi về tôn giáo hoặc tâm linh",
+      "fertility_or_family_desires": "Mong muốn sinh con hoặc lập gia đình"
+    },
+    "choiceSplit": {
+      "error": "Không thể tải biểu đồ này",
+      "empty": "Chưa có câu trả lời cho bộ lọc hiện tại.",
+      "women": "Nữ (n = {n})",
+      "men": "Nam (n = {n})",
+      "headline": "Nữ thường nêu “{womenOption}” hơn ({womenShare} so với {womenMen} ở nam); nam thường nêu “{menOption}” hơn ({menShare} so với {menWomen} ở nữ).",
+      "note": "Có trọng số theo xác suất: một câu chuyện được AI chia 60/40 giữa hai lý do sẽ được tính 0.6 và 0.4.",
+      "m": "Nam",
+      "f": "Nữ"
+    },
+    "ordinal": {
+      "error": "Không thể tải biểu đồ này",
+      "empty": "Chưa có câu trả lời cho bộ lọc hiện tại.",
+      "all": "Mọi người",
+      "women": "Nữ",
+      "men": "Nam"
+    },
+    "medical_steps": {
+      "statements": {
+        "title": "Các bước y tế đã thực hiện"
+      },
+      "count": "n = {n}",
+      "basedOn": "Dựa trên {cohort} câu chuyện đã đánh giá.",
+      "empty": "Chưa có câu trả lời cho bộ lọc hiện tại.",
+      "error": "Không thể tải các bước y tế"
     }
   },
   "topicsPage": {
     "title": "Topics",
     "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
     "empty": "No topics have been published yet."
+  },
+  "storiesPage": {
+    "metadata": {
+      "title": "Câu chuyện chuyển giới ngược | detrans.ai",
+      "description": "Đọc hàng nghìn câu chuyện ẩn danh về chuyển giới ngược và từ bỏ chuyển giới từ cộng đồng /r/detrans, được AI tóm tắt. Lọc theo độ tuổi, giới tính và trải nghiệm."
+    },
+    "title": "Câu chuyện chuyển giới ngược",
+    "description": "{count, number} câu chuyện ẩn danh của những người đã chuyển giới rồi sau đó chuyển giới ngược hoặc từ bỏ, được AI tổng hợp từ bài đăng và bình luận của họ trên /r/detrans.",
+    "statsLink": "Khám phá số liệu thống kê",
+    "allStories": "Tất cả câu chuyện",
+    "story": {
+      "metaTitle": "{title} – Câu chuyện chuyển giới ngược | detrans.ai",
+      "untitled": "Một câu chuyện chuyển giới ngược",
+      "notFound": "Không tìm thấy câu chuyện | detrans.ai",
+      "tags": "Thẻ",
+      "moreStories": "Đọc thêm câu chuyện"
+    }
   }
 }

@@ -144,7 +144,9 @@
       "stats": "İstatistikler",
       "statsDesc": "/r/detrans anonim detransisyon istatistikleri",
       "topics": "Topics",
-      "topicsDesc": "Temel konular hakkında ayrıntılı rehberler"
+      "topicsDesc": "Temel konular hakkında ayrıntılı rehberler",
+      "stories": "Hikâyeler",
+      "storiesDesc": "/r/detrans kullanıcılarından"
     },
     "resources": {
       "genderSupport": "Terapist Bul",
@@ -183,6 +185,7 @@
     "de": "Almanca",
     "he": "İbranice",
     "it": "İtalyanca",
+    "lt": "Lithuanian",
     "nl": "Felemenkçe",
     "tr": "Türkçe"
   },
@@ -239,17 +242,18 @@
   },
   "chat": {
     "lookingForComments": "İlgili yorumlar aranıyor...",
+    "lookingForStudies": "Looking for relevant studies...",
     "errorOccurred": "Hata oluştu, tekrar deneyin... Bu sürekli oluyorsa benimle iletişime geçin.",
     "analysingExperiences": "Deneyimler Analiz Ediliyor",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Web Sonuçları Analiz Ediliyor",
+    "analysingResults": "Sonuçlar analiz ediliyor...",
     "detransPerspective": "-> Bu konuda detrans bakış açıları nedir?",
     "transPerspectivesIncluded": "Trans bakış açıları dahil",
     "captchaRequired": "Sohbeti devam ettirmek için captcha gerekiyor.",
     "chatArchived": "Bu sohbet arşivlendi. Yeni bir tane başlatın.",
     "rateLimitExceeded": "Çok fazla istek, yavaşlayın ve daha sonra tekrar deneyin.",
     "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
-    "analysingResults": "Sonuçlar analiz ediliyor...",
     "followUpQuestions": "Takip soruları:",
     "eventLabels": {
       "askDetransitioners": "Detransitioner'lara Sor",
@@ -344,7 +348,21 @@
       "delete": "Konuşmayı Sil",
       "banning": "Yasaklanıyor...",
       "ban": "Kullanıcıyı Yasakla (IP)"
+    },
+    "dialog": {
+      "title": "Sohbet",
+      "toggleIdHint": "Tarih/ülke ile kimlik arasında geçiş yapmak için tıklayın",
+      "shareText": "Bu sohbete göz atın",
+      "share": "Sohbeti paylaş",
+      "copyLink": "Sohbet bağlantısını kopyala",
+      "noneSelected": "Seçili sohbet yok"
     }
+  },
+  "readingDialog": {
+    "share": "Paylaş",
+    "copyLink": "Bağlantıyı kopyala",
+    "copied": "Bağlantı panoya kopyalandı",
+    "close": "Pencereyi kapat"
   },
   "stories": {
     "metadata": {
@@ -384,9 +402,9 @@
       "ageRangeYears": "{min} - {max} yaş",
       "sex": {
         "all": "Erkek ve Kadın",
-        "mine": "Mine",
         "female": "Kadın",
-        "male": "Erkek"
+        "male": "Erkek",
+        "mine": "Mine"
       },
       "tagsPlaceholder": "Filtrelemek için etiketler seçin...",
       "clearFilters": "Filtreleri Temizle"
@@ -581,12 +599,15 @@
   },
   "videoList": {
     "loading": "Videolar yükleniyor...",
+    "searchPlaceholder": "Search videos...",
+    "result": "video",
+    "results": "videos",
     "filters": {
       "all": "Tüm Hikayeler",
-      "mine": "Mine",
       "female": "Kadın",
       "male": "Erkek",
-      "detransitioners": "Detransitioner'lar"
+      "detransitioners": "Detransitioner'lar",
+      "mine": "Mine"
     },
     "thumbnailAlt": "{title} için küçük resim",
     "by": "tarafından",
@@ -634,15 +655,15 @@
       "ogDescription": "Bu sayfada cinsiyet kimliği trendleri ve detransisyonla ilgili akademik çalışmalar ve hakemli dergi makaleleri ile doğrulanmış istatistiklerin bir seçkisini bulun."
     },
     "title": "Akademik Çalışmalar ve Araştırma",
+    "description": "Detransisyon araştırmaları yeni gelişmekte olan bir alandır. Geçtiğimiz on yılda cinsiyet disforisi tanılarındaki hızlı artış—özellikle ergen kızlar arasında—büyüyen bir detransitioner nüfusu oluşturmuştur; ancak yüksek kayıp oranları, ideolojik bölünme ve metodolojik sınırlamalar nedeniyle veri toplamayı zorlu bir süreç olmaya devam etmektedir.",
+    "segmNote": "Bu sayfada, cinsiyet onaylayıcı bakımın etkinliği ve etiği sorgulayan akademik çalışmalar, hakemli araştırmalar ve dergi makaleleri bulacaksınız. Destekleyici çalışmaların kapsamlı analizi dahil olmak üzere daha fazla bilgi için <a>Society for Evidence-Based Gender Medicine (SEGM)</a>'e bakın.",
     "searchPlaceholder": "Çalışma ara...",
     "methodology": "Metodoloji",
     "topic": "Konu",
     "noResults": "Çalışma bulunamadı.",
     "noStudies": "Henüz onaylanmış çalışma yok.",
     "pendingReview": "İnceleme Bekliyor",
-    "keyFindings": "Ana Bulgular:",
-    "description": "Detransisyon araştırmaları yeni gelişmekte olan bir alandır. Geçtiğimiz on yılda cinsiyet disforisi tanılarındaki hızlı artış—özellikle ergen kızlar arasında—büyüyen bir detransitioner nüfusu oluşturmuştur; ancak yüksek kayıp oranları, ideolojik bölünme ve metodolojik sınırlamalar nedeniyle veri toplamayı zorlu bir süreç olmaya devam etmektedir.",
-    "segmNote": "Bu sayfada, cinsiyet onaylayıcı bakımın etkinliği ve etiği sorgulayan akademik çalışmalar, hakemli araştırmalar ve dergi makaleleri bulacaksınız. Destekleyici çalışmaların kapsamlı analizi dahil olmak üzere daha fazla bilgi için <a>Society for Evidence-Based Gender Medicine (SEGM)</a>'e bakın."
+    "keyFindings": "Ana Bulgular:"
   },
   "contentWarning": {
     "title": "İçerik Uyarısı:",
@@ -800,7 +821,9 @@
       "legend": {
         "transition": "Geçiş Yaşı",
         "detransition": "Detransisyon Yaşı"
-      }
+      },
+      "median": "medyan {age}",
+      "coverage": "{transition} geçiş yaşı ve {detransition} detransisyon yaşına dayanmaktadır."
     },
     "transitionDuration": {
       "title": "Geçiş Süresi: Geçiş Yaşı vs Detransisyon Yaşı",
@@ -824,7 +847,8 @@
       "female": "Kadın",
       "yearsAvg": "yıl ort.",
       "user": "kullanıcı",
-      "users": "kullanıcı"
+      "users": "kullanıcı",
+      "coverage": "Her iki yaşın da kayıtlı olduğu {count} hikâyeye dayanmaktadır."
     },
     "pathways": {
       "title": "Detransisyon Yolları Akışı",
@@ -944,7 +968,9 @@
     "error": {
       "title": "CAPTCHA Hatası",
       "description": "CAPTCHA yüklenemedi. Lütfen sayfayı yenileyin ve tekrar deneyin."
-    }
+    },
+    "verifyFailed": "Verification failed. Please try again.",
+    "rateLimited": "Too many verifications. Please wait a moment and try again."
   },
   "feedback": {
     "title": "Geri Bildirim",
@@ -962,11 +988,990 @@
     "metadata": {
       "title": "Anonim İstatistikler | detrans.ai",
       "description": "Yaş dağılımı, süre, nedenler ve yollar dahil olmak üzere detransisyon ve geçiş kalıpları hakkında anonim istatistikler."
+    },
+    "toc": {
+      "title": "Bu sayfada"
+    },
+    "filters": {
+      "title": "Filtreler",
+      "edit": "Filtreleri düzenle",
+      "hide": "Filtreleri gizle",
+      "summary": {
+        "none": "Filtre yok",
+        "age": "Yaş {min}–{max}",
+        "tags": "{count, plural, =0 {etiket yok} =1 {1 etiket} other {# etiket}}",
+        "detailed": "Yalnızca ayrıntılı"
+      },
+      "detailed": "Yalnızca ayrıntılı hikâyeler",
+      "detailedHint": "Yalnızca yapay zekânın makul ölçüde veya oldukça ayrıntılı olarak değerlendirdiği hikâyeleri dahil et."
+    },
+    "sections": {
+      "age": {
+        "title": "Yaş",
+        "description": "Detransitioner'lar ne zaman geçiş yaptı ve ne zaman detransisyon yaptı."
+      },
+      "journey": {
+        "title": "Yaşlar",
+        "description": "İnsanların ilk kez ne zaman disfori hissettiği, geçiş yaptığı, hormonlara başladığı ve detransisyon yaptığı."
+      },
+      "duration": {
+        "title": "Süre",
+        "description": "İnsanların bırakmadan önce ne kadar süre geçişte kaldığı."
+      },
+      "minors": {
+        "title": "18 yaşından önce geçiş",
+        "description": "Hikâyelerin çocukluk veya ergenlikte geçişe başlamak hakkında gösterdikleri."
+      },
+      "reasons": {
+        "title": "Nedenler",
+        "description": "Detransitioner'ların neden geçiş yaptıklarını — ve neden detransisyon yaptıklarını — söyledikleri."
+      },
+      "pathways": {
+        "title": "Yollar",
+        "description": "Pişmanlığın geçiş nedenine göre farklılaşıp farklılaşmadığı ve hangi tıbbi adımların atıldığı."
+      },
+      "regret": {
+        "title": "Pişmanlık",
+        "description": "Pişmanlığın ne kadar yoğun olduğu, zamanla nasıl değiştiği ve insanların neye pişman olduğu."
+      },
+      "medical": {
+        "title": "Tıbbi müdahale",
+        "description": "Pişmanlığın geçişin ne kadar ilerlediğiyle ilişkisi."
+      },
+      "complications": {
+        "title": "Komplikasyonlar",
+        "description": "Geçiş sonrası tıbbi komplikasyonlar ve süregelen sağlık sorunları."
+      },
+      "mental_health": {
+        "title": "Ruh sağlığı",
+        "description": "Detransisyon öncesi ve sonrası, hikâyelerdeki ruh sağlığı tablosu."
+      },
+      "suicidality": {
+        "title": "İntihar düşünceleri",
+        "description": "Hikâyelerin ne sıklıkla ve ne zaman intihar düşüncelerini veya kendine zarar vermeyi anlattığı."
+      },
+      "after": {
+        "title": "Detransisyondan sonra",
+        "description": "Ruh sağlığı, yaşam kalitesi ve aile ilişkilerinin nasıl değiştiği."
+      },
+      "current_status": {
+        "title": "Where are they now",
+        "description": "Current identities and situations after detransitioning."
+      },
+      "family_community": {
+        "title": "Detransisyonun sosyal bedeli",
+        "description": "Detransisyonun yol açtığı yalnızlık ve dışlanma ile trans topluluğuna karşı hayal kırıklığı. Geçişi detransisyondan ayırmayan sorular (aile desteği, ilişkiler, kariyer) dışarıda bırakıldı; detransisyondan bu yana aile ilişkileri “Detransisyondan sonra” bölümünde ele alınıyor."
+      },
+      "sexuality": {
+        "title": "Cinsellik",
+        "description": "Geçiş öncesinde ve detransisyon sonrasında, doğumdaki cinsiyete göre cinsel yönelim."
+      },
+      "trends": {
+        "title": "Yıllar içinde",
+        "description": "Hikâyelerin — ve nedenlerinin — geçiş yılı kohortları arasında nasıl değiştiği."
+      },
+      "features": {
+        "title": "Özellikler",
+        "description": "Every statement the AI evaluated across the stories — causes, processes and outcomes."
+      },
+      "compare": {
+        "title": "Karşılaştır",
+        "description": "Özelliklerin yaygınlığının kohortun iki yarısı arasında nasıl değiştiği."
+      },
+      "matrix": {
+        "title": "Bağlantılar",
+        "description": "Tartışılan sorulara yanıtlar — beklenen bir farkın ortaya çıkmadığı durumlar dahil."
+      },
+      "stories": {
+        "title": "Hikâyeler",
+        "description": "Bu sayıların ardındaki insanlardan anonim alıntılar.",
+        "browse": "Tüm hikâyelere göz atın"
+      },
+      "methodology": {
+        "title": "Yöntem",
+        "description": "Veri setinin nasıl oluşturulduğu ve bu grafiklerin nasıl okunacağı."
+      },
+      "overview": {
+        "title": "Bir bakışta",
+        "description": "Yapay zekânın değerlendirdiği her evet/hayır ifadesi, açıkça doğru olduğu hikâye sayısına göre sıralanmış."
+      },
+      "lives": {
+        "title": "Bireysel zaman çizelgeleri",
+        "description": "Her çizgi bir kişidir; geçişe başladığı yaştan bıraktığı yaşa kadar."
+      },
+      "drivers": {
+        "title": "Daha az konuşulan etkenler",
+        "description": "Geçişe katkıda bulunduğu anlatılan beden algısı, kimlik istikrarsızlığı ve cinsel etkenler."
+      },
+      "adversity": {
+        "title": "Travma ve zorluklar",
+        "description": "Hikâyelerin ne sıklıkla travma anlattığı ve travmanın ne sıklıkla ana neden olarak belirtildiği."
+      },
+      "online": {
+        "title": "Çevrimiçi ve akran etkisi",
+        "description": "En çok hangi platformların etkili olduğu ve çevrimiçi ile akran etkisinin hikâyelerde nasıl görüldüğü."
+      },
+      "process": {
+        "title": "Dönüm noktaları",
+        "description": "İnsanların geçişten detransisyona doğru ilerlemesine ne yardımcı oldu."
+      }
+    },
+    "features": {
+      "search": "Özellik ara…",
+      "sort": {
+        "prevalence": "Yaygınlık",
+        "alpha": "A–Z"
+      },
+      "tiers": {
+        "cause": "Neden",
+        "process": "Süreç",
+        "outcome": "Sonuç"
+      },
+      "kinds": {
+        "noul": "Evet / hayır",
+        "choice": "Seçim",
+        "score": "Ölçek"
+      },
+      "groups": {
+        "reasons": "Nedenler",
+        "causes": "Etkenler",
+        "processes": "Süreçler",
+        "regret": "Pişmanlık",
+        "medical": "Tıbbi",
+        "mental_health": "Ruh sağlığı",
+        "adversity": "Zorluklar",
+        "social": "Sosyal",
+        "sexuality": "Cinsellik",
+        "online": "Çevrimiçi",
+        "identity": "Kimlik",
+        "outcomes": "Sonuçlar",
+        "attitudes": "Tutumlar",
+        "quality": "Kalite"
+      },
+      "basedOn": "Değerlendirilen {cohort} hikâye genelinde.",
+      "coverageNote": "Değerlendirilen {cohort} hikâyeden {n} tanesi (%{percent}) bir yanıt içeriyor.",
+      "question": "Bu nasıl ölçüldü?",
+      "confidence": "Bu özellik için medyan yapay zekâ güveni: %{value}.",
+      "filterByTag": "Yalnızca “{tag}” etiketli hikâyeler",
+      "placeholder": "İncelemek için listeden bir özellik seçin.",
+      "backToList": "Tüm özellikler",
+      "noResults": "Aramanızla eşleşen özellik yok.",
+      "noData": "Mevcut filtreler için yanıt yok.",
+      "loading": "Yükleniyor…",
+      "error": "Özellik verileri yüklenemedi",
+      "noul": {
+        "prevalenceLabel": "değerlendirilen hikâyelerin eşiğin üzerinde olan kısmı",
+        "range": "{from} – {to} olasılık",
+        "count": "{count} hikâye (%{percent})",
+        "thresholdShort": "eşik {threshold}",
+        "legend": {
+          "yes": "Muhtemelen doğru",
+          "maybe": "Belirsiz",
+          "no": "Muhtemelen yanlış"
+        },
+        "above": "Muhtemelen doğru",
+        "uncertain": "Belirsiz",
+        "below": "Muhtemelen yanlış"
+      },
+      "choice": {
+        "soft": "Olasılık kütlesi",
+        "hard": "Kazanan seçenek",
+        "softTooltip": "≈%{percent} (≈{count} hikâyelik olasılık kütlesi)",
+        "hardTooltip": "%{percent} ({count} hikâye)",
+        "softNote": "Çubuklar, her seçeneğin hikâyeler genelinde aldığı toplam yapay zekâ olasılığını gösterir; böylece karışık yanıtlar orantılı olarak sayılır.",
+        "hardNote": "Çubuklar yalnızca her hikâyenin en olası tek seçeneğini sayar."
+      },
+      "score": {
+        "meanLabel": "0–{max} ölçeğinde ortalama {value}",
+        "range": "Puan {from} – {to}",
+        "count": "{count} hikâye",
+        "meanShort": "ortalama {value}"
+      },
+      "related": {
+        "title": "Sıklıkla birlikte görülenler",
+        "lift": "{lift}× daha yaygın (%{percent})"
+      },
+      "listNote": "Noktalar, her ifadenin açıkça doğru olduğu hikâyelerin oranını gösterir (yapay zekâ olasılığı ≥ 0.8); çizgiler %95 aralığını gösterir. Soluk satırlarda 30'dan az yanıt vardır. Eşleşen hikâyeleri okumak için bir satır seçin. Değerlendirilen {cohort} hikâyeye dayanmaktadır."
+    },
+    "compare": {
+      "splitLabel": "Ayırma ölçütü",
+      "thresholdNote": "Yapay zekâ eşiği {threshold} üzerindeki hikâyeler ile altındakiler gösteriliyor.",
+      "filter": {
+        "all": "Tüm yanıtlar",
+        "clear": "Yalnızca net sinyaller"
+      },
+      "clearNote": "Belirsiz {excluded} hikâye her iki taraftan da çıkarıldı.",
+      "cohortTrue": "{label}: var (n = {n})",
+      "cohortFalse": "Yok (n = {n})",
+      "splitSex": "Biyolojik cinsiyet",
+      "sexNote": "Kadınların ve erkeklerin hikâyeleri karşılaştırılıyor.",
+      "cohortWomen": "Kadınlar (n = {n})",
+      "cohortMen": "Erkekler (n = {n})",
+      "splitAge": "Geçiş yaşı",
+      "ageNote": "Geçişin 18 yaşından önce başladığı hikâyeler ile 18 yaş veya sonrasında başladığı hikâyeler karşılaştırılıyor.",
+      "cohortUnder18": "18 yaş altı (n = {n})",
+      "cohortAdult": "18 yaş ve üzeri (n = {n})",
+      "rowTooltip": "{label}: {nTrue} içinde %{pctTrue}, {nFalse} içinde %{pctFalse}",
+      "empty": "Bu ayrımın her iki tarafında da yanıt içeren yeterli hikâye henüz yok.",
+      "showSmallSamples": "Küçük örneklemleri göster",
+      "hideSmallSamples": "Küçük örneklemleri gizle",
+      "hiddenNote": "Taraflardan birinde 3'ten az hikâye bulunduğu için {count, plural, =1 {1 özellik gizlendi} other {# özellik gizlendi}}.",
+      "error": "Karşılaştırma verileri yüklenemedi",
+      "ratio": "{ratio} yaygınlık",
+      "ratioNote": "Satırlar iki grubun ne kadar güçlü farklılaştığına (risk oranı) göre sıralanmıştır; her iki tarafta da nadir olan özellikler dışarıda bırakılmıştır. Çizgiler %95 aralıklarını gösterir; soluk satırlarda taraflardan birinde 30'dan az hikâye vardır.",
+      "showAll": "Tüm özellikleri göster"
+    },
+    "matrix": {
+      "presetLabel": "Görünüm",
+      "presets": {
+        "outcomesByCause": "Nedene göre sonuçlar",
+        "outcomesByProcess": "Dönüm noktasına göre sonuçlar"
+      },
+      "metric": {
+        "rate": "Oran",
+        "lift": "Ortalamaya göre"
+      },
+      "swap": "Eksenleri değiştir",
+      "legendRate": "Sütun özelliğinin doğru olduğu eşleşen hikâyelerin oranı.",
+      "legendLift": "Kohort genelindeki ortalamayla karşılaştırıldığında (mavi üstünde, kırmızı altında).",
+      "sampleNote": "Her hücre, satır özelliğine sahip hikâyeleri sahip olmayanlarla karşılaştırır. Daha uzun ve ayrıntılı hikâyeler her türden daha fazla özellikten söz eder, bu yüzden oranların çoğu 1×'in üzerindedir — hücreleri 1× ile değil, birbirleriyle karşılaştırın. Taraflardan herhangi birinde 30'dan az hikâye olan hücreler boş bırakılır.",
+      "basedOn": "Bu görünümde değerlendirilen {cohort} hikâye.",
+      "cellTooltip": "{row} → {col}: {n} hikâyede %{percent} · kohort ortalamasının {lift} katı",
+      "cellTooltipNoLift": "{row} → {col}: {n} hikâyede %{percent}",
+      "cellMasked": "{row} → {col}: yeterli hikâye yok",
+      "empty": "Bu görünüm için yanıt içeren yeterli hikâye henüz yok.",
+      "error": "Matris verileri yüklenemedi",
+      "presetDescriptions": {
+        "outcomesByCause": "Her sonucun, belirli bir nedene sahip hikâyelerde, o nedene sahip olmayanlara göre ne kadar daha yaygın (veya daha az yaygın) olduğu.",
+        "outcomesByProcess": "Her sonucun, belirli bir dönüm noktasına sahip hikâyelerde, ona sahip olmayanlara göre ne kadar daha yaygın (veya daha az yaygın) olduğu."
+      },
+      "legendMore": "Satır özelliğiyle daha yaygın",
+      "legendLess": "Daha az yaygın",
+      "legendNone": "Net fark yok (%95 aralığı 1×'i içeriyor)",
+      "cellTooltipRatio": "{row} → {col}: etkene sahip {n} hikâyede %{percent}, sahip olmayanlarda %{percentWithout} · {ratio} (%95 aralığı {low}–{high})",
+      "legendWith": "Etkenle birlikte",
+      "legendWithout": "Etken olmadan",
+      "themes": {
+        "medical": "Tıbbi yol",
+        "helped": "Ne yardımcı oldu",
+        "who": "Kim pişman olur, kim geri döner",
+        "views": "Başkaları için geçişe bakış"
+      },
+      "predictors": {
+        "under18": "Geçişe 18'den önce başladı",
+        "women": "Kadınlar (erkeklere karşı)",
+        "sameSex": "Geçişten önce hemcinse ilgi duyuyordu",
+        "took_puberty_blockers": "Ergenlik engelleyiciler kullandı",
+        "took_hormones": "Hormon kullandı",
+        "top_surgery": "Üst cerrahi geçirdi",
+        "process_benefited_from_therapy": "Keşfedici terapi yardımcı oldu",
+        "gender_nonconformity_childhood": "Çocukken cinsiyet normlarına uymayan",
+        "process_spiritual_experience": "Manevi bir deneyim",
+        "autogynephilia": "Otojinefili",
+        "adv_trauma_history": "Travma geçmişi",
+        "contributed_online_influence": "Çevrimiçi etki"
+      },
+      "outcomes": {
+        "regret": "geçişten pişman",
+        "bodyReconciliation": "bedenini kabullendi",
+        "retransitioned": "yeniden geçiş yaptı",
+        "mentalHealthBetter": "detransisyondan sonra ruh sağlığı daha iyi",
+        "critical": "başkaları için geçişe eleştirel veya karşı"
+      },
+      "ratio": "{ratio} yaygınlık",
+      "noDifference": "Net fark yok",
+      "rowTooltip": "Etkene sahip {nWith} hikâyede {with}, sahip olmayan {nWithout} hikâyede {without}",
+      "note": "Çizgiler %95 aralıklarını gösterir. “Net fark yok”, aralığın hiç fark olmamasını da kapsadığı anlamına gelir. Bunlar insanların yazdıklarındaki ilişkilerdir, nedenler değil; daha uzun ve ayrıntılı hikâyeler yazanlar her şeyden daha çok söz eder. Değerlendirilen {cohort} hikâyeye dayanmaktadır."
+    },
+    "regret": {
+      "composition": {
+        "pair": "Hikâyelerin %{positive} kadarı geçişten pişmanlık ifade ediyor, %{negative} kadarı pişman olmadığını söylüyor; geri kalanı belirtmiyor. Belirtenler arasında %{statedShare} pişman (n = {stated}).",
+        "any": "%{positive} pişmanlık ifade ediyor (n = {n})"
+      },
+      "scale": {
+        "title": "Pişmanlık ne kadar yoğun?",
+        "mean": "Ortalama yoğunluk {value} / {max}",
+        "levels": {
+          "level0": "Pişmanlık ifade edilmemiş",
+          "level1": "Hafif veya geçici",
+          "level2": "Orta, tekrarlayan",
+          "level3": "Şiddetli, kalıcı"
+        }
+      },
+      "choice": {
+        "title": "Pişmanlık zamanla nasıl değişiyor?",
+        "options": {
+          "resolved": "Büyük ölçüde geçti",
+          "improving": "İyileşiyor",
+          "stable": "Sabit",
+          "worsening": "Kötüleşiyor",
+          "mixed": "Karışık veya dönemsel"
+        }
+      },
+      "statements": {
+        "title": "İnsanların özellikle neye pişman olduğu"
+      },
+      "count": "n = {n}",
+      "basedOn": "Değerlendirilen {cohort} hikâyeye dayanmaktadır.",
+      "empty": "Mevcut filtreler için henüz pişmanlık yanıtı yok.",
+      "error": "Pişmanlık verileri yüklenemedi"
+    },
+    "complications": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "%{positive} en az bir tıbbi komplikasyon veya süregelen sağlık sorunu bildiriyor (n = {n})"
+      },
+      "scale": {
+        "title": "Komplikasyonlar ne kadar ciddiydi?",
+        "mean": "Ortalama şiddet {value} / {max}",
+        "levels": {
+          "level0": "Komplikasyon yok",
+          "level1": "Hafif veya yönetilebilir yan etkiler",
+          "level2": "Önemli komplikasyonlar",
+          "level3": "Ciddi veya kalıcı zarar"
+        }
+      },
+      "statements": {
+        "title": "Belirli tıbbi sorunlar"
+      },
+      "count": "n = {n}",
+      "basedOn": "Değerlendirilen {cohort} hikâyeye dayanmaktadır.",
+      "empty": "Mevcut filtreler için henüz tıbbi yanıt yok.",
+      "error": "Komplikasyon verileri yüklenemedi"
+    },
+    "mental_health": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "%{positive} en az bir ruh sağlığı sorunu veya kriz gösteriyor (n = {n})"
+      },
+      "scale": {
+        "title": "Ruh sağlığı tablosu ne kadar ağır?",
+        "mean": "Ortalama şiddet {value} / {max}",
+        "levels": {
+          "level0": "Kayda değer sorun yok",
+          "level1": "Hafif veya duruma bağlı sıkıntı",
+          "level2": "Önemli, tedavi edilmiş durumlar",
+          "level3": "Ağır durumlar veya kriz"
+        }
+      },
+      "statements": {
+        "title": "Durumlar ve krizler"
+      },
+      "count": "n = {n}",
+      "basedOn": "Değerlendirilen {cohort} hikâyeye dayanmaktadır.",
+      "empty": "Mevcut filtreler için henüz ruh sağlığı yanıtı yok.",
+      "error": "Ruh sağlığı verileri yüklenemedi"
+    },
+    "suicidality": {
+      "during": "Geçiş sırasında",
+      "since": "Detransisyondan beri",
+      "duringDescription": "Modelin, bir hikâyenin kişi geçiş sürecindeyken intihar düşüncelerini, kendine zarar vermeyi veya intihar girişimini anlatma olasılığını ne kadar yüksek gördüğü.",
+      "sinceDescription": "Modelin, bir hikâyenin detransisyondan bu yana intihar düşüncelerini, kendine zarar vermeyi veya intihar girişimini anlatma olasılığını ne kadar yüksek gördüğü.",
+      "splitNote": "Mevcut duruma göre ayrılmış · karekök ekseni",
+      "overall": "Tüm hikâyeler",
+      "sqrtNote": "Dikey eksen karekök ölçeği kullanır; böylece küçük olasılık aralıkları sıfırdaki tepe noktasının yanında görünür kalır.",
+      "tooltipBin": "Olasılık {range}",
+      "tooltipCount": "{count, plural, =1 {1 hikâye} other {# hikâye}}",
+      "bands": {
+        "no": "Muhtemelen yanlış (< 0.2)",
+        "mixed": "Belirsiz (0.2–0.8)",
+        "yes": "Muhtemelen doğru (≥ 0.8)"
+      },
+      "count": "n = {n}",
+      "basedOn": "Yanıt içeren {cohort} hikâyeye dayanmaktadır.",
+      "empty": "Mevcut filtreler için henüz intihar düşüncesi yanıtı yok.",
+      "error": "İntihar düşüncesi verileri yüklenemedi",
+      "statements": {
+        "title": "İntihar düşünceleri ve kendine zarar verme"
+      }
+    },
+    "current_status": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% (n = {n})"
+      },
+      "choice": {
+        "title": "Where are they now?",
+        "options": {
+          "detransitioned": "Detransisyon yaptı",
+          "desisted": "Tıbbi geçişten önce desist etti",
+          "retransitioned": "Yeniden geçiş yaptı",
+          "still_trans_questioning": "Hâlâ trans, sorguluyor",
+          "questioning": "Sorguluyor",
+          "unclear": "Belirsiz",
+          "supportive": "Başkaları için geçişi destekliyor",
+          "conditional": "Koşullu destekliyor",
+          "critical": "Geçişe eleştirel",
+          "opposed": "Karşı",
+          "not_addressed": "Değinilmemiş"
+        },
+        "description": "Konuya değinen hikâyeler arasında, destekleyenden karşı olana."
+      },
+      "secondaryChoice": {
+        "title": "Başkaları için geçişe nasıl bakıyorlar?"
+      },
+      "statements": {
+        "title": "Mevcut durum"
+      },
+      "count": "n = {n}",
+      "basedOn": "Değerlendirilen {cohort} hikâyeye dayanmaktadır.",
+      "empty": "Mevcut filtreler için henüz durum yanıtı yok.",
+      "error": "Durum verileri yüklenemedi",
+      "headline": "%{percent} başkaları için geçişe eleştirel bakıyor veya karşı (n ≈ {n}).",
+      "note": "Olasılıkla ağırlıklandırılmış oranlar. Soruya değinmeyen hikâyeler dışarıda bırakılmıştır."
+    },
+    "family_community": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "%{positive} aşağıdaki sorulardan en az birine evet yanıtı veriyor (n = {n})"
+      },
+      "statements": {
+        "title": "Sorulan sorular",
+        "description": "Her hikâye tam olarak bu sorulara göre incelendi. Yanıt açıkça evet olduğunda hikâye sayılır."
+      },
+      "count": "n = {n}",
+      "basedOn": "Değerlendirilen {cohort} hikâyeye dayanmaktadır.",
+      "empty": "Mevcut filtreler için henüz yanıt yok.",
+      "error": "Veriler yüklenemedi"
+    },
+    "sexuality": {
+      "beforeLabel": "Geçişten önce",
+      "afterLabel": "Detransisyondan sonra",
+      "options": {
+        "homosexual": "Homosexual",
+        "bisexual": "Biseksüel",
+        "heterosexual": "Heterosexual",
+        "asexual": "Aseksüel",
+        "other": "Diğer veya değişken"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 hikâye} other {# hikâye}}",
+      "statements": {
+        "title": "Orientation and attraction"
+      },
+      "count": "n = {n}",
+      "basedOn": "Akış, her iki yönelim yanıtını da içeren {cohort} hikâyeye dayanmaktadır.",
+      "empty": "Not enough orientation answers for the current filters yet.",
+      "error": "Cinsellik verileri yüklenemedi",
+      "hero": {
+        "statement": "mevcut yönelimini belirten detransitioner'ların gey, lezbiyen veya biseksüel olan kısmı (n = {n}).",
+        "bySex": "E {men} gey veya biseksüel ({menSame} gey) | K {women} lezbiyen veya biseksüel ({womenSame} lezbiyen)"
+      },
+      "mix": {
+        "title": "Geçişten önce ve detransisyondan sonra yönelim",
+        "description": "Doğumdaki cinsiyete göre, belirten hikâyeler arasında.",
+        "women": "Kadınlar",
+        "men": "Erkekler",
+        "all": "Tümü",
+        "before": "önce",
+        "after": "sonra"
+      },
+      "matrix": {
+        "title": "Yönelim değişti mi?",
+        "description": "Her satır, geçişten önceki bir yönelimdir; hücreler bu kişilerin detransisyondan sonra ne anlattığını gösterir.",
+        "headline": "%{percent} geçişten önce ve detransisyondan sonra aynı yönelimi anlatıyor (n = {n}).",
+        "corner": "Önce ↓ · Sonra →",
+        "cell": "önce {from} → sonra {to}: %{percent} ({count})",
+        "note": "Yalnızca her iki tarafta da yönelim belirten hikâyeler. 30'dan az hikâye içeren satırlar boş bırakılır."
+      },
+      "coverage": "Değerlendirilen {cohort} hikâyeden, yönelim geçişten önce {before} hikâyede, detransisyondan sonra {after} hikâyede belirtiliyor."
+    },
+    "trends": {
+      "series": {
+        "contributed_online_influence": "Çevrimiçi etki",
+        "contributed_rapid_onset": "Hızlı başlangıç (ROGD)",
+        "regret_transition": "Pişmanlık",
+        "took_puberty_blockers": "Ergenlik engelleyiciler"
+      },
+      "tooltip": "{bucket} · n = {n}",
+      "mode": {
+        "strict": "İkili sinyal",
+        "soft": "Ortalama olasılık",
+        "strictNote": "Modelin emin olduğu hikâyelerin oranı (≥ 0.8).",
+        "softNote": "Tüm hikâyeler genelinde ortalama olasılık — belirsiz hikâyeleri de eğilimin içinde tutar."
+      },
+      "seriesTooltip": "{strict} ikili · {mean} ort.",
+      "medianAge": "Kohorta göre medyan geçiş yaşı",
+      "coverageNote": "Her nokta kohortun yanıtlanmış hikâyelerini kullanır; en eski kohortların örneklemleri en küçüktür.",
+      "basedOn": "Geçiş yılı bilinen {cohort} hikâye genelinde.",
+      "empty": "Mevcut filtreler için henüz geçiş yılı yok.",
+      "error": "Eğilim verileri yüklenemedi",
+      "linesTitle": "Geçiş yılına göre özellikler",
+      "linesDescription": "Her ifadenin açıkça doğru olduğu hikâyelerin oranı, geçişin başladığı yıla göre gruplanmış. Karşılaştırmak için özellik ekleyin veya kaldırın.",
+      "reasonsTitle": "Döneme göre geçişin ana nedeni",
+      "reasonsDescription": "En yaygın ana nedenlerin geçiş yılı kohortları arasında nasıl değiştiği.",
+      "add": "Özellik ekle…",
+      "remove": "{label} kaldır",
+      "strictNote": "Yapay zekânın ifadenin doğru olduğundan emin olduğu hikâyelerin oranı (≥ 0.8). İçi boş noktalar 30'dan az hikâyeden gelir. Yakın tarihli kohortların geçişinin üzerinden daha az zaman geçmiştir — ameliyata veya uzun vadeli etkilere ulaşmak için daha az zaman ve genellikle daha kısa hikâyeler — bu yüzden birçok özellik sağ uçta düşer; buna rağmen yükselen bir özellik, örneğin kaygı, dikkat çeker."
+    },
+    "uncertainty": {
+      "binary": "İkili",
+      "bands": "Üç durumlu",
+      "likelyFalse": "Muhtemelen yanlış (< 0.2)",
+      "unclear": "Belirsiz (0.2–0.8)",
+      "unclearShort": "belirsiz",
+      "likelyTrue": "Muhtemelen doğru (≥ 0.8)",
+      "rowTooltip": "%{false} muhtemelen yanlış · %{unclear} belirsiz · %{true} muhtemelen doğru"
+    },
+    "minors": {
+      "tiles": {
+        "minor": "18 yaşından önce başladı (yaş belirten {total} hikâyeden {n})",
+        "le15": "15 yaşında veya daha erken başladı",
+        "dysphoria": "ilk kez 12 yaşında veya daha erken disfori hissetti (n = {n})",
+        "female": "18 yaşından önce başlayanların kadın olan kısmı"
+      },
+      "early": "Bu hikâyelerde ergenlik engelleyiciler {min} yaşından itibaren görülüyor, medyan {median} (n = {n}). {hormones} 16 yaşına kadar hormona başlamış, {detrans} ise 18 yaşına kadar zaten detransisyon yapmıştı.",
+      "empty": "Mevcut filtreler için henüz yaş verisi yok.",
+      "error": "Erken geçiş verileri yüklenemedi",
+      "byEra": {
+        "title": "Geçiş yılına göre 18 yaşından önce başlayanlar",
+        "description": "Geçişin 18 yaşından önce başladığı hikâyelerin oranı, başladığı yıla göre gruplanmış.",
+        "note": "Çizgiler %95 aralığını gösterir. Daha yeni kohortlar, yakın zamanda ve genç yaşta geçiş yapan daha fazla kişiyi içerir; bu yüzden eğilimi dikkatle okuyun."
+      }
+    },
+    "journey": {
+      "milestones": {
+        "first_dysphoria": "İlk disfori",
+        "transition": "Geçiş",
+        "hormones": "Hormonlar",
+        "detransition": "Detransisyon",
+        "in_transition": "Geçişte geçen yıllar"
+      },
+      "median": "medyan {age}",
+      "count": "n = {n}",
+      "tooltip": "Yaş {age}: {count, plural, =1 {1 hikâye} other {# hikâye}}",
+      "yearsTooltip": "Geçişte {years, plural, =1 {1 yıl} other {# yıl}}: {count, plural, =1 {1 hikâye} other {# hikâye}}",
+      "basedOn": "Her satır yalnızca o yaşı belirten hikâyeleri sayar. Eksen 99. yüzdelikte kesilmiştir.",
+      "empty": "Mevcut filtreler için henüz zaman çizelgesi verisi yok.",
+      "error": "Süreç verileri yüklenemedi"
+    },
+    "gradient": {
+      "regret": "Pişmanlık",
+      "noRegret": "Pişmanlık yok",
+      "notStated": "Belirtilmemiş",
+      "tiers": {
+        "no_transition": "Geçiş yapmadı",
+        "social_only": "Yalnızca sosyal",
+        "hormones": "Hormon veya engelleyici",
+        "surgery": "Ameliyat",
+        "unclear": "Belirsiz"
+      },
+      "tierTooltip": "{n} hikâye: {regrets} pişmanlık, {noRegret} pişmanlık yok, {notStated} belirtilmemiş",
+      "count": "n = {n}",
+      "selectionNote": "Erken detransisyon yapan kişiler sonraki adımlara hiç ulaşmaz; bu yüzden bu grafik hangi yolların nereye çıktığını gösterir — tıbbi adımların pişmanlığa yol açtığını değil.",
+      "basedOn": "Değerlendirilen {cohort} hikâyeye dayanmaktadır.",
+      "empty": "Mevcut filtreler için henüz yanıt yok.",
+      "error": "Tıbbi müdahale verileri yüklenemedi",
+      "statedNote": "Sağdaki sayı, bir yönde görüş belirten (pişmanlık veya pişmanlık yok) hikâyeler arasındaki pişmanlık oranıdır.",
+      "headline": "Görüş belirtenler arasında, ameliyat olanlarda geçişten pişman olduğunu söyleyenlerin oranı %{percent} (n = {n}).",
+      "headlineCompare": "Ameliyat olanlarda geçişten pişman olduğunu söyleyenlerin oranı %{percent}; hormon veya engelleyicide duranlarda bu oran %{hormones} (n = {n} / {nHormones}). Yalnızca görüş belirten hikâyeler sayılmıştır."
+    },
+    "after": {
+      "levels": {
+        "muchWorse": "Çok daha kötü",
+        "worse": "Biraz daha kötü",
+        "same": "Aşağı yukarı aynı",
+        "better": "Biraz daha iyi",
+        "muchBetter": "Çok daha iyi"
+      },
+      "panels": {
+        "mh_change_after_detransition": "Ruh sağlığı",
+        "outcome_quality_of_life": "Yaşam kalitesi",
+        "outcome_family_relationship_change": "Aile ilişkileri"
+      },
+      "summary": "%{better} daha iyi · %{worse} daha kötü",
+      "count": "n = {n}",
+      "basedOn": "Değerlendirilen {cohort} hikâyeye dayanmaktadır.",
+      "empty": "Mevcut filtreler için henüz yanıt yok.",
+      "error": "Değişim verileri yüklenemedi",
+      "worseSide": "Daha kötü",
+      "betterSide": "Daha iyi",
+      "headline": "%{better} detransisyondan sonra ruh sağlığının daha iyi olduğunu anlatıyor; %{worse} daha kötü olduğunu anlatıyor (n = {n})."
+    },
+    "stories": {
+      "excerptNote": "Herkese açık /r/detrans gönderilerinin anonim yapay zekâ özetleri.",
+      "agesCaption": "Yaşlar: ilk disfori → geçiş → {outcome}",
+      "ages": {
+        "firstDysphoria": "İlk disfori",
+        "transition": "Geçiş",
+        "detransition": "Detransisyon",
+        "desistance": "Desistance",
+        "socialTransition": "Sosyal geçiş"
+      },
+      "female": "Kadın",
+      "male": "Erkek",
+      "basedOn": "Eşleşen {cohort} hikâyeden.",
+      "empty": "Mevcut filtrelerle eşleşen hikâye henüz yok.",
+      "error": "Hikâyeler yüklenemedi",
+      "loadMore": "Daha fazla hikâye yükle",
+      "loading": "Yükleniyor…",
+      "upvotesLabel": "Toplam olumlu oy: {count}",
+      "dialog": {
+        "title": "Hikâye",
+        "summary": "Özet",
+        "fullStory": "Hikâyenin tamamı",
+        "close": "Hikâyeyi kapat",
+        "error": "Hikâyenin tamamı yüklenemedi",
+        "openPage": "Hikâye sayfasını aç"
+      },
+      "status": {
+        "detransitioned": "Detransisyon",
+        "desisted": "Vazgeçti"
+      }
+    },
+    "highlights": {
+      "title": "Öne çıkanlar",
+      "types": {
+        "prevalence": "En yaygın",
+        "pair": "Birlikte görülür",
+        "improvement": "Detransisyondan sonra yaşam",
+        "journey": "Tipik süreç",
+        "minorShare": "18'den önce başladı",
+        "minorLe15": "15 yaşında veya daha erken başladı",
+        "minorDysphoria": "12 yaşına kadar ilk disfori",
+        "minorFemale": "Kimler erken başlıyor",
+        "orientation": "Cinsel yönelim"
+      },
+      "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
+      "prevalenceUnclear": "Bir %{unclear} daha belirsiz.",
+      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "improvement": "%{better} detransisyondan sonra yaşam kalitesinin iyileştiğini söylüyor; %{worse} kötüleştiğini söylüyor (n = {n}).",
+      "journey": "Tipik süreç: {dysphoria} yaşında ilk disfori → {transition} yaşında geçiş → {detransition} yaşında detransisyon (n = {n}).",
+      "minorShare": "Yaş belirten hikâyelerin %{percent} kadarında geçiş 18 yaşından önce başladı (n = {n} / {total}).",
+      "minorLe15": "%{percent} 15 yaşında veya daha erken başladı (n = {n}).",
+      "minorDysphoria": "%{percent} ilk kez 12 yaşında veya daha erken disfori hissetti (n = {n}).",
+      "minorFemale": "18 yaşından önce başlayanların %{percent} kadarı kadın (n = {n}).",
+      "explore": "İncele",
+      "orientation": "Yönelimini belirten detransitioner'ların %{percent} kadarı gey, lezbiyen veya biseksüel (%{sameSex} gey veya lezbiyen; n = {n})."
+    },
+    "pathways": {
+      "journey": "Neden → Süreç → Sonuç",
+      "medical": "Tıbbi yol",
+      "stages": {
+        "cause": "Ana neden",
+        "process": "Dönüm noktası",
+        "outcome": "Bugünkü pişmanlık"
+      },
+      "causes": {
+        "social_role_discomfort": "Sosyal rol rahatsızlığı",
+        "internalised_homophobia": "İçselleştirilmiş homofobi",
+        "internalised_misogyny_misandry": "İçselleştirilmiş kadın / erkek düşmanlığı",
+        "trauma": "Travma",
+        "mental_health_issues": "Ruh sağlığı",
+        "neurodivergence": "Nöroçeşitlilik",
+        "body_dysmorphia": "Beden dismorfisi",
+        "online_influence": "Çevrimiçi etki",
+        "peer_influence": "Akran etkisi",
+        "sexual_factors": "Cinsel etkenler",
+        "parental_or_medical_pressure": "Ebeveyn veya tıbbi baskı",
+        "other_unclear": "Diğer / belirsiz",
+        "unclear": "Belirsiz"
+      },
+      "processes": {
+        "process_benefited_from_therapy": "Keşfedici terapi",
+        "process_detrans_community_exposure": "Detrans topluluğu",
+        "process_research_consumption": "Araştırma ve medya",
+        "process_self_reflection": "Öz-düşünüm",
+        "process_time_off_hormones": "Hormonlara ara verme",
+        "process_medical_scare": "Tıbbi korku",
+        "process_family_partner_intervention": "Aile veya partner",
+        "process_spiritual_experience": "Manevi deneyim",
+        "other": "Diğer / belirsiz"
+      },
+      "outcomes": {
+        "regrets": "Pişman",
+        "no_regret": "Pişmanlık yok",
+        "not_stated": "Belirtilmemiş"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 hikâye} other {# hikâye}}",
+      "basedOn": "Bu görünümde yanıtı olan, değerlendirilmiş {cohort} hikâyeye dayanmaktadır.",
+      "empty": "Bu görünüm için yanıt içeren yeterli hikâye henüz yok.",
+      "error": "Yol verileri yüklenemedi",
+      "journeyDescription": "Ana nedenlerin, dönüm noktalarının ve pişmanlığın hikâyeler genelinde nasıl bağlandığı.",
+      "medicalDescription": "İnsanların detransisyondan önce hangi tıbbi adımları attığı.",
+      "regretByReason": {
+        "title": "Geçişin ana nedenine göre pişmanlık",
+        "description": "Geçişten pişman olup olmadığını belirten hikâyeler arasında pişman olanların oranı — geçiş için belirttikleri ana nedene göre gruplanmış.",
+        "headline": "Genel olarak, pişmanlığa değinen hikâyelerin %{percent} kadarı pişmanlık ifade ediyor (n = {n}).",
+        "note": "Noktalar, görüşünü açıkça belirten hikâyeler arasında pişmanlık ifade edenlerin oranını gösterir; çizgiler %95 aralığını gösterir. Soluk satırlarda 30'dan az hikâye vardır.",
+        "error": "Nedene göre pişmanlık yüklenemedi",
+        "empty": "Mevcut filtreler için henüz yanıt yok."
+      }
+    },
+    "methodology": {
+      "p1": "detrans.ai bu veri setini herkese açık /r/detrans hikâyelerinden oluşturur. Yapay zekâ, her kullanıcının dağınık yorum ve gönderilerini birinci tekil şahıs ağzından tek bir anlatıya dönüştürür ve bundan önemli yaşların bir zaman çizelgesini çıkarır. Yalnızca tam bir hikâye oluşturmaya yetecek kadar paylaşımda bulunan kullanıcılar dahil edilir.",
+      "p1b": "Bu istatistikler yalnızca kişinin detransisyon yaptığını veya desist ettiğini açıkça doğruladığı hikâyeleri kapsar. Ham derlemden grafiklere:",
+      "table": {
+        "comments": "/r/detrans'tan toplanan yorumlar",
+        "posts": "/r/detrans'tan toplanan gönderiler",
+        "authors": "Derlemdeki farklı yazarlar",
+        "selected": "3+ olumlu oy alan en az 5 yorumu olan yazarlar",
+        "removed": "Çıkarıldı: detransisyon veya desistance açıkça doğrulanmamış",
+        "remaining": "Bundan sonra kalan hikâyeler",
+        "cohort": "Aşağıdaki grafiklerde yer alanlar (işaretlenen hesaplar hariç)"
+      },
+      "p2": "Ardından her hikâye, olasılıksal bir soru yanıtlama modeli olan Jev tarafından nedenler, deneyimler ve sonuçlar hakkındaki yaklaşık yüz ifadeye göre değerlendirilir. Evet/hayır soruları 0 ile 1 arasında bir olasılık, seçim soruları her seçenek için bir olasılık, ölçek soruları ise her grafiğin altında gösterilen ölçek üzerinde beklenen bir değer döndürür.",
+      "p3": "Evet/hayır özelliklerinde, olasılık eşiğe ulaştığında (varsayılan 0.8) bir hikâyeyi “doğru” olarak işaretleriz. Her özellikteki histogram tüm olasılık dağılımını gösterir; böylece çok sayıda orta düzey yanıtı olan bir özellik, kesin olarak doğru ya da yanlış değil, gerçekten belirsiz olarak okunur.",
+      "p4": "Tüm grafikler yukarıdaki filtrelere uyar. Soru seti zamanla değiştiği ve hikâyeler işleme turlarında yeniden ele alındığı için, her grafik filtrelenen hikâyelerden kaçının o soruya gerçekten yanıtı olduğunu bildirir.",
+      "p5": "Sahici olmayan, uydurma veya bot benzeri görünen hesaplar model tarafından işaretlenir ve bu istatistiklerden çıkarılır. Yapay zekâyla çıkarılan veriler yine de hata içerebilir — sistem istemleri <prompts>istemler sayfasında</prompts> yayımlanmıştır ve özetler orijinal yorumlarla karşılaştırılır.",
+      "threshold": {
+        "title": "Kesme noktası ne kadar önemli",
+        "description": "Grafikler, yapay zekânın olasılığı en az 0.8 olduğunda bir ifadeyi doğru sayar. Daha düşük kesme noktaları daha yüksek sayılar gösterirdi; bu grafik ne kadar olduğunu gösterir.",
+        "error": "Eşik verileri yüklenemedi",
+        "tooltip": "Kesme noktası {threshold}",
+        "xAxis": "Olasılık kesme noktası",
+        "siteThreshold": "Bu sayfada kullanılan",
+        "note": "Her kesme noktasında veya üzerindeki hikâyelerin oranı. 0.8 kesme noktası bilinçli olarak temkinlidir."
+      },
+      "accountType": {
+        "title": "Kim yazıyor",
+        "description": "Her hesabın yazarın kendi deneyimini anlatıp anlatmadığı.",
+        "options": {
+          "personal_experience": "Kendi deneyimi",
+          "parent": "Bir ebeveyn",
+          "friend": "Bir arkadaş veya partner",
+          "researcher_journalist": "Araştırmacı, gazeteci veya klinisyen",
+          "other": "Diğer veya karışık"
+        }
+      },
+      "detail": {
+        "title": "Hikâyeler ne kadar ayrıntılı",
+        "description": "Yapay zekânın her birinci şahıs anlatımının ne kadar somut olduğuna dair değerlendirmesi. Tüm grafikleri en üst iki düzeyle sınırlamak için filtrelerde “Yalnızca ayrıntılı hikâyeler” seçeneğini kullanın.",
+        "levels": {
+          "level0": "Belirsiz veya genel",
+          "level1": "Bazı kişisel ayrıntılar",
+          "level2": "Ayrıntılı, somut olaylar",
+          "level3": "Çok ayrıntılı, yıllara yayılan anlatım"
+        }
+      }
+    },
+    "prevalence": {
+      "women": "Kadınlar",
+      "men": "Erkekler",
+      "interval": "{group} {percent} (%95 aralığı {low}–{high}, n = {n})",
+      "smallSample": "n = {n}",
+      "openStories": "Hikâyeleri göster",
+      "showAll": "Tümünü göster ({count})",
+      "showFewer": "Daha az göster",
+      "note": "Noktalar, ifadenin açıkça doğru olduğu hikâyelerin oranını gösterir (yapay zekâ olasılığı ≥ 0.8); çizgiler %95 aralığını gösterir. Soluk satırlarda 30'dan az yanıt vardır.",
+      "noteWithStories": "Noktalar, ifadenin açıkça doğru olduğu hikâyelerin oranını gösterir (yapay zekâ olasılığı ≥ 0.8); çizgiler %95 aralığını gösterir. Soluk satırlarda 30'dan az yanıt vardır. Eşleşen hikâyeleri okumak için bir satır seçin.",
+      "gap": "En büyük fark: {label} — {higherGroup} arasında {higher}, {lowerGroup} arasında {lower}.",
+      "womenLower": "kadınlar",
+      "menLower": "erkekler",
+      "m": "E",
+      "f": "K",
+      "menLegend": "E · erkekler",
+      "womenLegend": "K · kadınlar"
+    },
+    "storyPeek": {
+      "title": "Hikâyeler: {label}",
+      "meta": "{count, plural, =1 {1 eşleşen hikâye} other {# eşleşen hikâye}}",
+      "error": "Hikâyeler yüklenemedi.",
+      "empty": "Mevcut filtreler için eşleşen hikâye yok.",
+      "readFull": "Hikâyenin tamamını oku",
+      "note": "Anonim alıntılar, en yüksek puanlılar önce. Tam liste sayfanın sonundaki Hikâyeler bölümündedir."
+    },
+    "reasons": {
+      "transitionTitle": "Geçişin ana nedeni",
+      "transitionDescription": "Her kişinin geçişe başlamak için belirttiği en önemli tek neden.",
+      "detransitionTitle": "Detransisyonun ana nedeni",
+      "detransitionDescription": "Her kişinin bırakmak için belirttiği en önemli tek neden."
+    },
+    "byYear": {
+      "error": "Yıllara göre veriler yüklenemedi",
+      "empty": "Mevcut filtreler için henüz geçiş yılı yok.",
+      "other": "Diğer",
+      "n": "n = {n}",
+      "note": "Her geçiş yılı kohortu için olasılıkla ağırlıklandırılmış oranlar. Soluk satırlarda 30'dan az hikâye vardır."
+    },
+    "overview": {
+      "error": "Genel bakış yüklenemedi",
+      "basedOn": "Değerlendirilen {cohort} hikâyeye dayanmaktadır."
+    },
+    "drivers": {
+      "statements": {
+        "title": "Geçişe katkıda bulunduğu anlatılanlar"
+      },
+      "count": "n = {n}",
+      "basedOn": "Değerlendirilen {cohort} hikâyeye dayanmaktadır.",
+      "empty": "Mevcut filtreler için henüz yanıt yok.",
+      "error": "Bu veriler yüklenemedi"
+    },
+    "adversity": {
+      "composition": {
+        "any": "%{positive} en az bir travma veya zorluk biçimi anlatıyor (n = {n})"
+      },
+      "statements": {
+        "title": "Anlatılan zorluk türleri"
+      },
+      "contrast": {
+        "title": "Travma geçmişi ile ana neden olarak travma",
+        "description": "Travmadan söz eden hikâyeler, onu geçişin veya detransisyonun ana etkeni olarak belirtenlerden çok daha fazladır.",
+        "history": "Travma geçmişi anlatıyor",
+        "transitionReason": "Travmayı geçişin ana nedeni olarak belirtiyor",
+        "detransitionReason": "Travmayı fark etmeyi detransisyonun ana nedeni olarak belirtiyor",
+        "note": "Noktalar hikâyelerin oranını gösterir; çizgiler %95 aralığını gösterir. Neden satırları her hikâyenin tek ana nedenini sayar."
+      },
+      "count": "n = {n}",
+      "basedOn": "Değerlendirilen {cohort} hikâyeye dayanmaktadır.",
+      "empty": "Mevcut filtreler için henüz zorluk yanıtı yok.",
+      "error": "Zorluk verileri yüklenemedi"
+    },
+    "online": {
+      "choice": {
+        "title": "En etkili platform",
+        "description": "Çevrimiçi bir etkiden söz eden hikâyeler arasında. Kayda değer çevrimiçi etkisi olmayan hikâyeler dışarıda bırakılmıştır.",
+        "options": {
+          "reddit": "Reddit",
+          "tumblr": "Tumblr",
+          "tiktok": "TikTok",
+          "twitter": "Twitter / X",
+          "youtube": "YouTube",
+          "discord": "Discord",
+          "other": "Diğer platform veya hayran topluluğu"
+        }
+      },
+      "statements": {
+        "title": "Çevrimiçi ve akran etkisi"
+      },
+      "byYear": {
+        "title": "Geçiş yılına göre platform",
+        "description": "En etkili platformun geçiş yılı kohortları arasında nasıl değiştiği."
+      },
+      "count": "n = {n}",
+      "basedOn": "Değerlendirilen {cohort} hikâyeye dayanmaktadır.",
+      "empty": "Mevcut filtreler için henüz çevrimiçi etki yanıtı yok.",
+      "error": "Çevrimiçi etki verileri yüklenemedi"
+    },
+    "process": {
+      "composition": {
+        "any": "%{positive} bu dönüm noktalarından en az birini anlatıyor (n = {n})"
+      },
+      "statements": {
+        "title": "İnsanları detransisyona doğru ne yöneltti"
+      },
+      "count": "n = {n}",
+      "basedOn": "Değerlendirilen {cohort} hikâyeye dayanmaktadır.",
+      "empty": "Mevcut filtreler için henüz dönüm noktası yanıtı yok.",
+      "error": "Dönüm noktası verileri yüklenemedi"
+    },
+    "lives": {
+      "error": "Zaman çizelgeleri yüklenemedi",
+      "empty": "Mevcut filtreler için hem geçiş hem detransisyon yaşı olan hikâye henüz yok.",
+      "legend": {
+        "transition": "Geçişte",
+        "blockers": "Ergenlik engelleyiciler",
+        "hormones": "Hormonlar",
+        "surgery": "Ameliyat"
+      },
+      "ariaLabel": "Geçişten detransisyona {n} bireysel zaman çizelgesinin şerit grafiği",
+      "tooltip": {
+        "woman": "Kadın",
+        "man": "Erkek",
+        "person": "Kişi",
+        "firstDysphoria": "{age} yaşında ilk disfori",
+        "transition": "{age} yaşında geçiş",
+        "pubertyBlockers": "{age} yaşında ergenlik engelleyiciler",
+        "hormones": "{age} yaşında hormonlar",
+        "topSurgery": "{age} yaşında üst cerrahi",
+        "bottomSurgery": "{age} yaşında alt cerrahi",
+        "detransition": "{age} yaşında detransisyon"
+      },
+      "note": "Hikâyesi her iki yaşı da belirten {n} kişi, geçiş yaşına göre sıralanmış. Yaşlar yapay zekânın her hikâyeden çıkardığı değerlerdir ve yaklaşık olabilir."
+    },
+    "duration": {
+      "error": "Süreler yüklenemedi",
+      "empty": "Mevcut filtreler için henüz geçiş süresi yok.",
+      "all": "Tümü",
+      "women": "Kadınlar",
+      "men": "Erkekler",
+      "legend": "{label}: medyan {median} yıl (n = {n})",
+      "tooltipTitle": "{years, plural, =1 {1 yıl} other {# yıl}} içinde",
+      "xAxis": "Geçişe başlangıçtan bu yana geçen yıllar",
+      "note": "Belirli bir yıl sayısı içinde bırakmış olan kişilerin oranı. Buradaki herkes sonunda detransisyon yaptı; bu yüzden bu grafik geçişin onlar için ne kadar sürdüğünü gösterir — geçiş yapanların kaçının sonradan bıraktığını değil.",
+      "headline": "Başladıktan sonra %{one} bir yıl içinde, %{five} beş yıl içinde bırakmıştı (medyan {median} yıl, n = {n})."
+    },
+    "optionLabels": {
+      "reddit": "Reddit",
+      "tumblr": "Tumblr",
+      "tiktok": "TikTok",
+      "twitter": "Twitter / X",
+      "youtube": "YouTube",
+      "discord": "Discord",
+      "social_role_discomfort": "Sosyal rol rahatsızlığı",
+      "internalised_homophobia": "İçselleştirilmiş homofobi",
+      "internalised_misogyny_misandry": "İçselleştirilmiş kadın / erkek düşmanlığı",
+      "trauma": "Travma",
+      "mental_health_issues": "Ruh sağlığı",
+      "neurodivergence": "Nöroçeşitlilik",
+      "body_dysmorphia": "Beden dismorfisi",
+      "online_influence": "Çevrimiçi etki",
+      "peer_influence": "Akran etkisi",
+      "sexual_factors": "Cinsel etkenler (AGP / AAP)",
+      "parental_or_medical_pressure": "Ebeveyn veya tıbbi baskı",
+      "other_unclear": "Diğer / belirsiz",
+      "accepted_sexed_body": "Biyolojik bedenini kabullendi",
+      "social_construct_realisation": "Sorunun cinsiyet rolleri olduğunu gördü",
+      "trauma_realisation": "Bunu travmanın tetiklediğini fark etti",
+      "mental_health_realisation": "Bunu ruh sağlığının tetiklediğini fark etti",
+      "neurodivergence_realisation": "Bunu nöroçeşitliliğin tetiklediğini fark etti",
+      "fantasy_reality_disillusionment": "Gerçeklik beklentiyi karşılamadı",
+      "surgery_regret_medical_complications": "Ameliyat pişmanlığı veya tıbbi komplikasyonlar",
+      "ideological_disillusionment": "İdeolojiden veya topluluktan hayal kırıklığı",
+      "social_pressure_ostracism": "Sosyal baskı veya dışlanma",
+      "failure_to_pass": "Karşı cins olarak algılanamadı",
+      "internalised_homophobia_realisation": "İçselleştirilmiş homofobiyi fark etti",
+      "internalised_misogyny_misandry_realisation": "İçselleştirilmiş kadın / erkek düşmanlığını fark etti",
+      "sexual_factors_realisation": "Cinsel etkenleri fark etti (AGP / AAP)",
+      "religious_or_spiritual_change": "Dini veya manevi değişim",
+      "fertility_or_family_desires": "Doğurganlık veya aile kurma isteği"
+    },
+    "choiceSplit": {
+      "error": "Bu grafik yüklenemedi",
+      "empty": "Mevcut filtreler için henüz yanıt yok.",
+      "women": "K · kadınlar (n = {n})",
+      "men": "E · erkekler (n = {n})",
+      "headline": "Kadınlar daha sık “{womenOption}” diyor ({womenShare}, erkeklerde {womenMen}); erkekler daha sık “{menOption}” diyor ({menShare}, kadınlarda {menWomen}).",
+      "note": "Olasılıkla ağırlıklandırılmış: yapay zekânın iki neden arasında 60/40 böldüğü bir hikâye 0.6 ve 0.4 olarak sayılır.",
+      "m": "E",
+      "f": "K"
+    },
+    "ordinal": {
+      "error": "Bu grafik yüklenemedi",
+      "empty": "Mevcut filtreler için henüz yanıt yok.",
+      "all": "Herkes",
+      "women": "Kadınlar",
+      "men": "Erkekler"
+    },
+    "medical_steps": {
+      "statements": {
+        "title": "Atılan tıbbi adımlar"
+      },
+      "count": "n = {n}",
+      "basedOn": "Değerlendirilen {cohort} hikâyeye dayanmaktadır.",
+      "empty": "Mevcut filtreler için henüz yanıt yok.",
+      "error": "Tıbbi adımlar yüklenemedi"
     }
   },
   "topicsPage": {
     "title": "Topics",
     "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
     "empty": "No topics have been published yet."
+  },
+  "storiesPage": {
+    "metadata": {
+      "title": "Detransition Hikâyeleri | detrans.ai",
+      "description": "/r/detrans topluluğundan, yapay zekâ ile özetlenmiş binlerce anonim detransition ve vazgeçme hikâyesini okuyun. Yaşa, cinsiyete ve deneyime göre filtreleyin."
+    },
+    "title": "Detransition Hikâyeleri",
+    "description": "Geçiş yapıp daha sonra detransition yapan ya da vazgeçen kişilerin, /r/detrans'taki gönderi ve yorumlarından yapay zekâ ile derlenmiş {count, number} anonim hikâyesi.",
+    "statsLink": "İstatistikleri keşfedin",
+    "allStories": "Tüm hikâyeler",
+    "story": {
+      "metaTitle": "{title} – Detransition Hikâyesi | detrans.ai",
+      "untitled": "Bir detransition hikâyesi",
+      "notFound": "Hikâye bulunamadı | detrans.ai",
+      "tags": "Etiketler",
+      "moreStories": "Daha fazla hikâye okuyun"
+    }
   }
 }

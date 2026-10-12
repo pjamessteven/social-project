@@ -1,4 +1,6 @@
 import { buildLocalizedPath, getAllPagesWithSlugs } from "@/app/lib/pages";
+import { getListedStories } from "@/app/lib/stories";
+import { getStoryPath } from "@/app/lib/story-urls";
 import {
   getStudyPath,
   getStudySlugMaps,
@@ -9,7 +11,6 @@ import { db } from "@/db";
 import {
   chatConversations,
   detransQuestions,
-  detransUsers,
   studies,
   videos,
 } from "@/db/schema";
@@ -33,11 +34,6 @@ export async function GET(request: NextRequest) {
   const host = request.headers.get("host") || "detrans.ai";
   const protocol = request.headers.get("x-forwarded-proto") || "https";
   const baseUrl = `${protocol}://${host}`;
-
-  // Fetch all users from database
-  const users = await db
-    .select({ username: detransUsers.username })
-    .from(detransUsers);
 
   // Fetch top 500 questions from database based on mode
   const questionsTable = detransQuestions;
@@ -138,6 +134,12 @@ export async function GET(request: NextRequest) {
       lastModified: STATIC_LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/stories`,
+      lastModified: STATIC_LAST_MODIFIED,
+      changeFrequency: "weekly",
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/stats`,
@@ -376,6 +378,50 @@ export async function GET(request: NextRequest) {
   }
 
   localizedRoutes.push(...studyRoutes);
+
+  // ---------------------------------------------------------------------
+  // Story pages: the /stories base is translated per locale, the
+  // {id}-{title} slug is not. Story text is usually only available in
+  // English, and untranslated locale variants canonicalize to the English
+  // page, so only locales with a translated story are listed (and used as
+  // hreflang alternates). Unlisted stories (flagged/thin) are noindex and
+  // never included.
+  // ---------------------------------------------------------------------
+  const listedStories = await getListedStories();
+  const storyRoutes: Array<{
+    url: string;
+    lastModified: string;
+    changeFrequency: string;
+    priority: number;
+    alternates?: Record<string, string>;
+  }> = [];
+
+  for (const story of listedStories) {
+    const storyLocales = sitemapLocales.filter((locale) =>
+      story.translatedLocales.includes(locale),
+    );
+    const alternates: Record<string, string> = {};
+    for (const locale of storyLocales) {
+      alternates[locale] = `${baseUrl}${getStoryPath(locale, story.slug)}`;
+    }
+    alternates["x-default"] =
+      `${baseUrl}${getStoryPath(defaultLocale, story.slug)}`;
+
+    for (const locale of storyLocales) {
+      storyRoutes.push({
+        url: alternates[locale],
+        lastModified: (
+          story.updatedAt ?? new Date(STATIC_LAST_MODIFIED)
+        ).toISOString(),
+        changeFrequency: "monthly",
+        priority: 0.6,
+        // A lone English URL needs no hreflang annotations.
+        alternates: storyLocales.length > 1 ? alternates : undefined,
+      });
+    }
+  }
+
+  localizedRoutes.push(...storyRoutes);
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">

@@ -144,7 +144,9 @@
       "stats": "Statistieken",
       "statsDesc": "Geanonimiseerde detransitie statistieken van /r/detrans",
       "topics": "Topics",
-      "topicsDesc": "Uitgebreide gidsen over belangrijke onderwerpen"
+      "topicsDesc": "Uitgebreide gidsen over belangrijke onderwerpen",
+      "stories": "Verhalen",
+      "storiesDesc": "Van /r/detrans gebruikers"
     },
     "resources": {
       "genderSupport": "Vind Therapeuten",
@@ -183,7 +185,9 @@
     "de": "Duits",
     "he": "Hebreeuws",
     "it": "Italiaans",
-    "nl": "Nederlands"
+    "lt": "Lithuanian",
+    "nl": "Nederlands",
+    "tr": "Turkish"
   },
   "settings": {
     "title": "Instellingen"
@@ -238,26 +242,27 @@
   },
   "chat": {
     "lookingForComments": "Relevante reacties zoeken...",
+    "lookingForStudies": "Looking for relevant studies...",
     "errorOccurred": "Er is een fout opgetreden, probeer opnieuw... Neem contact met mij op als dit blijft gebeuren.",
     "analysingExperiences": "Ervaringen Analyseren",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Zoekresultaten analyseren",
+    "analysingResults": "Resultaten analyseren...",
     "detransPerspective": "-> Wat zijn detrans-perspectieven op dit onderwerp?",
     "transPerspectivesIncluded": "Trans-perspectieven opgenomen",
     "captchaRequired": "Captcha vereist om door te gaan met chatten.",
     "chatArchived": "Deze chat is gearchiveerd. Start een nieuwe.",
     "rateLimitExceeded": "Te veel verzoeken, vertraag en probeer het later opnieuw.",
     "ipMismatchError": "Je IP-adres is gewijzigd. Om misbruik te voorkomen moet je een nieuw gesprek starten.",
-    "analysingResults": "Resultaten analyseren...",
     "followUpQuestions": "Vervolgvragen:",
     "eventLabels": {
       "askDetransitioners": "Vraag Detransitioners",
+      "askTransPeople": "Vraag Trans-geïdentificeerde Mensen",
       "videoArchive": "Video-archief",
       "queryStudies": "Studies zoeken",
       "webSearch": "Web zoeken",
       "queryStudyCatalogue": "Detransitie Studiecatalogus doorzoeken",
       "studyDetail": "Studiedetails",
-      "askTransPeople": "Vraag Trans-geïdentificeerde Mensen",
       "wikiPage": "Wiki page"
     },
     "eventStatus": {
@@ -343,7 +348,21 @@
       "delete": "Gesprek Verwijderen",
       "banning": "Verbannen...",
       "ban": "Gebruiker Verbannen (IP)"
+    },
+    "dialog": {
+      "title": "Gesprek",
+      "toggleIdHint": "Klik om te wisselen tussen datum/land en ID",
+      "shareText": "Bekijk dit gesprek",
+      "share": "Gesprek delen",
+      "copyLink": "Link naar gesprek kopiëren",
+      "noneSelected": "Geen gesprek geselecteerd"
     }
+  },
+  "readingDialog": {
+    "share": "Delen",
+    "copyLink": "Link kopiëren",
+    "copied": "Link gekopieerd naar klembord",
+    "close": "Venster sluiten"
   },
   "stories": {
     "metadata": {
@@ -383,9 +402,9 @@
       "ageRangeYears": "{min} - {max} jaar",
       "sex": {
         "all": "Man en Vrouw",
-        "mine": "Mine",
         "female": "Vrouw",
-        "male": "Man"
+        "male": "Man",
+        "mine": "Mine"
       },
       "tagsPlaceholder": "Selecteer tags om op te filteren...",
       "clearFilters": "Filters Wissen"
@@ -495,14 +514,6 @@
           "content": "We gebruiken hCaptcha, een dienst van derden geleverd door Intuition Machines, Inc., om te beschermen tegen geautomatiseerd misbruik. hCaptcha kan je IP-adres, browserinformatie en interactiegegevens (zoals muusbewegingen en toetsaanslagpatronen) verzamelen om te bepalen of je een mens bent. Deze gegevens vallen onder het eigen privacybeleid van hCaptcha. hCaptcha gebruikt alleen toestemmingsvrije cookies die nodig zijn voor haar dienst."
         }
       },
-      "aiProviders": {
-        "title": "AI-verwerking:",
-        "content": "Je berichten worden verwerkt door AI-providers van derden (momenteel OpenRouter) om antwoorden te genereren. Training op je gesprekken is uitgeschakeld. Raadpleeg het privacybeleid van OpenRouter voor details over hoe zij gegevens verwerken."
-      },
-      "captcha": {
-        "title": "Botdetectie (hCaptcha):",
-        "content": "We gebruiken hCaptcha, een dienst van derden geleverd door Intuition Machines, Inc., om te beschermen tegen geautomatiseerd misbruik. hCaptcha kan je IP-adres, browserinformatie en interactiegegevens (zoals muusbewegingen en toetsaanslagpatronen) verzamelen om te bepalen of je een mens bent. Deze gegevens vallen onder het eigen privacybeleid van hCaptcha. hCaptcha gebruikt alleen toestemmingsvrije cookies die nodig zijn voor haar dienst."
-      },
       "legalBases": {
         "title": "Wettelijke Gronden voor Verwerking (EU/EEA bezoekers)",
         "item1": "Rate-limit verwerking is noodzakelijk voor onze <em>legitieme belangen</em> onder GDPR Art. 6(1)(f) — specifiek, het handhaven van servicebeschikbaarheid en veiligheid.",
@@ -535,6 +546,14 @@
       "contact": {
         "title": "Neem Contact Met Ons Op",
         "content": "Als je vragen, zorgen of klachten hebt, gebruik dan het contactformulier, of e-mail <email>peter@detrans.ai</email>."
+      },
+      "aiProviders": {
+        "title": "AI-verwerking:",
+        "content": "Je berichten worden verwerkt door AI-providers van derden (momenteel OpenRouter) om antwoorden te genereren. Training op je gesprekken is uitgeschakeld. Raadpleeg het privacybeleid van OpenRouter voor details over hoe zij gegevens verwerken."
+      },
+      "captcha": {
+        "title": "Botdetectie (hCaptcha):",
+        "content": "We gebruiken hCaptcha, een dienst van derden geleverd door Intuition Machines, Inc., om te beschermen tegen geautomatiseerd misbruik. hCaptcha kan je IP-adres, browserinformatie en interactiegegevens (zoals muusbewegingen en toetsaanslagpatronen) verzamelen om te bepalen of je een mens bent. Deze gegevens vallen onder het eigen privacybeleid van hCaptcha. hCaptcha gebruikt alleen toestemmingsvrije cookies die nodig zijn voor haar dienst."
       }
     }
   },
@@ -588,12 +607,15 @@
   },
   "videoList": {
     "loading": "Video's laden...",
+    "searchPlaceholder": "Search videos...",
+    "result": "video",
+    "results": "videos",
     "filters": {
       "all": "Alle Verhalen",
-      "mine": "Mine",
       "female": "Vrouw",
       "male": "Man",
-      "detransitioners": "Detransitioners"
+      "detransitioners": "Detransitioners",
+      "mine": "Mine"
     },
     "thumbnailAlt": "Miniatuur voor {title}",
     "by": "door",
@@ -807,7 +829,9 @@
       "legend": {
         "transition": "Transitieleeftijd",
         "detransition": "Detransitieleeftijd"
-      }
+      },
+      "median": "mediaan {age}",
+      "coverage": "Gebaseerd op {transition} transitieleeftijden en {detransition} detransitieleeftijden."
     },
     "transitionDuration": {
       "title": "Transitieduur: Leeftijd bij Transitie vs Leeftijd bij Detransitie",
@@ -831,7 +855,8 @@
       "female": "Vrouw",
       "yearsAvg": "jaar gem",
       "user": "gebruiker",
-      "users": "gebruikers"
+      "users": "gebruikers",
+      "coverage": "Gebaseerd op {count} verhalen waarin beide leeftijden zijn vastgelegd."
     },
     "pathways": {
       "title": "Detransitie Paden Flow",
@@ -951,7 +976,9 @@
     "error": {
       "title": "CAPTCHA Fout",
       "description": "CAPTCHA laden mislukt. Vernieuw de pagina en probeer het opnieuw."
-    }
+    },
+    "verifyFailed": "Verification failed. Please try again.",
+    "rateLimited": "Too many verifications. Please wait a moment and try again."
   },
   "feedback": {
     "title": "Feedback",
@@ -969,11 +996,990 @@
     "metadata": {
       "title": "Geanonimiseerde statistieken | detrans.ai",
       "description": "Geanonimiseerde statistieken over detransitie- en transitiepatronen, waaronder leeftijdsverdeling, duur, redenen en trajecten."
+    },
+    "toc": {
+      "title": "Op deze pagina"
+    },
+    "filters": {
+      "title": "Filters",
+      "edit": "Filters bewerken",
+      "hide": "Filters verbergen",
+      "summary": {
+        "none": "Geen filters",
+        "age": "Leeftijd {min}–{max}",
+        "tags": "{count, plural, =0 {geen tags} =1 {1 tag} other {# tags}}",
+        "detailed": "Alleen gedetailleerd"
+      },
+      "detailed": "Alleen gedetailleerde verhalen",
+      "detailedHint": "Alleen verhalen meenemen die de AI als redelijk of zeer gedetailleerd heeft beoordeeld."
+    },
+    "sections": {
+      "age": {
+        "title": "Leeftijd",
+        "description": "Wanneer detransitioners in transitie en in detransitie gingen."
+      },
+      "journey": {
+        "title": "Leeftijden",
+        "description": "Wanneer mensen voor het eerst dysforie voelden, in transitie gingen, met hormonen begonnen en detransitioneerden."
+      },
+      "duration": {
+        "title": "Duur",
+        "description": "Hoe lang mensen in transitie bleven voordat ze stopten."
+      },
+      "minors": {
+        "title": "Transitie vóór 18",
+        "description": "Wat de verhalen laten zien over het starten van een transitie als kind of tiener."
+      },
+      "reasons": {
+        "title": "Redenen",
+        "description": "Waarom detransitioners zeggen dat ze in transitie gingen – en waarom ze detransitioneerden."
+      },
+      "pathways": {
+        "title": "Trajecten",
+        "description": "Of spijt verschilt naargelang de reden voor transitie, en welke medische stappen mensen zetten."
+      },
+      "regret": {
+        "title": "Spijt",
+        "description": "Hoe sterk de spijt is, hoe die in de loop van de tijd verandert en waar mensen spijt van hebben."
+      },
+      "medical": {
+        "title": "Medische stappen",
+        "description": "Hoe spijt samenhangt met hoe ver de transitie ging."
+      },
+      "complications": {
+        "title": "Complicaties",
+        "description": "Medische complicaties en aanhoudende gezondheidsproblemen na transitie."
+      },
+      "mental_health": {
+        "title": "Mentale gezondheid",
+        "description": "Het beeld van de mentale gezondheid in de verhalen, vóór en na detransitie."
+      },
+      "suicidality": {
+        "title": "Suïcidaliteit",
+        "description": "Hoe vaak verhalen suïcidale gedachten of zelfbeschadiging beschrijven, en wanneer."
+      },
+      "after": {
+        "title": "Na detransitie",
+        "description": "Hoe mentale gezondheid, levenskwaliteit en familierelaties veranderden."
+      },
+      "current_status": {
+        "title": "Where are they now",
+        "description": "Current identities and situations after detransitioning."
+      },
+      "family_community": {
+        "title": "Sociale kosten van detransitie",
+        "description": "Isolement en uitsluiting door detransitie, en desillusie met de transgemeenschap. Vragen die geen onderscheid maakten tussen transitie en detransitie (steun van familie, relaties, loopbaan) zijn weggelaten; familierelaties sinds detransitie komen aan bod onder „Na detransitie”."
+      },
+      "sexuality": {
+        "title": "Seksualiteit",
+        "description": "Seksuele oriëntatie ten opzichte van het geboortegeslacht, vóór transitie en na detransitie."
+      },
+      "trends": {
+        "title": "Door de jaren heen",
+        "description": "Hoe de verhalen – en hun redenen – veranderden over cohorten per transitiejaar."
+      },
+      "features": {
+        "title": "Kenmerken",
+        "description": "Every statement the AI evaluated across the stories — causes, processes and outcomes."
+      },
+      "compare": {
+        "title": "Vergelijken",
+        "description": "Hoe de prevalentie van kenmerken verschuift tussen twee helften van het cohort."
+      },
+      "matrix": {
+        "title": "Verbanden",
+        "description": "Antwoorden op vragen waarover gediscussieerd wordt – ook waar een verwacht verschil niet zichtbaar is."
+      },
+      "stories": {
+        "title": "Verhalen",
+        "description": "Anonieme fragmenten van de mensen achter deze cijfers.",
+        "browse": "Bekijk alle verhalen"
+      },
+      "methodology": {
+        "title": "Methodologie",
+        "description": "Hoe de dataset is opgebouwd en hoe je deze grafieken leest."
+      },
+      "overview": {
+        "title": "In één oogopslag",
+        "description": "Elke ja/nee-stelling die de AI heeft beoordeeld, gerangschikt naar het aantal verhalen waarvoor ze duidelijk waar is."
+      },
+      "lives": {
+        "title": "Individuele tijdlijnen",
+        "description": "Elke lijn is één persoon, van de leeftijd waarop de transitie begon tot de leeftijd waarop die stopte."
+      },
+      "drivers": {
+        "title": "Minder besproken factoren",
+        "description": "Lichaamsbeeld, identiteitsinstabiliteit en seksuele factoren die als bijdragend aan transitie worden beschreven."
+      },
+      "adversity": {
+        "title": "Trauma & tegenspoed",
+        "description": "Hoe vaak verhalen trauma beschrijven, en hoe vaak trauma als hoofdreden wordt genoemd."
+      },
+      "online": {
+        "title": "Online- & groepsinvloed",
+        "description": "Welke platforms het belangrijkst waren, en hoe online- en groepsinvloed in de verhalen naar voren komen."
+      },
+      "process": {
+        "title": "Keerpunten",
+        "description": "Wat mensen hielp om van transitie richting detransitie te gaan."
+      }
+    },
+    "features": {
+      "search": "Kenmerken zoeken…",
+      "sort": {
+        "prevalence": "Prevalentie",
+        "alpha": "A–Z"
+      },
+      "tiers": {
+        "cause": "Oorzaak",
+        "process": "Proces",
+        "outcome": "Uitkomst"
+      },
+      "kinds": {
+        "noul": "Ja / nee",
+        "choice": "Keuze",
+        "score": "Schaal"
+      },
+      "groups": {
+        "reasons": "Redenen",
+        "causes": "Oorzaken",
+        "processes": "Processen",
+        "regret": "Spijt",
+        "medical": "Medisch",
+        "mental_health": "Mentale gezondheid",
+        "adversity": "Tegenspoed",
+        "social": "Sociaal",
+        "sexuality": "Seksualiteit",
+        "online": "Online",
+        "identity": "Identiteit",
+        "outcomes": "Uitkomsten",
+        "attitudes": "Opvattingen",
+        "quality": "Kwaliteit"
+      },
+      "basedOn": "Over {cohort} beoordeelde verhalen.",
+      "coverageNote": "{n} van de {cohort} beoordeelde verhalen ({percent}%) bevatten een antwoord.",
+      "question": "Hoe is dit gemeten?",
+      "confidence": "Mediane AI-zekerheid voor dit kenmerk: {value}%.",
+      "filterByTag": "Alleen verhalen met de tag „{tag}”",
+      "placeholder": "Kies een kenmerk uit de lijst om het te verkennen.",
+      "backToList": "Alle kenmerken",
+      "noResults": "Geen kenmerken komen overeen met je zoekopdracht.",
+      "noData": "Geen antwoorden voor de huidige filters.",
+      "loading": "Laden…",
+      "error": "Kenmerkgegevens konden niet worden geladen",
+      "noul": {
+        "prevalenceLabel": "van de beoordeelde verhalen ligt boven de drempel",
+        "range": "kans {from} – {to}",
+        "count": "{count} verhalen ({percent}%)",
+        "thresholdShort": "drempel {threshold}",
+        "legend": {
+          "yes": "Waarschijnlijk waar",
+          "maybe": "Onzeker",
+          "no": "Waarschijnlijk onwaar"
+        },
+        "above": "Waarschijnlijk waar",
+        "uncertain": "Onzeker",
+        "below": "Waarschijnlijk onwaar"
+      },
+      "choice": {
+        "soft": "Kansmassa",
+        "hard": "Winnende optie",
+        "softTooltip": "≈{percent}% (≈{count} verhalen aan kansmassa)",
+        "hardTooltip": "{percent}% ({count} verhalen)",
+        "softNote": "Balken tonen de opgetelde AI-kans die elke optie over alle verhalen krijgt, zodat gemengde antwoorden naar verhouding meetellen.",
+        "hardNote": "Balken tellen alleen de meest waarschijnlijke optie van elk verhaal."
+      },
+      "score": {
+        "meanLabel": "Gemiddeld {value} op een schaal van 0–{max}",
+        "range": "Score {from} – {to}",
+        "count": "{count} verhalen",
+        "meanShort": "gemiddelde {value}"
+      },
+      "related": {
+        "title": "Vaak samen gezien",
+        "lift": "{lift}× vaker ({percent}%)"
+      },
+      "listNote": "Punten tonen het aandeel verhalen waarin elke stelling duidelijk waar is (AI-kans ≥ 0,8); lijnen tonen het 95%-interval. Vervaagde rijen hebben minder dan 30 antwoorden. Selecteer een rij om bijbehorende verhalen te lezen. Gebaseerd op {cohort} beoordeelde verhalen."
+    },
+    "compare": {
+      "splitLabel": "Splitsen op",
+      "thresholdNote": "Verhalen boven de AI-drempel van {threshold} versus eronder.",
+      "filter": {
+        "all": "Alle antwoorden",
+        "clear": "Alleen duidelijke signalen"
+      },
+      "clearNote": "{excluded} onduidelijke verhalen aan beide kanten uitgesloten.",
+      "cohortTrue": "{label}: aanwezig (n = {n})",
+      "cohortFalse": "Niet aanwezig (n = {n})",
+      "splitSex": "Biologisch geslacht",
+      "sexNote": "Vergelijking van verhalen van vrouwen en mannen.",
+      "cohortWomen": "Vrouwen (n = {n})",
+      "cohortMen": "Mannen (n = {n})",
+      "splitAge": "Leeftijd bij transitie",
+      "ageNote": "Vergelijking van verhalen waarin de transitie vóór 18 begon met verhalen vanaf 18.",
+      "cohortUnder18": "Onder 18 (n = {n})",
+      "cohortAdult": "18 of ouder (n = {n})",
+      "rowTooltip": "{label}: {pctTrue}% van {nTrue} vs. {pctFalse}% van {nFalse}",
+      "empty": "Nog niet genoeg verhalen met antwoorden aan beide kanten van deze splitsing.",
+      "showSmallSamples": "Kleine steekproeven tonen",
+      "hideSmallSamples": "Kleine steekproeven verbergen",
+      "hiddenNote": "{count, plural, =1 {1 kenmerk is} other {# kenmerken zijn}} verborgen omdat er aan één kant minder dan 3 verhalen zijn.",
+      "error": "Vergelijkingsgegevens konden niet worden geladen",
+      "ratio": "{ratio} zo vaak",
+      "ratioNote": "Rijen zijn gerangschikt naar hoe sterk de twee groepen verschillen (relatief risico); kenmerken die aan beide kanten zeldzaam zijn, zijn weggelaten. Lijnen tonen 95%-intervallen; vervaagde rijen hebben aan één kant minder dan 30 verhalen.",
+      "showAll": "Alle kenmerken tonen"
+    },
+    "matrix": {
+      "presetLabel": "Weergave",
+      "presets": {
+        "outcomesByCause": "Uitkomsten per oorzaak",
+        "outcomesByProcess": "Uitkomsten per keerpunt"
+      },
+      "metric": {
+        "rate": "Aandeel",
+        "lift": "Lift t.o.v. gemiddelde"
+      },
+      "swap": "Assen wisselen",
+      "legendRate": "Aandeel van de overeenkomende verhalen waarin het kolomkenmerk waar is.",
+      "legendLift": "Vergeleken met het gemiddelde van het hele cohort (blauw erboven, rood eronder).",
+      "sampleNote": "Elke cel vergelijkt verhalen met het rijkenmerk met verhalen zonder dat kenmerk. Langere, gedetailleerdere verhalen noemen meer kenmerken van elke soort, dus de meeste verhoudingen liggen boven 1× – vergelijk cellen dus met elkaar in plaats van met 1×. Cellen met minder dan 30 verhalen aan een van beide kanten blijven leeg.",
+      "basedOn": "{cohort} beoordeelde verhalen in deze weergave.",
+      "cellTooltip": "{row} → {col}: {percent}% van {n} verhalen · {lift}× cohortgemiddelde",
+      "cellTooltipNoLift": "{row} → {col}: {percent}% van {n} verhalen",
+      "cellMasked": "{row} → {col}: niet genoeg verhalen",
+      "empty": "Nog niet genoeg verhalen met antwoorden voor deze weergave.",
+      "error": "Matrixgegevens konden niet worden geladen",
+      "presetDescriptions": {
+        "outcomesByCause": "Hoeveel vaker (of minder vaak) elke uitkomst voorkomt in verhalen met een bepaalde oorzaak dan in verhalen zonder die oorzaak.",
+        "outcomesByProcess": "Hoeveel vaker (of minder vaak) elke uitkomst voorkomt in verhalen met een bepaald keerpunt dan in verhalen zonder dat keerpunt."
+      },
+      "legendMore": "Vaker met het rijkenmerk",
+      "legendLess": "Minder vaak",
+      "legendNone": "Geen duidelijk verschil (95%-interval bevat 1×)",
+      "cellTooltipRatio": "{row} → {col}: {percent}% van {n} verhalen met de factor vs. {percentWithout}% zonder · {ratio} (95%-interval {low}–{high})",
+      "legendWith": "Met de factor",
+      "legendWithout": "Zonder",
+      "themes": {
+        "medical": "Medisch traject",
+        "helped": "Wat hielp",
+        "who": "Wie spijt heeft, wie terugkeert",
+        "views": "Visie op transitie voor anderen"
+      },
+      "predictors": {
+        "under18": "Transitie vóór 18 begonnen",
+        "women": "Vrouwen (vs. mannen)",
+        "sameSex": "Vóór transitie tot hetzelfde geslacht aangetrokken",
+        "took_puberty_blockers": "Puberteitsblokkers gebruikt",
+        "took_hormones": "Hormonen gebruikt",
+        "top_surgery": "Borstoperatie (top surgery) gehad",
+        "process_benefited_from_therapy": "Verkennende therapie hielp",
+        "gender_nonconformity_childhood": "Als kind gendernonconform",
+        "process_spiritual_experience": "Een spirituele ervaring",
+        "autogynephilia": "Autogynefilie",
+        "adv_trauma_history": "Een traumageschiedenis",
+        "contributed_online_influence": "Online invloed"
+      },
+      "outcomes": {
+        "regret": "heeft spijt van transitie",
+        "bodyReconciliation": "heeft het eigen lichaam leren accepteren",
+        "retransitioned": "opnieuw in transitie gegaan",
+        "mentalHealthBetter": "mentale gezondheid beter na detransitie",
+        "critical": "kritisch over of tegen transitie voor anderen"
+      },
+      "ratio": "{ratio} zo vaak",
+      "noDifference": "Geen duidelijk verschil",
+      "rowTooltip": "{with} van {nWith} verhalen met de factor vs. {without} van {nWithout} zonder",
+      "note": "Lijnen tonen 95%-intervallen. „Geen duidelijk verschil” betekent dat het interval ook helemaal geen verschil omvat. Dit zijn verbanden in wat mensen schrijven, geen oorzaken, en wie langere, gedetailleerdere verhalen schrijft, noemt van alles meer. Gebaseerd op {cohort} beoordeelde verhalen."
+    },
+    "regret": {
+      "composition": {
+        "pair": "{positive}% van de verhalen uit spijt over de transitie en {negative}% zegt er geen spijt van te hebben; de rest zegt het niet. Van wie het wel zegt, heeft {statedShare}% spijt (n = {stated}).",
+        "any": "{positive}% uit spijt (n = {n})"
+      },
+      "scale": {
+        "title": "Hoe sterk is de spijt?",
+        "mean": "{value} / {max} gemiddelde intensiteit",
+        "levels": {
+          "level0": "Geen spijt geuit",
+          "level1": "Licht of voorbijgaand",
+          "level2": "Matig, terugkerend",
+          "level3": "Ernstig, aanhoudend"
+        }
+      },
+      "choice": {
+        "title": "Hoe verandert de spijt in de loop van de tijd?",
+        "options": {
+          "resolved": "Grotendeels verwerkt",
+          "improving": "Verbetert",
+          "stable": "Stabiel",
+          "worsening": "Verslechtert",
+          "mixed": "Wisselend of cyclisch"
+        }
+      },
+      "statements": {
+        "title": "Waar mensen specifiek spijt van hebben"
+      },
+      "count": "n = {n}",
+      "basedOn": "Gebaseerd op {cohort} beoordeelde verhalen.",
+      "empty": "Nog geen antwoorden over spijt voor de huidige filters.",
+      "error": "Gegevens over spijt konden niet worden geladen"
+    },
+    "complications": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% meldt ten minste één medische complicatie of aanhoudend gezondheidsprobleem (n = {n})"
+      },
+      "scale": {
+        "title": "Hoe ernstig waren de complicaties?",
+        "mean": "{value} / {max} gemiddelde ernst",
+        "levels": {
+          "level0": "Geen complicaties",
+          "level1": "Lichte of beheersbare bijwerkingen",
+          "level2": "Aanzienlijke complicaties",
+          "level3": "Ernstige of blijvende schade"
+        }
+      },
+      "statements": {
+        "title": "Specifieke medische problemen"
+      },
+      "count": "n = {n}",
+      "basedOn": "Gebaseerd op {cohort} beoordeelde verhalen.",
+      "empty": "Nog geen medische antwoorden voor de huidige filters.",
+      "error": "Gegevens over complicaties konden niet worden geladen"
+    },
+    "mental_health": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% toont ten minste één psychische aandoening of crisis (n = {n})"
+      },
+      "scale": {
+        "title": "Hoe ernstig is het beeld van de mentale gezondheid?",
+        "mean": "{value} / {max} gemiddelde ernst",
+        "levels": {
+          "level0": "Geen noemenswaardige problemen",
+          "level1": "Lichte of situationele klachten",
+          "level2": "Aanzienlijke, behandelde aandoeningen",
+          "level3": "Ernstige aandoeningen of crisis"
+        }
+      },
+      "statements": {
+        "title": "Aandoeningen en crises"
+      },
+      "count": "n = {n}",
+      "basedOn": "Gebaseerd op {cohort} beoordeelde verhalen.",
+      "empty": "Nog geen antwoorden over mentale gezondheid voor de huidige filters.",
+      "error": "Gegevens over mentale gezondheid konden niet worden geladen"
+    },
+    "suicidality": {
+      "during": "Tijdens transitie",
+      "since": "Sinds detransitie",
+      "duringDescription": "Hoe waarschijnlijk het model acht dat een verhaal suïcidale gedachten, zelfbeschadiging of een zelfmoordpoging beschrijft tijdens de transitie.",
+      "sinceDescription": "Hoe waarschijnlijk het model acht dat een verhaal suïcidale gedachten, zelfbeschadiging of een zelfmoordpoging beschrijft sinds de detransitie.",
+      "splitNote": "Gesplitst op huidige status · wortelschaal-as",
+      "overall": "Alle verhalen",
+      "sqrtNote": "De verticale as gebruikt een wortelschaal zodat de kleinere kansklassen zichtbaar blijven naast de piek bij nul.",
+      "tooltipBin": "Kans {range}",
+      "tooltipCount": "{count, plural, =1 {1 verhaal} other {# verhalen}}",
+      "bands": {
+        "no": "Waarschijnlijk onwaar (< 0,2)",
+        "mixed": "Onzeker (0,2–0,8)",
+        "yes": "Waarschijnlijk waar (≥ 0,8)"
+      },
+      "count": "n = {n}",
+      "basedOn": "Gebaseerd op {cohort} verhalen met een antwoord.",
+      "empty": "Nog geen antwoorden over suïcidaliteit voor de huidige filters.",
+      "error": "Gegevens over suïcidaliteit konden niet worden geladen",
+      "statements": {
+        "title": "Suïcidale gedachten en zelfbeschadiging"
+      }
+    },
+    "current_status": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% (n = {n})"
+      },
+      "choice": {
+        "title": "Where are they now?",
+        "options": {
+          "detransitioned": "Gedetransitioneerd",
+          "desisted": "Gestopt vóór medische transitie (desistance)",
+          "retransitioned": "Opnieuw in transitie",
+          "still_trans_questioning": "Nog steeds trans, twijfelend",
+          "questioning": "Twijfelend",
+          "unclear": "Onduidelijk",
+          "supportive": "Steunt transitie voor anderen",
+          "conditional": "Steunt onder voorwaarden",
+          "critical": "Kritisch over transitie",
+          "opposed": "Tegen",
+          "not_addressed": "Niet besproken"
+        },
+        "description": "Onder verhalen die het bespreken, van steunend tot tegen."
+      },
+      "secondaryChoice": {
+        "title": "Hoe kijken ze naar transitie voor andere mensen?"
+      },
+      "statements": {
+        "title": "Huidige situatie"
+      },
+      "count": "n = {n}",
+      "basedOn": "Gebaseerd op {cohort} beoordeelde verhalen.",
+      "empty": "Nog geen antwoorden over status voor de huidige filters.",
+      "error": "Statusgegevens konden niet worden geladen",
+      "headline": "{percent}% is kritisch over of tegen transitie voor andere mensen (n ≈ {n}).",
+      "note": "Kansgewogen aandelen. Verhalen die de vraag niet bespreken, zijn weggelaten."
+    },
+    "family_community": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% antwoordt ja op ten minste één van de onderstaande vragen (n = {n})"
+      },
+      "statements": {
+        "title": "Gestelde vragen",
+        "description": "Elk verhaal is getoetst aan precies deze vragen. Een verhaal telt mee als het antwoord een duidelijk ja is."
+      },
+      "count": "n = {n}",
+      "basedOn": "Gebaseerd op {cohort} beoordeelde verhalen.",
+      "empty": "Nog geen antwoorden voor de huidige filters.",
+      "error": "Gegevens konden niet worden geladen"
+    },
+    "sexuality": {
+      "beforeLabel": "Vóór transitie",
+      "afterLabel": "Na detransitie",
+      "options": {
+        "homosexual": "Homosexual",
+        "bisexual": "Biseksueel",
+        "heterosexual": "Heterosexual",
+        "asexual": "Aseksueel",
+        "other": "Anders of veranderend"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 verhaal} other {# verhalen}}",
+      "statements": {
+        "title": "Orientation and attraction"
+      },
+      "count": "n = {n}",
+      "basedOn": "Stroom gebaseerd op {cohort} verhalen met beide antwoorden over oriëntatie.",
+      "empty": "Not enough orientation answers for the current filters yet.",
+      "error": "Gegevens over seksualiteit konden niet worden geladen",
+      "hero": {
+        "statement": "van de detransitioners die hun huidige oriëntatie noemen, is homo, lesbisch of biseksueel (n = {n}).",
+        "bySex": "M {men} homo of biseksueel ({menSame} homo) | V {women} lesbisch of biseksueel ({womenSame} lesbisch)"
+      },
+      "mix": {
+        "title": "Oriëntatie vóór transitie en na detransitie",
+        "description": "Ten opzichte van het geboortegeslacht, onder verhalen die het vermelden.",
+        "women": "Vrouwen",
+        "men": "Mannen",
+        "all": "Iedereen",
+        "before": "vóór",
+        "after": "na"
+      },
+      "matrix": {
+        "title": "Veranderde de oriëntatie?",
+        "description": "Elke rij is één oriëntatie vóór transitie; cellen tonen wat die mensen na detransitie beschrijven.",
+        "headline": "{percent}% beschrijft dezelfde oriëntatie vóór transitie en na detransitie (n = {n}).",
+        "corner": "Vóór ↓ · Na →",
+        "cell": "{from} vóór → {to} na: {percent}% ({count})",
+        "note": "Alleen verhalen die de oriëntatie aan beide kanten vermelden. Rijen met minder dan 30 verhalen blijven leeg."
+      },
+      "coverage": "De oriëntatie wordt vóór transitie vermeld in {before} verhalen en na detransitie in {after}, van de {cohort} beoordeelde verhalen."
+    },
+    "trends": {
+      "series": {
+        "contributed_online_influence": "Online invloed",
+        "contributed_rapid_onset": "Plotseling begin (ROGD)",
+        "regret_transition": "Spijt",
+        "took_puberty_blockers": "Puberteitsblokkers"
+      },
+      "tooltip": "{bucket} · n = {n}",
+      "mode": {
+        "strict": "Binair signaal",
+        "soft": "Gemiddelde kans",
+        "strictNote": "Aandeel verhalen waarover het model zeker is (≥ 0,8).",
+        "softNote": "Gemiddelde kans over alle verhalen – onduidelijke verhalen blijven in de trend."
+      },
+      "seriesTooltip": "{strict} binair · {mean} gem.",
+      "medianAge": "Mediane transitieleeftijd per cohort",
+      "coverageNote": "Elk punt gebruikt de beantwoorde verhalen van het cohort; de vroegste cohorten hebben de kleinste steekproeven.",
+      "basedOn": "Over {cohort} verhalen met een transitiejaar.",
+      "empty": "Nog geen transitiejaren voor de huidige filters.",
+      "error": "Trendgegevens konden niet worden geladen",
+      "linesTitle": "Kenmerken per transitiejaar",
+      "linesDescription": "Aandeel verhalen waarin elke stelling duidelijk waar is, gegroepeerd naar het jaar waarin de transitie begon. Voeg kenmerken toe of verwijder ze om te vergelijken.",
+      "reasonsTitle": "Hoofdreden voor transitie, per periode",
+      "reasonsDescription": "Hoe de meest voorkomende hoofdredenen verschuiven tussen cohorten per transitiejaar.",
+      "add": "Kenmerk toevoegen…",
+      "remove": "{label} verwijderen",
+      "strictNote": "Aandeel verhalen waarbij de AI zeker is dat de stelling waar is (≥ 0,8). Holle punten zijn gebaseerd op minder dan 30 verhalen. Recente cohorten hebben minder tijd gehad sinds hun transitie – minder tijd om tot een operatie of langetermijneffecten te komen, en meestal kortere verhalen – waardoor veel kenmerken aan de rechterkant dalen; een kenmerk dat toch stijgt, zoals angst, valt op."
+    },
+    "uncertainty": {
+      "binary": "Binair",
+      "bands": "Drie niveaus",
+      "likelyFalse": "Waarschijnlijk onwaar (< 0,2)",
+      "unclear": "Onduidelijk (0,2–0,8)",
+      "unclearShort": "onduidelijk",
+      "likelyTrue": "Waarschijnlijk waar (≥ 0,8)",
+      "rowTooltip": "{false}% waarschijnlijk onwaar · {unclear}% onduidelijk · {true}% waarschijnlijk waar"
+    },
+    "minors": {
+      "tiles": {
+        "minor": "begon onder 18 ({n} van {total} verhalen met een leeftijd)",
+        "le15": "begon op 15 jaar of jonger",
+        "dysphoria": "voelde voor het eerst dysforie op 12 jaar of jonger (n = {n})",
+        "female": "van wie onder 18 begon, is vrouw"
+      },
+      "early": "In deze verhalen verschijnen puberteitsblokkers vanaf {min} jaar, met een mediaan van {median} (n = {n}). {hormones} begon uiterlijk op 16-jarige leeftijd met hormonen, en {detrans} was op 18-jarige leeftijd al gedetransitioneerd.",
+      "empty": "Nog geen leeftijdsgegevens voor de huidige filters.",
+      "error": "Gegevens over vroege transitie konden niet worden geladen",
+      "byEra": {
+        "title": "Vóór 18 begonnen, per transitiejaar",
+        "description": "Aandeel verhalen waarin de transitie vóór 18 jaar begon, gegroepeerd naar het jaar waarin die begon.",
+        "note": "Lijnen tonen het 95%-interval. Latere cohorten bevatten meer mensen die recent en jong in transitie gingen, dus lees de trend met voorzichtigheid."
+      }
+    },
+    "journey": {
+      "milestones": {
+        "first_dysphoria": "Eerste dysforie",
+        "transition": "Transitie",
+        "hormones": "Hormonen",
+        "detransition": "Detransitie",
+        "in_transition": "Jaren in transitie"
+      },
+      "median": "mediaan {age}",
+      "count": "n = {n}",
+      "tooltip": "Leeftijd {age}: {count, plural, =1 {1 verhaal} other {# verhalen}}",
+      "yearsTooltip": "{years, plural, =1 {1 jaar} other {# jaar}} in transitie: {count, plural, =1 {1 verhaal} other {# verhalen}}",
+      "basedOn": "Elke rij telt alleen de verhalen die die leeftijd noemen. De as is afgekapt op het 99e percentiel.",
+      "empty": "Nog geen tijdlijngegevens voor de huidige filters.",
+      "error": "Trajectgegevens konden niet worden geladen"
+    },
+    "gradient": {
+      "regret": "Spijt",
+      "noRegret": "Geen spijt",
+      "notStated": "Niet vermeld",
+      "tiers": {
+        "no_transition": "Geen transitie",
+        "social_only": "Alleen sociaal",
+        "hormones": "Hormonen of blokkers",
+        "surgery": "Operatie",
+        "unclear": "Onduidelijk"
+      },
+      "tierTooltip": "{n} verhalen: {regrets} spijt, {noRegret} geen spijt, {notStated} niet vermeld",
+      "count": "n = {n}",
+      "selectionNote": "Wie vroeg detransitioneert, bereikt latere stappen nooit. Dit laat dus zien welke trajecten waar naartoe leiden – niet dat medische stappen spijt veroorzaken.",
+      "basedOn": "Gebaseerd op {cohort} beoordeelde verhalen.",
+      "empty": "Nog geen antwoorden voor de huidige filters.",
+      "error": "Gegevens over medische stappen konden niet worden geladen",
+      "statedNote": "Het getal rechts is het aandeel met spijt onder verhalen die zich hoe dan ook uitspreken (spijt of geen spijt).",
+      "headline": "{percent}% van de mensen die een operatie hadden, zegt spijt te hebben van de transitie, onder wie zich erover uitspreekt (n = {n}).",
+      "headlineCompare": "{percent}% van de mensen die een operatie hadden, zegt spijt te hebben van de transitie, tegenover {hormones}% van wie stopte bij hormonen of blokkers (n = {n} / {nHormones}). Alleen verhalen die zich erover uitspreken, tellen mee."
+    },
+    "after": {
+      "levels": {
+        "muchWorse": "Veel slechter",
+        "worse": "Wat slechter",
+        "same": "Ongeveer hetzelfde",
+        "better": "Wat beter",
+        "muchBetter": "Veel beter"
+      },
+      "panels": {
+        "mh_change_after_detransition": "Mentale gezondheid",
+        "outcome_quality_of_life": "Levenskwaliteit",
+        "outcome_family_relationship_change": "Familierelaties"
+      },
+      "summary": "{better}% beter · {worse}% slechter",
+      "count": "n = {n}",
+      "basedOn": "Gebaseerd op {cohort} beoordeelde verhalen.",
+      "empty": "Nog geen antwoorden voor de huidige filters.",
+      "error": "Gegevens over veranderingen konden niet worden geladen",
+      "worseSide": "Slechter",
+      "betterSide": "Beter",
+      "headline": "{better}% beschrijft een betere mentale gezondheid na detransitie; {worse}% beschrijft die als slechter (n = {n})."
+    },
+    "stories": {
+      "excerptNote": "Anonieme AI-samenvattingen van openbare berichten op /r/detrans.",
+      "agesCaption": "Leeftijden: eerste dysforie → transitie → {outcome}",
+      "ages": {
+        "firstDysphoria": "Eerste dysforie",
+        "transition": "Transitie",
+        "detransition": "Detransitie",
+        "desistance": "Desistance",
+        "socialTransition": "Sociale transitie"
+      },
+      "female": "Vrouw",
+      "male": "Man",
+      "basedOn": "Uit {cohort} overeenkomende verhalen.",
+      "empty": "Nog geen verhalen voor de huidige filters.",
+      "error": "Verhalen konden niet worden geladen",
+      "loadMore": "Meer verhalen laden",
+      "loading": "Laden…",
+      "upvotesLabel": "Totaal aantal upvotes: {count}",
+      "dialog": {
+        "title": "Verhaal",
+        "summary": "Samenvatting",
+        "fullStory": "Volledig verhaal",
+        "close": "Verhaal sluiten",
+        "error": "Het volledige verhaal kon niet worden geladen",
+        "openPage": "Open de verhaalpagina"
+      },
+      "status": {
+        "detransitioned": "Gedetransitioneerd",
+        "desisted": "Gedesisteerd"
+      }
+    },
+    "highlights": {
+      "title": "Wat opvalt",
+      "types": {
+        "prevalence": "Meest voorkomend",
+        "pair": "Gaan samen",
+        "improvement": "Leven na detransitie",
+        "journey": "Typisch traject",
+        "minorShare": "Vóór 18 begonnen",
+        "minorLe15": "Op 15 of jonger begonnen",
+        "minorDysphoria": "Eerste dysforie uiterlijk op 12",
+        "minorFemale": "Wie jong begint",
+        "orientation": "Seksuele oriëntatie"
+      },
+      "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
+      "prevalenceUnclear": "Nog eens {unclear}% is onduidelijk.",
+      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "improvement": "{better}% zegt dat de levenskwaliteit na detransitie verbeterde; {worse}% zegt dat die verslechterde (n = {n}).",
+      "journey": "Het typische traject: eerste dysforie op {dysphoria} → transitie op {transition} → detransitie op {detransition} (n = {n}).",
+      "minorShare": "{percent}% van de verhalen met een leeftijd begon de transitie onder 18 (n = {n} van {total}).",
+      "minorLe15": "{percent}% begon op 15 jaar of jonger (n = {n}).",
+      "minorDysphoria": "{percent}% voelde voor het eerst dysforie op 12 jaar of jonger (n = {n}).",
+      "minorFemale": "{percent}% van wie onder 18 begon, is vrouw (n = {n}).",
+      "explore": "Verkennen",
+      "orientation": "{percent}% van de detransitioners die hun oriëntatie noemen, is homo, lesbisch of biseksueel ({sameSex}% homo of lesbisch; n = {n})."
+    },
+    "pathways": {
+      "journey": "Oorzaak → Proces → Uitkomst",
+      "medical": "Medisch traject",
+      "stages": {
+        "cause": "Hoofdreden",
+        "process": "Keerpunt",
+        "outcome": "Spijt nu"
+      },
+      "causes": {
+        "social_role_discomfort": "Ongemak met sociale rol",
+        "internalised_homophobia": "Geïnternaliseerde homofobie",
+        "internalised_misogyny_misandry": "Geïnternaliseerde misogynie / misandrie",
+        "trauma": "Trauma",
+        "mental_health_issues": "Mentale gezondheid",
+        "neurodivergence": "Neurodivergentie",
+        "body_dysmorphia": "Lichaamsdysmorfie",
+        "online_influence": "Online invloed",
+        "peer_influence": "Invloed van leeftijdsgenoten",
+        "sexual_factors": "Seksuele factoren",
+        "parental_or_medical_pressure": "Druk van ouders of artsen",
+        "other_unclear": "Anders / onduidelijk",
+        "unclear": "Onduidelijk"
+      },
+      "processes": {
+        "process_benefited_from_therapy": "Verkennende therapie",
+        "process_detrans_community_exposure": "Detrans-gemeenschap",
+        "process_research_consumption": "Onderzoek & media",
+        "process_self_reflection": "Zelfreflectie",
+        "process_time_off_hormones": "Pauze van hormonen",
+        "process_medical_scare": "Medische schrik",
+        "process_family_partner_intervention": "Familie of partner",
+        "process_spiritual_experience": "Spirituele ervaring",
+        "other": "Anders / onduidelijk"
+      },
+      "outcomes": {
+        "regrets": "Heeft spijt",
+        "no_regret": "Geen spijt",
+        "not_stated": "Niet vermeld"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 verhaal} other {# verhalen}}",
+      "basedOn": "Gebaseerd op {cohort} beoordeelde verhalen met antwoorden in deze weergave.",
+      "empty": "Nog niet genoeg verhalen met antwoorden voor deze weergave.",
+      "error": "Trajectgegevens konden niet worden geladen",
+      "journeyDescription": "Hoe hoofdredenen, keerpunten en spijt in de verhalen met elkaar samenhangen.",
+      "medicalDescription": "Welke medische stappen mensen zetten vóór hun detransitie.",
+      "regretByReason": {
+        "title": "Spijt naar hoofdreden voor transitie",
+        "description": "Onder verhalen die zeggen of ze spijt hebben van hun transitie, het aandeel dat spijt heeft – gegroepeerd naar de opgegeven hoofdreden voor transitie.",
+        "headline": "In totaal uit {percent}% van de verhalen die spijt bespreken spijt (n = {n}).",
+        "note": "Punten tonen het aandeel met spijt onder verhalen die zich duidelijk uitspreken; lijnen tonen het 95%-interval. Vervaagde rijen hebben minder dan 30 verhalen.",
+        "error": "Spijt per reden kon niet worden geladen",
+        "empty": "Nog geen antwoorden voor de huidige filters."
+      }
+    },
+    "methodology": {
+      "p1": "detrans.ai bouwt deze dataset op uit openbare verhalen op /r/detrans. Een AI herschrijft de verspreide reacties en berichten van elke gebruiker tot één verhaal in de ik-vorm en haalt daaruit een tijdlijn van belangrijke leeftijden. Alleen gebruikers die genoeg hebben gedeeld om een volledig verhaal samen te stellen, zijn opgenomen.",
+      "p1b": "Deze statistieken omvatten alleen verhalen waarin de persoon duidelijk heeft bevestigd te zijn gedetransitioneerd of te zijn gestopt (desistance). Van het ruwe corpus naar de grafieken:",
+      "table": {
+        "comments": "Verzamelde reacties van /r/detrans",
+        "posts": "Verzamelde berichten van /r/detrans",
+        "authors": "Unieke auteurs in het corpus",
+        "selected": "Auteurs met minstens 5 reacties met 3+ upvotes",
+        "removed": "Verwijderd: detransitie of desistance niet duidelijk bevestigd",
+        "remaining": "Daarna behouden verhalen",
+        "cohort": "Opgenomen in de grafieken hieronder (gemarkeerde accounts uitgesloten)"
+      },
+      "p2": "Elk verhaal wordt vervolgens beoordeeld door Jev, een probabilistisch vraag-antwoordmodel, aan de hand van ongeveer honderd stellingen over oorzaken, ervaringen en uitkomsten. Ja/nee-vragen geven een kans van 0 tot 1, keuzevragen geven een kans voor elke optie, en schaalvragen geven een verwachte waarde op de schaal die onder elke grafiek staat.",
+      "p3": "Bij ja/nee-kenmerken markeren we een verhaal als „waar” wanneer de kans de drempel bereikt (standaard 0,8). Het histogram bij elk kenmerk toont de volledige kansverdeling, zodat een kenmerk met veel middenwaarden als werkelijk onzeker te herkennen is in plaats van duidelijk waar of onwaar.",
+      "p4": "Alle grafieken houden rekening met de filters hierboven. Omdat de vragenset in de loop van de tijd is veranderd en verhalen in verwerkingsrondes opnieuw worden bekeken, vermeldt elke grafiek hoeveel van de gefilterde verhalen daadwerkelijk een antwoord op die vraag hebben.",
+      "p5": "Accounts die onecht, verzonnen of bot-achtig lijken, worden door het model gemarkeerd en uitgesloten van deze statistieken. Door AI geëxtraheerde gegevens kunnen nog steeds fouten bevatten – systeemprompts zijn gepubliceerd op de <prompts>promptspagina</prompts>, en samenvattingen worden vergeleken met de oorspronkelijke reacties.",
+      "threshold": {
+        "title": "Hoeveel de drempel uitmaakt",
+        "description": "Grafieken tellen een stelling als waar wanneer de AI-kans minstens 0,8 is. Lagere drempels zouden hogere cijfers opleveren; deze grafiek laat zien hoeveel.",
+        "error": "Drempelgegevens konden niet worden geladen",
+        "tooltip": "Drempel {threshold}",
+        "xAxis": "Kansdrempel",
+        "siteThreshold": "Gebruikt op deze pagina",
+        "note": "Aandeel verhalen op of boven elke drempel. De drempel van 0,8 is bewust voorzichtig gekozen."
+      },
+      "accountType": {
+        "title": "Wie er schrijft",
+        "description": "Of elk account de eigen ervaring van de schrijver beschrijft.",
+        "options": {
+          "personal_experience": "Eigen ervaring",
+          "parent": "Een ouder",
+          "friend": "Een vriend(in) of partner",
+          "researcher_journalist": "Onderzoeker, journalist of zorgverlener",
+          "other": "Anders of gemengd"
+        }
+      },
+      "detail": {
+        "title": "Hoe gedetailleerd de verhalen zijn",
+        "description": "De beoordeling door de AI van hoe specifiek elk verslag in de ik-vorm is. Gebruik „Alleen gedetailleerde verhalen” in de filters om elke grafiek te beperken tot de twee hoogste niveaus.",
+        "levels": {
+          "level0": "Vaag of algemeen",
+          "level1": "Enige persoonlijke details",
+          "level2": "Gedetailleerd, concrete gebeurtenissen",
+          "level3": "Zeer gedetailleerd, meerjarig verslag"
+        }
+      }
+    },
+    "prevalence": {
+      "women": "Vrouwen",
+      "men": "Mannen",
+      "interval": "{group} {percent} (95%-interval {low}–{high}, n = {n})",
+      "smallSample": "n = {n}",
+      "openStories": "Verhalen tonen",
+      "showAll": "Alle {count} tonen",
+      "showFewer": "Minder tonen",
+      "note": "Punten tonen het aandeel verhalen waarin de stelling duidelijk waar is (AI-kans ≥ 0,8); lijnen tonen het 95%-interval. Vervaagde rijen hebben minder dan 30 antwoorden.",
+      "noteWithStories": "Punten tonen het aandeel verhalen waarin de stelling duidelijk waar is (AI-kans ≥ 0,8); lijnen tonen het 95%-interval. Vervaagde rijen hebben minder dan 30 antwoorden. Selecteer een rij om bijbehorende verhalen te lezen.",
+      "gap": "Grootste verschil: {label} – {higher} van de {higherGroup} vs. {lower} van de {lowerGroup}.",
+      "womenLower": "vrouwen",
+      "menLower": "mannen",
+      "m": "M",
+      "f": "V",
+      "menLegend": "M · mannen",
+      "womenLegend": "V · vrouwen"
+    },
+    "storyPeek": {
+      "title": "Verhalen: {label}",
+      "meta": "{count, plural, =1 {1 overeenkomend verhaal} other {# overeenkomende verhalen}}",
+      "error": "Verhalen konden niet worden geladen.",
+      "empty": "Geen overeenkomende verhalen voor de huidige filters.",
+      "readFull": "Lees het volledige verhaal",
+      "note": "Anonieme fragmenten, hoogst gewaardeerd eerst. De volledige lijst staat in het onderdeel Verhalen onderaan de pagina."
+    },
+    "reasons": {
+      "transitionTitle": "Hoofdreden voor transitie",
+      "transitionDescription": "De belangrijkste reden die elke persoon geeft om met de transitie te beginnen.",
+      "detransitionTitle": "Hoofdreden voor detransitie",
+      "detransitionDescription": "De belangrijkste reden die elke persoon geeft om te stoppen."
+    },
+    "byYear": {
+      "error": "Gegevens per jaar konden niet worden geladen",
+      "empty": "Nog geen transitiejaren voor de huidige filters.",
+      "other": "Anders",
+      "n": "n = {n}",
+      "note": "Kansgewogen aandelen per cohort van transitiejaar. Vervaagde rijen hebben minder dan 30 verhalen."
+    },
+    "overview": {
+      "error": "Het overzicht kon niet worden geladen",
+      "basedOn": "Gebaseerd op {cohort} beoordeelde verhalen."
+    },
+    "drivers": {
+      "statements": {
+        "title": "Beschreven als bijdragend aan transitie"
+      },
+      "count": "n = {n}",
+      "basedOn": "Gebaseerd op {cohort} beoordeelde verhalen.",
+      "empty": "Nog geen antwoorden voor de huidige filters.",
+      "error": "Deze gegevens konden niet worden geladen"
+    },
+    "adversity": {
+      "composition": {
+        "any": "{positive}% beschrijft ten minste één vorm van trauma of tegenspoed (n = {n})"
+      },
+      "statements": {
+        "title": "Beschreven soorten tegenspoed"
+      },
+      "contrast": {
+        "title": "Traumageschiedenis vs. trauma als hoofdreden",
+        "description": "Veel meer verhalen noemen trauma dan dat ze het aanwijzen als de belangrijkste drijfveer voor transitie of detransitie.",
+        "history": "Beschrijven een traumageschiedenis",
+        "transitionReason": "Noemen trauma als hoofdreden voor transitie",
+        "detransitionReason": "Noemen het besef van trauma als hoofdreden voor detransitie",
+        "note": "Punten tonen het aandeel verhalen; lijnen tonen het 95%-interval. De rijen met redenen tellen per verhaal alleen de ene hoofdreden."
+      },
+      "count": "n = {n}",
+      "basedOn": "Gebaseerd op {cohort} beoordeelde verhalen.",
+      "empty": "Nog geen antwoorden over tegenspoed voor de huidige filters.",
+      "error": "Gegevens over tegenspoed konden niet worden geladen"
+    },
+    "online": {
+      "choice": {
+        "title": "Meest invloedrijke platform",
+        "description": "Onder verhalen die een online invloed noemen. Verhalen zonder noemenswaardige online invloed zijn weggelaten.",
+        "options": {
+          "reddit": "Reddit",
+          "tumblr": "Tumblr",
+          "tiktok": "TikTok",
+          "twitter": "Twitter / X",
+          "youtube": "YouTube",
+          "discord": "Discord",
+          "other": "Ander platform of fandomomgeving"
+        }
+      },
+      "statements": {
+        "title": "Online- en groepsinvloed"
+      },
+      "byYear": {
+        "title": "Platform per transitiejaar",
+        "description": "Hoe het meest invloedrijke platform verschoof tussen cohorten per transitiejaar."
+      },
+      "count": "n = {n}",
+      "basedOn": "Gebaseerd op {cohort} beoordeelde verhalen.",
+      "empty": "Nog geen antwoorden over online invloed voor de huidige filters.",
+      "error": "Gegevens over online invloed konden niet worden geladen"
+    },
+    "process": {
+      "composition": {
+        "any": "{positive}% beschrijft ten minste één van deze keerpunten (n = {n})"
+      },
+      "statements": {
+        "title": "Wat mensen richting detransitie bracht"
+      },
+      "count": "n = {n}",
+      "basedOn": "Gebaseerd op {cohort} beoordeelde verhalen.",
+      "empty": "Nog geen antwoorden over keerpunten voor de huidige filters.",
+      "error": "Gegevens over keerpunten konden niet worden geladen"
+    },
+    "lives": {
+      "error": "Tijdlijnen konden niet worden geladen",
+      "empty": "Nog geen verhalen met zowel een transitie- als een detransitieleeftijd voor de huidige filters.",
+      "legend": {
+        "transition": "In transitie",
+        "blockers": "Puberteitsblokkers",
+        "hormones": "Hormonen",
+        "surgery": "Operatie"
+      },
+      "ariaLabel": "Strookdiagram van {n} individuele tijdlijnen van transitie tot detransitie",
+      "tooltip": {
+        "woman": "Vrouw",
+        "man": "Man",
+        "person": "Persoon",
+        "firstDysphoria": "Eerste dysforie op {age}",
+        "transition": "Transitie op {age}",
+        "pubertyBlockers": "Puberteitsblokkers op {age}",
+        "hormones": "Hormonen op {age}",
+        "topSurgery": "Borstoperatie op {age}",
+        "bottomSurgery": "Genitale operatie op {age}",
+        "detransition": "Detransitie op {age}"
+      },
+      "note": "{n} mensen van wie het verhaal beide leeftijden noemt, gesorteerd op leeftijd bij transitie. Leeftijden zijn de interpretatie van de AI en kunnen bij benadering zijn."
+    },
+    "duration": {
+      "error": "Duurgegevens konden niet worden geladen",
+      "empty": "Nog geen transitieduur voor de huidige filters.",
+      "all": "Iedereen",
+      "women": "Vrouwen",
+      "men": "Mannen",
+      "legend": "{label}: mediaan {median} jaar (n = {n})",
+      "tooltipTitle": "Binnen {years, plural, =1 {1 jaar} other {# jaar}}",
+      "xAxis": "Jaren sinds begin van de transitie",
+      "note": "Aandeel mensen dat binnen een bepaald aantal jaren was gestopt. Iedereen hier is uiteindelijk gedetransitioneerd, dus dit laat zien hoe lang de transitie voor hen duurde – niet hoeveel mensen die in transitie gaan later stoppen.",
+      "headline": "{one}% was binnen een jaar gestopt en {five}% binnen vijf jaar na het begin (mediaan {median} jaar, n = {n})."
+    },
+    "optionLabels": {
+      "reddit": "Reddit",
+      "tumblr": "Tumblr",
+      "tiktok": "TikTok",
+      "twitter": "Twitter / X",
+      "youtube": "YouTube",
+      "discord": "Discord",
+      "social_role_discomfort": "Ongemak met sociale rol",
+      "internalised_homophobia": "Geïnternaliseerde homofobie",
+      "internalised_misogyny_misandry": "Geïnternaliseerde misogynie / misandrie",
+      "trauma": "Trauma",
+      "mental_health_issues": "Mentale gezondheid",
+      "neurodivergence": "Neurodivergentie",
+      "body_dysmorphia": "Lichaamsdysmorfie",
+      "online_influence": "Online invloed",
+      "peer_influence": "Invloed van leeftijdsgenoten",
+      "sexual_factors": "Seksuele factoren (AGP / AAP)",
+      "parental_or_medical_pressure": "Druk van ouders of artsen",
+      "other_unclear": "Anders / onduidelijk",
+      "accepted_sexed_body": "Accepteerde het eigen geslachtelijke lichaam",
+      "social_construct_realisation": "Zag genderrollen als het probleem",
+      "trauma_realisation": "Besefte dat trauma de drijfveer was",
+      "mental_health_realisation": "Besefte dat mentale gezondheid de drijfveer was",
+      "neurodivergence_realisation": "Besefte dat neurodivergentie de drijfveer was",
+      "fantasy_reality_disillusionment": "De werkelijkheid kwam niet overeen met de verwachting",
+      "surgery_regret_medical_complications": "Spijt van operatie of medische complicaties",
+      "ideological_disillusionment": "Gedesillusioneerd door de ideologie of gemeenschap",
+      "social_pressure_ostracism": "Sociale druk of uitsluiting",
+      "failure_to_pass": "Kon niet passen",
+      "internalised_homophobia_realisation": "Besefte geïnternaliseerde homofobie",
+      "internalised_misogyny_misandry_realisation": "Besefte geïnternaliseerde misogynie / misandrie",
+      "sexual_factors_realisation": "Besefte seksuele factoren (AGP / AAP)",
+      "religious_or_spiritual_change": "Religieuze of spirituele verandering",
+      "fertility_or_family_desires": "Vruchtbaarheid of kinderwens"
+    },
+    "choiceSplit": {
+      "error": "Deze grafiek kon niet worden geladen",
+      "empty": "Nog geen antwoorden voor de huidige filters.",
+      "women": "V · vrouwen (n = {n})",
+      "men": "M · mannen (n = {n})",
+      "headline": "Vrouwen noemen vaker „{womenOption}” ({womenShare} vs. {womenMen} van de mannen); mannen noemen vaker „{menOption}” ({menShare} vs. {menWomen} van de vrouwen).",
+      "note": "Kansgewogen: een verhaal dat de AI 60/40 over twee redenen verdeelt, telt als 0,6 en 0,4.",
+      "m": "M",
+      "f": "V"
+    },
+    "ordinal": {
+      "error": "Deze grafiek kon niet worden geladen",
+      "empty": "Nog geen antwoorden voor de huidige filters.",
+      "all": "Iedereen",
+      "women": "Vrouwen",
+      "men": "Mannen"
+    },
+    "medical_steps": {
+      "statements": {
+        "title": "Gezette medische stappen"
+      },
+      "count": "n = {n}",
+      "basedOn": "Gebaseerd op {cohort} beoordeelde verhalen.",
+      "empty": "Nog geen antwoorden voor de huidige filters.",
+      "error": "Medische stappen konden niet worden geladen"
     }
   },
   "topicsPage": {
     "title": "Topics",
     "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
     "empty": "No topics have been published yet."
+  },
+  "storiesPage": {
+    "metadata": {
+      "title": "Detransitieverhalen | detrans.ai",
+      "description": "Lees duizenden geanonimiseerde verhalen over detransitie en desistentie uit de /r/detrans-community, samengevat door AI. Filter op leeftijd, geslacht en ervaring."
+    },
+    "title": "Detransitieverhalen",
+    "description": "{count, number} geanonimiseerde verhalen van mensen die in transitie gingen en later detransitioneerden of ervan afzagen, door AI samengesteld uit hun berichten en reacties op /r/detrans.",
+    "statsLink": "Bekijk de statistieken",
+    "allStories": "Alle verhalen",
+    "story": {
+      "metaTitle": "{title} – Detransitieverhaal | detrans.ai",
+      "untitled": "Een detransitieverhaal",
+      "notFound": "Verhaal niet gevonden | detrans.ai",
+      "tags": "Tags",
+      "moreStories": "Lees meer verhalen"
+    }
   }
 }

@@ -144,7 +144,9 @@
       "stats": "Statistikk",
       "statsDesc": "Anonymiserte detransisjonsstatistikker fra /r/detrans",
       "topics": "Topics",
-      "topicsDesc": "Grundige guider om sentrale temaer"
+      "topicsDesc": "Grundige guider om sentrale temaer",
+      "stories": "Historier",
+      "storiesDesc": "Fra /r/detrans-brukere"
     },
     "resources": {
       "genderSupport": "Finn Terapeuter",
@@ -183,6 +185,7 @@
     "de": "Tysk",
     "he": "Hebraisk",
     "it": "Italiensk",
+    "lt": "Lithuanian",
     "nl": "Nederlandsk",
     "tr": "Tyrkisk",
     "no": "Norsk"
@@ -240,26 +243,27 @@
   },
   "chat": {
     "lookingForComments": "Leter etter relevante kommentarer...",
+    "lookingForStudies": "Looking for relevant studies...",
     "errorOccurred": "Det oppsto en feil, prøv igjen... Kontakt meg hvis dette fortsetter å skje.",
     "analysingExperiences": "Analyserer erfaringer",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analyserer søkeresultater",
+    "analysingResults": "Analyserer resultater...",
     "detransPerspective": "-> Hva er detransisjonerte perspektiver på dette temaet?",
     "transPerspectivesIncluded": "Transpersoners perspektiver inkludert",
     "captchaRequired": "Captcha kreves for å fortsette chatten.",
     "chatArchived": "Denne chatten er arkivert. Start en ny.",
     "rateLimitExceeded": "For mange forespørsler, brems og prøv igjen senere.",
     "ipMismatchError": "IP-adressen din har endret seg. For å forhindre misbruk må du starte en ny samtale.",
-    "analysingResults": "Analyserer resultater...",
     "followUpQuestions": "Oppfølgingsspørsmål:",
     "eventLabels": {
       "askDetransitioners": "Spør detransisjonerte",
+      "askTransPeople": "Spør transpersoner",
       "videoArchive": "Videoarkiv",
       "queryStudies": "Søk i studier",
       "webSearch": "Nettsøk",
       "queryStudyCatalogue": "Søk i detransisjonsstudiekatalogen",
       "studyDetail": "Studiedetaljer",
-      "askTransPeople": "Spør transpersoner",
       "wikiPage": "Wiki page"
     },
     "eventStatus": {
@@ -345,7 +349,21 @@
       "delete": "Slett samtale",
       "banning": "Utestenger...",
       "ban": "Utesteng bruker (IP)"
+    },
+    "dialog": {
+      "title": "Samtale",
+      "toggleIdHint": "Klikk for å veksle mellom dato/land og ID",
+      "shareText": "Se denne samtalen",
+      "share": "Del samtale",
+      "copyLink": "Kopier lenke til samtalen",
+      "noneSelected": "Ingen samtale valgt"
     }
+  },
+  "readingDialog": {
+    "share": "Del",
+    "copyLink": "Kopier lenke",
+    "copied": "Lenke kopiert til utklippstavlen",
+    "close": "Lukk dialog"
   },
   "stories": {
     "metadata": {
@@ -385,9 +403,9 @@
       "ageRangeYears": "{min} - {max} år",
       "sex": {
         "all": "Mann og kvinne",
-        "mine": "Mine",
         "female": "Kvinne",
-        "male": "Mann"
+        "male": "Mann",
+        "mine": "Mine"
       },
       "tagsPlaceholder": "Velg merker å filtrere etter...",
       "clearFilters": "Tøm filtre"
@@ -497,14 +515,6 @@
           "content": "Vi bruker hCaptcha, en tredjepartstjeneste levert av Intuition Machines, Inc., for å beskytte mot automatisert misbruk. hCaptcha kan samle inn IP-adressen din, nettleserinformasjon og interaksjonsdata (som musebevegelser og tastetrykkmønstre) for å avgjøre om du er menneskelig. Disse dataene er underlagt hCaptchas egen personvernpolicy. hCaptcha bruker bare samtykkefrie informasjonskapsler som er nødvendige for tjenesten."
         }
       },
-      "aiProviders": {
-        "title": "AI-behandling:",
-        "content": "Meldingene dine behandles av tredjeparts AI-leverandører (for øyeblikket OpenRouter) for å generere svar. Trening på samtalene dine er deaktivert. Vennligst se OpenRouters personvernpolicy for detaljer om hvordan de håndterer data."
-      },
-      "captcha": {
-        "title": "Botdeteksjon (hCaptcha):",
-        "content": "Vi bruker hCaptcha, en tredjepartstjeneste levert av Intuition Machines, Inc., for å beskytte mot automatisert misbruk. hCaptcha kan samle inn IP-adressen din, nettleserinformasjon og interaksjonsdata (som musebevegelser og tastetrykkmønstre) for å avgjøre om du er menneskelig. Disse dataene er underlagt hCaptchas egen personvernpolicy. hCaptcha bruker bare samtykkefrie informasjonskapsler som er nødvendige for tjenesten."
-      },
       "legalBases": {
         "title": "Juridiske grunnlag for behandling (EU/EØS-besøkende)",
         "item1": "Hastighetsbegrensningsbehandling er nødvendig for våre <em>berettigede interesser</em> under GDPR art. 6(1)(f) – spesifikt for å opprettholde tjenestetilgjengelighet og sikkerhet.",
@@ -537,6 +547,14 @@
       "contact": {
         "title": "Kontakt oss",
         "content": "Hvis du har spørsmål, bekymringer eller klager, bruk enten kontaktskjemaet, eller send e-post til <email>peter@detrans.ai</email>."
+      },
+      "aiProviders": {
+        "title": "AI-behandling:",
+        "content": "Meldingene dine behandles av tredjeparts AI-leverandører (for øyeblikket OpenRouter) for å generere svar. Trening på samtalene dine er deaktivert. Vennligst se OpenRouters personvernpolicy for detaljer om hvordan de håndterer data."
+      },
+      "captcha": {
+        "title": "Botdeteksjon (hCaptcha):",
+        "content": "Vi bruker hCaptcha, en tredjepartstjeneste levert av Intuition Machines, Inc., for å beskytte mot automatisert misbruk. hCaptcha kan samle inn IP-adressen din, nettleserinformasjon og interaksjonsdata (som musebevegelser og tastetrykkmønstre) for å avgjøre om du er menneskelig. Disse dataene er underlagt hCaptchas egen personvernpolicy. hCaptcha bruker bare samtykkefrie informasjonskapsler som er nødvendige for tjenesten."
       }
     }
   },
@@ -590,12 +608,15 @@
   },
   "videoList": {
     "loading": "Laster videoer...",
+    "searchPlaceholder": "Search videos...",
+    "result": "video",
+    "results": "videos",
     "filters": {
       "all": "Alle historier",
-      "mine": "Mine",
       "female": "Kvinne",
       "male": "Mann",
-      "detransitioners": "Detransisjonerte"
+      "detransitioners": "Detransisjonerte",
+      "mine": "Mine"
     },
     "thumbnailAlt": "Miniatyrbilde for {title}",
     "by": "av",
@@ -809,7 +830,9 @@
       "legend": {
         "transition": "Kjønnsovergangsalder",
         "detransition": "Detransisjonsalder"
-      }
+      },
+      "median": "median {age}",
+      "coverage": "Basert på {transition} transisjonsaldre og {detransition} detransisjonsaldre."
     },
     "transitionDuration": {
       "title": "Kjønnsovergangsvarighet: Alder ved kjønnsovergang vs alder ved detransisjon",
@@ -833,7 +856,8 @@
       "female": "Kvinne",
       "yearsAvg": "år gjennomsnitt",
       "user": "bruker",
-      "users": "brukere"
+      "users": "brukere",
+      "coverage": "Basert på {count} historier der begge aldre er oppgitt."
     },
     "pathways": {
       "title": "Detransisjonsveier Flyt",
@@ -953,7 +977,9 @@
     "error": {
       "title": "CAPTCHA-feil",
       "description": "Kunne ikke laste CAPTCHA. Vennligst oppdater siden og prøv igjen."
-    }
+    },
+    "verifyFailed": "Verification failed. Please try again.",
+    "rateLimited": "Too many verifications. Please wait a moment and try again."
   },
   "feedback": {
     "title": "Tilbakemelding",
@@ -971,11 +997,990 @@
     "metadata": {
       "title": "Anonymisert statistikk | detrans.ai",
       "description": "Anonymisert statistikk om detransisjons- og transisjonsmønstre, inkludert aldersfordeling, varighet, årsaker og forløp."
+    },
+    "toc": {
+      "title": "På denne siden"
+    },
+    "filters": {
+      "title": "Filtre",
+      "edit": "Rediger filtre",
+      "hide": "Skjul filtre",
+      "summary": {
+        "none": "Ingen filtre",
+        "age": "Alder {min}–{max}",
+        "tags": "{count, plural, =0 {ingen merker} =1 {1 merke} other {# merker}}",
+        "detailed": "Kun detaljerte"
+      },
+      "detailed": "Kun detaljerte historier",
+      "detailedHint": "Ta bare med historier som KI-en har vurdert som rimelig eller svært detaljerte."
+    },
+    "sections": {
+      "age": {
+        "title": "Alder",
+        "description": "Når detransisjonerte gikk gjennom transisjon og detransisjonerte."
+      },
+      "journey": {
+        "title": "Aldre",
+        "description": "Når folk først kjente dysfori, startet transisjon, begynte på hormoner og detransisjonerte."
+      },
+      "duration": {
+        "title": "Varighet",
+        "description": "Hvor lenge folk var i transisjon før de stoppet."
+      },
+      "minors": {
+        "title": "Transisjon før 18",
+        "description": "Hva historiene viser om å starte transisjon som barn eller tenåring."
+      },
+      "reasons": {
+        "title": "Årsaker",
+        "description": "Hvorfor detransisjonerte sier at de startet transisjon — og hvorfor de detransisjonerte."
+      },
+      "pathways": {
+        "title": "Forløp",
+        "description": "Om anger varierer etter hvorfor folk startet transisjon, og hvilke medisinske steg de tok."
+      },
+      "regret": {
+        "title": "Anger",
+        "description": "Hvor sterk angeren er, hvordan den endrer seg over tid, og hva folk angrer på."
+      },
+      "medical": {
+        "title": "Medisinsk involvering",
+        "description": "Hvordan anger henger sammen med hvor langt transisjonen gikk."
+      },
+      "complications": {
+        "title": "Komplikasjoner",
+        "description": "Medisinske komplikasjoner og vedvarende helseproblemer etter transisjon."
+      },
+      "mental_health": {
+        "title": "Psykisk helse",
+        "description": "Bildet av den psykiske helsen på tvers av historiene, før og etter detransisjon."
+      },
+      "suicidality": {
+        "title": "Suicidalitet",
+        "description": "Hvor ofte historier beskriver selvmordstanker eller selvskading, og når."
+      },
+      "after": {
+        "title": "Etter detransisjon",
+        "description": "Hvordan psykisk helse, livskvalitet og familierelasjoner endret seg."
+      },
+      "current_status": {
+        "title": "Where are they now",
+        "description": "Current identities and situations after detransitioning."
+      },
+      "family_community": {
+        "title": "Sosial kostnad ved å detransisjonere",
+        "description": "Isolasjon og utstøting som følge av detransisjon, og desillusjon over transmiljøet. Spørsmål som ikke skilte mellom transisjon og detransisjon (familiestøtte, forhold, karriere) er utelatt; familierelasjoner etter detransisjon dekkes under «Etter detransisjon»."
+      },
+      "sexuality": {
+        "title": "Seksualitet",
+        "description": "Seksuell orientering i forhold til fødselskjønn, før transisjon og etter detransisjon."
+      },
+      "trends": {
+        "title": "Gjennom årene",
+        "description": "Hvordan historiene — og årsakene i dem — har endret seg på tvers av kohorter etter transisjonsår."
+      },
+      "features": {
+        "title": "Kjennetegn",
+        "description": "Every statement the AI evaluated across the stories — causes, processes and outcomes."
+      },
+      "compare": {
+        "title": "Sammenlign",
+        "description": "Hvordan forekomsten av kjennetegn endrer seg mellom to halvdeler av kohorten."
+      },
+      "matrix": {
+        "title": "Sammenhenger",
+        "description": "Svar på spørsmål folk krangler om — også der en forventet forskjell ikke viser seg."
+      },
+      "stories": {
+        "title": "Historier",
+        "description": "Anonyme utdrag fra menneskene bak tallene.",
+        "browse": "Se alle historier"
+      },
+      "methodology": {
+        "title": "Metode",
+        "description": "Hvordan datasettet er bygget opp, og hvordan diagrammene skal leses."
+      },
+      "overview": {
+        "title": "Oversikt",
+        "description": "Alle ja/nei-påstander KI-en har vurdert, rangert etter hvor mange historier de tydelig stemmer for."
+      },
+      "lives": {
+        "title": "Individuelle tidslinjer",
+        "description": "Hver linje er én person, fra alderen de startet transisjon til alderen de stoppet."
+      },
+      "drivers": {
+        "title": "Mindre omtalte drivkrefter",
+        "description": "Kroppsbilde, identitetsustabilitet og seksuelle faktorer beskrevet som medvirkende til transisjon."
+      },
+      "adversity": {
+        "title": "Traumer og motgang",
+        "description": "Hvor ofte historier beskriver traumer, og hvor ofte traumer nevnes som hovedårsaken."
+      },
+      "online": {
+        "title": "Påvirkning på nett og fra jevnaldrende",
+        "description": "Hvilke plattformer som betydde mest, og hvordan påvirkning på nett og fra jevnaldrende viser seg i historiene."
+      },
+      "process": {
+        "title": "Vendepunkter",
+        "description": "Hva som hjalp folk fra transisjon mot detransisjon."
+      }
+    },
+    "features": {
+      "search": "Søk i kjennetegn…",
+      "sort": {
+        "prevalence": "Forekomst",
+        "alpha": "A–Z"
+      },
+      "tiers": {
+        "cause": "Årsak",
+        "process": "Prosess",
+        "outcome": "Utfall"
+      },
+      "kinds": {
+        "noul": "Ja / nei",
+        "choice": "Valg",
+        "score": "Skala"
+      },
+      "groups": {
+        "reasons": "Årsaker",
+        "causes": "Årsaker",
+        "processes": "Prosesser",
+        "regret": "Anger",
+        "medical": "Medisinsk",
+        "mental_health": "Psykisk helse",
+        "adversity": "Motgang",
+        "social": "Sosialt",
+        "sexuality": "Seksualitet",
+        "online": "På nett",
+        "identity": "Identitet",
+        "outcomes": "Utfall",
+        "attitudes": "Holdninger",
+        "quality": "Kvalitet"
+      },
+      "basedOn": "På tvers av {cohort} vurderte historier.",
+      "coverageNote": "{n} av {cohort} vurderte historier ({percent} %) har et svar.",
+      "question": "Hvordan ble dette målt?",
+      "confidence": "Median KI-sikkerhet for dette kjennetegnet: {value} %.",
+      "filterByTag": "Kun historier merket «{tag}»",
+      "placeholder": "Velg et kjennetegn fra listen for å utforske det.",
+      "backToList": "Alle kjennetegn",
+      "noResults": "Ingen kjennetegn samsvarer med søket ditt.",
+      "noData": "Ingen svar for de gjeldende filtrene.",
+      "loading": "Laster…",
+      "error": "Kunne ikke laste data for kjennetegn",
+      "noul": {
+        "prevalenceLabel": "av de vurderte historiene ligger over terskelen",
+        "range": "{from} – {to} sannsynlighet",
+        "count": "{count} historier ({percent} %)",
+        "thresholdShort": "terskel {threshold}",
+        "legend": {
+          "yes": "Sannsynligvis sant",
+          "maybe": "Usikkert",
+          "no": "Sannsynligvis usant"
+        },
+        "above": "Sannsynligvis sant",
+        "uncertain": "Usikkert",
+        "below": "Sannsynligvis usant"
+      },
+      "choice": {
+        "soft": "Sannsynlighetsmasse",
+        "hard": "Vinnende alternativ",
+        "softTooltip": "≈{percent} % (≈{count} historier i sannsynlighetsmasse)",
+        "hardTooltip": "{percent} % ({count} historier)",
+        "softNote": "Søylene viser summen av KI-sannsynligheten hvert alternativ får på tvers av historiene, slik at blandede svar teller forholdsmessig.",
+        "hardNote": "Søylene teller bare hver histories ene mest sannsynlige alternativ."
+      },
+      "score": {
+        "meanLabel": "Gjennomsnitt {value} på en skala fra 0–{max}",
+        "range": "Poeng {from} – {to}",
+        "count": "{count} historier",
+        "meanShort": "snitt {value}"
+      },
+      "related": {
+        "title": "Ofte sett sammen",
+        "lift": "{lift}× vanligere ({percent} %)"
+      },
+      "listNote": "Prikkene viser andelen historier der hver påstand tydelig er sann (KI-sannsynlighet ≥ 0,8); linjene viser 95 %-intervallet. Nedtonede rader har færre enn 30 svar. Velg en rad for å lese tilhørende historier. Basert på {cohort} vurderte historier."
+    },
+    "compare": {
+      "splitLabel": "Del opp etter",
+      "thresholdNote": "Viser historier over KI-terskelen på {threshold} mot historier under den.",
+      "filter": {
+        "all": "Alle svar",
+        "clear": "Kun tydelige signaler"
+      },
+      "clearNote": "{excluded} uklare historier er utelatt fra begge sider.",
+      "cohortTrue": "{label}: til stede (n = {n})",
+      "cohortFalse": "Ikke til stede (n = {n})",
+      "splitSex": "Biologisk kjønn",
+      "sexNote": "Sammenligner historier fra kvinner og menn.",
+      "cohortWomen": "Kvinner (n = {n})",
+      "cohortMen": "Menn (n = {n})",
+      "splitAge": "Alder ved transisjon",
+      "ageNote": "Sammenligner historier der transisjonen startet før 18 år med historier der den startet ved 18 år eller senere.",
+      "cohortUnder18": "Under 18 (n = {n})",
+      "cohortAdult": "18 eller eldre (n = {n})",
+      "rowTooltip": "{label}: {pctTrue} % av {nTrue} mot {pctFalse} % av {nFalse}",
+      "empty": "Ennå ikke nok historier med svar på begge sider av denne oppdelingen.",
+      "showSmallSamples": "Vis små utvalg",
+      "hideSmallSamples": "Skjul små utvalg",
+      "hiddenNote": "{count, plural, =1 {1 kjennetegn er} other {# kjennetegn er}} skjult fordi det er færre enn 3 historier på én side.",
+      "error": "Kunne ikke laste sammenligningsdata",
+      "ratio": "{ratio} så vanlig",
+      "ratioNote": "Radene er rangert etter hvor sterkt de to gruppene skiller seg (risikoratio), og kjennetegn som er sjeldne på begge sider er utelatt. Linjene viser 95 %-intervaller; nedtonede rader har færre enn 30 historier på én side.",
+      "showAll": "Vis alle kjennetegn"
+    },
+    "matrix": {
+      "presetLabel": "Visning",
+      "presets": {
+        "outcomesByCause": "Utfall etter årsak",
+        "outcomesByProcess": "Utfall etter vendepunkt"
+      },
+      "metric": {
+        "rate": "Andel",
+        "lift": "Løft mot gjennomsnitt"
+      },
+      "swap": "Bytt akser",
+      "legendRate": "Andel av tilhørende historier der kolonnens kjennetegn er sant.",
+      "legendLift": "Sammenlignet med gjennomsnittet for hele kohorten (blått over, rødt under).",
+      "sampleNote": "Hver celle sammenligner historier med radens kjennetegn med historier uten det. Lengre, mer detaljerte historier nevner flere kjennetegn av alle slag, så de fleste forholdstall ligger over 1× — sammenlign cellene med hverandre heller enn med 1×. Celler med færre enn 30 historier på en av sidene står tomme.",
+      "basedOn": "{cohort} vurderte historier i denne visningen.",
+      "cellTooltip": "{row} → {col}: {percent} % av {n} historier · {lift}× kohortgjennomsnittet",
+      "cellTooltipNoLift": "{row} → {col}: {percent} % av {n} historier",
+      "cellMasked": "{row} → {col}: ikke nok historier",
+      "empty": "Ennå ikke nok historier med svar for denne visningen.",
+      "error": "Kunne ikke laste matrisedata",
+      "presetDescriptions": {
+        "outcomesByCause": "Hvor mye vanligere (eller mindre vanlig) hvert utfall er i historier med en gitt årsak enn i historier uten den.",
+        "outcomesByProcess": "Hvor mye vanligere (eller mindre vanlig) hvert utfall er i historier med et gitt vendepunkt enn i historier uten det."
+      },
+      "legendMore": "Vanligere med radens kjennetegn",
+      "legendLess": "Mindre vanlig",
+      "legendNone": "Ingen tydelig forskjell (95 %-intervallet inkluderer 1×)",
+      "cellTooltipRatio": "{row} → {col}: {percent} % av {n} historier med det mot {percentWithout} % uten · {ratio} (95 %-intervall {low}–{high})",
+      "legendWith": "Med faktoren",
+      "legendWithout": "Uten den",
+      "themes": {
+        "medical": "Medisinsk forløp",
+        "helped": "Hva som hjalp",
+        "who": "Hvem angrer, hvem går tilbake",
+        "views": "Syn på transisjon for andre"
+      },
+      "predictors": {
+        "under18": "Startet transisjon før 18",
+        "women": "Kvinner (mot menn)",
+        "sameSex": "Tiltrukket av samme kjønn før transisjon",
+        "took_puberty_blockers": "Tok pubertetsblokkere",
+        "took_hormones": "Tok hormoner",
+        "top_surgery": "Tok overkroppskirurgi",
+        "process_benefited_from_therapy": "Utforskende terapi hjalp",
+        "gender_nonconformity_childhood": "Kjønnsukonform som barn",
+        "process_spiritual_experience": "En åndelig opplevelse",
+        "autogynephilia": "Autogynefili",
+        "adv_trauma_history": "Traumer i fortiden",
+        "contributed_online_influence": "Påvirkning på nett"
+      },
+      "outcomes": {
+        "regret": "angrer på transisjonen",
+        "bodyReconciliation": "kom til å akseptere kroppen sin",
+        "retransitioned": "retransisjonerte",
+        "mentalHealthBetter": "bedre psykisk helse etter detransisjon",
+        "critical": "kritisk til eller imot transisjon for andre"
+      },
+      "ratio": "{ratio} så vanlig",
+      "noDifference": "Ingen tydelig forskjell",
+      "rowTooltip": "{with} av {nWith} historier med det mot {without} av {nWithout} uten",
+      "note": "Linjene viser 95 %-intervaller. «Ingen tydelig forskjell» betyr at intervallet inkluderer ingen forskjell i det hele tatt. Dette er sammenhenger i det folk skriver, ikke årsaker, og folk som skriver lengre, mer detaljerte historier nevner mer av alt. Basert på {cohort} vurderte historier."
+    },
+    "regret": {
+      "composition": {
+        "pair": "{positive} % av historiene uttrykker anger over transisjonen, og {negative} % sier at de ikke angrer; resten sier det ikke. Blant dem som tar stilling, angrer {statedShare} % (n = {stated}).",
+        "any": "{positive} % uttrykker anger (n = {n})"
+      },
+      "scale": {
+        "title": "Hvor sterk er angeren?",
+        "mean": "{value} / {max} gjennomsnittlig intensitet",
+        "levels": {
+          "level0": "Ingen anger uttrykt",
+          "level1": "Mild eller forbigående",
+          "level2": "Moderat, tilbakevendende",
+          "level3": "Alvorlig, vedvarende"
+        }
+      },
+      "choice": {
+        "title": "Hvordan endrer angeren seg over tid?",
+        "options": {
+          "resolved": "Stort sett over",
+          "improving": "Blir bedre",
+          "stable": "Stabil",
+          "worsening": "Blir verre",
+          "mixed": "Blandet eller syklisk"
+        }
+      },
+      "statements": {
+        "title": "Hva folk konkret angrer på"
+      },
+      "count": "n = {n}",
+      "basedOn": "Basert på {cohort} vurderte historier.",
+      "empty": "Ennå ingen svar om anger for de gjeldende filtrene.",
+      "error": "Kunne ikke laste data om anger"
+    },
+    "complications": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} % rapporterer minst én medisinsk komplikasjon eller vedvarende helseproblem (n = {n})"
+      },
+      "scale": {
+        "title": "Hvor alvorlige var komplikasjonene?",
+        "mean": "{value} / {max} gjennomsnittlig alvorlighet",
+        "levels": {
+          "level0": "Ingen komplikasjoner",
+          "level1": "Mindre eller håndterbare bivirkninger",
+          "level2": "Betydelige komplikasjoner",
+          "level3": "Alvorlig eller varig skade"
+        }
+      },
+      "statements": {
+        "title": "Spesifikke medisinske problemer"
+      },
+      "count": "n = {n}",
+      "basedOn": "Basert på {cohort} vurderte historier.",
+      "empty": "Ennå ingen medisinske svar for de gjeldende filtrene.",
+      "error": "Kunne ikke laste data om komplikasjoner"
+    },
+    "mental_health": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} % viser minst én psykisk lidelse eller krise (n = {n})"
+      },
+      "scale": {
+        "title": "Hvor alvorlig er bildet av den psykiske helsen?",
+        "mean": "{value} / {max} gjennomsnittlig alvorlighet",
+        "levels": {
+          "level0": "Ingen nevneverdige problemer",
+          "level1": "Mild eller situasjonsbetinget belastning",
+          "level2": "Betydelige, behandlede lidelser",
+          "level3": "Alvorlige lidelser eller krise"
+        }
+      },
+      "statements": {
+        "title": "Lidelser og kriser"
+      },
+      "count": "n = {n}",
+      "basedOn": "Basert på {cohort} vurderte historier.",
+      "empty": "Ennå ingen svar om psykisk helse for de gjeldende filtrene.",
+      "error": "Kunne ikke laste data om psykisk helse"
+    },
+    "suicidality": {
+      "during": "Under transisjon",
+      "since": "Siden detransisjon",
+      "duringDescription": "Hvor sannsynlig modellen vurderer det at en historie beskriver selvmordstanker, selvskading eller et selvmordsforsøk mens personen var i transisjon.",
+      "sinceDescription": "Hvor sannsynlig modellen vurderer det at en historie beskriver selvmordstanker, selvskading eller et selvmordsforsøk etter detransisjon.",
+      "splitNote": "Delt opp etter nåværende status · kvadratrotakse",
+      "overall": "Alle historier",
+      "sqrtNote": "Den loddrette aksen bruker en kvadratrotskala slik at de mindre sannsynlighetsintervallene forblir synlige ved siden av toppen ved null.",
+      "tooltipBin": "Sannsynlighet {range}",
+      "tooltipCount": "{count, plural, =1 {1 historie} other {# historier}}",
+      "bands": {
+        "no": "Sannsynligvis usant (< 0,2)",
+        "mixed": "Usikkert (0,2–0,8)",
+        "yes": "Sannsynligvis sant (≥ 0,8)"
+      },
+      "count": "n = {n}",
+      "basedOn": "Basert på {cohort} historier med et svar.",
+      "empty": "Ennå ingen svar om suicidalitet for de gjeldende filtrene.",
+      "error": "Kunne ikke laste data om suicidalitet",
+      "statements": {
+        "title": "Selvmordstanker og selvskading"
+      }
+    },
+    "current_status": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% (n = {n})"
+      },
+      "choice": {
+        "title": "Where are they now?",
+        "options": {
+          "detransitioned": "Detransisjonerte",
+          "desisted": "Desisterte før medisinsk transisjon",
+          "retransitioned": "Retransisjonerte",
+          "still_trans_questioning": "Fortsatt trans, i tvil",
+          "questioning": "I tvil",
+          "unclear": "Uklart",
+          "supportive": "Støtter transisjon for andre",
+          "conditional": "Støtter under visse vilkår",
+          "critical": "Kritisk til transisjon",
+          "opposed": "Imot",
+          "not_addressed": "Ikke omtalt"
+        },
+        "description": "Blant historier som tar opp temaet, fra støttende til imot."
+      },
+      "secondaryChoice": {
+        "title": "Hvordan ser de på transisjon for andre mennesker?"
+      },
+      "statements": {
+        "title": "Nåværende situasjon"
+      },
+      "count": "n = {n}",
+      "basedOn": "Basert på {cohort} vurderte historier.",
+      "empty": "Ennå ingen svar om status for de gjeldende filtrene.",
+      "error": "Kunne ikke laste statusdata",
+      "headline": "{percent} % er kritiske til eller imot transisjon for andre mennesker (n ≈ {n}).",
+      "note": "Sannsynlighetsvektede andeler. Historier som ikke tar opp spørsmålet, er utelatt."
+    },
+    "family_community": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} % svarer ja på minst ett av spørsmålene nedenfor (n = {n})"
+      },
+      "statements": {
+        "title": "Spørsmål som ble stilt",
+        "description": "Hver historie ble vurdert opp mot nøyaktig disse spørsmålene. En historie teller når svaret er et tydelig ja."
+      },
+      "count": "n = {n}",
+      "basedOn": "Basert på {cohort} vurderte historier.",
+      "empty": "Ennå ingen svar for de gjeldende filtrene.",
+      "error": "Kunne ikke laste data"
+    },
+    "sexuality": {
+      "beforeLabel": "Før transisjon",
+      "afterLabel": "Etter detransisjon",
+      "options": {
+        "homosexual": "Homosexual",
+        "bisexual": "Bifil",
+        "heterosexual": "Heterosexual",
+        "asexual": "Aseksuell",
+        "other": "Annet eller skiftende"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 historie} other {# historier}}",
+      "statements": {
+        "title": "Orientation and attraction"
+      },
+      "count": "n = {n}",
+      "basedOn": "Flyt basert på {cohort} historier med svar om orientering på begge tidspunkter.",
+      "empty": "Not enough orientation answers for the current filters yet.",
+      "error": "Kunne ikke laste data om seksualitet",
+      "hero": {
+        "statement": "av detransisjonerte som oppgir sin nåværende orientering, er homofile, lesbiske eller bifile (n = {n}).",
+        "bySex": "M {men} homofile eller bifile ({menSame} homofile) | K {women} lesbiske eller bifile ({womenSame} lesbiske)"
+      },
+      "mix": {
+        "title": "Orientering før transisjon og etter detransisjon",
+        "description": "I forhold til fødselskjønn, blant historier som oppgir den.",
+        "women": "Kvinner",
+        "men": "Menn",
+        "all": "Alle",
+        "before": "før",
+        "after": "etter"
+      },
+      "matrix": {
+        "title": "Endret orienteringen seg?",
+        "description": "Hver rad er én orientering før transisjon; cellene viser hva de samme personene beskriver etter detransisjon.",
+        "headline": "{percent} % beskriver samme orientering før transisjon og etter detransisjon (n = {n}).",
+        "corner": "Før ↓ · Etter →",
+        "cell": "{from} før → {to} etter: {percent} % ({count})",
+        "note": "Kun historier som oppgir orientering på begge tidspunkter. Rader med færre enn 30 historier står tomme."
+      },
+      "coverage": "Orientering er oppgitt før transisjon i {before} historier og etter detransisjon i {after}, av {cohort} vurderte historier."
+    },
+    "trends": {
+      "series": {
+        "contributed_online_influence": "Påvirkning på nett",
+        "contributed_rapid_onset": "Rask debut (ROGD)",
+        "regret_transition": "Anger",
+        "took_puberty_blockers": "Pubertetsblokkere"
+      },
+      "tooltip": "{bucket} · n = {n}",
+      "mode": {
+        "strict": "Binært signal",
+        "soft": "Gjennomsnittlig sannsynlighet",
+        "strictNote": "Andel historier modellen er sikker på (≥ 0,8).",
+        "softNote": "Gjennomsnittlig sannsynlighet på tvers av alle historier — holder uklare historier med i trenden."
+      },
+      "seriesTooltip": "{strict} binært · {mean} snitt",
+      "medianAge": "Median transisjonsalder etter kohort",
+      "coverageNote": "Hvert punkt bruker kohortens besvarte historier; de tidligste kohortene har de minste utvalgene.",
+      "basedOn": "På tvers av {cohort} historier med et transisjonsår.",
+      "empty": "Ennå ingen transisjonsår for de gjeldende filtrene.",
+      "error": "Kunne ikke laste trenddata",
+      "linesTitle": "Kjennetegn etter transisjonsår",
+      "linesDescription": "Andel historier der hver påstand tydelig er sann, gruppert etter året transisjonen startet. Legg til eller fjern kjennetegn for å sammenligne.",
+      "reasonsTitle": "Hovedårsak til transisjon, etter periode",
+      "reasonsDescription": "Hvordan de vanligste hovedårsakene endrer seg mellom kohorter etter transisjonsår.",
+      "add": "Legg til et kjennetegn…",
+      "remove": "Fjern {label}",
+      "strictNote": "Andel historier der KI-en er sikker på at påstanden er sann (≥ 0,8). Hule punkter bygger på færre enn 30 historier. Nyere kohorter har hatt kortere tid siden transisjonen — mindre tid til å nå kirurgi eller langtidsvirkninger, og som regel kortere historier — så mange kjennetegn faller mot høyre ende; et kjennetegn som likevel stiger, som angst, skiller seg ut."
+    },
+    "uncertainty": {
+      "binary": "Binær",
+      "bands": "Tre tilstander",
+      "likelyFalse": "Sannsynligvis usant (< 0,2)",
+      "unclear": "Uklart (0,2–0,8)",
+      "unclearShort": "uklart",
+      "likelyTrue": "Sannsynligvis sant (≥ 0,8)",
+      "rowTooltip": "{false} % sannsynligvis usant · {unclear} % uklart · {true} % sannsynligvis sant"
+    },
+    "minors": {
+      "tiles": {
+        "minor": "startet under 18 ({n} av {total} historier med en alder)",
+        "le15": "startet som 15-åring eller yngre",
+        "dysphoria": "kjente først dysfori som 12-åring eller yngre (n = {n})",
+        "female": "av dem som startet under 18, er kvinner"
+      },
+      "early": "I disse historiene dukker pubertetsblokkere opp fra {min} års alder, med en median på {median} (n = {n}). {hormones} hadde begynt på hormoner innen 16 år, og {detrans} hadde allerede detransisjonert innen 18 år.",
+      "empty": "Ennå ingen aldersdata for de gjeldende filtrene.",
+      "error": "Kunne ikke laste data om tidlig transisjon",
+      "byEra": {
+        "title": "Startet før 18, etter transisjonsår",
+        "description": "Andel historier der transisjonen startet før 18 år, gruppert etter året den startet.",
+        "note": "Linjene viser 95 %-intervallet. Senere kohorter omfatter flere som startet transisjon nylig og ung, så les trenden med forsiktighet."
+      }
+    },
+    "journey": {
+      "milestones": {
+        "first_dysphoria": "Første dysfori",
+        "transition": "Transisjon",
+        "hormones": "Hormoner",
+        "detransition": "Detransisjon",
+        "in_transition": "År i transisjon"
+      },
+      "median": "median {age}",
+      "count": "n = {n}",
+      "tooltip": "Alder {age}: {count, plural, =1 {1 historie} other {# historier}}",
+      "yearsTooltip": "{years, plural, =1 {1 år} other {# år}} i transisjon: {count, plural, =1 {1 historie} other {# historier}}",
+      "basedOn": "Hver rad teller bare historiene som oppgir den alderen. Aksen er kuttet ved 99. persentil.",
+      "empty": "Ennå ingen tidslinjedata for de gjeldende filtrene.",
+      "error": "Kunne ikke laste forløpsdata"
+    },
+    "gradient": {
+      "regret": "Anger",
+      "noRegret": "Ingen anger",
+      "notStated": "Ikke oppgitt",
+      "tiers": {
+        "no_transition": "Gikk ikke gjennom transisjon",
+        "social_only": "Kun sosial",
+        "hormones": "Hormoner eller blokkere",
+        "surgery": "Kirurgi",
+        "unclear": "Uklart"
+      },
+      "tierTooltip": "{n} historier: {regrets} anger, {noRegret} ingen anger, {notStated} ikke oppgitt",
+      "count": "n = {n}",
+      "selectionNote": "Folk som detransisjonerer tidlig, når aldri de senere stegene, så dette viser hvilke forløp som fører hvor — ikke at medisinske steg forårsaker anger.",
+      "basedOn": "Basert på {cohort} vurderte historier.",
+      "empty": "Ennå ingen svar for de gjeldende filtrene.",
+      "error": "Kunne ikke laste data om medisinsk involvering",
+      "statedNote": "Tallet til høyre er anger blant historier som tar stilling (anger eller ingen anger).",
+      "headline": "{percent} % av dem som tok kirurgi, sier at de angrer på transisjonen, blant dem som tar stilling (n = {n}).",
+      "headlineCompare": "{percent} % av dem som tok kirurgi, sier at de angrer på transisjonen, sammenlignet med {hormones} % av dem som stoppet ved hormoner eller blokkere (n = {n} / {nHormones}). Teller bare historier som tar stilling."
+    },
+    "after": {
+      "levels": {
+        "muchWorse": "Mye verre",
+        "worse": "Noe verre",
+        "same": "Omtrent det samme",
+        "better": "Noe bedre",
+        "muchBetter": "Mye bedre"
+      },
+      "panels": {
+        "mh_change_after_detransition": "Psykisk helse",
+        "outcome_quality_of_life": "Livskvalitet",
+        "outcome_family_relationship_change": "Familierelasjoner"
+      },
+      "summary": "{better} % bedre · {worse} % verre",
+      "count": "n = {n}",
+      "basedOn": "Basert på {cohort} vurderte historier.",
+      "empty": "Ennå ingen svar for de gjeldende filtrene.",
+      "error": "Kunne ikke laste endringsdata",
+      "worseSide": "Verre",
+      "betterSide": "Bedre",
+      "headline": "{better} % beskriver bedre psykisk helse etter detransisjon; {worse} % beskriver den som verre (n = {n})."
+    },
+    "stories": {
+      "excerptNote": "Anonyme KI-sammendrag av offentlige innlegg på /r/detrans.",
+      "agesCaption": "Aldre: første dysfori → transisjon → {outcome}",
+      "ages": {
+        "firstDysphoria": "Første dysfori",
+        "transition": "Transisjon",
+        "detransition": "Detransisjon",
+        "desistance": "Desistens",
+        "socialTransition": "Sosial transisjon"
+      },
+      "female": "Kvinne",
+      "male": "Mann",
+      "basedOn": "Fra {cohort} tilhørende historier.",
+      "empty": "Ennå ingen historier samsvarer med de gjeldende filtrene.",
+      "error": "Kunne ikke laste historier",
+      "loadMore": "Last inn flere historier",
+      "loading": "Laster…",
+      "upvotesLabel": "Totalt antall upvotes: {count}",
+      "dialog": {
+        "title": "Historie",
+        "summary": "Sammendrag",
+        "fullStory": "Hele historien",
+        "close": "Lukk historien",
+        "error": "Kunne ikke laste hele historien",
+        "openPage": "Åpne historiens side"
+      },
+      "status": {
+        "detransitioned": "Detransisjonert",
+        "desisted": "Desistert"
+      }
+    },
+    "highlights": {
+      "title": "Det som skiller seg ut",
+      "types": {
+        "prevalence": "Vanligst",
+        "pair": "Henger sammen",
+        "improvement": "Livet etter detransisjon",
+        "journey": "Typisk forløp",
+        "minorShare": "Startet før 18",
+        "minorLe15": "Startet som 15-åring eller yngre",
+        "minorDysphoria": "Første dysfori innen 12 år",
+        "minorFemale": "Hvem starter ung",
+        "orientation": "Seksuell orientering"
+      },
+      "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
+      "prevalenceUnclear": "Ytterligere {unclear} % er uklare.",
+      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "improvement": "{better} % sier at livskvaliteten ble bedre etter detransisjon; {worse} % sier at den ble verre (n = {n}).",
+      "journey": "Det typiske forløpet: første dysfori ved {dysphoria} → transisjon ved {transition} → detransisjon ved {detransition} (n = {n}).",
+      "minorShare": "{percent} % av historiene med en alder startet transisjon under 18 år (n = {n} av {total}).",
+      "minorLe15": "{percent} % startet som 15-åringer eller yngre (n = {n}).",
+      "minorDysphoria": "{percent} % kjente først dysfori som 12-åringer eller yngre (n = {n}).",
+      "minorFemale": "{percent} % av dem som startet under 18, er kvinner (n = {n}).",
+      "explore": "Utforsk",
+      "orientation": "{percent} % av detransisjonerte som oppgir orienteringen sin, er homofile, lesbiske eller bifile ({sameSex} % homofile eller lesbiske; n = {n})."
+    },
+    "pathways": {
+      "journey": "Årsak → Prosess → Utfall",
+      "medical": "Medisinsk forløp",
+      "stages": {
+        "cause": "Hovedårsak",
+        "process": "Vendepunkt",
+        "outcome": "Anger i dag"
+      },
+      "causes": {
+        "social_role_discomfort": "Ubehag med kjønnsrolle",
+        "internalised_homophobia": "Internalisert homofobi",
+        "internalised_misogyny_misandry": "Internalisert kvinnehat / mannshat",
+        "trauma": "Traume",
+        "mental_health_issues": "Psykisk helse",
+        "neurodivergence": "Nevrodivergens",
+        "body_dysmorphia": "Kroppsdysmorfi",
+        "online_influence": "Påvirkning på nett",
+        "peer_influence": "Påvirkning fra jevnaldrende",
+        "sexual_factors": "Seksuelle faktorer",
+        "parental_or_medical_pressure": "Press fra foreldre eller helsevesen",
+        "other_unclear": "Annet / uklart",
+        "unclear": "Uklart"
+      },
+      "processes": {
+        "process_benefited_from_therapy": "Utforskende terapi",
+        "process_detrans_community_exposure": "Detrans-miljøet",
+        "process_research_consumption": "Forskning og medier",
+        "process_self_reflection": "Selvrefleksjon",
+        "process_time_off_hormones": "Pause fra hormoner",
+        "process_medical_scare": "Medisinsk skremmeopplevelse",
+        "process_family_partner_intervention": "Familie eller partner",
+        "process_spiritual_experience": "Åndelig opplevelse",
+        "other": "Annet / uklart"
+      },
+      "outcomes": {
+        "regrets": "Angrer",
+        "no_regret": "Ingen anger",
+        "not_stated": "Ikke oppgitt"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 historie} other {# historier}}",
+      "basedOn": "Basert på {cohort} vurderte historier med svar i denne visningen.",
+      "empty": "Ennå ikke nok historier med svar for denne visningen.",
+      "error": "Kunne ikke laste forløpsdata",
+      "journeyDescription": "Hvordan hovedårsaker, vendepunkter og anger henger sammen på tvers av historiene.",
+      "medicalDescription": "Hvilke medisinske steg folk tok før de detransisjonerte.",
+      "regretByReason": {
+        "title": "Anger etter hovedårsak til transisjon",
+        "description": "Blant historier som sier om de angrer på transisjonen, andelen som gjør det — gruppert etter hovedårsaken de oppga for å starte transisjon.",
+        "headline": "Totalt uttrykker {percent} % av historiene som tar opp anger, anger (n = {n}).",
+        "note": "Prikkene viser andelen som uttrykker anger blant historier som tydelig tar stilling; linjene viser 95 %-intervallet. Nedtonede rader har færre enn 30 historier.",
+        "error": "Kunne ikke laste anger etter årsak",
+        "empty": "Ennå ingen svar for de gjeldende filtrene."
+      }
+    },
+    "methodology": {
+      "p1": "detrans.ai bygger dette datasettet fra offentlige historier på /r/detrans. En KI skriver om hver brukers spredte kommentarer og innlegg til én fortelling i førsteperson, og henter ut en tidslinje med viktige aldre fra den. Bare brukere som har delt nok til å sette sammen en hel historie, er med.",
+      "p1b": "Denne statistikken omfatter bare historier der personen tydelig har bekreftet at de har detransisjonert eller desistert. Fra rådata til diagrammene:",
+      "table": {
+        "comments": "Kommentarer samlet inn fra /r/detrans",
+        "posts": "Innlegg samlet inn fra /r/detrans",
+        "authors": "Ulike forfattere i korpuset",
+        "selected": "Forfattere med minst 5 kommentarer med 3+ upvotes",
+        "removed": "Fjernet: detransisjon eller desistens ikke tydelig bekreftet",
+        "remaining": "Historier igjen etter det",
+        "cohort": "Dekket i diagrammene nedenfor (flaggede kontoer utelatt)"
+      },
+      "p2": "Hver historie vurderes deretter av Jev, en probabilistisk spørsmål-svar-modell, opp mot rundt hundre påstander om årsaker, opplevelser og utfall. Ja/nei-spørsmål gir en sannsynlighet fra 0 til 1, valgspørsmål gir en sannsynlighet for hvert alternativ, og skalaspørsmål gir en forventet verdi langs skalaen som vises under hvert diagram.",
+      "p3": "For ja/nei-kjennetegn markerer vi en historie som «sann» når sannsynligheten når terskelen (0,8 som standard). Histogrammet for hvert kjennetegn viser hele sannsynlighetsfordelingen, så et kjennetegn med mange svar i mellomområdet fremstår som reelt usikkert heller enn tydelig sant eller usant.",
+      "p4": "Alle diagrammer tar hensyn til filtrene ovenfor. Fordi spørsmålssettet har endret seg over tid og historier behandles på nytt i prosesseringsrunder, viser hvert diagram hvor mange av de filtrerte historiene som faktisk har et svar på det aktuelle spørsmålet.",
+      "p5": "Kontoer som virker uekte, oppdiktede eller botlignende, flagges av modellen og utelates fra denne statistikken. KI-uttrukne data kan fortsatt inneholde feil — systemprompter er publisert på <prompts>promptsiden</prompts>, og sammendragene sammenlignes med de opprinnelige kommentarene.",
+      "threshold": {
+        "title": "Hvor mye terskelen betyr",
+        "description": "Diagrammene teller en påstand som sann når KI-sannsynligheten er minst 0,8. Lavere terskler ville gitt høyere tall; dette diagrammet viser hvor mye.",
+        "error": "Kunne ikke laste terskeldata",
+        "tooltip": "Terskel {threshold}",
+        "xAxis": "Sannsynlighetsterskel",
+        "siteThreshold": "Brukt på denne siden",
+        "note": "Andel historier på eller over hver terskel. Terskelen på 0,8 er bevisst forsiktig."
+      },
+      "accountType": {
+        "title": "Hvem som skriver",
+        "description": "Om hver beretning beskriver skribentens egen erfaring.",
+        "options": {
+          "personal_experience": "Egen erfaring",
+          "parent": "En forelder",
+          "friend": "En venn eller partner",
+          "researcher_journalist": "Forsker, journalist eller kliniker",
+          "other": "Annet eller blandet"
+        }
+      },
+      "detail": {
+        "title": "Hvor detaljerte historiene er",
+        "description": "KI-ens vurdering av hvor spesifikk hver førstepersonsberetning er. Bruk «Kun detaljerte historier» i filtrene for å begrense alle diagrammer til de to øverste nivåene.",
+        "levels": {
+          "level0": "Vag eller generell",
+          "level1": "Noen personlige detaljer",
+          "level2": "Detaljert, konkrete hendelser",
+          "level3": "Svært detaljert beretning over flere år"
+        }
+      }
+    },
+    "prevalence": {
+      "women": "Kvinner",
+      "men": "Menn",
+      "interval": "{group} {percent} (95 %-intervall {low}–{high}, n = {n})",
+      "smallSample": "n = {n}",
+      "openStories": "Vis historier",
+      "showAll": "Vis alle {count}",
+      "showFewer": "Vis færre",
+      "note": "Prikkene viser andelen historier der påstanden tydelig er sann (KI-sannsynlighet ≥ 0,8); linjene viser 95 %-intervallet. Nedtonede rader har færre enn 30 svar.",
+      "noteWithStories": "Prikkene viser andelen historier der påstanden tydelig er sann (KI-sannsynlighet ≥ 0,8); linjene viser 95 %-intervallet. Nedtonede rader har færre enn 30 svar. Velg en rad for å lese tilhørende historier.",
+      "gap": "Største forskjell: {label} — {higher} av {higherGroup} mot {lower} av {lowerGroup}.",
+      "womenLower": "kvinner",
+      "menLower": "menn",
+      "m": "M",
+      "f": "K",
+      "menLegend": "M · menn",
+      "womenLegend": "K · kvinner"
+    },
+    "storyPeek": {
+      "title": "Historier: {label}",
+      "meta": "{count, plural, =1 {1 tilhørende historie} other {# tilhørende historier}}",
+      "error": "Kunne ikke laste historier.",
+      "empty": "Ingen tilhørende historier for de gjeldende filtrene.",
+      "readFull": "Les hele historien",
+      "note": "Anonyme utdrag, høyest vurderte først. Hele listen finnes i Historier-delen nederst på siden."
+    },
+    "reasons": {
+      "transitionTitle": "Hovedårsak til transisjon",
+      "transitionDescription": "Den viktigste enkeltårsaken hver person oppgir for å starte transisjon.",
+      "detransitionTitle": "Hovedårsak til detransisjon",
+      "detransitionDescription": "Den viktigste enkeltårsaken hver person oppgir for å stoppe."
+    },
+    "byYear": {
+      "error": "Kunne ikke laste data etter år",
+      "empty": "Ennå ingen transisjonsår for de gjeldende filtrene.",
+      "other": "Annet",
+      "n": "n = {n}",
+      "note": "Sannsynlighetsvektede andeler per kohort etter transisjonsår. Nedtonede rader har færre enn 30 historier."
+    },
+    "overview": {
+      "error": "Kunne ikke laste oversikten",
+      "basedOn": "Basert på {cohort} vurderte historier."
+    },
+    "drivers": {
+      "statements": {
+        "title": "Beskrevet som medvirkende til transisjon"
+      },
+      "count": "n = {n}",
+      "basedOn": "Basert på {cohort} vurderte historier.",
+      "empty": "Ennå ingen svar for de gjeldende filtrene.",
+      "error": "Kunne ikke laste disse dataene"
+    },
+    "adversity": {
+      "composition": {
+        "any": "{positive} % beskriver minst én form for traume eller motgang (n = {n})"
+      },
+      "statements": {
+        "title": "Typer motgang som beskrives"
+      },
+      "contrast": {
+        "title": "Traumer i fortiden vs. traume som hovedårsak",
+        "description": "Langt flere historier nevner traumer enn som oppgir dem som hoveddrivkraften bak transisjon eller detransisjon.",
+        "history": "Beskriver traumer i fortiden",
+        "transitionReason": "Oppgir traume som hovedårsak til transisjon",
+        "detransitionReason": "Oppgir erkjennelse av traume som hovedårsak til detransisjon",
+        "note": "Prikkene viser andelen historier; linjene viser 95 %-intervallet. Årsaksradene teller hver histories ene hovedårsak."
+      },
+      "count": "n = {n}",
+      "basedOn": "Basert på {cohort} vurderte historier.",
+      "empty": "Ennå ingen svar om motgang for de gjeldende filtrene.",
+      "error": "Kunne ikke laste data om motgang"
+    },
+    "online": {
+      "choice": {
+        "title": "Mest innflytelsesrike plattform",
+        "description": "Blant historier som nevner påvirkning på nett. Historier uten vesentlig påvirkning på nett er utelatt.",
+        "options": {
+          "reddit": "Reddit",
+          "tumblr": "Tumblr",
+          "tiktok": "TikTok",
+          "twitter": "Twitter / X",
+          "youtube": "YouTube",
+          "discord": "Discord",
+          "other": "Annen plattform eller fandommiljø"
+        }
+      },
+      "statements": {
+        "title": "Påvirkning på nett og fra jevnaldrende"
+      },
+      "byYear": {
+        "title": "Plattform etter transisjonsår",
+        "description": "Hvordan den mest innflytelsesrike plattformen har endret seg mellom kohorter etter transisjonsår."
+      },
+      "count": "n = {n}",
+      "basedOn": "Basert på {cohort} vurderte historier.",
+      "empty": "Ennå ingen svar om påvirkning på nett for de gjeldende filtrene.",
+      "error": "Kunne ikke laste data om påvirkning på nett"
+    },
+    "process": {
+      "composition": {
+        "any": "{positive} % beskriver minst ett av disse vendepunktene (n = {n})"
+      },
+      "statements": {
+        "title": "Hva som fikk folk til å bevege seg mot detransisjon"
+      },
+      "count": "n = {n}",
+      "basedOn": "Basert på {cohort} vurderte historier.",
+      "empty": "Ennå ingen svar om vendepunkter for de gjeldende filtrene.",
+      "error": "Kunne ikke laste data om vendepunkter"
+    },
+    "lives": {
+      "error": "Kunne ikke laste tidslinjer",
+      "empty": "Ennå ingen historier med både transisjons- og detransisjonsalder for de gjeldende filtrene.",
+      "legend": {
+        "transition": "I transisjon",
+        "blockers": "Pubertetsblokkere",
+        "hormones": "Hormoner",
+        "surgery": "Kirurgi"
+      },
+      "ariaLabel": "Stripediagram med {n} individuelle tidslinjer fra transisjon til detransisjon",
+      "tooltip": {
+        "woman": "Kvinne",
+        "man": "Mann",
+        "person": "Person",
+        "firstDysphoria": "Første dysfori ved {age}",
+        "transition": "Startet transisjon ved {age}",
+        "pubertyBlockers": "Pubertetsblokkere ved {age}",
+        "hormones": "Hormoner ved {age}",
+        "topSurgery": "Overkroppskirurgi ved {age}",
+        "bottomSurgery": "Underkroppskirurgi ved {age}",
+        "detransition": "Detransisjonerte ved {age}"
+      },
+      "note": "{n} personer der historien oppgir begge aldre, sortert etter alder ved transisjon. Aldrene er KI-ens tolkning av hver historie og kan være omtrentlige."
+    },
+    "duration": {
+      "error": "Kunne ikke laste varigheter",
+      "empty": "Ennå ingen transisjonsvarigheter for de gjeldende filtrene.",
+      "all": "Alle",
+      "women": "Kvinner",
+      "men": "Menn",
+      "legend": "{label}: median {median} år (n = {n})",
+      "tooltipTitle": "Innen {years, plural, =1 {1 år} other {# år}}",
+      "xAxis": "År siden start av transisjon",
+      "note": "Andel personer som hadde stoppet innen et gitt antall år. Alle her detransisjonerte til slutt, så dette viser hvor lenge transisjonen varte for dem — ikke hvor mange av dem som går gjennom transisjon, som senere stopper.",
+      "headline": "{one} % hadde stoppet innen ett år og {five} % innen fem år etter start (median {median} år, n = {n})."
+    },
+    "optionLabels": {
+      "reddit": "Reddit",
+      "tumblr": "Tumblr",
+      "tiktok": "TikTok",
+      "twitter": "Twitter / X",
+      "youtube": "YouTube",
+      "discord": "Discord",
+      "social_role_discomfort": "Ubehag med kjønnsrolle",
+      "internalised_homophobia": "Internalisert homofobi",
+      "internalised_misogyny_misandry": "Internalisert kvinnehat / mannshat",
+      "trauma": "Traume",
+      "mental_health_issues": "Psykisk helse",
+      "neurodivergence": "Nevrodivergens",
+      "body_dysmorphia": "Kroppsdysmorfi",
+      "online_influence": "Påvirkning på nett",
+      "peer_influence": "Påvirkning fra jevnaldrende",
+      "sexual_factors": "Seksuelle faktorer (AGP / AAP)",
+      "parental_or_medical_pressure": "Press fra foreldre eller helsevesen",
+      "other_unclear": "Annet / uklart",
+      "accepted_sexed_body": "Aksepterte sin kjønnede kropp",
+      "social_construct_realisation": "Så kjønnsroller som problemet",
+      "trauma_realisation": "Innså at traumer drev det",
+      "mental_health_realisation": "Innså at psykisk helse drev det",
+      "neurodivergence_realisation": "Innså at nevrodivergens drev det",
+      "fantasy_reality_disillusionment": "Virkeligheten svarte ikke til forventningene",
+      "surgery_regret_medical_complications": "Anger over kirurgi eller medisinske komplikasjoner",
+      "ideological_disillusionment": "Desillusjonert over ideologien eller miljøet",
+      "social_pressure_ostracism": "Sosialt press eller utstøting",
+      "failure_to_pass": "Klarte ikke å passere",
+      "internalised_homophobia_realisation": "Innså internalisert homofobi",
+      "internalised_misogyny_misandry_realisation": "Innså internalisert kvinnehat / mannshat",
+      "sexual_factors_realisation": "Innså seksuelle faktorer (AGP / AAP)",
+      "religious_or_spiritual_change": "Religiøs eller åndelig endring",
+      "fertility_or_family_desires": "Ønske om fruktbarhet eller familie"
+    },
+    "choiceSplit": {
+      "error": "Kunne ikke laste dette diagrammet",
+      "empty": "Ennå ingen svar for de gjeldende filtrene.",
+      "women": "K · kvinner (n = {n})",
+      "men": "M · menn (n = {n})",
+      "headline": "Kvinner oppgir oftere «{womenOption}» ({womenShare} mot {womenMen} av mennene); menn oppgir oftere «{menOption}» ({menShare} mot {menWomen} av kvinnene).",
+      "note": "Sannsynlighetsvektet: en historie som KI-en fordeler 60/40 mellom to årsaker, teller 0,6 og 0,4.",
+      "m": "M",
+      "f": "K"
+    },
+    "ordinal": {
+      "error": "Kunne ikke laste dette diagrammet",
+      "empty": "Ennå ingen svar for de gjeldende filtrene.",
+      "all": "Alle",
+      "women": "Kvinner",
+      "men": "Menn"
+    },
+    "medical_steps": {
+      "statements": {
+        "title": "Medisinske steg som ble tatt"
+      },
+      "count": "n = {n}",
+      "basedOn": "Basert på {cohort} vurderte historier.",
+      "empty": "Ennå ingen svar for de gjeldende filtrene.",
+      "error": "Kunne ikke laste medisinske steg"
     }
   },
   "topicsPage": {
     "title": "Topics",
     "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
     "empty": "No topics have been published yet."
+  },
+  "storiesPage": {
+    "metadata": {
+      "title": "Detransisjonshistorier | detrans.ai",
+      "description": "Les tusenvis av anonymiserte historier om detransisjon og desistens fra /r/detrans-fellesskapet, oppsummert av KI. Filtrer etter alder, kjønn og erfaring."
+    },
+    "title": "Detransisjonshistorier",
+    "description": "{count, number} anonymiserte historier fra mennesker som transisjonerte og senere detransisjonerte eller desisterte, satt sammen av KI fra innleggene og kommentarene deres på /r/detrans.",
+    "statsLink": "Utforsk statistikken",
+    "allStories": "Alle historier",
+    "story": {
+      "metaTitle": "{title} – Detransisjonshistorie | detrans.ai",
+      "untitled": "En detransisjonshistorie",
+      "notFound": "Fant ikke historien | detrans.ai",
+      "tags": "Emneknagger",
+      "moreStories": "Les flere historier"
+    }
   }
 }

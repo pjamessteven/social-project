@@ -144,7 +144,9 @@
       "stats": "Statistika",
       "statsDesc": "Anonimizuota detranzicijos statistika iš /r/detrans",
       "topics": "Topics",
-      "topicsDesc": "Išsamūs pagrindinių temų vadovai"
+      "topicsDesc": "Išsamūs pagrindinių temų vadovai",
+      "stories": "Istorijos",
+      "storiesDesc": "Iš /r/detrans vartotojų"
     },
     "resources": {
       "genderSupport": "Rasti Terapeutus",
@@ -240,26 +242,27 @@
   },
   "chat": {
     "lookingForComments": "Ieškoma atitinkamų komentarų...",
+    "lookingForStudies": "Looking for relevant studies...",
     "errorOccurred": "Įvyko klaida, bandykite dar kartą... Susisiekite su manimi, jei tai kartojasi.",
     "analysingExperiences": "Analizuojamos patirtys",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analizuojami žiniatinklio rezultatai",
+    "analysingResults": "Analizuojami rezultatai...",
     "detransPerspective": "-> Kokie detranzicijos požiūriai į šią temą?",
     "transPerspectivesIncluded": "Translyčių požiūriai įtraukti",
     "captchaRequired": "Norint tęsti pokalbį, reikalinga captcha.",
     "chatArchived": "Šis pokalbis yra archyvuotas. Pradėkite naują.",
     "rateLimitExceeded": "Per daug užklausų, sulėtinkite ir bandykite vėliau.",
     "ipMismatchError": "Jūsų IP adresas pasikeitė. Siekiant užkirsti kelią piktnaudžiavimui, turite pradėti naują pokalbį.",
-    "analysingResults": "Analizuojami rezultatai...",
     "followUpQuestions": "Tęstiniai klausimai:",
     "eventLabels": {
       "askDetransitioners": "Klausti detranzicionierių",
+      "askTransPeople": "Klausti translyčių asmenų",
       "videoArchive": "Vaizdo įrašų archyvas",
       "queryStudies": "Ieškoti tyrimų",
       "webSearch": "Paieška internete",
       "queryStudyCatalogue": "Detranzicijos tyrimų katalogo užklausa",
       "studyDetail": "Tyrimo detalės",
-      "askTransPeople": "Klausti translyčių asmenų",
       "wikiPage": "Wiki page"
     },
     "eventStatus": {
@@ -345,7 +348,21 @@
       "delete": "Ištrinti pokalbį",
       "banning": "Blokuojama...",
       "ban": "Užblokuoti vartotoją (IP)"
+    },
+    "dialog": {
+      "title": "Pokalbis",
+      "toggleIdHint": "Spustelėkite, kad perjungtumėte tarp datos / šalies ir ID",
+      "shareText": "Peržiūrėkite šį pokalbį",
+      "share": "Dalintis pokalbiu",
+      "copyLink": "Kopijuoti nuorodą į pokalbį",
+      "noneSelected": "Pokalbis nepasirinktas"
     }
+  },
+  "readingDialog": {
+    "share": "Dalintis",
+    "copyLink": "Kopijuoti nuorodą",
+    "copied": "Nuoroda nukopijuota į iškarpinę",
+    "close": "Uždaryti langą"
   },
   "stories": {
     "metadata": {
@@ -385,9 +402,9 @@
       "ageRangeYears": "{min} - {max} metai",
       "sex": {
         "all": "Vyrai ir moterys",
-        "mine": "Mine",
         "female": "Moteris",
-        "male": "Vyras"
+        "male": "Vyras",
+        "mine": "Mine"
       },
       "tagsPlaceholder": "Pasirinkite žymes, kad filtruotumėte...",
       "clearFilters": "Išvalyti filtrus"
@@ -497,14 +514,6 @@
           "content": "Mes naudojame hCaptcha, trečiosios šalies paslaugą, kurią teikia Intuition Machines, Inc., apsaugai nuo automatizuoto piktnaudžiavimo. hCaptcha gali rinkti jūsų IP adresą, naršyklės informaciją ir sąveikos duomenis (pvz., pelės judesius ir klavišų paspaudimų modelius), kad nustatytų, ar esate žmogus. Šie duomenys yra taikomi hCaptcha savo privatumo politikai. hCaptcha naudoja tik sutikimo išimties slapukus, būtinus jos paslaugai."
         }
       },
-      "aiProviders": {
-        "title": "AI apdorojimas:",
-        "content": "Jūsų žinutės apdorojamos trečiųjų šalių AI teikėjų (šiuo metu OpenRouter), kad būtų generuojami atsakymai. Mokymas su jūsų pokalbiais yra išjungtas. Prašome žiūrėti OpenRouter privatumo politiką dėl informacijos, kaip jie tvarko duomenis."
-      },
-      "captcha": {
-        "title": "Botų aptikimas (hCaptcha):",
-        "content": "Mes naudojame hCaptcha, trečiosios šalies paslaugą, kurią teikia Intuition Machines, Inc., apsaugai nuo automatizuoto piktnaudžiavimo. hCaptcha gali rinkti jūsų IP adresą, naršyklės informaciją ir sąveikos duomenis (pvz., pelės judesius ir klavišų paspaudimų modelius), kad nustatytų, ar esate žmogus. Šie duomenys yra taikomi hCaptcha savo privatumo politikai. hCaptcha naudoja tik sutikimo išimties slapukus, būtinus jos paslaugai."
-      },
       "legalBases": {
         "title": "Teisiniai apdorojimo pagrindai (ES/EEE lankytojams)",
         "item1": "Greičio apribojimo apdorojimas yra būtinas mūsų <em>teisėtiems interesams</em> pagal BDAR 6 str. 1 d. f punktą – konkrečiai, palaikyti paslaugos prieinamumą ir saugumą.",
@@ -537,6 +546,14 @@
       "contact": {
         "title": "Susisiekite su mumis",
         "content": "Jei turite klausimų, susirūpinimų ar skundų, naudokite kontaktinę formą arba rašykite el. paštu <email>peter@detrans.ai</email>."
+      },
+      "aiProviders": {
+        "title": "AI apdorojimas:",
+        "content": "Jūsų žinutės apdorojamos trečiųjų šalių AI teikėjų (šiuo metu OpenRouter), kad būtų generuojami atsakymai. Mokymas su jūsų pokalbiais yra išjungtas. Prašome žiūrėti OpenRouter privatumo politiką dėl informacijos, kaip jie tvarko duomenis."
+      },
+      "captcha": {
+        "title": "Botų aptikimas (hCaptcha):",
+        "content": "Mes naudojame hCaptcha, trečiosios šalies paslaugą, kurią teikia Intuition Machines, Inc., apsaugai nuo automatizuoto piktnaudžiavimo. hCaptcha gali rinkti jūsų IP adresą, naršyklės informaciją ir sąveikos duomenis (pvz., pelės judesius ir klavišų paspaudimų modelius), kad nustatytų, ar esate žmogus. Šie duomenys yra taikomi hCaptcha savo privatumo politikai. hCaptcha naudoja tik sutikimo išimties slapukus, būtinus jos paslaugai."
       }
     }
   },
@@ -590,12 +607,15 @@
   },
   "videoList": {
     "loading": "Įkeliami vaizdo įrašai...",
+    "searchPlaceholder": "Search videos...",
+    "result": "video",
+    "results": "videos",
     "filters": {
       "all": "Visos istorijos",
-      "mine": "Mine",
       "female": "Moteris",
       "male": "Vyras",
-      "detransitioners": "Detranzicionieriai"
+      "detransitioners": "Detranzicionieriai",
+      "mine": "Mine"
     },
     "thumbnailAlt": "Miniatiūra skirta {title}",
     "by": "iš",
@@ -809,7 +829,9 @@
       "legend": {
         "transition": "Perėjimo amžius",
         "detransition": "Detranzicijos amžius"
-      }
+      },
+      "median": "mediana {age}",
+      "coverage": "Remiantis {transition} tranzicijos amžiais ir {detransition} detranzicijos amžiais."
     },
     "transitionDuration": {
       "title": "Perėjimo trukmė: amžius pereidavus vs amžius detranzicionavus",
@@ -833,7 +855,8 @@
       "female": "Moteris",
       "yearsAvg": "metų vidurkis",
       "user": "vartotojas",
-      "users": "vartotojai"
+      "users": "vartotojai",
+      "coverage": "Remiantis {count} istorijomis, kuriose nurodyti abu amžiai."
     },
     "pathways": {
       "title": "Detranzicijos kelių srautas",
@@ -953,7 +976,9 @@
     "error": {
       "title": "CAPTCHA klaida",
       "description": "Nepavyko įkelti CAPTCHA. Atnaujinkite puslapį ir bandykite dar kartą."
-    }
+    },
+    "verifyFailed": "Verification failed. Please try again.",
+    "rateLimited": "Too many verifications. Please wait a moment and try again."
   },
   "feedback": {
     "title": "Atsiliepimai",
@@ -971,11 +996,990 @@
     "metadata": {
       "title": "Anoniminė statistika | detrans.ai",
       "description": "Anoniminė detranzicijos ir tranzicijos modelių statistika, įskaitant amžiaus pasiskirstymą, trukmę, priežastis ir kelius."
+    },
+    "toc": {
+      "title": "Šiame puslapyje"
+    },
+    "filters": {
+      "title": "Filtrai",
+      "edit": "Redaguoti filtrus",
+      "hide": "Slėpti filtrus",
+      "summary": {
+        "none": "Be filtrų",
+        "age": "Amžius {min}–{max}",
+        "tags": "{count, plural, =0 {nėra žymų} =1 {1 žyma} one {# žyma} few {# žymos} many {# žymos} other {# žymų}}",
+        "detailed": "Tik išsamios"
+      },
+      "detailed": "Tik išsamios istorijos",
+      "detailedHint": "Įtraukti tik istorijas, kurias AI įvertino kaip pakankamai ar labai išsamias."
+    },
+    "sections": {
+      "age": {
+        "title": "Amžius",
+        "description": "Kada detranzicionieriai pradėjo tranziciją ir detranziciją."
+      },
+      "journey": {
+        "title": "Amžius",
+        "description": "Kada žmonės pirmą kartą pajuto disforiją, pradėjo tranziciją, pradėjo vartoti hormonus ir detranzicionavo."
+      },
+      "duration": {
+        "title": "Trukmė",
+        "description": "Kiek laiko žmonės išbuvo tranzicijoje, kol ją nutraukė."
+      },
+      "minors": {
+        "title": "Tranzicija iki 18 metų",
+        "description": "Ką istorijos rodo apie tranzicijos pradžią vaikystėje ar paauglystėje."
+      },
+      "reasons": {
+        "title": "Priežastys",
+        "description": "Kodėl, pasak detranzicionierių, jie pradėjo tranziciją — ir kodėl detranzicionavo."
+      },
+      "pathways": {
+        "title": "Keliai",
+        "description": "Ar gailestis skiriasi pagal tranzicijos priežastį ir atliktus medicininius žingsnius."
+      },
+      "regret": {
+        "title": "Gailestis",
+        "description": "Koks stiprus gailestis, kaip jis keičiasi laikui bėgant ir ko žmonės gailisi."
+      },
+      "medical": {
+        "title": "Medicininis įsitraukimas",
+        "description": "Kaip gailestis susijęs su tuo, kaip toli nuėjo tranzicija."
+      },
+      "complications": {
+        "title": "Komplikacijos",
+        "description": "Medicininės komplikacijos ir besitęsiančios sveikatos problemos po tranzicijos."
+      },
+      "mental_health": {
+        "title": "Psichikos sveikata",
+        "description": "Psichikos sveikatos vaizdas istorijose prieš detranziciją ir po jos."
+      },
+      "suicidality": {
+        "title": "Suicidiškumas",
+        "description": "Kaip dažnai istorijose aprašomos mintys apie savižudybę ar savęs žalojimas, ir kada."
+      },
+      "after": {
+        "title": "Po detranzicijos",
+        "description": "Kaip pasikeitė psichikos sveikata, gyvenimo kokybė ir santykiai su šeima."
+      },
+      "current_status": {
+        "title": "Where are they now",
+        "description": "Current identities and situations after detransitioning."
+      },
+      "family_community": {
+        "title": "Socialinė detranzicijos kaina",
+        "description": "Izoliacija ir atstūmimas dėl detranzicijos bei nusivylimas trans bendruomene. Klausimai, kurie neatskyrė tranzicijos nuo detranzicijos (šeimos parama, santykiai, karjera), praleisti; santykiai su šeima nuo detranzicijos aptariami skyriuje „Po detranzicijos“."
+      },
+      "sexuality": {
+        "title": "Seksualumas",
+        "description": "Seksualinė orientacija biologinės lyties atžvilgiu, prieš tranziciją ir po detranzicijos."
+      },
+      "trends": {
+        "title": "Bėgant metams",
+        "description": "Kaip istorijos — ir jų priežastys — keitėsi tarp kohortų pagal tranzicijos metus."
+      },
+      "features": {
+        "title": "Požymiai",
+        "description": "Every statement the AI evaluated across the stories — causes, processes and outcomes."
+      },
+      "compare": {
+        "title": "Palyginimas",
+        "description": "Kaip požymių paplitimas skiriasi tarp dviejų kohortos pusių."
+      },
+      "matrix": {
+        "title": "Sąsajos",
+        "description": "Atsakymai į ginčytinus klausimus — įskaitant atvejus, kai laukiamo skirtumo nėra."
+      },
+      "stories": {
+        "title": "Istorijos",
+        "description": "Anoniminės ištraukos iš žmonių, kurie slypi už šių skaičių.",
+        "browse": "Naršyti visas istorijas"
+      },
+      "methodology": {
+        "title": "Metodika",
+        "description": "Kaip sudaromas duomenų rinkinys ir kaip skaityti šias diagramas."
+      },
+      "overview": {
+        "title": "Trumpai",
+        "description": "Kiekvienas AI įvertintas teiginys „taip / ne“, surikiuotas pagal tai, kiek istorijų jis aiškiai teisingas."
+      },
+      "lives": {
+        "title": "Individualios laiko juostos",
+        "description": "Kiekviena linija yra vienas žmogus — nuo amžiaus, kai pradėjo tranziciją, iki amžiaus, kai ją nutraukė."
+      },
+      "drivers": {
+        "title": "Rečiau aptariami veiksniai",
+        "description": "Kūno įvaizdis, tapatybės nestabilumas ir seksualiniai veiksniai, nurodomi kaip prisidėję prie tranzicijos."
+      },
+      "adversity": {
+        "title": "Trauma ir sunkumai",
+        "description": "Kaip dažnai istorijose aprašoma trauma ir kaip dažnai ji įvardijama kaip pagrindinė priežastis."
+      },
+      "online": {
+        "title": "Internetas ir bendraamžių įtaka",
+        "description": "Kurios platformos buvo svarbiausios ir kaip interneto bei bendraamžių įtaka atsiskleidžia istorijose."
+      },
+      "process": {
+        "title": "Lūžio taškai",
+        "description": "Kas padėjo žmonėms pereiti nuo tranzicijos prie detranzicijos."
+      }
+    },
+    "features": {
+      "search": "Ieškoti požymių…",
+      "sort": {
+        "prevalence": "Paplitimas",
+        "alpha": "A–Z"
+      },
+      "tiers": {
+        "cause": "Priežastis",
+        "process": "Procesas",
+        "outcome": "Baigtis"
+      },
+      "kinds": {
+        "noul": "Taip / ne",
+        "choice": "Pasirinkimas",
+        "score": "Skalė"
+      },
+      "groups": {
+        "reasons": "Priežastys",
+        "causes": "Priežastys",
+        "processes": "Procesai",
+        "regret": "Gailestis",
+        "medical": "Medicina",
+        "mental_health": "Psichikos sveikata",
+        "adversity": "Sunkumai",
+        "social": "Socialiniai",
+        "sexuality": "Seksualumas",
+        "online": "Internetas",
+        "identity": "Tapatybė",
+        "outcomes": "Baigtys",
+        "attitudes": "Požiūriai",
+        "quality": "Kokybė"
+      },
+      "basedOn": "Iš {cohort} įvertintų istorijų.",
+      "coverageNote": "{n} iš {cohort} įvertintų istorijų ({percent} %) turi atsakymą.",
+      "question": "Kaip tai išmatuota?",
+      "confidence": "AI pasitikėjimo mediana šiam požymiui: {value} %.",
+      "filterByTag": "Tik istorijos su žyma „{tag}“",
+      "placeholder": "Pasirinkite požymį iš sąrašo, kad jį išnagrinėtumėte.",
+      "backToList": "Visi požymiai",
+      "noResults": "Paieškos neatitinka jokie požymiai.",
+      "noData": "Pagal dabartinius filtrus atsakymų nėra.",
+      "loading": "Įkeliama…",
+      "error": "Nepavyko įkelti požymio duomenų",
+      "noul": {
+        "prevalenceLabel": "įvertintų istorijų viršija slenkstį",
+        "range": "tikimybė {from} – {to}",
+        "count": "{count} istorijos ({percent} %)",
+        "thresholdShort": "slenkstis {threshold}",
+        "legend": {
+          "yes": "Tikriausiai teisinga",
+          "maybe": "Neaišku",
+          "no": "Tikriausiai neteisinga"
+        },
+        "above": "Tikriausiai teisinga",
+        "uncertain": "Neaišku",
+        "below": "Tikriausiai neteisinga"
+      },
+      "choice": {
+        "soft": "Tikimybės masė",
+        "hard": "Laiminti parinktis",
+        "softTooltip": "≈{percent} % (≈{count} istorijų tikimybės masės)",
+        "hardTooltip": "{percent} % ({count} istorijos)",
+        "softNote": "Stulpeliai rodo suminę AI tikimybę, kurią kiekviena parinktis gauna visose istorijose, todėl mišrūs atsakymai skaičiuojami proporcingai.",
+        "hardNote": "Stulpeliai skaičiuoja tik vieną labiausiai tikėtiną kiekvienos istorijos parinktį."
+      },
+      "score": {
+        "meanLabel": "Vidurkis {value} skalėje 0–{max}",
+        "range": "Balas {from} – {to}",
+        "count": "{count} istorijos",
+        "meanShort": "vidurkis {value}"
+      },
+      "related": {
+        "title": "Dažnai pasitaiko kartu",
+        "lift": "{lift}× dažniau ({percent} %)"
+      },
+      "listNote": "Taškai rodo dalį istorijų, kuriose kiekvienas teiginys aiškiai teisingas (AI tikimybė ≥ 0,8); linijos rodo 95 % intervalą. Blankios eilutės turi mažiau nei 30 atsakymų. Pasirinkite eilutę, kad perskaitytumėte atitinkamas istorijas. Remiantis {cohort} įvertintomis istorijomis."
+    },
+    "compare": {
+      "splitLabel": "Skaidyti pagal",
+      "thresholdNote": "Rodomos istorijos virš AI slenksčio {threshold} palyginti su istorijomis žemiau jo.",
+      "filter": {
+        "all": "Visi atsakymai",
+        "clear": "Tik aiškūs signalai"
+      },
+      "clearNote": "{excluded} neaiškių istorijų pašalinta iš abiejų pusių.",
+      "cohortTrue": "{label}: yra (n = {n})",
+      "cohortFalse": "Nėra (n = {n})",
+      "splitSex": "Biologinė lytis",
+      "sexNote": "Moterų ir vyrų istorijų palyginimas.",
+      "cohortWomen": "Moterys (n = {n})",
+      "cohortMen": "Vyrai (n = {n})",
+      "splitAge": "Amžius tranzicijos metu",
+      "ageNote": "Palyginamos istorijos, kuriose tranzicija prasidėjo iki 18 metų, su tomis, kuriose ji prasidėjo 18 metų ar vėliau.",
+      "cohortUnder18": "Iki 18 metų (n = {n})",
+      "cohortAdult": "18 metų ar vyresni (n = {n})",
+      "rowTooltip": "{label}: {pctTrue} % iš {nTrue} prieš {pctFalse} % iš {nFalse}",
+      "empty": "Kol kas nepakanka istorijų su atsakymais abiejose šio skaidymo pusėse.",
+      "showSmallSamples": "Rodyti mažas imtis",
+      "hideSmallSamples": "Slėpti mažas imtis",
+      "hiddenNote": "{count, plural, =1 {1 požymis paslėptas} one {# požymis paslėptas} few {# požymiai paslėpti} many {# požymio paslėpta} other {# požymių paslėpta}}, nes vienoje pusėje turi mažiau nei 3 istorijas.",
+      "error": "Nepavyko įkelti palyginimo duomenų",
+      "ratio": "{ratio} tiek dažnas",
+      "ratioNote": "Eilutės surikiuotos pagal tai, kaip stipriai skiriasi dvi grupės (santykinė rizika), praleidžiant požymius, kurie reti abiejose pusėse. Linijos rodo 95 % intervalus; blankios eilutės vienoje pusėje turi mažiau nei 30 istorijų.",
+      "showAll": "Rodyti visus požymius"
+    },
+    "matrix": {
+      "presetLabel": "Rodinys",
+      "presets": {
+        "outcomesByCause": "Baigtys pagal priežastį",
+        "outcomesByProcess": "Baigtys pagal lūžio tašką"
+      },
+      "metric": {
+        "rate": "Dažnis",
+        "lift": "Padidėjimas palyginti su vidurkiu"
+      },
+      "swap": "Sukeisti ašis",
+      "legendRate": "Atitinkamų istorijų dalis, kuriose stulpelio požymis teisingas.",
+      "legendLift": "Palyginti su visos kohortos vidurkiu (mėlyna – virš, raudona – žemiau).",
+      "sampleNote": "Kiekvienas langelis lygina istorijas su eilutės požymiu ir be jo. Ilgesnės, išsamesnės istorijos mini daugiau visų rūšių požymių, todėl dauguma santykių viršija 1× — lyginkite langelius tarpusavyje, o ne su 1×. Langeliai, kuriuose bet kurioje pusėje mažiau nei 30 istorijų, palikti tušti.",
+      "basedOn": "{cohort} įvertintų istorijų šiame rodinyje.",
+      "cellTooltip": "{row} → {col}: {percent} % iš {n} istorijų · {lift}× kohortos vidurkis",
+      "cellTooltipNoLift": "{row} → {col}: {percent} % iš {n} istorijų",
+      "cellMasked": "{row} → {col}: nepakanka istorijų",
+      "empty": "Kol kas nepakanka istorijų su atsakymais šiam rodiniui.",
+      "error": "Nepavyko įkelti matricos duomenų",
+      "presetDescriptions": {
+        "outcomesByCause": "Kiek dažnesnė (ar retesnė) kiekviena baigtis istorijose su tam tikra priežastimi nei istorijose be jos.",
+        "outcomesByProcess": "Kiek dažnesnė (ar retesnė) kiekviena baigtis istorijose su tam tikru lūžio tašku nei istorijose be jo."
+      },
+      "legendMore": "Dažnesnė su eilutės požymiu",
+      "legendLess": "Retesnė",
+      "legendNone": "Aiškaus skirtumo nėra (95 % intervalas apima 1×)",
+      "cellTooltipRatio": "{row} → {col}: {percent} % iš {n} istorijų su veiksniu palyginti su {percentWithout} % be jo · {ratio} (95 % intervalas {low}–{high})",
+      "legendWith": "Su veiksniu",
+      "legendWithout": "Be jo",
+      "themes": {
+        "medical": "Medicininis kelias",
+        "helped": "Kas padėjo",
+        "who": "Kas gailisi, kas grįžta",
+        "views": "Požiūris į kitų tranziciją"
+      },
+      "predictors": {
+        "under18": "Tranziciją pradėjo iki 18 metų",
+        "women": "Moterys (palyginti su vyrais)",
+        "sameSex": "Traukė tos pačios lyties asmenys prieš tranziciją",
+        "took_puberty_blockers": "Vartojo brendimo blokatorius",
+        "took_hormones": "Vartojo hormonus",
+        "top_surgery": "Atlikta krūtinės operacija",
+        "process_benefited_from_therapy": "Padėjo tiriamoji terapija",
+        "gender_nonconformity_childhood": "Vaikystėje neatitiko lyties normų",
+        "process_spiritual_experience": "Dvasinė patirtis",
+        "autogynephilia": "Autoginefilija",
+        "adv_trauma_history": "Traumos istorija",
+        "contributed_online_influence": "Interneto įtaka"
+      },
+      "outcomes": {
+        "regret": "gailisi tranzicijos",
+        "bodyReconciliation": "susitaikė su savo kūnu",
+        "retransitioned": "pakartotinai atliko tranziciją",
+        "mentalHealthBetter": "geresnė psichikos sveikata po detranzicijos",
+        "critical": "kritiškai vertina kitų tranziciją arba jai prieštarauja"
+      },
+      "ratio": "{ratio} tiek dažnas",
+      "noDifference": "Aiškaus skirtumo nėra",
+      "rowTooltip": "{with} iš {nWith} istorijų su juo palyginti su {without} iš {nWithout} be jo",
+      "note": "Linijos rodo 95 % intervalus. „Aiškaus skirtumo nėra“ reiškia, kad intervalas apima ir visišką skirtumo nebuvimą. Tai sąsajos tame, ką žmonės rašo, o ne priežastys, ir žmonės, rašantys ilgesnes, išsamesnes istorijas, mini daugiau visko. Remiantis {cohort} įvertintomis istorijomis."
+    },
+    "regret": {
+      "composition": {
+        "pair": "{positive} % istorijų išreiškia gailestį dėl tranzicijos, o {negative} % teigia, kad jos nesigaili; likusios to nenurodo. Iš tų, kurios nurodo, gailisi {statedShare} % (n = {stated}).",
+        "any": "{positive} % išreiškia gailestį (n = {n})"
+      },
+      "scale": {
+        "title": "Koks stiprus gailestis?",
+        "mean": "vidutinis intensyvumas {value} / {max}",
+        "levels": {
+          "level0": "Gailestis neišreikštas",
+          "level1": "Lengvas arba praeinantis",
+          "level2": "Vidutinis, pasikartojantis",
+          "level3": "Stiprus, nuolatinis"
+        }
+      },
+      "choice": {
+        "title": "Kaip gailestis keičiasi laikui bėgant?",
+        "options": {
+          "resolved": "Iš esmės praėjo",
+          "improving": "Mažėja",
+          "stable": "Stabilus",
+          "worsening": "Stiprėja",
+          "mixed": "Mišrus arba ciklinis"
+        }
+      },
+      "statements": {
+        "title": "Ko konkrečiai žmonės gailisi"
+      },
+      "count": "n = {n}",
+      "basedOn": "Remiantis {cohort} įvertintomis istorijomis.",
+      "empty": "Pagal dabartinius filtrus kol kas nėra atsakymų apie gailestį.",
+      "error": "Nepavyko įkelti gailesčio duomenų"
+    },
+    "complications": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} % nurodo bent vieną medicininę komplikaciją ar besitęsiančią sveikatos problemą (n = {n})"
+      },
+      "scale": {
+        "title": "Kokios sunkios buvo komplikacijos?",
+        "mean": "vidutinis sunkumas {value} / {max}",
+        "levels": {
+          "level0": "Komplikacijų nėra",
+          "level1": "Nedideli arba suvaldomi šalutiniai poveikiai",
+          "level2": "Reikšmingos komplikacijos",
+          "level3": "Sunki arba nuolatinė žala"
+        }
+      },
+      "statements": {
+        "title": "Konkrečios medicininės problemos"
+      },
+      "count": "n = {n}",
+      "basedOn": "Remiantis {cohort} įvertintomis istorijomis.",
+      "empty": "Pagal dabartinius filtrus kol kas nėra medicininių atsakymų.",
+      "error": "Nepavyko įkelti komplikacijų duomenų"
+    },
+    "mental_health": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} % rodo bent vieną psichikos sutrikimą ar krizę (n = {n})"
+      },
+      "scale": {
+        "title": "Kokia sunki psichikos sveikatos būklė?",
+        "mean": "vidutinis sunkumas {value} / {max}",
+        "levels": {
+          "level0": "Žymių problemų nėra",
+          "level1": "Lengvas arba situacinis distresas",
+          "level2": "Reikšmingi, gydyti sutrikimai",
+          "level3": "Sunkūs sutrikimai arba krizė"
+        }
+      },
+      "statements": {
+        "title": "Sutrikimai ir krizės"
+      },
+      "count": "n = {n}",
+      "basedOn": "Remiantis {cohort} įvertintomis istorijomis.",
+      "empty": "Pagal dabartinius filtrus kol kas nėra atsakymų apie psichikos sveikatą.",
+      "error": "Nepavyko įkelti psichikos sveikatos duomenų"
+    },
+    "suicidality": {
+      "during": "Tranzicijos metu",
+      "since": "Nuo detranzicijos",
+      "duringDescription": "Kaip tikėtina, modelio vertinimu, kad istorijoje aprašomos mintys apie savižudybę, savęs žalojimas ar bandymas nusižudyti tuo metu, kai asmuo buvo tranzicijoje.",
+      "sinceDescription": "Kaip tikėtina, modelio vertinimu, kad istorijoje aprašomos mintys apie savižudybę, savęs žalojimas ar bandymas nusižudyti nuo detranzicijos.",
+      "splitNote": "Suskaidyta pagal dabartinę būklę · kvadratinės šaknies ašis",
+      "overall": "Visos istorijos",
+      "sqrtNote": "Vertikali ašis naudoja kvadratinės šaknies skalę, kad mažesni tikimybės intervalai liktų matomi šalia smailės ties nuliu.",
+      "tooltipBin": "Tikimybė {range}",
+      "tooltipCount": "{count, plural, =1 {1 istorija} one {# istorija} few {# istorijos} many {# istorijos} other {# istorijų}}",
+      "bands": {
+        "no": "Tikriausiai neteisinga (< 0,2)",
+        "mixed": "Neaišku (0,2–0,8)",
+        "yes": "Tikriausiai teisinga (≥ 0,8)"
+      },
+      "count": "n = {n}",
+      "basedOn": "Remiantis {cohort} istorijomis su atsakymu.",
+      "empty": "Pagal dabartinius filtrus kol kas nėra atsakymų apie suicidiškumą.",
+      "error": "Nepavyko įkelti suicidiškumo duomenų",
+      "statements": {
+        "title": "Mintys apie savižudybę ir savęs žalojimas"
+      }
+    },
+    "current_status": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% (n = {n})"
+      },
+      "choice": {
+        "title": "Where are they now?",
+        "options": {
+          "detransitioned": "Detranzicionavo",
+          "desisted": "Pasitraukė prieš medicininę tranziciją",
+          "retransitioned": "Pakartotinai atliko tranziciją",
+          "still_trans_questioning": "Vis dar trans, abejoja",
+          "questioning": "Abejoja",
+          "unclear": "Neaišku",
+          "supportive": "Palaiko kitų tranziciją",
+          "conditional": "Palaiko tam tikromis sąlygomis",
+          "critical": "Kritiškai vertina tranziciją",
+          "opposed": "Prieštarauja",
+          "not_addressed": "Neaptarta"
+        },
+        "description": "Tarp istorijų, kuriose tai aptariama, nuo palaikymo iki prieštaravimo."
+      },
+      "secondaryChoice": {
+        "title": "Kaip jie vertina kitų žmonių tranziciją?"
+      },
+      "statements": {
+        "title": "Dabartinė padėtis"
+      },
+      "count": "n = {n}",
+      "basedOn": "Remiantis {cohort} įvertintomis istorijomis.",
+      "empty": "Pagal dabartinius filtrus kol kas nėra atsakymų apie būklę.",
+      "error": "Nepavyko įkelti būklės duomenų",
+      "headline": "{percent} % kritiškai vertina kitų žmonių tranziciją arba jai prieštarauja (n ≈ {n}).",
+      "note": "Tikimybe svertinės dalys. Istorijos, kuriose šis klausimas neaptariamas, praleistos."
+    },
+    "family_community": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} % atsako „taip“ bent į vieną iš toliau pateiktų klausimų (n = {n})"
+      },
+      "statements": {
+        "title": "Užduoti klausimai",
+        "description": "Kiekviena istorija buvo patikrinta pagal būtent šiuos klausimus. Istorija įskaičiuojama, kai atsakymas aiškiai „taip“."
+      },
+      "count": "n = {n}",
+      "basedOn": "Remiantis {cohort} įvertintomis istorijomis.",
+      "empty": "Pagal dabartinius filtrus kol kas nėra atsakymų.",
+      "error": "Nepavyko įkelti duomenų"
+    },
+    "sexuality": {
+      "beforeLabel": "Prieš tranziciją",
+      "afterLabel": "Po detranzicijos",
+      "options": {
+        "homosexual": "Homosexual",
+        "bisexual": "Biseksuali",
+        "heterosexual": "Heterosexual",
+        "asexual": "Aseksuali",
+        "other": "Kita arba kintanti"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 istorija} one {# istorija} few {# istorijos} many {# istorijos} other {# istorijų}}",
+      "statements": {
+        "title": "Orientation and attraction"
+      },
+      "count": "n = {n}",
+      "basedOn": "Srautas pagal {cohort} istorijas su abiem atsakymais apie orientaciją.",
+      "empty": "Not enough orientation answers for the current filters yet.",
+      "error": "Nepavyko įkelti seksualumo duomenų",
+      "hero": {
+        "statement": "detranzicionierių, nurodančių savo dabartinę orientaciją, yra gėjai, lesbietės ar biseksualūs (n = {n}).",
+        "bySex": "V {men} gėjai ar biseksualūs ({menSame} gėjai) | M {women} lesbietės ar biseksualios ({womenSame} lesbietės)"
+      },
+      "mix": {
+        "title": "Orientacija prieš tranziciją ir po detranzicijos",
+        "description": "Biologinės lyties atžvilgiu, tarp istorijų, kuriose ji nurodyta.",
+        "women": "Moterys",
+        "men": "Vyrai",
+        "all": "Visi",
+        "before": "prieš",
+        "after": "po"
+      },
+      "matrix": {
+        "title": "Ar orientacija pasikeitė?",
+        "description": "Kiekviena eilutė – viena orientacija prieš tranziciją; langeliai rodo, ką šie žmonės aprašo po detranzicijos.",
+        "headline": "{percent} % aprašo tą pačią orientaciją prieš tranziciją ir po detranzicijos (n = {n}).",
+        "corner": "Prieš ↓ · Po →",
+        "cell": "{from} prieš → {to} po: {percent} % ({count})",
+        "note": "Tik istorijos, kuriose orientacija nurodyta abiem atvejais. Eilutės, turinčios mažiau nei 30 istorijų, paliktos tuščios."
+      },
+      "coverage": "Orientacija prieš tranziciją nurodyta {before} istorijose, o po detranzicijos – {after}, iš {cohort} įvertintų istorijų."
+    },
+    "trends": {
+      "series": {
+        "contributed_online_influence": "Interneto įtaka",
+        "contributed_rapid_onset": "Staigi pradžia (ROGD)",
+        "regret_transition": "Gailestis",
+        "took_puberty_blockers": "Brendimo blokatoriai"
+      },
+      "tooltip": "{bucket} · n = {n}",
+      "mode": {
+        "strict": "Dvejetainis signalas",
+        "soft": "Vidutinė tikimybė",
+        "strictNote": "Istorijų dalis, dėl kurių modelis yra tikras (≥ 0,8).",
+        "softNote": "Vidutinė tikimybė visose istorijose — neaiškios istorijos lieka tendencijoje."
+      },
+      "seriesTooltip": "{strict} dvejetainis · {mean} vid.",
+      "medianAge": "Tranzicijos amžiaus mediana pagal kohortą",
+      "coverageNote": "Kiekvienas taškas naudoja kohortos istorijas su atsakymu; ankstyviausios kohortos turi mažiausias imtis.",
+      "basedOn": "Iš {cohort} istorijų su tranzicijos metais.",
+      "empty": "Pagal dabartinius filtrus kol kas nėra tranzicijos metų.",
+      "error": "Nepavyko įkelti tendencijų duomenų",
+      "linesTitle": "Požymiai pagal tranzicijos metus",
+      "linesDescription": "Istorijų dalis, kuriose kiekvienas teiginys aiškiai teisingas, sugrupuota pagal tranzicijos pradžios metus. Pridėkite arba pašalinkite požymius palyginimui.",
+      "reasonsTitle": "Pagrindinė tranzicijos priežastis pagal laikotarpį",
+      "reasonsDescription": "Kaip dažniausios pagrindinės priežastys keičiasi tarp kohortų pagal tranzicijos metus.",
+      "add": "Pridėti požymį…",
+      "remove": "Pašalinti {label}",
+      "strictNote": "Istorijų dalis, kuriose AI tikra, kad teiginys teisingas (≥ 0,8). Tušti taškai gauti iš mažiau nei 30 istorijų. Naujesnės kohortos nuo tranzicijos turėjo mažiau laiko — mažiau laiko pasiekti operaciją ar ilgalaikius padarinius, ir paprastai trumpesnės istorijos — todėl daugelis požymių dešiniajame gale krenta; požymis, kuris vis tiek kyla, pavyzdžiui, nerimas, išsiskiria."
+    },
+    "uncertainty": {
+      "binary": "Dvejetainis",
+      "bands": "Trys būsenos",
+      "likelyFalse": "Tikriausiai neteisinga (< 0,2)",
+      "unclear": "Neaišku (0,2–0,8)",
+      "unclearShort": "neaišku",
+      "likelyTrue": "Tikriausiai teisinga (≥ 0,8)",
+      "rowTooltip": "{false} % tikriausiai neteisinga · {unclear} % neaišku · {true} % tikriausiai teisinga"
+    },
+    "minors": {
+      "tiles": {
+        "minor": "pradėjo iki 18 metų ({n} iš {total} istorijų su nurodytu amžiumi)",
+        "le15": "pradėjo 15 metų ar jaunesni",
+        "dysphoria": "pirmą kartą pajuto disforiją 12 metų ar jaunesni (n = {n})",
+        "female": "pradėjusiųjų iki 18 metų yra moterys"
+      },
+      "early": "Šiose istorijose brendimo blokatoriai pasirodo nuo {min} metų, mediana – {median} (n = {n}). {hormones} pradėjo vartoti hormonus iki 16 metų, o {detrans} jau buvo detranzicionavę iki 18 metų.",
+      "empty": "Pagal dabartinius filtrus kol kas nėra amžiaus duomenų.",
+      "error": "Nepavyko įkelti ankstyvosios tranzicijos duomenų",
+      "byEra": {
+        "title": "Pradėjo iki 18 metų, pagal tranzicijos metus",
+        "description": "Istorijų dalis, kuriose tranzicija prasidėjo iki 18 metų, sugrupuota pagal pradžios metus.",
+        "note": "Linijos rodo 95 % intervalą. Vėlesnėse kohortose daugiau žmonių, kurie tranziciją pradėjo neseniai ir jauni, todėl tendenciją vertinkite atsargiai."
+      }
+    },
+    "journey": {
+      "milestones": {
+        "first_dysphoria": "Pirmoji disforija",
+        "transition": "Tranzicija",
+        "hormones": "Hormonai",
+        "detransition": "Detranzicija",
+        "in_transition": "Metai tranzicijoje"
+      },
+      "median": "mediana {age}",
+      "count": "n = {n}",
+      "tooltip": "Amžius {age}: {count, plural, =1 {1 istorija} one {# istorija} few {# istorijos} many {# istorijos} other {# istorijų}}",
+      "yearsTooltip": "{years, plural, =1 {1 metai} one {# metai} few {# metai} many {# metų} other {# metų}} tranzicijoje: {count, plural, =1 {1 istorija} one {# istorija} few {# istorijos} many {# istorijos} other {# istorijų}}",
+      "basedOn": "Kiekviena eilutė skaičiuoja tik istorijas, kuriose nurodytas tas amžius. Ašis nukirpta ties 99-uoju procentiliu.",
+      "empty": "Pagal dabartinius filtrus kol kas nėra laiko juostos duomenų.",
+      "error": "Nepavyko įkelti kelionės duomenų"
+    },
+    "gradient": {
+      "regret": "Gailestis",
+      "noRegret": "Be gailesčio",
+      "notStated": "Nenurodyta",
+      "tiers": {
+        "no_transition": "Neatliko tranzicijos",
+        "social_only": "Tik socialinė",
+        "hormones": "Hormonai arba blokatoriai",
+        "surgery": "Operacija",
+        "unclear": "Neaišku"
+      },
+      "tierTooltip": "{n} istorijų: {regrets} gailisi, {noRegret} nesigaili, {notStated} nenurodyta",
+      "count": "n = {n}",
+      "selectionNote": "Žmonės, kurie detranzicionuoja anksti, niekada nepasiekia vėlesnių žingsnių, todėl tai rodo, kurie keliai kur veda — o ne tai, kad medicininiai žingsniai sukelia gailestį.",
+      "basedOn": "Remiantis {cohort} įvertintomis istorijomis.",
+      "empty": "Pagal dabartinius filtrus kol kas nėra atsakymų.",
+      "error": "Nepavyko įkelti medicininio įsitraukimo duomenų",
+      "statedNote": "Skaičius dešinėje – gailestis tarp istorijų, kuriose aiškiai pasakyta vienaip ar kitaip (gailisi arba nesigaili).",
+      "headline": "{percent} % žmonių, kuriems atlikta operacija, teigia besigailintys tranzicijos, tarp tų, kurie pasisako vienaip ar kitaip (n = {n}).",
+      "headlineCompare": "{percent} % žmonių, kuriems atlikta operacija, teigia besigailintys tranzicijos, palyginti su {hormones} % tų, kurie sustojo ties hormonais ar blokatoriais (n = {n} / {nHormones}). Skaičiuojamos tik istorijos, kuriose pasisakoma vienaip ar kitaip."
+    },
+    "after": {
+      "levels": {
+        "muchWorse": "Daug blogiau",
+        "worse": "Šiek tiek blogiau",
+        "same": "Maždaug taip pat",
+        "better": "Šiek tiek geriau",
+        "muchBetter": "Daug geriau"
+      },
+      "panels": {
+        "mh_change_after_detransition": "Psichikos sveikata",
+        "outcome_quality_of_life": "Gyvenimo kokybė",
+        "outcome_family_relationship_change": "Santykiai su šeima"
+      },
+      "summary": "{better} % geriau · {worse} % blogiau",
+      "count": "n = {n}",
+      "basedOn": "Remiantis {cohort} įvertintomis istorijomis.",
+      "empty": "Pagal dabartinius filtrus kol kas nėra atsakymų.",
+      "error": "Nepavyko įkelti pokyčių duomenų",
+      "worseSide": "Blogiau",
+      "betterSide": "Geriau",
+      "headline": "{better} % aprašo geresnę psichikos sveikatą po detranzicijos; {worse} % ją apibūdina kaip blogesnę (n = {n})."
+    },
+    "stories": {
+      "excerptNote": "Anoniminės AI santraukos iš viešų /r/detrans įrašų.",
+      "agesCaption": "Amžius: pirmoji disforija → tranzicija → {outcome}",
+      "ages": {
+        "firstDysphoria": "Pirmoji disforija",
+        "transition": "Tranzicija",
+        "detransition": "Detranzicija",
+        "desistance": "Pasitraukimas",
+        "socialTransition": "Socialinė tranzicija"
+      },
+      "female": "Moteris",
+      "male": "Vyras",
+      "basedOn": "Iš {cohort} atitinkančių istorijų.",
+      "empty": "Dabartinius filtrus kol kas atitinkančių istorijų nėra.",
+      "error": "Nepavyko įkelti istorijų",
+      "loadMore": "Įkelti daugiau istorijų",
+      "loading": "Įkeliama…",
+      "upvotesLabel": "Iš viso balsų „už“: {count}",
+      "dialog": {
+        "title": "Istorija",
+        "summary": "Santrauka",
+        "fullStory": "Visa istorija",
+        "close": "Uždaryti istoriją",
+        "error": "Nepavyko įkelti visos istorijos",
+        "openPage": "Atidaryti istorijos puslapį"
+      },
+      "status": {
+        "detransitioned": "Detranzicija",
+        "desisted": "Atsisakė"
+      }
+    },
+    "highlights": {
+      "title": "Kas išsiskiria",
+      "types": {
+        "prevalence": "Dažniausia",
+        "pair": "Eina kartu",
+        "improvement": "Gyvenimas po detranzicijos",
+        "journey": "Tipinis kelias",
+        "minorShare": "Pradėjo iki 18 metų",
+        "minorLe15": "Pradėjo 15 metų ar jaunesni",
+        "minorDysphoria": "Pirmoji disforija iki 12 metų",
+        "minorFemale": "Kas pradeda jauni",
+        "orientation": "Seksualinė orientacija"
+      },
+      "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
+      "prevalenceUnclear": "Dar {unclear} % neaiškūs.",
+      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "improvement": "{better} % teigia, kad jų gyvenimo kokybė po detranzicijos pagerėjo; {worse} % teigia, kad pablogėjo (n = {n}).",
+      "journey": "Tipinis kelias: pirmoji disforija {dysphoria} m. → tranzicija {transition} m. → detranzicija {detransition} m. (n = {n}).",
+      "minorShare": "{percent} % istorijų su nurodytu amžiumi tranziciją pradėjo iki 18 metų (n = {n} iš {total}).",
+      "minorLe15": "{percent} % pradėjo 15 metų ar jaunesni (n = {n}).",
+      "minorDysphoria": "{percent} % pirmą kartą pajuto disforiją 12 metų ar jaunesni (n = {n}).",
+      "minorFemale": "{percent} % pradėjusiųjų iki 18 metų yra moterys (n = {n}).",
+      "explore": "Naršyti",
+      "orientation": "{percent} % detranzicionierių, nurodančių savo orientaciją, yra gėjai, lesbietės ar biseksualūs ({sameSex} % gėjai ar lesbietės; n = {n})."
+    },
+    "pathways": {
+      "journey": "Priežastis → Procesas → Baigtis",
+      "medical": "Medicininis kelias",
+      "stages": {
+        "cause": "Pagrindinė priežastis",
+        "process": "Lūžio taškas",
+        "outcome": "Gailestis šiandien"
+      },
+      "causes": {
+        "social_role_discomfort": "Nepatogumas dėl socialinio vaidmens",
+        "internalised_homophobia": "Internalizuota homofobija",
+        "internalised_misogyny_misandry": "Internalizuota mizoginija / mizandrija",
+        "trauma": "Trauma",
+        "mental_health_issues": "Psichikos sveikata",
+        "neurodivergence": "Neuroįvairovė",
+        "body_dysmorphia": "Kūno dismorfija",
+        "online_influence": "Interneto įtaka",
+        "peer_influence": "Bendraamžių įtaka",
+        "sexual_factors": "Seksualiniai veiksniai",
+        "parental_or_medical_pressure": "Tėvų ar medikų spaudimas",
+        "other_unclear": "Kita / neaišku",
+        "unclear": "Neaišku"
+      },
+      "processes": {
+        "process_benefited_from_therapy": "Tiriamoji terapija",
+        "process_detrans_community_exposure": "Detrans bendruomenė",
+        "process_research_consumption": "Tyrimai ir žiniasklaida",
+        "process_self_reflection": "Savirefleksija",
+        "process_time_off_hormones": "Pertrauka nuo hormonų",
+        "process_medical_scare": "Sveikatos išgąstis",
+        "process_family_partner_intervention": "Šeima ar partneris",
+        "process_spiritual_experience": "Dvasinė patirtis",
+        "other": "Kita / neaišku"
+      },
+      "outcomes": {
+        "regrets": "Gailisi",
+        "no_regret": "Be gailesčio",
+        "not_stated": "Nenurodyta"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 istorija} one {# istorija} few {# istorijos} many {# istorijos} other {# istorijų}}",
+      "basedOn": "Remiantis {cohort} įvertintomis istorijomis su atsakymais šiame rodinyje.",
+      "empty": "Kol kas nepakanka istorijų su atsakymais šiam rodiniui.",
+      "error": "Nepavyko įkelti kelių duomenų",
+      "journeyDescription": "Kaip istorijose susijusios pagrindinės priežastys, lūžio taškai ir gailestis.",
+      "medicalDescription": "Kokius medicininius žingsnius žmonės atliko prieš detranziciją.",
+      "regretByReason": {
+        "title": "Gailestis pagal pagrindinę tranzicijos priežastį",
+        "description": "Tarp istorijų, kuriose pasakyta, ar gailimasi tranzicijos, dalis tų, kurie gailisi — sugrupuota pagal nurodytą pagrindinę tranzicijos priežastį.",
+        "headline": "Iš viso {percent} % istorijų, kuriose kalbama apie gailestį, jį išreiškia (n = {n}).",
+        "note": "Taškai rodo gailestį išreiškiančiųjų dalį tarp istorijų, kuriose aiškiai pasakyta vienaip ar kitaip; linijos rodo 95 % intervalą. Blankios eilutės turi mažiau nei 30 istorijų.",
+        "error": "Nepavyko įkelti gailesčio pagal priežastį",
+        "empty": "Pagal dabartinius filtrus kol kas nėra atsakymų."
+      }
+    },
+    "methodology": {
+      "p1": "detrans.ai šį duomenų rinkinį kuria iš viešų /r/detrans istorijų. AI perrašo kiekvieno naudotojo išsklaidytus komentarus ir įrašus į vieną pasakojimą pirmuoju asmeniu ir iš jo išgauna svarbiausių amžių laiko juostą. Įtraukiami tik naudotojai, kurie pasidalino pakankamai, kad būtų galima sudaryti visą istoriją.",
+      "p1b": "Ši statistika apima tik istorijas, kuriose asmuo aiškiai patvirtino, kad detranzicionavo arba pasitraukė. Nuo pradinio korpuso iki diagramų:",
+      "table": {
+        "comments": "Komentarai, surinkti iš /r/detrans",
+        "posts": "Įrašai, surinkti iš /r/detrans",
+        "authors": "Skirtingi autoriai korpuse",
+        "selected": "Autoriai, turintys bent 5 komentarus su 3+ balsais „už“",
+        "removed": "Pašalinta: detranzicija arba pasitraukimas aiškiai nepatvirtinti",
+        "remaining": "Po to likusios istorijos",
+        "cohort": "Įtraukta į toliau pateiktas diagramas (pažymėtos paskyros pašalintos)"
+      },
+      "p2": "Tada kiekvieną istoriją įvertina Jev — tikimybinis klausimų atsakymo modelis — pagal maždaug šimtą teiginių apie priežastis, patirtis ir baigtis. Klausimai „taip / ne“ grąžina tikimybę nuo 0 iki 1, pasirinkimo klausimai grąžina tikimybę kiekvienai parinkčiai, o skalės klausimai grąžina tikėtiną vertę skalėje, parodytoje po kiekviena diagrama.",
+      "p3": "„Taip / ne“ požymiams istoriją pažymime kaip „teisingą“, kai tikimybė pasiekia slenkstį (numatytasis – 0,8). Kiekvieno požymio histograma rodo visą tikimybių pasiskirstymą, todėl požymis su daug vidutinių atsakymų atrodo iš tiesų neaiškus, o ne aiškiai teisingas ar neteisingas.",
+      "p4": "Visos diagramos atsižvelgia į aukščiau esančius filtrus. Kadangi klausimų rinkinys laikui bėgant keitėsi, o istorijos perdirbamos pakartotinai, kiekviena diagrama nurodo, kiek atfiltruotų istorijų iš tikrųjų turi atsakymą į tą klausimą.",
+      "p5": "Paskyras, kurios atrodo neautentiškos, išgalvotos ar panašios į botus, modelis pažymi, ir jos pašalinamos iš šios statistikos. AI išgauti duomenys vis tiek gali turėti klaidų — sisteminiai raginimai paskelbti <prompts>raginimų puslapyje</prompts>, o santraukos lyginamos su originaliais komentarais.",
+      "threshold": {
+        "title": "Kiek svarbus slenkstis",
+        "description": "Diagramos laiko teiginį teisingu, kai AI tikimybė yra bent 0,8. Žemesni slenksčiai parodytų didesnius skaičius; ši diagrama rodo, kiek.",
+        "error": "Nepavyko įkelti slenksčio duomenų",
+        "tooltip": "Slenkstis {threshold}",
+        "xAxis": "Tikimybės slenkstis",
+        "siteThreshold": "Naudojamas šiame puslapyje",
+        "note": "Istorijų dalis ties kiekvienu slenksčiu arba virš jo. Slenkstis 0,8 sąmoningai konservatyvus."
+      },
+      "accountType": {
+        "title": "Kas rašo",
+        "description": "Ar kiekvienas pasakojimas aprašo paties rašančiojo patirtį.",
+        "options": {
+          "personal_experience": "Asmeninė patirtis",
+          "parent": "Tėvas ar motina",
+          "friend": "Draugas ar partneris",
+          "researcher_journalist": "Tyrėjas, žurnalistas ar klinicistas",
+          "other": "Kita arba mišru"
+        }
+      },
+      "detail": {
+        "title": "Kiek išsamios istorijos",
+        "description": "AI įvertinimas, kiek konkretus kiekvienas pasakojimas pirmuoju asmeniu. Filtruose pasirinkite „Tik išsamios istorijos“, kad visos diagramos apsiribotų dviem aukščiausiais lygiais.",
+        "levels": {
+          "level0": "Miglota arba bendro pobūdžio",
+          "level1": "Šiek tiek asmeninių detalių",
+          "level2": "Išsamūs, konkretūs įvykiai",
+          "level3": "Labai išsamus, kelerių metų pasakojimas"
+        }
+      }
+    },
+    "prevalence": {
+      "women": "Moterys",
+      "men": "Vyrai",
+      "interval": "{group} {percent} (95 % intervalas {low}–{high}, n = {n})",
+      "smallSample": "n = {n}",
+      "openStories": "Rodyti istorijas",
+      "showAll": "Rodyti visas {count}",
+      "showFewer": "Rodyti mažiau",
+      "note": "Taškai rodo dalį istorijų, kuriose teiginys aiškiai teisingas (AI tikimybė ≥ 0,8); linijos rodo 95 % intervalą. Blankios eilutės turi mažiau nei 30 atsakymų.",
+      "noteWithStories": "Taškai rodo dalį istorijų, kuriose teiginys aiškiai teisingas (AI tikimybė ≥ 0,8); linijos rodo 95 % intervalą. Blankios eilutės turi mažiau nei 30 atsakymų. Pasirinkite eilutę, kad perskaitytumėte atitinkamas istorijas.",
+      "gap": "Didžiausias skirtumas: {label} — {higher} grupėje „{higherGroup}“ palyginti su {lower} grupėje „{lowerGroup}“.",
+      "womenLower": "moterys",
+      "menLower": "vyrai",
+      "m": "V",
+      "f": "M",
+      "menLegend": "V · vyrai",
+      "womenLegend": "M · moterys"
+    },
+    "storyPeek": {
+      "title": "Istorijos: {label}",
+      "meta": "{count, plural, =1 {1 atitinkanti istorija} one {# atitinkanti istorija} few {# atitinkančios istorijos} many {# atitinkančios istorijos} other {# atitinkančių istorijų}}",
+      "error": "Nepavyko įkelti istorijų.",
+      "empty": "Pagal dabartinius filtrus atitinkančių istorijų nėra.",
+      "readFull": "Skaityti visą istoriją",
+      "note": "Anoniminės ištraukos, aukščiausiai įvertintos pirmiausia. Visas sąrašas – skyriuje „Istorijos“ puslapio pabaigoje."
+    },
+    "reasons": {
+      "transitionTitle": "Pagrindinė tranzicijos priežastis",
+      "transitionDescription": "Vienintelė svarbiausia priežastis, kurią kiekvienas asmuo nurodo pradėjęs tranziciją.",
+      "detransitionTitle": "Pagrindinė detranzicijos priežastis",
+      "detransitionDescription": "Vienintelė svarbiausia priežastis, kurią kiekvienas asmuo nurodo ją nutraukęs."
+    },
+    "byYear": {
+      "error": "Nepavyko įkelti duomenų pagal metus",
+      "empty": "Pagal dabartinius filtrus kol kas nėra tranzicijos metų.",
+      "other": "Kita",
+      "n": "n = {n}",
+      "note": "Tikimybe svertinės dalys kiekvienai kohortai pagal tranzicijos metus. Blankios eilutės turi mažiau nei 30 istorijų."
+    },
+    "overview": {
+      "error": "Nepavyko įkelti apžvalgos",
+      "basedOn": "Remiantis {cohort} įvertintomis istorijomis."
+    },
+    "drivers": {
+      "statements": {
+        "title": "Nurodoma kaip prisidėję prie tranzicijos"
+      },
+      "count": "n = {n}",
+      "basedOn": "Remiantis {cohort} įvertintomis istorijomis.",
+      "empty": "Pagal dabartinius filtrus kol kas nėra atsakymų.",
+      "error": "Nepavyko įkelti šių duomenų"
+    },
+    "adversity": {
+      "composition": {
+        "any": "{positive} % aprašo bent vieną traumos ar sunkumų formą (n = {n})"
+      },
+      "statements": {
+        "title": "Aprašytų sunkumų rūšys"
+      },
+      "contrast": {
+        "title": "Traumos istorija ir trauma kaip pagrindinė priežastis",
+        "description": "Daug daugiau istorijų mini traumą, nei įvardija ją pagrindine tranzicijos ar detranzicijos varomąja jėga.",
+        "history": "Aprašo traumos istoriją",
+        "transitionReason": "Įvardija traumą kaip pagrindinę tranzicijos priežastį",
+        "detransitionReason": "Įvardija traumos suvokimą kaip pagrindinę detranzicijos priežastį",
+        "note": "Taškai rodo istorijų dalį; linijos rodo 95 % intervalą. Priežasčių eilutės skaičiuoja vieną pagrindinę kiekvienos istorijos priežastį."
+      },
+      "count": "n = {n}",
+      "basedOn": "Remiantis {cohort} įvertintomis istorijomis.",
+      "empty": "Pagal dabartinius filtrus kol kas nėra atsakymų apie sunkumus.",
+      "error": "Nepavyko įkelti sunkumų duomenų"
+    },
+    "online": {
+      "choice": {
+        "title": "Įtakingiausia platforma",
+        "description": "Tarp istorijų, kuriose nurodyta interneto įtaka. Istorijos be reikšmingos interneto įtakos praleistos.",
+        "options": {
+          "reddit": "Reddit",
+          "tumblr": "Tumblr",
+          "tiktok": "TikTok",
+          "twitter": "Twitter / X",
+          "youtube": "YouTube",
+          "discord": "Discord",
+          "other": "Kita platforma ar fandomo erdvė"
+        }
+      },
+      "statements": {
+        "title": "Interneto ir bendraamžių įtaka"
+      },
+      "byYear": {
+        "title": "Platforma pagal tranzicijos metus",
+        "description": "Kaip įtakingiausia platforma keitėsi tarp kohortų pagal tranzicijos metus."
+      },
+      "count": "n = {n}",
+      "basedOn": "Remiantis {cohort} įvertintomis istorijomis.",
+      "empty": "Pagal dabartinius filtrus kol kas nėra atsakymų apie interneto įtaką.",
+      "error": "Nepavyko įkelti interneto įtakos duomenų"
+    },
+    "process": {
+      "composition": {
+        "any": "{positive} % aprašo bent vieną iš šių lūžio taškų (n = {n})"
+      },
+      "statements": {
+        "title": "Kas pastūmėjo žmones detranzicijos link"
+      },
+      "count": "n = {n}",
+      "basedOn": "Remiantis {cohort} įvertintomis istorijomis.",
+      "empty": "Pagal dabartinius filtrus kol kas nėra atsakymų apie lūžio taškus.",
+      "error": "Nepavyko įkelti lūžio taškų duomenų"
+    },
+    "lives": {
+      "error": "Nepavyko įkelti laiko juostų",
+      "empty": "Pagal dabartinius filtrus kol kas nėra istorijų su tranzicijos ir detranzicijos amžiumi.",
+      "legend": {
+        "transition": "Tranzicijoje",
+        "blockers": "Brendimo blokatoriai",
+        "hormones": "Hormonai",
+        "surgery": "Operacija"
+      },
+      "ariaLabel": "Juostinė diagrama su {n} individualių laiko juostų nuo tranzicijos iki detranzicijos",
+      "tooltip": {
+        "woman": "Moteris",
+        "man": "Vyras",
+        "person": "Asmuo",
+        "firstDysphoria": "Pirmoji disforija {age} m.",
+        "transition": "Tranzicija {age} m.",
+        "pubertyBlockers": "Brendimo blokatoriai {age} m.",
+        "hormones": "Hormonai {age} m.",
+        "topSurgery": "Krūtinės operacija {age} m.",
+        "bottomSurgery": "Lytinių organų operacija {age} m.",
+        "detransition": "Detranzicija {age} m."
+      },
+      "note": "{n} žmonių, kurių istorijoje nurodyti abu amžiai, surikiuoti pagal tranzicijos amžių. Amžiai yra AI interpretacija kiekvienos istorijos ir gali būti apytiksliai."
+    },
+    "duration": {
+      "error": "Nepavyko įkelti trukmių",
+      "empty": "Pagal dabartinius filtrus kol kas nėra tranzicijos trukmių.",
+      "all": "Visi",
+      "women": "Moterys",
+      "men": "Vyrai",
+      "legend": "{label}: mediana {median} m. (n = {n})",
+      "tooltipTitle": "Per {years, plural, =1 {1 metus} one {# metus} few {# metus} many {# metų} other {# metų}}",
+      "xAxis": "Metai nuo tranzicijos pradžios",
+      "note": "Dalis žmonių, nutraukusių tranziciją per tam tikrą metų skaičių. Visi čia esantys galiausiai detranzicionavo, todėl tai rodo, kiek ilgai jiems truko tranzicija — o ne kiek tranziciją pradedančių žmonių vėliau ją nutraukia.",
+      "headline": "{one} % nutraukė per metus, o {five} % – per penkerius metus nuo pradžios (mediana {median} m., n = {n})."
+    },
+    "optionLabels": {
+      "reddit": "Reddit",
+      "tumblr": "Tumblr",
+      "tiktok": "TikTok",
+      "twitter": "Twitter / X",
+      "youtube": "YouTube",
+      "discord": "Discord",
+      "social_role_discomfort": "Nepatogumas dėl socialinio vaidmens",
+      "internalised_homophobia": "Internalizuota homofobija",
+      "internalised_misogyny_misandry": "Internalizuota mizoginija / mizandrija",
+      "trauma": "Trauma",
+      "mental_health_issues": "Psichikos sveikata",
+      "neurodivergence": "Neuroįvairovė",
+      "body_dysmorphia": "Kūno dismorfija",
+      "online_influence": "Interneto įtaka",
+      "peer_influence": "Bendraamžių įtaka",
+      "sexual_factors": "Seksualiniai veiksniai (AGP / AAP)",
+      "parental_or_medical_pressure": "Tėvų ar medikų spaudimas",
+      "other_unclear": "Kita / neaišku",
+      "accepted_sexed_body": "Susitaikė su savo biologinės lyties kūnu",
+      "social_construct_realisation": "Suprato, kad problema – lyčių vaidmenys",
+      "trauma_realisation": "Suprato, kad varomoji jėga buvo trauma",
+      "mental_health_realisation": "Suprato, kad varomoji jėga buvo psichikos sveikata",
+      "neurodivergence_realisation": "Suprato, kad varomoji jėga buvo neuroįvairovė",
+      "fantasy_reality_disillusionment": "Realybė neatitiko lūkesčių",
+      "surgery_regret_medical_complications": "Gailestis dėl operacijos ar medicininės komplikacijos",
+      "ideological_disillusionment": "Nusivylimas ideologija ar bendruomene",
+      "social_pressure_ostracism": "Socialinis spaudimas ar atstūmimas",
+      "failure_to_pass": "Nepavyko „praeiti“ (passing)",
+      "internalised_homophobia_realisation": "Suvokė internalizuotą homofobiją",
+      "internalised_misogyny_misandry_realisation": "Suvokė internalizuotą mizoginiją / mizandriją",
+      "sexual_factors_realisation": "Suvokė seksualinius veiksnius (AGP / AAP)",
+      "religious_or_spiritual_change": "Religinis ar dvasinis pokytis",
+      "fertility_or_family_desires": "Vaisingumas ar noras sukurti šeimą"
+    },
+    "choiceSplit": {
+      "error": "Nepavyko įkelti šios diagramos",
+      "empty": "Pagal dabartinius filtrus kol kas nėra atsakymų.",
+      "women": "M · moterys (n = {n})",
+      "men": "V · vyrai (n = {n})",
+      "headline": "Moterys dažniau nurodo „{womenOption}“ ({womenShare} palyginti su {womenMen} vyrų); vyrai dažniau nurodo „{menOption}“ ({menShare} palyginti su {menWomen} moterų).",
+      "note": "Tikimybe svertinė: istorija, kurią AI padalija 60/40 tarp dviejų priežasčių, skaičiuojama kaip 0,6 ir 0,4.",
+      "m": "V",
+      "f": "M"
+    },
+    "ordinal": {
+      "error": "Nepavyko įkelti šios diagramos",
+      "empty": "Pagal dabartinius filtrus kol kas nėra atsakymų.",
+      "all": "Visi",
+      "women": "Moterys",
+      "men": "Vyrai"
+    },
+    "medical_steps": {
+      "statements": {
+        "title": "Atlikti medicininiai žingsniai"
+      },
+      "count": "n = {n}",
+      "basedOn": "Remiantis {cohort} įvertintomis istorijomis.",
+      "empty": "Pagal dabartinius filtrus kol kas nėra atsakymų.",
+      "error": "Nepavyko įkelti medicininių žingsnių"
     }
   },
   "topicsPage": {
     "title": "Topics",
     "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
     "empty": "No topics have been published yet."
+  },
+  "storiesPage": {
+    "metadata": {
+      "title": "Detranzicijos istorijos | detrans.ai",
+      "description": "Skaitykite tūkstančius anonimizuotų detranzicijos ir atsisakymo istorijų iš /r/detrans bendruomenės, apibendrintų DI. Filtruokite pagal amžių, lytį ir patirtį."
+    },
+    "title": "Detranzicijos istorijos",
+    "description": "Anonimizuotos istorijos žmonių, kurie atliko tranziciją, o vėliau detranzicionavo arba jos atsisakė, DI sudėliotos iš jų įrašų ir komentarų /r/detrans. Iš viso istorijų: {count, number}.",
+    "statsLink": "Peržiūrėti statistiką",
+    "allStories": "Visos istorijos",
+    "story": {
+      "metaTitle": "{title} – Detranzicijos istorija | detrans.ai",
+      "untitled": "Detranzicijos istorija",
+      "notFound": "Istorija nerasta | detrans.ai",
+      "tags": "Žymos",
+      "moreStories": "Skaityti daugiau istorijų"
+    }
   }
 }

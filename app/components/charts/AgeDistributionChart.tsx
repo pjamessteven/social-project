@@ -2,11 +2,12 @@
 
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Area,
   AreaChart,
   Legend,
+  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -23,12 +24,15 @@ interface AgeDistributionChartProps {
   className?: string;
   minAge: number;
   maxAge: number;
+  /** Section headers carry the title on the stats page; hide the in-chart one. */
+  showHeader?: boolean;
 }
 
 export default function AgeDistributionChart({
   className,
   minAge,
   maxAge,
+  showHeader = true,
 }: AgeDistributionChartProps) {
   const t = useTranslations("charts.ageDistribution");
   const searchParams = useSearchParams();
@@ -85,6 +89,32 @@ export default function AgeDistributionChart({
     fetchData(minAge, maxAge);
   }, [minAge, maxAge, searchParams]);
 
+  const stats = useMemo(() => {
+    const weightedMedian = (key: "transition" | "detransition") => {
+      const total = data.reduce((sum, item) => sum + (item[key] || 0), 0);
+      if (total === 0) return null;
+      let seen = 0;
+      const sorted = [...data].sort((a, b) => a.age - b.age);
+      for (const item of sorted) {
+        seen += item[key] || 0;
+        if (seen >= total / 2) return item.age;
+      }
+      return null;
+    };
+    return {
+      transitionTotal: data.reduce(
+        (sum, item) => sum + (item.transition || 0),
+        0,
+      ),
+      detransitionTotal: data.reduce(
+        (sum, item) => sum + (item.detransition || 0),
+        0,
+      ),
+      transitionMedian: weightedMedian("transition"),
+      detransitionMedian: weightedMedian("detransition"),
+    };
+  }, [data]);
+
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
@@ -120,10 +150,12 @@ export default function AgeDistributionChart({
         </div>
       ) : (
         <>
-          <div className="p-4">
-            <h3 className="font-semibold">{t("title")}</h3>
-            <p className="text-sm text-gray-600">{t("subtitle")}</p>
-          </div>
+          {showHeader && (
+            <div className="p-4">
+              <h3 className="font-semibold">{t("title")}</h3>
+              <p className="text-sm text-gray-600">{t("subtitle")}</p>
+            </div>
+          )}
           <div className={`w-full ${className}`}>
             <ResponsiveContainer width="100%" height={400}>
               <AreaChart
@@ -174,6 +206,32 @@ export default function AgeDistributionChart({
                   }}
                 />
                 <Tooltip content={<CustomTooltip />} />
+                {stats.transitionMedian != null && (
+                  <ReferenceLine
+                    x={stats.transitionMedian}
+                    stroke="#3b82f6"
+                    strokeDasharray="4 4"
+                    label={{
+                      value: t("median", { age: stats.transitionMedian }),
+                      position: "insideTopLeft",
+                      fontSize: 13,
+                      fill: "#3b82f6",
+                    }}
+                  />
+                )}
+                {stats.detransitionMedian != null && (
+                  <ReferenceLine
+                    x={stats.detransitionMedian}
+                    stroke="#ef4444"
+                    strokeDasharray="4 4"
+                    label={{
+                      value: t("median", { age: stats.detransitionMedian }),
+                      position: "insideBottomRight",
+                      fontSize: 13,
+                      fill: "#ef4444",
+                    }}
+                  />
+                )}
                 <Legend
                   verticalAlign="bottom"
                   align="left"
@@ -199,6 +257,12 @@ export default function AgeDistributionChart({
               </AreaChart>
             </ResponsiveContainer>
           </div>
+          <p className="text-muted-foreground px-4 pb-2 text-sm">
+            {t("coverage", {
+              transition: stats.transitionTotal,
+              detransition: stats.detransitionTotal,
+            })}
+          </p>
         </>
       )}
 

@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ReferenceLine,
   ResponsiveContainer,
@@ -25,12 +25,15 @@ interface TransitionDurationChartProps {
   className?: string;
   minAge: number;
   maxAge: number;
+  /** Section headers carry the title on the stats page; hide the in-chart one. */
+  showHeader?: boolean;
 }
 
 export default function TransitionDurationChart({
   className,
   minAge,
   maxAge,
+  showHeader = true,
 }: TransitionDurationChartProps) {
   const t = useTranslations("charts.transitionDuration");
   const searchParams = useSearchParams();
@@ -82,6 +85,11 @@ export default function TransitionDurationChart({
     fetchData(minAge, maxAge);
   }, [minAge, maxAge, searchParams]);
 
+  const totalCount = useMemo(
+    () => data.reduce((sum, item) => sum + Number(item.count), 0),
+    [data],
+  );
+
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
@@ -89,7 +97,7 @@ export default function TransitionDurationChart({
         <div className="rounded border border-gray-300 bg-white p-3 shadow-lg">
           <p className="font-medium text-black">{`${t("tooltip.transitionAge")}: ${data.transitionAge}`}</p>
           <p className="font-medium text-black">{`${t("tooltip.detransitionAge")}: ${data.detransitionAge}`}</p>
-          <p className="font-medium text-blue-600">{`${t("tooltip.duration")}: ${data.duration} ${t("years")}`}</p>
+          <p className="font-medium text-blue-600">{`${t("tooltip.duration")}: ${data.duration} ${t("tooltip.years")}`}</p>
           <p className="text-sm text-gray-600">{`${data.count} ${data.count !== 1 ? t("users") : t("user")}`}</p>
         </div>
       );
@@ -109,13 +117,15 @@ export default function TransitionDurationChart({
         </div>
       ) : (
         <>
-          <div className="p-4">
-            <h3 className="font-semibold">{t("title")}</h3>
-            <p className="text-sm text-gray-600">
-              {t("description.line1")} <br className="hidden sm:inline" />
-              {t("description.line2")}
-            </p>
-          </div>
+          {showHeader && (
+            <div className="p-4">
+              <h3 className="font-semibold">{t("title")}</h3>
+              <p className="text-sm text-gray-600">
+                {t("description.line1")} <br className="hidden sm:inline" />
+                {t("description.line2")}
+              </p>
+            </div>
+          )}
           <div className={`w-full ${className}`}>
             <ResponsiveContainer width="100%" height={400}>
               <ScatterChart
@@ -297,6 +307,9 @@ export default function TransitionDurationChart({
                 })()}
               </div>
             </div>
+            <p className="text-muted-foreground px-4 pb-2 text-sm">
+              {t("coverage", { count: totalCount })}
+            </p>
           </div>
         </>
       )}

@@ -144,7 +144,9 @@
       "stats": "Statistika",
       "statsDesc": "Anonimizirane statistike detranzicije iz /r/detrans",
       "topics": "Topics",
-      "topicsDesc": "Poglobljeni vodniki o ključnih temah"
+      "topicsDesc": "Poglobljeni vodniki o ključnih temah",
+      "stories": "Zgodbe",
+      "storiesDesc": "Od uporabnikov /r/detrans"
     },
     "resources": {
       "genderSupport": "Najdi Terapevte",
@@ -183,6 +185,7 @@
     "de": "Nemščina",
     "he": "Hebrejščina",
     "it": "Italijanščina",
+    "lt": "Lithuanian",
     "nl": "Nizozemščina",
     "tr": "Turščina",
     "sl": "Slovenščina"
@@ -240,17 +243,18 @@
   },
   "chat": {
     "lookingForComments": "Iščem relevantne komentarje...",
+    "lookingForStudies": "Looking for relevant studies...",
     "errorOccurred": "Prišlo je do napake, poskusite znova... Stopite v stik z mano, če se to še naprej dogaja.",
     "analysingExperiences": "Analiziranje izkušenj",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analiziranje spletnih rezultatov",
+    "analysingResults": "Analiziram rezultate...",
     "detransPerspective": "-> Kakšne so detranz perspektive o tej temi?",
     "transPerspectivesIncluded": "Trans perspektive vključene",
     "captchaRequired": "Za nadaljevanje klepeta je potrebna captcha.",
     "chatArchived": "Ta klepet je arhiviran. Začnite novega.",
     "rateLimitExceeded": "Preveč zahtev, upočasnite in poskusite znova pozneje.",
     "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
-    "analysingResults": "Analiziram rezultate...",
     "followUpQuestions": "Nadaljnja vprašanja:",
     "eventLabels": {
       "askDetransitioners": "Vprašajte detranzicionarje",
@@ -345,7 +349,21 @@
       "delete": "Izbriši pogovor",
       "banning": "Prepovedovanje...",
       "ban": "Prepovej uporabnika (IP)"
+    },
+    "dialog": {
+      "title": "Pogovor",
+      "toggleIdHint": "Kliknite za preklop med datumom/državo in ID-jem",
+      "shareText": "Oglejte si ta pogovor",
+      "share": "Deli pogovor",
+      "copyLink": "Kopiraj povezavo do pogovora",
+      "noneSelected": "Noben pogovor ni izbran"
     }
+  },
+  "readingDialog": {
+    "share": "Deli",
+    "copyLink": "Kopiraj povezavo",
+    "copied": "Povezava kopirana v odložišče",
+    "close": "Zapri okno"
   },
   "stories": {
     "metadata": {
@@ -385,9 +403,9 @@
       "ageRangeYears": "{min} - {max} let",
       "sex": {
         "all": "Moški in ženske",
-        "mine": "Mine",
         "female": "Ženske",
-        "male": "Moški"
+        "male": "Moški",
+        "mine": "Mine"
       },
       "tagsPlaceholder": "Izberite oznake za filtriranje...",
       "clearFilters": "Počisti filtre"
@@ -582,12 +600,15 @@
   },
   "videoList": {
     "loading": "Nalaganje videov...",
+    "searchPlaceholder": "Search videos...",
+    "result": "video",
+    "results": "videos",
     "filters": {
       "all": "Vse zgodbe",
-      "mine": "Mine",
       "female": "Ženske",
       "male": "Moški",
-      "detransitioners": "Detranzicionarji"
+      "detransitioners": "Detranzicionarji",
+      "mine": "Mine"
     },
     "thumbnailAlt": "Sličica za {title}",
     "by": "od",
@@ -801,7 +822,9 @@
       "legend": {
         "transition": "Starost tranzicije",
         "detransition": "Starost detranzicije"
-      }
+      },
+      "median": "mediana {age}",
+      "coverage": "Na podlagi {transition} starosti ob tranziciji in {detransition} starosti ob detranziciji."
     },
     "transitionDuration": {
       "title": "Trajanje tranzicije: Starost ob tranziciji proti starosti ob detranziciji",
@@ -825,7 +848,8 @@
       "female": "Ženske",
       "yearsAvg": "let povprečno",
       "user": "uporabnik",
-      "users": "uporabniki"
+      "users": "uporabniki",
+      "coverage": "Na podlagi {count} zgodb z obema zabeleženima starostma."
     },
     "pathways": {
       "title": "Tok poti detranzicije",
@@ -945,7 +969,9 @@
     "error": {
       "title": "Napaka CAPTCHA",
       "description": "Nalaganje CAPTCHA ni uspelo. Osvežite stran in poskusite znova."
-    }
+    },
+    "verifyFailed": "Verification failed. Please try again.",
+    "rateLimited": "Too many verifications. Please wait a moment and try again."
   },
   "feedback": {
     "title": "Povratne informacije",
@@ -963,11 +989,990 @@
     "metadata": {
       "title": "Anonimizirana statistika | detrans.ai",
       "description": "Anonimizirana statistika o vzorcih detranzicije in tranzicije, vključno s porazdelitvijo starosti, trajanjem, razlogi in potmi."
+    },
+    "toc": {
+      "title": "Na tej strani"
+    },
+    "filters": {
+      "title": "Filtri",
+      "edit": "Uredi filtre",
+      "hide": "Skrij filtre",
+      "summary": {
+        "none": "Brez filtrov",
+        "age": "Starost {min}–{max}",
+        "tags": "{count, plural, =0 {brez oznak} =1 {1 oznaka} two {# oznaki} few {# oznake} other {# oznak}}",
+        "detailed": "Samo podrobne"
+      },
+      "detailed": "Samo podrobne zgodbe",
+      "detailedHint": "Vključi samo zgodbe, ki jih je AI ocenila kot razmeroma ali zelo podrobne."
+    },
+    "sections": {
+      "age": {
+        "title": "Starost",
+        "description": "Kdaj so detranzicionarji začeli tranzicijo in detranzicijo."
+      },
+      "journey": {
+        "title": "Starost",
+        "description": "Kdaj so ljudje prvič občutili disforijo, začeli tranzicijo, začeli jemati hormone in se detranzicionirali."
+      },
+      "duration": {
+        "title": "Trajanje",
+        "description": "Kako dolgo so ljudje ostali v tranziciji, preden so jo prekinili."
+      },
+      "minors": {
+        "title": "Tranzicija pred 18. letom",
+        "description": "Kaj zgodbe kažejo o začetku tranzicije v otroštvu ali najstniških letih."
+      },
+      "reasons": {
+        "title": "Razlogi",
+        "description": "Zakaj so detranzicionarji po lastnih besedah začeli tranzicijo — in zakaj detranzicijo."
+      },
+      "pathways": {
+        "title": "Poti",
+        "description": "Ali se obžalovanje razlikuje glede na razlog za tranzicijo in glede na opravljene medicinske korake."
+      },
+      "regret": {
+        "title": "Obžalovanje",
+        "description": "Kako močno je obžalovanje, kako se spreminja s časom in kaj ljudje obžalujejo."
+      },
+      "medical": {
+        "title": "Medicinski posegi",
+        "description": "Kako je obžalovanje povezano s tem, kako daleč je šla tranzicija."
+      },
+      "complications": {
+        "title": "Zapleti",
+        "description": "Medicinski zapleti in trajajoče zdravstvene težave po tranziciji."
+      },
+      "mental_health": {
+        "title": "Duševno zdravje",
+        "description": "Slika duševnega zdravja v zgodbah, pred detranzicijo in po njej."
+      },
+      "suicidality": {
+        "title": "Samomorilnost",
+        "description": "Kako pogosto zgodbe opisujejo samomorilne misli ali samopoškodovanje, in kdaj."
+      },
+      "after": {
+        "title": "Po detranziciji",
+        "description": "Kako so se spremenili duševno zdravje, kakovost življenja in družinski odnosi."
+      },
+      "current_status": {
+        "title": "Where are they now",
+        "description": "Current identities and situations after detransitioning."
+      },
+      "family_community": {
+        "title": "Družbena cena detranzicije",
+        "description": "Izolacija in izključenost zaradi detranzicije ter razočaranje nad trans skupnostjo. Vprašanja, ki niso ločevala tranzicije od detranzicije (podpora družine, odnosi, kariera), so izpuščena; družinski odnosi od detranzicije so zajeti v razdelku »Po detranziciji«."
+      },
+      "sexuality": {
+        "title": "Spolnost",
+        "description": "Spolna usmerjenost glede na biološki spol, pred tranzicijo in po detranziciji."
+      },
+      "trends": {
+        "title": "Skozi leta",
+        "description": "Kako so se zgodbe — in njihovi razlogi — spreminjale med kohortami po letu tranzicije."
+      },
+      "features": {
+        "title": "Značilnosti",
+        "description": "Every statement the AI evaluated across the stories — causes, processes and outcomes."
+      },
+      "compare": {
+        "title": "Primerjava",
+        "description": "Kako se razširjenost značilnosti razlikuje med polovicama kohorte."
+      },
+      "matrix": {
+        "title": "Povezave",
+        "description": "Odgovori na vprašanja, o katerih se ljudje prepirajo — vključno s tem, kje se pričakovana razlika ne pokaže."
+      },
+      "stories": {
+        "title": "Zgodbe",
+        "description": "Anonimni odlomki ljudi, ki stojijo za temi številkami.",
+        "browse": "Prebrskaj vse zgodbe"
+      },
+      "methodology": {
+        "title": "Metodologija",
+        "description": "Kako je nabor podatkov sestavljen in kako brati te grafe."
+      },
+      "overview": {
+        "title": "Na prvi pogled",
+        "description": "Vse trditve da/ne, ki jih je AI ocenila, razvrščene po številu zgodb, za katere jasno držijo."
+      },
+      "lives": {
+        "title": "Posamezne časovnice",
+        "description": "Vsaka črta je ena oseba, od starosti ob začetku tranzicije do starosti ob prenehanju."
+      },
+      "drivers": {
+        "title": "Manj obravnavani dejavniki",
+        "description": "Podoba telesa, nestabilnost identitete in spolni dejavniki, opisani kot prispevek k tranziciji."
+      },
+      "adversity": {
+        "title": "Travma in stiske",
+        "description": "Kako pogosto zgodbe opisujejo travmo in kako pogosto je travma navedena kot glavni razlog."
+      },
+      "online": {
+        "title": "Vpliv spleta in vrstnikov",
+        "description": "Katere platforme so bile najpomembnejše in kako se vpliv spleta in vrstnikov kaže v zgodbah."
+      },
+      "process": {
+        "title": "Prelomnice",
+        "description": "Kaj je ljudem pomagalo, da so se od tranzicije premaknili k detranziciji."
+      }
+    },
+    "features": {
+      "search": "Išči značilnosti …",
+      "sort": {
+        "prevalence": "Razširjenost",
+        "alpha": "A–Z"
+      },
+      "tiers": {
+        "cause": "Vzrok",
+        "process": "Proces",
+        "outcome": "Izid"
+      },
+      "kinds": {
+        "noul": "Da / ne",
+        "choice": "Izbira",
+        "score": "Lestvica"
+      },
+      "groups": {
+        "reasons": "Razlogi",
+        "causes": "Vzroki",
+        "processes": "Procesi",
+        "regret": "Obžalovanje",
+        "medical": "Medicina",
+        "mental_health": "Duševno zdravje",
+        "adversity": "Stiske",
+        "social": "Družbeno",
+        "sexuality": "Spolnost",
+        "online": "Splet",
+        "identity": "Identiteta",
+        "outcomes": "Izidi",
+        "attitudes": "Stališča",
+        "quality": "Kakovost"
+      },
+      "basedOn": "Med {cohort} ocenjenimi zgodbami.",
+      "coverageNote": "{n} od {cohort} ocenjenih zgodb ({percent} %) vsebuje odgovor.",
+      "question": "Kako je bilo to izmerjeno?",
+      "confidence": "Mediana zanesljivosti AI za to značilnost: {value} %.",
+      "filterByTag": "Samo zgodbe z oznako »{tag}«",
+      "placeholder": "Izberite značilnost s seznama, da jo raziščete.",
+      "backToList": "Vse značilnosti",
+      "noResults": "Nobena značilnost ne ustreza iskanju.",
+      "noData": "Za trenutne filtre ni odgovorov.",
+      "loading": "Nalaganje …",
+      "error": "Podatkov o značilnosti ni bilo mogoče naložiti",
+      "noul": {
+        "prevalenceLabel": "ocenjenih zgodb je nad pragom",
+        "range": "verjetnost {from} – {to}",
+        "count": "{count} zgodb ({percent} %)",
+        "thresholdShort": "prag {threshold}",
+        "legend": {
+          "yes": "Verjetno drži",
+          "maybe": "Negotovo",
+          "no": "Verjetno ne drži"
+        },
+        "above": "Verjetno drži",
+        "uncertain": "Negotovo",
+        "below": "Verjetno ne drži"
+      },
+      "choice": {
+        "soft": "Verjetnostna masa",
+        "hard": "Zmagovalna možnost",
+        "softTooltip": "≈{percent} % (≈{count} zgodb verjetnostne mase)",
+        "hardTooltip": "{percent} % ({count} zgodb)",
+        "softNote": "Stolpci prikazujejo seštevek verjetnosti AI, ki jo vsaka možnost prejme v vseh zgodbah, zato se mešani odgovori štejejo sorazmerno.",
+        "hardNote": "Stolpci štejejo samo eno najverjetnejšo možnost vsake zgodbe."
+      },
+      "score": {
+        "meanLabel": "Povprečje {value} na lestvici 0–{max}",
+        "range": "Ocena {from} – {to}",
+        "count": "{count} zgodb",
+        "meanShort": "povprečje {value}"
+      },
+      "related": {
+        "title": "Pogosto skupaj",
+        "lift": "{lift}× pogostejše ({percent} %)"
+      },
+      "listNote": "Pike prikazujejo delež zgodb, v katerih posamezna trditev jasno drži (verjetnost AI ≥ 0,8); črte prikazujejo 95-odstotni interval. Zbledele vrstice imajo manj kot 30 odgovorov. Izberite vrstico, da preberete ustrezne zgodbe. Na podlagi {cohort} ocenjenih zgodb."
+    },
+    "compare": {
+      "splitLabel": "Razdeli po",
+      "thresholdNote": "Prikaz zgodb nad pragom AI {threshold} v primerjavi z zgodbami pod njim.",
+      "filter": {
+        "all": "Vsi odgovori",
+        "clear": "Samo jasni signali"
+      },
+      "clearNote": "{excluded} nejasnih zgodb je izključenih z obeh strani.",
+      "cohortTrue": "{label}: prisotno (n = {n})",
+      "cohortFalse": "Ni prisotno (n = {n})",
+      "splitSex": "Biološki spol",
+      "sexNote": "Primerjava zgodb žensk in moških.",
+      "cohortWomen": "Ženske (n = {n})",
+      "cohortMen": "Moški (n = {n})",
+      "splitAge": "Starost ob tranziciji",
+      "ageNote": "Primerjava zgodb, kjer se je tranzicija začela pred 18. letom, z zgodbami, kjer se je začela pri 18 letih ali pozneje.",
+      "cohortUnder18": "Pod 18 let (n = {n})",
+      "cohortAdult": "18 let ali več (n = {n})",
+      "rowTooltip": "{label}: {pctTrue} % od {nTrue} proti {pctFalse} % od {nFalse}",
+      "empty": "Še ni dovolj zgodb z odgovori na obeh straneh te razdelitve.",
+      "showSmallSamples": "Prikaži majhne vzorce",
+      "hideSmallSamples": "Skrij majhne vzorce",
+      "hiddenNote": "{count, plural, =1 {1 značilnost je skrita} two {# značilnosti sta skriti} few {# značilnosti so skrite} other {# značilnosti je skritih}}, ker imajo na eni strani manj kot 3 zgodbe.",
+      "error": "Podatkov primerjave ni bilo mogoče naložiti",
+      "ratio": "{ratio} tako pogosto",
+      "ratioNote": "Vrstice so razvrščene po tem, kako močno se skupini razlikujeta (relativno tveganje), značilnosti, ki so redke na obeh straneh, pa so izpuščene. Črte prikazujejo 95-odstotne intervale; zbledele vrstice imajo na eni strani manj kot 30 zgodb.",
+      "showAll": "Prikaži vse značilnosti"
+    },
+    "matrix": {
+      "presetLabel": "Pogled",
+      "presets": {
+        "outcomesByCause": "Izidi po vzroku",
+        "outcomesByProcess": "Izidi po prelomnici"
+      },
+      "metric": {
+        "rate": "Delež",
+        "lift": "Dvig glede na povprečje"
+      },
+      "swap": "Zamenjaj osi",
+      "legendRate": "Delež ustreznih zgodb, v katerih značilnost iz stolpca drži.",
+      "legendLift": "V primerjavi s povprečjem celotne kohorte (modro nad, rdeče pod).",
+      "sampleNote": "Vsaka celica primerja zgodbe z značilnostjo iz vrstice z zgodbami brez nje. Daljše, podrobnejše zgodbe omenjajo več značilnosti vseh vrst, zato je večina razmerij nad 1× — celice primerjajte med seboj, ne z 1×. Celice z manj kot 30 zgodbami na kateri koli strani so prazne.",
+      "basedOn": "{cohort} ocenjenih zgodb v tem pogledu.",
+      "cellTooltip": "{row} → {col}: {percent} % od {n} zgodb · {lift}× povprečje kohorte",
+      "cellTooltipNoLift": "{row} → {col}: {percent} % od {n} zgodb",
+      "cellMasked": "{row} → {col}: premalo zgodb",
+      "empty": "Še ni dovolj zgodb z odgovori za ta pogled.",
+      "error": "Podatkov matrike ni bilo mogoče naložiti",
+      "presetDescriptions": {
+        "outcomesByCause": "Za koliko pogostejši (ali redkejši) je posamezni izid v zgodbah z danim vzrokom kot v zgodbah brez njega.",
+        "outcomesByProcess": "Za koliko pogostejši (ali redkejši) je posamezni izid v zgodbah z dano prelomnico kot v zgodbah brez nje."
+      },
+      "legendMore": "Pogostejše z značilnostjo iz vrstice",
+      "legendLess": "Redkejše",
+      "legendNone": "Ni jasne razlike (95-odstotni interval vključuje 1×)",
+      "cellTooltipRatio": "{row} → {col}: {percent} % od {n} zgodb z njim v primerjavi s {percentWithout} % brez njega · {ratio} (95-odstotni interval {low}–{high})",
+      "legendWith": "Z dejavnikom",
+      "legendWithout": "Brez njega",
+      "themes": {
+        "medical": "Medicinska pot",
+        "helped": "Kaj je pomagalo",
+        "who": "Kdo obžaluje, kdo se vrne",
+        "views": "Pogledi na tranzicijo drugih"
+      },
+      "predictors": {
+        "under18": "Tranzicija začeta pred 18. letom",
+        "women": "Ženske (v primerjavi z moškimi)",
+        "sameSex": "Privlačnost do istega spola pred tranzicijo",
+        "took_puberty_blockers": "Jemanje blokatorjev pubertete",
+        "took_hormones": "Jemanje hormonov",
+        "top_surgery": "Operacija prsnega koša",
+        "process_benefited_from_therapy": "Pomagala je raziskovalna terapija",
+        "gender_nonconformity_childhood": "Spolno neskladen v otroštvu",
+        "process_spiritual_experience": "Duhovna izkušnja",
+        "autogynephilia": "Avtoginefilija",
+        "adv_trauma_history": "Travma v preteklosti",
+        "contributed_online_influence": "Vpliv spleta"
+      },
+      "outcomes": {
+        "regret": "obžaluje tranzicijo",
+        "bodyReconciliation": "je sprejel(a) svoje telo",
+        "retransitioned": "se je ponovno tranzicioniral(a)",
+        "mentalHealthBetter": "boljše duševno zdravje po detranziciji",
+        "critical": "kritičen/-na do tranzicije drugih ali ji nasprotuje"
+      },
+      "ratio": "{ratio} tako pogosto",
+      "noDifference": "Ni jasne razlike",
+      "rowTooltip": "{with} od {nWith} zgodb z njim v primerjavi z {without} od {nWithout} brez njega",
+      "note": "Črte prikazujejo 95-odstotne intervale. »Ni jasne razlike« pomeni, da interval vključuje tudi popolno odsotnost razlike. To so povezave v tem, kar ljudje pišejo, ne vzroki, in ljudje, ki pišejo daljše, podrobnejše zgodbe, omenjajo več vsega. Na podlagi {cohort} ocenjenih zgodb."
+    },
+    "regret": {
+      "composition": {
+        "pair": "{positive} % zgodb izraža obžalovanje tranzicije, {negative} % pa pravi, da je ne obžaluje; ostale tega ne povedo. Med tistimi, ki povedo, jo obžaluje {statedShare} % (n = {stated}).",
+        "any": "{positive} % izraža obžalovanje (n = {n})"
+      },
+      "scale": {
+        "title": "Kako močno je obžalovanje?",
+        "mean": "povprečna jakost {value} / {max}",
+        "levels": {
+          "level0": "Obžalovanje ni izraženo",
+          "level1": "Blago ali bežno",
+          "level2": "Zmerno, ponavljajoče se",
+          "level3": "Močno, trajno"
+        }
+      },
+      "choice": {
+        "title": "Kako se obžalovanje spreminja s časom?",
+        "options": {
+          "resolved": "Večinoma razrešeno",
+          "improving": "Se izboljšuje",
+          "stable": "Stabilno",
+          "worsening": "Se slabša",
+          "mixed": "Mešano ali ciklično"
+        }
+      },
+      "statements": {
+        "title": "Kaj točno ljudje obžalujejo"
+      },
+      "count": "n = {n}",
+      "basedOn": "Na podlagi {cohort} ocenjenih zgodb.",
+      "empty": "Za trenutne filtre še ni odgovorov o obžalovanju.",
+      "error": "Podatkov o obžalovanju ni bilo mogoče naložiti"
+    },
+    "complications": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} % poroča o vsaj enem medicinskem zapletu ali trajajoči zdravstveni težavi (n = {n})"
+      },
+      "scale": {
+        "title": "Kako hudi so bili zapleti?",
+        "mean": "povprečna resnost {value} / {max}",
+        "levels": {
+          "level0": "Brez zapletov",
+          "level1": "Manjši ali obvladljivi stranski učinki",
+          "level2": "Pomembni zapleti",
+          "level3": "Huda ali trajna škoda"
+        }
+      },
+      "statements": {
+        "title": "Konkretne zdravstvene težave"
+      },
+      "count": "n = {n}",
+      "basedOn": "Na podlagi {cohort} ocenjenih zgodb.",
+      "empty": "Za trenutne filtre še ni medicinskih odgovorov.",
+      "error": "Podatkov o zapletih ni bilo mogoče naložiti"
+    },
+    "mental_health": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} % kaže vsaj eno duševno motnjo ali krizo (n = {n})"
+      },
+      "scale": {
+        "title": "Kako resna je slika duševnega zdravja?",
+        "mean": "povprečna resnost {value} / {max}",
+        "levels": {
+          "level0": "Brez opaznih težav",
+          "level1": "Blaga ali situacijska stiska",
+          "level2": "Pomembne, zdravljene motnje",
+          "level3": "Hude motnje ali kriza"
+        }
+      },
+      "statements": {
+        "title": "Motnje in krize"
+      },
+      "count": "n = {n}",
+      "basedOn": "Na podlagi {cohort} ocenjenih zgodb.",
+      "empty": "Za trenutne filtre še ni odgovorov o duševnem zdravju.",
+      "error": "Podatkov o duševnem zdravju ni bilo mogoče naložiti"
+    },
+    "suicidality": {
+      "during": "Med tranzicijo",
+      "since": "Od detranzicije",
+      "duringDescription": "Kako verjetno model presodi, da zgodba opisuje samomorilne misli, samopoškodovanje ali poskus samomora v času, ko je bila oseba v tranziciji.",
+      "sinceDescription": "Kako verjetno model presodi, da zgodba opisuje samomorilne misli, samopoškodovanje ali poskus samomora od detranzicije.",
+      "splitNote": "Razdeljeno po trenutnem stanju · os s kvadratnim korenom",
+      "overall": "Vse zgodbe",
+      "sqrtNote": "Navpična os uporablja lestvico s kvadratnim korenom, da manjši verjetnostni razredi ostanejo vidni ob vrhu pri nič.",
+      "tooltipBin": "Verjetnost {range}",
+      "tooltipCount": "{count, plural, =1 {1 zgodba} two {# zgodbi} few {# zgodbe} other {# zgodb}}",
+      "bands": {
+        "no": "Verjetno ne drži (< 0,2)",
+        "mixed": "Negotovo (0,2–0,8)",
+        "yes": "Verjetno drži (≥ 0,8)"
+      },
+      "count": "n = {n}",
+      "basedOn": "Na podlagi {cohort} zgodb z odgovorom.",
+      "empty": "Za trenutne filtre še ni odgovorov o samomorilnosti.",
+      "error": "Podatkov o samomorilnosti ni bilo mogoče naložiti",
+      "statements": {
+        "title": "Samomorilne misli in samopoškodovanje"
+      }
+    },
+    "current_status": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% (n = {n})"
+      },
+      "choice": {
+        "title": "Where are they now?",
+        "options": {
+          "detransitioned": "Detranzicioniral(a)",
+          "desisted": "Prenehal(a) pred medicinsko tranzicijo",
+          "retransitioned": "Ponovno tranzicioniral(a)",
+          "still_trans_questioning": "Še vedno trans, se sprašuje",
+          "questioning": "Se sprašuje",
+          "unclear": "Nejasno",
+          "supportive": "Podpira tranzicijo drugih",
+          "conditional": "Podpira pod pogoji",
+          "critical": "Kritičen/-na do tranzicije",
+          "opposed": "Nasprotuje",
+          "not_addressed": "Ni obravnavano"
+        },
+        "description": "Med zgodbami, ki to obravnavajo, od podpore do nasprotovanja."
+      },
+      "secondaryChoice": {
+        "title": "Kako gledajo na tranzicijo drugih ljudi?"
+      },
+      "statements": {
+        "title": "Trenutno stanje"
+      },
+      "count": "n = {n}",
+      "basedOn": "Na podlagi {cohort} ocenjenih zgodb.",
+      "empty": "Za trenutne filtre še ni odgovorov o stanju.",
+      "error": "Podatkov o stanju ni bilo mogoče naložiti",
+      "headline": "{percent} % je kritičnih do tranzicije drugih ljudi ali ji nasprotuje (n ≈ {n}).",
+      "note": "Deleži, uteženi z verjetnostjo. Zgodbe, ki vprašanja ne obravnavajo, so izpuščene."
+    },
+    "family_community": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} % odgovori pritrdilno na vsaj eno od spodnjih vprašanj (n = {n})"
+      },
+      "statements": {
+        "title": "Zastavljena vprašanja",
+        "description": "Vsaka zgodba je bila preverjena glede na natanko ta vprašanja. Zgodba šteje, ko je odgovor jasno pritrdilen."
+      },
+      "count": "n = {n}",
+      "basedOn": "Na podlagi {cohort} ocenjenih zgodb.",
+      "empty": "Za trenutne filtre še ni odgovorov.",
+      "error": "Podatkov ni bilo mogoče naložiti"
+    },
+    "sexuality": {
+      "beforeLabel": "Pred tranzicijo",
+      "afterLabel": "Po detranziciji",
+      "options": {
+        "homosexual": "Homosexual",
+        "bisexual": "Biseksualna",
+        "heterosexual": "Heterosexual",
+        "asexual": "Aseksualna",
+        "other": "Drugo ali spremenljivo"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 zgodba} two {# zgodbi} few {# zgodbe} other {# zgodb}}",
+      "statements": {
+        "title": "Orientation and attraction"
+      },
+      "count": "n = {n}",
+      "basedOn": "Tok na podlagi {cohort} zgodb z obema odgovoroma o usmerjenosti.",
+      "empty": "Not enough orientation answers for the current filters yet.",
+      "error": "Podatkov o spolnosti ni bilo mogoče naložiti",
+      "hero": {
+        "statement": "detranzicionarjev, ki navedejo svojo trenutno usmerjenost, je gejev, lezbijk ali biseksualnih (n = {n}).",
+        "bySex": "M {men} gej ali biseksualen ({menSame} gej) | Ž {women} lezbijka ali biseksualna ({womenSame} lezbijka)"
+      },
+      "mix": {
+        "title": "Usmerjenost pred tranzicijo in po detranziciji",
+        "description": "Glede na biološki spol, med zgodbami, ki jo navedejo.",
+        "women": "Ženske",
+        "men": "Moški",
+        "all": "Vsi",
+        "before": "pred",
+        "after": "po"
+      },
+      "matrix": {
+        "title": "Se je usmerjenost spremenila?",
+        "description": "Vsaka vrstica je ena usmerjenost pred tranzicijo; celice prikazujejo, kaj ti ljudje opisujejo po detranziciji.",
+        "headline": "{percent} % opisuje enako usmerjenost pred tranzicijo in po detranziciji (n = {n}).",
+        "corner": "Pred ↓ · Po →",
+        "cell": "{from} pred → {to} po: {percent} % ({count})",
+        "note": "Samo zgodbe, ki navedejo usmerjenost na obeh straneh. Vrstice z manj kot 30 zgodbami so prazne."
+      },
+      "coverage": "Usmerjenost je navedena pred tranzicijo v {before} zgodbah in po detranziciji v {after}, od {cohort} ocenjenih zgodb."
+    },
+    "trends": {
+      "series": {
+        "contributed_online_influence": "Vpliv spleta",
+        "contributed_rapid_onset": "Hiter začetek (ROGD)",
+        "regret_transition": "Obžalovanje",
+        "took_puberty_blockers": "Blokatorji pubertete"
+      },
+      "tooltip": "{bucket} · n = {n}",
+      "mode": {
+        "strict": "Binarni signal",
+        "soft": "Povprečna verjetnost",
+        "strictNote": "Delež zgodb, glede katerih je model prepričan (≥ 0,8).",
+        "softNote": "Povprečna verjetnost v vseh zgodbah — nejasne zgodbe ostanejo del trenda."
+      },
+      "seriesTooltip": "{strict} binarno · {mean} povpr.",
+      "medianAge": "Mediana starosti ob tranziciji po kohorti",
+      "coverageNote": "Vsaka točka uporablja odgovorjene zgodbe kohorte; najzgodnejše kohorte imajo najmanjše vzorce.",
+      "basedOn": "Med {cohort} zgodbami z letom tranzicije.",
+      "empty": "Za trenutne filtre še ni let tranzicije.",
+      "error": "Podatkov o trendih ni bilo mogoče naložiti",
+      "linesTitle": "Značilnosti po letu tranzicije",
+      "linesDescription": "Delež zgodb, v katerih posamezna trditev jasno drži, združen po letu začetka tranzicije. Dodajte ali odstranite značilnosti za primerjavo.",
+      "reasonsTitle": "Glavni razlog za tranzicijo po obdobjih",
+      "reasonsDescription": "Kako se najpogostejši glavni razlogi premikajo med kohortami po letu tranzicije.",
+      "add": "Dodaj značilnost …",
+      "remove": "Odstrani {label}",
+      "strictNote": "Delež zgodb, v katerih je AI prepričana, da trditev drži (≥ 0,8). Prazne točke izhajajo iz manj kot 30 zgodb. Novejše kohorte so imele od tranzicije manj časa — manj časa do operacije ali dolgoročnih učinkov in običajno krajše zgodbe — zato mnoge značilnosti na desnem koncu padejo; značilnost, ki kljub temu narašča, kot anksioznost, izstopa."
+    },
+    "uncertainty": {
+      "binary": "Binarno",
+      "bands": "Tri stanja",
+      "likelyFalse": "Verjetno ne drži (< 0,2)",
+      "unclear": "Nejasno (0,2–0,8)",
+      "unclearShort": "nejasno",
+      "likelyTrue": "Verjetno drži (≥ 0,8)",
+      "rowTooltip": "{false} % verjetno ne drži · {unclear} % nejasno · {true} % verjetno drži"
+    },
+    "minors": {
+      "tiles": {
+        "minor": "začeli pred 18. letom ({n} od {total} zgodb s starostjo)",
+        "le15": "začeli pri 15 letih ali prej",
+        "dysphoria": "prvič občutili disforijo pri 12 letih ali prej (n = {n})",
+        "female": "tistih, ki so začeli pred 18. letom, je žensk"
+      },
+      "early": "V teh zgodbah se blokatorji pubertete pojavijo od starosti {min}, z mediano {median} (n = {n}). {hormones} jih je začelo jemati hormone do 16. leta, {detrans} pa se jih je do 18. leta že detranzicioniralo.",
+      "empty": "Za trenutne filtre še ni podatkov o starosti.",
+      "error": "Podatkov o zgodnji tranziciji ni bilo mogoče naložiti",
+      "byEra": {
+        "title": "Začetek pred 18. letom po letu tranzicije",
+        "description": "Delež zgodb, kjer se je tranzicija začela pred 18. letom, združen po letu začetka.",
+        "note": "Črte prikazujejo 95-odstotni interval. Poznejše kohorte vključujejo več ljudi, ki so tranzicijo začeli nedavno in mladi, zato trend berite previdno."
+      }
+    },
+    "journey": {
+      "milestones": {
+        "first_dysphoria": "Prva disforija",
+        "transition": "Tranzicija",
+        "hormones": "Hormoni",
+        "detransition": "Detranzicija",
+        "in_transition": "Leta v tranziciji"
+      },
+      "median": "mediana {age}",
+      "count": "n = {n}",
+      "tooltip": "Starost {age}: {count, plural, =1 {1 zgodba} two {# zgodbi} few {# zgodbe} other {# zgodb}}",
+      "yearsTooltip": "{years, plural, =1 {1 leto} two {# leti} few {# leta} other {# let}} v tranziciji: {count, plural, =1 {1 zgodba} two {# zgodbi} few {# zgodbe} other {# zgodb}}",
+      "basedOn": "Vsaka vrstica šteje samo zgodbe, ki navedejo to starost. Os je odrezana pri 99. percentilu.",
+      "empty": "Za trenutne filtre še ni podatkov o časovnici.",
+      "error": "Podatkov o poteku ni bilo mogoče naložiti"
+    },
+    "gradient": {
+      "regret": "Obžalovanje",
+      "noRegret": "Brez obžalovanja",
+      "notStated": "Ni navedeno",
+      "tiers": {
+        "no_transition": "Brez tranzicije",
+        "social_only": "Samo socialna",
+        "hormones": "Hormoni ali blokatorji",
+        "surgery": "Operacija",
+        "unclear": "Nejasno"
+      },
+      "tierTooltip": "{n} zgodb: {regrets} obžalovanje, {noRegret} brez obžalovanja, {notStated} ni navedeno",
+      "count": "n = {n}",
+      "selectionNote": "Ljudje, ki se detranzicionirajo zgodaj, nikoli ne pridejo do poznejših korakov, zato graf kaže, katere poti kam vodijo — ne pa, da medicinski koraki povzročajo obžalovanje.",
+      "basedOn": "Na podlagi {cohort} ocenjenih zgodb.",
+      "empty": "Za trenutne filtre še ni odgovorov.",
+      "error": "Podatkov o medicinskih posegih ni bilo mogoče naložiti",
+      "statedNote": "Število na desni je obžalovanje med zgodbami, ki se opredelijo v eno ali drugo smer (obžalovanje ali brez obžalovanja).",
+      "headline": "{percent} % ljudi, ki so imeli operacijo, pravi, da obžaluje tranzicijo, med tistimi, ki se opredelijo (n = {n}).",
+      "headlineCompare": "{percent} % ljudi, ki so imeli operacijo, pravi, da obžaluje tranzicijo, v primerjavi s {hormones} % tistih, ki so se ustavili pri hormonih ali blokatorjih (n = {n} / {nHormones}). Štejejo samo zgodbe, ki se opredelijo."
+    },
+    "after": {
+      "levels": {
+        "muchWorse": "Veliko slabše",
+        "worse": "Nekoliko slabše",
+        "same": "Približno enako",
+        "better": "Nekoliko bolje",
+        "muchBetter": "Veliko bolje"
+      },
+      "panels": {
+        "mh_change_after_detransition": "Duševno zdravje",
+        "outcome_quality_of_life": "Kakovost življenja",
+        "outcome_family_relationship_change": "Družinski odnosi"
+      },
+      "summary": "{better} % bolje · {worse} % slabše",
+      "count": "n = {n}",
+      "basedOn": "Na podlagi {cohort} ocenjenih zgodb.",
+      "empty": "Za trenutne filtre še ni odgovorov.",
+      "error": "Podatkov o spremembah ni bilo mogoče naložiti",
+      "worseSide": "Slabše",
+      "betterSide": "Bolje",
+      "headline": "{better} % opisuje boljše duševno zdravje po detranziciji; {worse} % ga opisuje kot slabše (n = {n})."
+    },
+    "stories": {
+      "excerptNote": "Anonimni povzetki javnih objav z /r/detrans, ki jih je ustvarila AI.",
+      "agesCaption": "Starost: prva disforija → tranzicija → {outcome}",
+      "ages": {
+        "firstDysphoria": "Prva disforija",
+        "transition": "Tranzicija",
+        "detransition": "Detranzicija",
+        "desistance": "Desistanca",
+        "socialTransition": "Socialna tranzicija"
+      },
+      "female": "Ženska",
+      "male": "Moški",
+      "basedOn": "Od {cohort} ustreznih zgodb.",
+      "empty": "Trenutnim filtrom še ne ustreza nobena zgodba.",
+      "error": "Zgodb ni bilo mogoče naložiti",
+      "loadMore": "Naloži več zgodb",
+      "loading": "Nalaganje …",
+      "upvotesLabel": "Skupno glasov za: {count}",
+      "dialog": {
+        "title": "Zgodba",
+        "summary": "Povzetek",
+        "fullStory": "Celotna zgodba",
+        "close": "Zapri zgodbo",
+        "error": "Celotne zgodbe ni bilo mogoče naložiti",
+        "openPage": "Odpri stran zgodbe"
+      },
+      "status": {
+        "detransitioned": "Detranzicija",
+        "desisted": "Odstop"
+      }
+    },
+    "highlights": {
+      "title": "Kaj izstopa",
+      "types": {
+        "prevalence": "Najpogostejše",
+        "pair": "Gre skupaj",
+        "improvement": "Življenje po detranziciji",
+        "journey": "Tipična pot",
+        "minorShare": "Začetek pred 18. letom",
+        "minorLe15": "Začetek pri 15 letih ali prej",
+        "minorDysphoria": "Prva disforija do 12. leta",
+        "minorFemale": "Kdo začne mlad",
+        "orientation": "Spolna usmerjenost"
+      },
+      "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
+      "prevalenceUnclear": "Nadaljnjih {unclear} % je nejasnih.",
+      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "improvement": "{better} % pravi, da se je njihova kakovost življenja po detranziciji izboljšala; {worse} % pravi, da se je poslabšala (n = {n}).",
+      "journey": "Tipična pot: prva disforija pri {dysphoria} → tranzicija pri {transition} → detranzicija pri {detransition} (n = {n}).",
+      "minorShare": "{percent} % zgodb s starostjo je tranzicijo začelo pred 18. letom (n = {n} od {total}).",
+      "minorLe15": "{percent} % jih je začelo pri 15 letih ali prej (n = {n}).",
+      "minorDysphoria": "{percent} % jih je disforijo prvič občutilo pri 12 letih ali prej (n = {n}).",
+      "minorFemale": "{percent} % tistih, ki so začeli pred 18. letom, je žensk (n = {n}).",
+      "explore": "Razišči",
+      "orientation": "{percent} % detranzicionarjev, ki navedejo svojo usmerjenost, je gejev, lezbijk ali biseksualnih ({sameSex} % gejev ali lezbijk; n = {n})."
+    },
+    "pathways": {
+      "journey": "Vzrok → Proces → Izid",
+      "medical": "Medicinska pot",
+      "stages": {
+        "cause": "Glavni razlog",
+        "process": "Prelomnica",
+        "outcome": "Obžalovanje danes"
+      },
+      "causes": {
+        "social_role_discomfort": "Nelagodje z družbeno vlogo",
+        "internalised_homophobia": "Ponotranjena homofobija",
+        "internalised_misogyny_misandry": "Ponotranjena mizoginija / mizandrija",
+        "trauma": "Travma",
+        "mental_health_issues": "Duševno zdravje",
+        "neurodivergence": "Nevrodivergentnost",
+        "body_dysmorphia": "Telesna dismorfija",
+        "online_influence": "Vpliv spleta",
+        "peer_influence": "Vpliv vrstnikov",
+        "sexual_factors": "Spolni dejavniki",
+        "parental_or_medical_pressure": "Pritisk staršev ali zdravnikov",
+        "other_unclear": "Drugo / nejasno",
+        "unclear": "Nejasno"
+      },
+      "processes": {
+        "process_benefited_from_therapy": "Raziskovalna terapija",
+        "process_detrans_community_exposure": "Detrans skupnost",
+        "process_research_consumption": "Raziskave in mediji",
+        "process_self_reflection": "Samorefleksija",
+        "process_time_off_hormones": "Premor od hormonov",
+        "process_medical_scare": "Zdravstveni preplah",
+        "process_family_partner_intervention": "Družina ali partner",
+        "process_spiritual_experience": "Duhovna izkušnja",
+        "other": "Drugo / nejasno"
+      },
+      "outcomes": {
+        "regrets": "Obžaluje",
+        "no_regret": "Brez obžalovanja",
+        "not_stated": "Ni navedeno"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 zgodba} two {# zgodbi} few {# zgodbe} other {# zgodb}}",
+      "basedOn": "Na podlagi {cohort} ocenjenih zgodb z odgovori v tem pogledu.",
+      "empty": "Še ni dovolj zgodb z odgovori za ta pogled.",
+      "error": "Podatkov o poteh ni bilo mogoče naložiti",
+      "journeyDescription": "Kako so glavni razlogi, prelomnice in obžalovanje povezani v zgodbah.",
+      "medicalDescription": "Katere medicinske korake so ljudje opravili pred detranzicijo.",
+      "regretByReason": {
+        "title": "Obžalovanje po glavnem razlogu za tranzicijo",
+        "description": "Med zgodbami, ki povedo, ali obžalujejo tranzicijo, delež tistih, ki jo — združeno po glavnem razlogu za tranzicijo, ki so ga navedli.",
+        "headline": "Skupno {percent} % zgodb, ki obravnavajo obžalovanje, ga izraža (n = {n}).",
+        "note": "Pike prikazujejo delež, ki izraža obžalovanje, med zgodbami, ki se jasno opredelijo v eno ali drugo smer; črte prikazujejo 95-odstotni interval. Zbledele vrstice imajo manj kot 30 zgodb.",
+        "error": "Obžalovanja po razlogu ni bilo mogoče naložiti",
+        "empty": "Za trenutne filtre še ni odgovorov."
+      }
+    },
+    "methodology": {
+      "p1": "detrans.ai ta nabor podatkov gradi iz javnih zgodb na /r/detrans. AI raztresene komentarje in objave vsakega uporabnika prepiše v eno pripoved v prvi osebi in iz nje izlušči časovnico ključnih starosti. Vključeni so samo uporabniki, ki so delili dovolj za sestavo celotne zgodbe.",
+      "p1b": "Ta statistika zajema samo zgodbe, v katerih je oseba jasno potrdila, da se je detranzicionirala ali da je pri njej prišlo do desistance. Od surovega korpusa do grafov:",
+      "table": {
+        "comments": "Komentarji, zbrani z /r/detrans",
+        "posts": "Objave, zbrane z /r/detrans",
+        "authors": "Različni avtorji v korpusu",
+        "selected": "Avtorji z vsaj 5 komentarji s 3+ glasovi za",
+        "removed": "Odstranjeno: detranzicija ali desistanca ni jasno potrjena",
+        "remaining": "Zgodbe, ohranjene po tem koraku",
+        "cohort": "Zajeto v spodnjih grafih (označeni računi izključeni)"
+      },
+      "p2": "Vsako zgodbo nato oceni Jev, verjetnostni model za odgovarjanje na vprašanja, glede na približno sto trditev o vzrokih, izkušnjah in izidih. Vprašanja da/ne vrnejo verjetnost od 0 do 1, izbirna vprašanja vrnejo verjetnost za vsako možnost, vprašanja z lestvico pa vrnejo pričakovano vrednost na lestvici, prikazani pod vsakim grafom.",
+      "p3": "Pri značilnostih da/ne zgodbo označimo kot »drži«, ko verjetnost doseže prag (privzeto 0,8). Histogram pri vsaki značilnosti prikazuje celotno porazdelitev verjetnosti, zato se značilnost z veliko odgovori v srednjem območju bere kot resnično negotova, ne pa kot jasno resnična ali neresnična.",
+      "p4": "Vsi grafi upoštevajo zgornje filtre. Ker se je nabor vprašanj sčasoma spreminjal in se zgodbe ponovno obdelujejo, vsak graf navaja, koliko filtriranih zgodb dejansko ima odgovor na to vprašanje.",
+      "p5": "Račune, ki so videti neavtentični, izmišljeni ali kot boti, model označi in so izključeni iz te statistike. Podatki, ki jih izlušči AI, lahko še vedno vsebujejo napake — sistemski pozivi so objavljeni na <prompts>strani s pozivi</prompts>, povzetki pa se primerjajo z izvirnimi komentarji.",
+      "threshold": {
+        "title": "Koliko je prag pomemben",
+        "description": "Grafi štejejo trditev kot resnično, ko je verjetnost AI vsaj 0,8. Nižji pragi bi pokazali višje številke; ta graf kaže, za koliko.",
+        "error": "Podatkov o pragu ni bilo mogoče naložiti",
+        "tooltip": "Prag {threshold}",
+        "xAxis": "Prag verjetnosti",
+        "siteThreshold": "Uporabljeno na tej strani",
+        "note": "Delež zgodb pri posameznem pragu ali nad njim. Prag 0,8 je namerno konservativen."
+      },
+      "accountType": {
+        "title": "Kdo piše",
+        "description": "Ali posamezni zapis opisuje lastno izkušnjo pisca.",
+        "options": {
+          "personal_experience": "Lastna izkušnja",
+          "parent": "Starš",
+          "friend": "Prijatelj ali partner",
+          "researcher_journalist": "Raziskovalec, novinar ali klinik",
+          "other": "Drugo ali mešano"
+        }
+      },
+      "detail": {
+        "title": "Kako podrobne so zgodbe",
+        "description": "Ocena AI, kako konkretna je vsaka pripoved v prvi osebi. Z možnostjo »Samo podrobne zgodbe« v filtrih omejite vse grafe na najvišji dve ravni.",
+        "levels": {
+          "level0": "Nejasno ali splošno",
+          "level1": "Nekaj osebnih podrobnosti",
+          "level2": "Podrobni, konkretni dogodki",
+          "level3": "Zelo podrobna, večletna pripoved"
+        }
+      }
+    },
+    "prevalence": {
+      "women": "Ženske",
+      "men": "Moški",
+      "interval": "{group} {percent} (95-odstotni interval {low}–{high}, n = {n})",
+      "smallSample": "n = {n}",
+      "openStories": "Prikaži zgodbe",
+      "showAll": "Prikaži vseh {count}",
+      "showFewer": "Prikaži manj",
+      "note": "Pike prikazujejo delež zgodb, v katerih trditev jasno drži (verjetnost AI ≥ 0,8); črte prikazujejo 95-odstotni interval. Zbledele vrstice imajo manj kot 30 odgovorov.",
+      "noteWithStories": "Pike prikazujejo delež zgodb, v katerih trditev jasno drži (verjetnost AI ≥ 0,8); črte prikazujejo 95-odstotni interval. Zbledele vrstice imajo manj kot 30 odgovorov. Izberite vrstico, da preberete ustrezne zgodbe.",
+      "gap": "Največja razlika: {label} — {higher} pri skupini {higherGroup} v primerjavi z {lower} pri skupini {lowerGroup}.",
+      "womenLower": "ženske",
+      "menLower": "moški",
+      "m": "M",
+      "f": "Ž",
+      "menLegend": "M · moški",
+      "womenLegend": "Ž · ženske"
+    },
+    "storyPeek": {
+      "title": "Zgodbe: {label}",
+      "meta": "{count, plural, =1 {1 ustrezna zgodba} two {# ustrezni zgodbi} few {# ustrezne zgodbe} other {# ustreznih zgodb}}",
+      "error": "Zgodb ni bilo mogoče naložiti.",
+      "empty": "Za trenutne filtre ni ustreznih zgodb.",
+      "readFull": "Preberi celotno zgodbo",
+      "note": "Anonimni odlomki, najbolje ocenjeni najprej. Celoten seznam je v razdelku Zgodbe na koncu strani."
+    },
+    "reasons": {
+      "transitionTitle": "Glavni razlog za tranzicijo",
+      "transitionDescription": "Najpomembnejši posamezni razlog, ki ga vsaka oseba navede za začetek tranzicije.",
+      "detransitionTitle": "Glavni razlog za detranzicijo",
+      "detransitionDescription": "Najpomembnejši posamezni razlog, ki ga vsaka oseba navede za prenehanje."
+    },
+    "byYear": {
+      "error": "Podatkov po letih ni bilo mogoče naložiti",
+      "empty": "Za trenutne filtre še ni let tranzicije.",
+      "other": "Drugo",
+      "n": "n = {n}",
+      "note": "Deleži, uteženi z verjetnostjo, za vsako kohorto po letu tranzicije. Zbledele vrstice imajo manj kot 30 zgodb."
+    },
+    "overview": {
+      "error": "Pregleda ni bilo mogoče naložiti",
+      "basedOn": "Na podlagi {cohort} ocenjenih zgodb."
+    },
+    "drivers": {
+      "statements": {
+        "title": "Opisano kot prispevek k tranziciji"
+      },
+      "count": "n = {n}",
+      "basedOn": "Na podlagi {cohort} ocenjenih zgodb.",
+      "empty": "Za trenutne filtre še ni odgovorov.",
+      "error": "Teh podatkov ni bilo mogoče naložiti"
+    },
+    "adversity": {
+      "composition": {
+        "any": "{positive} % opisuje vsaj eno obliko travme ali stiske (n = {n})"
+      },
+      "statements": {
+        "title": "Opisane vrste stisk"
+      },
+      "contrast": {
+        "title": "Travma v preteklosti ali travma kot glavni razlog",
+        "description": "Veliko več zgodb travmo omenja, kot jo navaja kot glavno gonilo tranzicije ali detranzicije.",
+        "history": "Opisujejo travmo v preteklosti",
+        "transitionReason": "Travmo navajajo kot glavni razlog za tranzicijo",
+        "detransitionReason": "Spoznanje o travmi navajajo kot glavni razlog za detranzicijo",
+        "note": "Pike prikazujejo delež zgodb; črte prikazujejo 95-odstotni interval. Vrstice z razlogi štejejo en glavni razlog vsake zgodbe."
+      },
+      "count": "n = {n}",
+      "basedOn": "Na podlagi {cohort} ocenjenih zgodb.",
+      "empty": "Za trenutne filtre še ni odgovorov o stiskah.",
+      "error": "Podatkov o stiskah ni bilo mogoče naložiti"
+    },
+    "online": {
+      "choice": {
+        "title": "Najvplivnejša platforma",
+        "description": "Med zgodbami, ki navajajo vpliv spleta. Zgodbe brez pomembnega vpliva spleta so izpuščene.",
+        "options": {
+          "reddit": "Reddit",
+          "tumblr": "Tumblr",
+          "tiktok": "TikTok",
+          "twitter": "Twitter / X",
+          "youtube": "YouTube",
+          "discord": "Discord",
+          "other": "Druga platforma ali oboževalski prostor"
+        }
+      },
+      "statements": {
+        "title": "Vpliv spleta in vrstnikov"
+      },
+      "byYear": {
+        "title": "Platforma po letu tranzicije",
+        "description": "Kako se je najvplivnejša platforma spreminjala med kohortami po letu tranzicije."
+      },
+      "count": "n = {n}",
+      "basedOn": "Na podlagi {cohort} ocenjenih zgodb.",
+      "empty": "Za trenutne filtre še ni odgovorov o vplivu spleta.",
+      "error": "Podatkov o vplivu spleta ni bilo mogoče naložiti"
+    },
+    "process": {
+      "composition": {
+        "any": "{positive} % opisuje vsaj eno od teh prelomnic (n = {n})"
+      },
+      "statements": {
+        "title": "Kaj je ljudi premaknilo k detranziciji"
+      },
+      "count": "n = {n}",
+      "basedOn": "Na podlagi {cohort} ocenjenih zgodb.",
+      "empty": "Za trenutne filtre še ni odgovorov o prelomnicah.",
+      "error": "Podatkov o prelomnicah ni bilo mogoče naložiti"
+    },
+    "lives": {
+      "error": "Časovnic ni bilo mogoče naložiti",
+      "empty": "Za trenutne filtre še ni zgodb s starostjo ob tranziciji in detranziciji.",
+      "legend": {
+        "transition": "V tranziciji",
+        "blockers": "Blokatorji pubertete",
+        "hormones": "Hormoni",
+        "surgery": "Operacija"
+      },
+      "ariaLabel": "Trakasti graf {n} posameznih časovnic od tranzicije do detranzicije",
+      "tooltip": {
+        "woman": "Ženska",
+        "man": "Moški",
+        "person": "Oseba",
+        "firstDysphoria": "Prva disforija pri {age}",
+        "transition": "Tranzicija pri {age}",
+        "pubertyBlockers": "Blokatorji pubertete pri {age}",
+        "hormones": "Hormoni pri {age}",
+        "topSurgery": "Operacija prsnega koša pri {age}",
+        "bottomSurgery": "Operacija spolovil pri {age}",
+        "detransition": "Detranzicija pri {age}"
+      },
+      "note": "{n} ljudi, katerih zgodba navaja obe starosti, razvrščenih po starosti ob tranziciji. Starosti so razlaga zgodbe s strani AI in so lahko približne."
+    },
+    "duration": {
+      "error": "Trajanj ni bilo mogoče naložiti",
+      "empty": "Za trenutne filtre še ni trajanj tranzicije.",
+      "all": "Vsi",
+      "women": "Ženske",
+      "men": "Moški",
+      "legend": "{label}: mediana {median} let (n = {n})",
+      "tooltipTitle": "V {years, plural, =1 {1 letu} two {# letih} few {# letih} other {# letih}}",
+      "xAxis": "Leta od začetka tranzicije",
+      "note": "Delež ljudi, ki so prenehali v danem številu let. Vsi tukaj so se sčasoma detranzicionirali, zato graf kaže, kako dolgo je pri njih trajala tranzicija — ne pa, koliko ljudi, ki začnejo tranzicijo, jo pozneje prekine.",
+      "headline": "{one} % jih je prenehalo v enem letu in {five} % v petih letih od začetka (mediana {median} let, n = {n})."
+    },
+    "optionLabels": {
+      "reddit": "Reddit",
+      "tumblr": "Tumblr",
+      "tiktok": "TikTok",
+      "twitter": "Twitter / X",
+      "youtube": "YouTube",
+      "discord": "Discord",
+      "social_role_discomfort": "Nelagodje z družbeno vlogo",
+      "internalised_homophobia": "Ponotranjena homofobija",
+      "internalised_misogyny_misandry": "Ponotranjena mizoginija / mizandrija",
+      "trauma": "Travma",
+      "mental_health_issues": "Duševno zdravje",
+      "neurodivergence": "Nevrodivergentnost",
+      "body_dysmorphia": "Telesna dismorfija",
+      "online_influence": "Vpliv spleta",
+      "peer_influence": "Vpliv vrstnikov",
+      "sexual_factors": "Spolni dejavniki (AGP / AAP)",
+      "parental_or_medical_pressure": "Pritisk staršev ali zdravnikov",
+      "other_unclear": "Drugo / nejasno",
+      "accepted_sexed_body": "Sprejetje svojega spolno določenega telesa",
+      "social_construct_realisation": "Spoznanje, da so težava spolne vloge",
+      "trauma_realisation": "Spoznanje, da je gonilo travma",
+      "mental_health_realisation": "Spoznanje, da je gonilo duševno zdravje",
+      "neurodivergence_realisation": "Spoznanje, da je gonilo nevrodivergentnost",
+      "fantasy_reality_disillusionment": "Resničnost ni ustrezala pričakovanjem",
+      "surgery_regret_medical_complications": "Obžalovanje operacije ali medicinski zapleti",
+      "ideological_disillusionment": "Razočaranje nad ideologijo ali skupnostjo",
+      "social_pressure_ostracism": "Družbeni pritisk ali izključenost",
+      "failure_to_pass": "Ni mogel/mogla »passati«",
+      "internalised_homophobia_realisation": "Spoznanje ponotranjene homofobije",
+      "internalised_misogyny_misandry_realisation": "Spoznanje ponotranjene mizoginije / mizandrije",
+      "sexual_factors_realisation": "Spoznanje spolnih dejavnikov (AGP / AAP)",
+      "religious_or_spiritual_change": "Verska ali duhovna sprememba",
+      "fertility_or_family_desires": "Plodnost ali želja po družini"
+    },
+    "choiceSplit": {
+      "error": "Tega grafa ni bilo mogoče naložiti",
+      "empty": "Za trenutne filtre še ni odgovorov.",
+      "women": "Ž · ženske (n = {n})",
+      "men": "M · moški (n = {n})",
+      "headline": "Ženske pogosteje navajajo »{womenOption}« ({womenShare} v primerjavi z {womenMen} pri moških); moški pogosteje navajajo »{menOption}« ({menShare} v primerjavi z {menWomen} pri ženskah).",
+      "note": "Uteženo z verjetnostjo: zgodba, ki jo AI razdeli 60/40 med dva razloga, šteje 0,6 in 0,4.",
+      "m": "M",
+      "f": "Ž"
+    },
+    "ordinal": {
+      "error": "Tega grafa ni bilo mogoče naložiti",
+      "empty": "Za trenutne filtre še ni odgovorov.",
+      "all": "Vsi",
+      "women": "Ženske",
+      "men": "Moški"
+    },
+    "medical_steps": {
+      "statements": {
+        "title": "Opravljeni medicinski koraki"
+      },
+      "count": "n = {n}",
+      "basedOn": "Na podlagi {cohort} ocenjenih zgodb.",
+      "empty": "Za trenutne filtre še ni odgovorov.",
+      "error": "Medicinskih korakov ni bilo mogoče naložiti"
     }
   },
   "topicsPage": {
     "title": "Topics",
     "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
     "empty": "No topics have been published yet."
+  },
+  "storiesPage": {
+    "metadata": {
+      "title": "Zgodbe o detranziciji | detrans.ai",
+      "description": "Preberite na tisoče anonimiziranih zgodb o detranziciji in desistenci iz skupnosti /r/detrans, ki jih je povzela UI. Filtrirajte po starosti, spolu in izkušnjah."
+    },
+    "title": "Zgodbe o detranziciji",
+    "description": "Anonimizirane zgodbe ljudi, ki so opravili tranzicijo in pozneje detranzicionirali ali odnehali, ki jih je UI sestavila iz njihovih objav in komentarjev na /r/detrans. Skupaj zgodb: {count, number}.",
+    "statsLink": "Raziščite statistiko",
+    "allStories": "Vse zgodbe",
+    "story": {
+      "metaTitle": "{title} – Zgodba o detranziciji | detrans.ai",
+      "untitled": "Zgodba o detranziciji",
+      "notFound": "Zgodbe ni mogoče najti | detrans.ai",
+      "tags": "Oznake",
+      "moreStories": "Preberite več zgodb"
+    }
   }
 }

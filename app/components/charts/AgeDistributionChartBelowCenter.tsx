@@ -1,16 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import {
-  AreaChart,
   Area,
-  XAxis,
-  YAxis,
+  AreaChart,
   CartesianGrid,
-  Tooltip,
   Legend,
   ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts";
 
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
@@ -27,7 +27,11 @@ interface AgeDistributionChartProps {
   maxAge: number;
 }
 
-export default function AgeDistributionChart({ className, minAge, maxAge }: AgeDistributionChartProps) {
+export default function AgeDistributionChart({
+  className,
+  minAge,
+  maxAge,
+}: AgeDistributionChartProps) {
   const searchParams = useSearchParams();
   const [data, setData] = useState<AgeData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -36,32 +40,32 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
   const fetchData = async (minAge: number, maxAge: number) => {
     try {
       setLoading(true);
-      
+
       // Build params from current search params
       const params = new URLSearchParams();
-      params.set('minAge', minAge.toString());
-      params.set('maxAge', maxAge.toString());
-      
+      params.set("minAge", minAge.toString());
+      params.set("maxAge", maxAge.toString());
+
       // Include sex filter if present
-      const sex = searchParams.get('sex');
+      const sex = searchParams.get("sex");
       if (sex) {
-        params.set('sex', sex);
+        params.set("sex", sex);
       }
-      
+
       // Include tag filter if present
-      const tag = searchParams.get('tag');
+      const tag = searchParams.get("tag");
       if (tag) {
-        params.set('tag', tag);
+        params.set("tag", tag);
       }
-      
+
       const response = await fetch(
-        `/api/users/age-distribution?${params.toString()}`
+        `/api/users/age-distribution?${params.toString()}`,
       );
-      
+
       if (!response.ok) {
         throw new Error("Failed to fetch age distribution data");
       }
-      
+
       const result = await response.json();
       setData(result.data);
       setError(null);
@@ -80,7 +84,7 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-white p-3 border border-gray-300 rounded shadow-lg">
+        <div className="rounded border border-gray-300 bg-white p-3 shadow-lg">
           <p className="font-medium">{`Age: ${label}`}</p>
           <p className="text-blue-600">
             {`Transitioned: ${payload[0]?.value || 0} users`}
@@ -101,9 +105,7 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
           <CardTitle>Age Distribution</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-red-500 text-center py-8">
-            Error: {error}
-          </div>
+          <div className="py-8 text-center text-red-500">Error: {error}</div>
         </CardContent>
       </Card>
     );
@@ -116,7 +118,7 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
       </CardHeader>
       <CardContent>
         {loading ? (
-          <div className="flex items-center justify-center h-96">
+          <div className="flex h-96 items-center justify-center">
             <div className="text-gray-500">Loading chart data...</div>
           </div>
         ) : (
@@ -131,41 +133,58 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
               }}
             >
               <defs>
-                <linearGradient id="colorTransition" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8}/>
-                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                <linearGradient
+                  id="colorTransition"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
                 </linearGradient>
-                <linearGradient id="colorDetransition" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#ef4444" stopOpacity={0.8}/>
-                  <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
+                <linearGradient
+                  id="colorDetransition"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+                  <stop offset="5%" stopColor="#ef4444" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis 
-                dataKey="age" 
-                label={{ value: 'Age', position: 'insideBottom', offset:-10 }}
+              <XAxis
+                dataKey="age"
+                label={{ value: "Age", position: "insideBottom", offset: -10 }}
               />
-              <YAxis 
-                label={{ 
-                  value: 'Number of Users', 
-                  angle: -90, 
-                  position: 'insideMiddle'
+              <YAxis
+                label={{
+                  value: "Number of Users",
+                  angle: -90,
+                  position: "insideMiddle",
                 }}
                 tickFormatter={(value) => Math.abs(value).toString()}
               />
               <Tooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="bottom" align="left" height={36} wrapperStyle={{ paddingTop: '28px', paddingLeft: '56px' }} />
-              <Area 
+              <Legend
+                verticalAlign="bottom"
+                align="left"
+                height={36}
+                wrapperStyle={{ paddingTop: "28px", paddingLeft: "56px" }}
+              />
+              <Area
                 type="monotone"
-                dataKey="transition" 
+                dataKey="transition"
                 stroke="#3b82f6"
                 fillOpacity={1}
                 fill="url(#colorTransition)"
                 name="Transition Age"
               />
-              <Area 
+              <Area
                 type="monotone"
-                dataKey="detransition" 
+                dataKey="detransition"
                 stroke="#ef4444"
                 fillOpacity={1}
                 fill="url(#colorDetransition)"
@@ -174,9 +193,9 @@ export default function AgeDistributionChart({ className, minAge, maxAge }: AgeD
             </AreaChart>
           </ResponsiveContainer>
         )}
-        
+
         {!loading && data.length === 0 && (
-          <div className="text-center py-8 text-gray-500">
+          <div className="py-8 text-center text-gray-500">
             No data available for the selected age range
           </div>
         )}

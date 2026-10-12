@@ -144,7 +144,9 @@
       "stats": "統計",
       "statsDesc": "/r/detrans 匿名去轉性別統計",
       "topics": "Topics",
-      "topicsDesc": "關鍵主題的深入指南"
+      "topicsDesc": "關鍵主題的深入指南",
+      "stories": "故事",
+      "storiesDesc": "來自/r/detrans用戶"
     },
     "resources": {
       "genderSupport": "尋找治療師",
@@ -183,7 +185,9 @@
     "de": "德文",
     "he": "希伯來文",
     "it": "義大利文",
+    "lt": "Lithuanian",
     "nl": "荷蘭文",
+    "tr": "Turkish",
     "zh-cn": "簡體中文",
     "zh-tw": "繁體中文"
   },
@@ -240,17 +244,18 @@
   },
   "chat": {
     "lookingForComments": "正在尋找相關評論...",
+    "lookingForStudies": "Looking for relevant studies...",
     "errorOccurred": "發生錯誤，請重試...如果這種情況持續發生，請聯絡我。",
     "analysingExperiences": "正在分析經歷",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "正在分析網頁搜尋結果",
+    "analysingResults": "正在分析結果...",
     "detransPerspective": "-> 去過渡者對這個話題有什麼看法？",
     "transPerspectivesIncluded": "包含跨性別視角",
     "captchaRequired": "需要驗證碼才能繼續聊天。",
     "chatArchived": "此聊天已存檔。開始一個新的。",
     "rateLimitExceeded": "請求過多，請放慢速度稍後再試。",
     "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
-    "analysingResults": "正在分析結果...",
     "followUpQuestions": "後續問題：",
     "eventLabels": {
       "askDetransitioners": "詢問去過渡者",
@@ -345,7 +350,21 @@
       "delete": "刪除對話",
       "banning": "正在封鎖...",
       "ban": "封鎖用戶(IP)"
+    },
+    "dialog": {
+      "title": "對話",
+      "toggleIdHint": "點擊可在日期/國家與 ID 之間切換",
+      "shareText": "看看這段對話",
+      "share": "分享對話",
+      "copyLink": "複製對話連結",
+      "noneSelected": "未選擇對話"
     }
+  },
+  "readingDialog": {
+    "share": "分享",
+    "copyLink": "複製連結",
+    "copied": "連結已複製到剪貼簿",
+    "close": "關閉對話框"
   },
   "stories": {
     "metadata": {
@@ -385,9 +404,9 @@
       "ageRangeYears": "{min} - {max}歲",
       "sex": {
         "all": "男性和女性",
-        "mine": "Mine",
         "female": "女性",
-        "male": "男性"
+        "male": "男性",
+        "mine": "Mine"
       },
       "tagsPlaceholder": "選擇標籤進行篩選...",
       "clearFilters": "清除篩選"
@@ -582,12 +601,15 @@
   },
   "videoList": {
     "loading": "正在載入影片...",
+    "searchPlaceholder": "Search videos...",
+    "result": "video",
+    "results": "videos",
     "filters": {
       "all": "所有故事",
-      "mine": "Mine",
       "female": "女性",
       "male": "男性",
-      "detransitioners": "去過渡者"
+      "detransitioners": "去過渡者",
+      "mine": "Mine"
     },
     "thumbnailAlt": "{title}的縮圖",
     "by": "作者",
@@ -635,15 +657,15 @@
       "ogDescription": "在本頁查找與性別認同趨勢和去過渡相關的學術研究和同行評審期刊文章以及已驗證統計的選擇。"
     },
     "title": "學術研究與調查",
+    "description": "去過渡研究是一個新興領域。過去十年間，性別焦慮診斷數量迅速上升——尤其在青春期少女中——導致去過渡者群體不斷增長，但由於隨訪流失率高、意識形態分歧以及方法論局限，數據收集仍然充滿挑戰。",
+    "segmNote": "在本頁中，您將找到對性別肯定護理的有效性與倫理提出質疑的學術研究、同行評審研究和期刊文章。更多資訊請參閱<a>Society for Evidence-Based Gender Medicine (SEGM)</a>，包括對相關支持性研究的全面分析。",
     "searchPlaceholder": "搜尋研究...",
     "methodology": "研究方法",
     "topic": "主題",
     "noResults": "未找到相關研究。",
     "noStudies": "尚無已批准的研究。",
     "pendingReview": "待審核",
-    "keyFindings": "主要發現：",
-    "description": "去過渡研究是一個新興領域。過去十年間，性別焦慮診斷數量迅速上升——尤其在青春期少女中——導致去過渡者群體不斷增長，但由於隨訪流失率高、意識形態分歧以及方法論局限，數據收集仍然充滿挑戰。",
-    "segmNote": "在本頁中，您將找到對性別肯定護理的有效性與倫理提出質疑的學術研究、同行評審研究和期刊文章。更多資訊請參閱<a>Society for Evidence-Based Gender Medicine (SEGM)</a>，包括對相關支持性研究的全面分析。"
+    "keyFindings": "主要發現："
   },
   "contentWarning": {
     "title": "內容警告：",
@@ -801,7 +823,9 @@
       "legend": {
         "transition": "過渡年齡",
         "detransition": "去過渡年齡"
-      }
+      },
+      "median": "中位數 {age}",
+      "coverage": "根據 {transition} 個過渡年齡和 {detransition} 個去過渡年齡。"
     },
     "transitionDuration": {
       "title": "過渡持續時間：過渡年齡與去過渡年齡",
@@ -825,7 +849,8 @@
       "female": "女性",
       "yearsAvg": "年平均",
       "user": "用戶",
-      "users": "用戶"
+      "users": "用戶",
+      "coverage": "根據 {count} 個同時記錄了兩個年齡的故事。"
     },
     "pathways": {
       "title": "去過渡路徑流程",
@@ -945,7 +970,9 @@
     "error": {
       "title": "驗證碼錯誤",
       "description": "載入驗證碼失敗。請重新整理頁面後重試。"
-    }
+    },
+    "verifyFailed": "Verification failed. Please try again.",
+    "rateLimited": "Too many verifications. Please wait a moment and try again."
   },
   "feedback": {
     "title": "回饋",
@@ -963,11 +990,990 @@
     "metadata": {
       "title": "匿名統計 | detrans.ai",
       "description": "關於去轉換和轉換模式的匿名統計資料，包括年齡分佈、持續時間、原因和途徑。"
+    },
+    "toc": {
+      "title": "本頁內容"
+    },
+    "filters": {
+      "title": "篩選",
+      "edit": "編輯篩選條件",
+      "hide": "隱藏篩選條件",
+      "summary": {
+        "none": "無篩選條件",
+        "age": "年齡 {min}–{max}",
+        "tags": "{count, plural, =0 {無標籤} =1 {1 個標籤} other {# 個標籤}}",
+        "detailed": "僅限詳細"
+      },
+      "detailed": "僅限詳細的故事",
+      "detailedHint": "僅包含 AI 評為較詳細或非常詳細的故事。"
+    },
+    "sections": {
+      "age": {
+        "title": "年齡",
+        "description": "去過渡者何時過渡、何時去過渡。"
+      },
+      "journey": {
+        "title": "年齡",
+        "description": "人們何時首次感到性別焦慮、何時過渡、何時開始使用荷爾蒙以及何時去過渡。"
+      },
+      "duration": {
+        "title": "持續時間",
+        "description": "人們在停止之前處於過渡狀態多長時間。"
+      },
+      "minors": {
+        "title": "18 歲前過渡",
+        "description": "關於在兒童或青少年時期開始過渡，這些故事揭示了什麼。"
+      },
+      "reasons": {
+        "title": "原因",
+        "description": "去過渡者自述的過渡原因，以及去過渡的原因。"
+      },
+      "pathways": {
+        "title": "路徑",
+        "description": "後悔是否因過渡原因而異，以及人們採取了哪些醫療步驟。"
+      },
+      "regret": {
+        "title": "後悔",
+        "description": "後悔有多強烈、如何隨時間變化，以及人們後悔什麼。"
+      },
+      "medical": {
+        "title": "醫療介入",
+        "description": "後悔與過渡進行到何種程度之間的關係。"
+      },
+      "complications": {
+        "title": "併發症",
+        "description": "過渡後的醫療併發症和持續的健康問題。"
+      },
+      "mental_health": {
+        "title": "心理健康",
+        "description": "去過渡前後，各故事中呈現的心理健康狀況。"
+      },
+      "suicidality": {
+        "title": "自殺傾向",
+        "description": "故事中描述自殺念頭或自傷的頻率以及發生時間。"
+      },
+      "after": {
+        "title": "去過渡之後",
+        "description": "心理健康、生活品質和家庭關係如何變化。"
+      },
+      "current_status": {
+        "title": "Where are they now",
+        "description": "Current identities and situations after detransitioning."
+      },
+      "family_community": {
+        "title": "去過渡的社會代價",
+        "description": "去過渡導致的孤立與排斥，以及對跨性別社群的幻滅。未區分過渡與去過渡的問題（家庭支持、人際關係、職涯）已排除；去過渡以來的家庭關係見「去過渡之後」。"
+      },
+      "sexuality": {
+        "title": "性傾向",
+        "description": "相對於出生性別的性傾向，分為過渡前和去過渡後。"
+      },
+      "trends": {
+        "title": "歷年變化",
+        "description": "不同過渡年份世代中，故事及其原因如何變化。"
+      },
+      "features": {
+        "title": "特徵",
+        "description": "Every statement the AI evaluated across the stories — causes, processes and outcomes."
+      },
+      "compare": {
+        "title": "比較",
+        "description": "將世代分成兩半時，特徵的出現率如何變化。"
+      },
+      "matrix": {
+        "title": "關聯",
+        "description": "對有爭議問題的回答 — 包括預期的差異並未出現的情況。"
+      },
+      "stories": {
+        "title": "故事",
+        "description": "這些數字背後的人們的匿名摘錄。",
+        "browse": "瀏覽所有故事"
+      },
+      "methodology": {
+        "title": "方法",
+        "description": "資料集如何建立，以及如何解讀這些圖表。"
+      },
+      "overview": {
+        "title": "概覽",
+        "description": "AI 評估的每一個是/否陳述，依其明確成立的故事數量排序。"
+      },
+      "lives": {
+        "title": "個人時間線",
+        "description": "每條線代表一個人，從開始過渡的年齡到停止的年齡。"
+      },
+      "drivers": {
+        "title": "較少被討論的因素",
+        "description": "被描述為促成過渡的身體意象、身分不穩定和性方面的因素。"
+      },
+      "adversity": {
+        "title": "創傷與逆境",
+        "description": "故事描述創傷的頻率，以及創傷被列為主要原因的頻率。"
+      },
+      "online": {
+        "title": "網路與同儕影響",
+        "description": "哪些平台影響最大，以及網路和同儕影響在故事中如何呈現。"
+      },
+      "process": {
+        "title": "轉折點",
+        "description": "是什麼促使人們從過渡走向去過渡。"
+      }
+    },
+    "features": {
+      "search": "搜尋特徵…",
+      "sort": {
+        "prevalence": "出現率",
+        "alpha": "A–Z"
+      },
+      "tiers": {
+        "cause": "原因",
+        "process": "過程",
+        "outcome": "結果"
+      },
+      "kinds": {
+        "noul": "是 / 否",
+        "choice": "選擇",
+        "score": "量表"
+      },
+      "groups": {
+        "reasons": "原因",
+        "causes": "成因",
+        "processes": "過程",
+        "regret": "後悔",
+        "medical": "醫療",
+        "mental_health": "心理健康",
+        "adversity": "逆境",
+        "social": "社會",
+        "sexuality": "性傾向",
+        "online": "網路",
+        "identity": "身分認同",
+        "outcomes": "結果",
+        "attitudes": "態度",
+        "quality": "品質"
+      },
+      "basedOn": "涵蓋 {cohort} 個已評估的故事。",
+      "coverageNote": "{cohort} 個已評估的故事中有 {n} 個（{percent}%）包含回答。",
+      "question": "這是如何測量的？",
+      "confidence": "此特徵的 AI 信心度中位數：{value}%。",
+      "filterByTag": "僅限標記為「{tag}」的故事",
+      "placeholder": "從清單中選擇一個特徵進行檢視。",
+      "backToList": "所有特徵",
+      "noResults": "沒有符合搜尋的特徵。",
+      "noData": "目前篩選條件下沒有回答。",
+      "loading": "載入中…",
+      "error": "無法載入特徵資料",
+      "noul": {
+        "prevalenceLabel": "的已評估故事高於門檻",
+        "range": "機率 {from} – {to}",
+        "count": "{count} 個故事（{percent}%）",
+        "thresholdShort": "門檻 {threshold}",
+        "legend": {
+          "yes": "可能成立",
+          "maybe": "不確定",
+          "no": "可能不成立"
+        },
+        "above": "可能成立",
+        "uncertain": "不確定",
+        "below": "可能不成立"
+      },
+      "choice": {
+        "soft": "機率總量",
+        "hard": "最可能選項",
+        "softTooltip": "≈{percent}%（機率總量約合 ≈{count} 個故事）",
+        "hardTooltip": "{percent}%（{count} 個故事）",
+        "softNote": "長條顯示每個選項在所有故事中獲得的 AI 機率總和，因此混合回答按比例計入。",
+        "hardNote": "長條只計算每個故事中最可能的那一個選項。"
+      },
+      "score": {
+        "meanLabel": "在 0–{max} 量表上平均為 {value}",
+        "range": "分數 {from} – {to}",
+        "count": "{count} 個故事",
+        "meanShort": "平均 {value}"
+      },
+      "related": {
+        "title": "經常同時出現",
+        "lift": "多 {lift} 倍（{percent}%）"
+      },
+      "listNote": "圓點表示每個陳述明確成立（AI 機率 ≥ 0.8）的故事比例；線條表示 95% 區間。淺色列的回答少於 30 個。選擇一列即可閱讀相應的故事。根據 {cohort} 個已評估的故事。"
+    },
+    "compare": {
+      "splitLabel": "劃分依據",
+      "thresholdNote": "顯示高於與低於 AI 門檻 {threshold} 的故事。",
+      "filter": {
+        "all": "所有回答",
+        "clear": "僅限明確訊號"
+      },
+      "clearNote": "已從兩側排除 {excluded} 個不明確的故事。",
+      "cohortTrue": "{label}：存在（n = {n}）",
+      "cohortFalse": "不存在（n = {n}）",
+      "splitSex": "生理性別",
+      "sexNote": "比較女性和男性的故事。",
+      "cohortWomen": "女性（n = {n}）",
+      "cohortMen": "男性（n = {n}）",
+      "splitAge": "過渡年齡",
+      "ageNote": "比較 18 歲前開始過渡與 18 歲及以後開始過渡的故事。",
+      "cohortUnder18": "未滿 18 歲（n = {n}）",
+      "cohortAdult": "18 歲及以上（n = {n}）",
+      "rowTooltip": "{label}：{nTrue} 例中 {pctTrue}%，對比 {nFalse} 例中 {pctFalse}%",
+      "empty": "在此劃分的兩側都有回答的故事尚不足。",
+      "showSmallSamples": "顯示小樣本",
+      "hideSmallSamples": "隱藏小樣本",
+      "hiddenNote": "由於一側的故事少於 3 個，已隱藏 {count, plural, =1 {1 個特徵} other {# 個特徵}}。",
+      "error": "無法載入比較資料",
+      "ratio": "常見程度為 {ratio}",
+      "ratioNote": "各列依兩組差異的大小（風險比）排序，兩側都罕見的特徵已排除。線條表示 95% 區間；淺色列表示一側的故事少於 30 個。",
+      "showAll": "顯示所有特徵"
+    },
+    "matrix": {
+      "presetLabel": "檢視",
+      "presets": {
+        "outcomesByCause": "依原因看結果",
+        "outcomesByProcess": "依轉折點看結果"
+      },
+      "metric": {
+        "rate": "比率",
+        "lift": "相對平均值"
+      },
+      "swap": "交換座標軸",
+      "legendRate": "在符合條件的故事中，欄特徵成立的比例。",
+      "legendLift": "與整個世代的平均值相比（藍色為高於，紅色為低於）。",
+      "sampleNote": "每個儲存格比較具有列特徵和不具有列特徵的故事。更長、更詳細的故事會提到更多各類特徵，因此大多數比值都高於 1× — 請在儲存格之間相互比較，而不是與 1× 比較。任一側故事少於 30 個的儲存格留白。",
+      "basedOn": "此檢視中有 {cohort} 個已評估的故事。",
+      "cellTooltip": "{row} → {col}：{n} 個故事中的 {percent}% · 世代平均的 {lift} 倍",
+      "cellTooltipNoLift": "{row} → {col}：{n} 個故事中的 {percent}%",
+      "cellMasked": "{row} → {col}：故事不足",
+      "empty": "此檢視中有回答的故事尚不足。",
+      "error": "無法載入矩陣資料",
+      "presetDescriptions": {
+        "outcomesByCause": "在具有某一原因的故事中，各結果比不具有該原因的故事多（或少）多少。",
+        "outcomesByProcess": "在具有某一轉折點的故事中，各結果比不具有該轉折點的故事多（或少）多少。"
+      },
+      "legendMore": "具有列特徵時更常見",
+      "legendLess": "較少見",
+      "legendNone": "無明顯差異（95% 區間包含 1×）",
+      "cellTooltipRatio": "{row} → {col}：有該因素的 {n} 個故事中佔 {percent}%，無該因素的佔 {percentWithout}% · {ratio}（95% 區間 {low}–{high}）",
+      "legendWith": "有該因素",
+      "legendWithout": "無該因素",
+      "themes": {
+        "medical": "醫療路徑",
+        "helped": "有幫助的因素",
+        "who": "誰會後悔，誰會回頭",
+        "views": "對他人過渡的看法"
+      },
+      "predictors": {
+        "under18": "18 歲前開始過渡",
+        "women": "女性（相對於男性）",
+        "sameSex": "過渡前受同性吸引",
+        "took_puberty_blockers": "使用過青春期阻斷劑",
+        "took_hormones": "使用過荷爾蒙",
+        "top_surgery": "做過上半身手術",
+        "process_benefited_from_therapy": "探索性治療有幫助",
+        "gender_nonconformity_childhood": "童年時性別不一致",
+        "process_spiritual_experience": "一次靈性經歷",
+        "autogynephilia": "自我女性化性慾（AGP）",
+        "adv_trauma_history": "創傷史",
+        "contributed_online_influence": "網路影響"
+      },
+      "outcomes": {
+        "regret": "後悔過渡",
+        "bodyReconciliation": "開始接受自己的身體",
+        "retransitioned": "重新過渡",
+        "mentalHealthBetter": "去過渡後心理健康改善",
+        "critical": "批評或反對他人過渡"
+      },
+      "ratio": "常見程度為 {ratio}",
+      "noDifference": "無明顯差異",
+      "rowTooltip": "有該因素的 {nWith} 個故事中為 {with}，無該因素的 {nWithout} 個故事中為 {without}",
+      "note": "線條表示 95% 區間。「無明顯差異」表示該區間包含完全沒有差異的情況。這些是人們所寫內容中的關聯，而非因果；而且寫下更長、更詳細故事的人對一切都會提及更多。根據 {cohort} 個已評估的故事。"
+    },
+    "regret": {
+      "composition": {
+        "pair": "{positive}% 的故事表達了對過渡的後悔，{negative}% 表示不後悔；其餘未說明。在有表態的人中，{statedShare}% 後悔（n = {stated}）。",
+        "any": "{positive}% 表達了後悔（n = {n}）"
+      },
+      "scale": {
+        "title": "後悔有多強烈？",
+        "mean": "平均強度 {value} / {max}",
+        "levels": {
+          "level0": "未表達後悔",
+          "level1": "輕微或短暫",
+          "level2": "中等，反覆出現",
+          "level3": "嚴重，持續存在"
+        }
+      },
+      "choice": {
+        "title": "後悔如何隨時間變化？",
+        "options": {
+          "resolved": "大致消解",
+          "improving": "正在好轉",
+          "stable": "穩定",
+          "worsening": "正在加重",
+          "mixed": "混合或週期性"
+        }
+      },
+      "statements": {
+        "title": "人們具體後悔什麼"
+      },
+      "count": "n = {n}",
+      "basedOn": "根據 {cohort} 個已評估的故事。",
+      "empty": "目前篩選條件下尚無關於後悔的回答。",
+      "error": "無法載入後悔資料"
+    },
+    "complications": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% 回報至少一種醫療併發症或持續的健康問題（n = {n}）"
+      },
+      "scale": {
+        "title": "併發症有多嚴重？",
+        "mean": "平均嚴重程度 {value} / {max}",
+        "levels": {
+          "level0": "無併發症",
+          "level1": "輕微或可控制的副作用",
+          "level2": "明顯的併發症",
+          "level3": "嚴重或永久性傷害"
+        }
+      },
+      "statements": {
+        "title": "具體的醫療問題"
+      },
+      "count": "n = {n}",
+      "basedOn": "根據 {cohort} 個已評估的故事。",
+      "empty": "目前篩選條件下尚無關於醫療的回答。",
+      "error": "無法載入併發症資料"
+    },
+    "mental_health": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% 顯示至少一種心理健康疾患或危機（n = {n}）"
+      },
+      "scale": {
+        "title": "心理健康狀況有多嚴重？",
+        "mean": "平均嚴重程度 {value} / {max}",
+        "levels": {
+          "level0": "無明顯問題",
+          "level1": "輕度或情境性困擾",
+          "level2": "明顯且經過治療的疾患",
+          "level3": "嚴重疾患或危機"
+        }
+      },
+      "statements": {
+        "title": "疾患與危機"
+      },
+      "count": "n = {n}",
+      "basedOn": "根據 {cohort} 個已評估的故事。",
+      "empty": "目前篩選條件下尚無關於心理健康的回答。",
+      "error": "無法載入心理健康資料"
+    },
+    "suicidality": {
+      "during": "過渡期間",
+      "since": "去過渡以來",
+      "duringDescription": "模型判斷故事描述了當事人在過渡期間有自殺念頭、自傷或自殺未遂的可能性。",
+      "sinceDescription": "模型判斷故事描述了當事人在去過渡以來有自殺念頭、自傷或自殺未遂的可能性。",
+      "splitNote": "依目前狀態劃分 · 平方根座標軸",
+      "overall": "所有故事",
+      "sqrtNote": "縱軸使用平方根刻度，使較小的機率區間在零處尖峰旁邊仍然可見。",
+      "tooltipBin": "機率 {range}",
+      "tooltipCount": "{count, plural, =1 {1 個故事} other {# 個故事}}",
+      "bands": {
+        "no": "可能不成立（< 0.2）",
+        "mixed": "不確定（0.2–0.8）",
+        "yes": "可能成立（≥ 0.8）"
+      },
+      "count": "n = {n}",
+      "basedOn": "根據 {cohort} 個有回答的故事。",
+      "empty": "目前篩選條件下尚無關於自殺傾向的回答。",
+      "error": "無法載入自殺傾向資料",
+      "statements": {
+        "title": "自殺念頭與自傷"
+      }
+    },
+    "current_status": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% (n = {n})"
+      },
+      "choice": {
+        "title": "Where are they now?",
+        "options": {
+          "detransitioned": "已去過渡",
+          "desisted": "在醫療過渡前停止",
+          "retransitioned": "已重新過渡",
+          "still_trans_questioning": "仍是跨性別，但在質疑",
+          "questioning": "探索中",
+          "unclear": "不明確",
+          "supportive": "支持他人過渡",
+          "conditional": "有條件支持",
+          "critical": "批評過渡",
+          "opposed": "反對",
+          "not_addressed": "未提及"
+        },
+        "description": "在提及此問題的故事中，從支持到反對。"
+      },
+      "secondaryChoice": {
+        "title": "他們如何看待他人的過渡？"
+      },
+      "statements": {
+        "title": "目前狀況"
+      },
+      "count": "n = {n}",
+      "basedOn": "根據 {cohort} 個已評估的故事。",
+      "empty": "目前篩選條件下尚無關於狀態的回答。",
+      "error": "無法載入狀態資料",
+      "headline": "{percent}% 批評或反對他人過渡（n ≈ {n}）。",
+      "note": "按機率加權的比例。未提及此問題的故事已排除。"
+    },
+    "family_community": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% 對以下至少一個問題回答「是」（n = {n}）"
+      },
+      "statements": {
+        "title": "所提問題",
+        "description": "每個故事都依這些原樣問題進行了核對。答案明確為「是」時才計入。"
+      },
+      "count": "n = {n}",
+      "basedOn": "根據 {cohort} 個已評估的故事。",
+      "empty": "目前篩選條件下尚無回答。",
+      "error": "無法載入資料"
+    },
+    "sexuality": {
+      "beforeLabel": "過渡前",
+      "afterLabel": "去過渡後",
+      "options": {
+        "homosexual": "Homosexual",
+        "bisexual": "雙性戀",
+        "heterosexual": "Heterosexual",
+        "asexual": "無性戀",
+        "other": "其他或變化中"
+      },
+      "linkTooltip": "{from} → {to}：{count, plural, =1 {1 個故事} other {# 個故事}}",
+      "statements": {
+        "title": "Orientation and attraction"
+      },
+      "count": "n = {n}",
+      "basedOn": "流向圖根據 {cohort} 個同時有兩個性傾向回答的故事。",
+      "empty": "Not enough orientation answers for the current filters yet.",
+      "error": "無法載入性傾向資料",
+      "hero": {
+        "statement": "在說明了目前性傾向的去過渡者中，是男同志、女同志或雙性戀的比例（n = {n}）。",
+        "bySex": "男 {men} 為男同志或雙性戀（男同志 {menSame}）| 女 {women} 為女同志或雙性戀（女同志 {womenSame}）"
+      },
+      "mix": {
+        "title": "過渡前與去過渡後的性傾向",
+        "description": "相對於出生性別，僅限有說明的故事。",
+        "women": "女性",
+        "men": "男性",
+        "all": "全部",
+        "before": "之前",
+        "after": "之後"
+      },
+      "matrix": {
+        "title": "性傾向改變了嗎？",
+        "description": "每一列代表過渡前的一種性傾向；儲存格顯示這些人在去過渡後的描述。",
+        "headline": "{percent}% 在過渡前和去過渡後描述了相同的性傾向（n = {n}）。",
+        "corner": "之前 ↓ · 之後 →",
+        "cell": "之前 {from} → 之後 {to}：{percent}%（{count}）",
+        "note": "僅限兩個時間點都說明了性傾向的故事。故事少於 30 個的列留白。"
+      },
+      "coverage": "在 {cohort} 個已評估的故事中，有 {before} 個說明了過渡前的性傾向，{after} 個說明了去過渡後的性傾向。"
+    },
+    "trends": {
+      "series": {
+        "contributed_online_influence": "網路影響",
+        "contributed_rapid_onset": "快速發作（ROGD）",
+        "regret_transition": "後悔",
+        "took_puberty_blockers": "青春期阻斷劑"
+      },
+      "tooltip": "{bucket} · n = {n}",
+      "mode": {
+        "strict": "二元訊號",
+        "soft": "平均機率",
+        "strictNote": "模型有把握（≥ 0.8）的故事比例。",
+        "softNote": "所有故事的平均機率 — 將不明確的故事也納入趨勢。"
+      },
+      "seriesTooltip": "二元 {strict} · 平均 {mean}",
+      "medianAge": "各世代的過渡年齡中位數",
+      "coverageNote": "每個點使用該世代中有回答的故事；最早的世代樣本最小。",
+      "basedOn": "涵蓋 {cohort} 個有過渡年份的故事。",
+      "empty": "目前篩選條件下尚無過渡年份。",
+      "error": "無法載入趨勢資料",
+      "linesTitle": "依過渡年份劃分的特徵",
+      "linesDescription": "每個陳述明確成立的故事比例，依開始過渡的年份分組。可新增或移除特徵進行比較。",
+      "reasonsTitle": "各時期過渡的主要原因",
+      "reasonsDescription": "最常見的主要原因在不同過渡年份世代之間如何變化。",
+      "add": "新增特徵…",
+      "remove": "移除 {label}",
+      "strictNote": "AI 確信陳述成立（≥ 0.8）的故事比例。空心點來自少於 30 個故事。較近的世代過渡後經歷的時間較短 — 達到手術或出現長期影響的時間更少，故事通常也更短 — 因此許多特徵在右端下降；仍然上升的特徵（如焦慮）就格外突出。"
+    },
+    "uncertainty": {
+      "binary": "二元",
+      "bands": "三態",
+      "likelyFalse": "可能不成立（< 0.2）",
+      "unclear": "不明確（0.2–0.8）",
+      "unclearShort": "不明確",
+      "likelyTrue": "可能成立（≥ 0.8）",
+      "rowTooltip": "{false}% 可能不成立 · {unclear}% 不明確 · {true}% 可能成立"
+    },
+    "minors": {
+      "tiles": {
+        "minor": "在 18 歲前開始（有年齡資訊的 {total} 個故事中有 {n} 個）",
+        "le15": "在 15 歲或更早開始",
+        "dysphoria": "在 12 歲或更早首次感到性別焦慮（n = {n}）",
+        "female": "的 18 歲前開始者為女性"
+      },
+      "early": "在這些故事中，青春期阻斷劑最早出現在 {min} 歲，中位數為 {median} 歲（n = {n}）。{hormones} 在 16 歲前開始使用荷爾蒙，{detrans} 在 18 歲前就已去過渡。",
+      "empty": "目前篩選條件下尚無年齡資料。",
+      "error": "無法載入早期過渡資料",
+      "byEra": {
+        "title": "18 歲前開始，依過渡年份",
+        "description": "18 歲前開始過渡的故事比例，依開始年份分組。",
+        "note": "線條表示 95% 區間。較晚的世代包含更多近期且年輕時過渡的人，因此解讀趨勢時需謹慎。"
+      }
+    },
+    "journey": {
+      "milestones": {
+        "first_dysphoria": "首次性別焦慮",
+        "transition": "過渡",
+        "hormones": "荷爾蒙",
+        "detransition": "去過渡",
+        "in_transition": "過渡年數"
+      },
+      "median": "中位數 {age}",
+      "count": "n = {n}",
+      "tooltip": "{age} 歲：{count, plural, =1 {1 個故事} other {# 個故事}}",
+      "yearsTooltip": "過渡 {years, plural, =1 {1 年} other {# 年}}：{count, plural, =1 {1 個故事} other {# 個故事}}",
+      "basedOn": "每一列只計算提供該年齡的故事。座標軸在第 99 百分位處截斷。",
+      "empty": "目前篩選條件下尚無時間線資料。",
+      "error": "無法載入歷程資料"
+    },
+    "gradient": {
+      "regret": "後悔",
+      "noRegret": "不後悔",
+      "notStated": "未說明",
+      "tiers": {
+        "no_transition": "未過渡",
+        "social_only": "僅社交過渡",
+        "hormones": "荷爾蒙或阻斷劑",
+        "surgery": "手術",
+        "unclear": "不明確"
+      },
+      "tierTooltip": "{n} 個故事：{regrets} 後悔，{noRegret} 不後悔，{notStated} 未說明",
+      "count": "n = {n}",
+      "selectionNote": "早期去過渡的人不會走到後面的步驟，因此這裡顯示的是哪些路徑通往何處 — 而不是醫療步驟導致後悔。",
+      "basedOn": "根據 {cohort} 個已評估的故事。",
+      "empty": "目前篩選條件下尚無回答。",
+      "error": "無法載入醫療介入資料",
+      "statedNote": "右側的數字是在有表態（後悔或不後悔）的故事中後悔的比例。",
+      "headline": "在有表態的人中，做過手術的人有 {percent}% 表示後悔過渡（n = {n}）。",
+      "headlineCompare": "做過手術的人有 {percent}% 表示後悔過渡，而止步於荷爾蒙或阻斷劑的人為 {hormones}%（n = {n} / {nHormones}）。只計算有表態的故事。"
+    },
+    "after": {
+      "levels": {
+        "muchWorse": "差很多",
+        "worse": "稍差",
+        "same": "差不多",
+        "better": "稍好",
+        "muchBetter": "好很多"
+      },
+      "panels": {
+        "mh_change_after_detransition": "心理健康",
+        "outcome_quality_of_life": "生活品質",
+        "outcome_family_relationship_change": "家庭關係"
+      },
+      "summary": "{better}% 更好 · {worse}% 更差",
+      "count": "n = {n}",
+      "basedOn": "根據 {cohort} 個已評估的故事。",
+      "empty": "目前篩選條件下尚無回答。",
+      "error": "無法載入變化資料",
+      "worseSide": "更差",
+      "betterSide": "更好",
+      "headline": "{better}% 表示去過渡後心理健康變好；{worse}% 表示變差（n = {n}）。"
+    },
+    "stories": {
+      "excerptNote": "對 /r/detrans 公開貼文的匿名 AI 摘要。",
+      "agesCaption": "年齡：首次性別焦慮 → 過渡 → {outcome}",
+      "ages": {
+        "firstDysphoria": "首次性別焦慮",
+        "transition": "過渡",
+        "detransition": "去過渡",
+        "desistance": "停止",
+        "socialTransition": "社會性轉變"
+      },
+      "female": "女性",
+      "male": "男性",
+      "basedOn": "來自 {cohort} 個符合條件的故事。",
+      "empty": "尚無符合目前篩選條件的故事。",
+      "error": "無法載入故事",
+      "loadMore": "載入更多故事",
+      "loading": "載入中…",
+      "upvotesLabel": "總讚數：{count}",
+      "dialog": {
+        "title": "故事",
+        "summary": "摘要",
+        "fullStory": "完整故事",
+        "close": "關閉故事",
+        "error": "無法載入完整故事",
+        "openPage": "開啟故事頁面"
+      },
+      "status": {
+        "detransitioned": "已去轉變",
+        "desisted": "已放棄"
+      }
+    },
+    "highlights": {
+      "title": "重點發現",
+      "types": {
+        "prevalence": "最常見",
+        "pair": "相伴出現",
+        "improvement": "去過渡後的生活",
+        "journey": "典型歷程",
+        "minorShare": "18 歲前開始",
+        "minorLe15": "15 歲或更早開始",
+        "minorDysphoria": "12 歲前首次性別焦慮",
+        "minorFemale": "誰更早開始",
+        "orientation": "性傾向"
+      },
+      "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
+      "prevalenceUnclear": "另有 {unclear}% 不明確。",
+      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "improvement": "{better}% 表示去過渡後生活品質提高；{worse}% 表示變差（n = {n}）。",
+      "journey": "典型歷程：{dysphoria} 歲首次性別焦慮 → {transition} 歲過渡 → {detransition} 歲去過渡（n = {n}）。",
+      "minorShare": "在有年齡資訊的故事中，{percent}% 在 18 歲前開始過渡（n = {n}，共 {total}）。",
+      "minorLe15": "{percent}% 在 15 歲或更早開始（n = {n}）。",
+      "minorDysphoria": "{percent}% 在 12 歲或更早首次感到性別焦慮（n = {n}）。",
+      "minorFemale": "18 歲前開始的人中 {percent}% 為女性（n = {n}）。",
+      "explore": "查看",
+      "orientation": "在說明了性傾向的去過渡者中，{percent}% 是男同志、女同志或雙性戀（{sameSex}% 為男同志或女同志；n = {n}）。"
+    },
+    "pathways": {
+      "journey": "原因 → 過程 → 結果",
+      "medical": "醫療路徑",
+      "stages": {
+        "cause": "主要原因",
+        "process": "轉折點",
+        "outcome": "目前是否後悔"
+      },
+      "causes": {
+        "social_role_discomfort": "對社會角色的不適",
+        "internalised_homophobia": "內化的恐同",
+        "internalised_misogyny_misandry": "內化的厭女 / 厭男",
+        "trauma": "創傷",
+        "mental_health_issues": "心理健康",
+        "neurodivergence": "神經多樣性",
+        "body_dysmorphia": "身體臆形症",
+        "online_influence": "網路影響",
+        "peer_influence": "同儕影響",
+        "sexual_factors": "性方面的因素",
+        "parental_or_medical_pressure": "來自父母或醫療方的壓力",
+        "other_unclear": "其他 / 不明確",
+        "unclear": "不明確"
+      },
+      "processes": {
+        "process_benefited_from_therapy": "探索性治療",
+        "process_detrans_community_exposure": "去過渡社群",
+        "process_research_consumption": "研究與媒體",
+        "process_self_reflection": "自我反思",
+        "process_time_off_hormones": "停用荷爾蒙一段時間",
+        "process_medical_scare": "醫療方面的驚嚇",
+        "process_family_partner_intervention": "家人或伴侶",
+        "process_spiritual_experience": "靈性經歷",
+        "other": "其他 / 不明確"
+      },
+      "outcomes": {
+        "regrets": "後悔",
+        "no_regret": "不後悔",
+        "not_stated": "未說明"
+      },
+      "linkTooltip": "{from} → {to}：{count, plural, =1 {1 個故事} other {# 個故事}}",
+      "basedOn": "根據此檢視中有回答的 {cohort} 個已評估故事。",
+      "empty": "此檢視中有回答的故事尚不足。",
+      "error": "無法載入路徑資料",
+      "journeyDescription": "主要原因、轉折點和後悔在各故事中如何關聯。",
+      "medicalDescription": "人們在去過渡前採取了哪些醫療步驟。",
+      "regretByReason": {
+        "title": "依過渡主要原因劃分的後悔",
+        "description": "在說明了是否後悔過渡的故事中，後悔者所佔的比例 — 依其提出的過渡主要原因分組。",
+        "headline": "整體而言，在涉及後悔的故事中有 {percent}% 表達了後悔（n = {n}）。",
+        "note": "圓點表示在明確表態的故事中表達後悔的比例；線條表示 95% 區間。淺色列的故事少於 30 個。",
+        "error": "無法載入依原因劃分的後悔資料",
+        "empty": "目前篩選條件下尚無回答。"
+      }
+    },
+    "methodology": {
+      "p1": "detrans.ai 使用公開的 /r/detrans 故事建立此資料集。AI 將每位使用者零散的留言和貼文改寫為一篇第一人稱敘述，並從中擷取關鍵年齡的時間線。只有分享了足夠資訊、能組成完整故事的使用者才會被納入。",
+      "p1b": "這些統計只涵蓋當事人明確確認自己已去過渡或停止的故事。從原始語料到圖表：",
+      "table": {
+        "comments": "從 /r/detrans 收集的留言",
+        "posts": "從 /r/detrans 收集的貼文",
+        "authors": "語料中的不同作者",
+        "selected": "至少有 5 則獲得 3 個以上讚的留言的作者",
+        "removed": "已移除：未明確確認去過渡或停止",
+        "remaining": "之後保留的故事",
+        "cohort": "納入下方圖表（已排除被標記的帳號）"
+      },
+      "p2": "接著，每個故事都由機率問答模型 Jev 根據大約一百條關於原因、經歷和結果的陳述進行評估。是/否問題回傳 0 到 1 之間的機率，選擇題為每個選項回傳一個機率，量表題回傳沿每個圖表下方所示量表的期望值。",
+      "p3": "對於是/否特徵，當機率達到門檻（預設為 0.8）時，我們將故事標記為「成立」。每個特徵中的直方圖顯示完整的機率分布，因此中間值回答較多的特徵會顯示為確實不確定，而不是清楚地成立或不成立。",
+      "p4": "所有圖表都遵循上方的篩選條件。由於問題集隨時間變化，且故事會在處理批次中被重新審閱，每個圖表都會回報篩選後的故事中實際有該問題回答的數量。",
+      "p5": "看起來不真實、捏造或類似機器人的帳號會被模型標記，並從這些統計中排除。AI 擷取的資料仍可能有誤 — 系統提示詞公布在<prompts>提示詞頁面</prompts>上，摘要也會與原始留言進行比對。",
+      "threshold": {
+        "title": "門檻的影響有多大",
+        "description": "當 AI 的機率至少為 0.8 時，圖表將陳述計為成立。較低的門檻會顯示更高的數字；此圖表顯示高出多少。",
+        "error": "無法載入門檻資料",
+        "tooltip": "門檻 {threshold}",
+        "xAxis": "機率門檻",
+        "siteThreshold": "本頁使用",
+        "note": "達到或高於各門檻的故事比例。0.8 的門檻是刻意保守的。"
+      },
+      "accountType": {
+        "title": "誰在寫",
+        "description": "每個帳號描述的是否是作者本人的經歷。",
+        "options": {
+          "personal_experience": "本人經歷",
+          "parent": "父母",
+          "friend": "朋友或伴侶",
+          "researcher_journalist": "研究人員、記者或臨床醫師",
+          "other": "其他或混合"
+        }
+      },
+      "detail": {
+        "title": "故事的詳細程度",
+        "description": "AI 對每篇第一人稱敘述具體程度的評分。在篩選中使用「僅限詳細的故事」可將所有圖表限制為最高的兩個等級。",
+        "levels": {
+          "level0": "模糊或籠統",
+          "level1": "有一些個人細節",
+          "level2": "詳細、具體的事件",
+          "level3": "非常詳細、跨越多年的敘述"
+        }
+      }
+    },
+    "prevalence": {
+      "women": "女性",
+      "men": "男性",
+      "interval": "{group} {percent}（95% 區間 {low}–{high}，n = {n}）",
+      "smallSample": "n = {n}",
+      "openStories": "顯示故事",
+      "showAll": "顯示全部 {count} 項",
+      "showFewer": "收合",
+      "note": "圓點表示陳述明確成立（AI 機率 ≥ 0.8）的故事比例；線條表示 95% 區間。淺色列的回答少於 30 個。",
+      "noteWithStories": "圓點表示陳述明確成立（AI 機率 ≥ 0.8）的故事比例；線條表示 95% 區間。淺色列的回答少於 30 個。選擇一列即可閱讀相應的故事。",
+      "gap": "差異最大：{label} — {higherGroup}為 {higher}，{lowerGroup}為 {lower}。",
+      "womenLower": "女性",
+      "menLower": "男性",
+      "m": "男",
+      "f": "女",
+      "menLegend": "男 · 男性",
+      "womenLegend": "女 · 女性"
+    },
+    "storyPeek": {
+      "title": "故事：{label}",
+      "meta": "{count, plural, =1 {1 個符合條件的故事} other {# 個符合條件的故事}}",
+      "error": "無法載入故事。",
+      "empty": "目前篩選條件下沒有符合的故事。",
+      "readFull": "閱讀完整故事",
+      "note": "匿名摘錄，評分最高的排在前面。完整清單見頁面末尾的「故事」部分。"
+    },
+    "reasons": {
+      "transitionTitle": "過渡的主要原因",
+      "transitionDescription": "每個人提出的開始過渡的最重要的一個原因。",
+      "detransitionTitle": "去過渡的主要原因",
+      "detransitionDescription": "每個人提出的停止的最重要的一個原因。"
+    },
+    "byYear": {
+      "error": "無法載入依年份的資料",
+      "empty": "目前篩選條件下尚無過渡年份。",
+      "other": "其他",
+      "n": "n = {n}",
+      "note": "各過渡年份世代中按機率加權的比例。淺色列的故事少於 30 個。"
+    },
+    "overview": {
+      "error": "無法載入概覽",
+      "basedOn": "根據 {cohort} 個已評估的故事。"
+    },
+    "drivers": {
+      "statements": {
+        "title": "被描述為促成過渡的因素"
+      },
+      "count": "n = {n}",
+      "basedOn": "根據 {cohort} 個已評估的故事。",
+      "empty": "目前篩選條件下尚無回答。",
+      "error": "無法載入此資料"
+    },
+    "adversity": {
+      "composition": {
+        "any": "{positive}% 描述了至少一種創傷或逆境（n = {n}）"
+      },
+      "statements": {
+        "title": "所描述的逆境類型"
+      },
+      "contrast": {
+        "title": "創傷史與作為主要原因的創傷",
+        "description": "提及創傷的故事遠多於將其列為過渡或去過渡主要驅動因素的故事。",
+        "history": "描述了創傷史",
+        "transitionReason": "將創傷列為過渡的主要原因",
+        "detransitionReason": "將意識到創傷列為去過渡的主要原因",
+        "note": "圓點表示故事比例；線條表示 95% 區間。原因列只計算每個故事的單一主要原因。"
+      },
+      "count": "n = {n}",
+      "basedOn": "根據 {cohort} 個已評估的故事。",
+      "empty": "目前篩選條件下尚無關於逆境的回答。",
+      "error": "無法載入逆境資料"
+    },
+    "online": {
+      "choice": {
+        "title": "最有影響力的平台",
+        "description": "僅限提到網路影響的故事。沒有明顯網路影響的故事已排除。",
+        "options": {
+          "reddit": "Reddit",
+          "tumblr": "Tumblr",
+          "tiktok": "TikTok",
+          "twitter": "Twitter / X",
+          "youtube": "YouTube",
+          "discord": "Discord",
+          "other": "其他平台或粉絲圈"
+        }
+      },
+      "statements": {
+        "title": "網路與同儕影響"
+      },
+      "byYear": {
+        "title": "依過渡年份劃分的平台",
+        "description": "最有影響力的平台在不同過渡年份世代之間如何變化。"
+      },
+      "count": "n = {n}",
+      "basedOn": "根據 {cohort} 個已評估的故事。",
+      "empty": "目前篩選條件下尚無關於網路影響的回答。",
+      "error": "無法載入網路影響資料"
+    },
+    "process": {
+      "composition": {
+        "any": "{positive}% 描述了至少一個這樣的轉折點（n = {n}）"
+      },
+      "statements": {
+        "title": "是什麼促使人們走向去過渡"
+      },
+      "count": "n = {n}",
+      "basedOn": "根據 {cohort} 個已評估的故事。",
+      "empty": "目前篩選條件下尚無關於轉折點的回答。",
+      "error": "無法載入轉折點資料"
+    },
+    "lives": {
+      "error": "無法載入時間線",
+      "empty": "目前篩選條件下尚無同時有過渡年齡和去過渡年齡的故事。",
+      "legend": {
+        "transition": "過渡中",
+        "blockers": "青春期阻斷劑",
+        "hormones": "荷爾蒙",
+        "surgery": "手術"
+      },
+      "ariaLabel": "{n} 條從過渡到去過渡的個人時間線條帶圖",
+      "tooltip": {
+        "woman": "女性",
+        "man": "男性",
+        "person": "個人",
+        "firstDysphoria": "{age} 歲首次性別焦慮",
+        "transition": "{age} 歲過渡",
+        "pubertyBlockers": "{age} 歲使用青春期阻斷劑",
+        "hormones": "{age} 歲使用荷爾蒙",
+        "topSurgery": "{age} 歲上半身手術",
+        "bottomSurgery": "{age} 歲下半身手術",
+        "detransition": "{age} 歲去過渡"
+      },
+      "note": "故事中提供了兩個年齡的 {n} 人，依過渡年齡排序。年齡是 AI 對每個故事的解讀，可能為近似值。"
+    },
+    "duration": {
+      "error": "無法載入持續時間",
+      "empty": "目前篩選條件下尚無過渡持續時間。",
+      "all": "全部",
+      "women": "女性",
+      "men": "男性",
+      "legend": "{label}：中位數 {median} 年（n = {n}）",
+      "tooltipTitle": "{years, plural, =1 {1 年} other {# 年}}內",
+      "xAxis": "開始過渡後的年數",
+      "note": "在給定年數內已停止的人的比例。這裡的每個人最終都去過渡了，所以這顯示的是他們的過渡持續了多久 — 而不是過渡的人中有多少會停止。",
+      "headline": "{one}% 在開始後一年內停止，{five}% 在五年內停止（中位數 {median} 年，n = {n}）。"
+    },
+    "optionLabels": {
+      "reddit": "Reddit",
+      "tumblr": "Tumblr",
+      "tiktok": "TikTok",
+      "twitter": "Twitter / X",
+      "youtube": "YouTube",
+      "discord": "Discord",
+      "social_role_discomfort": "對社會角色的不適",
+      "internalised_homophobia": "內化的恐同",
+      "internalised_misogyny_misandry": "內化的厭女 / 厭男",
+      "trauma": "創傷",
+      "mental_health_issues": "心理健康",
+      "neurodivergence": "神經多樣性",
+      "body_dysmorphia": "身體臆形症",
+      "online_influence": "網路影響",
+      "peer_influence": "同儕影響",
+      "sexual_factors": "性方面的因素（AGP / AAP）",
+      "parental_or_medical_pressure": "來自父母或醫療方的壓力",
+      "other_unclear": "其他 / 不明確",
+      "accepted_sexed_body": "接受了自己的生理性別身體",
+      "social_construct_realisation": "認為性別角色才是問題所在",
+      "trauma_realisation": "意識到是創傷在驅動",
+      "mental_health_realisation": "意識到是心理健康問題在驅動",
+      "neurodivergence_realisation": "意識到是神經多樣性在驅動",
+      "fantasy_reality_disillusionment": "現實與期望不符",
+      "surgery_regret_medical_complications": "手術後悔或醫療併發症",
+      "ideological_disillusionment": "對意識形態或社群幻滅",
+      "social_pressure_ostracism": "社會壓力或排斥",
+      "failure_to_pass": "無法順利被認同（pass）",
+      "internalised_homophobia_realisation": "意識到內化的恐同",
+      "internalised_misogyny_misandry_realisation": "意識到內化的厭女 / 厭男",
+      "sexual_factors_realisation": "意識到性方面的因素（AGP / AAP）",
+      "religious_or_spiritual_change": "宗教或靈性上的轉變",
+      "fertility_or_family_desires": "生育或組建家庭的願望"
+    },
+    "choiceSplit": {
+      "error": "無法載入此圖表",
+      "empty": "目前篩選條件下尚無回答。",
+      "women": "女 · 女性（n = {n}）",
+      "men": "男 · 男性（n = {n}）",
+      "headline": "女性更常提到「{womenOption}」（{womenShare}，男性為 {womenMen}）；男性更常提到「{menOption}」（{menShare}，女性為 {menWomen}）。",
+      "note": "按機率加權：AI 在兩個原因之間按 60/40 劃分的故事分別計為 0.6 和 0.4。",
+      "m": "男",
+      "f": "女"
+    },
+    "ordinal": {
+      "error": "無法載入此圖表",
+      "empty": "目前篩選條件下尚無回答。",
+      "all": "所有人",
+      "women": "女性",
+      "men": "男性"
+    },
+    "medical_steps": {
+      "statements": {
+        "title": "採取的醫療步驟"
+      },
+      "count": "n = {n}",
+      "basedOn": "根據 {cohort} 個已評估的故事。",
+      "empty": "目前篩選條件下尚無回答。",
+      "error": "無法載入醫療步驟"
     }
   },
   "topicsPage": {
     "title": "Topics",
     "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
     "empty": "No topics have been published yet."
+  },
+  "storiesPage": {
+    "metadata": {
+      "title": "去跨性別故事 | detrans.ai",
+      "description": "閱讀來自 /r/detrans 社群的數千個匿名去跨性別與放棄跨性別的故事，由 AI 摘要。可依年齡、性別和經歷篩選。"
+    },
+    "title": "去跨性別故事",
+    "description": "{count, number} 個曾經跨性別、後來去跨性別或放棄跨性別者的匿名故事，由 AI 根據他們在 /r/detrans 上的貼文和留言整理而成。",
+    "statsLink": "查看統計資料",
+    "allStories": "所有故事",
+    "story": {
+      "metaTitle": "{title} – 去跨性別故事 | detrans.ai",
+      "untitled": "一個去跨性別故事",
+      "notFound": "找不到故事 | detrans.ai",
+      "tags": "標籤",
+      "moreStories": "閱讀更多故事"
+    }
   }
 }

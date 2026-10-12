@@ -144,7 +144,9 @@
       "stats": "Statistik",
       "statsDesc": "Statistik detransisi anonim dari /r/detrans",
       "topics": "Topics",
-      "topicsDesc": "Panduan mendalam tentang topik-topik utama"
+      "topicsDesc": "Panduan mendalam tentang topik-topik utama",
+      "stories": "Kisah",
+      "storiesDesc": "Dari pengguna /r/detrans"
     },
     "resources": {
       "genderSupport": "Cari Terapis",
@@ -183,6 +185,7 @@
     "de": "Bahasa Jerman",
     "he": "Bahasa Ibrani",
     "it": "Bahasa Italia",
+    "lt": "Lithuanian",
     "nl": "Bahasa Belanda",
     "tr": "Bahasa Turki",
     "id": "Bahasa Indonesia"
@@ -240,26 +243,27 @@
   },
   "chat": {
     "lookingForComments": "Mencari komentar yang relevan...",
+    "lookingForStudies": "Looking for relevant studies...",
     "errorOccurred": "Terjadi kesalahan, coba lagi... Hubungi saya jika ini terus terjadi.",
     "analysingExperiences": "Menganalisis Pengalaman",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Menganalisis Hasil Web",
+    "analysingResults": "Menganalisis hasil...",
     "detransPerspective": "-> Apa perspektif orang yang berhenti transisi tentang topik ini?",
     "transPerspectivesIncluded": "Perspektif trans disertakan",
     "captchaRequired": "Captcha diperlukan untuk melanjutkan obrolan.",
     "chatArchived": "Obrolan ini diarsipkan. Mulai yang baru.",
     "rateLimitExceeded": "Terlalu banyak permintaan, pelan-pelan dan coba lagi nanti.",
     "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
-    "analysingResults": "Menganalisis hasil...",
     "followUpQuestions": "Pertanyaan tindak lanjut:",
     "eventLabels": {
       "askDetransitioners": "Tanyakan kepada Detransitioner",
+      "askTransPeople": "Tanyakan kepada Orang yang Mengidentifikasi sebagai Trans",
       "videoArchive": "Arsip Video",
       "queryStudies": "Kueri Studi",
       "webSearch": "Pencarian Web",
       "queryStudyCatalogue": "Kueri Katalog Studi Detransisi",
       "studyDetail": "Detail Studi",
-      "askTransPeople": "Tanyakan kepada Orang yang Mengidentifikasi sebagai Trans",
       "wikiPage": "Wiki page"
     },
     "eventStatus": {
@@ -345,7 +349,21 @@
       "delete": "Hapus Percakapan",
       "banning": "Memblokir...",
       "ban": "Blokir Pengguna (IP)"
+    },
+    "dialog": {
+      "title": "Percakapan",
+      "toggleIdHint": "Klik untuk beralih antara tanggal/negara dan ID",
+      "shareText": "Lihat percakapan ini",
+      "share": "Bagikan percakapan",
+      "copyLink": "Salin tautan percakapan",
+      "noneSelected": "Tidak ada percakapan yang dipilih"
     }
+  },
+  "readingDialog": {
+    "share": "Bagikan",
+    "copyLink": "Salin tautan",
+    "copied": "Tautan disalin ke papan klip",
+    "close": "Tutup dialog"
   },
   "stories": {
     "metadata": {
@@ -385,9 +403,9 @@
       "ageRangeYears": "{min} - {max} tahun",
       "sex": {
         "all": "Laki-laki dan Perempuan",
-        "mine": "Mine",
         "female": "Perempuan",
-        "male": "Laki-laki"
+        "male": "Laki-laki",
+        "mine": "Mine"
       },
       "tagsPlaceholder": "Pilih tag untuk difilter...",
       "clearFilters": "Hapus Filter"
@@ -497,14 +515,6 @@
           "content": "Kami menggunakan hCaptcha, layanan pihak ketiga yang disediakan oleh Intuition Machines, Inc., untuk melindungi dari penyalahgunaan otomatis. hCaptcha mungkin mengumpulkan alamat IP, informasi browser, dan data interaksi Anda (seperti gerakan mouse dan pola pengetikan) untuk menentukan apakah Anda manusia. Data ini tunduk pada kebijakan privasi hCaptcha sendiri. hCaptcha hanya menggunakan cookie yang dikecualikan dari persetujuan yang diperlukan untuk layanannya."
         }
       },
-      "aiProviders": {
-        "title": "Pemrosesan AI:",
-        "content": "Pesan Anda diproses oleh penyedia AI pihak ketiga (saat ini OpenRouter) untuk menghasilkan respons. Pelatihan pada percakapan Anda dinonaktifkan. Silakan merujuk kebijakan privasi OpenRouter untuk detail tentang cara mereka menangani data."
-      },
-      "captcha": {
-        "title": "Deteksi Bot (hCaptcha):",
-        "content": "Kami menggunakan hCaptcha, layanan pihak ketiga yang disediakan oleh Intuition Machines, Inc., untuk melindungi dari penyalahgunaan otomatis. hCaptcha mungkin mengumpulkan alamat IP, informasi browser, dan data interaksi Anda (seperti gerakan mouse dan pola pengetikan) untuk menentukan apakah Anda manusia. Data ini tunduk pada kebijakan privasi hCaptcha sendiri. hCaptcha hanya menggunakan cookie yang dikecualikan dari persetujuan yang diperlukan untuk layanannya."
-      },
       "legalBases": {
         "title": "Dasar Hukum untuk Pemrosesan (pengunjung UE/EEA)",
         "item1": "Pemrosesan batas tingkat diperlukan untuk <em>kepentingan sah</em> kami berdasarkan GDPR Art. 6(1)(f) — khususnya, menjaga ketersediaan dan keamanan layanan.",
@@ -537,6 +547,14 @@
       "contact": {
         "title": "Hubungi Kami",
         "content": "Jika Anda memiliki pertanyaan, kekhawatiran, atau keluhan, gunakan formulir kontak, atau email <email>peter@detrans.ai</email>."
+      },
+      "aiProviders": {
+        "title": "Pemrosesan AI:",
+        "content": "Pesan Anda diproses oleh penyedia AI pihak ketiga (saat ini OpenRouter) untuk menghasilkan respons. Pelatihan pada percakapan Anda dinonaktifkan. Silakan merujuk kebijakan privasi OpenRouter untuk detail tentang cara mereka menangani data."
+      },
+      "captcha": {
+        "title": "Deteksi Bot (hCaptcha):",
+        "content": "Kami menggunakan hCaptcha, layanan pihak ketiga yang disediakan oleh Intuition Machines, Inc., untuk melindungi dari penyalahgunaan otomatis. hCaptcha mungkin mengumpulkan alamat IP, informasi browser, dan data interaksi Anda (seperti gerakan mouse dan pola pengetikan) untuk menentukan apakah Anda manusia. Data ini tunduk pada kebijakan privasi hCaptcha sendiri. hCaptcha hanya menggunakan cookie yang dikecualikan dari persetujuan yang diperlukan untuk layanannya."
       }
     }
   },
@@ -590,12 +608,15 @@
   },
   "videoList": {
     "loading": "Memuat video...",
+    "searchPlaceholder": "Search videos...",
+    "result": "video",
+    "results": "videos",
     "filters": {
       "all": "Semua Cerita",
-      "mine": "Mine",
       "female": "Perempuan",
       "male": "Laki-laki",
-      "detransitioners": "Orang yang Berhenti Transisi"
+      "detransitioners": "Orang yang Berhenti Transisi",
+      "mine": "Mine"
     },
     "thumbnailAlt": "Gambar mini untuk {title}",
     "by": "oleh",
@@ -643,15 +664,15 @@
       "ogDescription": "Temukan di halaman ini pilihan studi akademis dan artikel jurnal telaah sejawat dan statistik terverifikasi yang berkaitan dengan tren identitas gender dan berhenti transisi."
     },
     "title": "Studi Akademik dan Riset",
+    "description": "Penelitian tentang berhenti transisi adalah bidang yang masih berkembang. Peningkatan pesat diagnosis disforia gender dalam dekade terakhir—terutama di kalangan gadis remaja—telah menghasilkan populasi orang yang berhenti transisi yang terus bertambah, meskipun pengumpulan data tetap menantang karena tingginya angka kehilangan tindak lanjut, perpecahan ideologi, dan keterbatasan metodologis.",
+    "segmNote": "Di halaman ini Anda akan menemukan studi akademis, penelitian telaah sejawat, dan artikel jurnal yang mempertanyakan efikasi dan etika perawatan mengafirmasi gender. Lihat <a>Society for Evidence-Based Gender Medicine (SEGM)</a> untuk informasi lebih lanjut, termasuk analisis komprehensif terhadap studi-studi yang mendukung.",
     "searchPlaceholder": "Cari studi...",
     "methodology": "Metodologi",
     "topic": "Topik",
     "noResults": "Tidak ada studi yang ditemukan.",
     "noStudies": "Belum ada studi yang disetujui.",
     "pendingReview": "Menunggu Tinjauan",
-    "keyFindings": "Temuan Utama:",
-    "description": "Penelitian tentang berhenti transisi adalah bidang yang masih berkembang. Peningkatan pesat diagnosis disforia gender dalam dekade terakhir—terutama di kalangan gadis remaja—telah menghasilkan populasi orang yang berhenti transisi yang terus bertambah, meskipun pengumpulan data tetap menantang karena tingginya angka kehilangan tindak lanjut, perpecahan ideologi, dan keterbatasan metodologis.",
-    "segmNote": "Di halaman ini Anda akan menemukan studi akademis, penelitian telaah sejawat, dan artikel jurnal yang mempertanyakan efikasi dan etika perawatan mengafirmasi gender. Lihat <a>Society for Evidence-Based Gender Medicine (SEGM)</a> untuk informasi lebih lanjut, termasuk analisis komprehensif terhadap studi-studi yang mendukung."
+    "keyFindings": "Temuan Utama:"
   },
   "contentWarning": {
     "title": "Peringatan Konten:",
@@ -809,7 +830,9 @@
       "legend": {
         "transition": "Usia Transisi",
         "detransition": "Usia Berhenti"
-      }
+      },
+      "median": "median {age}",
+      "coverage": "Berdasarkan {transition} usia transisi dan {detransition} usia detransisi."
     },
     "transitionDuration": {
       "title": "Durasi Transisi: Usia saat Transisi vs Usia saat Berhenti Transisi",
@@ -833,7 +856,8 @@
       "female": "Perempuan",
       "yearsAvg": "tahun rata-rata",
       "user": "pengguna",
-      "users": "pengguna"
+      "users": "pengguna",
+      "coverage": "Berdasarkan {count} kisah yang mencatat kedua usia."
     },
     "pathways": {
       "title": "Alur Jalur Berhenti Transisi",
@@ -953,7 +977,9 @@
     "error": {
       "title": "Kesalahan CAPTCHA",
       "description": "Gagal memuat CAPTCHA. Harap segarkan halaman dan coba lagi."
-    }
+    },
+    "verifyFailed": "Verification failed. Please try again.",
+    "rateLimited": "Too many verifications. Please wait a moment and try again."
   },
   "feedback": {
     "title": "Umpan Balik",
@@ -971,11 +997,990 @@
     "metadata": {
       "title": "Statistik Anonim | detrans.ai",
       "description": "Statistik anonim tentang pola detransisi dan transisi, termasuk distribusi usia, durasi, alasan, dan jalur."
+    },
+    "toc": {
+      "title": "Di halaman ini"
+    },
+    "filters": {
+      "title": "Filter",
+      "edit": "Ubah filter",
+      "hide": "Sembunyikan filter",
+      "summary": {
+        "none": "Tanpa filter",
+        "age": "Usia {min}–{max}",
+        "tags": "{count, plural, =0 {tanpa tag} =1 {1 tag} other {# tag}}",
+        "detailed": "Hanya yang terperinci"
+      },
+      "detailed": "Hanya kisah terperinci",
+      "detailedHint": "Hanya sertakan kisah yang dinilai AI cukup atau sangat terperinci."
+    },
+    "sections": {
+      "age": {
+        "title": "Usia",
+        "description": "Kapan para detransisioner bertransisi dan berdetransisi."
+      },
+      "journey": {
+        "title": "Usia",
+        "description": "Kapan orang pertama kali merasakan disforia, bertransisi, mulai hormon, dan berdetransisi."
+      },
+      "duration": {
+        "title": "Durasi",
+        "description": "Berapa lama orang bertahan dalam transisi sebelum berhenti."
+      },
+      "minors": {
+        "title": "Transisi sebelum 18",
+        "description": "Apa yang ditunjukkan kisah-kisah ini tentang memulai transisi saat masih anak-anak atau remaja."
+      },
+      "reasons": {
+        "title": "Alasan",
+        "description": "Mengapa para detransisioner mengatakan mereka bertransisi — dan mengapa mereka berdetransisi."
+      },
+      "pathways": {
+        "title": "Jalur",
+        "description": "Apakah penyesalan berbeda menurut alasan orang bertransisi, dan langkah medis apa yang mereka ambil."
+      },
+      "regret": {
+        "title": "Penyesalan",
+        "description": "Seberapa kuat penyesalan, bagaimana perubahannya dari waktu ke waktu, dan apa yang disesali orang."
+      },
+      "medical": {
+        "title": "Keterlibatan medis",
+        "description": "Bagaimana penyesalan berkaitan dengan seberapa jauh transisi berjalan."
+      },
+      "complications": {
+        "title": "Komplikasi",
+        "description": "Komplikasi medis dan masalah kesehatan berkelanjutan setelah transisi."
+      },
+      "mental_health": {
+        "title": "Kesehatan mental",
+        "description": "Gambaran kesehatan mental di seluruh kisah, sebelum dan sesudah detransisi."
+      },
+      "suicidality": {
+        "title": "Kecenderungan bunuh diri",
+        "description": "Seberapa sering kisah menggambarkan pikiran bunuh diri atau tindakan menyakiti diri sendiri, dan kapan."
+      },
+      "after": {
+        "title": "Setelah detransisi",
+        "description": "Bagaimana kesehatan mental, kualitas hidup, dan hubungan keluarga berubah."
+      },
+      "current_status": {
+        "title": "Where are they now",
+        "description": "Current identities and situations after detransitioning."
+      },
+      "family_community": {
+        "title": "Biaya sosial detransisi",
+        "description": "Isolasi dan pengucilan akibat detransisi, serta kekecewaan terhadap komunitas trans. Pertanyaan yang tidak membedakan transisi dari detransisi (dukungan keluarga, hubungan, karier) tidak disertakan; hubungan keluarga sejak detransisi dibahas di bagian “Setelah detransisi”."
+      },
+      "sexuality": {
+        "title": "Seksualitas",
+        "description": "Orientasi seksual relatif terhadap jenis kelamin lahir, sebelum transisi dan setelah detransisi."
+      },
+      "trends": {
+        "title": "Dari tahun ke tahun",
+        "description": "Bagaimana kisah-kisah — dan alasannya — berubah di antara kohort tahun transisi."
+      },
+      "features": {
+        "title": "Fitur",
+        "description": "Every statement the AI evaluated across the stories — causes, processes and outcomes."
+      },
+      "compare": {
+        "title": "Bandingkan",
+        "description": "Bagaimana prevalensi fitur bergeser di antara dua bagian kohort."
+      },
+      "matrix": {
+        "title": "Keterkaitan",
+        "description": "Jawaban atas pertanyaan yang sering diperdebatkan — termasuk ketika perbedaan yang diharapkan tidak muncul."
+      },
+      "stories": {
+        "title": "Kisah",
+        "description": "Kutipan anonim dari orang-orang di balik angka-angka ini.",
+        "browse": "Telusuri semua kisah"
+      },
+      "methodology": {
+        "title": "Metodologi",
+        "description": "Bagaimana dataset dibangun dan cara membaca grafik ini."
+      },
+      "overview": {
+        "title": "Sekilas",
+        "description": "Setiap pernyataan ya/tidak yang dievaluasi AI, diurutkan menurut jumlah kisah yang jelas memenuhinya."
+      },
+      "lives": {
+        "title": "Garis waktu individu",
+        "description": "Setiap garis adalah satu orang, dari usia mulai transisi hingga usia berhenti."
+      },
+      "drivers": {
+        "title": "Pendorong yang jarang dibahas",
+        "description": "Citra tubuh, ketidakstabilan identitas, dan faktor seksual yang disebut berkontribusi pada transisi."
+      },
+      "adversity": {
+        "title": "Trauma & kesulitan hidup",
+        "description": "Seberapa sering kisah menggambarkan trauma, dan seberapa sering trauma disebut sebagai alasan utama."
+      },
+      "online": {
+        "title": "Pengaruh daring & teman sebaya",
+        "description": "Platform mana yang paling berpengaruh, dan bagaimana pengaruh daring dan teman sebaya muncul dalam kisah."
+      },
+      "process": {
+        "title": "Titik balik",
+        "description": "Apa yang membantu orang beralih dari transisi menuju detransisi."
+      }
+    },
+    "features": {
+      "search": "Cari fitur…",
+      "sort": {
+        "prevalence": "Prevalensi",
+        "alpha": "A–Z"
+      },
+      "tiers": {
+        "cause": "Penyebab",
+        "process": "Proses",
+        "outcome": "Hasil"
+      },
+      "kinds": {
+        "noul": "Ya / tidak",
+        "choice": "Pilihan",
+        "score": "Skala"
+      },
+      "groups": {
+        "reasons": "Alasan",
+        "causes": "Penyebab",
+        "processes": "Proses",
+        "regret": "Penyesalan",
+        "medical": "Medis",
+        "mental_health": "Kesehatan mental",
+        "adversity": "Kesulitan hidup",
+        "social": "Sosial",
+        "sexuality": "Seksualitas",
+        "online": "Daring",
+        "identity": "Identitas",
+        "outcomes": "Hasil",
+        "attitudes": "Sikap",
+        "quality": "Kualitas"
+      },
+      "basedOn": "Dari {cohort} kisah yang dievaluasi.",
+      "coverageNote": "{n} dari {cohort} kisah yang dievaluasi ({percent}%) memuat jawaban.",
+      "question": "Bagaimana ini diukur?",
+      "confidence": "Median keyakinan AI untuk fitur ini: {value}%.",
+      "filterByTag": "Hanya kisah bertag “{tag}”",
+      "placeholder": "Pilih fitur dari daftar untuk menjelajahinya.",
+      "backToList": "Semua fitur",
+      "noResults": "Tidak ada fitur yang cocok dengan pencarian Anda.",
+      "noData": "Tidak ada jawaban untuk filter saat ini.",
+      "loading": "Memuat…",
+      "error": "Tidak dapat memuat data fitur",
+      "noul": {
+        "prevalenceLabel": "kisah yang dievaluasi berada di atas ambang batas",
+        "range": "probabilitas {from} – {to}",
+        "count": "{count} kisah ({percent}%)",
+        "thresholdShort": "ambang {threshold}",
+        "legend": {
+          "yes": "Kemungkinan benar",
+          "maybe": "Tidak pasti",
+          "no": "Kemungkinan salah"
+        },
+        "above": "Kemungkinan benar",
+        "uncertain": "Tidak pasti",
+        "below": "Kemungkinan salah"
+      },
+      "choice": {
+        "soft": "Massa probabilitas",
+        "hard": "Opsi teratas",
+        "softTooltip": "≈{percent}% (≈{count} kisah dari massa probabilitas)",
+        "hardTooltip": "{percent}% ({count} kisah)",
+        "softNote": "Batang menunjukkan jumlah probabilitas AI yang diterima setiap opsi di seluruh kisah, sehingga jawaban campuran dihitung secara proporsional.",
+        "hardNote": "Batang hanya menghitung satu opsi paling mungkin dari setiap kisah."
+      },
+      "score": {
+        "meanLabel": "Rata-rata {value} pada skala 0–{max}",
+        "range": "Skor {from} – {to}",
+        "count": "{count} kisah",
+        "meanShort": "rata-rata {value}"
+      },
+      "related": {
+        "title": "Sering muncul bersama",
+        "lift": "{lift}× lebih umum ({percent}%)"
+      },
+      "listNote": "Titik menunjukkan proporsi kisah di mana setiap pernyataan jelas benar (probabilitas AI ≥ 0.8); garis menunjukkan interval 95%. Baris pudar memiliki kurang dari 30 jawaban. Pilih baris untuk membaca kisah yang cocok. Berdasarkan {cohort} kisah yang dievaluasi."
+    },
+    "compare": {
+      "splitLabel": "Bagi menurut",
+      "thresholdNote": "Menampilkan kisah di atas ambang AI {threshold} vs di bawahnya.",
+      "filter": {
+        "all": "Semua jawaban",
+        "clear": "Hanya sinyal jelas"
+      },
+      "clearNote": "{excluded} kisah yang tidak jelas dikecualikan dari kedua sisi.",
+      "cohortTrue": "{label}: ada (n = {n})",
+      "cohortFalse": "Tidak ada (n = {n})",
+      "splitSex": "Jenis kelamin biologis",
+      "sexNote": "Membandingkan kisah dari perempuan dan laki-laki.",
+      "cohortWomen": "Perempuan (n = {n})",
+      "cohortMen": "Laki-laki (n = {n})",
+      "splitAge": "Usia saat transisi",
+      "ageNote": "Membandingkan kisah di mana transisi dimulai di bawah 18 tahun vs pada usia 18 atau lebih.",
+      "cohortUnder18": "Di bawah 18 (n = {n})",
+      "cohortAdult": "18 atau lebih (n = {n})",
+      "rowTooltip": "{label}: {pctTrue}% dari {nTrue} vs {pctFalse}% dari {nFalse}",
+      "empty": "Belum cukup kisah dengan jawaban di kedua sisi pembagian ini.",
+      "showSmallSamples": "Tampilkan sampel kecil",
+      "hideSmallSamples": "Sembunyikan sampel kecil",
+      "hiddenNote": "{count, plural, =1 {1 fitur} other {# fitur}} disembunyikan karena memiliki kurang dari 3 kisah di salah satu sisi.",
+      "error": "Tidak dapat memuat data perbandingan",
+      "ratio": "frekuensi {ratio}",
+      "ratioNote": "Baris diurutkan menurut seberapa kuat kedua kelompok berbeda (rasio risiko); fitur yang jarang di kedua sisi tidak disertakan. Garis menunjukkan interval 95%; baris pudar memiliki kurang dari 30 kisah di salah satu sisi.",
+      "showAll": "Tampilkan semua fitur"
+    },
+    "matrix": {
+      "presetLabel": "Tampilan",
+      "presets": {
+        "outcomesByCause": "Hasil menurut penyebab",
+        "outcomesByProcess": "Hasil menurut titik balik"
+      },
+      "metric": {
+        "rate": "Tingkat",
+        "lift": "Lift vs rata-rata"
+      },
+      "swap": "Tukar sumbu",
+      "legendRate": "Proporsi kisah yang cocok di mana fitur kolom bernilai benar.",
+      "legendLift": "Dibandingkan dengan rata-rata seluruh kohort (biru di atas, merah di bawah).",
+      "sampleNote": "Setiap sel membandingkan kisah dengan fitur baris dengan kisah tanpa fitur tersebut. Kisah yang lebih panjang dan terperinci menyebut lebih banyak fitur dari segala jenis, sehingga sebagian besar rasio berada di atas 1× — bandingkan sel satu sama lain, bukan dengan 1×. Sel dengan kurang dari 30 kisah di salah satu sisi dikosongkan.",
+      "basedOn": "{cohort} kisah yang dievaluasi dalam tampilan ini.",
+      "cellTooltip": "{row} → {col}: {percent}% dari {n} kisah · {lift}× rata-rata kohort",
+      "cellTooltipNoLift": "{row} → {col}: {percent}% dari {n} kisah",
+      "cellMasked": "{row} → {col}: kisah tidak cukup",
+      "empty": "Belum cukup kisah dengan jawaban untuk tampilan ini.",
+      "error": "Tidak dapat memuat data matriks",
+      "presetDescriptions": {
+        "outcomesByCause": "Seberapa lebih (atau kurang) umum setiap hasil pada kisah dengan penyebab tertentu dibandingkan kisah tanpa penyebab itu.",
+        "outcomesByProcess": "Seberapa lebih (atau kurang) umum setiap hasil pada kisah dengan titik balik tertentu dibandingkan kisah tanpa titik balik itu."
+      },
+      "legendMore": "Lebih umum dengan fitur baris",
+      "legendLess": "Kurang umum",
+      "legendNone": "Tidak ada perbedaan jelas (interval 95% mencakup 1×)",
+      "cellTooltipRatio": "{row} → {col}: {percent}% dari {n} kisah dengan faktor ini vs {percentWithout}% tanpa · {ratio} (interval 95% {low}–{high})",
+      "legendWith": "Dengan faktor",
+      "legendWithout": "Tanpa faktor",
+      "themes": {
+        "medical": "Jalur medis",
+        "helped": "Apa yang membantu",
+        "who": "Siapa yang menyesal, siapa yang kembali",
+        "views": "Pandangan tentang transisi bagi orang lain"
+      },
+      "predictors": {
+        "under18": "Mulai transisi sebelum 18",
+        "women": "Perempuan (vs laki-laki)",
+        "sameSex": "Tertarik pada sesama jenis sebelum transisi",
+        "took_puberty_blockers": "Menggunakan penghambat pubertas",
+        "took_hormones": "Menggunakan hormon",
+        "top_surgery": "Menjalani operasi atas",
+        "process_benefited_from_therapy": "Terapi eksploratif membantu",
+        "gender_nonconformity_childhood": "Tidak sesuai norma gender saat kecil",
+        "process_spiritual_experience": "Pengalaman spiritual",
+        "autogynephilia": "Autoginefilia",
+        "adv_trauma_history": "Riwayat trauma",
+        "contributed_online_influence": "Pengaruh daring"
+      },
+      "outcomes": {
+        "regret": "menyesali transisi",
+        "bodyReconciliation": "mulai menerima tubuhnya",
+        "retransitioned": "bertransisi kembali",
+        "mentalHealthBetter": "kesehatan mental membaik setelah detransisi",
+        "critical": "kritis atau menentang transisi bagi orang lain"
+      },
+      "ratio": "frekuensi {ratio}",
+      "noDifference": "Tidak ada perbedaan jelas",
+      "rowTooltip": "{with} dari {nWith} kisah dengan faktor ini vs {without} dari {nWithout} tanpa",
+      "note": "Garis menunjukkan interval 95%. “Tidak ada perbedaan jelas” berarti interval tersebut mencakup kemungkinan tanpa perbedaan sama sekali. Ini adalah asosiasi dalam apa yang ditulis orang, bukan sebab-akibat, dan orang yang menulis kisah lebih panjang dan terperinci menyebut lebih banyak hal. Berdasarkan {cohort} kisah yang dievaluasi."
+    },
+    "regret": {
+      "composition": {
+        "pair": "{positive}% kisah mengungkapkan penyesalan atas transisi dan {negative}% mengatakan tidak menyesal; sisanya tidak menyebutkan. Di antara yang menyebutkan, {statedShare}% menyesalinya (n = {stated}).",
+        "any": "{positive}% mengungkapkan penyesalan (n = {n})"
+      },
+      "scale": {
+        "title": "Seberapa kuat penyesalannya?",
+        "mean": "intensitas rata-rata {value} / {max}",
+        "levels": {
+          "level0": "Tidak mengungkapkan penyesalan",
+          "level1": "Ringan atau sesaat",
+          "level2": "Sedang, berulang",
+          "level3": "Berat, menetap"
+        }
+      },
+      "choice": {
+        "title": "Bagaimana penyesalan berubah dari waktu ke waktu?",
+        "options": {
+          "resolved": "Sebagian besar teratasi",
+          "improving": "Membaik",
+          "stable": "Stabil",
+          "worsening": "Memburuk",
+          "mixed": "Campuran atau naik-turun"
+        }
+      },
+      "statements": {
+        "title": "Apa yang secara khusus disesali"
+      },
+      "count": "n = {n}",
+      "basedOn": "Berdasarkan {cohort} kisah yang dievaluasi.",
+      "empty": "Belum ada jawaban tentang penyesalan untuk filter saat ini.",
+      "error": "Tidak dapat memuat data penyesalan"
+    },
+    "complications": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% melaporkan setidaknya satu komplikasi medis atau masalah kesehatan berkelanjutan (n = {n})"
+      },
+      "scale": {
+        "title": "Seberapa parah komplikasinya?",
+        "mean": "keparahan rata-rata {value} / {max}",
+        "levels": {
+          "level0": "Tidak ada komplikasi",
+          "level1": "Efek samping ringan atau dapat dikelola",
+          "level2": "Komplikasi signifikan",
+          "level3": "Kerugian berat atau permanen"
+        }
+      },
+      "statements": {
+        "title": "Masalah medis spesifik"
+      },
+      "count": "n = {n}",
+      "basedOn": "Berdasarkan {cohort} kisah yang dievaluasi.",
+      "empty": "Belum ada jawaban medis untuk filter saat ini.",
+      "error": "Tidak dapat memuat data komplikasi"
+    },
+    "mental_health": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% menunjukkan setidaknya satu kondisi atau krisis kesehatan mental (n = {n})"
+      },
+      "scale": {
+        "title": "Seberapa parah gambaran kesehatan mentalnya?",
+        "mean": "keparahan rata-rata {value} / {max}",
+        "levels": {
+          "level0": "Tidak ada masalah berarti",
+          "level1": "Tekanan ringan atau situasional",
+          "level2": "Kondisi signifikan yang ditangani",
+          "level3": "Kondisi berat atau krisis"
+        }
+      },
+      "statements": {
+        "title": "Kondisi dan krisis"
+      },
+      "count": "n = {n}",
+      "basedOn": "Berdasarkan {cohort} kisah yang dievaluasi.",
+      "empty": "Belum ada jawaban kesehatan mental untuk filter saat ini.",
+      "error": "Tidak dapat memuat data kesehatan mental"
+    },
+    "suicidality": {
+      "during": "Selama transisi",
+      "since": "Sejak detransisi",
+      "duringDescription": "Seberapa besar kemungkinan, menurut penilaian model, sebuah kisah menggambarkan pikiran bunuh diri, menyakiti diri sendiri, atau percobaan bunuh diri selama orang tersebut bertransisi.",
+      "sinceDescription": "Seberapa besar kemungkinan, menurut penilaian model, sebuah kisah menggambarkan pikiran bunuh diri, menyakiti diri sendiri, atau percobaan bunuh diri sejak detransisi.",
+      "splitNote": "Dibagi menurut status saat ini · sumbu akar kuadrat",
+      "overall": "Semua kisah",
+      "sqrtNote": "Sumbu vertikal menggunakan skala akar kuadrat agar kelompok probabilitas yang lebih kecil tetap terlihat di samping lonjakan di angka nol.",
+      "tooltipBin": "Probabilitas {range}",
+      "tooltipCount": "{count, plural, =1 {1 kisah} other {# kisah}}",
+      "bands": {
+        "no": "Kemungkinan salah (< 0.2)",
+        "mixed": "Tidak pasti (0.2–0.8)",
+        "yes": "Kemungkinan benar (≥ 0.8)"
+      },
+      "count": "n = {n}",
+      "basedOn": "Berdasarkan {cohort} kisah yang memiliki jawaban.",
+      "empty": "Belum ada jawaban tentang kecenderungan bunuh diri untuk filter saat ini.",
+      "error": "Tidak dapat memuat data kecenderungan bunuh diri",
+      "statements": {
+        "title": "Pikiran bunuh diri dan menyakiti diri sendiri"
+      }
+    },
+    "current_status": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% (n = {n})"
+      },
+      "choice": {
+        "title": "Where are they now?",
+        "options": {
+          "detransitioned": "Berdetransisi",
+          "desisted": "Berhenti sebelum transisi medis",
+          "retransitioned": "Bertransisi kembali",
+          "still_trans_questioning": "Masih trans, mempertanyakan",
+          "questioning": "Mempertanyakan",
+          "unclear": "Tidak jelas",
+          "supportive": "Mendukung transisi bagi orang lain",
+          "conditional": "Mendukung dengan syarat",
+          "critical": "Kritis terhadap transisi",
+          "opposed": "Menentang",
+          "not_addressed": "Tidak dibahas"
+        },
+        "description": "Di antara kisah yang membahasnya, dari mendukung hingga menentang."
+      },
+      "secondaryChoice": {
+        "title": "Bagaimana pandangan mereka tentang transisi bagi orang lain?"
+      },
+      "statements": {
+        "title": "Situasi saat ini"
+      },
+      "count": "n = {n}",
+      "basedOn": "Berdasarkan {cohort} kisah yang dievaluasi.",
+      "empty": "Belum ada jawaban status untuk filter saat ini.",
+      "error": "Tidak dapat memuat data status",
+      "headline": "{percent}% kritis atau menentang transisi bagi orang lain (n ≈ {n}).",
+      "note": "Proporsi berbobot probabilitas. Kisah yang tidak membahas pertanyaan ini tidak disertakan."
+    },
+    "family_community": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% menjawab ya untuk setidaknya satu pertanyaan di bawah (n = {n})"
+      },
+      "statements": {
+        "title": "Pertanyaan yang diajukan",
+        "description": "Setiap kisah diperiksa terhadap pertanyaan-pertanyaan persis ini. Sebuah kisah dihitung jika jawabannya jelas ya."
+      },
+      "count": "n = {n}",
+      "basedOn": "Berdasarkan {cohort} kisah yang dievaluasi.",
+      "empty": "Belum ada jawaban untuk filter saat ini.",
+      "error": "Tidak dapat memuat data"
+    },
+    "sexuality": {
+      "beforeLabel": "Sebelum transisi",
+      "afterLabel": "Setelah detransisi",
+      "options": {
+        "homosexual": "Homosexual",
+        "bisexual": "Biseksual",
+        "heterosexual": "Heterosexual",
+        "asexual": "Aseksual",
+        "other": "Lainnya atau berubah"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 kisah} other {# kisah}}",
+      "statements": {
+        "title": "Orientation and attraction"
+      },
+      "count": "n = {n}",
+      "basedOn": "Alur berdasarkan {cohort} kisah dengan kedua jawaban orientasi.",
+      "empty": "Not enough orientation answers for the current filters yet.",
+      "error": "Tidak dapat memuat data seksualitas",
+      "hero": {
+        "statement": "detransisioner yang menyebutkan orientasi mereka saat ini adalah gay, lesbian, atau biseksual (n = {n}).",
+        "bySex": "L {men} gay atau biseksual ({menSame} gay) | P {women} lesbian atau biseksual ({womenSame} lesbian)"
+      },
+      "mix": {
+        "title": "Orientasi sebelum transisi dan setelah detransisi",
+        "description": "Relatif terhadap jenis kelamin lahir, di antara kisah yang menyebutkannya.",
+        "women": "Perempuan",
+        "men": "Laki-laki",
+        "all": "Semua",
+        "before": "sebelum",
+        "after": "sesudah"
+      },
+      "matrix": {
+        "title": "Apakah orientasi berubah?",
+        "description": "Setiap baris adalah satu orientasi sebelum transisi; sel menunjukkan apa yang digambarkan orang-orang tersebut setelah detransisi.",
+        "headline": "{percent}% menggambarkan orientasi yang sama sebelum transisi dan setelah detransisi (n = {n}).",
+        "corner": "Sebelum ↓ · Sesudah →",
+        "cell": "{from} sebelum → {to} sesudah: {percent}% ({count})",
+        "note": "Hanya kisah yang menyebutkan orientasi di kedua sisi. Baris dengan kurang dari 30 kisah dikosongkan."
+      },
+      "coverage": "Orientasi disebutkan sebelum transisi dalam {before} kisah dan setelah detransisi dalam {after}, dari {cohort} kisah yang dievaluasi."
+    },
+    "trends": {
+      "series": {
+        "contributed_online_influence": "Pengaruh daring",
+        "contributed_rapid_onset": "Onset cepat (ROGD)",
+        "regret_transition": "Penyesalan",
+        "took_puberty_blockers": "Penghambat pubertas"
+      },
+      "tooltip": "{bucket} · n = {n}",
+      "mode": {
+        "strict": "Sinyal biner",
+        "soft": "Probabilitas rata-rata",
+        "strictNote": "Proporsi kisah yang diyakini model (≥ 0.8).",
+        "softNote": "Probabilitas rata-rata di seluruh kisah — kisah yang tidak jelas tetap masuk dalam tren."
+      },
+      "seriesTooltip": "{strict} biner · {mean} rata-rata",
+      "medianAge": "Median usia transisi per kohort",
+      "coverageNote": "Setiap titik menggunakan kisah berjawaban dari kohort tersebut; kohort paling awal memiliki sampel terkecil.",
+      "basedOn": "Dari {cohort} kisah dengan tahun transisi.",
+      "empty": "Belum ada tahun transisi untuk filter saat ini.",
+      "error": "Tidak dapat memuat data tren",
+      "linesTitle": "Fitur menurut tahun transisi",
+      "linesDescription": "Proporsi kisah di mana setiap pernyataan jelas benar, dikelompokkan menurut tahun transisi dimulai. Tambah atau hapus fitur untuk membandingkan.",
+      "reasonsTitle": "Alasan utama transisi, menurut era",
+      "reasonsDescription": "Bagaimana alasan utama yang paling umum bergeser di antara kohort tahun transisi.",
+      "add": "Tambahkan fitur…",
+      "remove": "Hapus {label}",
+      "strictNote": "Proporsi kisah di mana AI yakin pernyataan itu benar (≥ 0.8). Titik berongga berasal dari kurang dari 30 kisah. Kohort terbaru baru sebentar menjalani transisi — lebih sedikit waktu untuk mencapai operasi atau efek jangka panjang, dan biasanya kisahnya lebih pendek — sehingga banyak fitur menurun di ujung kanan; fitur yang tetap naik, seperti kecemasan, menonjol."
+    },
+    "uncertainty": {
+      "binary": "Biner",
+      "bands": "Tiga kategori",
+      "likelyFalse": "Kemungkinan salah (< 0.2)",
+      "unclear": "Tidak jelas (0.2–0.8)",
+      "unclearShort": "tidak jelas",
+      "likelyTrue": "Kemungkinan benar (≥ 0.8)",
+      "rowTooltip": "{false}% kemungkinan salah · {unclear}% tidak jelas · {true}% kemungkinan benar"
+    },
+    "minors": {
+      "tiles": {
+        "minor": "mulai di bawah 18 ({n} dari {total} kisah yang mencantumkan usia)",
+        "le15": "mulai pada usia 15 atau lebih muda",
+        "dysphoria": "pertama kali merasakan disforia pada usia 12 atau lebih muda (n = {n})",
+        "female": "dari yang mulai di bawah 18 adalah perempuan"
+      },
+      "early": "Dalam kisah-kisah ini, penghambat pubertas muncul sejak usia {min}, dengan median {median} (n = {n}). {hormones} mulai hormon sebelum usia 16, dan {detrans} sudah berdetransisi sebelum usia 18.",
+      "empty": "Belum ada data usia untuk filter saat ini.",
+      "error": "Tidak dapat memuat data transisi dini",
+      "byEra": {
+        "title": "Mulai sebelum 18, menurut tahun transisi",
+        "description": "Proporsi kisah di mana transisi dimulai sebelum usia 18, dikelompokkan menurut tahun dimulainya.",
+        "note": "Garis menunjukkan interval 95%. Kohort yang lebih baru mencakup lebih banyak orang yang bertransisi baru-baru ini dan di usia muda, jadi baca tren ini dengan hati-hati."
+      }
+    },
+    "journey": {
+      "milestones": {
+        "first_dysphoria": "Disforia pertama",
+        "transition": "Transisi",
+        "hormones": "Hormon",
+        "detransition": "Detransisi",
+        "in_transition": "Tahun dalam transisi"
+      },
+      "median": "median {age}",
+      "count": "n = {n}",
+      "tooltip": "Usia {age}: {count, plural, =1 {1 kisah} other {# kisah}}",
+      "yearsTooltip": "{years, plural, =1 {1 tahun} other {# tahun}} dalam transisi: {count, plural, =1 {1 kisah} other {# kisah}}",
+      "basedOn": "Setiap baris hanya menghitung kisah yang mencantumkan usia tersebut. Sumbu dipotong pada persentil ke-99.",
+      "empty": "Belum ada data garis waktu untuk filter saat ini.",
+      "error": "Tidak dapat memuat data perjalanan"
+    },
+    "gradient": {
+      "regret": "Menyesal",
+      "noRegret": "Tidak menyesal",
+      "notStated": "Tidak disebutkan",
+      "tiers": {
+        "no_transition": "Tidak bertransisi",
+        "social_only": "Hanya sosial",
+        "hormones": "Hormon atau penghambat",
+        "surgery": "Operasi",
+        "unclear": "Tidak jelas"
+      },
+      "tierTooltip": "{n} kisah: {regrets} menyesal, {noRegret} tidak menyesal, {notStated} tidak disebutkan",
+      "count": "n = {n}",
+      "selectionNote": "Orang yang berdetransisi lebih awal tidak pernah mencapai langkah selanjutnya, jadi ini menunjukkan jalur mana yang mengarah ke mana — bukan bahwa langkah medis menyebabkan penyesalan.",
+      "basedOn": "Berdasarkan {cohort} kisah yang dievaluasi.",
+      "empty": "Belum ada jawaban untuk filter saat ini.",
+      "error": "Tidak dapat memuat data keterlibatan medis",
+      "statedNote": "Angka di sebelah kanan adalah penyesalan di antara kisah yang menyatakan salah satunya (menyesal atau tidak menyesal).",
+      "headline": "{percent}% orang yang menjalani operasi mengatakan menyesali transisi, di antara mereka yang menyatakan salah satunya (n = {n}).",
+      "headlineCompare": "{percent}% orang yang menjalani operasi mengatakan menyesali transisi, dibandingkan {hormones}% dari mereka yang berhenti di tahap hormon atau penghambat (n = {n} / {nHormones}). Hanya menghitung kisah yang menyatakan salah satunya."
+    },
+    "after": {
+      "levels": {
+        "muchWorse": "Jauh lebih buruk",
+        "worse": "Agak lebih buruk",
+        "same": "Kurang lebih sama",
+        "better": "Agak lebih baik",
+        "muchBetter": "Jauh lebih baik"
+      },
+      "panels": {
+        "mh_change_after_detransition": "Kesehatan mental",
+        "outcome_quality_of_life": "Kualitas hidup",
+        "outcome_family_relationship_change": "Hubungan keluarga"
+      },
+      "summary": "{better}% lebih baik · {worse}% lebih buruk",
+      "count": "n = {n}",
+      "basedOn": "Berdasarkan {cohort} kisah yang dievaluasi.",
+      "empty": "Belum ada jawaban untuk filter saat ini.",
+      "error": "Tidak dapat memuat data perubahan",
+      "worseSide": "Lebih buruk",
+      "betterSide": "Lebih baik",
+      "headline": "{better}% menggambarkan kesehatan mental yang lebih baik setelah detransisi; {worse}% menggambarkannya lebih buruk (n = {n})."
+    },
+    "stories": {
+      "excerptNote": "Ringkasan AI anonim dari unggahan publik /r/detrans.",
+      "agesCaption": "Usia: disforia pertama → transisi → {outcome}",
+      "ages": {
+        "firstDysphoria": "Disforia pertama",
+        "transition": "Transisi",
+        "detransition": "Detransisi",
+        "desistance": "Desistansi",
+        "socialTransition": "Transisi sosial"
+      },
+      "female": "Perempuan",
+      "male": "Laki-laki",
+      "basedOn": "Dari {cohort} kisah yang cocok.",
+      "empty": "Belum ada kisah yang cocok dengan filter saat ini.",
+      "error": "Tidak dapat memuat kisah",
+      "loadMore": "Muat lebih banyak kisah",
+      "loading": "Memuat…",
+      "upvotesLabel": "Total upvote: {count}",
+      "dialog": {
+        "title": "Kisah",
+        "summary": "Ringkasan",
+        "fullStory": "Kisah lengkap",
+        "close": "Tutup kisah",
+        "error": "Tidak dapat memuat kisah lengkap",
+        "openPage": "Buka halaman kisah"
+      },
+      "status": {
+        "detransitioned": "Detransisi",
+        "desisted": "Desistensi"
+      }
+    },
+    "highlights": {
+      "title": "Yang menonjol",
+      "types": {
+        "prevalence": "Paling umum",
+        "pair": "Muncul bersama",
+        "improvement": "Hidup setelah detransisi",
+        "journey": "Perjalanan umum",
+        "minorShare": "Mulai sebelum 18",
+        "minorLe15": "Mulai pada usia 15 atau lebih muda",
+        "minorDysphoria": "Disforia pertama sebelum 12",
+        "minorFemale": "Siapa yang mulai muda",
+        "orientation": "Orientasi seksual"
+      },
+      "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
+      "prevalenceUnclear": "{unclear}% lainnya tidak jelas.",
+      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "improvement": "{better}% mengatakan kualitas hidup mereka membaik setelah detransisi; {worse}% mengatakan memburuk (n = {n}).",
+      "journey": "Perjalanan umum: disforia pertama pada usia {dysphoria} → transisi pada usia {transition} → detransisi pada usia {detransition} (n = {n}).",
+      "minorShare": "{percent}% kisah yang mencantumkan usia mulai transisi di bawah 18 (n = {n} dari {total}).",
+      "minorLe15": "{percent}% mulai pada usia 15 atau lebih muda (n = {n}).",
+      "minorDysphoria": "{percent}% pertama kali merasakan disforia pada usia 12 atau lebih muda (n = {n}).",
+      "minorFemale": "{percent}% dari yang mulai di bawah 18 adalah perempuan (n = {n}).",
+      "explore": "Jelajahi",
+      "orientation": "{percent}% detransisioner yang menyebutkan orientasinya adalah gay, lesbian, atau biseksual ({sameSex}% gay atau lesbian; n = {n})."
+    },
+    "pathways": {
+      "journey": "Penyebab → Proses → Hasil",
+      "medical": "Jalur medis",
+      "stages": {
+        "cause": "Alasan utama",
+        "process": "Titik balik",
+        "outcome": "Penyesalan saat ini"
+      },
+      "causes": {
+        "social_role_discomfort": "Ketidaknyamanan peran sosial",
+        "internalised_homophobia": "Homofobia terinternalisasi",
+        "internalised_misogyny_misandry": "Misogini / misandri terinternalisasi",
+        "trauma": "Trauma",
+        "mental_health_issues": "Kesehatan mental",
+        "neurodivergence": "Neurodivergensi",
+        "body_dysmorphia": "Dismorfia tubuh",
+        "online_influence": "Pengaruh daring",
+        "peer_influence": "Pengaruh teman sebaya",
+        "sexual_factors": "Faktor seksual",
+        "parental_or_medical_pressure": "Tekanan orang tua atau medis",
+        "other_unclear": "Lainnya / tidak jelas",
+        "unclear": "Tidak jelas"
+      },
+      "processes": {
+        "process_benefited_from_therapy": "Terapi eksploratif",
+        "process_detrans_community_exposure": "Komunitas detrans",
+        "process_research_consumption": "Riset & media",
+        "process_self_reflection": "Refleksi diri",
+        "process_time_off_hormones": "Jeda dari hormon",
+        "process_medical_scare": "Masalah kesehatan yang mengkhawatirkan",
+        "process_family_partner_intervention": "Keluarga atau pasangan",
+        "process_spiritual_experience": "Pengalaman spiritual",
+        "other": "Lainnya / tidak jelas"
+      },
+      "outcomes": {
+        "regrets": "Menyesal",
+        "no_regret": "Tidak menyesal",
+        "not_stated": "Tidak disebutkan"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 kisah} other {# kisah}}",
+      "basedOn": "Berdasarkan {cohort} kisah yang dievaluasi dengan jawaban dalam tampilan ini.",
+      "empty": "Belum cukup kisah dengan jawaban untuk tampilan ini.",
+      "error": "Tidak dapat memuat data jalur",
+      "journeyDescription": "Bagaimana alasan utama, titik balik, dan penyesalan saling terhubung di seluruh kisah.",
+      "medicalDescription": "Langkah medis apa yang diambil orang sebelum berdetransisi.",
+      "regretByReason": {
+        "title": "Penyesalan menurut alasan utama transisi",
+        "description": "Di antara kisah yang menyatakan apakah mereka menyesali transisi, proporsi yang menyesal — dikelompokkan menurut alasan utama yang mereka berikan untuk bertransisi.",
+        "headline": "Secara keseluruhan, {percent}% kisah yang membahas penyesalan mengungkapkannya (n = {n}).",
+        "note": "Titik menunjukkan proporsi yang mengungkapkan penyesalan di antara kisah yang dengan jelas menyatakan salah satunya; garis menunjukkan interval 95%. Baris pudar memiliki kurang dari 30 kisah.",
+        "error": "Tidak dapat memuat penyesalan menurut alasan",
+        "empty": "Belum ada jawaban untuk filter saat ini."
+      }
+    },
+    "methodology": {
+      "p1": "detrans.ai membangun dataset ini dari kisah publik di /r/detrans. AI menulis ulang komentar dan unggahan yang tersebar dari setiap pengguna menjadi satu narasi orang pertama, dan mengekstrak garis waktu usia-usia penting darinya. Hanya pengguna yang berbagi cukup banyak untuk menyusun kisah lengkap yang disertakan.",
+      "p1b": "Statistik ini hanya mencakup kisah di mana orang tersebut dengan jelas mengonfirmasi bahwa mereka telah berdetransisi atau berhenti (desistansi). Dari korpus mentah hingga grafik:",
+      "table": {
+        "comments": "Komentar yang dikumpulkan dari /r/detrans",
+        "posts": "Unggahan yang dikumpulkan dari /r/detrans",
+        "authors": "Penulis berbeda dalam korpus",
+        "selected": "Penulis dengan setidaknya 5 komentar ber-skor 3+ upvote",
+        "removed": "Dihapus: detransisi atau desistansi tidak dikonfirmasi dengan jelas",
+        "remaining": "Kisah yang dipertahankan setelahnya",
+        "cohort": "Tercakup dalam grafik di bawah (akun yang ditandai dikecualikan)"
+      },
+      "p2": "Setiap kisah kemudian dievaluasi oleh Jev, model penjawab pertanyaan probabilistik, terhadap sekitar seratus pernyataan tentang penyebab, pengalaman, dan hasil. Pertanyaan ya/tidak menghasilkan probabilitas dari 0 hingga 1, pertanyaan pilihan menghasilkan probabilitas untuk setiap opsi, dan pertanyaan skala menghasilkan nilai harapan sepanjang skala yang ditampilkan di bawah setiap grafik.",
+      "p3": "Untuk fitur ya/tidak, kami menandai kisah sebagai “benar” ketika probabilitasnya mencapai ambang batas (0.8 secara default). Histogram di setiap fitur menunjukkan distribusi probabilitas lengkap, sehingga fitur dengan banyak jawaban di rentang tengah terbaca sebagai benar-benar tidak pasti, bukan jelas benar atau salah.",
+      "p4": "Semua grafik mengikuti filter di atas. Karena kumpulan pertanyaan berubah seiring waktu dan kisah ditinjau ulang dalam proses pemrosesan, setiap grafik melaporkan berapa banyak kisah yang terfilter yang benar-benar memiliki jawaban untuk pertanyaan tersebut.",
+      "p5": "Akun yang tampak tidak autentik, dibuat-buat, atau seperti bot ditandai oleh model dan dikecualikan dari statistik ini. Data yang diekstrak AI tetap bisa mengandung kesalahan — prompt sistem dipublikasikan di <prompts>halaman prompt</prompts>, dan ringkasan dibandingkan dengan komentar aslinya.",
+      "threshold": {
+        "title": "Seberapa besar pengaruh ambang batas",
+        "description": "Grafik menghitung pernyataan sebagai benar ketika probabilitas AI setidaknya 0.8. Ambang yang lebih rendah akan menunjukkan angka lebih tinggi; grafik ini menunjukkan seberapa besar selisihnya.",
+        "error": "Tidak dapat memuat data ambang batas",
+        "tooltip": "Ambang {threshold}",
+        "xAxis": "Ambang probabilitas",
+        "siteThreshold": "Digunakan di halaman ini",
+        "note": "Proporsi kisah pada atau di atas setiap ambang. Ambang 0.8 sengaja dibuat konservatif."
+      },
+      "accountType": {
+        "title": "Siapa yang menulis",
+        "description": "Apakah setiap akun menggambarkan pengalaman penulisnya sendiri.",
+        "options": {
+          "personal_experience": "Pengalaman sendiri",
+          "parent": "Orang tua",
+          "friend": "Teman atau pasangan",
+          "researcher_journalist": "Peneliti, jurnalis, atau klinisi",
+          "other": "Lainnya atau campuran"
+        }
+      },
+      "detail": {
+        "title": "Seberapa terperinci kisah-kisahnya",
+        "description": "Penilaian AI tentang seberapa spesifik setiap kisah orang pertama. Gunakan “Hanya kisah terperinci” di filter untuk membatasi setiap grafik pada dua tingkat teratas.",
+        "levels": {
+          "level0": "Samar atau umum",
+          "level1": "Beberapa detail pribadi",
+          "level2": "Terperinci, peristiwa konkret",
+          "level3": "Sangat terperinci, kisah bertahun-tahun"
+        }
+      }
+    },
+    "prevalence": {
+      "women": "Perempuan",
+      "men": "Laki-laki",
+      "interval": "{group} {percent} (interval 95% {low}–{high}, n = {n})",
+      "smallSample": "n = {n}",
+      "openStories": "Tampilkan kisah",
+      "showAll": "Tampilkan semua {count}",
+      "showFewer": "Tampilkan lebih sedikit",
+      "note": "Titik menunjukkan proporsi kisah di mana pernyataan jelas benar (probabilitas AI ≥ 0.8); garis menunjukkan interval 95%. Baris pudar memiliki kurang dari 30 jawaban.",
+      "noteWithStories": "Titik menunjukkan proporsi kisah di mana pernyataan jelas benar (probabilitas AI ≥ 0.8); garis menunjukkan interval 95%. Baris pudar memiliki kurang dari 30 jawaban. Pilih baris untuk membaca kisah yang cocok.",
+      "gap": "Perbedaan terbesar: {label} — {higher} dari {higherGroup} vs {lower} dari {lowerGroup}.",
+      "womenLower": "perempuan",
+      "menLower": "laki-laki",
+      "m": "L",
+      "f": "P",
+      "menLegend": "L · laki-laki",
+      "womenLegend": "P · perempuan"
+    },
+    "storyPeek": {
+      "title": "Kisah: {label}",
+      "meta": "{count, plural, =1 {1 kisah yang cocok} other {# kisah yang cocok}}",
+      "error": "Tidak dapat memuat kisah.",
+      "empty": "Tidak ada kisah yang cocok untuk filter saat ini.",
+      "readFull": "Baca kisah lengkap",
+      "note": "Kutipan anonim, yang berperingkat tertinggi lebih dulu. Daftar lengkap ada di bagian Kisah di akhir halaman."
+    },
+    "reasons": {
+      "transitionTitle": "Alasan utama transisi",
+      "transitionDescription": "Satu alasan paling penting yang diberikan setiap orang untuk memulai transisi.",
+      "detransitionTitle": "Alasan utama detransisi",
+      "detransitionDescription": "Satu alasan paling penting yang diberikan setiap orang untuk berhenti."
+    },
+    "byYear": {
+      "error": "Tidak dapat memuat data per tahun",
+      "empty": "Belum ada tahun transisi untuk filter saat ini.",
+      "other": "Lainnya",
+      "n": "n = {n}",
+      "note": "Proporsi berbobot probabilitas per kohort tahun transisi. Baris pudar memiliki kurang dari 30 kisah."
+    },
+    "overview": {
+      "error": "Tidak dapat memuat ikhtisar",
+      "basedOn": "Berdasarkan {cohort} kisah yang dievaluasi."
+    },
+    "drivers": {
+      "statements": {
+        "title": "Disebut berkontribusi pada transisi"
+      },
+      "count": "n = {n}",
+      "basedOn": "Berdasarkan {cohort} kisah yang dievaluasi.",
+      "empty": "Belum ada jawaban untuk filter saat ini.",
+      "error": "Tidak dapat memuat data ini"
+    },
+    "adversity": {
+      "composition": {
+        "any": "{positive}% menggambarkan setidaknya satu bentuk trauma atau kesulitan hidup (n = {n})"
+      },
+      "statements": {
+        "title": "Jenis kesulitan hidup yang digambarkan"
+      },
+      "contrast": {
+        "title": "Riwayat trauma vs. trauma sebagai alasan utama",
+        "description": "Jauh lebih banyak kisah yang menyebut trauma daripada yang menyebutnya sebagai pendorong utama transisi atau detransisi.",
+        "history": "Menggambarkan riwayat trauma",
+        "transitionReason": "Menyebut trauma sebagai alasan utama transisi",
+        "detransitionReason": "Menyebut kesadaran akan trauma sebagai alasan utama detransisi",
+        "note": "Titik menunjukkan proporsi kisah; garis menunjukkan interval 95%. Baris alasan menghitung satu alasan utama dari setiap kisah."
+      },
+      "count": "n = {n}",
+      "basedOn": "Berdasarkan {cohort} kisah yang dievaluasi.",
+      "empty": "Belum ada jawaban tentang kesulitan hidup untuk filter saat ini.",
+      "error": "Tidak dapat memuat data kesulitan hidup"
+    },
+    "online": {
+      "choice": {
+        "title": "Platform paling berpengaruh",
+        "description": "Di antara kisah yang menyebut pengaruh daring. Kisah tanpa pengaruh daring yang signifikan tidak disertakan.",
+        "options": {
+          "reddit": "Reddit",
+          "tumblr": "Tumblr",
+          "tiktok": "TikTok",
+          "twitter": "Twitter / X",
+          "youtube": "YouTube",
+          "discord": "Discord",
+          "other": "Platform lain atau ruang fandom"
+        }
+      },
+      "statements": {
+        "title": "Pengaruh daring dan teman sebaya"
+      },
+      "byYear": {
+        "title": "Platform menurut tahun transisi",
+        "description": "Bagaimana platform paling berpengaruh bergeser di antara kohort tahun transisi."
+      },
+      "count": "n = {n}",
+      "basedOn": "Berdasarkan {cohort} kisah yang dievaluasi.",
+      "empty": "Belum ada jawaban tentang pengaruh daring untuk filter saat ini.",
+      "error": "Tidak dapat memuat data pengaruh daring"
+    },
+    "process": {
+      "composition": {
+        "any": "{positive}% menggambarkan setidaknya satu titik balik ini (n = {n})"
+      },
+      "statements": {
+        "title": "Apa yang menggerakkan orang menuju detransisi"
+      },
+      "count": "n = {n}",
+      "basedOn": "Berdasarkan {cohort} kisah yang dievaluasi.",
+      "empty": "Belum ada jawaban tentang titik balik untuk filter saat ini.",
+      "error": "Tidak dapat memuat data titik balik"
+    },
+    "lives": {
+      "error": "Tidak dapat memuat garis waktu",
+      "empty": "Belum ada kisah dengan usia transisi dan detransisi untuk filter saat ini.",
+      "legend": {
+        "transition": "Dalam transisi",
+        "blockers": "Penghambat pubertas",
+        "hormones": "Hormon",
+        "surgery": "Operasi"
+      },
+      "ariaLabel": "Grafik strip dari {n} garis waktu individu dari transisi hingga detransisi",
+      "tooltip": {
+        "woman": "Perempuan",
+        "man": "Laki-laki",
+        "person": "Orang",
+        "firstDysphoria": "Disforia pertama pada usia {age}",
+        "transition": "Bertransisi pada usia {age}",
+        "pubertyBlockers": "Penghambat pubertas pada usia {age}",
+        "hormones": "Hormon pada usia {age}",
+        "topSurgery": "Operasi atas pada usia {age}",
+        "bottomSurgery": "Operasi bawah pada usia {age}",
+        "detransition": "Berdetransisi pada usia {age}"
+      },
+      "note": "{n} orang yang kisahnya mencantumkan kedua usia, diurutkan menurut usia saat transisi. Usia adalah pembacaan AI atas setiap kisah dan mungkin merupakan perkiraan."
+    },
+    "duration": {
+      "error": "Tidak dapat memuat durasi",
+      "empty": "Belum ada durasi transisi untuk filter saat ini.",
+      "all": "Semua",
+      "women": "Perempuan",
+      "men": "Laki-laki",
+      "legend": "{label}: median {median} tahun (n = {n})",
+      "tooltipTitle": "Dalam {years, plural, =1 {1 tahun} other {# tahun}}",
+      "xAxis": "Tahun sejak mulai transisi",
+      "note": "Proporsi orang yang sudah berhenti dalam jumlah tahun tertentu. Semua orang di sini akhirnya berdetransisi, jadi ini menunjukkan berapa lama transisi berlangsung bagi mereka — bukan berapa banyak orang yang bertransisi kemudian berhenti.",
+      "headline": "{one}% sudah berhenti dalam satu tahun dan {five}% dalam lima tahun sejak mulai (median {median} tahun, n = {n})."
+    },
+    "optionLabels": {
+      "reddit": "Reddit",
+      "tumblr": "Tumblr",
+      "tiktok": "TikTok",
+      "twitter": "Twitter / X",
+      "youtube": "YouTube",
+      "discord": "Discord",
+      "social_role_discomfort": "Ketidaknyamanan peran sosial",
+      "internalised_homophobia": "Homofobia terinternalisasi",
+      "internalised_misogyny_misandry": "Misogini / misandri terinternalisasi",
+      "trauma": "Trauma",
+      "mental_health_issues": "Kesehatan mental",
+      "neurodivergence": "Neurodivergensi",
+      "body_dysmorphia": "Dismorfia tubuh",
+      "online_influence": "Pengaruh daring",
+      "peer_influence": "Pengaruh teman sebaya",
+      "sexual_factors": "Faktor seksual (AGP / AAP)",
+      "parental_or_medical_pressure": "Tekanan orang tua atau medis",
+      "other_unclear": "Lainnya / tidak jelas",
+      "accepted_sexed_body": "Menerima tubuh sesuai jenis kelaminnya",
+      "social_construct_realisation": "Melihat peran gender sebagai masalahnya",
+      "trauma_realisation": "Menyadari trauma yang mendorongnya",
+      "mental_health_realisation": "Menyadari kesehatan mental yang mendorongnya",
+      "neurodivergence_realisation": "Menyadari neurodivergensi yang mendorongnya",
+      "fantasy_reality_disillusionment": "Kenyataan tidak sesuai harapan",
+      "surgery_regret_medical_complications": "Penyesalan operasi atau komplikasi medis",
+      "ideological_disillusionment": "Kecewa dengan ideologi atau komunitas",
+      "social_pressure_ostracism": "Tekanan sosial atau pengucilan",
+      "failure_to_pass": "Tidak bisa pass",
+      "internalised_homophobia_realisation": "Menyadari homofobia terinternalisasi",
+      "internalised_misogyny_misandry_realisation": "Menyadari misogini / misandri terinternalisasi",
+      "sexual_factors_realisation": "Menyadari faktor seksual (AGP / AAP)",
+      "religious_or_spiritual_change": "Perubahan religius atau spiritual",
+      "fertility_or_family_desires": "Keinginan memiliki anak atau keluarga"
+    },
+    "choiceSplit": {
+      "error": "Tidak dapat memuat grafik ini",
+      "empty": "Belum ada jawaban untuk filter saat ini.",
+      "women": "P · perempuan (n = {n})",
+      "men": "L · laki-laki (n = {n})",
+      "headline": "Perempuan lebih sering menyebut “{womenOption}” ({womenShare} vs {womenMen} pada laki-laki); laki-laki lebih sering menyebut “{menOption}” ({menShare} vs {menWomen} pada perempuan).",
+      "note": "Berbobot probabilitas: kisah yang dibagi AI 60/40 antara dua alasan dihitung 0.6 dan 0.4.",
+      "m": "L",
+      "f": "P"
+    },
+    "ordinal": {
+      "error": "Tidak dapat memuat grafik ini",
+      "empty": "Belum ada jawaban untuk filter saat ini.",
+      "all": "Semua orang",
+      "women": "Perempuan",
+      "men": "Laki-laki"
+    },
+    "medical_steps": {
+      "statements": {
+        "title": "Langkah medis yang diambil"
+      },
+      "count": "n = {n}",
+      "basedOn": "Berdasarkan {cohort} kisah yang dievaluasi.",
+      "empty": "Belum ada jawaban untuk filter saat ini.",
+      "error": "Tidak dapat memuat langkah medis"
     }
   },
   "topicsPage": {
     "title": "Topics",
     "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
     "empty": "No topics have been published yet."
+  },
+  "storiesPage": {
+    "metadata": {
+      "title": "Kisah Detransisi | detrans.ai",
+      "description": "Baca ribuan kisah detransisi dan desistensi yang dianonimkan dari komunitas /r/detrans, dirangkum oleh AI. Saring berdasarkan usia, jenis kelamin, dan pengalaman."
+    },
+    "title": "Kisah Detransisi",
+    "description": "{count, number} kisah anonim dari orang-orang yang bertransisi lalu kemudian melakukan detransisi atau berhenti, disusun oleh AI dari postingan dan komentar mereka di /r/detrans.",
+    "statsLink": "Jelajahi statistik",
+    "allStories": "Semua kisah",
+    "story": {
+      "metaTitle": "{title} – Kisah Detransisi | detrans.ai",
+      "untitled": "Sebuah kisah detransisi",
+      "notFound": "Kisah tidak ditemukan | detrans.ai",
+      "tags": "Tag",
+      "moreStories": "Baca kisah lainnya"
+    }
   }
 }

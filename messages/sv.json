@@ -144,7 +144,9 @@
       "stats": "Statistik",
       "statsDesc": "Anonymiserade detransitionsstatistik från /r/detrans",
       "topics": "Topics",
-      "topicsDesc": "Fördjupande guider om viktiga ämnen"
+      "topicsDesc": "Fördjupande guider om viktiga ämnen",
+      "stories": "Berättelser",
+      "storiesDesc": "Från /r/detrans-användare"
     },
     "resources": {
       "genderSupport": "Hitta Terapeuter",
@@ -183,7 +185,9 @@
     "de": "Tyska",
     "he": "Hebreiska",
     "it": "Italienska",
+    "lt": "Lithuanian",
     "nl": "Nederländska",
+    "tr": "Turkish",
     "sv": "Svenska"
   },
   "settings": {
@@ -239,17 +243,18 @@
   },
   "chat": {
     "lookingForComments": "Letar efter relevanta kommentarer...",
+    "lookingForStudies": "Looking for relevant studies...",
     "errorOccurred": "Ett fel uppstod, försök igen... Kontakta mig om detta fortsätter hända.",
     "analysingExperiences": "Analyserar Erfarenheter",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analyserar webbresultat",
+    "analysingResults": "Analyserar resultat...",
     "detransPerspective": "-> Vilka är detrans-perspektiven på detta ämne?",
     "transPerspectivesIncluded": "Transperspektiv inkluderade",
     "captchaRequired": "Captcha krävs för att fortsätta chattandet.",
     "chatArchived": "Denna chatt är arkiverad. Starta en ny.",
     "rateLimitExceeded": "För många förfrågningar, sakta ner och försök igen senare.",
     "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
-    "analysingResults": "Analyserar resultat...",
     "followUpQuestions": "Uppföljningsfrågor:",
     "eventLabels": {
       "askDetransitioners": "Fråga Detransitionerare",
@@ -344,7 +349,21 @@
       "delete": "Radera Konversation",
       "banning": "Blockerar...",
       "ban": "Blockera Användare (IP)"
+    },
+    "dialog": {
+      "title": "Konversation",
+      "toggleIdHint": "Klicka för att växla mellan datum/land och ID",
+      "shareText": "Kolla in den här konversationen",
+      "share": "Dela konversation",
+      "copyLink": "Kopiera länk till konversationen",
+      "noneSelected": "Ingen konversation vald"
     }
+  },
+  "readingDialog": {
+    "share": "Dela",
+    "copyLink": "Kopiera länk",
+    "copied": "Länken har kopierats till urklipp",
+    "close": "Stäng dialogrutan"
   },
   "stories": {
     "metadata": {
@@ -384,9 +403,9 @@
       "ageRangeYears": "{min} - {max} år",
       "sex": {
         "all": "Man och Kvinna",
-        "mine": "Mine",
         "female": "Kvinna",
-        "male": "Man"
+        "male": "Man",
+        "mine": "Mine"
       },
       "tagsPlaceholder": "Välj taggar att filtrera efter...",
       "clearFilters": "Rensa Filter"
@@ -581,12 +600,15 @@
   },
   "videoList": {
     "loading": "Laddar videor...",
+    "searchPlaceholder": "Search videos...",
+    "result": "video",
+    "results": "videos",
     "filters": {
       "all": "Alla Berättelser",
-      "mine": "Mine",
       "female": "Kvinna",
       "male": "Man",
-      "detransitioners": "Detransitionerare"
+      "detransitioners": "Detransitionerare",
+      "mine": "Mine"
     },
     "thumbnailAlt": "Miniatyrbild för {title}",
     "by": "av",
@@ -800,7 +822,9 @@
       "legend": {
         "transition": "Transitionsålder",
         "detransition": "Detransitionsålder"
-      }
+      },
+      "median": "median {age}",
+      "coverage": "Baserat på {transition} transitionsåldrar och {detransition} detransitionsåldrar."
     },
     "transitionDuration": {
       "title": "Transitionsvaraktighet: Ålder vid Transition vs Ålder vid Detransition",
@@ -824,7 +848,8 @@
       "female": "Kvinna",
       "yearsAvg": "år i snitt",
       "user": "användare",
-      "users": "användare"
+      "users": "användare",
+      "coverage": "Baserat på {count} berättelser där båda åldrarna finns angivna."
     },
     "pathways": {
       "title": "Detransitionsvägar Flöde",
@@ -944,7 +969,9 @@
     "error": {
       "title": "CAPTCHA-fel",
       "description": "Kunde inte ladda CAPTCHA. Vänligen uppdatera sidan och försök igen."
-    }
+    },
+    "verifyFailed": "Verification failed. Please try again.",
+    "rateLimited": "Too many verifications. Please wait a moment and try again."
   },
   "feedback": {
     "title": "Feedback",
@@ -962,11 +989,990 @@
     "metadata": {
       "title": "Anonymiserad statistik | detrans.ai",
       "description": "Anonymiserad statistik om detransition- och transitionsmönster, inklusive åldersfördelning, varaktighet, orsaker och vägar."
+    },
+    "toc": {
+      "title": "På den här sidan"
+    },
+    "filters": {
+      "title": "Filter",
+      "edit": "Redigera filter",
+      "hide": "Dölj filter",
+      "summary": {
+        "none": "Inga filter",
+        "age": "Ålder {min}–{max}",
+        "tags": "{count, plural, =0 {inga taggar} =1 {1 tagg} other {# taggar}}",
+        "detailed": "Endast detaljerade"
+      },
+      "detailed": "Endast detaljerade berättelser",
+      "detailedHint": "Ta bara med berättelser som AI:n bedömt som ganska eller mycket detaljerade."
+    },
+    "sections": {
+      "age": {
+        "title": "Ålder",
+        "description": "När detransitionerare transitionerade och detransitionerade."
+      },
+      "journey": {
+        "title": "Åldrar",
+        "description": "När personer först kände dysfori, transitionerade, började med hormoner och detransitionerade."
+      },
+      "duration": {
+        "title": "Varaktighet",
+        "description": "Hur länge personer var i transition innan de slutade."
+      },
+      "minors": {
+        "title": "Transition före 18",
+        "description": "Vad berättelserna visar om att påbörja transition som barn eller tonåring."
+      },
+      "reasons": {
+        "title": "Orsaker",
+        "description": "Varför detransitionerare säger att de transitionerade — och varför de detransitionerade."
+      },
+      "pathways": {
+        "title": "Vägar",
+        "description": "Om ånger skiljer sig beroende på varför personer transitionerade och vilka medicinska steg de tog."
+      },
+      "regret": {
+        "title": "Ånger",
+        "description": "Hur stark ångern är, hur den förändras över tid och vad personer ångrar."
+      },
+      "medical": {
+        "title": "Medicinsk inblandning",
+        "description": "Hur ånger hänger ihop med hur långt transitionen gick."
+      },
+      "complications": {
+        "title": "Komplikationer",
+        "description": "Medicinska komplikationer och bestående hälsoproblem efter transition."
+      },
+      "mental_health": {
+        "title": "Psykisk hälsa",
+        "description": "Bilden av den psykiska hälsan i berättelserna, före och efter detransition."
+      },
+      "suicidality": {
+        "title": "Suicidalitet",
+        "description": "Hur ofta berättelser beskriver självmordstankar eller självskada, och när."
+      },
+      "after": {
+        "title": "Efter detransition",
+        "description": "Hur psykisk hälsa, livskvalitet och familjerelationer förändrades."
+      },
+      "current_status": {
+        "title": "Where are they now",
+        "description": "Current identities and situations after detransitioning."
+      },
+      "family_community": {
+        "title": "Det sociala priset för att detransitionera",
+        "description": "Isolering och utfrysning till följd av detransition, och desillusion med transcommunityn. Frågor som inte skilde mellan transition och detransition (familjestöd, relationer, karriär) har utelämnats; familjerelationer efter detransition tas upp under ”Efter detransition”."
+      },
+      "sexuality": {
+        "title": "Sexualitet",
+        "description": "Sexuell läggning i förhållande till biologiskt kön, före transition och efter detransition."
+      },
+      "trends": {
+        "title": "Genom åren",
+        "description": "Hur berättelserna — och orsakerna i dem — har förändrats mellan kohorter efter transitionsår."
+      },
+      "features": {
+        "title": "Egenskaper",
+        "description": "Every statement the AI evaluated across the stories — causes, processes and outcomes."
+      },
+      "compare": {
+        "title": "Jämför",
+        "description": "Hur förekomsten av egenskaper skiljer sig mellan två halvor av kohorten."
+      },
+      "matrix": {
+        "title": "Samband",
+        "description": "Svar på frågor som folk diskuterar — även där en förväntad skillnad inte syns."
+      },
+      "stories": {
+        "title": "Berättelser",
+        "description": "Anonyma utdrag från människorna bakom siffrorna.",
+        "browse": "Bläddra bland alla berättelser"
+      },
+      "methodology": {
+        "title": "Metod",
+        "description": "Hur datamängden byggs upp och hur diagrammen ska läsas."
+      },
+      "overview": {
+        "title": "I korthet",
+        "description": "Alla ja/nej-påståenden som AI:n har bedömt, rangordnade efter hur många berättelser de tydligt stämmer för."
+      },
+      "lives": {
+        "title": "Individuella tidslinjer",
+        "description": "Varje linje är en person, från åldern då de påbörjade transition till åldern då de slutade."
+      },
+      "drivers": {
+        "title": "Mindre omtalade drivkrafter",
+        "description": "Kroppsuppfattning, identitetsinstabilitet och sexuella faktorer som beskrivs ha bidragit till transitionen."
+      },
+      "adversity": {
+        "title": "Trauma och motgångar",
+        "description": "Hur ofta berättelser beskriver trauma, och hur ofta trauma anges som huvudorsaken."
+      },
+      "online": {
+        "title": "Påverkan på nätet och från jämnåriga",
+        "description": "Vilka plattformar som betydde mest, och hur påverkan på nätet och från jämnåriga syns i berättelserna."
+      },
+      "process": {
+        "title": "Vändpunkter",
+        "description": "Vad som hjälpte personer att gå från transition mot detransition."
+      }
+    },
+    "features": {
+      "search": "Sök egenskaper…",
+      "sort": {
+        "prevalence": "Förekomst",
+        "alpha": "A–Z"
+      },
+      "tiers": {
+        "cause": "Orsak",
+        "process": "Process",
+        "outcome": "Utfall"
+      },
+      "kinds": {
+        "noul": "Ja / nej",
+        "choice": "Val",
+        "score": "Skala"
+      },
+      "groups": {
+        "reasons": "Orsaker",
+        "causes": "Orsaker",
+        "processes": "Processer",
+        "regret": "Ånger",
+        "medical": "Medicinskt",
+        "mental_health": "Psykisk hälsa",
+        "adversity": "Motgångar",
+        "social": "Socialt",
+        "sexuality": "Sexualitet",
+        "online": "Nätet",
+        "identity": "Identitet",
+        "outcomes": "Utfall",
+        "attitudes": "Attityder",
+        "quality": "Kvalitet"
+      },
+      "basedOn": "Utifrån {cohort} bedömda berättelser.",
+      "coverageNote": "{n} av {cohort} bedömda berättelser ({percent} %) innehåller ett svar.",
+      "question": "Hur mättes detta?",
+      "confidence": "AI:ns mediansäkerhet för den här egenskapen: {value} %.",
+      "filterByTag": "Endast berättelser taggade ”{tag}”",
+      "placeholder": "Välj en egenskap i listan för att utforska den.",
+      "backToList": "Alla egenskaper",
+      "noResults": "Inga egenskaper matchar din sökning.",
+      "noData": "Inga svar för de aktuella filtren.",
+      "loading": "Laddar…",
+      "error": "Kunde inte ladda data för egenskapen",
+      "noul": {
+        "prevalenceLabel": "av de bedömda berättelserna ligger över tröskeln",
+        "range": "{from} – {to} sannolikhet",
+        "count": "{count} berättelser ({percent} %)",
+        "thresholdShort": "tröskel {threshold}",
+        "legend": {
+          "yes": "Troligen sant",
+          "maybe": "Osäkert",
+          "no": "Troligen falskt"
+        },
+        "above": "Troligen sant",
+        "uncertain": "Osäkert",
+        "below": "Troligen falskt"
+      },
+      "choice": {
+        "soft": "Sannolikhetsmassa",
+        "hard": "Vinnande alternativ",
+        "softTooltip": "≈{percent} % (≈{count} berättelser i sannolikhetsmassa)",
+        "hardTooltip": "{percent} % ({count} berättelser)",
+        "softNote": "Staplarna visar den sammanlagda AI-sannolikheten som varje alternativ får i berättelserna, så blandade svar räknas proportionellt.",
+        "hardNote": "Staplarna räknar bara varje berättelses enda mest sannolika alternativ."
+      },
+      "score": {
+        "meanLabel": "Genomsnitt {value} på en skala från 0–{max}",
+        "range": "Poäng {from} – {to}",
+        "count": "{count} berättelser",
+        "meanShort": "medel {value}"
+      },
+      "related": {
+        "title": "Ses ofta tillsammans",
+        "lift": "{lift}× vanligare ({percent} %)"
+      },
+      "listNote": "Punkterna visar andelen berättelser där varje påstående tydligt stämmer (AI-sannolikhet ≥ 0,8); linjerna visar 95-procentsintervallet. Bleka rader har färre än 30 svar. Välj en rad för att läsa matchande berättelser. Baserat på {cohort} bedömda berättelser."
+    },
+    "compare": {
+      "splitLabel": "Dela upp efter",
+      "thresholdNote": "Visar berättelser över AI-tröskeln {threshold} jämfört med under den.",
+      "filter": {
+        "all": "Alla svar",
+        "clear": "Endast tydliga signaler"
+      },
+      "clearNote": "{excluded} oklara berättelser har uteslutits från båda sidor.",
+      "cohortTrue": "{label}: förekommer (n = {n})",
+      "cohortFalse": "Förekommer inte (n = {n})",
+      "splitSex": "Biologiskt kön",
+      "sexNote": "Jämför berättelser från kvinnor och män.",
+      "cohortWomen": "Kvinnor (n = {n})",
+      "cohortMen": "Män (n = {n})",
+      "splitAge": "Ålder vid transition",
+      "ageNote": "Jämför berättelser där transitionen började före 18 års ålder med dem där den började vid 18 eller senare.",
+      "cohortUnder18": "Under 18 (n = {n})",
+      "cohortAdult": "18 eller äldre (n = {n})",
+      "rowTooltip": "{label}: {pctTrue} % av {nTrue} mot {pctFalse} % av {nFalse}",
+      "empty": "Ännu inte tillräckligt många berättelser med svar på båda sidor av den här uppdelningen.",
+      "showSmallSamples": "Visa små urval",
+      "hideSmallSamples": "Dölj små urval",
+      "hiddenNote": "{count, plural, =1 {1 egenskap är dold} other {# egenskaper är dolda}} eftersom de har färre än 3 berättelser på ena sidan.",
+      "error": "Kunde inte ladda jämförelsedata",
+      "ratio": "{ratio} så vanligt",
+      "ratioNote": "Raderna rangordnas efter hur mycket de två grupperna skiljer sig (riskkvot), och egenskaper som är ovanliga på båda sidor har utelämnats. Linjerna visar 95-procentsintervall; bleka rader har färre än 30 berättelser på ena sidan.",
+      "showAll": "Visa alla egenskaper"
+    },
+    "matrix": {
+      "presetLabel": "Vy",
+      "presets": {
+        "outcomesByCause": "Utfall efter orsak",
+        "outcomesByProcess": "Utfall efter vändpunkt"
+      },
+      "metric": {
+        "rate": "Andel",
+        "lift": "Lyft jämfört med genomsnittet"
+      },
+      "swap": "Byt axlar",
+      "legendRate": "Andel matchande berättelser där kolumnens egenskap stämmer.",
+      "legendLift": "Jämfört med genomsnittet för hela kohorten (blått över, rött under).",
+      "sampleNote": "Varje cell jämför berättelser med radens egenskap mot berättelser utan den. Längre, mer detaljerade berättelser nämner fler egenskaper av alla slag, så de flesta kvoter ligger över 1× — jämför cellerna med varandra snarare än med 1×. Celler med färre än 30 berättelser på någon sida lämnas tomma.",
+      "basedOn": "{cohort} bedömda berättelser i den här vyn.",
+      "cellTooltip": "{row} → {col}: {percent} % av {n} berättelser · {lift}× kohortens genomsnitt",
+      "cellTooltipNoLift": "{row} → {col}: {percent} % av {n} berättelser",
+      "cellMasked": "{row} → {col}: för få berättelser",
+      "empty": "Ännu inte tillräckligt många berättelser med svar för den här vyn.",
+      "error": "Kunde inte ladda matrisdata",
+      "presetDescriptions": {
+        "outcomesByCause": "Hur mycket vanligare (eller ovanligare) varje utfall är i berättelser med en viss orsak än i berättelser utan den.",
+        "outcomesByProcess": "Hur mycket vanligare (eller ovanligare) varje utfall är i berättelser med en viss vändpunkt än i berättelser utan den."
+      },
+      "legendMore": "Vanligare med radens egenskap",
+      "legendLess": "Ovanligare",
+      "legendNone": "Ingen tydlig skillnad (95-procentsintervallet omfattar 1×)",
+      "cellTooltipRatio": "{row} → {col}: {percent} % av {n} berättelser med den jämfört med {percentWithout} % utan · {ratio} (95-procentsintervall {low}–{high})",
+      "legendWith": "Med faktorn",
+      "legendWithout": "Utan den",
+      "themes": {
+        "medical": "Medicinsk väg",
+        "helped": "Vad som hjälpte",
+        "who": "Vem ångrar, vem återgår",
+        "views": "Syn på transition för andra"
+      },
+      "predictors": {
+        "under18": "Påbörjade transition före 18",
+        "women": "Kvinnor (jämfört med män)",
+        "sameSex": "Attraherad av samma kön före transition",
+        "took_puberty_blockers": "Tog pubertetsblockerare",
+        "took_hormones": "Tog hormoner",
+        "top_surgery": "Genomgick överkroppskirurgi",
+        "process_benefited_from_therapy": "Utforskande terapi hjälpte",
+        "gender_nonconformity_childhood": "Könsöverskridande som barn",
+        "process_spiritual_experience": "En andlig upplevelse",
+        "autogynephilia": "Autogynefili",
+        "adv_trauma_history": "Traumatisk bakgrund",
+        "contributed_online_influence": "Påverkan på nätet"
+      },
+      "outcomes": {
+        "regret": "ångrar transitionen",
+        "bodyReconciliation": "kom att acceptera sin kropp",
+        "retransitioned": "retransitionerade",
+        "mentalHealthBetter": "bättre psykisk hälsa efter detransition",
+        "critical": "kritisk till eller emot transition för andra"
+      },
+      "ratio": "{ratio} så vanligt",
+      "noDifference": "Ingen tydlig skillnad",
+      "rowTooltip": "{with} av {nWith} berättelser med den jämfört med {without} av {nWithout} utan",
+      "note": "Linjerna visar 95-procentsintervall. ”Ingen tydlig skillnad” betyder att intervallet omfattar ingen skillnad alls. Det här är samband i det personer skriver, inte orsaker, och den som skriver längre, mer detaljerade berättelser nämner mer av allt. Baserat på {cohort} bedömda berättelser."
+    },
+    "regret": {
+      "composition": {
+        "pair": "{positive} % av berättelserna uttrycker ånger över transitionen och {negative} % säger att de inte ångrar den; resten säger inget. Bland dem som tar ställning ångrar {statedShare} % (n = {stated}).",
+        "any": "{positive} % uttrycker ånger (n = {n})"
+      },
+      "scale": {
+        "title": "Hur stark är ångern?",
+        "mean": "{value} / {max} genomsnittlig intensitet",
+        "levels": {
+          "level0": "Ingen ånger uttryckt",
+          "level1": "Mild eller övergående",
+          "level2": "Måttlig, återkommande",
+          "level3": "Svår, ihållande"
+        }
+      },
+      "choice": {
+        "title": "Hur förändras ångern över tid?",
+        "options": {
+          "resolved": "I stort sett över",
+          "improving": "Blir bättre",
+          "stable": "Stabil",
+          "worsening": "Blir sämre",
+          "mixed": "Blandad eller cyklisk"
+        }
+      },
+      "statements": {
+        "title": "Vad personer specifikt ångrar"
+      },
+      "count": "n = {n}",
+      "basedOn": "Baserat på {cohort} bedömda berättelser.",
+      "empty": "Ännu inga svar om ånger för de aktuella filtren.",
+      "error": "Kunde inte ladda data om ånger"
+    },
+    "complications": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} % rapporterar minst en medicinsk komplikation eller ett bestående hälsoproblem (n = {n})"
+      },
+      "scale": {
+        "title": "Hur allvarliga var komplikationerna?",
+        "mean": "{value} / {max} genomsnittlig svårighetsgrad",
+        "levels": {
+          "level0": "Inga komplikationer",
+          "level1": "Lindriga eller hanterbara biverkningar",
+          "level2": "Betydande komplikationer",
+          "level3": "Allvarlig eller bestående skada"
+        }
+      },
+      "statements": {
+        "title": "Specifika medicinska problem"
+      },
+      "count": "n = {n}",
+      "basedOn": "Baserat på {cohort} bedömda berättelser.",
+      "empty": "Ännu inga medicinska svar för de aktuella filtren.",
+      "error": "Kunde inte ladda data om komplikationer"
+    },
+    "mental_health": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} % visar minst ett psykiskt tillstånd eller en kris (n = {n})"
+      },
+      "scale": {
+        "title": "Hur allvarlig är bilden av den psykiska hälsan?",
+        "mean": "{value} / {max} genomsnittlig svårighetsgrad",
+        "levels": {
+          "level0": "Inga nämnvärda problem",
+          "level1": "Lindrig eller situationsbunden påfrestning",
+          "level2": "Betydande, behandlade tillstånd",
+          "level3": "Allvarliga tillstånd eller kris"
+        }
+      },
+      "statements": {
+        "title": "Tillstånd och kriser"
+      },
+      "count": "n = {n}",
+      "basedOn": "Baserat på {cohort} bedömda berättelser.",
+      "empty": "Ännu inga svar om psykisk hälsa för de aktuella filtren.",
+      "error": "Kunde inte ladda data om psykisk hälsa"
+    },
+    "suicidality": {
+      "during": "Under transitionen",
+      "since": "Sedan detransitionen",
+      "duringDescription": "Hur sannolikt modellen bedömer det att en berättelse beskriver självmordstankar, självskada eller ett självmordsförsök medan personen var i transition.",
+      "sinceDescription": "Hur sannolikt modellen bedömer det att en berättelse beskriver självmordstankar, självskada eller ett självmordsförsök efter detransitionen.",
+      "splitNote": "Uppdelat efter nuvarande status · kvadratrotsaxel",
+      "overall": "Alla berättelser",
+      "sqrtNote": "Den lodräta axeln använder en kvadratrotsskala så att de mindre sannolikhetsintervallen syns bredvid toppen vid noll.",
+      "tooltipBin": "Sannolikhet {range}",
+      "tooltipCount": "{count, plural, =1 {1 berättelse} other {# berättelser}}",
+      "bands": {
+        "no": "Troligen falskt (< 0,2)",
+        "mixed": "Osäkert (0,2–0,8)",
+        "yes": "Troligen sant (≥ 0,8)"
+      },
+      "count": "n = {n}",
+      "basedOn": "Baserat på {cohort} berättelser med ett svar.",
+      "empty": "Ännu inga svar om suicidalitet för de aktuella filtren.",
+      "error": "Kunde inte ladda data om suicidalitet",
+      "statements": {
+        "title": "Självmordstankar och självskada"
+      }
+    },
+    "current_status": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% (n = {n})"
+      },
+      "choice": {
+        "title": "Where are they now?",
+        "options": {
+          "detransitioned": "Detransitionerade",
+          "desisted": "Avstod före medicinsk transition",
+          "retransitioned": "Retransitionerade",
+          "still_trans_questioning": "Fortfarande trans, ifrågasättande",
+          "questioning": "Ifrågasättande",
+          "unclear": "Oklart",
+          "supportive": "Stödjer transition för andra",
+          "conditional": "Stödjer under vissa villkor",
+          "critical": "Kritisk till transition",
+          "opposed": "Emot",
+          "not_addressed": "Tas inte upp"
+        },
+        "description": "Bland berättelser som tar upp frågan, från stödjande till emot."
+      },
+      "secondaryChoice": {
+        "title": "Hur ser de på transition för andra människor?"
+      },
+      "statements": {
+        "title": "Nuvarande situation"
+      },
+      "count": "n = {n}",
+      "basedOn": "Baserat på {cohort} bedömda berättelser.",
+      "empty": "Ännu inga svar om status för de aktuella filtren.",
+      "error": "Kunde inte ladda statusdata",
+      "headline": "{percent} % är kritiska till eller emot transition för andra människor (n ≈ {n}).",
+      "note": "Sannolikhetsviktade andelar. Berättelser som inte tar upp frågan har utelämnats."
+    },
+    "family_community": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} % svarar ja på minst en av frågorna nedan (n = {n})"
+      },
+      "statements": {
+        "title": "Ställda frågor",
+        "description": "Varje berättelse prövades mot exakt dessa frågor. En berättelse räknas när svaret är ett tydligt ja."
+      },
+      "count": "n = {n}",
+      "basedOn": "Baserat på {cohort} bedömda berättelser.",
+      "empty": "Ännu inga svar för de aktuella filtren.",
+      "error": "Kunde inte ladda data"
+    },
+    "sexuality": {
+      "beforeLabel": "Före transition",
+      "afterLabel": "Efter detransition",
+      "options": {
+        "homosexual": "Homosexual",
+        "bisexual": "Bisexuell",
+        "heterosexual": "Heterosexual",
+        "asexual": "Asexuell",
+        "other": "Annat eller föränderligt"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 berättelse} other {# berättelser}}",
+      "statements": {
+        "title": "Orientation and attraction"
+      },
+      "count": "n = {n}",
+      "basedOn": "Flöde baserat på {cohort} berättelser med svar om läggning vid båda tidpunkterna.",
+      "empty": "Not enough orientation answers for the current filters yet.",
+      "error": "Kunde inte ladda data om sexualitet",
+      "hero": {
+        "statement": "av detransitionerare som anger sin nuvarande läggning är homosexuella, lesbiska eller bisexuella (n = {n}).",
+        "bySex": "M {men} homosexuella eller bisexuella ({menSame} homosexuella) | K {women} lesbiska eller bisexuella ({womenSame} lesbiska)"
+      },
+      "mix": {
+        "title": "Läggning före transition och efter detransition",
+        "description": "I förhållande till biologiskt kön, bland berättelser som anger den.",
+        "women": "Kvinnor",
+        "men": "Män",
+        "all": "Alla",
+        "before": "före",
+        "after": "efter"
+      },
+      "matrix": {
+        "title": "Förändrades läggningen?",
+        "description": "Varje rad är en läggning före transition; cellerna visar vad samma personer beskriver efter detransitionen.",
+        "headline": "{percent} % beskriver samma läggning före transition och efter detransition (n = {n}).",
+        "corner": "Före ↓ · Efter →",
+        "cell": "{from} före → {to} efter: {percent} % ({count})",
+        "note": "Endast berättelser som anger läggning vid båda tidpunkterna. Rader med färre än 30 berättelser lämnas tomma."
+      },
+      "coverage": "Läggning anges före transition i {before} berättelser och efter detransition i {after}, av {cohort} bedömda berättelser."
+    },
+    "trends": {
+      "series": {
+        "contributed_online_influence": "Påverkan på nätet",
+        "contributed_rapid_onset": "Snabbt debuterande (ROGD)",
+        "regret_transition": "Ånger",
+        "took_puberty_blockers": "Pubertetsblockerare"
+      },
+      "tooltip": "{bucket} · n = {n}",
+      "mode": {
+        "strict": "Binär signal",
+        "soft": "Genomsnittlig sannolikhet",
+        "strictNote": "Andel berättelser som modellen är säker på (≥ 0,8).",
+        "softNote": "Genomsnittlig sannolikhet över alla berättelser — behåller oklara berättelser i trenden."
+      },
+      "seriesTooltip": "{strict} binärt · {mean} medel",
+      "medianAge": "Medianålder vid transition per kohort",
+      "coverageNote": "Varje punkt använder kohortens besvarade berättelser; de tidigaste kohorterna har de minsta urvalen.",
+      "basedOn": "Utifrån {cohort} berättelser med ett transitionsår.",
+      "empty": "Ännu inga transitionsår för de aktuella filtren.",
+      "error": "Kunde inte ladda trenddata",
+      "linesTitle": "Egenskaper efter transitionsår",
+      "linesDescription": "Andel berättelser där varje påstående tydligt stämmer, grupperade efter året då transitionen började. Lägg till eller ta bort egenskaper för att jämföra.",
+      "reasonsTitle": "Huvudorsak till transition, per period",
+      "reasonsDescription": "Hur de vanligaste huvudorsakerna skiftar mellan kohorter efter transitionsår.",
+      "add": "Lägg till en egenskap…",
+      "remove": "Ta bort {label}",
+      "strictNote": "Andel berättelser där AI:n är säker på att påståendet stämmer (≥ 0,8). Ihåliga punkter bygger på färre än 30 berättelser. Nyare kohorter har haft kortare tid sedan transitionen — mindre tid att hinna till kirurgi eller långsiktiga effekter, och oftast kortare berättelser — så många egenskaper sjunker i högra änden; en egenskap som ändå ökar, som ångest, sticker ut."
+    },
+    "uncertainty": {
+      "binary": "Binärt",
+      "bands": "Tre lägen",
+      "likelyFalse": "Troligen falskt (< 0,2)",
+      "unclear": "Oklart (0,2–0,8)",
+      "unclearShort": "oklart",
+      "likelyTrue": "Troligen sant (≥ 0,8)",
+      "rowTooltip": "{false} % troligen falskt · {unclear} % oklart · {true} % troligen sant"
+    },
+    "minors": {
+      "tiles": {
+        "minor": "började före 18 ({n} av {total} berättelser med en ålder)",
+        "le15": "började vid 15 eller yngre",
+        "dysphoria": "kände dysfori första gången vid 12 eller yngre (n = {n})",
+        "female": "av dem som började före 18 är kvinnor"
+      },
+      "early": "I dessa berättelser förekommer pubertetsblockerare från {min} års ålder, med en median på {median} (n = {n}). {hormones} hade börjat med hormoner vid 16, och {detrans} hade redan detransitionerat vid 18.",
+      "empty": "Ännu inga åldersdata för de aktuella filtren.",
+      "error": "Kunde inte ladda data om tidig transition",
+      "byEra": {
+        "title": "Började före 18, efter transitionsår",
+        "description": "Andel berättelser där transitionen började före 18 års ålder, grupperade efter året den började.",
+        "note": "Linjerna visar 95-procentsintervallet. Senare kohorter omfattar fler som transitionerade nyligen och unga, så tolka trenden med försiktighet."
+      }
+    },
+    "journey": {
+      "milestones": {
+        "first_dysphoria": "Första dysfori",
+        "transition": "Transition",
+        "hormones": "Hormoner",
+        "detransition": "Detransition",
+        "in_transition": "År i transition"
+      },
+      "median": "median {age}",
+      "count": "n = {n}",
+      "tooltip": "Ålder {age}: {count, plural, =1 {1 berättelse} other {# berättelser}}",
+      "yearsTooltip": "{years, plural, =1 {1 år} other {# år}} i transition: {count, plural, =1 {1 berättelse} other {# berättelser}}",
+      "basedOn": "Varje rad räknar bara de berättelser som anger den åldern. Axeln är avskuren vid 99:e percentilen.",
+      "empty": "Ännu inga tidslinjedata för de aktuella filtren.",
+      "error": "Kunde inte ladda data om förloppet"
+    },
+    "gradient": {
+      "regret": "Ånger",
+      "noRegret": "Ingen ånger",
+      "notStated": "Ej angivet",
+      "tiers": {
+        "no_transition": "Transitionerade inte",
+        "social_only": "Enbart social",
+        "hormones": "Hormoner eller blockerare",
+        "surgery": "Kirurgi",
+        "unclear": "Oklart"
+      },
+      "tierTooltip": "{n} berättelser: {regrets} ånger, {noRegret} ingen ånger, {notStated} ej angivet",
+      "count": "n = {n}",
+      "selectionNote": "Personer som detransitionerar tidigt når aldrig de senare stegen, så detta visar vilka vägar som leder vart — inte att medicinska steg orsakar ånger.",
+      "basedOn": "Baserat på {cohort} bedömda berättelser.",
+      "empty": "Ännu inga svar för de aktuella filtren.",
+      "error": "Kunde inte ladda data om medicinsk inblandning",
+      "statedNote": "Siffran till höger är ånger bland berättelser som tar ställning (ånger eller ingen ånger).",
+      "headline": "{percent} % av dem som genomgick kirurgi säger att de ångrar transitionen, bland dem som tar ställning (n = {n}).",
+      "headlineCompare": "{percent} % av dem som genomgick kirurgi säger att de ångrar transitionen, jämfört med {hormones} % av dem som stannade vid hormoner eller blockerare (n = {n} / {nHormones}). Räknar bara berättelser som tar ställning."
+    },
+    "after": {
+      "levels": {
+        "muchWorse": "Mycket sämre",
+        "worse": "Något sämre",
+        "same": "Ungefär likadant",
+        "better": "Något bättre",
+        "muchBetter": "Mycket bättre"
+      },
+      "panels": {
+        "mh_change_after_detransition": "Psykisk hälsa",
+        "outcome_quality_of_life": "Livskvalitet",
+        "outcome_family_relationship_change": "Familjerelationer"
+      },
+      "summary": "{better} % bättre · {worse} % sämre",
+      "count": "n = {n}",
+      "basedOn": "Baserat på {cohort} bedömda berättelser.",
+      "empty": "Ännu inga svar för de aktuella filtren.",
+      "error": "Kunde inte ladda förändringsdata",
+      "worseSide": "Sämre",
+      "betterSide": "Bättre",
+      "headline": "{better} % beskriver bättre psykisk hälsa efter detransitionen; {worse} % beskriver den som sämre (n = {n})."
+    },
+    "stories": {
+      "excerptNote": "Anonyma AI-sammanfattningar av offentliga inlägg på /r/detrans.",
+      "agesCaption": "Åldrar: första dysfori → transition → {outcome}",
+      "ages": {
+        "firstDysphoria": "Första dysfori",
+        "transition": "Transition",
+        "detransition": "Detransition",
+        "desistance": "Desistens",
+        "socialTransition": "Social transition"
+      },
+      "female": "Kvinna",
+      "male": "Man",
+      "basedOn": "Från {cohort} matchande berättelser.",
+      "empty": "Inga berättelser matchar de aktuella filtren ännu.",
+      "error": "Kunde inte ladda berättelser",
+      "loadMore": "Ladda fler berättelser",
+      "loading": "Laddar…",
+      "upvotesLabel": "Totalt antal upvotes: {count}",
+      "dialog": {
+        "title": "Berättelse",
+        "summary": "Sammanfattning",
+        "fullStory": "Hela berättelsen",
+        "close": "Stäng berättelsen",
+        "error": "Kunde inte ladda hela berättelsen",
+        "openPage": "Öppna berättelsens sida"
+      },
+      "status": {
+        "detransitioned": "Detransitionerad",
+        "desisted": "Desisterad"
+      }
+    },
+    "highlights": {
+      "title": "Det som sticker ut",
+      "types": {
+        "prevalence": "Vanligast",
+        "pair": "Hör ihop",
+        "improvement": "Livet efter detransition",
+        "journey": "Typiskt förlopp",
+        "minorShare": "Började före 18",
+        "minorLe15": "Började vid 15 eller yngre",
+        "minorDysphoria": "Första dysfori senast vid 12",
+        "minorFemale": "Vem som börjar ung",
+        "orientation": "Sexuell läggning"
+      },
+      "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
+      "prevalenceUnclear": "Ytterligare {unclear} % är oklara.",
+      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "improvement": "{better} % säger att deras livskvalitet blev bättre efter detransitionen; {worse} % säger att den blev sämre (n = {n}).",
+      "journey": "Det typiska förloppet: första dysfori vid {dysphoria} → transition vid {transition} → detransition vid {detransition} (n = {n}).",
+      "minorShare": "{percent} % av berättelserna med en ålder påbörjade transition före 18 (n = {n} av {total}).",
+      "minorLe15": "{percent} % började vid 15 eller yngre (n = {n}).",
+      "minorDysphoria": "{percent} % kände dysfori första gången vid 12 eller yngre (n = {n}).",
+      "minorFemale": "{percent} % av dem som började före 18 är kvinnor (n = {n}).",
+      "explore": "Utforska",
+      "orientation": "{percent} % av detransitionerare som anger sin läggning är homosexuella, lesbiska eller bisexuella ({sameSex} % homosexuella eller lesbiska; n = {n})."
+    },
+    "pathways": {
+      "journey": "Orsak → Process → Utfall",
+      "medical": "Medicinsk väg",
+      "stages": {
+        "cause": "Huvudorsak",
+        "process": "Vändpunkt",
+        "outcome": "Ånger i dag"
+      },
+      "causes": {
+        "social_role_discomfort": "Obehag inför könsrollen",
+        "internalised_homophobia": "Internaliserad homofobi",
+        "internalised_misogyny_misandry": "Internaliserad misogyni / misandri",
+        "trauma": "Trauma",
+        "mental_health_issues": "Psykisk hälsa",
+        "neurodivergence": "Neurodivergens",
+        "body_dysmorphia": "Kroppsdysmorfi",
+        "online_influence": "Påverkan på nätet",
+        "peer_influence": "Påverkan från jämnåriga",
+        "sexual_factors": "Sexuella faktorer",
+        "parental_or_medical_pressure": "Press från föräldrar eller vården",
+        "other_unclear": "Annat / oklart",
+        "unclear": "Oklart"
+      },
+      "processes": {
+        "process_benefited_from_therapy": "Utforskande terapi",
+        "process_detrans_community_exposure": "Detrans-communityn",
+        "process_research_consumption": "Forskning och medier",
+        "process_self_reflection": "Självreflektion",
+        "process_time_off_hormones": "Uppehåll med hormoner",
+        "process_medical_scare": "Medicinsk oro",
+        "process_family_partner_intervention": "Familj eller partner",
+        "process_spiritual_experience": "Andlig upplevelse",
+        "other": "Annat / oklart"
+      },
+      "outcomes": {
+        "regrets": "Ångrar",
+        "no_regret": "Ingen ånger",
+        "not_stated": "Ej angivet"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 berättelse} other {# berättelser}}",
+      "basedOn": "Baserat på {cohort} bedömda berättelser med svar i den här vyn.",
+      "empty": "Ännu inte tillräckligt många berättelser med svar för den här vyn.",
+      "error": "Kunde inte ladda data om vägar",
+      "journeyDescription": "Hur huvudorsaker, vändpunkter och ånger hänger ihop i berättelserna.",
+      "medicalDescription": "Vilka medicinska steg personer tog innan de detransitionerade.",
+      "regretByReason": {
+        "title": "Ånger efter huvudorsak till transition",
+        "description": "Bland berättelser som säger om de ångrar transitionen, andelen som gör det — grupperat efter huvudorsaken de angav för att transitionera.",
+        "headline": "Totalt uttrycker {percent} % av berättelserna som tar upp ånger just ånger (n = {n}).",
+        "note": "Punkterna visar andelen som uttrycker ånger bland berättelser som tydligt tar ställning; linjerna visar 95-procentsintervallet. Bleka rader har färre än 30 berättelser.",
+        "error": "Kunde inte ladda ånger efter orsak",
+        "empty": "Ännu inga svar för de aktuella filtren."
+      }
+    },
+    "methodology": {
+      "p1": "detrans.ai bygger denna datamängd från offentliga berättelser på /r/detrans. En AI skriver om varje användares spridda kommentarer och inlägg till en sammanhängande berättelse i jagform och tar fram en tidslinje med viktiga åldrar ur den. Endast användare som delat tillräckligt för att en hel berättelse ska kunna sättas ihop ingår.",
+      "p1b": "Denna statistik omfattar endast berättelser där personen tydligt har bekräftat att de detransitionerat eller avstått. Från rådata till diagrammen:",
+      "table": {
+        "comments": "Kommentarer insamlade från /r/detrans",
+        "posts": "Inlägg insamlade från /r/detrans",
+        "authors": "Unika skribenter i korpusen",
+        "selected": "Skribenter med minst 5 kommentarer med 3+ upvotes",
+        "removed": "Borttagna: detransition eller desistens inte tydligt bekräftad",
+        "remaining": "Berättelser kvar därefter",
+        "cohort": "Ingår i diagrammen nedan (flaggade konton uteslutna)"
+      },
+      "p2": "Varje berättelse bedöms sedan av Jev, en probabilistisk fråga-svar-modell, mot ungefär hundra påståenden om orsaker, erfarenheter och utfall. Ja/nej-frågor ger en sannolikhet från 0 till 1, flervalsfrågor ger en sannolikhet för varje alternativ och skalfrågor ger ett förväntat värde längs skalan som visas under varje diagram.",
+      "p3": "För ja/nej-egenskaper markerar vi en berättelse som ”sann” när sannolikheten når tröskeln (0,8 som standard). Histogrammet för varje egenskap visar hela sannolikhetsfördelningen, så en egenskap med många svar i mellanregistret framstår som genuint osäker snarare än tydligt sann eller falsk.",
+      "p4": "Alla diagram följer filtren ovan. Eftersom frågeuppsättningen har ändrats över tid och berättelser bearbetas om i nya körningar anger varje diagram hur många av de filtrerade berättelserna som faktiskt har ett svar på just den frågan.",
+      "p5": "Konton som verkar oäkta, påhittade eller botliknande flaggas av modellen och utesluts från denna statistik. AI-extraherade data kan ändå innehålla fel — systemprompterna är publicerade på <prompts>promptsidan</prompts>, och sammanfattningarna jämförs med de ursprungliga kommentarerna.",
+      "threshold": {
+        "title": "Hur mycket gränsvärdet spelar roll",
+        "description": "Diagrammen räknar ett påstående som sant när AI:ns sannolikhet är minst 0,8. Lägre gränsvärden skulle ge högre siffror; det här diagrammet visar hur mycket.",
+        "error": "Kunde inte ladda tröskeldata",
+        "tooltip": "Gränsvärde {threshold}",
+        "xAxis": "Sannolikhetsgräns",
+        "siteThreshold": "Används på den här sidan",
+        "note": "Andel berättelser vid eller över varje gränsvärde. Gränsvärdet 0,8 är medvetet försiktigt."
+      },
+      "accountType": {
+        "title": "Vem som skriver",
+        "description": "Om varje berättelse beskriver skribentens egen erfarenhet.",
+        "options": {
+          "personal_experience": "Egen erfarenhet",
+          "parent": "En förälder",
+          "friend": "En vän eller partner",
+          "researcher_journalist": "Forskare, journalist eller kliniker",
+          "other": "Annat eller blandat"
+        }
+      },
+      "detail": {
+        "title": "Hur detaljerade berättelserna är",
+        "description": "AI:ns bedömning av hur specifik varje berättelse i jagform är. Använd ”Endast detaljerade berättelser” i filtren för att begränsa alla diagram till de två högsta nivåerna.",
+        "levels": {
+          "level0": "Vag eller allmän",
+          "level1": "Viss personlig detalj",
+          "level2": "Detaljerad, konkreta händelser",
+          "level3": "Mycket detaljerad berättelse över flera år"
+        }
+      }
+    },
+    "prevalence": {
+      "women": "Kvinnor",
+      "men": "Män",
+      "interval": "{group} {percent} (95-procentsintervall {low}–{high}, n = {n})",
+      "smallSample": "n = {n}",
+      "openStories": "Visa berättelser",
+      "showAll": "Visa alla {count}",
+      "showFewer": "Visa färre",
+      "note": "Punkterna visar andelen berättelser där påståendet tydligt stämmer (AI-sannolikhet ≥ 0,8); linjerna visar 95-procentsintervallet. Bleka rader har färre än 30 svar.",
+      "noteWithStories": "Punkterna visar andelen berättelser där påståendet tydligt stämmer (AI-sannolikhet ≥ 0,8); linjerna visar 95-procentsintervallet. Bleka rader har färre än 30 svar. Välj en rad för att läsa matchande berättelser.",
+      "gap": "Störst skillnad: {label} — {higher} av {higherGroup} jämfört med {lower} av {lowerGroup}.",
+      "womenLower": "kvinnor",
+      "menLower": "män",
+      "m": "M",
+      "f": "K",
+      "menLegend": "M · män",
+      "womenLegend": "K · kvinnor"
+    },
+    "storyPeek": {
+      "title": "Berättelser: {label}",
+      "meta": "{count, plural, =1 {1 matchande berättelse} other {# matchande berättelser}}",
+      "error": "Kunde inte ladda berättelser.",
+      "empty": "Inga matchande berättelser för de aktuella filtren.",
+      "readFull": "Läs hela berättelsen",
+      "note": "Anonyma utdrag, högst betygsatta först. Hela listan finns i avsnittet Berättelser längst ned på sidan."
+    },
+    "reasons": {
+      "transitionTitle": "Huvudorsak till transition",
+      "transitionDescription": "Den enskilt viktigaste orsaken som varje person anger till att påbörja transition.",
+      "detransitionTitle": "Huvudorsak till detransition",
+      "detransitionDescription": "Den enskilt viktigaste orsaken som varje person anger till att sluta."
+    },
+    "byYear": {
+      "error": "Kunde inte ladda data per år",
+      "empty": "Ännu inga transitionsår för de aktuella filtren.",
+      "other": "Annat",
+      "n": "n = {n}",
+      "note": "Sannolikhetsviktade andelar per kohort efter transitionsår. Bleka rader har färre än 30 berättelser."
+    },
+    "overview": {
+      "error": "Kunde inte ladda översikten",
+      "basedOn": "Baserat på {cohort} bedömda berättelser."
+    },
+    "drivers": {
+      "statements": {
+        "title": "Beskrivs ha bidragit till transitionen"
+      },
+      "count": "n = {n}",
+      "basedOn": "Baserat på {cohort} bedömda berättelser.",
+      "empty": "Ännu inga svar för de aktuella filtren.",
+      "error": "Kunde inte ladda dessa data"
+    },
+    "adversity": {
+      "composition": {
+        "any": "{positive} % beskriver minst en form av trauma eller motgång (n = {n})"
+      },
+      "statements": {
+        "title": "Typer av motgångar som beskrivs"
+      },
+      "contrast": {
+        "title": "Traumatisk bakgrund jämfört med trauma som huvudorsak",
+        "description": "Betydligt fler berättelser nämner trauma än anger det som den främsta drivkraften bakom transition eller detransition.",
+        "history": "Beskriver en traumatisk bakgrund",
+        "transitionReason": "Anger trauma som huvudorsak till transition",
+        "detransitionReason": "Anger insikt om trauma som huvudorsak till detransition",
+        "note": "Punkterna visar andelen berättelser; linjerna visar 95-procentsintervallet. Orsaksraderna räknar varje berättelses enda huvudorsak."
+      },
+      "count": "n = {n}",
+      "basedOn": "Baserat på {cohort} bedömda berättelser.",
+      "empty": "Ännu inga svar om motgångar för de aktuella filtren.",
+      "error": "Kunde inte ladda data om motgångar"
+    },
+    "online": {
+      "choice": {
+        "title": "Mest inflytelserika plattform",
+        "description": "Bland berättelser som nämner påverkan på nätet. Berättelser utan betydande påverkan på nätet har utelämnats.",
+        "options": {
+          "reddit": "Reddit",
+          "tumblr": "Tumblr",
+          "tiktok": "TikTok",
+          "twitter": "Twitter / X",
+          "youtube": "YouTube",
+          "discord": "Discord",
+          "other": "Annan plattform eller fandommiljö"
+        }
+      },
+      "statements": {
+        "title": "Påverkan på nätet och från jämnåriga"
+      },
+      "byYear": {
+        "title": "Plattform efter transitionsår",
+        "description": "Hur den mest inflytelserika plattformen har skiftat mellan kohorter efter transitionsår."
+      },
+      "count": "n = {n}",
+      "basedOn": "Baserat på {cohort} bedömda berättelser.",
+      "empty": "Ännu inga svar om påverkan på nätet för de aktuella filtren.",
+      "error": "Kunde inte ladda data om påverkan på nätet"
+    },
+    "process": {
+      "composition": {
+        "any": "{positive} % beskriver minst en av dessa vändpunkter (n = {n})"
+      },
+      "statements": {
+        "title": "Vad som förde personer mot detransition"
+      },
+      "count": "n = {n}",
+      "basedOn": "Baserat på {cohort} bedömda berättelser.",
+      "empty": "Ännu inga svar om vändpunkter för de aktuella filtren.",
+      "error": "Kunde inte ladda data om vändpunkter"
+    },
+    "lives": {
+      "error": "Kunde inte ladda tidslinjer",
+      "empty": "Ännu inga berättelser med både transitions- och detransitionsålder för de aktuella filtren.",
+      "legend": {
+        "transition": "I transition",
+        "blockers": "Pubertetsblockerare",
+        "hormones": "Hormoner",
+        "surgery": "Kirurgi"
+      },
+      "ariaLabel": "Diagram med {n} individuella tidslinjer från transition till detransition",
+      "tooltip": {
+        "woman": "Kvinna",
+        "man": "Man",
+        "person": "Person",
+        "firstDysphoria": "Första dysfori vid {age}",
+        "transition": "Transitionerade vid {age}",
+        "pubertyBlockers": "Pubertetsblockerare vid {age}",
+        "hormones": "Hormoner vid {age}",
+        "topSurgery": "Överkroppskirurgi vid {age}",
+        "bottomSurgery": "Underkroppskirurgi vid {age}",
+        "detransition": "Detransitionerade vid {age}"
+      },
+      "note": "{n} personer vars berättelse anger båda åldrarna, sorterade efter ålder vid transition. Åldrarna är AI:ns tolkning av varje berättelse och kan vara ungefärliga."
+    },
+    "duration": {
+      "error": "Kunde inte ladda varaktigheter",
+      "empty": "Ännu inga transitionsvaraktigheter för de aktuella filtren.",
+      "all": "Alla",
+      "women": "Kvinnor",
+      "men": "Män",
+      "legend": "{label}: median {median} år (n = {n})",
+      "tooltipTitle": "Inom {years, plural, =1 {1 år} other {# år}}",
+      "xAxis": "År sedan transitionen påbörjades",
+      "note": "Andel personer som hade slutat inom ett visst antal år. Alla här detransitionerade till slut, så detta visar hur länge transitionen varade för dem — inte hur många av dem som transitionerar som senare slutar.",
+      "headline": "{one} % hade slutat inom ett år och {five} % inom fem år från starten (median {median} år, n = {n})."
+    },
+    "optionLabels": {
+      "reddit": "Reddit",
+      "tumblr": "Tumblr",
+      "tiktok": "TikTok",
+      "twitter": "Twitter / X",
+      "youtube": "YouTube",
+      "discord": "Discord",
+      "social_role_discomfort": "Obehag inför könsrollen",
+      "internalised_homophobia": "Internaliserad homofobi",
+      "internalised_misogyny_misandry": "Internaliserad misogyni / misandri",
+      "trauma": "Trauma",
+      "mental_health_issues": "Psykisk hälsa",
+      "neurodivergence": "Neurodivergens",
+      "body_dysmorphia": "Kroppsdysmorfi",
+      "online_influence": "Påverkan på nätet",
+      "peer_influence": "Påverkan från jämnåriga",
+      "sexual_factors": "Sexuella faktorer (AGP / AAP)",
+      "parental_or_medical_pressure": "Press från föräldrar eller vården",
+      "other_unclear": "Annat / oklart",
+      "accepted_sexed_body": "Accepterade sin könade kropp",
+      "social_construct_realisation": "Såg könsrollerna som problemet",
+      "trauma_realisation": "Insåg att trauma låg bakom",
+      "mental_health_realisation": "Insåg att psykisk ohälsa låg bakom",
+      "neurodivergence_realisation": "Insåg att neurodivergens låg bakom",
+      "fantasy_reality_disillusionment": "Verkligheten motsvarade inte förväntningarna",
+      "surgery_regret_medical_complications": "Ånger efter kirurgi eller medicinska komplikationer",
+      "ideological_disillusionment": "Desillusionerad av ideologin eller communityn",
+      "social_pressure_ostracism": "Socialt tryck eller utfrysning",
+      "failure_to_pass": "Kunde inte passera",
+      "internalised_homophobia_realisation": "Insåg internaliserad homofobi",
+      "internalised_misogyny_misandry_realisation": "Insåg internaliserad misogyni / misandri",
+      "sexual_factors_realisation": "Insåg sexuella faktorer (AGP / AAP)",
+      "religious_or_spiritual_change": "Religiös eller andlig förändring",
+      "fertility_or_family_desires": "Önskan om fertilitet eller familj"
+    },
+    "choiceSplit": {
+      "error": "Kunde inte ladda diagrammet",
+      "empty": "Ännu inga svar för de aktuella filtren.",
+      "women": "K · kvinnor (n = {n})",
+      "men": "M · män (n = {n})",
+      "headline": "Kvinnor anger oftare ”{womenOption}” ({womenShare} jämfört med {womenMen} av männen); män anger oftare ”{menOption}” ({menShare} jämfört med {menWomen} av kvinnorna).",
+      "note": "Sannolikhetsviktat: en berättelse som AI:n fördelar 60/40 mellan två orsaker räknas som 0,6 och 0,4.",
+      "m": "M",
+      "f": "K"
+    },
+    "ordinal": {
+      "error": "Kunde inte ladda diagrammet",
+      "empty": "Ännu inga svar för de aktuella filtren.",
+      "all": "Alla",
+      "women": "Kvinnor",
+      "men": "Män"
+    },
+    "medical_steps": {
+      "statements": {
+        "title": "Medicinska steg som tagits"
+      },
+      "count": "n = {n}",
+      "basedOn": "Baserat på {cohort} bedömda berättelser.",
+      "empty": "Ännu inga svar för de aktuella filtren.",
+      "error": "Kunde inte ladda medicinska steg"
     }
   },
   "topicsPage": {
     "title": "Topics",
     "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
     "empty": "No topics have been published yet."
+  },
+  "storiesPage": {
+    "metadata": {
+      "title": "Detransitionsberättelser | detrans.ai",
+      "description": "Läs tusentals anonymiserade berättelser om detransition och desistens från /r/detrans-communityn, sammanfattade av AI. Filtrera efter ålder, kön och erfarenhet."
+    },
+    "title": "Detransitionsberättelser",
+    "description": "{count, number} anonymiserade berättelser från människor som transitionerade och senare detransitionerade eller avstod, sammanställda av AI från deras inlägg och kommentarer på /r/detrans.",
+    "statsLink": "Utforska statistiken",
+    "allStories": "Alla berättelser",
+    "story": {
+      "metaTitle": "{title} – Detransitionsberättelse | detrans.ai",
+      "untitled": "En detransitionsberättelse",
+      "notFound": "Berättelsen hittades inte | detrans.ai",
+      "tags": "Taggar",
+      "moreStories": "Läs fler berättelser"
+    }
   }
 }

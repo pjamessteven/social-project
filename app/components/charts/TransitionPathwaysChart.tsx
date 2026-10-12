@@ -4,25 +4,7 @@ import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ResponsiveContainer, Sankey, Tooltip } from "recharts";
-
-// Hook to detect dark mode
-function useDarkMode() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    const checkDarkMode = () => {
-      setIsDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches);
-    };
-
-    checkDarkMode();
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    mediaQuery.addEventListener("change", checkDarkMode);
-
-    return () => mediaQuery.removeEventListener("change", checkDarkMode);
-  }, []);
-
-  return isDarkMode;
-}
+import { useDarkMode } from "./useDarkMode";
 
 interface SankeyNode {
   id: string;
@@ -62,12 +44,15 @@ interface TransitionPathwaysChartProps {
   className?: string;
   minAge: number;
   maxAge: number;
+  /** Section headers carry the title on the stats page; hide the in-chart one. */
+  showHeader?: boolean;
 }
 
 export default function TransitionPathwaysChart({
   className,
   minAge,
   maxAge,
+  showHeader = true,
 }: TransitionPathwaysChartProps) {
   const t = useTranslations("charts.pathways");
   const searchParams = useSearchParams();
@@ -153,7 +138,7 @@ export default function TransitionPathwaysChart({
     const rechartsNodes: RechartsNode[] = connectedNodes.map((node) => ({
       name: translateNodeLabel(
         node.label ||
-        node.id.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase()),
+          node.id.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase()),
       ),
     }));
 
@@ -289,12 +274,14 @@ export default function TransitionPathwaysChart({
         </div>
       ) : (
         <>
-          <div className="p-4">
-            <h3 className="font-semibold">{t("title")}</h3>
-            <p className="text-sm text-gray-600">{t("subtitle")}</p>
-          </div>
+          {showHeader && (
+            <div className="p-4">
+              <h3 className="font-semibold">{t("title")}</h3>
+              <p className="text-sm text-gray-600">{t("subtitle")}</p>
+            </div>
+          )}
           <div className={`w-full ${className}`}>
-            <div className="h-96 w-full rounded-lg border">
+            <div className="h-96 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <Sankey
                   width={960}
@@ -331,7 +318,7 @@ export default function TransitionPathwaysChart({
                           y={y + height / 2 + 16}
                           textAnchor="start"
                           dominantBaseline="central"
-                          fontSize={12}
+                          fontSize={14}
                           fill={isDarkMode ? "#9ca3af" : "#727272ff"}
                           fontFamily="system-ui, -apple-system, sans-serif"
                         >
@@ -342,7 +329,7 @@ export default function TransitionPathwaysChart({
                           y={y + height / 2}
                           textAnchor="start"
                           dominantBaseline="central"
-                          fontSize={12}
+                          fontSize={14}
                           fill={isDarkMode ? "#f3f4f6" : "#374151"}
                           fontFamily="system-ui, -apple-system, sans-serif"
                         >

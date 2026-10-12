@@ -144,7 +144,9 @@
       "stats": "Estadísticas",
       "statsDesc": "Estadísticas de detransición anonimizadas de /r/detrans",
       "topics": "Topics",
-      "topicsDesc": "Guías detalladas sobre temas clave"
+      "topicsDesc": "Guías detalladas sobre temas clave",
+      "stories": "Historias",
+      "storiesDesc": "De usuarios de /r/detrans"
     },
     "resources": {
       "genderSupport": "Encontrar Terapeutas",
@@ -183,10 +185,19 @@
     "de": "Alemán",
     "he": "Hebreo",
     "it": "Italiano",
-    "nl": "Neerlandés"
+    "lt": "Lithuanian",
+    "nl": "Neerlandés",
+    "tr": "Turkish"
   },
   "settings": {
     "title": "Configuración"
+  },
+  "theme": {
+    "title": "Apariencia",
+    "darkMode": "Modo oscuro",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "auto": "Auto"
   },
   "definitions": {
     "metadata": {
@@ -231,17 +242,18 @@
   },
   "chat": {
     "lookingForComments": "Buscando comentarios relevantes...",
+    "lookingForStudies": "Looking for relevant studies...",
     "errorOccurred": "Ocurrió un error, inténtalo de nuevo... Contáctame si esto sigue sucediendo.",
     "analysingExperiences": "Analizando Experiencias de Destransición",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analizando resultados web",
+    "analysingResults": "Analizando resultados...",
     "detransPerspective": "-> ¿Cuáles son las perspectivas de destransición sobre este tema?",
     "transPerspectivesIncluded": "Perspectivas trans incluidas",
     "captchaRequired": "Se requiere captcha para continuar el chat.",
     "chatArchived": "Este chat está archivado. Comience uno nuevo.",
     "rateLimitExceeded": "Demasiadas solicitudes, reduzca la velocidad e intente nuevamente más tarde.",
     "ipMismatchError": "Tu dirección IP ha cambiado. Para prevenir el abuso, debes iniciar una nueva conversación.",
-    "analysingResults": "Analizando resultados...",
     "followUpQuestions": "Preguntas de seguimiento:",
     "eventLabels": {
       "askDetransitioners": "Preguntar a Destransicionadores",
@@ -336,7 +348,21 @@
       "delete": "Eliminar conversación",
       "banning": "Bloqueando...",
       "ban": "Bloquear usuario (IP)"
+    },
+    "dialog": {
+      "title": "Conversación",
+      "toggleIdHint": "Haz clic para alternar entre fecha/país e ID",
+      "shareText": "Mira esta conversación",
+      "share": "Compartir conversación",
+      "copyLink": "Copiar enlace de la conversación",
+      "noneSelected": "Ninguna conversación seleccionada"
     }
+  },
+  "readingDialog": {
+    "share": "Compartir",
+    "copyLink": "Copiar enlace",
+    "copied": "Enlace copiado al portapapeles",
+    "close": "Cerrar diálogo"
   },
   "stories": {
     "metadata": {
@@ -376,9 +402,9 @@
       "ageRangeYears": "{min} - {max} años",
       "sex": {
         "all": "Masculino y Femenino",
-        "mine": "Mine",
         "female": "Femenino",
-        "male": "Masculino"
+        "male": "Masculino",
+        "mine": "Mine"
       },
       "tagsPlaceholder": "Seleccionar etiquetas para filtrar...",
       "clearFilters": "Limpiar Filtros"
@@ -400,92 +426,46 @@
       "male": "masculino"
     }
   },
-  "charts": {
-    "ageDistribution": {
-      "title": "¿Qué edad tenían las personas que destransicionaron cuando hicieron la transición y la destransición?",
-      "subtitle": "Datos de cronologías de transición de usuarios de Reddit",
-      "loading": "Cargando datos del gráfico...",
-      "fetchError": "Error al obtener datos de distribución de edad",
-      "genericError": "Ocurrió un error",
-      "errorPrefix": "Error:",
-      "noData": "No hay datos disponibles para el rango de edad seleccionado",
-      "tooltip": {
-        "age": "Edad: {age}",
-        "transitioned": "Transición: {count} usuarios",
-        "detransitioned": "Destransición: {count} usuarios"
-      },
-      "axis": {
-        "age": "Edad",
-        "users": "Número de Usuarios"
-      },
-      "legend": {
-        "transition": "Edad de Transición",
-        "detransition": "Edad de Destransición"
-      }
+  "prompts": {
+    "metadata": {
+      "title": "¿Cómo funciona? | Prompts del Sistema",
+      "description": "Aprende cómo funciona detrans.ai, incluyendo prompts del sistema, fechas de corte de datos e información de código abierto."
     },
-    "transitionDuration": {
-      "title": "Duración de la Transición: Edad de Transición vs Edad de Destransición",
-      "description": {
-        "line1": "Cada punto muestra la edad de transición (X) vs la edad de destransición (Y).",
-        "line2": "Los puntos más grandes y opacos representan más usuarios."
-      },
-      "loading": "Cargando datos del gráfico...",
-      "noData": "No hay datos disponibles para el rango de edad seleccionado",
-      "axis": {
-        "transitionAge": "Edad de Transición",
-        "detransitionAge": "Edad de Destransición"
-      },
-      "tooltip": {
-        "transitionAge": "Edad de Transición",
-        "detransitionAge": "Edad de Destransición",
-        "duration": "Duración",
-        "years": "años"
-      },
-      "male": "Masculino",
-      "female": "Femenino",
-      "yearsAvg": "años promedio",
-      "user": "usuario",
-      "users": "usuarios"
+    "title": "¿Cómo funciona?",
+    "intro": {
+      "paragraph1": "<bold>detrans.ai</bold> chat es un agente impulsado por RAG (generación aumentada por recuperación) que genera meta preguntas y las responde resurgiendo e integrando pensamientos y experiencias de destransición del subreddit <reddit>/r/detrans</reddit> y de YouTube. Fue construido con el framework <llamaIndex>LlamaIndex</llamaIndex> y el modelo de código abierto Xiaomi Mimo-v2.6 Flash  para reducir el sesgo político occidental.",
+      "paragraph2": "ChatGPT y la mayoría de otros LLMs occidentales son bastante agresivos en la forma en que promueven y defienden creencias de género. Resultó imposible usar los modelos GPT de OpenAI para este proyecto, ya que los modelos constantemente socavaban y contradecían las experiencias de destransición que se les encomendaba resumir. Si deseas una experiencia más afirmativa, consulta <chatgpt>ChatGPT</chatgpt>."
     },
-    "pathways": {
-      "title": "Flujo de Caminos de Destransición",
-      "subtitle": "Flujo de demografía de usuarios de Reddit /r/detrans hacia resultados de destransición",
-      "loading": "Cargando datos de caminos...",
-      "fetchError": "Error al obtener datos de distribución de etiquetas",
-      "genericError": "Ocurrió un error",
-      "error": "Error",
-      "users": "{count} usuarios",
-      "percentageOfTotal": "{percentage}% del total",
-      "totalUsers": "Usuarios totales",
-      "flowConnections": "Conexiones de flujo",
-      "male": "Masculino",
-      "female": "Femenino",
-      "noData": "No hay datos de caminos disponibles para los filtros seleccionados",
-      "labels": {
-        "Male": "Masculino",
-        "Female": "Femenino",
-        "Unknown": "Desconocido",
-        "Before 18": "Antes de 18",
-        "After 18": "Después de 18",
-        "Puberty Blockers": "Bloqueadores de pubertad",
-        "No Blockers": "Sin bloqueadores",
-        "Took Hormones": "Tomó hormonas",
-        "Social Only": "Solo social",
-        "Top Surgery": "Cirugía superior",
-        "Bottom Surgery": "Cirugía inferior",
-        "No Surgery": "Sin cirugía",
-        "Regrets Transitioning": "Lamenta la transición",
-        "Doesn't Regret Transitioning": "No lamenta la transición",
-        "Not Stated": "No indicado"
-      }
+    "dataCutoff": {
+      "title": "Fechas de Corte de Datos",
+      "paragraph1": "<bold>detrans.ai</bold> actualmente tiene acceso a todos los comentarios en /r/detrans publicados antes del <date>8/9/2025</date> que recibieron al menos tres votos positivos. Intentaré actualizar el conjunto de datos al menos una vez al año mientras el subreddit /r/detrans continúe existiendo.",
+      "paragraph2": "Los usuarios pueden enviar experiencias en video enviando enlaces a videos de YouTube. Estos videos serán revisados manualmente antes de ser transcritos usando el modelo de conversión de voz a texto Whisper de OpenAI y agregados a la base de datos vectorial y al archivo de videos."
+    },
+    "openSource": {
+      "title": "Código Abierto",
+      "paragraph": "El código fuente también está disponible en <github>Github</github> bajo una licencia MIT si deseas inspeccionar o reutilizar cualquier código para tu propio proyecto. Este proyecto también se construye sobre muchos otros proyectos de código abierto, como Llamaindex, React, Next.js, Tailwind, Lucide, Qdrant, Postgres y el Vercel AI SDK. Muchas gracias a los contribuyentes de estos proyectos por proporcionar una base sólida sobre la cual construir."
+    },
+    "systemPrompts": {
+      "title": "Prompts del Sistema",
+      "description": "Estos son los prompts que el sistema usa para el flujo de trabajo RAG. No hay otras instrucciones personalizadas o capas además de lo que se muestra en esta página.",
+      "lastUpdated": "Última Actualización",
+      "chatAgentTitle": "Prompt del Sistema del Agente de Chat",
+      "researchModeTitle": "Prompts del Sistema para el Modo de Investigación Profunda",
+      "researchAgentTitle": "Prompt del Agente de Investigación",
+      "experienceExtractionTitle": "Prompt de Extracción de Experiencias",
+      "finalAnswerTitle": "Prompt de Respuesta Final"
+    },
+    "userSummaries": {
+      "title": "Prompts del Sistema para Resúmenes de Usuarios",
+      "description": "Estos son los prompts del sistema para los resúmenes de usuarios generados.",
+      "lastUpdated": "Última Actualización",
+      "experienceReportTitle": "Reporte de Experiencia del Usuario",
+      "experienceSummaryTitle": "Resumen de Experiencia del Usuario",
+      "generateTagsTitle": "Generar Etiquetas",
+      "extractAgesTitle": "Extraer Edades",
+      "determineBirthSexTitle": "Determinar Sexo de Nacimiento",
+      "redFlagReportTitle": "Reporte de Bandera Roja"
     }
-  },
-  "theme": {
-    "title": "Apariencia",
-    "darkMode": "Modo oscuro",
-    "light": "Claro",
-    "dark": "Oscuro",
-    "auto": "Auto"
   },
   "donatePage": {
     "title": "Mantén Detrans.AI en Funcionamiento",
@@ -593,6 +573,108 @@
         "title": "Cambios a Estos Términos",
         "content": "Podemos actualizar estos términos de vez en cuando. El uso continuado del servicio después de los cambios constituye la aceptación de los términos actualizados."
       }
+    }
+  },
+  "videos": {
+    "metadata": {
+      "title": "detrans.ai | Mira Videos de Personas que han Destransicionado",
+      "description": "Aquí hay una selección de memorias personales en video que han sido subidas a YouTube por personas que hicieron la transición y luego llegaron a una realización que les hizo destransicionar. Hay innumerables historias como estas en internet, esto es solo un pequeño subconjunto."
+    },
+    "title": "Videos de Transición y Destransición",
+    "description": {
+      "line1": "Esta página pretende ser el mejor archivo de videos de destransición en internet.",
+      "line2": "Usando conversión de voz a texto, detrans.ai integra estas experiencias en conversaciones de chat.",
+      "line3": "Solo videos de YouTube por ahora, ¿próximamente TikTok?!"
+    },
+    "female": "femenino",
+    "male": "masculino",
+    "backToAll": "Volver a todos",
+    "overview": "Resumen",
+    "fullSummary": "Resumen Completo del Video",
+    "watchOnYouTube": "Ver en YouTube",
+    "moreVideos": "Más Videos",
+    "browseAll": "Explorar todos los videos de destransición",
+    "metadataWatchDescription": "Mira {title} por {author}, una persona {sex} que destransiciona compartiendo su historia.",
+    "metadataThumbnailAlt": "Miniatura para {title}"
+  },
+  "videoList": {
+    "loading": "Cargando videos...",
+    "searchPlaceholder": "Search videos...",
+    "result": "video",
+    "results": "videos",
+    "filters": {
+      "all": "Todas las Historias",
+      "female": "Femenino",
+      "male": "Masculino",
+      "detransitioners": "Personas que Destransicionan",
+      "mine": "Mine"
+    },
+    "thumbnailAlt": "Miniatura para {title}",
+    "by": "por",
+    "female": "Femenino",
+    "male": "Masculino"
+  },
+  "videoSubmitForm": {
+    "submitTitle": "Envía Tu Video de Destransición",
+    "description": {
+      "line1": "Al enviar tu video, aparecerá en esta página y en chats relevantes.",
+      "line2": "Podría ser tu video, o simplemente uno que encontraste en línea que falta en esta página.",
+      "line3": "Todos los envíos son moderados, podría tomar unos días antes de que aparezca."
+    },
+    "urlLabel": "URL de YouTube",
+    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "submitButton": "Enviar Video",
+    "submitting": "Enviando...",
+    "submitSuccess": "¡Video enviado exitosamente! Será revisado antes de aparecer en el sitio.",
+    "submitError": "Error al enviar el video",
+    "networkError": "Error de red. Por favor, intenta de nuevo."
+  },
+  "studySubmitForm": {
+    "submitTitle": "Envía un Estudio",
+    "description": {
+      "line1": "¿Conoces un estudio académico relevante o artículo revisado por pares que falta?",
+      "line2": "Envía la URL y opcionalmente sugiere un título para él.",
+      "line3": "Todos los envíos son moderados antes de aparecer en el sitio."
+    },
+    "urlLabel": "URL del Estudio",
+    "urlPlaceholder": "https://...",
+    "titleLabel": "Título Sugerido",
+    "titlePlaceholder": "Título o encabezado opcional para el estudio",
+    "titleHelp": "Opcional: Sugiere un título breve o encabezado para este estudio",
+    "submitButton": "Enviar Estudio",
+    "submitting": "Enviando...",
+    "submitSuccess": "¡Estudio enviado exitosamente! Será revisado antes de aparecer en el sitio.",
+    "submitError": "Error al enviar el estudio",
+    "networkError": "Error de red. Por favor, intenta de nuevo."
+  },
+  "studiesPage": {
+    "metadata": {
+      "title": "detrans.ai | Estudios Académicos sobre Temas de Destransición",
+      "description": "Encuentra en esta página una selección de estudios académicos, artículos de revistas revisados por pares y estadísticas verificadas que se relacionan con tendencias de identidad de género y destransición.",
+      "ogTitle": "detrans.ai | Estudios Académicos sobre Temas de Destransición",
+      "ogDescription": "Encuentra en esta página una selección de estudios académicos y artículos de revistas revisados por pares y estadísticas verificadas que se relacionan con tendencias de identidad de género y destransición."
+    },
+    "title": "Estudios Académicos e Investigación",
+    "description": "La investigación sobre destransición es un campo emergente. El rápido aumento en los diagnósticos de disforia de género en la última década — particularmente entre adolescentes mujeres — ha producido una población creciente de personas que destransicionan, aunque la recolección de datos sigue siendo desafiante debido a la alta pérdida de seguimiento, la división ideológica y las limitaciones metodológicas.",
+    "segmNote": "En esta página encontrarás estudios académicos, investigaciones revisadas por pares y artículos de revistas que cuestionan la eficacia y la ética de la atención de afirmación de género. Consulta la <a>Society for Evidence-Based Gender Medicine (SEGM)</a> para más información, incluyendo un análisis comprehensivo de estudios de apoyo.",
+    "searchPlaceholder": "Buscar estudios...",
+    "methodology": "Metodología",
+    "topic": "Tema",
+    "noResults": "No se encontraron estudios.",
+    "noStudies": "Aún no hay estudios aprobados.",
+    "pendingReview": "Pendiente de Revisión",
+    "keyFindings": "Hallazgos Clave:"
+  },
+  "contentWarning": {
+    "title": "Advertencia de Contenido:",
+    "description": {
+      "line1": "Este sitio web contiene historias, experiencias y perspectivas de ex-personas transgénero.",
+      "line2": "Los temas incluyen arrepentimiento de transición, complicaciones médicas y visiones holísticas de la disforia.",
+      "line3": "Esta información puede desafiar creencias comúnmente aceptadas sobre identidad de género y transición."
+    },
+    "buttons": {
+      "exit": "¡Sácame de aquí!",
+      "continue": "Continuar"
     }
   },
   "supportPage": {
@@ -718,144 +800,87 @@
       "example": "Ejemplo del Artículo"
     }
   },
-  "contentWarning": {
-    "title": "Advertencia de Contenido:",
-    "description": {
-      "line1": "Este sitio web contiene historias, experiencias y perspectivas de ex-personas transgénero.",
-      "line2": "Los temas incluyen arrepentimiento de transición, complicaciones médicas y visiones holísticas de la disforia.",
-      "line3": "Esta información puede desafiar creencias comúnmente aceptadas sobre identidad de género y transición."
+  "charts": {
+    "ageDistribution": {
+      "title": "¿Qué edad tenían las personas que destransicionaron cuando hicieron la transición y la destransición?",
+      "subtitle": "Datos de cronologías de transición de usuarios de Reddit",
+      "loading": "Cargando datos del gráfico...",
+      "fetchError": "Error al obtener datos de distribución de edad",
+      "genericError": "Ocurrió un error",
+      "errorPrefix": "Error:",
+      "noData": "No hay datos disponibles para el rango de edad seleccionado",
+      "tooltip": {
+        "age": "Edad: {age}",
+        "transitioned": "Transición: {count} usuarios",
+        "detransitioned": "Destransición: {count} usuarios"
+      },
+      "axis": {
+        "age": "Edad",
+        "users": "Número de Usuarios"
+      },
+      "legend": {
+        "transition": "Edad de Transición",
+        "detransition": "Edad de Destransición"
+      },
+      "median": "mediana {age}",
+      "coverage": "Basado en {transition} edades de transición y {detransition} edades de destransición."
     },
-    "buttons": {
-      "exit": "¡Sácame de aquí!",
-      "continue": "Continuar"
-    }
-  },
-  "videos": {
-    "metadata": {
-      "title": "detrans.ai | Mira Videos de Personas que han Destransicionado",
-      "description": "Aquí hay una selección de memorias personales en video que han sido subidas a YouTube por personas que hicieron la transición y luego llegaron a una realización que les hizo destransicionar. Hay innumerables historias como estas en internet, esto es solo un pequeño subconjunto."
-    },
-    "title": "Videos de Transición y Destransición",
-    "description": {
-      "line1": "Esta página pretende ser el mejor archivo de videos de destransición en internet.",
-      "line2": "Usando conversión de voz a texto, detrans.ai integra estas experiencias en conversaciones de chat.",
-      "line3": "Solo videos de YouTube por ahora, ¿próximamente TikTok?!"
-    },
-    "female": "femenino",
-    "male": "masculino",
-    "backToAll": "Volver a todos",
-    "overview": "Resumen",
-    "fullSummary": "Resumen Completo del Video",
-    "watchOnYouTube": "Ver en YouTube",
-    "moreVideos": "Más Videos",
-    "browseAll": "Explorar todos los videos de destransición",
-    "metadataWatchDescription": "Mira {title} por {author}, una persona {sex} que destransiciona compartiendo su historia.",
-    "metadataThumbnailAlt": "Miniatura para {title}"
-  },
-  "videoList": {
-    "loading": "Cargando videos...",
-    "filters": {
-      "all": "Todas las Historias",
-      "mine": "Mine",
-      "female": "Femenino",
+    "transitionDuration": {
+      "title": "Duración de la Transición: Edad de Transición vs Edad de Destransición",
+      "description": {
+        "line1": "Cada punto muestra la edad de transición (X) vs la edad de destransición (Y).",
+        "line2": "Los puntos más grandes y opacos representan más usuarios."
+      },
+      "loading": "Cargando datos del gráfico...",
+      "noData": "No hay datos disponibles para el rango de edad seleccionado",
+      "axis": {
+        "transitionAge": "Edad de Transición",
+        "detransitionAge": "Edad de Destransición"
+      },
+      "tooltip": {
+        "transitionAge": "Edad de Transición",
+        "detransitionAge": "Edad de Destransición",
+        "duration": "Duración",
+        "years": "años"
+      },
       "male": "Masculino",
-      "detransitioners": "Personas que Destransicionan"
+      "female": "Femenino",
+      "yearsAvg": "años promedio",
+      "user": "usuario",
+      "users": "usuarios",
+      "coverage": "Basado en {count} historias con ambas edades registradas."
     },
-    "thumbnailAlt": "Miniatura para {title}",
-    "by": "por",
-    "female": "Femenino",
-    "male": "Masculino"
-  },
-  "videoSubmitForm": {
-    "submitTitle": "Envía Tu Video de Destransición",
-    "description": {
-      "line1": "Al enviar tu video, aparecerá en esta página y en chats relevantes.",
-      "line2": "Podría ser tu video, o simplemente uno que encontraste en línea que falta en esta página.",
-      "line3": "Todos los envíos son moderados, podría tomar unos días antes de que aparezca."
-    },
-    "urlLabel": "URL de YouTube",
-    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
-    "submitButton": "Enviar Video",
-    "submitting": "Enviando...",
-    "submitSuccess": "¡Video enviado exitosamente! Será revisado antes de aparecer en el sitio.",
-    "submitError": "Error al enviar el video",
-    "networkError": "Error de red. Por favor, intenta de nuevo."
-  },
-  "studySubmitForm": {
-    "submitTitle": "Envía un Estudio",
-    "description": {
-      "line1": "¿Conoces un estudio académico relevante o artículo revisado por pares que falta?",
-      "line2": "Envía la URL y opcionalmente sugiere un título para él.",
-      "line3": "Todos los envíos son moderados antes de aparecer en el sitio."
-    },
-    "urlLabel": "URL del Estudio",
-    "urlPlaceholder": "https://...",
-    "titleLabel": "Título Sugerido",
-    "titlePlaceholder": "Título o encabezado opcional para el estudio",
-    "titleHelp": "Opcional: Sugiere un título breve o encabezado para este estudio",
-    "submitButton": "Enviar Estudio",
-    "submitting": "Enviando...",
-    "submitSuccess": "¡Estudio enviado exitosamente! Será revisado antes de aparecer en el sitio.",
-    "submitError": "Error al enviar el estudio",
-    "networkError": "Error de red. Por favor, intenta de nuevo."
-  },
-  "studiesPage": {
-    "metadata": {
-      "title": "detrans.ai | Estudios Académicos sobre Temas de Destransición",
-      "description": "Encuentra en esta página una selección de estudios académicos, artículos de revistas revisados por pares y estadísticas verificadas que se relacionan con tendencias de identidad de género y destransición.",
-      "ogTitle": "detrans.ai | Estudios Académicos sobre Temas de Destransición",
-      "ogDescription": "Encuentra en esta página una selección de estudios académicos y artículos de revistas revisados por pares y estadísticas verificadas que se relacionan con tendencias de identidad de género y destransición."
-    },
-    "title": "Estudios Académicos e Investigación",
-    "description": "La investigación sobre destransición es un campo emergente. El rápido aumento en los diagnósticos de disforia de género en la última década — particularmente entre adolescentes mujeres — ha producido una población creciente de personas que destransicionan, aunque la recolección de datos sigue siendo desafiante debido a la alta pérdida de seguimiento, la división ideológica y las limitaciones metodológicas.",
-    "segmNote": "En esta página encontrarás estudios académicos, investigaciones revisadas por pares y artículos de revistas que cuestionan la eficacia y la ética de la atención de afirmación de género. Consulta la <a>Society for Evidence-Based Gender Medicine (SEGM)</a> para más información, incluyendo un análisis comprehensivo de estudios de apoyo.",
-    "searchPlaceholder": "Buscar estudios...",
-    "methodology": "Metodología",
-    "topic": "Tema",
-    "noResults": "No se encontraron estudios.",
-    "noStudies": "Aún no hay estudios aprobados.",
-    "pendingReview": "Pendiente de Revisión",
-    "keyFindings": "Hallazgos Clave:"
-  },
-  "prompts": {
-    "metadata": {
-      "title": "¿Cómo funciona? | Prompts del Sistema",
-      "description": "Aprende cómo funciona detrans.ai, incluyendo prompts del sistema, fechas de corte de datos e información de código abierto."
-    },
-    "title": "¿Cómo funciona?",
-    "intro": {
-      "paragraph1": "<bold>detrans.ai</bold> chat es un agente impulsado por RAG (generación aumentada por recuperación) que genera meta preguntas y las responde resurgiendo e integrando pensamientos y experiencias de destransición del subreddit <reddit>/r/detrans</reddit> y de YouTube. Fue construido con el framework <llamaIndex>LlamaIndex</llamaIndex> y el modelo de código abierto Xiaomi Mimo-v2.6 Flash  para reducir el sesgo político occidental.",
-      "paragraph2": "ChatGPT y la mayoría de otros LLMs occidentales son bastante agresivos en la forma en que promueven y defienden creencias de género. Resultó imposible usar los modelos GPT de OpenAI para este proyecto, ya que los modelos constantemente socavaban y contradecían las experiencias de destransición que se les encomendaba resumir. Si deseas una experiencia más afirmativa, consulta <chatgpt>ChatGPT</chatgpt>."
-    },
-    "dataCutoff": {
-      "title": "Fechas de Corte de Datos",
-      "paragraph1": "<bold>detrans.ai</bold> actualmente tiene acceso a todos los comentarios en /r/detrans publicados antes del <date>8/9/2025</date> que recibieron al menos tres votos positivos. Intentaré actualizar el conjunto de datos al menos una vez al año mientras el subreddit /r/detrans continúe existiendo.",
-      "paragraph2": "Los usuarios pueden enviar experiencias en video enviando enlaces a videos de YouTube. Estos videos serán revisados manualmente antes de ser transcritos usando el modelo de conversión de voz a texto Whisper de OpenAI y agregados a la base de datos vectorial y al archivo de videos."
-    },
-    "openSource": {
-      "title": "Código Abierto",
-      "paragraph": "El código fuente también está disponible en <github>Github</github> bajo una licencia MIT si deseas inspeccionar o reutilizar cualquier código para tu propio proyecto. Este proyecto también se construye sobre muchos otros proyectos de código abierto, como Llamaindex, React, Next.js, Tailwind, Lucide, Qdrant, Postgres y el Vercel AI SDK. Muchas gracias a los contribuyentes de estos proyectos por proporcionar una base sólida sobre la cual construir."
-    },
-    "systemPrompts": {
-      "title": "Prompts del Sistema",
-      "description": "Estos son los prompts que el sistema usa para el flujo de trabajo RAG. No hay otras instrucciones personalizadas o capas además de lo que se muestra en esta página.",
-      "lastUpdated": "Última Actualización",
-      "chatAgentTitle": "Prompt del Sistema del Agente de Chat",
-      "researchModeTitle": "Prompts del Sistema para el Modo de Investigación Profunda",
-      "researchAgentTitle": "Prompt del Agente de Investigación",
-      "experienceExtractionTitle": "Prompt de Extracción de Experiencias",
-      "finalAnswerTitle": "Prompt de Respuesta Final"
-    },
-    "userSummaries": {
-      "title": "Prompts del Sistema para Resúmenes de Usuarios",
-      "description": "Estos son los prompts del sistema para los resúmenes de usuarios generados.",
-      "lastUpdated": "Última Actualización",
-      "experienceReportTitle": "Reporte de Experiencia del Usuario",
-      "experienceSummaryTitle": "Resumen de Experiencia del Usuario",
-      "generateTagsTitle": "Generar Etiquetas",
-      "extractAgesTitle": "Extraer Edades",
-      "determineBirthSexTitle": "Determinar Sexo de Nacimiento",
-      "redFlagReportTitle": "Reporte de Bandera Roja"
+    "pathways": {
+      "title": "Flujo de Caminos de Destransición",
+      "subtitle": "Flujo de demografía de usuarios de Reddit /r/detrans hacia resultados de destransición",
+      "loading": "Cargando datos de caminos...",
+      "fetchError": "Error al obtener datos de distribución de etiquetas",
+      "genericError": "Ocurrió un error",
+      "error": "Error",
+      "users": "{count} usuarios",
+      "percentageOfTotal": "{percentage}% del total",
+      "totalUsers": "Usuarios totales",
+      "flowConnections": "Conexiones de flujo",
+      "male": "Masculino",
+      "female": "Femenino",
+      "noData": "No hay datos de caminos disponibles para los filtros seleccionados",
+      "labels": {
+        "Male": "Masculino",
+        "Female": "Femenino",
+        "Unknown": "Desconocido",
+        "Before 18": "Antes de 18",
+        "After 18": "Después de 18",
+        "Puberty Blockers": "Bloqueadores de pubertad",
+        "No Blockers": "Sin bloqueadores",
+        "Took Hormones": "Tomó hormonas",
+        "Social Only": "Solo social",
+        "Top Surgery": "Cirugía superior",
+        "Bottom Surgery": "Cirugía inferior",
+        "No Surgery": "Sin cirugía",
+        "Regrets Transitioning": "Lamenta la transición",
+        "Doesn't Regret Transitioning": "No lamenta la transición",
+        "Not Stated": "No indicado"
+      }
     }
   },
   "contact": {
@@ -943,7 +968,9 @@
     "error": {
       "title": "Error de CAPTCHA",
       "description": "Error al cargar el CAPTCHA. Por favor actualiza la página e intenta de nuevo."
-    }
+    },
+    "verifyFailed": "Verification failed. Please try again.",
+    "rateLimited": "Too many verifications. Please wait a moment and try again."
   },
   "feedback": {
     "title": "Comentarios",
@@ -961,11 +988,990 @@
     "metadata": {
       "title": "Estadísticas anonimizadas | detrans.ai",
       "description": "Estadísticas anonimizadas sobre patrones de destransición y transición, incluyendo distribución de edad, duración, razones y caminos."
+    },
+    "toc": {
+      "title": "En esta página"
+    },
+    "filters": {
+      "title": "Filtros",
+      "edit": "Editar filtros",
+      "hide": "Ocultar filtros",
+      "summary": {
+        "none": "Sin filtros",
+        "age": "Edad {min}–{max}",
+        "tags": "{count, plural, =0 {sin etiquetas} =1 {1 etiqueta} other {# etiquetas}}",
+        "detailed": "Solo detalladas"
+      },
+      "detailed": "Solo historias detalladas",
+      "detailedHint": "Incluir solo las historias que la IA calificó como razonablemente o muy detalladas."
+    },
+    "sections": {
+      "age": {
+        "title": "Edad",
+        "description": "Cuándo hicieron la transición y la destransición las personas que destransicionaron."
+      },
+      "journey": {
+        "title": "Edades",
+        "description": "Cuándo sintieron disforia por primera vez, hicieron la transición, empezaron con hormonas y destransicionaron."
+      },
+      "duration": {
+        "title": "Duración",
+        "description": "Cuánto tiempo permanecieron en transición antes de dejarla."
+      },
+      "minors": {
+        "title": "Transición antes de los 18",
+        "description": "Lo que muestran las historias sobre empezar la transición en la infancia o la adolescencia."
+      },
+      "reasons": {
+        "title": "Motivos",
+        "description": "Por qué las personas que destransicionaron dicen que hicieron la transición, y por qué destransicionaron."
+      },
+      "pathways": {
+        "title": "Trayectorias",
+        "description": "Si el arrepentimiento varía según el motivo de la transición y los pasos médicos que se dieron."
+      },
+      "regret": {
+        "title": "Arrepentimiento",
+        "description": "Qué tan intenso es el arrepentimiento, cómo cambia con el tiempo y de qué se arrepienten las personas."
+      },
+      "medical": {
+        "title": "Intervención médica",
+        "description": "Cómo se relaciona el arrepentimiento con lo lejos que llegó la transición."
+      },
+      "complications": {
+        "title": "Complicaciones",
+        "description": "Complicaciones médicas y problemas de salud persistentes después de la transición."
+      },
+      "mental_health": {
+        "title": "Salud mental",
+        "description": "El panorama de salud mental en las historias, antes y después de la destransición."
+      },
+      "suicidality": {
+        "title": "Suicidalidad",
+        "description": "Con qué frecuencia las historias describen pensamientos suicidas o autolesiones, y cuándo."
+      },
+      "after": {
+        "title": "Después de la destransición",
+        "description": "Cómo cambiaron la salud mental, la calidad de vida y las relaciones familiares."
+      },
+      "current_status": {
+        "title": "Where are they now",
+        "description": "Current identities and situations after detransitioning."
+      },
+      "family_community": {
+        "title": "Coste social de la destransición",
+        "description": "Aislamiento y ostracismo causados por la destransición, y desilusión con la comunidad trans. Se excluyen las preguntas que no distinguían entre transición y destransición (apoyo familiar, relaciones, carrera); las relaciones familiares desde la destransición se tratan en “Después de la destransición”."
+      },
+      "sexuality": {
+        "title": "Sexualidad",
+        "description": "Orientación sexual respecto al sexo de nacimiento, antes de la transición y después de la destransición."
+      },
+      "trends": {
+        "title": "A lo largo de los años",
+        "description": "Cómo cambiaron las historias —y sus motivos— entre cohortes por año de transición."
+      },
+      "features": {
+        "title": "Características",
+        "description": "Every statement the AI evaluated across the stories — causes, processes and outcomes."
+      },
+      "compare": {
+        "title": "Comparar",
+        "description": "Cómo varía la prevalencia de las características entre dos mitades de la cohorte."
+      },
+      "matrix": {
+        "title": "Conexiones",
+        "description": "Respuestas a preguntas debatidas, incluidos los casos en que no aparece una diferencia esperada."
+      },
+      "stories": {
+        "title": "Historias",
+        "description": "Fragmentos anónimos de las personas detrás de estas cifras.",
+        "browse": "Ver todas las historias"
+      },
+      "methodology": {
+        "title": "Metodología",
+        "description": "Cómo se construye el conjunto de datos y cómo leer estos gráficos."
+      },
+      "overview": {
+        "title": "De un vistazo",
+        "description": "Cada afirmación de sí/no que evaluó la IA, ordenada según en cuántas historias es claramente cierta."
+      },
+      "lives": {
+        "title": "Trayectorias individuales",
+        "description": "Cada línea es una persona, desde la edad en que empezó la transición hasta la edad en que la dejó."
+      },
+      "drivers": {
+        "title": "Factores menos debatidos",
+        "description": "Imagen corporal, inestabilidad identitaria y factores sexuales descritos como contribuyentes a la transición."
+      },
+      "adversity": {
+        "title": "Trauma y adversidad",
+        "description": "Con qué frecuencia las historias describen un trauma, y con qué frecuencia se menciona el trauma como motivo principal."
+      },
+      "online": {
+        "title": "Influencia en línea y de pares",
+        "description": "Qué plataformas importaron más y cómo aparece la influencia en línea y de pares en las historias."
+      },
+      "process": {
+        "title": "Puntos de inflexión",
+        "description": "Qué ayudó a las personas a pasar de la transición a la destransición."
+      }
+    },
+    "features": {
+      "search": "Buscar características…",
+      "sort": {
+        "prevalence": "Prevalencia",
+        "alpha": "A–Z"
+      },
+      "tiers": {
+        "cause": "Causa",
+        "process": "Proceso",
+        "outcome": "Resultado"
+      },
+      "kinds": {
+        "noul": "Sí / no",
+        "choice": "Opción",
+        "score": "Escala"
+      },
+      "groups": {
+        "reasons": "Motivos",
+        "causes": "Causas",
+        "processes": "Procesos",
+        "regret": "Arrepentimiento",
+        "medical": "Médico",
+        "mental_health": "Salud mental",
+        "adversity": "Adversidad",
+        "social": "Social",
+        "sexuality": "Sexualidad",
+        "online": "En línea",
+        "identity": "Identidad",
+        "outcomes": "Resultados",
+        "attitudes": "Actitudes",
+        "quality": "Calidad"
+      },
+      "basedOn": "En {cohort} historias evaluadas.",
+      "coverageNote": "{n} de {cohort} historias evaluadas ({percent} %) incluyen una respuesta.",
+      "question": "¿Cómo se midió?",
+      "confidence": "Confianza mediana de la IA para esta característica: {value} %.",
+      "filterByTag": "Solo historias con la etiqueta “{tag}”",
+      "placeholder": "Selecciona una característica de la lista para explorarla.",
+      "backToList": "Todas las características",
+      "noResults": "Ninguna característica coincide con tu búsqueda.",
+      "noData": "No hay respuestas para los filtros actuales.",
+      "loading": "Cargando…",
+      "error": "No se pudieron cargar los datos de la característica",
+      "noul": {
+        "prevalenceLabel": "de las historias evaluadas superan el umbral",
+        "range": "Probabilidad {from} – {to}",
+        "count": "{count} historias ({percent} %)",
+        "thresholdShort": "umbral {threshold}",
+        "legend": {
+          "yes": "Probablemente cierto",
+          "maybe": "Incierto",
+          "no": "Probablemente falso"
+        },
+        "above": "Probablemente cierto",
+        "uncertain": "Incierto",
+        "below": "Probablemente falso"
+      },
+      "choice": {
+        "soft": "Masa de probabilidad",
+        "hard": "Opción ganadora",
+        "softTooltip": "≈{percent} % (≈{count} historias en masa de probabilidad)",
+        "hardTooltip": "{percent} % ({count} historias)",
+        "softNote": "Las barras muestran la suma de la probabilidad que la IA asigna a cada opción en todas las historias, de modo que las respuestas mixtas cuentan proporcionalmente.",
+        "hardNote": "Las barras cuentan solo la opción más probable de cada historia."
+      },
+      "score": {
+        "meanLabel": "Promedio {value} en una escala de 0 a {max}",
+        "range": "Puntuación {from} – {to}",
+        "count": "{count} historias",
+        "meanShort": "media {value}"
+      },
+      "related": {
+        "title": "Suelen aparecer juntos",
+        "lift": "{lift}× más común ({percent} %)"
+      },
+      "listNote": "Los puntos muestran la proporción de historias en las que cada afirmación es claramente cierta (probabilidad de la IA ≥ 0,8); las líneas muestran el intervalo del 95 %. Las filas atenuadas tienen menos de 30 respuestas. Selecciona una fila para leer las historias correspondientes. Basado en {cohort} historias evaluadas."
+    },
+    "compare": {
+      "splitLabel": "Dividir por",
+      "thresholdNote": "Historias por encima del umbral de la IA de {threshold} frente a las que están por debajo.",
+      "filter": {
+        "all": "Todas las respuestas",
+        "clear": "Solo señales claras"
+      },
+      "clearNote": "{excluded} historias poco claras excluidas de ambos lados.",
+      "cohortTrue": "{label}: presente (n = {n})",
+      "cohortFalse": "Ausente (n = {n})",
+      "splitSex": "Sexo biológico",
+      "sexNote": "Comparación de historias de mujeres y hombres.",
+      "cohortWomen": "Mujeres (n = {n})",
+      "cohortMen": "Hombres (n = {n})",
+      "splitAge": "Edad de transición",
+      "ageNote": "Comparación de historias en las que la transición empezó antes de los 18 frente a los 18 o más.",
+      "cohortUnder18": "Menores de 18 (n = {n})",
+      "cohortAdult": "18 o más (n = {n})",
+      "rowTooltip": "{label}: {pctTrue} % de {nTrue} frente a {pctFalse} % de {nFalse}",
+      "empty": "Aún no hay suficientes historias con respuestas en ambos lados de esta división.",
+      "showSmallSamples": "Mostrar muestras pequeñas",
+      "hideSmallSamples": "Ocultar muestras pequeñas",
+      "hiddenNote": "{count, plural, =1 {1 característica está oculta} other {# características están ocultas}} por tener menos de 3 historias en un lado.",
+      "error": "No se pudieron cargar los datos de comparación",
+      "ratio": "{ratio} de frecuencia",
+      "ratioNote": "Las filas se ordenan según cuánto difieren los dos grupos (razón de riesgo), dejando fuera las características poco frecuentes en ambos lados. Las líneas muestran intervalos del 95 %; las filas atenuadas tienen menos de 30 historias en un lado.",
+      "showAll": "Mostrar todas las características"
+    },
+    "matrix": {
+      "presetLabel": "Vista",
+      "presets": {
+        "outcomesByCause": "Resultados por causa",
+        "outcomesByProcess": "Resultados por punto de inflexión"
+      },
+      "metric": {
+        "rate": "Tasa",
+        "lift": "Diferencia frente a la media"
+      },
+      "swap": "Intercambiar ejes",
+      "legendRate": "Proporción de historias coincidentes en las que la característica de la columna es cierta.",
+      "legendLift": "Comparado con la media de toda la cohorte (azul por encima, rojo por debajo).",
+      "sampleNote": "Cada celda compara las historias con la característica de la fila con las historias sin ella. Las historias más largas y detalladas mencionan más características de todo tipo, por lo que la mayoría de las razones están por encima de 1×: compara las celdas entre sí y no con 1×. Las celdas con menos de 30 historias en cualquiera de los lados se dejan en blanco.",
+      "basedOn": "{cohort} historias evaluadas en esta vista.",
+      "cellTooltip": "{row} → {col}: {percent} % de {n} historias · {lift}× la media de la cohorte",
+      "cellTooltipNoLift": "{row} → {col}: {percent} % de {n} historias",
+      "cellMasked": "{row} → {col}: no hay suficientes historias",
+      "empty": "Aún no hay suficientes historias con respuestas para esta vista.",
+      "error": "No se pudieron cargar los datos de la matriz",
+      "presetDescriptions": {
+        "outcomesByCause": "Cuánto más (o menos) común es cada resultado en las historias con una causa determinada que en las historias sin ella.",
+        "outcomesByProcess": "Cuánto más (o menos) común es cada resultado en las historias con un punto de inflexión determinado que en las historias sin él."
+      },
+      "legendMore": "Más común con la característica de la fila",
+      "legendLess": "Menos común",
+      "legendNone": "Sin diferencia clara (el intervalo del 95 % incluye 1×)",
+      "cellTooltipRatio": "{row} → {col}: {percent} % de {n} historias con ello frente a {percentWithout} % sin ello · {ratio} (intervalo del 95 % {low}–{high})",
+      "legendWith": "Con el factor",
+      "legendWithout": "Sin él",
+      "themes": {
+        "medical": "Trayectoria médica",
+        "helped": "Qué ayudó",
+        "who": "Quién se arrepiente, quién vuelve",
+        "views": "Opiniones sobre la transición para otros"
+      },
+      "predictors": {
+        "under18": "Empezó la transición antes de los 18",
+        "women": "Mujeres (frente a hombres)",
+        "sameSex": "Atracción por el mismo sexo antes de la transición",
+        "took_puberty_blockers": "Tomó bloqueadores de la pubertad",
+        "took_hormones": "Tomó hormonas",
+        "top_surgery": "Se sometió a cirugía superior",
+        "process_benefited_from_therapy": "La terapia exploratoria ayudó",
+        "gender_nonconformity_childhood": "Disconformidad de género en la infancia",
+        "process_spiritual_experience": "Una experiencia espiritual",
+        "autogynephilia": "Autoginefilia",
+        "adv_trauma_history": "Antecedentes de trauma",
+        "contributed_online_influence": "Influencia en línea"
+      },
+      "outcomes": {
+        "regret": "se arrepiente de la transición",
+        "bodyReconciliation": "llegó a aceptar su cuerpo",
+        "retransitioned": "volvió a hacer la transición",
+        "mentalHealthBetter": "mejor salud mental tras la destransición",
+        "critical": "crítico/a u opuesto/a a la transición para otros"
+      },
+      "ratio": "{ratio} de frecuencia",
+      "noDifference": "Sin diferencia clara",
+      "rowTooltip": "{with} de {nWith} historias con ello frente a {without} de {nWithout} sin ello",
+      "note": "Las líneas muestran intervalos del 95 %. “Sin diferencia clara” significa que el intervalo incluye la ausencia total de diferencia. Son asociaciones en lo que las personas escriben, no causas, y quienes escriben historias más largas y detalladas mencionan más de todo. Basado en {cohort} historias evaluadas."
+    },
+    "regret": {
+      "composition": {
+        "pair": "El {positive} % de las historias expresa arrepentimiento por la transición y el {negative} % dice no arrepentirse; el resto no lo indica. Entre quienes lo indican, el {statedShare} % se arrepiente (n = {stated}).",
+        "any": "El {positive} % expresa arrepentimiento (n = {n})"
+      },
+      "scale": {
+        "title": "¿Qué tan intenso es el arrepentimiento?",
+        "mean": "Intensidad media {value} / {max}",
+        "levels": {
+          "level0": "Sin arrepentimiento expresado",
+          "level1": "Leve o pasajero",
+          "level2": "Moderado, recurrente",
+          "level3": "Grave, persistente"
+        }
+      },
+      "choice": {
+        "title": "¿Cómo cambia el arrepentimiento con el tiempo?",
+        "options": {
+          "resolved": "Mayormente resuelto",
+          "improving": "Mejorando",
+          "stable": "Estable",
+          "worsening": "Empeorando",
+          "mixed": "Mixto o cíclico"
+        }
+      },
+      "statements": {
+        "title": "De qué se arrepienten concretamente"
+      },
+      "count": "n = {n}",
+      "basedOn": "Basado en {cohort} historias evaluadas.",
+      "empty": "Aún no hay respuestas sobre arrepentimiento para los filtros actuales.",
+      "error": "No se pudieron cargar los datos de arrepentimiento"
+    },
+    "complications": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "El {positive} % informa al menos una complicación médica o un problema de salud persistente (n = {n})"
+      },
+      "scale": {
+        "title": "¿Qué tan graves fueron las complicaciones?",
+        "mean": "Gravedad media {value} / {max}",
+        "levels": {
+          "level0": "Sin complicaciones",
+          "level1": "Efectos secundarios leves o manejables",
+          "level2": "Complicaciones importantes",
+          "level3": "Daño grave o permanente"
+        }
+      },
+      "statements": {
+        "title": "Problemas médicos específicos"
+      },
+      "count": "n = {n}",
+      "basedOn": "Basado en {cohort} historias evaluadas.",
+      "empty": "Aún no hay respuestas médicas para los filtros actuales.",
+      "error": "No se pudieron cargar los datos de complicaciones"
+    },
+    "mental_health": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "El {positive} % muestra al menos un trastorno o crisis de salud mental (n = {n})"
+      },
+      "scale": {
+        "title": "¿Qué tan grave es el panorama de salud mental?",
+        "mean": "Gravedad media {value} / {max}",
+        "levels": {
+          "level0": "Sin problemas notables",
+          "level1": "Malestar leve o situacional",
+          "level2": "Trastornos importantes, tratados",
+          "level3": "Trastornos graves o crisis"
+        }
+      },
+      "statements": {
+        "title": "Trastornos y crisis"
+      },
+      "count": "n = {n}",
+      "basedOn": "Basado en {cohort} historias evaluadas.",
+      "empty": "Aún no hay respuestas sobre salud mental para los filtros actuales.",
+      "error": "No se pudieron cargar los datos de salud mental"
+    },
+    "suicidality": {
+      "during": "Durante la transición",
+      "since": "Desde la destransición",
+      "duringDescription": "Qué tan probable considera el modelo que una historia describa pensamientos suicidas, autolesiones o un intento de suicidio mientras la persona estaba en transición.",
+      "sinceDescription": "Qué tan probable considera el modelo que una historia describa pensamientos suicidas, autolesiones o un intento de suicidio desde la destransición.",
+      "splitNote": "Dividido por situación actual · eje en raíz cuadrada",
+      "overall": "Todas las historias",
+      "sqrtNote": "El eje vertical usa una escala de raíz cuadrada para que los intervalos de probabilidad más pequeños sigan siendo visibles junto al pico en cero.",
+      "tooltipBin": "Probabilidad {range}",
+      "tooltipCount": "{count, plural, =1 {1 historia} other {# historias}}",
+      "bands": {
+        "no": "Probablemente falso (< 0,2)",
+        "mixed": "Incierto (0,2–0,8)",
+        "yes": "Probablemente cierto (≥ 0,8)"
+      },
+      "count": "n = {n}",
+      "basedOn": "Basado en {cohort} historias con respuesta.",
+      "empty": "Aún no hay respuestas sobre suicidalidad para los filtros actuales.",
+      "error": "No se pudieron cargar los datos de suicidalidad",
+      "statements": {
+        "title": "Pensamientos suicidas y autolesiones"
+      }
+    },
+    "current_status": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% (n = {n})"
+      },
+      "choice": {
+        "title": "Where are they now?",
+        "options": {
+          "detransitioned": "Destransicionó",
+          "desisted": "Desistió antes de la transición médica",
+          "retransitioned": "Volvió a hacer la transición",
+          "still_trans_questioning": "Sigue siendo trans, cuestionándose",
+          "questioning": "Cuestionándose",
+          "unclear": "No está claro",
+          "supportive": "A favor de la transición para otros",
+          "conditional": "A favor con condiciones",
+          "critical": "Crítico/a con la transición",
+          "opposed": "En contra",
+          "not_addressed": "No se aborda"
+        },
+        "description": "Entre las historias que lo abordan, de a favor a en contra."
+      },
+      "secondaryChoice": {
+        "title": "¿Qué opinan de la transición para otras personas?"
+      },
+      "statements": {
+        "title": "Situación actual"
+      },
+      "count": "n = {n}",
+      "basedOn": "Basado en {cohort} historias evaluadas.",
+      "empty": "Aún no hay respuestas sobre la situación para los filtros actuales.",
+      "error": "No se pudieron cargar los datos de situación",
+      "headline": "El {percent} % es crítico con la transición para otras personas o se opone a ella (n ≈ {n}).",
+      "note": "Proporciones ponderadas por probabilidad. Se excluyen las historias que no abordan la pregunta."
+    },
+    "family_community": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "El {positive} % responde sí a al menos una de las preguntas siguientes (n = {n})"
+      },
+      "statements": {
+        "title": "Preguntas planteadas",
+        "description": "Cada historia se evaluó con estas preguntas exactas. Una historia cuenta cuando la respuesta es un sí claro."
+      },
+      "count": "n = {n}",
+      "basedOn": "Basado en {cohort} historias evaluadas.",
+      "empty": "Aún no hay respuestas para los filtros actuales.",
+      "error": "No se pudieron cargar los datos"
+    },
+    "sexuality": {
+      "beforeLabel": "Antes de la transición",
+      "afterLabel": "Después de la destransición",
+      "options": {
+        "homosexual": "Homosexual",
+        "bisexual": "Bisexual",
+        "heterosexual": "Heterosexual",
+        "asexual": "Asexual",
+        "other": "Otra o cambiante"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 historia} other {# historias}}",
+      "statements": {
+        "title": "Orientation and attraction"
+      },
+      "count": "n = {n}",
+      "basedOn": "Flujo basado en {cohort} historias con ambas respuestas de orientación.",
+      "empty": "Not enough orientation answers for the current filters yet.",
+      "error": "No se pudieron cargar los datos de sexualidad",
+      "hero": {
+        "statement": "de las personas que destransicionaron y que indican su orientación actual son gais, lesbianas o bisexuales (n = {n}).",
+        "bySex": "H {men} gais o bisexuales ({menSame} gais) | M {women} lesbianas o bisexuales ({womenSame} lesbianas)"
+      },
+      "mix": {
+        "title": "Orientación antes de la transición y después de la destransición",
+        "description": "Respecto al sexo de nacimiento, entre las historias que la indican.",
+        "women": "Mujeres",
+        "men": "Hombres",
+        "all": "Todos",
+        "before": "antes",
+        "after": "después"
+      },
+      "matrix": {
+        "title": "¿Cambió la orientación?",
+        "description": "Cada fila es una orientación antes de la transición; las celdas muestran lo que esas personas describen después de la destransición.",
+        "headline": "El {percent} % describe la misma orientación antes de la transición y después de la destransición (n = {n}).",
+        "corner": "Antes ↓ · Después →",
+        "cell": "{from} antes → {to} después: {percent} % ({count})",
+        "note": "Solo historias que indican la orientación en ambos momentos. Las filas con menos de 30 historias se dejan en blanco."
+      },
+      "coverage": "La orientación se indica antes de la transición en {before} historias y después de la destransición en {after}, de {cohort} historias evaluadas."
+    },
+    "trends": {
+      "series": {
+        "contributed_online_influence": "Influencia en línea",
+        "contributed_rapid_onset": "Inicio rápido (ROGD)",
+        "regret_transition": "Arrepentimiento",
+        "took_puberty_blockers": "Bloqueadores de la pubertad"
+      },
+      "tooltip": "{bucket} · n = {n}",
+      "mode": {
+        "strict": "Señal binaria",
+        "soft": "Probabilidad media",
+        "strictNote": "Proporción de historias sobre las que el modelo tiene confianza (≥ 0,8).",
+        "softNote": "Probabilidad media en todas las historias: mantiene las historias poco claras dentro de la tendencia."
+      },
+      "seriesTooltip": "{strict} binario · {mean} media",
+      "medianAge": "Edad mediana de transición por cohorte",
+      "coverageNote": "Cada punto usa las historias con respuesta de la cohorte; las cohortes más antiguas tienen las muestras más pequeñas.",
+      "basedOn": "En {cohort} historias con año de transición.",
+      "empty": "Aún no hay años de transición para los filtros actuales.",
+      "error": "No se pudieron cargar los datos de tendencias",
+      "linesTitle": "Características por año de transición",
+      "linesDescription": "Proporción de historias en las que cada afirmación es claramente cierta, agrupadas por el año en que empezó la transición. Añade o quita características para comparar.",
+      "reasonsTitle": "Motivo principal de la transición, por época",
+      "reasonsDescription": "Cómo cambian los motivos principales más comunes entre cohortes por año de transición.",
+      "add": "Añadir una característica…",
+      "remove": "Quitar {label}",
+      "strictNote": "Proporción de historias en las que la IA confía en que la afirmación es cierta (≥ 0,8). Los puntos huecos provienen de menos de 30 historias. Las cohortes recientes han tenido menos tiempo desde la transición —menos tiempo para llegar a la cirugía o a los efectos a largo plazo, y normalmente historias más cortas—, por lo que muchas características bajan en el extremo derecho; una característica que sube de todos modos, como la ansiedad, destaca."
+    },
+    "uncertainty": {
+      "binary": "Binario",
+      "bands": "Tres estados",
+      "likelyFalse": "Probablemente falso (< 0,2)",
+      "unclear": "Poco claro (0,2–0,8)",
+      "unclearShort": "poco claro",
+      "likelyTrue": "Probablemente cierto (≥ 0,8)",
+      "rowTooltip": "{false} % probablemente falso · {unclear} % poco claro · {true} % probablemente cierto"
+    },
+    "minors": {
+      "tiles": {
+        "minor": "empezaron antes de los 18 ({n} de {total} historias con edad)",
+        "le15": "empezaron a los 15 o antes",
+        "dysphoria": "sintieron disforia por primera vez a los 12 o antes (n = {n})",
+        "female": "de quienes empezaron antes de los 18 son mujeres"
+      },
+      "early": "En estas historias, los bloqueadores de la pubertad aparecen desde los {min} años, con una mediana de {median} (n = {n}). {hormones} habían empezado con hormonas a los 16, y {detrans} ya habían destransicionado a los 18.",
+      "empty": "Aún no hay datos de edad para los filtros actuales.",
+      "error": "No se pudieron cargar los datos de transición temprana",
+      "byEra": {
+        "title": "Empezaron antes de los 18, por año de transición",
+        "description": "Proporción de historias en las que la transición empezó antes de los 18 años, agrupadas por el año de inicio.",
+        "note": "Las líneas muestran el intervalo del 95 %. Las cohortes posteriores incluyen más personas que hicieron la transición recientemente y siendo jóvenes, así que interpreta la tendencia con cautela."
+      }
+    },
+    "journey": {
+      "milestones": {
+        "first_dysphoria": "Primera disforia",
+        "transition": "Transición",
+        "hormones": "Hormonas",
+        "detransition": "Destransición",
+        "in_transition": "Años en transición"
+      },
+      "median": "mediana {age}",
+      "count": "n = {n}",
+      "tooltip": "Edad {age}: {count, plural, =1 {1 historia} other {# historias}}",
+      "yearsTooltip": "{years, plural, =1 {1 año} other {# años}} en transición: {count, plural, =1 {1 historia} other {# historias}}",
+      "basedOn": "Cada fila cuenta solo las historias que indican esa edad. El eje se corta en el percentil 99.",
+      "empty": "Aún no hay datos de cronología para los filtros actuales.",
+      "error": "No se pudieron cargar los datos de trayectoria"
+    },
+    "gradient": {
+      "regret": "Arrepentimiento",
+      "noRegret": "Sin arrepentimiento",
+      "notStated": "No indicado",
+      "tiers": {
+        "no_transition": "No hizo la transición",
+        "social_only": "Solo social",
+        "hormones": "Hormonas o bloqueadores",
+        "surgery": "Cirugía",
+        "unclear": "No está claro"
+      },
+      "tierTooltip": "{n} historias: {regrets} con arrepentimiento, {noRegret} sin arrepentimiento, {notStated} no indicado",
+      "count": "n = {n}",
+      "selectionNote": "Las personas que destransicionan pronto nunca llegan a los pasos posteriores, así que esto muestra qué caminos llevan adónde, no que los pasos médicos causen arrepentimiento.",
+      "basedOn": "Basado en {cohort} historias evaluadas.",
+      "empty": "Aún no hay respuestas para los filtros actuales.",
+      "error": "No se pudieron cargar los datos de intervención médica",
+      "statedNote": "El número de la derecha es el arrepentimiento entre las historias que se pronuncian en un sentido u otro (arrepentimiento o no).",
+      "headline": "El {percent} % de las personas que se operaron dicen arrepentirse de la transición, entre quienes se pronuncian (n = {n}).",
+      "headlineCompare": "El {percent} % de las personas que se operaron dicen arrepentirse de la transición, frente al {hormones} % de quienes se quedaron en hormonas o bloqueadores (n = {n} / {nHormones}). Solo cuentan las historias que se pronuncian."
+    },
+    "after": {
+      "levels": {
+        "muchWorse": "Mucho peor",
+        "worse": "Algo peor",
+        "same": "Más o menos igual",
+        "better": "Algo mejor",
+        "muchBetter": "Mucho mejor"
+      },
+      "panels": {
+        "mh_change_after_detransition": "Salud mental",
+        "outcome_quality_of_life": "Calidad de vida",
+        "outcome_family_relationship_change": "Relaciones familiares"
+      },
+      "summary": "{better} % mejor · {worse} % peor",
+      "count": "n = {n}",
+      "basedOn": "Basado en {cohort} historias evaluadas.",
+      "empty": "Aún no hay respuestas para los filtros actuales.",
+      "error": "No se pudieron cargar los datos de cambio",
+      "worseSide": "Peor",
+      "betterSide": "Mejor",
+      "headline": "El {better} % describe una mejor salud mental tras la destransición; el {worse} % la describe como peor (n = {n})."
+    },
+    "stories": {
+      "excerptNote": "Resúmenes anónimos generados por IA de publicaciones públicas de /r/detrans.",
+      "agesCaption": "Edades: primera disforia → transición → {outcome}",
+      "ages": {
+        "firstDysphoria": "Primera disforia",
+        "transition": "Transición",
+        "detransition": "Destransición",
+        "desistance": "Desistencia",
+        "socialTransition": "Transición social"
+      },
+      "female": "Femenino",
+      "male": "Masculino",
+      "basedOn": "De {cohort} historias coincidentes.",
+      "empty": "Aún no hay historias que coincidan con los filtros actuales.",
+      "error": "No se pudieron cargar las historias",
+      "loadMore": "Cargar más historias",
+      "loading": "Cargando…",
+      "upvotesLabel": "Votos positivos totales: {count}",
+      "dialog": {
+        "title": "Historia",
+        "summary": "Resumen",
+        "fullStory": "Historia completa",
+        "close": "Cerrar historia",
+        "error": "No se pudo cargar la historia completa",
+        "openPage": "Abrir la página de la historia"
+      },
+      "status": {
+        "detransitioned": "Detransicionó",
+        "desisted": "Desistió"
+      }
+    },
+    "highlights": {
+      "title": "Lo que destaca",
+      "types": {
+        "prevalence": "Lo más común",
+        "pair": "Van juntos",
+        "improvement": "La vida tras la destransición",
+        "journey": "Trayectoria típica",
+        "minorShare": "Empezaron antes de los 18",
+        "minorLe15": "Empezaron a los 15 o antes",
+        "minorDysphoria": "Primera disforia a los 12 o antes",
+        "minorFemale": "Quién empieza joven",
+        "orientation": "Orientación sexual"
+      },
+      "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
+      "prevalenceUnclear": "Otro {unclear} % no está claro.",
+      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "improvement": "El {better} % dice que su calidad de vida mejoró tras la destransición; el {worse} % dice que empeoró (n = {n}).",
+      "journey": "La trayectoria típica: primera disforia a los {dysphoria} → transición a los {transition} → destransición a los {detransition} (n = {n}).",
+      "minorShare": "El {percent} % de las historias con edad empezaron la transición antes de los 18 (n = {n} de {total}).",
+      "minorLe15": "El {percent} % empezó a los 15 o antes (n = {n}).",
+      "minorDysphoria": "El {percent} % sintió disforia por primera vez a los 12 o antes (n = {n}).",
+      "minorFemale": "El {percent} % de quienes empezaron antes de los 18 son mujeres (n = {n}).",
+      "explore": "Explorar",
+      "orientation": "El {percent} % de las personas que destransicionaron y que indican su orientación son gais, lesbianas o bisexuales ({sameSex} % gais o lesbianas; n = {n})."
+    },
+    "pathways": {
+      "journey": "Causa → Proceso → Resultado",
+      "medical": "Trayectoria médica",
+      "stages": {
+        "cause": "Motivo principal",
+        "process": "Punto de inflexión",
+        "outcome": "Arrepentimiento hoy"
+      },
+      "causes": {
+        "social_role_discomfort": "Incomodidad con el rol social",
+        "internalised_homophobia": "Homofobia interiorizada",
+        "internalised_misogyny_misandry": "Misoginia / misandria interiorizada",
+        "trauma": "Trauma",
+        "mental_health_issues": "Salud mental",
+        "neurodivergence": "Neurodivergencia",
+        "body_dysmorphia": "Dismorfia corporal",
+        "online_influence": "Influencia en línea",
+        "peer_influence": "Influencia de pares",
+        "sexual_factors": "Factores sexuales",
+        "parental_or_medical_pressure": "Presión parental o médica",
+        "other_unclear": "Otro / no está claro",
+        "unclear": "No está claro"
+      },
+      "processes": {
+        "process_benefited_from_therapy": "Terapia exploratoria",
+        "process_detrans_community_exposure": "Comunidad detrans",
+        "process_research_consumption": "Investigación y medios",
+        "process_self_reflection": "Autorreflexión",
+        "process_time_off_hormones": "Pausa de las hormonas",
+        "process_medical_scare": "Susto médico",
+        "process_family_partner_intervention": "Familia o pareja",
+        "process_spiritual_experience": "Experiencia espiritual",
+        "other": "Otro / no está claro"
+      },
+      "outcomes": {
+        "regrets": "Se arrepiente",
+        "no_regret": "Sin arrepentimiento",
+        "not_stated": "No indicado"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 historia} other {# historias}}",
+      "basedOn": "Basado en {cohort} historias evaluadas con respuestas en esta vista.",
+      "empty": "Aún no hay suficientes historias con respuestas para esta vista.",
+      "error": "No se pudieron cargar los datos de trayectorias",
+      "journeyDescription": "Cómo se conectan los motivos principales, los puntos de inflexión y el arrepentimiento en las historias.",
+      "medicalDescription": "Qué pasos médicos dieron las personas antes de destransicionar.",
+      "regretByReason": {
+        "title": "Arrepentimiento según el motivo principal de la transición",
+        "description": "Entre las historias que indican si se arrepienten de la transición, la proporción que sí lo hace, agrupada por el motivo principal que dieron para hacer la transición.",
+        "headline": "En general, el {percent} % de las historias que abordan el arrepentimiento lo expresan (n = {n}).",
+        "note": "Los puntos muestran la proporción que expresa arrepentimiento entre las historias que se pronuncian claramente; las líneas muestran el intervalo del 95 %. Las filas atenuadas tienen menos de 30 historias.",
+        "error": "No se pudo cargar el arrepentimiento por motivo",
+        "empty": "Aún no hay respuestas para los filtros actuales."
+      }
+    },
+    "methodology": {
+      "p1": "detrans.ai construye este conjunto de datos a partir de historias públicas de /r/detrans. Una IA reescribe los comentarios y publicaciones dispersos de cada usuario en un único relato en primera persona y extrae de él una cronología de edades clave. Solo se incluyen los usuarios que compartieron lo suficiente para reconstruir una historia completa.",
+      "p1b": "Estas estadísticas solo incluyen historias en las que la persona confirmó claramente que había destransicionado o desistido. Del corpus en bruto a los gráficos:",
+      "table": {
+        "comments": "Comentarios recopilados de /r/detrans",
+        "posts": "Publicaciones recopiladas de /r/detrans",
+        "authors": "Autores distintos en el corpus",
+        "selected": "Autores con al menos 5 comentarios con 3 o más votos positivos",
+        "removed": "Eliminados: destransición o desistencia no confirmada claramente",
+        "remaining": "Historias conservadas después",
+        "cohort": "Incluidas en los gráficos siguientes (cuentas marcadas excluidas)"
+      },
+      "p2": "Después, cada historia es evaluada por Jev, un modelo probabilístico de respuesta a preguntas, frente a unas cien afirmaciones sobre causas, experiencias y resultados. Las preguntas de sí/no devuelven una probabilidad de 0 a 1, las preguntas de opción devuelven una probabilidad para cada opción y las preguntas de escala devuelven un valor esperado en la escala que se muestra bajo cada gráfico.",
+      "p3": "En las características de sí/no, marcamos una historia como “cierta” cuando la probabilidad alcanza el umbral (0,8 por defecto). El histograma de cada característica muestra la distribución completa de probabilidades, de modo que una característica con muchas respuestas intermedias se lee como genuinamente incierta y no como claramente cierta o falsa.",
+      "p4": "Todos los gráficos respetan los filtros anteriores. Como el conjunto de preguntas cambió con el tiempo y las historias se revisan en sucesivas ejecuciones de procesamiento, cada gráfico indica cuántas de las historias filtradas tienen realmente una respuesta para esa pregunta.",
+      "p5": "Las cuentas que parecen no auténticas, inventadas o automatizadas son marcadas por el modelo y excluidas de estas estadísticas. Los datos extraídos por IA aún pueden contener errores: los prompts del sistema se publican en la <prompts>página de prompts</prompts> y los resúmenes se comparan con los comentarios originales.",
+      "threshold": {
+        "title": "Cuánto importa el umbral",
+        "description": "Los gráficos cuentan una afirmación como cierta cuando la probabilidad de la IA es de al menos 0,8. Umbrales más bajos darían cifras más altas; este gráfico muestra en cuánto.",
+        "error": "No se pudieron cargar los datos del umbral",
+        "tooltip": "Umbral {threshold}",
+        "xAxis": "Umbral de probabilidad",
+        "siteThreshold": "Usado en esta página",
+        "note": "Proporción de historias en cada umbral o por encima. El umbral de 0,8 es deliberadamente conservador."
+      },
+      "accountType": {
+        "title": "Quién escribe",
+        "description": "Si cada relato describe la experiencia propia de quien escribe.",
+        "options": {
+          "personal_experience": "Experiencia propia",
+          "parent": "Un padre o madre",
+          "friend": "Un amigo o pareja",
+          "researcher_journalist": "Investigador, periodista o clínico",
+          "other": "Otro o mixto"
+        }
+      },
+      "detail": {
+        "title": "Nivel de detalle de las historias",
+        "description": "La valoración de la IA sobre lo específico que es cada relato en primera persona. Usa “Solo historias detalladas” en los filtros para limitar todos los gráficos a los dos niveles superiores.",
+        "levels": {
+          "level0": "Vago o genérico",
+          "level1": "Algún detalle personal",
+          "level2": "Detallado, hechos concretos",
+          "level3": "Muy detallado, relato de varios años"
+        }
+      }
+    },
+    "prevalence": {
+      "women": "Mujeres",
+      "men": "Hombres",
+      "interval": "{group} {percent} (intervalo del 95 % {low}–{high}, n = {n})",
+      "smallSample": "n = {n}",
+      "openStories": "Ver historias",
+      "showAll": "Mostrar las {count}",
+      "showFewer": "Mostrar menos",
+      "note": "Los puntos muestran la proporción de historias en las que la afirmación es claramente cierta (probabilidad de la IA ≥ 0,8); las líneas muestran el intervalo del 95 %. Las filas atenuadas tienen menos de 30 respuestas.",
+      "noteWithStories": "Los puntos muestran la proporción de historias en las que la afirmación es claramente cierta (probabilidad de la IA ≥ 0,8); las líneas muestran el intervalo del 95 %. Las filas atenuadas tienen menos de 30 respuestas. Selecciona una fila para leer las historias correspondientes.",
+      "gap": "Mayor diferencia: {label}: {higher} de {higherGroup} frente a {lower} de {lowerGroup}.",
+      "womenLower": "mujeres",
+      "menLower": "hombres",
+      "m": "H",
+      "f": "M",
+      "menLegend": "H · hombres",
+      "womenLegend": "M · mujeres"
+    },
+    "storyPeek": {
+      "title": "Historias: {label}",
+      "meta": "{count, plural, =1 {1 historia coincidente} other {# historias coincidentes}}",
+      "error": "No se pudieron cargar las historias.",
+      "empty": "No hay historias coincidentes para los filtros actuales.",
+      "readFull": "Leer la historia completa",
+      "note": "Fragmentos anónimos, los mejor valorados primero. La lista completa está en la sección Historias al final de la página."
+    },
+    "reasons": {
+      "transitionTitle": "Motivo principal de la transición",
+      "transitionDescription": "El motivo más importante que cada persona da para empezar la transición.",
+      "detransitionTitle": "Motivo principal de la destransición",
+      "detransitionDescription": "El motivo más importante que cada persona da para dejarla."
+    },
+    "byYear": {
+      "error": "No se pudieron cargar los datos por año",
+      "empty": "Aún no hay años de transición para los filtros actuales.",
+      "other": "Otro",
+      "n": "n = {n}",
+      "note": "Proporciones ponderadas por probabilidad para cada cohorte por año de transición. Las filas atenuadas tienen menos de 30 historias."
+    },
+    "overview": {
+      "error": "No se pudo cargar el resumen",
+      "basedOn": "Basado en {cohort} historias evaluadas."
+    },
+    "drivers": {
+      "statements": {
+        "title": "Descritos como contribuyentes a la transición"
+      },
+      "count": "n = {n}",
+      "basedOn": "Basado en {cohort} historias evaluadas.",
+      "empty": "Aún no hay respuestas para los filtros actuales.",
+      "error": "No se pudieron cargar estos datos"
+    },
+    "adversity": {
+      "composition": {
+        "any": "El {positive} % describe al menos una forma de trauma o adversidad (n = {n})"
+      },
+      "statements": {
+        "title": "Tipos de adversidad descritos"
+      },
+      "contrast": {
+        "title": "Antecedentes de trauma frente al trauma como motivo principal",
+        "description": "Muchas más historias mencionan un trauma de las que lo señalan como el motor principal de la transición o la destransición.",
+        "history": "Describen antecedentes de trauma",
+        "transitionReason": "Señalan el trauma como motivo principal de la transición",
+        "detransitionReason": "Señalan darse cuenta del trauma como motivo principal de la destransición",
+        "note": "Los puntos muestran la proporción de historias; las líneas muestran el intervalo del 95 %. Las filas de motivos cuentan el único motivo principal de cada historia."
+      },
+      "count": "n = {n}",
+      "basedOn": "Basado en {cohort} historias evaluadas.",
+      "empty": "Aún no hay respuestas sobre adversidad para los filtros actuales.",
+      "error": "No se pudieron cargar los datos de adversidad"
+    },
+    "online": {
+      "choice": {
+        "title": "Plataforma más influyente",
+        "description": "Entre las historias que mencionan una influencia en línea. Se excluyen las historias sin influencia en línea significativa.",
+        "options": {
+          "reddit": "Reddit",
+          "tumblr": "Tumblr",
+          "tiktok": "TikTok",
+          "twitter": "Twitter / X",
+          "youtube": "YouTube",
+          "discord": "Discord",
+          "other": "Otra plataforma o espacio de fandom"
+        }
+      },
+      "statements": {
+        "title": "Influencia en línea y de pares"
+      },
+      "byYear": {
+        "title": "Plataforma por año de transición",
+        "description": "Cómo cambió la plataforma más influyente entre cohortes por año de transición."
+      },
+      "count": "n = {n}",
+      "basedOn": "Basado en {cohort} historias evaluadas.",
+      "empty": "Aún no hay respuestas sobre influencia en línea para los filtros actuales.",
+      "error": "No se pudieron cargar los datos de influencia en línea"
+    },
+    "process": {
+      "composition": {
+        "any": "El {positive} % describe al menos uno de estos puntos de inflexión (n = {n})"
+      },
+      "statements": {
+        "title": "Qué llevó a las personas hacia la destransición"
+      },
+      "count": "n = {n}",
+      "basedOn": "Basado en {cohort} historias evaluadas.",
+      "empty": "Aún no hay respuestas sobre puntos de inflexión para los filtros actuales.",
+      "error": "No se pudieron cargar los datos de puntos de inflexión"
+    },
+    "lives": {
+      "error": "No se pudieron cargar las trayectorias",
+      "empty": "Aún no hay historias con edad de transición y de destransición para los filtros actuales.",
+      "legend": {
+        "transition": "En transición",
+        "blockers": "Bloqueadores de la pubertad",
+        "hormones": "Hormonas",
+        "surgery": "Cirugía"
+      },
+      "ariaLabel": "Gráfico de franjas de {n} trayectorias individuales de la transición a la destransición",
+      "tooltip": {
+        "woman": "Mujer",
+        "man": "Hombre",
+        "person": "Persona",
+        "firstDysphoria": "Primera disforia a los {age}",
+        "transition": "Transición a los {age}",
+        "pubertyBlockers": "Bloqueadores de la pubertad a los {age}",
+        "hormones": "Hormonas a los {age}",
+        "topSurgery": "Cirugía superior a los {age}",
+        "bottomSurgery": "Cirugía inferior a los {age}",
+        "detransition": "Destransición a los {age}"
+      },
+      "note": "{n} personas cuya historia indica ambas edades, ordenadas por edad de transición. Las edades son la lectura que hace la IA de cada historia y pueden ser aproximadas."
+    },
+    "duration": {
+      "error": "No se pudieron cargar las duraciones",
+      "empty": "Aún no hay duraciones de transición para los filtros actuales.",
+      "all": "Todos",
+      "women": "Mujeres",
+      "men": "Hombres",
+      "legend": "{label}: mediana {median} años (n = {n})",
+      "tooltipTitle": "En {years, plural, =1 {1 año} other {# años}}",
+      "xAxis": "Años desde el inicio de la transición",
+      "note": "Proporción de personas que la habían dejado en un número determinado de años. Todas estas personas acabaron destransicionando, así que esto muestra cuánto duró su transición, no cuántas personas que hacen la transición acaban dejándola.",
+      "headline": "El {one} % la había dejado en un año y el {five} % en cinco años desde el inicio (mediana {median} años, n = {n})."
+    },
+    "optionLabels": {
+      "reddit": "Reddit",
+      "tumblr": "Tumblr",
+      "tiktok": "Tiktok",
+      "twitter": "Twitter",
+      "youtube": "Youtube",
+      "discord": "Discord",
+      "social_role_discomfort": "Incomodidad con Rol Social",
+      "internalised_homophobia": "Homofobia Internalizada",
+      "internalised_misogyny_misandry": "Misoginia/Misandria Internalizada",
+      "trauma": "Trauma",
+      "mental_health_issues": "Problemas de Salud Mental",
+      "neurodivergence": "Neurodivergencia",
+      "body_dysmorphia": "Dismorfia Corporal",
+      "online_influence": "Influencia Online",
+      "peer_influence": "Influencia de Pares",
+      "sexual_factors": "Factores Sexuales",
+      "parental_or_medical_pressure": "Presión Parental o Médica",
+      "other_unclear": "Otro/No claro",
+      "accepted_sexed_body": "Aceptación del cuerpo sexuado",
+      "social_construct_realisation": "Descubrimiento de Construcción Social",
+      "trauma_realisation": "Toma de conciencia del trauma",
+      "mental_health_realisation": "Toma de conciencia salud mental",
+      "neurodivergence_realisation": "Descubrimiento de Neurodivergencia",
+      "fantasy_reality_disillusionment": "Desilusión Fantasía-Realidad",
+      "surgery_regret_medical_complications": "Arrepentimiento Quirúrgico por Complicaciones",
+      "ideological_disillusionment": "Desilusión ideológica",
+      "social_pressure_ostracism": "Presión/ostracismo social",
+      "failure_to_pass": "Fracaso en pasar",
+      "internalised_homophobia_realisation": "Descubrimiento de Homofobia Internalizada",
+      "internalised_misogyny_misandry_realisation": "Descubrimiento de Misoginia/Misandria Internalizada",
+      "sexual_factors_realisation": "Toma de conciencia factores sexuales",
+      "religious_or_spiritual_change": "Cambio Religioso o Espiritual",
+      "fertility_or_family_desires": "Deseos de fertilidad/familia"
+    },
+    "choiceSplit": {
+      "error": "No se pudo cargar este gráfico",
+      "empty": "Aún no hay respuestas para los filtros actuales.",
+      "women": "M · mujeres (n = {n})",
+      "men": "H · hombres (n = {n})",
+      "headline": "Las mujeres mencionan más a menudo “{womenOption}” ({womenShare} frente a {womenMen} de los hombres); los hombres mencionan más a menudo “{menOption}” ({menShare} frente a {menWomen} de las mujeres).",
+      "note": "Ponderado por probabilidad: una historia que la IA reparte 60/40 entre dos motivos cuenta 0,6 y 0,4.",
+      "m": "H",
+      "f": "M"
+    },
+    "ordinal": {
+      "error": "No se pudo cargar este gráfico",
+      "empty": "Aún no hay respuestas para los filtros actuales.",
+      "all": "Todos",
+      "women": "Mujeres",
+      "men": "Hombres"
+    },
+    "medical_steps": {
+      "statements": {
+        "title": "Pasos médicos realizados"
+      },
+      "count": "n = {n}",
+      "basedOn": "Basado en {cohort} historias evaluadas.",
+      "empty": "Aún no hay respuestas para los filtros actuales.",
+      "error": "No se pudieron cargar los pasos médicos"
     }
   },
   "topicsPage": {
     "title": "Topics",
     "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
     "empty": "No topics have been published yet."
+  },
+  "storiesPage": {
+    "metadata": {
+      "title": "Historias de detransición | detrans.ai",
+      "description": "Lee miles de historias anonimizadas de detransición y desistimiento de la comunidad /r/detrans, resumidas por IA. Filtra por edad, sexo y experiencia."
+    },
+    "title": "Historias de detransición",
+    "description": "{count, number} historias anonimizadas de personas que transicionaron y luego detransicionaron o desistieron, reconstruidas por IA a partir de sus publicaciones y comentarios en /r/detrans.",
+    "statsLink": "Explorar las estadísticas",
+    "allStories": "Todas las historias",
+    "story": {
+      "metaTitle": "{title} – Historia de detransición | detrans.ai",
+      "untitled": "Una historia de detransición",
+      "notFound": "Historia no encontrada | detrans.ai",
+      "tags": "Etiquetas",
+      "moreStories": "Leer más historias"
+    }
   }
 }

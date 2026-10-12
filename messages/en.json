@@ -144,7 +144,9 @@
       "stats": "Stats",
       "statsDesc": "/r/detrans anonymised detransition stats",
       "topics": "Topics",
-      "topicsDesc": "In-depth guides on key topics"
+      "topicsDesc": "In-depth guides on key topics",
+      "stories": "Stories",
+      "storiesDesc": "From /r/detrans users"
     },
     "resources": {
       "genderSupport": "Get Support",
@@ -346,7 +348,21 @@
       "delete": "Delete Conversation",
       "banning": "Banning...",
       "ban": "Ban User (IP)"
+    },
+    "dialog": {
+      "title": "Conversation",
+      "toggleIdHint": "Click to toggle between date/country and ID",
+      "shareText": "Check out this conversation",
+      "share": "Share conversation",
+      "copyLink": "Copy link to conversation",
+      "noneSelected": "No conversation selected"
     }
+  },
+  "readingDialog": {
+    "share": "Share",
+    "copyLink": "Copy link",
+    "copied": "Link copied to clipboard",
+    "close": "Close dialog"
   },
   "stories": {
     "metadata": {
@@ -803,7 +819,9 @@
       "legend": {
         "transition": "Transition Age",
         "detransition": "Detransition Age"
-      }
+      },
+      "median": "median {age}",
+      "coverage": "Based on {transition} transition ages and {detransition} detransition ages."
     },
     "transitionDuration": {
       "title": "Transition Duration: Age at Transition vs Age at Detransition",
@@ -827,7 +845,8 @@
       "female": "Female",
       "yearsAvg": "years avg",
       "user": "user",
-      "users": "users"
+      "users": "users",
+      "coverage": "Based on {count} stories with both ages recorded."
     },
     "pathways": {
       "title": "Detransition Pathways Flow",
@@ -967,11 +986,990 @@
     "metadata": {
       "title": "Anonymised Statistics | detrans.ai",
       "description": "Anonymised statistics on detransition and transition patterns, including age distribution, duration, reasons, and pathways."
+    },
+    "toc": {
+      "title": "On this page"
+    },
+    "filters": {
+      "title": "Filters",
+      "edit": "Edit filters",
+      "hide": "Hide filters",
+      "summary": {
+        "none": "No filters",
+        "age": "Age {min}–{max}",
+        "tags": "{count, plural, =0 {no tags} =1 {1 tag} other {# tags}}",
+        "detailed": "Detailed only"
+      },
+      "detailed": "Detailed stories only",
+      "detailedHint": "Only include stories the AI rated as reasonably or highly detailed."
+    },
+    "sections": {
+      "age": {
+        "title": "Age",
+        "description": "When detransitioners transitioned and detransitioned."
+      },
+      "journey": {
+        "title": "Ages",
+        "description": "When people first felt dysphoria, transitioned, started hormones and detransitioned."
+      },
+      "duration": {
+        "title": "Duration",
+        "description": "How long people stayed in transition before stopping."
+      },
+      "minors": {
+        "title": "Transition before 18",
+        "description": "What the stories show about starting transition as a child or teenager."
+      },
+      "reasons": {
+        "title": "Reasons",
+        "description": "Why detransitioners say they transitioned — and why they detransitioned."
+      },
+      "pathways": {
+        "title": "Pathways",
+        "description": "Whether regret differs by why people transitioned, and which medical steps they took."
+      },
+      "regret": {
+        "title": "Regret",
+        "description": "How intense regret is, how it changes over time, and what people regret."
+      },
+      "medical": {
+        "title": "Medical involvement",
+        "description": "How regret relates to how far transition went."
+      },
+      "complications": {
+        "title": "Complications",
+        "description": "Medical complications and ongoing health issues after transition."
+      },
+      "mental_health": {
+        "title": "Mental health",
+        "description": "The mental health picture across the stories, before and after detransitioning."
+      },
+      "suicidality": {
+        "title": "Suicidality",
+        "description": "How often stories describe suicidal thoughts or self-harm, and when."
+      },
+      "after": {
+        "title": "After detransition",
+        "description": "How mental health, quality of life and family relationships changed."
+      },
+      "current_status": {
+        "title": "Views on transition",
+        "description": "How people who detransitioned or desisted view transition for other people."
+      },
+      "family_community": {
+        "title": "Social cost of detransitioning",
+        "description": "Isolation and ostracism caused by detransitioning, and disillusionment with the trans community. Questions that didn’t separate transition from detransition (family support, relationships, career) are left out; family relationships since detransitioning are covered under “After detransition”."
+      },
+      "sexuality": {
+        "title": "Sexuality",
+        "description": "Sexual orientation relative to birth sex, before transition and after detransition."
+      },
+      "trends": {
+        "title": "Over the years",
+        "description": "How the stories — and their reasons — changed across transition-year cohorts."
+      },
+      "features": {
+        "title": "Features",
+        "description": "Every yes/no statement the AI evaluated, grouped by topic, for women and men."
+      },
+      "compare": {
+        "title": "Compare",
+        "description": "How feature prevalence shifts between two halves of the cohort."
+      },
+      "matrix": {
+        "title": "Connections",
+        "description": "Answers to questions people argue about — including where an expected difference doesn't show up."
+      },
+      "stories": {
+        "title": "Stories",
+        "description": "Anonymous excerpts from the people behind these numbers.",
+        "browse": "Browse all stories"
+      },
+      "methodology": {
+        "title": "Methodology",
+        "description": "How the dataset is built and how to read these charts."
+      },
+      "overview": {
+        "title": "At a glance",
+        "description": "Every yes/no statement the AI evaluated, ranked by how many stories it is clearly true for."
+      },
+      "lives": {
+        "title": "Individual timelines",
+        "description": "Each line is one person, from the age they started transitioning to the age they stopped."
+      },
+      "drivers": {
+        "title": "Less-discussed drivers",
+        "description": "Body image, identity instability and sexual factors described as contributing to transition."
+      },
+      "adversity": {
+        "title": "Trauma & adversity",
+        "description": "How often stories describe trauma, and how often trauma is named as the main reason."
+      },
+      "online": {
+        "title": "Online & peer influence",
+        "description": "Which platforms mattered most, and how online and peer influence show up in the stories."
+      },
+      "process": {
+        "title": "Turning points",
+        "description": "What helped move people from transition towards detransition."
+      }
+    },
+    "features": {
+      "search": "Search features…",
+      "sort": {
+        "prevalence": "Prevalence",
+        "alpha": "A–Z"
+      },
+      "tiers": {
+        "cause": "Cause",
+        "process": "Process",
+        "outcome": "Outcome"
+      },
+      "kinds": {
+        "noul": "Yes / no",
+        "choice": "Choice",
+        "score": "Scale"
+      },
+      "groups": {
+        "reasons": "Reasons",
+        "causes": "Causes",
+        "processes": "Processes",
+        "regret": "Regret",
+        "medical": "Medical",
+        "mental_health": "Mental health",
+        "adversity": "Adversity",
+        "social": "Social",
+        "sexuality": "Sexuality",
+        "online": "Online",
+        "identity": "Identity",
+        "outcomes": "Outcomes",
+        "attitudes": "Attitudes",
+        "quality": "Quality"
+      },
+      "basedOn": "Across {cohort} evaluated stories.",
+      "coverageNote": "{n} of {cohort} evaluated stories ({percent}%) include an answer.",
+      "question": "How was this measured?",
+      "confidence": "Median AI confidence for this feature: {value}%.",
+      "filterByTag": "Only stories tagged \"{tag}\"",
+      "placeholder": "Select a feature from the list to explore it.",
+      "backToList": "All features",
+      "noResults": "No features match your search.",
+      "noData": "No answers for the current filters.",
+      "loading": "Loading…",
+      "error": "Could not load feature data",
+      "noul": {
+        "prevalenceLabel": "of evaluated stories are above the threshold",
+        "range": "{from} – {to} probability",
+        "count": "{count} stories ({percent}%)",
+        "thresholdShort": "threshold {threshold}",
+        "legend": {
+          "yes": "Likely true",
+          "maybe": "Uncertain",
+          "no": "Likely false"
+        },
+        "above": "Likely true",
+        "uncertain": "Uncertain",
+        "below": "Likely false"
+      },
+      "choice": {
+        "soft": "Probability mass",
+        "hard": "Winning option",
+        "softTooltip": "≈{percent}% (≈{count} stories of probability mass)",
+        "hardTooltip": "{percent}% ({count} stories)",
+        "softNote": "Bars show the summed AI probability each option receives across stories, so mixed answers count proportionally.",
+        "hardNote": "Bars count only each story's single most likely option."
+      },
+      "score": {
+        "meanLabel": "Average {value} on a 0–{max} scale",
+        "range": "Score {from} – {to}",
+        "count": "{count} stories",
+        "meanShort": "mean {value}"
+      },
+      "related": {
+        "title": "Often seen together",
+        "lift": "{lift}× more common ({percent}%)"
+      },
+      "listNote": "Dots show the share of stories where each statement is clearly true (AI probability ≥ 0.8); lines show the 95% interval. Faded rows have fewer than 30 answers. Select a row to read matching stories. Based on {cohort} evaluated stories."
+    },
+    "compare": {
+      "splitLabel": "Split by",
+      "thresholdNote": "Showing stories above the {threshold} AI threshold vs below it.",
+      "filter": {
+        "all": "All answers",
+        "clear": "Clear signals only"
+      },
+      "clearNote": "{excluded} unclear stories excluded from both sides.",
+      "cohortTrue": "{label}: present (n = {n})",
+      "cohortFalse": "Not present (n = {n})",
+      "splitSex": "Biological sex",
+      "sexNote": "Comparing stories from women and men.",
+      "cohortWomen": "Women (n = {n})",
+      "cohortMen": "Men (n = {n})",
+      "splitAge": "Age at transition",
+      "ageNote": "Comparing stories where transition started under 18 vs at 18 or later.",
+      "cohortUnder18": "Under 18 (n = {n})",
+      "cohortAdult": "18 or older (n = {n})",
+      "rowTooltip": "{label}: {pctTrue}% of {nTrue} vs {pctFalse}% of {nFalse}",
+      "empty": "Not enough stories with answers on both sides of this split yet.",
+      "showSmallSamples": "Show small samples",
+      "hideSmallSamples": "Hide small samples",
+      "hiddenNote": "{count, plural, =1 {1 feature is} other {# features are}} hidden for having fewer than 3 stories on one side.",
+      "error": "Could not load comparison data",
+      "ratio": "{ratio} as common",
+      "ratioNote": "Rows are ranked by how strongly the two groups differ (risk ratio), with features that are rare on both sides left out. Lines show 95% intervals; faded rows have fewer than 30 stories on one side.",
+      "showAll": "Show all features"
+    },
+    "matrix": {
+      "presetLabel": "View",
+      "presets": {
+        "outcomesByCause": "Outcomes by cause",
+        "outcomesByProcess": "Outcomes by turning point"
+      },
+      "metric": {
+        "rate": "Rate",
+        "lift": "Lift vs average"
+      },
+      "swap": "Swap axes",
+      "legendRate": "Share of matching stories where the column feature is true.",
+      "legendLift": "Compared with the cohort-wide average (blue above, red below).",
+      "sampleNote": "Each cell compares stories with the row feature to stories without it. Longer, more detailed stories mention more features of every kind, so most ratios sit above 1× — compare cells with each other rather than with 1×. Cells with fewer than 30 stories on either side are left blank.",
+      "basedOn": "{cohort} evaluated stories in this view.",
+      "cellTooltip": "{row} → {col}: {percent}% of {n} stories · {lift}× cohort average",
+      "cellTooltipNoLift": "{row} → {col}: {percent}% of {n} stories",
+      "cellMasked": "{row} → {col}: not enough stories",
+      "empty": "Not enough stories with answers for this view yet.",
+      "error": "Could not load matrix data",
+      "presetDescriptions": {
+        "outcomesByCause": "How much more (or less) common each outcome is in stories with a given cause than in stories without it.",
+        "outcomesByProcess": "How much more (or less) common each outcome is in stories with a given turning point than in stories without it."
+      },
+      "legendMore": "More common with the row feature",
+      "legendLess": "Less common",
+      "legendNone": "No clear difference (95% interval includes 1×)",
+      "cellTooltipRatio": "{row} → {col}: {percent}% of {n} stories with it vs {percentWithout}% without · {ratio} (95% interval {low}–{high})",
+      "legendWith": "With the factor",
+      "legendWithout": "Without it",
+      "themes": {
+        "medical": "Medical path",
+        "helped": "What helped",
+        "who": "Who regrets, who returns",
+        "views": "Views on transition for others"
+      },
+      "predictors": {
+        "under18": "Started transition before 18",
+        "women": "Women (vs men)",
+        "sameSex": "Same-sex attracted before transition",
+        "took_puberty_blockers": "Took puberty blockers",
+        "took_hormones": "Took hormones",
+        "top_surgery": "Had top surgery",
+        "process_benefited_from_therapy": "Exploratory therapy helped",
+        "gender_nonconformity_childhood": "Gender-nonconforming as a child",
+        "process_spiritual_experience": "A spiritual experience",
+        "autogynephilia": "Autogynephilia",
+        "adv_trauma_history": "A trauma history",
+        "contributed_online_influence": "Online influence"
+      },
+      "outcomes": {
+        "regret": "regrets transitioning",
+        "bodyReconciliation": "came to accept their body",
+        "retransitioned": "retransitioned",
+        "mentalHealthBetter": "mental health better after detransitioning",
+        "critical": "critical of or opposed to transition for others"
+      },
+      "ratio": "{ratio} as common",
+      "noDifference": "No clear difference",
+      "rowTooltip": "{with} of {nWith} stories with it vs {without} of {nWithout} without",
+      "note": "Lines show 95% intervals. “No clear difference” means the interval includes no difference at all. These are associations in what people write, not causes, and people who write longer, more detailed stories mention more of everything. Based on {cohort} evaluated stories."
+    },
+    "regret": {
+      "composition": {
+        "pair": "{positive}% of stories express regret about transitioning and {negative}% say they don't regret it; the rest don't say. Among those who do, {statedShare}% regret it (n = {stated}).",
+        "any": "{positive}% express regret (n = {n})"
+      },
+      "scale": {
+        "title": "How intense is the regret?",
+        "mean": "{value} / {max} average intensity",
+        "levels": {
+          "level0": "No regret expressed",
+          "level1": "Mild or passing",
+          "level2": "Moderate, recurring",
+          "level3": "Severe, persistent"
+        }
+      },
+      "choice": {
+        "title": "How is regret changing over time?",
+        "options": {
+          "resolved": "Largely resolved",
+          "improving": "Improving",
+          "stable": "Stable",
+          "worsening": "Worsening",
+          "mixed": "Mixed or cyclical"
+        }
+      },
+      "statements": {
+        "title": "What people specifically regret"
+      },
+      "count": "n = {n}",
+      "basedOn": "Based on {cohort} evaluated stories.",
+      "empty": "No regret answers for the current filters yet.",
+      "error": "Could not load regret data"
+    },
+    "complications": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% report at least one medical complication or ongoing health issue (n = {n})"
+      },
+      "scale": {
+        "title": "How severe were the complications?",
+        "mean": "{value} / {max} average severity",
+        "levels": {
+          "level0": "No complications",
+          "level1": "Minor or manageable side effects",
+          "level2": "Significant complications",
+          "level3": "Severe or permanent harm"
+        }
+      },
+      "statements": {
+        "title": "Specific medical issues"
+      },
+      "count": "n = {n}",
+      "basedOn": "Based on {cohort} evaluated stories.",
+      "empty": "No medical answers for the current filters yet.",
+      "error": "Could not load complication data"
+    },
+    "mental_health": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% show at least one mental health condition or crisis (n = {n})"
+      },
+      "scale": {
+        "title": "How severe is the mental health picture?",
+        "mean": "{value} / {max} average severity",
+        "levels": {
+          "level0": "No notable issues",
+          "level1": "Mild or situational distress",
+          "level2": "Significant, treated conditions",
+          "level3": "Severe conditions or crisis"
+        }
+      },
+      "statements": {
+        "title": "Conditions and crises"
+      },
+      "count": "n = {n}",
+      "basedOn": "Based on {cohort} evaluated stories.",
+      "empty": "No mental health answers for the current filters yet.",
+      "error": "Could not load mental health data"
+    },
+    "suicidality": {
+      "during": "During transition",
+      "since": "Since detransition",
+      "duringDescription": "How likely the model judges that a story describes suicidal thoughts, self-harm or a suicide attempt while the person was transitioning.",
+      "sinceDescription": "How likely the model judges that a story describes suicidal thoughts, self-harm or a suicide attempt since detransitioning.",
+      "splitNote": "Split by current status · square-root axis",
+      "overall": "All stories",
+      "sqrtNote": "The vertical axis uses a square-root scale so the smaller probability bins stay visible next to the spike at zero.",
+      "tooltipBin": "Probability {range}",
+      "tooltipCount": "{count, plural, =1 {1 story} other {# stories}}",
+      "bands": {
+        "no": "Likely false (< 0.2)",
+        "mixed": "Uncertain (0.2–0.8)",
+        "yes": "Likely true (≥ 0.8)"
+      },
+      "count": "n = {n}",
+      "basedOn": "Based on {cohort} stories with an answer.",
+      "empty": "No suicidality answers for the current filters yet.",
+      "error": "Could not load suicidality data",
+      "statements": {
+        "title": "Suicidal thoughts and self-harm"
+      }
+    },
+    "current_status": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% (n = {n})"
+      },
+      "choice": {
+        "title": "How do they view transition for other people?",
+        "options": {
+          "detransitioned": "Detransitioned",
+          "desisted": "Desisted before medical transition",
+          "retransitioned": "Retransitioned",
+          "still_trans_questioning": "Still trans, questioning",
+          "questioning": "Questioning",
+          "unclear": "Unclear",
+          "supportive": "Supportive of transition for others",
+          "conditional": "Supportive under conditions",
+          "critical": "Critical of transition",
+          "opposed": "Opposed",
+          "not_addressed": "Not addressed"
+        },
+        "description": "Among stories that address it, from supportive to opposed."
+      },
+      "secondaryChoice": {
+        "title": "How do they view transition for other people?"
+      },
+      "statements": {
+        "title": "Current situation"
+      },
+      "count": "n = {n}",
+      "basedOn": "Based on {cohort} evaluated stories.",
+      "empty": "No status answers for the current filters yet.",
+      "error": "Could not load status data",
+      "headline": "{percent}% are critical of or opposed to transition for other people (n ≈ {n}).",
+      "note": "Probability-weighted shares. Stories that do not address the question are left out."
+    },
+    "family_community": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% answer yes to at least one of the questions below (n = {n})"
+      },
+      "statements": {
+        "title": "Questions asked",
+        "description": "Each story was checked against these exact questions. A story counts when the answer is a clear yes."
+      },
+      "count": "n = {n}",
+      "basedOn": "Based on {cohort} evaluated stories.",
+      "empty": "No answers for the current filters yet.",
+      "error": "Could not load data"
+    },
+    "sexuality": {
+      "beforeLabel": "Before transition",
+      "afterLabel": "After detransition",
+      "options": {
+        "homosexual": "Gay / lesbian",
+        "bisexual": "Bisexual",
+        "heterosexual": "Straight",
+        "asexual": "Asexual",
+        "other": "Other or changing"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 story} other {# stories}}",
+      "statements": {
+        "title": "Related statements"
+      },
+      "count": "n = {n}",
+      "basedOn": "Flow based on {cohort} stories with both orientation answers.",
+      "empty": "No orientation answers for the current filters yet.",
+      "error": "Could not load sexuality data",
+      "hero": {
+        "statement": "of detransitioners who state their current orientation are gay, lesbian or bisexual (n = {n}).",
+        "bySex": "M {men} gay or bisexual ({menSame} gay) | F {women} lesbian or bisexual ({womenSame} lesbian)"
+      },
+      "mix": {
+        "title": "Orientation before transition and after detransition",
+        "description": "Relative to birth sex, among stories that state it.",
+        "women": "Women",
+        "men": "Men",
+        "all": "All",
+        "before": "before",
+        "after": "after"
+      },
+      "matrix": {
+        "title": "Did orientation change?",
+        "description": "Each row is one orientation before transition; cells show what those people describe after detransitioning.",
+        "headline": "{percent}% describe the same orientation before transition and after detransition (n = {n}).",
+        "corner": "Before ↓ · After →",
+        "cell": "{from} before → {to} after: {percent}% ({count})",
+        "note": "Only stories that state orientation on both sides. Rows with fewer than 30 stories are left blank."
+      },
+      "coverage": "Orientation is stated before transition in {before} stories and after detransition in {after}, out of {cohort} evaluated stories."
+    },
+    "trends": {
+      "series": {
+        "contributed_online_influence": "Online influence",
+        "contributed_rapid_onset": "Rapid onset (ROGD)",
+        "regret_transition": "Regret",
+        "took_puberty_blockers": "Puberty blockers"
+      },
+      "tooltip": "{bucket} · n = {n}",
+      "mode": {
+        "strict": "Binary signal",
+        "soft": "Average probability",
+        "strictNote": "Share of stories the model is confident about (≥ 0.8).",
+        "softNote": "Average probability across all stories — keeps unclear stories inside the trend."
+      },
+      "seriesTooltip": "{strict} binary · {mean} avg",
+      "medianAge": "Median transition age by cohort",
+      "coverageNote": "Each point uses the cohort's answered stories; the earliest cohorts have the smallest samples.",
+      "basedOn": "Across {cohort} stories with a transition year.",
+      "empty": "No transition years for the current filters yet.",
+      "error": "Could not load trend data",
+      "linesTitle": "Features by transition year",
+      "linesDescription": "Share of stories where each statement is clearly true, grouped by the year transition started. Add or remove features to compare.",
+      "reasonsTitle": "Main reason for transitioning, by era",
+      "reasonsDescription": "How the most common main reasons shift between transition-year cohorts.",
+      "add": "Add a feature…",
+      "remove": "Remove {label}",
+      "strictNote": "Share of stories where the AI is confident the statement is true (≥ 0.8). Hollow points come from fewer than 30 stories. Recent cohorts have had less time since transitioning — less time to reach surgery or long-term effects, and usually shorter stories — so many features dip at the right-hand end; a feature that rises anyway, like anxiety, stands out."
+    },
+    "uncertainty": {
+      "binary": "Binary",
+      "bands": "Three-state",
+      "likelyFalse": "Likely false (< 0.2)",
+      "unclear": "Unclear (0.2–0.8)",
+      "unclearShort": "unclear",
+      "likelyTrue": "Likely true (≥ 0.8)",
+      "rowTooltip": "{false}% likely false · {unclear}% unclear · {true}% likely true"
+    },
+    "minors": {
+      "tiles": {
+        "minor": "started under 18 ({n} of {total} stories with an age)",
+        "le15": "started at 15 or younger",
+        "dysphoria": "first felt dysphoria at 12 or younger (n = {n})",
+        "female": "of under-18 starters are female"
+      },
+      "early": "In these stories, puberty blockers appear from age {min}, with a median of {median} (n = {n}). {hormones} started hormones by 16, and {detrans} had already detransitioned by 18.",
+      "empty": "No age data for the current filters yet.",
+      "error": "Could not load early-transition data",
+      "byEra": {
+        "title": "Started before 18, by transition year",
+        "description": "Share of stories where transition started before age 18, grouped by the year it started.",
+        "note": "Lines show the 95% interval. Later cohorts include more people who transitioned recently and young, so read the trend with care."
+      }
+    },
+    "journey": {
+      "milestones": {
+        "first_dysphoria": "First dysphoria",
+        "transition": "Transition",
+        "hormones": "Hormones",
+        "detransition": "Detransition",
+        "in_transition": "Years in transition"
+      },
+      "median": "median {age}",
+      "count": "n = {n}",
+      "tooltip": "Age {age}: {count, plural, =1 {1 story} other {# stories}}",
+      "yearsTooltip": "{years, plural, =1 {1 year} other {# years}} in transition: {count, plural, =1 {1 story} other {# stories}}",
+      "basedOn": "Each row counts only the stories that give that age. The axis is cut at the 99th percentile.",
+      "empty": "No timeline data for the current filters yet.",
+      "error": "Could not load journey data"
+    },
+    "gradient": {
+      "regret": "Regret",
+      "noRegret": "No regret",
+      "notStated": "Not stated",
+      "tiers": {
+        "no_transition": "Did not transition",
+        "social_only": "Social only",
+        "hormones": "Hormones or blockers",
+        "surgery": "Surgery",
+        "unclear": "Unclear"
+      },
+      "tierTooltip": "{n} stories: {regrets} regret, {noRegret} no regret, {notStated} not stated",
+      "count": "n = {n}",
+      "selectionNote": "People who detransition early never reach later steps, so this shows which paths lead where — not that medical steps cause regret.",
+      "basedOn": "Based on {cohort} evaluated stories.",
+      "empty": "No answers for the current filters yet.",
+      "error": "Could not load medical involvement data",
+      "statedNote": "The number on the right is regret among stories that say either way (regret or no regret).",
+      "headline": "{percent}% of people who had surgery say they regret transitioning, among those who say either way (n = {n}).",
+      "headlineCompare": "{percent}% of people who had surgery say they regret transitioning, compared with {hormones}% of those who stopped at hormones or blockers (n = {n} / {nHormones}). Counts only stories that say either way."
+    },
+    "after": {
+      "levels": {
+        "muchWorse": "Much worse",
+        "worse": "Somewhat worse",
+        "same": "About the same",
+        "better": "Somewhat better",
+        "muchBetter": "Much better"
+      },
+      "panels": {
+        "mh_change_after_detransition": "Mental health",
+        "outcome_quality_of_life": "Quality of life",
+        "outcome_family_relationship_change": "Family relationships"
+      },
+      "summary": "{better}% better · {worse}% worse",
+      "count": "n = {n}",
+      "basedOn": "Based on {cohort} evaluated stories.",
+      "empty": "No answers for the current filters yet.",
+      "error": "Could not load change data",
+      "worseSide": "Worse",
+      "betterSide": "Better",
+      "headline": "{better}% describe better mental health after detransitioning; {worse}% describe it as worse (n = {n})."
+    },
+    "stories": {
+      "excerptNote": "Anonymous AI summaries of public /r/detrans posts.",
+      "agesCaption": "Ages: first dysphoria → transition → {outcome}",
+      "ages": {
+        "firstDysphoria": "First dysphoria",
+        "transition": "Transition",
+        "detransition": "Detransition",
+        "desistance": "Desistance",
+        "socialTransition": "Social transition"
+      },
+      "female": "Female",
+      "male": "Male",
+      "basedOn": "From {cohort} matching stories.",
+      "empty": "No stories match the current filters yet.",
+      "error": "Could not load stories",
+      "loadMore": "Load more stories",
+      "loading": "Loading…",
+      "upvotesLabel": "Overall upvotes: {count}",
+      "dialog": {
+        "title": "Story",
+        "summary": "Summary",
+        "fullStory": "Full story",
+        "close": "Close story",
+        "error": "Could not load the full story",
+        "openPage": "Open story page"
+      },
+      "status": {
+        "detransitioned": "Detransitioned",
+        "desisted": "Desisted"
+      }
+    },
+    "highlights": {
+      "title": "What stands out",
+      "types": {
+        "prevalence": "Most common",
+        "pair": "Goes together",
+        "improvement": "Life after detransition",
+        "journey": "Typical journey",
+        "minorShare": "Started before 18",
+        "minorLe15": "Started at 15 or younger",
+        "minorDysphoria": "First dysphoria by 12",
+        "minorFemale": "Who starts young",
+        "orientation": "Sexual orientation"
+      },
+      "prevalence": "{percent}% of stories mention {label} (n = {n}).",
+      "prevalenceUnclear": "Another {unclear}% are unclear.",
+      "pair": "Stories that mention {a} are {lift}× more likely to also mention {b} (n = {n}).",
+      "improvement": "{better}% say their quality of life improved after detransitioning; {worse}% say it got worse (n = {n}).",
+      "journey": "The typical journey: first dysphoria at {dysphoria} → transition at {transition} → detransition at {detransition} (n = {n}).",
+      "minorShare": "{percent}% of stories with an age started transitioning under 18 (n = {n} of {total}).",
+      "minorLe15": "{percent}% started at 15 or younger (n = {n}).",
+      "minorDysphoria": "{percent}% first felt dysphoria at 12 or younger (n = {n}).",
+      "minorFemale": "{percent}% of under-18 starters are female (n = {n}).",
+      "explore": "Explore",
+      "orientation": "{percent}% of detransitioners who state their orientation are gay, lesbian or bisexual ({sameSex}% gay or lesbian; n = {n})."
+    },
+    "pathways": {
+      "journey": "Cause → Process → Outcome",
+      "medical": "Medical pathway",
+      "stages": {
+        "cause": "Primary reason",
+        "process": "Turning point",
+        "outcome": "Regret today"
+      },
+      "causes": {
+        "social_role_discomfort": "Social role discomfort",
+        "internalised_homophobia": "Internalised homophobia",
+        "internalised_misogyny_misandry": "Internalised misogyny / misandry",
+        "trauma": "Trauma",
+        "mental_health_issues": "Mental health",
+        "neurodivergence": "Neurodivergence",
+        "body_dysmorphia": "Body dysmorphia",
+        "online_influence": "Online influence",
+        "peer_influence": "Peer influence",
+        "sexual_factors": "Sexual factors",
+        "parental_or_medical_pressure": "Parental or medical pressure",
+        "other_unclear": "Other / unclear",
+        "unclear": "Unclear"
+      },
+      "processes": {
+        "process_benefited_from_therapy": "Exploratory therapy",
+        "process_detrans_community_exposure": "Detrans community",
+        "process_research_consumption": "Research & media",
+        "process_self_reflection": "Self-reflection",
+        "process_time_off_hormones": "Time off hormones",
+        "process_medical_scare": "Medical scare",
+        "process_family_partner_intervention": "Family or partner",
+        "process_spiritual_experience": "Spiritual experience",
+        "other": "Other / unclear"
+      },
+      "outcomes": {
+        "regrets": "Regrets",
+        "no_regret": "No regret",
+        "not_stated": "Not stated"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 story} other {# stories}}",
+      "basedOn": "Based on {cohort} evaluated stories with answers in this view.",
+      "empty": "Not enough stories with answers for this view yet.",
+      "error": "Could not load pathway data",
+      "journeyDescription": "How primary reasons, turning points and regret connect across the stories.",
+      "medicalDescription": "Which medical steps people took before detransitioning.",
+      "regretByReason": {
+        "title": "Regret by main reason for transitioning",
+        "description": "Among stories that say whether they regret transitioning, the share who do — grouped by the main reason they gave for transitioning.",
+        "headline": "Overall, {percent}% of stories that address regret express it (n = {n}).",
+        "note": "Dots show the share expressing regret among stories that clearly say either way; lines show the 95% interval. Faded rows have fewer than 30 stories.",
+        "error": "Could not load regret by reason",
+        "empty": "No answers for the current filters yet."
+      }
+    },
+    "methodology": {
+      "p1": "detrans.ai builds this dataset from public /r/detrans stories. An AI rewrites each user's scattered comments and posts into one first-person narrative, and extracts a timeline of key ages from it. Only users who shared enough to assemble a full story are included.",
+      "p1b": "These statistics cover only stories where the person clearly confirmed that they had detransitioned or desisted. From the raw corpus to the charts:",
+      "table": {
+        "comments": "Comments collected from /r/detrans",
+        "posts": "Posts collected from /r/detrans",
+        "authors": "Distinct authors in the corpus",
+        "selected": "Authors with at least 5 comments scoring 3+ upvotes",
+        "removed": "Removed: detransition or desistance not clearly confirmed",
+        "remaining": "Stories kept after that",
+        "cohort": "Covered in the charts below (flagged accounts excluded)"
+      },
+      "p2": "Every story is then evaluated by Jev, a probabilistic question-answering model, against roughly one hundred statements about causes, experiences and outcomes. Yes/no questions return a probability from 0 to 1, choice questions return a probability for every option, and scale questions return an expected value along the scale shown under each chart.",
+      "p3": "For yes/no features we mark a story as “true” when the probability reaches the threshold (0.8 by default). The histogram in each feature shows the full probability distribution, so a feature with many mid-range answers reads as genuinely uncertain rather than cleanly true or false.",
+      "p4": "All charts respect the filters above. Because the question set changed over time and stories are revisited in processing runs, each chart reports how many of the filtered stories actually have an answer for that question.",
+      "p5": "Accounts that look inauthentic, fabricated or bot-like are flagged by the model and excluded from these statistics. AI-extracted data can still contain mistakes — system prompts are published on the <prompts>prompts page</prompts>, and summaries are compared against the original comments.",
+      "threshold": {
+        "title": "How much the cut-off matters",
+        "description": "Charts count a statement as true when the AI's probability is at least 0.8. Lower cut-offs would show higher numbers; this chart shows by how much.",
+        "error": "Could not load threshold data",
+        "tooltip": "Cut-off {threshold}",
+        "xAxis": "Probability cut-off",
+        "siteThreshold": "Used on this page",
+        "note": "Share of stories at or above each cut-off. The 0.8 cut-off is deliberately conservative."
+      },
+      "accountType": {
+        "title": "Who is writing",
+        "description": "Whether each account describes the writer's own experience.",
+        "options": {
+          "personal_experience": "Own experience",
+          "parent": "A parent",
+          "friend": "A friend or partner",
+          "researcher_journalist": "Researcher, journalist or clinician",
+          "other": "Other or mixed"
+        }
+      },
+      "detail": {
+        "title": "How detailed the stories are",
+        "description": "The AI's rating of how specific each first-person account is. Use “Detailed stories only” in the filters to limit every chart to the top two levels.",
+        "levels": {
+          "level0": "Vague or generic",
+          "level1": "Some personal detail",
+          "level2": "Detailed, concrete events",
+          "level3": "Highly detailed, multi-year account"
+        }
+      }
+    },
+    "prevalence": {
+      "women": "Women",
+      "men": "Men",
+      "interval": "{group} {percent} (95% interval {low}–{high}, n = {n})",
+      "smallSample": "n = {n}",
+      "openStories": "Show stories",
+      "showAll": "Show all {count}",
+      "showFewer": "Show fewer",
+      "note": "Dots show the share of stories where the statement is clearly true (AI probability ≥ 0.8); lines show the 95% interval. Faded rows have fewer than 30 answers.",
+      "noteWithStories": "Dots show the share of stories where the statement is clearly true (AI probability ≥ 0.8); lines show the 95% interval. Faded rows have fewer than 30 answers. Select a row to read matching stories.",
+      "gap": "Biggest difference: {label} — {higher} of {higherGroup} vs {lower} of {lowerGroup}.",
+      "womenLower": "women",
+      "menLower": "men",
+      "m": "M",
+      "f": "F",
+      "menLegend": "M · men",
+      "womenLegend": "F · women"
+    },
+    "storyPeek": {
+      "title": "Stories: {label}",
+      "meta": "{count, plural, =1 {1 matching story} other {# matching stories}}",
+      "error": "Could not load stories.",
+      "empty": "No matching stories for the current filters.",
+      "readFull": "Read the full story",
+      "note": "Anonymous excerpts, highest-rated first. The full list is in the Stories section at the end of the page."
+    },
+    "reasons": {
+      "transitionTitle": "Main reason for transitioning",
+      "transitionDescription": "The single most significant reason each person gives for starting transition.",
+      "detransitionTitle": "Main reason for detransitioning",
+      "detransitionDescription": "The single most significant reason each person gives for stopping."
+    },
+    "byYear": {
+      "error": "Could not load data by year",
+      "empty": "No transition years for the current filters yet.",
+      "other": "Other",
+      "n": "n = {n}",
+      "note": "Probability-weighted shares per transition-year cohort. Faded rows have fewer than 30 stories."
+    },
+    "overview": {
+      "error": "Could not load the overview",
+      "basedOn": "Based on {cohort} evaluated stories."
+    },
+    "drivers": {
+      "statements": {
+        "title": "Described as contributing to transition"
+      },
+      "count": "n = {n}",
+      "basedOn": "Based on {cohort} evaluated stories.",
+      "empty": "No answers for the current filters yet.",
+      "error": "Could not load this data"
+    },
+    "adversity": {
+      "composition": {
+        "any": "{positive}% describe at least one form of trauma or adversity (n = {n})"
+      },
+      "statements": {
+        "title": "Types of adversity described"
+      },
+      "contrast": {
+        "title": "Trauma history vs. trauma as the main reason",
+        "description": "Many more stories mention trauma than name it as the main driver of transitioning or detransitioning.",
+        "history": "Describe a trauma history",
+        "transitionReason": "Name trauma as the main reason for transitioning",
+        "detransitionReason": "Name realising trauma as the main reason for detransitioning",
+        "note": "Dots show the share of stories; lines show the 95% interval. The reason rows count each story's single main reason."
+      },
+      "count": "n = {n}",
+      "basedOn": "Based on {cohort} evaluated stories.",
+      "empty": "No adversity answers for the current filters yet.",
+      "error": "Could not load adversity data"
+    },
+    "online": {
+      "choice": {
+        "title": "Most influential platform",
+        "description": "Among stories that name an online influence. Stories with no significant online influence are left out.",
+        "options": {
+          "reddit": "Reddit",
+          "tumblr": "Tumblr",
+          "tiktok": "TikTok",
+          "twitter": "Twitter / X",
+          "youtube": "YouTube",
+          "discord": "Discord",
+          "other": "Other platform or fandom space"
+        }
+      },
+      "statements": {
+        "title": "Online and peer influence"
+      },
+      "byYear": {
+        "title": "Platform by transition year",
+        "description": "How the most influential platform shifted between transition-year cohorts."
+      },
+      "count": "n = {n}",
+      "basedOn": "Based on {cohort} evaluated stories.",
+      "empty": "No online-influence answers for the current filters yet.",
+      "error": "Could not load online-influence data"
+    },
+    "process": {
+      "composition": {
+        "any": "{positive}% describe at least one of these turning points (n = {n})"
+      },
+      "statements": {
+        "title": "What moved people towards detransition"
+      },
+      "count": "n = {n}",
+      "basedOn": "Based on {cohort} evaluated stories.",
+      "empty": "No turning-point answers for the current filters yet.",
+      "error": "Could not load turning-point data"
+    },
+    "lives": {
+      "error": "Could not load timelines",
+      "empty": "No stories with both a transition and a detransition age for the current filters yet.",
+      "legend": {
+        "transition": "In transition",
+        "blockers": "Puberty blockers",
+        "hormones": "Hormones",
+        "surgery": "Surgery"
+      },
+      "ariaLabel": "Strip chart of {n} individual timelines from transition to detransition",
+      "tooltip": {
+        "woman": "Woman",
+        "man": "Man",
+        "person": "Person",
+        "firstDysphoria": "First dysphoria at {age}",
+        "transition": "Transitioned at {age}",
+        "pubertyBlockers": "Puberty blockers at {age}",
+        "hormones": "Hormones at {age}",
+        "topSurgery": "Top surgery at {age}",
+        "bottomSurgery": "Bottom surgery at {age}",
+        "detransition": "Detransitioned at {age}"
+      },
+      "note": "{n} people whose story gives both ages, sorted by age at transition. Ages are the AI's reading of each story and may be approximate."
+    },
+    "duration": {
+      "error": "Could not load durations",
+      "empty": "No transition durations for the current filters yet.",
+      "all": "All",
+      "women": "Women",
+      "men": "Men",
+      "legend": "{label}: median {median} years (n = {n})",
+      "tooltipTitle": "Within {years, plural, =1 {1 year} other {# years}}",
+      "xAxis": "Years since starting transition",
+      "note": "Share of people who had stopped within a given number of years. Everyone here eventually detransitioned, so this shows how long transition lasted for them — not how many people who transition go on to stop.",
+      "headline": "{one}% had stopped within a year and {five}% within five years of starting (median {median} years, n = {n})."
+    },
+    "optionLabels": {
+      "reddit": "Reddit",
+      "tumblr": "Tumblr",
+      "tiktok": "TikTok",
+      "twitter": "Twitter / X",
+      "youtube": "YouTube",
+      "discord": "Discord",
+      "social_role_discomfort": "Social role discomfort",
+      "internalised_homophobia": "Internalised homophobia",
+      "internalised_misogyny_misandry": "Internalised misogyny / misandry",
+      "trauma": "Trauma",
+      "mental_health_issues": "Mental health",
+      "neurodivergence": "Neurodivergence",
+      "body_dysmorphia": "Body dysmorphia",
+      "online_influence": "Online influence",
+      "peer_influence": "Peer influence",
+      "sexual_factors": "Sexual factors (AGP / AAP)",
+      "parental_or_medical_pressure": "Parental or medical pressure",
+      "other_unclear": "Other / unclear",
+      "accepted_sexed_body": "Accepted their sexed body",
+      "social_construct_realisation": "Saw gender roles as the problem",
+      "trauma_realisation": "Realised trauma was driving it",
+      "mental_health_realisation": "Realised mental health was driving it",
+      "neurodivergence_realisation": "Realised neurodivergence was driving it",
+      "fantasy_reality_disillusionment": "Reality didn't match the expectation",
+      "surgery_regret_medical_complications": "Surgery regret or medical complications",
+      "ideological_disillusionment": "Disillusioned with the ideology or community",
+      "social_pressure_ostracism": "Social pressure or ostracism",
+      "failure_to_pass": "Could not pass",
+      "internalised_homophobia_realisation": "Realised internalised homophobia",
+      "internalised_misogyny_misandry_realisation": "Realised internalised misogyny / misandry",
+      "sexual_factors_realisation": "Realised sexual factors (AGP / AAP)",
+      "religious_or_spiritual_change": "Religious or spiritual change",
+      "fertility_or_family_desires": "Fertility or family wishes"
+    },
+    "choiceSplit": {
+      "error": "Could not load this chart",
+      "empty": "No answers for the current filters yet.",
+      "women": "F · women (n = {n})",
+      "men": "M · men (n = {n})",
+      "headline": "Women more often name “{womenOption}” ({womenShare} vs {womenMen} of men); men more often name “{menOption}” ({menShare} vs {menWomen} of women).",
+      "note": "Probability-weighted: a story the AI splits 60/40 between two reasons counts 0.6 and 0.4.",
+      "m": "M",
+      "f": "F"
+    },
+    "ordinal": {
+      "error": "Could not load this chart",
+      "empty": "No answers for the current filters yet.",
+      "all": "Everyone",
+      "women": "Women",
+      "men": "Men"
+    },
+    "medical_steps": {
+      "statements": {
+        "title": "Medical steps taken"
+      },
+      "count": "n = {n}",
+      "basedOn": "Based on {cohort} evaluated stories.",
+      "empty": "No answers for the current filters yet.",
+      "error": "Could not load medical steps"
     }
   },
   "topicsPage": {
     "title": "Topics",
     "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
     "empty": "No topics have been published yet."
+  },
+  "storiesPage": {
+    "metadata": {
+      "title": "Detransition Stories | detrans.ai",
+      "description": "Read thousands of anonymised detransition and desistance stories from the /r/detrans community, summarised by AI. Filter by age, sex and experience."
+    },
+    "title": "Detransition Stories",
+    "description": "{count, number} anonymised stories from people who transitioned and later detransitioned or desisted, pieced together by AI from their posts and comments on /r/detrans.",
+    "statsLink": "Explore the statistics",
+    "allStories": "All stories",
+    "story": {
+      "metaTitle": "{title} – Detransition Story | detrans.ai",
+      "untitled": "A detransition story",
+      "notFound": "Story not found | detrans.ai",
+      "tags": "Tags",
+      "moreStories": "Read more stories"
+    }
   }
 }

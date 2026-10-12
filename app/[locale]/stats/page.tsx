@@ -2,8 +2,7 @@
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { localesInfo } from "@/i18n/locales";
-import StoriesCharts from "../../components/charts/StoriesCharts";
-import UsersFilters from "../../components/UsersFilters";
+import StatsExperience from "../../components/charts/StatsExperience";
 
 export async function generateMetadata({
   params,
@@ -57,20 +56,18 @@ export default async function StatsPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ minAge?: string; maxAge?: string; sex?: string; tag?: string }>;
+  searchParams: Promise<{
+    minAge?: string;
+    maxAge?: string;
+    sex?: string;
+    tag?: string;
+  }>;
 }) {
-  const t = await getTranslations("statsPage");
-  const resolvedSearchParams = await searchParams;
+  await searchParams;
 
   return (
-    <div className="prose dark:prose-invert pb-16 lg:max-w-none lg:pt-8">
-      <h1 className="text-3xl font-bold">{t("title")}</h1>
-      <p className="text-muted-foreground max-w-3xl">{t("description")}</p>
-
-      <div className="not-prose mt-8">
-        <StoriesCharts resolvedSearchParams={resolvedSearchParams} />
-        <UsersFilters />
-      </div>
+    <div className="pb-16 lg:pt-8">
+      <StatsExperience />
     </div>
   );
 }

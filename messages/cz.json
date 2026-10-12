@@ -144,7 +144,9 @@
       "stats": "Statistiky",
       "statsDesc": "Anonymizované statistiky detranzice z /r/detrans",
       "topics": "Topics",
-      "topicsDesc": "Podrobní průvodci klíčovými tématy"
+      "topicsDesc": "Podrobní průvodci klíčovými tématy",
+      "stories": "Příběhy",
+      "storiesDesc": "Od uživatelů /r/detrans"
     },
     "resources": {
       "genderSupport": "Najít Terapeuty",
@@ -241,17 +243,18 @@
   },
   "chat": {
     "lookingForComments": "Hledání relevantních komentářů...",
+    "lookingForStudies": "Looking for relevant studies...",
     "errorOccurred": "Došlo k chybě, zkuste to znovu... Kontaktujte mě, pokud se to bude opakovat.",
     "analysingExperiences": "Analýza zkušeností",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analyzování webových výsledků",
+    "analysingResults": "Analyzování výsledků...",
     "detransPerspective": "-> Jaké jsou detranzicionistické perspektivy na toto téma?",
     "transPerspectivesIncluded": "Trans perspektivy zahrnuty",
     "captchaRequired": "Pro pokračování v chatu je vyžadována captcha.",
     "chatArchived": "Tento chat je archivován. Začněte nový.",
     "rateLimitExceeded": "Příliš mnoho požadavků, zpomalte a zkuste to znovu později.",
     "ipMismatchError": "Vaše IP adresa se změnila. Pro zabránění zneužití musíte zahájit novou konverzaci.",
-    "analysingResults": "Analyzování výsledků...",
     "followUpQuestions": "Následné otázky:",
     "eventLabels": {
       "askDetransitioners": "Zeptej se detranzicionistů",
@@ -346,7 +349,21 @@
       "delete": "Smazat konverzaci",
       "banning": "Banování...",
       "ban": "Zabanovat uživatele (IP)"
+    },
+    "dialog": {
+      "title": "Konverzace",
+      "toggleIdHint": "Kliknutím přepnete mezi datem/zemí a ID",
+      "shareText": "Podívejte se na tuto konverzaci",
+      "share": "Sdílet konverzaci",
+      "copyLink": "Kopírovat odkaz na konverzaci",
+      "noneSelected": "Není vybrána žádná konverzace"
     }
+  },
+  "readingDialog": {
+    "share": "Sdílet",
+    "copyLink": "Kopírovat odkaz",
+    "copied": "Odkaz zkopírován do schránky",
+    "close": "Zavřít dialog"
   },
   "stories": {
     "metadata": {
@@ -386,9 +403,9 @@
       "ageRangeYears": "{min} - {max} let",
       "sex": {
         "all": "Muži a ženy",
-        "mine": "Mine",
         "female": "Ženy",
-        "male": "Muži"
+        "male": "Muži",
+        "mine": "Mine"
       },
       "tagsPlaceholder": "Vyberte štítky pro filtrování...",
       "clearFilters": "Vymazat filtry"
@@ -583,12 +600,15 @@
   },
   "videoList": {
     "loading": "Načítání videí...",
+    "searchPlaceholder": "Search videos...",
+    "result": "video",
+    "results": "videos",
     "filters": {
       "all": "Všechny příběhy",
-      "mine": "Mine",
       "female": "Ženy",
       "male": "Muži",
-      "detransitioners": "Detranzicionisté"
+      "detransitioners": "Detranzicionisté",
+      "mine": "Mine"
     },
     "thumbnailAlt": "Náhled pro {title}",
     "by": "od",
@@ -802,7 +822,9 @@
       "legend": {
         "transition": "Věk při tranzici",
         "detransition": "Věk při detranzici"
-      }
+      },
+      "median": "medián {age}",
+      "coverage": "Na základě {transition} věků při tranzici a {detransition} věků při detranzici."
     },
     "transitionDuration": {
       "title": "Trvání tranzice: Věk při tranzici vs věk při detranzici",
@@ -826,7 +848,8 @@
       "female": "Žena",
       "yearsAvg": "let průměrně",
       "user": "uživatel",
-      "users": "uživatelů"
+      "users": "uživatelů",
+      "coverage": "Na základě {count} příběhů s uvedenými oběma věky."
     },
     "pathways": {
       "title": "Tok cest detranzice",
@@ -946,7 +969,9 @@
     "error": {
       "title": "CAPTCHA chyba",
       "description": "Nepodařilo se načíst CAPTCHA. Prosím obnovte stránku a zkuste to znovu."
-    }
+    },
+    "verifyFailed": "Verification failed. Please try again.",
+    "rateLimited": "Too many verifications. Please wait a moment and try again."
   },
   "feedback": {
     "title": "Zpětná vazba",
@@ -964,11 +989,990 @@
     "metadata": {
       "title": "Anonymizovaná statistika | detrans.ai",
       "description": "Anonymizovaná statistika vzorců detranzice a tranzice, včetně rozložení věku, délky, důvodů a cest."
+    },
+    "toc": {
+      "title": "Na této stránce"
+    },
+    "filters": {
+      "title": "Filtry",
+      "edit": "Upravit filtry",
+      "hide": "Skrýt filtry",
+      "summary": {
+        "none": "Bez filtrů",
+        "age": "Věk {min}–{max}",
+        "tags": "{count, plural, =0 {žádné štítky} =1 {1 štítek} few {# štítky} many {# štítku} other {# štítků}}",
+        "detailed": "Jen podrobné"
+      },
+      "detailed": "Jen podrobné příběhy",
+      "detailedHint": "Zahrnout jen příběhy, které AI ohodnotila jako přiměřeně nebo velmi podrobné."
+    },
+    "sections": {
+      "age": {
+        "title": "Věk",
+        "description": "Kdy detranzicionisté podstoupili tranzici a detranzici."
+      },
+      "journey": {
+        "title": "Věk",
+        "description": "Kdy lidé poprvé pocítili dysforii, zahájili tranzici, začali s hormony a detranzicovali."
+      },
+      "duration": {
+        "title": "Trvání",
+        "description": "Jak dlouho lidé zůstali v tranzici, než ji ukončili."
+      },
+      "minors": {
+        "title": "Tranzice před 18. rokem",
+        "description": "Co příběhy ukazují o zahájení tranzice v dětství nebo dospívání."
+      },
+      "reasons": {
+        "title": "Důvody",
+        "description": "Proč detranzicionisté podle svých slov podstoupili tranzici — a proč detranzici."
+      },
+      "pathways": {
+        "title": "Cesty",
+        "description": "Zda se lítost liší podle důvodu tranzice a podle podstoupených lékařských kroků."
+      },
+      "regret": {
+        "title": "Lítost",
+        "description": "Jak intenzivní lítost je, jak se mění v čase a čeho lidé litují."
+      },
+      "medical": {
+        "title": "Lékařské zásahy",
+        "description": "Jak lítost souvisí s tím, jak daleko tranzice zašla."
+      },
+      "complications": {
+        "title": "Komplikace",
+        "description": "Zdravotní komplikace a přetrvávající zdravotní potíže po tranzici."
+      },
+      "mental_health": {
+        "title": "Duševní zdraví",
+        "description": "Obraz duševního zdraví napříč příběhy, před detranzicí a po ní."
+      },
+      "suicidality": {
+        "title": "Sebevražednost",
+        "description": "Jak často příběhy popisují sebevražedné myšlenky nebo sebepoškozování, a kdy."
+      },
+      "after": {
+        "title": "Po detranzici",
+        "description": "Jak se změnilo duševní zdraví, kvalita života a vztahy v rodině."
+      },
+      "current_status": {
+        "title": "Where are they now",
+        "description": "Current identities and situations after detransitioning."
+      },
+      "family_community": {
+        "title": "Sociální cena detranzice",
+        "description": "Izolace a vyloučení způsobené detranzicí a deziluze z trans komunity. Otázky, které nerozlišovaly tranzici od detranzice (podpora rodiny, vztahy, kariéra), jsou vynechány; vztahy v rodině od detranzice jsou zahrnuty v části „Po detranzici“."
+      },
+      "sexuality": {
+        "title": "Sexualita",
+        "description": "Sexuální orientace vzhledem k biologickému pohlaví, před tranzicí a po detranzici."
+      },
+      "trends": {
+        "title": "V průběhu let",
+        "description": "Jak se příběhy — a jejich důvody — měnily napříč kohortami podle roku tranzice."
+      },
+      "features": {
+        "title": "Znaky",
+        "description": "Every statement the AI evaluated across the stories — causes, processes and outcomes."
+      },
+      "compare": {
+        "title": "Porovnání",
+        "description": "Jak se výskyt znaků liší mezi dvěma polovinami kohorty."
+      },
+      "matrix": {
+        "title": "Souvislosti",
+        "description": "Odpovědi na otázky, o kterých se vedou spory — včetně případů, kde se očekávaný rozdíl neprojeví."
+      },
+      "stories": {
+        "title": "Příběhy",
+        "description": "Anonymní úryvky od lidí, kteří stojí za těmito čísly.",
+        "browse": "Procházet všechny příběhy"
+      },
+      "methodology": {
+        "title": "Metodika",
+        "description": "Jak je datová sada sestavena a jak tyto grafy číst."
+      },
+      "overview": {
+        "title": "Přehled",
+        "description": "Každé tvrzení typu ano/ne, které AI vyhodnotila, seřazené podle počtu příběhů, pro které jednoznačně platí."
+      },
+      "lives": {
+        "title": "Jednotlivé časové osy",
+        "description": "Každá čára představuje jednoho člověka, od věku zahájení tranzice po věk jejího ukončení."
+      },
+      "drivers": {
+        "title": "Méně diskutované faktory",
+        "description": "Vnímání těla, nestabilita identity a sexuální faktory popisované jako příspěvek k tranzici."
+      },
+      "adversity": {
+        "title": "Trauma a nepřízeň osudu",
+        "description": "Jak často příběhy popisují trauma a jak často je trauma uváděno jako hlavní důvod."
+      },
+      "online": {
+        "title": "Vliv internetu a vrstevníků",
+        "description": "Které platformy byly nejdůležitější a jak se vliv internetu a vrstevníků projevuje v příbězích."
+      },
+      "process": {
+        "title": "Zlomové okamžiky",
+        "description": "Co lidem pomohlo posunout se od tranzice k detranzici."
+      }
+    },
+    "features": {
+      "search": "Hledat znaky…",
+      "sort": {
+        "prevalence": "Výskyt",
+        "alpha": "A–Z"
+      },
+      "tiers": {
+        "cause": "Příčina",
+        "process": "Proces",
+        "outcome": "Výsledek"
+      },
+      "kinds": {
+        "noul": "Ano / ne",
+        "choice": "Výběr",
+        "score": "Škála"
+      },
+      "groups": {
+        "reasons": "Důvody",
+        "causes": "Příčiny",
+        "processes": "Procesy",
+        "regret": "Lítost",
+        "medical": "Lékařské",
+        "mental_health": "Duševní zdraví",
+        "adversity": "Nepřízeň osudu",
+        "social": "Sociální",
+        "sexuality": "Sexualita",
+        "online": "Online",
+        "identity": "Identita",
+        "outcomes": "Výsledky",
+        "attitudes": "Postoje",
+        "quality": "Kvalita"
+      },
+      "basedOn": "Napříč {cohort} vyhodnocenými příběhy.",
+      "coverageNote": "{n} z {cohort} vyhodnocených příběhů ({percent} %) obsahuje odpověď.",
+      "question": "Jak se to měřilo?",
+      "confidence": "Medián jistoty AI pro tento znak: {value} %.",
+      "filterByTag": "Jen příběhy se štítkem „{tag}“",
+      "placeholder": "Vyberte znak ze seznamu a prozkoumejte ho.",
+      "backToList": "Všechny znaky",
+      "noResults": "Vašemu hledání neodpovídají žádné znaky.",
+      "noData": "Pro aktuální filtry nejsou žádné odpovědi.",
+      "loading": "Načítání…",
+      "error": "Nepodařilo se načíst data znaku",
+      "noul": {
+        "prevalenceLabel": "vyhodnocených příběhů je nad prahem",
+        "range": "pravděpodobnost {from} – {to}",
+        "count": "{count} příběhů ({percent} %)",
+        "thresholdShort": "práh {threshold}",
+        "legend": {
+          "yes": "Pravděpodobně pravda",
+          "maybe": "Nejisté",
+          "no": "Pravděpodobně nepravda"
+        },
+        "above": "Pravděpodobně pravda",
+        "uncertain": "Nejisté",
+        "below": "Pravděpodobně nepravda"
+      },
+      "choice": {
+        "soft": "Pravděpodobnostní váha",
+        "hard": "Vítězná možnost",
+        "softTooltip": "≈{percent} % (≈{count} příběhů pravděpodobnostní váhy)",
+        "hardTooltip": "{percent} % ({count} příběhů)",
+        "softNote": "Sloupce ukazují součet pravděpodobností AI, které každá možnost získá napříč příběhy, takže smíšené odpovědi se počítají poměrně.",
+        "hardNote": "Sloupce počítají jen jedinou nejpravděpodobnější možnost každého příběhu."
+      },
+      "score": {
+        "meanLabel": "Průměr {value} na škále 0–{max}",
+        "range": "Skóre {from} – {to}",
+        "count": "{count} příběhů",
+        "meanShort": "průměr {value}"
+      },
+      "related": {
+        "title": "Často se vyskytují společně",
+        "lift": "{lift}× častější ({percent} %)"
+      },
+      "listNote": "Tečky ukazují podíl příběhů, kde každé tvrzení jednoznačně platí (pravděpodobnost AI ≥ 0,8); čáry ukazují 95% interval. Vybledlé řádky mají méně než 30 odpovědí. Vyberte řádek a přečtěte si odpovídající příběhy. Na základě {cohort} vyhodnocených příběhů."
+    },
+    "compare": {
+      "splitLabel": "Rozdělit podle",
+      "thresholdNote": "Zobrazeny příběhy nad prahem AI {threshold} oproti příběhům pod ním.",
+      "filter": {
+        "all": "Všechny odpovědi",
+        "clear": "Jen jasné signály"
+      },
+      "clearNote": "{excluded} nejasných příběhů vyřazeno z obou stran.",
+      "cohortTrue": "{label}: přítomno (n = {n})",
+      "cohortFalse": "Nepřítomno (n = {n})",
+      "splitSex": "Biologické pohlaví",
+      "sexNote": "Porovnání příběhů žen a mužů.",
+      "cohortWomen": "Ženy (n = {n})",
+      "cohortMen": "Muži (n = {n})",
+      "splitAge": "Věk při tranzici",
+      "ageNote": "Porovnání příběhů, kde tranzice začala před 18. rokem, s příběhy, kde začala v 18 letech nebo později.",
+      "cohortUnder18": "Pod 18 let (n = {n})",
+      "cohortAdult": "18 let a více (n = {n})",
+      "rowTooltip": "{label}: {pctTrue} % z {nTrue} vs. {pctFalse} % z {nFalse}",
+      "empty": "Zatím není dost příběhů s odpověďmi na obou stranách tohoto rozdělení.",
+      "showSmallSamples": "Zobrazit malé vzorky",
+      "hideSmallSamples": "Skrýt malé vzorky",
+      "hiddenNote": "{count, plural, =1 {1 znak je skrytý} few {# znaky jsou skryté} many {# znaku je skryto} other {# znaků je skryto}}, protože na jedné straně mají méně než 3 příběhy.",
+      "error": "Nepodařilo se načíst data porovnání",
+      "ratio": "{ratio} tak častý",
+      "ratioNote": "Řádky jsou seřazeny podle toho, jak silně se obě skupiny liší (relativní riziko); znaky vzácné na obou stranách jsou vynechány. Čáry ukazují 95% intervaly; vybledlé řádky mají na jedné straně méně než 30 příběhů.",
+      "showAll": "Zobrazit všechny znaky"
+    },
+    "matrix": {
+      "presetLabel": "Zobrazení",
+      "presets": {
+        "outcomesByCause": "Výsledky podle příčiny",
+        "outcomesByProcess": "Výsledky podle zlomového okamžiku"
+      },
+      "metric": {
+        "rate": "Míra",
+        "lift": "Nárůst oproti průměru"
+      },
+      "swap": "Prohodit osy",
+      "legendRate": "Podíl odpovídajících příběhů, kde platí znak ze sloupce.",
+      "legendLift": "Ve srovnání s průměrem celé kohorty (modrá nad, červená pod).",
+      "sampleNote": "Každá buňka porovnává příběhy se znakem z řádku s příběhy bez něj. Delší, podrobnější příběhy zmiňují více znaků všeho druhu, takže většina poměrů je nad 1× — porovnávejte buňky mezi sebou, ne s 1×. Buňky s méně než 30 příběhy na kterékoli straně jsou prázdné.",
+      "basedOn": "{cohort} vyhodnocených příběhů v tomto zobrazení.",
+      "cellTooltip": "{row} → {col}: {percent} % z {n} příběhů · {lift}× průměr kohorty",
+      "cellTooltipNoLift": "{row} → {col}: {percent} % z {n} příběhů",
+      "cellMasked": "{row} → {col}: nedostatek příběhů",
+      "empty": "Zatím není dost příběhů s odpověďmi pro toto zobrazení.",
+      "error": "Nepodařilo se načíst data matice",
+      "presetDescriptions": {
+        "outcomesByCause": "O kolik častější (nebo méně častý) je každý výsledek v příbězích s danou příčinou než v příbězích bez ní.",
+        "outcomesByProcess": "O kolik častější (nebo méně častý) je každý výsledek v příbězích s daným zlomovým okamžikem než v příbězích bez něj."
+      },
+      "legendMore": "Častější se znakem z řádku",
+      "legendLess": "Méně častý",
+      "legendNone": "Žádný jasný rozdíl (95% interval zahrnuje 1×)",
+      "cellTooltipRatio": "{row} → {col}: {percent} % z {n} příběhů s ním oproti {percentWithout} % bez něj · {ratio} (95% interval {low}–{high})",
+      "legendWith": "S faktorem",
+      "legendWithout": "Bez něj",
+      "themes": {
+        "medical": "Lékařská cesta",
+        "helped": "Co pomohlo",
+        "who": "Kdo lituje, kdo se vrací",
+        "views": "Názory na tranzici u jiných"
+      },
+      "predictors": {
+        "under18": "Zahájil(a) tranzici před 18. rokem",
+        "women": "Ženy (oproti mužům)",
+        "sameSex": "Přitahování stejným pohlavím před tranzicí",
+        "took_puberty_blockers": "Užíval(a) blokátory puberty",
+        "took_hormones": "Užíval(a) hormony",
+        "top_surgery": "Podstoupil(a) operaci hrudníku",
+        "process_benefited_from_therapy": "Pomohla explorativní terapie",
+        "gender_nonconformity_childhood": "Genderově nekonformní v dětství",
+        "process_spiritual_experience": "Duchovní zážitek",
+        "autogynephilia": "Autogynefilie",
+        "adv_trauma_history": "Trauma v minulosti",
+        "contributed_online_influence": "Vliv internetu"
+      },
+      "outcomes": {
+        "regret": "lituje tranzice",
+        "bodyReconciliation": "přijal(a) své tělo",
+        "retransitioned": "retranzicoval(a)",
+        "mentalHealthBetter": "lepší duševní zdraví po detranzici",
+        "critical": "kritický/á k tranzici u jiných nebo proti ní"
+      },
+      "ratio": "{ratio} tak častý",
+      "noDifference": "Žádný jasný rozdíl",
+      "rowTooltip": "{with} z {nWith} příběhů s ním oproti {without} z {nWithout} bez něj",
+      "note": "Čáry ukazují 95% intervaly. „Žádný jasný rozdíl“ znamená, že interval zahrnuje i nulový rozdíl. Jde o souvislosti v tom, co lidé píší, ne o příčiny, a lidé, kteří píší delší a podrobnější příběhy, zmiňují více všeho. Na základě {cohort} vyhodnocených příběhů."
+    },
+    "regret": {
+      "composition": {
+        "pair": "{positive} % příběhů vyjadřuje lítost nad tranzicí a {negative} % uvádí, že jí nelitují; zbytek se nevyjadřuje. Mezi těmi, kdo se vyjadřují, jí lituje {statedShare} % (n = {stated}).",
+        "any": "{positive} % vyjadřuje lítost (n = {n})"
+      },
+      "scale": {
+        "title": "Jak intenzivní je lítost?",
+        "mean": "průměrná intenzita {value} / {max}",
+        "levels": {
+          "level0": "Lítost nevyjádřena",
+          "level1": "Mírná nebo přechodná",
+          "level2": "Střední, opakující se",
+          "level3": "Silná, trvalá"
+        }
+      },
+      "choice": {
+        "title": "Jak se lítost mění v čase?",
+        "options": {
+          "resolved": "Z velké části odezněla",
+          "improving": "Zlepšuje se",
+          "stable": "Stabilní",
+          "worsening": "Zhoršuje se",
+          "mixed": "Smíšená nebo cyklická"
+        }
+      },
+      "statements": {
+        "title": "Čeho konkrétně lidé litují"
+      },
+      "count": "n = {n}",
+      "basedOn": "Na základě {cohort} vyhodnocených příběhů.",
+      "empty": "Pro aktuální filtry zatím nejsou žádné odpovědi o lítosti.",
+      "error": "Nepodařilo se načíst data o lítosti"
+    },
+    "complications": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} % uvádí alespoň jednu zdravotní komplikaci nebo přetrvávající zdravotní potíž (n = {n})"
+      },
+      "scale": {
+        "title": "Jak závažné byly komplikace?",
+        "mean": "průměrná závažnost {value} / {max}",
+        "levels": {
+          "level0": "Žádné komplikace",
+          "level1": "Drobné nebo zvládnutelné vedlejší účinky",
+          "level2": "Významné komplikace",
+          "level3": "Závažná nebo trvalá újma"
+        }
+      },
+      "statements": {
+        "title": "Konkrétní zdravotní potíže"
+      },
+      "count": "n = {n}",
+      "basedOn": "Na základě {cohort} vyhodnocených příběhů.",
+      "empty": "Pro aktuální filtry zatím nejsou žádné lékařské odpovědi.",
+      "error": "Nepodařilo se načíst data o komplikacích"
+    },
+    "mental_health": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} % vykazuje alespoň jednu duševní poruchu nebo krizi (n = {n})"
+      },
+      "scale": {
+        "title": "Jak závažný je stav duševního zdraví?",
+        "mean": "průměrná závažnost {value} / {max}",
+        "levels": {
+          "level0": "Žádné výrazné potíže",
+          "level1": "Mírná nebo situační tíseň",
+          "level2": "Významné, léčené poruchy",
+          "level3": "Závažné poruchy nebo krize"
+        }
+      },
+      "statements": {
+        "title": "Poruchy a krize"
+      },
+      "count": "n = {n}",
+      "basedOn": "Na základě {cohort} vyhodnocených příběhů.",
+      "empty": "Pro aktuální filtry zatím nejsou žádné odpovědi o duševním zdraví.",
+      "error": "Nepodařilo se načíst data o duševním zdraví"
+    },
+    "suicidality": {
+      "during": "Během tranzice",
+      "since": "Od detranzice",
+      "duringDescription": "Jak pravděpodobně model usuzuje, že příběh popisuje sebevražedné myšlenky, sebepoškozování nebo pokus o sebevraždu v době, kdy daná osoba procházela tranzicí.",
+      "sinceDescription": "Jak pravděpodobně model usuzuje, že příběh popisuje sebevražedné myšlenky, sebepoškozování nebo pokus o sebevraždu od detranzice.",
+      "splitNote": "Rozděleno podle současného stavu · odmocninová osa",
+      "overall": "Všechny příběhy",
+      "sqrtNote": "Svislá osa používá odmocninovou škálu, aby menší pravděpodobnostní intervaly zůstaly viditelné vedle špičky u nuly.",
+      "tooltipBin": "Pravděpodobnost {range}",
+      "tooltipCount": "{count, plural, =1 {1 příběh} few {# příběhy} many {# příběhu} other {# příběhů}}",
+      "bands": {
+        "no": "Pravděpodobně nepravda (< 0,2)",
+        "mixed": "Nejisté (0,2–0,8)",
+        "yes": "Pravděpodobně pravda (≥ 0,8)"
+      },
+      "count": "n = {n}",
+      "basedOn": "Na základě {cohort} příběhů s odpovědí.",
+      "empty": "Pro aktuální filtry zatím nejsou žádné odpovědi o sebevražednosti.",
+      "error": "Nepodařilo se načíst data o sebevražednosti",
+      "statements": {
+        "title": "Sebevražedné myšlenky a sebepoškozování"
+      }
+    },
+    "current_status": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% (n = {n})"
+      },
+      "choice": {
+        "title": "Where are they now?",
+        "options": {
+          "detransitioned": "Detranzicoval(a)",
+          "desisted": "Desistence před lékařskou tranzicí",
+          "retransitioned": "Retranzicoval(a)",
+          "still_trans_questioning": "Stále trans, pochybuje",
+          "questioning": "Pochybuje",
+          "unclear": "Nejasné",
+          "supportive": "Podporuje tranzici u jiných",
+          "conditional": "Podporuje za určitých podmínek",
+          "critical": "Kritický/á k tranzici",
+          "opposed": "Proti",
+          "not_addressed": "Neuvedeno"
+        },
+        "description": "Mezi příběhy, které se tomu věnují, od podpory po nesouhlas."
+      },
+      "secondaryChoice": {
+        "title": "Jak nahlížejí na tranzici u jiných lidí?"
+      },
+      "statements": {
+        "title": "Současná situace"
+      },
+      "count": "n = {n}",
+      "basedOn": "Na základě {cohort} vyhodnocených příběhů.",
+      "empty": "Pro aktuální filtry zatím nejsou žádné odpovědi o stavu.",
+      "error": "Nepodařilo se načíst data o stavu",
+      "headline": "{percent} % je kritických k tranzici u jiných lidí nebo proti ní (n ≈ {n}).",
+      "note": "Podíly vážené pravděpodobností. Příběhy, které se otázce nevěnují, jsou vynechány."
+    },
+    "family_community": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} % odpovídá ano alespoň na jednu z níže uvedených otázek (n = {n})"
+      },
+      "statements": {
+        "title": "Položené otázky",
+        "description": "Každý příběh byl posouzen podle přesně těchto otázek. Příběh se započítá, když je odpověď jednoznačně ano."
+      },
+      "count": "n = {n}",
+      "basedOn": "Na základě {cohort} vyhodnocených příběhů.",
+      "empty": "Pro aktuální filtry zatím nejsou žádné odpovědi.",
+      "error": "Nepodařilo se načíst data"
+    },
+    "sexuality": {
+      "beforeLabel": "Před tranzicí",
+      "afterLabel": "Po detranzici",
+      "options": {
+        "homosexual": "Homosexual",
+        "bisexual": "Bisexuální",
+        "heterosexual": "Heterosexual",
+        "asexual": "Asexuální",
+        "other": "Jiná nebo měnící se"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 příběh} few {# příběhy} many {# příběhu} other {# příběhů}}",
+      "statements": {
+        "title": "Orientation and attraction"
+      },
+      "count": "n = {n}",
+      "basedOn": "Tok na základě {cohort} příběhů s oběma odpověďmi o orientaci.",
+      "empty": "Not enough orientation answers for the current filters yet.",
+      "error": "Nepodařilo se načíst data o sexualitě",
+      "hero": {
+        "statement": "detranzicionistů, kteří uvádějí svou současnou orientaci, jsou gayové, lesby nebo bisexuálové (n = {n}).",
+        "bySex": "M {men} gay nebo bisexuální ({menSame} gay) | Ž {women} lesba nebo bisexuální ({womenSame} lesba)"
+      },
+      "mix": {
+        "title": "Orientace před tranzicí a po detranzici",
+        "description": "Vzhledem k biologickému pohlaví, mezi příběhy, které ji uvádějí.",
+        "women": "Ženy",
+        "men": "Muži",
+        "all": "Všichni",
+        "before": "před",
+        "after": "po"
+      },
+      "matrix": {
+        "title": "Změnila se orientace?",
+        "description": "Každý řádek je jedna orientace před tranzicí; buňky ukazují, co tito lidé popisují po detranzici.",
+        "headline": "{percent} % popisuje stejnou orientaci před tranzicí i po detranzici (n = {n}).",
+        "corner": "Před ↓ · Po →",
+        "cell": "{from} před → {to} po: {percent} % ({count})",
+        "note": "Jen příběhy, které uvádějí orientaci na obou stranách. Řádky s méně než 30 příběhy jsou prázdné."
+      },
+      "coverage": "Orientace je uvedena před tranzicí v {before} příbězích a po detranzici v {after}, z {cohort} vyhodnocených příběhů."
+    },
+    "trends": {
+      "series": {
+        "contributed_online_influence": "Vliv internetu",
+        "contributed_rapid_onset": "Rychlý nástup (ROGD)",
+        "regret_transition": "Lítost",
+        "took_puberty_blockers": "Blokátory puberty"
+      },
+      "tooltip": "{bucket} · n = {n}",
+      "mode": {
+        "strict": "Binární signál",
+        "soft": "Průměrná pravděpodobnost",
+        "strictNote": "Podíl příběhů, u kterých si je model jistý (≥ 0,8).",
+        "softNote": "Průměrná pravděpodobnost napříč všemi příběhy — nejasné příběhy zůstávají součástí trendu."
+      },
+      "seriesTooltip": "{strict} binárně · {mean} prům.",
+      "medianAge": "Medián věku při tranzici podle kohorty",
+      "coverageNote": "Každý bod používá zodpovězené příběhy kohorty; nejstarší kohorty mají nejmenší vzorky.",
+      "basedOn": "Napříč {cohort} příběhy s rokem tranzice.",
+      "empty": "Pro aktuální filtry zatím nejsou žádné roky tranzice.",
+      "error": "Nepodařilo se načíst data trendů",
+      "linesTitle": "Znaky podle roku tranzice",
+      "linesDescription": "Podíl příběhů, kde každé tvrzení jednoznačně platí, seskupený podle roku zahájení tranzice. Přidejte nebo odeberte znaky k porovnání.",
+      "reasonsTitle": "Hlavní důvod tranzice podle období",
+      "reasonsDescription": "Jak se nejčastější hlavní důvody posouvají mezi kohortami podle roku tranzice.",
+      "add": "Přidat znak…",
+      "remove": "Odebrat {label}",
+      "strictNote": "Podíl příběhů, kde si je AI jistá, že tvrzení platí (≥ 0,8). Duté body vycházejí z méně než 30 příběhů. Nedávné kohorty měly od tranzice méně času — méně času dojít k operaci nebo dlouhodobým účinkům a obvykle kratší příběhy — takže mnoho znaků na pravém konci klesá; znak, který přesto roste, jako úzkost, vyniká."
+    },
+    "uncertainty": {
+      "binary": "Binární",
+      "bands": "Tři stavy",
+      "likelyFalse": "Pravděpodobně nepravda (< 0,2)",
+      "unclear": "Nejasné (0,2–0,8)",
+      "unclearShort": "nejasné",
+      "likelyTrue": "Pravděpodobně pravda (≥ 0,8)",
+      "rowTooltip": "{false} % pravděpodobně nepravda · {unclear} % nejasné · {true} % pravděpodobně pravda"
+    },
+    "minors": {
+      "tiles": {
+        "minor": "začalo před 18. rokem ({n} z {total} příběhů s uvedeným věkem)",
+        "le15": "začalo v 15 letech nebo dříve",
+        "dysphoria": "poprvé pocítilo dysforii ve 12 letech nebo dříve (n = {n})",
+        "female": "z těch, kdo začali před 18. rokem, jsou ženy"
+      },
+      "early": "V těchto příbězích se blokátory puberty objevují od věku {min}, s mediánem {median} (n = {n}). {hormones} začalo s hormony do 16 let a {detrans} již do 18 let detranzicovalo.",
+      "empty": "Pro aktuální filtry zatím nejsou žádné údaje o věku.",
+      "error": "Nepodařilo se načíst data o rané tranzici",
+      "byEra": {
+        "title": "Začátek před 18. rokem podle roku tranzice",
+        "description": "Podíl příběhů, kde tranzice začala před 18. rokem, seskupený podle roku jejího zahájení.",
+        "note": "Čáry ukazují 95% interval. Pozdější kohorty zahrnují více lidí, kteří tranzici podstoupili nedávno a mladí, proto trend čtěte opatrně."
+      }
+    },
+    "journey": {
+      "milestones": {
+        "first_dysphoria": "První dysforie",
+        "transition": "Tranzice",
+        "hormones": "Hormony",
+        "detransition": "Detranzice",
+        "in_transition": "Roky v tranzici"
+      },
+      "median": "medián {age}",
+      "count": "n = {n}",
+      "tooltip": "Věk {age}: {count, plural, =1 {1 příběh} few {# příběhy} many {# příběhu} other {# příběhů}}",
+      "yearsTooltip": "{years, plural, =1 {1 rok} few {# roky} many {# roku} other {# let}} v tranzici: {count, plural, =1 {1 příběh} few {# příběhy} many {# příběhu} other {# příběhů}}",
+      "basedOn": "Každý řádek počítá jen příběhy, které daný věk uvádějí. Osa je oříznuta na 99. percentilu.",
+      "empty": "Pro aktuální filtry zatím nejsou žádná data časové osy.",
+      "error": "Nepodařilo se načíst data o průběhu"
+    },
+    "gradient": {
+      "regret": "Lítost",
+      "noRegret": "Bez lítosti",
+      "notStated": "Neuvedeno",
+      "tiers": {
+        "no_transition": "Bez tranzice",
+        "social_only": "Jen sociální",
+        "hormones": "Hormony nebo blokátory",
+        "surgery": "Operace",
+        "unclear": "Nejasné"
+      },
+      "tierTooltip": "{n} příběhů: {regrets} lítost, {noRegret} bez lítosti, {notStated} neuvedeno",
+      "count": "n = {n}",
+      "selectionNote": "Lidé, kteří detranzicují brzy, se k pozdějším krokům nikdy nedostanou, takže graf ukazuje, které cesty kam vedou — ne že lékařské kroky způsobují lítost.",
+      "basedOn": "Na základě {cohort} vyhodnocených příběhů.",
+      "empty": "Pro aktuální filtry zatím nejsou žádné odpovědi.",
+      "error": "Nepodařilo se načíst data o lékařských zásazích",
+      "statedNote": "Číslo vpravo je lítost mezi příběhy, které se vyjadřují jedním či druhým způsobem (lítost nebo bez lítosti).",
+      "headline": "{percent} % lidí, kteří podstoupili operaci, uvádí, že tranzice litují, mezi těmi, kdo se vyjadřují (n = {n}).",
+      "headlineCompare": "{percent} % lidí, kteří podstoupili operaci, uvádí, že tranzice litují, oproti {hormones} % těch, kdo skončili u hormonů nebo blokátorů (n = {n} / {nHormones}). Započítány jsou jen příběhy, které se vyjadřují."
+    },
+    "after": {
+      "levels": {
+        "muchWorse": "Mnohem horší",
+        "worse": "Spíše horší",
+        "same": "Přibližně stejné",
+        "better": "Spíše lepší",
+        "muchBetter": "Mnohem lepší"
+      },
+      "panels": {
+        "mh_change_after_detransition": "Duševní zdraví",
+        "outcome_quality_of_life": "Kvalita života",
+        "outcome_family_relationship_change": "Vztahy v rodině"
+      },
+      "summary": "{better} % lépe · {worse} % hůře",
+      "count": "n = {n}",
+      "basedOn": "Na základě {cohort} vyhodnocených příběhů.",
+      "empty": "Pro aktuální filtry zatím nejsou žádné odpovědi.",
+      "error": "Nepodařilo se načíst data o změnách",
+      "worseSide": "Hůře",
+      "betterSide": "Lépe",
+      "headline": "{better} % popisuje po detranzici lepší duševní zdraví; {worse} % ho popisuje jako horší (n = {n})."
+    },
+    "stories": {
+      "excerptNote": "Anonymní shrnutí veřejných příspěvků z /r/detrans vytvořená AI.",
+      "agesCaption": "Věk: první dysforie → tranzice → {outcome}",
+      "ages": {
+        "firstDysphoria": "První dysforie",
+        "transition": "Tranzice",
+        "detransition": "Detranzice",
+        "desistance": "Desistence",
+        "socialTransition": "Sociální tranzice"
+      },
+      "female": "Žena",
+      "male": "Muž",
+      "basedOn": "Z {cohort} odpovídajících příběhů.",
+      "empty": "Aktuálním filtrům zatím neodpovídají žádné příběhy.",
+      "error": "Nepodařilo se načíst příběhy",
+      "loadMore": "Načíst další příběhy",
+      "loading": "Načítání…",
+      "upvotesLabel": "Celkem kladných hlasů: {count}",
+      "dialog": {
+        "title": "Příběh",
+        "summary": "Shrnutí",
+        "fullStory": "Celý příběh",
+        "close": "Zavřít příběh",
+        "error": "Nepodařilo se načíst celý příběh",
+        "openPage": "Otevřít stránku příběhu"
+      },
+      "status": {
+        "detransitioned": "Detranzice",
+        "desisted": "Desistence"
+      }
+    },
+    "highlights": {
+      "title": "Co vyniká",
+      "types": {
+        "prevalence": "Nejčastější",
+        "pair": "Jde ruku v ruce",
+        "improvement": "Život po detranzici",
+        "journey": "Typický průběh",
+        "minorShare": "Začátek před 18. rokem",
+        "minorLe15": "Začátek v 15 letech nebo dříve",
+        "minorDysphoria": "První dysforie do 12 let",
+        "minorFemale": "Kdo začíná mladý",
+        "orientation": "Sexuální orientace"
+      },
+      "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
+      "prevalenceUnclear": "Dalších {unclear} % je nejasných.",
+      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "improvement": "{better} % uvádí, že se jejich kvalita života po detranzici zlepšila; {worse} % uvádí, že se zhoršila (n = {n}).",
+      "journey": "Typický průběh: první dysforie v {dysphoria} → tranzice v {transition} → detranzice v {detransition} (n = {n}).",
+      "minorShare": "{percent} % příběhů s uvedeným věkem zahájilo tranzici před 18. rokem (n = {n} z {total}).",
+      "minorLe15": "{percent} % začalo v 15 letech nebo dříve (n = {n}).",
+      "minorDysphoria": "{percent} % poprvé pocítilo dysforii ve 12 letech nebo dříve (n = {n}).",
+      "minorFemale": "{percent} % z těch, kdo začali před 18. rokem, jsou ženy (n = {n}).",
+      "explore": "Prozkoumat",
+      "orientation": "{percent} % detranzicionistů, kteří uvádějí svou orientaci, jsou gayové, lesby nebo bisexuálové ({sameSex} % gayové nebo lesby; n = {n})."
+    },
+    "pathways": {
+      "journey": "Příčina → Proces → Výsledek",
+      "medical": "Lékařská cesta",
+      "stages": {
+        "cause": "Hlavní důvod",
+        "process": "Zlomový okamžik",
+        "outcome": "Lítost dnes"
+      },
+      "causes": {
+        "social_role_discomfort": "Nepohodlí se společenskou rolí",
+        "internalised_homophobia": "Internalizovaná homofobie",
+        "internalised_misogyny_misandry": "Internalizovaná misogynie / misandrie",
+        "trauma": "Trauma",
+        "mental_health_issues": "Duševní zdraví",
+        "neurodivergence": "Neurodivergence",
+        "body_dysmorphia": "Tělesná dysmorfie",
+        "online_influence": "Vliv internetu",
+        "peer_influence": "Vliv vrstevníků",
+        "sexual_factors": "Sexuální faktory",
+        "parental_or_medical_pressure": "Tlak rodičů nebo lékařů",
+        "other_unclear": "Jiné / nejasné",
+        "unclear": "Nejasné"
+      },
+      "processes": {
+        "process_benefited_from_therapy": "Explorativní terapie",
+        "process_detrans_community_exposure": "Detrans komunita",
+        "process_research_consumption": "Výzkum a média",
+        "process_self_reflection": "Sebereflexe",
+        "process_time_off_hormones": "Přestávka v hormonech",
+        "process_medical_scare": "Zdravotní obava",
+        "process_family_partner_intervention": "Rodina nebo partner",
+        "process_spiritual_experience": "Duchovní zážitek",
+        "other": "Jiné / nejasné"
+      },
+      "outcomes": {
+        "regrets": "Lituje",
+        "no_regret": "Bez lítosti",
+        "not_stated": "Neuvedeno"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 příběh} few {# příběhy} many {# příběhu} other {# příběhů}}",
+      "basedOn": "Na základě {cohort} vyhodnocených příběhů s odpověďmi v tomto zobrazení.",
+      "empty": "Zatím není dost příběhů s odpověďmi pro toto zobrazení.",
+      "error": "Nepodařilo se načíst data o cestách",
+      "journeyDescription": "Jak spolu v příbězích souvisejí hlavní důvody, zlomové okamžiky a lítost.",
+      "medicalDescription": "Jaké lékařské kroky lidé podstoupili před detranzicí.",
+      "regretByReason": {
+        "title": "Lítost podle hlavního důvodu tranzice",
+        "description": "Mezi příběhy, které uvádějí, zda tranzice litují, podíl těch, kdo litují — seskupeno podle hlavního důvodu tranzice, který uvedli.",
+        "headline": "Celkově {percent} % příběhů, které se lítosti věnují, ji vyjadřuje (n = {n}).",
+        "note": "Tečky ukazují podíl vyjadřující lítost mezi příběhy, které se jasně vyjadřují jedním či druhým způsobem; čáry ukazují 95% interval. Vybledlé řádky mají méně než 30 příběhů.",
+        "error": "Nepodařilo se načíst lítost podle důvodu",
+        "empty": "Pro aktuální filtry zatím nejsou žádné odpovědi."
+      }
+    },
+    "methodology": {
+      "p1": "detrans.ai sestavuje tuto datovou sadu z veřejných příběhů na /r/detrans. AI přepíše roztroušené komentáře a příspěvky každého uživatele do jednoho vyprávění v první osobě a získá z něj časovou osu klíčových věků. Zahrnuti jsou jen uživatelé, kteří sdíleli dost na sestavení úplného příběhu.",
+      "p1b": "Tyto statistiky zahrnují jen příběhy, kde daná osoba jasně potvrdila, že detranzicovala nebo u ní došlo k desistenci. Od surového korpusu ke grafům:",
+      "table": {
+        "comments": "Komentáře shromážděné z /r/detrans",
+        "posts": "Příspěvky shromážděné z /r/detrans",
+        "authors": "Různí autoři v korpusu",
+        "selected": "Autoři s alespoň 5 komentáři s 3+ kladnými hlasy",
+        "removed": "Odstraněno: detranzice nebo desistence nebyla jasně potvrzena",
+        "remaining": "Příběhy ponechané poté",
+        "cohort": "Zahrnuto v grafech níže (označené účty vyřazeny)"
+      },
+      "p2": "Každý příběh je poté vyhodnocen modelem Jev, pravděpodobnostním modelem pro odpovídání na otázky, vůči zhruba stovce tvrzení o příčinách, zkušenostech a výsledcích. Otázky typu ano/ne vracejí pravděpodobnost od 0 do 1, výběrové otázky vracejí pravděpodobnost pro každou možnost a škálové otázky vracejí očekávanou hodnotu na škále uvedené pod každým grafem.",
+      "p3": "U znaků typu ano/ne označíme příběh jako „pravdivý“, když pravděpodobnost dosáhne prahu (výchozí 0,8). Histogram u každého znaku ukazuje celé rozložení pravděpodobnosti, takže znak s mnoha odpověďmi ve středním pásmu působí jako skutečně nejistý, ne jako jednoznačně pravdivý či nepravdivý.",
+      "p4": "Všechny grafy respektují filtry výše. Protože se sada otázek v čase měnila a příběhy se znovu zpracovávají v dalších bězích, každý graf uvádí, kolik z filtrovaných příběhů má na danou otázku skutečně odpověď.",
+      "p5": "Účty, které působí neautenticky, smyšleně nebo jako boti, model označí a jsou z těchto statistik vyřazeny. Data získaná AI mohou přesto obsahovat chyby — systémové prompty jsou zveřejněny na <prompts>stránce s prompty</prompts> a shrnutí se porovnávají s původními komentáři.",
+      "threshold": {
+        "title": "Jak moc záleží na prahu",
+        "description": "Grafy počítají tvrzení jako pravdivé, když je pravděpodobnost AI alespoň 0,8. Nižší prahy by ukázaly vyšší čísla; tento graf ukazuje, o kolik.",
+        "error": "Nepodařilo se načíst data o prahu",
+        "tooltip": "Práh {threshold}",
+        "xAxis": "Práh pravděpodobnosti",
+        "siteThreshold": "Použito na této stránce",
+        "note": "Podíl příběhů na každém prahu nebo nad ním. Práh 0,8 je záměrně konzervativní."
+      },
+      "accountType": {
+        "title": "Kdo píše",
+        "description": "Zda každý účet popisuje vlastní zkušenost pisatele.",
+        "options": {
+          "personal_experience": "Vlastní zkušenost",
+          "parent": "Rodič",
+          "friend": "Přítel nebo partner",
+          "researcher_journalist": "Výzkumník, novinář nebo kliník",
+          "other": "Jiné nebo smíšené"
+        }
+      },
+      "detail": {
+        "title": "Jak podrobné příběhy jsou",
+        "description": "Hodnocení AI, jak konkrétní je každé vyprávění v první osobě. Pomocí „Jen podrobné příběhy“ ve filtrech omezíte všechny grafy na dvě nejvyšší úrovně.",
+        "levels": {
+          "level0": "Vágní nebo obecné",
+          "level1": "Něco osobních detailů",
+          "level2": "Podrobné, konkrétní události",
+          "level3": "Velmi podrobné, víceleté vyprávění"
+        }
+      }
+    },
+    "prevalence": {
+      "women": "Ženy",
+      "men": "Muži",
+      "interval": "{group} {percent} (95% interval {low}–{high}, n = {n})",
+      "smallSample": "n = {n}",
+      "openStories": "Zobrazit příběhy",
+      "showAll": "Zobrazit všech {count}",
+      "showFewer": "Zobrazit méně",
+      "note": "Tečky ukazují podíl příběhů, kde tvrzení jednoznačně platí (pravděpodobnost AI ≥ 0,8); čáry ukazují 95% interval. Vybledlé řádky mají méně než 30 odpovědí.",
+      "noteWithStories": "Tečky ukazují podíl příběhů, kde tvrzení jednoznačně platí (pravděpodobnost AI ≥ 0,8); čáry ukazují 95% interval. Vybledlé řádky mají méně než 30 odpovědí. Vyberte řádek a přečtěte si odpovídající příběhy.",
+      "gap": "Největší rozdíl: {label} — {higher} u skupiny {higherGroup} oproti {lower} u skupiny {lowerGroup}.",
+      "womenLower": "ženy",
+      "menLower": "muži",
+      "m": "M",
+      "f": "Ž",
+      "menLegend": "M · muži",
+      "womenLegend": "Ž · ženy"
+    },
+    "storyPeek": {
+      "title": "Příběhy: {label}",
+      "meta": "{count, plural, =1 {1 odpovídající příběh} few {# odpovídající příběhy} many {# odpovídajícího příběhu} other {# odpovídajících příběhů}}",
+      "error": "Nepodařilo se načíst příběhy.",
+      "empty": "Pro aktuální filtry nejsou žádné odpovídající příběhy.",
+      "readFull": "Přečíst celý příběh",
+      "note": "Anonymní úryvky, nejlépe hodnocené jako první. Úplný seznam je v sekci Příběhy na konci stránky."
+    },
+    "reasons": {
+      "transitionTitle": "Hlavní důvod tranzice",
+      "transitionDescription": "Jediný nejvýznamnější důvod, který každý člověk uvádí pro zahájení tranzice.",
+      "detransitionTitle": "Hlavní důvod detranzice",
+      "detransitionDescription": "Jediný nejvýznamnější důvod, který každý člověk uvádí pro ukončení."
+    },
+    "byYear": {
+      "error": "Nepodařilo se načíst data podle roku",
+      "empty": "Pro aktuální filtry zatím nejsou žádné roky tranzice.",
+      "other": "Jiné",
+      "n": "n = {n}",
+      "note": "Podíly vážené pravděpodobností pro každou kohortu podle roku tranzice. Vybledlé řádky mají méně než 30 příběhů."
+    },
+    "overview": {
+      "error": "Nepodařilo se načíst přehled",
+      "basedOn": "Na základě {cohort} vyhodnocených příběhů."
+    },
+    "drivers": {
+      "statements": {
+        "title": "Popisováno jako příspěvek k tranzici"
+      },
+      "count": "n = {n}",
+      "basedOn": "Na základě {cohort} vyhodnocených příběhů.",
+      "empty": "Pro aktuální filtry zatím nejsou žádné odpovědi.",
+      "error": "Nepodařilo se načíst tato data"
+    },
+    "adversity": {
+      "composition": {
+        "any": "{positive} % popisuje alespoň jednu formu traumatu nebo nepřízně osudu (n = {n})"
+      },
+      "statements": {
+        "title": "Popisované druhy nepřízně osudu"
+      },
+      "contrast": {
+        "title": "Trauma v minulosti vs. trauma jako hlavní důvod",
+        "description": "Mnohem více příběhů trauma zmiňuje, než ho označuje za hlavní hnací sílu tranzice nebo detranzice.",
+        "history": "Popisují trauma v minulosti",
+        "transitionReason": "Uvádějí trauma jako hlavní důvod tranzice",
+        "detransitionReason": "Uvádějí uvědomění si traumatu jako hlavní důvod detranzice",
+        "note": "Tečky ukazují podíl příběhů; čáry ukazují 95% interval. Řádky s důvody počítají jediný hlavní důvod každého příběhu."
+      },
+      "count": "n = {n}",
+      "basedOn": "Na základě {cohort} vyhodnocených příběhů.",
+      "empty": "Pro aktuální filtry zatím nejsou žádné odpovědi o nepřízni osudu.",
+      "error": "Nepodařilo se načíst data o nepřízni osudu"
+    },
+    "online": {
+      "choice": {
+        "title": "Nejvlivnější platforma",
+        "description": "Mezi příběhy, které uvádějí vliv internetu. Příběhy bez významného vlivu internetu jsou vynechány.",
+        "options": {
+          "reddit": "Reddit",
+          "tumblr": "Tumblr",
+          "tiktok": "TikTok",
+          "twitter": "Twitter / X",
+          "youtube": "YouTube",
+          "discord": "Discord",
+          "other": "Jiná platforma nebo fandomový prostor"
+        }
+      },
+      "statements": {
+        "title": "Vliv internetu a vrstevníků"
+      },
+      "byYear": {
+        "title": "Platforma podle roku tranzice",
+        "description": "Jak se nejvlivnější platforma posouvala mezi kohortami podle roku tranzice."
+      },
+      "count": "n = {n}",
+      "basedOn": "Na základě {cohort} vyhodnocených příběhů.",
+      "empty": "Pro aktuální filtry zatím nejsou žádné odpovědi o vlivu internetu.",
+      "error": "Nepodařilo se načíst data o vlivu internetu"
+    },
+    "process": {
+      "composition": {
+        "any": "{positive} % popisuje alespoň jeden z těchto zlomových okamžiků (n = {n})"
+      },
+      "statements": {
+        "title": "Co lidi posunulo k detranzici"
+      },
+      "count": "n = {n}",
+      "basedOn": "Na základě {cohort} vyhodnocených příběhů.",
+      "empty": "Pro aktuální filtry zatím nejsou žádné odpovědi o zlomových okamžicích.",
+      "error": "Nepodařilo se načíst data o zlomových okamžicích"
+    },
+    "lives": {
+      "error": "Nepodařilo se načíst časové osy",
+      "empty": "Pro aktuální filtry zatím nejsou žádné příběhy s věkem tranzice i detranzice.",
+      "legend": {
+        "transition": "V tranzici",
+        "blockers": "Blokátory puberty",
+        "hormones": "Hormony",
+        "surgery": "Operace"
+      },
+      "ariaLabel": "Pruhový graf {n} jednotlivých časových os od tranzice po detranzici",
+      "tooltip": {
+        "woman": "Žena",
+        "man": "Muž",
+        "person": "Osoba",
+        "firstDysphoria": "První dysforie v {age}",
+        "transition": "Tranzice v {age}",
+        "pubertyBlockers": "Blokátory puberty v {age}",
+        "hormones": "Hormony v {age}",
+        "topSurgery": "Operace hrudníku v {age}",
+        "bottomSurgery": "Genitální operace v {age}",
+        "detransition": "Detranzice v {age}"
+      },
+      "note": "{n} lidí, jejichž příběh uvádí oba věky, seřazeno podle věku při tranzici. Věky jsou interpretací příběhu ze strany AI a mohou být přibližné."
+    },
+    "duration": {
+      "error": "Nepodařilo se načíst trvání",
+      "empty": "Pro aktuální filtry zatím nejsou žádná trvání tranzice.",
+      "all": "Všichni",
+      "women": "Ženy",
+      "men": "Muži",
+      "legend": "{label}: medián {median} let (n = {n})",
+      "tooltipTitle": "Během {years, plural, =1 {1 roku} other {# let}}",
+      "xAxis": "Roky od zahájení tranzice",
+      "note": "Podíl lidí, kteří skončili během daného počtu let. Všichni zde nakonec detranzicovali, takže graf ukazuje, jak dlouho u nich tranzice trvala — ne kolik lidí, kteří tranzici podstoupí, ji později ukončí.",
+      "headline": "{one} % skončilo do jednoho roku a {five} % do pěti let od zahájení (medián {median} let, n = {n})."
+    },
+    "optionLabels": {
+      "reddit": "Reddit",
+      "tumblr": "Tumblr",
+      "tiktok": "TikTok",
+      "twitter": "Twitter / X",
+      "youtube": "YouTube",
+      "discord": "Discord",
+      "social_role_discomfort": "Nepohodlí se společenskou rolí",
+      "internalised_homophobia": "Internalizovaná homofobie",
+      "internalised_misogyny_misandry": "Internalizovaná misogynie / misandrie",
+      "trauma": "Trauma",
+      "mental_health_issues": "Duševní zdraví",
+      "neurodivergence": "Neurodivergence",
+      "body_dysmorphia": "Tělesná dysmorfie",
+      "online_influence": "Vliv internetu",
+      "peer_influence": "Vliv vrstevníků",
+      "sexual_factors": "Sexuální faktory (AGP / AAP)",
+      "parental_or_medical_pressure": "Tlak rodičů nebo lékařů",
+      "other_unclear": "Jiné / nejasné",
+      "accepted_sexed_body": "Přijetí svého pohlavního těla",
+      "social_construct_realisation": "Problém viděl(a) v genderových rolích",
+      "trauma_realisation": "Uvědomění, že hnací silou bylo trauma",
+      "mental_health_realisation": "Uvědomění, že hnací silou bylo duševní zdraví",
+      "neurodivergence_realisation": "Uvědomění, že hnací silou byla neurodivergence",
+      "fantasy_reality_disillusionment": "Realita neodpovídala očekávání",
+      "surgery_regret_medical_complications": "Lítost po operaci nebo zdravotní komplikace",
+      "ideological_disillusionment": "Deziluze z ideologie nebo komunity",
+      "social_pressure_ostracism": "Sociální tlak nebo vyloučení",
+      "failure_to_pass": "Nepodařilo se „passovat“",
+      "internalised_homophobia_realisation": "Uvědomění si internalizované homofobie",
+      "internalised_misogyny_misandry_realisation": "Uvědomění si internalizované misogynie / misandrie",
+      "sexual_factors_realisation": "Uvědomění si sexuálních faktorů (AGP / AAP)",
+      "religious_or_spiritual_change": "Náboženská nebo duchovní změna",
+      "fertility_or_family_desires": "Plodnost nebo přání mít rodinu"
+    },
+    "choiceSplit": {
+      "error": "Nepodařilo se načíst tento graf",
+      "empty": "Pro aktuální filtry zatím nejsou žádné odpovědi.",
+      "women": "Ž · ženy (n = {n})",
+      "men": "M · muži (n = {n})",
+      "headline": "Ženy častěji uvádějí „{womenOption}“ ({womenShare} oproti {womenMen} u mužů); muži častěji uvádějí „{menOption}“ ({menShare} oproti {menWomen} u žen).",
+      "note": "Vážené pravděpodobností: příběh, který AI rozdělí 60/40 mezi dva důvody, se počítá jako 0,6 a 0,4.",
+      "m": "M",
+      "f": "Ž"
+    },
+    "ordinal": {
+      "error": "Nepodařilo se načíst tento graf",
+      "empty": "Pro aktuální filtry zatím nejsou žádné odpovědi.",
+      "all": "Všichni",
+      "women": "Ženy",
+      "men": "Muži"
+    },
+    "medical_steps": {
+      "statements": {
+        "title": "Podstoupené lékařské kroky"
+      },
+      "count": "n = {n}",
+      "basedOn": "Na základě {cohort} vyhodnocených příběhů.",
+      "empty": "Pro aktuální filtry zatím nejsou žádné odpovědi.",
+      "error": "Nepodařilo se načíst lékařské kroky"
     }
   },
   "topicsPage": {
     "title": "Topics",
     "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
     "empty": "No topics have been published yet."
+  },
+  "storiesPage": {
+    "metadata": {
+      "title": "Příběhy detranzice | detrans.ai",
+      "description": "Přečtěte si tisíce anonymizovaných příběhů o detranzici a desistenci z komunity /r/detrans, shrnutých pomocí AI. Filtrujte podle věku, pohlaví a zkušeností."
+    },
+    "title": "Příběhy detranzice",
+    "description": "Anonymizované příběhy lidí, kteří podstoupili tranzici a později detranzicovali nebo od ní upustili, sestavené pomocí AI z jejich příspěvků a komentářů na /r/detrans. Celkem příběhů: {count, number}.",
+    "statsLink": "Prozkoumat statistiky",
+    "allStories": "Všechny příběhy",
+    "story": {
+      "metaTitle": "{title} – Příběh detranzice | detrans.ai",
+      "untitled": "Příběh detranzice",
+      "notFound": "Příběh nenalezen | detrans.ai",
+      "tags": "Štítky",
+      "moreStories": "Číst další příběhy"
+    }
   }
 }

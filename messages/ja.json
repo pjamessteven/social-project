@@ -144,7 +144,9 @@
       "stats": "統計",
       "statsDesc": "/r/detrans 匿名デトランジション統計",
       "topics": "Topics",
-      "topicsDesc": "主要なトピックの詳しいガイド"
+      "topicsDesc": "主要なトピックの詳しいガイド",
+      "stories": "体験談",
+      "storiesDesc": "/r/detransユーザーの投稿"
     },
     "resources": {
       "genderSupport": "セラピストを探す",
@@ -182,6 +184,10 @@
     "fr": "フランス語",
     "de": "ドイツ語",
     "he": "ヘブライ語",
+    "it": "Italian",
+    "lt": "Lithuanian",
+    "nl": "Dutch",
+    "tr": "Turkish",
     "ja": "日本語"
   },
   "settings": {
@@ -237,26 +243,27 @@
   },
   "chat": {
     "lookingForComments": "関連するコメントを探しています...",
+    "lookingForStudies": "Looking for relevant studies...",
     "errorOccurred": "エラーが発生しました。もう一度お試しください...これが続く場合はお問い合わせください。",
     "analysingExperiences": "経験を分析中",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Web検索結果を分析中",
+    "analysingResults": "結果を分析中...",
     "detransPerspective": "→ デトランスの視点は？",
     "transPerspectivesIncluded": "トランスの視点を含む",
     "captchaRequired": "チャットを続行するにはキャプチャが必要です。",
     "chatArchived": "このチャットはアーカイブされています。新しいものを開始してください。",
     "rateLimitExceeded": "リクエストが多すぎます。速度を落として後でもう一度試してください。",
     "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
-    "analysingResults": "結果を分析中...",
     "followUpQuestions": "フォローアップ質問：",
     "eventLabels": {
       "askDetransitioners": "デトランジショナーに聞く",
+      "askTransPeople": "トランスと識別する人々に聞く",
       "videoArchive": "動画アーカイブ",
       "queryStudies": "研究を検索",
       "webSearch": "Web検索",
       "queryStudyCatalogue": "デトランジション研究カタログを検索",
       "studyDetail": "研究詳細",
-      "askTransPeople": "トランスと識別する人々に聞く",
       "wikiPage": "Wiki page"
     },
     "eventStatus": {
@@ -342,7 +349,21 @@
       "delete": "会話を削除",
       "banning": "禁止中...",
       "ban": "ユーザーを禁止（IP）"
+    },
+    "dialog": {
+      "title": "会話",
+      "toggleIdHint": "クリックして日付/国とIDを切り替え",
+      "shareText": "この会話をチェック",
+      "share": "会話を共有",
+      "copyLink": "会話へのリンクをコピー",
+      "noneSelected": "会話が選択されていません"
     }
+  },
+  "readingDialog": {
+    "share": "共有",
+    "copyLink": "リンクをコピー",
+    "copied": "リンクをクリップボードにコピーしました",
+    "close": "ダイアログを閉じる"
   },
   "stories": {
     "metadata": {
@@ -382,9 +403,9 @@
       "ageRangeYears": "{min} - {max}歳",
       "sex": {
         "all": "男性と女性",
-        "mine": "Mine",
         "female": "女性",
-        "male": "男性"
+        "male": "男性",
+        "mine": "Mine"
       },
       "tagsPlaceholder": "フィルターするタグを選択...",
       "clearFilters": "フィルターをクリア"
@@ -494,14 +515,6 @@
           "content": "自動化された滥用から保護するために、Intuition Machines, Inc.が提供するサードパーティサービスであるhCaptchaを使用しています。hCaptchaは、人間かどうかを判断するために、IPアドレス、ブラウザ情報、インタラクションデータ（マウスの動きやキーストロークパターンなど）を収集する場合があります。このデータはhCaptcha独自のプライバシーポリシーの対象となります。hCaptchaは、そのサービスに必要な同意免除Cookieのみを使用します。"
         }
       },
-      "aiProviders": {
-        "title": "AI処理：",
-        "content": "メッセージは応答を生成するためにサードパーティのAIプロバイダー（現在はOpenRouter）によって処理されます。会話でのトレーニングは無効になっています。データの処理方法の詳細については、OpenRouterのプライバシーポリシーをご参照ください。"
-      },
-      "captcha": {
-        "title": "ボット検出（hCaptcha）：",
-        "content": "自動化された滥用から保護するために、Intuition Machines, Inc.が提供するサードパーティサービスであるhCaptchaを使用しています。hCaptchaは、人間かどうかを判断するために、IPアドレス、ブラウザ情報、インタラクションデータ（マウスの動きやキーストロークパターンなど）を収集する場合があります。このデータはhCaptcha独自のプライバシーポリシーの対象となります。hCaptchaは、そのサービスに必要な同意免除Cookieのみを使用します。"
-      },
       "legalBases": {
         "title": "処理の法的根拠（EU/EEA訪問者）",
         "item1": "レート制限処理は、GDPR第6条(1)(f)の下での<em>正当な利益</em>のために必要です—具体的には、サービスの可用性とセキュリティを維持することです。",
@@ -534,6 +547,14 @@
       "contact": {
         "title": "お問い合わせ",
         "content": "質問、懸念、または苦情がある場合は、お問い合わせフォームを使用するか、<email>peter@detrans.ai</email>にメールしてください。"
+      },
+      "aiProviders": {
+        "title": "AI処理：",
+        "content": "メッセージは応答を生成するためにサードパーティのAIプロバイダー（現在はOpenRouter）によって処理されます。会話でのトレーニングは無効になっています。データの処理方法の詳細については、OpenRouterのプライバシーポリシーをご参照ください。"
+      },
+      "captcha": {
+        "title": "ボット検出（hCaptcha）：",
+        "content": "自動化された滥用から保護するために、Intuition Machines, Inc.が提供するサードパーティサービスであるhCaptchaを使用しています。hCaptchaは、人間かどうかを判断するために、IPアドレス、ブラウザ情報、インタラクションデータ（マウスの動きやキーストロークパターンなど）を収集する場合があります。このデータはhCaptcha独自のプライバシーポリシーの対象となります。hCaptchaは、そのサービスに必要な同意免除Cookieのみを使用します。"
       }
     }
   },
@@ -587,12 +608,15 @@
   },
   "videoList": {
     "loading": "動画を読み込み中...",
+    "searchPlaceholder": "Search videos...",
+    "result": "video",
+    "results": "videos",
     "filters": {
       "all": "すべてのストーリー",
-      "mine": "Mine",
       "female": "女性",
       "male": "男性",
-      "detransitioners": "デトランショナー"
+      "detransitioners": "デトランショナー",
+      "mine": "Mine"
     },
     "thumbnailAlt": "{title}のサムネイル",
     "by": "作成者：",
@@ -640,15 +664,15 @@
       "ogDescription": "このページでは、ジェンダーアイデンティティの傾向とデトランジョンに関連する学術研究および査読済みジャーナル記事と検証済み統計の選択肢を見つけてください。"
     },
     "title": "学術研究",
+    "description": "デトランジション研究は新興の分野です。ここ10年間、特に思春期の少女を中心に性別違和の診断が急速に増加し、デトランジショナーの人口も増大していますが、フォローアップの高い脱落率、思想的対立、方法論的限界により、データ収集は依然として困難を伴っています。",
+    "segmNote": "このページでは、ジェンダー肯定的ケアの有効性と倫理性に疑問を投げかける学術研究、査読済み研究、および学術論文を掲載しています。詳細は<a>Society for Evidence-Based Gender Medicine (SEGM)</a>をご覧ください。支持的研究の包括的分析も含まれています。",
     "searchPlaceholder": "研究を検索...",
     "methodology": "研究方法",
     "topic": "トピック",
     "noResults": "研究が見つかりません。",
     "noStudies": "まだ承認された研究がありません。",
     "pendingReview": "審査待ち",
-    "keyFindings": "主な知見：",
-    "description": "デトランジション研究は新興の分野です。ここ10年間、特に思春期の少女を中心に性別違和の診断が急速に増加し、デトランジショナーの人口も増大していますが、フォローアップの高い脱落率、思想的対立、方法論的限界により、データ収集は依然として困難を伴っています。",
-    "segmNote": "このページでは、ジェンダー肯定的ケアの有効性と倫理性に疑問を投げかける学術研究、査読済み研究、および学術論文を掲載しています。詳細は<a>Society for Evidence-Based Gender Medicine (SEGM)</a>をご覧ください。支持的研究の包括的分析も含まれています。"
+    "keyFindings": "主な知見："
   },
   "contentWarning": {
     "title": "コンテンツ警告：",
@@ -806,7 +830,9 @@
       "legend": {
         "transition": "遷移年齢",
         "detransition": "デトランジション年齢"
-      }
+      },
+      "median": "中央値 {age}",
+      "coverage": "トランジション年齢 {transition} 件とデトランジション年齢 {detransition} 件に基づく。"
     },
     "transitionDuration": {
       "title": "遷移期間：遷移時年齢対デトランジション時年齢",
@@ -830,7 +856,8 @@
       "female": "女性",
       "yearsAvg": "年平均",
       "user": "ユーザー",
-      "users": "ユーザー"
+      "users": "ユーザー",
+      "coverage": "両方の年齢が記録された {count} 件の体験談に基づく。"
     },
     "pathways": {
       "title": "デトランジション経路フロー",
@@ -950,7 +977,9 @@
     "error": {
       "title": "CAPTCHAエラー",
       "description": "CAPTCHAの読み込みに失敗しました。ページを更新してもう一度お試しください。"
-    }
+    },
+    "verifyFailed": "Verification failed. Please try again.",
+    "rateLimited": "Too many verifications. Please wait a moment and try again."
   },
   "feedback": {
     "title": "フィードバック",
@@ -968,11 +997,990 @@
     "metadata": {
       "title": "匿名化された統計 | detrans.ai",
       "description": "デトランジションとトランジションのパターンに関する匿名化された統計。年齢分布、期間、理由、経路を含みます。"
+    },
+    "toc": {
+      "title": "このページの内容"
+    },
+    "filters": {
+      "title": "フィルター",
+      "edit": "フィルターを編集",
+      "hide": "フィルターを隠す",
+      "summary": {
+        "none": "フィルターなし",
+        "age": "年齢 {min}–{max}",
+        "tags": "{count, plural, =0 {タグなし} =1 {タグ1件} other {タグ#件}}",
+        "detailed": "詳細のみ"
+      },
+      "detailed": "詳細な体験談のみ",
+      "detailedHint": "AIが「ある程度詳しい」または「非常に詳しい」と評価した体験談のみを含めます。"
+    },
+    "sections": {
+      "age": {
+        "title": "年齢",
+        "description": "デトランジショナーがトランジションおよびデトランジションした時期。"
+      },
+      "journey": {
+        "title": "年齢",
+        "description": "初めて性別違和を感じた時、トランジションした時、ホルモンを始めた時、デトランジションした時。"
+      },
+      "duration": {
+        "title": "期間",
+        "description": "やめるまでどれくらいの期間トランジションを続けたか。"
+      },
+      "minors": {
+        "title": "18歳未満でのトランジション",
+        "description": "子どもや10代でトランジションを始めることについて、体験談から見えること。"
+      },
+      "reasons": {
+        "title": "理由",
+        "description": "デトランジショナーが語る、トランジションした理由とデトランジションした理由。"
+      },
+      "pathways": {
+        "title": "経路",
+        "description": "トランジションした理由によって後悔に違いがあるか、そしてどの医療的ステップを踏んだか。"
+      },
+      "regret": {
+        "title": "後悔",
+        "description": "後悔の強さ、時間とともにどう変化するか、そして何を後悔しているか。"
+      },
+      "medical": {
+        "title": "医療的介入",
+        "description": "後悔とトランジションの進んだ段階との関係。"
+      },
+      "complications": {
+        "title": "合併症",
+        "description": "トランジション後の医療的合併症と継続的な健康問題。"
+      },
+      "mental_health": {
+        "title": "メンタルヘルス",
+        "description": "デトランジション前後における、体験談全体のメンタルヘルスの状況。"
+      },
+      "suicidality": {
+        "title": "自殺傾向",
+        "description": "体験談が自殺念慮や自傷にどれくらいの頻度で、いつ言及しているか。"
+      },
+      "after": {
+        "title": "デトランジション後",
+        "description": "メンタルヘルス、生活の質、家族関係がどう変化したか。"
+      },
+      "current_status": {
+        "title": "Where are they now",
+        "description": "Current identities and situations after detransitioning."
+      },
+      "family_community": {
+        "title": "デトランジションの社会的代償",
+        "description": "デトランジションによって生じた孤立や排斥、そしてトランスコミュニティへの幻滅。トランジションとデトランジションを区別しなかった質問（家族の支援、人間関係、キャリア）は除外しています。デトランジション以降の家族関係は「デトランジション後」で扱っています。"
+      },
+      "sexuality": {
+        "title": "セクシュアリティ",
+        "description": "出生時の性別を基準とした性的指向（トランジション前とデトランジション後）。"
+      },
+      "trends": {
+        "title": "年ごとの推移",
+        "description": "トランジション開始年のコホートごとに、体験談とその理由がどう変化したか。"
+      },
+      "features": {
+        "title": "特徴",
+        "description": "Every statement the AI evaluated across the stories — causes, processes and outcomes."
+      },
+      "compare": {
+        "title": "比較",
+        "description": "コホートを2つに分けたときに、特徴の出現率がどう変わるか。"
+      },
+      "matrix": {
+        "title": "つながり",
+        "description": "議論の分かれる問いへの答え — 予想される違いが現れない場合も含めて。"
+      },
+      "stories": {
+        "title": "体験談",
+        "description": "これらの数字の背後にいる人々の匿名の抜粋。",
+        "browse": "すべての体験談を見る"
+      },
+      "methodology": {
+        "title": "方法論",
+        "description": "データセットの作り方と、これらのグラフの読み方。"
+      },
+      "overview": {
+        "title": "概要",
+        "description": "AIが評価したすべての「はい／いいえ」の記述を、明確に当てはまる体験談の数の順に並べたもの。"
+      },
+      "lives": {
+        "title": "個人のタイムライン",
+        "description": "1本の線が1人を表し、トランジションを始めた年齢からやめた年齢までを示します。"
+      },
+      "drivers": {
+        "title": "あまり語られない要因",
+        "description": "トランジションの一因として語られる、身体イメージ、アイデンティティの不安定さ、性的要因。"
+      },
+      "adversity": {
+        "title": "トラウマと逆境",
+        "description": "体験談がトラウマに言及する頻度と、トラウマが主な理由として挙げられる頻度。"
+      },
+      "online": {
+        "title": "オンラインと仲間の影響",
+        "description": "どのプラットフォームが最も影響したか、オンラインや仲間の影響が体験談にどう現れるか。"
+      },
+      "process": {
+        "title": "転機",
+        "description": "人々をトランジションからデトランジションへと向かわせたもの。"
+      }
+    },
+    "features": {
+      "search": "特徴を検索…",
+      "sort": {
+        "prevalence": "出現率",
+        "alpha": "A–Z"
+      },
+      "tiers": {
+        "cause": "原因",
+        "process": "過程",
+        "outcome": "結果"
+      },
+      "kinds": {
+        "noul": "はい／いいえ",
+        "choice": "選択式",
+        "score": "尺度"
+      },
+      "groups": {
+        "reasons": "理由",
+        "causes": "原因",
+        "processes": "過程",
+        "regret": "後悔",
+        "medical": "医療",
+        "mental_health": "メンタルヘルス",
+        "adversity": "逆境",
+        "social": "社会",
+        "sexuality": "セクシュアリティ",
+        "online": "オンライン",
+        "identity": "アイデンティティ",
+        "outcomes": "結果",
+        "attitudes": "考え方",
+        "quality": "質"
+      },
+      "basedOn": "評価済みの体験談 {cohort} 件が対象。",
+      "coverageNote": "評価済みの体験談 {cohort} 件のうち {n} 件（{percent}%）に回答があります。",
+      "question": "どのように測定したか",
+      "confidence": "この特徴に対するAIの確信度の中央値：{value}%。",
+      "filterByTag": "「{tag}」タグの体験談のみ",
+      "placeholder": "一覧から特徴を選んで詳しく見てください。",
+      "backToList": "すべての特徴",
+      "noResults": "検索に一致する特徴はありません。",
+      "noData": "現在のフィルターでは回答がありません。",
+      "loading": "読み込み中…",
+      "error": "特徴データを読み込めませんでした",
+      "noul": {
+        "prevalenceLabel": "の評価済み体験談がしきい値を上回っています",
+        "range": "確率 {from} – {to}",
+        "count": "{count} 件（{percent}%）",
+        "thresholdShort": "しきい値 {threshold}",
+        "legend": {
+          "yes": "おそらく該当",
+          "maybe": "不確か",
+          "no": "おそらく非該当"
+        },
+        "above": "おそらく該当",
+        "uncertain": "不確か",
+        "below": "おそらく非該当"
+      },
+      "choice": {
+        "soft": "確率の合計",
+        "hard": "最有力の選択肢",
+        "softTooltip": "≈{percent}%（確率の合計で≈{count} 件分）",
+        "hardTooltip": "{percent}%（{count} 件）",
+        "softNote": "棒は各選択肢が体験談全体で得たAI確率の合計を示すため、混在した回答は比例してカウントされます。",
+        "hardNote": "棒は各体験談で最も可能性の高い選択肢1つだけを数えています。"
+      },
+      "score": {
+        "meanLabel": "0–{max} の尺度で平均 {value}",
+        "range": "スコア {from} – {to}",
+        "count": "{count} 件",
+        "meanShort": "平均 {value}"
+      },
+      "related": {
+        "title": "よく一緒に見られるもの",
+        "lift": "{lift}倍多い（{percent}%）"
+      },
+      "listNote": "点は各記述が明確に当てはまる（AI確率 ≥ 0.8）体験談の割合、線は95%区間を示します。薄い行は回答が30件未満です。行を選ぶと該当する体験談を読めます。評価済みの体験談 {cohort} 件に基づく。"
+    },
+    "compare": {
+      "splitLabel": "分割基準",
+      "thresholdNote": "AIしきい値 {threshold} を上回る体験談と下回る体験談を表示しています。",
+      "filter": {
+        "all": "すべての回答",
+        "clear": "明確なシグナルのみ"
+      },
+      "clearNote": "不明確な体験談 {excluded} 件を両側から除外しました。",
+      "cohortTrue": "{label}：あり（n = {n}）",
+      "cohortFalse": "なし（n = {n}）",
+      "splitSex": "生物学的性別",
+      "sexNote": "女性と男性の体験談を比較しています。",
+      "cohortWomen": "女性（n = {n}）",
+      "cohortMen": "男性（n = {n}）",
+      "splitAge": "トランジション時の年齢",
+      "ageNote": "18歳未満でトランジションを始めた体験談と18歳以上で始めた体験談を比較しています。",
+      "cohortUnder18": "18歳未満（n = {n}）",
+      "cohortAdult": "18歳以上（n = {n}）",
+      "rowTooltip": "{label}：{nTrue}件中{pctTrue}% 対 {nFalse}件中{pctFalse}%",
+      "empty": "この分割の両側に回答のある体験談がまだ十分にありません。",
+      "showSmallSamples": "小さなサンプルを表示",
+      "hideSmallSamples": "小さなサンプルを隠す",
+      "hiddenNote": "片側の体験談が3件未満のため、{count, plural, =1 {1件の特徴} other {#件の特徴}}を非表示にしています。",
+      "error": "比較データを読み込めませんでした",
+      "ratio": "{ratio}の頻度",
+      "ratioNote": "行は2つのグループの差の大きさ（リスク比）の順に並べ、両側でまれな特徴は除外しています。線は95%区間を示し、薄い行は片側の体験談が30件未満です。",
+      "showAll": "すべての特徴を表示"
+    },
+    "matrix": {
+      "presetLabel": "表示",
+      "presets": {
+        "outcomesByCause": "原因別の結果",
+        "outcomesByProcess": "転機別の結果"
+      },
+      "metric": {
+        "rate": "割合",
+        "lift": "平均との比"
+      },
+      "swap": "軸を入れ替え",
+      "legendRate": "該当する体験談のうち、列の特徴が当てはまる割合。",
+      "legendLift": "コホート全体の平均との比較（青は上、赤は下）。",
+      "sampleNote": "各セルは、行の特徴がある体験談とない体験談を比較しています。長く詳しい体験談ほどあらゆる種類の特徴に多く言及するため、ほとんどの比は1×を上回ります。1×とではなく、セル同士を比較してください。どちらかの側の体験談が30件未満のセルは空欄です。",
+      "basedOn": "この表示の評価済み体験談 {cohort} 件。",
+      "cellTooltip": "{row} → {col}：{n} 件中 {percent}% · コホート平均の {lift}倍",
+      "cellTooltipNoLift": "{row} → {col}：{n} 件中 {percent}%",
+      "cellMasked": "{row} → {col}：体験談が不足",
+      "empty": "この表示に必要な回答のある体験談がまだ十分にありません。",
+      "error": "マトリクスデータを読み込めませんでした",
+      "presetDescriptions": {
+        "outcomesByCause": "ある原因を含む体験談では、含まない体験談と比べて各結果がどれだけ多い（または少ない）か。",
+        "outcomesByProcess": "ある転機を含む体験談では、含まない体験談と比べて各結果がどれだけ多い（または少ない）か。"
+      },
+      "legendMore": "行の特徴がある場合により多い",
+      "legendLess": "より少ない",
+      "legendNone": "明確な差なし（95%区間が1×を含む）",
+      "cellTooltipRatio": "{row} → {col}：該当あり {n} 件中 {percent}%、該当なしでは {percentWithout}% · {ratio}（95%区間 {low}–{high}）",
+      "legendWith": "要因あり",
+      "legendWithout": "要因なし",
+      "themes": {
+        "medical": "医療的経路",
+        "helped": "助けになったもの",
+        "who": "誰が後悔し、誰が戻るのか",
+        "views": "他者のトランジションへの見方"
+      },
+      "predictors": {
+        "under18": "18歳未満でトランジション開始",
+        "women": "女性（男性と比較）",
+        "sameSex": "トランジション前に同性に惹かれていた",
+        "took_puberty_blockers": "思春期ブロッカーを使用",
+        "took_hormones": "ホルモンを使用",
+        "top_surgery": "上半身手術を受けた",
+        "process_benefited_from_therapy": "探索的セラピーが役立った",
+        "gender_nonconformity_childhood": "子どもの頃に性別に非同調的だった",
+        "process_spiritual_experience": "精神的・宗教的な体験",
+        "autogynephilia": "オートガイネフィリア",
+        "adv_trauma_history": "トラウマ歴",
+        "contributed_online_influence": "オンラインの影響"
+      },
+      "outcomes": {
+        "regret": "トランジションを後悔している",
+        "bodyReconciliation": "自分の身体を受け入れるようになった",
+        "retransitioned": "再トランジションした",
+        "mentalHealthBetter": "デトランジション後にメンタルヘルスが改善",
+        "critical": "他者のトランジションに批判的または反対"
+      },
+      "ratio": "{ratio}の頻度",
+      "noDifference": "明確な差なし",
+      "rowTooltip": "該当あり {nWith} 件中 {with}、該当なし {nWithout} 件中 {without}",
+      "note": "線は95%区間を示します。「明確な差なし」は区間に「差なし」が含まれることを意味します。これらは人々が書く内容における関連であって因果ではありません。また、長く詳しい体験談を書く人ほどあらゆることに多く言及します。評価済みの体験談 {cohort} 件に基づく。"
+    },
+    "regret": {
+      "composition": {
+        "pair": "体験談の {positive}% がトランジションへの後悔を表明し、{negative}% が後悔していないと述べています。残りは言及していません。どちらかを述べている人のうち {statedShare}% が後悔しています（n = {stated}）。",
+        "any": "{positive}% が後悔を表明（n = {n}）"
+      },
+      "scale": {
+        "title": "後悔はどれくらい強いか",
+        "mean": "平均強度 {value} / {max}",
+        "levels": {
+          "level0": "後悔の表明なし",
+          "level1": "軽度または一時的",
+          "level2": "中程度、繰り返し生じる",
+          "level3": "重度、持続的"
+        }
+      },
+      "choice": {
+        "title": "後悔は時間とともにどう変化しているか",
+        "options": {
+          "resolved": "ほぼ解消",
+          "improving": "改善中",
+          "stable": "変化なし",
+          "worsening": "悪化中",
+          "mixed": "混在または周期的"
+        }
+      },
+      "statements": {
+        "title": "具体的に何を後悔しているか"
+      },
+      "count": "n = {n}",
+      "basedOn": "評価済みの体験談 {cohort} 件に基づく。",
+      "empty": "現在のフィルターでは後悔に関する回答がまだありません。",
+      "error": "後悔のデータを読み込めませんでした"
+    },
+    "complications": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% が少なくとも1つの医療的合併症または継続的な健康問題を報告（n = {n}）"
+      },
+      "scale": {
+        "title": "合併症はどれくらい深刻だったか",
+        "mean": "平均重症度 {value} / {max}",
+        "levels": {
+          "level0": "合併症なし",
+          "level1": "軽度または対処可能な副作用",
+          "level2": "重大な合併症",
+          "level3": "深刻または永続的な害"
+        }
+      },
+      "statements": {
+        "title": "具体的な医療上の問題"
+      },
+      "count": "n = {n}",
+      "basedOn": "評価済みの体験談 {cohort} 件に基づく。",
+      "empty": "現在のフィルターでは医療に関する回答がまだありません。",
+      "error": "合併症のデータを読み込めませんでした"
+    },
+    "mental_health": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% に少なくとも1つの精神疾患または危機が見られる（n = {n}）"
+      },
+      "scale": {
+        "title": "メンタルヘルスの状況はどれくらい深刻か",
+        "mean": "平均重症度 {value} / {max}",
+        "levels": {
+          "level0": "目立った問題なし",
+          "level1": "軽度または状況的な苦痛",
+          "level2": "治療を受けた重大な疾患",
+          "level3": "重度の疾患または危機"
+        }
+      },
+      "statements": {
+        "title": "疾患と危機"
+      },
+      "count": "n = {n}",
+      "basedOn": "評価済みの体験談 {cohort} 件に基づく。",
+      "empty": "現在のフィルターではメンタルヘルスに関する回答がまだありません。",
+      "error": "メンタルヘルスのデータを読み込めませんでした"
+    },
+    "suicidality": {
+      "during": "トランジション中",
+      "since": "デトランジション以降",
+      "duringDescription": "トランジション中の自殺念慮、自傷、または自殺未遂を体験談が記述している可能性をモデルがどう判断したか。",
+      "sinceDescription": "デトランジション以降の自殺念慮、自傷、または自殺未遂を体験談が記述している可能性をモデルがどう判断したか。",
+      "splitNote": "現在の状況別 · 平方根軸",
+      "overall": "すべての体験談",
+      "sqrtNote": "縦軸は平方根スケールを使用しているため、ゼロ付近の突出した値の隣でも小さな確率区間が見えるようになっています。",
+      "tooltipBin": "確率 {range}",
+      "tooltipCount": "{count, plural, =1 {1 件} other {# 件}}",
+      "bands": {
+        "no": "おそらく非該当（< 0.2）",
+        "mixed": "不確か（0.2–0.8）",
+        "yes": "おそらく該当（≥ 0.8）"
+      },
+      "count": "n = {n}",
+      "basedOn": "回答のある体験談 {cohort} 件に基づく。",
+      "empty": "現在のフィルターでは自殺傾向に関する回答がまだありません。",
+      "error": "自殺傾向のデータを読み込めませんでした",
+      "statements": {
+        "title": "自殺念慮と自傷"
+      }
+    },
+    "current_status": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% (n = {n})"
+      },
+      "choice": {
+        "title": "Where are they now?",
+        "options": {
+          "detransitioned": "デトランジションした",
+          "desisted": "医療的トランジション前にデジスト",
+          "retransitioned": "再トランジションした",
+          "still_trans_questioning": "まだトランスだが迷っている",
+          "questioning": "模索中",
+          "unclear": "不明",
+          "supportive": "他者のトランジションを支持",
+          "conditional": "条件付きで支持",
+          "critical": "トランジションに批判的",
+          "opposed": "反対",
+          "not_addressed": "言及なし"
+        },
+        "description": "言及している体験談のうち、支持から反対まで。"
+      },
+      "secondaryChoice": {
+        "title": "他者のトランジションをどう見ているか"
+      },
+      "statements": {
+        "title": "現在の状況"
+      },
+      "count": "n = {n}",
+      "basedOn": "評価済みの体験談 {cohort} 件に基づく。",
+      "empty": "現在のフィルターでは状況に関する回答がまだありません。",
+      "error": "状況のデータを読み込めませんでした",
+      "headline": "{percent}% が他者のトランジションに批判的または反対しています（n ≈ {n}）。",
+      "note": "確率で重み付けした割合。この質問に言及していない体験談は除外しています。"
+    },
+    "family_community": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% が以下の質問の少なくとも1つに「はい」と回答（n = {n}）"
+      },
+      "statements": {
+        "title": "確認した質問",
+        "description": "各体験談をこれらの質問とそのまま照合しました。答えが明確に「はい」の場合にカウントしています。"
+      },
+      "count": "n = {n}",
+      "basedOn": "評価済みの体験談 {cohort} 件に基づく。",
+      "empty": "現在のフィルターでは回答がまだありません。",
+      "error": "データを読み込めませんでした"
+    },
+    "sexuality": {
+      "beforeLabel": "トランジション前",
+      "afterLabel": "デトランジション後",
+      "options": {
+        "homosexual": "Homosexual",
+        "bisexual": "バイセクシュアル",
+        "heterosexual": "Heterosexual",
+        "asexual": "アセクシュアル",
+        "other": "その他または変化"
+      },
+      "linkTooltip": "{from} → {to}：{count, plural, =1 {1 件} other {# 件}}",
+      "statements": {
+        "title": "Orientation and attraction"
+      },
+      "count": "n = {n}",
+      "basedOn": "両方の性的指向の回答がある体験談 {cohort} 件に基づくフロー。",
+      "empty": "Not enough orientation answers for the current filters yet.",
+      "error": "セクシュアリティのデータを読み込めませんでした",
+      "hero": {
+        "statement": "現在の性的指向を述べているデトランジショナーのうち、ゲイ、レズビアン、またはバイセクシュアルの割合（n = {n}）。",
+        "bySex": "男性 {men} がゲイまたはバイセクシュアル（ゲイ {menSame}）| 女性 {women} がレズビアンまたはバイセクシュアル（レズビアン {womenSame}）"
+      },
+      "mix": {
+        "title": "トランジション前とデトランジション後の性的指向",
+        "description": "出生時の性別を基準とし、記述のある体験談のみ。",
+        "women": "女性",
+        "men": "男性",
+        "all": "全体",
+        "before": "前",
+        "after": "後"
+      },
+      "matrix": {
+        "title": "性的指向は変わったか",
+        "description": "各行はトランジション前の性的指向を表し、セルはその人々がデトランジション後にどう述べているかを示します。",
+        "headline": "{percent}% がトランジション前とデトランジション後で同じ性的指向を述べています（n = {n}）。",
+        "corner": "前 ↓ · 後 →",
+        "cell": "前 {from} → 後 {to}：{percent}%（{count}）",
+        "note": "両方の時点で性的指向を述べている体験談のみ。体験談が30件未満の行は空欄です。"
+      },
+      "coverage": "評価済みの体験談 {cohort} 件のうち、トランジション前の性的指向は {before} 件、デトランジション後は {after} 件で述べられています。"
+    },
+    "trends": {
+      "series": {
+        "contributed_online_influence": "オンラインの影響",
+        "contributed_rapid_onset": "急速発症（ROGD）",
+        "regret_transition": "後悔",
+        "took_puberty_blockers": "思春期ブロッカー"
+      },
+      "tooltip": "{bucket} · n = {n}",
+      "mode": {
+        "strict": "二値シグナル",
+        "soft": "平均確率",
+        "strictNote": "モデルが確信している（≥ 0.8）体験談の割合。",
+        "softNote": "すべての体験談の平均確率 — 不明確な体験談も傾向に含めます。"
+      },
+      "seriesTooltip": "二値 {strict} · 平均 {mean}",
+      "medianAge": "コホート別のトランジション年齢の中央値",
+      "coverageNote": "各点はそのコホートの回答のある体験談を使用しています。最も古いコホートはサンプルが最も小さくなります。",
+      "basedOn": "トランジション年のある体験談 {cohort} 件が対象。",
+      "empty": "現在のフィルターではトランジション年がまだありません。",
+      "error": "傾向データを読み込めませんでした",
+      "linesTitle": "トランジション年別の特徴",
+      "linesDescription": "各記述が明確に当てはまる体験談の割合を、トランジションを始めた年ごとにまとめたもの。特徴を追加・削除して比較できます。",
+      "reasonsTitle": "時代別のトランジションの主な理由",
+      "reasonsDescription": "最も多い主な理由がトランジション年のコホート間でどう変わるか。",
+      "add": "特徴を追加…",
+      "remove": "{label}を削除",
+      "strictNote": "AIが記述を確信をもって該当とした（≥ 0.8）体験談の割合。中抜きの点は体験談30件未満のものです。最近のコホートはトランジションからの経過時間が短く、手術や長期的な影響に至るまでの時間も少なく、体験談も通常短いため、多くの特徴は右端で下がります。それでも上昇する特徴（不安など）は目立ちます。"
+    },
+    "uncertainty": {
+      "binary": "二値",
+      "bands": "3区分",
+      "likelyFalse": "おそらく非該当（< 0.2）",
+      "unclear": "不明確（0.2–0.8）",
+      "unclearShort": "不明確",
+      "likelyTrue": "おそらく該当（≥ 0.8）",
+      "rowTooltip": "おそらく非該当 {false}% · 不明確 {unclear}% · おそらく該当 {true}%"
+    },
+    "minors": {
+      "tiles": {
+        "minor": "が18歳未満で開始（年齢のある体験談 {total} 件中 {n} 件）",
+        "le15": "が15歳以下で開始",
+        "dysphoria": "が12歳以下で初めて性別違和を感じた（n = {n}）",
+        "female": "18歳未満で開始した人のうち女性の割合"
+      },
+      "early": "これらの体験談では、思春期ブロッカーは {min} 歳から登場し、中央値は {median} 歳です（n = {n}）。{hormones} が16歳までにホルモンを開始し、{detrans} が18歳までにすでにデトランジションしていました。",
+      "empty": "現在のフィルターでは年齢データがまだありません。",
+      "error": "早期トランジションのデータを読み込めませんでした",
+      "byEra": {
+        "title": "18歳未満で開始（トランジション年別）",
+        "description": "18歳未満でトランジションを始めた体験談の割合を、開始年ごとにまとめたもの。",
+        "note": "線は95%区間を示します。後期のコホートには最近若くしてトランジションした人がより多く含まれるため、傾向の解釈には注意が必要です。"
+      }
+    },
+    "journey": {
+      "milestones": {
+        "first_dysphoria": "最初の性別違和",
+        "transition": "トランジション",
+        "hormones": "ホルモン",
+        "detransition": "デトランジション",
+        "in_transition": "トランジション期間（年）"
+      },
+      "median": "中央値 {age}",
+      "count": "n = {n}",
+      "tooltip": "{age} 歳：{count, plural, =1 {1 件} other {# 件}}",
+      "yearsTooltip": "トランジション期間 {years, plural, =1 {1 年} other {# 年}}：{count, plural, =1 {1 件} other {# 件}}",
+      "basedOn": "各行はその年齢を記載している体験談のみを数えています。軸は99パーセンタイルで切っています。",
+      "empty": "現在のフィルターではタイムラインのデータがまだありません。",
+      "error": "経過データを読み込めませんでした"
+    },
+    "gradient": {
+      "regret": "後悔",
+      "noRegret": "後悔なし",
+      "notStated": "記載なし",
+      "tiers": {
+        "no_transition": "トランジションせず",
+        "social_only": "社会的のみ",
+        "hormones": "ホルモンまたはブロッカー",
+        "surgery": "手術",
+        "unclear": "不明"
+      },
+      "tierTooltip": "{n} 件：後悔 {regrets}、後悔なし {noRegret}、記載なし {notStated}",
+      "count": "n = {n}",
+      "selectionNote": "早い段階でデトランジションした人は後のステップに到達しないため、これはどの経路がどこに至るかを示すものであり、医療的ステップが後悔を引き起こすことを示すものではありません。",
+      "basedOn": "評価済みの体験談 {cohort} 件に基づく。",
+      "empty": "現在のフィルターでは回答がまだありません。",
+      "error": "医療的介入のデータを読み込めませんでした",
+      "statedNote": "右側の数値は、どちらか（後悔あり・後悔なし）を述べている体験談における後悔の割合です。",
+      "headline": "手術を受けた人のうち、どちらかを述べている人の {percent}% がトランジションを後悔していると述べています（n = {n}）。",
+      "headlineCompare": "手術を受けた人の {percent}% がトランジションを後悔していると述べており、ホルモンまたはブロッカーで止まった人では {hormones}% です（n = {n} / {nHormones}）。どちらかを述べている体験談のみを数えています。"
+    },
+    "after": {
+      "levels": {
+        "muchWorse": "かなり悪化",
+        "worse": "やや悪化",
+        "same": "ほぼ同じ",
+        "better": "やや改善",
+        "muchBetter": "かなり改善"
+      },
+      "panels": {
+        "mh_change_after_detransition": "メンタルヘルス",
+        "outcome_quality_of_life": "生活の質",
+        "outcome_family_relationship_change": "家族関係"
+      },
+      "summary": "改善 {better}% · 悪化 {worse}%",
+      "count": "n = {n}",
+      "basedOn": "評価済みの体験談 {cohort} 件に基づく。",
+      "empty": "現在のフィルターでは回答がまだありません。",
+      "error": "変化のデータを読み込めませんでした",
+      "worseSide": "悪化",
+      "betterSide": "改善",
+      "headline": "{better}% がデトランジション後にメンタルヘルスが改善したと述べ、{worse}% が悪化したと述べています（n = {n}）。"
+    },
+    "stories": {
+      "excerptNote": "/r/detrans の公開投稿をAIが匿名で要約したもの。",
+      "agesCaption": "年齢：最初の性別違和 → トランジション → {outcome}",
+      "ages": {
+        "firstDysphoria": "最初の性別違和",
+        "transition": "トランジション",
+        "detransition": "デトランジション",
+        "desistance": "デジスタンス",
+        "socialTransition": "社会的移行"
+      },
+      "female": "女性",
+      "male": "男性",
+      "basedOn": "該当する体験談 {cohort} 件から。",
+      "empty": "現在のフィルターに一致する体験談はまだありません。",
+      "error": "体験談を読み込めませんでした",
+      "loadMore": "さらに体験談を読み込む",
+      "loading": "読み込み中…",
+      "upvotesLabel": "合計賛成票：{count}",
+      "dialog": {
+        "title": "体験談",
+        "summary": "要約",
+        "fullStory": "全文",
+        "close": "体験談を閉じる",
+        "error": "体験談の全文を読み込めませんでした",
+        "openPage": "体験談のページを開く"
+      },
+      "status": {
+        "detransitioned": "脱トランジション",
+        "desisted": "断念"
+      }
+    },
+    "highlights": {
+      "title": "注目点",
+      "types": {
+        "prevalence": "最も多い",
+        "pair": "同時に見られる",
+        "improvement": "デトランジション後の生活",
+        "journey": "典型的な経過",
+        "minorShare": "18歳未満で開始",
+        "minorLe15": "15歳以下で開始",
+        "minorDysphoria": "12歳までに性別違和",
+        "minorFemale": "若くして始める人",
+        "orientation": "性的指向"
+      },
+      "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
+      "prevalenceUnclear": "さらに {unclear}% は不明確です。",
+      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "improvement": "{better}% がデトランジション後に生活の質が向上したと述べ、{worse}% が悪化したと述べています（n = {n}）。",
+      "journey": "典型的な経過：{dysphoria} 歳で最初の性別違和 → {transition} 歳でトランジション → {detransition} 歳でデトランジション（n = {n}）。",
+      "minorShare": "年齢のある体験談の {percent}% が18歳未満でトランジションを始めています（{total} 件中 n = {n}）。",
+      "minorLe15": "{percent}% が15歳以下で始めています（n = {n}）。",
+      "minorDysphoria": "{percent}% が12歳以下で初めて性別違和を感じています（n = {n}）。",
+      "minorFemale": "18歳未満で始めた人の {percent}% が女性です（n = {n}）。",
+      "explore": "詳しく見る",
+      "orientation": "性的指向を述べているデトランジショナーの {percent}% がゲイ、レズビアン、またはバイセクシュアルです（ゲイまたはレズビアンは {sameSex}%、n = {n}）。"
+    },
+    "pathways": {
+      "journey": "原因 → 過程 → 結果",
+      "medical": "医療的経路",
+      "stages": {
+        "cause": "主な理由",
+        "process": "転機",
+        "outcome": "現在の後悔"
+      },
+      "causes": {
+        "social_role_discomfort": "社会的役割への違和感",
+        "internalised_homophobia": "内面化された同性愛嫌悪",
+        "internalised_misogyny_misandry": "内面化された女性嫌悪／男性嫌悪",
+        "trauma": "トラウマ",
+        "mental_health_issues": "メンタルヘルス",
+        "neurodivergence": "神経多様性",
+        "body_dysmorphia": "身体醜形障害",
+        "online_influence": "オンラインの影響",
+        "peer_influence": "仲間の影響",
+        "sexual_factors": "性的要因",
+        "parental_or_medical_pressure": "親または医療者からの圧力",
+        "other_unclear": "その他／不明",
+        "unclear": "不明"
+      },
+      "processes": {
+        "process_benefited_from_therapy": "探索的セラピー",
+        "process_detrans_community_exposure": "デトランスコミュニティ",
+        "process_research_consumption": "調査とメディア",
+        "process_self_reflection": "自己省察",
+        "process_time_off_hormones": "ホルモンの休止",
+        "process_medical_scare": "医療上の不安",
+        "process_family_partner_intervention": "家族またはパートナー",
+        "process_spiritual_experience": "精神的・宗教的な体験",
+        "other": "その他／不明"
+      },
+      "outcomes": {
+        "regrets": "後悔あり",
+        "no_regret": "後悔なし",
+        "not_stated": "記載なし"
+      },
+      "linkTooltip": "{from} → {to}：{count, plural, =1 {1 件} other {# 件}}",
+      "basedOn": "この表示で回答のある評価済み体験談 {cohort} 件に基づく。",
+      "empty": "この表示に必要な回答のある体験談がまだ十分にありません。",
+      "error": "経路データを読み込めませんでした",
+      "journeyDescription": "主な理由、転機、後悔が体験談全体でどうつながっているか。",
+      "medicalDescription": "デトランジション前にどの医療的ステップを踏んだか。",
+      "regretByReason": {
+        "title": "トランジションの主な理由別の後悔",
+        "description": "トランジションを後悔しているかどうかを述べている体験談のうち、後悔している人の割合を、トランジションの主な理由別にまとめたもの。",
+        "headline": "全体では、後悔に言及している体験談の {percent}% が後悔を表明しています（n = {n}）。",
+        "note": "点はどちらかを明確に述べている体験談のうち後悔を表明している割合、線は95%区間を示します。薄い行は体験談が30件未満です。",
+        "error": "理由別の後悔を読み込めませんでした",
+        "empty": "現在のフィルターでは回答がまだありません。"
+      }
+    },
+    "methodology": {
+      "p1": "detrans.ai は公開されている /r/detrans の体験談からこのデータセットを構築しています。AIが各ユーザーの散在するコメントや投稿を一人称の物語1つにまとめ直し、そこから主要な年齢のタイムラインを抽出します。完全な体験談を構成できるだけの情報を共有したユーザーのみが含まれます。",
+      "p1b": "これらの統計は、本人がデトランジションまたはデジストしたことを明確に確認した体験談のみを対象としています。元のコーパスからグラフまで：",
+      "table": {
+        "comments": "/r/detrans から収集したコメント",
+        "posts": "/r/detrans から収集した投稿",
+        "authors": "コーパス内の投稿者数（重複なし）",
+        "selected": "賛成票3以上のコメントが5件以上ある投稿者",
+        "removed": "除外：デトランジションまたはデジスタンスが明確に確認されていないもの",
+        "remaining": "その後に残った体験談",
+        "cohort": "以下のグラフの対象（フラグ付きアカウントを除く）"
+      },
+      "p2": "次に、各体験談は確率的な質問応答モデル Jev によって、原因、経験、結果に関する約100の記述と照らし合わせて評価されます。「はい／いいえ」の質問は0から1の確率を、選択式の質問はすべての選択肢の確率を、尺度の質問は各グラフの下に示す尺度上の期待値を返します。",
+      "p3": "「はい／いいえ」の特徴では、確率がしきい値（デフォルトは0.8）に達したときに体験談を「該当」とします。各特徴のヒストグラムは確率分布全体を示すため、中間的な回答が多い特徴は、明確に該当または非該当なのではなく、本当に不確かなものとして読み取れます。",
+      "p4": "すべてのグラフは上のフィルターを反映します。質問セットは時間とともに変わり、体験談は処理の実行ごとに見直されるため、各グラフはフィルター後の体験談のうち実際にその質問への回答があるものの数を示しています。",
+      "p5": "不自然、捏造、またはボットのように見えるアカウントはモデルによってフラグが付けられ、これらの統計から除外されます。AIが抽出したデータには誤りが含まれることもあります。システムプロンプトは<prompts>プロンプトのページ</prompts>で公開しており、要約は元のコメントと照合されています。",
+      "threshold": {
+        "title": "しきい値はどれほど影響するか",
+        "description": "グラフでは、AIの確率が0.8以上のときに記述を「該当」として数えています。しきい値を下げると数値は高くなります。このグラフはその差を示しています。",
+        "error": "しきい値のデータを読み込めませんでした",
+        "tooltip": "しきい値 {threshold}",
+        "xAxis": "確率のしきい値",
+        "siteThreshold": "このページで使用",
+        "note": "各しきい値以上の体験談の割合。0.8というしきい値は意図的に保守的に設定しています。"
+      },
+      "accountType": {
+        "title": "誰が書いているか",
+        "description": "各アカウントが書き手自身の経験を述べているかどうか。",
+        "options": {
+          "personal_experience": "本人の経験",
+          "parent": "親",
+          "friend": "友人またはパートナー",
+          "researcher_journalist": "研究者、ジャーナリスト、または臨床医",
+          "other": "その他または混在"
+        }
+      },
+      "detail": {
+        "title": "体験談の詳しさ",
+        "description": "各一人称の記述がどれだけ具体的かについてのAIの評価。フィルターの「詳細な体験談のみ」を使うと、すべてのグラフを上位2段階に限定できます。",
+        "levels": {
+          "level0": "曖昧または一般的",
+          "level1": "個人的な詳細がある程度ある",
+          "level2": "詳しく具体的な出来事",
+          "level3": "非常に詳しい、数年にわたる記述"
+        }
+      }
+    },
+    "prevalence": {
+      "women": "女性",
+      "men": "男性",
+      "interval": "{group} {percent}（95%区間 {low}–{high}、n = {n}）",
+      "smallSample": "n = {n}",
+      "openStories": "体験談を表示",
+      "showAll": "すべて表示（{count}）",
+      "showFewer": "表示を減らす",
+      "note": "点は記述が明確に当てはまる（AI確率 ≥ 0.8）体験談の割合、線は95%区間を示します。薄い行は回答が30件未満です。",
+      "noteWithStories": "点は記述が明確に当てはまる（AI確率 ≥ 0.8）体験談の割合、線は95%区間を示します。薄い行は回答が30件未満です。行を選ぶと該当する体験談を読めます。",
+      "gap": "最大の差：{label} — {higherGroup}では {higher}、{lowerGroup}では {lower}。",
+      "womenLower": "女性",
+      "menLower": "男性",
+      "m": "男",
+      "f": "女",
+      "menLegend": "男 · 男性",
+      "womenLegend": "女 · 女性"
+    },
+    "storyPeek": {
+      "title": "体験談：{label}",
+      "meta": "{count, plural, =1 {該当する体験談 1 件} other {該当する体験談 # 件}}",
+      "error": "体験談を読み込めませんでした。",
+      "empty": "現在のフィルターに該当する体験談はありません。",
+      "readFull": "体験談の全文を読む",
+      "note": "匿名の抜粋で、評価の高い順です。全一覧はページ末尾の「体験談」セクションにあります。"
+    },
+    "reasons": {
+      "transitionTitle": "トランジションの主な理由",
+      "transitionDescription": "各人がトランジションを始めた最も重要な理由1つ。",
+      "detransitionTitle": "デトランジションの主な理由",
+      "detransitionDescription": "各人がやめた最も重要な理由1つ。"
+    },
+    "byYear": {
+      "error": "年別のデータを読み込めませんでした",
+      "empty": "現在のフィルターではトランジション年がまだありません。",
+      "other": "その他",
+      "n": "n = {n}",
+      "note": "トランジション年のコホートごとの確率で重み付けした割合。薄い行は体験談が30件未満です。"
+    },
+    "overview": {
+      "error": "概要を読み込めませんでした",
+      "basedOn": "評価済みの体験談 {cohort} 件に基づく。"
+    },
+    "drivers": {
+      "statements": {
+        "title": "トランジションの一因として語られたもの"
+      },
+      "count": "n = {n}",
+      "basedOn": "評価済みの体験談 {cohort} 件に基づく。",
+      "empty": "現在のフィルターでは回答がまだありません。",
+      "error": "このデータを読み込めませんでした"
+    },
+    "adversity": {
+      "composition": {
+        "any": "{positive}% が少なくとも1つのトラウマや逆境を記述（n = {n}）"
+      },
+      "statements": {
+        "title": "記述された逆境の種類"
+      },
+      "contrast": {
+        "title": "トラウマ歴と主な理由としてのトラウマ",
+        "description": "トラウマをトランジションやデトランジションの主な要因として挙げる体験談よりも、トラウマに言及する体験談の方がはるかに多くあります。",
+        "history": "トラウマ歴を記述",
+        "transitionReason": "トラウマをトランジションの主な理由として挙げる",
+        "detransitionReason": "トラウマへの気づきをデトランジションの主な理由として挙げる",
+        "note": "点は体験談の割合、線は95%区間を示します。理由の行は各体験談の主な理由1つを数えています。"
+      },
+      "count": "n = {n}",
+      "basedOn": "評価済みの体験談 {cohort} 件に基づく。",
+      "empty": "現在のフィルターでは逆境に関する回答がまだありません。",
+      "error": "逆境のデータを読み込めませんでした"
+    },
+    "online": {
+      "choice": {
+        "title": "最も影響したプラットフォーム",
+        "description": "オンラインの影響を挙げている体験談が対象。目立ったオンラインの影響がない体験談は除外しています。",
+        "options": {
+          "reddit": "Reddit",
+          "tumblr": "Tumblr",
+          "tiktok": "TikTok",
+          "twitter": "Twitter / X",
+          "youtube": "YouTube",
+          "discord": "Discord",
+          "other": "その他のプラットフォームやファンダム"
+        }
+      },
+      "statements": {
+        "title": "オンラインと仲間の影響"
+      },
+      "byYear": {
+        "title": "トランジション年別のプラットフォーム",
+        "description": "最も影響したプラットフォームがトランジション年のコホート間でどう移り変わったか。"
+      },
+      "count": "n = {n}",
+      "basedOn": "評価済みの体験談 {cohort} 件に基づく。",
+      "empty": "現在のフィルターではオンラインの影響に関する回答がまだありません。",
+      "error": "オンラインの影響のデータを読み込めませんでした"
+    },
+    "process": {
+      "composition": {
+        "any": "{positive}% がこれらの転機の少なくとも1つを記述（n = {n}）"
+      },
+      "statements": {
+        "title": "人々をデトランジションへと向かわせたもの"
+      },
+      "count": "n = {n}",
+      "basedOn": "評価済みの体験談 {cohort} 件に基づく。",
+      "empty": "現在のフィルターでは転機に関する回答がまだありません。",
+      "error": "転機のデータを読み込めませんでした"
+    },
+    "lives": {
+      "error": "タイムラインを読み込めませんでした",
+      "empty": "現在のフィルターでは、トランジションとデトランジションの両方の年齢がある体験談はまだありません。",
+      "legend": {
+        "transition": "トランジション中",
+        "blockers": "思春期ブロッカー",
+        "hormones": "ホルモン",
+        "surgery": "手術"
+      },
+      "ariaLabel": "トランジションからデトランジションまでの個人のタイムライン {n} 件のストリップチャート",
+      "tooltip": {
+        "woman": "女性",
+        "man": "男性",
+        "person": "人",
+        "firstDysphoria": "{age} 歳で最初の性別違和",
+        "transition": "{age} 歳でトランジション",
+        "pubertyBlockers": "{age} 歳で思春期ブロッカー",
+        "hormones": "{age} 歳でホルモン",
+        "topSurgery": "{age} 歳で上半身手術",
+        "bottomSurgery": "{age} 歳で下半身手術",
+        "detransition": "{age} 歳でデトランジション"
+      },
+      "note": "両方の年齢が記載されている {n} 人を、トランジション時の年齢順に並べています。年齢はAIによる各体験談の読み取りであり、おおよその値である場合があります。"
+    },
+    "duration": {
+      "error": "期間を読み込めませんでした",
+      "empty": "現在のフィルターではトランジション期間がまだありません。",
+      "all": "全体",
+      "women": "女性",
+      "men": "男性",
+      "legend": "{label}：中央値 {median} 年（n = {n}）",
+      "tooltipTitle": "{years, plural, =1 {1 年} other {# 年}}以内",
+      "xAxis": "トランジション開始からの年数",
+      "note": "一定の年数以内にやめた人の割合。ここにいる全員が最終的にデトランジションしているため、これは彼らにとってトランジションがどれくらい続いたかを示すもので、トランジションした人のうちどれだけがやめるかを示すものではありません。",
+      "headline": "{one}% が開始から1年以内に、{five}% が5年以内にやめていました（中央値 {median} 年、n = {n}）。"
+    },
+    "optionLabels": {
+      "reddit": "Reddit",
+      "tumblr": "Tumblr",
+      "tiktok": "TikTok",
+      "twitter": "Twitter / X",
+      "youtube": "YouTube",
+      "discord": "Discord",
+      "social_role_discomfort": "社会的役割への違和感",
+      "internalised_homophobia": "内面化された同性愛嫌悪",
+      "internalised_misogyny_misandry": "内面化された女性嫌悪／男性嫌悪",
+      "trauma": "トラウマ",
+      "mental_health_issues": "メンタルヘルス",
+      "neurodivergence": "神経多様性",
+      "body_dysmorphia": "身体醜形障害",
+      "online_influence": "オンラインの影響",
+      "peer_influence": "仲間の影響",
+      "sexual_factors": "性的要因（AGP / AAP）",
+      "parental_or_medical_pressure": "親または医療者からの圧力",
+      "other_unclear": "その他／不明",
+      "accepted_sexed_body": "自分の性別の身体を受け入れた",
+      "social_construct_realisation": "性役割こそが問題だと気づいた",
+      "trauma_realisation": "トラウマが原因だと気づいた",
+      "mental_health_realisation": "メンタルヘルスが原因だと気づいた",
+      "neurodivergence_realisation": "神経多様性が原因だと気づいた",
+      "fantasy_reality_disillusionment": "現実が期待と違った",
+      "surgery_regret_medical_complications": "手術への後悔または医療的合併症",
+      "ideological_disillusionment": "イデオロギーやコミュニティへの幻滅",
+      "social_pressure_ostracism": "社会的圧力または排斥",
+      "failure_to_pass": "パスできなかった",
+      "internalised_homophobia_realisation": "内面化された同性愛嫌悪に気づいた",
+      "internalised_misogyny_misandry_realisation": "内面化された女性嫌悪／男性嫌悪に気づいた",
+      "sexual_factors_realisation": "性的要因（AGP / AAP）に気づいた",
+      "religious_or_spiritual_change": "宗教的・精神的な変化",
+      "fertility_or_family_desires": "妊孕性や家族への願い"
+    },
+    "choiceSplit": {
+      "error": "このグラフを読み込めませんでした",
+      "empty": "現在のフィルターでは回答がまだありません。",
+      "women": "女 · 女性（n = {n}）",
+      "men": "男 · 男性（n = {n}）",
+      "headline": "女性は「{womenOption}」を挙げることが多く（{womenShare}、男性は {womenMen}）、男性は「{menOption}」を挙げることが多くなっています（{menShare}、女性は {menWomen}）。",
+      "note": "確率で重み付け：AIが2つの理由に60/40で振り分けた体験談は0.6と0.4として数えます。",
+      "m": "男",
+      "f": "女"
+    },
+    "ordinal": {
+      "error": "このグラフを読み込めませんでした",
+      "empty": "現在のフィルターでは回答がまだありません。",
+      "all": "全員",
+      "women": "女性",
+      "men": "男性"
+    },
+    "medical_steps": {
+      "statements": {
+        "title": "受けた医療的ステップ"
+      },
+      "count": "n = {n}",
+      "basedOn": "評価済みの体験談 {cohort} 件に基づく。",
+      "empty": "現在のフィルターでは回答がまだありません。",
+      "error": "医療的ステップを読み込めませんでした"
     }
   },
   "topicsPage": {
     "title": "Topics",
     "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
     "empty": "No topics have been published yet."
+  },
+  "storiesPage": {
+    "metadata": {
+      "title": "ディトランジションの体験談 | detrans.ai",
+      "description": "/r/detrans コミュニティから集めた、匿名化されたディトランジションとデジスタンスの体験談を数千件掲載。AI が要約しています。年齢・性別・経験で絞り込めます。"
+    },
+    "title": "ディトランジションの体験談",
+    "description": "性別移行を経て、その後ディトランジションした人やデジストした人の匿名の体験談 {count, number} 件。/r/detrans への投稿やコメントから AI がまとめたものです。",
+    "statsLink": "統計を見る",
+    "allStories": "すべての体験談",
+    "story": {
+      "metaTitle": "{title} – ディトランジションの体験談 | detrans.ai",
+      "untitled": "ディトランジションの体験談",
+      "notFound": "体験談が見つかりません | detrans.ai",
+      "tags": "タグ",
+      "moreStories": "ほかの体験談を読む"
+    }
   }
 }

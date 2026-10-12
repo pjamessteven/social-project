@@ -6,6 +6,7 @@ import {
   jsonb,
   pgTable,
   primaryKey,
+  real,
   serial,
   text,
   timestamp,
@@ -194,11 +195,19 @@ export const detransUsers = pgTable(
   }),
 );
 
+// Generated display names (pseudonyms) for storyteller users. Filled in by
+// tooling so cards/dialogs can show a human name while usernames stay private.
+export const detransUserDisplayNames = pgTable("detrans_user_display_names", {
+  username: varchar("username", { length: 255 }).primaryKey(),
+  displayName: varchar("display_name", { length: 255 }).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 // Detrans comments table
 export const detransComments = pgTable(
   "detrans_comments",
   {
-    uuid: varchar("uuid", { length: 50 }).primaryKey(), // Remove auto-generation, use Qdrant point ID
+    uuid: varchar("uuid", { length: 50 }).primaryKey(), // Qdrant point ID or deterministic UUIDv5
     text: text("text").notNull(),
     summary: text("summary"),
     questions: text("questions"),
@@ -211,12 +220,46 @@ export const detransComments = pgTable(
     id: varchar("id", { length: 50 }).notNull(),
     parentId: varchar("parent_id", { length: 50 }),
     linkId: varchar("link_id", { length: 50 }),
+    enriched: boolean("enriched").default(false).notNull(), // summary/questions/keywords generated
+    embedded: boolean("embedded").default(false).notNull(), // indexed in Qdrant for chat RAG (score >= 3 only)
   },
   (table) => ({
-    idIdx: index("idx_detrans_comments_id").on(table.id),
+    idIdx: uniqueIndex("idx_detrans_comments_id_unique").on(table.id),
     createdIdx: index("idx_detrans_comments_created").on(table.created),
+    usernameIdx: index("idx_detrans_comments_username").on(table.username),
     parentIdIdx: index("idx_detrans_comments_parent_id").on(table.parentId),
     linkIdIdx: index("idx_detrans_comments_link_id").on(table.linkId),
+  }),
+);
+
+// Detrans posts table (Reddit submissions; mirrors detrans_comments + post fields)
+export const detransPosts = pgTable(
+  "detrans_posts",
+  {
+    uuid: varchar("uuid", { length: 50 }).primaryKey(), // deterministic UUIDv5 from t3_<id>
+    title: text("title").notNull(),
+    text: text("text").notNull(), // selftext; '' for link/image posts
+    summary: text("summary"),
+    questions: text("questions"),
+    keywords: text("keywords"),
+    username: varchar("username", { length: 255 }),
+    userFlair: varchar("user_flair", { length: 255 }),
+    link: text("link").unique(),
+    score: integer("score"),
+    created: timestamp("created").notNull(),
+    id: varchar("id", { length: 50 }).notNull(),
+    url: text("url"),
+    numComments: integer("num_comments"),
+    isSelf: boolean("is_self"),
+    linkFlair: varchar("link_flair", { length: 255 }),
+    enriched: boolean("enriched").default(false).notNull(),
+    embedded: boolean("embedded").default(false).notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    idIdx: uniqueIndex("idx_detrans_posts_id_unique").on(table.id),
+    createdIdx: index("idx_detrans_posts_created").on(table.created),
+    usernameIdx: index("idx_detrans_posts_username").on(table.username),
   }),
 );
 
@@ -334,6 +377,30 @@ export const detransCommentSchema = z.object({
   id: z.string().max(50),
   parentId: z.string().max(50).nullable(),
   linkId: z.string().max(50).nullable(),
+  enriched: z.boolean().default(false),
+  embedded: z.boolean().default(false),
+});
+
+export const detransPostSchema = z.object({
+  uuid: z.string(),
+  title: z.string(),
+  text: z.string(),
+  summary: z.string().nullable(),
+  questions: z.string().nullable(),
+  keywords: z.string().nullable(),
+  username: z.string().max(255).nullable(),
+  userFlair: z.string().max(255).nullable(),
+  link: z.string().nullable(),
+  score: z.number().int().nullable(),
+  created: z.date(),
+  id: z.string().max(50),
+  url: z.string().nullable(),
+  numComments: z.number().int().nullable(),
+  isSelf: z.boolean().nullable(),
+  linkFlair: z.string().max(255).nullable(),
+  enriched: z.boolean().default(false),
+  embedded: z.boolean().default(false),
+  createdAt: z.date(),
 });
 
 export const userSchema = z.object({
@@ -370,6 +437,7 @@ export type Cache = z.infer<typeof cacheSchema>;
 export type DetransUserEvent = z.infer<typeof detransUserEventSchema>;
 export type DetransUser = z.infer<typeof detransUserSchema>;
 export type DetransComment = z.infer<typeof detransCommentSchema>;
+export type DetransPost = z.infer<typeof detransPostSchema>;
 export type User = z.infer<typeof userSchema>;
 export type ChatConversation = z.infer<typeof chatConversationSchema>;
 export type Tag = z.infer<typeof tagSchema>;
@@ -722,3 +790,232 @@ export const pageSlugSchema = z.object({
 
 export type Page = z.infer<typeof pageSchema>;
 export type PageSlug = z.infer<typeof pageSlugSchema>;
+
+// ---------------------------------------------------------------------------
+// Profile reprocessing + feature extraction staging (shadow until cutover)
+// ---------------------------------------------------------------------------
+
+export const detransProcessingRuns = pgTable("detrans_processing_runs", {
+  id: serial("id").primaryKey(),
+  kind: varchar("kind", { length: 50 }).notNull(), // 'profiles' | 'features'
+  model: varchar("model", { length: 100 }),
+  taxonomyVersion: varchar("taxonomy_version", { length: 50 }),
+  startedAt: timestamp("started_at").defaultNow().notNull(),
+  finishedAt: timestamp("finished_at"),
+  stats: jsonb("stats"),
+  notes: text("notes"),
+});
+
+export const detransUserProfiles = pgTable(
+  "detrans_user_profiles",
+  {
+    id: serial("id").primaryKey(),
+    runId: integer("run_id")
+      .notNull()
+      .references(() => detransProcessingRuns.id, { onDelete: "cascade" }),
+    username: varchar("username", { length: 255 }).notNull(),
+    experience: text("experience"),
+    experienceSummary: text("experience_summary"),
+    redFlagsReport: text("red_flags_report"),
+    sex: varchar("sex", { length: 1 }),
+    commentCount: integer("comment_count"),
+    postCount: integer("post_count"),
+    charCount: integer("char_count"),
+    chunkCount: integer("chunk_count").default(0).notNull(),
+    firstItemDate: timestamp("first_item_date"),
+    model: varchar("model", { length: 100 }),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    runUsername: uniqueIndex("idx_detrans_user_profiles_run_username").on(
+      table.runId,
+      table.username,
+    ),
+    usernameIdx: index("idx_detrans_user_profiles_username").on(table.username),
+  }),
+);
+
+export const detransUserProfileChunks = pgTable(
+  "detrans_user_profile_chunks",
+  {
+    id: serial("id").primaryKey(),
+    runId: integer("run_id")
+      .notNull()
+      .references(() => detransProcessingRuns.id, { onDelete: "cascade" }),
+    username: varchar("username", { length: 255 }).notNull(),
+    chunkIndex: integer("chunk_index").notNull(),
+    dateStart: timestamp("date_start"),
+    dateEnd: timestamp("date_end"),
+    itemCount: integer("item_count"),
+    charCount: integer("char_count"),
+    summary: jsonb("summary"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    runUserChunk: uniqueIndex(
+      "idx_detrans_user_profile_chunks_run_user_chunk",
+    ).on(table.runId, table.username, table.chunkIndex),
+  }),
+);
+
+export const detransUserTimelines = pgTable(
+  "detrans_user_timelines",
+  {
+    id: serial("id").primaryKey(),
+    runId: integer("run_id")
+      .notNull()
+      .references(() => detransProcessingRuns.id, { onDelete: "cascade" }),
+    username: varchar("username", { length: 255 }).notNull(),
+    firstDysphoriaAge: integer("first_dysphoria_age"),
+    transitionAge: integer("transition_age"),
+    detransitionAge: integer("detransition_age"),
+    hormonesAge: integer("hormones_age"),
+    topSurgeryAge: integer("top_surgery_age"),
+    bottomSurgeryAge: integer("bottom_surgery_age"),
+    pubertyBlockersAge: integer("puberty_blockers_age"),
+    transitionYear: integer("transition_year"),
+    detransitionYear: integer("detransition_year"),
+    timeline: jsonb("timeline"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    runUsername: uniqueIndex("idx_detrans_user_timelines_run_username").on(
+      table.runId,
+      table.username,
+    ),
+    usernameIdx: index("idx_detrans_user_timelines_username").on(
+      table.username,
+    ),
+  }),
+);
+
+export const detransFeatures = pgTable("detrans_features", {
+  id: serial("id").primaryKey(),
+  key: varchar("key", { length: 100 }).notNull().unique(),
+  label: varchar("label", { length: 255 }).notNull(),
+  group: varchar("group", { length: 50 }).notNull(),
+  tier: varchar("tier", { length: 20 }).notNull(),
+  kind: varchar("kind", { length: 10 }).notNull(),
+  question: jsonb("question").notNull(),
+  tagName: varchar("tag_name", { length: 255 }),
+  tagType: varchar("tag_type", { length: 50 }),
+  threshold: real("threshold"),
+  choiceTagMap: jsonb("choice_tag_map"),
+  choiceTagThreshold: real("choice_tag_threshold"),
+  enabled: boolean("enabled").default(true).notNull(),
+  version: integer("version").default(1).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const detransUserFeatures = pgTable(
+  "detrans_user_features",
+  {
+    id: serial("id").primaryKey(),
+    runId: integer("run_id")
+      .notNull()
+      .references(() => detransProcessingRuns.id, { onDelete: "cascade" }),
+    username: varchar("username", { length: 255 }).notNull(),
+    featureId: integer("feature_id")
+      .notNull()
+      .references(() => detransFeatures.id, { onDelete: "cascade" }),
+    kind: varchar("kind", { length: 10 }).notNull(),
+    noul: real("noul"),
+    score: real("score"),
+    choice: varchar("choice", { length: 100 }),
+    confidence: real("confidence"),
+    probabilities: jsonb("probabilities"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    runUserFeature: uniqueIndex(
+      "idx_detrans_user_features_run_user_feature",
+    ).on(table.runId, table.username, table.featureId),
+    usernameIdx: index("idx_detrans_user_features_username").on(table.username),
+    featureIdx: index("idx_detrans_user_features_feature").on(table.featureId),
+  }),
+);
+
+export const detransProcessingRunSchema = z.object({
+  id: z.number().int(),
+  kind: z.string().max(50),
+  model: z.string().max(100).nullable(),
+  taxonomyVersion: z.string().max(50).nullable(),
+  startedAt: z.date(),
+  finishedAt: z.date().nullable(),
+  stats: z.unknown().nullable(),
+  notes: z.string().nullable(),
+});
+
+export const detransUserProfileSchema = z.object({
+  id: z.number().int(),
+  runId: z.number().int(),
+  username: z.string().max(255),
+  experience: z.string().nullable(),
+  experienceSummary: z.string().nullable(),
+  redFlagsReport: z.string().nullable(),
+  sex: z.string().max(1).nullable(),
+  commentCount: z.number().int().nullable(),
+  postCount: z.number().int().nullable(),
+  charCount: z.number().int().nullable(),
+  chunkCount: z.number().int(),
+  firstItemDate: z.date().nullable(),
+  model: z.string().max(100).nullable(),
+  createdAt: z.date(),
+});
+
+export const detransUserTimelineSchema = z.object({
+  id: z.number().int(),
+  runId: z.number().int(),
+  username: z.string().max(255),
+  firstDysphoriaAge: z.number().int().nullable(),
+  transitionAge: z.number().int().nullable(),
+  detransitionAge: z.number().int().nullable(),
+  hormonesAge: z.number().int().nullable(),
+  topSurgeryAge: z.number().int().nullable(),
+  bottomSurgeryAge: z.number().int().nullable(),
+  pubertyBlockersAge: z.number().int().nullable(),
+  transitionYear: z.number().int().nullable(),
+  detransitionYear: z.number().int().nullable(),
+  timeline: z.unknown().nullable(),
+  createdAt: z.date(),
+});
+
+export const detransFeatureSchema = z.object({
+  id: z.number().int(),
+  key: z.string().max(100),
+  label: z.string().max(255),
+  group: z.string().max(50),
+  tier: z.string().max(20),
+  kind: z.string().max(10),
+  question: z.unknown(),
+  tagName: z.string().max(255).nullable(),
+  tagType: z.string().max(50).nullable(),
+  threshold: z.number().nullable(),
+  choiceTagMap: z.unknown().nullable(),
+  choiceTagThreshold: z.number().nullable(),
+  enabled: z.boolean(),
+  version: z.number().int(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+
+export const detransUserFeatureSchema = z.object({
+  id: z.number().int(),
+  runId: z.number().int(),
+  username: z.string().max(255),
+  featureId: z.number().int(),
+  kind: z.string().max(10),
+  noul: z.number().nullable(),
+  score: z.number().nullable(),
+  choice: z.string().max(100).nullable(),
+  confidence: z.number().nullable(),
+  probabilities: z.unknown().nullable(),
+  createdAt: z.date(),
+});
+
+export type DetransProcessingRun = z.infer<typeof detransProcessingRunSchema>;
+export type DetransUserProfile = z.infer<typeof detransUserProfileSchema>;
+export type DetransUserTimeline = z.infer<typeof detransUserTimelineSchema>;
+export type DetransFeature = z.infer<typeof detransFeatureSchema>;
+export type DetransUserFeature = z.infer<typeof detransUserFeatureSchema>;

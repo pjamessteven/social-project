@@ -144,7 +144,9 @@
       "stats": "Statisztika",
       "statsDesc": "Anonimizált detranszíciós statisztikák a /r/detrans-ról",
       "topics": "Topics",
-      "topicsDesc": "Részletes útmutatók a legfontosabb témákról"
+      "topicsDesc": "Részletes útmutatók a legfontosabb témákról",
+      "stories": "Történetek",
+      "storiesDesc": "Az /r/detrans felhasználóitól"
     },
     "resources": {
       "genderSupport": "Terapeuták Keresése",
@@ -183,6 +185,7 @@
     "de": "Német",
     "he": "Héber",
     "it": "Olasz",
+    "lt": "Lithuanian",
     "nl": "Holland",
     "tr": "Török",
     "hu": "Magyar"
@@ -240,26 +243,27 @@
   },
   "chat": {
     "lookingForComments": "Releváns hozzászólások keresése...",
+    "lookingForStudies": "Looking for relevant studies...",
     "errorOccurred": "Hiba történt, próbáld újra... Vedd fel velem a kapcsolatot, ha ez továbbra is előfordul.",
     "analysingExperiences": "Tapasztalatok Elemzése",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Webes eredmények elemzése",
+    "analysingResults": "Eredmények elemzése...",
     "detransPerspective": "-> Mik a detrans nézőpontok erről a témáról?",
     "transPerspectivesIncluded": "Transz nézőpontok beépítve",
     "captchaRequired": "Captcha szükséges a chat folytatásához.",
     "chatArchived": "Ez a chat archiválva van. Kezdj egy újat.",
     "rateLimitExceeded": "Túl sok kérés, lassítson és próbálkozzon újra később.",
     "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
-    "analysingResults": "Eredmények elemzése...",
     "followUpQuestions": "Követő kérdések:",
     "eventLabels": {
       "askDetransitioners": "Kérdezd a Detransitionálókat",
+      "askTransPeople": "Kérdezd a Transznemű Embereket",
       "videoArchive": "Videó Archívum",
       "queryStudies": "Tanulmányok Lekérdezése",
       "webSearch": "Webes Keresés",
       "queryStudyCatalogue": "Detransition Tanulmányi Katalógus Lekérdezése",
       "studyDetail": "Tanulmány Részletei",
-      "askTransPeople": "Kérdezd a Transznemű Embereket",
       "wikiPage": "Wiki page"
     },
     "eventStatus": {
@@ -345,7 +349,21 @@
       "delete": "Beszélgetés Törlése",
       "banning": "Kitiltás...",
       "ban": "Felhasználó Kitiltása (IP)"
+    },
+    "dialog": {
+      "title": "Beszélgetés",
+      "toggleIdHint": "Kattints a dátum/ország és az azonosító közötti váltáshoz",
+      "shareText": "Nézd meg ezt a beszélgetést",
+      "share": "Beszélgetés megosztása",
+      "copyLink": "A beszélgetés linkjének másolása",
+      "noneSelected": "Nincs kiválasztott beszélgetés"
     }
+  },
+  "readingDialog": {
+    "share": "Megosztás",
+    "copyLink": "Link másolása",
+    "copied": "Link a vágólapra másolva",
+    "close": "Ablak bezárása"
   },
   "stories": {
     "metadata": {
@@ -385,9 +403,9 @@
       "ageRangeYears": "{min} - {max} év",
       "sex": {
         "all": "Férfi és Nő",
-        "mine": "Mine",
         "female": "Nő",
-        "male": "Férfi"
+        "male": "Férfi",
+        "mine": "Mine"
       },
       "tagsPlaceholder": "Válassz címkéket szűréshez...",
       "clearFilters": "Szűrők Törlése"
@@ -497,14 +515,6 @@
           "content": "Az automatizált visszaélések elleni védelem érdekében hCaptcha-t használunk, amelyet az Intuition Machines, Inc. nyújt harmadik fél szolgáltatásként. Az hCaptcha begyűjtheti az IP-címedet, böngészőinformációidat és az interakciós adataidat (például egérmozgásokat és billentyűleütési mintákat), hogy megállapítsa, ember vagy-e. Ezek az adatok az hCaptcha saját adatvédelmi szabályzatának hatálya alá tartoznak. Az hCaptcha csak a szolgáltatásához szükséges, hozzájárulásmentes sütiket használ."
         }
       },
-      "aiProviders": {
-        "title": "AI-feldolgozás:",
-        "content": "Az üzeneteidet harmadik fél AI-szolgáltatók (jelenleg OpenRouter) dolgozzák fel a válaszok generálására. A beszélgetéseiden való tanítás le van tiltva. Kérlek, tekintsd meg az OpenRouter adatvédelmi szabályzatát azzal kapcsolatban, hogyan kezelik az adatokat."
-      },
-      "captcha": {
-        "title": "Botészlelés (hCaptcha):",
-        "content": "Az automatizált visszaélések elleni védelem érdekében hCaptcha-t használunk, amelyet az Intuition Machines, Inc. nyújt harmadik fél szolgáltatásként. Az hCaptcha begyűjtheti az IP-címedet, böngészőinformációidat és az interakciós adataidat (például egérmozgásokat és billentyűleütési mintákat), hogy megállapítsa, ember vagy-e. Ezek az adatok az hCaptcha saját adatvédelmi szabályzatának hatálya alá tartoznak. Az hCaptcha csak a szolgáltatásához szükséges, hozzájárulásmentes sütiket használ."
-      },
       "legalBases": {
         "title": "Feldolgozás Jogi Alapjai (EU/EGT látogatók)",
         "item1": "A korlátozási feldolgozás szükséges a <em>jogos érdekeink</em> számára a GDPR 6(1)(f) cikke alatt – konkrétan a szolgáltatás rendelkezésre állásának és biztonságának fenntartása.",
@@ -537,6 +547,14 @@
       "contact": {
         "title": "Kapcsolat",
         "content": "Ha kérdéseid, aggályaid vagy panaszaid vannak, használd a kapcsolatfelvételi űrlapot, vagy írj email-t a következő címre: <email>peter@detrans.ai</email>."
+      },
+      "aiProviders": {
+        "title": "AI-feldolgozás:",
+        "content": "Az üzeneteidet harmadik fél AI-szolgáltatók (jelenleg OpenRouter) dolgozzák fel a válaszok generálására. A beszélgetéseiden való tanítás le van tiltva. Kérlek, tekintsd meg az OpenRouter adatvédelmi szabályzatát azzal kapcsolatban, hogyan kezelik az adatokat."
+      },
+      "captcha": {
+        "title": "Botészlelés (hCaptcha):",
+        "content": "Az automatizált visszaélések elleni védelem érdekében hCaptcha-t használunk, amelyet az Intuition Machines, Inc. nyújt harmadik fél szolgáltatásként. Az hCaptcha begyűjtheti az IP-címedet, böngészőinformációidat és az interakciós adataidat (például egérmozgásokat és billentyűleütési mintákat), hogy megállapítsa, ember vagy-e. Ezek az adatok az hCaptcha saját adatvédelmi szabályzatának hatálya alá tartoznak. Az hCaptcha csak a szolgáltatásához szükséges, hozzájárulásmentes sütiket használ."
       }
     }
   },
@@ -590,12 +608,15 @@
   },
   "videoList": {
     "loading": "Videók betöltése...",
+    "searchPlaceholder": "Search videos...",
+    "result": "video",
+    "results": "videos",
     "filters": {
       "all": "Összes Történet",
-      "mine": "Mine",
       "female": "Nő",
       "male": "Férfi",
-      "detransitioners": "Detransitionálók"
+      "detransitioners": "Detransitionálók",
+      "mine": "Mine"
     },
     "thumbnailAlt": "Bélyegkép ehhez: {title}",
     "by": "készítette",
@@ -809,7 +830,9 @@
       "legend": {
         "transition": "Transition Kor",
         "detransition": "Detransition Kor"
-      }
+      },
+      "median": "medián {age}",
+      "coverage": "{transition} tranzíciós és {detransition} detranzíciós életkor alapján."
     },
     "transitionDuration": {
       "title": "Transition Időtartam: Transition Kor vs Detransition Kor",
@@ -833,7 +856,8 @@
       "female": "Nő",
       "yearsAvg": "év átlag",
       "user": "felhasználó",
-      "users": "felhasználó"
+      "users": "felhasználó",
+      "coverage": "{count} olyan történet alapján, amelyben mindkét életkor szerepel."
     },
     "pathways": {
       "title": "Detransition Útvonalak Folyamata",
@@ -953,7 +977,9 @@
     "error": {
       "title": "CAPTCHA hiba",
       "description": "A CAPTCHA betöltése sikertelen. Kérjük, frissítse az oldalt és próbálja újra."
-    }
+    },
+    "verifyFailed": "Verification failed. Please try again.",
+    "rateLimited": "Too many verifications. Please wait a moment and try again."
   },
   "feedback": {
     "title": "Visszajelzés",
@@ -971,11 +997,990 @@
     "metadata": {
       "title": "Anonimizált statisztikák | detrans.ai",
       "description": "Anonimizált statisztikák a detranzícióról és tranzíciós mintákról, beleértve az életkor eloszlást, időtartamot, okokat és útvonalakat."
+    },
+    "toc": {
+      "title": "Ezen az oldalon"
+    },
+    "filters": {
+      "title": "Szűrők",
+      "edit": "Szűrők szerkesztése",
+      "hide": "Szűrők elrejtése",
+      "summary": {
+        "none": "Nincs szűrő",
+        "age": "Életkor {min}–{max}",
+        "tags": "{count, plural, =0 {nincs címke} =1 {1 címke} other {# címke}}",
+        "detailed": "Csak részletes"
+      },
+      "detailed": "Csak részletes történetek",
+      "detailedHint": "Csak azokat a történeteket veszi figyelembe, amelyeket az MI közepesen vagy nagyon részletesnek értékelt."
+    },
+    "sections": {
+      "age": {
+        "title": "Életkor",
+        "description": "Mikor kezdték a tranzíciót és mikor detranzícionáltak a detranzícionálók."
+      },
+      "journey": {
+        "title": "Életkorok",
+        "description": "Mikor éreztek először diszfóriát, mikor kezdték a tranzíciót és a hormonokat, és mikor detranzícionáltak."
+      },
+      "duration": {
+        "title": "Időtartam",
+        "description": "Mennyi ideig tartott a tranzíció, mielőtt abbahagyták."
+      },
+      "minors": {
+        "title": "Tranzíció 18 éves kor előtt",
+        "description": "Mit mutatnak a történetek a gyermek- vagy serdülőkorban kezdett tranzícióról."
+      },
+      "reasons": {
+        "title": "Okok",
+        "description": "Miért mondják a detranzícionálók, hogy tranzícióba kezdtek – és miért detranzícionáltak."
+      },
+      "pathways": {
+        "title": "Útvonalak",
+        "description": "Különbözik-e a megbánás a tranzíció oka szerint, és milyen orvosi lépéseket tettek meg."
+      },
+      "regret": {
+        "title": "Megbánás",
+        "description": "Milyen erős a megbánás, hogyan változik az idővel, és mit bánnak meg az emberek."
+      },
+      "medical": {
+        "title": "Orvosi beavatkozások",
+        "description": "Hogyan függ össze a megbánás azzal, hogy meddig jutott a tranzíció."
+      },
+      "complications": {
+        "title": "Szövődmények",
+        "description": "Orvosi szövődmények és tartós egészségügyi problémák a tranzíció után."
+      },
+      "mental_health": {
+        "title": "Mentális egészség",
+        "description": "A mentális egészség képe a történetekben, a detranzíció előtt és után."
+      },
+      "suicidality": {
+        "title": "Szuicidalitás",
+        "description": "Milyen gyakran írnak le a történetek öngyilkossági gondolatokat vagy önsértést, és mikor."
+      },
+      "after": {
+        "title": "A detranzíció után",
+        "description": "Hogyan változott a mentális egészség, az életminőség és a családi kapcsolatok."
+      },
+      "current_status": {
+        "title": "Where are they now",
+        "description": "Current identities and situations after detransitioning."
+      },
+      "family_community": {
+        "title": "A detranzíció társadalmi ára",
+        "description": "A detranzíció miatti elszigetelődés és kirekesztés, valamint kiábrándulás a transz közösségből. A tranzíciót és a detranzíciót nem elkülönítő kérdések (családi támogatás, párkapcsolatok, karrier) kimaradtak; a detranzíció óta fennálló családi kapcsolatokat „A detranzíció után” rész tárgyalja."
+      },
+      "sexuality": {
+        "title": "Szexualitás",
+        "description": "Szexuális irányultság a születési nemhez viszonyítva, a tranzíció előtt és a detranzíció után."
+      },
+      "trends": {
+        "title": "Az évek során",
+        "description": "Hogyan változtak a történetek – és okaik – a tranzíció éve szerinti kohorszokban."
+      },
+      "features": {
+        "title": "Jellemzők",
+        "description": "Every statement the AI evaluated across the stories — causes, processes and outcomes."
+      },
+      "compare": {
+        "title": "Összehasonlítás",
+        "description": "Hogyan változik a jellemzők gyakorisága a kohorsz két fele között."
+      },
+      "matrix": {
+        "title": "Összefüggések",
+        "description": "Válaszok vitatott kérdésekre – azokra az esetekre is, ahol egy várt különbség nem jelenik meg."
+      },
+      "stories": {
+        "title": "Történetek",
+        "description": "Névtelen részletek a számok mögött álló emberektől.",
+        "browse": "Összes történet böngészése"
+      },
+      "methodology": {
+        "title": "Módszertan",
+        "description": "Hogyan épül fel az adatkészlet, és hogyan kell olvasni ezeket a diagramokat."
+      },
+      "overview": {
+        "title": "Áttekintés",
+        "description": "Minden igen/nem állítás, amelyet az MI kiértékelt, aszerint rangsorolva, hogy hány történetre igaz egyértelműen."
+      },
+      "lives": {
+        "title": "Egyéni idővonalak",
+        "description": "Minden vonal egy személy, a tranzíció kezdetének életkorától addig az életkorig, amikor abbahagyta."
+      },
+      "drivers": {
+        "title": "Kevésbé tárgyalt tényezők",
+        "description": "Testkép, identitásbeli instabilitás és szexuális tényezők, amelyeket a tranzícióhoz hozzájárulóként írnak le."
+      },
+      "adversity": {
+        "title": "Trauma és nehézségek",
+        "description": "Milyen gyakran írnak le a történetek traumát, és milyen gyakran nevezik meg a traumát fő okként."
+      },
+      "online": {
+        "title": "Online és kortárs hatás",
+        "description": "Mely platformok számítottak leginkább, és hogyan jelenik meg az online és kortárs hatás a történetekben."
+      },
+      "process": {
+        "title": "Fordulópontok",
+        "description": "Mi segítette az embereket abban, hogy a tranzíciótól a detranzíció felé mozduljanak."
+      }
+    },
+    "features": {
+      "search": "Jellemzők keresése…",
+      "sort": {
+        "prevalence": "Gyakoriság",
+        "alpha": "A–Z"
+      },
+      "tiers": {
+        "cause": "Ok",
+        "process": "Folyamat",
+        "outcome": "Kimenet"
+      },
+      "kinds": {
+        "noul": "Igen / nem",
+        "choice": "Választás",
+        "score": "Skála"
+      },
+      "groups": {
+        "reasons": "Okok",
+        "causes": "Kiváltó okok",
+        "processes": "Folyamatok",
+        "regret": "Megbánás",
+        "medical": "Orvosi",
+        "mental_health": "Mentális egészség",
+        "adversity": "Nehézségek",
+        "social": "Társas",
+        "sexuality": "Szexualitás",
+        "online": "Online",
+        "identity": "Identitás",
+        "outcomes": "Kimenetek",
+        "attitudes": "Attitűdök",
+        "quality": "Minőség"
+      },
+      "basedOn": "{cohort} kiértékelt történet alapján.",
+      "coverageNote": "{cohort} kiértékelt történetből {n} ({percent}%) tartalmaz választ.",
+      "question": "Hogyan mértük ezt?",
+      "confidence": "Az MI medián megbízhatósága ennél a jellemzőnél: {value}%.",
+      "filterByTag": "Csak a „{tag}” címkéjű történetek",
+      "placeholder": "Válassz egy jellemzőt a listából a felfedezéshez.",
+      "backToList": "Összes jellemző",
+      "noResults": "Egyetlen jellemző sem felel meg a keresésnek.",
+      "noData": "Nincs válasz a jelenlegi szűrőkkel.",
+      "loading": "Betöltés…",
+      "error": "Nem sikerült betölteni a jellemző adatait",
+      "noul": {
+        "prevalenceLabel": "a kiértékelt történetek közül a küszöb felett van",
+        "range": "{from} – {to} valószínűség",
+        "count": "{count} történet ({percent}%)",
+        "thresholdShort": "küszöb: {threshold}",
+        "legend": {
+          "yes": "Valószínűleg igaz",
+          "maybe": "Bizonytalan",
+          "no": "Valószínűleg hamis"
+        },
+        "above": "Valószínűleg igaz",
+        "uncertain": "Bizonytalan",
+        "below": "Valószínűleg hamis"
+      },
+      "choice": {
+        "soft": "Valószínűségi tömeg",
+        "hard": "Nyertes opció",
+        "softTooltip": "≈{percent}% (≈{count} történetnyi valószínűségi tömeg)",
+        "hardTooltip": "{percent}% ({count} történet)",
+        "softNote": "Az oszlopok az egyes opciókra jutó összesített MI-valószínűséget mutatják a történetekben, így a vegyes válaszok arányosan számítanak.",
+        "hardNote": "Az oszlopok csak az egyes történetek legvalószínűbb opcióját számolják."
+      },
+      "score": {
+        "meanLabel": "Átlag: {value} egy 0–{max} skálán",
+        "range": "Pontszám {from} – {to}",
+        "count": "{count} történet",
+        "meanShort": "átlag {value}"
+      },
+      "related": {
+        "title": "Gyakran együtt fordul elő",
+        "lift": "{lift}× gyakoribb ({percent}%)"
+      },
+      "listNote": "A pontok azt mutatják, a történetek mekkora részében egyértelműen igaz az adott állítás (MI-valószínűség ≥ 0,8); a vonalak a 95%-os intervallumot mutatják. A halvány sorokban 30-nál kevesebb válasz van. Válassz egy sort a megfelelő történetek olvasásához. {cohort} kiértékelt történet alapján."
+    },
+    "compare": {
+      "splitLabel": "Felosztás szerint",
+      "thresholdNote": "A {threshold} MI-küszöb feletti és alatti történetek összevetése.",
+      "filter": {
+        "all": "Minden válasz",
+        "clear": "Csak egyértelmű jelek"
+      },
+      "clearNote": "{excluded} bizonytalan történet kizárva mindkét oldalról.",
+      "cohortTrue": "{label}: jelen van (n = {n})",
+      "cohortFalse": "Nincs jelen (n = {n})",
+      "splitSex": "Biológiai nem",
+      "sexNote": "Nők és férfiak történeteinek összehasonlítása.",
+      "cohortWomen": "Nők (n = {n})",
+      "cohortMen": "Férfiak (n = {n})",
+      "splitAge": "Életkor a tranzíciókor",
+      "ageNote": "A 18 éves kor előtt, illetve 18 évesen vagy később kezdett tranzíciók történeteinek összehasonlítása.",
+      "cohortUnder18": "18 év alatt (n = {n})",
+      "cohortAdult": "18 év felett (n = {n})",
+      "rowTooltip": "{label}: {pctTrue}% ({nTrue} közül) vs. {pctFalse}% ({nFalse} közül)",
+      "empty": "Még nincs elég történet válaszokkal a felosztás mindkét oldalán.",
+      "showSmallSamples": "Kis minták megjelenítése",
+      "hideSmallSamples": "Kis minták elrejtése",
+      "hiddenNote": "{count, plural, =1 {1 jellemző} other {# jellemző}} rejtve, mert az egyik oldalon 3-nál kevesebb történet van.",
+      "error": "Nem sikerült betölteni az összehasonlítás adatait",
+      "ratio": "{ratio} olyan gyakori",
+      "ratioNote": "A sorok aszerint vannak rangsorolva, hogy mennyire különbözik a két csoport (relatív kockázat); a mindkét oldalon ritka jellemzők kimaradnak. A vonalak 95%-os intervallumokat mutatnak; a halvány sorokban az egyik oldalon 30-nál kevesebb történet van.",
+      "showAll": "Összes jellemző megjelenítése"
+    },
+    "matrix": {
+      "presetLabel": "Nézet",
+      "presets": {
+        "outcomesByCause": "Kimenetek ok szerint",
+        "outcomesByProcess": "Kimenetek fordulópont szerint"
+      },
+      "metric": {
+        "rate": "Arány",
+        "lift": "Eltérés az átlagtól"
+      },
+      "swap": "Tengelyek felcserélése",
+      "legendRate": "A megfelelő történetek aránya, amelyekben az oszlop jellemzője igaz.",
+      "legendLift": "A teljes kohorsz átlagához képest (kék felette, piros alatta).",
+      "sampleNote": "Minden cella a sor jellemzőjével rendelkező történeteket veti össze az anélküliekkel. A hosszabb, részletesebb történetek mindenféle jellemzőt többször említenek, ezért a legtöbb arány 1× felett van – a cellákat inkább egymással hasonlítsd össze, ne az 1×-szel. A bármelyik oldalon 30-nál kevesebb történetet tartalmazó cellák üresek maradnak.",
+      "basedOn": "{cohort} kiértékelt történet ebben a nézetben.",
+      "cellTooltip": "{row} → {col}: {n} történet {percent}%-a · a kohorszátlag {lift}×-ese",
+      "cellTooltipNoLift": "{row} → {col}: {n} történet {percent}%-a",
+      "cellMasked": "{row} → {col}: nincs elég történet",
+      "empty": "Még nincs elég történet válaszokkal ehhez a nézethez.",
+      "error": "Nem sikerült betölteni a mátrix adatait",
+      "presetDescriptions": {
+        "outcomesByCause": "Mennyivel gyakoribb (vagy ritkább) az egyes kimenetek előfordulása egy adott okot tartalmazó történetekben, mint az azt nem tartalmazókban.",
+        "outcomesByProcess": "Mennyivel gyakoribb (vagy ritkább) az egyes kimenetek előfordulása egy adott fordulópontot tartalmazó történetekben, mint az azt nem tartalmazókban."
+      },
+      "legendMore": "Gyakoribb a sor jellemzőjével",
+      "legendLess": "Ritkább",
+      "legendNone": "Nincs egyértelmű különbség (a 95%-os intervallum tartalmazza az 1×-et)",
+      "cellTooltipRatio": "{row} → {col}: a tényezővel rendelkező {n} történet {percent}%-a, szemben a nélküle lévők {percentWithout}%-ával · {ratio} (95%-os intervallum {low}–{high})",
+      "legendWith": "A tényezővel",
+      "legendWithout": "Nélküle",
+      "themes": {
+        "medical": "Orvosi út",
+        "helped": "Mi segített",
+        "who": "Ki bánja meg, ki tér vissza",
+        "views": "Vélemény mások tranzíciójáról"
+      },
+      "predictors": {
+        "under18": "18 éves kor előtt kezdte a tranzíciót",
+        "women": "Nők (vs. férfiak)",
+        "sameSex": "A tranzíció előtt az azonos nemhez vonzódott",
+        "took_puberty_blockers": "Pubertásgátlót szedett",
+        "took_hormones": "Hormont szedett",
+        "top_surgery": "Mellkasi műtéten esett át",
+        "process_benefited_from_therapy": "Feltáró terápia segített",
+        "gender_nonconformity_childhood": "Gyermekként nemi szerepeknek nem megfelelő",
+        "process_spiritual_experience": "Spirituális élmény",
+        "autogynephilia": "Autogynephilia",
+        "adv_trauma_history": "Traumatikus előzmények",
+        "contributed_online_influence": "Online hatás"
+      },
+      "outcomes": {
+        "regret": "megbánta a tranzíciót",
+        "bodyReconciliation": "elfogadta a testét",
+        "retransitioned": "újra tranzícióba kezdett",
+        "mentalHealthBetter": "jobb mentális egészség a detranzíció után",
+        "critical": "kritikus vagy ellenzi mások tranzícióját"
+      },
+      "ratio": "{ratio} olyan gyakori",
+      "noDifference": "Nincs egyértelmű különbség",
+      "rowTooltip": "A tényezővel rendelkező {nWith} történetből {with}, szemben a nélküle lévő {nWithout} történetből {without}",
+      "note": "A vonalak 95%-os intervallumokat mutatnak. A „Nincs egyértelmű különbség” azt jelenti, hogy az intervallum a különbség teljes hiányát is tartalmazza. Ezek összefüggések abban, amit az emberek írnak, nem okok, és aki hosszabb, részletesebb történetet ír, mindenből többet említ. {cohort} kiértékelt történet alapján."
+    },
+    "regret": {
+      "composition": {
+        "pair": "A történetek {positive}%-a fejez ki megbánást a tranzíció miatt, {negative}%-a pedig azt mondja, hogy nem bánja; a többi nem nyilatkozik. Akik nyilatkoznak, azok {statedShare}%-a megbánta (n = {stated}).",
+        "any": "{positive}% fejez ki megbánást (n = {n})"
+      },
+      "scale": {
+        "title": "Mennyire erős a megbánás?",
+        "mean": "{value} / {max} átlagos intenzitás",
+        "levels": {
+          "level0": "Nem fejez ki megbánást",
+          "level1": "Enyhe vagy múló",
+          "level2": "Mérsékelt, visszatérő",
+          "level3": "Súlyos, tartós"
+        }
+      },
+      "choice": {
+        "title": "Hogyan változik a megbánás az idővel?",
+        "options": {
+          "resolved": "Nagyrészt feldolgozott",
+          "improving": "Javuló",
+          "stable": "Stabil",
+          "worsening": "Romló",
+          "mixed": "Vegyes vagy hullámzó"
+        }
+      },
+      "statements": {
+        "title": "Mit bánnak meg konkrétan"
+      },
+      "count": "n = {n}",
+      "basedOn": "{cohort} kiértékelt történet alapján.",
+      "empty": "Még nincs megbánással kapcsolatos válasz a jelenlegi szűrőkkel.",
+      "error": "Nem sikerült betölteni a megbánás adatait"
+    },
+    "complications": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% számol be legalább egy orvosi szövődményről vagy tartós egészségügyi problémáról (n = {n})"
+      },
+      "scale": {
+        "title": "Mennyire voltak súlyosak a szövődmények?",
+        "mean": "{value} / {max} átlagos súlyosság",
+        "levels": {
+          "level0": "Nincs szövődmény",
+          "level1": "Enyhe vagy kezelhető mellékhatások",
+          "level2": "Jelentős szövődmények",
+          "level3": "Súlyos vagy maradandó károsodás"
+        }
+      },
+      "statements": {
+        "title": "Konkrét egészségügyi problémák"
+      },
+      "count": "n = {n}",
+      "basedOn": "{cohort} kiértékelt történet alapján.",
+      "empty": "Még nincs orvosi válasz a jelenlegi szűrőkkel.",
+      "error": "Nem sikerült betölteni a szövődmények adatait"
+    },
+    "mental_health": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% mutat legalább egy mentális zavart vagy krízist (n = {n})"
+      },
+      "scale": {
+        "title": "Mennyire súlyos a mentális egészségi állapot?",
+        "mean": "{value} / {max} átlagos súlyosság",
+        "levels": {
+          "level0": "Nincs jelentős probléma",
+          "level1": "Enyhe vagy helyzeti distressz",
+          "level2": "Jelentős, kezelt zavarok",
+          "level3": "Súlyos zavarok vagy krízis"
+        }
+      },
+      "statements": {
+        "title": "Zavarok és krízisek"
+      },
+      "count": "n = {n}",
+      "basedOn": "{cohort} kiértékelt történet alapján.",
+      "empty": "Még nincs mentális egészséggel kapcsolatos válasz a jelenlegi szűrőkkel.",
+      "error": "Nem sikerült betölteni a mentális egészség adatait"
+    },
+    "suicidality": {
+      "during": "A tranzíció alatt",
+      "since": "A detranzíció óta",
+      "duringDescription": "Mennyire valószínűnek ítéli a modell, hogy egy történet öngyilkossági gondolatokat, önsértést vagy öngyilkossági kísérletet ír le a tranzíció ideje alatt.",
+      "sinceDescription": "Mennyire valószínűnek ítéli a modell, hogy egy történet öngyilkossági gondolatokat, önsértést vagy öngyilkossági kísérletet ír le a detranzíció óta.",
+      "splitNote": "Jelenlegi állapot szerint bontva · négyzetgyökös tengely",
+      "overall": "Minden történet",
+      "sqrtNote": "A függőleges tengely négyzetgyökös skálát használ, hogy a kisebb valószínűségi sávok is láthatók maradjanak a nullánál lévő csúcs mellett.",
+      "tooltipBin": "Valószínűség {range}",
+      "tooltipCount": "{count, plural, =1 {1 történet} other {# történet}}",
+      "bands": {
+        "no": "Valószínűleg hamis (< 0,2)",
+        "mixed": "Bizonytalan (0,2–0,8)",
+        "yes": "Valószínűleg igaz (≥ 0,8)"
+      },
+      "count": "n = {n}",
+      "basedOn": "{cohort} választ tartalmazó történet alapján.",
+      "empty": "Még nincs szuicidalitással kapcsolatos válasz a jelenlegi szűrőkkel.",
+      "error": "Nem sikerült betölteni a szuicidalitás adatait",
+      "statements": {
+        "title": "Öngyilkossági gondolatok és önsértés"
+      }
+    },
+    "current_status": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% (n = {n})"
+      },
+      "choice": {
+        "title": "Where are they now?",
+        "options": {
+          "detransitioned": "Detranzícionált",
+          "desisted": "Orvosi tranzíció előtt elállt (desistance)",
+          "retransitioned": "Újra tranzícióba kezdett",
+          "still_trans_questioning": "Továbbra is transz, kérdező",
+          "questioning": "Kérdező",
+          "unclear": "Nem egyértelmű",
+          "supportive": "Támogatja mások tranzícióját",
+          "conditional": "Feltételekkel támogatja",
+          "critical": "Kritikus a tranzícióval szemben",
+          "opposed": "Ellenzi",
+          "not_addressed": "Nem tér ki rá"
+        },
+        "description": "Azok között a történetek között, amelyek kitérnek rá, a támogatótól az ellenzőig."
+      },
+      "secondaryChoice": {
+        "title": "Hogyan vélekednek mások tranzíciójáról?"
+      },
+      "statements": {
+        "title": "Jelenlegi helyzet"
+      },
+      "count": "n = {n}",
+      "basedOn": "{cohort} kiértékelt történet alapján.",
+      "empty": "Még nincs az állapotra vonatkozó válasz a jelenlegi szűrőkkel.",
+      "error": "Nem sikerült betölteni az állapot adatait",
+      "headline": "{percent}% kritikus mások tranzíciójával szemben vagy ellenzi azt (n ≈ {n}).",
+      "note": "Valószínűséggel súlyozott arányok. A kérdésre ki nem térő történetek kimaradnak."
+    },
+    "family_community": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% válaszol igennel legalább az egyik alábbi kérdésre (n = {n})"
+      },
+      "statements": {
+        "title": "Feltett kérdések",
+        "description": "Minden történetet pontosan ezekkel a kérdésekkel vetettünk össze. Egy történet akkor számít, ha a válasz egyértelmű igen."
+      },
+      "count": "n = {n}",
+      "basedOn": "{cohort} kiértékelt történet alapján.",
+      "empty": "Még nincs válasz a jelenlegi szűrőkkel.",
+      "error": "Nem sikerült betölteni az adatokat"
+    },
+    "sexuality": {
+      "beforeLabel": "A tranzíció előtt",
+      "afterLabel": "A detranzíció után",
+      "options": {
+        "homosexual": "Homosexual",
+        "bisexual": "Biszexuális",
+        "heterosexual": "Heterosexual",
+        "asexual": "Aszexuális",
+        "other": "Egyéb vagy változó"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 történet} other {# történet}}",
+      "statements": {
+        "title": "Orientation and attraction"
+      },
+      "count": "n = {n}",
+      "basedOn": "Az áramlás {cohort} olyan történeten alapul, amelyben mindkét irányultsági válasz szerepel.",
+      "empty": "Not enough orientation answers for the current filters yet.",
+      "error": "Nem sikerült betölteni a szexualitás adatait",
+      "hero": {
+        "statement": "azon detranzícionálók közül, akik megadják jelenlegi irányultságukat, meleg, leszbikus vagy biszexuális (n = {n}).",
+        "bySex": "F {men} meleg vagy biszexuális ({menSame} meleg) | N {women} leszbikus vagy biszexuális ({womenSame} leszbikus)"
+      },
+      "mix": {
+        "title": "Irányultság a tranzíció előtt és a detranzíció után",
+        "description": "A születési nemhez viszonyítva, azon történetek körében, amelyek megadják.",
+        "women": "Nők",
+        "men": "Férfiak",
+        "all": "Mindenki",
+        "before": "előtte",
+        "after": "utána"
+      },
+      "matrix": {
+        "title": "Megváltozott az irányultság?",
+        "description": "Minden sor egy tranzíció előtti irányultság; a cellák azt mutatják, mit írnak le ezek az emberek a detranzíció után.",
+        "headline": "{percent}% ugyanazt az irányultságot írja le a tranzíció előtt és a detranzíció után (n = {n}).",
+        "corner": "Előtte ↓ · Utána →",
+        "cell": "{from} előtte → {to} utána: {percent}% ({count})",
+        "note": "Csak olyan történetek, amelyek mindkét oldalon megadják az irányultságot. A 30-nál kevesebb történetet tartalmazó sorok üresek maradnak."
+      },
+      "coverage": "{cohort} kiértékelt történetből az irányultság {before} történetben szerepel a tranzíció előttről és {after} történetben a detranzíció utánról."
+    },
+    "trends": {
+      "series": {
+        "contributed_online_influence": "Online hatás",
+        "contributed_rapid_onset": "Hirtelen kezdet (ROGD)",
+        "regret_transition": "Megbánás",
+        "took_puberty_blockers": "Pubertásgátlók"
+      },
+      "tooltip": "{bucket} · n = {n}",
+      "mode": {
+        "strict": "Bináris jel",
+        "soft": "Átlagos valószínűség",
+        "strictNote": "Azon történetek aránya, amelyekben a modell biztos (≥ 0,8).",
+        "softNote": "Átlagos valószínűség az összes történetben – a bizonytalan történetek is a trendben maradnak."
+      },
+      "seriesTooltip": "{strict} bináris · {mean} átl.",
+      "medianAge": "Medián tranzíciós életkor kohorsz szerint",
+      "coverageNote": "Minden pont a kohorsz megválaszolt történeteit használja; a legkorábbi kohorszoknak a legkisebb a mintája.",
+      "basedOn": "{cohort} tranzíciós évet tartalmazó történet alapján.",
+      "empty": "Még nincs tranzíciós év a jelenlegi szűrőkkel.",
+      "error": "Nem sikerült betölteni a trendadatokat",
+      "linesTitle": "Jellemzők a tranzíció éve szerint",
+      "linesDescription": "Azon történetek aránya, amelyekben az adott állítás egyértelműen igaz, a tranzíció kezdetének éve szerint csoportosítva. Adj hozzá vagy távolíts el jellemzőket az összehasonlításhoz.",
+      "reasonsTitle": "A tranzíció fő oka korszakonként",
+      "reasonsDescription": "Hogyan változnak a leggyakoribb fő okok a tranzíció éve szerinti kohorszok között.",
+      "add": "Jellemző hozzáadása…",
+      "remove": "{label} eltávolítása",
+      "strictNote": "Azon történetek aránya, amelyekben az MI biztos abban, hogy az állítás igaz (≥ 0,8). Az üres pontok 30-nál kevesebb történeten alapulnak. A friss kohorszoknak kevesebb idejük volt a tranzíció óta – kevesebb idő a műtétig vagy a hosszú távú hatásokig, és általában rövidebbek a történetek –, ezért sok jellemző a jobb szélen visszaesik; az a jellemző, amely mégis emelkedik, például a szorongás, kiemelkedik."
+    },
+    "uncertainty": {
+      "binary": "Bináris",
+      "bands": "Háromszintű",
+      "likelyFalse": "Valószínűleg hamis (< 0,2)",
+      "unclear": "Nem egyértelmű (0,2–0,8)",
+      "unclearShort": "nem egyértelmű",
+      "likelyTrue": "Valószínűleg igaz (≥ 0,8)",
+      "rowTooltip": "{false}% valószínűleg hamis · {unclear}% nem egyértelmű · {true}% valószínűleg igaz"
+    },
+    "minors": {
+      "tiles": {
+        "minor": "18 éves kora előtt kezdte ({total} életkort tartalmazó történetből {n})",
+        "le15": "15 évesen vagy fiatalabban kezdte",
+        "dysphoria": "12 évesen vagy fiatalabban érzett először diszfóriát (n = {n})",
+        "female": "a 18 év előtt kezdők közül nő"
+      },
+      "early": "Ezekben a történetekben a pubertásgátlók {min} éves kortól jelennek meg, a medián {median} év (n = {n}). {hormones} 16 éves koráig hormonokat kezdett szedni, és {detrans} 18 éves koráig már detranzícionált.",
+      "empty": "Még nincs életkori adat a jelenlegi szűrőkkel.",
+      "error": "Nem sikerült betölteni a korai tranzíció adatait",
+      "byEra": {
+        "title": "18 év előtt kezdők a tranzíció éve szerint",
+        "description": "Azon történetek aránya, amelyekben a tranzíció 18 éves kor előtt kezdődött, a kezdés éve szerint csoportosítva.",
+        "note": "A vonalak a 95%-os intervallumot mutatják. A későbbi kohorszokban több olyan ember van, aki nemrég és fiatalon kezdte a tranzíciót, ezért a trendet óvatosan kell értelmezni."
+      }
+    },
+    "journey": {
+      "milestones": {
+        "first_dysphoria": "Első diszfória",
+        "transition": "Tranzíció",
+        "hormones": "Hormonok",
+        "detransition": "Detranzíció",
+        "in_transition": "Tranzícióban töltött évek"
+      },
+      "median": "medián {age}",
+      "count": "n = {n}",
+      "tooltip": "{age} év: {count, plural, =1 {1 történet} other {# történet}}",
+      "yearsTooltip": "{years, plural, =1 {1 év} other {# év}} tranzícióban: {count, plural, =1 {1 történet} other {# történet}}",
+      "basedOn": "Minden sor csak azokat a történeteket számolja, amelyek megadják az adott életkort. A tengely a 99. percentilisnél le van vágva.",
+      "empty": "Még nincs idővonal-adat a jelenlegi szűrőkkel.",
+      "error": "Nem sikerült betölteni az útvonal adatait"
+    },
+    "gradient": {
+      "regret": "Megbánás",
+      "noRegret": "Nincs megbánás",
+      "notStated": "Nincs megadva",
+      "tiers": {
+        "no_transition": "Nem kezdett tranzícióba",
+        "social_only": "Csak szociális",
+        "hormones": "Hormonok vagy gátlók",
+        "surgery": "Műtét",
+        "unclear": "Nem egyértelmű"
+      },
+      "tierTooltip": "{n} történet: {regrets} megbánás, {noRegret} nincs megbánás, {notStated} nincs megadva",
+      "count": "n = {n}",
+      "selectionNote": "Aki korán detranzícionál, soha nem jut el a későbbi lépésekig, így ez azt mutatja, mely utak hová vezetnek – nem azt, hogy az orvosi lépések okoznák a megbánást.",
+      "basedOn": "{cohort} kiértékelt történet alapján.",
+      "empty": "Még nincs válasz a jelenlegi szűrőkkel.",
+      "error": "Nem sikerült betölteni az orvosi beavatkozások adatait",
+      "statedNote": "A jobb oldali szám a megbánás aránya azon történetek körében, amelyek valamelyik irányban nyilatkoznak (megbánás vagy nincs megbánás).",
+      "headline": "A műtéten átesettek {percent}%-a mondja, hogy megbánta a tranzíciót, azok körében, akik nyilatkoznak erről (n = {n}).",
+      "headlineCompare": "A műtéten átesettek {percent}%-a mondja, hogy megbánta a tranzíciót, szemben a hormonoknál vagy gátlóknál megállók {hormones}%-ával (n = {n} / {nHormones}). Csak a nyilatkozó történeteket számoltuk."
+    },
+    "after": {
+      "levels": {
+        "muchWorse": "Sokkal rosszabb",
+        "worse": "Kicsit rosszabb",
+        "same": "Nagyjából ugyanolyan",
+        "better": "Kicsit jobb",
+        "muchBetter": "Sokkal jobb"
+      },
+      "panels": {
+        "mh_change_after_detransition": "Mentális egészség",
+        "outcome_quality_of_life": "Életminőség",
+        "outcome_family_relationship_change": "Családi kapcsolatok"
+      },
+      "summary": "{better}% jobb · {worse}% rosszabb",
+      "count": "n = {n}",
+      "basedOn": "{cohort} kiértékelt történet alapján.",
+      "empty": "Még nincs válasz a jelenlegi szűrőkkel.",
+      "error": "Nem sikerült betölteni a változások adatait",
+      "worseSide": "Rosszabb",
+      "betterSide": "Jobb",
+      "headline": "{better}% jobb mentális egészségről számol be a detranzíció után; {worse}% rosszabbnak írja le (n = {n})."
+    },
+    "stories": {
+      "excerptNote": "Nyilvános /r/detrans bejegyzések névtelen, MI által készített összefoglalói.",
+      "agesCaption": "Életkorok: első diszfória → tranzíció → {outcome}",
+      "ages": {
+        "firstDysphoria": "Első diszfória",
+        "transition": "Tranzíció",
+        "detransition": "Detranzíció",
+        "desistance": "Elállás (desistance)",
+        "socialTransition": "Társadalmi tranzíció"
+      },
+      "female": "Nő",
+      "male": "Férfi",
+      "basedOn": "{cohort} megfelelő történetből.",
+      "empty": "Még nincs a jelenlegi szűrőknek megfelelő történet.",
+      "error": "Nem sikerült betölteni a történeteket",
+      "loadMore": "További történetek betöltése",
+      "loading": "Betöltés…",
+      "upvotesLabel": "Összes szavazat: {count}",
+      "dialog": {
+        "title": "Történet",
+        "summary": "Összefoglaló",
+        "fullStory": "Teljes történet",
+        "close": "Történet bezárása",
+        "error": "Nem sikerült betölteni a teljes történetet",
+        "openPage": "Történet oldalának megnyitása"
+      },
+      "status": {
+        "detransitioned": "Detranzícionált",
+        "desisted": "Elállt"
+      }
+    },
+    "highlights": {
+      "title": "Ami kiemelkedik",
+      "types": {
+        "prevalence": "Leggyakoribb",
+        "pair": "Együtt jár",
+        "improvement": "Élet a detranzíció után",
+        "journey": "Tipikus út",
+        "minorShare": "18 év előtt kezdte",
+        "minorLe15": "15 évesen vagy fiatalabban kezdte",
+        "minorDysphoria": "Első diszfória 12 éves korig",
+        "minorFemale": "Kik kezdik fiatalon",
+        "orientation": "Szexuális irányultság"
+      },
+      "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
+      "prevalenceUnclear": "További {unclear}% nem egyértelmű.",
+      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "improvement": "{better}% szerint javult az életminősége a detranzíció után; {worse}% szerint romlott (n = {n}).",
+      "journey": "A tipikus út: első diszfória {dysphoria} évesen → tranzíció {transition} évesen → detranzíció {detransition} évesen (n = {n}).",
+      "minorShare": "Az életkort tartalmazó történetek {percent}%-ában 18 év előtt kezdődött a tranzíció (n = {n} / {total}).",
+      "minorLe15": "{percent}% 15 évesen vagy fiatalabban kezdte (n = {n}).",
+      "minorDysphoria": "{percent}% 12 évesen vagy fiatalabban érzett először diszfóriát (n = {n}).",
+      "minorFemale": "A 18 év előtt kezdők {percent}%-a nő (n = {n}).",
+      "explore": "Felfedezés",
+      "orientation": "Az irányultságukat megadó detranzícionálók {percent}%-a meleg, leszbikus vagy biszexuális ({sameSex}% meleg vagy leszbikus; n = {n})."
+    },
+    "pathways": {
+      "journey": "Ok → Folyamat → Kimenet",
+      "medical": "Orvosi út",
+      "stages": {
+        "cause": "Fő ok",
+        "process": "Fordulópont",
+        "outcome": "Megbánás ma"
+      },
+      "causes": {
+        "social_role_discomfort": "Kényelmetlenség a társadalmi szereppel",
+        "internalised_homophobia": "Internalizált homofóbia",
+        "internalised_misogyny_misandry": "Internalizált nőgyűlölet / férfigyűlölet",
+        "trauma": "Trauma",
+        "mental_health_issues": "Mentális egészség",
+        "neurodivergence": "Neurodivergencia",
+        "body_dysmorphia": "Testdiszmorfia",
+        "online_influence": "Online hatás",
+        "peer_influence": "Kortárs hatás",
+        "sexual_factors": "Szexuális tényezők",
+        "parental_or_medical_pressure": "Szülői vagy orvosi nyomás",
+        "other_unclear": "Egyéb / nem egyértelmű",
+        "unclear": "Nem egyértelmű"
+      },
+      "processes": {
+        "process_benefited_from_therapy": "Feltáró terápia",
+        "process_detrans_community_exposure": "Detrans közösség",
+        "process_research_consumption": "Kutatás és média",
+        "process_self_reflection": "Önreflexió",
+        "process_time_off_hormones": "Hormonszünet",
+        "process_medical_scare": "Egészségügyi ijedtség",
+        "process_family_partner_intervention": "Család vagy partner",
+        "process_spiritual_experience": "Spirituális élmény",
+        "other": "Egyéb / nem egyértelmű"
+      },
+      "outcomes": {
+        "regrets": "Megbánta",
+        "no_regret": "Nincs megbánás",
+        "not_stated": "Nincs megadva"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 történet} other {# történet}}",
+      "basedOn": "{cohort} kiértékelt, ebben a nézetben választ tartalmazó történet alapján.",
+      "empty": "Még nincs elég történet válaszokkal ehhez a nézethez.",
+      "error": "Nem sikerült betölteni az útvonalak adatait",
+      "journeyDescription": "Hogyan kapcsolódnak egymáshoz a fő okok, a fordulópontok és a megbánás a történetekben.",
+      "medicalDescription": "Milyen orvosi lépéseket tettek meg az emberek a detranzíció előtt.",
+      "regretByReason": {
+        "title": "Megbánás a tranzíció fő oka szerint",
+        "description": "Azon történetek körében, amelyek megmondják, megbánták-e a tranzíciót, a megbánók aránya – a tranzícióhoz megadott fő ok szerint csoportosítva.",
+        "headline": "Összességében a megbánással foglalkozó történetek {percent}%-a fejez ki megbánást (n = {n}).",
+        "note": "A pontok a megbánók arányát mutatják az egyértelműen nyilatkozó történetek körében; a vonalak a 95%-os intervallumot mutatják. A halvány sorokban 30-nál kevesebb történet van.",
+        "error": "Nem sikerült betölteni az ok szerinti megbánást",
+        "empty": "Még nincs válasz a jelenlegi szűrőkkel."
+      }
+    },
+    "methodology": {
+      "p1": "A detrans.ai ezt az adatkészletet nyilvános /r/detrans történetekből építi fel. Egy MI minden felhasználó szétszórt hozzászólásait és bejegyzéseit egyetlen, egyes szám első személyű elbeszéléssé írja át, és kinyeri belőle a fontos életkorok idővonalát. Csak azok a felhasználók szerepelnek, akik eleget osztottak meg egy teljes történet összeállításához.",
+      "p1b": "Ezek a statisztikák csak azokat a történeteket fedik le, amelyekben a személy egyértelműen megerősítette, hogy detranzícionált vagy elállt a tranzíciótól (desistance). A nyers korpusztól a diagramokig:",
+      "table": {
+        "comments": "Az /r/detrans-ról gyűjtött hozzászólások",
+        "posts": "Az /r/detrans-ról gyűjtött bejegyzések",
+        "authors": "Különböző szerzők a korpuszban",
+        "selected": "Legalább 5, 3+ szavazatot kapott hozzászólással rendelkező szerzők",
+        "removed": "Eltávolítva: a detranzíció vagy elállás nincs egyértelműen megerősítve",
+        "remaining": "Ezután megmaradt történetek",
+        "cohort": "Az alábbi diagramokban szereplők (a megjelölt fiókok kizárva)"
+      },
+      "p2": "Ezután minden történetet Jev, egy valószínűségi kérdés-válasz modell értékel ki nagyjából száz, okokra, tapasztalatokra és kimenetekre vonatkozó állítás alapján. Az igen/nem kérdések 0 és 1 közötti valószínűséget adnak, a választós kérdések minden opcióra adnak valószínűséget, a skálakérdések pedig várható értéket adnak az egyes diagramok alatt látható skálán.",
+      "p3": "Az igen/nem jellemzőknél egy történetet akkor jelölünk „igaznak”, ha a valószínűség eléri a küszöböt (alapértelmezés szerint 0,8). Az egyes jellemzőknél látható hisztogram a teljes valószínűségi eloszlást mutatja, így a sok közepes válasszal rendelkező jellemző valóban bizonytalannak látszik, nem pedig egyértelműen igaznak vagy hamisnak.",
+      "p4": "Minden diagram figyelembe veszi a fenti szűrőket. Mivel a kérdéssor idővel változott, és a történeteket a feldolgozási körökben újra átnézzük, minden diagram jelzi, hogy a szűrt történetek közül hánynak van ténylegesen válasza az adott kérdésre.",
+      "p5": "A nem hitelesnek, kitaláltnak vagy botszerűnek tűnő fiókokat a modell megjelöli, és kizárjuk ezekből a statisztikákból. Az MI által kinyert adatok így is tartalmazhatnak hibákat – a rendszerpromptok a <prompts>promptok oldalán</prompts> nyilvánosak, és az összefoglalókat összevetjük az eredeti hozzászólásokkal.",
+      "threshold": {
+        "title": "Mennyit számít a küszöb",
+        "description": "A diagramok akkor számítanak igaznak egy állítást, ha az MI valószínűsége legalább 0,8. Alacsonyabb küszöbök magasabb számokat mutatnának; ez a diagram megmutatja, mennyivel.",
+        "error": "Nem sikerült betölteni a küszöb adatait",
+        "tooltip": "Küszöb: {threshold}",
+        "xAxis": "Valószínűségi küszöb",
+        "siteThreshold": "Ezen az oldalon használt",
+        "note": "Az egyes küszöbök elérő vagy azok feletti történetek aránya. A 0,8-as küszöb szándékosan óvatos."
+      },
+      "accountType": {
+        "title": "Ki írja",
+        "description": "Az egyes beszámolók a szerző saját tapasztalatát írják-e le.",
+        "options": {
+          "personal_experience": "Saját tapasztalat",
+          "parent": "Szülő",
+          "friend": "Barát vagy partner",
+          "researcher_journalist": "Kutató, újságíró vagy klinikus",
+          "other": "Egyéb vagy vegyes"
+        }
+      },
+      "detail": {
+        "title": "Mennyire részletesek a történetek",
+        "description": "Az MI értékelése arról, mennyire konkrét az egyes első személyű beszámolók. A szűrőkben a „Csak részletes történetek” opcióval minden diagram a két legfelső szintre szűkíthető.",
+        "levels": {
+          "level0": "Homályos vagy általános",
+          "level1": "Némi személyes részlet",
+          "level2": "Részletes, konkrét események",
+          "level3": "Nagyon részletes, több évet felölelő beszámoló"
+        }
+      }
+    },
+    "prevalence": {
+      "women": "Nők",
+      "men": "Férfiak",
+      "interval": "{group} {percent} (95%-os intervallum {low}–{high}, n = {n})",
+      "smallSample": "n = {n}",
+      "openStories": "Történetek megjelenítése",
+      "showAll": "Mind a(z) {count} megjelenítése",
+      "showFewer": "Kevesebb megjelenítése",
+      "note": "A pontok azt mutatják, a történetek mekkora részében egyértelműen igaz az állítás (MI-valószínűség ≥ 0,8); a vonalak a 95%-os intervallumot mutatják. A halvány sorokban 30-nál kevesebb válasz van.",
+      "noteWithStories": "A pontok azt mutatják, a történetek mekkora részében egyértelműen igaz az állítás (MI-valószínűség ≥ 0,8); a vonalak a 95%-os intervallumot mutatják. A halvány sorokban 30-nál kevesebb válasz van. Válassz egy sort a megfelelő történetek olvasásához.",
+      "gap": "Legnagyobb különbség: {label} – {higherGroup}: {higher}, {lowerGroup}: {lower}.",
+      "womenLower": "nők",
+      "menLower": "férfiak",
+      "m": "F",
+      "f": "N",
+      "menLegend": "F · férfiak",
+      "womenLegend": "N · nők"
+    },
+    "storyPeek": {
+      "title": "Történetek: {label}",
+      "meta": "{count, plural, =1 {1 megfelelő történet} other {# megfelelő történet}}",
+      "error": "Nem sikerült betölteni a történeteket.",
+      "empty": "Nincs a jelenlegi szűrőknek megfelelő történet.",
+      "readFull": "A teljes történet elolvasása",
+      "note": "Névtelen részletek, a legjobbra értékeltek elöl. A teljes lista az oldal végén, a Történetek részben található."
+    },
+    "reasons": {
+      "transitionTitle": "A tranzíció fő oka",
+      "transitionDescription": "Az egyetlen legfontosabb ok, amelyet az egyes személyek a tranzíció megkezdésére adnak.",
+      "detransitionTitle": "A detranzíció fő oka",
+      "detransitionDescription": "Az egyetlen legfontosabb ok, amelyet az egyes személyek az abbahagyásra adnak."
+    },
+    "byYear": {
+      "error": "Nem sikerült betölteni az év szerinti adatokat",
+      "empty": "Még nincs tranzíciós év a jelenlegi szűrőkkel.",
+      "other": "Egyéb",
+      "n": "n = {n}",
+      "note": "Valószínűséggel súlyozott arányok a tranzíció éve szerinti kohorszonként. A halvány sorokban 30-nál kevesebb történet van."
+    },
+    "overview": {
+      "error": "Nem sikerült betölteni az áttekintést",
+      "basedOn": "{cohort} kiértékelt történet alapján."
+    },
+    "drivers": {
+      "statements": {
+        "title": "A tranzícióhoz hozzájárulóként leírva"
+      },
+      "count": "n = {n}",
+      "basedOn": "{cohort} kiértékelt történet alapján.",
+      "empty": "Még nincs válasz a jelenlegi szűrőkkel.",
+      "error": "Nem sikerült betölteni ezeket az adatokat"
+    },
+    "adversity": {
+      "composition": {
+        "any": "{positive}% ír le legalább egyféle traumát vagy nehézséget (n = {n})"
+      },
+      "statements": {
+        "title": "A leírt nehézségek típusai"
+      },
+      "contrast": {
+        "title": "Traumatikus előzmények vs. trauma mint fő ok",
+        "description": "Sokkal több történet említ traumát, mint amennyi a tranzíció vagy a detranzíció fő mozgatórugójaként nevezi meg.",
+        "history": "Traumatikus előzményeket ír le",
+        "transitionReason": "A traumát nevezi meg a tranzíció fő okaként",
+        "detransitionReason": "A trauma felismerését nevezi meg a detranzíció fő okaként",
+        "note": "A pontok a történetek arányát mutatják; a vonalak a 95%-os intervallumot. Az okokra vonatkozó sorok minden történetnél egyetlen fő okot számolnak."
+      },
+      "count": "n = {n}",
+      "basedOn": "{cohort} kiértékelt történet alapján.",
+      "empty": "Még nincs nehézségekkel kapcsolatos válasz a jelenlegi szűrőkkel.",
+      "error": "Nem sikerült betölteni a nehézségek adatait"
+    },
+    "online": {
+      "choice": {
+        "title": "Legbefolyásosabb platform",
+        "description": "Azon történetek körében, amelyek online hatást említenek. A jelentős online hatás nélküli történetek kimaradnak.",
+        "options": {
+          "reddit": "Reddit",
+          "tumblr": "Tumblr",
+          "tiktok": "TikTok",
+          "twitter": "Twitter / X",
+          "youtube": "YouTube",
+          "discord": "Discord",
+          "other": "Egyéb platform vagy rajongói közösség"
+        }
+      },
+      "statements": {
+        "title": "Online és kortárs hatás"
+      },
+      "byYear": {
+        "title": "Platform a tranzíció éve szerint",
+        "description": "Hogyan változott a legbefolyásosabb platform a tranzíció éve szerinti kohorszok között."
+      },
+      "count": "n = {n}",
+      "basedOn": "{cohort} kiértékelt történet alapján.",
+      "empty": "Még nincs online hatással kapcsolatos válasz a jelenlegi szűrőkkel.",
+      "error": "Nem sikerült betölteni az online hatás adatait"
+    },
+    "process": {
+      "composition": {
+        "any": "{positive}% ír le legalább egyet ezek közül a fordulópontok közül (n = {n})"
+      },
+      "statements": {
+        "title": "Mi vitte az embereket a detranzíció felé"
+      },
+      "count": "n = {n}",
+      "basedOn": "{cohort} kiértékelt történet alapján.",
+      "empty": "Még nincs fordulópontokkal kapcsolatos válasz a jelenlegi szűrőkkel.",
+      "error": "Nem sikerült betölteni a fordulópontok adatait"
+    },
+    "lives": {
+      "error": "Nem sikerült betölteni az idővonalakat",
+      "empty": "Még nincs olyan történet a jelenlegi szűrőkkel, amelyben tranzíciós és detranzíciós életkor is szerepel.",
+      "legend": {
+        "transition": "Tranzícióban",
+        "blockers": "Pubertásgátlók",
+        "hormones": "Hormonok",
+        "surgery": "Műtét"
+      },
+      "ariaLabel": "{n} egyéni idővonal sávdiagramja a tranzíciótól a detranzícióig",
+      "tooltip": {
+        "woman": "Nő",
+        "man": "Férfi",
+        "person": "Személy",
+        "firstDysphoria": "Első diszfória: {age} évesen",
+        "transition": "Tranzíció: {age} évesen",
+        "pubertyBlockers": "Pubertásgátlók: {age} évesen",
+        "hormones": "Hormonok: {age} évesen",
+        "topSurgery": "Mellkasi műtét: {age} évesen",
+        "bottomSurgery": "Genitális műtét: {age} évesen",
+        "detransition": "Detranzíció: {age} évesen"
+      },
+      "note": "{n} ember, akinek a története mindkét életkort megadja, a tranzíciókori életkor szerint rendezve. Az életkorok az MI értelmezésén alapulnak, és közelítőek lehetnek."
+    },
+    "duration": {
+      "error": "Nem sikerült betölteni az időtartamokat",
+      "empty": "Még nincs tranzíciós időtartam a jelenlegi szűrőkkel.",
+      "all": "Mindenki",
+      "women": "Nők",
+      "men": "Férfiak",
+      "legend": "{label}: medián {median} év (n = {n})",
+      "tooltipTitle": "{years, plural, =1 {1 éven} other {# éven}} belül",
+      "xAxis": "A tranzíció kezdete óta eltelt évek",
+      "note": "Azok aránya, akik adott számú éven belül abbahagyták. Itt mindenki végül detranzícionált, így ez azt mutatja, mennyi ideig tartott náluk a tranzíció – nem azt, hogy a tranzícióba kezdők közül hányan hagyják abba.",
+      "headline": "{one}% egy éven belül, {five}% öt éven belül hagyta abba a kezdéstől számítva (medián {median} év, n = {n})."
+    },
+    "optionLabels": {
+      "reddit": "Reddit",
+      "tumblr": "Tumblr",
+      "tiktok": "TikTok",
+      "twitter": "Twitter / X",
+      "youtube": "YouTube",
+      "discord": "Discord",
+      "social_role_discomfort": "Kényelmetlenség a társadalmi szereppel",
+      "internalised_homophobia": "Internalizált homofóbia",
+      "internalised_misogyny_misandry": "Internalizált nőgyűlölet / férfigyűlölet",
+      "trauma": "Trauma",
+      "mental_health_issues": "Mentális egészség",
+      "neurodivergence": "Neurodivergencia",
+      "body_dysmorphia": "Testdiszmorfia",
+      "online_influence": "Online hatás",
+      "peer_influence": "Kortárs hatás",
+      "sexual_factors": "Szexuális tényezők (AGP / AAP)",
+      "parental_or_medical_pressure": "Szülői vagy orvosi nyomás",
+      "other_unclear": "Egyéb / nem egyértelmű",
+      "accepted_sexed_body": "Elfogadta a biológiai nemének megfelelő testét",
+      "social_construct_realisation": "A nemi szerepekben látta a problémát",
+      "trauma_realisation": "Felismerte, hogy trauma állt mögötte",
+      "mental_health_realisation": "Felismerte, hogy mentális problémák álltak mögötte",
+      "neurodivergence_realisation": "Felismerte, hogy neurodivergencia állt mögötte",
+      "fantasy_reality_disillusionment": "A valóság nem felelt meg az elvárásnak",
+      "surgery_regret_medical_complications": "Műtét megbánása vagy orvosi szövődmények",
+      "ideological_disillusionment": "Kiábrándulás az ideológiából vagy a közösségből",
+      "social_pressure_ostracism": "Társadalmi nyomás vagy kirekesztés",
+      "failure_to_pass": "Nem sikerült a passing",
+      "internalised_homophobia_realisation": "Felismerte az internalizált homofóbiát",
+      "internalised_misogyny_misandry_realisation": "Felismerte az internalizált nőgyűlöletet / férfigyűlöletet",
+      "sexual_factors_realisation": "Felismerte a szexuális tényezőket (AGP / AAP)",
+      "religious_or_spiritual_change": "Vallási vagy spirituális változás",
+      "fertility_or_family_desires": "Termékenység vagy gyermekvállalási vágy"
+    },
+    "choiceSplit": {
+      "error": "Nem sikerült betölteni ezt a diagramot",
+      "empty": "Még nincs válasz a jelenlegi szűrőkkel.",
+      "women": "N · nők (n = {n})",
+      "men": "F · férfiak (n = {n})",
+      "headline": "A nők gyakrabban nevezik meg ezt: „{womenOption}” ({womenShare}, szemben a férfiak {womenMen} arányával); a férfiak gyakrabban ezt: „{menOption}” ({menShare}, szemben a nők {menWomen} arányával).",
+      "note": "Valószínűséggel súlyozva: egy történet, amelyet az MI 60/40 arányban oszt meg két ok között, 0,6-ot és 0,4-et számít.",
+      "m": "F",
+      "f": "N"
+    },
+    "ordinal": {
+      "error": "Nem sikerült betölteni ezt a diagramot",
+      "empty": "Még nincs válasz a jelenlegi szűrőkkel.",
+      "all": "Mindenki",
+      "women": "Nők",
+      "men": "Férfiak"
+    },
+    "medical_steps": {
+      "statements": {
+        "title": "Megtett orvosi lépések"
+      },
+      "count": "n = {n}",
+      "basedOn": "{cohort} kiértékelt történet alapján.",
+      "empty": "Még nincs válasz a jelenlegi szűrőkkel.",
+      "error": "Nem sikerült betölteni az orvosi lépéseket"
     }
   },
   "topicsPage": {
     "title": "Topics",
     "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
     "empty": "No topics have been published yet."
+  },
+  "storiesPage": {
+    "metadata": {
+      "title": "Detranzíciós történetek | detrans.ai",
+      "description": "Olvass el több ezer anonimizált detranzíciós és deszisztenciás történetet az /r/detrans közösségből, MI által összefoglalva. Szűrj kor, nem és tapasztalat szerint."
+    },
+    "title": "Detranzíciós történetek",
+    "description": "{count, number} anonimizált történet olyan emberektől, akik tranzícióba kezdtek, majd később detranzícionáltak vagy felhagytak vele, az MI által összeállítva az /r/detrans-en írt bejegyzéseikből és hozzászólásaikból.",
+    "statsLink": "Statisztikák megtekintése",
+    "allStories": "Összes történet",
+    "story": {
+      "metaTitle": "{title} – Detranzíciós történet | detrans.ai",
+      "untitled": "Egy detranzíciós történet",
+      "notFound": "A történet nem található | detrans.ai",
+      "tags": "Címkék",
+      "moreStories": "További történetek"
+    }
   }
 }

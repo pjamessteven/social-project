@@ -144,7 +144,9 @@
       "stats": "Tilastot",
       "statsDesc": "Anonymisoidut detransitiotilastot /r/detrans:stä",
       "topics": "Topics",
-      "topicsDesc": "Perusteelliset oppaat keskeisistä aiheista"
+      "topicsDesc": "Perusteelliset oppaat keskeisistä aiheista",
+      "stories": "Tarinat",
+      "storiesDesc": "/r/detrans-käyttäjiltä"
     },
     "resources": {
       "genderSupport": "Löydä Terapeutteja",
@@ -183,6 +185,7 @@
     "de": "Saksa",
     "he": "Heprea",
     "it": "Italia",
+    "lt": "Lithuanian",
     "nl": "Hollanti",
     "tr": "Turkki",
     "fi": "Suomi"
@@ -240,17 +243,18 @@
   },
   "chat": {
     "lookingForComments": "Etsitään asiaankuuluvia kommentteja...",
+    "lookingForStudies": "Looking for relevant studies...",
     "errorOccurred": "Tapahtui virhe, yritä uudelleen... Ota yhteyttä, jos tämä jatkuu.",
     "analysingExperiences": "Analysoidaan Kokemuksia",
     "analysingStudies": "Analysing Studies",
     "analysingWebResults": "Analysoitaessa verkkotuloksia",
+    "analysingResults": "Analysoidaan tuloksia...",
     "detransPerspective": "-> Mitä ovat detrans-näkökulmat tähän aiheeseen?",
     "transPerspectivesIncluded": "Trans-näkökulmat sisällytetty",
     "captchaRequired": "Captcha vaaditaan chat-jatkamiseen.",
     "chatArchived": "Tämä keskustelu on arkistoitu. Aloita uusi.",
     "rateLimitExceeded": "Liian monta pyyntöä, hidasta ja yritä myöhemmin uudelleen.",
     "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
-    "analysingResults": "Analysoidaan tuloksia...",
     "followUpQuestions": "Jatkokysymykset:",
     "eventLabels": {
       "askDetransitioners": "Kysy Detransitioneilta",
@@ -345,7 +349,21 @@
       "delete": "Poista Keskustelu",
       "banning": "Porttikieltoa asetetaan...",
       "ban": "Aseta Porttikielto (IP)"
+    },
+    "dialog": {
+      "title": "Keskustelu",
+      "toggleIdHint": "Napsauta vaihtaaksesi päivämäärän/maan ja tunnisteen välillä",
+      "shareText": "Katso tämä keskustelu",
+      "share": "Jaa keskustelu",
+      "copyLink": "Kopioi linkki keskusteluun",
+      "noneSelected": "Keskustelua ei ole valittu"
     }
+  },
+  "readingDialog": {
+    "share": "Jaa",
+    "copyLink": "Kopioi linkki",
+    "copied": "Linkki kopioitu leikepöydälle",
+    "close": "Sulje ikkuna"
   },
   "stories": {
     "metadata": {
@@ -385,9 +403,9 @@
       "ageRangeYears": "{min} - {max} vuotta",
       "sex": {
         "all": "Miehet ja Naiset",
-        "mine": "Mine",
         "female": "Nainen",
-        "male": "Mies"
+        "male": "Mies",
+        "mine": "Mine"
       },
       "tagsPlaceholder": "Valitse tunnisteet suodattimeen...",
       "clearFilters": "Tyhjennä Suodattimet"
@@ -582,12 +600,15 @@
   },
   "videoList": {
     "loading": "Ladataan videoita...",
+    "searchPlaceholder": "Search videos...",
+    "result": "video",
+    "results": "videos",
     "filters": {
       "all": "Kaikki Tarinat",
-      "mine": "Mine",
       "female": "Nainen",
       "male": "Mies",
-      "detransitioners": "Detransitionoineet"
+      "detransitioners": "Detransitionoineet",
+      "mine": "Mine"
     },
     "thumbnailAlt": "Pikkukuva videolle {title}",
     "by": "tekijältä",
@@ -801,7 +822,9 @@
       "legend": {
         "transition": "Siirtymän Ikä",
         "detransition": "Detransition Ikä"
-      }
+      },
+      "median": "mediaani {age}",
+      "coverage": "Perustuu {transition} transitioikään ja {detransition} detransitioikään."
     },
     "transitionDuration": {
       "title": "Siirtymän Kesto: Ikä Siirtyessä vs Ikä Detransitioituessa",
@@ -825,7 +848,8 @@
       "female": "Nainen",
       "yearsAvg": "vuotta keskiarvo",
       "user": "käyttäjä",
-      "users": "käyttäjää"
+      "users": "käyttäjää",
+      "coverage": "Perustuu {count} tarinaan, joissa molemmat iät on kirjattu."
     },
     "pathways": {
       "title": "Detransition Polut -virtaus",
@@ -945,7 +969,9 @@
     "error": {
       "title": "CAPTCHA-virhe",
       "description": "CAPTCHAn lataaminen epäonnistui. Päivitä sivu ja yritä uudelleen."
-    }
+    },
+    "verifyFailed": "Verification failed. Please try again.",
+    "rateLimited": "Too many verifications. Please wait a moment and try again."
   },
   "feedback": {
     "title": "Palaute",
@@ -963,11 +989,990 @@
     "metadata": {
       "title": "Anonymisoidut tilastot | detrans.ai",
       "description": "Anonymisoidut tilastot detransitiosta ja transitiomalleista, mukaan lukien ikäjakauma, kesto, syyt ja polut."
+    },
+    "toc": {
+      "title": "Tällä sivulla"
+    },
+    "filters": {
+      "title": "Suodattimet",
+      "edit": "Muokkaa suodattimia",
+      "hide": "Piilota suodattimet",
+      "summary": {
+        "none": "Ei suodattimia",
+        "age": "Ikä {min}–{max}",
+        "tags": "{count, plural, =0 {ei tunnisteita} =1 {1 tunniste} other {# tunnistetta}}",
+        "detailed": "Vain yksityiskohtaiset"
+      },
+      "detailed": "Vain yksityiskohtaiset tarinat",
+      "detailedHint": "Ota mukaan vain tarinat, jotka tekoäly arvioi melko tai erittäin yksityiskohtaisiksi."
+    },
+    "sections": {
+      "age": {
+        "title": "Ikä",
+        "description": "Milloin detransitioijat aloittivat transition ja detransitioivat."
+      },
+      "journey": {
+        "title": "Iät",
+        "description": "Milloin ihmiset kokivat ensimmäisen kerran dysforiaa, aloittivat transition, aloittivat hormonit ja detransitioivat."
+      },
+      "duration": {
+        "title": "Kesto",
+        "description": "Kuinka kauan ihmiset olivat transitiossa ennen kuin lopettivat."
+      },
+      "minors": {
+        "title": "Transitio ennen 18 vuoden ikää",
+        "description": "Mitä tarinat kertovat transition aloittamisesta lapsena tai nuorena."
+      },
+      "reasons": {
+        "title": "Syyt",
+        "description": "Miksi detransitioijat kertovat aloittaneensa transition — ja miksi he detransitioivat."
+      },
+      "pathways": {
+        "title": "Polut",
+        "description": "Eroaako katumus sen mukaan, miksi ihmiset aloittivat transition ja mitä lääketieteellisiä vaiheita he kävivät läpi."
+      },
+      "regret": {
+        "title": "Katumus",
+        "description": "Kuinka voimakasta katumus on, miten se muuttuu ajan myötä ja mitä ihmiset katuvat."
+      },
+      "medical": {
+        "title": "Lääketieteelliset toimenpiteet",
+        "description": "Miten katumus liittyy siihen, kuinka pitkälle transitio eteni."
+      },
+      "complications": {
+        "title": "Komplikaatiot",
+        "description": "Lääketieteelliset komplikaatiot ja jatkuvat terveysongelmat transition jälkeen."
+      },
+      "mental_health": {
+        "title": "Mielenterveys",
+        "description": "Mielenterveyden kokonaiskuva tarinoissa ennen detransitiota ja sen jälkeen."
+      },
+      "suicidality": {
+        "title": "Itsetuhoisuus",
+        "description": "Kuinka usein tarinoissa kuvataan itsetuhoisia ajatuksia tai itsensä vahingoittamista, ja milloin."
+      },
+      "after": {
+        "title": "Detransition jälkeen",
+        "description": "Miten mielenterveys, elämänlaatu ja perhesuhteet muuttuivat."
+      },
+      "current_status": {
+        "title": "Where are they now",
+        "description": "Current identities and situations after detransitioning."
+      },
+      "family_community": {
+        "title": "Detransition sosiaalinen hinta",
+        "description": "Detransitiosta johtuva eristäytyminen ja syrjintä sekä pettymys transyhteisöön. Kysymykset, jotka eivät erottaneet transitiota detransitiosta (perheen tuki, ihmissuhteet, ura), on jätetty pois; perhesuhteet detransition jälkeen käsitellään kohdassa ”Detransition jälkeen”."
+      },
+      "sexuality": {
+        "title": "Seksuaalisuus",
+        "description": "Seksuaalinen suuntautuminen suhteessa syntymäsukupuoleen, ennen transitiota ja detransition jälkeen."
+      },
+      "trends": {
+        "title": "Vuosien varrella",
+        "description": "Miten tarinat — ja niiden syyt — ovat muuttuneet transitiovuoden mukaisten kohorttien välillä."
+      },
+      "features": {
+        "title": "Piirteet",
+        "description": "Every statement the AI evaluated across the stories — causes, processes and outcomes."
+      },
+      "compare": {
+        "title": "Vertaa",
+        "description": "Miten piirteiden yleisyys vaihtelee kohortin kahden puoliskon välillä."
+      },
+      "matrix": {
+        "title": "Yhteydet",
+        "description": "Vastauksia kiisteltyihin kysymyksiin — myös silloin, kun odotettua eroa ei näy."
+      },
+      "stories": {
+        "title": "Tarinat",
+        "description": "Nimettömiä otteita lukujen takana olevilta ihmisiltä.",
+        "browse": "Selaa kaikkia tarinoita"
+      },
+      "methodology": {
+        "title": "Menetelmät",
+        "description": "Miten aineisto on koottu ja miten kaavioita luetaan."
+      },
+      "overview": {
+        "title": "Lyhyesti",
+        "description": "Kaikki tekoälyn arvioimat kyllä/ei-väittämät järjestettynä sen mukaan, kuinka monessa tarinassa ne selvästi pitävät paikkansa."
+      },
+      "lives": {
+        "title": "Yksilölliset aikajanat",
+        "description": "Jokainen viiva on yksi ihminen, transition aloitusiästä lopetusikään."
+      },
+      "drivers": {
+        "title": "Vähemmän puhutut tekijät",
+        "description": "Kehonkuva, identiteetin epävakaus ja seksuaaliset tekijät, joiden kuvataan vaikuttaneen transitioon."
+      },
+      "adversity": {
+        "title": "Trauma ja vastoinkäymiset",
+        "description": "Kuinka usein tarinoissa kuvataan traumaa ja kuinka usein trauma mainitaan pääsyyksi."
+      },
+      "online": {
+        "title": "Verkko- ja vertaisvaikutus",
+        "description": "Mitkä alustat vaikuttivat eniten ja miten verkko- ja vertaisvaikutus näkyy tarinoissa."
+      },
+      "process": {
+        "title": "Käännekohdat",
+        "description": "Mikä auttoi ihmisiä siirtymään transitiosta kohti detransitiota."
+      }
+    },
+    "features": {
+      "search": "Hae piirteitä…",
+      "sort": {
+        "prevalence": "Yleisyys",
+        "alpha": "A–Z"
+      },
+      "tiers": {
+        "cause": "Syy",
+        "process": "Prosessi",
+        "outcome": "Lopputulos"
+      },
+      "kinds": {
+        "noul": "Kyllä / ei",
+        "choice": "Valinta",
+        "score": "Asteikko"
+      },
+      "groups": {
+        "reasons": "Syyt",
+        "causes": "Syyt",
+        "processes": "Prosessit",
+        "regret": "Katumus",
+        "medical": "Lääketieteellinen",
+        "mental_health": "Mielenterveys",
+        "adversity": "Vastoinkäymiset",
+        "social": "Sosiaalinen",
+        "sexuality": "Seksuaalisuus",
+        "online": "Verkko",
+        "identity": "Identiteetti",
+        "outcomes": "Lopputulokset",
+        "attitudes": "Asenteet",
+        "quality": "Laatu"
+      },
+      "basedOn": "{cohort} arvioidun tarinan perusteella.",
+      "coverageNote": "{n}/{cohort} arvioidusta tarinasta ({percent} %) sisältää vastauksen.",
+      "question": "Miten tämä mitattiin?",
+      "confidence": "Tekoälyn varmuuden mediaani tälle piirteelle: {value} %.",
+      "filterByTag": "Vain tarinat, joilla on tunniste ”{tag}”",
+      "placeholder": "Valitse piirre luettelosta tutkiaksesi sitä.",
+      "backToList": "Kaikki piirteet",
+      "noResults": "Hakuasi vastaavia piirteitä ei löytynyt.",
+      "noData": "Ei vastauksia nykyisillä suodattimilla.",
+      "loading": "Ladataan…",
+      "error": "Piirteen tietoja ei voitu ladata",
+      "noul": {
+        "prevalenceLabel": "arvioiduista tarinoista ylittää kynnysarvon",
+        "range": "{from} – {to} todennäköisyys",
+        "count": "{count} tarinaa ({percent} %)",
+        "thresholdShort": "kynnys {threshold}",
+        "legend": {
+          "yes": "Todennäköisesti tosi",
+          "maybe": "Epävarma",
+          "no": "Todennäköisesti epätosi"
+        },
+        "above": "Todennäköisesti tosi",
+        "uncertain": "Epävarma",
+        "below": "Todennäköisesti epätosi"
+      },
+      "choice": {
+        "soft": "Todennäköisyysmassa",
+        "hard": "Voittava vaihtoehto",
+        "softTooltip": "≈{percent} % (≈{count} tarinaa todennäköisyysmassana)",
+        "hardTooltip": "{percent} % ({count} tarinaa)",
+        "softNote": "Palkit näyttävät kunkin vaihtoehdon saaman tekoälytodennäköisyyden summan kaikissa tarinoissa, joten sekavastaukset lasketaan suhteellisesti.",
+        "hardNote": "Palkit laskevat vain kunkin tarinan yksittäisen todennäköisimmän vaihtoehdon."
+      },
+      "score": {
+        "meanLabel": "Keskiarvo {value} asteikolla 0–{max}",
+        "range": "Pisteet {from} – {to}",
+        "count": "{count} tarinaa",
+        "meanShort": "ka. {value}"
+      },
+      "related": {
+        "title": "Esiintyvät usein yhdessä",
+        "lift": "{lift}× yleisempi ({percent} %)"
+      },
+      "listNote": "Pisteet näyttävät niiden tarinoiden osuuden, joissa kukin väittämä on selvästi tosi (tekoälyn todennäköisyys ≥ 0,8); viivat näyttävät 95 %:n luottamusvälin. Haaleilla riveillä on alle 30 vastausta. Valitse rivi lukeaksesi vastaavia tarinoita. Perustuu {cohort} arvioituun tarinaan."
+    },
+    "compare": {
+      "splitLabel": "Jaa ryhmiin",
+      "thresholdNote": "Näytetään tarinat, jotka ylittävät tekoälyn kynnysarvon {threshold}, verrattuna sen alittaviin.",
+      "filter": {
+        "all": "Kaikki vastaukset",
+        "clear": "Vain selvät signaalit"
+      },
+      "clearNote": "{excluded} epäselvää tarinaa jätetty pois molemmilta puolilta.",
+      "cohortTrue": "{label}: esiintyy (n = {n})",
+      "cohortFalse": "Ei esiinny (n = {n})",
+      "splitSex": "Biologinen sukupuoli",
+      "sexNote": "Vertaillaan naisten ja miesten tarinoita.",
+      "cohortWomen": "Naiset (n = {n})",
+      "cohortMen": "Miehet (n = {n})",
+      "splitAge": "Ikä transition alussa",
+      "ageNote": "Vertaillaan tarinoita, joissa transitio alkoi alle 18-vuotiaana, niihin, joissa se alkoi 18-vuotiaana tai myöhemmin.",
+      "cohortUnder18": "Alle 18 (n = {n})",
+      "cohortAdult": "18 tai vanhempi (n = {n})",
+      "rowTooltip": "{label}: {pctTrue} % / {nTrue} vs. {pctFalse} % / {nFalse}",
+      "empty": "Tämän jaon molemmilla puolilla ei ole vielä tarpeeksi tarinoita, joissa on vastaus.",
+      "showSmallSamples": "Näytä pienet otokset",
+      "hideSmallSamples": "Piilota pienet otokset",
+      "hiddenNote": "{count, plural, =1 {1 piirre on piilotettu} other {# piirrettä on piilotettu}}, koska toisella puolella on alle 3 tarinaa.",
+      "error": "Vertailutietoja ei voitu ladata",
+      "ratio": "yleisyys {ratio}",
+      "ratioNote": "Rivit on järjestetty sen mukaan, kuinka voimakkaasti ryhmät eroavat toisistaan (riskisuhde), ja molemmilla puolilla harvinaiset piirteet on jätetty pois. Viivat näyttävät 95 %:n luottamusvälit; haaleilla riveillä on alle 30 tarinaa toisella puolella.",
+      "showAll": "Näytä kaikki piirteet"
+    },
+    "matrix": {
+      "presetLabel": "Näkymä",
+      "presets": {
+        "outcomesByCause": "Lopputulokset syyn mukaan",
+        "outcomesByProcess": "Lopputulokset käännekohdan mukaan"
+      },
+      "metric": {
+        "rate": "Osuus",
+        "lift": "Suhde keskiarvoon"
+      },
+      "swap": "Vaihda akselit",
+      "legendRate": "Niiden vastaavien tarinoiden osuus, joissa sarakkeen piirre on tosi.",
+      "legendLift": "Verrattuna koko kohortin keskiarvoon (sininen yläpuolella, punainen alapuolella).",
+      "sampleNote": "Jokainen solu vertaa tarinoita, joissa rivin piirre esiintyy, tarinoihin, joissa sitä ei ole. Pidemmät ja yksityiskohtaisemmat tarinat mainitsevat enemmän kaikenlaisia piirteitä, joten useimmat suhdeluvut ovat yli 1× — vertaa soluja toisiinsa eikä lukuun 1×. Solut, joissa on alle 30 tarinaa jommallakummalla puolella, jätetään tyhjiksi.",
+      "basedOn": "{cohort} arvioitua tarinaa tässä näkymässä.",
+      "cellTooltip": "{row} → {col}: {percent} % {n} tarinasta · {lift}× kohortin keskiarvo",
+      "cellTooltipNoLift": "{row} → {col}: {percent} % {n} tarinasta",
+      "cellMasked": "{row} → {col}: ei tarpeeksi tarinoita",
+      "empty": "Tähän näkymään ei ole vielä tarpeeksi tarinoita, joissa on vastaus.",
+      "error": "Matriisitietoja ei voitu ladata",
+      "presetDescriptions": {
+        "outcomesByCause": "Kuinka paljon yleisempi (tai harvinaisempi) kukin lopputulos on tarinoissa, joissa on tietty syy, kuin tarinoissa, joissa sitä ei ole.",
+        "outcomesByProcess": "Kuinka paljon yleisempi (tai harvinaisempi) kukin lopputulos on tarinoissa, joissa on tietty käännekohta, kuin tarinoissa, joissa sitä ei ole."
+      },
+      "legendMore": "Yleisempi rivin piirteen kanssa",
+      "legendLess": "Harvinaisempi",
+      "legendNone": "Ei selvää eroa (95 %:n luottamusväli sisältää arvon 1×)",
+      "cellTooltipRatio": "{row} → {col}: {percent} % {n} tarinasta, joissa se esiintyy, vs. {percentWithout} % ilman · {ratio} (95 %:n luottamusväli {low}–{high})",
+      "legendWith": "Tekijän kanssa",
+      "legendWithout": "Ilman sitä",
+      "themes": {
+        "medical": "Lääketieteellinen polku",
+        "helped": "Mikä auttoi",
+        "who": "Kuka katuu, kuka palaa",
+        "views": "Näkemykset muiden transitiosta"
+      },
+      "predictors": {
+        "under18": "Aloitti transition ennen 18 vuoden ikää",
+        "women": "Naiset (vs. miehet)",
+        "sameSex": "Samaan sukupuoleen suuntautunut ennen transitiota",
+        "took_puberty_blockers": "Käytti puberteettiestäjiä",
+        "took_hormones": "Käytti hormoneja",
+        "top_surgery": "Kävi rintakehän leikkauksessa",
+        "process_benefited_from_therapy": "Tutkiva terapia auttoi",
+        "gender_nonconformity_childhood": "Sukupuolinormeista poikkeava lapsena",
+        "process_spiritual_experience": "Hengellinen kokemus",
+        "autogynephilia": "Autogynefilia",
+        "adv_trauma_history": "Traumahistoria",
+        "contributed_online_influence": "Verkkovaikutus"
+      },
+      "outcomes": {
+        "regret": "katuu transitiota",
+        "bodyReconciliation": "oppi hyväksymään kehonsa",
+        "retransitioned": "palasi transitioon",
+        "mentalHealthBetter": "parempi mielenterveys detransition jälkeen",
+        "critical": "kriittinen tai vastustava muiden transitiota kohtaan"
+      },
+      "ratio": "yleisyys {ratio}",
+      "noDifference": "Ei selvää eroa",
+      "rowTooltip": "{with}/{nWith} tarinasta, joissa se esiintyy, vs. {without}/{nWithout} ilman",
+      "note": "Viivat näyttävät 95 %:n luottamusvälit. ”Ei selvää eroa” tarkoittaa, että väli sisältää myös tilanteen, jossa eroa ei ole lainkaan. Nämä ovat yhteyksiä siinä, mitä ihmiset kirjoittavat, eivät syitä, ja pidempiä, yksityiskohtaisempia tarinoita kirjoittavat mainitsevat kaikkea enemmän. Perustuu {cohort} arvioituun tarinaan."
+    },
+    "regret": {
+      "composition": {
+        "pair": "{positive} % tarinoista ilmaisee katuvansa transitiota ja {negative} % sanoo, ettei kadu sitä; loput eivät kerro. Kantaa ottaneista {statedShare} % katuu (n = {stated}).",
+        "any": "{positive} % ilmaisee katumusta (n = {n})"
+      },
+      "scale": {
+        "title": "Kuinka voimakasta katumus on?",
+        "mean": "{value} / {max} keskimääräinen voimakkuus",
+        "levels": {
+          "level0": "Katumusta ei ilmaistu",
+          "level1": "Lievää tai ohimenevää",
+          "level2": "Kohtalaista, toistuvaa",
+          "level3": "Vakavaa, pysyvää"
+        }
+      },
+      "choice": {
+        "title": "Miten katumus muuttuu ajan myötä?",
+        "options": {
+          "resolved": "Pääosin ohi",
+          "improving": "Helpottumassa",
+          "stable": "Vakaa",
+          "worsening": "Pahenemassa",
+          "mixed": "Vaihteleva tai jaksoittainen"
+        }
+      },
+      "statements": {
+        "title": "Mitä ihmiset nimenomaan katuvat"
+      },
+      "count": "n = {n}",
+      "basedOn": "Perustuu {cohort} arvioituun tarinaan.",
+      "empty": "Ei vielä katumusta koskevia vastauksia nykyisillä suodattimilla.",
+      "error": "Katumustietoja ei voitu ladata"
+    },
+    "complications": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} % raportoi vähintään yhden lääketieteellisen komplikaation tai jatkuvan terveysongelman (n = {n})"
+      },
+      "scale": {
+        "title": "Kuinka vakavia komplikaatiot olivat?",
+        "mean": "{value} / {max} keskimääräinen vakavuus",
+        "levels": {
+          "level0": "Ei komplikaatioita",
+          "level1": "Lieviä tai hallittavia sivuvaikutuksia",
+          "level2": "Merkittäviä komplikaatioita",
+          "level3": "Vakavaa tai pysyvää haittaa"
+        }
+      },
+      "statements": {
+        "title": "Erityiset lääketieteelliset ongelmat"
+      },
+      "count": "n = {n}",
+      "basedOn": "Perustuu {cohort} arvioituun tarinaan.",
+      "empty": "Ei vielä lääketieteellisiä vastauksia nykyisillä suodattimilla.",
+      "error": "Komplikaatiotietoja ei voitu ladata"
+    },
+    "mental_health": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} %:lla on vähintään yksi mielenterveyden häiriö tai kriisi (n = {n})"
+      },
+      "scale": {
+        "title": "Kuinka vakava mielenterveyden kokonaiskuva on?",
+        "mean": "{value} / {max} keskimääräinen vakavuus",
+        "levels": {
+          "level0": "Ei merkittäviä ongelmia",
+          "level1": "Lievää tai tilannesidonnaista kuormitusta",
+          "level2": "Merkittäviä, hoidettuja häiriöitä",
+          "level3": "Vakavia häiriöitä tai kriisi"
+        }
+      },
+      "statements": {
+        "title": "Häiriöt ja kriisit"
+      },
+      "count": "n = {n}",
+      "basedOn": "Perustuu {cohort} arvioituun tarinaan.",
+      "empty": "Ei vielä mielenterveyttä koskevia vastauksia nykyisillä suodattimilla.",
+      "error": "Mielenterveystietoja ei voitu ladata"
+    },
+    "suicidality": {
+      "during": "Transition aikana",
+      "since": "Detransition jälkeen",
+      "duringDescription": "Kuinka todennäköisenä malli pitää, että tarina kuvaa itsetuhoisia ajatuksia, itsensä vahingoittamista tai itsemurhayritystä henkilön ollessa transitiossa.",
+      "sinceDescription": "Kuinka todennäköisenä malli pitää, että tarina kuvaa itsetuhoisia ajatuksia, itsensä vahingoittamista tai itsemurhayritystä detransition jälkeen.",
+      "splitNote": "Jaettu nykyisen tilanteen mukaan · neliöjuuriakseli",
+      "overall": "Kaikki tarinat",
+      "sqrtNote": "Pystyakseli käyttää neliöjuuriasteikkoa, jotta pienemmät todennäköisyysluokat näkyvät nollan kohdalla olevan piikin vieressä.",
+      "tooltipBin": "Todennäköisyys {range}",
+      "tooltipCount": "{count, plural, =1 {1 tarina} other {# tarinaa}}",
+      "bands": {
+        "no": "Todennäköisesti epätosi (< 0,2)",
+        "mixed": "Epävarma (0,2–0,8)",
+        "yes": "Todennäköisesti tosi (≥ 0,8)"
+      },
+      "count": "n = {n}",
+      "basedOn": "Perustuu {cohort} tarinaan, joissa on vastaus.",
+      "empty": "Ei vielä itsetuhoisuutta koskevia vastauksia nykyisillä suodattimilla.",
+      "error": "Itsetuhoisuustietoja ei voitu ladata",
+      "statements": {
+        "title": "Itsetuhoiset ajatukset ja itsensä vahingoittaminen"
+      }
+    },
+    "current_status": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive}% (n = {n})"
+      },
+      "choice": {
+        "title": "Where are they now?",
+        "options": {
+          "detransitioned": "Detransitioinut",
+          "desisted": "Luopui ennen lääketieteellistä transitiota",
+          "retransitioned": "Palannut transitioon",
+          "still_trans_questioning": "Edelleen trans, kyseenalaistaa",
+          "questioning": "Kyseenalaistaa",
+          "unclear": "Epäselvä",
+          "supportive": "Tukee muiden transitiota",
+          "conditional": "Tukee tietyin ehdoin",
+          "critical": "Kriittinen transitiota kohtaan",
+          "opposed": "Vastustaa",
+          "not_addressed": "Ei käsitelty"
+        },
+        "description": "Aihetta käsittelevistä tarinoista, tukevasta vastustavaan."
+      },
+      "secondaryChoice": {
+        "title": "Miten he suhtautuvat muiden ihmisten transitioon?"
+      },
+      "statements": {
+        "title": "Nykyinen tilanne"
+      },
+      "count": "n = {n}",
+      "basedOn": "Perustuu {cohort} arvioituun tarinaan.",
+      "empty": "Ei vielä tilannetta koskevia vastauksia nykyisillä suodattimilla.",
+      "error": "Tilannetietoja ei voitu ladata",
+      "headline": "{percent} % suhtautuu kriittisesti tai vastustavasti muiden ihmisten transitioon (n ≈ {n}).",
+      "note": "Todennäköisyyksillä painotetut osuudet. Tarinat, jotka eivät käsittele kysymystä, on jätetty pois."
+    },
+    "family_community": {
+      "composition": {
+        "pair": "{positiveLabel}: {positive}% · {negativeLabel}: {negative}% (n = {n})",
+        "any": "{positive} % vastaa kyllä vähintään yhteen alla olevista kysymyksistä (n = {n})"
+      },
+      "statements": {
+        "title": "Esitetyt kysymykset",
+        "description": "Jokainen tarina arvioitiin juuri näiden kysymysten perusteella. Tarina lasketaan mukaan, kun vastaus on selvä kyllä."
+      },
+      "count": "n = {n}",
+      "basedOn": "Perustuu {cohort} arvioituun tarinaan.",
+      "empty": "Ei vielä vastauksia nykyisillä suodattimilla.",
+      "error": "Tietoja ei voitu ladata"
+    },
+    "sexuality": {
+      "beforeLabel": "Ennen transitiota",
+      "afterLabel": "Detransition jälkeen",
+      "options": {
+        "homosexual": "Homosexual",
+        "bisexual": "Biseksuaali",
+        "heterosexual": "Heterosexual",
+        "asexual": "Aseksuaali",
+        "other": "Muu tai muuttuva"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 tarina} other {# tarinaa}}",
+      "statements": {
+        "title": "Orientation and attraction"
+      },
+      "count": "n = {n}",
+      "basedOn": "Virtaus perustuu {cohort} tarinaan, joissa on vastaus suuntautumisesta molempina ajankohtina.",
+      "empty": "Not enough orientation answers for the current filters yet.",
+      "error": "Seksuaalisuustietoja ei voitu ladata",
+      "hero": {
+        "statement": "nykyisen suuntautumisensa kertovista detransitioijista on homoja, lesboja tai biseksuaaleja (n = {n}).",
+        "bySex": "M {men} homoja tai biseksuaaleja ({menSame} homoja) | N {women} lesboja tai biseksuaaleja ({womenSame} lesboja)"
+      },
+      "mix": {
+        "title": "Suuntautuminen ennen transitiota ja detransition jälkeen",
+        "description": "Suhteessa syntymäsukupuoleen, sen kertovien tarinoiden joukossa.",
+        "women": "Naiset",
+        "men": "Miehet",
+        "all": "Kaikki",
+        "before": "ennen",
+        "after": "jälkeen"
+      },
+      "matrix": {
+        "title": "Muuttuiko suuntautuminen?",
+        "description": "Jokainen rivi on yksi suuntautuminen ennen transitiota; solut näyttävät, mitä samat ihmiset kuvaavat detransition jälkeen.",
+        "headline": "{percent} % kuvaa saman suuntautumisen ennen transitiota ja detransition jälkeen (n = {n}).",
+        "corner": "Ennen ↓ · Jälkeen →",
+        "cell": "{from} ennen → {to} jälkeen: {percent} % ({count})",
+        "note": "Vain tarinat, jotka kertovat suuntautumisen molempina ajankohtina. Rivit, joilla on alle 30 tarinaa, jätetään tyhjiksi."
+      },
+      "coverage": "Suuntautuminen kerrotaan ennen transitiota {before} tarinassa ja detransition jälkeen {after} tarinassa, yhteensä {cohort} arvioidusta tarinasta."
+    },
+    "trends": {
+      "series": {
+        "contributed_online_influence": "Verkkovaikutus",
+        "contributed_rapid_onset": "Nopea alku (ROGD)",
+        "regret_transition": "Katumus",
+        "took_puberty_blockers": "Puberteettiestäjät"
+      },
+      "tooltip": "{bucket} · n = {n}",
+      "mode": {
+        "strict": "Binäärinen signaali",
+        "soft": "Keskimääräinen todennäköisyys",
+        "strictNote": "Niiden tarinoiden osuus, joista malli on varma (≥ 0,8).",
+        "softNote": "Keskimääräinen todennäköisyys kaikissa tarinoissa — pitää epäselvät tarinat mukana trendissä."
+      },
+      "seriesTooltip": "{strict} binäärinen · {mean} ka.",
+      "medianAge": "Transitioiän mediaani kohorteittain",
+      "coverageNote": "Jokainen piste perustuu kohortin vastanneisiin tarinoihin; varhaisimmilla kohorteilla on pienimmät otokset.",
+      "basedOn": "{cohort} tarinan perusteella, joissa on transitiovuosi.",
+      "empty": "Ei vielä transitiovuosia nykyisillä suodattimilla.",
+      "error": "Trenditietoja ei voitu ladata",
+      "linesTitle": "Piirteet transitiovuoden mukaan",
+      "linesDescription": "Niiden tarinoiden osuus, joissa kukin väittämä on selvästi tosi, ryhmiteltynä transition alkamisvuoden mukaan. Lisää tai poista piirteitä vertaillaksesi.",
+      "reasonsTitle": "Transition pääsyy aikakausittain",
+      "reasonsDescription": "Miten yleisimmät pääsyyt vaihtelevat transitiovuoden mukaisten kohorttien välillä.",
+      "add": "Lisää piirre…",
+      "remove": "Poista {label}",
+      "strictNote": "Niiden tarinoiden osuus, joissa tekoäly on varma väittämän paikkansapitävyydestä (≥ 0,8). Ontot pisteet perustuvat alle 30 tarinaan. Uusimmilla kohorteilla on ollut vähemmän aikaa transition jälkeen — vähemmän aikaa edetä leikkauksiin tai pitkäaikaisvaikutuksiin, ja yleensä lyhyemmät tarinat — joten monet piirteet laskevat oikeassa reunassa; piirre, joka silti nousee, kuten ahdistus, erottuu."
+    },
+    "uncertainty": {
+      "binary": "Binäärinen",
+      "bands": "Kolmiportainen",
+      "likelyFalse": "Todennäköisesti epätosi (< 0,2)",
+      "unclear": "Epäselvä (0,2–0,8)",
+      "unclearShort": "epäselvä",
+      "likelyTrue": "Todennäköisesti tosi (≥ 0,8)",
+      "rowTooltip": "{false} % todennäköisesti epätosi · {unclear} % epäselvä · {true} % todennäköisesti tosi"
+    },
+    "minors": {
+      "tiles": {
+        "minor": "aloitti alle 18-vuotiaana ({n}/{total} tarinasta, joissa on ikä)",
+        "le15": "aloitti 15-vuotiaana tai nuorempana",
+        "dysphoria": "koki dysforiaa ensimmäisen kerran 12-vuotiaana tai nuorempana (n = {n})",
+        "female": "alle 18-vuotiaana aloittaneista on naisia"
+      },
+      "early": "Näissä tarinoissa puberteettiestäjiä esiintyy {min} vuoden iästä alkaen, mediaani {median} (n = {n}). {hormones} oli aloittanut hormonit 16-vuotiaana, ja {detrans} oli jo detransitioinut 18-vuotiaana.",
+      "empty": "Ei vielä ikätietoja nykyisillä suodattimilla.",
+      "error": "Varhaisen transition tietoja ei voitu ladata",
+      "byEra": {
+        "title": "Aloitti ennen 18 vuoden ikää, transitiovuoden mukaan",
+        "description": "Niiden tarinoiden osuus, joissa transitio alkoi ennen 18 vuoden ikää, ryhmiteltynä alkamisvuoden mukaan.",
+        "note": "Viivat näyttävät 95 %:n luottamusvälin. Myöhemmissä kohorteissa on enemmän ihmisiä, jotka aloittivat transition äskettäin ja nuorena, joten tulkitse trendiä varoen."
+      }
+    },
+    "journey": {
+      "milestones": {
+        "first_dysphoria": "Ensimmäinen dysforia",
+        "transition": "Transitio",
+        "hormones": "Hormonit",
+        "detransition": "Detransitio",
+        "in_transition": "Vuosia transitiossa"
+      },
+      "median": "mediaani {age}",
+      "count": "n = {n}",
+      "tooltip": "Ikä {age}: {count, plural, =1 {1 tarina} other {# tarinaa}}",
+      "yearsTooltip": "{years, plural, =1 {1 vuosi} other {# vuotta}} transitiossa: {count, plural, =1 {1 tarina} other {# tarinaa}}",
+      "basedOn": "Jokainen rivi laskee vain tarinat, joissa kyseinen ikä mainitaan. Akseli on katkaistu 99. persentiilin kohdalta.",
+      "empty": "Ei vielä aikajanatietoja nykyisillä suodattimilla.",
+      "error": "Polkutietoja ei voitu ladata"
+    },
+    "gradient": {
+      "regret": "Katumus",
+      "noRegret": "Ei katumusta",
+      "notStated": "Ei kerrottu",
+      "tiers": {
+        "no_transition": "Ei transitiota",
+        "social_only": "Vain sosiaalinen",
+        "hormones": "Hormonit tai estäjät",
+        "surgery": "Leikkaus",
+        "unclear": "Epäselvä"
+      },
+      "tierTooltip": "{n} tarinaa: {regrets} katumus, {noRegret} ei katumusta, {notStated} ei kerrottu",
+      "count": "n = {n}",
+      "selectionNote": "Varhain detransitioivat eivät koskaan etene myöhempiin vaiheisiin, joten tämä näyttää, mihin mitkäkin polut johtavat — ei sitä, että lääketieteelliset vaiheet aiheuttaisivat katumusta.",
+      "basedOn": "Perustuu {cohort} arvioituun tarinaan.",
+      "empty": "Ei vielä vastauksia nykyisillä suodattimilla.",
+      "error": "Lääketieteellisten toimenpiteiden tietoja ei voitu ladata",
+      "statedNote": "Oikeanpuoleinen luku on katumus niiden tarinoiden joukossa, jotka ottavat kantaa (katumus tai ei katumusta).",
+      "headline": "{percent} % leikkauksessa käyneistä sanoo katuvansa transitiota, kantaa ottaneiden joukossa (n = {n}).",
+      "headlineCompare": "{percent} % leikkauksessa käyneistä sanoo katuvansa transitiota, kun hormoneihin tai estäjiin jääneistä vastaava osuus on {hormones} % (n = {n} / {nHormones}). Lasketaan vain kantaa ottavat tarinat."
+    },
+    "after": {
+      "levels": {
+        "muchWorse": "Paljon huonompi",
+        "worse": "Hieman huonompi",
+        "same": "Suunnilleen sama",
+        "better": "Hieman parempi",
+        "muchBetter": "Paljon parempi"
+      },
+      "panels": {
+        "mh_change_after_detransition": "Mielenterveys",
+        "outcome_quality_of_life": "Elämänlaatu",
+        "outcome_family_relationship_change": "Perhesuhteet"
+      },
+      "summary": "{better} % parempi · {worse} % huonompi",
+      "count": "n = {n}",
+      "basedOn": "Perustuu {cohort} arvioituun tarinaan.",
+      "empty": "Ei vielä vastauksia nykyisillä suodattimilla.",
+      "error": "Muutostietoja ei voitu ladata",
+      "worseSide": "Huonompi",
+      "betterSide": "Parempi",
+      "headline": "{better} % kuvaa mielenterveytensä parantuneen detransition jälkeen; {worse} % kuvaa sen heikentyneen (n = {n})."
+    },
+    "stories": {
+      "excerptNote": "Nimettömiä tekoälyn tekemiä tiivistelmiä julkisista /r/detrans-julkaisuista.",
+      "agesCaption": "Iät: ensimmäinen dysforia → transitio → {outcome}",
+      "ages": {
+        "firstDysphoria": "Ensimmäinen dysforia",
+        "transition": "Transitio",
+        "detransition": "Detransitio",
+        "desistance": "Desistanssi",
+        "socialTransition": "Sosiaalinen transitio"
+      },
+      "female": "Nainen",
+      "male": "Mies",
+      "basedOn": "{cohort} vastaavasta tarinasta.",
+      "empty": "Mikään tarina ei vielä vastaa nykyisiä suodattimia.",
+      "error": "Tarinoita ei voitu ladata",
+      "loadMore": "Lataa lisää tarinoita",
+      "loading": "Ladataan…",
+      "upvotesLabel": "Ääniä yhteensä: {count}",
+      "dialog": {
+        "title": "Tarina",
+        "summary": "Tiivistelmä",
+        "fullStory": "Koko tarina",
+        "close": "Sulje tarina",
+        "error": "Koko tarinaa ei voitu ladata",
+        "openPage": "Avaa tarinan sivu"
+      },
+      "status": {
+        "detransitioned": "Detransitioitunut",
+        "desisted": "Luopunut"
+      }
+    },
+    "highlights": {
+      "title": "Mikä erottuu",
+      "types": {
+        "prevalence": "Yleisin",
+        "pair": "Kulkevat yhdessä",
+        "improvement": "Elämä detransition jälkeen",
+        "journey": "Tyypillinen polku",
+        "minorShare": "Aloitti ennen 18 vuoden ikää",
+        "minorLe15": "Aloitti 15-vuotiaana tai nuorempana",
+        "minorDysphoria": "Ensimmäinen dysforia viimeistään 12-vuotiaana",
+        "minorFemale": "Kuka aloittaa nuorena",
+        "orientation": "Seksuaalinen suuntautuminen"
+      },
+      "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
+      "prevalenceUnclear": "Lisäksi {unclear} % on epäselviä.",
+      "pair": "Stories with {a} show {b} {lift}× more often than average (n = {n}).",
+      "improvement": "{better} % kertoo elämänlaatunsa parantuneen detransition jälkeen; {worse} % kertoo sen heikentyneen (n = {n}).",
+      "journey": "Tyypillinen polku: ensimmäinen dysforia {dysphoria}-vuotiaana → transitio {transition}-vuotiaana → detransitio {detransition}-vuotiaana (n = {n}).",
+      "minorShare": "{percent} % tarinoista, joissa on ikä, aloitti transition alle 18-vuotiaana (n = {n}/{total}).",
+      "minorLe15": "{percent} % aloitti 15-vuotiaana tai nuorempana (n = {n}).",
+      "minorDysphoria": "{percent} % koki dysforiaa ensimmäisen kerran 12-vuotiaana tai nuorempana (n = {n}).",
+      "minorFemale": "{percent} % alle 18-vuotiaana aloittaneista on naisia (n = {n}).",
+      "explore": "Tutki",
+      "orientation": "{percent} % suuntautumisensa kertovista detransitioijista on homoja, lesboja tai biseksuaaleja ({sameSex} % homoja tai lesboja; n = {n})."
+    },
+    "pathways": {
+      "journey": "Syy → Prosessi → Lopputulos",
+      "medical": "Lääketieteellinen polku",
+      "stages": {
+        "cause": "Pääsyy",
+        "process": "Käännekohta",
+        "outcome": "Katumus nykyään"
+      },
+      "causes": {
+        "social_role_discomfort": "Epämukavuus sukupuolirooleissa",
+        "internalised_homophobia": "Sisäistetty homofobia",
+        "internalised_misogyny_misandry": "Sisäistetty naisviha / miesviha",
+        "trauma": "Trauma",
+        "mental_health_issues": "Mielenterveys",
+        "neurodivergence": "Neurokirjo",
+        "body_dysmorphia": "Kehodysmorfia",
+        "online_influence": "Verkkovaikutus",
+        "peer_influence": "Vertaisvaikutus",
+        "sexual_factors": "Seksuaaliset tekijät",
+        "parental_or_medical_pressure": "Vanhempien tai hoitohenkilöstön painostus",
+        "other_unclear": "Muu / epäselvä",
+        "unclear": "Epäselvä"
+      },
+      "processes": {
+        "process_benefited_from_therapy": "Tutkiva terapia",
+        "process_detrans_community_exposure": "Detrans-yhteisö",
+        "process_research_consumption": "Tutkimus ja media",
+        "process_self_reflection": "Itsetutkiskelu",
+        "process_time_off_hormones": "Tauko hormoneista",
+        "process_medical_scare": "Terveyspelko",
+        "process_family_partner_intervention": "Perhe tai kumppani",
+        "process_spiritual_experience": "Hengellinen kokemus",
+        "other": "Muu / epäselvä"
+      },
+      "outcomes": {
+        "regrets": "Katuu",
+        "no_regret": "Ei katumusta",
+        "not_stated": "Ei kerrottu"
+      },
+      "linkTooltip": "{from} → {to}: {count, plural, =1 {1 tarina} other {# tarinaa}}",
+      "basedOn": "Perustuu {cohort} arvioituun tarinaan, joissa on vastaus tässä näkymässä.",
+      "empty": "Tähän näkymään ei ole vielä tarpeeksi tarinoita, joissa on vastaus.",
+      "error": "Polkutietoja ei voitu ladata",
+      "journeyDescription": "Miten pääsyyt, käännekohdat ja katumus kytkeytyvät toisiinsa tarinoissa.",
+      "medicalDescription": "Mitä lääketieteellisiä vaiheita ihmiset kävivät läpi ennen detransitiota.",
+      "regretByReason": {
+        "title": "Katumus transition pääsyyn mukaan",
+        "description": "Niiden tarinoiden joukossa, jotka kertovat, katuvatko he transitiota, katuvien osuus — ryhmiteltynä transition pääsyyn mukaan.",
+        "headline": "Kaikkiaan {percent} % katumusta käsittelevistä tarinoista ilmaisee katumusta (n = {n}).",
+        "note": "Pisteet näyttävät katumusta ilmaisevien osuuden selvästi kantaa ottavissa tarinoissa; viivat näyttävät 95 %:n luottamusvälin. Haaleilla riveillä on alle 30 tarinaa.",
+        "error": "Katumusta syyn mukaan ei voitu ladata",
+        "empty": "Ei vielä vastauksia nykyisillä suodattimilla."
+      }
+    },
+    "methodology": {
+      "p1": "detrans.ai kokoaa tämän aineiston julkisista /r/detrans-tarinoista. Tekoäly kirjoittaa kunkin käyttäjän hajanaiset kommentit ja julkaisut yhdeksi minämuotoiseksi kertomukseksi ja poimii siitä aikajanan tärkeistä ikävaiheista. Mukana ovat vain käyttäjät, jotka ovat kertoneet tarpeeksi kokonaisen tarinan kokoamiseksi.",
+      "p1b": "Nämä tilastot kattavat vain tarinat, joissa henkilö on selvästi vahvistanut detransitioineensa tai luopuneensa. Raakakorpuksesta kaavioihin:",
+      "table": {
+        "comments": "Kommentteja kerätty /r/detrans-yhteisöstä",
+        "posts": "Julkaisuja kerätty /r/detrans-yhteisöstä",
+        "authors": "Eri kirjoittajia korpuksessa",
+        "selected": "Kirjoittajat, joilla on vähintään 5 kommenttia, joilla 3+ ääntä",
+        "removed": "Poistettu: detransitiota tai desistanssia ei selvästi vahvistettu",
+        "remaining": "Tarinoita jäljellä tämän jälkeen",
+        "cohort": "Mukana alla olevissa kaavioissa (merkityt tilit pois lukien)"
+      },
+      "p2": "Jokaisen tarinan arvioi sen jälkeen Jev, todennäköisyyspohjainen kysymys–vastausmalli, noin sadan syitä, kokemuksia ja lopputuloksia koskevan väittämän perusteella. Kyllä/ei-kysymykset antavat todennäköisyyden väliltä 0–1, valintakysymykset antavat todennäköisyyden jokaiselle vaihtoehdolle, ja asteikkokysymykset antavat odotusarvon kunkin kaavion alla näkyvällä asteikolla.",
+      "p3": "Kyllä/ei-piirteissä merkitsemme tarinan ”todeksi”, kun todennäköisyys saavuttaa kynnysarvon (oletuksena 0,8). Kunkin piirteen histogrammi näyttää koko todennäköisyysjakauman, joten piirre, jolla on paljon keskivälin vastauksia, näyttäytyy aidosti epävarmana eikä selvästi totena tai epätotena.",
+      "p4": "Kaikki kaaviot noudattavat yllä olevia suodattimia. Koska kysymyssarja on muuttunut ajan myötä ja tarinoita käsitellään uudelleen eri ajokerroilla, jokainen kaavio kertoo, kuinka monella suodatetuista tarinoista on todella vastaus kyseiseen kysymykseen.",
+      "p5": "Malli merkitsee epäaidoilta, keksityiltä tai boteilta vaikuttavat tilit, ja ne jätetään pois näistä tilastoista. Tekoälyn poimimissa tiedoissa voi silti olla virheitä — järjestelmäkehotteet on julkaistu <prompts>kehotesivulla</prompts>, ja tiivistelmiä verrataan alkuperäisiin kommentteihin.",
+      "threshold": {
+        "title": "Kuinka paljon raja-arvo vaikuttaa",
+        "description": "Kaaviot laskevat väittämän todeksi, kun tekoälyn todennäköisyys on vähintään 0,8. Matalammat raja-arvot antaisivat suurempia lukuja; tämä kaavio näyttää, kuinka paljon.",
+        "error": "Kynnysarvotietoja ei voitu ladata",
+        "tooltip": "Raja-arvo {threshold}",
+        "xAxis": "Todennäköisyyden raja-arvo",
+        "siteThreshold": "Käytössä tällä sivulla",
+        "note": "Niiden tarinoiden osuus, jotka ovat kunkin raja-arvon kohdalla tai yläpuolella. Raja-arvo 0,8 on tarkoituksella varovainen."
+      },
+      "accountType": {
+        "title": "Kuka kirjoittaa",
+        "description": "Kuvaako kukin kertomus kirjoittajan omaa kokemusta.",
+        "options": {
+          "personal_experience": "Oma kokemus",
+          "parent": "Vanhempi",
+          "friend": "Ystävä tai kumppani",
+          "researcher_journalist": "Tutkija, toimittaja tai kliinikko",
+          "other": "Muu tai sekalainen"
+        }
+      },
+      "detail": {
+        "title": "Kuinka yksityiskohtaisia tarinat ovat",
+        "description": "Tekoälyn arvio siitä, kuinka tarkka kukin minämuotoinen kertomus on. Valitse suodattimista ”Vain yksityiskohtaiset tarinat” rajataksesi kaikki kaaviot kahteen ylimpään tasoon.",
+        "levels": {
+          "level0": "Epämääräinen tai yleinen",
+          "level1": "Jonkin verran henkilökohtaisia yksityiskohtia",
+          "level2": "Yksityiskohtainen, konkreettisia tapahtumia",
+          "level3": "Erittäin yksityiskohtainen, useamman vuoden kertomus"
+        }
+      }
+    },
+    "prevalence": {
+      "women": "Naiset",
+      "men": "Miehet",
+      "interval": "{group} {percent} (95 %:n luottamusväli {low}–{high}, n = {n})",
+      "smallSample": "n = {n}",
+      "openStories": "Näytä tarinat",
+      "showAll": "Näytä kaikki {count}",
+      "showFewer": "Näytä vähemmän",
+      "note": "Pisteet näyttävät niiden tarinoiden osuuden, joissa väittämä on selvästi tosi (tekoälyn todennäköisyys ≥ 0,8); viivat näyttävät 95 %:n luottamusvälin. Haaleilla riveillä on alle 30 vastausta.",
+      "noteWithStories": "Pisteet näyttävät niiden tarinoiden osuuden, joissa väittämä on selvästi tosi (tekoälyn todennäköisyys ≥ 0,8); viivat näyttävät 95 %:n luottamusvälin. Haaleilla riveillä on alle 30 vastausta. Valitse rivi lukeaksesi vastaavia tarinoita.",
+      "gap": "Suurin ero: {label} — {higher} ryhmästä {higherGroup} vs. {lower} ryhmästä {lowerGroup}.",
+      "womenLower": "naiset",
+      "menLower": "miehet",
+      "m": "M",
+      "f": "N",
+      "menLegend": "M · miehet",
+      "womenLegend": "N · naiset"
+    },
+    "storyPeek": {
+      "title": "Tarinat: {label}",
+      "meta": "{count, plural, =1 {1 vastaava tarina} other {# vastaavaa tarinaa}}",
+      "error": "Tarinoita ei voitu ladata.",
+      "empty": "Ei vastaavia tarinoita nykyisillä suodattimilla.",
+      "readFull": "Lue koko tarina",
+      "note": "Nimettömiä otteita, parhaiten arvioidut ensin. Koko luettelo on sivun lopussa Tarinat-osiossa."
+    },
+    "reasons": {
+      "transitionTitle": "Transition pääsyy",
+      "transitionDescription": "Yksittäinen merkittävin syy, jonka kukin ihminen kertoo transition aloittamiselle.",
+      "detransitionTitle": "Detransition pääsyy",
+      "detransitionDescription": "Yksittäinen merkittävin syy, jonka kukin ihminen kertoo lopettamiselle."
+    },
+    "byYear": {
+      "error": "Vuosikohtaisia tietoja ei voitu ladata",
+      "empty": "Ei vielä transitiovuosia nykyisillä suodattimilla.",
+      "other": "Muu",
+      "n": "n = {n}",
+      "note": "Todennäköisyyksillä painotetut osuudet transitiovuoden mukaisissa kohorteissa. Haaleilla riveillä on alle 30 tarinaa."
+    },
+    "overview": {
+      "error": "Yleiskatsausta ei voitu ladata",
+      "basedOn": "Perustuu {cohort} arvioituun tarinaan."
+    },
+    "drivers": {
+      "statements": {
+        "title": "Kuvattu transitioon vaikuttaneiksi"
+      },
+      "count": "n = {n}",
+      "basedOn": "Perustuu {cohort} arvioituun tarinaan.",
+      "empty": "Ei vielä vastauksia nykyisillä suodattimilla.",
+      "error": "Näitä tietoja ei voitu ladata"
+    },
+    "adversity": {
+      "composition": {
+        "any": "{positive} % kuvaa vähintään yhden trauman tai vastoinkäymisen muodon (n = {n})"
+      },
+      "statements": {
+        "title": "Kuvatut vastoinkäymisten tyypit"
+      },
+      "contrast": {
+        "title": "Traumahistoria vs. trauma pääsyynä",
+        "description": "Paljon useampi tarina mainitsee trauman kuin nimeää sen transition tai detransition päätekijäksi.",
+        "history": "Kuvaa traumahistorian",
+        "transitionReason": "Nimeää trauman transition pääsyyksi",
+        "detransitionReason": "Nimeää trauman tiedostamisen detransition pääsyyksi",
+        "note": "Pisteet näyttävät tarinoiden osuuden; viivat näyttävät 95 %:n luottamusvälin. Syyrivit laskevat kunkin tarinan yksittäisen pääsyyn."
+      },
+      "count": "n = {n}",
+      "basedOn": "Perustuu {cohort} arvioituun tarinaan.",
+      "empty": "Ei vielä vastoinkäymisiä koskevia vastauksia nykyisillä suodattimilla.",
+      "error": "Vastoinkäymistietoja ei voitu ladata"
+    },
+    "online": {
+      "choice": {
+        "title": "Vaikutusvaltaisin alusta",
+        "description": "Tarinoista, joissa mainitaan verkkovaikutus. Tarinat, joissa ei ole merkittävää verkkovaikutusta, on jätetty pois.",
+        "options": {
+          "reddit": "Reddit",
+          "tumblr": "Tumblr",
+          "tiktok": "TikTok",
+          "twitter": "Twitter / X",
+          "youtube": "YouTube",
+          "discord": "Discord",
+          "other": "Muu alusta tai fandom-tila"
+        }
+      },
+      "statements": {
+        "title": "Verkko- ja vertaisvaikutus"
+      },
+      "byYear": {
+        "title": "Alusta transitiovuoden mukaan",
+        "description": "Miten vaikutusvaltaisin alusta on vaihdellut transitiovuoden mukaisten kohorttien välillä."
+      },
+      "count": "n = {n}",
+      "basedOn": "Perustuu {cohort} arvioituun tarinaan.",
+      "empty": "Ei vielä verkkovaikutusta koskevia vastauksia nykyisillä suodattimilla.",
+      "error": "Verkkovaikutustietoja ei voitu ladata"
+    },
+    "process": {
+      "composition": {
+        "any": "{positive} % kuvaa vähintään yhden näistä käännekohdista (n = {n})"
+      },
+      "statements": {
+        "title": "Mikä vei ihmisiä kohti detransitiota"
+      },
+      "count": "n = {n}",
+      "basedOn": "Perustuu {cohort} arvioituun tarinaan.",
+      "empty": "Ei vielä käännekohtia koskevia vastauksia nykyisillä suodattimilla.",
+      "error": "Käännekohtatietoja ei voitu ladata"
+    },
+    "lives": {
+      "error": "Aikajanoja ei voitu ladata",
+      "empty": "Ei vielä tarinoita, joissa on sekä transitio- että detransitioikä, nykyisillä suodattimilla.",
+      "legend": {
+        "transition": "Transitiossa",
+        "blockers": "Puberteettiestäjät",
+        "hormones": "Hormonit",
+        "surgery": "Leikkaus"
+      },
+      "ariaLabel": "Kaavio {n} yksilöllisestä aikajanasta transitiosta detransitioon",
+      "tooltip": {
+        "woman": "Nainen",
+        "man": "Mies",
+        "person": "Henkilö",
+        "firstDysphoria": "Ensimmäinen dysforia {age}-vuotiaana",
+        "transition": "Transitio {age}-vuotiaana",
+        "pubertyBlockers": "Puberteettiestäjät {age}-vuotiaana",
+        "hormones": "Hormonit {age}-vuotiaana",
+        "topSurgery": "Rintakehän leikkaus {age}-vuotiaana",
+        "bottomSurgery": "Sukuelinkirurgia {age}-vuotiaana",
+        "detransition": "Detransitio {age}-vuotiaana"
+      },
+      "note": "{n} ihmistä, joiden tarinassa on molemmat iät, lajiteltuna transitioiän mukaan. Iät ovat tekoälyn tulkinta kustakin tarinasta ja voivat olla likimääräisiä."
+    },
+    "duration": {
+      "error": "Kestoja ei voitu ladata",
+      "empty": "Ei vielä transition kestoja nykyisillä suodattimilla.",
+      "all": "Kaikki",
+      "women": "Naiset",
+      "men": "Miehet",
+      "legend": "{label}: mediaani {median} vuotta (n = {n})",
+      "tooltipTitle": "{years, plural, =1 {1 vuoden} other {# vuoden}} sisällä",
+      "xAxis": "Vuosia transition alusta",
+      "note": "Niiden ihmisten osuus, jotka olivat lopettaneet tietyn vuosimäärän sisällä. Kaikki tässä mukana olevat detransitioivat lopulta, joten tämä näyttää, kuinka kauan transitio heillä kesti — ei sitä, kuinka moni transition aloittaneista lopettaa myöhemmin.",
+      "headline": "{one} % oli lopettanut vuoden sisällä ja {five} % viiden vuoden sisällä aloittamisesta (mediaani {median} vuotta, n = {n})."
+    },
+    "optionLabels": {
+      "reddit": "Reddit",
+      "tumblr": "Tumblr",
+      "tiktok": "TikTok",
+      "twitter": "Twitter / X",
+      "youtube": "YouTube",
+      "discord": "Discord",
+      "social_role_discomfort": "Epämukavuus sukupuolirooleissa",
+      "internalised_homophobia": "Sisäistetty homofobia",
+      "internalised_misogyny_misandry": "Sisäistetty naisviha / miesviha",
+      "trauma": "Trauma",
+      "mental_health_issues": "Mielenterveys",
+      "neurodivergence": "Neurokirjo",
+      "body_dysmorphia": "Kehodysmorfia",
+      "online_influence": "Verkkovaikutus",
+      "peer_influence": "Vertaisvaikutus",
+      "sexual_factors": "Seksuaaliset tekijät (AGP / AAP)",
+      "parental_or_medical_pressure": "Vanhempien tai hoitohenkilöstön painostus",
+      "other_unclear": "Muu / epäselvä",
+      "accepted_sexed_body": "Hyväksyi sukupuolitetun kehonsa",
+      "social_construct_realisation": "Näki sukupuoliroolit ongelmana",
+      "trauma_realisation": "Tajusi trauman olevan taustalla",
+      "mental_health_realisation": "Tajusi mielenterveyden olevan taustalla",
+      "neurodivergence_realisation": "Tajusi neurokirjon olevan taustalla",
+      "fantasy_reality_disillusionment": "Todellisuus ei vastannut odotuksia",
+      "surgery_regret_medical_complications": "Leikkauksen katumus tai lääketieteelliset komplikaatiot",
+      "ideological_disillusionment": "Pettymys ideologiaan tai yhteisöön",
+      "social_pressure_ostracism": "Sosiaalinen paine tai syrjintä",
+      "failure_to_pass": "Ei läpäissyt",
+      "internalised_homophobia_realisation": "Tunnisti sisäistetyn homofobian",
+      "internalised_misogyny_misandry_realisation": "Tunnisti sisäistetyn naisvihan / miesvihan",
+      "sexual_factors_realisation": "Tunnisti seksuaaliset tekijät (AGP / AAP)",
+      "religious_or_spiritual_change": "Uskonnollinen tai hengellinen muutos",
+      "fertility_or_family_desires": "Hedelmällisyyteen tai perheeseen liittyvät toiveet"
+    },
+    "choiceSplit": {
+      "error": "Kaaviota ei voitu ladata",
+      "empty": "Ei vielä vastauksia nykyisillä suodattimilla.",
+      "women": "N · naiset (n = {n})",
+      "men": "M · miehet (n = {n})",
+      "headline": "Naiset nimeävät useammin ”{womenOption}” ({womenShare} vs. {womenMen} miehistä); miehet nimeävät useammin ”{menOption}” ({menShare} vs. {menWomen} naisista).",
+      "note": "Todennäköisyyksillä painotettu: tarina, jonka tekoäly jakaa 60/40 kahden syyn kesken, lasketaan 0,6:ksi ja 0,4:ksi.",
+      "m": "M",
+      "f": "N"
+    },
+    "ordinal": {
+      "error": "Kaaviota ei voitu ladata",
+      "empty": "Ei vielä vastauksia nykyisillä suodattimilla.",
+      "all": "Kaikki",
+      "women": "Naiset",
+      "men": "Miehet"
+    },
+    "medical_steps": {
+      "statements": {
+        "title": "Toteutetut lääketieteelliset vaiheet"
+      },
+      "count": "n = {n}",
+      "basedOn": "Perustuu {cohort} arvioituun tarinaan.",
+      "empty": "Ei vielä vastauksia nykyisillä suodattimilla.",
+      "error": "Lääketieteellisiä vaiheita ei voitu ladata"
     }
   },
   "topicsPage": {
     "title": "Topics",
     "description": "In-depth wiki pages on detransition, gender medicine, and related topics.",
     "empty": "No topics have been published yet."
+  },
+  "storiesPage": {
+    "metadata": {
+      "title": "Detransitiotarinat | detrans.ai",
+      "description": "Lue tuhansia anonymisoituja tarinoita detransitiosta ja desistanssista /r/detrans-yhteisöstä tekoälyn tiivistäminä. Suodata iän, sukupuolen ja kokemusten mukaan."
+    },
+    "title": "Detransitiotarinat",
+    "description": "{count, number} anonymisoitua tarinaa ihmisiltä, jotka korjasivat sukupuoltaan ja myöhemmin detransitioivat tai luopuivat siitä, tekoälyn kokoamina heidän /r/detrans-julkaisuistaan ja -kommenteistaan.",
+    "statsLink": "Tutustu tilastoihin",
+    "allStories": "Kaikki tarinat",
+    "story": {
+      "metaTitle": "{title} – Detransitiotarina | detrans.ai",
+      "untitled": "Detransitiotarina",
+      "notFound": "Tarinaa ei löytynyt | detrans.ai",
+      "tags": "Tunnisteet",
+      "moreStories": "Lue lisää tarinoita"
+    }
   }
 }
