@@ -1,6 +1,6 @@
 import type { WikiTocItem } from "@/app/lib/markdown";
 import type { ReactNode } from "react";
-import { WikiTocLinks, type WikiTocNode } from "./WikiToc";
+import { WikiTocAside, WikiTocLinks, type WikiTocNode } from "./WikiToc";
 
 /**
  * Shared shell for article pages (wiki topics and the support page): a
@@ -57,22 +57,11 @@ export function DocsLayout({
     <div className="flex min-h-full w-full justify-center">
       <div className="relative w-full max-w-4xl 2xl:-mx-16 2xl:w-[calc(100%_+_8rem)]">
         {(tocItems.length > 0 || sidebarExtras) && (
-          <div className="absolute inset-y-0 right-[calc(100%_+_1.5rem)] hidden w-56 xl:block">
-            <aside className="not-prose sticky top-4 max-h-[calc(100dvh-6rem)] overflow-y-auto pt-8">
-              {sidebarTitle && (
-                <div className="mt-2 mb-1 ml-2 text-sm font-semibold">
-                  {sidebarTitle}
-                </div>
-              )}
-              {tocItems.length > 0 && <WikiTocLinks items={tocItems} />}
-              {sidebarExtras && (
-                <>
-                  <div className="bg-border mt-4 mb-4 h-px" />
-                  {sidebarExtras}
-                </>
-              )}
-            </aside>
-          </div>
+          <WikiTocAside
+            items={tocItems}
+            title={sidebarTitle}
+            extras={sidebarExtras}
+          />
         )}
         {prose}
       </div>

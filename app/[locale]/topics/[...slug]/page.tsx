@@ -1,4 +1,5 @@
 import { DocsLayout } from "@/app/components/content/DocsLayout";
+import { WikiAdminActions } from "@/app/components/content/WikiAdminActions";
 import { WikiTocLink } from "@/app/components/content/WikiTocLink";
 import { isAdmin } from "@/app/lib/auth/auth";
 import { renderWikiMarkdown } from "@/app/lib/markdown";
@@ -334,6 +335,14 @@ export default async function WikiTopicPage({
             </time>
             {page.isStub && " · This page is a stub and will be expanded."}
           </p>
+
+          {includeDrafts && (
+            <WikiAdminActions
+              path={page.path}
+              published={page.published}
+              locale={locale}
+            />
+          )}
 
           {/* Related-page navigation: sidebar on desktop (see sidebarExtras),
               in the page body when the sidebar is hidden (below xl) with a

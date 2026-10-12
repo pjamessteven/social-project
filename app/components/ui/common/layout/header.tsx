@@ -1,7 +1,6 @@
 "use client";
 
 import DonationCard from "@/app/components/content/DonationCard";
-import type { TopLevelTopic } from "@/app/lib/pages";
 import { Link, usePathname } from "@/i18n/routing";
 import { useUserStore } from "@/stores/user-store";
 import { clsx } from "clsx";
@@ -16,6 +15,7 @@ import {
   Heart,
   HelpCircle,
   Info,
+  Library,
   LogOut,
   Mail,
   Menu,
@@ -68,12 +68,11 @@ function UserMenu() {
 
 export default function Header({
   mode,
-  locale,
-  topics = [],
+  showTopics = false,
 }: {
   mode: "detrans";
   locale?: string;
-  topics?: TopLevelTopic[];
+  showTopics?: boolean;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
@@ -83,13 +82,17 @@ export default function Header({
 
   const isChatActive = pathname === "/" || pathname.startsWith("/chat");
 
+  // Tab icons are decorative; drop them below xl so the tabs plus the About
+  // dropdown fit between the logo and the actions.
+  const tabIconClass = "hidden h-3.5 w-3.5 xl:block";
+
   const baseTabs: TabDef[] = [
     {
       key: "chat",
       href: "/",
       label: t("navigation.chat"),
       isActive: isChatActive,
-      icon: <MessageCircleHeart className="h-3.5 w-3.5" />,
+      icon: <MessageCircleHeart className={tabIconClass} />,
     },
   ];
 
@@ -99,22 +102,33 @@ export default function Header({
       href: "/videos",
       label: t("navigation.videos"),
       isActive: pathname === "/videos",
-      icon: <Youtube className="h-3.5 w-3.5" />,
+      icon: <Youtube className={tabIconClass} />,
     },
     {
       key: "studies",
       href: "/studies",
       label: t("navigation.studies"),
       isActive: pathname === "/studies",
-      icon: <BookText className="h-3.5 w-3.5" />,
+      icon: <BookText className={tabIconClass} />,
     },
     {
       key: "stats",
       href: "/stats",
       label: t("navigation.stats"),
       isActive: pathname === "/stats",
-      icon: <ChartNoAxesCombined className="h-3.5 w-3.5" />,
+      icon: <ChartNoAxesCombined className={tabIconClass} />,
     },
+    ...(showTopics
+      ? [
+          {
+            key: "topics",
+            href: "/topics",
+            label: t("navigation.topics"),
+            isActive: pathname.startsWith("/topics"),
+            icon: <Library className={tabIconClass} />,
+          },
+        ]
+      : []),
   ];
 
   const allTabs = [...baseTabs, ...detransTabs];
@@ -138,65 +152,12 @@ export default function Header({
           className=""
           tabClassName=""
           tabs={allTabs}
-          extraDropdown={
-            topics.length > 0 ? (
-              <NavigationMenu>
-                <NavigationMenuList>
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger
-                      className={cn(
-                        "-ml-1 flex items-center gap-1.5 rounded-full !bg-transparent px-4 py-2 text-sm font-medium hover:bg-transparent",
-                        pathname.startsWith("/topics") && "bg-muted",
-                      )}
-                    >
-                      <BookOpen className="h-3.5 w-3.5" />
-                      {t("navigation.topics")}
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent className="">
-                      <div className="grid max-h-[70vh] w-72 gap-1 overflow-y-auto p-2">
-                        <NavigationMenuLink asChild>
-                          <a
-                            href={`/${locale}/topics`}
-                            className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-center gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                          >
-                            <div className="text-sm leading-none font-medium">
-                              {t("navigation.allTopics")}
-                            </div>
-                          </a>
-                        </NavigationMenuLink>
-                        <div className="bg-border my-1 h-px" />
-                        {topics.map((topic) => (
-                          <NavigationMenuLink asChild key={topic.path}>
-                            <a
-                              href={`/${locale}/topics/${topic.path}`}
-                              className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex flex-row items-start gap-3 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
-                            >
-                              <div className="flex flex-col space-y-1">
-                                <div className="text-sm leading-none font-medium">
-                                  {topic.title}
-                                </div>
-                                {topic.summary && (
-                                  <p className="text-muted-foreground line-clamp-3 text-xs leading-snug">
-                                    {topic.summary}
-                                  </p>
-                                )}
-                              </div>
-                            </a>
-                          </NavigationMenuLink>
-                        ))}
-                      </div>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                </NavigationMenuList>
-              </NavigationMenu>
-            ) : undefined
-          }
           moreDropdown={
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="-ml-1 flex items-center gap-1.5 rounded-full !bg-transparent px-4 py-2 text-sm font-medium hover:bg-transparent">
-                    <Info className="h-3.5 w-3.5" />
+                    <Info className={tabIconClass} />
                     {t("navigation.about")}
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="">
@@ -453,6 +414,27 @@ export default function Header({
                       </div>
                     </Button>
                   </Link>
+                  {showTopics && (
+                    <Link href="/topics" onClick={() => setIsOpen(false)}>
+                      <Button
+                        variant="ghost"
+                        className={cn(
+                          "h-auto w-full flex-row items-center justify-start py-2",
+                          pathname.startsWith("/topics") && "bg-muted",
+                        )}
+                      >
+                        <Library className="h-4 w-4" />
+                        <div className="ml-4 flex flex-col items-start">
+                          <div className="text-sm font-medium">
+                            {t("navigation.topics")}
+                          </div>
+                          <div className="text-muted-foreground text-xs">
+                            {t("navigation.topicsDesc")}
+                          </div>
+                        </div>
+                      </Button>
+                    </Link>
+                  )}
                   <Link href="/support" onClick={() => setIsOpen(false)}>
                     <Button
                       variant="ghost"
@@ -609,55 +591,6 @@ export default function Header({
                     </div>
                   </div>
                 </>
-
-                {/* Topics Section (wiki pages) */}
-                {topics.length > 0 && (
-                  <div className="border-border border-t py-2">
-                    <h3 className="text-muted-foreground ml-1 pt-2 text-sm font-medium">
-                      {t("navigation.topics")}
-                    </h3>
-                    <div className="space-y-1">
-                      <a
-                        href={`/${locale}/topics`}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <Button
-                          variant="ghost"
-                          className="h-auto w-full flex-row items-center justify-start py-3"
-                        >
-                          <div className="flex flex-col items-start">
-                            <div className="text-sm font-medium">
-                              {t("navigation.allTopics")}
-                            </div>
-                          </div>
-                        </Button>
-                      </a>
-                      {topics.map((topic) => (
-                        <a
-                          key={topic.path}
-                          href={`/${locale}/topics/${topic.path}`}
-                          onClick={() => setIsOpen(false)}
-                        >
-                          <Button
-                            variant="ghost"
-                            className="h-auto w-full flex-row items-center justify-start py-3"
-                          >
-                            <div className="flex flex-col items-start">
-                              <div className="text-sm font-medium">
-                                {topic.title}
-                              </div>
-                              {topic.summary && (
-                                <div className="text-muted-foreground line-clamp-2 text-xs">
-                                  {topic.summary}
-                                </div>
-                              )}
-                            </div>
-                          </Button>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
               <div className="mt-4 pb-16" onClick={() => setIsOpen(false)}>
                 <DonationCard mode={mode} />

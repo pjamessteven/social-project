@@ -139,6 +139,13 @@ body,
 }
 */
 
+/* Muted blockquotes in all prose/markdown content. Targets the element rather
+   than overriding --tw-prose-quotes on `.prose`, which Lightning CSS drops as a
+   duplicate of the typography plugin's `.prose` rule. */
+.prose blockquote {
+  color: hsl(var(--muted-foreground));
+}
+
 .prose-table > table {
   border-collapse: separate;
   border-spacing: 0;

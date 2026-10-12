@@ -144,7 +144,7 @@
       "stats": "Статистика",
       "statsDesc": "Анонімізована статистика детранзиції з /r/detrans",
       "topics": "Topics",
-      "allTopics": "All topics"
+      "topicsDesc": "Докладні посібники з ключових тем"
     },
     "resources": {
       "genderSupport": "Знайти Терапевтів",

@@ -634,9 +634,119 @@ function WikiTreeList({
   );
 }
 
+type WikiEventData = EventPartData["data"] & {
+  tool?: string;
+  args?: {
+    path?: string;
+    pattern?: string;
+    ignoreCase?: boolean;
+    range?: string;
+    script?: string;
+    patch?: string;
+    locale?: string;
+  };
+};
+
+// Events saved before `tool` was sent only carry the stream title.
+const WIKI_TOOL_BY_TITLE: Record<string, string> = {
+  "Searched wiki pages": "grep",
+  "Read wiki page": "cat",
+  "Edited wiki page": "sed",
+  "Patched wiki page": "patch",
+};
+
+function plural(count: number, word: string, pluralWord = `${word}s`) {
+  return `${count} ${count === 1 ? word : pluralWord}`;
+}
+
+/** Monospace block with unified-diff colouring (+ green, - red, @@ blue). */
+function WikiDiffBlock({ text }: { text: string }) {
+  return (
+    <pre className="bg-muted/40 max-h-80 overflow-auto rounded border p-2 text-[11px] leading-relaxed">
+      {text.split("\n").map((line, i) => (
+        <div
+          key={i}
+          className={cn(
+            "whitespace-pre-wrap",
+            line.startsWith("+") &&
+              !line.startsWith("+++") &&
+              "bg-green-500/10 text-green-700 dark:text-green-400",
+            line.startsWith("-") &&
+              !line.startsWith("---") &&
+              "bg-red-500/10 text-red-700 dark:text-red-400",
+            line.startsWith("@@") && "text-blue-600 dark:text-blue-400",
+          )}
+        >
+          {line || " "}
+        </div>
+      ))}
+    </pre>
+  );
+}
+
+/** grep output with the matched text highlighted. */
+function WikiGrepBlock({
+  text,
+  pattern,
+  ignoreCase,
+}: {
+  text: string;
+  pattern?: string;
+  ignoreCase?: boolean;
+}) {
+  let regex: RegExp | null = null;
+  try {
+    if (pattern) regex = new RegExp(pattern, ignoreCase ? "gi" : "g");
+  } catch {
+    regex = null;
+  }
+
+  const highlight = (line: string) => {
+    if (!regex) return line;
+    const parts: React.ReactNode[] = [];
+    let last = 0;
+    for (const match of line.matchAll(regex)) {
+      if (!match[0]) continue;
+      const index = match.index ?? 0;
+      parts.push(line.slice(last, index));
+      parts.push(
+        <mark
+          key={index}
+          className="rounded-sm bg-amber-200 text-inherit dark:bg-amber-500/40"
+        >
+          {match[0]}
+        </mark>,
+      );
+      last = index + match[0].length;
+    }
+    parts.push(line.slice(last));
+    return parts;
+  };
+
+  return (
+    <pre className="bg-muted/40 max-h-80 overflow-auto rounded border p-2 text-[11px] leading-relaxed">
+      {text.split("\n").map((line, i) => {
+        // "path:line:text" — dim the location prefix
+        const loc = /^([^:\s]+:\d+:)(.*)$/.exec(line);
+        return (
+          <div key={i} className="whitespace-pre-wrap">
+            {loc ? (
+              <>
+                <span className="text-muted-foreground">{loc[1]}</span>
+                {highlight(loc[2])}
+              </>
+            ) : (
+              <span className="text-muted-foreground">{line}</span>
+            )}
+          </div>
+        );
+      })}
+    </pre>
+  );
+}
+
 export function WikiPageEventPart() {
   const eventPart = usePart<EventPartData>("data-wiki-page-event");
-  const [expanded, setExpanded] = useState(false);
   const locale = useLocale();
   const t = useTranslations("chat");
 
@@ -647,142 +757,167 @@ export function WikiPageEventPart() {
 
   if (!eventPart) return null;
 
-  const isPending = !eventPart.data.status;
-  const isError =
-    eventPart.data.status === "error" || parsed?.success === false;
+  const data = eventPart.data as WikiEventData;
+  const tool = data.tool ?? WIKI_TOOL_BY_TITLE[data.title];
+  const args = data.args ?? {};
+  const isPending = !data.status;
+  const isError = data.status === "error" || parsed?.success === false;
   const isSuccess = !isPending && !isError;
   const errorMessage: string | undefined = parsed?.error;
-  // Action name from the tool event: "Created wiki page", "Updated wiki page",
-  // "Deleted wiki page" or "Listed wiki pages" (falls back while loading).
-  const actionLabel = eventPart.data.title || t("eventLabels.wikiPage");
+  // Action name from the tool event, e.g. "Searched wiki pages"
+  const actionLabel = data.title || t("eventLabels.wikiPage");
   const path: string | undefined =
-    parsed?.path ?? parsed?.deleted ?? eventPart.data.query;
+    parsed?.path ?? parsed?.deleted ?? args.path ?? data.query;
   const pageTitle: string | undefined = parsed?.title;
   const summary: string | undefined = parsed?.summary;
   const contentPreview: string | undefined = parsed?.contentPreview;
   const output: string | undefined = parsed?.output;
   const changedLines: number | undefined =
     typeof parsed?.changedLines === "number" ? parsed.changedLines : undefined;
+  const matches: number | undefined =
+    typeof parsed?.matches === "number" ? parsed.matches : undefined;
   const updatedFields: string[] = Array.isArray(parsed?.updatedFields)
     ? parsed.updatedFields
     : [];
   const isDeleted = !!parsed?.deleted;
   const pages: WikiTreeNode[] | undefined = parsed?.pages;
+  const localeSuffix =
+    args.locale && args.locale !== "en" ? ` [${args.locale}]` : "";
+
+  // Header: say what was actually done, not just which page.
+  let headline: string | undefined;
+  if (tool === "grep") {
+    headline = args.pattern
+      ? `"${args.pattern}"${args.path ? ` in ${args.path}` : " across all pages"}${localeSuffix}`
+      : data.query || "";
+    if (isSuccess && matches !== undefined)
+      headline += `${headline ? " — " : ""}${plural(matches, "match", "matches")}`;
+  } else if (tool === "cat") {
+    const outLines = output ? output.split("\n") : [];
+    const lineCount = output ? outLines.length : undefined;
+    // cat -n output carries its own line numbers
+    const first = /^\s*(\d+)\t/.exec(outLines[0] ?? "")?.[1];
+    const last = /^\s*(\d+)\t/.exec(outLines[outLines.length - 1] ?? "")?.[1];
+    const range = args.range ?? (first && last ? `${first}–${last}` : "");
+    headline = `${path}${localeSuffix}${range ? `, lines ${range}` : ""}`;
+    if (isSuccess && lineCount !== undefined)
+      headline += ` — ${plural(lineCount, "line")}`;
+  } else if (tool === "sed" || tool === "patch") {
+    headline = `${path}${localeSuffix}`;
+    if (isSuccess && changedLines !== undefined)
+      headline +=
+        changedLines === 0
+          ? " — no changes"
+          : ` — ${plural(changedLines, "line")} changed`;
+  } else if (Array.isArray(pages)) {
+    headline =
+      pages.length === 0
+        ? "no pages yet"
+        : parsed?.truncated
+          ? `${countTreeNodes(pages)} of ${parsed.total} pages`
+          : `${countTreeNodes(pages)} pages`;
+  } else {
+    headline = pageTitle ? `${pageTitle} (/${path})` : path || data.query;
+  }
+
+  const pageLink = path && !isDeleted && tool !== "grep" && (
+    <a
+      href={`/${locale}/topics/${path}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="font-medium text-blue-600 hover:underline dark:text-blue-400"
+    >
+      {pageTitle || `/${path}`}
+    </a>
+  );
 
   return (
     <EventWrapper
       eventType="data-wiki-page-event"
       label={actionLabel}
-      query={path || eventPart.data.query || undefined}
-      disableExpand
+      query={headline}
     >
-      <div className="not-prose my-2 w-full text-xs">
-        {isSuccess && !isDeleted && !pages && (path || output) && (
-          <div
-            className="bg-muted/50 cursor-pointer rounded border px-3 py-2"
-            onClick={() => setExpanded(!expanded)}
-          >
-            <div className="flex items-center justify-between gap-2">
-              <div className="flex min-w-0 items-center gap-1.5">
-                {path ? (
-                  <a
-                    href={`/${locale}/topics/${path}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="truncate font-medium text-blue-600 hover:underline dark:text-blue-400"
-                  >
-                    {pageTitle || `/${path}`}
-                  </a>
-                ) : (
-                  <span className="truncate font-medium">
-                    {eventPart.data.query || "grep"}
-                  </span>
-                )}
-                {parsed?.published === false && (
-                  <span className="text-muted-foreground shrink-0">
-                    (draft)
-                  </span>
-                )}
-                {parsed?.isStub && <WikiStubBadge />}
-                {changedLines !== undefined && (
-                  <span className="text-muted-foreground shrink-0">
-                    {changedLines} line{changedLines === 1 ? "" : "s"}
-                  </span>
-                )}
-              </div>
-              <span className="text-muted-foreground shrink-0 text-xs">
-                {expanded ? "▲" : "▼"}
-              </span>
-            </div>
-
-            {expanded && (
-              <div className="mt-2 space-y-2 border-t pt-2">
-                {path && <div className="text-muted-foreground">/{path}</div>}
-                {summary && <p className="text-muted-foreground">{summary}</p>}
-                {updatedFields.length > 0 && (
-                  <div className="flex flex-wrap gap-1">
-                    {updatedFields.map((field) => (
-                      <span
-                        key={field}
-                        className="bg-background rounded border px-1.5 py-0.5 text-[10px]"
-                      >
-                        changed: {field}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                {(output || contentPreview) && (
-                  <pre className="bg-background max-h-40 overflow-auto rounded border p-2 text-[11px] whitespace-pre-wrap">
-                    {output ?? contentPreview}
-                  </pre>
-                )}
-              </div>
-            )}
-          </div>
-        )}
-
-        {isSuccess && isDeleted && path && (
-          <div className="bg-muted/50 rounded border px-3 py-2">
-            <span className="text-muted-foreground line-through">/{path}</span>
-            {pageTitle && (
-              <span className="text-muted-foreground ml-1.5">{pageTitle}</span>
-            )}
-          </div>
-        )}
-
-        {isSuccess && Array.isArray(pages) && (
-          <div
-            className="bg-muted/50 cursor-pointer rounded border px-3 py-2"
-            onClick={() => setExpanded(!expanded)}
-          >
-            <div className="flex items-center justify-between gap-2">
-              <span className="text-muted-foreground">
-                {pages.length === 0
-                  ? "No pages yet."
-                  : parsed?.truncated
-                    ? `Showing ${countTreeNodes(pages)} of ${parsed.total} pages`
-                    : `${pages.length} top-level ${pages.length === 1 ? "page" : "pages"}`}
-              </span>
-              <span className="text-muted-foreground shrink-0 text-xs">
-                {expanded ? "▲" : "▼"}
-              </span>
-            </div>
-            {expanded && pages.length > 0 && (
-              <div className="mt-2 border-t pt-2">
-                <WikiTreeList nodes={pages} locale={locale} />
-              </div>
-            )}
-          </div>
-        )}
-
+      <div className="mt-2 w-full space-y-2 text-xs">
         {isError && (
-          <div className="mt-1 rounded border border-red-200 bg-red-50 px-3 py-2 text-red-700 dark:border-red-900/30 dark:bg-red-950/20 dark:text-red-300">
-            <div className="flex items-center gap-1 font-medium">
-              <AlertCircle className="h-3 w-3" />
+          <div className="rounded border border-red-200 bg-red-50 px-3 py-2 text-red-700 dark:border-red-900/30 dark:bg-red-950/20 dark:text-red-300">
+            <div className="flex items-start gap-1 font-medium whitespace-pre-wrap">
+              <AlertCircle className="mt-0.5 h-3 w-3 shrink-0" />
               {errorMessage || t("eventErrors.wikiPageFailed")}
             </div>
           </div>
+        )}
+
+        {/* What the agent sent: sed script / patch diff */}
+        {tool === "sed" && args.script && (
+          <pre className="bg-muted/40 overflow-auto rounded border p-2 text-[11px] whitespace-pre-wrap">
+            sed &apos;{args.script}&apos;
+          </pre>
+        )}
+        {tool === "patch" && args.patch && <WikiDiffBlock text={args.patch} />}
+
+        {isSuccess && (
+          <>
+            {pageLink && (
+              <div className="flex flex-wrap items-center gap-1.5">
+                {pageLink}
+                <span className="text-muted-foreground">/{path}</span>
+                {parsed?.published === false && (
+                  <span className="text-muted-foreground">(draft)</span>
+                )}
+                {parsed?.isStub && <WikiStubBadge />}
+              </div>
+            )}
+            {summary && <p className="text-muted-foreground">{summary}</p>}
+            {updatedFields.length > 0 && tool !== "sed" && tool !== "patch" && (
+              <div className="flex flex-wrap gap-1">
+                {updatedFields.map((field) => (
+                  <span
+                    key={field}
+                    className="bg-background rounded border px-1.5 py-0.5 text-[10px]"
+                  >
+                    changed: {field}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {tool === "grep" && output && (
+              <WikiGrepBlock
+                text={output}
+                pattern={args.pattern}
+                ignoreCase={args.ignoreCase}
+              />
+            )}
+            {tool === "sed" && output && <WikiDiffBlock text={output} />}
+            {tool === "patch" && output && (
+              <p className="text-muted-foreground">{output.split("\n")[0]}</p>
+            )}
+            {tool !== "grep" &&
+              tool !== "sed" &&
+              tool !== "patch" &&
+              (output || contentPreview) && (
+                <pre className="bg-muted/40 max-h-80 overflow-auto rounded border p-2 text-[11px] whitespace-pre-wrap">
+                  {output ?? contentPreview}
+                </pre>
+              )}
+
+            {isDeleted && path && (
+              <div>
+                <span className="text-muted-foreground line-through">
+                  /{path}
+                </span>
+                {pageTitle && (
+                  <span className="text-muted-foreground ml-1.5">
+                    {pageTitle}
+                  </span>
+                )}
+              </div>
+            )}
+
+            {Array.isArray(pages) && pages.length > 0 && (
+              <WikiTreeList nodes={pages} locale={locale} />
+            )}
+          </>
         )}
       </div>
     </EventWrapper>

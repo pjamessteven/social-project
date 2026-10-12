@@ -144,7 +144,7 @@
       "stats": "Tilastot",
       "statsDesc": "Anonymisoidut detransitiotilastot /r/detrans:stä",
       "topics": "Topics",
-      "allTopics": "All topics"
+      "topicsDesc": "Perusteelliset oppaat keskeisistä aiheista"
     },
     "resources": {
       "genderSupport": "Löydä Terapeutteja",

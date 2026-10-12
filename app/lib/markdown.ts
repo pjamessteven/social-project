@@ -1,4 +1,4 @@
-import { marked } from "marked";
+import { Marked, type Tokens } from "marked";
 import sanitizeHtml from "sanitize-html";
 import { normalizeSegment } from "./pages";
 
@@ -101,11 +101,36 @@ export function extractHeadings(html: string): {
   return { html: processed, toc };
 }
 
+// CommonMark leaves markdown inside raw HTML blocks untouched, so a citation
+// like `([Singh et al. 2021](/studies/39))` in a hand-written <table> cell
+// would render as literal text. Render inline markdown in the text between
+// tags (skipping <pre>/<code> contents); sanitization still runs afterwards.
+const wikiMarked: Marked = new Marked({
+  renderer: {
+    html(token: Tokens.HTML | Tokens.Tag): string {
+      if (!token.block) return token.text;
+      let rawDepth = 0;
+      return token.text
+        .split(/(<[^>]*>)/)
+        .map((part): string => {
+          if (part.startsWith("<")) {
+            const m = /^<(\/?)(pre|code)\b/i.exec(part);
+            if (m) rawDepth = Math.max(0, rawDepth + (m[1] ? -1 : 1));
+            return part;
+          }
+          if (rawDepth > 0 || !/[[*_`]/.test(part)) return part;
+          return wikiMarked.parseInline(part, { async: false }) as string;
+        })
+        .join("");
+    },
+  },
+});
+
 export function renderWikiMarkdown(markdown: string): {
   html: string;
   toc: WikiTocItem[];
 } {
-  const rawHtml = marked.parse(markdown, { async: false }) as string;
+  const rawHtml = wikiMarked.parse(markdown, { async: false }) as string;
   const { html: withHeadingIds, toc } = extractHeadings(rawHtml);
 
   const html = sanitizeHtml(withHeadingIds, {

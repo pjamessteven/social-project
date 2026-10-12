@@ -2,7 +2,7 @@ import { db } from "@/db";
 import { pageSlugs, pages, type Page } from "@/db/schema";
 import { locales } from "@/i18n/locales";
 import { pathnames } from "@/i18n/routing";
-import { and, asc, eq, inArray, isNull, like, sql } from "drizzle-orm";
+import { and, asc, eq, inArray, isNull, like, notLike, sql } from "drizzle-orm";
 
 /**
  * Data layer for agent-managed wiki pages.
@@ -805,33 +805,14 @@ function parentPathOf(path: string): string {
   return index === -1 ? "" : path.slice(0, index);
 }
 
-export interface TopLevelTopic {
-  path: string;
-  title: string;
-  summary: string | null;
-}
-
-/** Published root-level pages with localized titles/summaries (for the nav). */
-export async function getTopLevelTopics(
-  locale: string,
-): Promise<TopLevelTopic[]> {
-  const all = await getAllPagesWithSlugs();
-  return all
-    .filter((entry) => entry.page.published && !entry.page.path.includes("/"))
-    .map((entry) => ({
-      path: entry.page.path,
-      title:
-        getLocalizedValue(
-          entry.page.titleTranslation,
-          locale,
-          entry.page.title,
-        ) ?? entry.page.title,
-      summary: getLocalizedValue(
-        entry.page.summaryTranslation,
-        locale,
-        entry.page.summary,
-      ),
-    }));
+/** Whether any root-level page is published (gates the Topics nav link). */
+export async function hasPublishedTopics(): Promise<boolean> {
+  const rows = await db
+    .select({ id: pages.id })
+    .from(pages)
+    .where(and(eq(pages.published, true), notLike(pages.path, "%/%")))
+    .limit(1);
+  return rows.length > 0;
 }
 
 const LIST_SUMMARY_LIMIT = 200;

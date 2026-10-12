@@ -145,7 +145,7 @@ function extractDisplayQuery(
 
   // Find the primary query string
   let query = "";
-  for (const key of ["query", "name", "slug", "title", "path"]) {
+  for (const key of ["query", "pattern", "name", "slug", "title", "path"]) {
     if (toolKwargs[key] && typeof toolKwargs[key] === "string") {
       query = toolKwargs[key];
       break;
@@ -165,6 +165,49 @@ function extractDisplayQuery(
   }
 
   return query;
+}
+
+const WIKI_ARG_KEYS = [
+  "path",
+  "pattern",
+  "ignoreCase",
+  "range",
+  "numbered",
+  "script",
+  "patch",
+  "locale",
+  "title",
+] as const;
+const MAX_WIKI_ARG_LENGTH = 8000;
+
+/**
+ * The wiki card shows what the agent actually did (grep pattern, line range,
+ * sed script, patch diff), so forward the relevant kwargs — truncated, since
+ * they are persisted with the message.
+ */
+function pickWikiArgs(
+  toolKwargs: Record<string, any> | undefined,
+): Record<string, unknown> {
+  const args: Record<string, unknown> = {};
+  for (const key of WIKI_ARG_KEYS) {
+    const value = toolKwargs?.[key];
+    if (value === undefined || value === null) continue;
+    args[key] =
+      typeof value === "string" && value.length > MAX_WIKI_ARG_LENGTH
+        ? `${value.slice(0, MAX_WIKI_ARG_LENGTH)}\n…`
+        : value;
+  }
+  return args;
+}
+
+function wikiEventExtras(
+  config: { type: string },
+  toolName: string,
+  toolKwargs: Record<string, any> | undefined,
+) {
+  return config.type === "data-wiki-page-event"
+    ? { tool: toolName, args: pickWikiArgs(toolKwargs) }
+    : {};
 }
 
 /**
@@ -327,6 +370,11 @@ export function toDataStream(
                     event.data.toolName,
                     event.data.toolKwargs,
                   ),
+                  ...wikiEventExtras(
+                    config,
+                    event.data.toolName,
+                    event.data.toolKwargs,
+                  ),
                 },
               });
             }
@@ -348,6 +396,11 @@ export function toDataStream(
                 data: {
                   title: config.titleEnd,
                   query: getDisplayQuery(
+                    event.data.toolName,
+                    event.data.toolKwargs,
+                  ),
+                  ...wikiEventExtras(
+                    config,
                     event.data.toolName,
                     event.data.toolKwargs,
                   ),

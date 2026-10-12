@@ -144,7 +144,7 @@
       "stats": "สถิติ",
       "statsDesc": "สถิติการเปลี่ยนกลับโดยไม่เปิดเผยตัวจาก /r/detrans",
       "topics": "Topics",
-      "allTopics": "All topics"
+      "topicsDesc": "คู่มือเชิงลึกเกี่ยวกับหัวข้อสำคัญ"
     },
     "resources": {
       "genderSupport": "ค้นหานักบำบัด",

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
 
 /**
  * Link styling shared by the table-of-contents lists (desktop sidebar and
@@ -14,17 +14,21 @@ export function WikiTocLink({
   href,
   active = false,
   className,
+  onClick,
   children,
 }: {
   href: string;
   /** Emphasizes the section currently in view (scroll-spy). */
   active?: boolean;
   className?: string;
+  /** Optional click handler (used by controlled TOC lists). */
+  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
   children: ReactNode;
 }) {
   return (
     <a
       href={href}
+      onClick={onClick}
       className={[
         wikiTocLinkClass,
         active
