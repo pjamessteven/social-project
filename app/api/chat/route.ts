@@ -347,9 +347,13 @@ export async function POST(req: NextRequest) {
       // → stopAgentEvent).
       run.onCancel((reason) => llm.cancel(reason));
 
+      // chatHistory already ends with the current user turn (allMessages
+      // includes newUserMessage). The agent workflow seeds its memory with
+      // every chatHistory message AND appends userInput as another user
+      // message, so passing both sent the user's message to the model twice.
       const context = await runWorkflow({
         workflow: chatWorkflow,
-        input: { userInput: userInput, chatHistory: chatHistory },
+        input: { chatHistory: chatHistory },
         human: {
           snapshotId: requestId, // use requestId to restore snapshot
         },
