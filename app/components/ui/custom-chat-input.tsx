@@ -1,6 +1,6 @@
 "use client";
 import { MAX_MESSAGE_LENGTH } from "@/app/lib/constants";
-import { slugify } from "@/app/lib/utils";
+import { slugify, uuidv4 } from "@/app/lib/utils";
 import { Link, locales, usePathname, useRouter } from "@/i18n/routing";
 import { useChatStore } from "@/stores/chat-store";
 import { useUserStore } from "@/stores/user-store";
@@ -156,9 +156,11 @@ export function CustomChatInput({ host }: CustomChatInputProps) {
           // Error handled in store, message was removed from UI
         }
       } else {
-        // Navigate to chat page
-        router.push(("/chat?starter=" + slugify(val)) as any);
-        // Store the message to send after navigation
+        // Navigate straight to a new conversation; ChatSection sends the
+        // starter once the (empty) conversation has loaded.
+        router.push(
+          (`/chat/${uuidv4()}?starter=` + slugify(val)) as any,
+        );
       }
     }
   };

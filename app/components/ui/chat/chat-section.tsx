@@ -376,36 +376,45 @@ export default function ChatSection({
     }
   }, [conversationId]);
 
-  // Handle starter message from URL query parameter or prop
+  // Handle starter message from URL query parameter or prop. Wait until the
+  // conversation has loaded: if it already has messages (reload, back/forward,
+  // a URL that still carries ?starter=) the starter was sent before and must
+  // not be sent again — and sending before the load resolves would let the
+  // load's setMessages() clobber the in-flight turn.
   useEffect(() => {
+    if (loading || starterSentRef.current) return;
+
     // Priority: prop > URL query param
-    const starterMessage = starterQuestion || searchParams.get("starter");
+    const urlStarter = starterQuestion ? null : searchParams.get("starter");
+    const starterMessage = starterQuestion || urlStarter;
+    if (!starterMessage) return;
 
-    if (
-      starterMessage &&
-      useChatHandler.messages.length === 0 &&
-      !starterSentRef.current
-    ) {
-      starterSentRef.current = true;
+    starterSentRef.current = true;
 
-      // Remove the starter parameter from the URL BEFORE sending (only if it
-      // came from the URL). Doing this with router.replace() right after
-      // sendMessage() triggers an RSC navigation that races the stream; a
-      // history.replaceState() does not navigate and keeps the URL clean.
-      if (!starterQuestion && typeof window !== "undefined") {
-        const newParams = new URLSearchParams(window.location.search);
-        newParams.delete("starter");
-        const queryString = newParams.toString();
-        const newUrl = `${window.location.pathname}${queryString ? `?${queryString}` : ""}`;
-        window.history.replaceState(window.history.state, "", newUrl);
-      }
-
-      const messageText = starterQuestion || deslugify(starterMessage);
-      useChatHandler.sendMessage({
-        text: messageText,
-      });
+    // Remove the starter parameter from the URL (only if it came from the
+    // URL). router.replace() would trigger an RSC navigation that races the
+    // stream. history.replaceState() with a non-Next state object is picked up
+    // by Next's patched history, so useSearchParams() and the router's own
+    // canonical URL drop ?starter= too; passing window.history.state (which
+    // carries Next's __NA flag) bypasses that sync and Next later writes the
+    // stale ?starter= URL back.
+    if (urlStarter) {
+      const newParams = new URLSearchParams(window.location.search);
+      newParams.delete("starter");
+      const queryString = newParams.toString();
+      window.history.replaceState(
+        null,
+        "",
+        `${window.location.pathname}${queryString ? `?${queryString}` : ""}`,
+      );
     }
-  }, [searchParams, useChatHandler, router, starterQuestion]);
+
+    if (useChatHandler.messages.length > 0) return;
+
+    useChatHandler.sendMessage({
+      text: starterQuestion || deslugify(starterMessage),
+    });
+  }, [loading, searchParams, useChatHandler, starterQuestion]);
 
   return (
     <>
