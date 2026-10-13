@@ -61,12 +61,12 @@ function TopicEntry({
         {heading ? (
           <h2
             id={node.path}
-            className="mt-6 mb-1 decoration-1 underline-offset-4 group-hover:underline"
+            className="mt-6 mb-1 text-xl font-semibold decoration-1 underline-offset-4 group-hover:underline"
           >
             {node.title}
           </h2>
         ) : (
-          <span className="font-medium decoration-1 underline-offset-4 group-hover:underline">
+          <span className="text-base font-semibold decoration-1 underline-offset-4 group-hover:underline">
             {node.title}
           </span>
         )}
@@ -78,7 +78,7 @@ function TopicEntry({
       </a>
       {node.children.length > 0 && (
         // A thin rule down the side ties each level to its parent.
-        <ul className="border-muted-foreground/25 mt-2 mb-6 ml-0.5 list-none space-y-6 border-l pl-3 sm:pl-5">
+        <ul className="border-muted-foreground/25 mt-3 mb-6 ml-0.5 list-none space-y-8 border-l pl-3 sm:pl-5">
           {node.children.map((child) => (
             <TopicEntry
               key={child.path}
