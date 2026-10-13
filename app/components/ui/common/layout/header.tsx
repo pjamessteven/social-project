@@ -26,7 +26,7 @@ import {
   Youtube,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../../button";
 import { Dialog, DialogContent, DialogTrigger } from "../../dialog";
 import { cn } from "../../lib/utils";
@@ -80,6 +80,18 @@ export default function Header({
   const t = useTranslations("header");
   const tHome = useTranslations("home");
   const { isAuthenticated } = useUserStore();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // The page scrolls inside <main> (see app/[locale]/layout.tsx), not the
+  // window. Re-check on navigation since the new page may start scrolled.
+  useEffect(() => {
+    const main = document.querySelector("main");
+    if (!main) return;
+    const update = () => setIsScrolled(main.scrollTop > 0);
+    update();
+    main.addEventListener("scroll", update, { passive: true });
+    return () => main.removeEventListener("scroll", update);
+  }, [pathname]);
 
   const isChatActive = pathname === "/" || pathname.startsWith("/chat");
 
@@ -143,6 +155,14 @@ export default function Header({
 
   return (
     <div className="relative top-0 right-0 left-0 z-50 flex items-center bg-transparent p-2 px-4 shadow-none transition-all">
+      {/* Hairline that fades in once the page is scrolled */}
+      <div
+        aria-hidden
+        className={cn(
+          "bg-border pointer-events-none absolute right-0 bottom-0 left-0 h-px transition-opacity duration-300",
+          isScrolled ? "opacity-100" : "opacity-0",
+        )}
+      />
       {/* Left side: Logo - takes equal space to balance center */}
       <div className="z-50 flex flex-1 items-center gap-2">
         <Link href="/" className="!cursor-pointer">
