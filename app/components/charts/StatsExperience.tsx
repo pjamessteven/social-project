@@ -37,6 +37,7 @@ import { FilteredSection } from "./StatsFilters";
 import StatsSection from "./StatsSection";
 import TimelineStrip from "./TimelineStrip";
 import TrendsSection from "./TrendsSection";
+import { StatsInitialDataContext } from "./useFeatureData";
 
 const SECTION_IDS = [
   "overview",
@@ -85,7 +86,15 @@ const UNFILTERED_SECTIONS = new Set<SectionId>([
  * charts are stacked with their own titles. Sections mount lazily on first
  * open, so the initial page load only fetches the first section's data.
  */
-export default function StatsExperience() {
+export default function StatsExperience({
+  initialData = {},
+  initialHighlights = false,
+}: {
+  /** Server-prefetched API responses (see StatsInitialDataContext). */
+  initialData?: Record<string, unknown>;
+  /** Whether the prefetched highlights will render, so the TOC lists them. */
+  initialHighlights?: boolean;
+}) {
   const t = useTranslations("statsPage");
 
   const [openId, setOpenId] = useState<SectionId | null>("overview");
@@ -111,7 +120,7 @@ export default function StatsExperience() {
     return () => window.removeEventListener("hashchange", syncFromHash);
   }, []);
 
-  const [hasHighlights, setHasHighlights] = useState(false);
+  const [hasHighlights, setHasHighlights] = useState(initialHighlights);
   const handleHighlightsVisible = useCallback(
     (visible: boolean) => setHasHighlights(visible),
     [],
@@ -330,49 +339,54 @@ export default function StatsExperience() {
   ];
 
   return (
-    <FeatureStoriesProvider>
-      <div className="flex min-h-full w-full justify-center">
-        <div className="relative w-full max-w-4xl 2xl:-mx-16 2xl:w-[calc(100%_+_8rem)]">
-          <WikiTocAside
-            items={tocItems}
-            activeId={tocActiveId}
-            onNavigate={(id) => openSection(id)}
-          />
+    <StatsInitialDataContext.Provider value={initialData}>
+      <FeatureStoriesProvider>
+        {/* The app shell caps pages at 48rem from md up; the charts need
+            more room, so break out to up to 56rem of the viewport (centred by
+            justify-center), leaving space for the TOC sidebar from xl. */}
+        <div className="flex min-h-full w-full justify-center">
+          <div className="relative w-full max-w-4xl md:w-[min(56rem,calc(100vw_-_3rem))] md:shrink-0 xl:w-[min(56rem,calc(100vw_-_34rem))]">
+            <WikiTocAside
+              items={tocItems}
+              activeId={tocActiveId}
+              onNavigate={(id) => openSection(id)}
+            />
 
-          <h1 className={PAGE_TITLE}>{t("title")}</h1>
-          <p className="text-muted-foreground mt-6 text-base">
-            {t("description")}
-          </p>
+            <h1 className={PAGE_TITLE}>{t("title")}</h1>
+            <p className="text-muted-foreground mt-6 text-base">
+              {t("description")}
+            </p>
 
-          <HighlightsRibbon
-            onOpenSection={(id) => openSection(id)}
-            onVisibleChange={handleHighlightsVisible}
-          />
+            <HighlightsRibbon
+              onOpenSection={(id) => openSection(id)}
+              onVisibleChange={handleHighlightsVisible}
+            />
 
-          <div className="mt-10">
-            {sections.map((section) => (
-              <StatsSection
-                key={section.id}
-                id={section.id}
-                title={t(`sections.${section.id}.title`)}
-                description={t(`sections.${section.id}.description`)}
-                isOpen={openId === section.id}
-                mounted={mountedIds.has(section.id)}
-                onToggle={() => openSection(section.id, { toggle: true })}
-              >
-                {UNFILTERED_SECTIONS.has(section.id) ? (
-                  section.content
-                ) : (
-                  <FilteredSection id={section.id}>
-                    {section.content}
-                  </FilteredSection>
-                )}
-              </StatsSection>
-            ))}
+            <div className="mt-10">
+              {sections.map((section) => (
+                <StatsSection
+                  key={section.id}
+                  id={section.id}
+                  title={t(`sections.${section.id}.title`)}
+                  description={t(`sections.${section.id}.description`)}
+                  isOpen={openId === section.id}
+                  mounted={mountedIds.has(section.id)}
+                  onToggle={() => openSection(section.id, { toggle: true })}
+                >
+                  {UNFILTERED_SECTIONS.has(section.id) ? (
+                    section.content
+                  ) : (
+                    <FilteredSection id={section.id}>
+                      {section.content}
+                    </FilteredSection>
+                  )}
+                </StatsSection>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </FeatureStoriesProvider>
+      </FeatureStoriesProvider>
+    </StatsInitialDataContext.Provider>
   );
 }
 

@@ -1,7 +1,8 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { buildFeatureParams, initialDataKey } from "./feature-params";
 
 export interface FeatureSummaryItem {
   key: string;
@@ -104,20 +105,21 @@ export interface FeatureDetailResponse {
   related: RelatedFeature[];
 }
 
-type ReadonlyParams = { get(name: string): string | null };
+export { buildFeatureParams };
 
-/** Shared stats filters, matching /api/features/* query params. */
-export function buildFeatureParams(params: ReadonlyParams): string {
-  const query = new URLSearchParams();
-  const minAge = params.get("minAge");
-  const maxAge = params.get("maxAge");
-  const sex = params.get("sex");
-  const tag = params.get("tag");
-  if (minAge) query.set("minAge", minAge);
-  if (maxAge) query.set("maxAge", maxAge);
-  if (sex) query.set("sex", sex);
-  if (tag) query.set("tag", tag);
-  return query.toString();
+/**
+ * Responses the server page fetched ahead of time, keyed by
+ * initialDataKey(path, query). Hooks start from these instead of fetching, so
+ * the first paint already has the data (and crawlers see it).
+ */
+export const StatsInitialDataContext = createContext<Record<string, unknown>>(
+  {},
+);
+
+/** The server-prefetched response for this endpoint + query, if any. */
+export function useInitialStatsData<T>(path: string, query: string): T | null {
+  const initial = useContext(StatsInitialDataContext);
+  return (initial[initialDataKey(path, query)] as T | undefined) ?? null;
 }
 
 export interface FilterOverrides {
@@ -159,11 +161,19 @@ export function useFeatureQuery(overrides?: FilterOverrides): string {
  */
 export function useFeatureSummary(overrides?: FilterOverrides) {
   const query = useFeatureQuery(overrides);
-  const [data, setData] = useState<FeatureSummaryResponse | null>(null);
-  const [loading, setLoading] = useState(true);
+  const initial = useInitialStatsData<FeatureSummaryResponse>(
+    "/api/features/summary",
+    query,
+  );
+  const [data, setData] = useState<FeatureSummaryResponse | null>(initial);
+  const [loading, setLoading] = useState(!initial);
   const [error, setError] = useState<string | null>(null);
+  // The query the prefetched data answers; skip fetching it again.
+  const seededQuery = useRef(initial ? query : null);
 
   useEffect(() => {
+    if (seededQuery.current === query) return;
+    seededQuery.current = null;
     const controller = new AbortController();
     let cancelled = false;
     setLoading(true);

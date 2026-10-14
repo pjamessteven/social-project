@@ -4,7 +4,7 @@ import { Button } from "@/app/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CARD_SURFACE, SECTION_TITLE } from "./ChartParts";
 import {
   MINI_COLORS,
@@ -12,7 +12,11 @@ import {
   MiniDonut,
   MiniTimeline,
 } from "./HighlightMiniChart";
-import { buildFeatureParams, prettifyKey } from "./useFeatureData";
+import {
+  buildFeatureParams,
+  prettifyKey,
+  useInitialStatsData,
+} from "./useFeatureData";
 import { useFeatureLabels } from "./useFeatureLabels";
 
 type Highlight =
@@ -108,6 +112,8 @@ const displayRank = (type: string) => {
 /** Anchor id of the ribbon, linked from the stats TOC. */
 export const HIGHLIGHTS_ID = "highlights";
 
+export const HIGHLIGHTS_PATH = "/api/features/highlights";
+
 /**
  * "What stands out": auto-ranked insight cards above the accordion. Each
  * card opens the relevant section, applying a matching filter where it
@@ -127,14 +133,22 @@ export default function HighlightsRibbon({
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  const [data, setData] = useState<HighlightsResponse | null>(null);
-  const [failed, setFailed] = useState(false);
   const params = buildFeatureParams(searchParams);
+  const initial = useInitialStatsData<HighlightsResponse>(
+    HIGHLIGHTS_PATH,
+    params,
+  );
+  const [data, setData] = useState<HighlightsResponse | null>(initial);
+  const [failed, setFailed] = useState(false);
+  // The params the prefetched data answers; skip fetching them again.
+  const seededParams = useRef(initial ? params : null);
 
   useEffect(() => {
+    if (seededParams.current === params) return;
+    seededParams.current = null;
     const controller = new AbortController();
     let cancelled = false;
-    fetch(`/api/features/highlights?${params}`, { signal: controller.signal })
+    fetch(`${HIGHLIGHTS_PATH}?${params}`, { signal: controller.signal })
       .then(async (response) => {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         return (await response.json()) as HighlightsResponse;
@@ -247,26 +261,36 @@ export default function HighlightsRibbon({
           label: string,
           reasons: string[],
           overrides: "reasonLabelsMen" | "reasonLabelsWomen",
+          color: string,
         ) =>
           reasons.length > 0 && (
-            <span className="mt-1.5 block">
+            <span className={`mt-1.5 block ${color}`}>
               {label}:{" "}
-              <strong className="text-foreground font-semibold">
-                {reasons
-                  .map((key) =>
-                    t.has(`${overrides}.${key}`)
-                      ? t(`${overrides}.${key}`)
-                      : causeLabel(key),
-                  )
-                  .join(", ")}
-              </strong>
+              {reasons
+                .map((key) =>
+                  t.has(`${overrides}.${key}`)
+                    ? t(`${overrides}.${key}`)
+                    : causeLabel(key),
+                )
+                .join(", ")}
             </span>
           );
         return (
           <>
             {t("reasonsBySex")}
-            {row(t("reasonsMen"), highlight.men, "reasonLabelsMen")}
-            {row(t("reasonsWomen"), highlight.women, "reasonLabelsWomen")}
+            {row(
+              t("reasonsMen"),
+              highlight.men,
+              "reasonLabelsMen",
+              // The charts' blue (chart-theme.ts CATEGORICAL[0]).
+              "text-[#2a78d6] dark:text-[#3987e5]",
+            )}
+            {row(
+              t("reasonsWomen"),
+              highlight.women,
+              "reasonLabelsWomen",
+              "text-pink-700 dark:text-pink-400",
+            )}
           </>
         );
       }
