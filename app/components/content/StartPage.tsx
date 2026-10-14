@@ -98,7 +98,7 @@ export async function StartPage({
               </div>
             </h1>
             <div
-              className={`absolute top-0 z-0 w-[170px] sm:static sm:w-[220px] sm:shrink-0 lg:w-[260px] ${isRTL(locale) ? "left-0" : "right-0"}`}
+              className={`absolute top-0 z-0 w-[170px] sm:static sm:w-[190px] sm:shrink-0 lg:w-[230px] ${isRTL(locale) ? "left-0" : "right-0"}`}
             >
               <div className="relative flex aspect-square items-center justify-center py-8 sm:p-4">
                 <div className="relative w-full">
