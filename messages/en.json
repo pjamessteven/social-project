@@ -2118,6 +2118,22 @@
     "hubsHeading": "Topic hubs",
     "allArticlesHeading": "All articles"
   },
+  "topicSuggestForm": {
+    "submitTitle": "Suggest a Topic",
+    "description": "Is there a topic you'd like to see covered here? Let us know what it is and why it matters, and we'll consider writing a page about it.",
+    "topicLabel": "Topic",
+    "topicPlaceholder": "e.g. Detransition and fertility",
+    "detailsLabel": "Details",
+    "detailsPlaceholder": "Optional: what should the page cover? Any studies, stories or sources worth including?",
+    "emailLabel": "Your Email",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "Optional: only if you'd like a reply",
+    "submitButton": "Send Suggestion",
+    "submitting": "Sending...",
+    "submitSuccess": "Thanks! Your suggestion has been sent.",
+    "submitError": "Failed to send suggestion",
+    "networkError": "Network error. Please try again."
+  },
   "storiesPage": {
     "metadata": {
       "title": "Detransition Stories | detrans.ai",

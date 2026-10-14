@@ -2128,6 +2128,22 @@
     "hubsHeading": "Themaoverzichten",
     "allArticlesHeading": "Alle artikelen"
   },
+  "topicSuggestForm": {
+    "submitTitle": "Stel een onderwerp voor",
+    "description": "Is er een onderwerp dat je hier graag behandeld zou zien? Laat ons weten wat het is en waarom het belangrijk is, dan overwegen we er een pagina over te schrijven.",
+    "topicLabel": "Onderwerp",
+    "topicPlaceholder": "bijv. Detransitie en vruchtbaarheid",
+    "detailsLabel": "Details",
+    "detailsPlaceholder": "Optioneel: wat moet de pagina behandelen? Zijn er studies, verhalen of bronnen die erin thuishoren?",
+    "emailLabel": "Je e-mailadres",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "Optioneel: alleen als je een reactie wilt",
+    "submitButton": "Suggestie versturen",
+    "submitting": "Versturen...",
+    "submitSuccess": "Bedankt! Je suggestie is verstuurd.",
+    "submitError": "Suggestie kon niet worden verstuurd",
+    "networkError": "Netwerkfout. Probeer het opnieuw."
+  },
   "storiesPage": {
     "metadata": {
       "title": "Detransitieverhalen | detrans.ai",

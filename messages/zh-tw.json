@@ -2122,6 +2122,22 @@
     "hubsHeading": "主題中心",
     "allArticlesHeading": "所有文章"
   },
+  "topicSuggestForm": {
+    "submitTitle": "建議一個主題",
+    "description": "有沒有你希望我們在這裡介紹的主題？告訴我們是什麼主題以及它為何重要，我們會考慮為它撰寫一個頁面。",
+    "topicLabel": "主題",
+    "topicPlaceholder": "例如：去過渡與生育能力",
+    "detailsLabel": "詳情",
+    "detailsPlaceholder": "選填：頁面應涵蓋哪些內容？有沒有值得收錄的研究、故事或資料？",
+    "emailLabel": "你的電子郵件",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "選填：僅在你希望收到回覆時填寫",
+    "submitButton": "傳送建議",
+    "submitting": "正在傳送...",
+    "submitSuccess": "謝謝！你的建議已送出。",
+    "submitError": "建議傳送失敗",
+    "networkError": "網路錯誤。請重試。"
+  },
   "storiesPage": {
     "metadata": {
       "title": "去跨性別故事 | detrans.ai",

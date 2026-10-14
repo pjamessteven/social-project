@@ -2121,6 +2121,22 @@
     "hubsHeading": "Tematické rozcestníky",
     "allArticlesHeading": "Všechny články"
   },
+  "topicSuggestForm": {
+    "submitTitle": "Navrhněte téma",
+    "description": "Je tu téma, které byste rádi viděli zpracované? Dejte nám vědět, o co jde a proč je důležité, a zvážíme, zda o něm napíšeme stránku.",
+    "topicLabel": "Téma",
+    "topicPlaceholder": "např. Detranzice a plodnost",
+    "detailsLabel": "Podrobnosti",
+    "detailsPlaceholder": "Nepovinné: co by stránka měla pokrýt? Jsou nějaké studie, příběhy nebo zdroje, které stojí za zahrnutí?",
+    "emailLabel": "Váš e-mail",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "Nepovinné: jen pokud chcete odpověď",
+    "submitButton": "Odeslat návrh",
+    "submitting": "Odesílání...",
+    "submitSuccess": "Děkujeme! Váš návrh byl odeslán.",
+    "submitError": "Návrh se nepodařilo odeslat",
+    "networkError": "Chyba sítě. Zkuste to prosím znovu."
+  },
   "storiesPage": {
     "metadata": {
       "title": "Příběhy detranzice | detrans.ai",

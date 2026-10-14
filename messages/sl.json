@@ -2121,6 +2121,22 @@
     "hubsHeading": "Tematska središča",
     "allArticlesHeading": "Vsi članki"
   },
+  "topicSuggestForm": {
+    "submitTitle": "Predlagajte temo",
+    "description": "Ali obstaja tema, ki bi jo radi videli obravnavano tukaj? Povejte nam, katera je in zakaj je pomembna, in razmislili bomo o pisanju strani o njej.",
+    "topicLabel": "Tema",
+    "topicPlaceholder": "npr. Detranzicija in plodnost",
+    "detailsLabel": "Podrobnosti",
+    "detailsPlaceholder": "Neobvezno: kaj naj stran zajema? Ali obstajajo študije, zgodbe ali viri, ki jih je vredno vključiti?",
+    "emailLabel": "Vaš e-poštni naslov",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "Neobvezno: samo če želite odgovor",
+    "submitButton": "Pošlji predlog",
+    "submitting": "Pošiljanje...",
+    "submitSuccess": "Hvala! Vaš predlog je bil poslan.",
+    "submitError": "Predloga ni bilo mogoče poslati",
+    "networkError": "Napaka v omrežju. Prosimo, poskusite znova."
+  },
   "storiesPage": {
     "metadata": {
       "title": "Zgodbe o detranziciji | detrans.ai",

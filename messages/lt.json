@@ -2128,6 +2128,22 @@
     "hubsHeading": "Temų centrai",
     "allArticlesHeading": "Visi straipsniai"
   },
+  "topicSuggestForm": {
+    "submitTitle": "Pasiūlykite temą",
+    "description": "Ar yra tema, kurią norėtumėte matyti čia? Papasakokite, kokia ji ir kodėl svarbi, ir apsvarstysime galimybę parašyti apie ją puslapį.",
+    "topicLabel": "Tema",
+    "topicPlaceholder": "pvz., Detranzicija ir vaisingumas",
+    "detailsLabel": "Išsami informacija",
+    "detailsPlaceholder": "Neprivaloma: ką turėtų apimti puslapis? Ar yra tyrimų, istorijų ar šaltinių, kuriuos verta įtraukti?",
+    "emailLabel": "Jūsų el. paštas",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "Neprivaloma: tik jei norite atsakymo",
+    "submitButton": "Siųsti pasiūlymą",
+    "submitting": "Siunčiama...",
+    "submitSuccess": "Ačiū! Jūsų pasiūlymas išsiųstas.",
+    "submitError": "Nepavyko išsiųsti pasiūlymo",
+    "networkError": "Tinklo klaida. Prašome bandyti dar kartą."
+  },
   "storiesPage": {
     "metadata": {
       "title": "Detranzicijos istorijos | detrans.ai",

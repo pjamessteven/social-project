@@ -2120,6 +2120,22 @@
     "hubsHeading": "מרכזי נושאים",
     "allArticlesHeading": "כל המאמרים"
   },
+  "topicSuggestForm": {
+    "submitTitle": "הציעו נושא",
+    "description": "יש נושא שהייתם רוצים לראות כאן? ספרו לנו מהו ולמה הוא חשוב, ונשקול לכתוב עליו עמוד.",
+    "topicLabel": "נושא",
+    "topicPlaceholder": "לדוגמה: דה-טרנזישן ופוריות",
+    "detailsLabel": "פרטים",
+    "detailsPlaceholder": "רשות: מה העמוד צריך לכסות? יש מחקרים, סיפורים או מקורות שכדאי לכלול?",
+    "emailLabel": "הדוא\"ל שלך",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "רשות: רק אם תרצו תשובה",
+    "submitButton": "שליחת ההצעה",
+    "submitting": "שולח...",
+    "submitSuccess": "תודה! ההצעה שלך נשלחה.",
+    "submitError": "שליחת ההצעה נכשלה",
+    "networkError": "שגיאת רשת. אנא נסה/י שוב."
+  },
   "storiesPage": {
     "metadata": {
       "title": "סיפורי דה-טרנזישן | detrans.ai",

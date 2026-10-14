@@ -2129,6 +2129,22 @@
     "hubsHeading": "Témakörök",
     "allArticlesHeading": "Összes cikk"
   },
+  "topicSuggestForm": {
+    "submitTitle": "Javasolj témát",
+    "description": "Van olyan téma, amelyről szívesen olvasnál itt? Írd meg, mi az és miért fontos, és megfontoljuk, hogy írjunk róla egy oldalt.",
+    "topicLabel": "Téma",
+    "topicPlaceholder": "pl. Detranzíció és termékenység",
+    "detailsLabel": "Részletek",
+    "detailsPlaceholder": "Nem kötelező: mit tartalmazzon az oldal? Vannak tanulmányok, történetek vagy források, amelyeket érdemes bevenni?",
+    "emailLabel": "E-mail-címed",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "Nem kötelező: csak ha választ szeretnél",
+    "submitButton": "Javaslat küldése",
+    "submitting": "Küldés...",
+    "submitSuccess": "Köszönjük! A javaslatodat elküldtük.",
+    "submitError": "Nem sikerült elküldeni a javaslatot",
+    "networkError": "Hálózati hiba. Kérlek, próbáld újra."
+  },
   "storiesPage": {
     "metadata": {
       "title": "Detranzíciós történetek | detrans.ai",

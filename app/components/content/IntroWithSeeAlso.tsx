@@ -30,7 +30,9 @@ export function IntroWithSeeAlso({
 
   return (
     <div
-      className={`not-prose flex flex-col gap-6 lg:flex-row lg:gap-10 ${className}`}
+      // Own line height: `not-prose` doesn't reset what a surrounding `prose`
+      // block passes down by inheritance, so pages would otherwise differ
+      className={`not-prose flex flex-col gap-6 leading-relaxed lg:flex-row lg:gap-10 ${className}`}
     >
       <div className="max-w-3xl lg:flex-1">{children}</div>
       <aside className="border-t pt-5 lg:w-72 lg:shrink-0 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">

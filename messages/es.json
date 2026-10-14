@@ -2120,6 +2120,22 @@
     "hubsHeading": "Áreas temáticas",
     "allArticlesHeading": "Todos los artículos"
   },
+  "topicSuggestForm": {
+    "submitTitle": "Sugiere un tema",
+    "description": "¿Hay algún tema que te gustaría ver tratado aquí? Cuéntanos cuál es y por qué es importante, y consideraremos escribir una página sobre él.",
+    "topicLabel": "Tema",
+    "topicPlaceholder": "p. ej. Detransición y fertilidad",
+    "detailsLabel": "Detalles",
+    "detailsPlaceholder": "Opcional: ¿qué debería cubrir la página? ¿Hay estudios, historias o fuentes que valga la pena incluir?",
+    "emailLabel": "Tu correo electrónico",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "Opcional: solo si quieres una respuesta",
+    "submitButton": "Enviar sugerencia",
+    "submitting": "Enviando...",
+    "submitSuccess": "¡Gracias! Tu sugerencia se ha enviado.",
+    "submitError": "No se pudo enviar la sugerencia",
+    "networkError": "Error de red. Por favor, intenta de nuevo."
+  },
   "storiesPage": {
     "metadata": {
       "title": "Historias de detransición | detrans.ai",

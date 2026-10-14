@@ -2129,6 +2129,22 @@
     "hubsHeading": "Działy tematyczne",
     "allArticlesHeading": "Wszystkie artykuły"
   },
+  "topicSuggestForm": {
+    "submitTitle": "Zaproponuj temat",
+    "description": "Czy jest temat, który chcesz tu zobaczyć? Napisz nam, czego dotyczy i dlaczego jest ważny, a rozważymy napisanie o nim strony.",
+    "topicLabel": "Temat",
+    "topicPlaceholder": "np. Detranzycja a płodność",
+    "detailsLabel": "Szczegóły",
+    "detailsPlaceholder": "Opcjonalnie: co powinna obejmować strona? Czy są badania, historie lub źródła warte uwzględnienia?",
+    "emailLabel": "Twój e-mail",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "Opcjonalnie: tylko jeśli chcesz otrzymać odpowiedź",
+    "submitButton": "Wyślij propozycję",
+    "submitting": "Wysyłanie...",
+    "submitSuccess": "Dziękujemy! Twoja propozycja została wysłana.",
+    "submitError": "Nie udało się wysłać propozycji",
+    "networkError": "Błąd sieci. Spróbuj ponownie."
+  },
   "storiesPage": {
     "metadata": {
       "title": "Historie detranzycji | detrans.ai",

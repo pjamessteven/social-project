@@ -1,8 +1,11 @@
+import { IntroWithSeeAlso } from "@/app/components/content/IntroWithSeeAlso";
+import TopicSuggestForm from "@/app/components/TopicSuggestForm";
 import { LinkCard } from "@/app/components/ui/card";
 import { PAGE_TITLE } from "@/app/components/ui/typography";
 import type { LocalizedTopicNode } from "@/app/lib/pages";
 import { getLocalizedPageTree } from "@/app/lib/pages";
 import { buildLocalizedAlternates, safeJsonLd, SITE_URL } from "@/app/lib/seo";
+import { getPathname } from "@/i18n/routing";
 import {
   ArrowRight,
   BookOpen,
@@ -181,6 +184,21 @@ export default async function TopicsHubPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "topicsPage" });
   const tree = await getLocalizedPageTree(locale);
+  // "See also" labels are the target pages' own (already translated) titles.
+  const tStats = await getTranslations({ locale, namespace: "statsPage" });
+  const tStudies = await getTranslations({ locale, namespace: "studiesPage" });
+  const tStories = await getTranslations({ locale, namespace: "storiesPage" });
+  const seeAlso = [
+    { label: tStats("title"), href: getPathname({ href: "/stats", locale }) },
+    {
+      label: tStudies("title"),
+      href: getPathname({ href: "/studies", locale }),
+    },
+    {
+      label: tStories("title"),
+      href: getPathname({ href: "/stories", locale }),
+    },
+  ];
 
   const collectionJsonLd = {
     "@context": "https://schema.org",
@@ -203,36 +221,52 @@ export default async function TopicsHubPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionJsonLd) }}
       />
-      <div className="prose dark:prose-invert pb-16 lg:-mx-48 lg:max-w-none lg:pt-8">
-        <header>
-          <h1 className={PAGE_TITLE}>{t("title")}</h1>
-          <p className="text-muted-foreground not-prose mt-2 mb-10 max-w-3xl text-base">
-            {t("description")}
-          </p>
-        </header>
-        {tree.length === 0 ? (
-          <p className="text-muted-foreground">{t("empty")}</p>
-        ) : (
-          <>
-            <h2 className={SECTION_HEADING}>{t("hubsHeading")}</h2>
-            <HubCards
-              tree={tree}
-              locale={locale}
-              articleCount={(count) => t("articleCount", { count })}
-            />
-            <h2 className={SECTION_HEADING}>{t("allArticlesHeading")}</h2>
-            <ul className="max-w-4xl list-none pl-0">
-              {tree.map((node) => (
-                <TopicEntry
-                  key={node.path}
-                  node={node}
-                  locale={locale}
-                  heading
-                />
-              ))}
-            </ul>
-          </>
-        )}
+      {/* Wider than the 48rem app column from lg: a viewport-relative width
+          centred by the flex parent, so it never overflows the viewport. */}
+      <div className="lg:flex lg:justify-center">
+        <div className="prose dark:prose-invert pb-16 lg:w-[min(70rem,calc(100vw_-_3rem))] lg:max-w-none lg:shrink-0 lg:pt-8">
+          <header>
+            <h1 className={PAGE_TITLE}>{t("title")}</h1>
+            <IntroWithSeeAlso
+              className="mt-2 mb-10"
+              title={tStories("seeAlso.title")}
+              links={seeAlso}
+            >
+              <p className="text-muted-foreground text-base">
+                {t("description")}
+              </p>
+              {/* Under the description, beside the See also links, so the
+                taller link column doesn't leave a gap above it. The form's
+                own bottom margin is dropped: the intro spaces itself. */}
+              <div className="mt-4 *:mb-0">
+                <TopicSuggestForm />
+              </div>
+            </IntroWithSeeAlso>
+          </header>
+          {tree.length === 0 ? (
+            <p className="text-muted-foreground">{t("empty")}</p>
+          ) : (
+            <>
+              <h2 className={SECTION_HEADING}>{t("hubsHeading")}</h2>
+              <HubCards
+                tree={tree}
+                locale={locale}
+                articleCount={(count) => t("articleCount", { count })}
+              />
+              <h2 className={SECTION_HEADING}>{t("allArticlesHeading")}</h2>
+              <ul className="max-w-4xl list-none pl-0">
+                {tree.map((node) => (
+                  <TopicEntry
+                    key={node.path}
+                    node={node}
+                    locale={locale}
+                    heading
+                  />
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
       </div>
     </>
   );

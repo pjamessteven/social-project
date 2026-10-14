@@ -2122,6 +2122,22 @@
     "hubsHeading": "محورهای موضوعی",
     "allArticlesHeading": "همه مقالات"
   },
+  "topicSuggestForm": {
+    "submitTitle": "پیشنهاد یک موضوع",
+    "description": "آیا موضوعی هست که دوست دارید اینجا به آن پرداخته شود؟ به ما بگویید چیست و چرا مهم است، و ما نوشتن صفحه‌ای درباره آن را بررسی می‌کنیم.",
+    "topicLabel": "موضوع",
+    "topicPlaceholder": "مثلاً: بازگشت از ترنزیشن و باروری",
+    "detailsLabel": "جزئیات",
+    "detailsPlaceholder": "اختیاری: صفحه باید چه چیزهایی را پوشش دهد؟ آیا مطالعات، داستان‌ها یا منابعی ارزش افزودن دارند؟",
+    "emailLabel": "ایمیل شما",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "اختیاری: فقط اگر مایل به دریافت پاسخ هستید",
+    "submitButton": "ارسال پیشنهاد",
+    "submitting": "در حال ارسال...",
+    "submitSuccess": "متشکریم! پیشنهاد شما ارسال شد.",
+    "submitError": "ارسال پیشنهاد ناموفق بود",
+    "networkError": "خطای شبکه. لطفاً دوباره امتحان کنید."
+  },
   "storiesPage": {
     "metadata": {
       "title": "داستان‌های بازگشت از گذار | detrans.ai",

@@ -2129,6 +2129,22 @@
     "hubsHeading": "विषय केंद्र",
     "allArticlesHeading": "सभी लेख"
   },
+  "topicSuggestForm": {
+    "submitTitle": "कोई विषय सुझाएँ",
+    "description": "क्या कोई ऐसा विषय है जिसे आप यहाँ देखना चाहेंगे? हमें बताइए कि वह क्या है और क्यों मायने रखता है, और हम उस पर एक पेज लिखने पर विचार करेंगे।",
+    "topicLabel": "विषय",
+    "topicPlaceholder": "जैसे: डिट्रांज़िशन और प्रजनन क्षमता",
+    "detailsLabel": "विवरण",
+    "detailsPlaceholder": "वैकल्पिक: पेज में क्या शामिल होना चाहिए? कोई अध्ययन, कहानियाँ या स्रोत जो जोड़ने लायक हों?",
+    "emailLabel": "आपका ईमेल",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "वैकल्पिक: केवल अगर आप जवाब चाहते हैं",
+    "submitButton": "सुझाव भेजें",
+    "submitting": "भेजा जा रहा है...",
+    "submitSuccess": "धन्यवाद! आपका सुझाव भेज दिया गया है।",
+    "submitError": "सुझाव भेजा नहीं जा सका",
+    "networkError": "नेटवर्क त्रुटि। कृपया पुनः प्रयास करें।"
+  },
   "storiesPage": {
     "metadata": {
       "title": "डीट्रांज़िशन की कहानियाँ | detrans.ai",

@@ -2121,6 +2121,22 @@
     "hubsHeading": "Zone tematice",
     "allArticlesHeading": "Toate articolele"
   },
+  "topicSuggestForm": {
+    "submitTitle": "Sugerează un subiect",
+    "description": "Există un subiect pe care ai vrea să-l vezi tratat aici? Spune-ne care este și de ce contează, iar noi vom lua în considerare să scriem o pagină despre el.",
+    "topicLabel": "Subiect",
+    "topicPlaceholder": "ex. Detranziția și fertilitatea",
+    "detailsLabel": "Detalii",
+    "detailsPlaceholder": "Opțional: ce ar trebui să acopere pagina? Există studii, povești sau surse care merită incluse?",
+    "emailLabel": "Adresa ta de email",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "Opțional: doar dacă vrei un răspuns",
+    "submitButton": "Trimite sugestia",
+    "submitting": "Se trimite...",
+    "submitSuccess": "Mulțumim! Sugestia ta a fost trimisă.",
+    "submitError": "Sugestia nu a putut fi trimisă",
+    "networkError": "Eroare de rețea. Te rugăm să încerci din nou."
+  },
   "storiesPage": {
     "metadata": {
       "title": "Povești de detranziție | detrans.ai",

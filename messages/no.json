@@ -2129,6 +2129,22 @@
     "hubsHeading": "Emneoversikter",
     "allArticlesHeading": "Alle artikler"
   },
+  "topicSuggestForm": {
+    "submitTitle": "Foreslå et tema",
+    "description": "Er det et tema du gjerne vil se dekket her? Fortell oss hva det er og hvorfor det er viktig, så vurderer vi å skrive en side om det.",
+    "topicLabel": "Tema",
+    "topicPlaceholder": "f.eks. Detransisjon og fruktbarhet",
+    "detailsLabel": "Detaljer",
+    "detailsPlaceholder": "Valgfritt: hva bør siden dekke? Finnes det studier, historier eller kilder som er verdt å ta med?",
+    "emailLabel": "Din e-post",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "Valgfritt: bare hvis du ønsker svar",
+    "submitButton": "Send forslag",
+    "submitting": "Sender...",
+    "submitSuccess": "Takk! Forslaget ditt er sendt.",
+    "submitError": "Kunne ikke sende forslaget",
+    "networkError": "Nettverksfeil. Vennligst prøv igjen."
+  },
   "storiesPage": {
     "metadata": {
       "title": "Detransisjonshistorier | detrans.ai",

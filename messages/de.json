@@ -2120,6 +2120,22 @@
     "hubsHeading": "Themenbereiche",
     "allArticlesHeading": "Alle Artikel"
   },
+  "topicSuggestForm": {
+    "submitTitle": "Thema vorschlagen",
+    "description": "Gibt es ein Thema, das du hier gern behandelt sehen würdest? Sag uns, worum es geht und warum es wichtig ist, und wir überlegen, eine Seite dazu zu schreiben.",
+    "topicLabel": "Thema",
+    "topicPlaceholder": "z. B. Detransition und Fruchtbarkeit",
+    "detailsLabel": "Details",
+    "detailsPlaceholder": "Optional: Was soll die Seite abdecken? Gibt es Studien, Geschichten oder Quellen, die hineingehören?",
+    "emailLabel": "Deine E-Mail",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "Optional: nur wenn du eine Antwort möchtest",
+    "submitButton": "Vorschlag senden",
+    "submitting": "Sende...",
+    "submitSuccess": "Danke! Dein Vorschlag wurde gesendet.",
+    "submitError": "Vorschlag konnte nicht gesendet werden",
+    "networkError": "Netzwerkfehler. Bitte versuche es erneut."
+  },
   "storiesPage": {
     "metadata": {
       "title": "Detransitionsgeschichten | detrans.ai",

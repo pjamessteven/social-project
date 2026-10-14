@@ -2129,6 +2129,22 @@
     "hubsHeading": "Pusat topik",
     "allArticlesHeading": "Semua artikel"
   },
+  "topicSuggestForm": {
+    "submitTitle": "Usulkan Topik",
+    "description": "Ada topik yang ingin Anda lihat dibahas di sini? Beri tahu kami apa topiknya dan mengapa penting, dan kami akan mempertimbangkan untuk menulis halaman tentangnya.",
+    "topicLabel": "Topik",
+    "topicPlaceholder": "mis. Detransisi dan kesuburan",
+    "detailsLabel": "Detail",
+    "detailsPlaceholder": "Opsional: apa yang perlu dibahas halaman ini? Ada studi, kisah, atau sumber yang layak dimasukkan?",
+    "emailLabel": "Email Anda",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "Opsional: hanya jika Anda ingin dibalas",
+    "submitButton": "Kirim Usulan",
+    "submitting": "Mengirim...",
+    "submitSuccess": "Terima kasih! Usulan Anda telah terkirim.",
+    "submitError": "Gagal mengirim usulan",
+    "networkError": "Kesalahan jaringan. Silakan coba lagi."
+  },
   "storiesPage": {
     "metadata": {
       "title": "Kisah Detransisi | detrans.ai",

@@ -2121,6 +2121,22 @@
     "hubsHeading": "主题中心",
     "allArticlesHeading": "所有文章"
   },
+  "topicSuggestForm": {
+    "submitTitle": "建议一个主题",
+    "description": "有没有你希望我们在这里介绍的主题？告诉我们是什么主题以及它为何重要，我们会考虑为它撰写一个页面。",
+    "topicLabel": "主题",
+    "topicPlaceholder": "例如：去过渡与生育能力",
+    "detailsLabel": "详情",
+    "detailsPlaceholder": "可选：页面应涵盖哪些内容？有没有值得收录的研究、故事或资料？",
+    "emailLabel": "你的电子邮件",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "可选：仅在你希望收到回复时填写",
+    "submitButton": "发送建议",
+    "submitting": "正在发送...",
+    "submitSuccess": "谢谢！你的建议已发送。",
+    "submitError": "建议发送失败",
+    "networkError": "网络错误。请重试。"
+  },
   "storiesPage": {
     "metadata": {
       "title": "去跨性别故事 | detrans.ai",

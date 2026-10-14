@@ -2129,6 +2129,22 @@
     "hubsHeading": "トピックハブ",
     "allArticlesHeading": "すべての記事"
   },
+  "topicSuggestForm": {
+    "submitTitle": "トピックを提案する",
+    "description": "ここで取り上げてほしいトピックはありますか？ どんなトピックで、なぜ重要なのかを教えてください。ページの作成を検討します。",
+    "topicLabel": "トピック",
+    "topicPlaceholder": "例：デトランジションと妊孕性",
+    "detailsLabel": "詳細",
+    "detailsPlaceholder": "任意：ページで扱うべき内容は？ 含めるべき研究、体験談、情報源はありますか？",
+    "emailLabel": "メールアドレス",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "任意：返信を希望する場合のみ",
+    "submitButton": "提案を送信",
+    "submitting": "送信中...",
+    "submitSuccess": "ありがとうございます！ 提案を送信しました。",
+    "submitError": "提案を送信できませんでした",
+    "networkError": "ネットワークエラー。もう一度お試しください。"
+  },
   "storiesPage": {
     "metadata": {
       "title": "ディトランジションの体験談 | detrans.ai",

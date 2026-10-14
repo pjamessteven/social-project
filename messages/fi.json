@@ -2121,6 +2121,22 @@
     "hubsHeading": "Aihealueet",
     "allArticlesHeading": "Kaikki artikkelit"
   },
+  "topicSuggestForm": {
+    "submitTitle": "Ehdota aihetta",
+    "description": "Onko jokin aihe, jonka haluaisit nähdä käsiteltävän täällä? Kerro meille, mikä se on ja miksi se on tärkeä, niin harkitsemme sivun kirjoittamista siitä.",
+    "topicLabel": "Aihe",
+    "topicPlaceholder": "esim. Detransitio ja hedelmällisyys",
+    "detailsLabel": "Lisätiedot",
+    "detailsPlaceholder": "Valinnainen: mitä sivun pitäisi käsitellä? Onko tutkimuksia, tarinoita tai lähteitä, jotka kannattaisi ottaa mukaan?",
+    "emailLabel": "Sähköpostisi",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "Valinnainen: vain jos haluat vastauksen",
+    "submitButton": "Lähetä ehdotus",
+    "submitting": "Lähetetään...",
+    "submitSuccess": "Kiitos! Ehdotuksesi on lähetetty.",
+    "submitError": "Ehdotuksen lähettäminen epäonnistui",
+    "networkError": "Verkkovirhe. Yritä uudelleen."
+  },
   "storiesPage": {
     "metadata": {
       "title": "Detransitiotarinat | detrans.ai",

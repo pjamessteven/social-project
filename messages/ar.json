@@ -2121,6 +2121,22 @@
     "hubsHeading": "مراكز المواضيع",
     "allArticlesHeading": "جميع المقالات"
   },
+  "topicSuggestForm": {
+    "submitTitle": "اقترح موضوعًا",
+    "description": "هل هناك موضوع تود أن نتناوله هنا؟ أخبرنا ما هو ولماذا هو مهم، وسننظر في كتابة صفحة عنه.",
+    "topicLabel": "الموضوع",
+    "topicPlaceholder": "مثال: التراجع عن التحول والخصوبة",
+    "detailsLabel": "التفاصيل",
+    "detailsPlaceholder": "اختياري: ما الذي يجب أن تغطيه الصفحة؟ هل هناك دراسات أو قصص أو مصادر تستحق الإضافة؟",
+    "emailLabel": "بريدك الإلكتروني",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "اختياري: فقط إذا كنت تريد ردًا",
+    "submitButton": "إرسال الاقتراح",
+    "submitting": "جاري الإرسال...",
+    "submitSuccess": "شكرًا! تم إرسال اقتراحك.",
+    "submitError": "تعذّر إرسال الاقتراح",
+    "networkError": "خطأ في الشبكة. يرجى المحاولة مرة أخرى."
+  },
   "storiesPage": {
     "metadata": {
       "title": "قصص التراجع عن التحول | detrans.ai",

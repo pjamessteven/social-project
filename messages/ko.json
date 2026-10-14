@@ -2129,6 +2129,22 @@
     "hubsHeading": "주제 허브",
     "allArticlesHeading": "모든 글"
   },
+  "topicSuggestForm": {
+    "submitTitle": "주제 제안하기",
+    "description": "여기에서 다뤄 주었으면 하는 주제가 있나요? 어떤 주제이고 왜 중요한지 알려 주시면 페이지 작성을 검토하겠습니다.",
+    "topicLabel": "주제",
+    "topicPlaceholder": "예: 탈전환과 생식 능력",
+    "detailsLabel": "세부 내용",
+    "detailsPlaceholder": "선택 사항: 페이지에서 무엇을 다뤄야 할까요? 포함할 만한 연구, 이야기, 출처가 있나요?",
+    "emailLabel": "이메일",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "선택 사항: 답장을 원하실 때만",
+    "submitButton": "제안 보내기",
+    "submitting": "보내는 중...",
+    "submitSuccess": "감사합니다! 제안이 전송되었습니다.",
+    "submitError": "제안을 보내지 못했습니다",
+    "networkError": "네트워크 오류. 다시 시도하세요."
+  },
   "storiesPage": {
     "metadata": {
       "title": "탈전환 이야기 | detrans.ai",

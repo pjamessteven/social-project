@@ -2129,6 +2129,22 @@
     "hubsHeading": "Áreas temáticas",
     "allArticlesHeading": "Todos os artigos"
   },
+  "topicSuggestForm": {
+    "submitTitle": "Sugira um tema",
+    "description": "Há algum tema que você gostaria de ver abordado aqui? Conte-nos qual é e por que é importante, e vamos considerar escrever uma página sobre ele.",
+    "topicLabel": "Tema",
+    "topicPlaceholder": "ex.: Destransição e fertilidade",
+    "detailsLabel": "Detalhes",
+    "detailsPlaceholder": "Opcional: o que a página deveria abordar? Há estudos, histórias ou fontes que valham a pena incluir?",
+    "emailLabel": "Seu e-mail",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "Opcional: apenas se quiser uma resposta",
+    "submitButton": "Enviar sugestão",
+    "submitting": "Enviando...",
+    "submitSuccess": "Obrigado! Sua sugestão foi enviada.",
+    "submitError": "Não foi possível enviar a sugestão",
+    "networkError": "Erro de rede. Por favor, tente novamente."
+  },
   "storiesPage": {
     "metadata": {
       "title": "Histórias de destransição | detrans.ai",

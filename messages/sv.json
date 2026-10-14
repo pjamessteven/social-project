@@ -2121,6 +2121,22 @@
     "hubsHeading": "Ämnesöversikter",
     "allArticlesHeading": "Alla artiklar"
   },
+  "topicSuggestForm": {
+    "submitTitle": "Föreslå ett ämne",
+    "description": "Finns det ett ämne du skulle vilja se här? Berätta vad det är och varför det är viktigt, så överväger vi att skriva en sida om det.",
+    "topicLabel": "Ämne",
+    "topicPlaceholder": "t.ex. Detransition och fertilitet",
+    "detailsLabel": "Detaljer",
+    "detailsPlaceholder": "Valfritt: vad bör sidan ta upp? Finns det studier, berättelser eller källor som är värda att ta med?",
+    "emailLabel": "Din e-post",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "Valfritt: bara om du vill ha svar",
+    "submitButton": "Skicka förslag",
+    "submitting": "Skickar...",
+    "submitSuccess": "Tack! Ditt förslag har skickats.",
+    "submitError": "Förslaget kunde inte skickas",
+    "networkError": "Nätverksfel. Vänligen försök igen."
+  },
   "storiesPage": {
     "metadata": {
       "title": "Detransitionsberättelser | detrans.ai",

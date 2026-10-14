@@ -2121,6 +2121,22 @@
     "hubsHeading": "Trung tâm chủ đề",
     "allArticlesHeading": "Tất cả bài viết"
   },
+  "topicSuggestForm": {
+    "submitTitle": "Đề xuất chủ đề",
+    "description": "Có chủ đề nào bạn muốn thấy được đề cập ở đây không? Hãy cho chúng tôi biết đó là gì và vì sao nó quan trọng, chúng tôi sẽ cân nhắc viết một trang về nó.",
+    "topicLabel": "Chủ đề",
+    "topicPlaceholder": "vd: Chuyển giới ngược và khả năng sinh sản",
+    "detailsLabel": "Chi tiết",
+    "detailsPlaceholder": "Không bắt buộc: trang nên đề cập những gì? Có nghiên cứu, câu chuyện hay nguồn nào đáng đưa vào không?",
+    "emailLabel": "Email của bạn",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "Không bắt buộc: chỉ khi bạn muốn được phản hồi",
+    "submitButton": "Gửi đề xuất",
+    "submitting": "Đang gửi...",
+    "submitSuccess": "Cảm ơn! Đề xuất của bạn đã được gửi.",
+    "submitError": "Không gửi được đề xuất",
+    "networkError": "Lỗi mạng. Vui lòng thử lại."
+  },
   "storiesPage": {
     "metadata": {
       "title": "Câu chuyện chuyển giới ngược | detrans.ai",

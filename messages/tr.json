@@ -2120,6 +2120,22 @@
     "hubsHeading": "Konu merkezleri",
     "allArticlesHeading": "Tüm makaleler"
   },
+  "topicSuggestForm": {
+    "submitTitle": "Konu önerin",
+    "description": "Burada ele alınmasını istediğiniz bir konu var mı? Bize ne olduğunu ve neden önemli olduğunu anlatın; hakkında bir sayfa yazmayı değerlendirelim.",
+    "topicLabel": "Konu",
+    "topicPlaceholder": "ör. Detransisyon ve doğurganlık",
+    "detailsLabel": "Ayrıntılar",
+    "detailsPlaceholder": "İsteğe bağlı: sayfa neleri kapsamalı? Eklenmeye değer çalışmalar, hikâyeler veya kaynaklar var mı?",
+    "emailLabel": "E-posta adresiniz",
+    "emailPlaceholder": "you@example.com",
+    "emailHelp": "İsteğe bağlı: yalnızca yanıt almak istiyorsanız",
+    "submitButton": "Öneriyi gönder",
+    "submitting": "Gönderiliyor...",
+    "submitSuccess": "Teşekkürler! Öneriniz gönderildi.",
+    "submitError": "Öneri gönderilemedi",
+    "networkError": "Ağ hatası. Lütfen tekrar deneyin."
+  },
   "storiesPage": {
     "metadata": {
       "title": "Detransition Hikâyeleri | detrans.ai",
