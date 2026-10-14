@@ -2122,7 +2122,8 @@
     "views": "{count, plural, other {# lượt xem}}",
     "articleCount": "{count, plural, other {# bài viết}}",
     "hubsHeading": "Trung tâm chủ đề",
-    "allArticlesHeading": "Tất cả bài viết"
+    "allArticlesHeading": "Tất cả bài viết",
+    "backToTopics": "Quay lại các chủ đề"
   },
   "topicSuggestForm": {
     "submitTitle": "Đề xuất chủ đề",

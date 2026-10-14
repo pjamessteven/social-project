@@ -2122,7 +2122,8 @@
     "views": "{count, plural, one {# katselu} other {# katselua}}",
     "articleCount": "{count, plural, one {# artikkeli} other {# artikkelia}}",
     "hubsHeading": "Aihealueet",
-    "allArticlesHeading": "Kaikki artikkelit"
+    "allArticlesHeading": "Kaikki artikkelit",
+    "backToTopics": "Takaisin aiheisiin"
   },
   "topicSuggestForm": {
     "submitTitle": "Ehdota aihetta",

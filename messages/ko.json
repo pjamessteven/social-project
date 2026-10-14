@@ -2130,7 +2130,8 @@
     "views": "{count, plural, other {조회수 #회}}",
     "articleCount": "{count, plural, other {글 #개}}",
     "hubsHeading": "주제 허브",
-    "allArticlesHeading": "모든 글"
+    "allArticlesHeading": "모든 글",
+    "backToTopics": "주제 목록으로 돌아가기"
   },
   "topicSuggestForm": {
     "submitTitle": "주제 제안하기",

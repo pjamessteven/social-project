@@ -2130,7 +2130,8 @@
     "views": "{count, plural, other {# 回閲覧}}",
     "articleCount": "{count, plural, other {#件の記事}}",
     "hubsHeading": "トピックハブ",
-    "allArticlesHeading": "すべての記事"
+    "allArticlesHeading": "すべての記事",
+    "backToTopics": "トピック一覧に戻る"
   },
   "topicSuggestForm": {
     "submitTitle": "トピックを提案する",

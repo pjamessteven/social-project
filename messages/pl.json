@@ -2130,7 +2130,8 @@
     "views": "{count, plural, one {# wyświetlenie} few {# wyświetlenia} many {# wyświetleń} other {# wyświetlenia}}",
     "articleCount": "{count, plural, one {# artykuł} few {# artykuły} other {# artykułów}}",
     "hubsHeading": "Działy tematyczne",
-    "allArticlesHeading": "Wszystkie artykuły"
+    "allArticlesHeading": "Wszystkie artykuły",
+    "backToTopics": "Wróć do tematów"
   },
   "topicSuggestForm": {
     "submitTitle": "Zaproponuj temat",

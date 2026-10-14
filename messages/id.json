@@ -2130,7 +2130,8 @@
     "views": "{count, plural, other {# kali dilihat}}",
     "articleCount": "{count, plural, other {# artikel}}",
     "hubsHeading": "Pusat topik",
-    "allArticlesHeading": "Semua artikel"
+    "allArticlesHeading": "Semua artikel",
+    "backToTopics": "Kembali ke topik"
   },
   "topicSuggestForm": {
     "submitTitle": "Usulkan Topik",

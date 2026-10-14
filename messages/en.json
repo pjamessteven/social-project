@@ -2119,7 +2119,8 @@
     "views": "{count, plural, one {# view} other {# views}}",
     "articleCount": "{count, plural, one {# article} other {# articles}}",
     "hubsHeading": "Topic hubs",
-    "allArticlesHeading": "All articles"
+    "allArticlesHeading": "All articles",
+    "backToTopics": "Back to topics"
   },
   "topicSuggestForm": {
     "submitTitle": "Suggest a Topic",

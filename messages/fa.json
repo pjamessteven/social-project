@@ -2123,7 +2123,8 @@
     "views": "{count, plural, other {# بازدید}}",
     "articleCount": "{count, plural, other {# مقاله}}",
     "hubsHeading": "محورهای موضوعی",
-    "allArticlesHeading": "همه مقالات"
+    "allArticlesHeading": "همه مقالات",
+    "backToTopics": "بازگشت به موضوعات"
   },
   "topicSuggestForm": {
     "submitTitle": "پیشنهاد یک موضوع",

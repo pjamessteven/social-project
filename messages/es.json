@@ -2121,7 +2121,8 @@
     "views": "{count, plural, one {# visita} other {# visitas}}",
     "articleCount": "{count, plural, one {# artículo} other {# artículos}}",
     "hubsHeading": "Áreas temáticas",
-    "allArticlesHeading": "Todos los artículos"
+    "allArticlesHeading": "Todos los artículos",
+    "backToTopics": "Volver a los temas"
   },
   "topicSuggestForm": {
     "submitTitle": "Sugiere un tema",

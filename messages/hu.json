@@ -2130,7 +2130,8 @@
     "views": "{count, plural, other {# megtekintés}}",
     "articleCount": "{count, plural, other {# cikk}}",
     "hubsHeading": "Témakörök",
-    "allArticlesHeading": "Összes cikk"
+    "allArticlesHeading": "Összes cikk",
+    "backToTopics": "Vissza a témákhoz"
   },
   "topicSuggestForm": {
     "submitTitle": "Javasolj témát",

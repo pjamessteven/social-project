@@ -2122,7 +2122,8 @@
     "views": "{count, plural, one {# преглед} other {# прегледа}}",
     "articleCount": "{count, plural, one {# статия} other {# статии}}",
     "hubsHeading": "Тематични центрове",
-    "allArticlesHeading": "Всички статии"
+    "allArticlesHeading": "Всички статии",
+    "backToTopics": "Обратно към темите"
   },
   "topicSuggestForm": {
     "submitTitle": "Предложете тема",

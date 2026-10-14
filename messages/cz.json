@@ -2122,7 +2122,8 @@
     "views": "{count, plural, one {# zobrazení} few {# zobrazení} many {# zobrazení} other {# zobrazení}}",
     "articleCount": "{count, plural, one {# článek} few {# články} other {# článků}}",
     "hubsHeading": "Tematické rozcestníky",
-    "allArticlesHeading": "Všechny články"
+    "allArticlesHeading": "Všechny články",
+    "backToTopics": "Zpět na témata"
   },
   "topicSuggestForm": {
     "submitTitle": "Navrhněte téma",

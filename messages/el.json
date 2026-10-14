@@ -2123,7 +2123,8 @@
     "views": "{count, plural, one {# προβολή} other {# προβολές}}",
     "articleCount": "{count, plural, one {# άρθρο} other {# άρθρα}}",
     "hubsHeading": "Θεματικές ενότητες",
-    "allArticlesHeading": "Όλα τα άρθρα"
+    "allArticlesHeading": "Όλα τα άρθρα",
+    "backToTopics": "Πίσω στα θέματα"
   },
   "topicSuggestForm": {
     "submitTitle": "Προτείνετε ένα θέμα",

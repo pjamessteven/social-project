@@ -2130,7 +2130,8 @@
     "views": "{count, plural, one {# visning} other {# visninger}}",
     "articleCount": "{count, plural, one {# artikkel} other {# artikler}}",
     "hubsHeading": "Emneoversikter",
-    "allArticlesHeading": "Alle artikler"
+    "allArticlesHeading": "Alle artikler",
+    "backToTopics": "Tilbake til temaer"
   },
   "topicSuggestForm": {
     "submitTitle": "Foreslå et tema",

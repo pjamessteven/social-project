@@ -2122,7 +2122,8 @@
     "views": "{count, plural, one {# ogled} two {# ogleda} few {# ogledi} other {# ogledov}}",
     "articleCount": "{count, plural, one {# članek} two {# članka} few {# članki} other {# člankov}}",
     "hubsHeading": "Tematska središča",
-    "allArticlesHeading": "Vsi članki"
+    "allArticlesHeading": "Vsi članki",
+    "backToTopics": "Nazaj na teme"
   },
   "topicSuggestForm": {
     "submitTitle": "Predlagajte temo",

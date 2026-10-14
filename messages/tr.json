@@ -2121,7 +2121,8 @@
     "views": "{count, plural, other {# görüntülenme}}",
     "articleCount": "{count, plural, other {# yazı}}",
     "hubsHeading": "Konu merkezleri",
-    "allArticlesHeading": "Tüm makaleler"
+    "allArticlesHeading": "Tüm makaleler",
+    "backToTopics": "Konulara geri dön"
   },
   "topicSuggestForm": {
     "submitTitle": "Konu önerin",

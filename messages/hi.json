@@ -2130,7 +2130,8 @@
     "views": "{count, plural, one {# बार देखा गया} other {# बार देखा गया}}",
     "articleCount": "{count, plural, other {# लेख}}",
     "hubsHeading": "विषय केंद्र",
-    "allArticlesHeading": "सभी लेख"
+    "allArticlesHeading": "सभी लेख",
+    "backToTopics": "विषयों पर वापस जाएँ"
   },
   "topicSuggestForm": {
     "submitTitle": "कोई विषय सुझाएँ",

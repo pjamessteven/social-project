@@ -2129,7 +2129,8 @@
     "views": "{count, plural, one {# visualizzazione} other {# visualizzazioni}}",
     "articleCount": "{count, plural, one {# articolo} other {# articoli}}",
     "hubsHeading": "Aree tematiche",
-    "allArticlesHeading": "Tutti gli articoli"
+    "allArticlesHeading": "Tutti gli articoli",
+    "backToTopics": "Torna agli argomenti"
   },
   "topicSuggestForm": {
     "submitTitle": "Suggerisci un argomento",

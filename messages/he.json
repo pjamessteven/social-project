@@ -2121,7 +2121,8 @@
     "views": "{count, plural, one {צפייה אחת} other {# צפיות}}",
     "articleCount": "{count, plural, one {מאמר אחד} other {# מאמרים}}",
     "hubsHeading": "מרכזי נושאים",
-    "allArticlesHeading": "כל המאמרים"
+    "allArticlesHeading": "כל המאמרים",
+    "backToTopics": "חזרה לנושאים"
   },
   "topicSuggestForm": {
     "submitTitle": "הציעו נושא",

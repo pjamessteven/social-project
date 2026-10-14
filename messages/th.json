@@ -2122,7 +2122,8 @@
     "views": "{count, plural, other {ดู # ครั้ง}}",
     "articleCount": "{count, plural, other {# บทความ}}",
     "hubsHeading": "ศูนย์รวมหัวข้อ",
-    "allArticlesHeading": "บทความทั้งหมด"
+    "allArticlesHeading": "บทความทั้งหมด",
+    "backToTopics": "กลับไปที่หัวข้อ"
   },
   "topicSuggestForm": {
     "submitTitle": "เสนอหัวข้อ",

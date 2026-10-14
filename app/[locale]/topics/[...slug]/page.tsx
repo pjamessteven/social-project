@@ -19,6 +19,7 @@ import {
 import { localeToBcp47, safeJsonLd, SITE_URL } from "@/app/lib/seo";
 import { buildWikiHrefRewriter } from "@/app/lib/wiki-links";
 import { localesInfo } from "@/i18n/locales";
+import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound, permanentRedirect } from "next/navigation";
@@ -79,6 +80,18 @@ function canonicalLocaleFor(
   locale: string,
 ): string {
   return getContentLocales(entry.page).includes(locale) ? locale : "en";
+}
+
+/**
+ * Breadcrumb label: the part of a "Name: description" title before the
+ * colon (also " : " in French and the full-width "：" in CJK titles).
+ */
+function shortTitle(title: string): string {
+  const name = title
+    .split(/\s*[:：]\s/)[0]
+    .split("：")[0]
+    .trim();
+  return name || title;
 }
 
 function documentTitle(title: string): string {
@@ -239,6 +252,10 @@ export default async function WikiTopicPage({
   const { item, byId, includeDrafts } = data;
   const { page } = item;
   const t = await getTranslations({ locale, namespace: "topicsPage" });
+  const tNav = await getTranslations({
+    locale,
+    namespace: "header.navigation",
+  });
 
   // One URL per page and locale: the default-language path under a locale
   // with its own translated slugs 308s to the localized path.
@@ -379,14 +396,63 @@ export default async function WikiTopicPage({
             )}
           </header>
         }
-        // Breadcrumbs are hidden (JSON-LD BreadcrumbList is still emitted).
         preface={
-          isDraftPreview && (
-            <div className="not-prose mb-4 rounded-lg border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-800 dark:border-amber-900/40 dark:bg-amber-950/20 dark:text-amber-300">
-              Draft preview — this page is not published and is only visible to
-              admins.
-            </div>
-          )
+          <>
+            {isDraftPreview && (
+              <div className="not-prose mb-4 rounded-lg border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-800 dark:border-amber-900/40 dark:bg-amber-950/20 dark:text-amber-300">
+                Draft preview — this page is not published and is only visible
+                to admins.
+              </div>
+            )}
+            {/* Top-level pages link back to the hub; deeper pages get a
+                trail of the hub and each ancestor (the H1 right below names
+                the page itself). Styled like the summary under the title. */}
+            {ancestors.length === 0 ? (
+              <a
+                href={`/${locale}/topics`}
+                className="text-muted-foreground hover:text-foreground not-prose mb-8 inline-flex items-center gap-1.5 text-base underline-offset-4 hover:underline"
+              >
+                <ArrowLeft className="h-4 w-4 rtl:rotate-180" aria-hidden />
+                {t("backToTopics")}
+              </a>
+            ) : (
+              <nav
+                aria-label="Breadcrumb"
+                className="text-muted-foreground not-prose mb-8 text-base"
+              >
+                <ol className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
+                  {[
+                    {
+                      key: "hub",
+                      href: `/${locale}/topics`,
+                      title: tNav("topics"),
+                    },
+                    ...ancestors.map((ancestor) => ({
+                      key: String(ancestor.page.id),
+                      href: `/${locale}/topics/${buildLocalizedPath(ancestor, byId, locale)}`,
+                      title: localizedTitle(ancestor, locale),
+                    })),
+                  ].map((crumb, index) => (
+                    <li
+                      key={crumb.key}
+                      className="flex min-w-0 items-center gap-1.5"
+                    >
+                      {index > 0 && <span aria-hidden="true">/</span>}
+                      {/* Short label, capped with an ellipsis; the full
+                          title shows on hover. */}
+                      <a
+                        href={crumb.href}
+                        title={crumb.title}
+                        className="hover:text-foreground max-w-[12rem] truncate underline-offset-4 hover:underline sm:max-w-[18rem]"
+                      >
+                        {shortTitle(crumb.title)}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            )}
+          </>
         }
       >
         {/* Untranslated locales serve the English body: say so for crawlers

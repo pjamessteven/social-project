@@ -2122,7 +2122,8 @@
     "views": "{count, plural, one {# просмотр} few {# просмотра} many {# просмотров} other {# просмотра}}",
     "articleCount": "{count, plural, one {# статья} few {# статьи} other {# статей}}",
     "hubsHeading": "Тематические разделы",
-    "allArticlesHeading": "Все статьи"
+    "allArticlesHeading": "Все статьи",
+    "backToTopics": "Назад к темам"
   },
   "topicSuggestForm": {
     "submitTitle": "Предложить тему",

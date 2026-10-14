@@ -2122,7 +2122,8 @@
     "views": "{count, plural, other {# 次浏览}}",
     "articleCount": "{count, plural, other {# 篇文章}}",
     "hubsHeading": "主题中心",
-    "allArticlesHeading": "所有文章"
+    "allArticlesHeading": "所有文章",
+    "backToTopics": "返回主题列表"
   },
   "topicSuggestForm": {
     "submitTitle": "建议一个主题",

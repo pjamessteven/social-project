@@ -2129,7 +2129,8 @@
     "views": "{count, plural, one {# weergave} other {# weergaven}}",
     "articleCount": "{count, plural, one {# artikel} other {# artikelen}}",
     "hubsHeading": "Themaoverzichten",
-    "allArticlesHeading": "Alle artikelen"
+    "allArticlesHeading": "Alle artikelen",
+    "backToTopics": "Terug naar onderwerpen"
   },
   "topicSuggestForm": {
     "submitTitle": "Stel een onderwerp voor",

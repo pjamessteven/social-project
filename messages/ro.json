@@ -2122,7 +2122,8 @@
     "views": "{count, plural, one {# vizualizare} few {# vizualizări} other {# de vizualizări}}",
     "articleCount": "{count, plural, one {# articol} few {# articole} other {# de articole}}",
     "hubsHeading": "Zone tematice",
-    "allArticlesHeading": "Toate articolele"
+    "allArticlesHeading": "Toate articolele",
+    "backToTopics": "Înapoi la subiecte"
   },
   "topicSuggestForm": {
     "submitTitle": "Sugerează un subiect",
