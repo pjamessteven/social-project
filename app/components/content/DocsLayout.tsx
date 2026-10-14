@@ -31,10 +31,13 @@ export function DocsLayout({
   sidebarExtras?: ReactNode;
   /**
    * Content above the title (breadcrumbs, notices). Rendered above the
-   * TOC/article block so the desktop TOC lines up with the title.
+   * TOC/article block, like the header.
    */
   preface?: ReactNode;
-  /** Title block; on narrow screens it renders above the jump-to box. */
+  /**
+   * Title block, rendered above the TOC/article block so the desktop TOC
+   * lines up with the start of the content (and the jump-to box sits below).
+   */
   header?: ReactNode;
   children: ReactNode;
 }) {
@@ -43,9 +46,11 @@ export function DocsLayout({
     .filter((entry) => entry.level === 2)
     .map((entry) => ({ id: entry.id, text: entry.text }));
 
+  const proseClass =
+    "prose dark:prose-invert w-full !max-w-4xl [&_.wiki-callout_p]:my-1 [&_.wiki-callout>*:first-child]:mt-0 [&_.wiki-callout>*:last-child]:mb-0 [&_details]:cursor-pointer [&_summary]:cursor-pointer";
+
   const prose = (
-    <div className="prose dark:prose-invert w-full !max-w-4xl pb-16 [&_.wiki-callout_p]:my-1 [&_.wiki-callout>*:first-child]:mt-0 [&_.wiki-callout>*:last-child]:mb-0 [&_details]:cursor-pointer [&_summary]:cursor-pointer">
-      {header}
+    <div className={`${proseClass} pb-16`}>
       {tocItems.length > 0 && (
         <div className="prose-none bg-muted/50 mb-8 rounded-lg border p-4 xl:hidden">
           {mobileTitle && (
@@ -67,6 +72,9 @@ export function DocsLayout({
     <div className="flex min-h-full w-full justify-center">
       <div className="w-full max-w-4xl lg:pt-8 2xl:-mx-16 2xl:w-[calc(100%_+_8rem)]">
         {preface && <div className="max-w-4xl">{preface}</div>}
+        {header && <div className={proseClass}>{header}</div>}
+        {/* The desktop TOC lines up with the start of the content, below the
+            title block; on narrow screens the jump-to box sits there too. */}
         <div className="relative">
           {(tocItems.length > 0 || sidebarExtras) && (
             <WikiTocAside

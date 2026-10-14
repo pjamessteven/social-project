@@ -205,11 +205,9 @@ export default async function SupportPage({
   return (
     <DocsLayout
       toc={toc}
-      sidebarTitle={t("navigation.getGenderSupport")}
       mobileTitle={t("navigation.jumpTo")}
+      header={<h1 className={`${PAGE_TITLE} mb-8`}>{t("title")}</h1>}
     >
-      <h1 className={PAGE_TITLE}>{t("title")}</h1>
-
       <h2 id="online-support-groups">{t("sections.onlineSupport.title")}</h2>
       <p>{t("sections.onlineSupport.description")}</p>
 

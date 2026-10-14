@@ -86,7 +86,8 @@ export function WikiTocLinks({
 /**
  * Shared desktop TOC sidebar (DocsLayout + stats page): an out-of-flow column
  * pinned to the left edge of the centered content, sticky while scrolling,
- * with an optional label and extra content under a divider.
+ * with an optional label and extra content under a divider. It sits further
+ * from the prose on wider screens so the two read as separate.
  */
 export function WikiTocAside({
   items,
@@ -106,8 +107,8 @@ export function WikiTocAside({
   extras?: ReactNode;
 }) {
   return (
-    <div className="absolute inset-y-0 right-[calc(100%_+_1.5rem)] hidden w-56 xl:block">
-      <aside className="not-prose sticky top-4 max-h-[calc(100dvh-2rem)] overflow-y-auto">
+    <div className="absolute inset-y-0 right-[calc(100%_+_1.5rem)] hidden w-56 xl:block 2xl:right-[calc(100%_+_5rem)]">
+      <aside className="not-prose sticky top-4 max-h-[calc(100dvh-2rem)] overflow-y-auto [scrollbar-width:thin]">
         {title && (
           <div className="text-muted-foreground mt-2 mb-1 ml-2 text-xs font-semibold tracking-wide uppercase">
             {title}
