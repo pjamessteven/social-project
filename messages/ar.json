@@ -664,7 +664,18 @@
     "noResults": "لم يتم العثور على دراسات.",
     "noStudies": "لا توجد دراسات معتمدة بعد.",
     "pendingReview": "قيد المراجعة",
-    "keyFindings": "النتائج الرئيسية:"
+    "keyFindings": "النتائج الرئيسية:",
+    "byTopic": "حسب الموضوع",
+    "byMethod": "حسب المنهجية",
+    "studyCount": "{count, plural, zero {لا دراسات} one {دراسة واحدة} two {دراستان} few {# دراسات} many {# دراسة} other {# دراسة}}",
+    "resultCount": "{count, plural, zero {لا نتائج} one {نتيجة واحدة} two {نتيجتان} few {# نتائج} many {# نتيجة} other {# نتيجة}}",
+    "allStudies": "كل الدراسات",
+    "all": "الكل",
+    "source": "رابط الدراسة",
+    "otherTopics": "مواضيع أخرى",
+    "otherMethods": "منهجيات أخرى",
+    "categoryMetaTitle": "{name}: دراسات وأبحاث | detrans.ai",
+    "findings": "النتائج الرئيسية"
   },
   "contentWarning": {
     "title": "تحذير المحتوى:",

@@ -664,7 +664,18 @@
     "noResults": "ไม่พบการศึกษา",
     "noStudies": "ยังไม่มีการศึกษาที่ได้รับการอนุมัติ",
     "pendingReview": "รอการตรวจสอบ",
-    "keyFindings": "ผลการวิจัยที่สำคัญ:"
+    "keyFindings": "ผลการวิจัยที่สำคัญ:",
+    "byTopic": "ตามหัวข้อ",
+    "byMethod": "ตามวิธีวิทยา",
+    "studyCount": "{count, plural, other {# การศึกษา}}",
+    "resultCount": "{count, plural, other {# ผลลัพธ์}}",
+    "allStudies": "การศึกษาทั้งหมด",
+    "all": "ทั้งหมด",
+    "source": "ลิงก์ไปยังการศึกษา",
+    "otherTopics": "หัวข้ออื่น ๆ",
+    "otherMethods": "วิธีวิทยาอื่น ๆ",
+    "categoryMetaTitle": "{name}: การศึกษาและงานวิจัย | detrans.ai",
+    "findings": "ผลการวิจัยที่สำคัญ"
   },
   "contentWarning": {
     "title": "คำเตือนเนื้อหา:",

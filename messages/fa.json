@@ -665,7 +665,18 @@
     "noResults": "مطالعه‌ای یافت نشد.",
     "noStudies": "هنوز مطالعه تأییدشده‌ای وجود ندارد.",
     "pendingReview": "در انتظار بررسی",
-    "keyFindings": "یافته‌های کلیدی:"
+    "keyFindings": "یافته‌های کلیدی:",
+    "byTopic": "بر اساس موضوع",
+    "byMethod": "بر اساس روش‌شناسی",
+    "studyCount": "{count, plural, one {# مطالعه} other {# مطالعه}}",
+    "resultCount": "{count, plural, one {# نتیجه} other {# نتیجه}}",
+    "allStudies": "همه مطالعات",
+    "all": "همه",
+    "source": "پیوند به مطالعه",
+    "otherTopics": "موضوعات دیگر",
+    "otherMethods": "روش‌شناسی‌های دیگر",
+    "categoryMetaTitle": "{name}: مطالعات و پژوهش‌ها | detrans.ai",
+    "findings": "یافته‌های کلیدی"
   },
   "contentWarning": {
     "title": "هشدار محتوا:",

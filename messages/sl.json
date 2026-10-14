@@ -664,7 +664,18 @@
     "noResults": "Ni najdenih študij.",
     "noStudies": "Ni še potrjenih študij.",
     "pendingReview": "V čakanju na pregled",
-    "keyFindings": "Ključne ugotovitve:"
+    "keyFindings": "Ključne ugotovitve:",
+    "byTopic": "Po temah",
+    "byMethod": "Po metodologiji",
+    "studyCount": "{count, plural, one {# študija} two {# študiji} few {# študije} other {# študij}}",
+    "resultCount": "{count, plural, one {# zadetek} two {# zadetka} few {# zadetki} other {# zadetkov}}",
+    "allStudies": "Vse študije",
+    "all": "Vse",
+    "source": "Povezava do študije",
+    "otherTopics": "Druge teme",
+    "otherMethods": "Druge metodologije",
+    "categoryMetaTitle": "{name}: študije in raziskave | detrans.ai",
+    "findings": "Ključne ugotovitve"
   },
   "contentWarning": {
     "title": "Opozorilo o vsebini:",

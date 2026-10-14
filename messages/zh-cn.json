@@ -664,7 +664,18 @@
     "noResults": "未找到相关研究。",
     "noStudies": "尚无已批准的研究。",
     "pendingReview": "待审核",
-    "keyFindings": "主要发现："
+    "keyFindings": "主要发现：",
+    "byTopic": "按主题",
+    "byMethod": "按研究方法",
+    "studyCount": "{count, plural, other {# 项研究}}",
+    "resultCount": "{count, plural, other {# 个结果}}",
+    "allStudies": "全部研究",
+    "all": "全部",
+    "source": "研究链接",
+    "otherTopics": "其他主题",
+    "otherMethods": "其他研究方法",
+    "categoryMetaTitle": "{name}：研究与论文 | detrans.ai",
+    "findings": "主要发现"
   },
   "contentWarning": {
     "title": "内容警告：",

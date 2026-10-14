@@ -661,7 +661,18 @@
     "noResults": "No studies found.",
     "noStudies": "No approved studies yet.",
     "pendingReview": "Pending Review",
-    "keyFindings": "Key Findings:"
+    "keyFindings": "Key Findings:",
+    "byTopic": "By topic",
+    "byMethod": "By methodology",
+    "studyCount": "{count, plural, one {# study} other {# studies}}",
+    "resultCount": "{count, plural, one {# result} other {# results}}",
+    "allStudies": "All studies",
+    "all": "All",
+    "source": "Link to study",
+    "otherTopics": "Other topics",
+    "otherMethods": "Other methodologies",
+    "categoryMetaTitle": "{name}: Studies & Research | detrans.ai",
+    "findings": "Key Findings"
   },
   "contentWarning": {
     "title": "Content Warning:",

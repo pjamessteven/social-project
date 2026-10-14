@@ -48,6 +48,10 @@ interface StudyWithTranslations {
   conclusion: string | null;
   summary: string | null;
   limitations: string[] | null;
+  cardSummary: string | null;
+  cardSummaryTranslation: string | null;
+  cardKeyPoints: string[] | null;
+  cardKeyPointsTranslation: string | null;
   processed: boolean;
   createdAt: Date;
   updatedAt: Date;

@@ -1,3 +1,5 @@
+import type { StudyCategoryRef } from "@/app/lib/study-category-urls";
+
 export interface Study {
   id: number;
   headline: string | null;
@@ -17,6 +19,11 @@ export interface Study {
   summary?: string | null;
   tags?: string[] | null;
   limitations?: string[] | null;
+  /** Short card copy (localized), falls back to description/keyPoints */
+  cardSummary?: string | null;
+  cardKeyPoints?: string[] | null;
+  /** Curated topic/method categories (localized) */
+  categories?: StudyCategoryRef[];
   /** Locale-resolved slug for /studies/[slug] links (falls back to the id) */
   slug?: string | null;
 }

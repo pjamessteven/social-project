@@ -664,7 +664,18 @@
     "noResults": "Ingen studier fundet.",
     "noStudies": "Ingen godkendte studier endnu.",
     "pendingReview": "Afventer Gennemgang",
-    "keyFindings": "Hovedresultater:"
+    "keyFindings": "Hovedresultater:",
+    "byTopic": "Efter emne",
+    "byMethod": "Efter metode",
+    "studyCount": "{count, plural, one {# studie} other {# studier}}",
+    "resultCount": "{count, plural, one {# resultat} other {# resultater}}",
+    "allStudies": "Alle studier",
+    "all": "Alle",
+    "source": "Link til studiet",
+    "otherTopics": "Andre emner",
+    "otherMethods": "Andre metoder",
+    "categoryMetaTitle": "{name}: studier og forskning | detrans.ai",
+    "findings": "Hovedresultater"
   },
   "contentWarning": {
     "title": "Indholdsadvarsel:",

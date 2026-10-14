@@ -664,7 +664,18 @@
     "noResults": "Tutkimuksia ei löytynyt.",
     "noStudies": "Ei hyväksyttyjä tutkimuksia vielä.",
     "pendingReview": "Odottaa tarkistusta",
-    "keyFindings": "Keskeiset löydökset:"
+    "keyFindings": "Keskeiset löydökset:",
+    "byTopic": "Aiheittain",
+    "byMethod": "Menetelmittäin",
+    "studyCount": "{count, plural, one {# tutkimus} other {# tutkimusta}}",
+    "resultCount": "{count, plural, one {# tulos} other {# tulosta}}",
+    "allStudies": "Kaikki tutkimukset",
+    "all": "Kaikki",
+    "source": "Linkki tutkimukseen",
+    "otherTopics": "Muut aiheet",
+    "otherMethods": "Muut menetelmät",
+    "categoryMetaTitle": "{name}: tutkimukset ja tutkimustieto | detrans.ai",
+    "findings": "Keskeiset löydökset"
   },
   "contentWarning": {
     "title": "Sisältövaroitus:",

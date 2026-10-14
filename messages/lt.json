@@ -671,7 +671,18 @@
     "noResults": "Tyrimų nerasta.",
     "noStudies": "Kol kas nėra patvirtintų tyrimų.",
     "pendingReview": "Laukia peržiūros",
-    "keyFindings": "Pagrindinės išvados:"
+    "keyFindings": "Pagrindinės išvados:",
+    "byTopic": "Pagal temą",
+    "byMethod": "Pagal metodologiją",
+    "studyCount": "{count, plural, one {# tyrimas} few {# tyrimai} many {# tyrimo} other {# tyrimų}}",
+    "resultCount": "{count, plural, one {# rezultatas} few {# rezultatai} many {# rezultato} other {# rezultatų}}",
+    "allStudies": "Visi tyrimai",
+    "all": "Visi",
+    "source": "Nuoroda į tyrimą",
+    "otherTopics": "Kitos temos",
+    "otherMethods": "Kitos metodologijos",
+    "categoryMetaTitle": "{name}: tyrimai ir moksliniai darbai | detrans.ai",
+    "findings": "Pagrindinės išvados"
   },
   "contentWarning": {
     "title": "Turinio perspėjimas:",

@@ -663,7 +663,18 @@
     "noResults": "Çalışma bulunamadı.",
     "noStudies": "Henüz onaylanmış çalışma yok.",
     "pendingReview": "İnceleme Bekliyor",
-    "keyFindings": "Ana Bulgular:"
+    "keyFindings": "Ana Bulgular:",
+    "byTopic": "Konuya göre",
+    "byMethod": "Metodolojiye göre",
+    "studyCount": "{count, plural, one {# çalışma} other {# çalışma}}",
+    "resultCount": "{count, plural, one {# sonuç} other {# sonuç}}",
+    "allStudies": "Tüm çalışmalar",
+    "all": "Tümü",
+    "source": "Çalışmanın bağlantısı",
+    "otherTopics": "Diğer konular",
+    "otherMethods": "Diğer metodolojiler",
+    "categoryMetaTitle": "{name}: Çalışmalar ve Araştırmalar | detrans.ai",
+    "findings": "Ana Bulgular"
   },
   "contentWarning": {
     "title": "İçerik Uyarısı:",

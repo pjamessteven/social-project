@@ -663,7 +663,18 @@
     "noResults": "No se encontraron estudios.",
     "noStudies": "Aún no hay estudios aprobados.",
     "pendingReview": "Pendiente de Revisión",
-    "keyFindings": "Hallazgos Clave:"
+    "keyFindings": "Hallazgos Clave:",
+    "byTopic": "Por tema",
+    "byMethod": "Por metodología",
+    "studyCount": "{count, plural, one {# estudio} other {# estudios}}",
+    "resultCount": "{count, plural, one {# resultado} other {# resultados}}",
+    "allStudies": "Todos los estudios",
+    "all": "Todos",
+    "source": "Enlace al estudio",
+    "otherTopics": "Otros temas",
+    "otherMethods": "Otras metodologías",
+    "categoryMetaTitle": "{name}: estudios e investigación | detrans.ai",
+    "findings": "Hallazgos Clave"
   },
   "contentWarning": {
     "title": "Advertencia de Contenido:",

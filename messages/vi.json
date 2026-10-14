@@ -664,7 +664,18 @@
     "noResults": "Không tìm thấy nghiên cứu nào.",
     "noStudies": "Chưa có nghiên cứu nào được phê duyệt.",
     "pendingReview": "Đang Chờ Duyệt",
-    "keyFindings": "Các Phát Hiện Chính:"
+    "keyFindings": "Các Phát Hiện Chính:",
+    "byTopic": "Theo chủ đề",
+    "byMethod": "Theo phương pháp",
+    "studyCount": "{count, plural, other {# nghiên cứu}}",
+    "resultCount": "{count, plural, other {# kết quả}}",
+    "allStudies": "Tất cả nghiên cứu",
+    "all": "Tất cả",
+    "source": "Liên kết đến nghiên cứu",
+    "otherTopics": "Chủ đề khác",
+    "otherMethods": "Phương pháp khác",
+    "categoryMetaTitle": "{name}: Nghiên cứu & Tài liệu | detrans.ai",
+    "findings": "Các Phát Hiện Chính"
   },
   "contentWarning": {
     "title": "Cảnh Báo Nội Dung:",

@@ -550,6 +550,12 @@ export const studies = pgTable(
     summary: text("summary"),
     // Methodological limitations and flaws
     limitations: jsonb("limitations").$type<string[]>(),
+    // Short card copy for the study grids (long description/keyPoints stay on
+    // the detail page). Translations are JSON objects keyed by locale.
+    cardSummary: text("card_summary"),
+    cardSummaryTranslation: text("card_summary_translation"),
+    cardKeyPoints: jsonb("card_key_points").$type<string[]>(),
+    cardKeyPointsTranslation: text("card_key_points_translation"),
     // Legacy field — replaced by approved for visibility gating
     processed: boolean("processed").default(false).notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -584,6 +590,10 @@ export const studySchema = z.object({
   keyPointsTranslation: z.string().nullable(),
   summary: z.string().nullable(),
   limitations: z.array(z.string()).nullable(),
+  cardSummary: z.string().nullable(),
+  cardSummaryTranslation: z.string().nullable(),
+  cardKeyPoints: z.array(z.string()).nullable(),
+  cardKeyPointsTranslation: z.string().nullable(),
   processed: z.boolean().default(false),
   createdAt: z.date(),
   updatedAt: z.date(),
@@ -625,6 +635,53 @@ export const studyTagRelationSchema = z.object({
 
 export type StudyTag = z.infer<typeof studyTagSchema>;
 export type StudyTagRelation = z.infer<typeof studyTagRelationSchema>;
+
+// Curated categories for the /studies hub. "topic" = what a study is about,
+// "method" = how it was done (each study should have exactly one method).
+// Translation columns are JSON objects keyed by locale; slug_translation holds
+// the per-locale URL segment for /studies/{topic|method}/[category].
+export const studyCategories = pgTable(
+  "study_categories",
+  {
+    id: serial("id").primaryKey(),
+    kind: varchar("kind", { length: 10 }).$type<"topic" | "method">().notNull(),
+    slug: varchar("slug", { length: 255 }).notNull(),
+    name: varchar("name", { length: 255 }).notNull(),
+    nameTranslation: text("name_translation"),
+    description: text("description").default("").notNull(),
+    descriptionTranslation: text("description_translation"),
+    slugTranslation: text("slug_translation"),
+    sortOrder: integer("sort_order").default(0).notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    kindSlugIdx: uniqueIndex("idx_study_categories_kind_slug").on(
+      table.kind,
+      table.slug,
+    ),
+  }),
+);
+
+export const studyCategoryRelations = pgTable(
+  "study_category_relations",
+  {
+    studyId: integer("study_id")
+      .notNull()
+      .references(() => studies.id, { onDelete: "cascade" }),
+    categoryId: integer("category_id")
+      .notNull()
+      .references(() => studyCategories.id, { onDelete: "cascade" }),
+  },
+  (table) => ({
+    pk: primaryKey({ columns: [table.studyId, table.categoryId] }),
+    categoryIdx: index("idx_study_category_relations_category").on(
+      table.categoryId,
+    ),
+  }),
+);
+
+export type StudyCategoryRow = typeof studyCategories.$inferSelect;
 
 // Per-locale translated slug segments for study detail URLs (/studies/[slug]).
 // Rows are regenerated from the localized headline/title whenever a study is

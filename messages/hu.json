@@ -672,7 +672,18 @@
     "noResults": "Nem található tanulmány.",
     "noStudies": "Még nincs jóváhagyott tanulmány.",
     "pendingReview": "Felülvizsgálat alatt",
-    "keyFindings": "Kulcsfontosságú megállapítások:"
+    "keyFindings": "Kulcsfontosságú megállapítások:",
+    "byTopic": "Témakör szerint",
+    "byMethod": "Módszertan szerint",
+    "studyCount": "{count, plural, one {# tanulmány} other {# tanulmány}}",
+    "resultCount": "{count, plural, one {# találat} other {# találat}}",
+    "allStudies": "Összes tanulmány",
+    "all": "Összes",
+    "source": "Link a tanulmányhoz",
+    "otherTopics": "További témakörök",
+    "otherMethods": "További módszertanok",
+    "categoryMetaTitle": "{name}: tanulmányok és kutatások | detrans.ai",
+    "findings": "Kulcsfontosságú megállapítások"
   },
   "contentWarning": {
     "title": "Tartalmi Figyelmeztetés:",

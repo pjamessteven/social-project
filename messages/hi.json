@@ -672,7 +672,18 @@
     "noResults": "कोई अध्ययन नहीं मिला।",
     "noStudies": "अभी तक कोई स्वीकृत अध्ययन नहीं।",
     "pendingReview": "समीक्षा लंबित",
-    "keyFindings": "प्रमुख निष्कर्ष:"
+    "keyFindings": "प्रमुख निष्कर्ष:",
+    "byTopic": "विषय के अनुसार",
+    "byMethod": "कार्यप्रणाली के अनुसार",
+    "studyCount": "{count, plural, one {# अध्ययन} other {# अध्ययन}}",
+    "resultCount": "{count, plural, one {# परिणाम} other {# परिणाम}}",
+    "allStudies": "सभी अध्ययन",
+    "all": "सभी",
+    "source": "अध्ययन का लिंक",
+    "otherTopics": "अन्य विषय",
+    "otherMethods": "अन्य कार्यप्रणालियाँ",
+    "categoryMetaTitle": "{name}: अध्ययन और शोध | detrans.ai",
+    "findings": "प्रमुख निष्कर्ष"
   },
   "contentWarning": {
     "title": "सामग्री चेतावनी:",

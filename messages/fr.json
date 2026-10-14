@@ -663,7 +663,18 @@
     "noResults": "Aucune étude trouvée.",
     "noStudies": "Aucune étude approuvée pour le moment.",
     "pendingReview": "En Attente de Révision",
-    "keyFindings": "Principales Conclusions :"
+    "keyFindings": "Principales Conclusions :",
+    "byTopic": "Par sujet",
+    "byMethod": "Par méthodologie",
+    "studyCount": "{count, plural, one {# étude} other {# études}}",
+    "resultCount": "{count, plural, one {# résultat} other {# résultats}}",
+    "allStudies": "Toutes les études",
+    "all": "Toutes",
+    "source": "Lien vers l'étude",
+    "otherTopics": "Autres sujets",
+    "otherMethods": "Autres méthodologies",
+    "categoryMetaTitle": "{name} : études et recherches | detrans.ai",
+    "findings": "Principales Conclusions"
   },
   "contentWarning": {
     "title": "Avertissement de Contenu :",

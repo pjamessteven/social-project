@@ -664,7 +664,18 @@
     "noResults": "Inga studier hittades.",
     "noStudies": "Inga godkända studier ännu.",
     "pendingReview": "Väntar på Granskning",
-    "keyFindings": "Huvudresultat:"
+    "keyFindings": "Huvudresultat:",
+    "byTopic": "Efter ämne",
+    "byMethod": "Efter metod",
+    "studyCount": "{count, plural, one {# studie} other {# studier}}",
+    "resultCount": "{count, plural, one {# resultat} other {# resultat}}",
+    "allStudies": "Alla studier",
+    "all": "Alla",
+    "source": "Länk till studien",
+    "otherTopics": "Andra ämnen",
+    "otherMethods": "Andra metoder",
+    "categoryMetaTitle": "{name}: studier och forskning | detrans.ai",
+    "findings": "Huvudresultat"
   },
   "contentWarning": {
     "title": "Innehållsvarning:",

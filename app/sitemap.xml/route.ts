@@ -10,6 +10,12 @@ import {
   getStudySlugMaps,
   pickStudySlug,
 } from "@/app/lib/study-slugs";
+import {
+  getAllCategoryRows,
+  getApprovedStudyCounts,
+  getStudyCategoryPath,
+  pickCategorySlug,
+} from "@/app/lib/study-categories";
 import { generateVideoSlug } from "@/app/lib/video-utils";
 import { db } from "@/db";
 import {
@@ -388,6 +394,46 @@ export async function GET(request: NextRequest) {
   }
 
   localizedRoutes.push(...studyRoutes);
+
+  // ---------------------------------------------------------------------
+  // Study category pages (/studies/{topic|method}/[category]): per-locale
+  // variants with translated base, kind and category segments. Empty
+  // categories are noindex and not listed.
+  // ---------------------------------------------------------------------
+  const [categoryRows, categoryCounts] = await Promise.all([
+    getAllCategoryRows(),
+    getApprovedStudyCounts(),
+  ]);
+  const studyCategoryRoutes: typeof studyRoutes = [];
+
+  for (const category of categoryRows) {
+    if (!categoryCounts.get(category.id)) continue;
+    const alternates: Record<string, string> = {};
+    for (const locale of sitemapLocales) {
+      alternates[locale] = `${baseUrl}${getStudyCategoryPath(
+        locale,
+        category.kind,
+        pickCategorySlug(category, locale),
+      )}`;
+    }
+    alternates["x-default"] = `${baseUrl}${getStudyCategoryPath(
+      defaultLocale,
+      category.kind,
+      category.slug,
+    )}`;
+
+    for (const locale of sitemapLocales) {
+      studyCategoryRoutes.push({
+        url: alternates[locale],
+        lastModified: category.updatedAt.toISOString(),
+        changeFrequency: "weekly",
+        priority: 0.7,
+        alternates,
+      });
+    }
+  }
+
+  localizedRoutes.push(...studyCategoryRoutes);
 
   // ---------------------------------------------------------------------
   // Story pages: the /stories base is translated per locale, the

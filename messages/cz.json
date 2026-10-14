@@ -664,7 +664,18 @@
     "noResults": "Žádné studie nenalezeny.",
     "noStudies": "Zatím žádné schválené studie.",
     "pendingReview": "Čeká na posouzení",
-    "keyFindings": "Klíčové poznatky:"
+    "keyFindings": "Klíčové poznatky:",
+    "byTopic": "Podle tématu",
+    "byMethod": "Podle metodologie",
+    "studyCount": "{count, plural, one {# studie} few {# studie} many {# studie} other {# studií}}",
+    "resultCount": "{count, plural, one {# výsledek} few {# výsledky} many {# výsledku} other {# výsledků}}",
+    "allStudies": "Všechny studie",
+    "all": "Vše",
+    "source": "Odkaz na studii",
+    "otherTopics": "Další témata",
+    "otherMethods": "Další metodologie",
+    "categoryMetaTitle": "{name}: studie a výzkum | detrans.ai",
+    "findings": "Klíčové poznatky"
   },
   "contentWarning": {
     "title": "Upozornění na obsah:",

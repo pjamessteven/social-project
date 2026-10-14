@@ -671,7 +671,18 @@
     "noResults": "Nessuno studio trovato.",
     "noStudies": "Nessuno studio approvato.",
     "pendingReview": "In Attesa di Revisione",
-    "keyFindings": "Risultati Chiave:"
+    "keyFindings": "Risultati Chiave:",
+    "byTopic": "Per argomento",
+    "byMethod": "Per metodologia",
+    "studyCount": "{count, plural, one {# studio} other {# studi}}",
+    "resultCount": "{count, plural, one {# risultato} other {# risultati}}",
+    "allStudies": "Tutti gli studi",
+    "all": "Tutti",
+    "source": "Link allo studio",
+    "otherTopics": "Altri argomenti",
+    "otherMethods": "Altre metodologie",
+    "categoryMetaTitle": "{name}: studi e ricerche | detrans.ai",
+    "findings": "Risultati Chiave"
   },
   "contentWarning": {
     "title": "Avviso sui Contenuti:",

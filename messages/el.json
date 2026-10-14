@@ -665,7 +665,18 @@
     "noResults": "Δεν βρέθηκαν μελέτες.",
     "noStudies": "Δεν υπάρχουν ακόμη εγκεκριμένες μελέτες.",
     "pendingReview": "Εκκρεμεί αξιολόγηση",
-    "keyFindings": "Βασικά Ευρήματα:"
+    "keyFindings": "Βασικά Ευρήματα:",
+    "byTopic": "Ανά θέμα",
+    "byMethod": "Ανά μεθοδολογία",
+    "studyCount": "{count, plural, one {# μελέτη} other {# μελέτες}}",
+    "resultCount": "{count, plural, one {# αποτέλεσμα} other {# αποτελέσματα}}",
+    "allStudies": "Όλες οι μελέτες",
+    "all": "Όλα",
+    "source": "Σύνδεσμος προς τη μελέτη",
+    "otherTopics": "Άλλα θέματα",
+    "otherMethods": "Άλλες μεθοδολογίες",
+    "categoryMetaTitle": "{name}: Μελέτες & Έρευνα | detrans.ai",
+    "findings": "Βασικά Ευρήματα"
   },
   "contentWarning": {
     "title": "Προειδοποίηση Περιεχομένου:",

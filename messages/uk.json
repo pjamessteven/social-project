@@ -664,7 +664,18 @@
     "noResults": "Дослідження не знайдено.",
     "noStudies": "Ще немає схвалених досліджень.",
     "pendingReview": "На розгляді",
-    "keyFindings": "Ключові результати:"
+    "keyFindings": "Ключові результати:",
+    "byTopic": "За темами",
+    "byMethod": "За методологією",
+    "studyCount": "{count, plural, one {# дослідження} few {# дослідження} many {# досліджень} other {# дослідження}}",
+    "resultCount": "{count, plural, one {# результат} few {# результати} many {# результатів} other {# результату}}",
+    "allStudies": "Усі дослідження",
+    "all": "Усі",
+    "source": "Посилання на дослідження",
+    "otherTopics": "Інші теми",
+    "otherMethods": "Інші методології",
+    "categoryMetaTitle": "{name}: дослідження та наукові роботи | detrans.ai",
+    "findings": "Ключові результати"
   },
   "contentWarning": {
     "title": "Попередження про вміст:",

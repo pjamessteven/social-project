@@ -663,7 +663,18 @@
     "noResults": "Keine Studien gefunden.",
     "noStudies": "Noch keine genehmigten Studien.",
     "pendingReview": "Ausstehende Überprüfung",
-    "keyFindings": "Wichtige Erkenntnisse:"
+    "keyFindings": "Wichtige Erkenntnisse:",
+    "byTopic": "Nach Thema",
+    "byMethod": "Nach Methodik",
+    "studyCount": "{count, plural, one {# Studie} other {# Studien}}",
+    "resultCount": "{count, plural, one {# Ergebnis} other {# Ergebnisse}}",
+    "allStudies": "Alle Studien",
+    "all": "Alle",
+    "source": "Link zur Studie",
+    "otherTopics": "Weitere Themen",
+    "otherMethods": "Weitere Methoden",
+    "categoryMetaTitle": "{name}: Studien & Forschung | detrans.ai",
+    "findings": "Wichtige Erkenntnisse"
   },
   "contentWarning": {
     "title": "Inhaltswarnung:",

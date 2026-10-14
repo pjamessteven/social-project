@@ -664,7 +664,18 @@
     "noResults": "Nu s-au găsit studii.",
     "noStudies": "Încă nu există studii aprobate.",
     "pendingReview": "În așteptarea revizuirii",
-    "keyFindings": "Constatări cheie:"
+    "keyFindings": "Constatări cheie:",
+    "byTopic": "După subiect",
+    "byMethod": "După metodologie",
+    "studyCount": "{count, plural, one {# studiu} few {# studii} other {# de studii}}",
+    "resultCount": "{count, plural, one {# rezultat} few {# rezultate} other {# de rezultate}}",
+    "allStudies": "Toate studiile",
+    "all": "Toate",
+    "source": "Link către studiu",
+    "otherTopics": "Alte subiecte",
+    "otherMethods": "Alte metodologii",
+    "categoryMetaTitle": "{name}: studii și cercetări | detrans.ai",
+    "findings": "Constatări cheie"
   },
   "contentWarning": {
     "title": "Avertisment de Conținut:",

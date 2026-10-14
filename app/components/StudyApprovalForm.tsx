@@ -1,5 +1,10 @@
 "use client";
 
+import {
+  CARD_KEY_POINT_MAX_CHARS,
+  CARD_SUMMARY_MAX_CHARS,
+} from "@/app/lib/study-cards";
+import type { StudyCategoryRef } from "@/app/lib/study-category-urls";
 import { Study } from "@/app/types/study";
 import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
@@ -7,9 +12,15 @@ import { useRouter } from "next/navigation";
 interface StudyApprovalFormProps {
   study: Study;
   locale: string;
+  /** All curated categories (English names) for the topic/method pickers */
+  categoryOptions: StudyCategoryRef[];
 }
 
-export function StudyApprovalForm({ study, locale }: StudyApprovalFormProps) {
+export function StudyApprovalForm({
+  study,
+  locale,
+  categoryOptions,
+}: StudyApprovalFormProps) {
   const router = useRouter();
   const isEditing = study.approved;
 
@@ -27,7 +38,23 @@ export function StudyApprovalForm({ study, locale }: StudyApprovalFormProps) {
     description: study.description || "",
     tags: (study.tags || []).join(", "),
     limitations: (study.limitations || []).join("\n"),
+    cardSummary: study.cardSummary || "",
+    cardKeyPoints: (study.cardKeyPoints || []).join("\n"),
   });
+  const [categoryIds, setCategoryIds] = useState<number[]>(
+    (study.categories || []).map((c) => c.id),
+  );
+  const methodOptions = categoryOptions.filter((c) => c.kind === "method");
+  const topicOptions = categoryOptions.filter((c) => c.kind === "topic");
+  const selectMethod = (id: number) =>
+    setCategoryIds((prev) => [
+      ...prev.filter((x) => !methodOptions.some((m) => m.id === x)),
+      id,
+    ]);
+  const toggleTopic = (id: number) =>
+    setCategoryIds((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
+    );
 
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [regenerateEmbedding, setRegenerateEmbedding] = useState(false);
@@ -159,7 +186,14 @@ export function StudyApprovalForm({ study, locale }: StudyApprovalFormProps) {
           limitations: Array.isArray(data.limitations)
             ? data.limitations.join("\n")
             : prev.limitations,
+          cardSummary: data.cardSummary ?? prev.cardSummary,
+          cardKeyPoints: Array.isArray(data.cardKeyPoints)
+            ? data.cardKeyPoints.join("\n")
+            : prev.cardKeyPoints,
         }));
+        if (Array.isArray(data.categoryIds) && data.categoryIds.length > 0) {
+          setCategoryIds(data.categoryIds);
+        }
         if (data.errors && data.errors.length > 0) {
           setExtractError(
             "Some fields could not be extracted: " + data.errors.join(", ")
@@ -199,6 +233,9 @@ export function StudyApprovalForm({ study, locale }: StudyApprovalFormProps) {
       payload.append("fullText", formData.fullText);
       payload.append("tags", formData.tags);
       payload.append("limitations", formData.limitations);
+      payload.append("cardSummary", formData.cardSummary);
+      payload.append("cardKeyPoints", formData.cardKeyPoints);
+      payload.append("categoryIds", categoryIds.join(","));
 
       if (pdfFile) {
         payload.append("pdf", pdfFile);
@@ -227,7 +264,16 @@ export function StudyApprovalForm({ study, locale }: StudyApprovalFormProps) {
         setIsSubmitting(false);
       }
     },
-    [formData, pdfFile, study.id, isEditing, regenerateEmbedding, router, locale],
+    [
+      formData,
+      categoryIds,
+      pdfFile,
+      study.id,
+      isEditing,
+      regenerateEmbedding,
+      router,
+      locale,
+    ],
   );
 
   const hasFullText = formData.fullText.trim().length > 0;
@@ -382,6 +428,93 @@ export function StudyApprovalForm({ study, locale }: StudyApprovalFormProps) {
           <p className="mt-1 text-xs text-red-600">{extractError}</p>
         )}
       </div>
+
+      {/* Card copy + categories (studies grid) */}
+      <fieldset className="space-y-4 rounded border p-4 dark:border-gray-700">
+        <legend className="px-1 text-sm font-semibold">
+          Studies grid card
+        </legend>
+
+        <div>
+          <span className="mb-1 block text-sm font-medium">Method</span>
+          <div className="flex flex-wrap gap-x-4 gap-y-1">
+            {methodOptions.map((option) => (
+              <label key={option.id} className="flex items-center gap-1.5 text-sm">
+                <input
+                  type="radio"
+                  name="method"
+                  checked={categoryIds.includes(option.id)}
+                  onChange={() => selectMethod(option.id)}
+                />
+                {option.name}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <span className="mb-1 block text-sm font-medium">
+            Topics
+            <span className="text-xs text-gray-500"> (usually 1–2)</span>
+          </span>
+          <div className="flex flex-wrap gap-x-4 gap-y-1">
+            {topicOptions.map((option) => (
+              <label key={option.id} className="flex items-center gap-1.5 text-sm">
+                <input
+                  type="checkbox"
+                  checked={categoryIds.includes(option.id)}
+                  onChange={() => toggleTopic(option.id)}
+                />
+                {option.name}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            Card summary
+            <span
+              className={`text-xs ${
+                formData.cardSummary.length > CARD_SUMMARY_MAX_CHARS
+                  ? "text-red-600"
+                  : "text-gray-500"
+              }`}
+            >
+              {" "}
+              ({formData.cardSummary.length}/{CARD_SUMMARY_MAX_CHARS})
+            </span>
+          </label>
+          <textarea
+            name="cardSummary"
+            value={formData.cardSummary}
+            onChange={handleChange}
+            rows={2}
+            className="w-full rounded border px-3 py-2 dark:border-gray-700 dark:bg-gray-800"
+          />
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            Card key findings
+            <span className="text-xs text-gray-500">
+              {" "}
+              (3, one per line, max {CARD_KEY_POINT_MAX_CHARS} chars each)
+            </span>
+          </label>
+          <textarea
+            name="cardKeyPoints"
+            value={formData.cardKeyPoints}
+            onChange={handleChange}
+            rows={3}
+            className="w-full rounded border px-3 py-2 dark:border-gray-700 dark:bg-gray-800"
+          />
+        </div>
+        <p className="text-xs text-gray-500">
+          Editing the card text clears its translations; run
+          scripts/generate-study-hub-translations.ts to regenerate them.
+        </p>
+      </fieldset>
 
       {/* Tags */}
       <div>

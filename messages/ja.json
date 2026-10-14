@@ -672,7 +672,18 @@
     "noResults": "研究が見つかりません。",
     "noStudies": "まだ承認された研究がありません。",
     "pendingReview": "審査待ち",
-    "keyFindings": "主な知見："
+    "keyFindings": "主な知見：",
+    "byTopic": "トピック別",
+    "byMethod": "研究方法別",
+    "studyCount": "{count, plural, other {#件の研究}}",
+    "resultCount": "{count, plural, other {#件の結果}}",
+    "allStudies": "すべての研究",
+    "all": "すべて",
+    "source": "研究へのリンク",
+    "otherTopics": "その他のトピック",
+    "otherMethods": "その他の研究方法",
+    "categoryMetaTitle": "{name}：研究・論文 | detrans.ai",
+    "findings": "主な知見"
   },
   "contentWarning": {
     "title": "コンテンツ警告：",

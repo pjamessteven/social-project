@@ -663,7 +663,18 @@
     "noResults": "לא נמצאו מחקרים.",
     "noStudies": "אין עדיין מחקרים מאושרים.",
     "pendingReview": "ממתין לבדיקה",
-    "keyFindings": "ממצאים עיקריים:"
+    "keyFindings": "ממצאים עיקריים:",
+    "byTopic": "לפי נושא",
+    "byMethod": "לפי מתודולוגיה",
+    "studyCount": "{count, plural, one {מחקר אחד} two {# מחקרים} other {# מחקרים}}",
+    "resultCount": "{count, plural, one {תוצאה אחת} two {# תוצאות} other {# תוצאות}}",
+    "allStudies": "כל המחקרים",
+    "all": "הכל",
+    "source": "קישור למחקר",
+    "otherTopics": "נושאים נוספים",
+    "otherMethods": "מתודולוגיות נוספות",
+    "categoryMetaTitle": "{name}: מחקרים | detrans.ai",
+    "findings": "ממצאים עיקריים"
   },
   "contentWarning": {
     "title": "אזהרת תוכן:",

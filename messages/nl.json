@@ -671,7 +671,18 @@
     "noResults": "Geen studies gevonden.",
     "noStudies": "Nog geen goedgekeurde studies.",
     "pendingReview": "In Afwachting van Beoordeling",
-    "keyFindings": "Belangrijkste Bevindingen:"
+    "keyFindings": "Belangrijkste Bevindingen:",
+    "byTopic": "Per onderwerp",
+    "byMethod": "Per methodologie",
+    "studyCount": "{count, plural, one {# studie} other {# studies}}",
+    "resultCount": "{count, plural, one {# resultaat} other {# resultaten}}",
+    "allStudies": "Alle studies",
+    "all": "Alle",
+    "source": "Link naar de studie",
+    "otherTopics": "Andere onderwerpen",
+    "otherMethods": "Andere methodologieën",
+    "categoryMetaTitle": "{name}: studies en onderzoek | detrans.ai",
+    "findings": "Belangrijkste Bevindingen"
   },
   "contentWarning": {
     "title": "Inhoudswaarschuwing:",

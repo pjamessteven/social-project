@@ -672,7 +672,18 @@
     "noResults": "Nie znaleziono badań.",
     "noStudies": "Brak zatwierdzonych badań.",
     "pendingReview": "Oczekuje na recenzję",
-    "keyFindings": "Kluczowe ustalenia:"
+    "keyFindings": "Kluczowe ustalenia:",
+    "byTopic": "Według tematu",
+    "byMethod": "Według metodologii",
+    "studyCount": "{count, plural, one {# badanie} few {# badania} many {# badań} other {# badania}}",
+    "resultCount": "{count, plural, one {# wynik} few {# wyniki} many {# wyników} other {# wyniku}}",
+    "allStudies": "Wszystkie badania",
+    "all": "Wszystkie",
+    "source": "Link do badania",
+    "otherTopics": "Inne tematy",
+    "otherMethods": "Inne metodologie",
+    "categoryMetaTitle": "{name}: badania i publikacje | detrans.ai",
+    "findings": "Kluczowe ustalenia"
   },
   "contentWarning": {
     "title": "Ostrzeżenie o treści:",

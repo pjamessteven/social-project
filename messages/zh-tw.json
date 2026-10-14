@@ -665,7 +665,18 @@
     "noResults": "未找到相關研究。",
     "noStudies": "尚無已批准的研究。",
     "pendingReview": "待審核",
-    "keyFindings": "主要發現："
+    "keyFindings": "主要發現：",
+    "byTopic": "依主題",
+    "byMethod": "依研究方法",
+    "studyCount": "{count, plural, other {# 項研究}}",
+    "resultCount": "{count, plural, other {# 個結果}}",
+    "allStudies": "全部研究",
+    "all": "全部",
+    "source": "研究連結",
+    "otherTopics": "其他主題",
+    "otherMethods": "其他研究方法",
+    "categoryMetaTitle": "{name}：研究與論文 | detrans.ai",
+    "findings": "主要發現"
   },
   "contentWarning": {
     "title": "內容警告：",

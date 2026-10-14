@@ -1,7 +1,13 @@
 import { requireAuth } from "@/app/lib/auth/middleware";
 import { extractPdfText } from "@/app/lib/pdf";
+import {
+  buildStudyCardPrompt,
+  cardCategoryIds,
+  parseStudyCardResponse,
+  type StudyCardResult,
+} from "@/app/lib/study-cards";
 import { db } from "@/db";
-import { studyTags } from "@/db/schema";
+import { studyCategories, studyTags } from "@/db/schema";
 import { OpenAI } from "@llamaindex/openai";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -287,6 +293,22 @@ export async function POST(
       "limitations",
     );
 
+    // Call 7: Short card copy + topic/method categories
+    const categoryRows = await db.select().from(studyCategories);
+    let card: StudyCardResult | null = null;
+    let cardError: string | null = null;
+    if (categoryRows.length > 0) {
+      try {
+        const response = await llm.complete({
+          prompt: buildStudyCardPrompt(categoryRows, truncatedText),
+        });
+        card = parseStudyCardResponse(response.text, categoryRows);
+      } catch (err) {
+        console.error("[Extract API] card extraction failed:", err);
+        cardError = "card extraction failed";
+      }
+    }
+
     // Collect errors
     const errors: string[] = [];
     if (coreResult.error) errors.push(coreResult.error);
@@ -295,6 +317,7 @@ export async function POST(
     if (summaryResult.error) errors.push(summaryResult.error);
     if (keyPointsResult.error) errors.push(keyPointsResult.error);
     if (limitationsResult.error) errors.push(limitationsResult.error);
+    if (cardError) errors.push(cardError);
 
     const core = coreResult.value;
 
@@ -314,6 +337,9 @@ export async function POST(
       keyPoints: keyPointsResult.value?.keyPoints ?? [],
       tags: core?.tags ?? [],
       limitations: limitationsResult.value?.limitations ?? [],
+      cardSummary: card?.cardSummary ?? null,
+      cardKeyPoints: card?.cardKeyPoints ?? [],
+      categoryIds: card ? cardCategoryIds(card, categoryRows) : [],
       errors: errors.length > 0 ? errors : undefined,
     });
   } catch (error) {

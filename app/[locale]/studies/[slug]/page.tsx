@@ -4,6 +4,13 @@ import { isAdmin } from "@/app/lib/auth/auth";
 import { getLocalizedValue } from "@/app/lib/pages";
 import { localeToBcp47, safeJsonLd, SITE_URL } from "@/app/lib/seo";
 import {
+  getAllCategoryRows,
+  getStudyCategoryIdMap,
+  getStudyCategoryPath,
+  localizeCategory,
+  toCategoryRef,
+} from "@/app/lib/study-categories";
+import {
   getStudiesPath,
   getStudyPath,
   localizedStudyName,
@@ -164,8 +171,22 @@ export default async function StudyPage({ params }: { params: PageParams }) {
     }
   }
 
+  // Curated categories: localized for display, English for the admin form
+  const [categoryRows, categoryIdMap] = await Promise.all([
+    getAllCategoryRows(),
+    getStudyCategoryIdMap([rawStudy.id]),
+  ]);
+  const assignedIds = new Set(categoryIdMap.get(rawStudy.id) ?? []);
+  const admin = await isAdmin();
+  const displayLocale = admin ? "en" : locale;
+  const categories = categoryRows
+    .filter((row) => assignedIds.has(row.id))
+    .sort((a, b) => (a.kind === b.kind ? 0 : a.kind === "method" ? -1 : 1))
+    .map((row) => toCategoryRef(localizeCategory(row, displayLocale)));
+
   const study: Study = {
     ...rawStudy,
+    categories,
     headline: getLocalizedValue(
       rawStudy.headlineTranslation,
       locale,
@@ -181,7 +202,6 @@ export default async function StudyPage({ params }: { params: PageParams }) {
     keyPoints: localizedKeyPoints,
     slug: data.canonicalSlug,
   };
-  const admin = await isAdmin();
 
   const studyUrl = `${SITE_URL}${getStudyPath(locale, data.canonicalSlug)}`;
 
@@ -239,7 +259,13 @@ export default async function StudyPage({ params }: { params: PageParams }) {
             <DeleteStudyButton studyId={study.id} locale={locale} />
           </div>
           <div className="rounded-lg border bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
-            <StudyApprovalForm study={study} locale={locale} />
+            <StudyApprovalForm
+              study={study}
+              locale={locale}
+              categoryOptions={categoryRows.map((row) =>
+                toCategoryRef(localizeCategory(row, "en")),
+              )}
+            />
           </div>
         </>
       ) : (
@@ -258,18 +284,23 @@ export default async function StudyPage({ params }: { params: PageParams }) {
               )}
           </div>
 
-          <div className="mb-6 flex flex-wrap items-center gap-2">
-            {study.tags &&
-              study.tags.length > 0 &&
-              study.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="font- inline-flex items-center rounded-full border bg-gray-100 px-2 py-1 text-sm text-xs text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+          {categories.length > 0 && (
+            <div className="mb-6 flex flex-wrap items-center gap-2">
+              {categories.map((category) => (
+                <Link
+                  key={category.id}
+                  href={getStudyCategoryPath(
+                    locale,
+                    category.kind,
+                    category.slug,
+                  )}
+                  className="inline-flex items-center rounded-full border bg-gray-100 px-2.5 py-1 text-xs text-gray-700 hover:border-gray-400 dark:bg-gray-800 dark:text-gray-300"
                 >
-                  {tag}
-                </span>
+                  {category.name}
+                </Link>
               ))}
-          </div>
+            </div>
+          )}
 
           {/* Metadata */}
           <div className="border-t border-b py-4 dark:border-gray-700 dark:bg-gray-800/50">

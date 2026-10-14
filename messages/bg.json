@@ -664,7 +664,18 @@
     "noResults": "Не са намерени изследвания.",
     "noStudies": "Все още няма одобрени изследвания.",
     "pendingReview": "Чакащи преглед",
-    "keyFindings": "Ключови констатации:"
+    "keyFindings": "Ключови констатации:",
+    "byTopic": "По тема",
+    "byMethod": "По методология",
+    "studyCount": "{count, plural, one {# изследване} other {# изследвания}}",
+    "resultCount": "{count, plural, one {# резултат} other {# резултата}}",
+    "allStudies": "Всички изследвания",
+    "all": "Всички",
+    "source": "Линк към изследването",
+    "otherTopics": "Други теми",
+    "otherMethods": "Други методологии",
+    "categoryMetaTitle": "{name}: изследвания и проучвания | detrans.ai",
+    "findings": "Ключови констатации"
   },
   "contentWarning": {
     "title": "Предупреждение за съдържание:",

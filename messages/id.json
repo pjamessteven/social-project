@@ -672,7 +672,18 @@
     "noResults": "Tidak ada studi yang ditemukan.",
     "noStudies": "Belum ada studi yang disetujui.",
     "pendingReview": "Menunggu Tinjauan",
-    "keyFindings": "Temuan Utama:"
+    "keyFindings": "Temuan Utama:",
+    "byTopic": "Berdasarkan topik",
+    "byMethod": "Berdasarkan metodologi",
+    "studyCount": "{count, plural, other {# studi}}",
+    "resultCount": "{count, plural, other {# hasil}}",
+    "allStudies": "Semua studi",
+    "all": "Semua",
+    "source": "Tautan ke studi",
+    "otherTopics": "Topik lain",
+    "otherMethods": "Metodologi lain",
+    "categoryMetaTitle": "{name}: Studi & Penelitian | detrans.ai",
+    "findings": "Temuan Utama"
   },
   "contentWarning": {
     "title": "Peringatan Konten:",

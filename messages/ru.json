@@ -664,7 +664,18 @@
     "noResults": "Исследования не найдены.",
     "noStudies": "Утверждённых исследований пока нет.",
     "pendingReview": "На рассмотрении",
-    "keyFindings": "Ключевые выводы:"
+    "keyFindings": "Ключевые выводы:",
+    "byTopic": "По темам",
+    "byMethod": "По методологии",
+    "studyCount": "{count, plural, one {# исследование} few {# исследования} many {# исследований} other {# исследования}}",
+    "resultCount": "{count, plural, one {# результат} few {# результата} many {# результатов} other {# результата}}",
+    "allStudies": "Все исследования",
+    "all": "Все",
+    "source": "Ссылка на исследование",
+    "otherTopics": "Другие темы",
+    "otherMethods": "Другие методологии",
+    "categoryMetaTitle": "{name}: исследования и научные работы | detrans.ai",
+    "findings": "Ключевые выводы"
   },
   "contentWarning": {
     "title": "Предупреждение о содержании:",
