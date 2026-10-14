@@ -2093,7 +2093,9 @@
     "lastUpdated": "अंतिम अपडेट:",
     "stubNotice": "यह पेज अभी अधूरा है और इसका विस्तार किया जाएगा।",
     "views": "{count, plural, one {# बार देखा गया} other {# बार देखा गया}}",
-    "articleCount": "{count, plural, other {# लेख}}"
+    "articleCount": "{count, plural, other {# लेख}}",
+    "hubsHeading": "विषय केंद्र",
+    "allArticlesHeading": "सभी लेख"
   },
   "storiesPage": {
     "metadata": {

@@ -2085,7 +2085,9 @@
     "lastUpdated": "Последнее обновление:",
     "stubNotice": "Эта страница — заготовка и будет дополнена.",
     "views": "{count, plural, one {# просмотр} few {# просмотра} many {# просмотров} other {# просмотра}}",
-    "articleCount": "{count, plural, one {# статья} few {# статьи} other {# статей}}"
+    "articleCount": "{count, plural, one {# статья} few {# статьи} other {# статей}}",
+    "hubsHeading": "Тематические разделы",
+    "allArticlesHeading": "Все статьи"
   },
   "storiesPage": {
     "metadata": {

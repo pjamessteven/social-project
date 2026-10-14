@@ -2085,7 +2085,9 @@
     "lastUpdated": "Останнє оновлення:",
     "stubNotice": "Ця сторінка — заготовка і буде доповнена.",
     "views": "{count, plural, one {# перегляд} few {# перегляди} many {# переглядів} other {# перегляду}}",
-    "articleCount": "{count, plural, one {# стаття} few {# статті} other {# статей}}"
+    "articleCount": "{count, plural, one {# стаття} few {# статті} other {# статей}}",
+    "hubsHeading": "Тематичні розділи",
+    "allArticlesHeading": "Усі статті"
   },
   "storiesPage": {
     "metadata": {

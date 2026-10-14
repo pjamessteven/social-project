@@ -2093,7 +2093,9 @@
     "lastUpdated": "Utoljára frissítve:",
     "stubNotice": "Ez az oldal csonk, és bővíteni fogjuk.",
     "views": "{count, plural, other {# megtekintés}}",
-    "articleCount": "{count, plural, other {# cikk}}"
+    "articleCount": "{count, plural, other {# cikk}}",
+    "hubsHeading": "Témakörök",
+    "allArticlesHeading": "Összes cikk"
   },
   "storiesPage": {
     "metadata": {

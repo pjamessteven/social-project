@@ -2093,7 +2093,9 @@
     "lastUpdated": "Ostatnia aktualizacja:",
     "stubNotice": "Ta strona jest szkicem i zostanie rozbudowana.",
     "views": "{count, plural, one {# wyświetlenie} few {# wyświetlenia} many {# wyświetleń} other {# wyświetlenia}}",
-    "articleCount": "{count, plural, one {# artykuł} few {# artykuły} other {# artykułów}}"
+    "articleCount": "{count, plural, one {# artykuł} few {# artykuły} other {# artykułów}}",
+    "hubsHeading": "Działy tematyczne",
+    "allArticlesHeading": "Wszystkie artykuły"
   },
   "storiesPage": {
     "metadata": {

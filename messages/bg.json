@@ -2085,7 +2085,9 @@
     "lastUpdated": "Последна актуализация:",
     "stubNotice": "Тази страница е непълна и ще бъде разширена.",
     "views": "{count, plural, one {# преглед} other {# прегледа}}",
-    "articleCount": "{count, plural, one {# статия} other {# статии}}"
+    "articleCount": "{count, plural, one {# статия} other {# статии}}",
+    "hubsHeading": "Тематични центрове",
+    "allArticlesHeading": "Всички статии"
   },
   "storiesPage": {
     "metadata": {

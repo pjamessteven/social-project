@@ -2085,7 +2085,9 @@
     "lastUpdated": "Senest opdateret:",
     "stubNotice": "Denne side er en stub og vil blive udvidet.",
     "views": "{count, plural, one {# visning} other {# visninger}}",
-    "articleCount": "{count, plural, one {# artikel} other {# artikler}}"
+    "articleCount": "{count, plural, one {# artikel} other {# artikler}}",
+    "hubsHeading": "Emneoversigter",
+    "allArticlesHeading": "Alle artikler"
   },
   "storiesPage": {
     "metadata": {

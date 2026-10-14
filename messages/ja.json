@@ -2093,7 +2093,9 @@
     "lastUpdated": "最終更新：",
     "stubNotice": "このページは未完成で、今後拡充されます。",
     "views": "{count, plural, other {# 回閲覧}}",
-    "articleCount": "{count, plural, other {#件の記事}}"
+    "articleCount": "{count, plural, other {#件の記事}}",
+    "hubsHeading": "トピックハブ",
+    "allArticlesHeading": "すべての記事"
   },
   "storiesPage": {
     "metadata": {

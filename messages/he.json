@@ -2084,7 +2084,9 @@
     "lastUpdated": "עודכן לאחרונה:",
     "stubNotice": "דף זה הוא קצרמר ויורחב בהמשך.",
     "views": "{count, plural, one {צפייה אחת} other {# צפיות}}",
-    "articleCount": "{count, plural, one {מאמר אחד} other {# מאמרים}}"
+    "articleCount": "{count, plural, one {מאמר אחד} other {# מאמרים}}",
+    "hubsHeading": "מרכזי נושאים",
+    "allArticlesHeading": "כל המאמרים"
   },
   "storiesPage": {
     "metadata": {

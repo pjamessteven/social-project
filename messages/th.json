@@ -2085,7 +2085,9 @@
     "lastUpdated": "อัปเดตล่าสุด:",
     "stubNotice": "หน้านี้ยังไม่สมบูรณ์และจะได้รับการขยายเพิ่มเติม",
     "views": "{count, plural, other {ดู # ครั้ง}}",
-    "articleCount": "{count, plural, other {# บทความ}}"
+    "articleCount": "{count, plural, other {# บทความ}}",
+    "hubsHeading": "ศูนย์รวมหัวข้อ",
+    "allArticlesHeading": "บทความทั้งหมด"
   },
   "storiesPage": {
     "metadata": {

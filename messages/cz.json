@@ -2085,7 +2085,9 @@
     "lastUpdated": "Naposledy aktualizováno:",
     "stubNotice": "Tato stránka je zatím pahýl a bude rozšířena.",
     "views": "{count, plural, one {# zobrazení} few {# zobrazení} many {# zobrazení} other {# zobrazení}}",
-    "articleCount": "{count, plural, one {# článek} few {# články} other {# článků}}"
+    "articleCount": "{count, plural, one {# článek} few {# články} other {# článků}}",
+    "hubsHeading": "Tematické rozcestníky",
+    "allArticlesHeading": "Všechny články"
   },
   "storiesPage": {
     "metadata": {

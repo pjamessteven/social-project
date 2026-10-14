@@ -2085,7 +2085,9 @@
     "lastUpdated": "Nazadnje posodobljeno:",
     "stubNotice": "Ta stran je škrbina in bo razširjena.",
     "views": "{count, plural, one {# ogled} two {# ogleda} few {# ogledi} other {# ogledov}}",
-    "articleCount": "{count, plural, one {# članek} two {# članka} few {# članki} other {# člankov}}"
+    "articleCount": "{count, plural, one {# članek} two {# članka} few {# članki} other {# člankov}}",
+    "hubsHeading": "Tematska središča",
+    "allArticlesHeading": "Vsi članki"
   },
   "storiesPage": {
     "metadata": {

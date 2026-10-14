@@ -2086,7 +2086,9 @@
     "lastUpdated": "آخرین به‌روزرسانی:",
     "stubNotice": "این صفحه ناقص است و گسترش خواهد یافت.",
     "views": "{count, plural, other {# بازدید}}",
-    "articleCount": "{count, plural, other {# مقاله}}"
+    "articleCount": "{count, plural, other {# مقاله}}",
+    "hubsHeading": "محورهای موضوعی",
+    "allArticlesHeading": "همه مقالات"
   },
   "storiesPage": {
     "metadata": {

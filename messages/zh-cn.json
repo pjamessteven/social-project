@@ -2085,7 +2085,9 @@
     "lastUpdated": "最后更新：",
     "stubNotice": "此页面尚不完整，将会扩充。",
     "views": "{count, plural, other {# 次浏览}}",
-    "articleCount": "{count, plural, other {# 篇文章}}"
+    "articleCount": "{count, plural, other {# 篇文章}}",
+    "hubsHeading": "主题中心",
+    "allArticlesHeading": "所有文章"
   },
   "storiesPage": {
     "metadata": {

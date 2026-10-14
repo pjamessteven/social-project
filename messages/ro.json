@@ -2085,7 +2085,9 @@
     "lastUpdated": "Ultima actualizare:",
     "stubNotice": "Această pagină este o schiță și va fi extinsă.",
     "views": "{count, plural, one {# vizualizare} few {# vizualizări} other {# de vizualizări}}",
-    "articleCount": "{count, plural, one {# articol} few {# articole} other {# de articole}}"
+    "articleCount": "{count, plural, one {# articol} few {# articole} other {# de articole}}",
+    "hubsHeading": "Zone tematice",
+    "allArticlesHeading": "Toate articolele"
   },
   "storiesPage": {
     "metadata": {

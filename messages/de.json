@@ -2084,7 +2084,9 @@
     "lastUpdated": "Zuletzt aktualisiert:",
     "stubNotice": "Diese Seite ist ein Entwurf und wird noch erweitert.",
     "views": "{count, plural, one {# Aufruf} other {# Aufrufe}}",
-    "articleCount": "{count, plural, one {# Artikel} other {# Artikel}}"
+    "articleCount": "{count, plural, one {# Artikel} other {# Artikel}}",
+    "hubsHeading": "Themenbereiche",
+    "allArticlesHeading": "Alle Artikel"
   },
   "storiesPage": {
     "metadata": {

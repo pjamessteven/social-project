@@ -2086,7 +2086,9 @@
     "lastUpdated": "最後更新：",
     "stubNotice": "此頁面尚不完整，將會擴充。",
     "views": "{count, plural, other {# 次瀏覽}}",
-    "articleCount": "{count, plural, other {# 篇文章}}"
+    "articleCount": "{count, plural, other {# 篇文章}}",
+    "hubsHeading": "主題中心",
+    "allArticlesHeading": "所有文章"
   },
   "storiesPage": {
     "metadata": {

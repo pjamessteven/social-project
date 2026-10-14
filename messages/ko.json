@@ -2093,7 +2093,9 @@
     "lastUpdated": "마지막 업데이트:",
     "stubNotice": "이 페이지는 아직 미완성이며 확장될 예정입니다.",
     "views": "{count, plural, other {조회수 #회}}",
-    "articleCount": "{count, plural, other {글 #개}}"
+    "articleCount": "{count, plural, other {글 #개}}",
+    "hubsHeading": "주제 허브",
+    "allArticlesHeading": "모든 글"
   },
   "storiesPage": {
     "metadata": {

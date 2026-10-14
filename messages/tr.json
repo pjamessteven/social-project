@@ -2084,7 +2084,9 @@
     "lastUpdated": "Son güncelleme:",
     "stubNotice": "Bu sayfa taslak hâlindedir ve genişletilecektir.",
     "views": "{count, plural, other {# görüntülenme}}",
-    "articleCount": "{count, plural, other {# yazı}}"
+    "articleCount": "{count, plural, other {# yazı}}",
+    "hubsHeading": "Konu merkezleri",
+    "allArticlesHeading": "Tüm makaleler"
   },
   "storiesPage": {
     "metadata": {

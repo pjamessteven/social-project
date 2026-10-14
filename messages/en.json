@@ -2082,7 +2082,9 @@
     "lastUpdated": "Last updated:",
     "stubNotice": "This page is a stub and will be expanded.",
     "views": "{count, plural, one {# view} other {# views}}",
-    "articleCount": "{count, plural, one {# article} other {# articles}}"
+    "articleCount": "{count, plural, one {# article} other {# articles}}",
+    "hubsHeading": "Topic hubs",
+    "allArticlesHeading": "All articles"
   },
   "storiesPage": {
     "metadata": {

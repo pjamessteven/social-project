@@ -2092,7 +2092,9 @@
     "lastUpdated": "Laatst bijgewerkt:",
     "stubNotice": "Deze pagina is een beginnetje en wordt nog uitgebreid.",
     "views": "{count, plural, one {# weergave} other {# weergaven}}",
-    "articleCount": "{count, plural, one {# artikel} other {# artikelen}}"
+    "articleCount": "{count, plural, one {# artikel} other {# artikelen}}",
+    "hubsHeading": "Themaoverzichten",
+    "allArticlesHeading": "Alle artikelen"
   },
   "storiesPage": {
     "metadata": {

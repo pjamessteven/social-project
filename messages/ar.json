@@ -2085,7 +2085,9 @@
     "lastUpdated": "آخر تحديث:",
     "stubNotice": "هذه الصفحة مختصرة وسيتم توسيعها.",
     "views": "{count, plural, zero {# مشاهدة} one {مشاهدة واحدة} two {مشاهدتان} few {# مشاهدات} many {# مشاهدة} other {# مشاهدة}}",
-    "articleCount": "{count, plural, zero {# مقالات} one {مقال واحد} two {مقالان} few {# مقالات} many {# مقالًا} other {# مقال}}"
+    "articleCount": "{count, plural, zero {# مقالات} one {مقال واحد} two {مقالان} few {# مقالات} many {# مقالًا} other {# مقال}}",
+    "hubsHeading": "مراكز المواضيع",
+    "allArticlesHeading": "جميع المقالات"
   },
   "storiesPage": {
     "metadata": {

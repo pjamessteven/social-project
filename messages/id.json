@@ -2093,7 +2093,9 @@
     "lastUpdated": "Terakhir diperbarui:",
     "stubNotice": "Halaman ini masih rintisan dan akan dikembangkan.",
     "views": "{count, plural, other {# kali dilihat}}",
-    "articleCount": "{count, plural, other {# artikel}}"
+    "articleCount": "{count, plural, other {# artikel}}",
+    "hubsHeading": "Pusat topik",
+    "allArticlesHeading": "Semua artikel"
   },
   "storiesPage": {
     "metadata": {

@@ -2085,7 +2085,9 @@
     "lastUpdated": "Senast uppdaterad:",
     "stubNotice": "Den här sidan är en stub och kommer att byggas ut.",
     "views": "{count, plural, one {# visning} other {# visningar}}",
-    "articleCount": "{count, plural, one {# artikel} other {# artiklar}}"
+    "articleCount": "{count, plural, one {# artikel} other {# artiklar}}",
+    "hubsHeading": "Ämnesöversikter",
+    "allArticlesHeading": "Alla artiklar"
   },
   "storiesPage": {
     "metadata": {

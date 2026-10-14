@@ -2092,7 +2092,9 @@
     "lastUpdated": "Paskutinį kartą atnaujinta:",
     "stubNotice": "Šis puslapis dar nebaigtas ir bus išplėstas.",
     "views": "{count, plural, one {# peržiūra} few {# peržiūros} many {# peržiūros} other {# peržiūrų}}",
-    "articleCount": "{count, plural, one {# straipsnis} few {# straipsniai} other {# straipsnių}}"
+    "articleCount": "{count, plural, one {# straipsnis} few {# straipsniai} other {# straipsnių}}",
+    "hubsHeading": "Temų centrai",
+    "allArticlesHeading": "Visi straipsniai"
   },
   "storiesPage": {
     "metadata": {

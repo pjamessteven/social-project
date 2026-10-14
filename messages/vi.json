@@ -2085,7 +2085,9 @@
     "lastUpdated": "Cập nhật lần cuối:",
     "stubNotice": "Trang này còn sơ khai và sẽ được mở rộng.",
     "views": "{count, plural, other {# lượt xem}}",
-    "articleCount": "{count, plural, other {# bài viết}}"
+    "articleCount": "{count, plural, other {# bài viết}}",
+    "hubsHeading": "Trung tâm chủ đề",
+    "allArticlesHeading": "Tất cả bài viết"
   },
   "storiesPage": {
     "metadata": {

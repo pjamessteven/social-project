@@ -1,4 +1,3 @@
-import { DocsLayout } from "@/app/components/content/DocsLayout";
 import { LinkCard } from "@/app/components/ui/card";
 import { PAGE_TITLE } from "@/app/components/ui/typography";
 import type { LocalizedTopicNode } from "@/app/lib/pages";
@@ -171,6 +170,9 @@ function TopicEntry({
   );
 }
 
+const SECTION_HEADING =
+  "not-prose mb-6 text-2xl leading-tight font-bold sm:text-3xl";
+
 export default async function TopicsHubPage({
   params,
 }: {
@@ -201,27 +203,25 @@ export default async function TopicsHubPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionJsonLd) }}
       />
-      <DocsLayout
-        toc={[]}
-        header={
-          <header>
-            <h1 className={PAGE_TITLE}>{t("title")}</h1>
-            <p className="text-muted-foreground not-prose mt-2 mb-10 text-base">
-              {t("description")}
-            </p>
-          </header>
-        }
-      >
+      <div className="prose dark:prose-invert pb-16 lg:-mx-48 lg:max-w-none lg:pt-8">
+        <header>
+          <h1 className={PAGE_TITLE}>{t("title")}</h1>
+          <p className="text-muted-foreground not-prose mt-2 mb-10 max-w-3xl text-base">
+            {t("description")}
+          </p>
+        </header>
         {tree.length === 0 ? (
           <p className="text-muted-foreground">{t("empty")}</p>
         ) : (
           <>
+            <h2 className={SECTION_HEADING}>{t("hubsHeading")}</h2>
             <HubCards
               tree={tree}
               locale={locale}
               articleCount={(count) => t("articleCount", { count })}
             />
-            <ul className="list-none pl-0">
+            <h2 className={SECTION_HEADING}>{t("allArticlesHeading")}</h2>
+            <ul className="max-w-4xl list-none pl-0">
               {tree.map((node) => (
                 <TopicEntry
                   key={node.path}
@@ -233,7 +233,7 @@ export default async function TopicsHubPage({
             </ul>
           </>
         )}
-      </DocsLayout>
+      </div>
     </>
   );
 }
