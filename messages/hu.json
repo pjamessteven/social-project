@@ -374,7 +374,7 @@
     "subtitle": "Böngészés és vizualizáció {count} egyedi detransition történet és statisztika között azoktól az emberektől, akik megosztották tapasztalataikat az /r/detrans subredditen, amely a legnagyobb nyílt detransition történet- és tapasztalatgyűjtemény az interneten.",
     "disclaimer": {
       "summary": "Ezek a történetek AI segítségével lettek összefoglalva.",
-      "details": "A Redditen az emberek gyakran több hozzászólásban vagy bejegyzésben osztják meg tapasztalataikat. Hogy ezt az információt könnyebben elérhetővé tegyük, az AI összegyűjti ezeket a szétszórt darabokat egyetlen, könnyen olvasható összefoglalóba és idővonalba. Minden rendszer prompt fel van tüntetve a promptok oldalon.",
+      "details": "A Redditen az emberek gyakran több hozzászólásban vagy bejegyzésben osztják meg tapasztalataikat. Hogy ezt az információt könnyebben elérhetővé tegyük, a detrans.ai összegyűjti ezeket a szétszórt darabokat egyetlen, könnyen olvasható összefoglalóba és idővonalba. Minden rendszer prompt fel van tüntetve a promptok oldalon.",
       "accuracy": "Néha az AI hallucinálhat vagy olyan dolgokat állíthat, amelyek nem igazak. De általában az összefoglalt történetek pontos tükrözői az eredeti felhasználói hozzászólásoknak.",
       "inclusion": "Csak azok a felhasználók szerepelnek, akik elég információt osztottak meg ahhoz, hogy teljes történetet és idővonalat lehessen összeállítani. Azok a felhasználók, akik ötnél kevesebb hozzászólást tettek közzé, vagy hozzászólásaik kevesebb mint három upvote-ot kaptak, nem szerepelnek az adatkészletben.",
       "verification": "Minden felhasználót elemeztek a bot által generált vagy nem hiteles tartalom jeleire. Minden fiók, amely nem tűnik valódi detransitionálónak, 'gyanús' jelzést kap. Ezeket a fiókokat manuálisan felülvizsgálják, és eltávolítják a detrans.ai adatkészletéből, ha nem hitelesnek találják őket. Azok a fiókok, amelyek ötnél kevesebb hozzászólást tettek, el lettek távolítva az elemzésből."
@@ -2113,7 +2113,7 @@
       "description": "Olvass el több ezer anonimizált detranzíciós és deszisztenciás történetet az /r/detrans közösségből, MI által összefoglalva. Szűrj kor, nem és tapasztalat szerint."
     },
     "title": "Detranzíciós történetek",
-    "description": "{count, number} anonimizált történet olyan emberektől, akik tranzícióba kezdtek, majd később detranzícionáltak vagy elálltak tőle; a detrans.ai foglalta össze és elemezte őket az /r/detrans oldalon közzétett bejegyzéseik és hozzászólásaik alapján.",
+    "description": "{count, number} anonimizált történet az /r/detrans legaktívabb tagjaitól: olyan emberektől, akik tranzícióba kezdtek, majd később detranzícionáltak vagy elálltak tőle, és bejegyzéseikben és hozzászólásaikban elég sokat megosztottak ahhoz, hogy teljes történetük összeálljon. Mindegyiket a detrans.ai foglalta össze és elemezte.",
     "statsLink": "Statisztikák megtekintése",
     "allStories": "Összes történet",
     "story": {

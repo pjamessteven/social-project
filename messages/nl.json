@@ -373,7 +373,7 @@
     "subtitle": "Bekijk en visualiseer {count} unieke detransitieverhalen en statistieken van mensen die hun ervaringen hebben gedeeld in de /r/detrans subreddit, wat de grootste open verzameling van detransitieverhalen en -ervaringen op het internet is.",
     "disclaimer": {
       "summary": "Deze verhalen zijn samengevat met behulp van AI.",
-      "details": "Op Reddit delen mensen vaak hun ervaringen in meerdere reacties of posts. Om deze informatie toegankelijker te maken, verzamelt onze AI al die verspreide stukjes in één, gemakkelijk te lezen samenvatting en tijdlijn. Alle systeemprompts zijn genoteerd op de prompts-pagina.",
+      "details": "Op Reddit delen mensen vaak hun ervaringen in meerdere reacties of posts. Om deze informatie toegankelijker te maken, verzamelt detrans.ai al die verspreide stukjes in één, gemakkelijk te lezen samenvatting en tijdlijn. Alle systeemprompts zijn genoteerd op de prompts-pagina.",
       "accuracy": "Soms kan AI hallucineren of dingen stellen die niet waar zijn. Maar over het algemeen zijn de samengevatte verhalen nauwkeurige weergaven van de originele reacties van gebruikers.",
       "inclusion": "Alleen gebruikers die genoeg hebben gedeeld om een volledig verhaal en tijdlijn samen te stellen, zijn opgenomen. Gebruikers die minder dan vijf reacties hebben geplaatst of waarvan hun reacties minder dan drie upvotes hebben gekregen, worden niet meegenomen. Posts zijn nog niet opgenomen in de dataset.",
       "verification": "Elke gebruiker is geanalyseerd op tekenen van bot-gegenereerde of niet-authentieke inhoud. Elk account dat niet lijkt op een echte detransitioner, wordt gemarkeerd als 'verdacht'. Deze accounts worden handmatig beoordeeld en verwijderd uit de detrans.ai dataset als ze niet-authentiek blijken te zijn. Accounts die minder dan vijf reacties hebben geplaatst, zijn weggelaten uit de analyse."
@@ -2112,7 +2112,7 @@
       "description": "Lees duizenden geanonimiseerde verhalen over detransitie en desistentie uit de /r/detrans-community, samengevat door AI. Filter op leeftijd, geslacht en ervaring."
     },
     "title": "Detransitieverhalen",
-    "description": "{count, number} geanonimiseerde verhalen van mensen die transitioneerden en later detransitioneerden of afzagen van transitie, samengevat en geanalyseerd door detrans.ai op basis van hun berichten en reacties op /r/detrans.",
+    "description": "{count, number} geanonimiseerde verhalen van de actiefste leden van /r/detrans: mensen die transitioneerden en later detransitioneerden of afzagen van transitie, en die in hun berichten en reacties genoeg hebben gedeeld om een volledig verhaal samen te stellen. Elk verhaal is samengevat en geanalyseerd door detrans.ai.",
     "statsLink": "Bekijk de statistieken",
     "allStories": "Alle verhalen",
     "story": {

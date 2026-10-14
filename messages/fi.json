@@ -374,7 +374,7 @@
     "subtitle": "Selaa ja visualisoi {count} ainutlaatuista detransitiotarinaa ja tilastoa ihmisiltä, jotka ovat jakaneet kokemuksensa /r/detrans-subredditissä, joka on suurin avoin detransitiotarinoiden ja -kokemusten kokoelma internetissä.",
     "disclaimer": {
       "summary": "Nämä tarinat on tiivistetty tekoälyn avulla.",
-      "details": "Redditissä ihmiset jakavat usein kokemuksiaan useissa kommenteissa tai viesteissä. Jotta tämä tieto olisi helpommin saatavilla, tekoälymme kerää kaikki hajallaan olevat osat yhdeksi helposti luettavaksi yhteenvedoksi ja aikajanaksi. Kaikki järjestelmäkyselyt on merkitty kyselysivulle.",
+      "details": "Redditissä ihmiset jakavat usein kokemuksiaan useissa kommenteissa tai viesteissä. Jotta tämä tieto olisi helpommin saatavilla, detrans.ai kerää kaikki hajallaan olevat osat yhdeksi helposti luettavaksi yhteenvedoksi ja aikajanaksi. Kaikki järjestelmäkyselyt on merkitty kyselysivulle.",
       "accuracy": "Joskus tekoäly voi hallusinoida tai väittää asioita, jotka eivät ole totta. Yleensä tiivistetyt tarinat kuitenkin heijastavat tarkasti käyttäjien alkuperäisiä kommentteja.",
       "inclusion": "Vain käyttäjät, jotka ovat jakaneet tarpeeksi kootakseen täydellisen tarinan ja aikajanan, sisällytetään. Käyttäjät, jotka ovat julkaisseet alle viisi kommenttia tai joiden kommentit ovat saaneet alle kolme ääntä, jätetään huomioimatta. Viestit eivät vielä ole mukana aineistossa.",
       "verification": "Jokainen käyttäjä on analysoitu botin tuottaman tai epäaiton sisällön merkkien varalta. Mikä tahansa tili, joka ei näytä olevan aito detransitionoinut henkilö, merkitään 'epäilyttäväksi'. Nämä tilit tarkistetaan manuaalisesti ja poistetaan detrans.ai-aineistosta, jos ne todetaan epäaidoiksi. Tilit, jotka ovat tehneet alle viisi kommenttia, on jätetty analyysin ulkopuolelle."
@@ -2105,7 +2105,7 @@
       "description": "Lue tuhansia anonymisoituja tarinoita detransitiosta ja desistanssista /r/detrans-yhteisöstä tekoälyn tiivistäminä. Suodata iän, sukupuolen ja kokemusten mukaan."
     },
     "title": "Detransitiotarinat",
-    "description": "{count, number} anonymisoitua tarinaa ihmisiltä, jotka transitioivat ja myöhemmin detransitioivat tai luopuivat transitiosta. detrans.ai on tiivistänyt ja analysoinut ne heidän /r/detrans-julkaisuistaan ja -kommenteistaan.",
+    "description": "{count, number} anonymisoitua tarinaa /r/detransin aktiivisimmilta osallistujilta: ihmisiltä, jotka transitioivat ja myöhemmin detransitioivat tai luopuivat transitiosta ja ovat kertoneet julkaisuissaan ja kommenteissaan tarpeeksi, jotta heidän koko tarinansa voidaan koota. detrans.ai on tiivistänyt ja analysoinut jokaisen tarinan.",
     "statsLink": "Tutustu tilastoihin",
     "allStories": "Kaikki tarinat",
     "story": {

@@ -374,7 +374,7 @@
     "subtitle": "Procházejte a vizualizujte {count} jedinečných příběhů a statistik o detranzici lidí, kteří sdíleli své zkušenosti v subredditu /r/detrans, což je největší otevřená sbírka příběhů a zkušeností o detranzici na internetu.",
     "disclaimer": {
       "summary": "Tyto příběhy byly shrnuty pomocí AI.",
-      "details": "Na Redditu lidé často sdílejí své zkušenosti napříč více komentáři nebo příspěvky. Aby byly tyto informace lépe přístupné, naše AI shromažďuje všechny tyto rozptýlené kousky do jednoho, snadno čitelného shrnutí a časové osy. Všechny systémové výzvy jsou uvedeny na stránce výzev.",
+      "details": "Na Redditu lidé často sdílejí své zkušenosti napříč více komentáři nebo příspěvky. Aby byly tyto informace lépe přístupné, detrans.ai shromažďuje všechny tyto rozptýlené kousky do jednoho, snadno čitelného shrnutí a časové osy. Všechny systémové výzvy jsou uvedeny na stránce výzev.",
       "accuracy": "Někdy AI může halucinovat nebo uvádět věci, které nejsou pravdivé. Obecně však shrnuté příběhy přesně odrážejí původní komentáře uživatelů.",
       "inclusion": "Do zahrnutí jsou zařazeni pouze uživatelé, kteří sdíleli dostatek informací pro sestavení úplného příběhu a časové osy. Uživatelé, kteří publikovali méně než pět komentářů, nebo jejichž komentáře obdržely méně než tři pozitivní hodnocení, jsou vynecháni. Příspěvky zatím nejsou zahrnuty v datasetu.",
       "verification": "Každý uživatel byl analyzován na známky botů nebo neautentického obsahu. Každý účet, který nevypadá jako skutečný detranzicionista, je označen jako 'podezřelý'. Tyto účty budou ručně přezkoumány a odstraněny z datasetu detrans.ai, pokud budou shledány jako neautentické. Účty, které učinily méně než pět komentářů, byly vynechány z analýzy."
@@ -2105,7 +2105,7 @@
       "description": "Přečtěte si tisíce anonymizovaných příběhů o detranzici a desistenci z komunity /r/detrans, shrnutých pomocí AI. Filtrujte podle věku, pohlaví a zkušeností."
     },
     "title": "Příběhy detranzice",
-    "description": "{count, number} anonymizovaných příběhů lidí, kteří prošli tranzicí a později detranzicí nebo od ní upustili, shrnutých a analyzovaných detrans.ai z jejich příspěvků a komentářů na /r/detrans.",
+    "description": "{count, number} anonymizovaných příběhů od nejaktivnějších přispěvatelů /r/detrans: lidí, kteří prošli tranzicí a později detranzicí nebo od ní upustili a ve svých příspěvcích a komentářích sdíleli dost na to, aby se dal složit celý příběh. Každý z nich shrnul a analyzoval detrans.ai.",
     "statsLink": "Prozkoumat statistiky",
     "allStories": "Všechny příběhy",
     "story": {

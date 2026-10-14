@@ -373,7 +373,7 @@
     "subtitle": "Naršykite ir vizualizuokite {count} unikalių detranzicijos istorijų ir statistiką žmonių, kurie pasidalino savo patirtimi /r/detrans subreddite, kuris yra didžiausia atviro detranzicijos istorijų ir patirčių kolekcija internete.",
     "disclaimer": {
       "summary": "Šios istorijos buvo santrauktos naudojant AI.",
-      "details": "Reddite žmonės dažnai dalijasi savo patirtimi keliuose komentaruose ar įrašuose. Kad ši informacija būtų labiau prieinama, mūsų AI surenka visus tuos išsklaidytus fragmentus į vieną, lengvai skaitomą santrauką ir laiko juostą. Visi sistemos raginimai pažymėti raginimų puslapyje.",
+      "details": "Reddite žmonės dažnai dalijasi savo patirtimi keliuose komentaruose ar įrašuose. Kad ši informacija būtų labiau prieinama, detrans.ai surenka visus tuos išsklaidytus fragmentus į vieną, lengvai skaitomą santrauką ir laiko juostą. Visi sistemos raginimai pažymėti raginimų puslapyje.",
       "accuracy": "Kartais AI gali haliucinuoti ar teigti dalykus, kurie nėra tiesa. Bet apskritai santrauktos istorijos yra tikslūs originalių vartotojų komentarų atspindžiai.",
       "inclusion": "Įtraukiami tik tie vartotojai, kurie pasidalijo pakankamai, kad sudarytų pilną istoriją ir laiko juostą. Vartotojai, kurie paskelbė mažiau nei penkis komentarus arba kurių komentarai gavo mažiau nei tris teigiamus balsus, yra nepaisomi. Įrašai dar nėra įtraukti į duomenų rinkinį.",
       "verification": "Kiekvienas vartotojas buvo analizuojamas dėl robotų sugeneruoto ar neautentiško turinio požymių. Bet kokia paskyra, kuri neatrodo kaip tikras detranzicionierius, yra pažymima 'įtartina'. Šios paskyros bus rankiniu būdu peržiūrėtos ir pašalintos iš detrans.ai duomenų rinkinio, jei jos pasirodys esančios neautentiškos. Paskyros, kurios paskelbė mažiau nei penkis komentarus, buvo išbrauktos iš analizės."
@@ -2112,7 +2112,7 @@
       "description": "Skaitykite tūkstančius anonimizuotų detranzicijos ir atsisakymo istorijų iš /r/detrans bendruomenės, apibendrintų DI. Filtruokite pagal amžių, lytį ir patirtį."
     },
     "title": "Detranzicijos istorijos",
-    "description": "{count, number} anonimizuotų istorijų žmonių, kurie atliko perėjimą, o vėliau detranzicionavo arba jo atsisakė; detrans.ai jas apibendrino ir išanalizavo pagal jų įrašus ir komentarus /r/detrans.",
+    "description": "{count, number} anonimizuotų istorijų iš aktyviausių /r/detrans dalyvių: žmonių, kurie atliko perėjimą, o vėliau detranzicionavo arba jo atsisakė, ir savo įrašuose bei komentaruose pasidalijo pakankamai, kad būtų galima sudėlioti visą istoriją. Kiekvieną jų apibendrino ir išanalizavo detrans.ai.",
     "statsLink": "Peržiūrėti statistiką",
     "allStories": "Visos istorijos",
     "story": {

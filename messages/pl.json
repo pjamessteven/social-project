@@ -374,7 +374,7 @@
     "subtitle": "Przeglądaj i wizualizuj {count} unikalnych historii i statystyk detransycji osób, które podzieliły się swoimi doświadczeniami w subreddicie /r/detrans, który jest największym otwartym zbiorem historii i doświadczeń detransycji w internecie.",
     "disclaimer": {
       "summary": "Te historie zostały podsumowane przy użyciu AI.",
-      "details": "Na Reddicie ludzie często dzielą się swoimi doświadczeniami w wielu komentarzach lub postach. Aby uczynić te informacje bardziej dostępnymi, nasza AI gromadzi wszystkie te rozproszone fragmenty w jedno, łatwe do przeczytania podsumowanie i oś czasu. Wszystkie prompty systemowe są zanotowane na stronie z promptami.",
+      "details": "Na Reddicie ludzie często dzielą się swoimi doświadczeniami w wielu komentarzach lub postach. Aby uczynić te informacje bardziej dostępnymi, detrans.ai gromadzi wszystkie te rozproszone fragmenty w jedno, łatwe do przeczytania podsumowanie i oś czasu. Wszystkie prompty systemowe są zanotowane na stronie z promptami.",
       "accuracy": "Czasami AI może halucynować lub stwierdzać rzeczy, które nie są prawdziwe. Ale ogólnie rzecz biorąc, podsumowane historie są dokładnym odzwierciedleniem oryginalnych komentarzy użytkowników.",
       "inclusion": "Uwzględnieni są tylko użytkownicy, którzy podzielili się wystarczająco dużo, aby stworzyć pełną historię i oś czasu. Użytkownicy, którzy opublikowali mniej niż pięć komentarzy lub których komentarze otrzymały mniej niż trzy głosy, są pomijani. Posty nie są jeszcze uwzględnione w zbiorze danych.",
       "verification": "Każdy użytkownik został przeanalizowany pod kątem oznak treści generowanych przez boty lub nieautentycznych. Każde konto, które nie wydaje się być autentyczną osobą po detransycji, jest oznaczone jako 'podejrzane'. Te konta zostaną ręcznie przejrzane i usunięte ze zbioru danych detrans.ai, jeśli okażą się nieautentyczne. Konta, które opublikowały mniej niż pięć komentarzy, zostały pominięte w analizie."
@@ -2113,7 +2113,7 @@
       "description": "Przeczytaj tysiące zanonimizowanych historii detranzycji i desystencji ze społeczności /r/detrans, podsumowanych przez AI. Filtruj według wieku, płci i doświadczeń."
     },
     "title": "Historie detranzycji",
-    "description": "{count, number} zanonimizowanych historii osób, które przeszły tranzycję, a później detranzycję lub się z niej wycofały, podsumowanych i przeanalizowanych przez detrans.ai na podstawie ich postów i komentarzy na /r/detrans.",
+    "description": "{count, number} zanonimizowanych historii najaktywniejszych użytkowników /r/detrans: osób, które przeszły tranzycję, a później detranzycję lub się z niej wycofały, i które w swoich postach i komentarzach podzieliły się wystarczająco wieloma informacjami, by odtworzyć pełną historię. Każdą podsumowało i przeanalizowało detrans.ai.",
     "statsLink": "Zobacz statystyki",
     "allStories": "Wszystkie historie",
     "story": {

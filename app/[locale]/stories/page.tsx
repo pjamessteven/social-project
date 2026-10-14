@@ -81,7 +81,7 @@ export default async function StoriesPage({
 
   return (
     // Wide layout like /videos so the story grid fits three columns.
-    <div className="pb-16 lg:pt-8 xl:-mx-48">
+    <div className="pb-16 lg:-mx-16 lg:pt-8 xl:-mx-48">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
@@ -89,7 +89,7 @@ export default async function StoriesPage({
       <div>
         <h1 className={PAGE_TITLE}>{t("title")}</h1>
         <IntroWithSeeAlso
-          className="mt-6"
+          className="mt-8"
           title={t("seeAlso.title")}
           links={[
             {
@@ -113,19 +113,20 @@ export default async function StoriesPage({
             },
           ]}
         >
-          <p className="text-muted-foreground text-base">
+          <p className="text-muted-foreground text-base leading-relaxed">
             {t("description", { count: storyCount })}
           </p>
 
-          <details className="text-muted-foreground mt-4 text-base">
+          {/* AI disclaimer: collapsible on phones, inline from md up */}
+          <details className="text-muted-foreground mt-4 text-base md:hidden">
             <summary className="cursor-pointer italic">
               {tDisclaimer("summary")}
             </summary>
-            <div className="mt-2 space-y-2">
-              <p>{tDisclaimer("details")}</p>
-              <p>{tDisclaimer("accuracy")}</p>
-            </div>
+            <p className="mt-2">{tDisclaimer("details")}</p>
           </details>
+          <p className="text-muted-foreground mt-4 hidden text-base leading-relaxed md:block">
+            {tDisclaimer("details")}
+          </p>
         </IntroWithSeeAlso>
 
         <div className="mt-10">

@@ -374,7 +374,7 @@
     "subtitle": "Bla gjennom og visualiser {count} unike detransisjonshistorier og statistikk fra personer som har delt sine erfaringer i /r/detrans-subredditen, som er den største åpne samlingen av detransisjonshistorier og erfaringer på internett.",
     "disclaimer": {
       "summary": "Disse historiene er oppsummert ved hjelp av AI.",
-      "details": "På Reddit deler mennesker ofte sine erfaringer på tvers av flere kommentarer eller innlegg. For å gjøre denne informasjonen mer tilgjengelig, samler AI-en vår alle disse spredte delene i en enkelt, lettlest oppsummering og tidslinje. Alle systemspørringer er notert på spørringssiden.",
+      "details": "På Reddit deler mennesker ofte sine erfaringer på tvers av flere kommentarer eller innlegg. For å gjøre denne informasjonen mer tilgjengelig, samler detrans.ai alle disse spredte delene i en enkelt, lettlest oppsummering og tidslinje. Alle systemspørringer er notert på spørringssiden.",
       "accuracy": "Noen ganger kan AI hallusinere eller uttale seg om ting som ikke er sanne. Men generelt er de oppsummerte historiene nøyaktige gjenspeilinger av brukernes opprinnelige kommentarer.",
       "inclusion": "Bare brukere som har delt nok til å sette sammen en fullstendig historie og tidslinje er inkludert. Brukere som har postet færre enn fem kommentarer eller deres kommentarer som fikk færre enn tre upvotes, blir oversett. Innlegg er ennå ikke inkludert i datasettet.",
       "verification": "Hver bruker er analysert for tegn på bot-generert eller uekte innhold. Enhver konto som ikke ser ut til å være en ekte detransisjonert, blir merket 'mistenksom'. Disse kontoene vil bli manuelt gjennomgått og fjernet fra detrans.ai-datasettet hvis de viser seg å være uekte. Kontoer som har gjort færre enn fem kommentarer er utelatt fra analysen."
@@ -2113,7 +2113,7 @@
       "description": "Les tusenvis av anonymiserte historier om detransisjon og desistens fra /r/detrans-fellesskapet, oppsummert av KI. Filtrer etter alder, kjønn og erfaring."
     },
     "title": "Detransisjonshistorier",
-    "description": "{count, number} anonymiserte historier fra mennesker som transisjonerte og senere detransisjonerte eller desisterte, oppsummert og analysert av detrans.ai ut fra innleggene og kommentarene deres på /r/detrans.",
+    "description": "{count, number} anonymiserte historier fra de mest aktive bidragsyterne på /r/detrans: mennesker som transisjonerte og senere detransisjonerte eller desisterte, og som har delt nok i innleggene og kommentarene sine til at hele historien kan settes sammen. Hver historie er oppsummert og analysert av detrans.ai.",
     "statsLink": "Utforsk statistikken",
     "allStories": "Alle historier",
     "story": {

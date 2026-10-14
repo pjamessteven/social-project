@@ -374,7 +374,7 @@
     "subtitle": "Duyệt và trực quan hóa {count} câu chuyện và thống kê chuyển giới trở lại độc đáo của những ngưởi đã chia sẻ kinh nghiệm của họ trong subreddit /r/detrans, là bộ sưu tập câu chuyện và kinh nghiệm chuyển giới trở lại mở lớn nhất trên internet.",
     "disclaimer": {
       "summary": "Những câu chuyện này đã được tóm tắt bằng AI.",
-      "details": "Trên Reddit, ngưởi thường chia sẻ kinh nghiệm của họ qua nhiều bình luận hoặc bài đăng. Để làm cho thông tin này dễ tiếp cận hơn, AI của chúng tôi thu thập tất cả những mảnh thông tin rải rác đó thành một bản tóm tắt và dòng thời gian dễ đọc. Tất cả lệnh hệ thống được ghi chú trên trang lệnh.",
+      "details": "Trên Reddit, ngưởi thường chia sẻ kinh nghiệm của họ qua nhiều bình luận hoặc bài đăng. Để làm cho thông tin này dễ tiếp cận hơn, detrans.ai thu thập tất cả những mảnh thông tin rải rác đó thành một bản tóm tắt và dòng thời gian dễ đọc. Tất cả lệnh hệ thống được ghi chú trên trang lệnh.",
       "accuracy": "Đôi khi AI có thể ảo giác hoặc nói những điều không đúng sự thật. Nhưng nhìn chung, các câu chuyện tóm tắt phản ánh chính xác các bình luận gốc của ngưởi dùng.",
       "inclusion": "Chỉ những ngưởi dùng đã chia sẻ đủ để tạo thành một câu chuyện và dòng thời gian đầy đủ mới được đưa vào. Ngưởi dùng đã đăng ít hơn năm bình luận hoặc các bình luận của họ nhận được ít hơn ba lượt upvote sẽ bị bỏ qua. Các bài đăng chưa được đưa vào tập dữ liệu.",
       "verification": "Mỗi ngưởi dùng đã được phân tích để tìm dấu hiệu của nội dung do bot tạo ra hoặc không xác thực. Bất kỳ tài khoản nào không có vẻ là ngưởi chuyển giới trở lại thực sự sẽ được gắn cờ 'đáng ngờ'. Các tài khoản này sẽ được xem xét thủ công và loại bỏ khỏi tập dữ liệu detrans.ai nếu được tìm thấy là không xác thực. Các tài khoản đã đăng ít hơn năm bình luận đã bị loại khỏi phân tích."
@@ -2105,7 +2105,7 @@
       "description": "Đọc hàng nghìn câu chuyện ẩn danh về chuyển giới ngược và từ bỏ chuyển giới từ cộng đồng /r/detrans, được AI tóm tắt. Lọc theo độ tuổi, giới tính và trải nghiệm."
     },
     "title": "Câu chuyện chuyển giới ngược",
-    "description": "{count, number} câu chuyện ẩn danh của những người đã chuyển giới rồi sau đó detransition hoặc từ bỏ, được detrans.ai tóm tắt và phân tích từ các bài đăng và bình luận của họ trên /r/detrans.",
+    "description": "{count, number} câu chuyện ẩn danh từ những thành viên tích cực nhất của /r/detrans: những người đã chuyển giới rồi sau đó detransition hoặc từ bỏ, và đã chia sẻ đủ nhiều trong các bài đăng và bình luận để ghép lại thành một câu chuyện trọn vẹn. Mỗi câu chuyện đều được detrans.ai tóm tắt và phân tích.",
     "statsLink": "Khám phá số liệu thống kê",
     "allStories": "Tất cả câu chuyện",
     "story": {

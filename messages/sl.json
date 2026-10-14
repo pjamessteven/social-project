@@ -374,7 +374,7 @@
     "subtitle": "Brskajte in vizualizirajte {count} edinstvenih zgodb in statistiko o detranziciji ljudi, ki so delili svoje izkušnje v podreddit-u /r/detrans, kar je največja odprta zbirka zgodb in izkušenj o detranziciji na internetu.",
     "disclaimer": {
       "summary": "Te zgodbe so bile povzete z uporabo umetne inteligence.",
-      "details": "Na Redditu ljudje pogosto delijo svoje izkušnje v več komentarjih ali objavah. Da bi te informacije naredili bolj dostopne, naša umetna inteligenca zbere vse te razpršene dele v enoten, enostaven za branje povzetek in časovnico. Vsi sistemski pozivi so navedeni na strani s pozivi.",
+      "details": "Na Redditu ljudje pogosto delijo svoje izkušnje v več komentarjih ali objavah. Da bi te informacije naredili bolj dostopne, detrans.ai zbere vse te razpršene dele v enoten, enostaven za branje povzetek in časovnico. Vsi sistemski pozivi so navedeni na strani s pozivi.",
       "accuracy": "Včasih lahko umetna inteligenca halucinira ali navaja stvari, ki niso resnične. Toda na splošno so povzete zgodbe točne odsevi izvirnih komentarjev uporabnikov.",
       "inclusion": "Vključeni so samo uporabniki, ki so delili dovolj, da se sestavi celotna zgodba in časovnica. Uporabniki, ki so objavili manj kot pet komentarjev, ali njihovi komentarji, ki so prejeli manj kot tri pozitivne ocene, so prezrti. Objave še niso vključene v nabor podatkov.",
       "verification": "Vsak uporabnik je bil analiziran glede na znake vsebine, ustvarjene s strani botov ali neavtentične vsebine. Vsak račun, ki se ne zdi pristen detranzicionar, je označen kot 'sumljiv'. Ti računi bodo ročno pregledani in odstranjeni iz nabora podatkov detrans.ai, če se ugotovi, da niso pristni. Računi, ki so naredili manj kot pet komentarjev, so izključeni iz analize."
@@ -2105,7 +2105,7 @@
       "description": "Preberite na tisoče anonimiziranih zgodb o detranziciji in desistenci iz skupnosti /r/detrans, ki jih je povzela UI. Filtrirajte po starosti, spolu in izkušnjah."
     },
     "title": "Zgodbe o detranziciji",
-    "description": "{count, number} anonimiziranih zgodb ljudi, ki so opravili tranzicijo in pozneje detranzicijo ali odstopili od nje, ki jih je detrans.ai povzel in analiziral na podlagi njihovih objav in komentarjev na /r/detrans.",
+    "description": "{count, number} anonimiziranih zgodb najdejavnejših članov /r/detrans: ljudi, ki so opravili tranzicijo in pozneje detranzicijo ali odstopili od nje ter v svojih objavah in komentarjih delili dovolj, da je mogoče sestaviti celotno zgodbo. Vsako je povzel in analiziral detrans.ai.",
     "statsLink": "Raziščite statistiko",
     "allStories": "Vse zgodbe",
     "story": {

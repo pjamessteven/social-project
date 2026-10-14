@@ -373,7 +373,7 @@
     "subtitle": "İnternetteki en büyük açık detransisyon hikayeleri ve deneyimleri koleksiyonu olan /r/detrans altreddit'inde deneyimlerini paylaşan {count} benzersiz detransisyon hikayesi ve istatistiğine göz atın ve görselleştirin.",
     "disclaimer": {
       "summary": "Bu hikayeler AI kullanılarak özetlenmiştir.",
-      "details": "Reddit'te insanlar genellikle deneyimlerini birden fazla yorum veya gönderide paylaşır. Bu bilgileri daha erişilebilir hale getirmek için, AI'mız dağınık olan tüm parçaları tek, okunması kolay bir özet ve zaman çizelgesine toplar. Tüm sistem istemleri istemler sayfasında not edilmiştir.",
+      "details": "Reddit'te insanlar genellikle deneyimlerini birden fazla yorum veya gönderide paylaşır. Bu bilgileri daha erişilebilir hale getirmek için, detrans.ai dağınık olan tüm parçaları tek, okunması kolay bir özet ve zaman çizelgesine toplar. Tüm sistem istemleri istemler sayfasında not edilmiştir.",
       "accuracy": "Bazen AI halüsinasyon görebilir veya doğru olmayan şeyler söyleyebilir. Ancak genel olarak, özetlenen hikayeler kullanıcıların orijinal yorumlarının doğru yansımalarıdır.",
       "inclusion": "Yalnızca tam bir hikaye ve zaman çizelgesi oluşturmak için yeterli bilgi paylaşan kullanıcılar dahil edilir. Beşten az yorum yapmış veya yorumları üçten az beğeni almış kullanıcılar dikkate alınmaz. Gönderiler henüz veri setine dahil edilmemiştir.",
       "verification": "Her kullanıcı bot tarafından oluşturulan veya sahte içerik işaretleri açısından analiz edilmiştir. Gerçek bir detransitioner gibi görünmeyen herhangi bir hesap 'şüpheli' olarak işaretlenir. Bu hesaplar manuel olarak incelenecek ve sahte bulunurlarsa detrans.ai veri setinden kaldırılacaktır. Beşten az yorum yapmış hesaplar analizden çıkarılmıştır."
@@ -2104,7 +2104,7 @@
       "description": "/r/detrans topluluğundan, yapay zekâ ile özetlenmiş binlerce anonim detransition ve vazgeçme hikâyesini okuyun. Yaşa, cinsiyete ve deneyime göre filtreleyin."
     },
     "title": "Detransition Hikâyeleri",
-    "description": "Geçiş yapıp daha sonra detransition yapan ya da vazgeçen kişilerden {count, number} anonimleştirilmiş hikâye; detrans.ai tarafından /r/detrans'taki gönderi ve yorumlarından özetlenip analiz edildi.",
+    "description": "/r/detrans'ın en aktif üyelerinden {count, number} anonimleştirilmiş hikâye: geçiş yapıp daha sonra detransition yapan ya da vazgeçen ve gönderi ile yorumlarında hikâyelerinin tamamını oluşturmaya yetecek kadar paylaşımda bulunan kişiler. Her biri detrans.ai tarafından özetlenip analiz edildi.",
     "statsLink": "İstatistikleri keşfedin",
     "allStories": "Tüm hikâyeler",
     "story": {

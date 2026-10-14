@@ -35,20 +35,20 @@ export default async function SeoVideosList({ locale }: SeoVideosListProps) {
   const localizedVideos = await db
     .select({
       id: videos.id,
-      title: sql<string>`COALESCE(${videos.titleTranslation}->>${locale}, ${videos.title})`,
+      title: sql<string>`COALESCE((${videos.titleTranslation})::jsonb->>${locale}, ${videos.title})`,
       author: videos.author,
       sex: videos.sex,
       url: videos.url,
       type: videos.type,
       description: sql<
         string | null
-      >`COALESCE(${videos.descriptionTranslation}->>${locale}, ${videos.description})`,
+      >`COALESCE((${videos.descriptionTranslation})::jsonb->>${locale}, ${videos.description})`,
       summary: sql<
         string | null
-      >`COALESCE(${videos.summaryTranslation}->>${locale}, ${videos.summary})`,
+      >`COALESCE((${videos.summaryTranslation})::jsonb->>${locale}, ${videos.summary})`,
       bite: sql<
         string | null
-      >`COALESCE(${videos.biteTranslation}->>${locale}, ${videos.bite})`,
+      >`COALESCE((${videos.biteTranslation})::jsonb->>${locale}, ${videos.bite})`,
     })
     .from(videos)
     .where(eq(videos.processed, true))

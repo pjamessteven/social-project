@@ -151,7 +151,7 @@ export default async function StudiesPage({
   // topic and method page is linked from the index.
   if (bot) {
     return (
-      <div className="prose dark:prose-invert pb-16 lg:-mx-48 lg:max-w-none lg:pt-8">
+      <div className="prose dark:prose-invert pb-16 lg:-mx-16 lg:max-w-none lg:pt-8 xl:-mx-48">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
@@ -179,7 +179,7 @@ export default async function StudiesPage({
   }
 
   return (
-    <div className="prose dark:prose-invert pb-16 lg:-mx-48 lg:max-w-none lg:pt-8">
+    <div className="prose dark:prose-invert pb-16 lg:-mx-16 lg:max-w-none lg:pt-8 xl:-mx-48">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}

@@ -70,10 +70,10 @@ export default async function VideosPage({
     return <SeoVideosList locale={locale} />;
   }
   return (
-    <div className="prose dark:prose-invert pb-16 lg:-mx-48 lg:max-w-none lg:pt-8">
+    <div className="prose dark:prose-invert pb-16 lg:-mx-16 lg:max-w-none lg:pt-8 xl:-mx-48">
       <h1 className={PAGE_TITLE}>{t("title")}</h1>
 
-      <p className="text-muted-foreground max-w-3xl">
+      <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
         {t("description.line1")}
         <br className="hidden md:inline" /> {t("description.line2")}
       </p>

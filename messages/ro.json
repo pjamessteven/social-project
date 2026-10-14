@@ -374,7 +374,7 @@
     "subtitle": "Răsfoiește și vizualizează {count} povești și statistici unice despre detransiție ale persoanelor care și-au împărtășit experiențele în subredditul /r/detrans, care este cea mai mare colecție deschisă de povești și experiențe despre detransiție de pe internet.",
     "disclaimer": {
       "summary": "Aceste povești au fost rezumate folosind AI.",
-      "details": "Pe Reddit, oamenii își împărtășesc adesea experiențele în multiple comentarii sau postări. Pentru a face această informație mai accesibilă, AI-ul nostru adună toate acele bucăți dispersate într-un singur rezumat ușor de citit și cronologie. Toate prompt-urile de sistem sunt notate pe pagina de prompt-uri.",
+      "details": "Pe Reddit, oamenii își împărtășesc adesea experiențele în multiple comentarii sau postări. Pentru a face această informație mai accesibilă, detrans.ai adună toate acele bucăți dispersate într-un singur rezumat ușor de citit și cronologie. Toate prompt-urile de sistem sunt notate pe pagina de prompt-uri.",
       "accuracy": "Uneori AI-ul poate halucina sau afirma lucruri care nu sunt adevărate. Dar în general, povestirile rezumate sunt reflectări exacte ale comentariilor originale ale utilizatorilor.",
       "inclusion": "Doar utilizatorii care au împărtășit suficient pentru a putea alcătui o poveste completă și cronologie sunt incluși. Utilizatorii care au postat mai puțin de cinci comentarii sau comentariile lor care au primit mai puțin de trei voturi pozitive sunt ignorate. Postările nu sunt încă incluse în setul de date.",
       "verification": "Fiecare utilizator a fost analizat pentru semne de conținut generat de roboți sau neautentic. Orice cont care nu pare a fi un detransitioner autentic este marcat 'suspect'. Aceste conturi vor fi revizuite manual și înlăturate din setul de date detrans.ai dacă se constată că sunt neautentice. Conturile care au făcut mai puțin de cinci comentarii au fost omise din analiză."
@@ -2105,7 +2105,7 @@
       "description": "Citește mii de povești anonimizate de detranziție și desistență din comunitatea /r/detrans, rezumate de AI. Filtrează după vârstă, sex și experiență."
     },
     "title": "Povești de detranziție",
-    "description": "{count, number} povești anonimizate ale unor persoane care au făcut tranziția și ulterior au detranziționat sau au renunțat, rezumate și analizate de detrans.ai pe baza postărilor și comentariilor lor de pe /r/detrans.",
+    "description": "{count, number} povești anonimizate ale celor mai activi membri /r/detrans: persoane care au făcut tranziția și ulterior au detranziționat sau au renunțat, și care au împărtășit suficient în postările și comentariile lor pentru a reconstitui o poveste completă. Fiecare este rezumată și analizată de detrans.ai.",
     "statsLink": "Explorează statisticile",
     "allStories": "Toate poveștile",
     "story": {

@@ -374,7 +374,7 @@
     "subtitle": "Jelajahi dan visualisasikan {count} cerita dan statistik berhenti transisi unik dari orang-orang yang telah berbagi pengalaman mereka di subreddit /r/detrans, yang merupakan koleksi cerita dan pengalaman berhenti transisi terbuka terbesar di internet.",
     "disclaimer": {
       "summary": "Cerita-cerita ini telah diringkas menggunakan AI.",
-      "details": "Di Reddit, orang sering berbagi pengalaman mereka di berbagai komentar atau postingan. Untuk membuat informasi ini lebih mudah diakses, AI kami mengumpulkan semua potongan tersebar menjadi satu ringkasan dan garis waktu yang mudah dibaca. Semua prompt sistem dicatat di halaman prompt.",
+      "details": "Di Reddit, orang sering berbagi pengalaman mereka di berbagai komentar atau postingan. Untuk membuat informasi ini lebih mudah diakses, detrans.ai mengumpulkan semua potongan tersebar menjadi satu ringkasan dan garis waktu yang mudah dibaca. Semua prompt sistem dicatat di halaman prompt.",
       "accuracy": "Kadang AI dapat menghasilkan halusinasi atau menyatakan hal-hal yang tidak benar. Namun secara umum, cerita yang diringkas adalah refleksi yang akurat dari komentar asli oleh pengguna.",
       "inclusion": "Hanya pengguna yang telah berbagi cukup untuk menyusun cerita dan garis waktu lengkap yang disertakan. Pengguna yang telah memposting kurang dari lima komentar atau komentar mereka yang menerima kurang dari tiga upvote diabaikan. Postingan belum termasuk dalam dataset.",
       "verification": "Setiap pengguna telah dianalisis untuk tanda-tanda konten yang dibuat bot atau tidak otentik. Akun apa pun yang tidak tampak seperti orang yang berhenti transisi yang sebenarnya ditandai 'mencurigakan'. Akun-akun ini akan ditinjau secara manual dan dihapus dari dataset detrans.ai jika ditemukan tidak otentik. Akun yang telah membuat kurang dari lima komentar dihilangkan dari analisis."
@@ -2113,7 +2113,7 @@
       "description": "Baca ribuan kisah detransisi dan desistensi yang dianonimkan dari komunitas /r/detrans, dirangkum oleh AI. Saring berdasarkan usia, jenis kelamin, dan pengalaman."
     },
     "title": "Kisah Detransisi",
-    "description": "{count, number} kisah anonim dari orang-orang yang bertransisi lalu kemudian melakukan detransisi atau berhenti, dirangkum dan dianalisis oleh detrans.ai dari unggahan dan komentar mereka di /r/detrans.",
+    "description": "{count, number} kisah anonim dari kontributor paling aktif di /r/detrans: orang-orang yang bertransisi lalu kemudian melakukan detransisi atau berhenti, dan telah cukup banyak berbagi di unggahan serta komentar mereka sehingga kisah lengkapnya bisa disusun. Setiap kisah dirangkum dan dianalisis oleh detrans.ai.",
     "statsLink": "Jelajahi statistik",
     "allStories": "Semua kisah",
     "story": {

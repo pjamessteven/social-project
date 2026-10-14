@@ -373,7 +373,7 @@
     "subtitle": "Sfoglia e visualizza {count} storie e statistiche uniche di detransition di persone che hanno condiviso le loro esperienze nel subreddit /r/detrans, che è la più grande collezione aperta di storie ed esperienze di detransition su internet.",
     "disclaimer": {
       "summary": "Queste storie sono state riassunte usando l'IA.",
-      "details": "Su Reddit, le persone spesso condividono le loro esperienze attraverso più commenti o post. Per rendere queste informazioni più accessibili, la nostra IA raccoglie tutti quei pezzi sparsi in un singolo riassunto facile da leggere e una cronologia. Tutti i prompt di sistema sono indicati nella pagina dei prompt.",
+      "details": "Su Reddit, le persone spesso condividono le loro esperienze attraverso più commenti o post. Per rendere queste informazioni più accessibili, detrans.ai raccoglie tutti quei pezzi sparsi in un singolo riassunto facile da leggere e una cronologia. Tutti i prompt di sistema sono indicati nella pagina dei prompt.",
       "accuracy": "A volte l'IA può allucinare o affermare cose che non sono vere. Ma generalmente, le storie riassunte sono riflessioni accurate dei commenti originali degli utenti.",
       "inclusion": "Sono inclusi solo gli utenti che hanno condiviso abbastanza per mettere insieme una storia completa e una cronologia. Gli utenti che hanno pubblicato meno di cinque commenti o i cui commenti hanno ricevuto meno di tre upvote sono esclusi. I post non sono ancora inclusi nel dataset.",
       "verification": "Ogni utente è stato analizzato per segni di contenuto generato da bot o non autentico. Qualsiasi account che non sembra essere un'autentica persona che ha fatto detransition è contrassegnato come 'sospetto'. Questi account saranno rivisti manualmente e rimossi dal dataset di detrans.ai se trovati non autentici. Gli account che hanno fatto meno di cinque commenti sono stati omessi dall'analisi."
@@ -2112,7 +2112,7 @@
       "description": "Leggi migliaia di storie anonimizzate di detransizione e desistenza dalla community /r/detrans, riassunte dall’IA. Filtra per età, sesso ed esperienza."
     },
     "title": "Storie di detransizione",
-    "description": "{count, number} storie anonimizzate di persone che hanno fatto la transizione e in seguito hanno detransizionato o desistito, riassunte e analizzate da detrans.ai a partire dai loro post e commenti su /r/detrans.",
+    "description": "{count, number} storie anonimizzate dei membri più attivi di /r/detrans: persone che hanno fatto la transizione e in seguito hanno detransizionato o desistito, e che hanno condiviso abbastanza nei loro post e commenti da ricostruire una storia completa. Ognuna è riassunta e analizzata da detrans.ai.",
     "statsLink": "Esplora le statistiche",
     "allStories": "Tutte le storie",
     "story": {

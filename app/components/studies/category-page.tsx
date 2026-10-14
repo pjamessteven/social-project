@@ -151,7 +151,7 @@ export async function StudyCategoryPage({
   };
 
   return (
-    <div className="pb-16 lg:-mx-48 lg:pt-8">
+    <div className="pb-16 lg:-mx-16 lg:pt-8 xl:-mx-48">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
