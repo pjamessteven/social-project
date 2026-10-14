@@ -1,5 +1,6 @@
 "use server";
 
+import { PAGE_TITLE } from "@/app/components/ui/typography";
 import { generateVideoSlug } from "@/app/lib/video-utils";
 import { db } from "@/db";
 import { videos } from "@/db/schema";
@@ -69,7 +70,7 @@ export default async function SeoVideosList({ locale }: SeoVideosListProps) {
 
   return (
     <div className="prose dark:prose-invert pb-16 lg:max-w-none lg:pt-8">
-      <h1 className="text-3xl font-bold">{t("title")}</h1>
+      <h1 className={PAGE_TITLE}>{t("title")}</h1>
 
       <p className="text-muted-foreground max-w-3xl">{t("description")}</p>
 

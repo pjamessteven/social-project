@@ -1640,9 +1640,14 @@
       "count": "n = {n}",
       "tooltip": "سن {age}: {count, plural, =1 {یک داستان} other {# داستان}}",
       "yearsTooltip": "{years, plural, =1 {یک سال} other {# سال}} در ترنزیشن: {count, plural, =1 {یک داستان} other {# داستان}}",
-      "basedOn": "هر ردیف فقط داستان‌هایی را می‌شمارد که آن سن را ذکر کرده‌اند. محور در صدک 99 بریده شده است.",
+      "basedOn": "هر ردیف فقط داستان‌هایی را می‌شمارد که آن سن را ذکر کرده‌اند. سنین بالای ۴۵ نشان داده نمی‌شوند.",
       "empty": "هنوز برای فیلترهای فعلی داده خط زمانی وجود ندارد.",
-      "error": "بارگذاری داده‌های مسیر ممکن نشد"
+      "error": "بارگذاری داده‌های مسیر ممکن نشد",
+      "curvesTitle": "سن هنگام گذار و بازگشت از گذار",
+      "curvesDescription": "سهم داستان‌هایی که هر سن را برای گذار و بازگشت از گذار ذکر می‌کنند. خط‌چین‌ها میانه‌ها را نشان می‌دهند.",
+      "curvesTooltip": "سن {age}",
+      "curvesStories": "{count, plural, =1 {۱ داستان} other {# داستان}}",
+      "curvesNote": "هر خط فقط داستان‌هایی را می‌شمارد که آن سن را ذکر کرده‌اند. سنین بالای ۴۵ نشان داده نمی‌شوند."
     },
     "gradient": {
       "regret": "پشیمانی",
@@ -1725,22 +1730,41 @@
         "regretLadder": "پشیمانی و مراحل پزشکی",
         "improvement": "زندگی پس از دترنزیشن",
         "journey": "مسیر معمول",
+        "durationBySex": "مدت گذار",
         "minorShare": "شروع پیش از 18 سالگی",
-        "minorLe15": "شروع در 15 سالگی یا کمتر",
         "minorDysphoria": "نخستین دیسفوریا تا 12 سالگی",
         "minorFemale": "چه کسانی زود شروع می‌کنند",
+        "reasonsBySex": "دلایل اصلی گذار",
+        "therapyMentalHealth": "درمان اکتشافی کمک کرد",
+        "criticalOfTransition": "دیدگاه درباره گذار",
         "orientation": "گرایش جنسی"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "{unclear}% دیگر نامشخص‌اند.",
+      "prevalenceByFeature": {
+        "took_hormones": "{percent}% از داستان‌ها اشاره می‌کنند که هورمون‌های جنس مخالف مصرف کرده‌اند (n = {n}).",
+        "mh_generic": "{percent}% از داستان‌ها اشاره می‌کنند که با مشکلات سلامت روان دست‌وپنجه نرم کرده‌اند (n = {n}).",
+        "regret_transition": "{percent}% از داستان‌ها اشاره می‌کنند که از گذار پشیمان‌اند (n = {n}).",
+        "community_disillusionment": "{percent}% از داستان‌ها اشاره می‌کنند که از جامعه ترنس/LGBT سرخورده شده‌اند (n = {n}).",
+        "adv_trauma_history": "{percent}% از داستان‌ها به سابقه تروما اشاره می‌کنند (n = {n})."
+      },
       "regretLadder": "{surgery}% از کسانی که جراحی کرده‌اند می‌گویند از گذار پشیمان‌اند، در مقایسه با {hormones}% پس از هورمون یا مهارکننده و {socialOnly}% پس از گذار صرفاً اجتماعی (n = {n}).",
-      "regretLadderNote": "بقیه در هیچ جهتی چیزی نمی‌گویند.",
       "improvement": "{better}% می‌گویند کیفیت زندگی‌شان پس از دترنزیشن بهتر شد؛ {worse}% می‌گویند بدتر شد (n = {n}).",
       "journey": "مسیر معمول: نخستین دیسفوریا در {dysphoria} سالگی → ترنزیشن در {transition} سالگی → دترنزیشن در {detransition} سالگی (n = {n}).",
+      "durationBySex": "میانه مدت گذار: {female} سال برای زنان (n = {nFemale}) و {male} سال برای مردان (n = {nMale}).",
       "minorShare": "{percent}% از داستان‌های دارای سن، ترنزیشن را پیش از 18 سالگی شروع کردند (n = {n} از {total}).",
-      "minorLe15": "{percent}% در 15 سالگی یا کمتر شروع کردند (n = {n}).",
       "minorDysphoria": "{percent}% نخستین بار در 12 سالگی یا کمتر دیسفوریا را احساس کردند (n = {n}).",
       "minorFemale": "{percent}% از کسانی که پیش از 18 سالگی شروع کردند زن هستند (n = {n}).",
+      "reasonsWomen": "زنان",
+      "reasonsMen": "مردان",
+      "reasonsBySex": "دلایلی که در یک جنس بیش از دو برابر جنس دیگر رایج‌اند:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "زن‌ستیزی درونی‌شده"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "مردستیزی درونی‌شده"
+      },
+      "therapyMentalHealth": "{with}% از کسانی که درمان اکتشافی به آن‌ها کمک کرد می‌گویند سلامت روانشان پس از بازگشت از گذار بهتر شد، در مقایسه با {without}% از دیگران (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "{percent}% اکنون نسبت به گذار برای دیگران منتقد یا مخالف هستند (n ≈ {n}).",
       "explore": "بررسی",
       "orientation": "{percent}% از دترنزیشنرهایی که گرایش خود را بیان می‌کنند همجنس‌گرا، لزبین یا دوجنس‌گرا هستند ({sameSex}% همجنس‌گرا یا لزبین؛ n = {n})."
     },
@@ -2054,14 +2078,15 @@
     }
   },
   "topicsPage": {
-    "title": "موضوعات",
-    "description": "بررسی عمیق بازگشت از گذار، پزشکی جنسیتی و موضوعات مرتبط.",
+    "title": "موضوعات مرتبط با بازگشت از گذار را کاوش کنید",
+    "description": "مقالات عمیق درباره جنسیت، هویت و بازگشت از گذار، بر پایه مطالعات دانشگاهی و تجربه‌ها و دیدگاه‌های افرادی که هویت ترنس دارند و افرادی که از گذار بازگشته‌اند.",
     "empty": "هنوز هیچ موضوعی منتشر نشده است.",
     "pagesInSection": "صفحه‌های این بخش",
     "relatedPages": "صفحه‌های مرتبط",
     "lastUpdated": "آخرین به‌روزرسانی:",
     "stubNotice": "این صفحه ناقص است و گسترش خواهد یافت.",
-    "views": "{count, plural, other {# بازدید}}"
+    "views": "{count, plural, other {# بازدید}}",
+    "articleCount": "{count, plural, other {# مقاله}}"
   },
   "storiesPage": {
     "metadata": {

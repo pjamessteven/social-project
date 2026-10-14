@@ -4,6 +4,7 @@ import {
   WikiTocAside,
   type WikiTocNode,
 } from "@/app/components/content/WikiToc";
+import { PAGE_TITLE } from "@/app/components/ui/typography";
 import { useTranslations } from "next-intl";
 import {
   useCallback,
@@ -14,6 +15,7 @@ import {
 } from "react";
 import AdversitySection from "./AdversitySection";
 import AfterDetransitionSection from "./AfterDetransitionSection";
+import AgesSection from "./AgesSection";
 import AttitudeSection from "./AttitudeSection";
 import BreakdownSection from "./BreakdownSection";
 import { ChartCard } from "./ChartParts";
@@ -23,7 +25,6 @@ import EarlyTransitionSection from "./EarlyTransitionSection";
 import FeatureExplorer from "./FeatureExplorer";
 import { FeatureStoriesProvider } from "./FeatureStories";
 import HighlightsRibbon, { HIGHLIGHTS_ID } from "./HighlightsRibbon";
-import JourneySection from "./JourneySection";
 import MatrixSection from "./MatrixSection";
 import MedicalGradientSection from "./MedicalGradientSection";
 import MethodologySection from "./MethodologySection";
@@ -32,6 +33,7 @@ import OverviewSection from "./OverviewSection";
 import PathwaysSection from "./PathwaysSection";
 import ReasonsSection from "./ReasonsSection";
 import SexualitySection from "./SexualitySection";
+import { FilteredSection } from "./StatsFilters";
 import StatsSection from "./StatsSection";
 import TimelineStrip from "./TimelineStrip";
 import TrendsSection from "./TrendsSection";
@@ -65,6 +67,17 @@ const SECTION_IDS = [
 ] as const;
 
 type SectionId = (typeof SECTION_IDS)[number];
+
+/**
+ * Sections without the shared filter bar: the overview has its own,
+ * Compare has its own split controls, and Methodology describes the whole
+ * dataset.
+ */
+const UNFILTERED_SECTIONS = new Set<SectionId>([
+  "overview",
+  "compare",
+  "methodology",
+]);
 
 /**
  * The whole /stats experience: the shared docs TOC sidebar on xl+ screens, a
@@ -204,11 +217,7 @@ export default function StatsExperience() {
     },
     {
       id: "journey",
-      content: (
-        <ChartCard>
-          <JourneySection />
-        </ChartCard>
-      ),
+      content: <AgesSection />,
     },
     {
       id: "lives",
@@ -330,7 +339,7 @@ export default function StatsExperience() {
             onNavigate={(id) => openSection(id)}
           />
 
-          <h1 className="text-3xl font-bold sm:text-4xl">{t("title")}</h1>
+          <h1 className={PAGE_TITLE}>{t("title")}</h1>
           <p className="text-muted-foreground mt-6 text-base">
             {t("description")}
           </p>
@@ -351,7 +360,13 @@ export default function StatsExperience() {
                 mounted={mountedIds.has(section.id)}
                 onToggle={() => openSection(section.id, { toggle: true })}
               >
-                {section.content}
+                {UNFILTERED_SECTIONS.has(section.id) ? (
+                  section.content
+                ) : (
+                  <FilteredSection id={section.id}>
+                    {section.content}
+                  </FilteredSection>
+                )}
               </StatsSection>
             ))}
           </div>

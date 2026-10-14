@@ -1,33 +1,48 @@
 "use client";
 
 import { ReadingDialog } from "@/app/components/ui/reading-dialog";
-import { useTranslations } from "next-intl";
-import { useSearchParams } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import {
   createContext,
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useState,
   type ReactNode,
 } from "react";
 import { CARD_LOADING_SURFACE } from "./ChartParts";
 import StoryDialog from "./StoryDialog";
 import type { Story } from "./story";
-import { buildFeatureParams } from "./useFeatureData";
+import { useFeatureQuery } from "./useFeatureData";
 
 const PEEK_COUNT = 3;
 
 type OpenStories = (featureKey: string, label: string) => void;
+type OpenStoriesWithQuery = (
+  featureKey: string,
+  label: string,
+  query: string,
+) => void;
 
-const FeatureStoriesContext = createContext<OpenStories | null>(null);
+const FeatureStoriesContext = createContext<OpenStoriesWithQuery | null>(null);
 
 /**
  * Returns a callback that opens example stories for a yes/no feature, or
  * null outside the stats page (rows then render as plain, unclickable rows).
  */
 export function useFeatureStories(): OpenStories | null {
-  return useContext(FeatureStoriesContext);
+  const open = useContext(FeatureStoriesContext);
+  // The caller's filters (page + its section's filter bar), so the stories
+  // match the numbers in the chart that opened them.
+  const query = useFeatureQuery();
+  return useMemo(
+    () =>
+      open
+        ? (featureKey: string, label: string) => open(featureKey, label, query)
+        : null,
+    [open, query],
+  );
 }
 
 /**
@@ -37,11 +52,12 @@ export function useFeatureStories(): OpenStories | null {
  */
 export function FeatureStoriesProvider({ children }: { children: ReactNode }) {
   const t = useTranslations("statsPage.storyPeek");
-  const searchParams = useSearchParams();
-  const params = buildFeatureParams(searchParams);
-  const [target, setTarget] = useState<{ key: string; label: string } | null>(
-    null,
-  );
+  const locale = useLocale();
+  const [target, setTarget] = useState<{
+    key: string;
+    label: string;
+    query: string;
+  } | null>(null);
   const [open, setOpen] = useState(false);
   const [stories, setStories] = useState<Story[]>([]);
   const [total, setTotal] = useState(0);
@@ -50,10 +66,13 @@ export function FeatureStoriesProvider({ children }: { children: ReactNode }) {
   const [reading, setReading] = useState<Story | null>(null);
   const [readingOpen, setReadingOpen] = useState(false);
 
-  const openStories = useCallback<OpenStories>((featureKey, label) => {
-    setTarget({ key: featureKey, label });
-    setOpen(true);
-  }, []);
+  const openStories = useCallback<OpenStoriesWithQuery>(
+    (featureKey, label, query) => {
+      setTarget({ key: featureKey, label, query });
+      setOpen(true);
+    },
+    [],
+  );
 
   useEffect(() => {
     if (!open || !target) return;
@@ -62,7 +81,7 @@ export function FeatureStoriesProvider({ children }: { children: ReactNode }) {
     setError(false);
     setStories([]);
     fetch(
-      `/api/stories/spotlight?feature=${encodeURIComponent(target.key)}&count=${PEEK_COUNT}&offset=0&${params}`,
+      `/api/stories/spotlight?feature=${encodeURIComponent(target.key)}&count=${PEEK_COUNT}&offset=0&locale=${locale}&${target.query}`,
       { signal: controller.signal },
     )
       .then(async (response) => {
@@ -81,7 +100,7 @@ export function FeatureStoriesProvider({ children }: { children: ReactNode }) {
         if (!controller.signal.aborted) setLoading(false);
       });
     return () => controller.abort();
-  }, [open, target, params]);
+  }, [open, target, locale]);
 
   return (
     <FeatureStoriesContext.Provider value={openStories}>

@@ -1639,9 +1639,14 @@
       "count": "n = {n}",
       "tooltip": "Vârsta {age}: {count, plural, =1 {1 poveste} few {# povești} other {# de povești}}",
       "yearsTooltip": "{years, plural, =1 {1 an} few {# ani} other {# de ani}} în tranziție: {count, plural, =1 {1 poveste} few {# povești} other {# de povești}}",
-      "basedOn": "Fiecare rând numără doar poveștile care precizează vârsta respectivă. Axa este tăiată la percentila 99.",
+      "basedOn": "Fiecare rând numără doar poveștile care indică acea vârstă. Vârstele peste 45 nu sunt afișate.",
       "empty": "Încă nu există date cronologice pentru filtrele curente.",
-      "error": "Datele despre parcurs nu au putut fi încărcate"
+      "error": "Datele despre parcurs nu au putut fi încărcate",
+      "curvesTitle": "Vârsta la tranziție și la detranziție",
+      "curvesDescription": "Ponderea poveștilor care indică fiecare vârstă la tranziție și la detranziție. Liniile punctate marchează medianele.",
+      "curvesTooltip": "Vârsta {age}",
+      "curvesStories": "{count, plural, =1 {1 poveste} few {# povești} other {# de povești}}",
+      "curvesNote": "Fiecare linie numără doar poveștile care indică acea vârstă. Vârstele peste 45 nu sunt afișate."
     },
     "gradient": {
       "regret": "Regret",
@@ -1724,22 +1729,41 @@
         "regretLadder": "Regret și pași medicali",
         "improvement": "Viața după detranziție",
         "journey": "Parcurs tipic",
+        "durationBySex": "Durata tranziției",
         "minorShare": "Început înainte de 18 ani",
-        "minorLe15": "Început la 15 ani sau mai devreme",
         "minorDysphoria": "Prima disforie până la 12 ani",
         "minorFemale": "Cine începe de tânăr",
+        "reasonsBySex": "Principalele motive ale tranziției",
+        "therapyMentalHealth": "Terapia exploratorie a ajutat",
+        "criticalOfTransition": "Opinii despre tranziție",
         "orientation": "Orientare sexuală"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "Încă {unclear}% sunt neclare.",
+      "prevalenceByFeature": {
+        "took_hormones": "{percent}% dintre povești menționează că au luat hormoni ai sexului opus (n = {n}).",
+        "mh_generic": "{percent}% dintre povești menționează probleme de sănătate mintală (n = {n}).",
+        "regret_transition": "{percent}% dintre povești menționează că regretă tranziția (n = {n}).",
+        "community_disillusionment": "{percent}% dintre povești menționează dezamăgirea față de comunitatea trans/LGBT (n = {n}).",
+        "adv_trauma_history": "{percent}% dintre povești menționează un istoric de traume (n = {n})."
+      },
       "regretLadder": "{surgery}% dintre cei care au făcut o operație spun că regretă tranziția, față de {hormones}% după hormoni sau blocante și {socialOnly}% după o tranziție doar socială (n = {n}).",
-      "regretLadderNote": "Ceilalți nu spun nici una, nici alta.",
       "improvement": "{better}% spun că le-a crescut calitatea vieții după detranziție; {worse}% spun că s-a înrăutățit (n = {n}).",
       "journey": "Parcursul tipic: prima disforie la {dysphoria} ani → tranziție la {transition} → detranziție la {detransition} (n = {n}).",
+      "durationBySex": "Durata mediană a tranziției: {female} ani la femei (n = {nFemale}) și {male} ani la bărbați (n = {nMale}).",
       "minorShare": "{percent}% dintre poveștile cu vârstă au început tranziția sub 18 ani (n = {n} din {total}).",
-      "minorLe15": "{percent}% au început la 15 ani sau mai devreme (n = {n}).",
       "minorDysphoria": "{percent}% au simțit prima dată disforie la 12 ani sau mai devreme (n = {n}).",
       "minorFemale": "{percent}% dintre cei care au început sub 18 ani sunt de sex feminin (n = {n}).",
+      "reasonsWomen": "Femei",
+      "reasonsMen": "Bărbați",
+      "reasonsBySex": "Motive de peste două ori mai frecvente la un sex decât la celălalt:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "Misoginie internalizată"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "Misandrie internalizată"
+      },
+      "therapyMentalHealth": "{with}% dintre cei ajutați de terapia exploratorie spun că sănătatea lor mintală s-a îmbunătățit după detranziție, față de {without}% dintre ceilalți (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "{percent}% sunt acum critici sau se opun tranziției pentru alte persoane (n ≈ {n}).",
       "explore": "Explorează",
       "orientation": "{percent}% dintre persoanele detransiționate care își declară orientarea sunt gay, lesbiene sau bisexuale ({sameSex}% gay sau lesbiene; n = {n})."
     },
@@ -2053,14 +2077,15 @@
     }
   },
   "topicsPage": {
-    "title": "Subiecte",
-    "description": "Explorare aprofundată a detranziției, a medicinei de gen și a subiectelor conexe.",
+    "title": "Explorează subiecte legate de detranziție",
+    "description": "Articole aprofundate despre gen, identitate și detranziție, bazate pe studii academice și pe experiențele și perspectivele persoanelor care se identifică drept trans și ale celor care au detranziționat.",
     "empty": "Nu a fost publicat încă niciun subiect.",
     "pagesInSection": "Pagini din această secțiune",
     "relatedPages": "Pagini similare",
     "lastUpdated": "Ultima actualizare:",
     "stubNotice": "Această pagină este o schiță și va fi extinsă.",
-    "views": "{count, plural, one {# vizualizare} few {# vizualizări} other {# de vizualizări}}"
+    "views": "{count, plural, one {# vizualizare} few {# vizualizări} other {# de vizualizări}}",
+    "articleCount": "{count, plural, one {# articol} few {# articole} other {# de articole}}"
   },
   "storiesPage": {
     "metadata": {

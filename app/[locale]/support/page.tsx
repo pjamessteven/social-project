@@ -1,6 +1,7 @@
 "use server";
 
 import { DocsLayout } from "@/app/components/content/DocsLayout";
+import { PAGE_TITLE } from "@/app/components/ui/typography";
 import type { WikiTocItem } from "@/app/lib/markdown";
 import { localesInfo } from "@/i18n/locales";
 import { Link } from "@/i18n/routing";
@@ -207,7 +208,7 @@ export default async function SupportPage({
       sidebarTitle={t("navigation.getGenderSupport")}
       mobileTitle={t("navigation.jumpTo")}
     >
-      <h1 className="text-3xl font-bold">{t("title")}</h1>
+      <h1 className={PAGE_TITLE}>{t("title")}</h1>
 
       <h2 id="online-support-groups">{t("sections.onlineSupport.title")}</h2>
       <p>{t("sections.onlineSupport.description")}</p>

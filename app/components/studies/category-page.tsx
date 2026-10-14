@@ -3,6 +3,7 @@
  * /studies/method/[category] (the route files are thin wrappers).
  */
 
+import { PAGE_TITLE } from "@/app/components/ui/typography";
 import { isAdmin } from "@/app/lib/auth/auth";
 import { isBot } from "@/app/lib/isBot";
 import { localeToBcp47, safeJsonLd, SITE_URL } from "@/app/lib/seo";
@@ -165,7 +166,7 @@ export async function StudyCategoryPage({
       </Link>
 
       <header className="mt-6 mb-8 max-w-3xl">
-        <h1 className="text-3xl font-bold">{category.name}</h1>
+        <h1 className={PAGE_TITLE}>{category.name}</h1>
         {category.description && (
           <p className="text-muted-foreground mt-3 text-base leading-relaxed">
             {category.description}
@@ -231,4 +232,3 @@ export async function StudyCategoryPage({
     </div>
   );
 }
-

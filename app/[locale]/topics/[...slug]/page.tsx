@@ -2,6 +2,7 @@ import { DocsLayout } from "@/app/components/content/DocsLayout";
 import { WikiAdminActions } from "@/app/components/content/WikiAdminActions";
 import { WikiTocLink } from "@/app/components/content/WikiTocLink";
 import { WikiViewTracker } from "@/app/components/content/WikiViewTracker";
+import { PAGE_TITLE } from "@/app/components/ui/typography";
 import { isAdmin } from "@/app/lib/auth/auth";
 import { renderWikiMarkdown } from "@/app/lib/markdown";
 import {
@@ -370,7 +371,7 @@ export default async function WikiTopicPage({
             lang={contentLocale === locale ? undefined : contentLocale}
             dir={contentLocale === locale ? undefined : "ltr"}
           >
-            <h1 className="text-3xl font-bold">{title}</h1>
+            <h1 className={PAGE_TITLE}>{title}</h1>
             {summary && (
               <p className="text-muted-foreground not-prose mt-2 mb-6 text-base">
                 {summary}

@@ -1646,9 +1646,14 @@
       "count": "n = {n}",
       "tooltip": "Amžius {age}: {count, plural, =1 {1 istorija} one {# istorija} few {# istorijos} many {# istorijos} other {# istorijų}}",
       "yearsTooltip": "{years, plural, =1 {1 metai} one {# metai} few {# metai} many {# metų} other {# metų}} tranzicijoje: {count, plural, =1 {1 istorija} one {# istorija} few {# istorijos} many {# istorijos} other {# istorijų}}",
-      "basedOn": "Kiekviena eilutė skaičiuoja tik istorijas, kuriose nurodytas tas amžius. Ašis nukirpta ties 99-uoju procentiliu.",
+      "basedOn": "Kiekviena eilutė skaičiuoja tik istorijas, kuriose nurodytas tas amžius. Vyresnis nei 45 metų amžius nerodomas.",
       "empty": "Pagal dabartinius filtrus kol kas nėra laiko juostos duomenų.",
-      "error": "Nepavyko įkelti kelionės duomenų"
+      "error": "Nepavyko įkelti kelionės duomenų",
+      "curvesTitle": "Amžius tranzicijos ir detranzicijos metu",
+      "curvesDescription": "Istorijų, nurodančių kiekvieną tranzicijos ir detranzicijos amžių, dalis. Punktyrinės linijos žymi medianas.",
+      "curvesTooltip": "Amžius {age}",
+      "curvesStories": "{count, plural, =1 {1 istorija} few {# istorijos} other {# istorijų}}",
+      "curvesNote": "Kiekviena linija skaičiuoja tik istorijas, kuriose nurodytas tas amžius. Vyresnis nei 45 metų amžius nerodomas."
     },
     "gradient": {
       "regret": "Gailestis",
@@ -1731,22 +1736,41 @@
         "regretLadder": "Gailestis ir medicininiai žingsniai",
         "improvement": "Gyvenimas po detranzicijos",
         "journey": "Tipinis kelias",
+        "durationBySex": "Tranzicijos trukmė",
         "minorShare": "Pradėjo iki 18 metų",
-        "minorLe15": "Pradėjo 15 metų ar jaunesni",
         "minorDysphoria": "Pirmoji disforija iki 12 metų",
         "minorFemale": "Kas pradeda jauni",
+        "reasonsBySex": "Pagrindinės tranzicijos priežastys",
+        "therapyMentalHealth": "Padėjo tiriamoji terapija",
+        "criticalOfTransition": "Požiūris į tranziciją",
         "orientation": "Seksualinė orientacija"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "Dar {unclear} % neaiškūs.",
+      "prevalenceByFeature": {
+        "took_hormones": "{percent}% istorijų mini, kad vartojo priešingos lyties hormonus (n = {n}).",
+        "mh_generic": "{percent}% istorijų mini psichikos sveikatos sunkumus (n = {n}).",
+        "regret_transition": "{percent}% istorijų mini, kad gailisi tranzicijos (n = {n}).",
+        "community_disillusionment": "{percent}% istorijų mini nusivylimą trans/LGBT bendruomene (n = {n}).",
+        "adv_trauma_history": "{percent}% istorijų mini patirtą traumą (n = {n})."
+      },
       "regretLadder": "{surgery} % operaciją patyrusių teigia gailintys tranzicijos, palyginti su {hormones} % po hormonų ar blokatorių ir {socialOnly} % po vien socialinės tranzicijos (n = {n}).",
-      "regretLadderNote": "Kiti nepasako nei vieno, nei kito.",
       "improvement": "{better} % teigia, kad jų gyvenimo kokybė po detranzicijos pagerėjo; {worse} % teigia, kad pablogėjo (n = {n}).",
       "journey": "Tipinis kelias: pirmoji disforija {dysphoria} m. → tranzicija {transition} m. → detranzicija {detransition} m. (n = {n}).",
+      "durationBySex": "Tranzicijos trukmės mediana: moterų {female} m. (n = {nFemale}), vyrų {male} m. (n = {nMale}).",
       "minorShare": "{percent} % istorijų su nurodytu amžiumi tranziciją pradėjo iki 18 metų (n = {n} iš {total}).",
-      "minorLe15": "{percent} % pradėjo 15 metų ar jaunesni (n = {n}).",
       "minorDysphoria": "{percent} % pirmą kartą pajuto disforiją 12 metų ar jaunesni (n = {n}).",
       "minorFemale": "{percent} % pradėjusiųjų iki 18 metų yra moterys (n = {n}).",
+      "reasonsWomen": "Moterys",
+      "reasonsMen": "Vyrai",
+      "reasonsBySex": "Priežastys, daugiau nei dvigubai dažnesnės vienos lyties atstovams nei kitos:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "Internalizuota mizoginija"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "Internalizuota mizandrija"
+      },
+      "therapyMentalHealth": "{with}% tų, kuriems padėjo tiriamoji terapija, teigia, kad po detranzicijos jų psichikos sveikata pagerėjo, palyginti su {without}% kitų (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "{percent}% dabar kritiškai vertina kitų žmonių tranziciją arba jai prieštarauja (n ≈ {n}).",
       "explore": "Naršyti",
       "orientation": "{percent} % detranzicionierių, nurodančių savo orientaciją, yra gėjai, lesbietės ar biseksualūs ({sameSex} % gėjai ar lesbietės; n = {n})."
     },
@@ -2060,14 +2084,15 @@
     }
   },
   "topicsPage": {
-    "title": "Temos",
-    "description": "Išsamiai apie detranziciją, lyties mediciną ir susijusias temas.",
+    "title": "Naršykite su detranzicija susijusias temas",
+    "description": "Išsamūs straipsniai apie lytį, tapatybę ir detranziciją, paremti akademiniais tyrimais bei save trans tapatinančių žmonių ir detranzicionuotojų patirtimis ir požiūriais.",
     "empty": "Kol kas nepaskelbta jokių temų.",
     "pagesInSection": "Šio skyriaus puslapiai",
     "relatedPages": "Susiję puslapiai",
     "lastUpdated": "Paskutinį kartą atnaujinta:",
     "stubNotice": "Šis puslapis dar nebaigtas ir bus išplėstas.",
-    "views": "{count, plural, one {# peržiūra} few {# peržiūros} many {# peržiūros} other {# peržiūrų}}"
+    "views": "{count, plural, one {# peržiūra} few {# peržiūros} many {# peržiūros} other {# peržiūrų}}",
+    "articleCount": "{count, plural, one {# straipsnis} few {# straipsniai} other {# straipsnių}}"
   },
   "storiesPage": {
     "metadata": {

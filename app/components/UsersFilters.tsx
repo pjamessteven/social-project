@@ -239,7 +239,7 @@ export default function UsersFilters({
   return (
     <div
       data-sticky-filters
-      className="sticky top-0 z-20 -mx-4 border-b px-4 pt-2 pb-4"
+      className="sticky top-0 z-20 -mx-4  px-4  pb-4"
     >
       <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm md:hidden">
         <SlidersHorizontal className="text-muted-foreground h-4 w-4 shrink-0" />
@@ -282,16 +282,18 @@ export default function UsersFilters({
       >
         {inline ? (
           <div className="flex flex-wrap items-center gap-2">
+            <div className="min-w-[160px] flex-1">{tagSelect}</div>
+
             <div className="bg-background flex h-[46px] items-center gap-3 rounded-full border px-4 text-sm">
               {ageLabel}
-              <div className="w-28">{ageSlider}</div>
+              <div className="w-28 md:w-68">{ageSlider}</div>
             </div>
-            <SlidingNavGroup
+
+                                    <SlidingNavGroup
               tabs={sexTabs}
               onTabClick={updateSexFilter}
               className="bg-secondary/50 dark:bg-secondary/30 border"
             />
-            <div className="min-w-[160px] flex-1">{tagSelect}</div>
             {hasFilters && (
               <Button
                 variant="ghost"
@@ -302,6 +304,7 @@ export default function UsersFilters({
                 {t("clearFilters")}
               </Button>
             )}
+            
           </div>
         ) : (
           <>

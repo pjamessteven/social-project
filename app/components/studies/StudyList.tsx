@@ -61,7 +61,7 @@ function StudyListItem({
   return (
     <li className="grid gap-x-10 gap-y-3 py-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
       <div className="min-w-0">
-        <h3 className="text-base leading-snug font-semibold">
+        <h3 className="text-lg leading-snug font-semibold">
           <Link
             href={detailHref}
             className="decoration-1 underline-offset-4 hover:underline"
@@ -70,7 +70,7 @@ function StudyListItem({
           </Link>
         </h3>
         {study.title && study.title !== study.headline && (
-          <p className="text-muted-foreground mt-1 line-clamp-1 text-xs italic">
+          <p className="text-muted-foreground mt-1 line-clamp-1 text-sm italic">
             {study.title}
           </p>
         )}
@@ -79,7 +79,7 @@ function StudyListItem({
         </div>
         {summary && (
           <p
-            className={`mt-2.5 text-sm leading-relaxed text-gray-700 dark:text-gray-300 ${
+            className={`mt-3 text-base leading-relaxed text-gray-700 dark:text-gray-300 ${
               isShortSummary ? "" : "line-clamp-3"
             }`}
           >
@@ -99,7 +99,7 @@ function StudyListItem({
 
       {showFindings && (
         <div className="min-w-0 lg:border-l lg:pl-8">
-          <h4 className="text-muted-foreground mb-2 text-xs font-medium tracking-wide uppercase">
+          <h4 className="text-muted-foreground mb-2 text-sm font-medium">
             {t("findings")}
           </h4>
           <StudyKeyPoints points={keyPoints} />

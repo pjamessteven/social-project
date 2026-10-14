@@ -1647,9 +1647,14 @@
       "count": "n = {n}",
       "tooltip": "{age} 歳：{count, plural, =1 {1 件} other {# 件}}",
       "yearsTooltip": "トランジション期間 {years, plural, =1 {1 年} other {# 年}}：{count, plural, =1 {1 件} other {# 件}}",
-      "basedOn": "各行はその年齢を記載している体験談のみを数えています。軸は99パーセンタイルで切っています。",
+      "basedOn": "各行はその年齢を記載している体験談のみを数えています。45歳を超える年齢は表示していません。",
       "empty": "現在のフィルターではタイムラインのデータがまだありません。",
-      "error": "経過データを読み込めませんでした"
+      "error": "経過データを読み込めませんでした",
+      "curvesTitle": "移行時と脱移行時の年齢",
+      "curvesDescription": "移行と脱移行について、各年齢を記載した体験談の割合。破線は中央値を示します。",
+      "curvesTooltip": "{age}歳",
+      "curvesStories": "{count, plural, =1 {1件} other {#件}}",
+      "curvesNote": "各線はその年齢を記載している体験談のみを数えています。45歳を超える年齢は表示していません。"
     },
     "gradient": {
       "regret": "後悔",
@@ -1732,22 +1737,41 @@
         "regretLadder": "後悔と医療的ステップ",
         "improvement": "デトランジション後の生活",
         "journey": "典型的な経過",
+        "durationBySex": "移行の期間",
         "minorShare": "18歳未満で開始",
-        "minorLe15": "15歳以下で開始",
         "minorDysphoria": "12歳までに性別違和",
         "minorFemale": "若くして始める人",
+        "reasonsBySex": "移行の主な理由",
+        "therapyMentalHealth": "探索的セラピーが役立った",
+        "criticalOfTransition": "移行への見方",
         "orientation": "性的指向"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "さらに {unclear}% は不明確です。",
+      "prevalenceByFeature": {
+        "took_hormones": "{percent}% の体験談が、異性ホルモンを摂取したと述べています (n = {n})。",
+        "mh_generic": "{percent}% の体験談が、メンタルヘルスの問題に苦しんだと述べています (n = {n})。",
+        "regret_transition": "{percent}% の体験談が、移行を後悔していると述べています (n = {n})。",
+        "community_disillusionment": "{percent}% の体験談が、トランス/LGBTコミュニティに幻滅したと述べています (n = {n})。",
+        "adv_trauma_history": "{percent}% の体験談が、トラウマの経験があると述べています (n = {n})。"
+      },
       "regretLadder": "手術を受けた人の{surgery}%が移行を後悔していると述べており、ホルモンやブロッカーの後では{hormones}%、社会的移行のみでは{socialOnly}%です（n = {n}）。",
-      "regretLadderNote": "残りの人はどちらとも述べていません。",
       "improvement": "{better}% がデトランジション後に生活の質が向上したと述べ、{worse}% が悪化したと述べています（n = {n}）。",
       "journey": "典型的な経過：{dysphoria} 歳で最初の性別違和 → {transition} 歳でトランジション → {detransition} 歳でデトランジション（n = {n}）。",
+      "durationBySex": "移行期間の中央値：女性 {female} 年 (n = {nFemale})、男性 {male} 年 (n = {nMale})。",
       "minorShare": "年齢のある体験談の {percent}% が18歳未満でトランジションを始めています（{total} 件中 n = {n}）。",
-      "minorLe15": "{percent}% が15歳以下で始めています（n = {n}）。",
       "minorDysphoria": "{percent}% が12歳以下で初めて性別違和を感じています（n = {n}）。",
       "minorFemale": "18歳未満で始めた人の {percent}% が女性です（n = {n}）。",
+      "reasonsWomen": "女性",
+      "reasonsMen": "男性",
+      "reasonsBySex": "一方の性別で、もう一方の2倍以上多い理由：",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "内面化された女性嫌悪"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "内面化された男性嫌悪"
+      },
+      "therapyMentalHealth": "探索的セラピーが役立った人の {with}% が脱トランス後にメンタルヘルスが良くなったと述べており、それ以外の人では {without}% です (n = {nWith} / {nWithout})。",
+      "criticalOfTransition": "{percent}% が現在、他者の移行に批判的または反対の立場です (n ≈ {n})。",
       "explore": "詳しく見る",
       "orientation": "性的指向を述べているデトランジショナーの {percent}% がゲイ、レズビアン、またはバイセクシュアルです（ゲイまたはレズビアンは {sameSex}%、n = {n}）。"
     },
@@ -2061,14 +2085,15 @@
     }
   },
   "topicsPage": {
-    "title": "トピック",
-    "description": "ディトランジション、ジェンダー医療、関連するテーマを詳しく解説します。",
+    "title": "ディトランジションに関するトピックを探る",
+    "description": "学術研究と、トランスを自認する人々やデトランジショナーの実体験や視点をもとに、ジェンダー、アイデンティティ、ディトランジションを掘り下げた記事。",
     "empty": "まだ公開されたトピックはありません。",
     "pagesInSection": "このセクションのページ",
     "relatedPages": "関連ページ",
     "lastUpdated": "最終更新：",
     "stubNotice": "このページは未完成で、今後拡充されます。",
-    "views": "{count, plural, other {# 回閲覧}}"
+    "views": "{count, plural, other {# 回閲覧}}",
+    "articleCount": "{count, plural, other {#件の記事}}"
   },
   "storiesPage": {
     "metadata": {

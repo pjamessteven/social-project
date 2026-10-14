@@ -1,8 +1,9 @@
 "use server";
 
+import { PAGE_TITLE } from "@/app/components/ui/typography";
+import { localesInfo } from "@/i18n/locales";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { localesInfo } from "@/i18n/locales";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -56,7 +57,7 @@ export default async function DefinitionsPage({ params }: Props) {
 
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
-      <h1 className="text-3xl font-bold">{t("title")}</h1>
+      <h1 className={PAGE_TITLE}>{t("title")}</h1>
 
       <h2>{t("sexAndGender.heading")}</h2>
       <p>{t("sexAndGender.intro")}</p>

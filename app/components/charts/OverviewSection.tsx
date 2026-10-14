@@ -14,6 +14,7 @@ import PrevalenceRows, {
   LegendDot,
   type PrevalenceItem,
 } from "./PrevalenceRows";
+import StatsFilters, { useStatsFilters } from "./StatsFilters";
 import { useFeatureSummary } from "./useFeatureData";
 import { useFeatureLabels } from "./useFeatureLabels";
 
@@ -35,12 +36,27 @@ export default function OverviewSection() {
   const tiers = useTranslations("statsPage.features.tiers");
   const labels = useFeatureLabels();
   const colors = useChartColors();
-  const { data, loading, error } = useFeatureSummary();
+  const filterState = useStatsFilters();
+  const { data, loading, error } = useFeatureSummary(filterState.overrides);
   const tp = useTranslations("statsPage.prevalence");
   const [expanded, setExpanded] = useState(false);
 
-  if (error) return <ChartMessage>{t("error")}</ChartMessage>;
-  if (loading && !data) return <ChartSkeleton height="h-96" />;
+  const filters = <StatsFilters id="overview-filters" filters={filterState} />;
+
+  if (error)
+    return (
+      <div className="space-y-4">
+        {filters}
+        <ChartMessage>{t("error")}</ChartMessage>
+      </div>
+    );
+  if (loading && !data)
+    return (
+      <div className="space-y-4">
+        {filters}
+        <ChartSkeleton height="h-96" />
+      </div>
+    );
   if (!data) return null;
 
   const items: PrevalenceItem[] = data.features
@@ -61,8 +77,12 @@ export default function OverviewSection() {
 
   return (
     <div className="space-y-4">
+      {filters}
       <ChartCard>
-        <div className="space-y-4">
+        <div
+          className={`space-y-4 transition-opacity ${loading ? "opacity-50" : ""}`}
+          aria-busy={loading}
+        >
           <div className="text-muted-foreground flex flex-wrap gap-x-5 gap-y-2 text-sm">
             {TIERS.map((tier) => (
               <LegendDot

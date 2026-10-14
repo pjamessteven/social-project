@@ -1,12 +1,11 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useChartColors } from "./chart-theme";
 import { ChartSkeleton, ROW_GROUP_TITLE } from "./ChartParts";
 import { LegendDot } from "./PrevalenceRows";
-import { buildFeatureParams } from "./useFeatureData";
+import { useFeatureQuery } from "./useFeatureData";
 
 interface Panel {
   key: string;
@@ -30,11 +29,10 @@ const LEVEL_KEYS = ["muchWorse", "worse", "same", "better", "muchBetter"];
 export default function AfterDetransitionSection() {
   const t = useTranslations("statsPage.after");
   const colors = useChartColors();
-  const searchParams = useSearchParams();
   const [data, setData] = useState<AfterResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const params = buildFeatureParams(searchParams);
+  const params = useFeatureQuery();
 
   useEffect(() => {
     const controller = new AbortController();

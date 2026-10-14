@@ -1,5 +1,6 @@
 "use server";
 
+import { PAGE_TITLE } from "@/app/components/ui/typography";
 import type { Locale } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { marked } from "marked";
@@ -24,7 +25,7 @@ export default async function SeoChatPage({
 
   return (
     <>
-      <h1 className="text-3xl font-bold capitalize">{question}</h1>
+      <h1 className={`capitalize ${PAGE_TITLE}`}>{question}</h1>
       <br />
 
       <h2>

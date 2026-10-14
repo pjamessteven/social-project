@@ -1647,9 +1647,14 @@
       "count": "n = {n}",
       "tooltip": "Usia {age}: {count, plural, =1 {1 kisah} other {# kisah}}",
       "yearsTooltip": "{years, plural, =1 {1 tahun} other {# tahun}} dalam transisi: {count, plural, =1 {1 kisah} other {# kisah}}",
-      "basedOn": "Setiap baris hanya menghitung kisah yang mencantumkan usia tersebut. Sumbu dipotong pada persentil ke-99.",
+      "basedOn": "Setiap baris hanya menghitung kisah yang menyebutkan usia tersebut. Usia di atas 45 tidak ditampilkan.",
       "empty": "Belum ada data garis waktu untuk filter saat ini.",
-      "error": "Tidak dapat memuat data perjalanan"
+      "error": "Tidak dapat memuat data perjalanan",
+      "curvesTitle": "Usia saat transisi dan detransisi",
+      "curvesDescription": "Persentase kisah yang menyebutkan setiap usia untuk transisi dan detransisi. Garis putus-putus menandai median.",
+      "curvesTooltip": "Usia {age}",
+      "curvesStories": "{count, plural, =1 {1 kisah} other {# kisah}}",
+      "curvesNote": "Setiap garis hanya menghitung kisah yang menyebutkan usia tersebut. Usia di atas 45 tidak ditampilkan."
     },
     "gradient": {
       "regret": "Menyesal",
@@ -1732,22 +1737,41 @@
         "regretLadder": "Penyesalan dan langkah medis",
         "improvement": "Hidup setelah detransisi",
         "journey": "Perjalanan umum",
+        "durationBySex": "Lama transisi",
         "minorShare": "Mulai sebelum 18",
-        "minorLe15": "Mulai pada usia 15 atau lebih muda",
         "minorDysphoria": "Disforia pertama sebelum 12",
         "minorFemale": "Siapa yang mulai muda",
+        "reasonsBySex": "Alasan utama bertransisi",
+        "therapyMentalHealth": "Terapi eksploratif membantu",
+        "criticalOfTransition": "Pandangan tentang transisi",
         "orientation": "Orientasi seksual"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "{unclear}% lainnya tidak jelas.",
+      "prevalenceByFeature": {
+        "took_hormones": "{percent}% cerita menyebutkan bahwa mereka mengonsumsi hormon lawan jenis (n = {n}).",
+        "mh_generic": "{percent}% cerita menyebutkan bahwa mereka bergulat dengan kesehatan mental (n = {n}).",
+        "regret_transition": "{percent}% cerita menyebutkan bahwa mereka menyesal bertransisi (n = {n}).",
+        "community_disillusionment": "{percent}% cerita menyebutkan bahwa mereka kecewa dengan komunitas trans/LGBT (n = {n}).",
+        "adv_trauma_history": "{percent}% cerita menyebutkan riwayat trauma (n = {n})."
+      },
       "regretLadder": "{surgery}% dari mereka yang menjalani operasi mengaku menyesali transisi, dibandingkan {hormones}% setelah hormon atau penghambat dan {socialOnly}% setelah transisi sosial saja (n = {n}).",
-      "regretLadderNote": "Sisanya tidak menyatakan salah satunya.",
       "improvement": "{better}% mengatakan kualitas hidup mereka membaik setelah detransisi; {worse}% mengatakan memburuk (n = {n}).",
       "journey": "Perjalanan umum: disforia pertama pada usia {dysphoria} → transisi pada usia {transition} → detransisi pada usia {detransition} (n = {n}).",
+      "durationBySex": "Median lama transisi: {female} tahun pada perempuan (n = {nFemale}) dan {male} tahun pada laki-laki (n = {nMale}).",
       "minorShare": "{percent}% kisah yang mencantumkan usia mulai transisi di bawah 18 (n = {n} dari {total}).",
-      "minorLe15": "{percent}% mulai pada usia 15 atau lebih muda (n = {n}).",
       "minorDysphoria": "{percent}% pertama kali merasakan disforia pada usia 12 atau lebih muda (n = {n}).",
       "minorFemale": "{percent}% dari yang mulai di bawah 18 adalah perempuan (n = {n}).",
+      "reasonsWomen": "Perempuan",
+      "reasonsMen": "Laki-laki",
+      "reasonsBySex": "Alasan yang lebih dari dua kali lebih umum pada satu jenis kelamin dibanding yang lain:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "Misogini yang terinternalisasi"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "Misandri yang terinternalisasi"
+      },
+      "therapyMentalHealth": "{with}% dari mereka yang terbantu terapi eksploratif mengatakan kesehatan mental mereka membaik setelah detransisi, dibandingkan {without}% dari yang lain (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "{percent}% kini kritis terhadap atau menentang transisi bagi orang lain (n ≈ {n}).",
       "explore": "Jelajahi",
       "orientation": "{percent}% detransisioner yang menyebutkan orientasinya adalah gay, lesbian, atau biseksual ({sameSex}% gay atau lesbian; n = {n})."
     },
@@ -2061,14 +2085,15 @@
     }
   },
   "topicsPage": {
-    "title": "Topik",
-    "description": "Penjelasan mendalam tentang detransisi, kedokteran gender, dan topik terkait.",
+    "title": "Jelajahi Topik Seputar Detransisi",
+    "description": "Artikel mendalam tentang gender, identitas, dan detransisi, berdasarkan studi akademis serta pengalaman dan perspektif orang yang beridentitas trans dan para pelaku detransisi.",
     "empty": "Belum ada topik yang diterbitkan.",
     "pagesInSection": "Halaman di bagian ini",
     "relatedPages": "Halaman terkait",
     "lastUpdated": "Terakhir diperbarui:",
     "stubNotice": "Halaman ini masih rintisan dan akan dikembangkan.",
-    "views": "{count, plural, other {# kali dilihat}}"
+    "views": "{count, plural, other {# kali dilihat}}",
+    "articleCount": "{count, plural, other {# artikel}}"
   },
   "storiesPage": {
     "metadata": {

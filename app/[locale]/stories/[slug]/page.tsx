@@ -1,4 +1,5 @@
 import { formatUpvotes } from "@/app/components/charts/story";
+import { PAGE_TITLE } from "@/app/components/ui/typography";
 import { localeToBcp47, safeJsonLd, SITE_URL } from "@/app/lib/seo";
 import { getStory, type StoryPageData } from "@/app/lib/stories";
 import {
@@ -71,7 +72,9 @@ export async function generateMetadata({
     };
   }
 
-  const title = story.title || t("story.untitled");
+  const title =
+    localized(story.titleTranslations, locale, story.title) ||
+    t("story.untitled");
   const summary = localized(story.summaryTranslations, locale, story.summary);
   const description = toMetaDescription(
     summary ||
@@ -147,7 +150,9 @@ export default async function StoryPage({ params }: { params: PageParams }) {
     namespace: "stories.disclaimer",
   });
 
-  const title = story.title || t("story.untitled");
+  const title =
+    localized(story.titleTranslations, locale, story.title) ||
+    t("story.untitled");
   const summary = localized(story.summaryTranslations, locale, story.summary);
   const experience = localized(
     story.experienceTranslations,
@@ -248,9 +253,7 @@ export default async function StoryPage({ params }: { params: PageParams }) {
         </Link>
 
         <header className="mt-4">
-          <h1 className="text-3xl leading-tight font-bold sm:text-4xl">
-            {title}
-          </h1>
+          <h1 className={PAGE_TITLE}>{title}</h1>
           <div className="text-muted-foreground mt-3 flex flex-wrap items-center gap-x-3 gap-y-1">
             {meta.length > 0 && <span>{meta.join(" · ")}</span>}
             {ages.length >= 2 && (

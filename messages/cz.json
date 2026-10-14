@@ -1639,9 +1639,14 @@
       "count": "n = {n}",
       "tooltip": "Věk {age}: {count, plural, =1 {1 příběh} few {# příběhy} many {# příběhu} other {# příběhů}}",
       "yearsTooltip": "{years, plural, =1 {1 rok} few {# roky} many {# roku} other {# let}} v tranzici: {count, plural, =1 {1 příběh} few {# příběhy} many {# příběhu} other {# příběhů}}",
-      "basedOn": "Každý řádek počítá jen příběhy, které daný věk uvádějí. Osa je oříznuta na 99. percentilu.",
+      "basedOn": "Každý řádek počítá jen příběhy, které daný věk uvádějí. Věk nad 45 let není zobrazen.",
       "empty": "Pro aktuální filtry zatím nejsou žádná data časové osy.",
-      "error": "Nepodařilo se načíst data o průběhu"
+      "error": "Nepodařilo se načíst data o průběhu",
+      "curvesTitle": "Věk při tranzici a detranzici",
+      "curvesDescription": "Podíl příběhů uvádějících daný věk při tranzici a při detranzici. Přerušované čáry označují mediány.",
+      "curvesTooltip": "Věk {age}",
+      "curvesStories": "{count, plural, =1 {1 příběh} few {# příběhy} other {# příběhů}}",
+      "curvesNote": "Každá čára počítá jen příběhy, které daný věk uvádějí. Věk nad 45 let není zobrazen."
     },
     "gradient": {
       "regret": "Lítost",
@@ -1724,22 +1729,41 @@
         "regretLadder": "Lítost a lékařské kroky",
         "improvement": "Život po detranzici",
         "journey": "Typický průběh",
+        "durationBySex": "Doba v tranzici",
         "minorShare": "Začátek před 18. rokem",
-        "minorLe15": "Začátek v 15 letech nebo dříve",
         "minorDysphoria": "První dysforie do 12 let",
         "minorFemale": "Kdo začíná mladý",
+        "reasonsBySex": "Hlavní důvody tranzice",
+        "therapyMentalHealth": "Pomohla explorativní terapie",
+        "criticalOfTransition": "Názory na tranzici",
         "orientation": "Sexuální orientace"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "Dalších {unclear} % je nejasných.",
+      "prevalenceByFeature": {
+        "took_hormones": "{percent}% příběhů uvádí, že užívali hormony opačného pohlaví (n = {n}).",
+        "mh_generic": "{percent}% příběhů uvádí, že se potýkali s problémy s duševním zdravím (n = {n}).",
+        "regret_transition": "{percent}% příběhů uvádí, že tranzice litují (n = {n}).",
+        "community_disillusionment": "{percent}% příběhů uvádí, že byli zklamaní trans/LGBT komunitou (n = {n}).",
+        "adv_trauma_history": "{percent}% příběhů uvádí, že mají za sebou trauma (n = {n})."
+      },
       "regretLadder": "{surgery} % těch, kdo podstoupili operaci, uvádí, že tranzice litují, oproti {hormones} % po hormonech či blokátorech a {socialOnly} % po pouze sociální tranzici (n = {n}).",
-      "regretLadderNote": "Ostatní se nevyjadřují ani jedním směrem.",
       "improvement": "{better} % uvádí, že se jejich kvalita života po detranzici zlepšila; {worse} % uvádí, že se zhoršila (n = {n}).",
       "journey": "Typický průběh: první dysforie v {dysphoria} → tranzice v {transition} → detranzice v {detransition} (n = {n}).",
+      "durationBySex": "Medián doby v tranzici: {female} let u žen (n = {nFemale}) a {male} let u mužů (n = {nMale}).",
       "minorShare": "{percent} % příběhů s uvedeným věkem zahájilo tranzici před 18. rokem (n = {n} z {total}).",
-      "minorLe15": "{percent} % začalo v 15 letech nebo dříve (n = {n}).",
       "minorDysphoria": "{percent} % poprvé pocítilo dysforii ve 12 letech nebo dříve (n = {n}).",
       "minorFemale": "{percent} % z těch, kdo začali před 18. rokem, jsou ženy (n = {n}).",
+      "reasonsWomen": "Ženy",
+      "reasonsMen": "Muži",
+      "reasonsBySex": "Důvody více než dvakrát častější u jednoho pohlaví než u druhého:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "Internalizovaná misogynie"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "Internalizovaná misandrie"
+      },
+      "therapyMentalHealth": "{with}% těch, kterým pomohla explorativní terapie, uvádí, že se jejich duševní zdraví po detranzici zlepšilo, oproti {without}% ostatních (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "{percent}% je nyní vůči tranzici u jiných lidí kritických nebo proti ní (n ≈ {n}).",
       "explore": "Prozkoumat",
       "orientation": "{percent} % detranzicionistů, kteří uvádějí svou orientaci, jsou gayové, lesby nebo bisexuálové ({sameSex} % gayové nebo lesby; n = {n})."
     },
@@ -2053,14 +2077,15 @@
     }
   },
   "topicsPage": {
-    "title": "Témata",
-    "description": "Podrobný pohled na detranzici, genderovou medicínu a související témata.",
+    "title": "Prozkoumejte témata související s detranzicí",
+    "description": "Podrobné články o genderu, identitě a detranzici, vycházející z akademických studií a ze skutečných zkušeností a pohledů lidí s trans identitou a detranzitorů.",
     "empty": "Zatím nebyla zveřejněna žádná témata.",
     "pagesInSection": "Stránky v této sekci",
     "relatedPages": "Související stránky",
     "lastUpdated": "Naposledy aktualizováno:",
     "stubNotice": "Tato stránka je zatím pahýl a bude rozšířena.",
-    "views": "{count, plural, one {# zobrazení} few {# zobrazení} many {# zobrazení} other {# zobrazení}}"
+    "views": "{count, plural, one {# zobrazení} few {# zobrazení} many {# zobrazení} other {# zobrazení}}",
+    "articleCount": "{count, plural, one {# článek} few {# články} other {# článků}}"
   },
   "storiesPage": {
     "metadata": {

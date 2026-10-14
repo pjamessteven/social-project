@@ -1,5 +1,6 @@
 "use server";
 
+import { PAGE_TITLE } from "@/app/components/ui/typography";
 import {
   getYouTubeEmbedUrl,
   getYouTubeVideoId,
@@ -39,7 +40,7 @@ interface VideoWithTranslations {
 
 async function fetchVideo(
   videoId: number,
-  locale: string
+  locale: string,
 ): Promise<VideoWithTranslations | null> {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
@@ -264,7 +265,7 @@ export default async function VideoPage({ params }: VideoPageProps) {
         </Link>
       </div>
 
-      <h1 className="mb-0 text-3xl font-bold">{localizedTitle}</h1>
+      <h1 className={`mb-0 ${PAGE_TITLE}`}>{localizedTitle}</h1>
       {localizedBite && (
         <h3 className="text-muted-foreground text-lg lg:text-xl">
           {localizedBite}

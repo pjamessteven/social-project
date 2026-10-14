@@ -1,11 +1,9 @@
 "use client";
 
 import { createContext, useContext, type ReactNode } from "react";
+import { CARD_SURFACE } from "../ui/card";
 
-/** Card surface shared with the /videos cards: white (secondary in dark
- * mode), rounded, bordered, with a light shadow. */
-export const CARD_SURFACE =
-  "rounded-2xl border bg-white shadow-sm dark:bg-secondary";
+export { CARD_SURFACE };
 
 /** The same surface while loading: identical radius, border and shadow,
  * with a muted, pulsing fill. */

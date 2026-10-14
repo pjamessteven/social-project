@@ -1,7 +1,8 @@
 import Studies from "./studies";
 
-import type { Metadata } from "next";
+import { PAGE_TITLE } from "@/app/components/ui/typography";
 import { localesInfo } from "@/i18n/locales";
+import type { Metadata } from "next";
 
 const metadata: Metadata = {
   title: "detrans.ai | Current Research Studies",
@@ -59,7 +60,7 @@ export async function generateMetadata({
 export default async function ParticipatePage() {
   return (
     <div className="prose dark:prose-invert max-w-4xl pb-16 lg:pt-8">
-      <h1 className="mb-6 text-3xl font-bold">Current Detransition Studies</h1>
+      <h1 className={`mb-6 ${PAGE_TITLE}`}>Current Detransition Studies</h1>
       <p>
         Your voice matters. Academic researchers are actively studying
         detransition experiences to improve healthcare and support for

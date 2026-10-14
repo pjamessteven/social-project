@@ -1,5 +1,6 @@
 "use client";
 
+import { PAGE_TITLE } from "@/app/components/ui/typography";
 import { useTranslations } from "next-intl";
 
 export default function TermsPage() {
@@ -8,7 +9,7 @@ export default function TermsPage() {
 
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
-      <h1 className="text-3xl font-bold">{t("title")}</h1>
+      <h1 className={PAGE_TITLE}>{t("title")}</h1>
       <p>{t("intro")}</p>
       <ol>
         <li>

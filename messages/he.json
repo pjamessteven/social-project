@@ -1638,9 +1638,14 @@
       "count": "n = {n}",
       "tooltip": "גיל {age}: {count, plural, =1 {סיפור אחד} other {# סיפורים}}",
       "yearsTooltip": "{years, plural, =1 {שנה אחת} =2 {שנתיים} other {# שנים}} במעבר: {count, plural, =1 {סיפור אחד} other {# סיפורים}}",
-      "basedOn": "כל שורה סופרת רק את הסיפורים שמציינים את אותו גיל. הציר נחתך באחוזון ה-99.",
+      "basedOn": "כל שורה סופרת רק סיפורים שמציינים את הגיל הזה. גילים מעל 45 אינם מוצגים.",
       "empty": "עדיין אין נתוני ציר זמן עבור המסננים הנוכחיים.",
-      "error": "לא ניתן לטעון את נתוני המסע"
+      "error": "לא ניתן לטעון את נתוני המסע",
+      "curvesTitle": "גיל המעבר והדה־טרנזישן",
+      "curvesDescription": "שיעור הסיפורים שמציינים כל גיל למעבר ולדה־טרנזישן. הקווים המקווקווים מסמנים את החציונים.",
+      "curvesTooltip": "גיל {age}",
+      "curvesStories": "{count, plural, =1 {סיפור אחד} other {# סיפורים}}",
+      "curvesNote": "כל קו סופר רק סיפורים שמציינים את הגיל הזה. גילים מעל 45 אינם מוצגים."
     },
     "gradient": {
       "regret": "חרטה",
@@ -1723,22 +1728,41 @@
         "regretLadder": "חרטה וצעדים רפואיים",
         "improvement": "החיים אחרי הדטרנזישן",
         "journey": "המסלול האופייני",
+        "durationBySex": "משך המעבר",
         "minorShare": "התחילו לפני גיל 18",
-        "minorLe15": "התחילו בגיל 15 או צעירים יותר",
         "minorDysphoria": "דיספוריה ראשונה עד גיל 12",
         "minorFemale": "מי מתחילים צעירים",
+        "reasonsBySex": "הסיבות העיקריות למעבר",
+        "therapyMentalHealth": "טיפול חוקר עזר",
+        "criticalOfTransition": "עמדות כלפי מעבר",
         "orientation": "נטייה מינית"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "עוד {unclear}% אינם ברורים.",
+      "prevalenceByFeature": {
+        "took_hormones": "{percent}% מהסיפורים מזכירים נטילת הורמונים של המין השני (n = {n}).",
+        "mh_generic": "{percent}% מהסיפורים מזכירים התמודדות עם בעיות נפשיות (n = {n}).",
+        "regret_transition": "{percent}% מהסיפורים מזכירים חרטה על המעבר (n = {n}).",
+        "community_disillusionment": "{percent}% מהסיפורים מזכירים התפכחות מהקהילה הטרנסית/להט\"בית (n = {n}).",
+        "adv_trauma_history": "{percent}% מהסיפורים מזכירים היסטוריה של טראומה (n = {n})."
+      },
       "regretLadder": "{surgery}% מאלה שעברו ניתוח אומרים שהם מתחרטים על המעבר, לעומת {hormones}% אחרי הורמונים או חוסמים ו-{socialOnly}% אחרי מעבר חברתי בלבד (n = {n}).",
-      "regretLadderNote": "השאר אינם אומרים לכאן או לכאן.",
       "improvement": "{better}% אומרים שאיכות חייהם השתפרה אחרי הדטרנזישן; {worse}% אומרים שהיא הורעה (n = {n}).",
       "journey": "המסלול האופייני: דיספוריה ראשונה בגיל {dysphoria} → מעבר בגיל {transition} → דטרנזישן בגיל {detransition} (n = {n}).",
+      "durationBySex": "משך חציוני במעבר: {female} שנים לנשים (n = {nFemale}) ו-{male} שנים לגברים (n = {nMale}).",
       "minorShare": "{percent}% מהסיפורים עם גיל התחילו מעבר לפני גיל 18 (n = {n} מתוך {total}).",
-      "minorLe15": "{percent}% התחילו בגיל 15 או צעירים יותר (n = {n}).",
       "minorDysphoria": "{percent}% חשו לראשונה דיספוריה בגיל 12 או צעירים יותר (n = {n}).",
       "minorFemale": "{percent}% ממי שהתחילו לפני גיל 18 הן נקבות (n = {n}).",
+      "reasonsWomen": "נשים",
+      "reasonsMen": "גברים",
+      "reasonsBySex": "סיבות שנפוצות פי יותר משניים אצל מין אחד לעומת השני:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "מיזוגיניה מופנמת"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "מיזנדריה מופנמת"
+      },
+      "therapyMentalHealth": "{with}% מאלה שטיפול חקרני עזר להם אומרים שבריאותם הנפשית השתפרה אחרי הדה-טרנזישן, לעומת {without}% מהאחרים (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "{percent}% ביקורתיים כיום כלפי מעבר עבור אחרים או מתנגדים לו (n ≈ {n}).",
       "explore": "לחקור",
       "orientation": "{percent}% מהמדטרנזישנרים שמציינים את נטייתם הם הומואים, לסביות או דו-מיניים ({sameSex}% הומואים או לסביות; n = {n})."
     },
@@ -2052,14 +2076,15 @@
     }
   },
   "topicsPage": {
-    "title": "נושאים",
-    "description": "סקירה מעמיקה של דה-טרנזישן, רפואה מגדרית ונושאים קשורים.",
+    "title": "גלו נושאים הקשורים לדה-טרנזישן",
+    "description": "מאמרים מעמיקים על מגדר, זהות ודה-טרנזישן, המבוססים על מחקרים אקדמיים ועל החוויות ונקודות המבט של אנשים המזדהים כטרנסים ושל אנשים שעשו דה-טרנזישן.",
     "empty": "עדיין לא פורסמו נושאים.",
     "pagesInSection": "דפים בחלק זה",
     "relatedPages": "דפים קשורים",
     "lastUpdated": "עודכן לאחרונה:",
     "stubNotice": "דף זה הוא קצרמר ויורחב בהמשך.",
-    "views": "{count, plural, one {צפייה אחת} other {# צפיות}}"
+    "views": "{count, plural, one {צפייה אחת} other {# צפיות}}",
+    "articleCount": "{count, plural, one {מאמר אחד} other {# מאמרים}}"
   },
   "storiesPage": {
     "metadata": {

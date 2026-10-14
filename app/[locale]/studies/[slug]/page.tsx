@@ -1,5 +1,6 @@
 import { DeleteStudyButton } from "@/app/components/DeleteStudyButton";
 import { StudyApprovalForm } from "@/app/components/StudyApprovalForm";
+import { PAGE_TITLE } from "@/app/components/ui/typography";
 import { isAdmin } from "@/app/lib/auth/auth";
 import { getLocalizedValue } from "@/app/lib/pages";
 import { localeToBcp47, safeJsonLd, SITE_URL } from "@/app/lib/seo";
@@ -272,7 +273,7 @@ export default async function StudyPage({ params }: { params: PageParams }) {
         <div className="space-y-6">
           {/* Header */}
           <div className="mb-4">
-            <h1 className="text-2xl font-bold">
+            <h1 className={PAGE_TITLE}>
               {study.headline || study.title || "Untitled Study"}
             </h1>
             {study.headline &&
@@ -294,7 +295,7 @@ export default async function StudyPage({ params }: { params: PageParams }) {
                     category.kind,
                     category.slug,
                   )}
-                  className="inline-flex items-center rounded-full border bg-gray-100 px-2.5 py-1 text-xs text-gray-700 hover:border-gray-400 dark:bg-gray-800 dark:text-gray-300"
+                  className="inline-flex items-center rounded-full border bg-gray-100 px-3 py-1 text-sm text-gray-700 hover:border-gray-400 dark:bg-gray-800 dark:text-gray-300"
                 >
                   {category.name}
                 </Link>

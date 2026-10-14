@@ -1638,9 +1638,14 @@
       "count": "n = {n}",
       "tooltip": "Yaş {age}: {count, plural, =1 {1 hikâye} other {# hikâye}}",
       "yearsTooltip": "Geçişte {years, plural, =1 {1 yıl} other {# yıl}}: {count, plural, =1 {1 hikâye} other {# hikâye}}",
-      "basedOn": "Her satır yalnızca o yaşı belirten hikâyeleri sayar. Eksen 99. yüzdelikte kesilmiştir.",
+      "basedOn": "Her satır yalnızca o yaşı belirten hikâyeleri sayar. 45 yaşın üzeri gösterilmez.",
       "empty": "Mevcut filtreler için henüz zaman çizelgesi verisi yok.",
-      "error": "Süreç verileri yüklenemedi"
+      "error": "Süreç verileri yüklenemedi",
+      "curvesTitle": "Geçiş ve detransition yaşı",
+      "curvesDescription": "Geçiş ve detransition için her yaşı belirten hikâyelerin payı. Kesikli çizgiler medyanları gösterir.",
+      "curvesTooltip": "Yaş {age}",
+      "curvesStories": "{count, plural, =1 {1 hikâye} other {# hikâye}}",
+      "curvesNote": "Her çizgi yalnızca o yaşı belirten hikâyeleri sayar. 45 yaşın üzeri gösterilmez."
     },
     "gradient": {
       "regret": "Pişmanlık",
@@ -1723,22 +1728,41 @@
         "regretLadder": "Pişmanlık ve tıbbi adımlar",
         "improvement": "Detransisyondan sonra yaşam",
         "journey": "Tipik süreç",
+        "durationBySex": "Geçişte geçen süre",
         "minorShare": "18'den önce başladı",
-        "minorLe15": "15 yaşında veya daha erken başladı",
         "minorDysphoria": "12 yaşına kadar ilk disfori",
         "minorFemale": "Kimler erken başlıyor",
+        "reasonsBySex": "Geçişin başlıca nedenleri",
+        "therapyMentalHealth": "Keşfedici terapi yardımcı oldu",
+        "criticalOfTransition": "Geçişe bakış",
         "orientation": "Cinsel yönelim"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "Bir %{unclear} daha belirsiz.",
+      "prevalenceByFeature": {
+        "took_hormones": "Hikâyelerin %{percent} kadarı karşı cins hormonları kullandıklarından söz ediyor (n = {n}).",
+        "mh_generic": "Hikâyelerin %{percent} kadarı ruh sağlığı sorunlarıyla boğuştuklarından söz ediyor (n = {n}).",
+        "regret_transition": "Hikâyelerin %{percent} kadarı geçişten pişman olduklarından söz ediyor (n = {n}).",
+        "community_disillusionment": "Hikâyelerin %{percent} kadarı trans/LGBT topluluğundan hayal kırıklığına uğradıklarından söz ediyor (n = {n}).",
+        "adv_trauma_history": "Hikâyelerin %{percent} kadarı geçmişte travma yaşadıklarından söz ediyor (n = {n})."
+      },
       "regretLadder": "Ameliyat olanların %{surgery}'i geçişten pişman olduğunu söylüyor; bu oran hormon veya blokerlerden sonra %{hormones}, yalnızca sosyal geçişten sonra %{socialOnly} (n = {n}).",
-      "regretLadderNote": "Geri kalanlar ne pişman olduğunu ne de olmadığını söylüyor.",
       "improvement": "%{better} detransisyondan sonra yaşam kalitesinin iyileştiğini söylüyor; %{worse} kötüleştiğini söylüyor (n = {n}).",
       "journey": "Tipik süreç: {dysphoria} yaşında ilk disfori → {transition} yaşında geçiş → {detransition} yaşında detransisyon (n = {n}).",
+      "durationBySex": "Geçişte geçen medyan süre: kadınlarda {female} yıl (n = {nFemale}), erkeklerde {male} yıl (n = {nMale}).",
       "minorShare": "Yaş belirten hikâyelerin %{percent} kadarında geçiş 18 yaşından önce başladı (n = {n} / {total}).",
-      "minorLe15": "%{percent} 15 yaşında veya daha erken başladı (n = {n}).",
       "minorDysphoria": "%{percent} ilk kez 12 yaşında veya daha erken disfori hissetti (n = {n}).",
       "minorFemale": "18 yaşından önce başlayanların %{percent} kadarı kadın (n = {n}).",
+      "reasonsWomen": "Kadınlar",
+      "reasonsMen": "Erkekler",
+      "reasonsBySex": "Bir cinsiyette diğerine göre iki kattan fazla yaygın nedenler:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "İçselleştirilmiş kadın düşmanlığı"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "İçselleştirilmiş erkek düşmanlığı"
+      },
+      "therapyMentalHealth": "Keşfedici terapiden fayda görenlerin %{with} kadarı detransizyondan sonra ruh sağlığının iyileştiğini söylüyor; diğerlerinde bu oran %{without} (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "%{percent} artık başkaları için geçişe eleştirel bakıyor veya karşı çıkıyor (n ≈ {n}).",
       "explore": "İncele",
       "orientation": "Yönelimini belirten detransitioner'ların %{percent} kadarı gey, lezbiyen veya biseksüel (%{sameSex} gey veya lezbiyen; n = {n})."
     },
@@ -2052,14 +2076,15 @@
     }
   },
   "topicsPage": {
-    "title": "Konular",
-    "description": "Detransizyon, cinsiyet tıbbı ve ilgili konular üzerine kapsamlı içerikler.",
+    "title": "Detransizyonla İlgili Konuları Keşfedin",
+    "description": "Akademik çalışmalara ve kendini trans olarak tanımlayan kişiler ile detransitioner'ların yaşanmış deneyimlerine ve bakış açılarına dayanan; cinsiyet, kimlik ve detransizyon üzerine kapsamlı yazılar.",
     "empty": "Henüz yayımlanmış konu yok.",
     "pagesInSection": "Bu bölümdeki sayfalar",
     "relatedPages": "İlgili sayfalar",
     "lastUpdated": "Son güncelleme:",
     "stubNotice": "Bu sayfa taslak hâlindedir ve genişletilecektir.",
-    "views": "{count, plural, other {# görüntülenme}}"
+    "views": "{count, plural, other {# görüntülenme}}",
+    "articleCount": "{count, plural, other {# yazı}}"
   },
   "storiesPage": {
     "metadata": {

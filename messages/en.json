@@ -1636,9 +1636,14 @@
       "count": "n = {n}",
       "tooltip": "Age {age}: {count, plural, =1 {1 story} other {# stories}}",
       "yearsTooltip": "{years, plural, =1 {1 year} other {# years}} in transition: {count, plural, =1 {1 story} other {# stories}}",
-      "basedOn": "Each row counts only the stories that give that age. The axis is cut at the 99th percentile.",
+      "basedOn": "Each row counts only the stories that give that age. Ages over 45 are not shown.",
       "empty": "No timeline data for the current filters yet.",
-      "error": "Could not load journey data"
+      "error": "Could not load journey data",
+      "curvesTitle": "Age at transition and detransition",
+      "curvesDescription": "The share of stories that give each age for transitioning and for detransitioning. Dashed lines mark the medians.",
+      "curvesTooltip": "Age {age}",
+      "curvesStories": "{count, plural, =1 {1 story} other {# stories}}",
+      "curvesNote": "Each line counts only the stories that give that age. Ages over 45 are not shown."
     },
     "gradient": {
       "regret": "Regret",
@@ -1721,22 +1726,41 @@
         "regretLadder": "Regret and medical steps",
         "improvement": "Life after detransition",
         "journey": "Typical journey",
+        "durationBySex": "Time in transition",
         "minorShare": "Started before 18",
-        "minorLe15": "Started at 15 or younger",
         "minorDysphoria": "First dysphoria by 12",
         "minorFemale": "Who starts young",
+        "reasonsBySex": "Main reasons for transitioning",
+        "therapyMentalHealth": "Exploratory therapy helped",
+        "criticalOfTransition": "Views on transition",
         "orientation": "Sexual orientation"
       },
       "prevalence": "{percent}% of stories mention {label} (n = {n}).",
-      "prevalenceUnclear": "Another {unclear}% are unclear.",
+      "prevalenceByFeature": {
+        "took_hormones": "{percent}% of stories mention that they took cross-sex hormones (n = {n}).",
+        "mh_generic": "{percent}% of stories mention that they struggled with their mental health (n = {n}).",
+        "regret_transition": "{percent}% of stories mention that they regret transitioning (n = {n}).",
+        "community_disillusionment": "{percent}% of stories mention that they became disillusioned with the trans/LGBT community (n = {n}).",
+        "adv_trauma_history": "{percent}% of stories mention that they have a history of trauma (n = {n})."
+      },
       "regretLadder": "{surgery}% of those who had surgery say they regret transitioning, compared with {hormones}% after hormones or blockers and {socialOnly}% after a social transition only (n = {n}).",
-      "regretLadderNote": "The rest don't say either way.",
       "improvement": "{better}% say their quality of life improved after detransitioning; {worse}% say it got worse (n = {n}).",
       "journey": "The typical journey: first dysphoria at {dysphoria} → transition at {transition} → detransition at {detransition} (n = {n}).",
+      "durationBySex": "Median time in transition: {female} years for women (n = {nFemale}) and {male} years for men (n = {nMale}).",
       "minorShare": "{percent}% of stories with an age started transitioning under 18 (n = {n} of {total}).",
-      "minorLe15": "{percent}% started at 15 or younger (n = {n}).",
       "minorDysphoria": "{percent}% first felt dysphoria at 12 or younger (n = {n}).",
       "minorFemale": "{percent}% of under-18 starters are female (n = {n}).",
+      "reasonsWomen": "Women",
+      "reasonsMen": "Men",
+      "reasonsBySex": "Reasons more than twice as common for one sex as the other:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "Internalised misogyny"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "Internalised misandry"
+      },
+      "therapyMentalHealth": "{with}% of those helped by exploratory therapy say their mental health got better after detransitioning, compared with {without}% of others (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "{percent}% are now critical of or opposed to transition for other people (n ≈ {n}).",
       "explore": "Explore",
       "orientation": "{percent}% of detransitioners who state their orientation are gay, lesbian or bisexual ({sameSex}% gay or lesbian; n = {n})."
     },
@@ -2050,14 +2074,15 @@
     }
   },
   "topicsPage": {
-    "title": "Topics",
-    "description": "In-depth exploration of detransition, gender medicine, and related topics.",
+    "title": "Explore Topics Related to Detransition",
+    "description": "In-depth articles on gender, identity and detransition, drawing on academic studies and the lived experiences and perspectives of trans-identified people and detransitioners.",
     "empty": "No topics have been published yet.",
     "pagesInSection": "Pages in this section",
     "relatedPages": "Related pages",
     "lastUpdated": "Last updated:",
     "stubNotice": "This page is a stub and will be expanded.",
-    "views": "{count, plural, one {# view} other {# views}}"
+    "views": "{count, plural, one {# view} other {# views}}",
+    "articleCount": "{count, plural, one {# article} other {# articles}}"
   },
   "storiesPage": {
     "metadata": {

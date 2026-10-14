@@ -1,5 +1,6 @@
 "use client";
 
+import { PAGE_TITLE } from "@/app/components/ui/typography";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useCaptcha } from "@/app/hooks/useCaptcha";
@@ -80,7 +81,7 @@ export default function ContactForm() {
 
   return (
     <div className="prose dark:prose-invert pb-16 lg:pt-8">
-      <h1 className="text-3xl font-bold">{t("title")}</h1>
+      <h1 className={PAGE_TITLE}>{t("title")}</h1>
       <p>{t("intro")}</p>
       <div className="mx-auto w-full max-w-2xl rounded-2xl border bg-white p-8 pb-16 lg:pt-8 dark:border-none dark:bg-gray-900">
         <form onSubmit={handleSubmit} className="space-y-5">

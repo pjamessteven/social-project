@@ -1639,9 +1639,14 @@
       "count": "n = {n}",
       "tooltip": "العمر {age}: {count, plural, =1 {قصة واحدة} two {قصتان} few {# قصص} other {# قصة}}",
       "yearsTooltip": "{years, plural, =1 {سنة واحدة} two {سنتان} few {# سنوات} other {# سنة}} في التحول: {count, plural, =1 {قصة واحدة} two {قصتان} few {# قصص} other {# قصة}}",
-      "basedOn": "يحتسب كل صف القصص التي تذكر ذلك العمر فقط. المحور مقطوع عند المئين 99.",
+      "basedOn": "يحتسب كل صف القصص التي تذكر ذلك العمر فقط. لا تُعرض الأعمار فوق 45.",
       "empty": "لا توجد بعد بيانات زمنية وفق عوامل التصفية الحالية.",
-      "error": "تعذّر تحميل بيانات المسار"
+      "error": "تعذّر تحميل بيانات المسار",
+      "curvesTitle": "العمر عند التحول وعند التراجع عنه",
+      "curvesDescription": "نسبة القصص التي تذكر كل عمر للتحول وللتراجع عنه. تشير الخطوط المتقطعة إلى الوسيط.",
+      "curvesTooltip": "العمر {age}",
+      "curvesStories": "{count, plural, =1 {قصة واحدة} other {# قصة}}",
+      "curvesNote": "يحتسب كل خط القصص التي تذكر ذلك العمر فقط. لا تُعرض الأعمار فوق 45."
     },
     "gradient": {
       "regret": "ندم",
@@ -1724,22 +1729,41 @@
         "regretLadder": "الندم والخطوات الطبية",
         "improvement": "الحياة بعد التراجع عن التحول",
         "journey": "المسار النموذجي",
+        "durationBySex": "مدة التحول",
         "minorShare": "بدأوا قبل سن 18",
-        "minorLe15": "بدأوا في سن 15 أو أصغر",
         "minorDysphoria": "أول عدم ارتياح جندري بحلول سن 12",
         "minorFemale": "من يبدأ في سن صغيرة",
+        "reasonsBySex": "الأسباب الرئيسية للتحول",
+        "therapyMentalHealth": "ساعد العلاج الاستكشافي",
+        "criticalOfTransition": "الموقف من التحول",
         "orientation": "التوجه الجنسي"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "و{unclear}% أخرى غير واضحة.",
+      "prevalenceByFeature": {
+        "took_hormones": "{percent}% من القصص تذكر أن أصحابها تناولوا هرمونات الجنس الآخر (n = {n}).",
+        "mh_generic": "{percent}% من القصص تذكر أن أصحابها عانوا من مشكلات في الصحة النفسية (n = {n}).",
+        "regret_transition": "{percent}% من القصص تذكر أن أصحابها نادمون على التحول (n = {n}).",
+        "community_disillusionment": "{percent}% من القصص تذكر أن أصحابها أصيبوا بخيبة أمل من مجتمع العابرين/مجتمع الميم (n = {n}).",
+        "adv_trauma_history": "{percent}% من القصص تذكر أن لأصحابها تاريخًا من الصدمات (n = {n})."
+      },
       "regretLadder": "{surgery}% ممن خضعوا لجراحة يقولون إنهم نادمون على التحول، مقارنة بـ {hormones}% بعد الهرمونات أو حاصرات البلوغ و{socialOnly}% بعد تحول اجتماعي فقط (n = {n}).",
-      "regretLadderNote": "والباقون لا يقولون في أي من الاتجاهين.",
       "improvement": "{better}% يقولون إن جودة حياتهم تحسّنت بعد التراجع عن التحول؛ و{worse}% يقولون إنها ساءت (n = {n}).",
       "journey": "المسار النموذجي: أول عدم ارتياح جندري في سن {dysphoria} → التحول في سن {transition} → التراجع عن التحول في سن {detransition} (n = {n}).",
+      "durationBySex": "متوسط مدة التحول (الوسيط): {female} سنوات للنساء (n = {nFemale}) و{male} سنوات للرجال (n = {nMale}).",
       "minorShare": "{percent}% من القصص التي تذكر العمر بدأ أصحابها التحول قبل سن 18 (n = {n} من {total}).",
-      "minorLe15": "{percent}% بدأوا في سن 15 أو أصغر (n = {n}).",
       "minorDysphoria": "{percent}% شعروا بعدم الارتياح الجندري لأول مرة في سن 12 أو أصغر (n = {n}).",
       "minorFemale": "{percent}% ممن بدأوا قبل سن 18 هم إناث (n = {n}).",
+      "reasonsWomen": "النساء",
+      "reasonsMen": "الرجال",
+      "reasonsBySex": "أسباب أكثر شيوعًا بأكثر من الضعف لدى أحد الجنسين مقارنة بالآخر:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "كراهية النساء المستبطنة"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "كراهية الرجال المستبطنة"
+      },
+      "therapyMentalHealth": "{with}% ممن ساعدهم العلاج الاستكشافي يقولون إن صحتهم النفسية تحسنت بعد التراجع عن التحول، مقارنة بـ{without}% من الآخرين (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "{percent}% أصبحوا الآن ناقدين للتحول أو معارضين له بالنسبة للآخرين (n ≈ {n}).",
       "explore": "استكشاف",
       "orientation": "{percent}% من الأشخاص الذين تراجعوا عن التحول ويذكرون توجههم هم مثليون أو مثليات أو ثنائيو الميول ({sameSex}% مثليون أو مثليات؛ n = {n})."
     },
@@ -2053,14 +2077,15 @@
     }
   },
   "topicsPage": {
-    "title": "المواضيع",
-    "description": "استكشاف معمّق للتراجع عن التحول والطب الجندري والمواضيع ذات الصلة.",
+    "title": "استكشف مواضيع متعلقة بالتراجع عن التحول",
+    "description": "مقالات معمّقة حول الجندر والهوية والتراجع عن التحول، تستند إلى دراسات أكاديمية وإلى التجارب الحية ووجهات نظر الأشخاص ذوي الهوية العابرة والمتراجعين عن التحول.",
     "empty": "لم يتم نشر أي مواضيع بعد.",
     "pagesInSection": "صفحات في هذا القسم",
     "relatedPages": "صفحات ذات صلة",
     "lastUpdated": "آخر تحديث:",
     "stubNotice": "هذه الصفحة مختصرة وسيتم توسيعها.",
-    "views": "{count, plural, zero {# مشاهدة} one {مشاهدة واحدة} two {مشاهدتان} few {# مشاهدات} many {# مشاهدة} other {# مشاهدة}}"
+    "views": "{count, plural, zero {# مشاهدة} one {مشاهدة واحدة} two {مشاهدتان} few {# مشاهدات} many {# مشاهدة} other {# مشاهدة}}",
+    "articleCount": "{count, plural, zero {# مقالات} one {مقال واحد} two {مقالان} few {# مقالات} many {# مقالًا} other {# مقال}}"
   },
   "storiesPage": {
     "metadata": {

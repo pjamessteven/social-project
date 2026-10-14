@@ -1639,9 +1639,14 @@
       "count": "n = {n}",
       "tooltip": "{age} 岁：{count, plural, =1 {1 个故事} other {# 个故事}}",
       "yearsTooltip": "过渡 {years, plural, =1 {1 年} other {# 年}}：{count, plural, =1 {1 个故事} other {# 个故事}}",
-      "basedOn": "每一行只计算给出该年龄的故事。坐标轴在第 99 百分位处截断。",
+      "basedOn": "每一行只统计给出该年龄的故事。不显示 45 岁以上的年龄。",
       "empty": "当前筛选条件下尚无时间线数据。",
-      "error": "无法加载历程数据"
+      "error": "无法加载历程数据",
+      "curvesTitle": "转变与去转变时的年龄",
+      "curvesDescription": "在给出转变或去转变年龄的故事中，各年龄所占的比例。虚线标出中位数。",
+      "curvesTooltip": "{age} 岁",
+      "curvesStories": "{count, plural, =1 {1 个故事} other {# 个故事}}",
+      "curvesNote": "每条线只统计给出该年龄的故事。不显示 45 岁以上的年龄。"
     },
     "gradient": {
       "regret": "后悔",
@@ -1724,22 +1729,41 @@
         "regretLadder": "后悔与医疗步骤",
         "improvement": "去过渡后的生活",
         "journey": "典型历程",
+        "durationBySex": "转换持续时间",
         "minorShare": "18 岁前开始",
-        "minorLe15": "15 岁或更早开始",
         "minorDysphoria": "12 岁前首次性别焦虑",
         "minorFemale": "谁更早开始",
+        "reasonsBySex": "转换的主要原因",
+        "therapyMentalHealth": "探索性治疗有帮助",
+        "criticalOfTransition": "对性别转换的看法",
         "orientation": "性取向"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "另有 {unclear}% 不明确。",
+      "prevalenceByFeature": {
+        "took_hormones": "{percent}% 的故事提到他们使用过跨性别激素 (n = {n})。",
+        "mh_generic": "{percent}% 的故事提到他们曾受心理健康问题困扰 (n = {n})。",
+        "regret_transition": "{percent}% 的故事提到他们后悔转换 (n = {n})。",
+        "community_disillusionment": "{percent}% 的故事提到他们对跨性别/LGBT 社群感到幻灭 (n = {n})。",
+        "adv_trauma_history": "{percent}% 的故事提到他们有创伤经历 (n = {n})。"
+      },
       "regretLadder": "做过手术的人中有 {surgery}% 表示后悔过渡，而使用激素或阻断剂后为 {hormones}%，仅社会过渡后为 {socialOnly}%（n = {n}）。",
-      "regretLadderNote": "其余的人没有表明是否后悔。",
       "improvement": "{better}% 表示去过渡后生活质量提高；{worse}% 表示变差（n = {n}）。",
       "journey": "典型历程：{dysphoria} 岁首次性别焦虑 → {transition} 岁过渡 → {detransition} 岁去过渡（n = {n}）。",
+      "durationBySex": "转换持续时间中位数：女性 {female} 年 (n = {nFemale})，男性 {male} 年 (n = {nMale})。",
       "minorShare": "在有年龄信息的故事中，{percent}% 在 18 岁前开始过渡（n = {n}，共 {total}）。",
-      "minorLe15": "{percent}% 在 15 岁或更早开始（n = {n}）。",
       "minorDysphoria": "{percent}% 在 12 岁或更早首次感到性别焦虑（n = {n}）。",
       "minorFemale": "18 岁前开始的人中 {percent}% 为女性（n = {n}）。",
+      "reasonsWomen": "女性",
+      "reasonsMen": "男性",
+      "reasonsBySex": "在一种性别中比另一种性别常见两倍以上的原因：",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "内化的厌女"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "内化的厌男"
+      },
+      "therapyMentalHealth": "在探索性治疗有帮助的人中，{with}% 表示去转换后心理健康有所改善，其他人为 {without}% (n = {nWith} / {nWithout})。",
+      "criticalOfTransition": "{percent}% 现在对他人进行转换持批评或反对态度 (n ≈ {n})。",
       "explore": "查看",
       "orientation": "在说明了性取向的去过渡者中，{percent}% 是男同性恋、女同性恋或双性恋（{sameSex}% 为男同性恋或女同性恋；n = {n}）。"
     },
@@ -2053,14 +2077,15 @@
     }
   },
   "topicsPage": {
-    "title": "主题",
-    "description": "深入探讨去过渡、性别医学及相关主题。",
+    "title": "探索去过渡相关主题",
+    "description": "关于性别、身份认同与去过渡的深度文章，基于学术研究以及跨性别认同者和去过渡者的亲身经历与观点。",
     "empty": "尚未发布任何主题。",
     "pagesInSection": "本节页面",
     "relatedPages": "相关页面",
     "lastUpdated": "最后更新：",
     "stubNotice": "此页面尚不完整，将会扩充。",
-    "views": "{count, plural, other {# 次浏览}}"
+    "views": "{count, plural, other {# 次浏览}}",
+    "articleCount": "{count, plural, other {# 篇文章}}"
   },
   "storiesPage": {
     "metadata": {

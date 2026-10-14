@@ -200,6 +200,7 @@ export const detransUsers = pgTable(
 export const detransUserDisplayNames = pgTable("detrans_user_display_names", {
   username: varchar("username", { length: 255 }).primaryKey(),
   displayName: varchar("display_name", { length: 255 }).notNull(),
+  displayNameTranslation: text("display_name_translation"), // JSON object with translations
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

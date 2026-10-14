@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export interface FeatureSummaryItem {
   key: string;
@@ -120,9 +120,45 @@ export function buildFeatureParams(params: ReadonlyParams): string {
   return query.toString();
 }
 
-export function useFeatureSummary() {
+export interface FilterOverrides {
+  sex?: string;
+  tag?: string;
+}
+
+/**
+ * Filters set by a section's own filter bar (see StatsFilters'
+ * FilteredSection). They replace the page's query-string filters for every
+ * chart inside that section.
+ */
+export const SectionFiltersContext = createContext<FilterOverrides | null>(
+  null,
+);
+
+/**
+ * The /api/features/* query string for this chart: the page filters, then
+ * the enclosing section's filters, then `overrides` (an empty string clears
+ * that filter).
+ */
+export function useFeatureQuery(overrides?: FilterOverrides): string {
   const searchParams = useSearchParams();
-  const query = buildFeatureParams(searchParams);
+  const section = useContext(SectionFiltersContext);
+  const params = new URLSearchParams(buildFeatureParams(searchParams));
+  for (const layer of [section, overrides]) {
+    for (const [key, value] of Object.entries(layer ?? {})) {
+      if (value === undefined) continue;
+      if (value) params.set(key, value);
+      else params.delete(key);
+    }
+  }
+  return params.toString();
+}
+
+/**
+ * Feature summary for the page filters. `overrides` replaces individual
+ * filters for one chart (an empty string clears that filter).
+ */
+export function useFeatureSummary(overrides?: FilterOverrides) {
+  const query = useFeatureQuery(overrides);
   const [data, setData] = useState<FeatureSummaryResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -164,8 +200,7 @@ export function useFeatureDetail(
   key: string | null,
   threshold?: number | null,
 ) {
-  const searchParams = useSearchParams();
-  const query = buildFeatureParams(searchParams);
+  const query = useFeatureQuery();
   const [data, setData] = useState<FeatureDetailResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -225,8 +260,7 @@ export function prettifyKey(key: string): string {
  * Pass null to skip fetching.
  */
 export function useFilteredJson<T>(path: string | null) {
-  const searchParams = useSearchParams();
-  const query = buildFeatureParams(searchParams);
+  const query = useFeatureQuery();
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(path != null);
   const [error, setError] = useState<string | null>(null);
@@ -274,7 +308,6 @@ export function useFilteredJson<T>(path: string | null) {
 
 /** True when the stats filters already restrict the cohort to one sex. */
 export function useSexFiltered(): boolean {
-  const searchParams = useSearchParams();
-  const sex = searchParams.get("sex");
+  const sex = new URLSearchParams(useFeatureQuery()).get("sex");
   return sex === "m" || sex === "f";
 }

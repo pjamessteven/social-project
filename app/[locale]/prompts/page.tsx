@@ -1,5 +1,6 @@
 "use client";
 
+import { PAGE_TITLE } from "@/app/components/ui/typography";
 import { useTranslations } from "next-intl";
 import { chatAgentPrompt } from "../../lib/prompts";
 
@@ -9,7 +10,7 @@ export default function PromptsPage() {
   return (
     <div className="min-h-screen pb-16 lg:pt-8">
       <div className="prose dark:prose-invert">
-        <h1 className="text-3xl font-bold">{t("title")}</h1>
+        <h1 className={PAGE_TITLE}>{t("title")}</h1>
         <p>
           {t.rich("intro.paragraph1", {
             bold: (chunks) => <b>{chunks}</b>,

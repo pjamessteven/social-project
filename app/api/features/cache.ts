@@ -19,7 +19,7 @@ import { FEATURE_CACHE_HEADERS } from "./helpers";
  * Bump CACHE_VERSION (or `redis-cli --scan --pattern 'features:*' | xargs
  * redis-cli del`) to drop everything after an import.
  */
-const CACHE_VERSION = 2;
+const CACHE_VERSION = 3;
 const PREFIX = `features:v${CACHE_VERSION}:`;
 const FRESH_SECONDS = 6 * 60 * 60;
 const KEEP_SECONDS = 7 * 24 * 60 * 60;

@@ -1639,9 +1639,14 @@
       "count": "n = {n}",
       "tooltip": "Ålder {age}: {count, plural, =1 {1 berättelse} other {# berättelser}}",
       "yearsTooltip": "{years, plural, =1 {1 år} other {# år}} i transition: {count, plural, =1 {1 berättelse} other {# berättelser}}",
-      "basedOn": "Varje rad räknar bara de berättelser som anger den åldern. Axeln är avskuren vid 99:e percentilen.",
+      "basedOn": "Varje rad räknar bara berättelser som anger den åldern. Åldrar över 45 visas inte.",
       "empty": "Ännu inga tidslinjedata för de aktuella filtren.",
-      "error": "Kunde inte ladda data om förloppet"
+      "error": "Kunde inte ladda data om förloppet",
+      "curvesTitle": "Ålder vid transition och detransition",
+      "curvesDescription": "Andelen berättelser som anger varje ålder för transition och för detransition. Streckade linjer markerar medianerna.",
+      "curvesTooltip": "Ålder {age}",
+      "curvesStories": "{count, plural, =1 {1 berättelse} other {# berättelser}}",
+      "curvesNote": "Varje linje räknar bara berättelser som anger den åldern. Åldrar över 45 visas inte."
     },
     "gradient": {
       "regret": "Ånger",
@@ -1724,22 +1729,41 @@
         "regretLadder": "Ånger och medicinska steg",
         "improvement": "Livet efter detransition",
         "journey": "Typiskt förlopp",
+        "durationBySex": "Tid i transition",
         "minorShare": "Började före 18",
-        "minorLe15": "Började vid 15 eller yngre",
         "minorDysphoria": "Första dysfori senast vid 12",
         "minorFemale": "Vem som börjar ung",
+        "reasonsBySex": "Huvudskäl till transition",
+        "therapyMentalHealth": "Utforskande terapi hjälpte",
+        "criticalOfTransition": "Syn på transition",
         "orientation": "Sexuell läggning"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "Ytterligare {unclear} % är oklara.",
+      "prevalenceByFeature": {
+        "took_hormones": "{percent}% av berättelserna nämner att de tog könskorrigerande hormoner (n = {n}).",
+        "mh_generic": "{percent}% av berättelserna nämner att de kämpade med sin psykiska hälsa (n = {n}).",
+        "regret_transition": "{percent}% av berättelserna nämner att de ångrar sin transition (n = {n}).",
+        "community_disillusionment": "{percent}% av berättelserna nämner att de blev desillusionerade av trans-/hbtq-gemenskapen (n = {n}).",
+        "adv_trauma_history": "{percent}% av berättelserna nämner en traumahistoria (n = {n})."
+      },
       "regretLadder": "{surgery} % av dem som opererats säger att de ångrar sin transition, jämfört med {hormones} % efter hormoner eller blockerare och {socialOnly} % efter enbart social transition (n = {n}).",
-      "regretLadderNote": "Resten säger varken det ena eller det andra.",
       "improvement": "{better} % säger att deras livskvalitet blev bättre efter detransitionen; {worse} % säger att den blev sämre (n = {n}).",
       "journey": "Det typiska förloppet: första dysfori vid {dysphoria} → transition vid {transition} → detransition vid {detransition} (n = {n}).",
+      "durationBySex": "Mediantid i transition: {female} år för kvinnor (n = {nFemale}) och {male} år för män (n = {nMale}).",
       "minorShare": "{percent} % av berättelserna med en ålder påbörjade transition före 18 (n = {n} av {total}).",
-      "minorLe15": "{percent} % började vid 15 eller yngre (n = {n}).",
       "minorDysphoria": "{percent} % kände dysfori första gången vid 12 eller yngre (n = {n}).",
       "minorFemale": "{percent} % av dem som började före 18 är kvinnor (n = {n}).",
+      "reasonsWomen": "Kvinnor",
+      "reasonsMen": "Män",
+      "reasonsBySex": "Skäl som är mer än dubbelt så vanliga för det ena könet som för det andra:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "Internaliserat kvinnohat"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "Internaliserat manshat"
+      },
+      "therapyMentalHealth": "{with}% av dem som explorativ terapi hjälpte säger att deras psykiska hälsa blev bättre efter detransitionen, jämfört med {without}% av övriga (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "{percent}% är nu kritiska till eller emot transition för andra (n ≈ {n}).",
       "explore": "Utforska",
       "orientation": "{percent} % av detransitionerare som anger sin läggning är homosexuella, lesbiska eller bisexuella ({sameSex} % homosexuella eller lesbiska; n = {n})."
     },
@@ -2053,14 +2077,15 @@
     }
   },
   "topicsPage": {
-    "title": "Ämnen",
-    "description": "Fördjupning i detransition, könsmedicin och relaterade ämnen.",
+    "title": "Utforska ämnen kring detransition",
+    "description": "Fördjupande artiklar om kön, identitet och detransition, baserade på akademiska studier och egna erfarenheter och perspektiv från transidentifierade personer och detransitionerade.",
     "empty": "Inga ämnen har publicerats ännu.",
     "pagesInSection": "Sidor i det här avsnittet",
     "relatedPages": "Relaterade sidor",
     "lastUpdated": "Senast uppdaterad:",
     "stubNotice": "Den här sidan är en stub och kommer att byggas ut.",
-    "views": "{count, plural, one {# visning} other {# visningar}}"
+    "views": "{count, plural, one {# visning} other {# visningar}}",
+    "articleCount": "{count, plural, one {# artikel} other {# artiklar}}"
   },
   "storiesPage": {
     "metadata": {

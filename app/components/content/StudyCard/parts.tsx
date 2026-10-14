@@ -41,7 +41,7 @@ export function getStudyDisplay(
 export function StudyMeta({ study }: { study: Study }) {
   if (!study.authors && !study.journal && !study.year) return null;
   return (
-    <p className="text-muted-foreground flex gap-1 text-xs">
+    <p className="text-muted-foreground flex gap-1 text-sm">
       <span className="line-clamp-1">
         {study.authors}
         {study.authors && study.journal && " · "}
@@ -59,12 +59,12 @@ export function StudyMeta({ study }: { study: Study }) {
 
 export function StudyKeyPoints({ points }: { points: string[] }) {
   return (
-    <ul className="space-y-1.5 text-sm text-gray-800 dark:text-gray-200">
+    <ul className="space-y-2 text-base text-gray-800 dark:text-gray-200">
       {points.map((point, i) => (
         <li key={i} className="flex gap-2">
           <span
             aria-hidden
-            className="bg-muted-foreground/60 mt-2 h-1 w-1 shrink-0 rounded-full"
+            className="bg-muted-foreground/60 mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full"
           />
           <span>{point}</span>
         </li>
@@ -85,7 +85,7 @@ export function StudyTags({
   if (chips.length === 0) return null;
 
   const chipClass =
-    "bg-secondary dark:bg-background/40 rounded-full border px-2 py-0.5 text-xs text-gray-700 no-underline dark:text-gray-300";
+    "bg-secondary dark:bg-background/40 rounded-full border px-2.5 py-0.5 text-sm text-gray-700 no-underline dark:text-gray-300";
   return (
     <div className="flex min-w-0 flex-wrap gap-1.5">
       {chips.map((chip) =>
@@ -114,10 +114,10 @@ export function StudySourceLink({ url }: { url: string }) {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="relative inline-flex shrink-0 items-center gap-0.5 text-xs font-medium text-blue-600 no-underline hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+      className="relative inline-flex shrink-0 items-center gap-0.5 text-sm font-medium text-blue-600 no-underline hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
     >
       {t("source")}
-      <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
+      <ArrowUpRight className="h-4 w-4" aria-hidden />
       {/* The link is `relative` so this absolutely positioned text stays
           inside <main>'s scroll container instead of stretching the page */}
       <span className="sr-only">(opens in new tab)</span>
@@ -127,7 +127,7 @@ export function StudySourceLink({ url }: { url: string }) {
 
 export function PendingBadge() {
   return (
-    <div className="rounded bg-amber-100 px-3 py-1 text-xs text-amber-800 dark:bg-amber-900/30 dark:text-amber-200">
+    <div className="rounded bg-amber-100 px-3 py-1 text-sm text-amber-800 dark:bg-amber-900/30 dark:text-amber-200">
       Pending approval
     </div>
   );

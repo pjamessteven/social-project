@@ -1646,9 +1646,14 @@
       "count": "n = {n}",
       "tooltip": "Età {age}: {count, plural, =1 {1 storia} other {# storie}}",
       "yearsTooltip": "{years, plural, =1 {1 anno} other {# anni}} in transizione: {count, plural, =1 {1 storia} other {# storie}}",
-      "basedOn": "Ogni riga conta solo le storie che indicano quell'età. L'asse è tagliato al 99° percentile.",
+      "basedOn": "Ogni riga conta solo le storie che indicano quell'età. Le età oltre i 45 anni non sono mostrate.",
       "empty": "Ancora nessun dato cronologico per i filtri attuali.",
-      "error": "Impossibile caricare i dati sul percorso"
+      "error": "Impossibile caricare i dati sul percorso",
+      "curvesTitle": "Età alla transizione e alla detransizione",
+      "curvesDescription": "La quota di storie che indicano ciascuna età di transizione e di detransizione. Le linee tratteggiate indicano le mediane.",
+      "curvesTooltip": "Età {age}",
+      "curvesStories": "{count, plural, =1 {1 storia} other {# storie}}",
+      "curvesNote": "Ogni linea conta solo le storie che indicano quell'età. Le età oltre i 45 anni non sono mostrate."
     },
     "gradient": {
       "regret": "Rimpianto",
@@ -1731,22 +1736,41 @@
         "regretLadder": "Rimpianto e passi medici",
         "improvement": "La vita dopo la detransizione",
         "journey": "Percorso tipico",
+        "durationBySex": "Durata della transizione",
         "minorShare": "Iniziato prima dei 18 anni",
-        "minorLe15": "Iniziato a 15 anni o prima",
         "minorDysphoria": "Prima disforia entro i 12 anni",
         "minorFemale": "Chi inizia giovane",
+        "reasonsBySex": "Motivi principali della transizione",
+        "therapyMentalHealth": "La terapia esplorativa ha aiutato",
+        "criticalOfTransition": "Opinioni sulla transizione",
         "orientation": "Orientamento sessuale"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "Un altro {unclear}% non è chiaro.",
+      "prevalenceByFeature": {
+        "took_hormones": "Il {percent}% delle storie riferisce di aver assunto ormoni cross-sex (n = {n}).",
+        "mh_generic": "Il {percent}% delle storie riferisce problemi di salute mentale (n = {n}).",
+        "regret_transition": "Il {percent}% delle storie riferisce di essersi pentito della transizione (n = {n}).",
+        "community_disillusionment": "Il {percent}% delle storie riferisce una disillusione verso la comunità trans/LGBT (n = {n}).",
+        "adv_trauma_history": "Il {percent}% delle storie riferisce una storia di traumi (n = {n})."
+      },
       "regretLadder": "Il {surgery}% di chi si è sottoposto a chirurgia dice di rimpiangere la transizione, contro il {hormones}% dopo ormoni o bloccanti e il {socialOnly}% dopo una transizione solo sociale (n = {n}).",
-      "regretLadderNote": "Gli altri non si esprimono né in un senso né nell'altro.",
       "improvement": "Il {better}% dice che la sua qualità della vita è migliorata dopo la detransizione; il {worse}% dice che è peggiorata (n = {n}).",
       "journey": "Il percorso tipico: prima disforia a {dysphoria} anni → transizione a {transition} → detransizione a {detransition} (n = {n}).",
+      "durationBySex": "Durata mediana della transizione: {female} anni per le donne (n = {nFemale}) e {male} anni per gli uomini (n = {nMale}).",
       "minorShare": "Il {percent}% delle storie con un'età ha iniziato la transizione prima dei 18 anni (n = {n} su {total}).",
-      "minorLe15": "Il {percent}% ha iniziato a 15 anni o prima (n = {n}).",
       "minorDysphoria": "Il {percent}% ha provato disforia per la prima volta a 12 anni o prima (n = {n}).",
       "minorFemale": "Il {percent}% di chi ha iniziato prima dei 18 anni è di sesso femminile (n = {n}).",
+      "reasonsWomen": "Donne",
+      "reasonsMen": "Uomini",
+      "reasonsBySex": "Motivi più che doppiamente frequenti in un sesso rispetto all'altro:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "Misoginia interiorizzata"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "Misandria interiorizzata"
+      },
+      "therapyMentalHealth": "Il {with}% di chi è stato aiutato dalla terapia esplorativa dice che la propria salute mentale è migliorata dopo la detransizione, contro il {without}% degli altri (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "Il {percent}% è ora critico o contrario alla transizione per altre persone (n ≈ {n}).",
       "explore": "Esplora",
       "orientation": "Il {percent}% delle persone che hanno detransizionato e indicano il loro orientamento è gay, lesbica o bisessuale ({sameSex}% gay o lesbiche; n = {n})."
     },
@@ -2060,14 +2084,15 @@
     }
   },
   "topicsPage": {
-    "title": "Argomenti",
-    "description": "Approfondimenti sulla detransizione, la medicina di genere e temi correlati.",
+    "title": "Esplora gli argomenti legati alla detransizione",
+    "description": "Articoli di approfondimento su genere, identità e detransizione, basati su studi accademici e sulle esperienze e prospettive di persone che si identificano come trans e di detransitioner.",
     "empty": "Non è stato ancora pubblicato alcun argomento.",
     "pagesInSection": "Pagine in questa sezione",
     "relatedPages": "Pagine correlate",
     "lastUpdated": "Ultimo aggiornamento:",
     "stubNotice": "Questa pagina è una bozza e verrà ampliata.",
-    "views": "{count, plural, one {# visualizzazione} other {# visualizzazioni}}"
+    "views": "{count, plural, one {# visualizzazione} other {# visualizzazioni}}",
+    "articleCount": "{count, plural, one {# articolo} other {# articoli}}"
   },
   "storiesPage": {
     "metadata": {

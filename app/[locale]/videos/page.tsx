@@ -1,8 +1,9 @@
 "use server";
+import { PAGE_TITLE } from "@/app/components/ui/typography";
+import { localesInfo } from "@/i18n/locales";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { headers } from "next/headers";
-import { localesInfo } from "@/i18n/locales";
 import SeoVideosList from "../../components/SeoVideosList";
 import VideosList from "../../components/VideosList";
 import VideoSubmitForm from "../../components/VideoSubmitForm";
@@ -70,7 +71,7 @@ export default async function VideosPage({
   }
   return (
     <div className="prose dark:prose-invert pb-16 lg:-mx-48 lg:max-w-none lg:pt-8">
-      <h1 className="text-3xl font-bold">{t("title")}</h1>
+      <h1 className={PAGE_TITLE}>{t("title")}</h1>
 
       <p className="text-muted-foreground max-w-3xl">
         {t("description.line1")}

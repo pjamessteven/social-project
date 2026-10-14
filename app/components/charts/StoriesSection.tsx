@@ -89,9 +89,10 @@ export default function StoriesSection() {
     setLoading(true);
     setError(null);
     setStories([]);
-    fetch(`/api/stories/spotlight?count=${PAGE_SIZE}&offset=0&${params}`, {
-      signal: controller.signal,
-    })
+    fetch(
+      `/api/stories/spotlight?count=${PAGE_SIZE}&offset=0&locale=${locale}&${params}`,
+      { signal: controller.signal },
+    )
       .then(async (response) => {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         return (await response.json()) as SpotlightResponse;
@@ -116,7 +117,7 @@ export default function StoriesSection() {
       cancelled = true;
       controller.abort();
     };
-  }, [params]);
+  }, [params, locale]);
 
   const loadMore = useCallback(async () => {
     if (loading || loadingMore || !hasMore) return;
@@ -124,7 +125,7 @@ export default function StoriesSection() {
     setError(null);
     try {
       const response = await fetch(
-        `/api/stories/spotlight?count=${PAGE_SIZE}&offset=${stories.length}&${params}`,
+        `/api/stories/spotlight?count=${PAGE_SIZE}&offset=${stories.length}&locale=${locale}&${params}`,
       );
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const json = (await response.json()) as SpotlightResponse;
@@ -141,7 +142,7 @@ export default function StoriesSection() {
     } finally {
       setLoadingMore(false);
     }
-  }, [loading, loadingMore, hasMore, params, stories.length]);
+  }, [loading, loadingMore, hasMore, params, locale, stories.length]);
 
   // Infinite scrolling: fetch the next page when the sentinel nears the
   // bottom of the scroll container. Columns end at different heights, so the

@@ -1639,9 +1639,14 @@
       "count": "n = {n}",
       "tooltip": "Starost {age}: {count, plural, =1 {1 zgodba} two {# zgodbi} few {# zgodbe} other {# zgodb}}",
       "yearsTooltip": "{years, plural, =1 {1 leto} two {# leti} few {# leta} other {# let}} v tranziciji: {count, plural, =1 {1 zgodba} two {# zgodbi} few {# zgodbe} other {# zgodb}}",
-      "basedOn": "Vsaka vrstica šteje samo zgodbe, ki navedejo to starost. Os je odrezana pri 99. percentilu.",
+      "basedOn": "Vsaka vrstica šteje samo zgodbe, ki navajajo to starost. Starost nad 45 let ni prikazana.",
       "empty": "Za trenutne filtre še ni podatkov o časovnici.",
-      "error": "Podatkov o poteku ni bilo mogoče naložiti"
+      "error": "Podatkov o poteku ni bilo mogoče naložiti",
+      "curvesTitle": "Starost ob tranziciji in detranziciji",
+      "curvesDescription": "Delež zgodb, ki navajajo posamezno starost ob tranziciji in detranziciji. Črtkane črte označujejo mediane.",
+      "curvesTooltip": "Starost {age}",
+      "curvesStories": "{count, plural, =1 {1 zgodba} two {# zgodbi} few {# zgodbe} other {# zgodb}}",
+      "curvesNote": "Vsaka črta šteje samo zgodbe, ki navajajo to starost. Starost nad 45 let ni prikazana."
     },
     "gradient": {
       "regret": "Obžalovanje",
@@ -1724,22 +1729,41 @@
         "regretLadder": "Obžalovanje in medicinski koraki",
         "improvement": "Življenje po detranziciji",
         "journey": "Tipična pot",
+        "durationBySex": "Trajanje tranzicije",
         "minorShare": "Začetek pred 18. letom",
-        "minorLe15": "Začetek pri 15 letih ali prej",
         "minorDysphoria": "Prva disforija do 12. leta",
         "minorFemale": "Kdo začne mlad",
+        "reasonsBySex": "Glavni razlogi za tranzicijo",
+        "therapyMentalHealth": "Pomagala je raziskovalna terapija",
+        "criticalOfTransition": "Pogledi na tranzicijo",
         "orientation": "Spolna usmerjenost"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "Nadaljnjih {unclear} % je nejasnih.",
+      "prevalenceByFeature": {
+        "took_hormones": "{percent}% zgodb omenja, da so jemali hormone nasprotnega spola (n = {n}).",
+        "mh_generic": "{percent}% zgodb omenja težave z duševnim zdravjem (n = {n}).",
+        "regret_transition": "{percent}% zgodb omenja, da obžalujejo tranzicijo (n = {n}).",
+        "community_disillusionment": "{percent}% zgodb omenja razočaranje nad trans/LGBT skupnostjo (n = {n}).",
+        "adv_trauma_history": "{percent}% zgodb omenja travmatične izkušnje (n = {n})."
+      },
       "regretLadder": "{surgery} % tistih, ki so imeli operacijo, pravi, da obžalujejo tranzicijo, v primerjavi s {hormones} % po hormonih ali blokatorjih in {socialOnly} % po zgolj socialni tranziciji (n = {n}).",
-      "regretLadderNote": "Ostali ne povedo ne enega ne drugega.",
       "improvement": "{better} % pravi, da se je njihova kakovost življenja po detranziciji izboljšala; {worse} % pravi, da se je poslabšala (n = {n}).",
       "journey": "Tipična pot: prva disforija pri {dysphoria} → tranzicija pri {transition} → detranzicija pri {detransition} (n = {n}).",
+      "durationBySex": "Mediana trajanja tranzicije: {female} let pri ženskah (n = {nFemale}) in {male} let pri moških (n = {nMale}).",
       "minorShare": "{percent} % zgodb s starostjo je tranzicijo začelo pred 18. letom (n = {n} od {total}).",
-      "minorLe15": "{percent} % jih je začelo pri 15 letih ali prej (n = {n}).",
       "minorDysphoria": "{percent} % jih je disforijo prvič občutilo pri 12 letih ali prej (n = {n}).",
       "minorFemale": "{percent} % tistih, ki so začeli pred 18. letom, je žensk (n = {n}).",
+      "reasonsWomen": "Ženske",
+      "reasonsMen": "Moški",
+      "reasonsBySex": "Razlogi, ki so pri enem spolu več kot dvakrat pogostejši kot pri drugem:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "Ponotranjena mizoginija"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "Ponotranjena mizandrija"
+      },
+      "therapyMentalHealth": "{with}% tistih, ki jim je pomagala raziskovalna terapija, pravi, da se jim je duševno zdravje po detranziciji izboljšalo, v primerjavi z {without}% drugih (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "{percent}% je zdaj kritičnih do tranzicije drugih ali ji nasprotuje (n ≈ {n}).",
       "explore": "Razišči",
       "orientation": "{percent} % detranzicionarjev, ki navedejo svojo usmerjenost, je gejev, lezbijk ali biseksualnih ({sameSex} % gejev ali lezbijk; n = {n})."
     },
@@ -2053,14 +2077,15 @@
     }
   },
   "topicsPage": {
-    "title": "Teme",
-    "description": "Poglobljen pregled detranzicije, spolne medicine in sorodnih tem.",
+    "title": "Raziščite teme, povezane z detranzicijo",
+    "description": "Poglobljeni članki o spolu, identiteti in detranziciji, ki temeljijo na akademskih študijah ter izkušnjah in pogledih oseb, ki se identificirajo kot trans, in oseb, ki so detranzicionirale.",
     "empty": "Objavljena ni še nobena tema.",
     "pagesInSection": "Strani v tem razdelku",
     "relatedPages": "Sorodne strani",
     "lastUpdated": "Nazadnje posodobljeno:",
     "stubNotice": "Ta stran je škrbina in bo razširjena.",
-    "views": "{count, plural, one {# ogled} two {# ogleda} few {# ogledi} other {# ogledov}}"
+    "views": "{count, plural, one {# ogled} two {# ogleda} few {# ogledi} other {# ogledov}}",
+    "articleCount": "{count, plural, one {# članek} two {# članka} few {# članki} other {# člankov}}"
   },
   "storiesPage": {
     "metadata": {

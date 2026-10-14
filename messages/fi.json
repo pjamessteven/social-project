@@ -1639,9 +1639,14 @@
       "count": "n = {n}",
       "tooltip": "Ikä {age}: {count, plural, =1 {1 tarina} other {# tarinaa}}",
       "yearsTooltip": "{years, plural, =1 {1 vuosi} other {# vuotta}} transitiossa: {count, plural, =1 {1 tarina} other {# tarinaa}}",
-      "basedOn": "Jokainen rivi laskee vain tarinat, joissa kyseinen ikä mainitaan. Akseli on katkaistu 99. persentiilin kohdalta.",
+      "basedOn": "Kukin rivi laskee vain tarinat, joissa ikä mainitaan. Yli 45-vuotiaita ei näytetä.",
       "empty": "Ei vielä aikajanatietoja nykyisillä suodattimilla.",
-      "error": "Polkutietoja ei voitu ladata"
+      "error": "Polkutietoja ei voitu ladata",
+      "curvesTitle": "Ikä transition ja detransition aikaan",
+      "curvesDescription": "Kunkin iän maininneiden tarinoiden osuus transitiossa ja detransitiossa. Katkoviivat merkitsevät mediaaneja.",
+      "curvesTooltip": "Ikä {age}",
+      "curvesStories": "{count, plural, =1 {1 tarina} other {# tarinaa}}",
+      "curvesNote": "Kukin viiva laskee vain tarinat, joissa ikä mainitaan. Yli 45-vuotiaita ei näytetä."
     },
     "gradient": {
       "regret": "Katumus",
@@ -1724,22 +1729,41 @@
         "regretLadder": "Katumus ja lääketieteelliset vaiheet",
         "improvement": "Elämä detransition jälkeen",
         "journey": "Tyypillinen polku",
+        "durationBySex": "Aika transitiossa",
         "minorShare": "Aloitti ennen 18 vuoden ikää",
-        "minorLe15": "Aloitti 15-vuotiaana tai nuorempana",
         "minorDysphoria": "Ensimmäinen dysforia viimeistään 12-vuotiaana",
         "minorFemale": "Kuka aloittaa nuorena",
+        "reasonsBySex": "Transition pääsyyt",
+        "therapyMentalHealth": "Tutkiva terapia auttoi",
+        "criticalOfTransition": "Näkemykset transitiosta",
         "orientation": "Seksuaalinen suuntautuminen"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "Lisäksi {unclear} % on epäselviä.",
+      "prevalenceByFeature": {
+        "took_hormones": "{percent}% tarinoista mainitsee, että he käyttivät vastakkaisen sukupuolen hormoneja (n = {n}).",
+        "mh_generic": "{percent}% tarinoista mainitsee mielenterveysongelmia (n = {n}).",
+        "regret_transition": "{percent}% tarinoista mainitsee, että he katuvat transitiota (n = {n}).",
+        "community_disillusionment": "{percent}% tarinoista mainitsee pettymyksen trans-/LGBT-yhteisöön (n = {n}).",
+        "adv_trauma_history": "{percent}% tarinoista mainitsee taustalla olevan trauman (n = {n})."
+      },
       "regretLadder": "{surgery} % leikkauksessa käyneistä sanoo katuvansa transitiota, kun hormonien tai salpaajien jälkeen osuus on {hormones} % ja pelkän sosiaalisen transition jälkeen {socialOnly} % (n = {n}).",
-      "regretLadderNote": "Muut eivät sano kumpaankaan suuntaan.",
       "improvement": "{better} % kertoo elämänlaatunsa parantuneen detransition jälkeen; {worse} % kertoo sen heikentyneen (n = {n}).",
       "journey": "Tyypillinen polku: ensimmäinen dysforia {dysphoria}-vuotiaana → transitio {transition}-vuotiaana → detransitio {detransition}-vuotiaana (n = {n}).",
+      "durationBySex": "Transition mediaanikesto: naisilla {female} vuotta (n = {nFemale}) ja miehillä {male} vuotta (n = {nMale}).",
       "minorShare": "{percent} % tarinoista, joissa on ikä, aloitti transition alle 18-vuotiaana (n = {n}/{total}).",
-      "minorLe15": "{percent} % aloitti 15-vuotiaana tai nuorempana (n = {n}).",
       "minorDysphoria": "{percent} % koki dysforiaa ensimmäisen kerran 12-vuotiaana tai nuorempana (n = {n}).",
       "minorFemale": "{percent} % alle 18-vuotiaana aloittaneista on naisia (n = {n}).",
+      "reasonsWomen": "Naiset",
+      "reasonsMen": "Miehet",
+      "reasonsBySex": "Syyt, jotka ovat toisella sukupuolella yli kaksi kertaa yleisempiä kuin toisella:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "Sisäistetty naisviha"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "Sisäistetty miesviha"
+      },
+      "therapyMentalHealth": "{with}% niistä, joita eksploratiivinen terapia auttoi, kertoo mielenterveytensä parantuneen detransition jälkeen, kun muilla osuus on {without}% (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "{percent}% suhtautuu nyt kriittisesti tai kielteisesti muiden transitioon (n ≈ {n}).",
       "explore": "Tutki",
       "orientation": "{percent} % suuntautumisensa kertovista detransitioijista on homoja, lesboja tai biseksuaaleja ({sameSex} % homoja tai lesboja; n = {n})."
     },
@@ -2053,14 +2077,15 @@
     }
   },
   "topicsPage": {
-    "title": "Aiheet",
-    "description": "Perusteellisia artikkeleita detransitiosta, sukupuolilääketieteestä ja niihin liittyvistä aiheista.",
+    "title": "Tutustu detransitioon liittyviin aiheisiin",
+    "description": "Perusteellisia artikkeleita sukupuolesta, identiteetistä ja detransitiosta – pohjana akateeminen tutkimus sekä transidentifioituneiden ja detransitioituneiden ihmisten omat kokemukset ja näkökulmat.",
     "empty": "Aiheita ei ole vielä julkaistu.",
     "pagesInSection": "Tämän osion sivut",
     "relatedPages": "Aiheeseen liittyvät sivut",
     "lastUpdated": "Päivitetty viimeksi:",
     "stubNotice": "Tämä sivu on tynkä, ja sitä laajennetaan.",
-    "views": "{count, plural, one {# katselu} other {# katselua}}"
+    "views": "{count, plural, one {# katselu} other {# katselua}}",
+    "articleCount": "{count, plural, one {# artikkeli} other {# artikkelia}}"
   },
   "storiesPage": {
     "metadata": {

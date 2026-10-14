@@ -1,6 +1,7 @@
 import { storyIdSql } from "@/app/lib/story-id";
 import { storySlug } from "@/app/lib/story-urls";
 import { db } from "@/db";
+import { locales } from "@/i18n/locales";
 import { sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import {
@@ -62,6 +63,17 @@ function trimExcerpt(text: string, max = 420): string {
   return lastStop > 180 ? slice.slice(0, lastStop + 1) : `${slice.trimEnd()}…`;
 }
 
+/** One locale's text from a JSON {locale: text} column, or null. */
+function pickTranslation(json: string | null, locale: string): string | null {
+  if (!json || locale === "en") return null;
+  try {
+    const value = (JSON.parse(json) as Record<string, unknown>)[locale];
+    return typeof value === "string" && value.trim() ? value : null;
+  } catch {
+    return null;
+  }
+}
+
 function parseCount(raw: string | null, fallback: number): number {
   const value = Number.parseInt(raw ?? "", 10);
   if (!Number.isFinite(value)) return fallback;
@@ -85,6 +97,9 @@ export async function GET(request: NextRequest) {
         .replace(/[^0-9a-z]/gi, "")
         .slice(0, 20) || "0";
     const count = parseCount(searchParams.get("count"), 9);
+    // Titles and excerpts come back in this locale when translated.
+    const rawLocale = searchParams.get("locale") ?? "en";
+    const locale = locales.includes(rawLocale) ? rawLocale : "en";
     const offset = Math.max(
       Number.parseInt(searchParams.get("offset") ?? "0", 10) || 0,
       0,
@@ -125,6 +140,7 @@ export async function GET(request: NextRequest) {
           lp.username,
           ${storyIdSql(sql`lp.username`)} AS id,
           COALESCE(lp.experience_summary, LEFT(lp.experience, 600)) AS excerpt,
+          u.experience_summary_translation AS "excerptTranslation",
           fu.sex,
           t.first_dysphoria_age,
           t.transition_age,
@@ -138,6 +154,7 @@ export async function GET(request: NextRequest) {
           ORDER BY username, run_id DESC
         ) lp
         JOIN cohort c ON c.username = lp.username
+        LEFT JOIN detrans_users u ON u.username = lp.username
         LEFT JOIN filtered_users fu ON fu.username = lp.username
         LEFT JOIN latest_timelines t ON t.username = lp.username
         LEFT JOIN (
@@ -172,6 +189,7 @@ export async function GET(request: NextRequest) {
       username: string;
       id: string;
       excerpt: string;
+      excerptTranslation: string | null;
       sex: string | null;
       first_dysphoria_age: number | null;
       transition_age: number | null;
@@ -231,6 +249,7 @@ export async function GET(request: NextRequest) {
         SELECT
           items.username,
           dn.display_name AS "displayName",
+          dn.display_name_translation AS "displayNameTranslation",
           COALESCE(SUM(items.score), 0)::int AS upvotes
         FROM (
           SELECT username, score FROM detrans_comments WHERE username IN (${usernameList})
@@ -238,11 +257,12 @@ export async function GET(request: NextRequest) {
           SELECT username, score FROM detrans_posts WHERE username IN (${usernameList})
         ) items
         LEFT JOIN detrans_user_display_names dn ON dn.username = items.username
-        GROUP BY items.username, dn.display_name
+        GROUP BY items.username, dn.display_name, dn.display_name_translation
       `),
     ) as unknown as {
       username: string;
       displayName: string | null;
+      displayNameTranslation: string | null;
       upvotes: number;
     }[];
 
@@ -269,7 +289,11 @@ export async function GET(request: NextRequest) {
     const userMeta = new Map(
       userRows.map((row) => [
         row.username,
-        { displayName: row.displayName, upvotes: row.upvotes },
+        {
+          displayName: row.displayName,
+          displayNameTranslation: row.displayNameTranslation,
+          upvotes: row.upvotes,
+        },
       ]),
     );
 
@@ -286,14 +310,18 @@ export async function GET(request: NextRequest) {
       const name = meta?.displayName ?? null;
       return {
         id: row.id,
+        // The slug always comes from the English title (see story-urls.ts).
         slug: storySlug(row.id, name),
-        name,
+        name:
+          pickTranslation(meta?.displayNameTranslation ?? null, locale) ?? name,
         sex: row.sex === "m" || row.sex === "f" ? row.sex : null,
         status:
           row.status === "detransitioned" || row.status === "desisted"
             ? row.status
             : null,
-        excerpt: trimExcerpt(row.excerpt),
+        excerpt: trimExcerpt(
+          pickTranslation(row.excerptTranslation, locale) ?? row.excerpt,
+        ),
         upvotes: row.upvotes ?? meta?.upvotes ?? 0,
         ages: {
           firstDysphoria: row.first_dysphoria_age,

@@ -1,5 +1,6 @@
 import { countAllStories } from "@/app/api/stories/spotlight/count";
 import StoriesSection from "@/app/components/charts/StoriesSection";
+import { PAGE_TITLE } from "@/app/components/ui/typography";
 import UsersFilters from "@/app/components/UsersFilters";
 import {
   buildLocalizedAlternates,
@@ -84,7 +85,7 @@ export default async function StoriesPage({
         dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
       />
       <div>
-        <h1 className="text-3xl font-bold sm:text-4xl">{t("title")}</h1>
+        <h1 className={PAGE_TITLE}>{t("title")}</h1>
         <p className="text-muted-foreground mt-6 max-w-3xl text-base">
           {t("description", { count: storyCount })}
         </p>

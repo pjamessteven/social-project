@@ -22,10 +22,10 @@ export function StudyCategoryGrid({
           <h2 className="text-lg leading-snug font-semibold decoration-1 underline-offset-4 group-hover:underline">
             {category.name}
           </h2>
-          <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
+          <p className="text-muted-foreground mt-2 text-base leading-relaxed">
             {category.description}
           </p>
-          <span className="text-muted-foreground group-hover:text-foreground mt-auto flex items-center gap-1 pt-4 text-xs font-medium">
+          <span className="text-muted-foreground group-hover:text-foreground mt-auto flex items-center gap-1 pt-4 text-sm font-medium">
             {t("studyCount", { count: category.studyCount })}
             <ArrowRight
               className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"

@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import {
   CartesianGrid,
@@ -12,7 +11,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { buildFeatureParams, prettifyKey } from "./useFeatureData";
+import { prettifyKey, useFeatureQuery } from "./useFeatureData";
 
 interface GroupDistribution {
   key: string;
@@ -59,11 +58,10 @@ export default function DistributionLines({
 }) {
   const t = useTranslations("statsPage.suicidality");
   const statusT = useTranslations("statsPage.current_status");
-  const searchParams = useSearchParams();
   const [data, setData] = useState<DistributionResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const params = buildFeatureParams(searchParams);
+  const params = useFeatureQuery();
 
   useEffect(() => {
     const controller = new AbortController();

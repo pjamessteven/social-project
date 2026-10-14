@@ -1646,9 +1646,14 @@
       "count": "n = {n}",
       "tooltip": "Leeftijd {age}: {count, plural, =1 {1 verhaal} other {# verhalen}}",
       "yearsTooltip": "{years, plural, =1 {1 jaar} other {# jaar}} in transitie: {count, plural, =1 {1 verhaal} other {# verhalen}}",
-      "basedOn": "Elke rij telt alleen de verhalen die die leeftijd noemen. De as is afgekapt op het 99e percentiel.",
+      "basedOn": "Elke rij telt alleen de verhalen die die leeftijd noemen. Leeftijden boven 45 worden niet getoond.",
       "empty": "Nog geen tijdlijngegevens voor de huidige filters.",
-      "error": "Trajectgegevens konden niet worden geladen"
+      "error": "Trajectgegevens konden niet worden geladen",
+      "curvesTitle": "Leeftijd bij transitie en detransitie",
+      "curvesDescription": "Het aandeel verhalen dat elke leeftijd noemt voor transitie en voor detransitie. Stippellijnen geven de medianen aan.",
+      "curvesTooltip": "Leeftijd {age}",
+      "curvesStories": "{count, plural, =1 {1 verhaal} other {# verhalen}}",
+      "curvesNote": "Elke lijn telt alleen de verhalen die die leeftijd noemen. Leeftijden boven 45 worden niet getoond."
     },
     "gradient": {
       "regret": "Spijt",
@@ -1731,22 +1736,41 @@
         "regretLadder": "Spijt en medische stappen",
         "improvement": "Leven na detransitie",
         "journey": "Typisch traject",
+        "durationBySex": "Duur van de transitie",
         "minorShare": "Vóór 18 begonnen",
-        "minorLe15": "Op 15 of jonger begonnen",
         "minorDysphoria": "Eerste dysforie uiterlijk op 12",
         "minorFemale": "Wie jong begint",
+        "reasonsBySex": "Belangrijkste redenen voor transitie",
+        "therapyMentalHealth": "Verkennende therapie hielp",
+        "criticalOfTransition": "Kijk op transitie",
         "orientation": "Seksuele oriëntatie"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "Nog eens {unclear}% is onduidelijk.",
+      "prevalenceByFeature": {
+        "took_hormones": "{percent}% van de verhalen vermeldt dat ze cross-sekse hormonen namen (n = {n}).",
+        "mh_generic": "{percent}% van de verhalen vermeldt dat ze worstelden met hun mentale gezondheid (n = {n}).",
+        "regret_transition": "{percent}% van de verhalen vermeldt dat ze spijt hebben van hun transitie (n = {n}).",
+        "community_disillusionment": "{percent}% van de verhalen vermeldt dat ze gedesillusioneerd raakten in de trans-/LHBT-gemeenschap (n = {n}).",
+        "adv_trauma_history": "{percent}% van de verhalen vermeldt een traumaverleden (n = {n})."
+      },
       "regretLadder": "{surgery}% van wie een operatie had, zegt spijt te hebben van de transitie, tegenover {hormones}% na hormonen of blokkers en {socialOnly}% na alleen een sociale transitie (n = {n}).",
-      "regretLadderNote": "De rest zegt geen van beide.",
       "improvement": "{better}% zegt dat de levenskwaliteit na detransitie verbeterde; {worse}% zegt dat die verslechterde (n = {n}).",
       "journey": "Het typische traject: eerste dysforie op {dysphoria} → transitie op {transition} → detransitie op {detransition} (n = {n}).",
+      "durationBySex": "Mediane duur van de transitie: {female} jaar bij vrouwen (n = {nFemale}) en {male} jaar bij mannen (n = {nMale}).",
       "minorShare": "{percent}% van de verhalen met een leeftijd begon de transitie onder 18 (n = {n} van {total}).",
-      "minorLe15": "{percent}% begon op 15 jaar of jonger (n = {n}).",
       "minorDysphoria": "{percent}% voelde voor het eerst dysforie op 12 jaar of jonger (n = {n}).",
       "minorFemale": "{percent}% van wie onder 18 begon, is vrouw (n = {n}).",
+      "reasonsWomen": "Vrouwen",
+      "reasonsMen": "Mannen",
+      "reasonsBySex": "Redenen die bij het ene geslacht meer dan twee keer zo vaak voorkomen als bij het andere:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "Geïnternaliseerde vrouwenhaat"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "Geïnternaliseerde mannenhaat"
+      },
+      "therapyMentalHealth": "{with}% van wie geholpen werd door exploratieve therapie zegt dat hun mentale gezondheid na detransitie verbeterde, tegenover {without}% van de anderen (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "{percent}% staat nu kritisch tegenover of is tegen transitie voor anderen (n ≈ {n}).",
       "explore": "Verkennen",
       "orientation": "{percent}% van de detransitioners die hun oriëntatie noemen, is homo, lesbisch of biseksueel ({sameSex}% homo of lesbisch; n = {n})."
     },
@@ -2060,14 +2084,15 @@
     }
   },
   "topicsPage": {
-    "title": "Onderwerpen",
-    "description": "Diepgaande uitleg over detransitie, gendergeneeskunde en verwante onderwerpen.",
+    "title": "Verken onderwerpen rond detransitie",
+    "description": "Diepgaande artikelen over gender, identiteit en detransitie, gebaseerd op wetenschappelijk onderzoek en de ervaringen en perspectieven van mensen met een transidentiteit en detransitioners.",
     "empty": "Er zijn nog geen onderwerpen gepubliceerd.",
     "pagesInSection": "Pagina's in deze sectie",
     "relatedPages": "Gerelateerde pagina's",
     "lastUpdated": "Laatst bijgewerkt:",
     "stubNotice": "Deze pagina is een beginnetje en wordt nog uitgebreid.",
-    "views": "{count, plural, one {# weergave} other {# weergaven}}"
+    "views": "{count, plural, one {# weergave} other {# weergaven}}",
+    "articleCount": "{count, plural, one {# artikel} other {# artikelen}}"
   },
   "storiesPage": {
     "metadata": {

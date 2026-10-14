@@ -44,7 +44,7 @@ export function StudyCard({
         </Link>
       </h3>
       {study.title && study.title !== study.headline && (
-        <p className="text-muted-foreground mt-1.5 line-clamp-2 text-xs italic">
+        <p className="text-muted-foreground mt-1.5 line-clamp-2 text-sm italic">
           {study.title}
         </p>
       )}
@@ -64,7 +64,7 @@ export function StudyCard({
 
       {study.approved && keyPoints.length > 0 && (
         <div className="mt-4">
-          <h4 className="text-muted-foreground mb-2 text-xs font-medium tracking-wide uppercase">
+          <h4 className="text-muted-foreground mb-2 text-sm font-medium">
             {t("findings")}
           </h4>
           <StudyKeyPoints points={keyPoints} />

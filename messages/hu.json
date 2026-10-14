@@ -1647,9 +1647,14 @@
       "count": "n = {n}",
       "tooltip": "{age} év: {count, plural, =1 {1 történet} other {# történet}}",
       "yearsTooltip": "{years, plural, =1 {1 év} other {# év}} tranzícióban: {count, plural, =1 {1 történet} other {# történet}}",
-      "basedOn": "Minden sor csak azokat a történeteket számolja, amelyek megadják az adott életkort. A tengely a 99. percentilisnél le van vágva.",
+      "basedOn": "Minden sor csak azokat a történeteket számolja, amelyek megadják az életkort. A 45 év feletti életkorok nem láthatók.",
       "empty": "Még nincs idővonal-adat a jelenlegi szűrőkkel.",
-      "error": "Nem sikerült betölteni az útvonal adatait"
+      "error": "Nem sikerült betölteni az útvonal adatait",
+      "curvesTitle": "Életkor a tranzíció és a detranzíció idején",
+      "curvesDescription": "Az egyes életkorokat a tranzícióra és a detranzícióra megadó történetek aránya. A szaggatott vonalak a mediánokat jelölik.",
+      "curvesTooltip": "{age} év",
+      "curvesStories": "{count, plural, =1 {1 történet} other {# történet}}",
+      "curvesNote": "Minden vonal csak azokat a történeteket számolja, amelyek megadják az életkort. A 45 év feletti életkorok nem láthatók."
     },
     "gradient": {
       "regret": "Megbánás",
@@ -1732,22 +1737,41 @@
         "regretLadder": "Megbánás és orvosi lépések",
         "improvement": "Élet a detranzíció után",
         "journey": "Tipikus út",
+        "durationBySex": "A tranzíció időtartama",
         "minorShare": "18 év előtt kezdte",
-        "minorLe15": "15 évesen vagy fiatalabban kezdte",
         "minorDysphoria": "Első diszfória 12 éves korig",
         "minorFemale": "Kik kezdik fiatalon",
+        "reasonsBySex": "A tranzíció fő okai",
+        "therapyMentalHealth": "Feltáró terápia segített",
+        "criticalOfTransition": "Vélemény a tranzícióról",
         "orientation": "Szexuális irányultság"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "További {unclear}% nem egyértelmű.",
+      "prevalenceByFeature": {
+        "took_hormones": "A történetek {percent}%-a említi, hogy ellenkező nemi hormonokat szedtek (n = {n}).",
+        "mh_generic": "A történetek {percent}%-a említ mentális egészségi problémákat (n = {n}).",
+        "regret_transition": "A történetek {percent}%-a említi, hogy megbánták a tranzíciót (n = {n}).",
+        "community_disillusionment": "A történetek {percent}%-a említi, hogy kiábrándultak a transz/LMBT közösségből (n = {n}).",
+        "adv_trauma_history": "A történetek {percent}%-a említ korábbi traumát (n = {n})."
+      },
       "regretLadder": "A műtéten átesettek {surgery}%-a mondja, hogy megbánta a tranzíciót, szemben a hormonok vagy blokkolók utáni {hormones}%-kal és a csak társadalmi tranzíció utáni {socialOnly}%-kal (n = {n}).",
-      "regretLadderNote": "A többiek egyik irányban sem nyilatkoznak.",
       "improvement": "{better}% szerint javult az életminősége a detranzíció után; {worse}% szerint romlott (n = {n}).",
       "journey": "A tipikus út: első diszfória {dysphoria} évesen → tranzíció {transition} évesen → detranzíció {detransition} évesen (n = {n}).",
+      "durationBySex": "A tranzíció medián időtartama: nőknél {female} év (n = {nFemale}), férfiaknál {male} év (n = {nMale}).",
       "minorShare": "Az életkort tartalmazó történetek {percent}%-ában 18 év előtt kezdődött a tranzíció (n = {n} / {total}).",
-      "minorLe15": "{percent}% 15 évesen vagy fiatalabban kezdte (n = {n}).",
       "minorDysphoria": "{percent}% 12 évesen vagy fiatalabban érzett először diszfóriát (n = {n}).",
       "minorFemale": "A 18 év előtt kezdők {percent}%-a nő (n = {n}).",
+      "reasonsWomen": "Nők",
+      "reasonsMen": "Férfiak",
+      "reasonsBySex": "Okok, amelyek az egyik nemnél több mint kétszer gyakoribbak, mint a másiknál:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "Internalizált nőgyűlölet"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "Internalizált férfigyűlölet"
+      },
+      "therapyMentalHealth": "Akiknek a feltáró terápia segített, azok {with}%-a szerint javult a mentális egészsége a detranzíció után, szemben a többiek {without}%-ával (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "{percent}% ma már kritikus mások tranzíciójával szemben, vagy ellenzi azt (n ≈ {n}).",
       "explore": "Felfedezés",
       "orientation": "Az irányultságukat megadó detranzícionálók {percent}%-a meleg, leszbikus vagy biszexuális ({sameSex}% meleg vagy leszbikus; n = {n})."
     },
@@ -2061,14 +2085,15 @@
     }
   },
   "topicsPage": {
-    "title": "Témák",
-    "description": "Részletes áttekintés a detranzícióról, a nemi orvoslásról és kapcsolódó témákról.",
+    "title": "Fedezd fel a detranzícióhoz kapcsolódó témákat",
+    "description": "Részletes cikkek a nemről, az identitásról és a detranzícióról, tudományos kutatásokra, valamint transzként identifikálódó emberek és detranzicionálók személyes tapasztalataira és nézőpontjaira építve.",
     "empty": "Még nincsenek közzétett témák.",
     "pagesInSection": "Oldalak ebben a részben",
     "relatedPages": "Kapcsolódó oldalak",
     "lastUpdated": "Utoljára frissítve:",
     "stubNotice": "Ez az oldal csonk, és bővíteni fogjuk.",
-    "views": "{count, plural, other {# megtekintés}}"
+    "views": "{count, plural, other {# megtekintés}}",
+    "articleCount": "{count, plural, other {# cikk}}"
   },
   "storiesPage": {
     "metadata": {

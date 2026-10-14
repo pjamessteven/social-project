@@ -1,12 +1,11 @@
 "use client";
 
 import { useFormatter, useTranslations } from "next-intl";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ChartBlock, ChartSkeleton } from "./ChartParts";
 import { formatYearBucket } from "./ChoiceByYear";
 import PrevalenceRows from "./PrevalenceRows";
-import { buildFeatureParams } from "./useFeatureData";
+import { useFeatureQuery } from "./useFeatureData";
 
 interface MinorResponse {
   cohort: number;
@@ -40,11 +39,10 @@ interface MinorResponse {
 export default function EarlyTransitionSection() {
   const t = useTranslations("statsPage.minors");
   const format = useFormatter();
-  const searchParams = useSearchParams();
   const [data, setData] = useState<MinorResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const params = buildFeatureParams(searchParams);
+  const params = useFeatureQuery();
 
   useEffect(() => {
     const controller = new AbortController();

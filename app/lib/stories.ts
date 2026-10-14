@@ -28,7 +28,9 @@ export interface StoryTag {
 export interface StoryPageData {
   id: string;
   slug: string;
+  /** English title; also the source of the URL slug. */
   title: string | null;
+  titleTranslations: Record<string, string>;
   sex: "m" | "f" | null;
   status: "detransitioned" | "desisted" | null;
   summary: string | null;
@@ -127,6 +129,7 @@ export const getStory = cache(
         )
         SELECT
           dn.display_name AS title,
+          dn.display_name_translation AS "titleTranslation",
           COALESCE(p.sex, u.sex) AS sex,
           COALESCE(u.experience_summary, p.experience_summary) AS summary,
           u.experience_summary_translation AS "summaryTranslation",
@@ -182,6 +185,7 @@ export const getStory = cache(
       `),
     ) as unknown as {
       title: string | null;
+      titleTranslation: string | null;
       sex: string | null;
       summary: string | null;
       summaryTranslation: string | null;
@@ -205,6 +209,7 @@ export const getStory = cache(
       id,
       slug: storySlug(id, row.title),
       title: row.title,
+      titleTranslations: parseTranslations(row.titleTranslation),
       sex: row.sex === "m" || row.sex === "f" ? row.sex : null,
       status:
         row.status === "detransitioned" || row.status === "desisted"

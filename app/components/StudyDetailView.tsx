@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/app/components/ui/accordion";
+import { PAGE_TITLE } from "@/app/components/ui/typography";
 import { Study } from "@/app/types/study";
 
 interface StudyDetailViewProps {
@@ -18,7 +19,7 @@ export function StudyDetailView({ study, locale }: StudyDetailViewProps) {
     <div className="space-y-6">
       {/* Header */}
       <div className="mb-4">
-        <h1 className="text-2xl font-bold">
+        <h1 className={PAGE_TITLE}>
           {study.headline || study.title || "Untitled Study"}
         </h1>
         {study.headline && study.title && study.headline !== study.title && (

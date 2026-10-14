@@ -1,4 +1,5 @@
 "use server";
+import { PAGE_TITLE } from "@/app/components/ui/typography";
 import { isAdmin } from "@/app/lib/auth/auth";
 import { isBot } from "@/app/lib/isBot";
 import { localeToBcp47, safeJsonLd, SITE_URL } from "@/app/lib/seo";
@@ -13,11 +14,11 @@ import { localesInfo } from "@/i18n/locales";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { headers } from "next/headers";
+import ParticipateCard from "../../components/content/ParticipateCard";
 import { StudiesHub } from "../../components/studies/StudiesHub";
 import { StudyCategoryGrid } from "../../components/studies/StudyGrid";
 import { StudyList } from "../../components/studies/StudyList";
 import StudySubmitForm from "../../components/StudySubmitForm";
-import ParticipateCard from "../../components/content/ParticipateCard";
 
 export async function generateMetadata({
   params,
@@ -119,7 +120,7 @@ export default async function StudiesPage({
 
   const header = (
     <>
-      <h1 className="text-3xl font-bold">{t("title")}</h1>
+      <h1 className={PAGE_TITLE}>{t("title")}</h1>
       <p className="text-muted-foreground max-w-3xl">{t("description")}</p>
     </>
   );

@@ -1647,9 +1647,14 @@
       "count": "n = {n}",
       "tooltip": "Alder {age}: {count, plural, =1 {1 historie} other {# historier}}",
       "yearsTooltip": "{years, plural, =1 {1 år} other {# år}} i transisjon: {count, plural, =1 {1 historie} other {# historier}}",
-      "basedOn": "Hver rad teller bare historiene som oppgir den alderen. Aksen er kuttet ved 99. persentil.",
+      "basedOn": "Hver rad teller bare historiene som oppgir den alderen. Aldre over 45 vises ikke.",
       "empty": "Ennå ingen tidslinjedata for de gjeldende filtrene.",
-      "error": "Kunne ikke laste forløpsdata"
+      "error": "Kunne ikke laste forløpsdata",
+      "curvesTitle": "Alder ved transisjon og detransisjon",
+      "curvesDescription": "Andelen historier som oppgir hver alder for transisjon og for detransisjon. Stiplede linjer markerer medianene.",
+      "curvesTooltip": "Alder {age}",
+      "curvesStories": "{count, plural, =1 {1 historie} other {# historier}}",
+      "curvesNote": "Hver linje teller bare historiene som oppgir den alderen. Aldre over 45 vises ikke."
     },
     "gradient": {
       "regret": "Anger",
@@ -1732,22 +1737,41 @@
         "regretLadder": "Anger og medisinske steg",
         "improvement": "Livet etter detransisjon",
         "journey": "Typisk forløp",
+        "durationBySex": "Tid i transisjon",
         "minorShare": "Startet før 18",
-        "minorLe15": "Startet som 15-åring eller yngre",
         "minorDysphoria": "Første dysfori innen 12 år",
         "minorFemale": "Hvem starter ung",
+        "reasonsBySex": "Hovedgrunner til transisjon",
+        "therapyMentalHealth": "Utforskende terapi hjalp",
+        "criticalOfTransition": "Syn på transisjon",
         "orientation": "Seksuell orientering"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "Ytterligere {unclear} % er uklare.",
+      "prevalenceByFeature": {
+        "took_hormones": "{percent}% av historiene nevner at de tok kjønnshormoner (n = {n}).",
+        "mh_generic": "{percent}% av historiene nevner at de slet med den psykiske helsen (n = {n}).",
+        "regret_transition": "{percent}% av historiene nevner at de angrer på transisjonen (n = {n}).",
+        "community_disillusionment": "{percent}% av historiene nevner at de ble desillusjonert av trans-/LHBT-miljøet (n = {n}).",
+        "adv_trauma_history": "{percent}% av historiene nevner en traumehistorie (n = {n})."
+      },
       "regretLadder": "{surgery} % av dem som ble operert sier de angrer på transisjonen, mot {hormones} % etter hormoner eller blokkere og {socialOnly} % etter kun sosial transisjon (n = {n}).",
-      "regretLadderNote": "Resten sier verken det ene eller det andre.",
       "improvement": "{better} % sier at livskvaliteten ble bedre etter detransisjon; {worse} % sier at den ble verre (n = {n}).",
       "journey": "Det typiske forløpet: første dysfori ved {dysphoria} → transisjon ved {transition} → detransisjon ved {detransition} (n = {n}).",
+      "durationBySex": "Median tid i transisjon: {female} år for kvinner (n = {nFemale}) og {male} år for menn (n = {nMale}).",
       "minorShare": "{percent} % av historiene med en alder startet transisjon under 18 år (n = {n} av {total}).",
-      "minorLe15": "{percent} % startet som 15-åringer eller yngre (n = {n}).",
       "minorDysphoria": "{percent} % kjente først dysfori som 12-åringer eller yngre (n = {n}).",
       "minorFemale": "{percent} % av dem som startet under 18, er kvinner (n = {n}).",
+      "reasonsWomen": "Kvinner",
+      "reasonsMen": "Menn",
+      "reasonsBySex": "Grunner som er mer enn dobbelt så vanlige for det ene kjønnet som for det andre:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "Internalisert kvinnehat"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "Internalisert mannshat"
+      },
+      "therapyMentalHealth": "{with}% av dem som eksplorativ terapi hjalp, sier at den psykiske helsen ble bedre etter detransisjon, mot {without}% av de andre (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "{percent}% er nå kritiske til eller imot transisjon for andre (n ≈ {n}).",
       "explore": "Utforsk",
       "orientation": "{percent} % av detransisjonerte som oppgir orienteringen sin, er homofile, lesbiske eller bifile ({sameSex} % homofile eller lesbiske; n = {n})."
     },
@@ -2061,14 +2085,15 @@
     }
   },
   "topicsPage": {
-    "title": "Emner",
-    "description": "Grundig gjennomgang av detransisjon, kjønnsmedisin og relaterte emner.",
+    "title": "Utforsk emner knyttet til detransisjon",
+    "description": "Grundige artikler om kjønn, identitet og detransisjon, basert på akademiske studier og egne erfaringer og perspektiver fra transidentifiserte personer og detransisjonerte.",
     "empty": "Ingen emner er publisert ennå.",
     "pagesInSection": "Sider i denne delen",
     "relatedPages": "Relaterte sider",
     "lastUpdated": "Sist oppdatert:",
     "stubNotice": "Denne siden er en stubb og vil bli utvidet.",
-    "views": "{count, plural, one {# visning} other {# visninger}}"
+    "views": "{count, plural, one {# visning} other {# visninger}}",
+    "articleCount": "{count, plural, one {# artikkel} other {# artikler}}"
   },
   "storiesPage": {
     "metadata": {

@@ -1639,9 +1639,14 @@
       "count": "n = {n}",
       "tooltip": "Tuổi {age}: {count, plural, =1 {1 câu chuyện} other {# câu chuyện}}",
       "yearsTooltip": "{years, plural, =1 {1 năm} other {# năm}} chuyển giới: {count, plural, =1 {1 câu chuyện} other {# câu chuyện}}",
-      "basedOn": "Mỗi hàng chỉ tính các câu chuyện có nêu độ tuổi đó. Trục được cắt ở phân vị thứ 99.",
+      "basedOn": "Mỗi hàng chỉ tính những câu chuyện có nêu độ tuổi đó. Không hiển thị độ tuổi trên 45.",
       "empty": "Chưa có dữ liệu dòng thời gian cho bộ lọc hiện tại.",
-      "error": "Không thể tải dữ liệu hành trình"
+      "error": "Không thể tải dữ liệu hành trình",
+      "curvesTitle": "Tuổi khi chuyển giới và khi chuyển giới ngược",
+      "curvesDescription": "Tỷ lệ câu chuyện nêu từng độ tuổi chuyển giới và chuyển giới ngược. Đường nét đứt đánh dấu trung vị.",
+      "curvesTooltip": "Tuổi {age}",
+      "curvesStories": "{count, plural, =1 {1 câu chuyện} other {# câu chuyện}}",
+      "curvesNote": "Mỗi đường chỉ tính những câu chuyện có nêu độ tuổi đó. Không hiển thị độ tuổi trên 45."
     },
     "gradient": {
       "regret": "Hối hận",
@@ -1724,22 +1729,41 @@
         "regretLadder": "Hối tiếc và các bước y tế",
         "improvement": "Cuộc sống sau khi chuyển giới trở lại",
         "journey": "Hành trình điển hình",
+        "durationBySex": "Thời gian chuyển giới",
         "minorShare": "Bắt đầu trước 18 tuổi",
-        "minorLe15": "Bắt đầu khi 15 tuổi trở xuống",
         "minorDysphoria": "Phiền muộn giới lần đầu trước 12 tuổi",
         "minorFemale": "Ai bắt đầu khi còn nhỏ",
+        "reasonsBySex": "Lý do chính để chuyển giới",
+        "therapyMentalHealth": "Trị liệu khám phá có ích",
+        "criticalOfTransition": "Quan điểm về chuyển giới",
         "orientation": "Xu hướng tính dục"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "Thêm {unclear}% không rõ ràng.",
+      "prevalenceByFeature": {
+        "took_hormones": "{percent}% câu chuyện nhắc đến việc đã dùng hormone khác giới (n = {n}).",
+        "mh_generic": "{percent}% câu chuyện nhắc đến việc gặp vấn đề sức khỏe tinh thần (n = {n}).",
+        "regret_transition": "{percent}% câu chuyện nhắc đến việc hối hận vì đã chuyển giới (n = {n}).",
+        "community_disillusionment": "{percent}% câu chuyện nhắc đến việc vỡ mộng với cộng đồng trans/LGBT (n = {n}).",
+        "adv_trauma_history": "{percent}% câu chuyện nhắc đến tiền sử sang chấn (n = {n})."
+      },
       "regretLadder": "{surgery}% người đã phẫu thuật cho biết họ hối tiếc vì chuyển giới, so với {hormones}% sau hormone hoặc thuốc ức chế và {socialOnly}% sau khi chỉ chuyển đổi xã hội (n = {n}).",
-      "regretLadderNote": "Số còn lại không nói rõ theo hướng nào.",
       "improvement": "{better}% nói chất lượng cuộc sống của họ được cải thiện sau khi chuyển giới trở lại; {worse}% nói nó tệ đi (n = {n}).",
       "journey": "Hành trình điển hình: phiền muộn giới lần đầu ở tuổi {dysphoria} → chuyển giới ở tuổi {transition} → chuyển giới trở lại ở tuổi {detransition} (n = {n}).",
+      "durationBySex": "Thời gian chuyển giới trung vị: {female} năm ở nữ (n = {nFemale}) và {male} năm ở nam (n = {nMale}).",
       "minorShare": "{percent}% câu chuyện có tuổi bắt đầu chuyển giới dưới 18 tuổi (n = {n} trong {total}).",
-      "minorLe15": "{percent}% bắt đầu khi 15 tuổi trở xuống (n = {n}).",
       "minorDysphoria": "{percent}% lần đầu cảm thấy phiền muộn giới khi 12 tuổi trở xuống (n = {n}).",
       "minorFemale": "{percent}% người bắt đầu dưới 18 tuổi là nữ (n = {n}).",
+      "reasonsWomen": "Nữ",
+      "reasonsMen": "Nam",
+      "reasonsBySex": "Những lý do phổ biến gấp hơn hai lần ở một giới so với giới kia:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "Tâm lý ghét phụ nữ nội tâm hóa"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "Tâm lý ghét đàn ông nội tâm hóa"
+      },
+      "therapyMentalHealth": "{with}% những người được trị liệu khám phá giúp đỡ cho biết sức khỏe tinh thần tốt hơn sau khi detransition, so với {without}% ở những người khác (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "{percent}% hiện phê phán hoặc phản đối việc chuyển giới đối với người khác (n ≈ {n}).",
       "explore": "Khám phá",
       "orientation": "{percent}% người chuyển giới trở lại có nêu xu hướng tính dục là đồng tính nam, đồng tính nữ hoặc song tính ({sameSex}% đồng tính nam hoặc nữ; n = {n})."
     },
@@ -2053,14 +2077,15 @@
     }
   },
   "topicsPage": {
-    "title": "Chủ đề",
-    "description": "Tìm hiểu chuyên sâu về detransition, y học giới tính và các chủ đề liên quan.",
+    "title": "Khám phá các chủ đề liên quan đến detransition",
+    "description": "Các bài viết chuyên sâu về giới, bản dạng và detransition, dựa trên các nghiên cứu học thuật cùng trải nghiệm và góc nhìn của những người tự nhận là chuyển giới và những người đã detransition.",
     "empty": "Chưa có chủ đề nào được xuất bản.",
     "pagesInSection": "Các trang trong mục này",
     "relatedPages": "Trang liên quan",
     "lastUpdated": "Cập nhật lần cuối:",
     "stubNotice": "Trang này còn sơ khai và sẽ được mở rộng.",
-    "views": "{count, plural, other {# lượt xem}}"
+    "views": "{count, plural, other {# lượt xem}}",
+    "articleCount": "{count, plural, other {# bài viết}}"
   },
   "storiesPage": {
     "metadata": {

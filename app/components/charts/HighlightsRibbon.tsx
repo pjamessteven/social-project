@@ -20,7 +20,6 @@ type Highlight =
       type: "prevalence";
       featureKey: string;
       label: string;
-      unclearPercent: number;
       tagName: string | null;
       percent: number;
       n: number;
@@ -46,9 +45,31 @@ type Highlight =
       detransition: number;
       n: number;
     }
+  | {
+      type: "durationBySex";
+      female: number;
+      male: number;
+      nFemale: number;
+      nMale: number;
+    }
   | { type: "orientation"; percent: number; sameSexPercent: number; n: number }
   | { type: "minorShare"; percent: number; n: number; total: number }
-  | { type: "minorLe15"; percent: number; n: number }
+  | {
+      type: "reasonsBySex";
+      /** Reasons at least twice as often the main one as for the other sex. */
+      men: string[];
+      women: string[];
+      nWomen: number;
+      nMen: number;
+    }
+  | {
+      type: "therapyMentalHealth";
+      withPercent: number;
+      withoutPercent: number;
+      nWith: number;
+      nWithout: number;
+    }
+  | { type: "criticalOfTransition"; percent: number; n: number }
   | { type: "minorDysphoria"; percent: number; n: number }
   | { type: "minorFemale"; percent: number; n: number };
 
@@ -56,6 +77,33 @@ interface HighlightsResponse {
   cohort: number;
   highlights: Highlight[];
 }
+
+/** Median years, to one decimal place only when it is not whole. */
+const formatYears = (years: number) => String(Math.round(years * 10) / 10);
+
+/**
+ * Display order, grouped so cards with similar amounts of text share a row
+ * in both the two- and three-column layouts: the densest cards first, the
+ * shortest last.
+ */
+const DISPLAY_ORDER: Highlight["type"][] = [
+  "regretLadder",
+  "therapyMentalHealth",
+  "reasonsBySex",
+  "orientation",
+  "journey",
+  "durationBySex",
+  "improvement",
+  "prevalence",
+  "criticalOfTransition",
+  "minorShare",
+  "minorDysphoria",
+  "minorFemale",
+];
+const displayRank = (type: string) => {
+  const rank = DISPLAY_ORDER.indexOf(type as Highlight["type"]);
+  return rank === -1 ? DISPLAY_ORDER.length : rank;
+};
 
 /** Anchor id of the ribbon, linked from the stats TOC. */
 export const HIGHLIGHTS_ID = "highlights";
@@ -75,6 +123,7 @@ export default function HighlightsRibbon({
 }) {
   const t = useTranslations("statsPage.highlights");
   const labels = useFeatureLabels();
+  const tCauses = useTranslations("statsPage.pathways.causes");
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -113,9 +162,9 @@ export default function HighlightsRibbon({
 
   // Skip card types this client has no copy for (e.g. an API that is newer
   // or older than the page), rather than showing raw message keys.
-  const highlights = (data?.highlights ?? []).filter((highlight) =>
-    t.has(`types.${highlight.type}`),
-  );
+  const highlights = (data?.highlights ?? [])
+    .filter((highlight) => t.has(`types.${highlight.type}`))
+    .sort((a, b) => displayRank(a.type) - displayRank(b.type));
   const visible = !failed && highlights.length > 0;
 
   useEffect(() => {
@@ -127,43 +176,31 @@ export default function HighlightsRibbon({
   const feature = (key: string, fallback: string) =>
     labels.feature(key, fallback || prettifyKey(key));
 
+  const causeLabel = (key: string) =>
+    tCauses.has(key) ? tCauses(key) : prettifyKey(key);
+
   const renderBody = (highlight: Highlight) => {
     switch (highlight.type) {
       case "prevalence":
-        return (
-          <>
-            {t("prevalence", {
+        // Plain sentences for the usual winners; the generic template
+        // ("mention {label}") reads awkwardly with most feature labels.
+        return t.has(`prevalenceByFeature.${highlight.featureKey}`)
+          ? t(`prevalenceByFeature.${highlight.featureKey}`, {
+              percent: highlight.percent,
+              n: highlight.n,
+            })
+          : t("prevalence", {
               label: feature(highlight.featureKey, highlight.label),
               percent: highlight.percent,
               n: highlight.n,
-            })}
-            {highlight.unclearPercent >= 10 && (
-              <span className="text-muted-foreground">
-                {" "}
-                {t("prevalenceUnclear", {
-                  unclear: highlight.unclearPercent,
-                })}
-              </span>
-            )}
-          </>
-        );
+            });
       case "regretLadder":
-        // Shares of everyone at each step, not only those who say either
-        // way (the medical chart's headline), so flag the silent remainder.
-        return (
-          <>
-            {t("regretLadder", {
-              socialOnly: highlight.socialOnly,
-              hormones: highlight.hormones,
-              surgery: highlight.surgery,
-              n: highlight.n,
-            })}
-            <span className="text-muted-foreground">
-              {" "}
-              {t("regretLadderNote")}
-            </span>
-          </>
-        );
+        return t("regretLadder", {
+          socialOnly: highlight.socialOnly,
+          hormones: highlight.hormones,
+          surgery: highlight.surgery,
+          n: highlight.n,
+        });
       case "improvement":
         return t("improvement", {
           better: highlight.betterPercent,
@@ -177,6 +214,13 @@ export default function HighlightsRibbon({
           detransition: highlight.detransition.toFixed(0),
           n: highlight.n,
         });
+      case "durationBySex":
+        return t("durationBySex", {
+          female: formatYears(highlight.female),
+          male: formatYears(highlight.male),
+          nFemale: highlight.nFemale,
+          nMale: highlight.nMale,
+        });
       case "orientation":
         return t("orientation", {
           percent: highlight.percent,
@@ -189,11 +233,43 @@ export default function HighlightsRibbon({
           n: highlight.n,
           total: highlight.total,
         });
-      case "minorLe15":
-        return t("minorLe15", {
-          percent: highlight.percent,
-          n: highlight.n,
+      case "therapyMentalHealth":
+        return t("therapyMentalHealth", {
+          with: highlight.withPercent,
+          without: highlight.withoutPercent,
+          nWith: highlight.nWith,
+          nWithout: highlight.nWithout,
         });
+      case "reasonsBySex": {
+        // Some reason labels cover both sexes ("misogyny / misandry");
+        // each row uses the half that applies to that sex.
+        const row = (
+          label: string,
+          reasons: string[],
+          overrides: "reasonLabelsMen" | "reasonLabelsWomen",
+        ) =>
+          reasons.length > 0 && (
+            <span className="mt-1.5 block">
+              {label}:{" "}
+              <strong className="text-foreground font-semibold">
+                {reasons
+                  .map((key) =>
+                    t.has(`${overrides}.${key}`)
+                      ? t(`${overrides}.${key}`)
+                      : causeLabel(key),
+                  )
+                  .join(", ")}
+              </strong>
+            </span>
+          );
+        return (
+          <>
+            {t("reasonsBySex")}
+            {row(t("reasonsMen"), highlight.men, "reasonLabelsMen")}
+            {row(t("reasonsWomen"), highlight.women, "reasonLabelsWomen")}
+          </>
+        );
+      }
       case "minorDysphoria":
         return t("minorDysphoria", {
           percent: highlight.percent,
@@ -204,18 +280,18 @@ export default function HighlightsRibbon({
           percent: highlight.percent,
           n: highlight.n,
         });
+      case "criticalOfTransition":
+        return t("criticalOfTransition", {
+          percent: highlight.percent,
+          n: highlight.n,
+        });
     }
   };
 
   const renderChart = (highlight: Highlight) => {
     switch (highlight.type) {
       case "prevalence":
-        return (
-          <MiniDonut
-            primary={highlight.percent}
-            secondary={highlight.unclearPercent}
-          />
-        );
+        return <MiniDonut primary={highlight.percent} />;
       case "regretLadder":
         return (
           <MiniBars
@@ -264,9 +340,27 @@ export default function HighlightsRibbon({
           />
         );
       case "minorShare":
-      case "minorLe15":
       case "minorDysphoria":
+      case "criticalOfTransition":
         return <MiniDonut primary={highlight.percent} />;
+      case "reasonsBySex":
+        // The reason lists fill the card; a mini chart would overlap them.
+        return null;
+      case "durationBySex":
+        return (
+          <MiniBars
+            values={[highlight.female, highlight.male]}
+            colors={[MINI_COLORS.PRIMARY, MINI_COLORS.SECONDARY]}
+          />
+        );
+      case "therapyMentalHealth":
+        return (
+          <MiniBars
+            values={[highlight.withPercent, highlight.withoutPercent]}
+            colors={[MINI_COLORS.PRIMARY, MINI_COLORS.SECONDARY]}
+            max={100}
+          />
+        );
       case "minorFemale":
         return (
           <MiniBars
@@ -287,13 +381,20 @@ export default function HighlightsRibbon({
         return () => explore({}, "after");
       case "journey":
         return () => explore({}, "journey");
+      case "durationBySex":
+        return () => explore({}, "duration");
       case "orientation":
         return () => explore({}, "sexuality");
       case "minorShare":
-      case "minorLe15":
       case "minorDysphoria":
       case "minorFemale":
         return () => explore({}, "minors");
+      case "reasonsBySex":
+        return () => explore({}, "reasons");
+      case "therapyMentalHealth":
+        return () => explore({}, "matrix");
+      case "criticalOfTransition":
+        return () => explore({}, "current_status");
     }
   };
 

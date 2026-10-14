@@ -18,6 +18,27 @@ const REGRET_LADDER_KEYS = [...MEDICAL_TIER_KEYS, "regret_transition"];
 const IMPROVEMENT_KEYS = ["outcome_quality_of_life"] as const;
 
 /**
+ * Men vs women: primary reasons for transitioning that are at least twice
+ * as often the main reason for one sex as for the other.
+ */
+const PRIMARY_REASON_KEY = "primary_transition_reason";
+const UNCLEAR_REASONS = ["other_unclear", "unclear"];
+const DISTINCTIVE_RATIO = 2;
+
+/**
+ * "Exploratory therapy helped → mental health better after detransitioning",
+ * computed as in the connections section.
+ */
+const THERAPY_KEY = "process_benefited_from_therapy";
+const MENTAL_HEALTH_KEY = "mh_change_after_detransition";
+const MIN_GROUP_N = 30;
+
+/** Matches the views-on-transition chart: stories that address it. */
+const ATTITUDE_KEY = "attitude_towards_transition_for_others";
+const ATTITUDE_ADDRESSED = ["supportive", "conditional", "critical", "opposed"];
+const ATTITUDE_CRITICAL = ["critical", "opposed"];
+
+/**
  * Taxonomy labels that carry editorial disambiguation and read badly inside a
  * sentence ("Mental health issues (generic)"). Highlight cards use these
  * display forms instead.
@@ -65,7 +86,11 @@ async function getFeature(request: NextRequest) {
       regretRowsRaw,
       improvementRowsRaw,
       journeyRowsRaw,
+      durationRowsRaw,
       minorsRowsRaw,
+      attitudeRowsRaw,
+      therapyRowsRaw,
+      reasonRowsRaw,
     ] = await Promise.all([
       db.execute(sql`
         WITH ${cohortCte(filters)}
@@ -77,13 +102,7 @@ async function getFeature(request: NextRequest) {
           count(a.username)::int AS n,
           (
             count(*) FILTER (WHERE a.noul >= COALESCE(f.threshold, ${NOUL_THRESHOLD}))
-          )::int AS above,
-          (
-            count(*) FILTER (
-              WHERE a.noul > 0.2
-                AND a.noul < COALESCE(f.threshold, ${NOUL_THRESHOLD})
-            )
-          )::int AS uncertain
+          )::int AS above
         FROM detrans_features f
         JOIN filtered_answers a
           ON a.feature_id = f.id
@@ -133,12 +152,36 @@ async function getFeature(request: NextRequest) {
         FROM latest_timelines t
         WHERE t.username IN (SELECT username FROM cohort)
       `),
+      // Years in transition, per sex (year difference, age difference
+      // fallback), as in the duration chart.
+      db.execute(sql`
+        WITH ${cohortCte(filters)},
+        durations AS (
+          SELECT
+            fu.sex,
+            COALESCE(
+              t.detransition_year - t.transition_year,
+              t.detransition_age - t.transition_age
+            ) AS years
+          FROM latest_timelines t
+          JOIN cohort c ON c.username = t.username
+          JOIN filtered_users fu ON fu.username = t.username
+        )
+        SELECT
+          percentile_cont(0.5) WITHIN GROUP (ORDER BY years)
+            FILTER (WHERE sex = 'f') AS female,
+          percentile_cont(0.5) WITHIN GROUP (ORDER BY years)
+            FILTER (WHERE sex = 'm') AS male,
+          (count(*) FILTER (WHERE sex = 'f'))::int AS "nFemale",
+          (count(*) FILTER (WHERE sex = 'm'))::int AS "nMale"
+        FROM durations
+        WHERE years BETWEEN 0 AND 40
+      `),
       db.execute(sql`
         WITH ${cohortCte(filters)}
         SELECT
           count(t.transition_age)::int AS "nAge",
           count(*) FILTER (WHERE t.transition_age < 18)::int AS "nMinor",
-          count(*) FILTER (WHERE t.transition_age <= 15)::int AS "nLe15",
           count(t.first_dysphoria_age)::int AS "nDys",
           count(*) FILTER (WHERE t.first_dysphoria_age <= 12)::int AS "nDysChild",
           count(*) FILTER (WHERE t.transition_age < 18 AND fu.sex = 'f')::int AS "nMinorFemale",
@@ -148,6 +191,37 @@ async function getFeature(request: NextRequest) {
         JOIN cohort c ON c.username = t.username
         JOIN filtered_users fu ON fu.username = t.username
       `),
+      db.execute(sql`
+        WITH ${cohortCte(filters)}
+        SELECT a.choice, a.probabilities
+        FROM filtered_answers a
+        JOIN detrans_features f ON f.id = a.feature_id
+        WHERE f.key = ${ATTITUDE_KEY} AND f.enabled = true
+      `),
+      db.execute(sql`
+        WITH ${cohortCte(filters)}
+        SELECT
+          a.username,
+          f.key,
+          (a.noul >= COALESCE(f.threshold, ${NOUL_THRESHOLD})) AS v,
+          a.score
+        FROM filtered_answers a
+        JOIN detrans_features f ON f.id = a.feature_id
+        WHERE f.enabled = true
+          AND f.key IN (${THERAPY_KEY}, ${MENTAL_HEALTH_KEY})
+      `),
+      db.execute(sql`
+        WITH ${cohortCte(filters)}
+        SELECT fu.sex, a.choice, count(*)::int AS n
+        FROM filtered_answers a
+        JOIN detrans_features f ON f.id = a.feature_id
+        JOIN filtered_users fu ON fu.username = a.username
+        WHERE f.key = ${PRIMARY_REASON_KEY}
+          AND f.enabled = true
+          AND fu.sex IN ('f', 'm')
+          AND a.choice IS NOT NULL
+        GROUP BY fu.sex, a.choice
+      `),
     ]);
 
     const highlights: Record<string, unknown>[] = [];
@@ -156,7 +230,6 @@ async function getFeature(request: NextRequest) {
     const [minorsRow] = Array.from(minorsRowsRaw) as unknown as {
       nAge: number;
       nMinor: number;
-      nLe15: number;
       nDys: number;
       nDysChild: number;
       nMinorFemale: number;
@@ -168,7 +241,6 @@ async function getFeature(request: NextRequest) {
       const nMinor = Number(minorsRow.nMinor);
       const nDys = Number(minorsRow.nDys);
       const minorPercent = Math.round((nMinor / nAge) * 100);
-      const le15Percent = Math.round((Number(minorsRow.nLe15) / nAge) * 100);
       if (minorPercent >= 20) {
         highlights.push({
           type: "minorShare",
@@ -176,9 +248,6 @@ async function getFeature(request: NextRequest) {
           n: nMinor,
           total: nAge,
         });
-      }
-      if (le15Percent >= 15) {
-        highlights.push({ type: "minorLe15", percent: le15Percent, n: nAge });
       }
       if (nDys >= minN) {
         const dysPercent = Math.round(
@@ -218,24 +287,131 @@ async function getFeature(request: NextRequest) {
         tagName: (row.tagName as string | null) ?? null,
         n: Number(row.n),
         above: Number(row.above),
-        uncertain: Number(row.uncertain),
         percent: Number(row.n) > 0 ? Number(row.above) / Number(row.n) : 0,
       }))
       .filter((row) => row.percent >= 0.15)
       .sort((a, b) => b.percent * Math.sqrt(b.n) - a.percent * Math.sqrt(a.n));
 
-    if (prevalence[0]) {
+    const leader = prevalence[0];
+    if (leader) {
       highlights.push({
         type: "prevalence",
-        featureKey: prevalence[0].key,
-        label: DISPLAY_LABELS[prevalence[0].key] ?? prevalence[0].label,
-        tagName: prevalence[0].tagName,
-        percent: Math.round(prevalence[0].percent * 100),
-        unclearPercent:
-          prevalence[0].n > 0
-            ? Math.round((prevalence[0].uncertain / prevalence[0].n) * 100)
-            : 0,
-        n: prevalence[0].n,
+        featureKey: leader.key,
+        label: DISPLAY_LABELS[leader.key] ?? leader.label,
+        tagName: leader.tagName,
+        percent: Math.round(leader.percent * 100),
+        n: leader.n,
+      });
+    }
+
+    // ── Primary reasons for transitioning, women vs men ──────────────────
+    const reasonRows = (
+      Array.from(reasonRowsRaw) as unknown as {
+        sex: "f" | "m";
+        choice: string;
+        n: number;
+      }[]
+    ).filter((row) => !UNCLEAR_REASONS.includes(row.choice));
+    const reasonCounts = {
+      f: new Map<string, number>(),
+      m: new Map<string, number>(),
+    };
+    for (const row of reasonRows)
+      reasonCounts[row.sex].set(row.choice, Number(row.n));
+    const reasonTotal = (sex: "f" | "m") =>
+      [...reasonCounts[sex].values()].reduce((sum, n) => sum + n, 0);
+    const nWomen = reasonTotal("f");
+    const nMen = reasonTotal("m");
+    if (nWomen >= minN && nMen >= minN) {
+      // Most distinctive first.
+      const distinctiveReasons = (sex: "f" | "m", total: number) => {
+        const other = sex === "f" ? "m" : "f";
+        const otherTotal = sex === "f" ? nMen : nWomen;
+        return [...reasonCounts[sex].entries()]
+          .filter(([, n]) => n >= minSide)
+          .map(([key, n]) => {
+            const otherShare = (reasonCounts[other].get(key) ?? 0) / otherTotal;
+            return { key, ratio: n / total / Math.max(otherShare, 1e-9) };
+          })
+          .filter((reason) => reason.ratio >= DISTINCTIVE_RATIO)
+          .sort((a, b) => b.ratio - a.ratio)
+          .map((reason) => reason.key);
+      };
+      const men = distinctiveReasons("m", nMen);
+      const women = distinctiveReasons("f", nWomen);
+      if (men.length > 0 || women.length > 0) {
+        highlights.push({ type: "reasonsBySex", men, women, nMen, nWomen });
+      }
+    }
+
+    // ── Exploratory therapy helped → mental health better ────────────────
+    const therapyRows = Array.from(therapyRowsRaw) as unknown as {
+      username: string;
+      key: string;
+      v: boolean | null;
+      score: number | null;
+    }[];
+    const therapyByUser = new Map<string, boolean>();
+    const mentalBetterByUser = new Map<string, boolean>();
+    for (const row of therapyRows) {
+      if (row.key === THERAPY_KEY && row.v != null) {
+        therapyByUser.set(row.username, row.v);
+      } else if (
+        row.key === MENTAL_HEALTH_KEY &&
+        typeof row.score === "number"
+      ) {
+        // Scores run 0-4 (much worse ... much better); 3+ is "better".
+        mentalBetterByUser.set(row.username, Math.round(row.score) >= 3);
+      }
+    }
+    const therapy = {
+      with: { n: 0, better: 0 },
+      without: { n: 0, better: 0 },
+    };
+    for (const [username, helped] of therapyByUser) {
+      const better = mentalBetterByUser.get(username);
+      if (better == null) continue;
+      const bucket = helped ? therapy.with : therapy.without;
+      bucket.n += 1;
+      if (better) bucket.better += 1;
+    }
+    if (therapy.with.n >= MIN_GROUP_N && therapy.without.n >= MIN_GROUP_N) {
+      highlights.push({
+        type: "therapyMentalHealth",
+        withPercent: Math.round((therapy.with.better / therapy.with.n) * 100),
+        withoutPercent: Math.round(
+          (therapy.without.better / therapy.without.n) * 100,
+        ),
+        nWith: therapy.with.n,
+        nWithout: therapy.without.n,
+      });
+    }
+
+    // ── Critical of transition for others (probability-weighted) ──────────
+    const attitudeRows = Array.from(attitudeRowsRaw) as unknown as {
+      choice: string | null;
+      probabilities: Record<string, unknown> | null;
+    }[];
+    let addressed = 0;
+    let critical = 0;
+    for (const row of attitudeRows) {
+      const weights: Record<string, unknown> =
+        row.probabilities && typeof row.probabilities === "object"
+          ? row.probabilities
+          : row.choice
+            ? { [row.choice]: 1 }
+            : {};
+      for (const [option, weight] of Object.entries(weights)) {
+        if (typeof weight !== "number") continue;
+        if (ATTITUDE_ADDRESSED.includes(option)) addressed += weight;
+        if (ATTITUDE_CRITICAL.includes(option)) critical += weight;
+      }
+    }
+    if (addressed >= minN) {
+      highlights.push({
+        type: "criticalOfTransition",
+        percent: Math.round((critical / addressed) * 100),
+        n: Math.round(addressed),
       });
     }
 
@@ -326,8 +502,7 @@ async function getFeature(request: NextRequest) {
     ) as unknown as { lgb: number; sameSex: number; stated: number }[];
     if (orientationRow && Number(orientationRow.stated) >= minN) {
       const stated = Number(orientationRow.stated);
-      // Lead with it: one of the clearest findings in the dataset.
-      highlights.unshift({
+      highlights.push({
         type: "orientation",
         percent: Math.round((Number(orientationRow.lgb) / stated) * 100),
         sameSexPercent: Math.round(
@@ -345,6 +520,12 @@ async function getFeature(request: NextRequest) {
       n: number;
     }[];
 
+    const [durationRow] = Array.from(durationRowsRaw) as unknown as {
+      female: number | null;
+      male: number | null;
+      nFemale: number;
+      nMale: number;
+    }[];
     if (
       journeyRow &&
       journeyRow.transition != null &&
@@ -356,6 +537,23 @@ async function getFeature(request: NextRequest) {
         transition: journeyRow.transition,
         detransition: journeyRow.detransition,
         n: journeyRow.n,
+      });
+    }
+
+    // ── Median time in transition, women vs men ──────────────────────────
+    if (
+      durationRow &&
+      durationRow.female != null &&
+      durationRow.male != null &&
+      Number(durationRow.nFemale) >= minSide &&
+      Number(durationRow.nMale) >= minSide
+    ) {
+      highlights.push({
+        type: "durationBySex",
+        female: Number(durationRow.female),
+        male: Number(durationRow.male),
+        nFemale: Number(durationRow.nFemale),
+        nMale: Number(durationRow.nMale),
       });
     }
 

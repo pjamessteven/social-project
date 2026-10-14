@@ -1647,9 +1647,14 @@
       "count": "n = {n}",
       "tooltip": "{age}세: {count, plural, =1 {이야기 1건} other {이야기 #건}}",
       "yearsTooltip": "전환 기간 {years, plural, =1 {1년} other {#년}}: {count, plural, =1 {이야기 1건} other {이야기 #건}}",
-      "basedOn": "각 행은 해당 나이를 밝힌 이야기만 셉니다. 축은 99번째 백분위수에서 잘립니다.",
+      "basedOn": "각 행은 해당 나이를 밝힌 이야기만 셉니다. 45세를 넘는 나이는 표시하지 않습니다.",
       "empty": "현재 필터에 해당하는 타임라인 데이터가 아직 없습니다.",
-      "error": "여정 데이터를 불러올 수 없습니다"
+      "error": "여정 데이터를 불러올 수 없습니다",
+      "curvesTitle": "전환 및 탈전환 당시 나이",
+      "curvesDescription": "전환 및 탈전환 나이별로 해당 나이를 밝힌 이야기의 비율입니다. 점선은 중앙값을 나타냅니다.",
+      "curvesTooltip": "{age}세",
+      "curvesStories": "{count, plural, =1 {이야기 1개} other {이야기 #개}}",
+      "curvesNote": "각 선은 해당 나이를 밝힌 이야기만 셉니다. 45세를 넘는 나이는 표시하지 않습니다."
     },
     "gradient": {
       "regret": "후회",
@@ -1732,22 +1737,41 @@
         "regretLadder": "후회와 의료적 단계",
         "improvement": "디트랜지션 이후의 삶",
         "journey": "전형적인 여정",
+        "durationBySex": "전환 기간",
         "minorShare": "18세 이전 시작",
-        "minorLe15": "15세 이하 시작",
         "minorDysphoria": "12세까지 첫 성별 불쾌감",
         "minorFemale": "누가 어린 나이에 시작하는가",
+        "reasonsBySex": "전환의 주된 이유",
+        "therapyMentalHealth": "탐색적 치료가 도움이 됨",
+        "criticalOfTransition": "전환에 대한 견해",
         "orientation": "성적 지향"
       },
       "prevalence": "{label} appears in {percent}% of stories (n = {n}).",
-      "prevalenceUnclear": "추가로 {unclear}%는 불명확합니다.",
+      "prevalenceByFeature": {
+        "took_hormones": "이야기의 {percent}%가 이성 호르몬을 복용했다고 언급합니다 (n = {n}).",
+        "mh_generic": "이야기의 {percent}%가 정신 건강 문제로 힘들었다고 언급합니다 (n = {n}).",
+        "regret_transition": "이야기의 {percent}%가 전환을 후회한다고 언급합니다 (n = {n}).",
+        "community_disillusionment": "이야기의 {percent}%가 트랜스/LGBT 커뮤니티에 환멸을 느꼈다고 언급합니다 (n = {n}).",
+        "adv_trauma_history": "이야기의 {percent}%가 트라우마 경험을 언급합니다 (n = {n})."
+      },
       "regretLadder": "수술을 받은 사람의 {surgery}%가 전환을 후회한다고 말했으며, 호르몬이나 차단제 이후는 {hormones}%, 사회적 전환만 한 경우는 {socialOnly}%였습니다(n = {n}).",
-      "regretLadderNote": "나머지는 어느 쪽도 밝히지 않았습니다.",
       "improvement": "{better}%는 디트랜지션 후 삶의 질이 나아졌다고 말하고, {worse}%는 나빠졌다고 말합니다(n = {n}).",
       "journey": "전형적인 여정: {dysphoria}세에 첫 성별 불쾌감 → {transition}세에 전환 → {detransition}세에 디트랜지션(n = {n}).",
+      "durationBySex": "전환 기간 중앙값: 여성 {female}년 (n = {nFemale}), 남성 {male}년 (n = {nMale}).",
       "minorShare": "나이가 있는 이야기의 {percent}%가 18세 미만에 전환을 시작했습니다({total}건 중 n = {n}).",
-      "minorLe15": "{percent}%가 15세 이하에 시작했습니다(n = {n}).",
       "minorDysphoria": "{percent}%가 12세 이하에 처음 성별 불쾌감을 느꼈습니다(n = {n}).",
       "minorFemale": "18세 미만에 시작한 사람의 {percent}%가 여성입니다(n = {n}).",
+      "reasonsWomen": "여성",
+      "reasonsMen": "남성",
+      "reasonsBySex": "한 성별에서 다른 성별보다 두 배 이상 흔한 이유:",
+      "reasonLabelsWomen": {
+        "internalised_misogyny_misandry": "내면화된 여성혐오"
+      },
+      "reasonLabelsMen": {
+        "internalised_misogyny_misandry": "내면화된 남성혐오"
+      },
+      "therapyMentalHealth": "탐색적 치료가 도움이 된 사람의 {with}%가 탈전환 후 정신 건강이 나아졌다고 말하며, 그 외에는 {without}%입니다 (n = {nWith} / {nWithout}).",
+      "criticalOfTransition": "{percent}%는 현재 다른 사람의 전환에 비판적이거나 반대합니다 (n ≈ {n}).",
       "explore": "살펴보기",
       "orientation": "성적 지향을 밝힌 디트랜지셔너의 {percent}%가 게이, 레즈비언 또는 양성애자입니다(게이 또는 레즈비언 {sameSex}%, n = {n})."
     },
@@ -2061,14 +2085,15 @@
     }
   },
   "topicsPage": {
-    "title": "주제",
-    "description": "탈전환, 젠더 의학 및 관련 주제에 대한 심층 탐구.",
+    "title": "탈전환 관련 주제 살펴보기",
+    "description": "학술 연구와 트랜스로 정체화한 사람들 및 탈전환자들의 실제 경험과 관점을 바탕으로 젠더, 정체성, 탈전환을 깊이 있게 다루는 글입니다.",
     "empty": "아직 게시된 주제가 없습니다.",
     "pagesInSection": "이 섹션의 페이지",
     "relatedPages": "관련 페이지",
     "lastUpdated": "마지막 업데이트:",
     "stubNotice": "이 페이지는 아직 미완성이며 확장될 예정입니다.",
-    "views": "{count, plural, other {조회수 #회}}"
+    "views": "{count, plural, other {조회수 #회}}",
+    "articleCount": "{count, plural, other {글 #개}}"
   },
   "storiesPage": {
     "metadata": {
