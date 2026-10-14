@@ -247,13 +247,17 @@ export default async function TopicsHubPage({
             <p className="text-muted-foreground">{t("empty")}</p>
           ) : (
             <>
-              <h2 className={SECTION_HEADING}>{t("hubsHeading")}</h2>
+              <h2 className={SECTION_HEADING + " lg:-mt-12"}>
+                {t("hubsHeading")}
+              </h2>
               <HubCards
                 tree={tree}
                 locale={locale}
                 articleCount={(count) => t("articleCount", { count })}
               />
-              <h2 className={SECTION_HEADING}>{t("allArticlesHeading")}</h2>
+              <h2 className={SECTION_HEADING + " lg:my-7!"}>
+                {t("allArticlesHeading")}
+              </h2>
               <ul className="max-w-4xl list-none pl-0">
                 {tree.map((node) => (
                   <TopicEntry
