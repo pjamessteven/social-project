@@ -173,7 +173,7 @@ export default async function StudiesPage({
           pendingStudies={pendingStudies}
           isAdmin={admin}
           locale={locale}
-          afterCategories={<ParticipateCard />}
+          banner={<ParticipateCard />}
         />
       </div>
     </div>

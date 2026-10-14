@@ -23,8 +23,8 @@ interface StudiesHubProps {
   pendingStudies?: Study[];
   isAdmin: boolean;
   locale: string;
-  /** Rendered between the category grid and the full study list */
-  afterCategories?: ReactNode;
+  /** Rendered under the search bar (hidden while searching) */
+  banner?: ReactNode;
 }
 
 export function matchesStudyQuery(study: Study, query: string): boolean {
@@ -48,7 +48,7 @@ export function StudiesHub({
   pendingStudies = [],
   isAdmin,
   locale,
-  afterCategories,
+  banner,
 }: StudiesHubProps) {
   const t = useTranslations("studiesPage");
   // The tab lives in the URL (?by=method) so back/forward and shared links
@@ -113,6 +113,10 @@ export function StudiesHub({
         />
       </div>
 
+      {/* Block wrapper: the banner's root is an inline link, which would
+          ignore the vertical spacing between sections */}
+      {!query && banner && <div>{banner}</div>}
+
       {isAdmin && pendingStudies.length > 0 && (
         <section>
           <button
@@ -148,7 +152,6 @@ export function StudiesHub({
       ) : (
         <>
           <StudyCategoryGrid categories={visibleCategories} locale={locale} />
-          {afterCategories}
           <section className="pt-8">
             <h2 className="mb-4 flex items-baseline gap-2 text-xl font-semibold">
               {t("allStudies")}
