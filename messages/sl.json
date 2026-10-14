@@ -1082,7 +1082,7 @@
   },
   "statsPage": {
     "title": "Anonimizirana statistika",
-    "description": "Anonimizirana statistika detranzicije, pridobljena iz zgodb in izkušenj detranzitorjev. Podatki so združeni iz komentarjev uporabnikov na /r/detrans za razkrivanje vzorcev v tranziciji in detranziciji. Vključeni so samo uporabniki, ki so delili dovolj za sestavo celotne zgodbe in časovnice.",
+    "description": "Anonimizirana statistika o tranziciji in detranziciji, pridobljena iz <stories>zgodb</stories> uporabnikov /r/detrans, ki so delili dovolj, da je mogoče sestaviti celotno zgodbo in časovnico.",
     "metadata": {
       "title": "Anonimizirana statistika | detrans.ai",
       "description": "Anonimizirana statistika o vzorcih detranzicije in tranzicije, vključno s porazdelitvijo starosti, trajanjem, razlogi in potmi."
@@ -2022,7 +2022,29 @@
       "tooltipTitle": "V {years, plural, =1 {1 letu} two {# letih} few {# letih} other {# letih}}",
       "xAxis": "Leta od začetka tranzicije",
       "note": "Delež ljudi, ki so prenehali v danem številu let. Vsi tukaj so se sčasoma detranzicionirali, zato graf kaže, kako dolgo je pri njih trajala tranzicija — ne pa, koliko ljudi, ki začnejo tranzicijo, jo pozneje prekine.",
-      "headline": "{one} % jih je prenehalo v enem letu in {five} % v petih letih od začetka (mediana {median} let, n = {n})."
+      "headline": "{one} % jih je prenehalo v enem letu in {five} % v petih letih od začetka (mediana {median} let, n = {n}).",
+      "histogramTitle": "Kako dolgo so bili ljudje v tranziciji",
+      "histogramDescription": "Leta od začetka tranzicije do prenehanja, kot delež vsake skupine.",
+      "yearsAxis": "Leta v tranziciji",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Manj kot leto} =1 {1 leto} two {# leti} few {# leta} other {# let}}",
+      "bucketTitleRange": "{from}–{to} let",
+      "bucketTitlePlus": "{years} let ali več",
+      "curveTitle": "Prenehali v določenem številu let",
+      "curveDescription": "Enaka trajanja, seštevana leto za letom: delež tistih, ki so do posamezne točke prenehali.",
+      "byTierTitle": "Glede na to, kako daleč so šli medicinsko",
+      "byTierDescription": "Leta v tranziciji glede na najbolj invaziven doseženi korak. Pika je mediana; pas zajema srednjo polovico ljudi.",
+      "byTierNote": "Kdor preneha zgodaj, nikoli ne doseže poznejših korakov, zato daljši časi pri poznejših korakih deloma odražajo, koliko časa traja, da jih dosežeš.",
+      "byAgeTitle": "Glede na starost ob tranziciji",
+      "byAgeDescription": "Leta v tranziciji glede na starost, pri kateri so ljudje začeli tranzicijo. Pika je mediana; pas zajema srednjo polovico ljudi.",
+      "ageBands": {
+        "under18": "Pod 18",
+        "18to24": "18–24",
+        "25plus": "25 in več"
+      },
+      "rangeSummary": "mediana {median} let, srednja polovica {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "majhen vzorec"
     },
     "optionLabels": {
       "reddit": "Reddit",

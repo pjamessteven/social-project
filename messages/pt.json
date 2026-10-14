@@ -1090,7 +1090,7 @@
   },
   "statsPage": {
     "title": "Estatísticas anonimizadas",
-    "description": "Estatísticas de detransição anonimizadas, derivadas de histórias e experiências de pessoas que fizeram detransição. Os dados são agregados a partir de comentários de usuários no /r/detrans para revelar padrões de transição e detransição. Apenas usuários que compartilharam o suficiente para montar uma história e linha do tempo completas são incluídos.",
+    "description": "Estatísticas anonimizadas sobre transição e destransição, extraídas das <stories>histórias</stories> de usuários do /r/detrans que compartilharam o suficiente para reconstruir uma história e uma linha do tempo completas.",
     "metadata": {
       "title": "Estatísticas anonimizadas | detrans.ai",
       "description": "Estatísticas anonimizadas sobre padrões de detransição e transição, incluindo distribuição etária, duração, razões e percursos."
@@ -2030,7 +2030,29 @@
       "tooltipTitle": "Em até {years, plural, =1 {1 ano} other {# anos}}",
       "xAxis": "Anos desde o início da transição",
       "note": "Proporção de pessoas que haviam parado em um determinado número de anos. Todas aqui acabaram destransicionando, então isto mostra quanto tempo a transição durou para elas — não quantas pessoas que fazem a transição acabam parando.",
-      "headline": "{one}% haviam parado em até um ano e {five}% em até cinco anos após o início (mediana de {median} anos, n = {n})."
+      "headline": "{one}% haviam parado em até um ano e {five}% em até cinco anos após o início (mediana de {median} anos, n = {n}).",
+      "histogramTitle": "Quanto tempo as pessoas ficaram em transição",
+      "histogramDescription": "Anos desde o início da transição até a interrupção, como parcela de cada grupo.",
+      "yearsAxis": "Anos em transição",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Menos de um ano} =1 {1 ano} other {# anos}}",
+      "bucketTitleRange": "{from}–{to} anos",
+      "bucketTitlePlus": "{years} anos ou mais",
+      "curveTitle": "Interromperam dentro de um certo número de anos",
+      "curveDescription": "As mesmas durações somadas ano a ano: a parcela que havia interrompido em cada ponto.",
+      "byTierTitle": "Pelo quanto avançaram medicamente",
+      "byTierDescription": "Anos em transição pelo passo mais invasivo alcançado. O ponto é a mediana; a barra cobre a metade central das pessoas.",
+      "byTierNote": "Quem interrompe cedo nunca chega aos passos posteriores, então tempos mais longos nesses passos refletem em parte o tempo necessário para alcançá-los.",
+      "byAgeTitle": "Pela idade na transição",
+      "byAgeDescription": "Anos em transição pela idade em que as pessoas iniciaram a transição. O ponto é a mediana; a barra cobre a metade central das pessoas.",
+      "ageBands": {
+        "under18": "Menos de 18",
+        "18to24": "18–24",
+        "25plus": "25 ou mais"
+      },
+      "rangeSummary": "mediana {median} anos, metade central {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "amostra pequena"
     },
     "optionLabels": {
       "reddit": "Reddit",

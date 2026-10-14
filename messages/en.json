@@ -1079,7 +1079,7 @@
   },
   "statsPage": {
     "title": "Anonymised Statistics",
-    "description": "Anonymised detransition statistics derived from detransitioner stories and experiences. Data is aggregated from user comments on /r/detrans to reveal patterns in transition and detransition. Only users who have shared enough to put together a full story and timeline are included.",
+    "description": "Anonymised statistics on transition and detransition, extracted from the <stories>stories</stories> of /r/detrans users who have shared enough to piece together a full story and timeline.",
     "metadata": {
       "title": "Anonymised Statistics | detrans.ai",
       "description": "Anonymised statistics on detransition and transition patterns, including age distribution, duration, reasons, and pathways."
@@ -2019,7 +2019,29 @@
       "tooltipTitle": "Within {years, plural, =1 {1 year} other {# years}}",
       "xAxis": "Years since starting transition",
       "note": "Share of people who had stopped within a given number of years. Everyone here eventually detransitioned, so this shows how long transition lasted for them — not how many people who transition go on to stop.",
-      "headline": "{one}% had stopped within a year and {five}% within five years of starting (median {median} years, n = {n})."
+      "headline": "{one}% had stopped within a year and {five}% within five years of starting (median {median} years, n = {n}).",
+      "histogramTitle": "How long people stayed in transition",
+      "histogramDescription": "Years from starting transition to stopping, as a share of each group.",
+      "yearsAxis": "Years in transition",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Under a year} =1 {1 year} other {# years}}",
+      "bucketTitleRange": "{from}–{to} years",
+      "bucketTitlePlus": "{years} years or more",
+      "curveTitle": "Stopped within a given number of years",
+      "curveDescription": "The same durations added up year by year: the share who had stopped by each point.",
+      "byTierTitle": "By how far they went medically",
+      "byTierDescription": "Years in transition by the most invasive step reached. The dot is the median; the bar spans the middle half of people.",
+      "byTierNote": "People who stop early never reach later steps, so longer times for later steps partly reflect how long those steps take to reach.",
+      "byAgeTitle": "By age at transition",
+      "byAgeDescription": "Years in transition by the age people started transitioning. The dot is the median; the bar spans the middle half of people.",
+      "ageBands": {
+        "under18": "Under 18",
+        "18to24": "18–24",
+        "25plus": "25 and over"
+      },
+      "rangeSummary": "median {median} years, middle half {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "small sample"
     },
     "optionLabels": {
       "reddit": "Reddit",

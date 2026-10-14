@@ -1,8 +1,6 @@
 "use client";
 
-import { Button } from "@/app/components/ui/button";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
 import { useChartColors } from "./chart-theme";
 import {
   ChartCard,
@@ -38,8 +36,6 @@ export default function OverviewSection() {
   const colors = useChartColors();
   const filterState = useStatsFilters();
   const { data, loading, error } = useFeatureSummary(filterState.overrides);
-  const tp = useTranslations("statsPage.prevalence");
-  const [expanded, setExpanded] = useState(false);
 
   const filters = <StatsFilters id="overview-filters" filters={filterState} />;
 
@@ -92,24 +88,10 @@ export default function OverviewSection() {
               />
             ))}
           </div>
-          <PrevalenceRows
-            items={items}
-            limit={expanded ? undefined : LIMIT}
-            hideMore
-          />
+          <PrevalenceRows items={items} limit={LIMIT} />
           <ChartFootnote>{t("basedOn", { cohort: data.cohort })}</ChartFootnote>
         </div>
       </ChartCard>
-      {items.length > LIMIT && (
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          onClick={() => setExpanded((value) => !value)}
-        >
-          {expanded ? tp("showFewer") : tp("showAll", { count: items.length })}
-        </Button>
-      )}
     </div>
   );
 }

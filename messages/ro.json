@@ -1082,7 +1082,7 @@
   },
   "statsPage": {
     "title": "Statistici anonimizate",
-    "description": "Statistici de detranziție anonimizate, derivate din poveștile și experiențele persoanelor care au făcut detranziție. Datele sunt colectate din comentariile utilizatorilor de pe /r/detrans pentru a releva modele în tranziție și detranziție. Sunt incluși doar utilizatorii care au împărtășit suficiente informații pentru a alcătui o poveste și o cronologie completă.",
+    "description": "Statistici anonimizate despre tranziție și detranziție, extrase din <stories>poveștile</stories> utilizatorilor /r/detrans care au împărtășit suficient pentru a reconstitui o poveste și o cronologie complete.",
     "metadata": {
       "title": "Statistici anonimizate | detrans.ai",
       "description": "Statistici anonimizate privind modelele de detranziție și tranziție, inclusiv distribuția pe vârstă, durata, motivele și traiectoriile."
@@ -2022,7 +2022,29 @@
       "tooltipTitle": "În {years, plural, =1 {1 an} few {# ani} other {# de ani}}",
       "xAxis": "Ani de la începutul tranziției",
       "note": "Ponderea persoanelor care se opriseră într-un anumit număr de ani. Toți cei de aici au făcut în cele din urmă detranziția, așa că graficul arată cât a durat tranziția pentru ei – nu câți dintre cei care fac tranziția se opresc ulterior.",
-      "headline": "{one}% se opriseră în primul an și {five}% în primii cinci ani de la început (mediana {median} ani, n = {n})."
+      "headline": "{one}% se opriseră în primul an și {five}% în primii cinci ani de la început (mediana {median} ani, n = {n}).",
+      "histogramTitle": "Cât timp au rămas oamenii în tranziție",
+      "histogramDescription": "Ani de la începutul tranziției până la oprire, ca pondere din fiecare grup.",
+      "yearsAxis": "Ani în tranziție",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Sub un an} =1 {1 an} few {# ani} other {# de ani}}",
+      "bucketTitleRange": "{from}–{to} ani",
+      "bucketTitlePlus": "{years} ani sau mai mult",
+      "curveTitle": "Au oprit într-un anumit număr de ani",
+      "curveDescription": "Aceleași durate adunate an de an: ponderea celor care se opriseră la fiecare punct.",
+      "byTierTitle": "După cât de departe au mers medical",
+      "byTierDescription": "Ani în tranziție după cel mai invaziv pas atins. Punctul este mediana; bara acoperă jumătatea din mijloc a oamenilor.",
+      "byTierNote": "Cei care se opresc devreme nu ajung niciodată la pașii următori, așa că timpii mai lungi pentru pașii următori reflectă parțial cât durează să ajungi la ei.",
+      "byAgeTitle": "După vârsta la tranziție",
+      "byAgeDescription": "Ani în tranziție după vârsta la care oamenii au început tranziția. Punctul este mediana; bara acoperă jumătatea din mijloc a oamenilor.",
+      "ageBands": {
+        "under18": "Sub 18",
+        "18to24": "18–24",
+        "25plus": "25 și peste"
+      },
+      "rangeSummary": "mediană {median} ani, jumătatea din mijloc {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "eșantion mic"
     },
     "optionLabels": {
       "reddit": "Reddit",

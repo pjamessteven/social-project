@@ -1090,7 +1090,7 @@
   },
   "statsPage": {
     "title": "Anonymisert statistikk",
-    "description": "Anonymisert detransisjonsstatistikk utledet fra detransisjoneres historier og erfaringer. Data er samlet inn fra brukerkommentarer på /r/detrans for å avdekke mønstre i transisjon og detransisjon. Kun brukere som har delt nok til å sette sammen en full historie og tidslinje er inkludert.",
+    "description": "Anonymisert statistikk om transisjon og detransisjon, hentet fra <stories>historiene</stories> til /r/detrans-brukere som har delt nok til å sette sammen en hel historie og tidslinje.",
     "metadata": {
       "title": "Anonymisert statistikk | detrans.ai",
       "description": "Anonymisert statistikk om detransisjons- og transisjonsmønstre, inkludert aldersfordeling, varighet, årsaker og forløp."
@@ -2030,7 +2030,29 @@
       "tooltipTitle": "Innen {years, plural, =1 {1 år} other {# år}}",
       "xAxis": "År siden start av transisjon",
       "note": "Andel personer som hadde stoppet innen et gitt antall år. Alle her detransisjonerte til slutt, så dette viser hvor lenge transisjonen varte for dem — ikke hvor mange av dem som går gjennom transisjon, som senere stopper.",
-      "headline": "{one} % hadde stoppet innen ett år og {five} % innen fem år etter start (median {median} år, n = {n})."
+      "headline": "{one} % hadde stoppet innen ett år og {five} % innen fem år etter start (median {median} år, n = {n}).",
+      "histogramTitle": "Hvor lenge folk var i transisjon",
+      "histogramDescription": "År fra start av transisjon til stopp, som andel av hver gruppe.",
+      "yearsAxis": "År i transisjon",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Under ett år} =1 {1 år} other {# år}}",
+      "bucketTitleRange": "{from}–{to} år",
+      "bucketTitlePlus": "{years} år eller mer",
+      "curveTitle": "Stoppet innen et gitt antall år",
+      "curveDescription": "De samme varighetene lagt sammen år for år: andelen som hadde stoppet ved hvert punkt.",
+      "byTierTitle": "Etter hvor langt de gikk medisinsk",
+      "byTierDescription": "År i transisjon etter det mest inngripende steget som ble nådd. Prikken er medianen; stolpen dekker den midterste halvdelen av personene.",
+      "byTierNote": "De som stopper tidlig, når aldri de senere stegene, så lengre tid for senere steg gjenspeiler delvis hvor lang tid det tar å nå dem.",
+      "byAgeTitle": "Etter alder ved transisjon",
+      "byAgeDescription": "År i transisjon etter alderen folk startet transisjon. Prikken er medianen; stolpen dekker den midterste halvdelen av personene.",
+      "ageBands": {
+        "under18": "Under 18",
+        "18to24": "18–24",
+        "25plus": "25 og over"
+      },
+      "rangeSummary": "median {median} år, midterste halvdel {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "lite utvalg"
     },
     "optionLabels": {
       "reddit": "Reddit",

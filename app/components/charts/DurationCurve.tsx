@@ -12,62 +12,21 @@ import {
   YAxis,
 } from "recharts";
 import { AXIS_TICK, useChartColors } from "./chart-theme";
-import { ChartFootnote, ChartMessage, ChartSkeleton } from "./ChartParts";
+import { ChartFootnote } from "./ChartParts";
+import type { DurationGroup } from "./DurationSection";
 import { LegendDot } from "./PrevalenceRows";
-import { useSexFiltered } from "./useFeatureData";
-import { useTimelines } from "./useTimelines";
 
 const MAX_YEARS = 15;
 
-function median(values: number[]): number | null {
-  if (values.length === 0) return null;
-  const sorted = [...values].sort((a, b) => a - b);
-  const mid = Math.floor(sorted.length / 2);
-  return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
-}
-
 /**
  * Cumulative share of people who had stopped within N years of starting
- * transition, for women and men separately. Everyone here eventually
- * stopped, so this is the distribution of time spent in transition — not a
- * rate of detransition among everyone who transitions.
+ * transition, per group. Everyone here eventually stopped, so this is the
+ * distribution of time spent in transition — not a rate of detransition
+ * among everyone who transitions.
  */
-export default function DurationCurve() {
+export default function DurationCurve({ groups }: { groups: DurationGroup[] }) {
   const t = useTranslations("statsPage.duration");
   const colors = useChartColors();
-  const sexFiltered = useSexFiltered();
-  const { people, loading, error } = useTimelines();
-
-  const groups = useMemo(() => {
-    if (!people) return [];
-    const years = (filter: (sex: string | null) => boolean) =>
-      people
-        .filter((person) => person.years != null && filter(person.sex))
-        .map((person) => person.years as number);
-    return sexFiltered
-      ? [
-          {
-            key: "all",
-            label: t("all"),
-            color: colors.series[0],
-            values: years(() => true),
-          },
-        ]
-      : [
-          {
-            key: "f",
-            label: t("women"),
-            color: colors.women,
-            values: years((sex) => sex === "f"),
-          },
-          {
-            key: "m",
-            label: t("men"),
-            color: colors.men,
-            values: years((sex) => sex === "m"),
-          },
-        ].filter((group) => group.values.length > 0);
-  }, [people, sexFiltered, colors, t]);
 
   const chartData = useMemo(() => {
     const maxYear = Math.min(
@@ -86,10 +45,6 @@ export default function DurationCurve() {
       return point;
     });
   }, [groups]);
-
-  if (error) return <ChartMessage>{t("error")}</ChartMessage>;
-  if (loading && !people) return <ChartSkeleton height="h-80" />;
-  if (groups.length === 0) return <ChartMessage>{t("empty")}</ChartMessage>;
 
   const renderTooltip = ({ active, payload, label }: any) => {
     if (!active || !payload?.length) return null;
@@ -115,33 +70,11 @@ export default function DurationCurve() {
     );
   };
 
-  const all = groups.flatMap((group) => group.values);
-  const within = (years: number) =>
-    Math.round(
-      (all.filter((value) => value <= years).length / all.length) * 100,
-    );
-
   return (
     <div className="space-y-4">
-      <p className="text-base">
-        {t("headline", {
-          one: within(1),
-          five: within(5),
-          median: median(all) ?? 0,
-          n: all.length,
-        })}
-      </p>
       <div className="text-muted-foreground flex flex-wrap gap-x-5 gap-y-2 text-sm">
         {groups.map((group) => (
-          <LegendDot
-            key={group.key}
-            color={group.color}
-            label={t("legend", {
-              label: group.label,
-              median: median(group.values) ?? 0,
-              n: group.values.length,
-            })}
-          />
+          <LegendDot key={group.key} color={group.color} label={group.label} />
         ))}
       </div>
       <div className="h-80 w-full">

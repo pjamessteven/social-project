@@ -1,14 +1,16 @@
 "use client";
 
 /**
- * Tiny decorative charts for the "What stands out" cards. They sit
- * absolutely in the card's bottom-right corner, so they never change the
- * card's size; the card text carries the actual numbers (aria-hidden here).
+ * Tiny decorative charts for the "What stands out" cards. They sit in the
+ * card's bottom row beside the Explore link; the card text carries the
+ * actual numbers (aria-hidden here).
  */
 
 const PRIMARY = "#3b82f6";
 const SECONDARY = "#93c5fd";
 const NEGATIVE = "#f87171";
+/** Women's bars; men use PRIMARY (blue), as in the full charts. */
+const WOMEN = "#ec4899";
 /** Unfilled track: currentColor at low opacity works in both themes. */
 const TRACK_OPACITY = 0.15;
 
@@ -167,4 +169,4 @@ export function MiniTimeline({ ages }: { ages: (number | null)[] }) {
   );
 }
 
-export const MINI_COLORS = { PRIMARY, SECONDARY, NEGATIVE } as const;
+export const MINI_COLORS = { PRIMARY, SECONDARY, NEGATIVE, WOMEN } as const;

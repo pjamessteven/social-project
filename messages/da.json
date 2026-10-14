@@ -1082,7 +1082,7 @@
   },
   "statsPage": {
     "title": "Anonymiseret statistik",
-    "description": "Anonymiseret detransitionstatistik udledt fra detransitioneres historier og erfaringer. Data er samlet fra brugerkommentarer på /r/detrans for at afsløre mønstre i transition og detransition. Kun brugere, der har delt nok til at sammensætte en fuld historie og tidslinje, er inkluderet.",
+    "description": "Anonymiseret statistik om transition og detransition, udtrukket fra <stories>historierne</stories> fra /r/detrans-brugere, der har delt nok til at danne en hel historie og tidslinje.",
     "metadata": {
       "title": "Anonymiseret statistik | detrans.ai",
       "description": "Anonymiseret statistik over detransition- og transitions mønstre, herunder aldersfordeling, varighed, årsager og veje."
@@ -2022,7 +2022,29 @@
       "tooltipTitle": "Inden for {years, plural, =1 {1 år} other {# år}}",
       "xAxis": "År siden transitionens start",
       "note": "Andel af personer, der var stoppet inden for et givet antal år. Alle her detransitionerede på et tidspunkt, så dette viser, hvor længe transitionen varede for dem — ikke hvor mange af dem, der transitionerer, som senere stopper.",
-      "headline": "{one}% var stoppet inden for et år og {five}% inden for fem år efter start (median {median} år, n = {n})."
+      "headline": "{one}% var stoppet inden for et år og {five}% inden for fem år efter start (median {median} år, n = {n}).",
+      "histogramTitle": "Hvor længe folk var i transition",
+      "histogramDescription": "År fra start af transition til stop, som andel af hver gruppe.",
+      "yearsAxis": "År i transition",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Under et år} =1 {1 år} other {# år}}",
+      "bucketTitleRange": "{from}–{to} år",
+      "bucketTitlePlus": "{years} år eller mere",
+      "curveTitle": "Stoppet inden for et givet antal år",
+      "curveDescription": "De samme varigheder lagt sammen år for år: andelen, der var stoppet på hvert tidspunkt.",
+      "byTierTitle": "Efter hvor langt de gik medicinsk",
+      "byTierDescription": "År i transition efter det mest indgribende skridt, der blev nået. Prikken er medianen; bjælken dækker den midterste halvdel af personerne.",
+      "byTierNote": "Folk, der stopper tidligt, når aldrig de senere skridt, så længere tider for senere skridt afspejler delvist, hvor lang tid det tager at nå dem.",
+      "byAgeTitle": "Efter alder ved transition",
+      "byAgeDescription": "År i transition efter den alder, folk startede transition. Prikken er medianen; bjælken dækker den midterste halvdel af personerne.",
+      "ageBands": {
+        "under18": "Under 18",
+        "18to24": "18–24",
+        "25plus": "25 og derover"
+      },
+      "rangeSummary": "median {median} år, midterste halvdel {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "lille stikprøve"
     },
     "optionLabels": {
       "reddit": "Reddit",

@@ -1082,7 +1082,7 @@
   },
   "statsPage": {
     "title": "Anonymisoidut tilastot",
-    "description": "Anonymisoidut detransitiotilastot, jotka on johdettu detransitioijoiden tarinoista ja kokemuksista. Tiedot on koottu /r/detrans -käyttäjien kommenteista paljastaakseen muutos- ja detransitiokuvioita. Vain käyttäjät, jotka ovat jakaneet tarpeeksi koko tarinan ja aikajanän muodostamiseen, sisällytetään.",
+    "description": "Anonymisoituja tilastoja transitiosta ja detransitiosta, poimittu niiden /r/detrans-käyttäjien <stories>tarinoista</stories>, jotka ovat kertoneet tarpeeksi kokonaisen tarinan ja aikajanan kokoamiseksi.",
     "metadata": {
       "title": "Anonymisoidut tilastot | detrans.ai",
       "description": "Anonymisoidut tilastot detransitiosta ja transitiomalleista, mukaan lukien ikäjakauma, kesto, syyt ja polut."
@@ -2022,7 +2022,29 @@
       "tooltipTitle": "{years, plural, =1 {1 vuoden} other {# vuoden}} sisällä",
       "xAxis": "Vuosia transition alusta",
       "note": "Niiden ihmisten osuus, jotka olivat lopettaneet tietyn vuosimäärän sisällä. Kaikki tässä mukana olevat detransitioivat lopulta, joten tämä näyttää, kuinka kauan transitio heillä kesti — ei sitä, kuinka moni transition aloittaneista lopettaa myöhemmin.",
-      "headline": "{one} % oli lopettanut vuoden sisällä ja {five} % viiden vuoden sisällä aloittamisesta (mediaani {median} vuotta, n = {n})."
+      "headline": "{one} % oli lopettanut vuoden sisällä ja {five} % viiden vuoden sisällä aloittamisesta (mediaani {median} vuotta, n = {n}).",
+      "histogramTitle": "Kuinka kauan ihmiset olivat transitiossa",
+      "histogramDescription": "Vuodet transition aloittamisesta lopettamiseen, osuutena kustakin ryhmästä.",
+      "yearsAxis": "Vuosia transitiossa",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Alle vuosi} =1 {1 vuosi} other {# vuotta}}",
+      "bucketTitleRange": "{from}–{to} vuotta",
+      "bucketTitlePlus": "{years} vuotta tai enemmän",
+      "curveTitle": "Lopettaneet tietyn vuosimäärän sisällä",
+      "curveDescription": "Samat kestot vuosi vuodelta yhteenlaskettuina: kunkin ajankohdan mennessä lopettaneiden osuus.",
+      "byTierTitle": "Sen mukaan, kuinka pitkälle he menivät lääketieteellisesti",
+      "byTierDescription": "Vuodet transitiossa pisimmälle menneen vaiheen mukaan. Piste on mediaani; palkki kattaa keskimmäisen puolikkaan ihmisistä.",
+      "byTierNote": "Aikaisin lopettavat eivät koskaan saavuta myöhempiä vaiheita, joten myöhempien vaiheiden pidemmät ajat heijastavat osittain sitä, kuinka kauan niihin pääseminen kestää.",
+      "byAgeTitle": "Transitioiän mukaan",
+      "byAgeDescription": "Vuodet transitiossa sen iän mukaan, jolloin ihmiset aloittivat transition. Piste on mediaani; palkki kattaa keskimmäisen puolikkaan ihmisistä.",
+      "ageBands": {
+        "under18": "Alle 18",
+        "18to24": "18–24",
+        "25plus": "25 tai yli"
+      },
+      "rangeSummary": "mediaani {median} vuotta, keskimmäinen puolikas {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "pieni otos"
     },
     "optionLabels": {
       "reddit": "Reddit",

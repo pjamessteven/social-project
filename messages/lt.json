@@ -1089,7 +1089,7 @@
   },
   "statsPage": {
     "title": "Anoniminė statistika",
-    "description": "Anoniminė detranzicijos statistika, paremta detranziciją patyrusių žmonių istorijomis ir patirtimis. Duomenys kaupiami iš /r/detrans naudotojų komentarų, siekiant atskleisti tranzicijos ir detranzicijos modelius. Įtraukiami tik naudotojai, kurie pasidalino pakankamai informacijos, kad būtų galima sudaryti visą istoriją ir chronologiją.",
+    "description": "Anoniminė tranzicijos ir detranzicijos statistika, išgauta iš <stories>istorijų</stories> tų /r/detrans naudotojų, kurie pasidalijo pakankamai, kad būtų galima sudaryti visą istoriją ir laiko juostą.",
     "metadata": {
       "title": "Anoniminė statistika | detrans.ai",
       "description": "Anoniminė detranzicijos ir tranzicijos modelių statistika, įskaitant amžiaus pasiskirstymą, trukmę, priežastis ir kelius."
@@ -2029,7 +2029,29 @@
       "tooltipTitle": "Per {years, plural, =1 {1 metus} one {# metus} few {# metus} many {# metų} other {# metų}}",
       "xAxis": "Metai nuo tranzicijos pradžios",
       "note": "Dalis žmonių, nutraukusių tranziciją per tam tikrą metų skaičių. Visi čia esantys galiausiai detranzicionavo, todėl tai rodo, kiek ilgai jiems truko tranzicija — o ne kiek tranziciją pradedančių žmonių vėliau ją nutraukia.",
-      "headline": "{one} % nutraukė per metus, o {five} % – per penkerius metus nuo pradžios (mediana {median} m., n = {n})."
+      "headline": "{one} % nutraukė per metus, o {five} % – per penkerius metus nuo pradžios (mediana {median} m., n = {n}).",
+      "histogramTitle": "Kiek laiko žmonės buvo tranzicijoje",
+      "histogramDescription": "Metai nuo tranzicijos pradžios iki nutraukimo, kaip kiekvienos grupės dalis.",
+      "yearsAxis": "Metai tranzicijoje",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Mažiau nei metai} =1 {1 metai} one {# metai} few {# metai} many {# metų} other {# metų}}",
+      "bucketTitleRange": "{from}–{to} metų",
+      "bucketTitlePlus": "{years} metų ar daugiau",
+      "curveTitle": "Nutraukė per tam tikrą metų skaičių",
+      "curveDescription": "Tos pačios trukmės, sudėtos metai po metų: dalis, nutraukusi iki kiekvieno taško.",
+      "byTierTitle": "Pagal tai, kaip toli nuėjo medicininiu požiūriu",
+      "byTierDescription": "Metai tranzicijoje pagal invaziškiausią pasiektą žingsnį. Taškas – mediana; juosta apima vidurinę žmonių pusę.",
+      "byTierNote": "Anksti nutraukę žmonės niekada nepasiekia vėlesnių žingsnių, todėl ilgesnė vėlesnių žingsnių trukmė iš dalies atspindi, kiek laiko užtrunka juos pasiekti.",
+      "byAgeTitle": "Pagal amžių pradedant tranziciją",
+      "byAgeDescription": "Metai tranzicijoje pagal amžių, kai žmonės pradėjo tranziciją. Taškas – mediana; juosta apima vidurinę žmonių pusę.",
+      "ageBands": {
+        "under18": "Iki 18",
+        "18to24": "18–24",
+        "25plus": "25 ir daugiau"
+      },
+      "rangeSummary": "mediana {median} m., vidurinė pusė {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "maža imtis"
     },
     "optionLabels": {
       "reddit": "Reddit",

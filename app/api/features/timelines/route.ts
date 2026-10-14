@@ -1,3 +1,4 @@
+import { transitionYears } from "@/app/lib/stats-math";
 import { db } from "@/db";
 import { sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
@@ -65,16 +66,12 @@ async function getFeature(request: NextRequest) {
     for (const row of rows) {
       const transition = age(row.transition_age);
       const detransition = age(row.detransition_age);
-      let years: number | null = null;
-      if (
-        typeof row.transition_year === "number" &&
-        typeof row.detransition_year === "number"
-      ) {
-        years = row.detransition_year - row.transition_year;
-      } else if (transition != null && detransition != null) {
-        years = detransition - transition;
-      }
-      if (years != null && (years < 0 || years > 40)) years = null;
+      const years = transitionYears({
+        transitionYear: row.transition_year,
+        detransitionYear: row.detransition_year,
+        transitionAge: transition,
+        detransitionAge: detransition,
+      });
       if (transition == null && years == null) continue;
 
       out.push([

@@ -1082,7 +1082,7 @@
   },
   "statsPage": {
     "title": "Thống kê ẩn danh",
-    "description": "Thống kê detransition ẩn danh được rút ra từ những câu chuyện và trải nghiệm của người detransition. Dữ liệu được tổng hợp từ bình luận của người dùng trên /r/detrans để tiết lộ các mô hình trong transition và detransition. Chỉ những người dùng đã chia sẻ đủ để ghép lại một câu chuyện và dòng thời gian đầy đủ mới được đưa vào.",
+    "description": "Thống kê ẩn danh về chuyển giới và chuyển giới ngược, được trích xuất từ <stories>câu chuyện</stories> của những người dùng /r/detrans đã chia sẻ đủ để ghép thành một câu chuyện và dòng thời gian hoàn chỉnh.",
     "metadata": {
       "title": "Thống kê ẩn danh | detrans.ai",
       "description": "Thống kê ẩn danh về các mô hình detransition và transition, bao gồm phân bố độ tuổi, thời gian, lý do và con đường."
@@ -2022,7 +2022,29 @@
       "tooltipTitle": "Trong vòng {years, plural, =1 {1 năm} other {# năm}}",
       "xAxis": "Số năm kể từ khi bắt đầu chuyển giới",
       "note": "Tỷ lệ người đã dừng lại trong một số năm nhất định. Mọi người ở đây cuối cùng đều chuyển giới trở lại, nên biểu đồ cho thấy quá trình chuyển giới của họ kéo dài bao lâu — không phải bao nhiêu người chuyển giới sẽ dừng lại.",
-      "headline": "{one}% đã dừng lại trong vòng một năm và {five}% trong vòng năm năm kể từ khi bắt đầu (trung vị {median} năm, n = {n})."
+      "headline": "{one}% đã dừng lại trong vòng một năm và {five}% trong vòng năm năm kể từ khi bắt đầu (trung vị {median} năm, n = {n}).",
+      "histogramTitle": "Mọi người ở trong quá trình chuyển giới bao lâu",
+      "histogramDescription": "Số năm từ khi bắt đầu chuyển giới đến khi dừng lại, theo tỷ lệ của mỗi nhóm.",
+      "yearsAxis": "Số năm chuyển giới",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Dưới một năm} =1 {1 năm} other {# năm}}",
+      "bucketTitleRange": "{from}–{to} năm",
+      "bucketTitlePlus": "{years} năm trở lên",
+      "curveTitle": "Đã dừng trong một số năm nhất định",
+      "curveDescription": "Cùng các khoảng thời gian đó cộng dồn theo từng năm: tỷ lệ đã dừng tại mỗi thời điểm.",
+      "byTierTitle": "Theo mức độ can thiệp y tế đã thực hiện",
+      "byTierDescription": "Số năm chuyển giới theo bước can thiệp sâu nhất đã đạt tới. Chấm là trung vị; thanh bao phủ nửa giữa của số người.",
+      "byTierNote": "Những người dừng sớm không bao giờ đến được các bước sau, nên thời gian dài hơn ở các bước sau một phần phản ánh thời gian cần để đạt tới chúng.",
+      "byAgeTitle": "Theo tuổi khi chuyển giới",
+      "byAgeDescription": "Số năm chuyển giới theo độ tuổi mọi người bắt đầu chuyển giới. Chấm là trung vị; thanh bao phủ nửa giữa của số người.",
+      "ageBands": {
+        "under18": "Dưới 18",
+        "18to24": "18–24",
+        "25plus": "25 trở lên"
+      },
+      "rangeSummary": "trung vị {median} năm, nửa giữa {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "mẫu nhỏ"
     },
     "optionLabels": {
       "reddit": "Reddit",

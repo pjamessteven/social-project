@@ -64,3 +64,63 @@ export function formatRatio(ratio: number): string {
   if (ratio >= 10) return `${Math.round(ratio)}×`;
   return `${ratio.toFixed(1)}×`;
 }
+
+/** Linear-interpolated quantile (0-1) of an ascending-sorted array. */
+export function quantile(sorted: number[], q: number): number {
+  if (sorted.length === 0) return NaN;
+  const position = (sorted.length - 1) * q;
+  const below = Math.floor(position);
+  const above = Math.ceil(position);
+  return sorted[below] + (sorted[above] - sorted[below]) * (position - below);
+}
+
+export interface SpreadSummary {
+  n: number;
+  /** 25th percentile: the middle half of values lies between p25 and p75. */
+  p25: number;
+  median: number;
+  p75: number;
+}
+
+/** Median and interquartile range, or null when there are no values. */
+export function spread(values: number[]): SpreadSummary | null {
+  if (values.length === 0) return null;
+  const sorted = [...values].sort((a, b) => a - b);
+  return {
+    n: sorted.length,
+    p25: quantile(sorted, 0.25),
+    median: quantile(sorted, 0.5),
+    p75: quantile(sorted, 0.75),
+  };
+}
+
+/** Longest believable time in transition; longer is an extraction error. */
+const MAX_TRANSITION_YEARS = 40;
+
+/**
+ * Years from transition to detransition for one timeline: the year
+ * difference when both years are known, the age difference otherwise, or
+ * null when neither is usable.
+ */
+export function transitionYears(timeline: {
+  transitionYear: unknown;
+  detransitionYear: unknown;
+  transitionAge: number | null;
+  detransitionAge: number | null;
+}): number | null {
+  let years: number | null = null;
+  if (
+    typeof timeline.transitionYear === "number" &&
+    typeof timeline.detransitionYear === "number"
+  ) {
+    years = timeline.detransitionYear - timeline.transitionYear;
+  } else if (
+    timeline.transitionAge != null &&
+    timeline.detransitionAge != null
+  ) {
+    years = timeline.detransitionAge - timeline.transitionAge;
+  }
+  return years != null && years >= 0 && years <= MAX_TRANSITION_YEARS
+    ? years
+    : null;
+}

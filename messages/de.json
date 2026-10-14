@@ -1081,7 +1081,7 @@
   },
   "statsPage": {
     "title": "Anonymisierte Statistiken",
-    "description": "Anonymisierte Detransitionsstatistiken, abgeleitet aus den Geschichten und Erfahrungen von Detransitionierenden. Die Daten werden aus Kommentaren von Nutzern auf /r/detrans zusammengefasst, um Muster in Transition und Detransition aufzudecken. Nur Nutzer, die genug geteilt haben, um eine vollständige Geschichte und einen Zeitstrahl zusammenzustellen, sind enthalten.",
+    "description": "Anonymisierte Statistiken zu Transition und Detransition, gewonnen aus den <stories>Geschichten</stories> von /r/detrans-Nutzern, die genug geteilt haben, um eine vollständige Geschichte und Zeitleiste zusammenzusetzen.",
     "metadata": {
       "title": "Anonymisierte Statistiken | detrans.ai",
       "description": "Anonymisierte Statistiken zu Detransitions- und Transitions mustern, einschließlich Altersverteilung, Dauer, Gründen und Wegen."
@@ -2021,7 +2021,29 @@
       "tooltipTitle": "Innerhalb von {years, plural, =1 {1 Jahr} other {# Jahren}}",
       "xAxis": "Jahre seit Beginn der Transition",
       "note": "Anteil der Menschen, die innerhalb einer bestimmten Anzahl von Jahren aufgehört hatten. Alle hier haben schließlich detransitioniert – das Diagramm zeigt also, wie lange ihre Transition dauerte, nicht, wie viele Menschen, die transitionieren, später aufhören.",
-      "headline": "{one} % hatten innerhalb eines Jahres und {five} % innerhalb von fünf Jahren nach Beginn aufgehört (Median {median} Jahre, n = {n})."
+      "headline": "{one} % hatten innerhalb eines Jahres und {five} % innerhalb von fünf Jahren nach Beginn aufgehört (Median {median} Jahre, n = {n}).",
+      "histogramTitle": "Wie lange Menschen in Transition waren",
+      "histogramDescription": "Jahre vom Beginn der Transition bis zum Abbruch, als Anteil jeder Gruppe.",
+      "yearsAxis": "Jahre in Transition",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Unter einem Jahr} =1 {1 Jahr} other {# Jahre}}",
+      "bucketTitleRange": "{from}–{to} Jahre",
+      "bucketTitlePlus": "{years} Jahre oder mehr",
+      "curveTitle": "Innerhalb einer bestimmten Anzahl von Jahren aufgehört",
+      "curveDescription": "Dieselben Dauern Jahr für Jahr aufsummiert: der Anteil, der bis zu jedem Zeitpunkt aufgehört hatte.",
+      "byTierTitle": "Nach medizinischem Umfang",
+      "byTierDescription": "Jahre in Transition nach dem invasivsten erreichten Schritt. Der Punkt ist der Median; der Balken umfasst die mittlere Hälfte der Menschen.",
+      "byTierNote": "Wer früh aufhört, erreicht spätere Schritte nie. Längere Zeiten bei späteren Schritten spiegeln daher zum Teil wider, wie lange es dauert, sie zu erreichen.",
+      "byAgeTitle": "Nach Alter bei Transition",
+      "byAgeDescription": "Jahre in Transition nach dem Alter, in dem die Transition begann. Der Punkt ist der Median; der Balken umfasst die mittlere Hälfte der Menschen.",
+      "ageBands": {
+        "under18": "Unter 18",
+        "18to24": "18–24",
+        "25plus": "25 und älter"
+      },
+      "rangeSummary": "Median {median} Jahre, mittlere Hälfte {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "kleine Stichprobe"
     },
     "optionLabels": {
       "reddit": "Reddit",

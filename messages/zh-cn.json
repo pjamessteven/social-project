@@ -1082,7 +1082,7 @@
   },
   "statsPage": {
     "title": "匿名统计",
-    "description": "来自去转换者故事和经历的匿名去转换统计数据。数据从 /r/detrans 的用户评论中汇总，以揭示转换和去转换的模式。只有分享了足够信息以构成完整故事和时间线的用户才被纳入。",
+    "description": "关于过渡与去过渡的匿名统计，提取自 /r/detrans 用户的<stories>故事</stories>——他们分享的内容足以拼凑出完整的经历和时间线。",
     "metadata": {
       "title": "匿名统计 | detrans.ai",
       "description": "关于去转换和转换模式的匿名统计数据，包括年龄分布、持续时间、原因和途径。"
@@ -2022,7 +2022,29 @@
       "tooltipTitle": "{years, plural, =1 {1 年} other {# 年}}内",
       "xAxis": "开始过渡后的年数",
       "note": "在给定年数内已停止的人的比例。这里的每个人最终都去过渡了，所以这显示的是他们的过渡持续了多久 — 而不是过渡的人中有多少会停止。",
-      "headline": "{one}% 在开始后一年内停止，{five}% 在五年内停止（中位数 {median} 年，n = {n}）。"
+      "headline": "{one}% 在开始后一年内停止，{five}% 在五年内停止（中位数 {median} 年，n = {n}）。",
+      "histogramTitle": "人们过渡持续了多久",
+      "histogramDescription": "从开始过渡到停止的年数，占各组的比例。",
+      "yearsAxis": "过渡年数",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {不到一年} =1 {1 年} other {# 年}}",
+      "bucketTitleRange": "{from}–{to} 年",
+      "bucketTitlePlus": "{years} 年或以上",
+      "curveTitle": "在给定年数内停止",
+      "curveDescription": "相同的持续时间逐年累计：在每个时间点已停止的比例。",
+      "byTierTitle": "按医疗干预程度",
+      "byTierDescription": "按达到的最具侵入性步骤划分的过渡年数。圆点为中位数；条形覆盖中间一半的人。",
+      "byTierNote": "较早停止的人永远不会到达后续步骤，因此后续步骤的较长时间部分反映了到达这些步骤所需的时间。",
+      "byAgeTitle": "按开始过渡的年龄",
+      "byAgeDescription": "按开始过渡时的年龄划分的过渡年数。圆点为中位数；条形覆盖中间一半的人。",
+      "ageBands": {
+        "under18": "18 岁以下",
+        "18to24": "18–24 岁",
+        "25plus": "25 岁及以上"
+      },
+      "rangeSummary": "中位数 {median} 年，中间一半 {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "样本较小"
     },
     "optionLabels": {
       "reddit": "Reddit",

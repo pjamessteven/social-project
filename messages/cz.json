@@ -1082,7 +1082,7 @@
   },
   "statsPage": {
     "title": "Anonymizovaná statistika",
-    "description": "Anonymizovaná statistika detranzice odvozená z příběhů a zkušeností detranzitorů. Data jsou agregována z uživatelských komentářů na /r/detrans, aby odhalila vzorce v tranzici a detranzici. Zahrnuti jsou pouze uživatelé, kteří sdíleli dostatek informací k sestavení úplného příběhu a časové osy.",
+    "description": "Anonymizovaná statistika tranzice a detranzice, získaná z <stories>příběhů</stories> uživatelů /r/detrans, kteří sdíleli dost na to, aby se dal sestavit celý příběh a časová osa.",
     "metadata": {
       "title": "Anonymizovaná statistika | detrans.ai",
       "description": "Anonymizovaná statistika vzorců detranzice a tranzice, včetně rozložení věku, délky, důvodů a cest."
@@ -2022,7 +2022,29 @@
       "tooltipTitle": "Během {years, plural, =1 {1 roku} other {# let}}",
       "xAxis": "Roky od zahájení tranzice",
       "note": "Podíl lidí, kteří skončili během daného počtu let. Všichni zde nakonec detranzicovali, takže graf ukazuje, jak dlouho u nich tranzice trvala — ne kolik lidí, kteří tranzici podstoupí, ji později ukončí.",
-      "headline": "{one} % skončilo do jednoho roku a {five} % do pěti let od zahájení (medián {median} let, n = {n})."
+      "headline": "{one} % skončilo do jednoho roku a {five} % do pěti let od zahájení (medián {median} let, n = {n}).",
+      "histogramTitle": "Jak dlouho lidé zůstali v tranzici",
+      "histogramDescription": "Roky od zahájení tranzice do jejího ukončení, jako podíl každé skupiny.",
+      "yearsAxis": "Roky v tranzici",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Méně než rok} =1 {1 rok} few {# roky} other {# let}}",
+      "bucketTitleRange": "{from}–{to} let",
+      "bucketTitlePlus": "{years} a více let",
+      "curveTitle": "Ukončili během daného počtu let",
+      "curveDescription": "Tytéž doby sčítané rok po roce: podíl lidí, kteří do daného okamžiku skončili.",
+      "byTierTitle": "Podle toho, jak daleko zašli zdravotně",
+      "byTierDescription": "Roky v tranzici podle nejinvazivnějšího dosaženého kroku. Tečka je medián; pruh pokrývá prostřední polovinu lidí.",
+      "byTierNote": "Kdo skončí brzy, k pozdějším krokům se nikdy nedostane, takže delší doby u pozdějších kroků částečně odrážejí, jak dlouho trvá se k nim dostat.",
+      "byAgeTitle": "Podle věku při tranzici",
+      "byAgeDescription": "Roky v tranzici podle věku, ve kterém lidé začali s tranzicí. Tečka je medián; pruh pokrývá prostřední polovinu lidí.",
+      "ageBands": {
+        "under18": "Pod 18",
+        "18to24": "18–24",
+        "25plus": "25 a více"
+      },
+      "rangeSummary": "medián {median} let, prostřední polovina {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "malý vzorek"
     },
     "optionLabels": {
       "reddit": "Reddit",

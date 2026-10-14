@@ -5,7 +5,9 @@ import {
   type WikiTocNode,
 } from "@/app/components/content/WikiToc";
 import { PAGE_TITLE } from "@/app/components/ui/typography";
-import { useTranslations } from "next-intl";
+import { getStoriesPath } from "@/app/lib/story-urls";
+import { useLocale, useTranslations } from "next-intl";
+import Link from "next/link";
 import {
   useCallback,
   useEffect,
@@ -20,7 +22,7 @@ import AttitudeSection from "./AttitudeSection";
 import BreakdownSection from "./BreakdownSection";
 import { ChartCard } from "./ChartParts";
 import CompareSection from "./CompareSection";
-import DurationCurve from "./DurationCurve";
+import DurationSection from "./DurationSection";
 import EarlyTransitionSection from "./EarlyTransitionSection";
 import FeatureExplorer from "./FeatureExplorer";
 import { FeatureStoriesProvider } from "./FeatureStories";
@@ -96,6 +98,7 @@ export default function StatsExperience({
   initialHighlights?: boolean;
 }) {
   const t = useTranslations("statsPage");
+  const locale = useLocale();
 
   const [openId, setOpenId] = useState<SectionId | null>("overview");
   const [mountedIds, setMountedIds] = useState<Set<SectionId>>(
@@ -238,11 +241,7 @@ export default function StatsExperience({
     },
     {
       id: "duration",
-      content: (
-        <ChartCard>
-          <DurationCurve />
-        </ChartCard>
-      ),
+      content: <DurationSection />,
     },
     {
       id: "minors",
@@ -343,9 +342,11 @@ export default function StatsExperience({
       <FeatureStoriesProvider>
         {/* The app shell caps pages at 48rem from md up; the charts need
             more room, so break out to up to 56rem of the viewport (centred by
-            justify-center), leaving space for the TOC sidebar from xl. */}
+            justify-center), leaving space for the TOC sidebar from xl.
+            --stats-bleed is how far wide content may extend into the empty
+            right-hand margin from xl (up to 12rem, keeping a 4rem gutter). */}
         <div className="flex min-h-full w-full justify-center">
-          <div className="relative w-full max-w-4xl md:w-[min(56rem,calc(100vw_-_3rem))] md:shrink-0 xl:w-[min(56rem,calc(100vw_-_34rem))]">
+          <div className="relative w-full max-w-4xl md:w-[min(56rem,calc(100vw_-_3rem))] md:shrink-0 xl:w-[min(56rem,calc(100vw_-_34rem))] xl:[--stats-bleed:min(12rem,calc((100vw_-_min(56rem,calc(100vw_-_34rem)))/2_-_4rem))]">
             <WikiTocAside
               items={tocItems}
               activeId={tocActiveId}
@@ -354,7 +355,16 @@ export default function StatsExperience({
 
             <h1 className={PAGE_TITLE}>{t("title")}</h1>
             <p className="text-muted-foreground mt-6 text-base">
-              {t("description")}
+              {t.rich("description", {
+                stories: (chunks) => (
+                  <Link
+                    href={getStoriesPath(locale)}
+                    className="text-foreground underline decoration-1 underline-offset-4"
+                  >
+                    {chunks}
+                  </Link>
+                ),
+              })}
             </p>
 
             <HighlightsRibbon

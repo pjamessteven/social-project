@@ -1082,7 +1082,7 @@
   },
   "statsPage": {
     "title": "Anonymiserad statistik",
-    "description": "Anonymiserad statistik om detransition härrör från detransitioners berättelser och erfarenheter. Data samlas in från användarkommentarer på /r/detrans för att avslöja mönster i transition och detransition. Endast användare som har delat tillräckligt för att sätta ihop en fullständig berättelse och tidslinje inkluderas.",
+    "description": "Anonymiserad statistik om transition och detransition, hämtad från <stories>berättelserna</stories> från /r/detrans-användare som har delat tillräckligt för att sätta ihop en hel berättelse och tidslinje.",
     "metadata": {
       "title": "Anonymiserad statistik | detrans.ai",
       "description": "Anonymiserad statistik om detransition- och transitionsmönster, inklusive åldersfördelning, varaktighet, orsaker och vägar."
@@ -2022,7 +2022,29 @@
       "tooltipTitle": "Inom {years, plural, =1 {1 år} other {# år}}",
       "xAxis": "År sedan transitionen påbörjades",
       "note": "Andel personer som hade slutat inom ett visst antal år. Alla här detransitionerade till slut, så detta visar hur länge transitionen varade för dem — inte hur många av dem som transitionerar som senare slutar.",
-      "headline": "{one} % hade slutat inom ett år och {five} % inom fem år från starten (median {median} år, n = {n})."
+      "headline": "{one} % hade slutat inom ett år och {five} % inom fem år från starten (median {median} år, n = {n}).",
+      "histogramTitle": "Hur länge människor var i transition",
+      "histogramDescription": "År från start av transition till stopp, som andel av varje grupp.",
+      "yearsAxis": "År i transition",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Under ett år} =1 {1 år} other {# år}}",
+      "bucketTitleRange": "{from}–{to} år",
+      "bucketTitlePlus": "{years} år eller mer",
+      "curveTitle": "Slutade inom ett visst antal år",
+      "curveDescription": "Samma tider summerade år för år: andelen som hade slutat vid varje punkt.",
+      "byTierTitle": "Efter hur långt de gick medicinskt",
+      "byTierDescription": "År i transition efter det mest ingripande steg som nåddes. Punkten är medianen; stapeln täcker den mittersta hälften av personerna.",
+      "byTierNote": "De som slutar tidigt når aldrig senare steg, så längre tider för senare steg speglar delvis hur lång tid det tar att nå dem.",
+      "byAgeTitle": "Efter ålder vid transition",
+      "byAgeDescription": "År i transition efter den ålder då människor började sin transition. Punkten är medianen; stapeln täcker den mittersta hälften av personerna.",
+      "ageBands": {
+        "under18": "Under 18",
+        "18to24": "18–24",
+        "25plus": "25 och äldre"
+      },
+      "rangeSummary": "median {median} år, mittersta hälften {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "litet urval"
     },
     "optionLabels": {
       "reddit": "Reddit",

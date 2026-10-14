@@ -1,9 +1,9 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import {
+  CartesianGrid,
   ReferenceLine,
   ResponsiveContainer,
   Scatter,
@@ -12,311 +12,237 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { AXIS_TICK, useChartColors } from "./chart-theme";
+import {
+  ChartBlock,
+  ChartFootnote,
+  ChartMessage,
+  ChartSkeleton,
+} from "./ChartParts";
+import { LegendDot } from "./PrevalenceRows";
+import { useFilteredJson } from "./useFeatureData";
 
-interface TransitionDurationData {
+interface AgePair {
   transitionAge: number;
   detransitionAge: number;
-  duration: number;
-  sex: string;
+  sex: "f" | "m";
   count: number;
 }
 
-interface TransitionDurationChartProps {
-  className?: string;
-  minAge: number;
-  maxAge: number;
-  /** Section headers carry the title on the stats page; hide the in-chart one. */
-  showHeader?: boolean;
-}
+const SEXES = ["f", "m"] as const;
 
-export default function TransitionDurationChart({
-  className,
-  minAge,
-  maxAge,
-  showHeader = true,
-}: TransitionDurationChartProps) {
+/** The axes never start above 10 or end below 50, so filters rarely rescale. */
+const AXIS_FLOOR = 10;
+const AXIS_CEILING = 50;
+
+/**
+ * Dot radius and opacity grow linearly with the group's count (relative to
+ * the largest group of either sex), so clusters stand out.
+ */
+const DOT_RADIUS: [number, number] = [2.5, 22];
+const DOT_OPACITY: [number, number] = [0.25, 0.9];
+
+/**
+ * Age at transition (x) against age at detransition (y), one dot per
+ * (ages, sex) group, larger and more opaque the more stories share it. Distance above the
+ * dashed diagonal is the time spent transitioned.
+ */
+export default function TransitionDurationChart() {
   const t = useTranslations("charts.transitionDuration");
-  const searchParams = useSearchParams();
-  const [data, setData] = useState<TransitionDurationData[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchData = async (minAge: number, maxAge: number) => {
-    try {
-      setLoading(true);
-
-      // Build params from current search params
-      const params = new URLSearchParams();
-      params.set("minAge", minAge.toString());
-      params.set("maxAge", maxAge.toString());
-
-      // Include sex filter if present
-      const sex = searchParams.get("sex");
-      if (sex) {
-        params.set("sex", sex);
-      }
-
-      // Include tag filter if present
-      const tag = searchParams.get("tag");
-      if (tag) {
-        params.set("tag", tag);
-      }
-
-      const response = await fetch(
-        `/api/users/transition-duration?${params.toString()}`,
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch transition duration data");
-      }
-
-      const result = await response.json();
-      setData(result.data);
-      setError(null);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
-      setData([]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData(minAge, maxAge);
-  }, [minAge, maxAge, searchParams]);
-
-  const totalCount = useMemo(
-    () => data.reduce((sum, item) => sum + Number(item.count), 0),
-    [data],
+  const colors = useChartColors();
+  const { data, loading, error } = useFilteredJson<{ pairs: AgePair[] }>(
+    "/api/features/age-pairs",
   );
 
-  const CustomTooltip = ({ active, payload }: any) => {
-    if (active && payload && payload.length) {
-      const data = payload[0].payload;
-      return (
-        <div className="rounded border border-gray-300 bg-white p-3 shadow-lg">
-          <p className="font-medium text-black">{`${t("tooltip.transitionAge")}: ${data.transitionAge}`}</p>
-          <p className="font-medium text-black">{`${t("tooltip.detransitionAge")}: ${data.detransitionAge}`}</p>
-          <p className="font-medium text-blue-600">{`${t("tooltip.duration")}: ${data.duration} ${t("tooltip.years")}`}</p>
-          <p className="text-sm text-gray-600">{`${data.count} ${data.count !== 1 ? t("users") : t("user")}`}</p>
-        </div>
+  const { bySex, total, domain, ticks, maxCount } = useMemo(() => {
+    const pairs = data?.pairs ?? [];
+    const summary = SEXES.map((sex) => {
+      const points = pairs.filter((pair) => pair.sex === sex);
+      const n = points.reduce((sum, pair) => sum + pair.count, 0);
+      const years = points.reduce(
+        (sum, pair) =>
+          sum + (pair.detransitionAge - pair.transitionAge) * pair.count,
+        0,
       );
-    }
-    return null;
+      return { sex, points, n, mean: n > 0 ? years / n : null };
+    });
+    const ages = pairs.flatMap((pair) => [
+      pair.transitionAge,
+      pair.detransitionAge,
+    ]);
+    const low = Math.min(AXIS_FLOOR, Math.floor(Math.min(...ages) / 5) * 5);
+    const high = Math.max(AXIS_CEILING, Math.ceil(Math.max(...ages) / 5) * 5);
+    const axisTicks: number[] = [];
+    for (let age = low; age <= high; age += 5) axisTicks.push(age);
+    return {
+      bySex: summary,
+      total: summary.reduce((sum, group) => sum + group.n, 0),
+      domain: [low, high] as [number, number],
+      ticks: axisTicks,
+      maxCount: Math.max(1, ...pairs.map((pair) => pair.count)),
+    };
+  }, [data]);
+
+  const colorOf = (sex: "f" | "m") => (sex === "f" ? colors.women : colors.men);
+  const labelOf = (sex: "f" | "m") => (sex === "f" ? t("female") : t("male"));
+
+  const renderDot = (props: any) => {
+    const { cx, cy, payload } = props as {
+      cx?: number;
+      cy?: number;
+      payload?: AgePair;
+    };
+    if (cx == null || cy == null || !payload) return <g />;
+    const share = maxCount > 1 ? (payload.count - 1) / (maxCount - 1) : 1;
+    const lerp = ([from, to]: [number, number]) => from + share * (to - from);
+    const color = colorOf(payload.sex);
+    return (
+      <circle
+        cx={cx}
+        cy={cy}
+        r={lerp(DOT_RADIUS)}
+        fill={color}
+        fillOpacity={lerp(DOT_OPACITY)}
+        stroke={color}
+        strokeWidth={1}
+      />
+    );
   };
 
-  if (error) {
-    return <div className="py-8 text-center text-red-500">Error: {error}</div>;
-  }
+  const renderTooltip = ({ active, payload }: any) => {
+    if (!active || !payload?.length) return null;
+    const point = payload[0].payload as AgePair;
+    return (
+      <div className="border-border bg-background space-y-1 rounded-md border p-3 text-sm shadow-lg">
+        <p className="flex items-center gap-2 font-medium">
+          <span
+            className="inline-block h-2.5 w-2.5 rounded-full"
+            style={{ background: colorOf(point.sex) }}
+          />
+          {labelOf(point.sex)}
+        </p>
+        <p>
+          {t("tooltip.transitionAge")}:{" "}
+          <span className="font-medium tabular-nums">
+            {point.transitionAge}
+          </span>
+        </p>
+        <p>
+          {t("tooltip.detransitionAge")}:{" "}
+          <span className="font-medium tabular-nums">
+            {point.detransitionAge}
+          </span>
+        </p>
+        <p>
+          {t("tooltip.duration")}:{" "}
+          <span className="font-medium tabular-nums">
+            {point.detransitionAge - point.transitionAge} {t("tooltip.years")}
+          </span>
+        </p>
+        <p className="text-muted-foreground tabular-nums">
+          {point.count} {point.count === 1 ? t("user") : t("users")}
+        </p>
+      </div>
+    );
+  };
+
+  const description = `${t("description.line1")} ${t("description.line2")}`;
+
+  if (error) return <ChartMessage>{t("noData")}</ChartMessage>;
+  if (loading && !data) return <ChartSkeleton height="h-[44rem]" />;
 
   return (
-    <>
-      {loading ? (
-        <div className="flex h-96 items-center justify-center">
-          <div className="text-gray-500">{t("loading")}</div>
-        </div>
+    <ChartBlock title={t("title")} description={description}>
+      {total === 0 ? (
+        <ChartMessage>{t("noData")}</ChartMessage>
       ) : (
-        <>
-          {showHeader && (
-            <div className="p-4">
-              <h3 className="font-semibold">{t("title")}</h3>
-              <p className="text-sm text-gray-600">
-                {t("description.line1")} <br className="hidden sm:inline" />
-                {t("description.line2")}
-              </p>
-            </div>
-          )}
-          <div className={`w-full ${className}`}>
-            <ResponsiveContainer width="100%" height={400}>
-              <ScatterChart
-                margin={{
-                  top: 32,
-                  right: 32,
-                  left: 32,
-                  bottom: 32,
-                }}
-              >
+        <div
+          className={`space-y-4 transition-opacity ${loading ? "opacity-50" : ""}`}
+          aria-busy={loading}
+        >
+          <div className="text-muted-foreground flex flex-wrap gap-x-5 gap-y-2 text-sm">
+            {bySex.map(({ sex, mean }) => (
+              <LegendDot
+                key={sex}
+                color={colorOf(sex)}
+                label={
+                  mean != null
+                    ? `${labelOf(sex)} (${mean.toFixed(1)} ${t("yearsAvg")})`
+                    : labelOf(sex)
+                }
+              />
+            ))}
+          </div>
+          {/* Near-square, so the diagonal sits at 45° and both axes read alike. */}
+          <div className="aspect-square max-h-[36rem] min-h-96 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <ScatterChart margin={{ top: 8, right: 16, left: 4, bottom: 24 }}>
+                <CartesianGrid stroke={colors.grid} />
                 <XAxis
                   type="number"
                   dataKey="transitionAge"
-                  domain={[minAge, maxAge]}
+                  domain={domain}
+                  ticks={ticks}
+                  allowDecimals={false}
+                  tick={{ ...AXIS_TICK, fill: colors.muted }}
+                  axisLine={{ stroke: colors.axis }}
+                  tickLine={false}
                   label={{
                     value: t("axis.transitionAge"),
                     position: "bottom",
-                    offset: 5,
+                    offset: 8,
+                    fill: colors.muted,
+                    fontSize: AXIS_TICK.fontSize,
                   }}
                 />
                 <YAxis
                   type="number"
-                  domain={[minAge, maxAge]}
+                  dataKey="detransitionAge"
+                  domain={domain}
+                  ticks={ticks}
+                  allowDecimals={false}
+                  tick={{ ...AXIS_TICK, fill: colors.muted }}
+                  axisLine={false}
+                  tickLine={false}
+                  width={52}
                   label={{
                     value: t("axis.detransitionAge"),
                     angle: -90,
-                    position: "left",
-                    offset: 5,
+                    position: "insideLeft",
+                    style: { textAnchor: "middle" },
+                    fill: colors.muted,
+                    fontSize: AXIS_TICK.fontSize,
                   }}
                 />
-                <Tooltip content={<CustomTooltip />} />
-
-                {/* Reference line showing where transition age = detransition age */}
+                <Tooltip
+                  content={renderTooltip}
+                  cursor={{ strokeDasharray: "3 3", stroke: colors.axis }}
+                />
+                {/* Transition age = detransition age: no time transitioned. */}
                 <ReferenceLine
                   segment={[
-                    { x: minAge, y: minAge },
-                    { x: maxAge, y: maxAge },
+                    { x: domain[0], y: domain[0] },
+                    { x: domain[1], y: domain[1] },
                   ]}
-                  stroke="#94a3b8"
+                  stroke={colors.axis}
                   strokeDasharray="5 5"
                 />
-
-                {/* Male data scatter */}
-                <Scatter
-                  data={data.filter((d) => d.sex === "m")}
-                  dataKey="detransitionAge"
-                  shape={(props: any) => {
-                    const { cx, cy, payload } = props;
-                    if (!payload || !cx || !cy) {
-                      return <circle cx={0} cy={0} r={0} fill="transparent" />;
-                    }
-
-                    // Calculate size based on count (min 3, max 15)
-                    const maxCount = Math.max(
-                      ...data
-                        .filter((d) => d.sex === "m")
-                        .map((d) => Number(d.count)),
-                    );
-                    const minSize = 3;
-                    const maxSize = 15;
-                    const size =
-                      minSize +
-                      (Number(payload.count) / maxCount) * (maxSize - minSize);
-
-                    // Calculate opacity based on count (min 0.3, max 0.8)
-                    const minOpacity = 0.3;
-                    const maxOpacity = 0.8;
-                    const opacity =
-                      minOpacity +
-                      (Number(payload.count) / maxCount) *
-                        (maxOpacity - minOpacity);
-
-                    return (
-                      <circle
-                        cx={cx}
-                        cy={cy}
-                        r={size}
-                        fill="#3b82f6"
-                        fillOpacity={opacity}
-                        stroke="#1d4ed8"
-                        strokeWidth={1}
-                      />
-                    );
-                  }}
-                />
-
-                {/* Female data scatter */}
-                <Scatter
-                  data={data.filter((d) => d.sex === "f")}
-                  dataKey="detransitionAge"
-                  shape={(props: any) => {
-                    const { cx, cy, payload } = props;
-                    if (!payload || !cx || !cy) {
-                      return <circle cx={0} cy={0} r={0} fill="transparent" />;
-                    }
-
-                    // Calculate size based on count (min 3, max 15)
-                    const maxCount = Math.max(
-                      ...data
-                        .filter((d) => d.sex === "f")
-                        .map((d) => Number(d.count)),
-                    );
-                    const minSize = 3;
-                    const maxSize = 15;
-                    const size =
-                      minSize +
-                      (Number(payload.count) / maxCount) * (maxSize - minSize);
-
-                    // Calculate opacity based on count (min 0.3, max 0.8)
-                    const minOpacity = 0.3;
-                    const maxOpacity = 0.8;
-                    const opacity =
-                      minOpacity +
-                      (Number(payload.count) / maxCount) *
-                        (maxOpacity - minOpacity);
-
-                    return (
-                      <circle
-                        cx={cx}
-                        cy={cy}
-                        r={size}
-                        fill="#ef4444"
-                        fillOpacity={opacity}
-                        stroke="#dc2626"
-                        strokeWidth={1}
-                      />
-                    );
-                  }}
-                />
+                {bySex.map(({ sex, points }) => (
+                  <Scatter
+                    key={sex}
+                    name={labelOf(sex)}
+                    data={points}
+                    fill={colorOf(sex)}
+                    shape={renderDot}
+                    isAnimationActive={false}
+                  />
+                ))}
               </ScatterChart>
             </ResponsiveContainer>
-            <div className="flex items-center gap-4 p-4 pl-6">
-              <div className="flex items-center gap-1">
-                <div className="h-3 w-3 rounded-full bg-blue-500"></div>
-                <span>{t("male")}</span>
-                {(() => {
-                  const maleData = data.filter((d) => d.sex === "m");
-                  if (maleData.length > 0) {
-                    const totalWeightedDuration = maleData.reduce(
-                      (sum, d) => sum + d.duration * Number(d.count),
-                      0,
-                    );
-                    const totalCount = maleData.reduce(
-                      (sum, d) => sum + Number(d.count),
-                      0,
-                    );
-                    const avgDuration = totalWeightedDuration / totalCount;
-                    return (
-                      <span className="text-sm text-gray-600">
-                        ({avgDuration.toFixed(1)} {t("yearsAvg")})
-                      </span>
-                    );
-                  }
-                  return null;
-                })()}
-              </div>
-              <div className="flex items-center gap-1">
-                <div className="h-3 w-3 rounded-full bg-red-500"></div>
-                <span>{t("female")}</span>
-                {(() => {
-                  const femaleData = data.filter((d) => d.sex === "f");
-                  if (femaleData.length > 0) {
-                    const totalWeightedDuration = femaleData.reduce(
-                      (sum, d) => sum + d.duration * Number(d.count),
-                      0,
-                    );
-                    const totalCount = femaleData.reduce(
-                      (sum, d) => sum + Number(d.count),
-                      0,
-                    );
-                    const avgDuration = totalWeightedDuration / totalCount;
-                    return (
-                      <span className="text-sm text-gray-600">
-                        ({avgDuration.toFixed(1)} {t("yearsAvg")})
-                      </span>
-                    );
-                  }
-                  return null;
-                })()}
-              </div>
-            </div>
-            <p className="text-muted-foreground px-4 pb-2 text-sm">
-              {t("coverage", { count: totalCount })}
-            </p>
           </div>
-        </>
+          <ChartFootnote>{t("coverage", { count: total })}</ChartFootnote>
+        </div>
       )}
-
-      {!loading && data.length === 0 && (
-        <div className="py-8 text-center text-gray-500">{t("noData")}</div>
-      )}
-    </>
+    </ChartBlock>
   );
 }

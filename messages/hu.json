@@ -1090,7 +1090,7 @@
   },
   "statsPage": {
     "title": "Anonimizált statisztikák",
-    "description": "Anonimizált detranzíciós statisztikák, amelyek detranzícionálók történeteiből és tapasztalataiból származnak. Az adatokat a /r/detrans felhasználók hozzászólásaiból gyűjtik össze, hogy feltárják a tranzíció és detranzíció mintáit. Csak azok a felhasználók kerülnek be, akik eleget osztottak meg egy teljes történet és idővonal összeállításához.",
+    "description": "Anonimizált statisztikák a tranzícióról és a detranzícióról, azoknak a /r/detrans-felhasználóknak a <stories>történeteiből</stories>, akik elég sokat osztottak meg egy teljes történet és idővonal összeállításához.",
     "metadata": {
       "title": "Anonimizált statisztikák | detrans.ai",
       "description": "Anonimizált statisztikák a detranzícióról és tranzíciós mintákról, beleértve az életkor eloszlást, időtartamot, okokat és útvonalakat."
@@ -2030,7 +2030,29 @@
       "tooltipTitle": "{years, plural, =1 {1 éven} other {# éven}} belül",
       "xAxis": "A tranzíció kezdete óta eltelt évek",
       "note": "Azok aránya, akik adott számú éven belül abbahagyták. Itt mindenki végül detranzícionált, így ez azt mutatja, mennyi ideig tartott náluk a tranzíció – nem azt, hogy a tranzícióba kezdők közül hányan hagyják abba.",
-      "headline": "{one}% egy éven belül, {five}% öt éven belül hagyta abba a kezdéstől számítva (medián {median} év, n = {n})."
+      "headline": "{one}% egy éven belül, {five}% öt éven belül hagyta abba a kezdéstől számítva (medián {median} év, n = {n}).",
+      "histogramTitle": "Mennyi ideig voltak tranzícióban az emberek",
+      "histogramDescription": "Évek a tranzíció kezdetétől az abbahagyásig, az egyes csoportok arányában.",
+      "yearsAxis": "Tranzícióban töltött évek",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Kevesebb mint egy év} =1 {1 év} other {# év}}",
+      "bucketTitleRange": "{from}–{to} év",
+      "bucketTitlePlus": "{years} év vagy több",
+      "curveTitle": "Adott számú éven belül abbahagyták",
+      "curveDescription": "Ugyanazok az időtartamok évről évre összeadva: az addig abbahagyók aránya minden pontban.",
+      "byTierTitle": "Aszerint, meddig jutottak orvosilag",
+      "byTierDescription": "Tranzícióban töltött évek a legmesszebbre menő elért lépés szerint. A pont a medián; a sáv az emberek középső felét fedi le.",
+      "byTierNote": "Akik korán abbahagyják, sosem jutnak el a későbbi lépésekig, így a későbbi lépéseknél mért hosszabb idők részben azt tükrözik, mennyi idő eljutni hozzájuk.",
+      "byAgeTitle": "A tranzíció kezdetekor betöltött életkor szerint",
+      "byAgeDescription": "Tranzícióban töltött évek aszerint, hány évesen kezdték a tranzíciót. A pont a medián; a sáv az emberek középső felét fedi le.",
+      "ageBands": {
+        "under18": "18 év alatt",
+        "18to24": "18–24",
+        "25plus": "25 vagy több"
+      },
+      "rangeSummary": "medián {median} év, középső fele {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "kis minta"
     },
     "optionLabels": {
       "reddit": "Reddit",

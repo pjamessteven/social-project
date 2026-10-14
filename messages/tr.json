@@ -1081,7 +1081,7 @@
   },
   "statsPage": {
     "title": "Anonim İstatistikler",
-    "description": "Detransisyon hikayeleri ve deneyimlerinden elde edilen anonimleştirilmiş detransisyon istatistikleri. Veriler, geçiş ve detransisyon kalıplarını ortaya çıkarmak için /r/detrans'daki kullanıcı yorumlarından derlenir. Yalnızca tam bir hikaye ve zaman çizelgesi oluşturacak kadar bilgi paylaşan kullanıcılar dahil edilir.",
+    "description": "Geçiş ve detransisyon üzerine anonimleştirilmiş istatistikler; tam bir hikâye ve zaman çizelgesi oluşturacak kadar paylaşımda bulunmuş /r/detrans kullanıcılarının <stories>hikâyelerinden</stories> elde edilmiştir.",
     "metadata": {
       "title": "Anonim İstatistikler | detrans.ai",
       "description": "Yaş dağılımı, süre, nedenler ve yollar dahil olmak üzere detransisyon ve geçiş kalıpları hakkında anonim istatistikler."
@@ -2021,7 +2021,29 @@
       "tooltipTitle": "{years, plural, =1 {1 yıl} other {# yıl}} içinde",
       "xAxis": "Geçişe başlangıçtan bu yana geçen yıllar",
       "note": "Belirli bir yıl sayısı içinde bırakmış olan kişilerin oranı. Buradaki herkes sonunda detransisyon yaptı; bu yüzden bu grafik geçişin onlar için ne kadar sürdüğünü gösterir — geçiş yapanların kaçının sonradan bıraktığını değil.",
-      "headline": "Başladıktan sonra %{one} bir yıl içinde, %{five} beş yıl içinde bırakmıştı (medyan {median} yıl, n = {n})."
+      "headline": "Başladıktan sonra %{one} bir yıl içinde, %{five} beş yıl içinde bırakmıştı (medyan {median} yıl, n = {n}).",
+      "histogramTitle": "İnsanlar ne kadar süre geçişte kaldı",
+      "histogramDescription": "Geçişe başlangıçtan bırakmaya kadar geçen yıllar, her grubun payı olarak.",
+      "yearsAxis": "Geçişte geçen yıllar",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Bir yıldan az} =1 {1 yıl} other {# yıl}}",
+      "bucketTitleRange": "{from}–{to} yıl",
+      "bucketTitlePlus": "{years} yıl veya daha fazla",
+      "curveTitle": "Belirli bir yıl sayısı içinde bıraktı",
+      "curveDescription": "Aynı süreler yıl yıl toplanmış hali: her noktada bırakmış olanların payı.",
+      "byTierTitle": "Tıbben ne kadar ilerlediklerine göre",
+      "byTierDescription": "Ulaşılan en invaziv adıma göre geçişte geçen yıllar. Nokta medyandır; çubuk insanların ortadaki yarısını kapsar.",
+      "byTierNote": "Erken bırakanlar sonraki adımlara hiç ulaşmaz; bu nedenle sonraki adımlardaki daha uzun süreler kısmen o adımlara ulaşmanın ne kadar sürdüğünü yansıtır.",
+      "byAgeTitle": "Geçiş yaşına göre",
+      "byAgeDescription": "İnsanların geçişe başladığı yaşa göre geçişte geçen yıllar. Nokta medyandır; çubuk insanların ortadaki yarısını kapsar.",
+      "ageBands": {
+        "under18": "18 yaş altı",
+        "18to24": "18–24",
+        "25plus": "25 ve üzeri"
+      },
+      "rangeSummary": "medyan {median} yıl, ortadaki yarı {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "küçük örneklem"
     },
     "optionLabels": {
       "reddit": "Reddit",

@@ -4,7 +4,7 @@ import { useDarkMode } from "./useDarkMode";
 
 /**
  * Shared chart palette for /stats. Categorical slots are assigned in this
- * fixed order and follow the entity (women are always slot 1, men slot 2),
+ * fixed order and follow the entity (men are always blue, women magenta),
  * never the rank. Light and dark steps are validated separately.
  */
 const CATEGORICAL = {
@@ -78,8 +78,8 @@ export function useChartColors(): ChartColors {
     ...chrome,
     isDark,
     series,
-    women: series[0],
-    men: series[1],
+    women: series[4],
+    men: series[0],
     tier: { cause: series[0], process: series[1], outcome: series[2] },
   };
 }

@@ -1090,7 +1090,7 @@
   },
   "statsPage": {
     "title": "Statistik Anonim",
-    "description": "Statistik detransisi anonim yang berasal dari cerita dan pengalaman para detransisioner. Data dikumpulkan dari komentar pengguna di /r/detrans untuk mengungkap pola transisi dan detransisi. Hanya pengguna yang telah berbagi cukup untuk menyusun cerita lengkap dan garis waktu yang disertakan.",
+    "description": "Statistik anonim tentang transisi dan detransisi, diambil dari <stories>kisah</stories> pengguna /r/detrans yang telah berbagi cukup banyak untuk menyusun kisah dan linimasa yang lengkap.",
     "metadata": {
       "title": "Statistik Anonim | detrans.ai",
       "description": "Statistik anonim tentang pola detransisi dan transisi, termasuk distribusi usia, durasi, alasan, dan jalur."
@@ -2030,7 +2030,29 @@
       "tooltipTitle": "Dalam {years, plural, =1 {1 tahun} other {# tahun}}",
       "xAxis": "Tahun sejak mulai transisi",
       "note": "Proporsi orang yang sudah berhenti dalam jumlah tahun tertentu. Semua orang di sini akhirnya berdetransisi, jadi ini menunjukkan berapa lama transisi berlangsung bagi mereka — bukan berapa banyak orang yang bertransisi kemudian berhenti.",
-      "headline": "{one}% sudah berhenti dalam satu tahun dan {five}% dalam lima tahun sejak mulai (median {median} tahun, n = {n})."
+      "headline": "{one}% sudah berhenti dalam satu tahun dan {five}% dalam lima tahun sejak mulai (median {median} tahun, n = {n}).",
+      "histogramTitle": "Berapa lama orang menjalani transisi",
+      "histogramDescription": "Tahun dari mulai transisi hingga berhenti, sebagai persentase setiap kelompok.",
+      "yearsAxis": "Tahun dalam transisi",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Kurang dari setahun} =1 {1 tahun} other {# tahun}}",
+      "bucketTitleRange": "{from}–{to} tahun",
+      "bucketTitlePlus": "{years} tahun atau lebih",
+      "curveTitle": "Berhenti dalam jumlah tahun tertentu",
+      "curveDescription": "Durasi yang sama dijumlahkan tahun demi tahun: persentase yang sudah berhenti di setiap titik.",
+      "byTierTitle": "Menurut seberapa jauh mereka melangkah secara medis",
+      "byTierDescription": "Tahun dalam transisi menurut langkah paling invasif yang dicapai. Titik adalah median; batang mencakup separuh tengah orang.",
+      "byTierNote": "Orang yang berhenti lebih awal tidak pernah mencapai langkah selanjutnya, jadi waktu yang lebih lama untuk langkah selanjutnya sebagian mencerminkan berapa lama waktu untuk mencapainya.",
+      "byAgeTitle": "Menurut usia saat transisi",
+      "byAgeDescription": "Tahun dalam transisi menurut usia saat orang mulai transisi. Titik adalah median; batang mencakup separuh tengah orang.",
+      "ageBands": {
+        "under18": "Di bawah 18",
+        "18to24": "18–24",
+        "25plus": "25 ke atas"
+      },
+      "rangeSummary": "median {median} tahun, separuh tengah {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "sampel kecil"
     },
     "optionLabels": {
       "reddit": "Reddit",

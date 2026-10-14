@@ -1081,7 +1081,7 @@
   },
   "statsPage": {
     "title": "Estadísticas anonimizadas",
-    "description": "Estadísticas anonimizadas sobre la destransición derivadas de las historias y experiencias de personas que han destransicionado. Los datos se agregan a partir de los comentarios de los usuarios en /r/detrans para revelar patrones en la transición y la destransición. Solo se incluyen usuarios que han compartido lo suficiente para armar una historia y cronología completa.",
+    "description": "Estadísticas anonimizadas sobre la transición y la detransición, extraídas de las <stories>historias</stories> de usuarios de /r/detrans que han compartido lo suficiente para reconstruir una historia y una cronología completas.",
     "metadata": {
       "title": "Estadísticas anonimizadas | detrans.ai",
       "description": "Estadísticas anonimizadas sobre patrones de destransición y transición, incluyendo distribución de edad, duración, razones y caminos."
@@ -2021,7 +2021,29 @@
       "tooltipTitle": "En {years, plural, =1 {1 año} other {# años}}",
       "xAxis": "Años desde el inicio de la transición",
       "note": "Proporción de personas que la habían dejado en un número determinado de años. Todas estas personas acabaron destransicionando, así que esto muestra cuánto duró su transición, no cuántas personas que hacen la transición acaban dejándola.",
-      "headline": "El {one} % la había dejado en un año y el {five} % en cinco años desde el inicio (mediana {median} años, n = {n})."
+      "headline": "El {one} % la había dejado en un año y el {five} % en cinco años desde el inicio (mediana {median} años, n = {n}).",
+      "histogramTitle": "Cuánto tiempo estuvieron las personas en transición",
+      "histogramDescription": "Años desde el inicio de la transición hasta que la dejaron, como porcentaje de cada grupo.",
+      "yearsAxis": "Años en transición",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Menos de un año} =1 {1 año} other {# años}}",
+      "bucketTitleRange": "{from}–{to} años",
+      "bucketTitlePlus": "{years} años o más",
+      "curveTitle": "Lo dejaron en un número determinado de años",
+      "curveDescription": "Las mismas duraciones acumuladas año a año: el porcentaje que lo había dejado en cada punto.",
+      "byTierTitle": "Según hasta dónde llegaron médicamente",
+      "byTierDescription": "Años en transición según el paso más invasivo alcanzado. El punto es la mediana; la barra abarca la mitad central de las personas.",
+      "byTierNote": "Quienes lo dejan pronto nunca llegan a los pasos posteriores, así que los tiempos más largos en esos pasos reflejan en parte lo que se tarda en alcanzarlos.",
+      "byAgeTitle": "Según la edad al iniciar la transición",
+      "byAgeDescription": "Años en transición según la edad a la que las personas iniciaron la transición. El punto es la mediana; la barra abarca la mitad central de las personas.",
+      "ageBands": {
+        "under18": "Menos de 18",
+        "18to24": "18–24",
+        "25plus": "25 o más"
+      },
+      "rangeSummary": "mediana {median} años, mitad central {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "muestra pequeña"
     },
     "optionLabels": {
       "reddit": "Reddit",

@@ -1090,7 +1090,7 @@
   },
   "statsPage": {
     "title": "익명 통계",
-    "description": "전환 취소 경험자들의 이야기와 경험에서 도출된 익명 전환 취소 통계입니다. /r/detrans의 사용자 댓글에서 데이터를 집계하여 전환 및 전환 취소의 패턴을 보여줍니다. 전체 이야기와 타임라인을 구성할 만큼 충분한 정보를 공유한 사용자만 포함됩니다.",
+    "description": "전환과 탈전환에 관한 익명 통계로, 전체 이야기와 타임라인을 구성할 만큼 충분히 공유한 /r/detrans 사용자들의 <stories>이야기</stories>에서 추출했습니다.",
     "metadata": {
       "title": "익명 통계 | detrans.ai",
       "description": "연령 분포, 기간, 사유, 경로를 포함한 전환 취소 및 전환 패턴에 대한 익명 통계입니다."
@@ -2030,7 +2030,29 @@
       "tooltipTitle": "{years, plural, =1 {1년} other {#년}} 이내",
       "xAxis": "전환 시작 후 경과 연수",
       "note": "주어진 연수 이내에 중단한 사람의 비율. 여기 있는 모든 사람은 결국 디트랜지션했으므로, 이는 그들에게 전환이 얼마나 오래 지속되었는지를 보여줄 뿐, 전환한 사람 중 얼마나 많은 사람이 중단하는지를 보여주는 것이 아닙니다.",
-      "headline": "{one}%는 시작 후 1년 이내에, {five}%는 5년 이내에 중단했습니다(중앙값 {median}년, n = {n})."
+      "headline": "{one}%는 시작 후 1년 이내에, {five}%는 5년 이내에 중단했습니다(중앙값 {median}년, n = {n}).",
+      "histogramTitle": "사람들이 전환을 유지한 기간",
+      "histogramDescription": "전환 시작부터 중단까지의 연수, 각 그룹 내 비율.",
+      "yearsAxis": "전환 기간(년)",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {1년 미만} =1 {1년} other {#년}}",
+      "bucketTitleRange": "{from}–{to}년",
+      "bucketTitlePlus": "{years}년 이상",
+      "curveTitle": "특정 연수 이내에 중단한 비율",
+      "curveDescription": "같은 기간을 해마다 누적한 값: 각 시점까지 중단한 사람의 비율.",
+      "byTierTitle": "의료적으로 어디까지 진행했는지에 따라",
+      "byTierDescription": "도달한 가장 침습적인 단계별 전환 기간. 점은 중앙값이고 막대는 사람들의 가운데 절반 범위입니다.",
+      "byTierNote": "일찍 중단한 사람은 이후 단계에 도달하지 못하므로, 이후 단계의 기간이 더 긴 것은 그 단계에 도달하는 데 걸리는 시간을 부분적으로 반영합니다.",
+      "byAgeTitle": "전환 시작 나이별",
+      "byAgeDescription": "전환을 시작한 나이별 전환 기간. 점은 중앙값이고 막대는 사람들의 가운데 절반 범위입니다.",
+      "ageBands": {
+        "under18": "18세 미만",
+        "18to24": "18–24세",
+        "25plus": "25세 이상"
+      },
+      "rangeSummary": "중앙값 {median}년, 가운데 절반 {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "작은 표본"
     },
     "optionLabels": {
       "reddit": "Reddit",

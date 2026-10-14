@@ -1090,7 +1090,7 @@
   },
   "statsPage": {
     "title": "Anonimowe statystyki",
-    "description": "Anonimowe statystyki detranzycji oparte na historiach i doświadczeniach osób, które przeszły detranzycję. Dane są zbierane z komentarzy użytkowników na /r/detrans, aby ujawnić wzorce w tranzycji i detranzycji. Uwzględnieni są tylko użytkownicy, którzy podzielili się wystarczającą ilością informacji, aby złożyć pełną historię i oś czasu.",
+    "description": "Anonimowe statystyki dotyczące tranzycji i detranzycji, wyodrębnione z <stories>historii</stories> użytkowników /r/detrans, którzy udostępnili dość informacji, by złożyć pełną historię i oś czasu.",
     "metadata": {
       "title": "Anonimowe statystyki | detrans.ai",
       "description": "Anonimowe statystyki dotyczące wzorców detranzycji i tranzycji, w tym rozkładu wieku, czasu trwania, powodów i ścieżek."
@@ -2030,7 +2030,29 @@
       "tooltipTitle": "W ciągu {years, plural, =1 {1 roku} other {# lat}}",
       "xAxis": "Lata od rozpoczęcia tranzycji",
       "note": "Odsetek osób, które przerwały tranzycję w ciągu danej liczby lat. Wszyscy tutaj ostatecznie przeszli detransycję, więc wykres pokazuje, jak długo trwała u nich tranzycja — a nie, ile osób przechodzących tranzycję ją później przerywa.",
-      "headline": "{one}% przerwało w ciągu roku, a {five}% w ciągu pięciu lat od rozpoczęcia (mediana {median} lat, n = {n})."
+      "headline": "{one}% przerwało w ciągu roku, a {five}% w ciągu pięciu lat od rozpoczęcia (mediana {median} lat, n = {n}).",
+      "histogramTitle": "Jak długo ludzie byli w tranzycji",
+      "histogramDescription": "Lata od rozpoczęcia tranzycji do jej przerwania, jako odsetek każdej grupy.",
+      "yearsAxis": "Lata w tranzycji",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Poniżej roku} =1 {1 rok} few {# lata} many {# lat} other {# roku}}",
+      "bucketTitleRange": "{from}–{to} lat",
+      "bucketTitlePlus": "{years} lat lub więcej",
+      "curveTitle": "Przerwali w ciągu danej liczby lat",
+      "curveDescription": "Te same czasy trwania sumowane rok po roku: odsetek osób, które przerwały do danego momentu.",
+      "byTierTitle": "Według tego, jak daleko zaszli medycznie",
+      "byTierDescription": "Lata w tranzycji według najbardziej inwazyjnego osiągniętego kroku. Kropka to mediana; pasek obejmuje środkową połowę osób.",
+      "byTierNote": "Osoby, które przerywają wcześnie, nigdy nie dochodzą do późniejszych kroków, więc dłuższe czasy przy późniejszych krokach częściowo odzwierciedlają, ile trwa dojście do nich.",
+      "byAgeTitle": "Według wieku przy tranzycji",
+      "byAgeDescription": "Lata w tranzycji według wieku, w którym ludzie rozpoczęli tranzycję. Kropka to mediana; pasek obejmuje środkową połowę osób.",
+      "ageBands": {
+        "under18": "Poniżej 18",
+        "18to24": "18–24",
+        "25plus": "25 i więcej"
+      },
+      "rangeSummary": "mediana {median} lat, środkowa połowa {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "mała próba"
     },
     "optionLabels": {
       "reddit": "Reddit",

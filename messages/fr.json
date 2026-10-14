@@ -1081,7 +1081,7 @@
   },
   "statsPage": {
     "title": "Statistiques anonymisées",
-    "description": "Statistiques de détransition anonymisées, dérivées des récits et des expériences des personnes ayant détransitionné. Les données sont agrégées à partir des commentaires des utilisateurs sur /r/detrans pour révéler les schémas de transition et de détransition. Seuls les utilisateurs qui ont partagé suffisamment pour reconstituer un récit complet et une chronologie sont inclus.",
+    "description": "Statistiques anonymisées sur la transition et la détransition, extraites des <stories>histoires</stories> d’utilisateurs de /r/detrans ayant partagé assez pour reconstituer une histoire et une chronologie complètes.",
     "metadata": {
       "title": "Statistiques anonymisées | detrans.ai",
       "description": "Statistiques anonymisées sur les schémas de détransition et de transition, incluant la répartition par âge, la durée, les raisons et les parcours."
@@ -2021,7 +2021,29 @@
       "tooltipTitle": "En {years, plural, =1 {1 an} other {# ans}}",
       "xAxis": "Années depuis le début de la transition",
       "note": "Part des personnes ayant arrêté en un nombre d'années donné. Toutes ces personnes ont fini par détransitionner ; ce graphique montre donc combien de temps leur transition a duré — et non combien de personnes qui font une transition finissent par l'arrêter.",
-      "headline": "{one} % avaient arrêté en un an et {five} % en cinq ans après le début (médiane {median} ans, n = {n})."
+      "headline": "{one} % avaient arrêté en un an et {five} % en cinq ans après le début (médiane {median} ans, n = {n}).",
+      "histogramTitle": "Combien de temps les personnes sont restées en transition",
+      "histogramDescription": "Années entre le début de la transition et son arrêt, en part de chaque groupe.",
+      "yearsAxis": "Années de transition",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Moins d’un an} =1 {1 an} other {# ans}}",
+      "bucketTitleRange": "{from} à {to} ans",
+      "bucketTitlePlus": "{years} ans ou plus",
+      "curveTitle": "Arrêt en un nombre d’années donné",
+      "curveDescription": "Les mêmes durées cumulées année après année : la part des personnes ayant arrêté à chaque point.",
+      "byTierTitle": "Selon jusqu’où elles sont allées médicalement",
+      "byTierDescription": "Années de transition selon l’étape la plus invasive atteinte. Le point est la médiane ; la barre couvre la moitié centrale des personnes.",
+      "byTierNote": "Les personnes qui arrêtent tôt n’atteignent jamais les étapes ultérieures : des durées plus longues pour ces étapes reflètent en partie le temps nécessaire pour y arriver.",
+      "byAgeTitle": "Selon l’âge à la transition",
+      "byAgeDescription": "Années de transition selon l’âge auquel les personnes ont commencé leur transition. Le point est la médiane ; la barre couvre la moitié centrale des personnes.",
+      "ageBands": {
+        "under18": "Moins de 18 ans",
+        "18to24": "18–24 ans",
+        "25plus": "25 ans et plus"
+      },
+      "rangeSummary": "médiane {median} ans, moitié centrale {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "petit échantillon"
     },
     "optionLabels": {
       "reddit": "Reddit",

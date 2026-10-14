@@ -374,7 +374,7 @@ export default function HighlightsRibbon({
         return (
           <MiniBars
             values={[highlight.female, highlight.male]}
-            colors={[MINI_COLORS.PRIMARY, MINI_COLORS.SECONDARY]}
+            colors={[MINI_COLORS.WOMEN, MINI_COLORS.PRIMARY]}
           />
         );
       case "therapyMentalHealth":
@@ -389,7 +389,7 @@ export default function HighlightsRibbon({
         return (
           <MiniBars
             values={[highlight.percent, 100 - highlight.percent]}
-            colors={[MINI_COLORS.PRIMARY, MINI_COLORS.SECONDARY]}
+            colors={[MINI_COLORS.WOMEN, MINI_COLORS.PRIMARY]}
           />
         );
     }
@@ -425,31 +425,36 @@ export default function HighlightsRibbon({
   return (
     <div id={HIGHLIGHTS_ID} className="pt-10">
       <h2 className={SECTION_TITLE}>{t("title")}</h2>
-      <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+      {/* Extends into the page's empty right margin on wide screens (see
+          --stats-bleed in StatsExperience). */}
+      <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:mr-[calc(var(--stats-bleed,0px)*-1)] xl:grid-cols-3">
         {highlights.map((highlight) => (
           <div
             key={highlight.type}
-            className={`relative flex flex-col p-4 ${CARD_SURFACE}`}
+            className={`flex flex-col p-4 ${CARD_SURFACE}`}
           >
-            <div className="pointer-events-none absolute right-4 bottom-3">
-              {renderChart(highlight)}
-            </div>
             <span className="text-base font-semibold">
               {t(`types.${highlight.type}`)}
             </span>
             <p className="text-muted-foreground mt-1 flex-1 text-sm leading-relaxed">
               {renderBody(highlight)}
             </p>
-            <Button
-              type="button"
-              variant="ghost"
-              size="xs"
-              className="mt-2 self-start px-0"
-              onClick={renderAction(highlight)}
-            >
-              {t("explore")}
-              <ArrowRight className="ml-1 h-3.5 w-3.5" />
-            </Button>
+            {/* Explore and the mini chart share the bottom edge of the card. */}
+            <div className="mt-3 flex items-end justify-between gap-3">
+              <Button
+                type="button"
+                variant="ghost"
+                size="xs"
+                className="h-auto p-0 leading-none hover:bg-transparent hover:underline"
+                onClick={renderAction(highlight)}
+              >
+                {t("explore")}
+                <ArrowRight className="ml-1 h-3.5 w-3.5" />
+              </Button>
+              <div className="pointer-events-none shrink-0">
+                {renderChart(highlight)}
+              </div>
+            </div>
           </div>
         ))}
       </div>

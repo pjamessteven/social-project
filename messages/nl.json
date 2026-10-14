@@ -1089,7 +1089,7 @@
   },
   "statsPage": {
     "title": "Geanonimiseerde statistieken",
-    "description": "Geanonimiseerde detransitiestatistieken afgeleid van verhalen en ervaringen van detransitiepersonen. Gegevens worden verzameld uit gebruikersreacties op /r/detrans om patronen in transitie en detransitie te onthullen. Alleen gebruikers die voldoende hebben gedeeld om een volledig verhaal en tijdslijn samen te stellen, zijn opgenomen.",
+    "description": "Geanonimiseerde statistieken over transitie en detransitie, afkomstig uit de <stories>verhalen</stories> van /r/detrans-gebruikers die genoeg hebben gedeeld om een volledig verhaal en tijdlijn samen te stellen.",
     "metadata": {
       "title": "Geanonimiseerde statistieken | detrans.ai",
       "description": "Geanonimiseerde statistieken over detransitie- en transitiepatronen, waaronder leeftijdsverdeling, duur, redenen en trajecten."
@@ -2029,7 +2029,29 @@
       "tooltipTitle": "Binnen {years, plural, =1 {1 jaar} other {# jaar}}",
       "xAxis": "Jaren sinds begin van de transitie",
       "note": "Aandeel mensen dat binnen een bepaald aantal jaren was gestopt. Iedereen hier is uiteindelijk gedetransitioneerd, dus dit laat zien hoe lang de transitie voor hen duurde – niet hoeveel mensen die in transitie gaan later stoppen.",
-      "headline": "{one}% was binnen een jaar gestopt en {five}% binnen vijf jaar na het begin (mediaan {median} jaar, n = {n})."
+      "headline": "{one}% was binnen een jaar gestopt en {five}% binnen vijf jaar na het begin (mediaan {median} jaar, n = {n}).",
+      "histogramTitle": "Hoe lang mensen in transitie bleven",
+      "histogramDescription": "Jaren vanaf het begin van de transitie tot het stoppen, als aandeel van elke groep.",
+      "yearsAxis": "Jaren in transitie",
+      "bucketUnder1": "<1",
+      "bucketTitle": "{years, plural, =0 {Minder dan een jaar} =1 {1 jaar} other {# jaar}}",
+      "bucketTitleRange": "{from}–{to} jaar",
+      "bucketTitlePlus": "{years} jaar of meer",
+      "curveTitle": "Gestopt binnen een bepaald aantal jaren",
+      "curveDescription": "Dezelfde duur jaar na jaar opgeteld: het aandeel dat op elk punt was gestopt.",
+      "byTierTitle": "Naar hoe ver ze medisch gingen",
+      "byTierDescription": "Jaren in transitie naar de meest ingrijpende bereikte stap. De stip is de mediaan; de balk beslaat de middelste helft van de mensen.",
+      "byTierNote": "Wie vroeg stopt, bereikt latere stappen nooit, dus langere tijden bij latere stappen weerspiegelen deels hoe lang het duurt om die te bereiken.",
+      "byAgeTitle": "Naar leeftijd bij transitie",
+      "byAgeDescription": "Jaren in transitie naar de leeftijd waarop mensen met transitie begonnen. De stip is de mediaan; de balk beslaat de middelste helft van de mensen.",
+      "ageBands": {
+        "under18": "Onder 18",
+        "18to24": "18–24",
+        "25plus": "25 en ouder"
+      },
+      "rangeSummary": "mediaan {median} jaar, middelste helft {low}–{high}",
+      "rangeCount": "n = {n}",
+      "smallSample": "kleine steekproef"
     },
     "optionLabels": {
       "reddit": "Reddit",
