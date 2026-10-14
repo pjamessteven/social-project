@@ -247,7 +247,7 @@ export default async function TopicsHubPage({
             <p className="text-muted-foreground">{t("empty")}</p>
           ) : (
             <>
-              <h2 className={SECTION_HEADING + " lg:-mt-12"}>
+              <h2 className={SECTION_HEADING + " lg:-mt-10"}>
                 {t("hubsHeading")}
               </h2>
               <HubCards
