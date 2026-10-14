@@ -654,6 +654,7 @@
     },
     "title": "Academic Studies and Research",
     "description": "Detransition research is an emerging field. The rapid rise in gender dysphoria diagnoses in the past decade—particularly among adolescent girls—has produced a growing population of detransitioners, though data collection remains challenging due to high loss to follow-up, ideological division, and methodological limitations.",
+    "analysis": "detrans.ai has analysed every relevant study in this field, extracting its key findings and methodological limitations, and grouped them by topic and research method.",
     "segmNote": "On this page you will find academic studies, peer-reviewed research, and journal articles which bring into question the efficacy and ethics of gender-affirming care. See the <a>Society for Evidence-Based Gender Medicine (SEGM)</a> for more, including comprehensive analysis of supportive studies.",
     "searchPlaceholder": "Search studies...",
     "methodology": "Methodology",
@@ -672,7 +673,16 @@
     "otherTopics": "Other topics",
     "otherMethods": "Other methodologies",
     "categoryMetaTitle": "{name}: Studies & Research | detrans.ai",
-    "findings": "Key Findings"
+    "findings": "Key Findings",
+    "seeAlso": {
+      "title": "See also",
+      "links": {
+        "segm": "SEGM study analysis",
+        "statsForGender": "Stats for Gender",
+        "canSg": "CAN-SG academic papers",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "Content Warning:",
@@ -2092,7 +2102,7 @@
       "description": "Read thousands of anonymised detransition and desistance stories from the /r/detrans community, summarised by AI. Filter by age, sex and experience."
     },
     "title": "Detransition Stories",
-    "description": "{count, number} anonymised stories from people who transitioned and later detransitioned or desisted, pieced together by AI from their posts and comments on /r/detrans.",
+    "description": "{count, number} anonymised stories from people who transitioned and later detransitioned or desisted, summarised and analysed by detrans.ai from their posts and comments on /r/detrans.",
     "statsLink": "Explore the statistics",
     "allStories": "All stories",
     "story": {
@@ -2101,6 +2111,15 @@
       "notFound": "Story not found | detrans.ai",
       "tags": "Tags",
       "moreStories": "Read more stories"
+    },
+    "seeAlso": {
+      "title": "See also",
+      "links": {
+        "videos": "Detransition videos",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Peak Trans personal stories",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

@@ -665,6 +665,7 @@
     },
     "title": "Studi Akademik dan Riset",
     "description": "Penelitian tentang berhenti transisi adalah bidang yang masih berkembang. Peningkatan pesat diagnosis disforia gender dalam dekade terakhir—terutama di kalangan gadis remaja—telah menghasilkan populasi orang yang berhenti transisi yang terus bertambah, meskipun pengumpulan data tetap menantang karena tingginya angka kehilangan tindak lanjut, perpecahan ideologi, dan keterbatasan metodologis.",
+    "analysis": "detrans.ai telah menganalisis setiap studi relevan di bidang ini, mengambil temuan utama dan keterbatasan metodologisnya, lalu mengelompokkannya berdasarkan topik dan metode penelitian.",
     "segmNote": "Di halaman ini Anda akan menemukan studi akademis, penelitian telaah sejawat, dan artikel jurnal yang mempertanyakan efikasi dan etika perawatan mengafirmasi gender. Lihat <a>Society for Evidence-Based Gender Medicine (SEGM)</a> untuk informasi lebih lanjut, termasuk analisis komprehensif terhadap studi-studi yang mendukung.",
     "searchPlaceholder": "Cari studi...",
     "methodology": "Metodologi",
@@ -683,7 +684,16 @@
     "otherTopics": "Topik lain",
     "otherMethods": "Metodologi lain",
     "categoryMetaTitle": "{name}: Studi & Penelitian | detrans.ai",
-    "findings": "Temuan Utama"
+    "findings": "Temuan Utama",
+    "seeAlso": {
+      "title": "Lihat juga",
+      "links": {
+        "segm": "Analisis studi SEGM",
+        "statsForGender": "Stats for Gender",
+        "canSg": "Makalah akademik CAN-SG",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "Peringatan Konten:",
@@ -2103,7 +2113,7 @@
       "description": "Baca ribuan kisah detransisi dan desistensi yang dianonimkan dari komunitas /r/detrans, dirangkum oleh AI. Saring berdasarkan usia, jenis kelamin, dan pengalaman."
     },
     "title": "Kisah Detransisi",
-    "description": "{count, number} kisah anonim dari orang-orang yang bertransisi lalu kemudian melakukan detransisi atau berhenti, disusun oleh AI dari postingan dan komentar mereka di /r/detrans.",
+    "description": "{count, number} kisah anonim dari orang-orang yang bertransisi lalu kemudian melakukan detransisi atau berhenti, dirangkum dan dianalisis oleh detrans.ai dari unggahan dan komentar mereka di /r/detrans.",
     "statsLink": "Jelajahi statistik",
     "allStories": "Semua kisah",
     "story": {
@@ -2112,6 +2122,15 @@
       "notFound": "Kisah tidak ditemukan | detrans.ai",
       "tags": "Tag",
       "moreStories": "Baca kisah lainnya"
+    },
+    "seeAlso": {
+      "title": "Lihat juga",
+      "links": {
+        "videos": "Video detransisi",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Kisah pribadi di Peak Trans",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

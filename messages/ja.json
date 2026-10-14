@@ -665,6 +665,7 @@
     },
     "title": "学術研究",
     "description": "デトランジション研究は新興の分野です。ここ10年間、特に思春期の少女を中心に性別違和の診断が急速に増加し、デトランジショナーの人口も増大していますが、フォローアップの高い脱落率、思想的対立、方法論的限界により、データ収集は依然として困難を伴っています。",
+    "analysis": "detrans.aiは、この分野の関連研究をすべて分析し、それぞれの主な知見と方法論上の限界を抽出して、トピックと研究方法別に整理しています。",
     "segmNote": "このページでは、ジェンダー肯定的ケアの有効性と倫理性に疑問を投げかける学術研究、査読済み研究、および学術論文を掲載しています。詳細は<a>Society for Evidence-Based Gender Medicine (SEGM)</a>をご覧ください。支持的研究の包括的分析も含まれています。",
     "searchPlaceholder": "研究を検索...",
     "methodology": "研究方法",
@@ -683,7 +684,16 @@
     "otherTopics": "その他のトピック",
     "otherMethods": "その他の研究方法",
     "categoryMetaTitle": "{name}：研究・論文 | detrans.ai",
-    "findings": "主な知見"
+    "findings": "主な知見",
+    "seeAlso": {
+      "title": "関連情報",
+      "links": {
+        "segm": "SEGMによる研究分析",
+        "statsForGender": "Stats for Gender",
+        "canSg": "CAN-SGの学術論文",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "コンテンツ警告：",
@@ -2103,7 +2113,7 @@
       "description": "/r/detrans コミュニティから集めた、匿名化されたディトランジションとデジスタンスの体験談を数千件掲載。AI が要約しています。年齢・性別・経験で絞り込めます。"
     },
     "title": "ディトランジションの体験談",
-    "description": "性別移行を経て、その後ディトランジションした人やデジストした人の匿名の体験談 {count, number} 件。/r/detrans への投稿やコメントから AI がまとめたものです。",
+    "description": "性別移行を経て、その後ディトランジションした人やデジストした人の匿名の体験談 {count, number} 件。/r/detrans への投稿やコメントをもとに detrans.ai が要約・分析したものです。",
     "statsLink": "統計を見る",
     "allStories": "すべての体験談",
     "story": {
@@ -2112,6 +2122,15 @@
       "notFound": "体験談が見つかりません | detrans.ai",
       "tags": "タグ",
       "moreStories": "ほかの体験談を読む"
+    },
+    "seeAlso": {
+      "title": "関連情報",
+      "links": {
+        "videos": "ディトランジションの動画",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Peak Trans の体験談",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

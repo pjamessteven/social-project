@@ -656,6 +656,7 @@
     },
     "title": "Estudios Académicos e Investigación",
     "description": "La investigación sobre destransición es un campo emergente. El rápido aumento en los diagnósticos de disforia de género en la última década — particularmente entre adolescentes mujeres — ha producido una población creciente de personas que destransicionan, aunque la recolección de datos sigue siendo desafiante debido a la alta pérdida de seguimiento, la división ideológica y las limitaciones metodológicas.",
+    "analysis": "detrans.ai ha analizado cada estudio relevante en este campo, extrayendo sus hallazgos clave y sus limitaciones metodológicas, y los ha agrupado por tema y método de investigación.",
     "segmNote": "En esta página encontrarás estudios académicos, investigaciones revisadas por pares y artículos de revistas que cuestionan la eficacia y la ética de la atención de afirmación de género. Consulta la <a>Society for Evidence-Based Gender Medicine (SEGM)</a> para más información, incluyendo un análisis comprehensivo de estudios de apoyo.",
     "searchPlaceholder": "Buscar estudios...",
     "methodology": "Metodología",
@@ -674,7 +675,16 @@
     "otherTopics": "Otros temas",
     "otherMethods": "Otras metodologías",
     "categoryMetaTitle": "{name}: estudios e investigación | detrans.ai",
-    "findings": "Hallazgos Clave"
+    "findings": "Hallazgos Clave",
+    "seeAlso": {
+      "title": "Ver también",
+      "links": {
+        "segm": "Análisis de estudios de SEGM",
+        "statsForGender": "Stats for Gender",
+        "canSg": "Artículos académicos de CAN-SG",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "Advertencia de Contenido:",
@@ -2094,7 +2104,7 @@
       "description": "Lee miles de historias anonimizadas de detransición y desistimiento de la comunidad /r/detrans, resumidas por IA. Filtra por edad, sexo y experiencia."
     },
     "title": "Historias de detransición",
-    "description": "{count, number} historias anonimizadas de personas que transicionaron y luego detransicionaron o desistieron, reconstruidas por IA a partir de sus publicaciones y comentarios en /r/detrans.",
+    "description": "{count, number} historias anonimizadas de personas que transicionaron y más tarde detransicionaron o desistieron, resumidas y analizadas por detrans.ai a partir de sus publicaciones y comentarios en /r/detrans.",
     "statsLink": "Explorar las estadísticas",
     "allStories": "Todas las historias",
     "story": {
@@ -2103,6 +2113,15 @@
       "notFound": "Historia no encontrada | detrans.ai",
       "tags": "Etiquetas",
       "moreStories": "Leer más historias"
+    },
+    "seeAlso": {
+      "title": "Ver también",
+      "links": {
+        "videos": "Vídeos sobre detransición",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Historias personales en Peak Trans",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

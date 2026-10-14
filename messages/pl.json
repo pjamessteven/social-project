@@ -665,6 +665,7 @@
     },
     "title": "Badania akademickie i nauka",
     "description": "Badania nad detransycją to dziedzina dopiero się rozwijająca. Gwałtowny wzrost diagnoz dysforii płciowej w minionej dekadzie – szczególnie wśród dziewcząt w wieku nastoletnim – doprowadził do powstania rosnącej populacji osób po detransycji, choć zbieranie danych pozostaje trudne ze względu na wysoki poziom utraty kontaktu w okresie obserwacji, podziały ideologiczne i ograniczenia metodologiczne.",
+    "analysis": "detrans.ai przeanalizowało każde istotne badanie w tej dziedzinie, wyodrębniając jego kluczowe ustalenia i ograniczenia metodologiczne, oraz pogrupowało badania według tematu i metody badawczej.",
     "segmNote": "Na tej stronie znajdziesz badania akademickie, recenzowane publikacje naukowe oraz artykuły czasopism, które kwestionują skuteczność i etykę opieki afirmującej płeć. Zobacz <a>Society for Evidence-Based Gender Medicine (SEGM)</a>, aby dowiedzieć się więcej, w tym o kompleksowych analizach badań wspierających.",
     "searchPlaceholder": "Szukaj badań...",
     "methodology": "Metodologia",
@@ -683,7 +684,16 @@
     "otherTopics": "Inne tematy",
     "otherMethods": "Inne metodologie",
     "categoryMetaTitle": "{name}: badania i publikacje | detrans.ai",
-    "findings": "Kluczowe ustalenia"
+    "findings": "Kluczowe ustalenia",
+    "seeAlso": {
+      "title": "Zobacz też",
+      "links": {
+        "segm": "Analizy badań SEGM",
+        "statsForGender": "Stats for Gender",
+        "canSg": "Artykuły naukowe CAN-SG",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "Ostrzeżenie o treści:",
@@ -2103,7 +2113,7 @@
       "description": "Przeczytaj tysiące zanonimizowanych historii detranzycji i desystencji ze społeczności /r/detrans, podsumowanych przez AI. Filtruj według wieku, płci i doświadczeń."
     },
     "title": "Historie detranzycji",
-    "description": "Zanonimizowane historie osób, które przeszły tranzycję, a później detranzycjonowały lub z niej zrezygnowały, zebrane przez AI z ich postów i komentarzy na /r/detrans. Łącznie historii: {count, number}.",
+    "description": "{count, number} zanonimizowanych historii osób, które przeszły tranzycję, a później detranzycję lub się z niej wycofały, podsumowanych i przeanalizowanych przez detrans.ai na podstawie ich postów i komentarzy na /r/detrans.",
     "statsLink": "Zobacz statystyki",
     "allStories": "Wszystkie historie",
     "story": {
@@ -2112,6 +2122,15 @@
       "notFound": "Nie znaleziono historii | detrans.ai",
       "tags": "Tagi",
       "moreStories": "Czytaj więcej historii"
+    },
+    "seeAlso": {
+      "title": "Zobacz też",
+      "links": {
+        "videos": "Filmy o detranzycji",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Osobiste historie na Peak Trans",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

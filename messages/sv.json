@@ -657,6 +657,7 @@
     },
     "title": "Akademiska Studier och Forskning",
     "description": "Forskning om detransition är ett framväxande område. Den snabba ökningen av diagnoser för könsdysfori det senaste decenniet – särskilt bland tonårsflickor – har lett till en växande population detransitionerare, även om datainsamling fortfarande är utmanande på grund av hög bortfall vid uppföljning, ideologisk splittring och metodologiska begränsningar.",
+    "analysis": "detrans.ai har analyserat varje relevant studie inom området, tagit fram dess huvudresultat och metodologiska begränsningar och grupperat dem efter ämne och forskningsmetod.",
     "segmNote": "På denna sida hittar du akademiska studier, forskning som genomgått fackgranskning och tidskriftsartiklar som ifrågasätter effektiviteten och etiken bakom könsbekräftande vård. Se <a>Society for Evidence-Based Gender Medicine (SEGM)</a> för mer, inklusive omfattande analyser av stödjande studier.",
     "searchPlaceholder": "Sök studier...",
     "methodology": "Metodologi",
@@ -675,7 +676,16 @@
     "otherTopics": "Andra ämnen",
     "otherMethods": "Andra metoder",
     "categoryMetaTitle": "{name}: studier och forskning | detrans.ai",
-    "findings": "Huvudresultat"
+    "findings": "Huvudresultat",
+    "seeAlso": {
+      "title": "Se även",
+      "links": {
+        "segm": "SEGM:s studieanalyser",
+        "statsForGender": "Stats for Gender",
+        "canSg": "CAN-SG:s vetenskapliga artiklar",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "Innehållsvarning:",
@@ -2095,7 +2105,7 @@
       "description": "Läs tusentals anonymiserade berättelser om detransition och desistens från /r/detrans-communityn, sammanfattade av AI. Filtrera efter ålder, kön och erfarenhet."
     },
     "title": "Detransitionsberättelser",
-    "description": "{count, number} anonymiserade berättelser från människor som transitionerade och senare detransitionerade eller avstod, sammanställda av AI från deras inlägg och kommentarer på /r/detrans.",
+    "description": "{count, number} anonymiserade berättelser från personer som transitionerade och senare detransitionerade eller avbröt, sammanfattade och analyserade av detrans.ai utifrån deras inlägg och kommentarer på /r/detrans.",
     "statsLink": "Utforska statistiken",
     "allStories": "Alla berättelser",
     "story": {
@@ -2104,6 +2114,15 @@
       "notFound": "Berättelsen hittades inte | detrans.ai",
       "tags": "Taggar",
       "moreStories": "Läs fler berättelser"
+    },
+    "seeAlso": {
+      "title": "Se även",
+      "links": {
+        "videos": "Videor om detransition",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Personliga berättelser på Peak Trans",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

@@ -656,6 +656,7 @@
     },
     "title": "Akademische Studien und Forschung",
     "description": "Die Detransitionsforschung ist ein aufstrebendes Feld. Der rasche Anstieg von Diagnosen für Geschlechtsdysphorie im vergangenen Jahrzehnt — insbesondere bei jugendlichen Mädchen — hat eine wachsende Population von Detransitionierenden hervorgebracht, auch wenn die Datenerhebung aufgrund hoher Abbruchraten, ideologischer Spaltung und methodischer Einschränkungen weiterhin herausfordernd bleibt.",
+    "analysis": "detrans.ai hat jede relevante Studie auf diesem Gebiet analysiert, ihre wichtigsten Ergebnisse und methodischen Grenzen herausgearbeitet und sie nach Thema und Forschungsmethode geordnet.",
     "segmNote": "Auf dieser Seite finden Sie akademische Studien, begutachtete Forschung und Zeitschriftenartikel, die die Wirksamkeit und Ethik von gender-affirmierender Behandlung in Frage stellen. Sehen Sie sich die <a>Society for Evidence-Based Gender Medicine (SEGM)</a> für weitere Informationen an, einschließlich einer umfassenden Analyse unterstützender Studien.",
     "searchPlaceholder": "Studien suchen...",
     "methodology": "Methodik",
@@ -674,7 +675,16 @@
     "otherTopics": "Weitere Themen",
     "otherMethods": "Weitere Methoden",
     "categoryMetaTitle": "{name}: Studien & Forschung | detrans.ai",
-    "findings": "Wichtige Erkenntnisse"
+    "findings": "Wichtige Erkenntnisse",
+    "seeAlso": {
+      "title": "Siehe auch",
+      "links": {
+        "segm": "SEGM-Studienanalysen",
+        "statsForGender": "Stats for Gender",
+        "canSg": "Fachartikel von CAN-SG",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "Inhaltswarnung:",
@@ -2094,7 +2104,7 @@
       "description": "Lies Tausende anonymisierte Geschichten über Detransition und Desistenz aus der /r/detrans-Community, von KI zusammengefasst. Filtere nach Alter, Geschlecht und Erfahrung."
     },
     "title": "Detransitionsgeschichten",
-    "description": "{count, number} anonymisierte Geschichten von Menschen, die eine Transition begonnen und später detransitioniert oder davon abgelassen haben, von KI aus ihren Beiträgen und Kommentaren auf /r/detrans zusammengestellt.",
+    "description": "{count, number} anonymisierte Geschichten von Menschen, die transitioniert und später detransitioniert oder desistiert haben, von detrans.ai aus ihren Beiträgen und Kommentaren auf /r/detrans zusammengefasst und analysiert.",
     "statsLink": "Statistiken ansehen",
     "allStories": "Alle Geschichten",
     "story": {
@@ -2103,6 +2113,15 @@
       "notFound": "Geschichte nicht gefunden | detrans.ai",
       "tags": "Tags",
       "moreStories": "Weitere Geschichten lesen"
+    },
+    "seeAlso": {
+      "title": "Siehe auch",
+      "links": {
+        "videos": "Videos zur Detransition",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Persönliche Geschichten bei Peak Trans",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

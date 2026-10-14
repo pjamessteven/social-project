@@ -665,6 +665,7 @@
     },
     "title": "Akademiske studier og forskning",
     "description": "Detransisjonsforskning er et nytt felt. Den raske økningen i diagnoser av kjønnsdysfori det siste tiåret – særlig blant unge jenter – har skapt en voksende populasjon av detransisjonerte, selv om datainnsamling fortsatt er utfordrende på grunn av høyt frafall ved oppfølging, ideologisk splittelse og metodologiske begrensninger.",
+    "analysis": "detrans.ai har analysert alle relevante studier på dette feltet, hentet ut hovedfunnene og de metodiske begrensningene, og gruppert dem etter tema og forskningsmetode.",
     "segmNote": "På denne siden finner du akademiske studier, fagfellevurdert forskning og tidsskriftsartikler som reiser spørsmål ved effektiviteten og etikken til kjønnsbekreftende behandling. Se <a>Society for Evidence-Based Gender Medicine (SEGM)</a> for mer, inkludert omfattende analyser av støttende studier.",
     "searchPlaceholder": "Søk i studier...",
     "methodology": "Metodikk",
@@ -683,7 +684,16 @@
     "otherTopics": "Andre temaer",
     "otherMethods": "Andre metoder",
     "categoryMetaTitle": "{name}: studier og forskning | detrans.ai",
-    "findings": "Nøkkelfunn"
+    "findings": "Nøkkelfunn",
+    "seeAlso": {
+      "title": "Se også",
+      "links": {
+        "segm": "SEGMs studieanalyser",
+        "statsForGender": "Stats for Gender",
+        "canSg": "CAN-SGs fagartikler",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "Innholdsadvarsel:",
@@ -2103,7 +2113,7 @@
       "description": "Les tusenvis av anonymiserte historier om detransisjon og desistens fra /r/detrans-fellesskapet, oppsummert av KI. Filtrer etter alder, kjønn og erfaring."
     },
     "title": "Detransisjonshistorier",
-    "description": "{count, number} anonymiserte historier fra mennesker som transisjonerte og senere detransisjonerte eller desisterte, satt sammen av KI fra innleggene og kommentarene deres på /r/detrans.",
+    "description": "{count, number} anonymiserte historier fra mennesker som transisjonerte og senere detransisjonerte eller desisterte, oppsummert og analysert av detrans.ai ut fra innleggene og kommentarene deres på /r/detrans.",
     "statsLink": "Utforsk statistikken",
     "allStories": "Alle historier",
     "story": {
@@ -2112,6 +2122,15 @@
       "notFound": "Fant ikke historien | detrans.ai",
       "tags": "Emneknagger",
       "moreStories": "Les flere historier"
+    },
+    "seeAlso": {
+      "title": "Se også",
+      "links": {
+        "videos": "Videoer om detransisjon",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Personlige historier på Peak Trans",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

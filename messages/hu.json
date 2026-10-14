@@ -665,6 +665,7 @@
     },
     "title": "Akadémiai tanulmányok és kutatás",
     "description": "A detransition kutatása egy új terület. A nemi diszfória diagnózisainak gyors növekedése az elmúlt évtizedben – különösen a kamasz lányok körében – egy növekvő detransitionáló populációt hozott létre, bár az adatgyűjtés továbbra is kihívást jelent a magas lemorzsolódás, az ideológiai megosztottság és a módszertani korlátozások miatt.",
+    "analysis": "A detrans.ai elemzett minden releváns tanulmányt ezen a területen, kiemelte a legfontosabb megállapításokat és a módszertani korlátokat, és témakör és kutatási módszer szerint csoportosította őket.",
     "segmNote": "Ezen az oldalon akadémiai tanulmányokat, szakértői áttekintésű kutatásokat és folyóiratcikkeket talál, amelyek megkérdőjelezik a gender-affirming ellátás hatékonyságát és etikáját. További információkért, beleértve a támogató tanulmányok átfogó elemzéseit, lásd a <a>Society for Evidence-Based Gender Medicine (SEGM)</a> oldalát.",
     "searchPlaceholder": "Keresés a tanulmányok között...",
     "methodology": "Módszertan",
@@ -683,7 +684,16 @@
     "otherTopics": "További témakörök",
     "otherMethods": "További módszertanok",
     "categoryMetaTitle": "{name}: tanulmányok és kutatások | detrans.ai",
-    "findings": "Kulcsfontosságú megállapítások"
+    "findings": "Kulcsfontosságú megállapítások",
+    "seeAlso": {
+      "title": "Lásd még",
+      "links": {
+        "segm": "A SEGM tanulmányelemzései",
+        "statsForGender": "Stats for Gender",
+        "canSg": "A CAN-SG tudományos cikkei",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "Tartalmi Figyelmeztetés:",
@@ -2103,7 +2113,7 @@
       "description": "Olvass el több ezer anonimizált detranzíciós és deszisztenciás történetet az /r/detrans közösségből, MI által összefoglalva. Szűrj kor, nem és tapasztalat szerint."
     },
     "title": "Detranzíciós történetek",
-    "description": "{count, number} anonimizált történet olyan emberektől, akik tranzícióba kezdtek, majd később detranzícionáltak vagy felhagytak vele, az MI által összeállítva az /r/detrans-en írt bejegyzéseikből és hozzászólásaikból.",
+    "description": "{count, number} anonimizált történet olyan emberektől, akik tranzícióba kezdtek, majd később detranzícionáltak vagy elálltak tőle; a detrans.ai foglalta össze és elemezte őket az /r/detrans oldalon közzétett bejegyzéseik és hozzászólásaik alapján.",
     "statsLink": "Statisztikák megtekintése",
     "allStories": "Összes történet",
     "story": {
@@ -2112,6 +2122,15 @@
       "notFound": "A történet nem található | detrans.ai",
       "tags": "Címkék",
       "moreStories": "További történetek"
+    },
+    "seeAlso": {
+      "title": "Lásd még",
+      "links": {
+        "videos": "Videók a detranzícióról",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Személyes történetek a Peak Trans oldalon",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

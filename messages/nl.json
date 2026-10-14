@@ -664,6 +664,7 @@
     },
     "title": "Wetenschappelijke Studies en Onderzoek",
     "description": "Detransitieonderzoek is een opkomend veld. De snelle stijging van genderdysforie-diagnoses in het afgelopen decennium — met name onder adolescente meisjes — heeft een groeiende populatie van detransitioners opgeleverd, hoewel gegevensverzameling uitdagend blijft door een hoge uitval bij follow-up, ideologische verdeeldheid en methodologische beperkingen.",
+    "analysis": "detrans.ai heeft elke relevante studie op dit gebied geanalyseerd, de belangrijkste bevindingen en methodologische beperkingen eruit gehaald en de studies gegroepeerd per onderwerp en onderzoeksmethode.",
     "segmNote": "Op deze pagina vind je wetenschappelijke studies, peer-reviewed onderzoek en tijdschriftartikelen die de effectiviteit en ethiek van genderbevestigende zorg in twijfel trekken. Zie de <a>Society for Evidence-Based Gender Medicine (SEGM)</a> voor meer, inclusief uitgebreide analyse van ondersteunende studies.",
     "searchPlaceholder": "Zoek in studies...",
     "methodology": "Methodologie",
@@ -682,7 +683,16 @@
     "otherTopics": "Andere onderwerpen",
     "otherMethods": "Andere methodologieën",
     "categoryMetaTitle": "{name}: studies en onderzoek | detrans.ai",
-    "findings": "Belangrijkste Bevindingen"
+    "findings": "Belangrijkste Bevindingen",
+    "seeAlso": {
+      "title": "Zie ook",
+      "links": {
+        "segm": "Studieanalyses van SEGM",
+        "statsForGender": "Stats for Gender",
+        "canSg": "Wetenschappelijke artikelen van CAN-SG",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "Inhoudswaarschuwing:",
@@ -2102,7 +2112,7 @@
       "description": "Lees duizenden geanonimiseerde verhalen over detransitie en desistentie uit de /r/detrans-community, samengevat door AI. Filter op leeftijd, geslacht en ervaring."
     },
     "title": "Detransitieverhalen",
-    "description": "{count, number} geanonimiseerde verhalen van mensen die in transitie gingen en later detransitioneerden of ervan afzagen, door AI samengesteld uit hun berichten en reacties op /r/detrans.",
+    "description": "{count, number} geanonimiseerde verhalen van mensen die transitioneerden en later detransitioneerden of afzagen van transitie, samengevat en geanalyseerd door detrans.ai op basis van hun berichten en reacties op /r/detrans.",
     "statsLink": "Bekijk de statistieken",
     "allStories": "Alle verhalen",
     "story": {
@@ -2111,6 +2121,15 @@
       "notFound": "Verhaal niet gevonden | detrans.ai",
       "tags": "Tags",
       "moreStories": "Lees meer verhalen"
+    },
+    "seeAlso": {
+      "title": "Zie ook",
+      "links": {
+        "videos": "Video's over detransitie",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Persoonlijke verhalen op Peak Trans",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

@@ -657,6 +657,7 @@
     },
     "title": "Akateemiset tutkimukset ja tutkimustoiminta",
     "description": "Detransitiotutkimus on uusi ala. Sukupuolidysforiadiagnoosien nopea kasvu viime vuosikymmenen aikana – erityisesti nuorten tyttöjen keskuudessa – on tuottanut kasvavan detransitioneiden joukon, vaikka tiedonkeruu pysyy haastavana suuren seurantahävikin, ideologisen jakautumisen ja menetelmällisten rajoitusten vuoksi.",
+    "analysis": "detrans.ai on analysoinut jokaisen alan olennaisen tutkimuksen, poiminut sen keskeiset löydökset ja menetelmälliset rajoitukset sekä ryhmitellyt tutkimukset aiheen ja tutkimusmenetelmän mukaan.",
     "segmNote": "Tällä sivulla löydät akateemisia tutkimuksia, vertaisarvioituja tutkimuksia ja lehtiartikkeleita, jotka kyseenalaistavat sukupuolen vahvistavan hoidon tehokkuuden ja etiikan. Katso <a>Society for Evidence-Based Gender Medicine (SEGM)</a> saadaksesi lisää, mukaan lukien kattavat analyysit tukevista tutkimuksista.",
     "searchPlaceholder": "Hae tutkimuksia...",
     "methodology": "Metodologia",
@@ -675,7 +676,16 @@
     "otherTopics": "Muut aiheet",
     "otherMethods": "Muut menetelmät",
     "categoryMetaTitle": "{name}: tutkimukset ja tutkimustieto | detrans.ai",
-    "findings": "Keskeiset löydökset"
+    "findings": "Keskeiset löydökset",
+    "seeAlso": {
+      "title": "Katso myös",
+      "links": {
+        "segm": "SEGM:n tutkimusanalyysit",
+        "statsForGender": "Stats for Gender",
+        "canSg": "CAN-SG:n tieteelliset artikkelit",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "Sisältövaroitus:",
@@ -2095,7 +2105,7 @@
       "description": "Lue tuhansia anonymisoituja tarinoita detransitiosta ja desistanssista /r/detrans-yhteisöstä tekoälyn tiivistäminä. Suodata iän, sukupuolen ja kokemusten mukaan."
     },
     "title": "Detransitiotarinat",
-    "description": "{count, number} anonymisoitua tarinaa ihmisiltä, jotka korjasivat sukupuoltaan ja myöhemmin detransitioivat tai luopuivat siitä, tekoälyn kokoamina heidän /r/detrans-julkaisuistaan ja -kommenteistaan.",
+    "description": "{count, number} anonymisoitua tarinaa ihmisiltä, jotka transitioivat ja myöhemmin detransitioivat tai luopuivat transitiosta. detrans.ai on tiivistänyt ja analysoinut ne heidän /r/detrans-julkaisuistaan ja -kommenteistaan.",
     "statsLink": "Tutustu tilastoihin",
     "allStories": "Kaikki tarinat",
     "story": {
@@ -2104,6 +2114,15 @@
       "notFound": "Tarinaa ei löytynyt | detrans.ai",
       "tags": "Tunnisteet",
       "moreStories": "Lue lisää tarinoita"
+    },
+    "seeAlso": {
+      "title": "Katso myös",
+      "links": {
+        "videos": "Detransitiovideot",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Henkilökohtaisia tarinoita Peak Transissa",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

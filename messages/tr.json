@@ -656,6 +656,7 @@
     },
     "title": "Akademik Çalışmalar ve Araştırma",
     "description": "Detransisyon araştırmaları yeni gelişmekte olan bir alandır. Geçtiğimiz on yılda cinsiyet disforisi tanılarındaki hızlı artış—özellikle ergen kızlar arasında—büyüyen bir detransitioner nüfusu oluşturmuştur; ancak yüksek kayıp oranları, ideolojik bölünme ve metodolojik sınırlamalar nedeniyle veri toplamayı zorlu bir süreç olmaya devam etmektedir.",
+    "analysis": "detrans.ai bu alandaki her ilgili çalışmayı analiz ederek temel bulgularını ve yöntemsel sınırlılıklarını çıkardı ve çalışmaları konuya ve araştırma yöntemine göre gruplandırdı.",
     "segmNote": "Bu sayfada, cinsiyet onaylayıcı bakımın etkinliği ve etiği sorgulayan akademik çalışmalar, hakemli araştırmalar ve dergi makaleleri bulacaksınız. Destekleyici çalışmaların kapsamlı analizi dahil olmak üzere daha fazla bilgi için <a>Society for Evidence-Based Gender Medicine (SEGM)</a>'e bakın.",
     "searchPlaceholder": "Çalışma ara...",
     "methodology": "Metodoloji",
@@ -674,7 +675,16 @@
     "otherTopics": "Diğer konular",
     "otherMethods": "Diğer metodolojiler",
     "categoryMetaTitle": "{name}: Çalışmalar ve Araştırmalar | detrans.ai",
-    "findings": "Ana Bulgular"
+    "findings": "Ana Bulgular",
+    "seeAlso": {
+      "title": "Ayrıca bakınız",
+      "links": {
+        "segm": "SEGM çalışma analizleri",
+        "statsForGender": "Stats for Gender",
+        "canSg": "CAN-SG akademik makaleleri",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "İçerik Uyarısı:",
@@ -2094,7 +2104,7 @@
       "description": "/r/detrans topluluğundan, yapay zekâ ile özetlenmiş binlerce anonim detransition ve vazgeçme hikâyesini okuyun. Yaşa, cinsiyete ve deneyime göre filtreleyin."
     },
     "title": "Detransition Hikâyeleri",
-    "description": "Geçiş yapıp daha sonra detransition yapan ya da vazgeçen kişilerin, /r/detrans'taki gönderi ve yorumlarından yapay zekâ ile derlenmiş {count, number} anonim hikâyesi.",
+    "description": "Geçiş yapıp daha sonra detransition yapan ya da vazgeçen kişilerden {count, number} anonimleştirilmiş hikâye; detrans.ai tarafından /r/detrans'taki gönderi ve yorumlarından özetlenip analiz edildi.",
     "statsLink": "İstatistikleri keşfedin",
     "allStories": "Tüm hikâyeler",
     "story": {
@@ -2103,6 +2113,15 @@
       "notFound": "Hikâye bulunamadı | detrans.ai",
       "tags": "Etiketler",
       "moreStories": "Daha fazla hikâye okuyun"
+    },
+    "seeAlso": {
+      "title": "Ayrıca bakınız",
+      "links": {
+        "videos": "Detransition videoları",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Peak Trans'taki kişisel hikâyeler",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

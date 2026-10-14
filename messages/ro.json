@@ -657,6 +657,7 @@
     },
     "title": "Studii academice și cercetare",
     "description": "Cercetarea asupra detransiției este un domeniu emergent. Creșterea rapidă a diagnosticelor de disforie de gen în ultimul deceniu – în special în rândul adolescentelor – a produs o populație în creștere de persoane care au făcut detransiția, deși colectarea datelor rămâne o provocare din cauza ratei ridicate de pierdere la urmărire, diviziunii ideologice și limitărilor metodologice.",
+    "analysis": "detrans.ai a analizat fiecare studiu relevant din acest domeniu, extrăgând constatările cheie și limitările metodologice, și le-a grupat după subiect și metodă de cercetare.",
     "segmNote": "Pe această pagină veți găsi studii academice, cercetări recenzate de pari și articole de jurnal care pun la îndoială eficacitatea și etica îngrijirii afirmatoare de gen. Consultați <a>Society for Evidence-Based Gender Medicine (SEGM)</a> pentru mai multe informații, inclusiv analize comprehensive ale studiilor de susținere.",
     "searchPlaceholder": "Caută studii...",
     "methodology": "Metodologie",
@@ -675,7 +676,16 @@
     "otherTopics": "Alte subiecte",
     "otherMethods": "Alte metodologii",
     "categoryMetaTitle": "{name}: studii și cercetări | detrans.ai",
-    "findings": "Constatări cheie"
+    "findings": "Constatări cheie",
+    "seeAlso": {
+      "title": "Vezi și",
+      "links": {
+        "segm": "Analize de studii SEGM",
+        "statsForGender": "Stats for Gender",
+        "canSg": "Articole academice CAN-SG",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "Avertisment de Conținut:",
@@ -2095,7 +2105,7 @@
       "description": "Citește mii de povești anonimizate de detranziție și desistență din comunitatea /r/detrans, rezumate de AI. Filtrează după vârstă, sex și experiență."
     },
     "title": "Povești de detranziție",
-    "description": "{count, plural, one {# poveste anonimizată} few {# povești anonimizate} other {# de povești anonimizate}} ale unor oameni care au făcut tranziția și ulterior au detranziționat sau au renunțat, reconstituite de AI din postările și comentariile lor de pe /r/detrans.",
+    "description": "{count, number} povești anonimizate ale unor persoane care au făcut tranziția și ulterior au detranziționat sau au renunțat, rezumate și analizate de detrans.ai pe baza postărilor și comentariilor lor de pe /r/detrans.",
     "statsLink": "Explorează statisticile",
     "allStories": "Toate poveștile",
     "story": {
@@ -2104,6 +2114,15 @@
       "notFound": "Povestea nu a fost găsită | detrans.ai",
       "tags": "Etichete",
       "moreStories": "Citește mai multe povești"
+    },
+    "seeAlso": {
+      "title": "Vezi și",
+      "links": {
+        "videos": "Videoclipuri despre detranziție",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Povești personale pe Peak Trans",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

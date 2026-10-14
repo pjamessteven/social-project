@@ -1,5 +1,6 @@
 import { countAllStories } from "@/app/api/stories/spotlight/count";
 import StoriesSection from "@/app/components/charts/StoriesSection";
+import { IntroWithSeeAlso } from "@/app/components/content/IntroWithSeeAlso";
 import { PAGE_TITLE } from "@/app/components/ui/typography";
 import UsersFilters from "@/app/components/UsersFilters";
 import {
@@ -9,6 +10,7 @@ import {
   SITE_URL,
 } from "@/app/lib/seo";
 import { getStoriesPath } from "@/app/lib/story-urls";
+import { getPathname } from "@/i18n/routing";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
@@ -86,19 +88,45 @@ export default async function StoriesPage({
       />
       <div>
         <h1 className={PAGE_TITLE}>{t("title")}</h1>
-        <p className="text-muted-foreground mt-6 max-w-3xl text-base">
-          {t("description", { count: storyCount })}
-        </p>
+        <IntroWithSeeAlso
+          className="mt-6"
+          title={t("seeAlso.title")}
+          links={[
+            {
+              label: t("seeAlso.links.videos"),
+              href: getPathname({ href: "/videos", locale }),
+            },
+            {
+              label: t("seeAlso.links.rDetrans"),
+              href: "https://www.reddit.com/r/detrans/",
+              external: true,
+            },
+            {
+              label: t("seeAlso.links.peakTrans"),
+              href: "https://www.peaktrans.org/detransitioning/",
+              external: true,
+            },
+            {
+              label: t("seeAlso.links.postTrans"),
+              href: "https://post-trans.com/",
+              external: true,
+            },
+          ]}
+        >
+          <p className="text-muted-foreground text-base">
+            {t("description", { count: storyCount })}
+          </p>
 
-        <details className="text-muted-foreground mt-4 text-base">
-          <summary className="cursor-pointer italic">
-            {tDisclaimer("summary")}
-          </summary>
-          <div className="mt-2 space-y-2">
-            <p>{tDisclaimer("details")}</p>
-            <p>{tDisclaimer("accuracy")}</p>
-          </div>
-        </details>
+          <details className="text-muted-foreground mt-4 text-base">
+            <summary className="cursor-pointer italic">
+              {tDisclaimer("summary")}
+            </summary>
+            <div className="mt-2 space-y-2">
+              <p>{tDisclaimer("details")}</p>
+              <p>{tDisclaimer("accuracy")}</p>
+            </div>
+          </details>
+        </IntroWithSeeAlso>
 
         <div className="mt-10">
           <UsersFilters layout="inline" />

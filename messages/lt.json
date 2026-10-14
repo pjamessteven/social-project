@@ -664,6 +664,7 @@
     },
     "title": "Akademiniai tyrimai ir moksliniai darbai",
     "description": "Detranzicijos tyrimai – tai nauja sritis. Sparčiai augantys genderinės disforijos diagnozių skaičiai per pastarąjį dešimtmetį – ypač tarp paauglių merginų – sukūrė augančią detranzicionierių populiaciją, nors duomenų rinkimas išlieka sudėtingas dėl didelio stebėjimų nutraukimo, ideologinės susiskaldymo ir metodologinių apribojimų.",
+    "analysis": "detrans.ai išanalizavo kiekvieną svarbų šios srities tyrimą, išskyrė pagrindines jo išvadas ir metodologinius apribojimus bei sugrupavo tyrimus pagal temą ir tyrimo metodą.",
     "segmNote": "Šiame puslapyje rasite akademinių tyrimų, recenzuojamų mokslinių publikacijų ir žurnalų straipsnių, keliančių abejonių dėl genderį patvirtinančios priežiūros veiksmingumo ir etikos. Daugiau informacijos, įskaitant išsamias palaikančių tyrimų analizes, rasite <a>Society for Evidence-Based Gender Medicine (SEGM)</a>.",
     "searchPlaceholder": "Ieškoti tyrimų...",
     "methodology": "Metodologija",
@@ -682,7 +683,16 @@
     "otherTopics": "Kitos temos",
     "otherMethods": "Kitos metodologijos",
     "categoryMetaTitle": "{name}: tyrimai ir moksliniai darbai | detrans.ai",
-    "findings": "Pagrindinės išvados"
+    "findings": "Pagrindinės išvados",
+    "seeAlso": {
+      "title": "Taip pat žr.",
+      "links": {
+        "segm": "SEGM tyrimų analizė",
+        "statsForGender": "Stats for Gender",
+        "canSg": "CAN-SG moksliniai straipsniai",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "Turinio perspėjimas:",
@@ -2102,7 +2112,7 @@
       "description": "Skaitykite tūkstančius anonimizuotų detranzicijos ir atsisakymo istorijų iš /r/detrans bendruomenės, apibendrintų DI. Filtruokite pagal amžių, lytį ir patirtį."
     },
     "title": "Detranzicijos istorijos",
-    "description": "Anonimizuotos istorijos žmonių, kurie atliko tranziciją, o vėliau detranzicionavo arba jos atsisakė, DI sudėliotos iš jų įrašų ir komentarų /r/detrans. Iš viso istorijų: {count, number}.",
+    "description": "{count, number} anonimizuotų istorijų žmonių, kurie atliko perėjimą, o vėliau detranzicionavo arba jo atsisakė; detrans.ai jas apibendrino ir išanalizavo pagal jų įrašus ir komentarus /r/detrans.",
     "statsLink": "Peržiūrėti statistiką",
     "allStories": "Visos istorijos",
     "story": {
@@ -2111,6 +2121,15 @@
       "notFound": "Istorija nerasta | detrans.ai",
       "tags": "Žymos",
       "moreStories": "Skaityti daugiau istorijų"
+    },
+    "seeAlso": {
+      "title": "Taip pat žr.",
+      "links": {
+        "videos": "Vaizdo įrašai apie detranziciją",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Asmeninės istorijos Peak Trans svetainėje",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

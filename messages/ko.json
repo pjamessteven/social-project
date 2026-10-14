@@ -665,6 +665,7 @@
     },
     "title": "학술 연구",
     "description": "디트랜지션 연구는 아직 새로운 분야입니다. 지난 10년간 특히 청소년 여성 사이에서 성별 불쾌감 진단이 급증하면서 디트랜지셔너 인구도 늘어나고 있지만, 높은 추종 단절률, 이념적 분열, 방법론적 한계로 인해 데이터 수집은 여전히 어려운 과제로 남아 있습니다.",
+    "analysis": "detrans.ai는 이 분야의 모든 관련 연구를 분석하여 각 연구의 주요 발견과 방법론적 한계를 추출하고, 주제와 연구 방법별로 분류했습니다.",
     "segmNote": "이 페이지에서는 성별 확정적 치료의 효능과 윤리성에 의문을 제기하는 학술 연구, 동료 심사 연구, 및 학술 기사를 찾아보실 수 있습니다. 자세한 내용은<a>Society for Evidence-Based Gender Medicine (SEGM)</a>을 참조하세요. 지지 연구에 대한 포괄적 분석도 포함되어 있습니다.",
     "searchPlaceholder": "연구 검색...",
     "methodology": "방법론",
@@ -683,7 +684,16 @@
     "otherTopics": "다른 주제",
     "otherMethods": "다른 방법론",
     "categoryMetaTitle": "{name}: 연구 및 논문 | detrans.ai",
-    "findings": "주요 발견 사항"
+    "findings": "주요 발견 사항",
+    "seeAlso": {
+      "title": "함께 보기",
+      "links": {
+        "segm": "SEGM 연구 분석",
+        "statsForGender": "Stats for Gender",
+        "canSg": "CAN-SG 학술 논문",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "콘텐츠 경고:",
@@ -2103,7 +2113,7 @@
       "description": "/r/detrans 커뮤니티의 익명화된 탈전환 및 단념 이야기 수천 편을 AI 요약으로 읽어 보세요. 나이, 성별, 경험별로 필터링할 수 있습니다."
     },
     "title": "탈전환 이야기",
-    "description": "전환 후 탈전환하거나 단념한 사람들의 익명 이야기 {count, number}편으로, /r/detrans에 올린 게시물과 댓글을 바탕으로 AI가 정리했습니다.",
+    "description": "성전환 후 탈전환하거나 중단한 사람들의 익명 이야기 {count, number}건. /r/detrans에 올린 글과 댓글을 바탕으로 detrans.ai가 요약하고 분석했습니다.",
     "statsLink": "통계 살펴보기",
     "allStories": "모든 이야기",
     "story": {
@@ -2112,6 +2122,15 @@
       "notFound": "이야기를 찾을 수 없습니다 | detrans.ai",
       "tags": "태그",
       "moreStories": "더 많은 이야기 읽기"
+    },
+    "seeAlso": {
+      "title": "함께 보기",
+      "links": {
+        "videos": "탈전환 영상",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Peak Trans 개인 이야기",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

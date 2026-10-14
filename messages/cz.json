@@ -657,6 +657,7 @@
     },
     "title": "Akademické studie a výzkum",
     "description": "Výzkum detranzice je vznikající obor. Rychlý nárůst diagnóz genderové dysforie v minulém desetiletí – zejména mezi dospívajícími dívkami – vedl k rostoucí populaci detranzicionistů, přičemž sběr dat zůstává náročný kvůli vysoké ztrátě při sledování, ideologickému rozdělení a metodologickým omezením.",
+    "analysis": "detrans.ai analyzoval každou relevantní studii v tomto oboru, vytáhl její klíčová zjištění a metodologická omezení a seskupil je podle tématu a výzkumné metody.",
     "segmNote": "Na této stránce najdete akademické studie, recenzovaný výzkum a články z časopisů, které zpochybňují účinnost a etiku genderově potvrzující péče. Další informace, včetně komplexních analýz podpůrných studií, naleznete na webu <a>Society for Evidence-Based Gender Medicine (SEGM)</a>.",
     "searchPlaceholder": "Hledat studie...",
     "methodology": "Metodologie",
@@ -675,7 +676,16 @@
     "otherTopics": "Další témata",
     "otherMethods": "Další metodologie",
     "categoryMetaTitle": "{name}: studie a výzkum | detrans.ai",
-    "findings": "Klíčové poznatky"
+    "findings": "Klíčové poznatky",
+    "seeAlso": {
+      "title": "Viz také",
+      "links": {
+        "segm": "Analýza studií SEGM",
+        "statsForGender": "Stats for Gender",
+        "canSg": "Odborné články CAN-SG",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "Upozornění na obsah:",
@@ -2095,7 +2105,7 @@
       "description": "Přečtěte si tisíce anonymizovaných příběhů o detranzici a desistenci z komunity /r/detrans, shrnutých pomocí AI. Filtrujte podle věku, pohlaví a zkušeností."
     },
     "title": "Příběhy detranzice",
-    "description": "Anonymizované příběhy lidí, kteří podstoupili tranzici a později detranzicovali nebo od ní upustili, sestavené pomocí AI z jejich příspěvků a komentářů na /r/detrans. Celkem příběhů: {count, number}.",
+    "description": "{count, number} anonymizovaných příběhů lidí, kteří prošli tranzicí a později detranzicí nebo od ní upustili, shrnutých a analyzovaných detrans.ai z jejich příspěvků a komentářů na /r/detrans.",
     "statsLink": "Prozkoumat statistiky",
     "allStories": "Všechny příběhy",
     "story": {
@@ -2104,6 +2114,15 @@
       "notFound": "Příběh nenalezen | detrans.ai",
       "tags": "Štítky",
       "moreStories": "Číst další příběhy"
+    },
+    "seeAlso": {
+      "title": "Viz také",
+      "links": {
+        "videos": "Videa o detranzici",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Osobní příběhy na Peak Trans",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

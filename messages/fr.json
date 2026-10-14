@@ -656,6 +656,7 @@
     },
     "title": "Études Académiques et Recherche",
     "description": "La recherche sur la détransition est un domaine émergent. L'augmentation rapide des diagnostics de dysphorie de genre au cours de la dernière décennie — particulièrement chez les adolescentes — a produit une population croissante de personnes ayant fait une détransition, bien que la collecte de données reste difficile en raison du fort taux de perte de suivi, des divisions idéologiques et des limites méthodologiques.",
+    "analysis": "detrans.ai a analysé chaque étude pertinente dans ce domaine, en a extrait les principales conclusions et les limites méthodologiques, et les a classées par sujet et par méthode de recherche.",
     "segmNote": "Sur cette page, vous trouverez des études académiques, des recherches révisées par des pairs et des articles de revue qui remettent en question l'efficacité et l'éthique des soins d'affirmation de genre. Consultez la <a>Society for Evidence-Based Gender Medicine (SEGM)</a> pour en savoir plus, y compris une analyse complète des études favorables.",
     "searchPlaceholder": "Rechercher des études...",
     "methodology": "Méthodologie",
@@ -674,7 +675,16 @@
     "otherTopics": "Autres sujets",
     "otherMethods": "Autres méthodologies",
     "categoryMetaTitle": "{name} : études et recherches | detrans.ai",
-    "findings": "Principales Conclusions"
+    "findings": "Principales Conclusions",
+    "seeAlso": {
+      "title": "Voir aussi",
+      "links": {
+        "segm": "Analyses d'études de la SEGM",
+        "statsForGender": "Stats for Gender",
+        "canSg": "Articles académiques du CAN-SG",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "Avertissement de Contenu :",
@@ -2094,7 +2104,7 @@
       "description": "Lisez des milliers d’histoires anonymisées de détransition et de désistance issues de la communauté /r/detrans, résumées par l’IA. Filtrez par âge, sexe et expérience."
     },
     "title": "Histoires de détransition",
-    "description": "{count, number} histoires anonymisées de personnes ayant transitionné puis détransitionné ou désisté, reconstituées par l’IA à partir de leurs publications et commentaires sur /r/detrans.",
+    "description": "{count, number} histoires anonymisées de personnes ayant transitionné puis détransitionné ou désisté, résumées et analysées par detrans.ai à partir de leurs publications et commentaires sur /r/detrans.",
     "statsLink": "Explorer les statistiques",
     "allStories": "Toutes les histoires",
     "story": {
@@ -2103,6 +2113,15 @@
       "notFound": "Histoire introuvable | detrans.ai",
       "tags": "Étiquettes",
       "moreStories": "Lire d’autres histoires"
+    },
+    "seeAlso": {
+      "title": "Voir aussi",
+      "links": {
+        "videos": "Vidéos sur la détransition",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Témoignages personnels sur Peak Trans",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

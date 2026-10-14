@@ -14,11 +14,20 @@ import { localesInfo } from "@/i18n/locales";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { headers } from "next/headers";
+import { IntroWithSeeAlso } from "../../components/content/IntroWithSeeAlso";
 import ParticipateCard from "../../components/content/ParticipateCard";
 import { StudiesHub } from "../../components/studies/StudiesHub";
 import { StudyCategoryGrid } from "../../components/studies/StudyGrid";
 import { StudyList } from "../../components/studies/StudyList";
 import StudySubmitForm from "../../components/StudySubmitForm";
+
+/** External research resources linked beside the intro. */
+const STUDIES_SEE_ALSO = [
+  { key: "segm", href: "https://segm.org/studies" },
+  { key: "statsForGender", href: "https://statsforgender.org/" },
+  { key: "canSg", href: "https://can-sg.org/academic-papers/" },
+  { key: "genderClinicNews", href: "https://www.genderclinicnews.com/" },
+] as const;
 
 export async function generateMetadata({
   params,
@@ -121,7 +130,20 @@ export default async function StudiesPage({
   const header = (
     <>
       <h1 className={PAGE_TITLE}>{t("title")}</h1>
-      <p className="text-muted-foreground max-w-3xl">{t("description")}</p>
+      <IntroWithSeeAlso
+        className="mt-4 mb-6"
+        title={t("seeAlso.title")}
+        links={STUDIES_SEE_ALSO.map(({ key, href }) => ({
+          label: t(`seeAlso.links.${key}`),
+          href,
+          external: true,
+        }))}
+      >
+        <div className="text-muted-foreground space-y-3 text-base leading-relaxed">
+          <p>{t("description")}</p>
+          <p className="text-foreground">{t("analysis")}</p>
+        </div>
+      </IntroWithSeeAlso>
     </>
   );
 

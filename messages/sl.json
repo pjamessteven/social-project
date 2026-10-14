@@ -657,6 +657,7 @@
     },
     "title": "Akademske študije in raziskave",
     "description": "Raziskovanje detranzicije je novo področje. Hiter porast diagnoz spolnega nelagodja v zadnjem desetletju – zlasti med najstnicami – je ustvaril rastočo populacijo detranzicionarjev, čeprav zbiranje podatkov ostaja izziv zaradi velikega odstopanja pri nadaljnjem spremljanju, ideološke razdeljenosti in metodoloških omejitev.",
+    "analysis": "detrans.ai je analiziral vsako ustrezno študijo na tem področju, izluščil njene ključne ugotovitve in metodološke omejitve ter študije razvrstil po temah in raziskovalnih metodah.",
     "segmNote": "Na tej strani boste našli akademske študije, recenzirane raziskave in članke iz revij, ki zastavljajo vprašanja o učinkovitosti in etiki potrjevalne oskrbe spola. Za več informacij, vključno z vsestranskimi analizami podpornih študij, glejte <a>Society for Evidence-Based Gender Medicine (SEGM)</a>.",
     "searchPlaceholder": "Iskanje študij...",
     "methodology": "Metodologija",
@@ -675,7 +676,16 @@
     "otherTopics": "Druge teme",
     "otherMethods": "Druge metodologije",
     "categoryMetaTitle": "{name}: študije in raziskave | detrans.ai",
-    "findings": "Ključne ugotovitve"
+    "findings": "Ključne ugotovitve",
+    "seeAlso": {
+      "title": "Glej tudi",
+      "links": {
+        "segm": "Analize študij SEGM",
+        "statsForGender": "Stats for Gender",
+        "canSg": "Strokovni članki CAN-SG",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "Opozorilo o vsebini:",
@@ -2095,7 +2105,7 @@
       "description": "Preberite na tisoče anonimiziranih zgodb o detranziciji in desistenci iz skupnosti /r/detrans, ki jih je povzela UI. Filtrirajte po starosti, spolu in izkušnjah."
     },
     "title": "Zgodbe o detranziciji",
-    "description": "Anonimizirane zgodbe ljudi, ki so opravili tranzicijo in pozneje detranzicionirali ali odnehali, ki jih je UI sestavila iz njihovih objav in komentarjev na /r/detrans. Skupaj zgodb: {count, number}.",
+    "description": "{count, number} anonimiziranih zgodb ljudi, ki so opravili tranzicijo in pozneje detranzicijo ali odstopili od nje, ki jih je detrans.ai povzel in analiziral na podlagi njihovih objav in komentarjev na /r/detrans.",
     "statsLink": "Raziščite statistiko",
     "allStories": "Vse zgodbe",
     "story": {
@@ -2104,6 +2114,15 @@
       "notFound": "Zgodbe ni mogoče najti | detrans.ai",
       "tags": "Oznake",
       "moreStories": "Preberite več zgodb"
+    },
+    "seeAlso": {
+      "title": "Glej tudi",
+      "links": {
+        "videos": "Videoposnetki o detranziciji",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Osebne zgodbe na Peak Trans",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }

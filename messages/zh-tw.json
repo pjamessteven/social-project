@@ -658,6 +658,7 @@
     },
     "title": "學術研究與調查",
     "description": "去過渡研究是一個新興領域。過去十年間，性別焦慮診斷數量迅速上升——尤其在青春期少女中——導致去過渡者群體不斷增長，但由於隨訪流失率高、意識形態分歧以及方法論局限，數據收集仍然充滿挑戰。",
+    "analysis": "detrans.ai 分析了此領域的每一項相關研究，整理出其主要發現與方法學限制，並依主題與研究方法分類。",
     "segmNote": "在本頁中，您將找到對性別肯定護理的有效性與倫理提出質疑的學術研究、同行評審研究和期刊文章。更多資訊請參閱<a>Society for Evidence-Based Gender Medicine (SEGM)</a>，包括對相關支持性研究的全面分析。",
     "searchPlaceholder": "搜尋研究...",
     "methodology": "研究方法",
@@ -676,7 +677,16 @@
     "otherTopics": "其他主題",
     "otherMethods": "其他研究方法",
     "categoryMetaTitle": "{name}：研究與論文 | detrans.ai",
-    "findings": "主要發現"
+    "findings": "主要發現",
+    "seeAlso": {
+      "title": "另請參閱",
+      "links": {
+        "segm": "SEGM 研究分析",
+        "statsForGender": "Stats for Gender",
+        "canSg": "CAN-SG 學術論文",
+        "genderClinicNews": "Gender Clinic News"
+      }
+    }
   },
   "contentWarning": {
     "title": "內容警告：",
@@ -2096,7 +2106,7 @@
       "description": "閱讀來自 /r/detrans 社群的數千個匿名去跨性別與放棄跨性別的故事，由 AI 摘要。可依年齡、性別和經歷篩選。"
     },
     "title": "去跨性別故事",
-    "description": "{count, number} 個曾經跨性別、後來去跨性別或放棄跨性別者的匿名故事，由 AI 根據他們在 /r/detrans 上的貼文和留言整理而成。",
+    "description": "{count, number} 則匿名故事，講述者曾經歷性別轉換，後來去轉換或放棄轉換。這些故事由 detrans.ai 根據他們在 /r/detrans 上的貼文與留言整理並分析而成。",
     "statsLink": "查看統計資料",
     "allStories": "所有故事",
     "story": {
@@ -2105,6 +2115,15 @@
       "notFound": "找不到故事 | detrans.ai",
       "tags": "標籤",
       "moreStories": "閱讀更多故事"
+    },
+    "seeAlso": {
+      "title": "另請參閱",
+      "links": {
+        "videos": "去轉換影片",
+        "rDetrans": "/r/detrans",
+        "peakTrans": "Peak Trans 個人故事",
+        "postTrans": "Post Trans"
+      }
     }
   }
 }
