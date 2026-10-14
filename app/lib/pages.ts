@@ -3,6 +3,7 @@ import { pageSlugs, pages, type Page } from "@/db/schema";
 import { locales } from "@/i18n/locales";
 import { defaultLocale, pathnames } from "@/i18n/routing";
 import { and, asc, eq, inArray, isNull, like, notLike, sql } from "drizzle-orm";
+import { unstable_cache } from "next/cache";
 
 /**
  * Data layer for agent-managed wiki pages.
@@ -964,6 +965,74 @@ export async function getLocalizedPageTree(
   sortTree(roots);
 
   return roots;
+}
+
+// ---------------------------------------------------------------------------
+// Featured article
+// ---------------------------------------------------------------------------
+
+export interface FeaturedTopic {
+  /** Localized path under /topics */
+  localizedPath: string;
+  title: string;
+  summary: string | null;
+}
+
+/** Small seeded PRNG (mulberry32) so the shuffle is stable across requests. */
+function seededRandom(seed: number): () => number {
+  let state = seed >>> 0;
+  return () => {
+    state = (state + 0x6d2b79f5) >>> 0;
+    let t = state;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+async function queryFeaturedTopic(
+  locale: string,
+  day: number,
+): Promise<FeaturedTopic | null> {
+  const all = await getAllPagesWithSlugs();
+  const candidates = all
+    .filter((entry) => entry.page.published && !entry.page.isStub)
+    .sort((a, b) => a.page.id - b.page.id);
+  if (candidates.length === 0) return null;
+
+  // A fixed shuffle walked one step per day: every article gets featured
+  // once before any repeats, in an order that doesn't track the hierarchy.
+  const random = seededRandom(0x5eed);
+  for (let i = candidates.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+  }
+  const entry = candidates[day % candidates.length];
+  const byId = new Map(all.map((item) => [item.page.id, item]));
+
+  return {
+    localizedPath: buildLocalizedPath(entry, byId, locale),
+    title:
+      getLocalizedValue(entry.page.titleTranslation, locale, entry.page.title) ??
+      entry.page.title,
+    summary: getLocalizedValue(
+      entry.page.summaryTranslation,
+      locale,
+      entry.page.summary,
+    ),
+  };
+}
+
+const cachedFeaturedTopic = unstable_cache(
+  queryFeaturedTopic,
+  ["featured-topic"],
+  { revalidate: 3600 },
+);
+
+/** Today's featured wiki article (changes daily at UTC midnight). */
+export function getFeaturedTopic(locale: string): Promise<FeaturedTopic | null> {
+  const day = Math.floor(Date.now() / 86_400_000);
+  return cachedFeaturedTopic(locale, day);
 }
 
 // ---------------------------------------------------------------------------

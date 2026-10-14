@@ -131,7 +131,10 @@
       "differentStages": "Ludzie przychodzą tu na różnych etapach. Niektórzy badają temat przed rozpoczęciem tranzycji. Inni są w trakcie tranzycji z wątpliwościami. Inni już rozpoczęli detransycję i potrzebują praktycznych wskazówek. Wielu szuka <a>grup wsparcia w detransycji</a> lub <a>terapeutów eksploracyjnych płci</a>, którzy nie afirmują automatycznie tranzycji jako jedynej ścieżki.",
       "closing": "Mam nadzieję, że detrans.ai pomoże Ci podjąć świadome, dojrzałe decyzje."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Polecany temat"
+    }
   },
   "header": {
     "navigation": {

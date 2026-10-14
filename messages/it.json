@@ -131,7 +131,10 @@
       "differentStages": "Le persone arrivano qui in momenti diversi. Alcuni stanno facendo ricerche prima di iniziare la transizione. Altri sono a metà transizione con dei dubbi. Altri hanno già iniziato la detransition e hanno bisogno di orientamenti pratici. Molti vengono cercando <a>gruppi di supporto alla detransition</a> o <a>terapisti esplorativi del genere</a> che non affermino automaticamente la transizione come unica strada.",
       "closing": "Spero che detrans.ai possa aiutarti a prendere decisioni consapevoli e informate."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Argomento in evidenza"
+    }
   },
   "header": {
     "navigation": {

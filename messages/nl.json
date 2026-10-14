@@ -131,7 +131,10 @@
       "differentStages": "Mensen komen hier in verschillende stadia. Sommigen doen onderzoek voordat ze met transitie beginnen. Anderen zitten midden in transitie met twijfels. Anderen zijn al begonnen met detransitie en hebben praktische begeleiding nodig. Velen komen op zoek naar <a>detransitieondersteuningsgroepen</a> of <a>gender explorerende therapeuten</a> die transitie niet automatisch bevestigen als het enige pad.",
       "closing": "Ik hoop dat detrans.ai je kan helpen om geïnformeerde, zelfbewuste beslissingen te nemen."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Uitgelicht onderwerp"
+    }
   },
   "header": {
     "navigation": {

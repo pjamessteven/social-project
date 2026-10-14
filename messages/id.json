@@ -131,7 +131,10 @@
       "differentStages": "Orang-orang datang ke sini pada tahap yang berbeda. Beberapa sedang meneliti sebelum memulai transisi. Yang lain sedang di tengah transisi dengan keraguan. Yang lain sudah memulai detransisi dan membutuhkan panduan praktis. Banyak yang datang mencari <a>grup dukungan detransisi</a> atau <a>terapis eksplorasi gender</a> yang tidak secara otomatis mengafirmasi transisi sebagai satu-satunya jalan.",
       "closing": "Saya berharap detrans.ai dapat membantu Anda membuat keputusan yang terinformasi dan sadar diri."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Topik pilihan"
+    }
   },
   "header": {
     "navigation": {

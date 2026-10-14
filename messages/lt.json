@@ -131,7 +131,10 @@
       "differentStages": "Žmonės ateina čia skirtinguose etapuose. Kai kurie tyrinėja prieš pradėdami perėjimą. Kiti yra perėjimo viduryje su abejonėmis. Kiti jau pradėjo detranziciją ir reikia praktinių patarimų. Daugelis ateina ieškodami <a>detranzicijos palaikymo grupių</a> arba <a>genderinės tyrinėjamosios terapijos terapeutų</a>, kurie automatiškai nepatvirtina perėjimo kaip vienintelio kelio.",
       "closing": "Tikiuosi, kad detrans.ai gali padėti jums priimti pagrįstus, sąmoningus sprendimus."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Rekomenduojama tema"
+    }
   },
   "header": {
     "navigation": {

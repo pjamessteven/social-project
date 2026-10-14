@@ -131,7 +131,10 @@
       "differentStages": "Les gens viennent ici à différents stades. Certains font des recherches avant de commencer une transition. D'autres sont en pleine transition avec des doutes. D'autres ont déjà commencé à détransitionner et ont besoin de conseils pratiques. Beaucoup viennent chercher des <a>groupes de soutien à la détransition</a> ou des <a>thérapeutes exploratoires du genre</a> qui n'affirment pas automatiquement la transition comme le seul chemin.",
       "closing": "J'espère que detrans.ai pourra vous aider à prendre des décisions éclairées et conscientes de vous-même."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Thème à la une"
+    }
   },
   "header": {
     "navigation": {

@@ -131,7 +131,10 @@
       "differentStages": "Lidé sem přicházejí v různých fázích. Někteří zkoumají před zahájením tranzice. Jiní jsou uprostřed tranzice s pochybnostmi. Jiní již zahájili detranzici a potřebují praktické vedení. Mnoho lidí přichází hledat <a>podpůrné skupiny pro detranzici</a> nebo <a>terapeuty s explorativním přístupem k genderu</a>, kteří automaticky nepotvrzují tranzici jako jedinou cestu.",
       "closing": "Doufám, že detrans.ai vám může pomoci učinit informovaná, uvědomělá rozhodnutí."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Doporučené téma"
+    }
   },
   "header": {
     "navigation": {

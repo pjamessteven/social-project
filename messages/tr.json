@@ -131,7 +131,10 @@
       "differentStages": "İnsanlar farklı aşamalarda buraya gelir. Bazıları geçişe başlamadan önce araştırma yapıyor. Bazıları geçişin ortasında şüpheler yaşıyor. Bazıları zaten detransisyona başladı ve pratik rehberliğe ihtiyaç duyuyor. Birçoğu geçişi tek yol olarak otomatik olarak onaylamayan <a>detransisyon destek grupları</a> veya <a>cinsiyet-keşifsel terapistler</a> arıyor.",
       "closing": "Umarım detrans.ai, bilgili ve öz-farkında kararlar almanıza yardımcı olabilir."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Öne çıkan konu"
+    }
   },
   "header": {
     "navigation": {

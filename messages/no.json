@@ -131,7 +131,10 @@
       "differentStages": "Mennesker kommer hit i ulike stadier. Noen forsker før de starter overgang. Andre er midt i overgangen med tvil. Andre har allerede begynt å detransisjonere og trenger praktisk veiledning. Mange kommer på jakt etter <a>detransisjonsstøttegrupper</a> eller <a>kjønnsutforskende terapeuter</a> som ikke automatisk bekrefter overgang som den eneste veien.",
       "closing": "Jeg håper at detrans.ai kan hjelpe deg med å ta informerte, selvbevisste beslutninger."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Utvalgt emne"
+    }
   },
   "header": {
     "navigation": {

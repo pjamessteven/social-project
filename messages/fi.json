@@ -131,7 +131,10 @@
       "differentStages": "Ihmiset tulevat tänne eri vaiheissa. Jotkut tutkivat ennen siirtymän aloittamista. Toiset ovat siirtymän keskellä epäilyksin. Toiset ovat jo aloittaneet detransitionoinnin ja tarvitsevat käytännön ohjausta. Monet tulevat etsimään <a>detransition-tukiryhmiä</a> tai <a>sukupuolen tutkivia terapeutteja</a>, jotka eivät automaattisesti vahvista siirtymää ainoana polkuna.",
       "closing": "Toivon, että detrans.ai voi auttaa sinua tekemään tietoisia, itsetietoisia päätöksiä."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Päivän aihe"
+    }
   },
   "header": {
     "navigation": {

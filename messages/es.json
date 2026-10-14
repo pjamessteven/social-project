@@ -131,7 +131,10 @@
       "differentStages": "Las personas llegan aquí en diferentes etapas. Algunos están investigando antes de comenzar la transición. Otros están a mitad de la transición con dudas. Otros ya han comenzado a destransicionar y necesitan orientación práctica. Muchos vienen buscando <a>grupos de apoyo para la destransición</a> o <a>terapeutas exploratorios de género</a> que no afirmen automáticamente la transición como el único camino.",
       "closing": "Espero que detrans.ai pueda ayudarte a tomar decisiones informadas y conscientes."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Tema destacado"
+    }
   },
   "header": {
     "navigation": {

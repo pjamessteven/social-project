@@ -131,7 +131,10 @@
       "differentStages": "Mọi người đến đây ở các giai đoạn khác nhau. Một số đang nghiên cứu trước khi bắt đầu chuyển giới. Những người khác đang trong quá trình chuyển giới với những nghi ngờ. Những người khác đã bắt đầu chuyển giới trở lại và cần hướng dẫn thực tế. Nhiều người đến tìm <a>nhóm hỗ trợ chuyển giới trở lại</a> hoặc <a>nhà trị liệu khám phá giới tính</a> không tự động khẳng định chuyển giới là con đường duy nhất.",
       "closing": "Tôi hy vọng detrans.ai có thể giúp bạn đưa ra các quyết định sáng suốt, tự nhận thức."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Chủ đề nổi bật"
+    }
   },
   "header": {
     "navigation": {

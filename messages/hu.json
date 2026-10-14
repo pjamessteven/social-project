@@ -131,7 +131,10 @@
       "differentStages": "Az emberek különböző szakaszokban érkeznek ide. Néhányan az átmenet megkezdése előtt kutatnak. Mások az átmenet közepén vannak kétségekkel. Mások már elkezdték a detransitiont, és gyakorlati útmutatásra van szükségük. Sokan <a>detransition támogató csoportokat</a> vagy <a>nemi-felfedező terapeutákat</a> keresnek, akik nem tekintik automatikusan az átmenetet az egyetlen útnak.",
       "closing": "Remélem, hogy a detrans.ai segíthet tájékozott, öntudatos döntéseket hozni."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Kiemelt téma"
+    }
   },
   "header": {
     "navigation": {

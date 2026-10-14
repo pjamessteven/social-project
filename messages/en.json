@@ -131,7 +131,10 @@
       "differentStages": "People come here for many reasons. You might be researching transition, navigating doubts mid-transition, curious why some people detransition, or already detransitioning and looking for practical support. Many come looking for <a>detransition support groups</a> or <a>gender-exploratory therapists</a> who do not automatically affirm transition as the only path. Please note, this service only represents the experiences of some (not all) detransitioners, and certainly not the full diversity of transgender people broadly.",
       "closing": "I hope you find detrans.ai useful and that it can help you make informed, self-aware decisions."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Featured topic"
+    }
   },
   "header": {
     "navigation": {

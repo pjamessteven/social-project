@@ -131,7 +131,10 @@
       "differentStages": "Menschen kommen hier in verschiedenen Phasen. Manche recherchieren, bevor sie mit der Transition beginnen. Andere sind mitten in der Transition mit Zweifeln. Andere haben bereits mit der Detransition begonnen und brauchen praktische Anleitung. Viele kommen auf der Suche nach <a>Detransition-Supportgruppen</a> oder <a>geschlechtsexplorativen Therapeuten</a>, die Transition nicht automatisch als den einzigen Weg bejahen.",
       "closing": "Ich hoffe, dass detrans.ai dir helfen kann, informierte, selbstbewusste Entscheidungen zu treffen."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Thema des Tages"
+    }
   },
   "header": {
     "navigation": {

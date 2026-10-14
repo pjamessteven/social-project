@@ -131,7 +131,10 @@
       "differentStages": "As pessoas vêm aqui em diferentes estágios. Algumas estão pesquisando antes de iniciar a transição. Outras estão no meio da transição com dúvidas. Outras já começaram a desfazer a transição e precisam de orientação prática. Muitos vêm em busca de <a>grupos de apoio à desransição</a> ou <a>terapeutas exploradores de gênero</a> que não afirmem automaticamente a transição como o único caminho.",
       "closing": "Espero que o detrans.ai possa ajudá-lo a tomar decisões informadas e conscientes."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Tema em destaque"
+    }
   },
   "header": {
     "navigation": {

@@ -131,7 +131,10 @@
       "differentStages": "Ljudje pridejo sem v različnih fazah. Nekateri raziskujejo, preden začnejo tranzicijo. Drugi so vmes v tranziciji z dvomi. Drugi so že začeli detranzicionirati in potrebujejo praktična navodila. Mnogi pridejo iskat <a>skupine za podporo pri detranziciji</a> ali <a>terapevte za raziskovanje spola</a>, ki samodejno ne potrjujejo tranzicije kot edine poti.",
       "closing": "Upam, da vam detrans.ai lahko pomaga pri informiranih, samozavednih odločitvah."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Izpostavljena tema"
+    }
   },
   "header": {
     "navigation": {

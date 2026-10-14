@@ -131,7 +131,10 @@
       "differentStages": "Oamenii vin aici în diferite stadii. Unii fac cercetări înainte de a începe tranziția. Alții sunt în mijlocul tranziției cu îndoieli. Alții au început deja detransiția și au nevoie de îndrumare practică. Mulți vin în căutare de <a>grupuri de sprijin pentru detransiție</a> sau <a>terapeuți exploratori de gen</a> care nu afirme automat tranziția ca fiind unicul drum.",
       "closing": "Sper că detrans.ai vă poate ajuta să luați decizii informate și conștiente de sine."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Subiect recomandat"
+    }
   },
   "header": {
     "navigation": {

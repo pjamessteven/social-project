@@ -138,6 +138,8 @@ export function SlidingNavGroup({
           ref: (el: HTMLElement | null) => {
             if (el) tabRefs.current.set(tabKey, el);
           },
+          // Lets other UI (e.g. the startpage featured-topic bubble) find a tab.
+          "data-nav-tab": tabKey,
           onMouseEnter: () => {
             setHoveredKey(tabKey);
             setMoreHovered(false);

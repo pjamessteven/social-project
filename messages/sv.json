@@ -131,7 +131,10 @@
       "differentStages": "Människor kommer hit i olika skeden. Vissa forskar innan de påbörjar övergång. Andra befinner sig mitt i övergången med tvivel. Andra har redan påbörjat detransition och behöver praktisk vägledning. Många kommer för att leta efter <a>detransitionsstödgrupper</a> eller <a>könsutforskande terapeuter</a> som inte automatiskt bekräftar övergång som den enda vägen.",
       "closing": "Jag hoppas att detrans.ai kan hjälpa dig att fatta välgrundade, självmedvetna beslut."
     },
-    "about": {}
+    "about": {},
+    "featuredArticle": {
+      "label": "Utvalt ämne"
+    }
   },
   "header": {
     "navigation": {
