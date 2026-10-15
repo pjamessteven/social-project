@@ -299,6 +299,9 @@ export default async function StudyPage({
       .map((p, i) => <p key={i}>{p}</p>);
 
   const sections = [
+    study.summary
+      ? { id: "summary", title: "Summary", body: paragraphs(study.summary) }
+      : null,
     study.keyPoints?.length
       ? {
           id: "key-findings",
@@ -315,9 +318,6 @@ export default async function StudyPage({
     study.abstract
       ? { id: "abstract", title: "Abstract", body: paragraphs(study.abstract) }
       : null,
-    study.summary
-      ? { id: "summary", title: "Summary", body: paragraphs(study.summary) }
-      : null,
     study.conclusion
       ? {
           id: "conclusion",
@@ -326,14 +326,6 @@ export default async function StudyPage({
         }
       : null,
   ].filter((section) => section !== null);
-
-  const hasLimitations = !!study.limitations?.length;
-  const toc = [
-    ...(hasLimitations
-      ? [{ id: "limitations", text: "Limitations", level: 2 }]
-      : []),
-    ...sections.map((s) => ({ id: s.id, text: s.title, level: 2 })),
-  ];
 
   const metadata = [
     study.authors && { label: "Authors", value: study.authors, wide: true },
@@ -359,7 +351,7 @@ export default async function StudyPage({
     <>
       {jsonLdScript}
       <DocsLayout
-        toc={toc}
+        toc={[]}
         preface={backLink}
         header={
           <header className="not-prose mb-8">
@@ -419,16 +411,21 @@ export default async function StudyPage({
         }
       >
         <article>
-          {hasLimitations && (
-            <aside
-              id="limitations"
-              className="not-prose mb-10 scroll-mt-24 rounded-lg border border-red-200 bg-red-50 p-5 dark:border-red-900/40 dark:bg-red-950/20"
-            >
+          {sections.map((section, index) => (
+            <section key={section.id}>
+              <h2 className={index === 0 ? "mt-0" : undefined}>
+                {section.title}
+              </h2>
+              {section.body}
+            </section>
+          ))}
+          {!!study.limitations?.length && (
+            <aside className="not-prose mt-10 rounded-lg border border-red-200 bg-red-50 p-5 dark:border-red-900/40 dark:bg-red-950/20">
               <h2 className="mb-3 text-base font-semibold text-red-800 dark:text-red-200">
                 Methodological limitations
               </h2>
               <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-red-900 marker:text-red-400 dark:text-red-200/90">
-                {study.limitations!.map((limitation, i) => {
+                {study.limitations.map((limitation, i) => {
                   // Most limitations lead with a short "Label: detail".
                   const match = limitation.match(/^([^:]{1,60}):\s+(.+)$/s);
                   return (
@@ -447,18 +444,6 @@ export default async function StudyPage({
               </ul>
             </aside>
           )}
-
-          {sections.map((section, index) => (
-            <section key={section.id}>
-              <h2
-                id={section.id}
-                className={`scroll-mt-24 ${index === 0 ? "mt-0" : ""}`}
-              >
-                {section.title}
-              </h2>
-              {section.body}
-            </section>
-          ))}
         </article>
       </DocsLayout>
     </>
