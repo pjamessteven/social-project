@@ -9,13 +9,16 @@ import { getPathname } from "@/i18n/routing";
 import {
   ArrowRight,
   BookOpen,
-  Brain,
+  Fingerprint,
+  HeartHandshake,
+  IdCard,
   Lightbulb,
   type LucideIcon,
+  Megaphone,
+  MessagesSquare,
+  Puzzle,
   RotateCcw,
   Stethoscope,
-  UserRound,
-  Users,
 } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -59,12 +62,15 @@ export async function generateMetadata({
 // Icons for the top-level hub cards, keyed by default-locale path. New hubs
 // fall back to a generic book.
 const HUB_ICONS: Record<string, LucideIcon> = {
-  "causes-and-correlates": Brain,
-  communities: Users,
+  "causes-and-correlates": Puzzle,
+  communities: MessagesSquare,
   detransition: RotateCcw,
-  "gender-identity-beliefs": Lightbulb,
+  feminism: Megaphone,
+  "gender-identity-beliefs": Fingerprint,
   "medical-transition": Stethoscope,
-  "social-transition": UserRound,
+  "parents-and-families": HeartHandshake,
+  "reasons-for-detransition": Lightbulb,
+  "social-transition": IdCard,
 };
 
 function countDescendants(node: LocalizedTopicNode): number {
@@ -109,7 +115,7 @@ function HubCards({
                 />
               </span>
               <Icon
-                className="text-foreground -mr-1 -mb-1 h-10 w-10 shrink-0 opacity-[0.08] transition-opacity group-hover:opacity-[0.14]"
+                className="text-foreground -mr-1 -mb-1 h-10 w-10 shrink-0 opacity-[0.12] transition-opacity group-hover:opacity-[0.22]"
                 strokeWidth={1.5}
                 aria-hidden
               />
@@ -133,8 +139,11 @@ function TopicEntry({
   const href = `/${locale}/topics/${node.localizedPath}`;
   return (
     // Prose sets li margins, so the gap after a top-level section has to win
-    // over it explicitly.
-    <li className={heading ? "!mb-12 pl-0" : "pl-0"}>
+    // over it explicitly; nested entries drop them and are spaced by the
+    // list's gap instead. Spacing follows proximity: title and summary sit
+    // tight, children start a little closer to their parent than siblings
+    // sit to each other, and nested summaries step down a size.
+    <li className={heading ? "!mb-12 pl-0" : "my-0! pl-0"}>
       {/* Title and summary form one link target; hovering anywhere in it
           underlines the title. */}
       <a href={href} className="group block font-normal no-underline">
@@ -151,14 +160,16 @@ function TopicEntry({
           </span>
         )}
         {node.summary && (
-          <p className="text-muted-foreground mt-0 mb-2 text-base">
+          <p
+            className={`text-muted-foreground mt-0.5 mb-0 ${heading ? "text-base" : "text-sm leading-relaxed"}`}
+          >
             {node.summary}
           </p>
         )}
       </a>
       {node.children.length > 0 && (
         // A thin rule down the side ties each level to its parent.
-        <ul className="border-muted-foreground/25 mt-3 mb-6 ml-0.5 list-none space-y-8 border-l pl-3 sm:pl-5">
+        <ul className="border-muted-foreground/25 mt-3! mb-0! ml-0.5 flex list-none flex-col gap-4 border-l pl-3 sm:pl-5 lg:pl-6">
           {node.children.map((child) => (
             <TopicEntry
               key={child.path}

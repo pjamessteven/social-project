@@ -179,6 +179,29 @@ export async function resolveStudySlugParam(
   locale: string,
   rawParam: string,
 ): Promise<StudySlugResolution | null> {
+  const resolution = await resolveStudySlugParamUnmerged(locale, rawParam);
+  if (!resolution) return null;
+
+  // Duplicate records merged into another study redirect to it.
+  const merged = (
+    await db
+      .select({ mergedInto: studies.mergedInto })
+      .from(studies)
+      .where(eq(studies.id, resolution.studyId))
+      .limit(1)
+  )[0]?.mergedInto;
+  if (merged == null) return resolution;
+  return {
+    studyId: merged,
+    slugs: await getStudySlugMap(merged),
+    canonical: false,
+  };
+}
+
+async function resolveStudySlugParamUnmerged(
+  locale: string,
+  rawParam: string,
+): Promise<StudySlugResolution | null> {
   // Next.js passes route params percent-encoded; slugs themselves never
   // contain "%", so a single decode is safe and matches raw requests too.
   let param = rawParam;

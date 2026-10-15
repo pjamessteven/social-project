@@ -544,6 +544,9 @@ export const studies = pgTable(
     keyPointsTranslation: text("key_points_translation"),
     // Approval and RAG fields
     approved: boolean("approved").default(false).notNull(),
+    // Duplicate records point at the record they were merged into; their
+    // URLs redirect there (see resolveStudySlugParam).
+    mergedInto: integer("merged_into"),
     fullText: text("full_text"),
     abstract: text("abstract"),
     conclusion: text("conclusion"),

@@ -66,6 +66,21 @@ function slugifyHeading(text: string): string {
   return normalizeSegment(text).slice(0, 80) || "section";
 }
 
+/** Decode the HTML entities the markdown renderer emits in heading text. */
+function decodeEntities(text: string): string {
+  return text
+    .replace(/&#(\d+);/g, (_m, code: string) => String.fromCodePoint(Number(code)))
+    .replace(/&#x([0-9a-f]+);/gi, (_m, code: string) =>
+      String.fromCodePoint(parseInt(code, 16)),
+    )
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&");
+}
+
 /**
  * Adds ids to h2/h3 headings and collects them as TOC items.
  */
@@ -79,8 +94,7 @@ export function extractHeadings(html: string): {
   const processed = html.replace(
     /<h([23])([^>]*)>([\s\S]*?)<\/h\1>/gi,
     (_match, level: string, attrs: string, inner: string) => {
-      const plainText = inner
-        .replace(/<[^>]+>/g, "")
+      const plainText = decodeEntities(inner.replace(/<[^>]+>/g, ""))
         .replace(/\s+/g, " ")
         .trim();
       if (!plainText) return _match;

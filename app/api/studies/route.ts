@@ -43,6 +43,7 @@ interface StudyWithTranslations {
   keyPoints: string[] | null;
   keyPointsTranslation: string | null;
   approved: boolean;
+  mergedInto: number | null;
   fullText: string | null;
   abstract: string | null;
   conclusion: string | null;
