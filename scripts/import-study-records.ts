@@ -44,7 +44,9 @@ interface StudyRecord {
   fullText?: string | null;
 }
 
-function readRecords(dir: string): Array<{ file: string; record: StudyRecord }> {
+function readRecords(
+  dir: string,
+): Array<{ file: string; record: StudyRecord }> {
   let files: string[] = [];
   try {
     files = readdirSync(dir).filter((f) => f.endsWith(".json"));
@@ -58,7 +60,10 @@ function readRecords(dir: string): Array<{ file: string; record: StudyRecord }> 
 }
 
 const norm = (s: string | null | undefined) =>
-  (s ?? "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  (s ?? "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
 
 const doiOf = (url: string | null | undefined) =>
   url?.match(/10\.\d{4,9}\/[^\s?#]+/i)?.[0].toLowerCase() ?? null;
@@ -69,7 +74,8 @@ async function main() {
   if (!dir) throw new Error("usage: import-study-records.ts <dir> [--apply]");
 
   const { db } = await import("../db");
-  const { studies, studyTags, studyTagRelations } = await import("../db/schema");
+  const { studies, studyTags, studyTagRelations } =
+    await import("../db/schema");
   const { eq } = await import("drizzle-orm");
   const { setStudyCategories } = await import("../app/lib/study-categories");
   const { syncStudySlugs } = await import("../app/lib/study-slugs");
@@ -83,11 +89,15 @@ async function main() {
     for (const raw of names) {
       const name = raw.trim().toLowerCase();
       if (!name) continue;
-      let tag = (await db.select().from(studyTags).where(eq(studyTags.name, name)))[0];
+      let tag = (
+        await db.select().from(studyTags).where(eq(studyTags.name, name))
+      )[0];
       if (!tag) [tag] = await db.insert(studyTags).values({ name }).returning();
       ids.push(tag.id);
     }
-    await db.delete(studyTagRelations).where(eq(studyTagRelations.studyId, studyId));
+    await db
+      .delete(studyTagRelations)
+      .where(eq(studyTagRelations.studyId, studyId));
     if (ids.length) {
       await db
         .insert(studyTagRelations)
@@ -139,7 +149,8 @@ async function main() {
       .returning({ id: studies.id });
     existing.push({ id: row.id, title: record.title, url: record.url });
     if (record.tags?.length) await setTags(row.id, record.tags);
-    if (record.categoryIds?.length) await setStudyCategories(row.id, record.categoryIds);
+    if (record.categoryIds?.length)
+      await setStudyCategories(row.id, record.categoryIds);
     await syncStudySlugs(row.id);
     changed.push(row.id);
   }
@@ -149,21 +160,42 @@ async function main() {
       console.log(`skip review ${file}: no id`);
       continue;
     }
-    const current = (await db.select().from(studies).where(eq(studies.id, record.id)))[0];
+    const current = (
+      await db.select().from(studies).where(eq(studies.id, record.id))
+    )[0];
     if (!current) {
       console.log(`skip review ${file}: study ${record.id} not found`);
       continue;
     }
     const set: Record<string, unknown> = {};
     const fields = [
-      "title", "headline", "authors", "year", "journal", "url", "description",
-      "abstract", "conclusion", "summary", "keyPoints", "limitations",
-      "cardSummary", "cardKeyPoints", "fullText",
+      "title",
+      "headline",
+      "authors",
+      "year",
+      "journal",
+      "url",
+      "description",
+      "abstract",
+      "conclusion",
+      "summary",
+      "keyPoints",
+      "limitations",
+      "cardSummary",
+      "cardKeyPoints",
+      "fullText",
     ] as const;
     for (const field of fields) {
       if (record[field] === undefined) continue;
-      if (JSON.stringify(record[field]) === JSON.stringify((current as any)[field])) continue;
-      set[field] = field === "authors" ? String(record[field]).slice(0, 500) : record[field];
+      if (
+        JSON.stringify(record[field]) ===
+        JSON.stringify((current as any)[field])
+      )
+        continue;
+      set[field] =
+        field === "authors"
+          ? String(record[field]).slice(0, 500)
+          : record[field];
     }
     // Edited source text invalidates its translations
     const invalidates: Record<string, string> = {
@@ -184,13 +216,18 @@ async function main() {
     }
     console.log(`review ${record.id}: ${names.join(", ")}`);
     if (!apply) continue;
-    await db.update(studies).set({ ...set, updatedAt: new Date() }).where(eq(studies.id, record.id));
+    await db
+      .update(studies)
+      .set({ ...set, updatedAt: new Date() })
+      .where(eq(studies.id, record.id));
     if ("headline" in set || "title" in set) await syncStudySlugs(record.id);
     if (record.tags?.length) await setTags(record.id, record.tags);
     changed.push(record.id);
   }
 
-  console.log(`\n${apply ? "applied" : "dry run"}: ${changed.length} studies changed${changed.length ? ` (${changed.join(",")})` : ""}`);
+  console.log(
+    `\n${apply ? "applied" : "dry run"}: ${changed.length} studies changed${changed.length ? ` (${changed.join(",")})` : ""}`,
+  );
 }
 
 main()
