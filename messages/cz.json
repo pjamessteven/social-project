@@ -65,7 +65,7 @@
       "studies": "Akademické studie",
       "studiesShort": "Studie",
       "howItWorks": "Jak to funguje",
-      "statistics": "Verified Statistics"
+      "statistics": "Ověřené statistiky"
     },
     "disclaimer": {
       "trigger": "Zkušenosti a perspektivy na tomto webu pocházejí z Redditu a YouTube.",
@@ -146,7 +146,7 @@
       "support": "Support",
       "stats": "Statistiky",
       "statsDesc": "Anonymizované statistiky detranzice z /r/detrans",
-      "topics": "Topics",
+      "topics": "Témata",
       "topicsDesc": "Podrobní průvodci klíčovými tématy",
       "stories": "Příběhy",
       "storiesDesc": "Od uživatelů /r/detrans"
@@ -246,10 +246,10 @@
   },
   "chat": {
     "lookingForComments": "Hledání relevantních komentářů...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "Hledám relevantní studie...",
     "errorOccurred": "Došlo k chybě, zkuste to znovu... Kontaktujte mě, pokud se to bude opakovat.",
     "analysingExperiences": "Analýza zkušeností",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Analýza studií",
     "analysingWebResults": "Analyzování webových výsledků",
     "analysingResults": "Analyzování výsledků...",
     "detransPerspective": "-> Jaké jsou detranzicionistické perspektivy na toto téma?",
@@ -267,7 +267,7 @@
       "webSearch": "Vyhledávání na webu",
       "queryStudyCatalogue": "Dotaz na katalog studií o detranzici",
       "studyDetail": "Detail studie",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Wiki stránka"
     },
     "eventStatus": {
       "analysingVideos": "Analyzování videí"
@@ -278,7 +278,7 @@
       "webSearchFailed": "Vyhledávání na webu selhalo",
       "failedToFetchStudies": "Načtení studií selhalo",
       "failedToFetchStudy": "Načtení studie selhalo",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Aktualizace wiki stránky selhala"
     },
     "eventEmptyStates": {
       "noVideosFound": "Žádná videa nenalezena",
@@ -306,9 +306,9 @@
   "chatInput": {
     "placeholder": "Zeptejte se detrans.ai...",
     "suggestions": "Návrhy:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Možnosti administrátora",
+    "transPerspectives": "Trans perspektivy",
+    "wikiUpdateMode": "Režim aktualizace wiki (hloubkový výzkum)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -317,23 +317,23 @@
     "tabs": {
       "featured": "Doporučené",
       "all": "Všechny",
-      "mine": "Mine"
+      "mine": "Moje"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "Zamíchat",
       "showMore": "Zobrazit {count} dalších konverzací",
       "showLess": "Zobrazit méně",
       "loadMore": "Načíst další konverzace",
       "loading": "Načítání..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "Vybráno: {count}",
+      "deleteAndBan": "Smazat a zablokovat vybrané",
+      "deletingAndBanning": "Zpracovávám...",
+      "clearSelection": "Zrušit výběr",
+      "confirm": "Opravdu chcete smazat a zablokovat {count} konverzací? Tuto akci nelze vrátit zpět.",
+      "holdKey": "Podržte ⌘/Ctrl pro výběr více položek",
+      "longPress": "Dlouhým stiskem vyberete více položek"
     }
   },
   "conversationCard": {
@@ -605,7 +605,7 @@
     "loading": "Načítání videí...",
     "searchPlaceholder": "Search videos...",
     "result": "video",
-    "results": "videos",
+    "results": "videí",
     "filters": {
       "all": "Všechny příběhy",
       "female": "Ženy",
@@ -748,7 +748,7 @@
       },
       "findTherapist": {
         "title": "Kde mohu najít terapeuta, který praktikuje genderově explorační terapii?",
-        "sidebar": "Find therapists",
+        "sidebar": "Najít terapeuty",
         "languageNotice": "Většina uvedených terapeutů mluví pouze anglicky, ale můžete se stále pokusit je kontaktovat, abyste našli někoho, kdo mluví vaším jazykem. Pokud znáte licencovaného terapeuta, který mluví vaším jazykem, můžete navrhnout jeho přidání na tuto stránku prostřednictvím",
         "contactForm": "kontaktního formuláře",
         "organizations": {
@@ -1070,8 +1070,8 @@
       "title": "CAPTCHA chyba",
       "description": "Nepodařilo se načíst CAPTCHA. Prosím obnovte stránku a zkuste to znovu."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "Ověření selhalo. Zkuste to prosím znovu.",
+    "rateLimited": "Příliš mnoho ověření. Chvíli počkejte a zkuste to znovu."
   },
   "feedback": {
     "title": "Zpětná vazba",

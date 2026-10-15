@@ -65,7 +65,7 @@
       "studies": "Akademske študije",
       "studiesShort": "Študije",
       "howItWorks": "Kako deluje",
-      "statistics": "Verified Statistics"
+      "statistics": "Preverjena statistika"
     },
     "disclaimer": {
       "trigger": "Izkušnje in perspektive na tem spletnem mestu so črpane z Reddita in YouTuba.",
@@ -146,7 +146,7 @@
       "support": "Podpora",
       "stats": "Statistika",
       "statsDesc": "Anonimizirane statistike detranzicije iz /r/detrans",
-      "topics": "Topics",
+      "topics": "Teme",
       "topicsDesc": "Poglobljeni vodniki o ključnih temah",
       "stories": "Zgodbe",
       "storiesDesc": "Od uporabnikov /r/detrans"
@@ -188,7 +188,7 @@
     "de": "Nemščina",
     "he": "Hebrejščina",
     "it": "Italijanščina",
-    "lt": "Lithuanian",
+    "lt": "Litovščina",
     "nl": "Nizozemščina",
     "tr": "Turščina",
     "sl": "Slovenščina"
@@ -246,10 +246,10 @@
   },
   "chat": {
     "lookingForComments": "Iščem relevantne komentarje...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "Iskanje ustreznih študij...",
     "errorOccurred": "Prišlo je do napake, poskusite znova... Stopite v stik z mano, če se to še naprej dogaja.",
     "analysingExperiences": "Analiziranje izkušenj",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Analiziranje študij",
     "analysingWebResults": "Analiziranje spletnih rezultatov",
     "analysingResults": "Analiziram rezultate...",
     "detransPerspective": "-> Kakšne so detranz perspektive o tej temi?",
@@ -257,7 +257,7 @@
     "captchaRequired": "Za nadaljevanje klepeta je potrebna captcha.",
     "chatArchived": "Ta klepet je arhiviran. Začnite novega.",
     "rateLimitExceeded": "Preveč zahtev, upočasnite in poskusite znova pozneje.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "ipMismatchError": "Vaš IP naslov se je spremenil. Za preprečevanje zlorab morate začeti nov pogovor.",
     "followUpQuestions": "Nadaljnja vprašanja:",
     "eventLabels": {
       "askDetransitioners": "Vprašajte detranzicionarje",
@@ -267,7 +267,7 @@
       "webSearch": "Iskanje po spletu",
       "queryStudyCatalogue": "Poizvedba po katalogu študij detranzicije",
       "studyDetail": "Podrobnosti študije",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Wiki stran"
     },
     "eventStatus": {
       "analysingVideos": "Analiziranje videov"
@@ -278,7 +278,7 @@
       "webSearchFailed": "Iskanje po spletu ni uspelo",
       "failedToFetchStudies": "Pridobivanje študij ni uspelo",
       "failedToFetchStudy": "Pridobivanje študije ni uspelo",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Posodobitev wiki strani ni uspela"
     },
     "eventEmptyStates": {
       "noVideosFound": "Ni najdenih videov",
@@ -306,9 +306,9 @@
   "chatInput": {
     "placeholder": "Vprašajte detrans.ai...",
     "suggestions": "Predlogi:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Skrbniške možnosti",
+    "transPerspectives": "Trans perspektive",
+    "wikiUpdateMode": "Način posodabljanja wikija (poglobljena raziskava)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -317,23 +317,23 @@
     "tabs": {
       "featured": "Izpostavljeno",
       "all": "Vsi",
-      "mine": "Mine"
+      "mine": "Moji"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "Premešaj",
       "showMore": "Prikaži še {count} pogovorov",
       "showLess": "Prikaži manj",
       "loadMore": "Naloži več pogovorov",
       "loading": "Nalaganje..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "Izbrano: {count}",
+      "deleteAndBan": "Izbriši in blokiraj izbrane",
+      "deletingAndBanning": "Obdelava ...",
+      "clearSelection": "Počisti izbiro",
+      "confirm": "Ali ste prepričani, da želite izbrisati in blokirati {count} pogovorov? Tega ni mogoče razveljaviti.",
+      "holdKey": "Držite ⌘/Ctrl za večkratno izbiro",
+      "longPress": "Dolgo pritisnite za večkratno izbiro"
     }
   },
   "conversationCard": {
@@ -604,8 +604,8 @@
   "videoList": {
     "loading": "Nalaganje videov...",
     "searchPlaceholder": "Search videos...",
-    "result": "video",
-    "results": "videos",
+    "result": "videoposnetek",
+    "results": "videoposnetkov",
     "filters": {
       "all": "Vse zgodbe",
       "female": "Ženske",
@@ -748,7 +748,7 @@
       },
       "findTherapist": {
         "title": "Kje lahko najdem terapevta, ki izvaja raziskovalno terapijo spola?",
-        "sidebar": "Find therapists",
+        "sidebar": "Poiščite terapevta",
         "languageNotice": "Večina navedenih terapevtov govori samo angleško, vendar jih lahko še vedno kontaktirate, da poiščete nekoga, ki govori vaš jezik. Če poznate licenciranega terapevta, ki govori vaš jezik, ga lahko predlagate za dodajanje na to stran preko",
         "contactForm": "kontaktnega obrazca",
         "organizations": {
@@ -1070,8 +1070,8 @@
       "title": "Napaka CAPTCHA",
       "description": "Nalaganje CAPTCHA ni uspelo. Osvežite stran in poskusite znova."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "Preverjanje ni uspelo. Poskusite znova.",
+    "rateLimited": "Preveč preverjanj. Počakajte trenutek in poskusite znova."
   },
   "feedback": {
     "title": "Povratne informacije",

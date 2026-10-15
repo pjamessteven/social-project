@@ -146,7 +146,7 @@
       "support": "Destek",
       "stats": "İstatistikler",
       "statsDesc": "/r/detrans anonim detransisyon istatistikleri",
-      "topics": "Topics",
+      "topics": "Konular",
       "topicsDesc": "Temel konular hakkında ayrıntılı rehberler",
       "stories": "Hikâyeler",
       "storiesDesc": "/r/detrans kullanıcılarından"
@@ -188,7 +188,7 @@
     "de": "Almanca",
     "he": "İbranice",
     "it": "İtalyanca",
-    "lt": "Lithuanian",
+    "lt": "Litvanca",
     "nl": "Felemenkçe",
     "tr": "Türkçe"
   },
@@ -245,10 +245,10 @@
   },
   "chat": {
     "lookingForComments": "İlgili yorumlar aranıyor...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "İlgili çalışmalar aranıyor...",
     "errorOccurred": "Hata oluştu, tekrar deneyin... Bu sürekli oluyorsa benimle iletişime geçin.",
     "analysingExperiences": "Deneyimler Analiz Ediliyor",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Çalışmalar analiz ediliyor",
     "analysingWebResults": "Web Sonuçları Analiz Ediliyor",
     "analysingResults": "Sonuçlar analiz ediliyor...",
     "detransPerspective": "-> Bu konuda detrans bakış açıları nedir?",
@@ -256,7 +256,7 @@
     "captchaRequired": "Sohbeti devam ettirmek için captcha gerekiyor.",
     "chatArchived": "Bu sohbet arşivlendi. Yeni bir tane başlatın.",
     "rateLimitExceeded": "Çok fazla istek, yavaşlayın ve daha sonra tekrar deneyin.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "ipMismatchError": "IP adresiniz değişti. Kötüye kullanımı önlemek için yeni bir sohbet başlatmalısınız.",
     "followUpQuestions": "Takip soruları:",
     "eventLabels": {
       "askDetransitioners": "Detransitioner'lara Sor",
@@ -266,7 +266,7 @@
       "webSearch": "Web Araması",
       "queryStudyCatalogue": "Detransisyon Çalışma Kataloğunu Sorgula",
       "studyDetail": "Çalışma Detayı",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Wiki sayfası"
     },
     "eventStatus": {
       "analysingVideos": "Videolar Analiz Ediliyor"
@@ -277,7 +277,7 @@
       "webSearchFailed": "Web araması başarısız oldu",
       "failedToFetchStudies": "Çalışmalar getirilemedi",
       "failedToFetchStudy": "Çalışma getirilemedi",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Wiki sayfası güncellenemedi"
     },
     "eventEmptyStates": {
       "noVideosFound": "Video bulunamadı",
@@ -305,9 +305,9 @@
   "chatInput": {
     "placeholder": "detrans.ai'ye sorun...",
     "suggestions": "Öneriler:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Yönetici seçenekleri",
+    "transPerspectives": "Trans bakış açıları",
+    "wikiUpdateMode": "Wiki güncelleme modu (derinlemesine araştırma)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -316,23 +316,23 @@
     "tabs": {
       "featured": "Öne Çıkan",
       "all": "Tümü",
-      "mine": "Mine"
+      "mine": "Benimkiler"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "Karıştır",
       "showMore": "{count} Konuşma Daha Göster",
       "showLess": "Daha Az Göster",
       "loadMore": "Daha Fazla Konuşma Yükle",
       "loading": "Yükleniyor..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "{count} seçildi",
+      "deleteAndBan": "Seçilenleri sil ve yasakla",
+      "deletingAndBanning": "İşleniyor...",
+      "clearSelection": "Seçimi temizle",
+      "confirm": "{count} sohbeti silmek ve yasaklamak istediğinizden emin misiniz? Bu işlem geri alınamaz.",
+      "holdKey": "Çoklu seçim için ⌘/Ctrl tuşunu basılı tutun",
+      "longPress": "Çoklu seçim için uzun basın"
     }
   },
   "conversationCard": {
@@ -604,7 +604,7 @@
     "loading": "Videolar yükleniyor...",
     "searchPlaceholder": "Search videos...",
     "result": "video",
-    "results": "videos",
+    "results": "video",
     "filters": {
       "all": "Tüm Hikayeler",
       "female": "Kadın",
@@ -747,7 +747,7 @@
       },
       "findTherapist": {
         "title": "Cinsiyet keşifsel terapi uygulayan bir terapisti nerede bulabilirim?",
-        "sidebar": "Find therapists",
+        "sidebar": "Terapist bulun",
         "languageNotice": "Listelenen çoğu terapist yalnızca İngilizce konuşuyor, ancak yine de dilinizi konuşan birini bulmak için onlarla iletişime geçmeyi deneyebilirsiniz. Eğer dilinizi konuşan lisanslı bir terapist biliyorsanız,",
         "contactForm": "iletişim formu",
         "organizations": {
@@ -1069,8 +1069,8 @@
       "title": "CAPTCHA Hatası",
       "description": "CAPTCHA yüklenemedi. Lütfen sayfayı yenileyin ve tekrar deneyin."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "Doğrulama başarısız oldu. Lütfen tekrar deneyin.",
+    "rateLimited": "Çok fazla doğrulama denemesi. Lütfen biraz bekleyip tekrar deneyin."
   },
   "feedback": {
     "title": "Geri Bildirim",

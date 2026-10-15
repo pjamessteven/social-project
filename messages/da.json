@@ -65,7 +65,7 @@
       "studies": "Akademiske Studier",
       "studiesShort": "Studier",
       "howItWorks": "Hvordan Det Fungerer",
-      "statistics": "Verified Statistics"
+      "statistics": "Verificeret statistik"
     },
     "disclaimer": {
       "trigger": "Erfaringer og perspektiver på dette site kommer fra Reddit og YouTube.",
@@ -146,7 +146,7 @@
       "support": "Support",
       "stats": "Statistik",
       "statsDesc": "Anonymiserede detransitionsstatistikker fra /r/detrans",
-      "topics": "Topics",
+      "topics": "Emner",
       "topicsDesc": "Dybdegående guider om centrale emner",
       "stories": "Historier",
       "storiesDesc": "Fra /r/detrans-brugere"
@@ -188,9 +188,9 @@
     "de": "Tysk",
     "he": "Hebraisk",
     "it": "Italiensk",
-    "lt": "Lithuanian",
+    "lt": "Litauisk",
     "nl": "Nederlandsk",
-    "tr": "Turkish",
+    "tr": "Tyrkisk",
     "da": "Dansk"
   },
   "settings": {
@@ -246,10 +246,10 @@
   },
   "chat": {
     "lookingForComments": "Leder efter relevante kommentarer...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "Leder efter relevante studier...",
     "errorOccurred": "Der opstod en fejl, prøv igen... Kontakt mig, hvis dette fortsætter.",
     "analysingExperiences": "Analyserer Erfaringer",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Analyserer studier",
     "analysingWebResults": "Analyserer søgeresultater",
     "analysingResults": "Analyserer resultater...",
     "detransPerspective": "-> Hvad er detransperspektiver på dette emne?",
@@ -267,7 +267,7 @@
       "webSearch": "Websøgning",
       "queryStudyCatalogue": "Forespørg i Detransitionsstudiekataloget",
       "studyDetail": "Studiedetaljer",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Wiki-side"
     },
     "eventStatus": {
       "analysingVideos": "Analyserer videoer"
@@ -278,7 +278,7 @@
       "webSearchFailed": "Websøgning mislykkedes",
       "failedToFetchStudies": "Hentning af studier mislykkedes",
       "failedToFetchStudy": "Hentning af studie mislykkedes",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Opdatering af wiki-side mislykkedes"
     },
     "eventEmptyStates": {
       "noVideosFound": "Ingen videoer fundet",
@@ -306,9 +306,9 @@
   "chatInput": {
     "placeholder": "Spørg detrans.ai...",
     "suggestions": "Forslag:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Administratorindstillinger",
+    "transPerspectives": "Transperspektiver",
+    "wikiUpdateMode": "Wiki-opdateringstilstand (dybdegående research)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -320,20 +320,20 @@
       "mine": "Mine"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "Bland",
       "showMore": "Vis {count} Flere Samtaler",
       "showLess": "Vis Færre",
       "loadMore": "Indlæs Flere Samtaler",
       "loading": "Indlæser..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "{count} valgt",
+      "deleteAndBan": "Slet og bloker valgte",
+      "deletingAndBanning": "Behandler...",
+      "clearSelection": "Ryd valg",
+      "confirm": "Er du sikker på, at du vil slette og blokere {count} samtaler? Dette kan ikke fortrydes.",
+      "holdKey": "Hold ⌘/Ctrl nede for at vælge flere",
+      "longPress": "Tryk længe for at vælge flere"
     }
   },
   "conversationCard": {
@@ -605,7 +605,7 @@
     "loading": "Indlæser videoer...",
     "searchPlaceholder": "Search videos...",
     "result": "video",
-    "results": "videos",
+    "results": "videoer",
     "filters": {
       "all": "Alle Historier",
       "female": "Kvinde",
@@ -748,7 +748,7 @@
       },
       "findTherapist": {
         "title": "Hvor kan jeg finde en terapeut, der praktiserer kønseksplorativ terapi?",
-        "sidebar": "Find therapists",
+        "sidebar": "Find terapeuter",
         "languageNotice": "De fleste terapeuter, der er opført, taler kun engelsk, men du kan stadig prøve at kontakte dem for at finde nogen, der taler dit sprog. Hvis du kender til en autoriseret terapeut, der taler dit sprog, kan du foreslå at tilføje dem til denne side via",
         "contactForm": "kontaktformularen",
         "organizations": {
@@ -1070,8 +1070,8 @@
       "title": "CAPTCHA-fejl",
       "description": "Kunne ikke indlæse CAPTCHA. Opdater venligst siden og prøv igen."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "Verificering mislykkedes. Prøv igen.",
+    "rateLimited": "For mange verificeringer. Vent et øjeblik og prøv igen."
   },
   "feedback": {
     "title": "Feedback",

@@ -146,7 +146,7 @@
       "support": "Hỗ trợ",
       "stats": "Thống kê",
       "statsDesc": "Thống kê detransition ẩn danh từ /r/detrans",
-      "topics": "Topics",
+      "topics": "Chủ đề",
       "topicsDesc": "Hướng dẫn chuyên sâu về các chủ đề chính",
       "stories": "Câu chuyện",
       "storiesDesc": "Từ ngưởi dùng /r/detrans"
@@ -188,7 +188,7 @@
     "de": "Tiếng Đức",
     "he": "Tiếng Do Thái",
     "it": "Tiếng Ý",
-    "lt": "Lithuanian",
+    "lt": "Tiếng Litva",
     "nl": "Tiếng Hà Lan",
     "tr": "Tiếng Thổ Nhĩ Kỳ",
     "vi": "Tiếng Việt"
@@ -246,10 +246,10 @@
   },
   "chat": {
     "lookingForComments": "Đang tìm bình luận liên quan...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "Đang tìm các nghiên cứu liên quan...",
     "errorOccurred": "Đã xảy ra lỗi, hãy thử lại... Liên hệ với tôi nếu điều này tiếp tục xảy ra.",
     "analysingExperiences": "Đang Phân Tích Kinh Nghiệm",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Đang phân tích nghiên cứu",
     "analysingWebResults": "Phân tích kết quả web",
     "analysingResults": "Đang phân tích kết quả...",
     "detransPerspective": "-> Quan điểm của ngưởi chuyển giới trở lại về chủ đề này là gì?",
@@ -257,7 +257,7 @@
     "captchaRequired": "Yêu cầu captcha để tiếp tục trò chuyện.",
     "chatArchived": "Cuộc trò chuyện này đã được lưu trữ. Bắt đầu một cuộc trò chuyện mới.",
     "rateLimitExceeded": "Quá nhiều yêu cầu, hãy chậm lại và thử lại sau.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "ipMismatchError": "Địa chỉ IP của bạn đã thay đổi. Để ngăn chặn lạm dụng, bạn phải bắt đầu một cuộc trò chuyện mới.",
     "followUpQuestions": "Câu hỏi tiếp theo:",
     "eventLabels": {
       "askDetransitioners": "Hỏi Người Chuyển Giới Trở Lại",
@@ -267,7 +267,7 @@
       "webSearch": "Tìm Kiếm Web",
       "queryStudyCatalogue": "Truy Vấn Danh Mục Nghiên Cứu Chuyển Giới Trở Lại",
       "studyDetail": "Chi Tiết Nghiên Cứu",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Trang wiki"
     },
     "eventStatus": {
       "analysingVideos": "Đang Phân Tích Video"
@@ -278,7 +278,7 @@
       "webSearchFailed": "Tìm kiếm web thất bại",
       "failedToFetchStudies": "Lấy nghiên cứu thất bại",
       "failedToFetchStudy": "Lấy nghiên cứu thất bại",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Cập nhật trang wiki thất bại"
     },
     "eventEmptyStates": {
       "noVideosFound": "Không tìm thấy video",
@@ -306,9 +306,9 @@
   "chatInput": {
     "placeholder": "Hỏi detrans.ai...",
     "suggestions": "Gợi ý:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Tùy chọn quản trị",
+    "transPerspectives": "Góc nhìn của người chuyển giới",
+    "wikiUpdateMode": "Chế độ cập nhật wiki (nghiên cứu chuyên sâu)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -317,23 +317,23 @@
     "tabs": {
       "featured": "Nổi Bật",
       "all": "Tất Cả",
-      "mine": "Mine"
+      "mine": "Của tôi"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "Xáo trộn",
       "showMore": "Hiển Thị Thêm {count} Cuộc Trò Chuyện",
       "showLess": "Hiển Thị Ít Hơn",
       "loadMore": "Tải Thêm Cuộc Trò Chuyện",
       "loading": "Đang tải..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "Đã chọn {count}",
+      "deleteAndBan": "Xóa & Cấm các mục đã chọn",
+      "deletingAndBanning": "Đang xử lý...",
+      "clearSelection": "Bỏ chọn",
+      "confirm": "Bạn có chắc muốn xóa và cấm {count} cuộc trò chuyện? Hành động này không thể hoàn tác.",
+      "holdKey": "Giữ ⌘/Ctrl để chọn nhiều",
+      "longPress": "Nhấn giữ để chọn nhiều"
     }
   },
   "conversationCard": {
@@ -605,7 +605,7 @@
     "loading": "Đang tải video...",
     "searchPlaceholder": "Search videos...",
     "result": "video",
-    "results": "videos",
+    "results": "video",
     "filters": {
       "all": "Tất Cả Câu Chuyện",
       "female": "Nữ",
@@ -748,7 +748,7 @@
       },
       "findTherapist": {
         "title": "Tôi có thể tìm nhà trị liệu thực hành liệu pháp khám phá giới ở đâu?",
-        "sidebar": "Find therapists",
+        "sidebar": "Tìm nhà trị liệu",
         "languageNotice": "Hầu hết các nhà trị liệu được liệt kê chỉ nói tiếng Anh, nhưng bạn vẫn có thể thử liên hệ với họ để tìm ngưởi nói ngôn ngữ của bạn. Nếu bạn biết một nhà trị liệu được cấp phép nói ngôn ngữ của bạn, bạn có thể đề xuất thêm họ vào trang này thông qua",
         "contactForm": "biểu mẫu liên hệ",
         "organizations": {
@@ -1070,8 +1070,8 @@
       "title": "Lỗi CAPTCHA",
       "description": "Không thể tải CAPTCHA. Vui lòng làm mới trang và thử lại."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "Xác minh thất bại. Vui lòng thử lại.",
+    "rateLimited": "Quá nhiều lần xác minh. Vui lòng đợi một lát rồi thử lại."
   },
   "feedback": {
     "title": "Phản hồi",

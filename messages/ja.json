@@ -146,7 +146,7 @@
       "support": "サポート",
       "stats": "統計",
       "statsDesc": "/r/detrans 匿名デトランジション統計",
-      "topics": "Topics",
+      "topics": "トピック",
       "topicsDesc": "主要なトピックの詳しいガイド",
       "stories": "体験談",
       "storiesDesc": "/r/detransユーザーの投稿"
@@ -187,10 +187,10 @@
     "fr": "フランス語",
     "de": "ドイツ語",
     "he": "ヘブライ語",
-    "it": "Italian",
-    "lt": "Lithuanian",
-    "nl": "Dutch",
-    "tr": "Turkish",
+    "it": "イタリア語",
+    "lt": "リトアニア語",
+    "nl": "オランダ語",
+    "tr": "トルコ語",
     "ja": "日本語"
   },
   "settings": {
@@ -246,10 +246,10 @@
   },
   "chat": {
     "lookingForComments": "関連するコメントを探しています...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "関連する研究を検索中...",
     "errorOccurred": "エラーが発生しました。もう一度お試しください...これが続く場合はお問い合わせください。",
     "analysingExperiences": "経験を分析中",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "研究を分析中",
     "analysingWebResults": "Web検索結果を分析中",
     "analysingResults": "結果を分析中...",
     "detransPerspective": "→ デトランスの視点は？",
@@ -257,7 +257,7 @@
     "captchaRequired": "チャットを続行するにはキャプチャが必要です。",
     "chatArchived": "このチャットはアーカイブされています。新しいものを開始してください。",
     "rateLimitExceeded": "リクエストが多すぎます。速度を落として後でもう一度試してください。",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "ipMismatchError": "IPアドレスが変更されました。不正利用を防ぐため、新しい会話を開始してください。",
     "followUpQuestions": "フォローアップ質問：",
     "eventLabels": {
       "askDetransitioners": "デトランジショナーに聞く",
@@ -267,7 +267,7 @@
       "webSearch": "Web検索",
       "queryStudyCatalogue": "デトランジション研究カタログを検索",
       "studyDetail": "研究詳細",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Wikiページ"
     },
     "eventStatus": {
       "analysingVideos": "動画を分析中"
@@ -278,7 +278,7 @@
       "webSearchFailed": "Web検索に失敗しました",
       "failedToFetchStudies": "研究の取得に失敗しました",
       "failedToFetchStudy": "研究の取得に失敗しました",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Wikiページの更新に失敗しました"
     },
     "eventEmptyStates": {
       "noVideosFound": "動画が見つかりません",
@@ -306,9 +306,9 @@
   "chatInput": {
     "placeholder": "detrans.aiに質問...",
     "suggestions": "提案：",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "管理者オプション",
+    "transPerspectives": "トランスの視点",
+    "wikiUpdateMode": "Wiki更新モード（詳細リサーチ）",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -317,23 +317,23 @@
     "tabs": {
       "featured": "注目",
       "all": "すべて",
-      "mine": "Mine"
+      "mine": "自分の会話"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "シャッフル",
       "showMore": "{count}件の会話をさらに表示",
       "showLess": "少なく表示",
       "loadMore": "さらに会話を読み込む",
       "loading": "読み込み中..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "{count}件選択中",
+      "deleteAndBan": "選択した会話を削除してBAN",
+      "deletingAndBanning": "処理中...",
+      "clearSelection": "選択を解除",
+      "confirm": "{count}件の会話を削除してBANしてもよろしいですか？この操作は元に戻せません。",
+      "holdKey": "⌘/Ctrlを押しながらクリックで複数選択",
+      "longPress": "長押しで複数選択"
     }
   },
   "conversationCard": {
@@ -612,8 +612,8 @@
   "videoList": {
     "loading": "動画を読み込み中...",
     "searchPlaceholder": "Search videos...",
-    "result": "video",
-    "results": "videos",
+    "result": "件の動画",
+    "results": "件の動画",
     "filters": {
       "all": "すべてのストーリー",
       "female": "女性",
@@ -756,7 +756,7 @@
       },
       "findTherapist": {
         "title": "ジェンダー探索療法を実践するセラピストはどこで見つけられますか？",
-        "sidebar": "Find therapists",
+        "sidebar": "セラピストを探す",
         "languageNotice": "リストされているほとんどのセラピストは英語のみを話しますが、あなたの言語を話す人を見つけるために連絡してみることはできます。あなたの言語を話す認定セラピストを知っている場合は、",
         "contactForm": "お問い合わせフォーム",
         "organizations": {
@@ -1078,8 +1078,8 @@
       "title": "CAPTCHAエラー",
       "description": "CAPTCHAの読み込みに失敗しました。ページを更新してもう一度お試しください。"
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "認証に失敗しました。もう一度お試しください。",
+    "rateLimited": "認証の試行回数が多すぎます。しばらく待ってからもう一度お試しください。"
   },
   "feedback": {
     "title": "フィードバック",

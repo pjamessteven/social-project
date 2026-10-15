@@ -65,7 +65,7 @@
       "studies": "Академични изследвания",
       "studiesShort": "Изследвания",
       "howItWorks": "Как работи",
-      "statistics": "Verified Statistics"
+      "statistics": "Проверена статистика"
     },
     "disclaimer": {
       "trigger": "Преживяванията и гледните точки на този сайт са взети от Reddit и YouTube.",
@@ -146,7 +146,7 @@
       "support": "Подкрепа",
       "stats": "Статистика",
       "statsDesc": "Анонимизирана статистика за детранзиция от /r/detrans",
-      "topics": "Topics",
+      "topics": "Теми",
       "topicsDesc": "Задълбочени ръководства по ключови теми",
       "stories": "Истории",
       "storiesDesc": "От потребители на /r/detrans"
@@ -188,7 +188,7 @@
     "de": "Немски",
     "he": "Иврит",
     "it": "Италиански",
-    "lt": "Lithuanian",
+    "lt": "Литовски",
     "nl": "Холандски",
     "tr": "Турски",
     "bg": "Български"
@@ -246,10 +246,10 @@
   },
   "chat": {
     "lookingForComments": "Търсене на релевантни коментари...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "Търсене на подходящи изследвания...",
     "errorOccurred": "Възникна грешка, опитайте отново... Свържете се с мен, ако това продължава да се случва.",
     "analysingExperiences": "Анализиране на преживявания",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Анализиране на изследвания",
     "analysingWebResults": "Анализиране на уеб резултати",
     "analysingResults": "Анализиране на резултатите...",
     "detransPerspective": "-> Какви са детранс гледните точки по тази тема?",
@@ -267,7 +267,7 @@
       "webSearch": "Търсене в мрежата",
       "queryStudyCatalogue": "Заявка към каталога с изследвания за детранзиция",
       "studyDetail": "Детайли на изследването",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Уики страница"
     },
     "eventStatus": {
       "analysingVideos": "Анализиране на видеа"
@@ -278,7 +278,7 @@
       "webSearchFailed": "Неуспешно търсене в мрежата",
       "failedToFetchStudies": "Неуспешно извличане на изследвания",
       "failedToFetchStudy": "Неуспешно извличане на изследване",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Неуспешно обновяване на уики страницата"
     },
     "eventEmptyStates": {
       "noVideosFound": "Няма намерени видеа",
@@ -306,9 +306,9 @@
   "chatInput": {
     "placeholder": "Попитайте detrans.ai...",
     "suggestions": "Предложения:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Администраторски опции",
+    "transPerspectives": "Транс гледни точки",
+    "wikiUpdateMode": "Режим за обновяване на уики (задълбочено проучване)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -317,23 +317,23 @@
     "tabs": {
       "featured": "Препоръчани",
       "all": "Всички",
-      "mine": "Mine"
+      "mine": "Моите"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "Разбъркай",
       "showMore": "Покажи още {count} разговора",
       "showLess": "Покажи по-малко",
       "loadMore": "Зареди още разговори",
       "loading": "Зареждане..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "{count} избрани",
+      "deleteAndBan": "Изтрий и блокирай избраните",
+      "deletingAndBanning": "Обработка...",
+      "clearSelection": "Изчисти избора",
+      "confirm": "Сигурни ли сте, че искате да изтриете и блокирате {count} разговора? Това не може да бъде отменено.",
+      "holdKey": "Задръжте ⌘/Ctrl за множествен избор",
+      "longPress": "Задръжте продължително за множествен избор"
     }
   },
   "conversationCard": {
@@ -604,8 +604,8 @@
   "videoList": {
     "loading": "Зареждане на видеа...",
     "searchPlaceholder": "Search videos...",
-    "result": "video",
-    "results": "videos",
+    "result": "видео",
+    "results": "видеа",
     "filters": {
       "all": "Всички истории",
       "female": "Жени",
@@ -748,7 +748,7 @@
       },
       "findTherapist": {
         "title": "Къде мога да намеря терапевт, който практикува полова изследователска терапия?",
-        "sidebar": "Find therapists",
+        "sidebar": "Намерете терапевти",
         "languageNotice": "Повечето изброени терапевти говорят само английски, но можете все пак да се опитате да се свържете с тях, за да намерите някой, който говори вашия език. Ако знаете за лицензиран терапевт, който говори вашия език, можете да предложите да бъде добавен към тази страница чрез",
         "contactForm": "формуляра за контакт",
         "organizations": {
@@ -1070,8 +1070,8 @@
       "title": "CAPTCHA грешка",
       "description": "Неуспешно зареждане на CAPTCHA. Моля, опреснете страницата и опитайте отново."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "Проверката е неуспешна. Моля, опитайте отново.",
+    "rateLimited": "Твърде много проверки. Моля, изчакайте малко и опитайте отново."
   },
   "feedback": {
     "title": "Обратна връзка",

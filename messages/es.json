@@ -146,7 +146,7 @@
       "support": "Apoyo",
       "stats": "Estadísticas",
       "statsDesc": "Estadísticas de detransición anonimizadas de /r/detrans",
-      "topics": "Topics",
+      "topics": "Temas",
       "topicsDesc": "Guías detalladas sobre temas clave",
       "stories": "Historias",
       "storiesDesc": "De usuarios de /r/detrans"
@@ -188,9 +188,9 @@
     "de": "Alemán",
     "he": "Hebreo",
     "it": "Italiano",
-    "lt": "Lithuanian",
+    "lt": "Lituano",
     "nl": "Neerlandés",
-    "tr": "Turkish"
+    "tr": "Turco"
   },
   "settings": {
     "title": "Configuración"
@@ -245,10 +245,10 @@
   },
   "chat": {
     "lookingForComments": "Buscando comentarios relevantes...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "Buscando estudios relevantes...",
     "errorOccurred": "Ocurrió un error, inténtalo de nuevo... Contáctame si esto sigue sucediendo.",
     "analysingExperiences": "Analizando Experiencias de Destransición",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Analizando estudios",
     "analysingWebResults": "Analizando resultados web",
     "analysingResults": "Analizando resultados...",
     "detransPerspective": "-> ¿Cuáles son las perspectivas de destransición sobre este tema?",
@@ -266,7 +266,7 @@
       "webSearch": "Búsqueda Web",
       "queryStudyCatalogue": "Consultar Catálogo de Estudios de Destransición",
       "studyDetail": "Detalle del Estudio",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Página wiki"
     },
     "eventStatus": {
       "analysingVideos": "Analizando Videos"
@@ -277,7 +277,7 @@
       "webSearchFailed": "Error en la búsqueda web",
       "failedToFetchStudies": "Error al obtener estudios",
       "failedToFetchStudy": "Error al obtener el estudio",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Error al actualizar la página wiki"
     },
     "eventEmptyStates": {
       "noVideosFound": "No se encontraron videos",
@@ -305,9 +305,9 @@
   "chatInput": {
     "placeholder": "Pregunta a detrans.ai...",
     "suggestions": "Sugerencias:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Opciones de administrador",
+    "transPerspectives": "Perspectivas trans",
+    "wikiUpdateMode": "Modo de actualización de la wiki (investigación profunda)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -316,23 +316,23 @@
     "tabs": {
       "featured": "Destacadas",
       "all": "Todas",
-      "mine": "Mine"
+      "mine": "Mías"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "Mezclar",
       "showMore": "Mostrar {count} conversaciones más",
       "showLess": "Mostrar menos",
       "loadMore": "Cargar más conversaciones",
       "loading": "Cargando..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "{count} seleccionadas",
+      "deleteAndBan": "Eliminar y bloquear seleccionadas",
+      "deletingAndBanning": "Procesando...",
+      "clearSelection": "Borrar selección",
+      "confirm": "¿Seguro que quieres eliminar y bloquear {count} conversaciones? Esta acción no se puede deshacer.",
+      "holdKey": "Mantén ⌘/Ctrl para seleccionar varias",
+      "longPress": "Mantén pulsado para seleccionar varias"
     }
   },
   "conversationCard": {
@@ -603,8 +603,8 @@
   "videoList": {
     "loading": "Cargando videos...",
     "searchPlaceholder": "Search videos...",
-    "result": "video",
-    "results": "videos",
+    "result": "vídeo",
+    "results": "vídeos",
     "filters": {
       "all": "Todas las Historias",
       "female": "Femenino",
@@ -747,7 +747,7 @@
       },
       "findTherapist": {
         "title": "¿Dónde puedo encontrar un terapeuta que practique terapia exploratoria de género?",
-        "sidebar": "Find therapists",
+        "sidebar": "Encontrar terapeutas",
         "languageNotice": "La mayoría de los terapeutas listados solo hablan inglés, pero aún puedes intentar contactarlos para encontrar alguien que hable tu idioma. Si conoces a un terapeuta licenciado que hable tu idioma, puedes sugerir agregarlos a esta página a través del",
         "contactForm": "formulario de contacto",
         "organizations": {
@@ -1069,8 +1069,8 @@
       "title": "Error de CAPTCHA",
       "description": "Error al cargar el CAPTCHA. Por favor actualiza la página e intenta de nuevo."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "La verificación ha fallado. Inténtalo de nuevo.",
+    "rateLimited": "Demasiadas verificaciones. Espera un momento e inténtalo de nuevo."
   },
   "feedback": {
     "title": "Comentarios",

@@ -146,7 +146,7 @@
       "support": "Підтримка",
       "stats": "Статистика",
       "statsDesc": "Анонімізована статистика детранзиції з /r/detrans",
-      "topics": "Topics",
+      "topics": "Теми",
       "topicsDesc": "Докладні посібники з ключових тем",
       "stories": "Історії",
       "storiesDesc": "Від користувачів /r/detrans"
@@ -188,7 +188,7 @@
     "de": "Німецька",
     "he": "Іврит",
     "it": "Італійська",
-    "lt": "Lithuanian",
+    "lt": "Литовська",
     "nl": "Голландська",
     "tr": "Турецька",
     "uk": "Українська"
@@ -246,10 +246,10 @@
   },
   "chat": {
     "lookingForComments": "Пошук відповідних коментарів...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "Пошук відповідних досліджень...",
     "errorOccurred": "Сталася помилка, спробуйте ще раз... Зв'яжіться зі мною, якщо це повторюється.",
     "analysingExperiences": "Аналіз досвіду",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Аналіз досліджень",
     "analysingWebResults": "Аналіз веб-результатів",
     "analysingResults": "Аналіз результатів...",
     "detransPerspective": "-> Які погляди детранзішнерів на цю тему?",
@@ -257,7 +257,7 @@
     "captchaRequired": "Потрібна капча для продовження чату.",
     "chatArchived": "Цей чат архівовано. Почніть новий.",
     "rateLimitExceeded": "Забагато запитів, уповільніться і спробуйте пізніше.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "ipMismatchError": "Вашу IP-адресу змінено. Щоб запобігти зловживанням, ви маєте розпочати нову розмову.",
     "followUpQuestions": "Уточнюючі запитання:",
     "eventLabels": {
       "askDetransitioners": "Запитати детранзішнерів",
@@ -267,7 +267,7 @@
       "webSearch": "Веб-пошук",
       "queryStudyCatalogue": "Пошук у каталозі досліджень детранзішну",
       "studyDetail": "Деталі дослідження",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Вікі-сторінка"
     },
     "eventStatus": {
       "analysingVideos": "Аналіз відео"
@@ -278,7 +278,7 @@
       "webSearchFailed": "Веб-пошук не вдався",
       "failedToFetchStudies": "Не вдалося отримати дослідження",
       "failedToFetchStudy": "Не вдалося отримати дослідження",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Не вдалося оновити вікі-сторінку"
     },
     "eventEmptyStates": {
       "noVideosFound": "Відео не знайдено",
@@ -306,9 +306,9 @@
   "chatInput": {
     "placeholder": "Запитайте detrans.ai...",
     "suggestions": "Пропозиції:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Параметри адміністратора",
+    "transPerspectives": "Транс-перспективи",
+    "wikiUpdateMode": "Режим оновлення вікі (глибоке дослідження)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -317,23 +317,23 @@
     "tabs": {
       "featured": "Рекомендовані",
       "all": "Всі",
-      "mine": "Mine"
+      "mine": "Мої"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "Перемішати",
       "showMore": "Показати ще {count} розмов",
       "showLess": "Показати менше",
       "loadMore": "Завантажити більше розмов",
       "loading": "Завантаження..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "Вибрано: {count}",
+      "deleteAndBan": "Видалити й заблокувати вибрані",
+      "deletingAndBanning": "Обробка...",
+      "clearSelection": "Скасувати вибір",
+      "confirm": "Ви впевнені, що хочете видалити й заблокувати {count} розмов? Цю дію не можна скасувати.",
+      "holdKey": "Утримуйте ⌘/Ctrl для множинного вибору",
+      "longPress": "Довге натискання для множинного вибору"
     }
   },
   "conversationCard": {
@@ -604,8 +604,8 @@
   "videoList": {
     "loading": "Завантаження відео...",
     "searchPlaceholder": "Search videos...",
-    "result": "video",
-    "results": "videos",
+    "result": "відео",
+    "results": "відео",
     "filters": {
       "all": "Всі історії",
       "female": "Жінки",
@@ -748,7 +748,7 @@
       },
       "findTherapist": {
         "title": "Де я можу знайти терапевта, який практикує гендерно-дослідницьку терапію?",
-        "sidebar": "Find therapists",
+        "sidebar": "Знайти терапевта",
         "languageNotice": "Більшість перерахованих терапевтів говорять лише англійською, але ви все ще можете спробувати зв'язатися з ними, щоб знайти когось, хто говорить вашою мовою. Якщо ви знаєте ліцензованого терапевта, який говорить вашою мовою, ви можете запропонувати додати його на цю сторінку через",
         "contactForm": "контактну форму",
         "organizations": {
@@ -1070,8 +1070,8 @@
       "title": "Помилка CAPTCHA",
       "description": "Не вдалося завантажити CAPTCHA. Будь ласка, оновіть сторінку та спробуйте ще раз."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "Перевірку не пройдено. Будь ласка, спробуйте ще раз.",
+    "rateLimited": "Забагато перевірок. Будь ласка, зачекайте трохи й спробуйте знову."
   },
   "feedback": {
     "title": "Зворотний зв'язок",

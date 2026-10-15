@@ -146,7 +146,7 @@
       "support": "การสนับสนุน",
       "stats": "สถิติ",
       "statsDesc": "สถิติการเปลี่ยนกลับโดยไม่เปิดเผยตัวจาก /r/detrans",
-      "topics": "Topics",
+      "topics": "หัวข้อ",
       "topicsDesc": "คู่มือเชิงลึกเกี่ยวกับหัวข้อสำคัญ",
       "stories": "เรื่องราว",
       "storiesDesc": "จากผู้ใช้ /r/detrans"
@@ -188,7 +188,7 @@
     "de": "เยอรมัน",
     "he": "ฮีบรู",
     "it": "อิตาลี",
-    "lt": "Lithuanian",
+    "lt": "ลิทัวเนีย",
     "nl": "ดัตช์",
     "tr": "ตุรกี",
     "th": "ไทย"
@@ -246,10 +246,10 @@
   },
   "chat": {
     "lookingForComments": "กำลังค้นหาความคิดเห็นที่เกี่ยวข้อง...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "กำลังค้นหางานวิจัยที่เกี่ยวข้อง...",
     "errorOccurred": "เกิดข้อผิดพลาด ลองอีกครั้ง... ติดต่อฉันหากยังคงเกิดขึ้น",
     "analysingExperiences": "กำลังวิเคราะห์ประสบการณ์",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "กำลังวิเคราะห์งานวิจัย",
     "analysingWebResults": "กำลังวิเคราะห์ผลลัพธ์จากเว็บ",
     "analysingResults": "กำลังวิเคราะห์ผลลัพธ์...",
     "detransPerspective": "-> มุมมองของผู้เลิกเปลี่ยนเพศเกี่ยวกับหัวข้อนี้คืออะไร?",
@@ -257,7 +257,7 @@
     "captchaRequired": "ต้องใช้แคปช่าถึงจะแชทต่อได้",
     "chatArchived": "แชทนี้ถูกเก็บถาวรแล้ว เริ่มใหม่ได้เลย",
     "rateLimitExceeded": "คำขอมากเกินไป ชะลอตัวลงและลองอีกครั้งในภายหลัง",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "ipMismatchError": "ที่อยู่ IP ของคุณเปลี่ยนไป เพื่อป้องกันการใช้งานในทางที่ผิด คุณต้องเริ่มบทสนทนาใหม่",
     "followUpQuestions": "คำถามติดตาม:",
     "eventLabels": {
       "askDetransitioners": "ถามผู้เลิกเปลี่ยนเพศ",
@@ -267,7 +267,7 @@
       "webSearch": "ค้นหาเว็บ",
       "queryStudyCatalogue": "ค้นหาแคตตาล็อกการศึกษาการเลิกเปลี่ยนเพศ",
       "studyDetail": "รายละเอียดการศึกษา",
-      "wikiPage": "Wiki page"
+      "wikiPage": "หน้าวิกิ"
     },
     "eventStatus": {
       "analysingVideos": "กำลังวิเคราะห์วิดีโอ"
@@ -278,7 +278,7 @@
       "webSearchFailed": "ค้นหาเว็บล้มเหลว",
       "failedToFetchStudies": "ดึงข้อมูลการศึกษาไม่สำเร็จ",
       "failedToFetchStudy": "ดึงข้อมูลการศึกษาไม่สำเร็จ",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "อัปเดตหน้าวิกิไม่สำเร็จ"
     },
     "eventEmptyStates": {
       "noVideosFound": "ไม่พบวิดีโอ",
@@ -306,9 +306,9 @@
   "chatInput": {
     "placeholder": "ถาม detrans.ai...",
     "suggestions": "คำแนะนำ:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "ตัวเลือกผู้ดูแลระบบ",
+    "transPerspectives": "มุมมองของคนข้ามเพศ",
+    "wikiUpdateMode": "โหมดอัปเดตวิกิ (ค้นคว้าเชิงลึก)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -317,23 +317,23 @@
     "tabs": {
       "featured": "ที่แนะนำ",
       "all": "ทั้งหมด",
-      "mine": "Mine"
+      "mine": "ของฉัน"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "สุ่ม",
       "showMore": "แสดงการสนทนาเพิ่ม {count}",
       "showLess": "แสดงน้อยลง",
       "loadMore": "โหลดการสนทนาเพิ่ม",
       "loading": "กำลังโหลด..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "เลือกแล้ว {count} รายการ",
+      "deleteAndBan": "ลบและแบนรายการที่เลือก",
+      "deletingAndBanning": "กำลังดำเนินการ...",
+      "clearSelection": "ล้างการเลือก",
+      "confirm": "คุณแน่ใจหรือไม่ว่าต้องการลบและแบน {count} บทสนทนา? การดำเนินการนี้ไม่สามารถย้อนกลับได้",
+      "holdKey": "กด ⌘/Ctrl ค้างไว้เพื่อเลือกหลายรายการ",
+      "longPress": "กดค้างเพื่อเลือกหลายรายการ"
     }
   },
   "conversationCard": {
@@ -604,8 +604,8 @@
   "videoList": {
     "loading": "กำลังโหลดวิดีโอ...",
     "searchPlaceholder": "Search videos...",
-    "result": "video",
-    "results": "videos",
+    "result": "วิดีโอ",
+    "results": "วิดีโอ",
     "filters": {
       "all": "เรื่องราวทั้งหมด",
       "female": "หญิง",
@@ -748,7 +748,7 @@
       },
       "findTherapist": {
         "title": "ฉันจะหานักบำบัดที่ฝึกการบำบัดสำรวจเพศได้ที่ไหน?",
-        "sidebar": "Find therapists",
+        "sidebar": "ค้นหานักบำบัด",
         "languageNotice": "นักบำบัดส่วนใหญ่ที่ระบุพูดภาษาอังกฤษเท่านั้น แต่คุณยังสามารถลองติดต่อพวกเขาเพื่อหาคนที่พูดภาษาของคุณ หากคุณรู้จักนักบำบัดที่ได้รับใบอนุญาตที่พูดภาษาของคุณ คุณสามารถแนะนำให้เพิ่มพวกเขาในหน้านี้ผ่าน",
         "contactForm": "แบบฟอร์มติดต่อ",
         "organizations": {
@@ -762,14 +762,14 @@
             "name": "Therapy First",
             "description": "Therapy First รวมผู้เชี่ยวชาญด้านสุขภาพจิตที่เชื่อว่าลูกค้าที่มีความกลุ้มใจทางเพศสมควรได้รับจิตบำบัดแบบเปิดที่สำรวจปัจจัยที่ไม่รู้สำนึกและบริบทก่อนขั้นตอนการแพทย์ที่ไม่สามารถย้อนกลับใดๆ พวกเขาปฏิเสธทั้งการปฏิบัติการแปลงและโมเดล 'affirm-only' ยืนหยัดในความเป็นอิสระของลูกค้า และมองการเปลี่ยนเพศทางการแพทย์ในวัยเด็ก/วัยรุ่นว่าเป็นการทดลอง ในขณะที่ยังสนับสนุนสิทธิในการเป็นอิสระของร่างกายสำหรับผู้ใหญ่และการสำรวจบำบัดต่อไป",
             "directory": "ทำเนียบนักบำบัดของ Therapy First",
-            "about": "About Therapy First"
+            "about": "เกี่ยวกับ Therapy First"
           },
           "beyondTrans": {
             "name": "Beyond Trans",
             "description": "Stella O'Malley เปิดตัว Gender Dysphoria Support Network ในเดือนมีนาคม 2020 เพื่อให้ความช่วยเหลือที่ไม่มีอคติแก่ผู้ปกครองที่มีบุตรที่มีความกลุ้มใจทางเพศ มันเติบโตอย่างรวดเร็วเป็นชุมชนระดับโลก กระตุ้นการสร้าง Genspect ในปี 2021 ผู้สนับสนุนการดูแลที่ไม่ใช่การแพทย์ การรับรู้ถึงความเสียใจในการเปลี่ยนเพศที่เพิ่มขึ้น กลุ่มเริ่ม Beyond Trans ในปี 2022 และในเดือนมิถุนายน 2025 รวมกับ GDSN เพื่อสร้างเครือข่ายการสนับสนุนที่เป็นเอกภาพและอิงหลักฐานสำหรับครอบครัว บุคคล และผู้เลิกเปลี่ยนเพศ",
             "directory": "ทำเนียบนักบำบัดของ Beyond Trans",
             "supportGroups": "กลุ่มสนับสนุนของ Beyond Trans",
-            "about": "About Beyond Trans"
+            "about": "เกี่ยวกับ Beyond Trans"
           },
           "detransFoundation": {
             "name": "The Detrans Foundation",
@@ -1070,8 +1070,8 @@
       "title": "ข้อผิดพลาด CAPTCHA",
       "description": "ไม่สามารถโหลด CAPTCHA ได้ กรุณารีเฟรชหน้าและลองอีกครั้ง"
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "การยืนยันล้มเหลว โปรดลองอีกครั้ง",
+    "rateLimited": "มีการยืนยันมากเกินไป โปรดรอสักครู่แล้วลองอีกครั้ง"
   },
   "feedback": {
     "title": "ความคิดเห็น",

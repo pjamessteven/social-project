@@ -65,7 +65,7 @@
       "studies": "Ακαδημαϊκές Μελέτες",
       "studiesShort": "Μελέτες",
       "howItWorks": "Πώς Λειτουργεί",
-      "statistics": "Verified Statistics"
+      "statistics": "Επαληθευμένα στατιστικά"
     },
     "disclaimer": {
       "trigger": "Οι εμπειρίες και οι απόψεις σε αυτόν τον ιστότοπο προέρχονται από το Reddit και το YouTube.",
@@ -146,7 +146,7 @@
       "support": "Υποστήριξη",
       "stats": "Στατιστικά",
       "statsDesc": "Ανωνυμοποιημένα στατιστικά απομετάβασης από /r/detrans",
-      "topics": "Topics",
+      "topics": "Θέματα",
       "topicsDesc": "Αναλυτικοί οδηγοί για βασικά θέματα",
       "stories": "Ιστορίες",
       "storiesDesc": "Από χρήστες /r/detrans"
@@ -247,10 +247,10 @@
   },
   "chat": {
     "lookingForComments": "Αναζήτηση σχετικών σχολίων...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "Αναζήτηση σχετικών μελετών...",
     "errorOccurred": "Προέκυψε σφάλμα, προσπάθησε ξανά... Επικοινώνησε μαζί μου αν συνεχίζεται.",
     "analysingExperiences": "Ανάλυση Εμπειριών",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Ανάλυση μελετών",
     "analysingWebResults": "Ανάλυση αποτελεσμάτων ιστού",
     "analysingResults": "Ανάλυση αποτελεσμάτων...",
     "detransPerspective": "-> Ποιες είναι οι απόψεις των ατόμων που αποχώρησαν από την αλλαγή φύλου γι' αυτό το θέμα;",
@@ -268,7 +268,7 @@
       "webSearch": "Αναζήτηση στο Web",
       "queryStudyCatalogue": "Ερώτημα στον Κατάλογο Μελετών Αποχώρησης",
       "studyDetail": "Λεπτομέρειες Μελέτης",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Σελίδα wiki"
     },
     "eventStatus": {
       "analysingVideos": "Ανάλυση Βίντεο"
@@ -279,7 +279,7 @@
       "webSearchFailed": "Η αναζήτηση στο web απέτυχε",
       "failedToFetchStudies": "Αποτυχία λήψης μελετών",
       "failedToFetchStudy": "Αποτυχία λήψης μελέτης",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Η ενημέρωση της σελίδας wiki απέτυχε"
     },
     "eventEmptyStates": {
       "noVideosFound": "Δεν βρέθηκαν βίντεο",
@@ -307,9 +307,9 @@
   "chatInput": {
     "placeholder": "Ρώτησε το detrans.ai...",
     "suggestions": "Προτάσεις:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Επιλογές διαχειριστή",
+    "transPerspectives": "Τρανς οπτικές",
+    "wikiUpdateMode": "Λειτουργία ενημέρωσης wiki (σε βάθος έρευνα)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -318,23 +318,23 @@
     "tabs": {
       "featured": "Επιλεγμένα",
       "all": "Όλα",
-      "mine": "Mine"
+      "mine": "Δικές μου"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "Ανακάτεμα",
       "showMore": "Εμφάνιση {count} Περισσότερων Συνομιλιών",
       "showLess": "Εμφάνιση Λιγότερων",
       "loadMore": "Φόρτωση Περισσότερων Συνομιλιών",
       "loading": "Φόρτωση..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "{count} επιλεγμένες",
+      "deleteAndBan": "Διαγραφή & αποκλεισμός επιλεγμένων",
+      "deletingAndBanning": "Επεξεργασία...",
+      "clearSelection": "Εκκαθάριση επιλογής",
+      "confirm": "Είσαι σίγουρος/η ότι θέλεις να διαγράψεις και να αποκλείσεις {count} συνομιλίες; Αυτό δεν μπορεί να αναιρεθεί.",
+      "holdKey": "Κράτα πατημένο το ⌘/Ctrl για πολλαπλή επιλογή",
+      "longPress": "Παρατεταμένο πάτημα για πολλαπλή επιλογή"
     }
   },
   "conversationCard": {
@@ -605,8 +605,8 @@
   "videoList": {
     "loading": "Φόρτωση βίντεο...",
     "searchPlaceholder": "Search videos...",
-    "result": "video",
-    "results": "videos",
+    "result": "βίντεο",
+    "results": "βίντεο",
     "filters": {
       "all": "Όλες οι Ιστορίες",
       "female": "Θήλυ",
@@ -1071,8 +1071,8 @@
       "title": "Σφάλμα CAPTCHA",
       "description": "Αποτυχία φόρτωσης CAPTCHA. Παρακαλώ ανανέωσε τη σελίδα και δοκίμασε ξανά."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "Η επαλήθευση απέτυχε. Δοκίμασε ξανά.",
+    "rateLimited": "Πάρα πολλές επαληθεύσεις. Περίμενε λίγο και δοκίμασε ξανά."
   },
   "feedback": {
     "title": "Ανατροφοδότηση",

@@ -146,7 +146,7 @@
       "support": "Dukungan",
       "stats": "Statistik",
       "statsDesc": "Statistik detransisi anonim dari /r/detrans",
-      "topics": "Topics",
+      "topics": "Topik",
       "topicsDesc": "Panduan mendalam tentang topik-topik utama",
       "stories": "Kisah",
       "storiesDesc": "Dari pengguna /r/detrans"
@@ -188,7 +188,7 @@
     "de": "Bahasa Jerman",
     "he": "Bahasa Ibrani",
     "it": "Bahasa Italia",
-    "lt": "Lithuanian",
+    "lt": "Bahasa Lituania",
     "nl": "Bahasa Belanda",
     "tr": "Bahasa Turki",
     "id": "Bahasa Indonesia"
@@ -246,10 +246,10 @@
   },
   "chat": {
     "lookingForComments": "Mencari komentar yang relevan...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "Mencari studi yang relevan...",
     "errorOccurred": "Terjadi kesalahan, coba lagi... Hubungi saya jika ini terus terjadi.",
     "analysingExperiences": "Menganalisis Pengalaman",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Menganalisis studi",
     "analysingWebResults": "Menganalisis Hasil Web",
     "analysingResults": "Menganalisis hasil...",
     "detransPerspective": "-> Apa perspektif orang yang berhenti transisi tentang topik ini?",
@@ -257,7 +257,7 @@
     "captchaRequired": "Captcha diperlukan untuk melanjutkan obrolan.",
     "chatArchived": "Obrolan ini diarsipkan. Mulai yang baru.",
     "rateLimitExceeded": "Terlalu banyak permintaan, pelan-pelan dan coba lagi nanti.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "ipMismatchError": "Alamat IP Anda telah berubah. Untuk mencegah penyalahgunaan, Anda harus memulai percakapan baru.",
     "followUpQuestions": "Pertanyaan tindak lanjut:",
     "eventLabels": {
       "askDetransitioners": "Tanyakan kepada Detransitioner",
@@ -267,7 +267,7 @@
       "webSearch": "Pencarian Web",
       "queryStudyCatalogue": "Kueri Katalog Studi Detransisi",
       "studyDetail": "Detail Studi",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Halaman wiki"
     },
     "eventStatus": {
       "analysingVideos": "Menganalisis Video"
@@ -278,7 +278,7 @@
       "webSearchFailed": "Pencarian web gagal",
       "failedToFetchStudies": "Gagal mengambil studi",
       "failedToFetchStudy": "Gagal mengambil studi",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Pembaruan halaman wiki gagal"
     },
     "eventEmptyStates": {
       "noVideosFound": "Tidak ada video ditemukan",
@@ -306,9 +306,9 @@
   "chatInput": {
     "placeholder": "Tanyakan detrans.ai...",
     "suggestions": "Saran:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Opsi admin",
+    "transPerspectives": "Perspektif trans",
+    "wikiUpdateMode": "Mode pembaruan wiki (riset mendalam)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -317,23 +317,23 @@
     "tabs": {
       "featured": "Unggulan",
       "all": "Semua",
-      "mine": "Mine"
+      "mine": "Milik saya"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "Acak",
       "showMore": "Tampilkan {count} Percakapan Lainnya",
       "showLess": "Tampilkan Lebih Sedikit",
       "loadMore": "Muat Percakapan Lainnya",
       "loading": "Memuat..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "{count} dipilih",
+      "deleteAndBan": "Hapus & Blokir yang Dipilih",
+      "deletingAndBanning": "Memproses...",
+      "clearSelection": "Hapus Pilihan",
+      "confirm": "Apakah Anda yakin ingin menghapus dan memblokir {count} percakapan? Tindakan ini tidak dapat dibatalkan.",
+      "holdKey": "Tahan ⌘/Ctrl untuk memilih banyak",
+      "longPress": "Tekan lama untuk memilih banyak"
     }
   },
   "conversationCard": {
@@ -613,7 +613,7 @@
     "loading": "Memuat video...",
     "searchPlaceholder": "Search videos...",
     "result": "video",
-    "results": "videos",
+    "results": "video",
     "filters": {
       "all": "Semua Cerita",
       "female": "Perempuan",
@@ -756,7 +756,7 @@
       },
       "findTherapist": {
         "title": "Di mana saya dapat menemukan terapis yang mempraktikkan terapi eksplorasi gender?",
-        "sidebar": "Find therapists",
+        "sidebar": "Temukan terapis",
         "languageNotice": "Sebagian besar terapis yang terdaftar hanya berbicara bahasa Inggris, tetapi Anda masih dapat mencoba menghubungi mereka untuk menemukan seseorang yang berbicara bahasa Anda. Jika Anda tahu terapis berlisensi yang berbicara bahasa Anda, Anda dapat menyarankan untuk menambahkannya ke halaman ini melalui",
         "contactForm": "formulir kontak",
         "organizations": {
@@ -1078,8 +1078,8 @@
       "title": "Kesalahan CAPTCHA",
       "description": "Gagal memuat CAPTCHA. Harap segarkan halaman dan coba lagi."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "Verifikasi gagal. Silakan coba lagi.",
+    "rateLimited": "Terlalu banyak verifikasi. Harap tunggu sebentar dan coba lagi."
   },
   "feedback": {
     "title": "Umpan Balik",

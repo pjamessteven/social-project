@@ -146,7 +146,7 @@
       "support": "Поддержка",
       "stats": "Статистика",
       "statsDesc": "Анонимизированная статистика детранзиции из /r/detrans",
-      "topics": "Topics",
+      "topics": "Темы",
       "topicsDesc": "Подробные руководства по ключевым темам",
       "stories": "Истории",
       "storiesDesc": "От пользователей /r/detrans"
@@ -188,9 +188,9 @@
     "de": "Немецкий",
     "he": "Иврит",
     "it": "Итальянский",
-    "lt": "Lithuanian",
-    "nl": "Dutch",
-    "tr": "Turkish",
+    "lt": "Литовский",
+    "nl": "Нидерландский",
+    "tr": "Турецкий",
     "ru": "Русский"
   },
   "settings": {
@@ -246,10 +246,10 @@
   },
   "chat": {
     "lookingForComments": "Ищу релевантные комментарии...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "Поиск релевантных исследований...",
     "errorOccurred": "Произошла ошибка, попробуйте снова... Свяжитесь со мной, если это продолжается.",
     "analysingExperiences": "Анализирую опыт",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Анализ исследований",
     "analysingWebResults": "Анализ веб-результатов",
     "analysingResults": "Анализ результатов...",
     "detransPerspective": "-> Каковы взгляды детрансионеров на эту тему?",
@@ -267,7 +267,7 @@
       "webSearch": "Поиск в интернете",
       "queryStudyCatalogue": "Поиск в каталоге исследований детрансишена",
       "studyDetail": "Детали исследования",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Вики-страница"
     },
     "eventStatus": {
       "analysingVideos": "Анализ видео"
@@ -278,7 +278,7 @@
       "webSearchFailed": "Поиск в интернете не удался",
       "failedToFetchStudies": "Не удалось получить исследования",
       "failedToFetchStudy": "Не удалось получить исследование",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Не удалось обновить вики-страницу"
     },
     "eventEmptyStates": {
       "noVideosFound": "Видео не найдены",
@@ -306,9 +306,9 @@
   "chatInput": {
     "placeholder": "Спросите detrans.ai...",
     "suggestions": "Предложения:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Параметры администратора",
+    "transPerspectives": "Транс-перспективы",
+    "wikiUpdateMode": "Режим обновления вики (глубокое исследование)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -317,23 +317,23 @@
     "tabs": {
       "featured": "Избранные",
       "all": "Все",
-      "mine": "Mine"
+      "mine": "Мои"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "Перемешать",
       "showMore": "Показать ещё {count} разговоров",
       "showLess": "Показать меньше",
       "loadMore": "Загрузить больше разговоров",
       "loading": "Загрузка..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "Выбрано: {count}",
+      "deleteAndBan": "Удалить и заблокировать выбранные",
+      "deletingAndBanning": "Обработка...",
+      "clearSelection": "Снять выделение",
+      "confirm": "Вы уверены, что хотите удалить и заблокировать {count} разговоров? Это действие нельзя отменить.",
+      "holdKey": "Удерживайте ⌘/Ctrl для множественного выбора",
+      "longPress": "Долгое нажатие для множественного выбора"
     }
   },
   "conversationCard": {
@@ -604,8 +604,8 @@
   "videoList": {
     "loading": "Загрузка видео...",
     "searchPlaceholder": "Search videos...",
-    "result": "video",
-    "results": "videos",
+    "result": "видео",
+    "results": "видео",
     "filters": {
       "all": "Все истории",
       "female": "Женщины",
@@ -748,7 +748,7 @@
       },
       "findTherapist": {
         "title": "Где найти терапевта, практикующего гендерно-исследовательскую терапию?",
-        "sidebar": "Find therapists",
+        "sidebar": "Найти терапевта",
         "languageNotice": "Большинство перечисленных терапевтов говорят только по-английски, но вы всё ещё можете попробовать связаться с ними, чтобы найти кого-то, кто говорит на вашем языке. Если вы знаете лицензированного терапевта, говорящего на вашем языке, вы можете предложить добавить его на эту страницу через",
         "contactForm": "форму обратной связи",
         "organizations": {
@@ -1070,8 +1070,8 @@
       "title": "Ошибка CAPTCHA",
       "description": "Не удалось загрузить CAPTCHA. Пожалуйста, обновите страницу и попробуйте снова."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "Проверка не пройдена. Пожалуйста, попробуйте ещё раз.",
+    "rateLimited": "Слишком много проверок. Пожалуйста, подождите немного и попробуйте снова."
   },
   "feedback": {
     "title": "Обратная связь",

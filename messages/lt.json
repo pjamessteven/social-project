@@ -65,7 +65,7 @@
       "studies": "Akademiniai tyrimai",
       "studiesShort": "Tyrimai",
       "howItWorks": "Kaip tai veikia",
-      "statistics": "Verified Statistics"
+      "statistics": "Patikrinta statistika"
     },
     "disclaimer": {
       "trigger": "Patirtys ir požiūriai šioje svetainėje paimti iš Reddito ir YouTube.",
@@ -146,7 +146,7 @@
       "support": "Pagalba",
       "stats": "Statistika",
       "statsDesc": "Anonimizuota detranzicijos statistika iš /r/detrans",
-      "topics": "Topics",
+      "topics": "Temos",
       "topicsDesc": "Išsamūs pagrindinių temų vadovai",
       "stories": "Istorijos",
       "storiesDesc": "Iš /r/detrans vartotojų"
@@ -245,10 +245,10 @@
   },
   "chat": {
     "lookingForComments": "Ieškoma atitinkamų komentarų...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "Ieškoma susijusių tyrimų...",
     "errorOccurred": "Įvyko klaida, bandykite dar kartą... Susisiekite su manimi, jei tai kartojasi.",
     "analysingExperiences": "Analizuojamos patirtys",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Analizuojami tyrimai",
     "analysingWebResults": "Analizuojami žiniatinklio rezultatai",
     "analysingResults": "Analizuojami rezultatai...",
     "detransPerspective": "-> Kokie detranzicijos požiūriai į šią temą?",
@@ -266,7 +266,7 @@
       "webSearch": "Paieška internete",
       "queryStudyCatalogue": "Detranzicijos tyrimų katalogo užklausa",
       "studyDetail": "Tyrimo detalės",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Wiki puslapis"
     },
     "eventStatus": {
       "analysingVideos": "Analizuojami vaizdo įrašai"
@@ -277,7 +277,7 @@
       "webSearchFailed": "Interneto paieška nepavyko",
       "failedToFetchStudies": "Nepavyko gauti tyrimų",
       "failedToFetchStudy": "Nepavyko gauti tyrimo",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Nepavyko atnaujinti wiki puslapio"
     },
     "eventEmptyStates": {
       "noVideosFound": "Vaizdo įrašų nerasta",
@@ -305,9 +305,9 @@
   "chatInput": {
     "placeholder": "Klauskite detrans.ai...",
     "suggestions": "Pasiūlymai:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Administratoriaus parinktys",
+    "transPerspectives": "Trans perspektyvos",
+    "wikiUpdateMode": "Wiki atnaujinimo režimas (išsamus tyrimas)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -316,23 +316,23 @@
     "tabs": {
       "featured": "Išskirtiniai",
       "all": "Visi",
-      "mine": "Mine"
+      "mine": "Mano"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "Sumaišyti",
       "showMore": "Rodyti dar {count} pokalbius",
       "showLess": "Rodyti mažiau",
       "loadMore": "Įkelti daugiau pokalbių",
       "loading": "Įkeliama..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "Pasirinkta: {count}",
+      "deleteAndBan": "Ištrinti ir užblokuoti pasirinktus",
+      "deletingAndBanning": "Apdorojama...",
+      "clearSelection": "Išvalyti pasirinkimą",
+      "confirm": "Ar tikrai norite ištrinti ir užblokuoti {count} pokalbius? To negalima atšaukti.",
+      "holdKey": "Laikykite ⌘/Ctrl, kad pasirinktumėte kelis",
+      "longPress": "Ilgai paspauskite, kad pasirinktumėte kelis"
     }
   },
   "conversationCard": {
@@ -611,8 +611,8 @@
   "videoList": {
     "loading": "Įkeliami vaizdo įrašai...",
     "searchPlaceholder": "Search videos...",
-    "result": "video",
-    "results": "videos",
+    "result": "vaizdo įrašas",
+    "results": "vaizdo įrašai",
     "filters": {
       "all": "Visos istorijos",
       "female": "Moteris",
@@ -755,7 +755,7 @@
       },
       "findTherapist": {
         "title": "Kur galiu rasti terapeutą, kuris praktikuoja genderinę tyrinėjamąją terapiją?",
-        "sidebar": "Find therapists",
+        "sidebar": "Rasti terapeutą",
         "languageNotice": "Dauguma išvardytų terapeutų kalba tik angliškai, bet vis tiek galite pabandyti susisiekti su jais, kad rastumėte kalbantį jūsų kalba. Jei žinote licencijuotą terapeutą, kuris kalba jūsų kalba, galite pasiūlyti pridėti jį prie šio puslapio per",
         "contactForm": "kontaktinę formą",
         "organizations": {
@@ -1077,8 +1077,8 @@
       "title": "CAPTCHA klaida",
       "description": "Nepavyko įkelti CAPTCHA. Atnaujinkite puslapį ir bandykite dar kartą."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "Patvirtinti nepavyko. Bandykite dar kartą.",
+    "rateLimited": "Per daug patvirtinimų. Šiek tiek palaukite ir bandykite dar kartą."
   },
   "feedback": {
     "title": "Atsiliepimai",

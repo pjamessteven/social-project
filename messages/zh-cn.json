@@ -146,7 +146,7 @@
       "support": "支持",
       "stats": "统计",
       "statsDesc": "/r/detrans 匿名去转性别统计",
-      "topics": "Topics",
+      "topics": "主题",
       "topicsDesc": "关键主题的深入指南",
       "stories": "故事",
       "storiesDesc": "来自/r/detrans用户"
@@ -188,9 +188,9 @@
     "de": "德语",
     "he": "希伯来语",
     "it": "意大利语",
-    "lt": "Lithuanian",
+    "lt": "立陶宛语",
     "nl": "荷兰语",
-    "tr": "Turkish",
+    "tr": "土耳其语",
     "zh-cn": "简体中文"
   },
   "settings": {
@@ -246,10 +246,10 @@
   },
   "chat": {
     "lookingForComments": "正在寻找相关评论...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "正在查找相关研究...",
     "errorOccurred": "发生错误，请重试...如果这种情况持续发生，请联系我。",
     "analysingExperiences": "正在分析经历",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "正在分析研究",
     "analysingWebResults": "正在分析网页搜索结果",
     "analysingResults": "正在分析结果...",
     "detransPerspective": "-> 去过渡者对这个话题有什么看法？",
@@ -257,7 +257,7 @@
     "captchaRequired": "需要验证码才能继续聊天。",
     "chatArchived": "此聊天已存档。开始一个新的。",
     "rateLimitExceeded": "请求过多，请放慢速度稍后再试。",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "ipMismatchError": "您的 IP 地址已更改。为防止滥用，您需要开始新的对话。",
     "followUpQuestions": "后续问题：",
     "eventLabels": {
       "askDetransitioners": "询问去过渡者",
@@ -267,7 +267,7 @@
       "webSearch": "网络搜索",
       "queryStudyCatalogue": "查询去过渡研究目录",
       "studyDetail": "研究详情",
-      "wikiPage": "Wiki page"
+      "wikiPage": "维基页面"
     },
     "eventStatus": {
       "analysingVideos": "正在分析视频"
@@ -278,7 +278,7 @@
       "webSearchFailed": "网络搜索失败",
       "failedToFetchStudies": "获取研究失败",
       "failedToFetchStudy": "获取研究失败",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "维基页面更新失败"
     },
     "eventEmptyStates": {
       "noVideosFound": "未找到视频",
@@ -306,9 +306,9 @@
   "chatInput": {
     "placeholder": "询问detrans.ai...",
     "suggestions": "建议：",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "管理员选项",
+    "transPerspectives": "跨性别视角",
+    "wikiUpdateMode": "维基更新模式（深度研究）",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -317,23 +317,23 @@
     "tabs": {
       "featured": "精选",
       "all": "全部",
-      "mine": "Mine"
+      "mine": "我的"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "随机",
       "showMore": "显示{count}个更多对话",
       "showLess": "显示较少",
       "loadMore": "加载更多对话",
       "loading": "加载中..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "已选择 {count} 项",
+      "deleteAndBan": "删除并封禁所选",
+      "deletingAndBanning": "处理中...",
+      "clearSelection": "清除选择",
+      "confirm": "确定要删除并封禁 {count} 个对话吗？此操作无法撤销。",
+      "holdKey": "按住 ⌘/Ctrl 可多选",
+      "longPress": "长按可多选"
     }
   },
   "conversationCard": {
@@ -604,8 +604,8 @@
   "videoList": {
     "loading": "正在加载视频...",
     "searchPlaceholder": "Search videos...",
-    "result": "video",
-    "results": "videos",
+    "result": "个视频",
+    "results": "个视频",
     "filters": {
       "all": "所有故事",
       "female": "女性",
@@ -748,7 +748,7 @@
       },
       "findTherapist": {
         "title": "在哪里可以找到实践性别探索性治疗的治疗师？",
-        "sidebar": "Find therapists",
+        "sidebar": "寻找治疗师",
         "languageNotice": "大多数列出的治疗师只说英语，但你仍然可以尝试联系他们以找到会说你语言的人。如果你知道会说你语言的持证治疗师，你可以建议通过",
         "contactForm": "联系表单",
         "organizations": {
@@ -1070,8 +1070,8 @@
       "title": "验证码错误",
       "description": "加载验证码失败。请刷新页面后重试。"
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "验证失败，请重试。",
+    "rateLimited": "验证次数过多，请稍候再试。"
   },
   "feedback": {
     "title": "反馈",

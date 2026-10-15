@@ -146,7 +146,7 @@
       "support": "دعم",
       "stats": "إحصائيات",
       "statsDesc": "إحصائيات التحول المجهولة من /r/detrans",
-      "topics": "Topics",
+      "topics": "المواضيع",
       "topicsDesc": "أدلة متعمقة حول الموضوعات الرئيسية",
       "stories": "القصص",
       "storiesDesc": "من مستخدمي /r/detrans"
@@ -246,10 +246,10 @@
   },
   "chat": {
     "lookingForComments": "جاري البحث عن التعليقات ذات الصلة...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "جارٍ البحث عن دراسات ذات صلة...",
     "errorOccurred": "حدث خطأ، حاول مرة أخرى... اتصل بي إذا استمر هذا.",
     "analysingExperiences": "جاري تحليل التجارب",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "تحليل الدراسات",
     "analysingWebResults": "تحليل نتائج الويب",
     "analysingResults": "جاري تحليل النتائج...",
     "detransPerspective": "-> ما هي وجهات نظر الأشخاص الذين تراجعوا عن التحول حول هذا الموضوع؟",
@@ -267,7 +267,7 @@
       "webSearch": "البحث في الويب",
       "queryStudyCatalogue": "الاستعلام في كتالوج دراسات التراجع عن التحول",
       "studyDetail": "تفاصيل الدراسة",
-      "wikiPage": "Wiki page"
+      "wikiPage": "صفحة ويكي"
     },
     "eventStatus": {
       "analysingVideos": "جاري تحليل مقاطع الفيديو"
@@ -278,7 +278,7 @@
       "webSearchFailed": "فشل البحث في الويب",
       "failedToFetchStudies": "فشل جلب الدراسات",
       "failedToFetchStudy": "فشل جلب الدراسة",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "فشل تحديث صفحة الويكي"
     },
     "eventEmptyStates": {
       "noVideosFound": "لم يتم العثور على مقاطع فيديو",
@@ -306,9 +306,9 @@
   "chatInput": {
     "placeholder": "اسأل detrans.ai...",
     "suggestions": "الاقتراحات:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "خيارات المشرف",
+    "transPerspectives": "وجهات نظر العابرين",
+    "wikiUpdateMode": "وضع تحديث الويكي (بحث معمّق)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -317,23 +317,23 @@
     "tabs": {
       "featured": "مميز",
       "all": "الكل",
-      "mine": "Mine"
+      "mine": "محادثاتي"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "خلط عشوائي",
       "showMore": "عرض {count} محادثات إضافية",
       "showLess": "عرض أقل",
       "loadMore": "تحميل المزيد من المحادثات",
       "loading": "جاري التحميل..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "{count} محدد",
+      "deleteAndBan": "حذف المحدد وحظره",
+      "deletingAndBanning": "جارٍ المعالجة...",
+      "clearSelection": "إلغاء التحديد",
+      "confirm": "هل أنت متأكد أنك تريد حذف {count} محادثة وحظرها؟ لا يمكن التراجع عن ذلك.",
+      "holdKey": "اضغط مع الاستمرار على ⌘/Ctrl للتحديد المتعدد",
+      "longPress": "اضغط مطولاً للتحديد المتعدد"
     }
   },
   "conversationCard": {
@@ -604,8 +604,8 @@
   "videoList": {
     "loading": "جاري تحميل مقاطع الفيديو...",
     "searchPlaceholder": "Search videos...",
-    "result": "video",
-    "results": "videos",
+    "result": "فيديو",
+    "results": "فيديوهات",
     "filters": {
       "all": "جميع القصص",
       "female": "أنثى",
@@ -1070,8 +1070,8 @@
       "title": "خطأ في CAPTCHA",
       "description": "فشل تحميل CAPTCHA. يرجى تحديث الصفحة والمحاولة مرة أخرى."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "فشل التحقق. يرجى المحاولة مرة أخرى.",
+    "rateLimited": "محاولات تحقق كثيرة جداً. يرجى الانتظار قليلاً والمحاولة مرة أخرى."
   },
   "feedback": {
     "title": "تغذية راجعة",

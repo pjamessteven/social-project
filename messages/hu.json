@@ -65,7 +65,7 @@
       "studies": "Akadémiai Tanulmányok",
       "studiesShort": "Tanulmányok",
       "howItWorks": "Hogyan Működik",
-      "statistics": "Verified Statistics"
+      "statistics": "Ellenőrzött statisztikák"
     },
     "disclaimer": {
       "trigger": "A tapasztalatok és nézőpontok ezen az oldalon a Redditről és a YouTube-ról származnak.",
@@ -146,7 +146,7 @@
       "support": "Támogatás",
       "stats": "Statisztika",
       "statsDesc": "Anonimizált detranszíciós statisztikák a /r/detrans-ról",
-      "topics": "Topics",
+      "topics": "Témák",
       "topicsDesc": "Részletes útmutatók a legfontosabb témákról",
       "stories": "Történetek",
       "storiesDesc": "Az /r/detrans felhasználóitól"
@@ -188,7 +188,7 @@
     "de": "Német",
     "he": "Héber",
     "it": "Olasz",
-    "lt": "Lithuanian",
+    "lt": "Litván",
     "nl": "Holland",
     "tr": "Török",
     "hu": "Magyar"
@@ -246,10 +246,10 @@
   },
   "chat": {
     "lookingForComments": "Releváns hozzászólások keresése...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "Releváns tanulmányok keresése...",
     "errorOccurred": "Hiba történt, próbáld újra... Vedd fel velem a kapcsolatot, ha ez továbbra is előfordul.",
     "analysingExperiences": "Tapasztalatok Elemzése",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Tanulmányok elemzése",
     "analysingWebResults": "Webes eredmények elemzése",
     "analysingResults": "Eredmények elemzése...",
     "detransPerspective": "-> Mik a detrans nézőpontok erről a témáról?",
@@ -257,7 +257,7 @@
     "captchaRequired": "Captcha szükséges a chat folytatásához.",
     "chatArchived": "Ez a chat archiválva van. Kezdj egy újat.",
     "rateLimitExceeded": "Túl sok kérés, lassítson és próbálkozzon újra később.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "ipMismatchError": "Az IP-címed megváltozott. A visszaélések megelőzése érdekében új beszélgetést kell kezdened.",
     "followUpQuestions": "Követő kérdések:",
     "eventLabels": {
       "askDetransitioners": "Kérdezd a Detransitionálókat",
@@ -267,7 +267,7 @@
       "webSearch": "Webes Keresés",
       "queryStudyCatalogue": "Detransition Tanulmányi Katalógus Lekérdezése",
       "studyDetail": "Tanulmány Részletei",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Wiki oldal"
     },
     "eventStatus": {
       "analysingVideos": "Videók Elemzése"
@@ -278,7 +278,7 @@
       "webSearchFailed": "A webes keresés sikertelen",
       "failedToFetchStudies": "A tanulmányok lekérése sikertelen",
       "failedToFetchStudy": "A tanulmány lekérése sikertelen",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "A wiki oldal frissítése sikertelen"
     },
     "eventEmptyStates": {
       "noVideosFound": "Nem találhatók videók",
@@ -306,9 +306,9 @@
   "chatInput": {
     "placeholder": "Kérdezd a detrans.ai-t...",
     "suggestions": "Javaslatok:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Adminisztrátori beállítások",
+    "transPerspectives": "Transz nézőpontok",
+    "wikiUpdateMode": "Wiki frissítési mód (mélyreható kutatás)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -317,23 +317,23 @@
     "tabs": {
       "featured": "Kiemelt",
       "all": "Összes",
-      "mine": "Mine"
+      "mine": "Saját"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "Keverés",
       "showMore": "{count} További Beszélgetés Mutatása",
       "showLess": "Kevesebb Mutatása",
       "loadMore": "További Beszélgetések Betöltése",
       "loading": "Betöltés..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "{count} kiválasztva",
+      "deleteAndBan": "Kiválasztottak törlése és tiltása",
+      "deletingAndBanning": "Feldolgozás...",
+      "clearSelection": "Kijelölés törlése",
+      "confirm": "Biztosan törölni és tiltani szeretnél {count} beszélgetést? Ez nem vonható vissza.",
+      "holdKey": "Tartsd lenyomva a ⌘/Ctrl billentyűt a többszörös kijelöléshez",
+      "longPress": "Nyomd hosszan a többszörös kijelöléshez"
     }
   },
   "conversationCard": {
@@ -612,8 +612,8 @@
   "videoList": {
     "loading": "Videók betöltése...",
     "searchPlaceholder": "Search videos...",
-    "result": "video",
-    "results": "videos",
+    "result": "videó",
+    "results": "videó",
     "filters": {
       "all": "Összes Történet",
       "female": "Nő",
@@ -756,7 +756,7 @@
       },
       "findTherapist": {
         "title": "Hol találok olyan terapeutát, aki gender exploratory terápiát gyakorol?",
-        "sidebar": "Find therapists",
+        "sidebar": "Terapeuták keresése",
         "languageNotice": "A felsorolt terapeuták többsége csak angolul beszél, de megpróbálhatod felvenni velük a kapcsolatot, hogy találj valakit, aki beszéli a nyelvedet. Ha ismersz egy licencelt terapeutát, aki beszéli a nyelvedet, javasolhatod a hozzáadását ehhez az oldalhoz a",
         "contactForm": "kapcsolatfelvételi űrlapon",
         "organizations": {
@@ -1078,8 +1078,8 @@
       "title": "CAPTCHA hiba",
       "description": "A CAPTCHA betöltése sikertelen. Kérjük, frissítse az oldalt és próbálja újra."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "Az ellenőrzés sikertelen. Kérjük, próbáld újra.",
+    "rateLimited": "Túl sok ellenőrzés. Kérjük, várj egy kicsit, és próbáld újra."
   },
   "feedback": {
     "title": "Visszajelzés",

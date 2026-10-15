@@ -65,7 +65,7 @@
       "studies": "Akademiska Studier",
       "studiesShort": "Studier",
       "howItWorks": "Hur Det Fungerar",
-      "statistics": "Verified Statistics"
+      "statistics": "Verifierad statistik"
     },
     "disclaimer": {
       "trigger": "Erfarenheter och perspektiv på denna webbplats hämtas från Reddit och YouTube.",
@@ -146,7 +146,7 @@
       "support": "Support",
       "stats": "Statistik",
       "statsDesc": "Anonymiserade detransitionsstatistik från /r/detrans",
-      "topics": "Topics",
+      "topics": "Ämnen",
       "topicsDesc": "Fördjupande guider om viktiga ämnen",
       "stories": "Berättelser",
       "storiesDesc": "Från /r/detrans-användare"
@@ -188,9 +188,9 @@
     "de": "Tyska",
     "he": "Hebreiska",
     "it": "Italienska",
-    "lt": "Lithuanian",
+    "lt": "Litauiska",
     "nl": "Nederländska",
-    "tr": "Turkish",
+    "tr": "Turkiska",
     "sv": "Svenska"
   },
   "settings": {
@@ -246,10 +246,10 @@
   },
   "chat": {
     "lookingForComments": "Letar efter relevanta kommentarer...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "Söker efter relevanta studier...",
     "errorOccurred": "Ett fel uppstod, försök igen... Kontakta mig om detta fortsätter hända.",
     "analysingExperiences": "Analyserar Erfarenheter",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Analyserar studier",
     "analysingWebResults": "Analyserar webbresultat",
     "analysingResults": "Analyserar resultat...",
     "detransPerspective": "-> Vilka är detrans-perspektiven på detta ämne?",
@@ -257,7 +257,7 @@
     "captchaRequired": "Captcha krävs för att fortsätta chattandet.",
     "chatArchived": "Denna chatt är arkiverad. Starta en ny.",
     "rateLimitExceeded": "För många förfrågningar, sakta ner och försök igen senare.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "ipMismatchError": "Din IP-adress har ändrats. För att förhindra missbruk måste du starta en ny konversation.",
     "followUpQuestions": "Uppföljningsfrågor:",
     "eventLabels": {
       "askDetransitioners": "Fråga Detransitionerare",
@@ -267,7 +267,7 @@
       "webSearch": "Webbsökning",
       "queryStudyCatalogue": "Sök Detransitionsstudiekatalogen",
       "studyDetail": "Studiedetalj",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Wikisida"
     },
     "eventStatus": {
       "analysingVideos": "Analyserar Videor"
@@ -278,7 +278,7 @@
       "webSearchFailed": "Webbsökning misslyckades",
       "failedToFetchStudies": "Kunde inte hämta studier",
       "failedToFetchStudy": "Kunde inte hämta studie",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Uppdateringen av wikisidan misslyckades"
     },
     "eventEmptyStates": {
       "noVideosFound": "Inga videor hittades",
@@ -306,9 +306,9 @@
   "chatInput": {
     "placeholder": "Fråga detrans.ai...",
     "suggestions": "Förslag:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Administratörsalternativ",
+    "transPerspectives": "Transperspektiv",
+    "wikiUpdateMode": "Wiki-uppdateringsläge (djupgående research)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -317,23 +317,23 @@
     "tabs": {
       "featured": "Utvalda",
       "all": "Alla",
-      "mine": "Mine"
+      "mine": "Mina"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "Blanda",
       "showMore": "Visa {count} Fler Konversationer",
       "showLess": "Visa Färre",
       "loadMore": "Ladda Fler Konversationer",
       "loading": "Laddar..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "{count} valda",
+      "deleteAndBan": "Radera och blockera valda",
+      "deletingAndBanning": "Bearbetar...",
+      "clearSelection": "Rensa markering",
+      "confirm": "Är du säker på att du vill radera och blockera {count} konversationer? Detta kan inte ångras.",
+      "holdKey": "Håll ned ⌘/Ctrl för att markera flera",
+      "longPress": "Tryck länge för att markera flera"
     }
   },
   "conversationCard": {
@@ -605,7 +605,7 @@
     "loading": "Laddar videor...",
     "searchPlaceholder": "Search videos...",
     "result": "video",
-    "results": "videos",
+    "results": "videor",
     "filters": {
       "all": "Alla Berättelser",
       "female": "Kvinna",
@@ -748,7 +748,7 @@
       },
       "findTherapist": {
         "title": "Var kan jag hitta en terapeut som praktiserar könsutforskande terapi?",
-        "sidebar": "Find therapists",
+        "sidebar": "Hitta terapeuter",
         "languageNotice": "De flesta terapeuter som listas talar endast engelska, men du kan fortfarande försöka kontakta dem för att hitta någon som talar ditt språk. Om du känner till en legitimerad terapeut som talar ditt språk kan du föreslå att de läggs till på denna sida genom",
         "contactForm": "kontaktformuläret",
         "organizations": {
@@ -1070,8 +1070,8 @@
       "title": "CAPTCHA-fel",
       "description": "Kunde inte ladda CAPTCHA. Vänligen uppdatera sidan och försök igen."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "Verifieringen misslyckades. Försök igen.",
+    "rateLimited": "För många verifieringar. Vänta en stund och försök igen."
   },
   "feedback": {
     "title": "Feedback",

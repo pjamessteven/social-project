@@ -146,7 +146,7 @@
       "support": "תמיכה",
       "stats": "סטטיסטיקה",
       "statsDesc": "סטטיסטיקת דיטרנזיציה אנונימית מ-/r/detrans",
-      "topics": "Topics",
+      "topics": "נושאים",
       "topicsDesc": "מדריכים מעמיקים בנושאים מרכזיים",
       "stories": "סיפורים",
       "storiesDesc": "ממשתמשי /r/detrans"
@@ -188,7 +188,7 @@
     "de": "גרמנית",
     "he": "עברית",
     "it": "איטלקית",
-    "lt": "Lithuanian",
+    "lt": "ליטאית",
     "nl": "הולנדית",
     "tr": "טורקית"
   },
@@ -245,10 +245,10 @@
   },
   "chat": {
     "lookingForComments": "מחפש תגובות רלוונטיות...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "מחפש מחקרים רלוונטיים...",
     "errorOccurred": "אירעה שגיאה, נסה/י שוב... צור/י קשר איתי אם זה ממשיך לקרות.",
     "analysingExperiences": "מנתח חוויות",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "מנתח מחקרים",
     "analysingWebResults": "מנתח תוצאות אינטרנט",
     "analysingResults": "מנתח תוצאות...",
     "detransPerspective": "-> מהן נקודות המבט של מדטרנזישנרים על נושא זה?",
@@ -256,7 +256,7 @@
     "captchaRequired": "נדרש קפצ'ה להמשך הצ'אט.",
     "chatArchived": "צ'אט זה הועבר לארכיון. התחל אחד חדש.",
     "rateLimitExceeded": "יותר מדי בקשות, האט ונסה שוב מאוחר יותר.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "ipMismatchError": "כתובת ה-IP שלך השתנתה. כדי למנוע שימוש לרעה, עליך להתחיל שיחה חדשה.",
     "followUpQuestions": "שאלות המשך:",
     "eventLabels": {
       "askDetransitioners": "שאל מדטרנזישנרים",
@@ -266,7 +266,7 @@
       "webSearch": "חיפוש באינטרנט",
       "queryStudyCatalogue": "שאילתת קטלוג מחקרי דטרנזישן",
       "studyDetail": "פרטי מחקר",
-      "wikiPage": "Wiki page"
+      "wikiPage": "דף ויקי"
     },
     "eventStatus": {
       "analysingVideos": "מנתח סרטונים"
@@ -277,7 +277,7 @@
       "webSearchFailed": "חיפוש באינטרנט נכשל",
       "failedToFetchStudies": "הבאת מחקרים נכשלה",
       "failedToFetchStudy": "הבאת מחקר נכשלה",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "עדכון דף הוויקי נכשל"
     },
     "eventEmptyStates": {
       "noVideosFound": "לא נמצאו סרטונים",
@@ -305,9 +305,9 @@
   "chatInput": {
     "placeholder": "שאל/י את detrans.ai...",
     "suggestions": "הצעות:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "אפשרויות מנהל",
+    "transPerspectives": "נקודות מבט טרנסיות",
+    "wikiUpdateMode": "מצב עדכון ויקי (מחקר מעמיק)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -316,23 +316,23 @@
     "tabs": {
       "featured": "מומלצים",
       "all": "הכל",
-      "mine": "Mine"
+      "mine": "שלי"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "ערבוב",
       "showMore": "הצג {count} שיחות נוספות",
       "showLess": "הצג פחות",
       "loadMore": "טען עוד שיחות",
       "loading": "טוען..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "{count} נבחרו",
+      "deleteAndBan": "מחיקה וחסימה של הנבחרים",
+      "deletingAndBanning": "מעבד...",
+      "clearSelection": "ניקוי בחירה",
+      "confirm": "האם אתה בטוח שברצונך למחוק ולחסום {count} שיחות? לא ניתן לבטל פעולה זו.",
+      "holdKey": "החזק ⌘/Ctrl לבחירה מרובה",
+      "longPress": "לחיצה ארוכה לבחירה מרובה"
     }
   },
   "conversationCard": {
@@ -603,8 +603,8 @@
   "videoList": {
     "loading": "טוען סרטונים...",
     "searchPlaceholder": "Search videos...",
-    "result": "video",
-    "results": "videos",
+    "result": "סרטון",
+    "results": "סרטונים",
     "filters": {
       "all": "כל הסיפורים",
       "female": "נקבה",
@@ -747,7 +747,7 @@
       },
       "findTherapist": {
         "title": "איפה אני יכול/ה למצוא מטפל/ת שמתרגל/ת טיפול חוקר מגדר?",
-        "sidebar": "Find therapists",
+        "sidebar": "מציאת מטפלים",
         "languageNotice": "רוב המטפלים הרשומים מדברים רק אנגלית, אבל את/ה עדיין יכול/ה לנסות ליצור איתם קשר כדי למצוא מישהו שמדבר את השפה שלך. אם את/ה מכיר/ה מטפל/ת מורשה שמדבר את השפה שלך, את/ה יכול/ה להציע להוסיף אותם לעמוד זה דרך",
         "contactForm": "טופס יצירת הקשר",
         "organizations": {
@@ -1069,8 +1069,8 @@
       "title": "שגיאת CAPTCHA",
       "description": "טעינת ה-CAPTCHA נכשלה. אנא רענן את הדף ונסה שוב."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "האימות נכשל. אנא נסה שוב.",
+    "rateLimited": "יותר מדי ניסיונות אימות. אנא המתן רגע ונסה שוב."
   },
   "feedback": {
     "title": "משוב",

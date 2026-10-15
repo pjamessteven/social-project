@@ -146,7 +146,7 @@
       "support": "پشتیبانی",
       "stats": "آمار",
       "statsDesc": "آمار بازگشت جنسیت ناشناس از /r/detrans",
-      "topics": "Topics",
+      "topics": "موضوعات",
       "topicsDesc": "راهنماهای جامع درباره موضوعات کلیدی",
       "stories": "داستان‌ها",
       "storiesDesc": "از کاربران /r/detrans"
@@ -188,7 +188,7 @@
     "de": "آلمانی",
     "he": "عبری",
     "it": "ایتالیایی",
-    "lt": "Lithuanian",
+    "lt": "لیتوانیایی",
     "nl": "هلندی",
     "tr": "ترکی",
     "ro": "رومانیایی",
@@ -247,10 +247,10 @@
   },
   "chat": {
     "lookingForComments": "در حال جستجوی نظرات مرتبط...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "در حال جستجوی مطالعات مرتبط...",
     "errorOccurred": "خطایی رخ داد، دوباره امتحان کنید... اگر این اتفاق ادامه یافت با من تماس بگیرید.",
     "analysingExperiences": "در حال تجزیه و تحلیل تجربیات",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "در حال تحلیل مطالعات",
     "analysingWebResults": "تحلیل نتایج وب",
     "analysingResults": "در حال تجزیه و تحلیل نتایج...",
     "detransPerspective": "-> دیدگاه‌های دترنز درباره این موضوع چیست؟",
@@ -268,7 +268,7 @@
       "webSearch": "جستجوی وب",
       "queryStudyCatalogue": "پرسش از کاتالوگ مطالعات دترنزیشن",
       "studyDetail": "جزئیات مطالعه",
-      "wikiPage": "Wiki page"
+      "wikiPage": "صفحه ویکی"
     },
     "eventStatus": {
       "analysingVideos": "در حال تجزیه و تحلیل ویدیوها"
@@ -279,7 +279,7 @@
       "webSearchFailed": "جستجوی وب ناموفق بود",
       "failedToFetchStudies": "دریافت مطالعات ناموفق بود",
       "failedToFetchStudy": "دریافت مطالعه ناموفق بود",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "به‌روزرسانی صفحه ویکی ناموفق بود"
     },
     "eventEmptyStates": {
       "noVideosFound": "ویدیویی یافت نشد",
@@ -307,9 +307,9 @@
   "chatInput": {
     "placeholder": "از detrans.ai بپرسید...",
     "suggestions": "پیشنهادات:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "گزینه‌های مدیر",
+    "transPerspectives": "دیدگاه‌های ترنس",
+    "wikiUpdateMode": "حالت به‌روزرسانی ویکی (پژوهش عمیق)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -318,23 +318,23 @@
     "tabs": {
       "featured": "ویژه",
       "all": "همه",
-      "mine": "Mine"
+      "mine": "مال من"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "درهم‌سازی",
       "showMore": "نمایش {count} گفتگوی بیشتر",
       "showLess": "نمایش کمتر",
       "loadMore": "بارگذاری گفتگوهای بیشتر",
       "loading": "در حال بارگذاری..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "{count} انتخاب شده",
+      "deleteAndBan": "حذف و مسدودسازی موارد انتخاب‌شده",
+      "deletingAndBanning": "در حال پردازش...",
+      "clearSelection": "پاک کردن انتخاب",
+      "confirm": "آیا مطمئن هستید که می‌خواهید {count} گفتگو را حذف و مسدود کنید؟ این کار قابل بازگشت نیست.",
+      "holdKey": "برای انتخاب چندگانه ⌘/Ctrl را نگه دارید",
+      "longPress": "برای انتخاب چندگانه طولانی فشار دهید"
     }
   },
   "conversationCard": {
@@ -605,8 +605,8 @@
   "videoList": {
     "loading": "در حال بارگذاری ویدیوها...",
     "searchPlaceholder": "Search videos...",
-    "result": "video",
-    "results": "videos",
+    "result": "ویدیو",
+    "results": "ویدیو",
     "filters": {
       "all": "همه داستان‌ها",
       "female": "زن",
@@ -749,7 +749,7 @@
       },
       "findTherapist": {
         "title": "کجا می‌توانم درمانگری را پیدا کنم که درمان اکتشافی جنسیت را انجام می‌دهد؟",
-        "sidebar": "Find therapists",
+        "sidebar": "یافتن درمانگر",
         "languageNotice": "اکثر درمانگران فهرست‌شده فقط انگلیسی صحبت می‌کنند، اما هنوز هم می‌توانید سعی کنید با آنها تماس بگیرید تا کسی را پیدا کنید که زبان شما را صحبت کند. اگر از درمانگر مجازی که زبان شما را صحبت می‌کند اطلاع دارید، می‌توانید پیشنهاد دهید از طریق",
         "contactForm": "فرم تماس",
         "organizations": {
@@ -1071,8 +1071,8 @@
       "title": "خطای CAPTCHA",
       "description": "بارگذاری CAPTCHA ناموفق بود. لطفاً صفحه را تازه‌سازی کنید و دوباره امتحان کنید."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "تأیید ناموفق بود. لطفاً دوباره تلاش کنید.",
+    "rateLimited": "تعداد تأییدها بیش از حد است. لطفاً کمی صبر کنید و دوباره تلاش کنید."
   },
   "feedback": {
     "title": "بازخورد",

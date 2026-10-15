@@ -146,7 +146,7 @@
       "support": "Steun",
       "stats": "Statistieken",
       "statsDesc": "Geanonimiseerde detransitie statistieken van /r/detrans",
-      "topics": "Topics",
+      "topics": "Onderwerpen",
       "topicsDesc": "Uitgebreide gidsen over belangrijke onderwerpen",
       "stories": "Verhalen",
       "storiesDesc": "Van /r/detrans gebruikers"
@@ -188,9 +188,9 @@
     "de": "Duits",
     "he": "Hebreeuws",
     "it": "Italiaans",
-    "lt": "Lithuanian",
+    "lt": "Litouws",
     "nl": "Nederlands",
-    "tr": "Turkish"
+    "tr": "Turks"
   },
   "settings": {
     "title": "Instellingen"
@@ -245,10 +245,10 @@
   },
   "chat": {
     "lookingForComments": "Relevante reacties zoeken...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "Relevante onderzoeken zoeken...",
     "errorOccurred": "Er is een fout opgetreden, probeer opnieuw... Neem contact met mij op als dit blijft gebeuren.",
     "analysingExperiences": "Ervaringen Analyseren",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Onderzoeken analyseren",
     "analysingWebResults": "Zoekresultaten analyseren",
     "analysingResults": "Resultaten analyseren...",
     "detransPerspective": "-> Wat zijn detrans-perspectieven op dit onderwerp?",
@@ -266,7 +266,7 @@
       "webSearch": "Web zoeken",
       "queryStudyCatalogue": "Detransitie Studiecatalogus doorzoeken",
       "studyDetail": "Studiedetails",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Wikipagina"
     },
     "eventStatus": {
       "analysingVideos": "Video's analyseren"
@@ -277,7 +277,7 @@
       "webSearchFailed": "Web zoeken mislukt",
       "failedToFetchStudies": "Studies ophalen mislukt",
       "failedToFetchStudy": "Studie ophalen mislukt",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Bijwerken van wikipagina mislukt"
     },
     "eventEmptyStates": {
       "noVideosFound": "Geen video's gevonden",
@@ -305,9 +305,9 @@
   "chatInput": {
     "placeholder": "Vraag detrans.ai...",
     "suggestions": "Suggesties:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Beheeropties",
+    "transPerspectives": "Transperspectieven",
+    "wikiUpdateMode": "Wiki-updatemodus (diepgaand onderzoek)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -316,7 +316,7 @@
     "tabs": {
       "featured": "Uitgelicht",
       "all": "Alle",
-      "mine": "Mine"
+      "mine": "Mijn"
     },
     "buttons": {
       "shuffle": "Shuffle",
@@ -326,13 +326,13 @@
       "loading": "Laden..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "{count} geselecteerd",
+      "deleteAndBan": "Geselecteerde verwijderen & blokkeren",
+      "deletingAndBanning": "Bezig met verwerken...",
+      "clearSelection": "Selectie wissen",
+      "confirm": "Weet je zeker dat je {count} gesprekken wilt verwijderen en blokkeren? Dit kan niet ongedaan worden gemaakt.",
+      "holdKey": "Houd ⌘/Ctrl ingedrukt om meerdere te selecteren",
+      "longPress": "Lang indrukken om meerdere te selecteren"
     }
   },
   "conversationCard": {
@@ -612,7 +612,7 @@
     "loading": "Video's laden...",
     "searchPlaceholder": "Search videos...",
     "result": "video",
-    "results": "videos",
+    "results": "video's",
     "filters": {
       "all": "Alle Verhalen",
       "female": "Vrouw",
@@ -755,7 +755,7 @@
       },
       "findTherapist": {
         "title": "Waar kan ik een therapeut vinden die gender explorerende therapie beoefent?",
-        "sidebar": "Find therapists",
+        "sidebar": "Therapeuten vinden",
         "languageNotice": "De meeste therapeuten die worden vermeld, spreken alleen Engels, maar je kunt nog steeds proberen contact met hen op te nemen om iemand te vinden die jouw taal spreekt. Als je een bevoegde therapeut kent die jouw taal spreekt, kun je deze via het",
         "contactForm": "contactformulier",
         "organizations": {
@@ -1077,8 +1077,8 @@
       "title": "CAPTCHA Fout",
       "description": "CAPTCHA laden mislukt. Vernieuw de pagina en probeer het opnieuw."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "Verificatie mislukt. Probeer het opnieuw.",
+    "rateLimited": "Te veel verificaties. Wacht even en probeer het opnieuw."
   },
   "feedback": {
     "title": "Feedback",

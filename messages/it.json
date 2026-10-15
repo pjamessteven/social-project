@@ -146,7 +146,7 @@
       "support": "Supporto",
       "stats": "Statistiche",
       "statsDesc": "Statistiche di detransizione anonimizzate da /r/detrans",
-      "topics": "Topics",
+      "topics": "Argomenti",
       "topicsDesc": "Guide approfondite sui temi principali",
       "stories": "Storie",
       "storiesDesc": "Da utenti di /r/detrans"
@@ -188,9 +188,9 @@
     "de": "Tedesco",
     "he": "Ebraico",
     "it": "Italiano",
-    "lt": "Lithuanian",
-    "nl": "Dutch",
-    "tr": "Turkish"
+    "lt": "Lituano",
+    "nl": "Olandese",
+    "tr": "Turco"
   },
   "settings": {
     "title": "Impostazioni"
@@ -245,10 +245,10 @@
   },
   "chat": {
     "lookingForComments": "Sto cercando commenti rilevanti...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "Ricerca di studi pertinenti...",
     "errorOccurred": "Si è verificato un errore, riprova... Contattami se continua a succedere.",
     "analysingExperiences": "Analisi delle Esperienze",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Analisi degli studi",
     "analysingWebResults": "Analisi dei risultati web",
     "analysingResults": "Analisi dei risultati...",
     "detransPerspective": "-> Quali sono le prospettive di chi ha fatto detransition su questo argomento?",
@@ -256,7 +256,7 @@
     "captchaRequired": "Captcha richiesto per continuare la chat.",
     "chatArchived": "Questa chat è archiviata. Iniziane una nuova.",
     "rateLimitExceeded": "Troppe richieste, rallenta e riprova più tardi.",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "ipMismatchError": "Il tuo indirizzo IP è cambiato. Per prevenire abusi devi iniziare una nuova conversazione.",
     "followUpQuestions": "Domande di follow-up:",
     "eventLabels": {
       "askDetransitioners": "Chiedi a Chi ha fatto Detransition",
@@ -266,7 +266,7 @@
       "webSearch": "Ricerca Web",
       "queryStudyCatalogue": "Interroga Catalogo Studi sulla Detransition",
       "studyDetail": "Dettaglio Studio",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Pagina wiki"
     },
     "eventStatus": {
       "analysingVideos": "Analisi dei Video"
@@ -277,7 +277,7 @@
       "webSearchFailed": "Ricerca web fallita",
       "failedToFetchStudies": "Recupero studi fallito",
       "failedToFetchStudy": "Recupero studio fallito",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Aggiornamento della pagina wiki non riuscito"
     },
     "eventEmptyStates": {
       "noVideosFound": "Nessun video trovato",
@@ -305,9 +305,9 @@
   "chatInput": {
     "placeholder": "Chiedi a detrans.ai...",
     "suggestions": "Suggerimenti:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Opzioni amministratore",
+    "transPerspectives": "Prospettive trans",
+    "wikiUpdateMode": "Modalità aggiornamento wiki (ricerca approfondita)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -316,23 +316,23 @@
     "tabs": {
       "featured": "In Evidenza",
       "all": "Tutte",
-      "mine": "Mine"
+      "mine": "Mie"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "Mescola",
       "showMore": "Mostra altre {count} conversazioni",
       "showLess": "Mostra meno",
       "loadMore": "Carica più conversazioni",
       "loading": "Caricamento..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "{count} selezionate",
+      "deleteAndBan": "Elimina e banna selezionate",
+      "deletingAndBanning": "Elaborazione...",
+      "clearSelection": "Cancella selezione",
+      "confirm": "Sei sicuro di voler eliminare e bannare {count} conversazioni? L'operazione non può essere annullata.",
+      "holdKey": "Tieni premuto ⌘/Ctrl per la selezione multipla",
+      "longPress": "Tieni premuto a lungo per la selezione multipla"
     }
   },
   "conversationCard": {
@@ -612,7 +612,7 @@
     "loading": "Caricamento video...",
     "searchPlaceholder": "Search videos...",
     "result": "video",
-    "results": "videos",
+    "results": "video",
     "filters": {
       "all": "Tutte le Storie",
       "female": "Femmina",
@@ -755,7 +755,7 @@
       },
       "findTherapist": {
         "title": "Dove posso trovare un terapeuta che pratica la Gender Exploratory Therapy?",
-        "sidebar": "Find therapists",
+        "sidebar": "Trova terapeuti",
         "languageNotice": "La maggior parte dei terapeuti elencati parlano solo inglese, ma puoi comunque provare a contattarli per trovare qualcuno che parla la tua lingua. Se conosci un terapeuta autorizzato che parla la tua lingua, puoi suggerire di aggiungerlo a questa pagina attraverso il",
         "contactForm": "modulo di contatto",
         "organizations": {
@@ -1077,8 +1077,8 @@
       "title": "Errore CAPTCHA",
       "description": "Impossibile caricare il CAPTCHA. Aggiorna la pagina e riprova."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "Verifica non riuscita. Riprova.",
+    "rateLimited": "Troppe verifiche. Attendi un momento e riprova."
   },
   "feedback": {
     "title": "Feedback",

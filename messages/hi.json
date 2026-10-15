@@ -146,7 +146,7 @@
       "support": "समर्थन",
       "stats": "आंकड़े",
       "statsDesc": "/r/detrans अनाम detransition आंकड़े",
-      "topics": "Topics",
+      "topics": "विषय",
       "topicsDesc": "प्रमुख विषयों पर विस्तृत मार्गदर्शिकाएँ",
       "stories": "कहानियाँ",
       "storiesDesc": "/r/detrans उपयोगकर्ताओं से"
@@ -188,9 +188,9 @@
     "de": "जर्मन",
     "he": "हिब्रू",
     "it": "इतालवी",
-    "lt": "Lithuanian",
+    "lt": "लिथुआनियाई",
     "nl": "डच",
-    "tr": "Turkish",
+    "tr": "तुर्की",
     "hi": "हिंदी"
   },
   "settings": {
@@ -246,10 +246,10 @@
   },
   "chat": {
     "lookingForComments": "प्रासंगिक टिप्पणियां खोज रहे हैं...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "प्रासंगिक अध्ययन खोजे जा रहे हैं...",
     "errorOccurred": "त्रुटि हुई, पुनः प्रयास करें... यदि यह बार-बार होता है तो मुझसे संपर्क करें।",
     "analysingExperiences": "अनुभवों का विश्लेषण",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "अध्ययनों का विश्लेषण",
     "analysingWebResults": "वेब परिणामों का विश्लेषण",
     "analysingResults": "परिणामों का विश्लेषण...",
     "detransPerspective": "-> इस विषय पर डीट्रांज दृष्टिकोण क्या हैं?",
@@ -257,7 +257,7 @@
     "captchaRequired": "चैट जारी रखने के लिए कैप्चा आवश्यक है।",
     "chatArchived": "यह चैट संग्रहीत है। एक नया शुरू करें।",
     "rateLimitExceeded": "बहुत अधिक अनुरोध, धीमा करें और बाद में पुनः प्रयास करें।",
-    "ipMismatchError": "Your IP address has changed. To prevent abuse you must start a new conversation.",
+    "ipMismatchError": "आपका IP पता बदल गया है। दुरुपयोग रोकने के लिए आपको एक नई बातचीत शुरू करनी होगी।",
     "followUpQuestions": "अनुवर्ती प्रश्न:",
     "eventLabels": {
       "askDetransitioners": "डीट्रांजिशनर्स से पूछें",
@@ -267,7 +267,7 @@
       "webSearch": "वेब खोज",
       "queryStudyCatalogue": "डीट्रांजिशन अध्ययन कैटलॉग क्वेरी करें",
       "studyDetail": "अध्ययन विवरण",
-      "wikiPage": "Wiki page"
+      "wikiPage": "विकि पेज"
     },
     "eventStatus": {
       "analysingVideos": "वीडियो का विश्लेषण"
@@ -278,7 +278,7 @@
       "webSearchFailed": "वेब खोज विफल",
       "failedToFetchStudies": "अध्ययन प्राप्त करना विफल",
       "failedToFetchStudy": "अध्ययन प्राप्त करना विफल",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "विकि पेज अपडेट विफल रहा"
     },
     "eventEmptyStates": {
       "noVideosFound": "कोई वीडियो नहीं मिला",
@@ -306,9 +306,9 @@
   "chatInput": {
     "placeholder": "detrans.ai से पूछें...",
     "suggestions": "सुझाव:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "एडमिन विकल्प",
+    "transPerspectives": "ट्रांस दृष्टिकोण",
+    "wikiUpdateMode": "विकि अपडेट मोड (गहन शोध)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -317,23 +317,23 @@
     "tabs": {
       "featured": "विशेष रुप से प्रदर्शित",
       "all": "सभी",
-      "mine": "Mine"
+      "mine": "मेरी"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "शफ़ल करें",
       "showMore": "{count} और वार्तालाप दिखाएं",
       "showLess": "कम दिखाएं",
       "loadMore": "और वार्तालाप लोड करें",
       "loading": "लोड हो रहा है..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "{count} चयनित",
+      "deleteAndBan": "चयनित हटाएँ और प्रतिबंधित करें",
+      "deletingAndBanning": "प्रोसेस हो रहा है...",
+      "clearSelection": "चयन हटाएँ",
+      "confirm": "क्या आप वाकई {count} बातचीत हटाना और प्रतिबंधित करना चाहते हैं? इसे पूर्ववत नहीं किया जा सकता।",
+      "holdKey": "एक से अधिक चुनने के लिए ⌘/Ctrl दबाए रखें",
+      "longPress": "एक से अधिक चुनने के लिए देर तक दबाएँ"
     }
   },
   "conversationCard": {
@@ -612,8 +612,8 @@
   "videoList": {
     "loading": "वीडियो लोड हो रहे हैं...",
     "searchPlaceholder": "Search videos...",
-    "result": "video",
-    "results": "videos",
+    "result": "वीडियो",
+    "results": "वीडियो",
     "filters": {
       "all": "सभी कहानियां",
       "female": "महिला",
@@ -756,7 +756,7 @@
       },
       "findTherapist": {
         "title": "मैं एक थेरेपिस्ट कहां पा सकता हूं जो लिंग एक्सप्लोरेटरी थेरेपी का अभ्यास करता है?",
-        "sidebar": "Find therapists",
+        "sidebar": "थेरेपिस्ट खोजें",
         "languageNotice": "अधिकांश सूचीबद्ध थेरेपिस्ट केवल अंग्रेजी बोलते हैं, लेकिन आप अपनी भाषा बोलने वाले किसी को खोजने के लिए उनसे संपर्क करने का प्रयास कर सकते हैं। यदि आप किसी लाइसेंस प्राप्त थेरेपिस्ट को जानते हैं जो आपकी भाषा बोलता है, तो आप इसे",
         "contactForm": "संपर्क फॉर्म",
         "organizations": {
@@ -1078,8 +1078,8 @@
       "title": "CAPTCHA त्रुटि",
       "description": "CAPTCHA लोड करने में विफल। कृपया पेज रिफ्रेश करें और पुनः प्रयास करें।"
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "सत्यापन विफल रहा। कृपया पुनः प्रयास करें।",
+    "rateLimited": "बहुत अधिक सत्यापन प्रयास। कृपया थोड़ी देर प्रतीक्षा करें और पुनः प्रयास करें।"
   },
   "feedback": {
     "title": "प्रतिक्रिया",

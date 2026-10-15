@@ -146,7 +146,7 @@
       "support": "Wsparcie",
       "stats": "Statystyki",
       "statsDesc": "Zanonimizowane statystyki detranzycji z /r/detrans",
-      "topics": "Topics",
+      "topics": "Tematy",
       "topicsDesc": "Szczegółowe przewodniki po kluczowych tematach",
       "stories": "Historie",
       "storiesDesc": "Od użytkowników /r/detrans"
@@ -188,9 +188,9 @@
     "de": "Niemiecki",
     "he": "Hebrajski",
     "it": "Włoski",
-    "lt": "Lithuanian",
+    "lt": "Litewski",
     "nl": "Holenderski",
-    "tr": "Turkish",
+    "tr": "Turecki",
     "pl": "Polski"
   },
   "settings": {
@@ -246,10 +246,10 @@
   },
   "chat": {
     "lookingForComments": "Szukam odpowiednich komentarzy...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "Wyszukiwanie odpowiednich badań...",
     "errorOccurred": "Wystąpił błąd, spróbuj ponownie... Skontaktuj się ze mną, jeśli to się powtarza.",
     "analysingExperiences": "Analizowanie doświadczeń",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Analizowanie badań",
     "analysingWebResults": "Analizowanie wyników wyszukiwania",
     "analysingResults": "Analizowanie wyników...",
     "detransPerspective": "-> Jakie są perspektywy osób po detransycji na ten temat?",
@@ -267,7 +267,7 @@
       "webSearch": "Wyszukiwanie w sieci",
       "queryStudyCatalogue": "Przeszukaj katalog badań detransycji",
       "studyDetail": "Szczegóły badania",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Strona wiki"
     },
     "eventStatus": {
       "analysingVideos": "Analizowanie filmów"
@@ -278,7 +278,7 @@
       "webSearchFailed": "Wyszukiwanie w sieci nie powiodło się",
       "failedToFetchStudies": "Nie udało się pobrać badań",
       "failedToFetchStudy": "Nie udało się pobrać badania",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Aktualizacja strony wiki nie powiodła się"
     },
     "eventEmptyStates": {
       "noVideosFound": "Nie znaleziono filmów",
@@ -306,9 +306,9 @@
   "chatInput": {
     "placeholder": "Zapytaj detrans.ai...",
     "suggestions": "Sugestie:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Opcje administratora",
+    "transPerspectives": "Perspektywy osób trans",
+    "wikiUpdateMode": "Tryb aktualizacji wiki (dogłębne badanie)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -317,23 +317,23 @@
     "tabs": {
       "featured": "Wyróżnione",
       "all": "Wszystkie",
-      "mine": "Mine"
+      "mine": "Moje"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "Losuj",
       "showMore": "Pokaż {count} więcej rozmów",
       "showLess": "Pokaż mniej",
       "loadMore": "Załaduj więcej rozmów",
       "loading": "Ładowanie..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "Zaznaczono: {count}",
+      "deleteAndBan": "Usuń i zablokuj zaznaczone",
+      "deletingAndBanning": "Przetwarzanie...",
+      "clearSelection": "Wyczyść zaznaczenie",
+      "confirm": "Czy na pewno chcesz usunąć i zablokować {count} rozmów? Tej operacji nie można cofnąć.",
+      "holdKey": "Przytrzymaj ⌘/Ctrl, aby zaznaczyć wiele",
+      "longPress": "Przytrzymaj dłużej, aby zaznaczyć wiele"
     }
   },
   "conversationCard": {
@@ -612,8 +612,8 @@
   "videoList": {
     "loading": "Ładowanie filmów...",
     "searchPlaceholder": "Search videos...",
-    "result": "video",
-    "results": "videos",
+    "result": "film",
+    "results": "filmów",
     "filters": {
       "all": "Wszystkie historie",
       "female": "Kobiety",
@@ -756,7 +756,7 @@
       },
       "findTherapist": {
         "title": "Gdzie mogę znaleźć terapeutę praktykującego terapię eksploracyjną płci?",
-        "sidebar": "Find therapists",
+        "sidebar": "Znajdź terapeutę",
         "languageNotice": "Większość wymienionych terapeutów mówi tylko po angielsku, ale nadal możesz spróbować się z nimi skontaktować, aby znaleźć kogoś, kto mówi Twoim językiem. Jeśli znasz licencjonowanego terapeutę mówiącego Twoim językiem, możesz zasugerować dodanie go do tej strony poprzez",
         "contactForm": "formularz kontaktowy",
         "organizations": {
@@ -1078,8 +1078,8 @@
       "title": "Błąd CAPTCHA",
       "description": "Nie udało się załadować CAPTCHA. Proszę odświeżyć stronę i spróbować ponownie."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "Weryfikacja nie powiodła się. Spróbuj ponownie.",
+    "rateLimited": "Zbyt wiele weryfikacji. Poczekaj chwilę i spróbuj ponownie."
   },
   "feedback": {
     "title": "Opinie",

@@ -146,7 +146,7 @@
       "support": "Suport",
       "stats": "Statistici",
       "statsDesc": "Statistici de detranziție anonimizate din /r/detrans",
-      "topics": "Topics",
+      "topics": "Subiecte",
       "topicsDesc": "Ghiduri detaliate despre subiecte cheie",
       "stories": "Povești",
       "storiesDesc": "De la utilizatorii /r/detrans"
@@ -188,7 +188,7 @@
     "de": "Germană",
     "he": "Ebraică",
     "it": "Italiană",
-    "lt": "Lithuanian",
+    "lt": "Lituaniană",
     "nl": "Olandeză",
     "tr": "Turcă",
     "ro": "Română"
@@ -246,10 +246,10 @@
   },
   "chat": {
     "lookingForComments": "Se caută comentarii relevante...",
-    "lookingForStudies": "Looking for relevant studies...",
+    "lookingForStudies": "Se caută studii relevante...",
     "errorOccurred": "A apărut o eroare, încearcă din nou... Contactează-mă dacă acest lucru continuă să se întâmple.",
     "analysingExperiences": "Se analizează Experiențele",
-    "analysingStudies": "Analysing Studies",
+    "analysingStudies": "Se analizează studiile",
     "analysingWebResults": "Se analizează rezultatele web",
     "analysingResults": "Se analizează rezultatele...",
     "detransPerspective": "-> Care sunt perspectivele detrans asupra acestui subiect?",
@@ -267,7 +267,7 @@
       "webSearch": "Căutare pe web",
       "queryStudyCatalogue": "Caută în catalogul de studii despre detransiție",
       "studyDetail": "Detalii studiu",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Pagină wiki"
     },
     "eventStatus": {
       "analysingVideos": "Se analizează videoclipurile"
@@ -278,7 +278,7 @@
       "webSearchFailed": "Căutarea pe web a eșuat",
       "failedToFetchStudies": "Nu s-au putut prelua studiile",
       "failedToFetchStudy": "Nu s-a putut prelua studiul",
-      "wikiPageFailed": "Wiki page update failed"
+      "wikiPageFailed": "Actualizarea paginii wiki a eșuat"
     },
     "eventEmptyStates": {
       "noVideosFound": "Nu s-au găsit videoclipuri",
@@ -306,9 +306,9 @@
   "chatInput": {
     "placeholder": "Întreabă detrans.ai...",
     "suggestions": "Sugestii:",
-    "adminOptions": "Admin options",
-    "transPerspectives": "Trans perspectives",
-    "wikiUpdateMode": "Wiki update mode (deep research)",
+    "adminOptions": "Opțiuni administrator",
+    "transPerspectives": "Perspective trans",
+    "wikiUpdateMode": "Mod actualizare wiki (cercetare aprofundată)",
     "proModel": "Mimo v2.6 Pro"
   },
   "conversations": {
@@ -317,23 +317,23 @@
     "tabs": {
       "featured": "Recomandate",
       "all": "Toate",
-      "mine": "Mine"
+      "mine": "Ale mele"
     },
     "buttons": {
-      "shuffle": "Shuffle",
+      "shuffle": "Amestecă",
       "showMore": "Arată încă {count} Conversații",
       "showLess": "Arată mai puțin",
       "loadMore": "Încarcă mai multe Conversații",
       "loading": "Se încarcă..."
     },
     "bulk": {
-      "selected": "{count} selected",
-      "deleteAndBan": "Delete & Ban Selected",
-      "deletingAndBanning": "Processing...",
-      "clearSelection": "Clear Selection",
-      "confirm": "Are you sure you want to delete and ban {count} conversations? This cannot be undone.",
-      "holdKey": "Hold ⌘/Ctrl to multi-select",
-      "longPress": "Long-press to multi-select"
+      "selected": "{count} selectate",
+      "deleteAndBan": "Șterge și blochează selecția",
+      "deletingAndBanning": "Se procesează...",
+      "clearSelection": "Golește selecția",
+      "confirm": "Sigur vrei să ștergi și să blochezi {count} conversații? Această acțiune nu poate fi anulată.",
+      "holdKey": "Ține apăsat ⌘/Ctrl pentru selecție multiplă",
+      "longPress": "Apasă lung pentru selecție multiplă"
     }
   },
   "conversationCard": {
@@ -604,8 +604,8 @@
   "videoList": {
     "loading": "Se încarcă videoclipurile...",
     "searchPlaceholder": "Search videos...",
-    "result": "video",
-    "results": "videos",
+    "result": "videoclip",
+    "results": "videoclipuri",
     "filters": {
       "all": "Toate Povestirile",
       "female": "Feminin",
@@ -748,7 +748,7 @@
       },
       "findTherapist": {
         "title": "Unde pot găsi un terapeut care practică terapia exploratorie de gen?",
-        "sidebar": "Find therapists",
+        "sidebar": "Găsește terapeuți",
         "languageNotice": "Majoritatea terapeuților listați vorbesc doar engleză, dar poți încerca să îi contactezi pentru a găsi pe cineva care vorbește limba ta. Dacă știi de un terapeut licențiat care vorbește limba ta, poți sugera adăugarea lor pe această pagină prin",
         "contactForm": "formularul de contact",
         "organizations": {
@@ -1070,8 +1070,8 @@
       "title": "Eroare CAPTCHA",
       "description": "Nu s-a putut încărca CAPTCHA. Te rugăm să reîmprospătezi pagina și să încerci din nou."
     },
-    "verifyFailed": "Verification failed. Please try again.",
-    "rateLimited": "Too many verifications. Please wait a moment and try again."
+    "verifyFailed": "Verificarea a eșuat. Te rugăm să încerci din nou.",
+    "rateLimited": "Prea multe verificări. Te rugăm să aștepți puțin și să încerci din nou."
   },
   "feedback": {
     "title": "Feedback",
