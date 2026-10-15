@@ -6,10 +6,12 @@
 import { PAGE_TITLE } from "@/app/components/ui/typography";
 import { isAdmin } from "@/app/lib/auth/auth";
 import { isBot } from "@/app/lib/isBot";
+import { renderWikiMarkdown } from "@/app/lib/markdown";
 import { localeToBcp47, safeJsonLd, SITE_URL } from "@/app/lib/seo";
 import {
   getLocalizedCategories,
   getStudyCategoryPath,
+  localizeCategorySummary,
   pickCategorySlug,
   resolveCategoryParam,
   type StudyCategoryKind,
@@ -107,6 +109,8 @@ export async function StudyCategoryPage({
   const admin = await isAdmin();
   const bot = isBot((await headers()).get("user-agent"));
   const { category, categories, row } = data;
+  const summary = localizeCategorySummary(row, locale);
+  const summaryHtml = summary ? renderWikiMarkdown(summary).html : null;
 
   const studies = await loadLocalizedStudies({
     locale,
@@ -173,6 +177,13 @@ export async function StudyCategoryPage({
           </p>
         )}
       </header>
+
+      {summaryHtml && (
+        <article
+          className="prose dark:prose-invert mb-10 max-w-none [&_.wiki-callout_p]:my-1 [&_.wiki-callout>*:first-child]:mt-0 [&_.wiki-callout>*:last-child]:mb-0"
+          dangerouslySetInnerHTML={{ __html: summaryHtml }}
+        />
+      )}
 
       {admin && (
         <div className="mb-8">

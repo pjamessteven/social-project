@@ -654,6 +654,9 @@ export const studyCategories = pgTable(
     nameTranslation: text("name_translation"),
     description: text("description").default("").notNull(),
     descriptionTranslation: text("description_translation"),
+    /** Markdown overview of the evidence in this category */
+    summary: text("summary"),
+    summaryTranslation: text("summary_translation"),
     slugTranslation: text("slug_translation"),
     sortOrder: integer("sort_order").default(0).notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),

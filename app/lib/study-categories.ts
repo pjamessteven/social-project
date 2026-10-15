@@ -3,7 +3,8 @@
  *
  * Two kinds: "topic" (what a study is about; a study can have several) and
  * "method" (how it was done; a study should have exactly one). Names,
- * descriptions and URL slugs are translated per locale as JSON objects.
+ * descriptions, URL slugs and the markdown evidence summary are translated
+ * per locale as JSON objects.
  * Translations are filled by scripts/generate-study-hub-translations.ts;
  * editing the English name/description clears the stale translations.
  */
@@ -51,7 +52,10 @@ export function getCategorySlugs(
   return { ...parseRecord(row.slugTranslation), [defaultLocale]: row.slug };
 }
 
-export function pickCategorySlug(row: StudyCategoryRow, locale: string): string {
+export function pickCategorySlug(
+  row: StudyCategoryRow,
+  locale: string,
+): string {
   return getCategorySlugs(row)[locale] || row.slug;
 }
 
@@ -70,6 +74,14 @@ export function localizeCategory(
       row.description,
     studyCount,
   };
+}
+
+/** Markdown evidence summary for `locale`, falling back to English. */
+export function localizeCategorySummary(
+  row: StudyCategoryRow,
+  locale: string,
+): string | null {
+  return getLocalizedValue(row.summaryTranslation, locale, row.summary);
 }
 
 export function toCategoryRef(category: StudyCategory): StudyCategoryRef {
