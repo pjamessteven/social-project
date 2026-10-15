@@ -264,7 +264,7 @@ export default function HighlightsRibbon({
           color: string,
         ) =>
           reasons.length > 0 && (
-            <span className={`mt-1.5 block ${color}`}>
+            <span className={`mt-1.5 block font-semibold ${color}`}>
               {label}:{" "}
               {reasons
                 .map((key) =>
