@@ -211,6 +211,16 @@ async function processVideos(ids: number[] = []) {
           1000,
         );
 
+        // Extractors occasionally run away; keep metadata small enough that
+        // text + metadata stays under the embedding model's 8192-token input
+        for (const node of nodes) {
+          for (const [key, value] of Object.entries(node.metadata)) {
+            if (typeof value === "string" && value.length > 2000) {
+              node.metadata[key] = value.slice(0, 2000);
+            }
+          }
+        }
+
         await fetchWithBackoff(async () => index.insertNodes(nodes), 5, 500);
 
         console.log(

@@ -16,7 +16,6 @@ interface Video {
   url: string;
   type: string;
   processed: boolean;
-  transcript: string | null;
   description: string | null;
   summary: string | null;
   bite: string | null;
@@ -47,7 +46,6 @@ export async function GET(request: NextRequest) {
         url: videos.url,
         type: videos.type,
         processed: videos.processed,
-        transcript: videos.transcript,
         description: sql<
           string | null
         >`COALESCE((${videos.descriptionTranslation})::jsonb->>${locale}, ${videos.description})`,
@@ -64,8 +62,7 @@ export async function GET(request: NextRequest) {
       })
       .from(videos)
       .where(eq(videos.processed, true))
-      .orderBy(desc(videos.createdAt))
-      .limit(100);
+      .orderBy(desc(videos.createdAt));
 
     return NextResponse.json({
       videos: spreadByAuthor(allVideos).map(({ englishTitle, ...video }) => ({
