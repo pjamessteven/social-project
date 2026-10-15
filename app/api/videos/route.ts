@@ -1,10 +1,10 @@
 import { VALID_LOCALES } from "@/app/lib/constants";
 import { sanitizeLocale } from "@/app/lib/sanitization";
+import { generateVideoSlug, spreadByAuthor } from "@/app/lib/video-utils";
 import { db } from "@/db";
 import { videos } from "@/db/schema";
 import { desc, eq, sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
-import { generateVideoSlug } from "@/app/lib/video-utils";
 
 interface Video {
   id: number;
@@ -68,7 +68,7 @@ export async function GET(request: NextRequest) {
       .limit(100);
 
     return NextResponse.json({
-      videos: allVideos.map(({ englishTitle, ...video }) => ({
+      videos: spreadByAuthor(allVideos).map(({ englishTitle, ...video }) => ({
         ...video,
         slug: generateVideoSlug(video.id, englishTitle),
       })) as Video[],

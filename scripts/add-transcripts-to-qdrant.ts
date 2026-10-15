@@ -2,7 +2,7 @@
 
 import { QdrantVectorStore } from "@llamaindex/qdrant";
 import "dotenv/config";
-import { and, eq, isNotNull } from "drizzle-orm";
+import { and, eq, inArray, isNotNull } from "drizzle-orm";
 import fsp from "fs/promises";
 import {
   Document,
@@ -118,7 +118,7 @@ function chunkTranscript(
   return chunks;
 }
 
-async function processVideos() {
+async function processVideos(ids: number[] = []) {
   console.log(`Generating video transcripts datasource...`);
 
   const qdrantUrl = process.env.QDRANT_URL || "http://localhost:6333";
@@ -143,11 +143,17 @@ async function processVideos() {
     ],
   });
 
-  // Fetch all unprocessed videos with transcripts
+  // Fetch unprocessed videos with transcripts (optionally limited to ids)
   const unprocessedVideos = await db
     .select()
     .from(videos)
-    .where(and(eq(videos.processed, false), isNotNull(videos.transcript)));
+    .where(
+      and(
+        eq(videos.processed, false),
+        isNotNull(videos.transcript),
+        ids.length > 0 ? inArray(videos.id, ids) : undefined,
+      ),
+    );
 
   console.log(`Found ${unprocessedVideos.length} unprocessed videos`);
 
@@ -273,6 +279,7 @@ async function processVideos() {
         `Unrecognized command: ${command}. Generating datasource by default.`,
       );
     }
-    await processVideos();
+    // Optional video ids after the command: `datasource 12 34`
+    await processVideos(args.slice(1).map(Number).filter(Number.isInteger));
   }
 })();

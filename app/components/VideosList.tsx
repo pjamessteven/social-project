@@ -1,9 +1,10 @@
 "use client";
 
-import { Link } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
+import { VideoCard } from "./content/VideoCard";
+import { CARD_SURFACE } from "./ui/card-styles";
 import { SearchBar } from "./ui/search-bar";
 import { SlidingNavGroup } from "./ui/sliding-nav-group";
 
@@ -66,20 +67,6 @@ export default function VideosList() {
     return searchText.includes(query);
   });
 
-  // Extract YouTube video ID from URL
-  const getYouTubeVideoId = (url: string): string => {
-    const patterns = [
-      /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
-      /youtube\.com\/watch\?.*v=([^&\n?#]+)/,
-    ];
-
-    for (const pattern of patterns) {
-      const match = url.match(pattern);
-      if (match) return match[1];
-    }
-    return "";
-  };
-
   const tabs = [
     {
       key: "all",
@@ -126,16 +113,14 @@ export default function VideosList() {
         )}
 
         {loading ? (
-          <div className="not-prose grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="not-prose grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {[...Array(6)].map((_, i) => (
               <div
                 key={i}
-                className="dark:bg-secondary flex h-full flex-col rounded-2xl border bg-white p-4 shadow-sm"
+                className={`flex h-full flex-col overflow-hidden ${CARD_SURFACE}`}
               >
-                <div className="relative mb-3">
-                  <div className="h-48 w-full animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
-                </div>
-                <div className="flex flex-1 flex-col">
+                <div className="aspect-video w-full animate-pulse bg-gray-200 dark:bg-gray-700" />
+                <div className="flex flex-1 flex-col p-5">
                   <div className="mb-2 h-5 w-3/4 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
                   <div className="mb-3 flex-1 space-y-2">
                     <div className="h-3 w-full animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
@@ -148,55 +133,25 @@ export default function VideosList() {
             ))}
           </div>
         ) : (
-          <div className="not-prose grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="not-prose grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {filteredVideos.map((video) => {
               const videoSlug = video.slug;
               return (
-                <Link
-                  href={`/videos/${videoSlug}` as any}
+                <VideoCard
                   key={video.id}
-                  className="group block"
-                >
-                  <div className="hover-group dark:bg-secondary block h-full rounded-2xl border bg-white p-4 shadow-sm transition-colors hover:bg-gray-100">
-                    <div className="relative mb-3">
-                      <img
-                        src={`https://img.youtube.com/vi/${getYouTubeVideoId(video.url)}/mqdefault.jpg`}
-                        alt={t("thumbnailAlt", { title: video.title })}
-                        className="h-48 w-full rounded object-cover"
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="bg-opacity-50 group-hover:bg-opacity-80 flex h-16 w-16 items-center justify-center rounded-full bg-black/50 transition-all">
-                          <svg
-                            className="ml-1 h-8 w-8 text-white"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M8 5v14l11-7z" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex flex-1 flex-col">
-                      <h3 className="mb-2 line-clamp-2 text-base font-medium text-blue-600 group-hover:text-blue-800 dark:text-blue-400 dark:group-hover:text-blue-300">
-                        {video.title}
-                      </h3>
-
-                      {/* Video Description */}
-                      {video.summary && (
-                        <div className="mb-3 flex-1">
-                          <p className="line-clamp-5 text-sm text-gray-600 dark:text-gray-300">
-                            {video.summary}
-                          </p>
-                        </div>
-                      )}
-
-                      <p className="mt-auto text-sm font-light text-gray-500 dark:text-gray-400">
-                        {t("by")} <b>{video.author}</b> (
-                        {video.sex === "f" ? t("female") : t("male")})
-                      </p>
-                    </div>
-                  </div>
-                </Link>
+                  href={`/videos/${videoSlug}`}
+                  videoUrl={video.url}
+                  title={video.title}
+                  thumbnailAlt={t("thumbnailAlt", { title: video.title })}
+                  summary={video.summary}
+                  byline={
+                    <>
+                      {t("by")}{" "}
+                      <span className="text-foreground">{video.author}</span> (
+                      {video.sex === "f" ? t("female") : t("male")})
+                    </>
+                  }
+                />
               );
             })}
           </div>
