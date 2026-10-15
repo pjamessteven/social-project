@@ -2,16 +2,10 @@
 
 import Link from "next/link";
 import { type ComponentProps, forwardRef } from "react";
+import { CARD_INTERACTIVE, CARD_SURFACE } from "./card-styles";
 import { cn } from "./lib/utils";
 
-/** The one card surface used across the site (stats, studies, topics…):
- * white (secondary in dark mode), rounded, bordered, with a light shadow. */
-export const CARD_SURFACE =
-  "rounded-2xl border bg-white shadow-sm dark:bg-secondary";
-
-/** Hover treatment for cards that are links. */
-export const CARD_INTERACTIVE =
-  "transition-[border-color,box-shadow] hover:border-foreground/25 hover:shadow-md";
+export { CARD_INTERACTIVE, CARD_SURFACE };
 
 const Card = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (

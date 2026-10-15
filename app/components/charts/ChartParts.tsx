@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, type ReactNode } from "react";
-import { CARD_SURFACE } from "../ui/card";
+import { CARD_SURFACE } from "../ui/card-styles";
 
 export { CARD_SURFACE };
 

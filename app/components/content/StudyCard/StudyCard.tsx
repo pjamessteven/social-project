@@ -1,7 +1,7 @@
 import { Study } from "@/app/types/study";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { CARD_SURFACE } from "../../ui/card";
+import { CARD_SURFACE } from "../../ui/card-styles";
 import {
   getStudyDisplay,
   PendingBadge,
