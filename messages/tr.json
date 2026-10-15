@@ -597,7 +597,11 @@
     "moreVideos": "Daha Fazla Video",
     "browseAll": "Tüm detransisyon videolarına göz at",
     "metadataWatchDescription": "{author} tarafından {title} izleyin, hikayesini paylaşan bir {sex} detransitioner.",
-    "metadataThumbnailAlt": "{title} için küçük resim"
+    "metadataThumbnailAlt": "{title} için küçük resim",
+    "seeAlso": {
+      "title": "Ayrıca bakınız",
+      "hashtagOn": "{platform}'da #detransition"
+    }
   },
   "videoList": {
     "loading": "Videolar yükleniyor...",

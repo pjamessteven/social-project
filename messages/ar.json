@@ -597,7 +597,11 @@
     "moreVideos": "المزيد من مقاطع الفيديو",
     "browseAll": "تصفح جميع مقاطع فيديو التراجع عن التحول",
     "metadataWatchDescription": "شاهد {title} لـ {author}، وهو {sex} تراجع عن التحول يشارك قصته.",
-    "metadataThumbnailAlt": "الصورة المصغرة لـ {title}"
+    "metadataThumbnailAlt": "الصورة المصغرة لـ {title}",
+    "seeAlso": {
+      "title": "انظر أيضًا",
+      "hashtagOn": "#detransition على {platform}"
+    }
   },
   "videoList": {
     "loading": "جاري تحميل مقاطع الفيديو...",

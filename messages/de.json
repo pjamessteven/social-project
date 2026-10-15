@@ -597,7 +597,11 @@
     "moreVideos": "Weitere Videos",
     "browseAll": "Alle Detransition-Videos durchsuchen",
     "metadataWatchDescription": "Sieh dir {title} von {author} an, ein:e {sex} Detransitionierende:r, der/die seine/ihre Geschichte teilt.",
-    "metadataThumbnailAlt": "Thumbnail für {title}"
+    "metadataThumbnailAlt": "Thumbnail für {title}",
+    "seeAlso": {
+      "title": "Siehe auch",
+      "hashtagOn": "#detransition auf {platform}"
+    }
   },
   "videoList": {
     "loading": "Lade Videos...",

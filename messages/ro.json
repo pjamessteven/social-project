@@ -597,7 +597,11 @@
     "moreVideos": "Mai multe Videoclipuri",
     "browseAll": "Răsfoiește toate videoclipurile despre detransiție",
     "metadataWatchDescription": "Urmărește {title} de {author}, o persoană de sex {sex} care a făcut detransiția împărtășindu-și povestea.",
-    "metadataThumbnailAlt": "Miniatură pentru {title}"
+    "metadataThumbnailAlt": "Miniatură pentru {title}",
+    "seeAlso": {
+      "title": "Vezi și",
+      "hashtagOn": "#detransition pe {platform}"
+    }
   },
   "videoList": {
     "loading": "Se încarcă videoclipurile...",

@@ -597,7 +597,11 @@
     "moreVideos": "ویدیوهای بیشتر",
     "browseAll": "همه ویدیوهای دترنزیشن را مرور کنید",
     "metadataWatchDescription": "تماشای {title} اثر {author}، یک دترنزیشنر {sex} که داستان خود را به اشتراک می‌گذارد.",
-    "metadataThumbnailAlt": "تصویر بندانگشتی برای {title}"
+    "metadataThumbnailAlt": "تصویر بندانگشتی برای {title}",
+    "seeAlso": {
+      "title": "همچنین ببینید",
+      "hashtagOn": "#detransition در {platform}"
+    }
   },
   "videoList": {
     "loading": "در حال بارگذاری ویدیوها...",

@@ -1,5 +1,6 @@
 "use server";
 import { buildAlternates, localizedUrl, ogLocale } from "@/app/lib/seo";
+import { IntroWithSeeAlso } from "@/app/components/content/IntroWithSeeAlso";
 import { PAGE_TITLE } from "@/app/components/ui/typography";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -55,14 +56,32 @@ export default async function VideosPage({
     <div className="prose dark:prose-invert pb-16 lg:-mx-16 lg:max-w-none lg:pt-8 xl:-mx-48">
       <h1 className={PAGE_TITLE}>{t("title")}</h1>
 
-      <p className="text-muted-foreground max-w-3xl text-base leading-relaxed">
-        {t("description.line1")}
-        <br className="hidden md:inline" /> {t("description.line2")}
-      </p>
+      <IntroWithSeeAlso
+        className="mt-8"
+        title={t("seeAlso.title")}
+        wideOnly
+        links={[
+          {
+            label: t("seeAlso.hashtagOn", { platform: "Instagram" }),
+            href: "https://www.instagram.com/explore/search/keyword/?q=%23detransition",
+            external: true,
+          },
+          {
+            label: t("seeAlso.hashtagOn", { platform: "TikTok" }),
+            href: "https://www.tiktok.com/tag/detransition",
+            external: true,
+          },
+        ]}
+      >
+        <p className="text-muted-foreground text-base leading-relaxed">
+          {t("description.line1")}
+          <br className="hidden md:inline" /> {t("description.line2")}
+        </p>
 
-      <p className="max-w-3xl">
-        <VideoSubmitForm />
-      </p>
+        <div className="mt-6">
+          <VideoSubmitForm />
+        </div>
+      </IntroWithSeeAlso>
 
       <VideosList />
     </div>

@@ -599,7 +599,11 @@
     "moreVideos": "더 많은 영상",
     "browseAll": "모든 디트랜지션 영상 둘러보기",
     "metadataWatchDescription": "{author}의 {title}을(를) 시청하세요, {sex} 디트랜지셔너가 자신의 이야기를 공유합니다.",
-    "metadataThumbnailAlt": "{title}의 썸네일"
+    "metadataThumbnailAlt": "{title}의 썸네일",
+    "seeAlso": {
+      "title": "함께 보기",
+      "hashtagOn": "{platform}의 #detransition"
+    }
   },
   "videoList": {
     "loading": "영상 불러오는 중...",

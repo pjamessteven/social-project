@@ -599,7 +599,11 @@
     "moreVideos": "Więcej filmów",
     "browseAll": "Przeglądaj wszystkie filmy o detransycji",
     "metadataWatchDescription": "Obejrzyj {title} autorstwa {author}, {sex} po detransycji, dzielącego się swoją historią.",
-    "metadataThumbnailAlt": "Miniatura dla {title}"
+    "metadataThumbnailAlt": "Miniatura dla {title}",
+    "seeAlso": {
+      "title": "Zobacz też",
+      "hashtagOn": "#detransition na {platform}"
+    }
   },
   "videoList": {
     "loading": "Ładowanie filmów...",

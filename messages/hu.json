@@ -599,7 +599,11 @@
     "moreVideos": "További Videók",
     "browseAll": "Összes detransition videó böngészése",
     "metadataWatchDescription": "Nézd meg {title} című videót {author} készítette, egy {sex} detransitionáló, aki megosztja történetét.",
-    "metadataThumbnailAlt": "Bélyegkép ehhez: {title}"
+    "metadataThumbnailAlt": "Bélyegkép ehhez: {title}",
+    "seeAlso": {
+      "title": "Lásd még",
+      "hashtagOn": "#detransition – {platform}"
+    }
   },
   "videoList": {
     "loading": "Videók betöltése...",

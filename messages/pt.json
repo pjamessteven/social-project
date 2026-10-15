@@ -36,8 +36,8 @@
         "full": "Sou pai, membro da família ou amigo de alguém que está fazendo a transição"
       },
       "researcher": {
-        "display": "Sou pesquisador estudando identidade de gênero e experiências de desransição",
-        "full": "Sou pesquisador estudando identidade de gênero e experiências de desransição"
+        "display": "Sou pesquisador estudando identidade de gênero e experiências de destransição",
+        "full": "Sou pesquisador estudando identidade de gênero e experiências de destransição"
       },
       "learnChallenges": {
         "display": "Quero aprender sobre as lutas e desafios que os detransicionadores enfrentam",
@@ -48,7 +48,7 @@
         "full": "Quero entender as razões pelas quais os detransicionadores fizeram a transição, e como pode ser diferente entre homens e mulheres."
       },
       "debunkMisinfo": {
-        "display": "Quero que você desminta desinformação e crenças comuns sobre a desransição",
+        "display": "Quero que você desminta desinformação e crenças comuns sobre a destransição",
         "full": "Por favor, desminta toda a desinformação e crenças comuns sobre os detransicionadores, com o máximo de profundidade possível."
       },
       "scientificConsensus": {
@@ -57,7 +57,7 @@
       }
     },
     "navigation": {
-      "videos": "Vídeos de Desransição",
+      "videos": "Vídeos de Destransição",
       "stories": "Histórias",
       "storiesFull": "Histórias e Estatísticas",
       "support": "Encontrar Terapeutas",
@@ -70,7 +70,7 @@
     "disclaimer": {
       "trigger": "Experiências e perspectivas neste site são obtidas do Reddit e YouTube.",
       "title": "Aviso de Fonte",
-      "content": "O detrans.ai responde perguntas sobre gênero de uma perspectiva de desransição, encontrando experiências relevantes da comunidade /r/detrans no Reddit e YouTube. Embora muitas pessoas reais compartilhem suas experiências na internet, também pode haver conteúdo gerado por bots ou enganoso. Você é encorajado a inspecionar a fonte das experiências citadas. Por favor, note que postar no /r/detrans é restrito a pessoas que desfizeram a transição e o subreddit é fortemente moderado, mas a moderação não garante a precisão ou autenticidade de cada post."
+      "content": "O detrans.ai responde perguntas sobre gênero de uma perspectiva de destransição, encontrando experiências relevantes da comunidade /r/detrans no Reddit e YouTube. Embora muitas pessoas reais compartilhem suas experiências na internet, também pode haver conteúdo gerado por bots ou enganoso. Você é encorajado a inspecionar a fonte das experiências citadas. Por favor, note que postar no /r/detrans é restrito a pessoas que desfizeram a transição e o subreddit é fortemente moderado, mas a moderação não garante a precisão ou autenticidade de cada post."
     },
     "donate": {
       "title": "Apoie Nosso Trabalho",
@@ -118,17 +118,17 @@
     "memberCountDisclaimerMobile": "60,000+ membros no <a>/r/detrans subreddit</a>",
     "browseConversations": "Navegar por todas as Conversas",
     "aboutDetransition": {
-      "title": "Sobre a Desransição",
-      "whatIs": "A desransição é o processo de interromper ou reverter uma transição de gênero. As pessoas desfazem a transição por muitos motivos: sua disforia tinha outras raízes, a transição não resolveu seu sofrimento, ou sua compreensão de si mesmas mudou com o tempo. Essas experiências são reais, mas frequentemente difíceis de serem faladas abertamente.",
+      "title": "Sobre a Destransição",
+      "whatIs": "A destransição é o processo de interromper ou reverter uma transição de gênero. As pessoas desfazem a transição por muitos motivos: sua disforia tinha outras raízes, a transição não resolveu seu sofrimento, ou sua compreensão de si mesmas mudou com o tempo. Essas experiências são reais, mas frequentemente difíceis de serem faladas abertamente.",
       "reality": "Os detransicionadores representam uma realidade que muitos têm dificuldade em aceitar: pessoas que tinham certeza de que nasceram no corpo errado, que foram apoiadas nessa crença, e que mesmo assim descobriram que a transição não era a resposta. Isso desafia o próprio conceito de identidade de gênero inata — por isso a resposta é tão frequentemente negação, menosprezo e <a>estatísticas falsas</a> alegando que são poucos demais para importar.",
       "hardToFindTitle": "Por Que Essa Informação É Difícil de Encontrar",
-      "onlineSpaces": "Os espaços online reforçam uma história unilateral. No TikTok e no Instagram, algoritmos identificam o interesse do usuário e criam loops de feedback. No Reddit e no Discord, as comunidades relacionadas a gênero são fortemente moderadas. Perspectivas divergentes são removidas não apenas quando expressas agressivamente, mas quando expressadas de qualquer forma. O indivíduo que expressa arrependimento, que questiona se a transição é sempre apropriada, que compartilha pesquisas mostrando altas taxas de desistência, que menciona conhecer alguém que desfez a transição — todas essas contribuições serão deletadas, e o usuário banido. Alguns pesquisadores que estudam desransição também enfrentaram consequências profissionais.",
+      "onlineSpaces": "Os espaços online reforçam uma história unilateral. No TikTok e no Instagram, algoritmos identificam o interesse do usuário e criam loops de feedback. No Reddit e no Discord, as comunidades relacionadas a gênero são fortemente moderadas. Perspectivas divergentes são removidas não apenas quando expressas agressivamente, mas quando expressadas de qualquer forma. O indivíduo que expressa arrependimento, que questiona se a transição é sempre apropriada, que compartilha pesquisas mostrando altas taxas de desistência, que menciona conhecer alguém que desfez a transição — todas essas contribuições serão deletadas, e o usuário banido. Alguns pesquisadores que estudam destransição também enfrentaram consequências profissionais.",
       "aiBias": "O viés agora está embutido na própria IA. Chatbots ocidentais são reflexos de crenças culturais dominantes e conhecimento. Eles são treinados com dados que esmagadoramente afirmam a transição como a resposta correta ao sofrimento. Os LLMs para os quais as pessoas recorrem cada vez mais em busca de conselhos apresentam um lado como fato estabelecido enquanto escondem o outro.",
       "restoreBalance": "O detrans.ai existe para restaurar o equilíbrio. Ele existe porque as vozes dos detransicionadores são rotineiramente silenciadas por comunidades que os veem como ameaçadores, por profissionais que só pregam a afirmação, e por uma cultura que trata o questionamento da transição médica como prejudicial, mesmo quando os detransicionadores frequentemente explicam que foram prejudicados por ela.",
-      "supportTitle": "Apoio à Desransição",
+      "supportTitle": "Apoio à Destransição",
       "supportDescription": "detrans.ai é um serviço de apoio gratuito para aqueles que questionam seu gênero, pessoas identificadas como trans, detransicionadores, pais e entes queridos. Baseia-se em milhares de histórias marginalizadas de detransicionadores para explorar as raízes da disforia de gênero, as nuances da identidade e como as pessoas reconstruem sua relação com seus corpos e mentes após abandonar uma identidade trans.",
       "whatYouCanLearn": "Aqui você encontrará experiências vividas de detransição social, cessação hormonal, realidades cirúrgicas e o trabalho prático e emocional de seguir em frente. Você também encontrará relatos do que muitos acham mais difícil: a perda de comunidade, o medo de admitir dúvidas e construir uma vida fora de uma identidade que antes definia tudo.",
-      "differentStages": "As pessoas vêm aqui em diferentes estágios. Algumas estão pesquisando antes de iniciar a transição. Outras estão no meio da transição com dúvidas. Outras já começaram a desfazer a transição e precisam de orientação prática. Muitos vêm em busca de <a>grupos de apoio à desransição</a> ou <a>terapeutas exploradores de gênero</a> que não afirmem automaticamente a transição como o único caminho.",
+      "differentStages": "As pessoas vêm aqui em diferentes estágios. Algumas estão pesquisando antes de iniciar a transição. Outras estão no meio da transição com dúvidas. Outras já começaram a desfazer a transição e precisam de orientação prática. Muitos vêm em busca de <a>grupos de apoio à destransição</a> ou <a>terapeutas exploradores de gênero</a> que não afirmem automaticamente a transição como o único caminho.",
       "closing": "Espero que o detrans.ai possa ajudá-lo a tomar decisões informadas e conscientes."
     },
     "about": {},
@@ -158,7 +158,7 @@
       "terminologyDesc": "Definindo termos/conceitos-chave",
       "stories": "Histórias e Estatísticas",
       "storiesDesc": "De usuários do /r/detrans",
-      "videos": "Vídeos de Desransição",
+      "videos": "Vídeos de Destransição",
       "videosDesc": "Arquivo de memórias pessoais",
       "studies": "Estudos Revisados por Pares",
       "studiesDesc": "Pesquisa acadêmica relevante",
@@ -231,8 +231,8 @@
       "p1": "Desistência é quando alguém que se identificava como transgênero mas não realizou intervenções médicas deixa de se identificar como transgênero. Embora possam não ter que lidar com as implicações de terem realizado intervenções médicas, a desistência ainda pode ser um processo muito doloroso emocionalmente, confuso e difícil."
     },
     "detransition": {
-      "heading": "Desransição e detransicionadores",
-      "p1": "Desransição é quando alguém que se identificava como transgênero e passou por intervenções médicas deixa de se identificar como transgênero. Existe uma variação enormemente ampla nas experiências das pessoas dentro deste grupo. Algumas pessoas podem estar muito angustiadas com o que passaram e as implicações de longo prazo, outras podem ver isso como algo que tinham que passar para se entenderem como são atualmente."
+      "heading": "Destransição e detransicionadores",
+      "p1": "Destransição é quando alguém que se identificava como transgênero e passou por intervenções médicas deixa de se identificar como transgênero. Existe uma variação enormemente ampla nas experiências das pessoas dentro deste grupo. Algumas pessoas podem estar muito angustiadas com o que passaram e as implicações de longo prazo, outras podem ver isso como algo que tinham que passar para se entenderem como são atualmente."
     },
     "regret": {
       "heading": "Arrependimento de transição",
@@ -264,7 +264,7 @@
       "videoArchive": "Arquivo de Vídeos",
       "queryStudies": "Pesquisar Estudos",
       "webSearch": "Pesquisa na Web",
-      "queryStudyCatalogue": "Pesquisar Catálogo de Estudos de Desransição",
+      "queryStudyCatalogue": "Pesquisar Catálogo de Estudos de Destransição",
       "studyDetail": "Detalhes do Estudo",
       "wikiPage": "Página wiki"
     },
@@ -369,11 +369,11 @@
   },
   "stories": {
     "metadata": {
-      "title": "detrans.ai | Histórias e Estatísticas de Desransição",
-      "description": "Leia histórias de desransição sinceras, linhas do tempo e tendências dos membros da comunidade /r/detrans do Reddit, a maior coleção aberta de histórias de desransição na internet. Descubra quantos anos tinham os detransicionadores quando fizeram a transição e desfizeram a transição e quais caminhos seguiram."
+      "title": "detrans.ai | Histórias e Estatísticas de Destransição",
+      "description": "Leia histórias de destransição sinceras, linhas do tempo e tendências dos membros da comunidade /r/detrans do Reddit, a maior coleção aberta de histórias de destransição na internet. Descubra quantos anos tinham os detransicionadores quando fizeram a transição e desfizeram a transição e quais caminhos seguiram."
     },
-    "title": "Histórias e Estatísticas de Desransição",
-    "subtitle": "Navegue e visualize {count} histórias de desransição únicas e estatísticas de pessoas que compartilharam suas experiências no subreddit /r/detrans, que é a maior coleção aberta de histórias e experiências de desransição na internet.",
+    "title": "Histórias e Estatísticas de Destransição",
+    "subtitle": "Navegue e visualize {count} histórias de destransição únicas e estatísticas de pessoas que compartilharam suas experiências no subreddit /r/detrans, que é a maior coleção aberta de histórias e experiências de destransição na internet.",
     "disclaimer": {
       "summary": "Estas histórias foram resumidas usando IA.",
       "details": "No Reddit, pessoas frequentemente compartilham suas experiências em vários comentários ou posts. Para tornar essa informação mais acessível, o detrans.ai reúne todas essas peças dispersas em um único resumo e linha do tempo fácil de ler. Todos os prompts do sistema estão anotados na página de prompts.",
@@ -386,7 +386,7 @@
         "age": "Idade",
         "duration": "Duração",
         "transitionReason": "Razão da Transição",
-        "detransitionReason": "Razão da Desransição",
+        "detransitionReason": "Razão da Destransição",
         "pathways": "Caminhos"
       },
       "loading": "Carregando dados do gráfico...",
@@ -584,9 +584,9 @@
       "title": "detrans.ai | Assista Vídeos de Detransicionadores",
       "description": "Aqui está uma seleção de memórias pessoais em vídeo que foram enviadas ao YouTube por pessoas que fizeram a transição e depois tiveram uma realização que as levou a desfazer a transição. Existem incontáveis histórias como essas na internet, este é apenas um pequeno subconjunto."
     },
-    "title": "Vídeos de Transição e Desransição",
+    "title": "Vídeos de Transição e Destransição",
     "description": {
-      "line1": "Esta página pretende ser o melhor arquivo de vídeos de desransição na internet.",
+      "line1": "Esta página pretende ser o melhor arquivo de vídeos de destransição na internet.",
       "line2": "Usando fala-para-texto, o detrans.ai integra essas experiências em conversas de chat.",
       "line3": "Vídeos do YouTube apenas por enquanto, TikTok em breve?!"
     },
@@ -597,9 +597,13 @@
     "fullSummary": "Resumo Completo do Vídeo",
     "watchOnYouTube": "Assistir no YouTube",
     "moreVideos": "Mais Vídeos",
-    "browseAll": "Navegar por todos os vídeos de desransição",
+    "browseAll": "Navegar por todos os vídeos de destransição",
     "metadataWatchDescription": "Assista {title} por {author}, um detransicionador {sex} compartilhando sua história.",
-    "metadataThumbnailAlt": "Miniatura para {title}"
+    "metadataThumbnailAlt": "Miniatura para {title}",
+    "seeAlso": {
+      "title": "Veja também",
+      "hashtagOn": "#detransition no {platform}"
+    }
   },
   "videoList": {
     "loading": "Carregando vídeos...",
@@ -618,7 +622,7 @@
     "male": "Homem"
   },
   "videoSubmitForm": {
-    "submitTitle": "Envie Seu Vídeo de Desransição",
+    "submitTitle": "Envie Seu Vídeo de Destransição",
     "description": {
       "line1": "Ao enviar seu vídeo, ele será exibido nesta página e em chats relevantes.",
       "line2": "Pode ser seu vídeo, ou pode ser um que você encontrou online que está faltando nesta página.",
@@ -652,13 +656,13 @@
   },
   "studiesPage": {
     "metadata": {
-      "title": "detrans.ai | Estudos Acadêmicos sobre Tópicos de Desransição",
-      "description": "Encontre nesta página uma seleção de estudos acadêmicos, artigos de revistas revisados por pares e estatísticas verificadas relacionadas a tendências de identidade de gênero e desransição.",
-      "ogTitle": "detrans.ai | Estudos Acadêmicos sobre Tópicos de Desransição",
-      "ogDescription": "Encontre nesta página uma seleção de estudos acadêmicos e artigos de revistas revisados por pares e estatísticas verificadas relacionadas a tendências de identidade de gênero e desransição."
+      "title": "detrans.ai | Estudos Acadêmicos sobre Tópicos de Destransição",
+      "description": "Encontre nesta página uma seleção de estudos acadêmicos, artigos de revistas revisados por pares e estatísticas verificadas relacionadas a tendências de identidade de gênero e destransição.",
+      "ogTitle": "detrans.ai | Estudos Acadêmicos sobre Tópicos de Destransição",
+      "ogDescription": "Encontre nesta página uma seleção de estudos acadêmicos e artigos de revistas revisados por pares e estatísticas verificadas relacionadas a tendências de identidade de gênero e destransição."
     },
     "title": "Estudos Acadêmicos e Pesquisa",
-    "description": "A pesquisa sobre desransição é um campo emergente. O rápido aumento nos diagnósticos de disforia de gênero na última década — particularmente entre adolescentes do sexo feminino — produziu uma população crescente de detransicionadores, embora a coleta de dados continue desafiadora devido à alta perda de acompanhamento, divisão ideológica e limitações metodológicas.",
+    "description": "A pesquisa sobre destransição é um campo emergente. O rápido aumento nos diagnósticos de disforia de gênero na última década — particularmente entre adolescentes do sexo feminino — produziu uma população crescente de detransicionadores, embora a coleta de dados continue desafiadora devido à alta perda de acompanhamento, divisão ideológica e limitações metodológicas.",
     "analysis": "O detrans.ai analisou cada estudo relevante nesta área, extraindo as principais descobertas e limitações metodológicas, e agrupou-os por tópico e método de pesquisa.",
     "segmNote": "Nesta página você encontrará estudos acadêmicos, pesquisas revisadas por pares e artigos de revistas que questionam a eficácia e a ética da atenção de afirmação de gênero. Veja a <a>Society for Evidence-Based Gender Medicine (SEGM)</a> para mais, incluindo análise abrangente de estudos de apoio.",
     "searchPlaceholder": "Pesquisar estudos...",
@@ -772,7 +776,7 @@
           },
           "detransFoundation": {
             "name": "A Fundação Detrans",
-            "description": "A Fundação Detrans fornece recursos e apoio para detransicionadores, incluindo acesso a terapeutas qualificados que entendem experiências de desransição. Os seguintes terapeutas fazem parte da Fundação Detrans:",
+            "description": "A Fundação Detrans fornece recursos e apoio para detransicionadores, incluindo acesso a terapeutas qualificados que entendem experiências de destransição. Os seguintes terapeutas fazem parte da Fundação Detrans:",
             "drEntwistle": "é Psicóloga Clínica que trabalhou anteriormente no serviço de desenvolvimento de identidade de gênero do NHS para menores de 18 anos em Leeds. Ela está registrada no Conselho de Profissões de Saúde do Reino Unido (HCPC) e oferece consultas online por videochamada segura.",
             "anastassisSpiliadis": "é Psicoterapeuta Sistêmica e Familiar que trabalhou por quatro anos no Serviço de Desenvolvimento de Identidade de Gênero no Tavistock, onde liderou o Serviço de Terapia Familiar e Consultoria. Ele renunciou ao Tavistock pois discordava da falta de um modelo terapêutico para entender dificuldades de identidade de gênero. Ele desenvolveu o Modelo Exploratório de Gênero e tem extensa experiência trabalhando com indivíduos questionando o gênero e detransicionadores.",
             "visitWebsite": "Visite o site da Fundação Detrans"
@@ -920,26 +924,26 @@
       },
       "legend": {
         "transition": "Idade da Transição",
-        "detransition": "Idade da Desransição"
+        "detransition": "Idade da Destransição"
       },
       "median": "mediana {age}",
       "coverage": "Com base em {transition} idades de transição e {detransition} idades de destransição."
     },
     "transitionDuration": {
-      "title": "Duração da Transição: Idade na Transição vs Idade na Desransição",
+      "title": "Duração da Transição: Idade na Transição vs Idade na Destransição",
       "description": {
-        "line1": "Cada ponto mostra idade na transição (X) vs idade na desransição (Y).",
+        "line1": "Cada ponto mostra idade na transição (X) vs idade na destransição (Y).",
         "line2": "Pontos maiores e mais opacos representam mais usuários."
       },
       "loading": "Carregando dados do gráfico...",
       "noData": "Nenhum dado disponível para a faixa etária selecionada",
       "axis": {
         "transitionAge": "Idade na Transição",
-        "detransitionAge": "Idade na Desransição"
+        "detransitionAge": "Idade na Destransição"
       },
       "tooltip": {
         "transitionAge": "Idade na Transição",
-        "detransitionAge": "Idade na Desransição",
+        "detransitionAge": "Idade na Destransição",
         "duration": "Duração",
         "years": "anos"
       },
@@ -951,8 +955,8 @@
       "coverage": "Com base em {count} histórias com ambas as idades registradas."
     },
     "pathways": {
-      "title": "Fluxo de Caminhos de Desransição",
-      "subtitle": "Fluxo de demografia de usuários do /r/detrans do Reddit até resultados de desransição",
+      "title": "Fluxo de Caminhos de Destransição",
+      "subtitle": "Fluxo de demografia de usuários do /r/detrans do Reddit até resultados de destransição",
       "loading": "Carregando dados de caminho...",
       "fetchError": "Falha ao buscar dados de distribuição de tags",
       "genericError": "Ocorreu um erro",
@@ -1009,7 +1013,7 @@
   "seo": {
     "conversations": {
       "title": "Arquivo de Conversas",
-      "description": "Navegue por conversas sobre identidade de gênero, desransição, atendimento de afirmação de gênero e afirmação.",
+      "description": "Navegue por conversas sobre identidade de gênero, destransição, atendimento de afirmação de gênero e afirmação.",
       "conversations": "Conversas",
       "featuredConversations": "Conversas em Destaque",
       "allConversations": "Todas as Conversas",
@@ -1025,7 +1029,7 @@
       "unableToParse": "Não foi possível analisar as mensagens da conversa.",
       "archiveNote": "Esta é uma conversa de nosso arquivo. Para ver a conversa completa e participar de discussões, por favor visite a versão interativa desta página.",
       "welcomeTitle": "Bem-vindo ao Arquivo de Conversas",
-      "welcomeDescription": "Selecione uma conversa da barra lateral para ver seus detalhes. Este arquivo contém discussões sobre identidade de gênero, experiências de desransição e jornadas de afirmação.",
+      "welcomeDescription": "Selecione uma conversa da barra lateral para ver seus detalhes. Este arquivo contém discussões sobre identidade de gênero, experiências de destransição e jornadas de afirmação.",
       "featuredDescription": "Discussões destacadas marcadas por nossa comunidade",
       "allDescription": "Navegue por todas as discussões disponíveis",
       "footer": "Esta página fornece conteúdo amigável a SEO para mecanismos de busca e bots. Para a experiência interativa completa, por favor visite com um navegador web moderno.",
@@ -1036,8 +1040,8 @@
       "freedomMessage": "A verdade é que a não-conformidade de gênero nos libertará a todos!"
     },
     "videos": {
-      "title": "Vídeos de Transição e Desransição",
-      "description": "Este é um arquivo de vídeos pessoais de desransição que foram enviados à internet. Faça sua voz ser ouvida contribuindo e compartilhando sua própria história!",
+      "title": "Vídeos de Transição e Destransição",
+      "description": "Este é um arquivo de vídeos pessoais de destransição que foram enviados à internet. Faça sua voz ser ouvida contribuindo e compartilhando sua própria história!",
       "thumbnailAlt": "Miniatura para",
       "by": "por",
       "female": "Mulher",

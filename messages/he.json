@@ -597,7 +597,11 @@
     "moreVideos": "עוד סרטונים",
     "browseAll": "עיין/י בכל סרטוני הדטרנזישן",
     "metadataWatchDescription": "צפה/י ב-{title} מאת {author}, מדטרנזישנר/ית {sex} שמשתף/ת את הסיפור שלו/ה.",
-    "metadataThumbnailAlt": "תמונת ממוזערת עבור {title}"
+    "metadataThumbnailAlt": "תמונת ממוזערת עבור {title}",
+    "seeAlso": {
+      "title": "ראו גם",
+      "hashtagOn": "#detransition ב־{platform}"
+    }
   },
   "videoList": {
     "loading": "טוען סרטונים...",

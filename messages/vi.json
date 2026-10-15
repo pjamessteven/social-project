@@ -597,7 +597,11 @@
     "moreVideos": "Thêm Video",
     "browseAll": "Duyệt tất cả video chuyển giới trở lại",
     "metadataWatchDescription": "Xem {title} của {author}, một ngưởi chuyển giới trở lại {sex} chia sẻ câu chuyện của họ.",
-    "metadataThumbnailAlt": "Hình thu nhỏ cho {title}"
+    "metadataThumbnailAlt": "Hình thu nhỏ cho {title}",
+    "seeAlso": {
+      "title": "Xem thêm",
+      "hashtagOn": "#detransition trên {platform}"
+    }
   },
   "videoList": {
     "loading": "Đang tải video...",

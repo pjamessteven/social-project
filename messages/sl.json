@@ -597,7 +597,11 @@
     "moreVideos": "Več videov",
     "browseAll": "Brskajte po vseh videih o detranziciji",
     "metadataWatchDescription": "Oglejte si {title} od {author}, {sex} detranzicionarja/-ke, ki deli svojo zgodbo.",
-    "metadataThumbnailAlt": "Sličica za {title}"
+    "metadataThumbnailAlt": "Sličica za {title}",
+    "seeAlso": {
+      "title": "Glej tudi",
+      "hashtagOn": "#detransition na {platform}"
+    }
   },
   "videoList": {
     "loading": "Nalaganje videov...",

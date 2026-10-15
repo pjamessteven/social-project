@@ -599,7 +599,11 @@
     "moreVideos": "Meer Video's",
     "browseAll": "Bekijk alle detransitie-video's",
     "metadataWatchDescription": "Bekijk {title} door {author}, een {sex} detransitioner die hun verhaal deelt.",
-    "metadataThumbnailAlt": "Miniatuur voor {title}"
+    "metadataThumbnailAlt": "Miniatuur voor {title}",
+    "seeAlso": {
+      "title": "Zie ook",
+      "hashtagOn": "#detransition op {platform}"
+    }
   },
   "videoList": {
     "loading": "Video's laden...",

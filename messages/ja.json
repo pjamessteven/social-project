@@ -599,7 +599,11 @@
     "moreVideos": "さらに動画",
     "browseAll": "すべてのデトランジション動画を閲覧",
     "metadataWatchDescription": "{author}による{title}を見る、{sex}のデトランショナーが自分のストーリーを共有しています。",
-    "metadataThumbnailAlt": "{title}のサムネイル"
+    "metadataThumbnailAlt": "{title}のサムネイル",
+    "seeAlso": {
+      "title": "関連リンク",
+      "hashtagOn": "{platform}の#detransition"
+    }
   },
   "videoList": {
     "loading": "動画を読み込み中...",

@@ -597,7 +597,11 @@
     "moreVideos": "วิดีโอเพิ่มเติม",
     "browseAll": "เรียกดูวิดีโอการเลิกเปลี่ยนเพศทั้งหมด",
     "metadataWatchDescription": "รับชม {title} โดย {author} ผู้เลิกเปลี่ยนเพศ {sex} แบ่งปันเรื่องราวของพวกเขา",
-    "metadataThumbnailAlt": "ภาพขนาดย่อสำหรับ {title}"
+    "metadataThumbnailAlt": "ภาพขนาดย่อสำหรับ {title}",
+    "seeAlso": {
+      "title": "ดูเพิ่มเติม",
+      "hashtagOn": "#detransition บน {platform}"
+    }
   },
   "videoList": {
     "loading": "กำลังโหลดวิดีโอ...",

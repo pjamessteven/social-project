@@ -599,7 +599,11 @@
     "moreVideos": "Daugiau vaizdo įrašų",
     "browseAll": "Naršyti visus detranzicijos vaizdo įrašus",
     "metadataWatchDescription": "Žiūrėkite {title} iš {author}, {sex} detranzicionierius, dalijantis savo istorija.",
-    "metadataThumbnailAlt": "Miniatiūra skirta {title}"
+    "metadataThumbnailAlt": "Miniatiūra skirta {title}",
+    "seeAlso": {
+      "title": "Taip pat žiūrėkite",
+      "hashtagOn": "#detransition platformoje {platform}"
+    }
   },
   "videoList": {
     "loading": "Įkeliami vaizdo įrašai...",

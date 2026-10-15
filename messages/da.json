@@ -597,7 +597,11 @@
     "moreVideos": "Flere Videoer",
     "browseAll": "Gennemse alle detransitionsvideoer",
     "metadataWatchDescription": "Se {title} af {author}, en {sex} detransitioner, der deler sin historie.",
-    "metadataThumbnailAlt": "Miniature for {title}"
+    "metadataThumbnailAlt": "Miniature for {title}",
+    "seeAlso": {
+      "title": "Se også",
+      "hashtagOn": "#detransition på {platform}"
+    }
   },
   "videoList": {
     "loading": "Indlæser videoer...",

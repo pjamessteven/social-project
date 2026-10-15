@@ -597,7 +597,11 @@
     "moreVideos": "更多视频",
     "browseAll": "浏览所有去过渡视频",
     "metadataWatchDescription": "观看{author}的{title}，一位分享他们故事的{sex}去过渡者。",
-    "metadataThumbnailAlt": "{title}的缩略图"
+    "metadataThumbnailAlt": "{title}的缩略图",
+    "seeAlso": {
+      "title": "另请参阅",
+      "hashtagOn": "{platform} 上的 #detransition"
+    }
   },
   "videoList": {
     "loading": "正在加载视频...",

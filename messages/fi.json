@@ -597,7 +597,11 @@
     "moreVideos": "Lisää Videoita",
     "browseAll": "Selaa kaikkia detransitio-videoita",
     "metadataWatchDescription": "Katso {title} tekijältä {author}, {sex} detransitionoinut henkilö, joka jakaa tarinansa.",
-    "metadataThumbnailAlt": "Pikkukuva videolle {title}"
+    "metadataThumbnailAlt": "Pikkukuva videolle {title}",
+    "seeAlso": {
+      "title": "Katso myös",
+      "hashtagOn": "#detransition – {platform}"
+    }
   },
   "videoList": {
     "loading": "Ladataan videoita...",

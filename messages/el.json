@@ -597,7 +597,11 @@
     "moreVideos": "Περισσότερα Βίντεο",
     "browseAll": "Περιήγηση σε όλα τα βίντεο αποχώρησης από την αλλαγή φύλου",
     "metadataWatchDescription": "Παρακολούθησε {title} από {author}, ένα {sex} άτομο που αποχώρησε από την αλλαγή φύλου μοιράζεται την ιστορία του.",
-    "metadataThumbnailAlt": "Thumbnail για {title}"
+    "metadataThumbnailAlt": "Thumbnail για {title}",
+    "seeAlso": {
+      "title": "Δείτε επίσης",
+      "hashtagOn": "#detransition στο {platform}"
+    }
   },
   "videoList": {
     "loading": "Φόρτωση βίντεο...",

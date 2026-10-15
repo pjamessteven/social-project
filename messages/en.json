@@ -597,7 +597,11 @@
     "moreVideos": "More Videos",
     "browseAll": "Browse all detransition videos",
     "metadataWatchDescription": "Watch {title} by {author}, a {sex} detransitioner sharing their story.",
-    "metadataThumbnailAlt": "Thumbnail for {title}"
+    "metadataThumbnailAlt": "Thumbnail for {title}",
+    "seeAlso": {
+      "title": "See also",
+      "hashtagOn": "#detransition on {platform}"
+    }
   },
   "videoList": {
     "loading": "Loading videos...",

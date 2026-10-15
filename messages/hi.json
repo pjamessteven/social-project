@@ -599,7 +599,11 @@
     "moreVideos": "और वीडियो",
     "browseAll": "सभी डीट्रांजिशन वीडियो ब्राउज़ करें",
     "metadataWatchDescription": "{author} द्वारा {title} देखें, एक {sex} डीट्रांजिशनर अपनी कहानी साझा कर रहे हैं।",
-    "metadataThumbnailAlt": "{title} के लिए थंबनेल"
+    "metadataThumbnailAlt": "{title} के लिए थंबनेल",
+    "seeAlso": {
+      "title": "यह भी देखें",
+      "hashtagOn": "{platform} पर #detransition"
+    }
   },
   "videoList": {
     "loading": "वीडियो लोड हो रहे हैं...",

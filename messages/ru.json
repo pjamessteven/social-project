@@ -597,7 +597,11 @@
     "moreVideos": "Больше видео",
     "browseAll": "Просмотреть все видео о детрансишене",
     "metadataWatchDescription": "Смотрите {title} от {author}, {sex} детрансионера, делящегося своей историей.",
-    "metadataThumbnailAlt": "Миниатюра для {title}"
+    "metadataThumbnailAlt": "Миниатюра для {title}",
+    "seeAlso": {
+      "title": "См. также",
+      "hashtagOn": "#detransition в {platform}"
+    }
   },
   "videoList": {
     "loading": "Загрузка видео...",

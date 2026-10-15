@@ -599,7 +599,11 @@
     "moreVideos": "Video Lainnya",
     "browseAll": "Jelajahi semua video berhenti transisi",
     "metadataWatchDescription": "Tonton {title} oleh {author}, seorang {sex} yang berhenti transisi berbagi cerita mereka.",
-    "metadataThumbnailAlt": "Gambar mini untuk {title}"
+    "metadataThumbnailAlt": "Gambar mini untuk {title}",
+    "seeAlso": {
+      "title": "Lihat juga",
+      "hashtagOn": "#detransition di {platform}"
+    }
   },
   "videoList": {
     "loading": "Memuat video...",

@@ -597,7 +597,11 @@
     "moreVideos": "Más Videos",
     "browseAll": "Explorar todos los videos de destransición",
     "metadataWatchDescription": "Mira {title} por {author}, una persona {sex} que destransiciona compartiendo su historia.",
-    "metadataThumbnailAlt": "Miniatura para {title}"
+    "metadataThumbnailAlt": "Miniatura para {title}",
+    "seeAlso": {
+      "title": "Ver también",
+      "hashtagOn": "#detransition en {platform}"
+    }
   },
   "videoList": {
     "loading": "Cargando videos...",

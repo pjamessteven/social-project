@@ -597,7 +597,11 @@
     "moreVideos": "Další videa",
     "browseAll": "Procházet všechna videa o detranzici",
     "metadataWatchDescription": "Sledujte {title} od {author}, {sex} detranzicionisty sdílejícího svůj příběh.",
-    "metadataThumbnailAlt": "Náhled pro {title}"
+    "metadataThumbnailAlt": "Náhled pro {title}",
+    "seeAlso": {
+      "title": "Viz také",
+      "hashtagOn": "#detransition na {platform}"
+    }
   },
   "videoList": {
     "loading": "Načítání videí...",
