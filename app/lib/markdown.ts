@@ -232,5 +232,24 @@ export function renderWikiMarkdown(
     }) => frame.tag === "img" && !frame.attribs.alt,
   });
 
-  return { html, toc };
+  return { html: wrapTables(html), toc };
+}
+
+/**
+ * Give every table one renderer-owned wrapper (scrolls on narrow screens,
+ * stretches into the right margin on wide ones — see `.wiki-table` in
+ * globals.css). Older pages carry an authored `overflow-x-auto` wrapper and
+ * markdown pipe tables have none, so drop the former before wrapping. Runs
+ * after sanitizing, so it only adds static markup.
+ */
+function wrapTables(html: string): string {
+  return html
+    .replace(
+      /<div class="overflow-x-auto">\s*(<table[\s\S]*?<\/table>)\s*<\/div>/g,
+      "$1",
+    )
+    .replace(
+      /<table[\s>][\s\S]*?<\/table>/g,
+      (table) => `<div class="wiki-table">${table}</div>`,
+    );
 }

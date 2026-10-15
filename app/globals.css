@@ -146,6 +146,98 @@ body,
   color: hsl(var(--muted-foreground));
 }
 
+/* Wiki tables (wrapper added by renderWikiMarkdown).
+
+   Below xl the wrapper is the table's own scroll box: sideways for wide
+   tables, and vertically once taller than most of the screen, so the sticky
+   header has a scroller to stick to (sticky can't reach the page scroller
+   through a horizontally scrolling wrapper). Columns get a minimum width so
+   narrow screens scroll instead of crushing them.
+
+   On xl+ a wide table instead grows past the prose column into the empty
+   right margin (the TOC owns the left one), up to its natural width and at
+   most 32rem extra, keeping a 2rem gutter from the viewport edge; narrow
+   tables stay at the column width. The wrapper clips rather than scrolls, so
+   the header sticks to the page, 1rem below the top like the sticky TOC.
+
+   The header background hides rows passing underneath; the inset shadow
+   stands in for the bottom border, which doesn't travel with a sticky cell
+   (the typography plugin's thead border is dropped so the two don't double
+   up). */
+.wiki-table {
+  overflow: auto;
+  max-height: 75dvh;
+  margin-block: 2rem;
+}
+
+/* The table's prose margins move to the wrapper so they don't take up room
+   inside the scroll box. */
+.prose .wiki-table > table {
+  margin-block: 0;
+}
+
+.wiki-table :is(th, td) {
+  min-width: 8rem;
+}
+
+/* Phones: bleed through the page's 1rem side padding so the table scrolls
+   edge to edge, padding the outer cells so the text still lines up with the
+   prose at rest. */
+@media (max-width: 47.999rem) {
+  .wiki-table {
+    margin-inline: -1rem;
+  }
+
+  .prose .wiki-table :is(th, td):first-child {
+    padding-inline-start: 1rem;
+  }
+
+  .prose .wiki-table :is(th, td):last-child {
+    padding-inline-end: 1rem;
+  }
+}
+
+.prose .wiki-table thead {
+  border-bottom-width: 0;
+}
+
+.wiki-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: hsl(var(--background));
+  box-shadow: inset 0 -1px 0 var(--tw-prose-th-borders, hsl(var(--border)));
+}
+
+@media (min-width: 80rem) {
+  .wiki-table {
+    overflow: clip;
+    max-height: none;
+    width: max-content;
+    min-width: 100%;
+    max-width: calc(100% + max(0px, min(32rem, (100vw - 100%) / 2 - 2rem)));
+  }
+
+  .wiki-table :is(th, td) {
+    min-width: 0;
+  }
+
+  .wiki-table thead th {
+    top: 1rem;
+  }
+
+  /* Paints the 1rem gap above the stuck header so rows don't show through
+     (an outer box-shadow isn't painted on table cells). */
+  .wiki-table thead th::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 100%;
+    height: 1rem;
+    background-color: hsl(var(--background));
+  }
+}
+
 .prose-table > table {
   border-collapse: separate;
   border-spacing: 0;
