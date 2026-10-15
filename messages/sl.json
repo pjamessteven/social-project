@@ -660,8 +660,8 @@
       "ogDescription": "Na tej strani poiščite izbor akademskih študij in člankov iz revij, ki jih recenzirajo vrstniki, ter preverjene statistike, ki se nanašajo na trende spolne identitete in detranzicijo."
     },
     "title": "Akademske študije in raziskave",
-    "description": "Raziskovanje detranzicije je novo področje. Hiter porast diagnoz spolnega nelagodja v zadnjem desetletju – zlasti med najstnicami – je ustvaril rastočo populacijo detranzicionarjev, čeprav zbiranje podatkov ostaja izziv zaradi velikega odstopanja pri nadaljnjem spremljanju, ideološke razdeljenosti in metodoloških omejitev.",
-    "analysis": "detrans.ai je analiziral vsako ustrezno študijo na tem področju, izluščil njene ključne ugotovitve in metodološke omejitve ter študije razvrstil po temah in raziskovalnih metodah.",
+    "description": "Spolna medicina je eksperimentalno področje s šibko dokazno podlago. Neodvisni sistematični pregledi so dokaze o zaviralcih pubertete, hormonih nasprotnega spola in kirurških posegih ocenili kot dokaze z nizko ali zelo nizko stopnjo gotovosti, številne študije pa pri ljudeh s spolnim nelagodjem ugotavljajo visoko pogostost sočasnih stanj, kot so depresija, anksioznost, avtizem in travma.",
+    "analysis": "Ta stran ponuja nevtralno analizo vseh pomembnih študij in pregledov na tem področju, s ključnimi ugotovitvami in omejitvami vsake od njih, razvrščenih po temi in raziskovalni metodi.",
     "segmNote": "Na tej strani boste našli akademske študije, recenzirane raziskave in članke iz revij, ki zastavljajo vprašanja o učinkovitosti in etiki potrjevalne oskrbe spola. Za več informacij, vključno z vsestranskimi analizami podpornih študij, glejte <a>Society for Evidence-Based Gender Medicine (SEGM)</a>.",
     "searchPlaceholder": "Iskanje študij...",
     "methodology": "Metodologija",

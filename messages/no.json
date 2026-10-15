@@ -662,8 +662,8 @@
       "ogDescription": "Finn på denne siden et utvalg av akademiske studier og fagfellevurderte tidsskriftartikler og verifisert statistikk som er relatert til kjønnsidentitetstrender og detransisjon."
     },
     "title": "Akademiske studier og forskning",
-    "description": "Detransisjonsforskning er et nytt felt. Den raske økningen i diagnoser av kjønnsdysfori det siste tiåret – særlig blant unge jenter – har skapt en voksende populasjon av detransisjonerte, selv om datainnsamling fortsatt er utfordrende på grunn av høyt frafall ved oppfølging, ideologisk splittelse og metodologiske begrensninger.",
-    "analysis": "detrans.ai har analysert alle relevante studier på dette feltet, hentet ut hovedfunnene og de metodiske begrensningene, og gruppert dem etter tema og forskningsmetode.",
+    "description": "Kjønnsmedisin er et eksperimentelt felt med et svakt kunnskapsgrunnlag. Uavhengige systematiske oversikter har vurdert kunnskapsgrunnlaget for pubertetsblokkere, krysskjønnshormoner og kirurgi som å ha lav eller svært lav sikkerhet, mens mange studier finner høy forekomst av samtidige tilstander som depresjon, angst, autisme og traumer blant personer med kjønnsdysfori.",
+    "analysis": "Denne siden gir en nøytral analyse av alle viktige studier og oversikter på feltet, med de viktigste funnene og begrensningene for hver av dem, gruppert etter tema og forskningsmetode.",
     "segmNote": "På denne siden finner du akademiske studier, fagfellevurdert forskning og tidsskriftsartikler som reiser spørsmål ved effektiviteten og etikken til kjønnsbekreftende behandling. Se <a>Society for Evidence-Based Gender Medicine (SEGM)</a> for mer, inkludert omfattende analyser av støttende studier.",
     "searchPlaceholder": "Søk i studier...",
     "methodology": "Metodikk",

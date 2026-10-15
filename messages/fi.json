@@ -660,8 +660,8 @@
       "ogDescription": "Löydä tällä sivulla valikoima akateemisia tutkimuksia ja vertaisarvioituja lehtiartikkeleita ja vahvistettuja tilastoja, jotka liittyvät sukupuoli-identiteettitrendeihin ja detransitioon."
     },
     "title": "Akateemiset tutkimukset ja tutkimustoiminta",
-    "description": "Detransitiotutkimus on uusi ala. Sukupuolidysforiadiagnoosien nopea kasvu viime vuosikymmenen aikana – erityisesti nuorten tyttöjen keskuudessa – on tuottanut kasvavan detransitioneiden joukon, vaikka tiedonkeruu pysyy haastavana suuren seurantahävikin, ideologisen jakautumisen ja menetelmällisten rajoitusten vuoksi.",
-    "analysis": "detrans.ai on analysoinut jokaisen alan olennaisen tutkimuksen, poiminut sen keskeiset löydökset ja menetelmälliset rajoitukset sekä ryhmitellyt tutkimukset aiheen ja tutkimusmenetelmän mukaan.",
+    "description": "Sukupuolilääketiede on kokeellinen ala, jonka näyttöpohja on heikko. Riippumattomat järjestelmälliset katsaukset ovat arvioineet murrosiän estäjiä, vastakkaisen sukupuolen hormoneja ja kirurgiaa koskevan näytön varmuusasteeltaan heikoksi tai hyvin heikoksi, ja monissa tutkimuksissa on havaittu sukupuolidysforiasta kärsivillä runsaasti samanaikaisia tiloja, kuten masennusta, ahdistusta, autismia ja traumoja.",
+    "analysis": "Tällä sivulla esitetään neutraali analyysi jokaisesta alan merkittävästä tutkimuksesta ja katsauksesta keskeisine löydöksineen ja rajoituksineen, ryhmiteltynä aiheen ja tutkimusmenetelmän mukaan.",
     "segmNote": "Tällä sivulla löydät akateemisia tutkimuksia, vertaisarvioituja tutkimuksia ja lehtiartikkeleita, jotka kyseenalaistavat sukupuolen vahvistavan hoidon tehokkuuden ja etiikan. Katso <a>Society for Evidence-Based Gender Medicine (SEGM)</a> saadaksesi lisää, mukaan lukien kattavat analyysit tukevista tutkimuksista.",
     "searchPlaceholder": "Hae tutkimuksia...",
     "methodology": "Metodologia",

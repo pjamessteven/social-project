@@ -662,8 +662,8 @@
       "ogDescription": "Znajdź na tej stronie wybór badań akademickich i recenzowanych artykułów czasopism oraz zweryfikowanych statystyk związanych z trendami tożsamości płciowej i detransycją."
     },
     "title": "Badania akademickie i nauka",
-    "description": "Badania nad detransycją to dziedzina dopiero się rozwijająca. Gwałtowny wzrost diagnoz dysforii płciowej w minionej dekadzie – szczególnie wśród dziewcząt w wieku nastoletnim – doprowadził do powstania rosnącej populacji osób po detransycji, choć zbieranie danych pozostaje trudne ze względu na wysoki poziom utraty kontaktu w okresie obserwacji, podziały ideologiczne i ograniczenia metodologiczne.",
-    "analysis": "detrans.ai przeanalizowało każde istotne badanie w tej dziedzinie, wyodrębniając jego kluczowe ustalenia i ograniczenia metodologiczne, oraz pogrupowało badania według tematu i metody badawczej.",
+    "description": "Medycyna płci to dziedzina eksperymentalna o słabej bazie dowodowej. Niezależne przeglądy systematyczne oceniły pewność dowodów dotyczących blokerów dojrzewania, hormonów płci przeciwnej i operacji jako niską lub bardzo niską, a wiele badań wykazuje wysoką częstość współwystępujących zaburzeń, takich jak depresja, lęk, autyzm i trauma, wśród osób z dysforią płciową.",
+    "analysis": "Ta strona przedstawia neutralną analizę każdego istotnego badania i przeglądu w tej dziedzinie wraz z kluczowymi wynikami i ograniczeniami każdego z nich, pogrupowanych według tematu i metody badawczej.",
     "segmNote": "Na tej stronie znajdziesz badania akademickie, recenzowane publikacje naukowe oraz artykuły czasopism, które kwestionują skuteczność i etykę opieki afirmującej płeć. Zobacz <a>Society for Evidence-Based Gender Medicine (SEGM)</a>, aby dowiedzieć się więcej, w tym o kompleksowych analizach badań wspierających.",
     "searchPlaceholder": "Szukaj badań...",
     "methodology": "Metodologia",

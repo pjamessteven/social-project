@@ -660,8 +660,8 @@
       "ogDescription": "Bu sayfada cinsiyet kimliği trendleri ve detransisyonla ilgili akademik çalışmalar ve hakemli dergi makaleleri ile doğrulanmış istatistiklerin bir seçkisini bulun."
     },
     "title": "Akademik Çalışmalar ve Araştırma",
-    "description": "Detransisyon araştırmaları yeni gelişmekte olan bir alandır. Geçtiğimiz on yılda cinsiyet disforisi tanılarındaki hızlı artış—özellikle ergen kızlar arasında—büyüyen bir detransitioner nüfusu oluşturmuştur; ancak yüksek kayıp oranları, ideolojik bölünme ve metodolojik sınırlamalar nedeniyle veri toplamayı zorlu bir süreç olmaya devam etmektedir.",
-    "analysis": "detrans.ai bu alandaki her ilgili çalışmayı analiz ederek temel bulgularını ve yöntemsel sınırlılıklarını çıkardı ve çalışmaları konuya ve araştırma yöntemine göre gruplandırdı.",
+    "description": "Cinsiyet tıbbı, kanıt temeli zayıf olan deneysel bir alandır. Bağımsız sistematik derlemeler ergenlik baskılayıcıları, karşı cins hormonları ve cerrahiye ilişkin kanıtların kesinliğini düşük veya çok düşük olarak değerlendirmiştir; pek çok çalışma ise cinsiyet disforisi olan kişilerde depresyon, anksiyete, otizm ve travma gibi eşlik eden durumların yüksek oranlarda görüldüğünü ortaya koymaktadır.",
+    "analysis": "Bu sayfa, alandaki her önemli çalışma ve derlemenin tarafsız bir analizini, her birinin temel bulguları ve sınırlılıklarıyla birlikte, konu ve araştırma yöntemine göre gruplandırılmış olarak sunmaktadır.",
     "segmNote": "Bu sayfada, cinsiyet onaylayıcı bakımın etkinliği ve etiği sorgulayan akademik çalışmalar, hakemli araştırmalar ve dergi makaleleri bulacaksınız. Destekleyici çalışmaların kapsamlı analizi dahil olmak üzere daha fazla bilgi için <a>Society for Evidence-Based Gender Medicine (SEGM)</a>'e bakın.",
     "searchPlaceholder": "Çalışma ara...",
     "methodology": "Metodoloji",
