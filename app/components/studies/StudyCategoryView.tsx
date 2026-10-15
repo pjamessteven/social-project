@@ -51,7 +51,7 @@ export function StudyCategoryView({
   );
 
   const chip = (active: boolean) =>
-    `rounded-full border px-3 py-1.5 text-sm transition-colors ${
+    `shrink-0 rounded-full border px-3 py-1.5 text-sm transition-colors ${
       active
         ? "bg-foreground text-background border-foreground"
         : "dark:bg-secondary bg-white hover:border-foreground/30"
@@ -59,7 +59,10 @@ export function StudyCategoryView({
 
   return (
     <div className="space-y-6">
-      <div className="space-y-4">
+      {/* Pinned while scrolling the grid (1px above the scroller edge so no
+          seam shows at fractional zoom); chips scroll sideways on mobile so
+          the bar stays short. */}
+      <div className="sticky -top-px z-20 -mx-4 space-y-3 bg-white px-4 pt-[calc(0.75rem+1px)] pb-3 dark:bg-black">
         {studies.length > 6 && (
           <SearchBar
             value={searchQuery}
@@ -69,7 +72,7 @@ export function StudyCategoryView({
           />
         )}
         {options.length > 1 && (
-          <div className="flex flex-wrap gap-2">
+          <div className="-mx-4 flex gap-2 overflow-x-auto px-4 [scrollbar-width:none] md:mx-0 md:flex-wrap md:overflow-visible md:px-0">
             <button
               className={chip(filterId === null)}
               onClick={() => setFilterId(null)}
