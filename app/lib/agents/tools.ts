@@ -15,9 +15,9 @@ import {
   runSed,
 } from "@/app/lib/wiki-edit";
 import { db } from "@/db";
-import { studies, studyTagRelations, studyTags } from "@/db/schema";
+import { studies, studyCategories, studyCategoryRelations } from "@/db/schema";
 import { defaultLocale } from "@/i18n/locales";
-import { and, eq, inArray, sql } from "drizzle-orm";
+import { and, eq, inArray } from "drizzle-orm";
 import {
   MetadataMode,
   Settings,
@@ -352,149 +352,287 @@ export function createWebSearchTool(config: WebSearchToolConfig) {
   );
 }
 
+// --- getStudies ------------------------------------------------------------
+// Two modes, so a "show me everything" call can't flood the context (the old
+// listing was ~270k chars for 50 studies): a compact catalogue (one short
+// line of fields per study, ~10k tokens for the whole archive) and a detail
+// mode for at most MAX_DETAIL_IDS studies by id. Results also say what to do
+// next, because the chat model is small and follows hints better than rules.
+
+const MAX_DETAIL_IDS = 8;
+const SEARCH_STOPWORDS = new Set(
+  "the and for with that this from are was were what how why who about into does did not any all studies study research paper papers evidence".split(
+    " ",
+  ),
+);
+
+const ORGANISATION_WORDS =
+  /\b(of|for|department|society|institute|association|council|agency|ministry|board|college|academy|commission|committee|group|network|services|organi[sz]ation|nhs)\b/i;
+
+/** "Smith et al. 2020" style short citation from a comma-separated author list. */
+function shortCitation(authors: string | null, year: number | null): string {
+  const names = (authors ?? "")
+    .replace(/\([^)]*\)/g, "")
+    .split(/[,;]/)
+    .map((n) => n.trim())
+    .filter(Boolean);
+  const surname = (name: string) => {
+    if (ORGANISATION_WORDS.test(name)) return clampText(name, 60) ?? name;
+    const parts = name.split(/\s+/);
+    const last = parts.length - 1;
+    // "Smith J" / "Smith JA": initials come last, the surname first.
+    if (last > 0 && /^[A-Z]{1,3}\.?$/.test(parts[last])) return parts[0];
+    // Keep lower-case particles: "van der Loos", "de Vries".
+    let start = last;
+    while (
+      start > 1 &&
+      /^(van|von|der|den|de|da|di|du|la|le)$/.test(parts[start - 1])
+    )
+      start--;
+    return parts.slice(start).join(" ");
+  };
+  let who = "Unknown authors";
+  if (names.length === 1) who = surname(names[0]);
+  else if (names.length === 2)
+    who = `${surname(names[0])} & ${surname(names[1])}`;
+  else if (names.length > 2) who = `${surname(names[0])} et al.`;
+  return year ? `${who} ${year}` : who;
+}
+
 export function createGetStudiesTool() {
   return tool(
     async ({
-      id,
-      limit = 50,
-      tags,
+      ids,
+      categories,
+      search,
+      limit,
     }: {
-      id?: number;
+      ids?: number[];
+      categories?: string[];
+      search?: string;
       limit?: number;
-      tags?: string[];
     }) => {
-      const baseSelect = {
-        id: studies.id,
-        title: studies.title,
-        authors: studies.authors,
-        year: studies.year,
-        description: studies.description,
-        journal: studies.journal,
-        url: studies.url,
-        abstract: studies.abstract,
-        conclusion: studies.conclusion,
-        keyPoints: studies.keyPoints,
-        summary: studies.summary,
-        limitations: studies.limitations,
-      };
-
-      // Full record for a single study (used when citing a study in depth).
-      if (id != null) {
-        const [study] = await db
-          .select(baseSelect)
-          .from(studies)
-          .where(and(eq(studies.id, id), eq(studies.approved, true)))
-          .limit(1);
-        if (!study) {
-          return JSON.stringify({
-            success: false,
-            error: `Study ${id} not found or not approved`,
-          });
-        }
-        return JSON.stringify({ success: true, study });
+      const categoryRows = await db
+        .select({
+          studyId: studyCategoryRelations.studyId,
+          kind: studyCategories.kind,
+          name: studyCategories.name,
+        })
+        .from(studyCategoryRelations)
+        .innerJoin(
+          studyCategories,
+          eq(studyCategoryRelations.categoryId, studyCategories.id),
+        );
+      const categoriesByStudy = new Map<
+        number,
+        { topics: string[]; method: string | null }
+      >();
+      for (const row of categoryRows) {
+        const entry = categoriesByStudy.get(row.studyId) ?? {
+          topics: [],
+          method: null,
+        };
+        if (row.kind === "method") entry.method = row.name;
+        else entry.topics.push(row.name);
+        categoriesByStudy.set(row.studyId, entry);
       }
 
-      let results;
-
-      const tagList = tags ?? [];
-      if (tagList.length > 0) {
-        const tagFilter = inArray(studyTags.name, tagList);
-        const studyIdsFromTags = db
-          .select({ studyId: studyTagRelations.studyId })
-          .from(studyTagRelations)
-          .innerJoin(studyTags, eq(studyTagRelations.tagId, studyTags.id))
-          .where(tagFilter);
-
-        results = await db
+      // Detail mode: full records for a few studies.
+      if (ids && ids.length > 0) {
+        const wanted = [...new Set(ids)].slice(0, MAX_DETAIL_IDS);
+        const rows = await db
           .select({
-            ...baseSelect,
-            tags: sql<string[]>`array_agg(distinct ${studyTags.name})`.as(
-              "tags",
-            ),
+            id: studies.id,
+            title: studies.title,
+            authors: studies.authors,
+            year: studies.year,
+            journal: studies.journal,
+            url: studies.url,
+            cardSummary: studies.cardSummary,
+            description: studies.description,
+            abstract: studies.abstract,
+            conclusion: studies.conclusion,
+            keyPoints: studies.keyPoints,
+            limitations: studies.limitations,
           })
           .from(studies)
-          .leftJoin(
-            studyTagRelations,
-            eq(studies.id, studyTagRelations.studyId),
-          )
-          .leftJoin(studyTags, eq(studyTagRelations.tagId, studyTags.id))
-          .where(
-            sql`${studies.approved} = true AND ${studies.id} IN (${studyIdsFromTags})`,
-          )
-          .groupBy(
-            studies.id,
-            studies.title,
-            studies.authors,
-            studies.year,
-            studies.description,
-            studies.journal,
-            studies.url,
-            studies.abstract,
-            studies.conclusion,
-            studies.keyPoints,
-            studies.summary,
-            studies.limitations,
-          )
-          .orderBy(studies.year)
-          .limit(limit);
-
-        // Clean up null tags from left join
-        results = results.map((r) => ({
-          ...r,
-          tags: r.tags?.filter(Boolean) ?? [],
-        }));
-      } else {
-        results = await db
-          .select(baseSelect)
-          .from(studies)
-          .where(eq(studies.approved, true))
-          .orderBy(studies.year)
-          .limit(limit);
-
-        results = results.map((r) => ({ ...r, tags: [] }));
+          .where(and(inArray(studies.id, wanted), eq(studies.approved, true)));
+        const found = new Set(rows.map((r) => r.id));
+        const missing = wanted.filter((id) => !found.has(id));
+        const skipped = ids.length - wanted.length;
+        return JSON.stringify({
+          success: rows.length > 0,
+          mode: "details",
+          ...(missing.length > 0 && {
+            error: `No approved study with id ${missing.join(", ")}. Use ids from a getStudies list.`,
+          }),
+          ...(skipped > 0 && {
+            note: `Only the first ${MAX_DETAIL_IDS} ids were fetched. Call again for the rest.`,
+          }),
+          studies: rows.map((r) => ({
+            id: r.id,
+            cite: shortCitation(r.authors, r.year),
+            title: r.title,
+            authors: r.authors,
+            year: r.year,
+            journal: r.journal,
+            method: categoriesByStudy.get(r.id)?.method ?? null,
+            topics: categoriesByStudy.get(r.id)?.topics ?? [],
+            link: `/studies/${r.id}`,
+            sourceUrl: r.url,
+            summary: r.cardSummary ?? clampText(r.description, 600),
+            abstract: clampText(r.abstract, 1500),
+            conclusion: clampText(r.conclusion, 1000),
+            keyPoints: r.keyPoints?.slice(0, 8).map((k) => clampText(k, 300)),
+            limitations: r.limitations
+              ?.slice(0, 6)
+              .map((k) => clampText(k, 250)),
+          })),
+        });
       }
 
-      // Compact listing mode: clamp long text fields so a 50-study listing
-      // doesn't serialize to tens of thousands of tokens. Pass `id` for the
-      // full record of a single study.
-      results = results.map((r) => ({
-        ...r,
-        description: clampText(r.description),
-        abstract: clampText(r.abstract),
-        conclusion: clampText(r.conclusion),
-        summary: clampText(r.summary),
-        limitations: r.limitations?.slice(0, 8).map((k) => clampText(k, 300)),
-        keyPoints: r.keyPoints?.slice(0, 8).map((k) => clampText(k, 300)),
-      }));
+      // Catalogue mode: every approved study as one compact entry.
+      const rows = await db
+        .select({
+          id: studies.id,
+          title: studies.title,
+          headline: studies.headline,
+          authors: studies.authors,
+          year: studies.year,
+          journal: studies.journal,
+          cardSummary: studies.cardSummary,
+          description: studies.description,
+        })
+        .from(studies)
+        .where(eq(studies.approved, true));
+
+      const allCategoryNames = [...new Set(categoryRows.map((r) => r.name))];
+      const wantedCategories = (categories ?? [])
+        .map((c) => c.trim().toLowerCase())
+        .filter(Boolean);
+      const matchedCategories = allCategoryNames.filter((name) =>
+        wantedCategories.some((c) => {
+          const n = name.toLowerCase();
+          return n === c || n.includes(c) || c.includes(n);
+        }),
+      );
+      const unknownCategories = wantedCategories.filter(
+        (c) =>
+          !allCategoryNames.some((name) => {
+            const n = name.toLowerCase();
+            return n === c || n.includes(c) || c.includes(n);
+          }),
+      );
+
+      const words = (search ?? "")
+        .toLowerCase()
+        .split(/[^\p{L}\p{N}]+/u)
+        .filter((w) => w.length >= 3 && !SEARCH_STOPWORDS.has(w));
+
+      let scored = rows.map((r) => {
+        const cats = categoriesByStudy.get(r.id);
+        const haystack = [
+          r.title,
+          r.headline,
+          r.authors,
+          r.journal,
+          r.cardSummary,
+          r.description,
+          cats?.method,
+          ...(cats?.topics ?? []),
+        ]
+          .join(" ")
+          .toLowerCase();
+        return {
+          row: r,
+          cats,
+          score: words.filter((w) => haystack.includes(w)).length,
+        };
+      });
+      if (matchedCategories.length > 0) {
+        scored = scored.filter(({ cats }) =>
+          [cats?.method, ...(cats?.topics ?? [])].some(
+            (name) => name && matchedCategories.includes(name),
+          ),
+        );
+      }
+      if (words.length > 0) scored = scored.filter((s) => s.score > 0);
+      scored.sort(
+        (a, b) => b.score - a.score || (b.row.year ?? 0) - (a.row.year ?? 0),
+      );
+
+      // Keyword search matches any word, so its tail is weak; keep it short.
+      const max = Math.min(
+        Math.max(limit ?? (words.length > 0 ? 25 : 150), 1),
+        150,
+      );
+      const shown = scored.slice(0, max);
+      const notes: string[] = [];
+      if (shown.length === 0) {
+        notes.push(
+          "No studies matched. Try other keywords, fewer filters, or no filters to see the whole list.",
+        );
+      } else {
+        notes.push(
+          `This is a short list. Before you cite a study, call getStudies again with ids: [...] (up to ${MAX_DETAIL_IDS} at once) to read its findings and limitations.`,
+        );
+      }
+      if (scored.length > shown.length) {
+        notes.push(
+          `${scored.length - shown.length} more studies matched but are not shown. Use categories or search to narrow the list.`,
+        );
+      }
+      if (unknownCategories.length > 0) {
+        notes.push(
+          `Unknown categories: ${unknownCategories.join(", ")}. Valid categories: ${allCategoryNames.join(", ")}.`,
+        );
+      }
 
       return JSON.stringify({
         success: true,
-        count: results.length,
-        studies: results,
+        // "all" = the unfiltered catalogue; the chat UI shows only its count.
+        mode:
+          matchedCategories.length > 0 || words.length > 0 ? "search" : "all",
+        total: scored.length,
+        note: notes.join(" "),
+        studies: shown.map(({ row: r, cats }) => ({
+          id: r.id,
+          cite: shortCitation(r.authors, r.year),
+          title: clampText(r.title, 160),
+          method: cats?.method ?? null,
+          summary: r.cardSummary ?? clampText(r.description, 200),
+        })),
       });
     },
     {
       name: "getStudies",
       description:
-        "List approved studies (compact: long abstracts/conclusions are truncated). Filter by tags (OR logic). Pass `id` to fetch ONE study's full record — complete abstract, conclusion, key points and limitations — for studies you cite in depth. Returns study ids (for /studies/{id} links), titles, authors, year, journal, descriptions, and tags.",
+        "Look up studies in the site's study archive. Without ids it returns a SHORT list (id, citation, title, study type, one-line summary) of all matching studies. Then call it again with ids: [...] (up to 8 at once) to read the full findings, key points and limitations of the studies you will cite. Link to a study as /studies/{id}.",
       parameters: z.object({
-        id: z
-          .number()
+        ids: z
+          .array(z.number())
           .optional()
           .describe(
-            "Fetch the full record for a single study by its id (ignores tags/limit).",
+            "Ids of up to 8 studies (from an earlier getStudies list) to read in full. Leave out to get the short list.",
           ),
-        tags: z
+        categories: z
           .array(z.string())
           .optional()
           .describe(
-            "Filter studies by these tag names (OR logic — returns studies matching any of the provided tags). Omit or pass an empty array to return all studies.",
+            'Only list studies in these categories (any of them), e.g. ["Puberty blockers", "Surveys"]. Leave out for all studies.',
+          ),
+        search: z
+          .string()
+          .optional()
+          .describe(
+            'A few keywords to find in titles and summaries, e.g. "regret mastectomy". Leave out for all studies.',
           ),
         limit: z
           .number()
           .optional()
-          .default(50)
-          .describe("Maximum number of studies to return"),
+          .describe(
+            "Maximum number of studies in the short list (default: 25 with search, otherwise all).",
+          ),
       }),
     },
   );

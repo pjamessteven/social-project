@@ -17,10 +17,10 @@ import {
   createUpdatePageTool,
   createWebSearchTool,
 } from "@/app/lib/agents/tools";
-import { db, withDbTimeout } from "@/db";
-import { studyTags } from "@/db/schema";
-import { agent } from "@llamaindex/workflow";
 import { openRouterProvider } from "@/app/lib/openrouter";
+import { db, withDbTimeout } from "@/db";
+import { studyCategories } from "@/db/schema";
+import { agent } from "@llamaindex/workflow";
 import { CachedOpenAI } from "../../shared/llm";
 import { agentPrompt, wikiUpdateModePrompt } from "../utils/prompts";
 
@@ -114,13 +114,13 @@ export const workflowFactory = async (
     tools.push(queryTransCommentsTool);
   }
 
-  const tags = await withDbTimeout(
-    db.select({ name: studyTags.name }).from(studyTags),
+  const categories = await withDbTimeout(
+    db.select({ name: studyCategories.name }).from(studyCategories),
   );
-  const tagNames = tags.map((t) => t.name).filter(Boolean);
-  const tagList =
-    tagNames.length > 0
-      ? `\n\n### Available Study Tags\nThe following tags can be used to filter studies with the getStudies tool: ${tagNames.join(", ")}`
+  const categoryNames = categories.map((c) => c.name).filter(Boolean);
+  const studyCategoryList =
+    categoryNames.length > 0
+      ? `\n\n### Study Categories\nUse these names in the getStudies tool's categories filter: ${categoryNames.join(", ")}`
       : "";
   // Observability: make tool registration visible per request (this is the
   // first place to look when the agent claims it "has no tools"). LlamaIndex
@@ -131,7 +131,7 @@ export const workflowFactory = async (
 
   const systemPrompt =
     agentPrompt +
-    tagList +
+    studyCategoryList +
     (adminUsername ? (wikiMode ? wikiUpdateModePrompt : "") : "");
 
   // Model selection: admins can opt into the Pro model per message.

@@ -456,6 +456,8 @@ export function GetStudiesEventPart() {
   const isSuccess = eventPart.data.status === "success";
   const studies = parsed?.studies ?? [];
   const isEmpty = isSuccess && studies.length === 0;
+  // The unfiltered catalogue is the whole archive; listing it adds nothing.
+  const showList = parsed?.mode !== "all";
 
   return (
     <EventWrapper
@@ -470,7 +472,7 @@ export function GetStudiesEventPart() {
       disableExpand
     >
       <div className="not-prose my-2 w-full">
-        {isSuccess && studies.length > 0 && (
+        {isSuccess && showList && studies.length > 0 && (
           <div
             className="bg-muted/50 mt-1 space-y-1 rounded border px-3 py-2 text-xs"
             onClick={() => setExpanded(!expanded)}
@@ -491,13 +493,19 @@ export function GetStudiesEventPart() {
                   >
                     <div className="font-medium">{s.title}</div>
                     <div className="text-muted-foreground mt-0.5">
-                      {s.authors && <span>{s.authors}</span>}
-                      {s.year && <span> ({s.year})</span>}
+                      {s.cite ? (
+                        <span>{s.cite}</span>
+                      ) : (
+                        <>
+                          {s.authors && <span>{s.authors}</span>}
+                          {s.year && <span> ({s.year})</span>}
+                        </>
+                      )}
                       {s.journal && <span> — {s.journal}</span>}
                     </div>
-                    {s.description && (
+                    {(s.summary || s.description) && (
                       <p className="text-muted-foreground mt-0.5 line-clamp-2">
-                        {s.description}
+                        {s.summary || s.description}
                       </p>
                     )}
                   </li>
