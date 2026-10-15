@@ -160,6 +160,43 @@ async function translateCategories() {
       .where(eq(studyCategories.id, r.id));
   }
   console.log(`Saved translations for ${rows.length} categories.`);
+
+  await translateCategorySummaries();
+}
+
+/** Long markdown evidence overviews: one call per category and locale. */
+async function translateCategorySummaries() {
+  const rows = (await db.select().from(studyCategories)).filter(
+    (r) => r.summary,
+  );
+  for (const r of rows) {
+    const translations = parseRecord<string>(r.summaryTranslation);
+    const missing = targetLocales.filter((l) => !translations[l.code]);
+    if (missing.length === 0) continue;
+
+    await runPool(missing, async (locale) => {
+      try {
+        const out = await translateJson(
+          { summary: r.summary! },
+          locale.englishName,
+          "This is a markdown overview of the research evidence on one topic, from a library of academic studies about gender dysphoria, transition and detransition. Keep all markdown (headings, lists, bold, links and their URLs) intact; only translate the text.",
+        );
+        if (typeof out.summary === "string" && out.summary.trim()) {
+          translations[locale.code] = out.summary.trim();
+        }
+      } catch (error) {
+        console.error(`  ✗ summary ${r.id} → ${locale.code}:`, error);
+      }
+    });
+
+    await db
+      .update(studyCategories)
+      .set({ summaryTranslation: JSON.stringify(translations) })
+      .where(eq(studyCategories.id, r.id));
+    console.log(
+      `  ✓ summary ${r.id} (${r.name}): ${Object.keys(translations).length}/${targetLocales.length}`,
+    );
+  }
 }
 
 async function translateCards() {
