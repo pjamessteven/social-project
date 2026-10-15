@@ -1,4 +1,4 @@
-# Translation plan: stories, wiki pages, tags
+# Translation plan: stories, wiki pages, tags, studies
 
 Instructions for the translation agent (Sonnet). Read `AGENTS.md` first.
 
@@ -84,20 +84,59 @@ Instructions for the translation agent (Sonnet). Read `AGENTS.md` first.
 
 ## Phase 5: wiki pages (titles and summaries first)
 
-- **Table:** `pages` (103 published; 4 have translated titles, 2 have
-  translated content)
+- **Table:** `pages` (147 published across 9 hubs as of 2026-10-15; only 4
+  have translated titles and 2 translated content, so treat it as all new)
 - **Write through `updatePage(path, { translations })` in `app/lib/pages.ts`,
   not with raw SQL.** It merges `title`/`summary`/`content` translations and
   regenerates `page_slugs` from the translated `slug`.
 - **5a:** for every published page, `title`, `summary` and `slug` per locale.
   Titles are SEO titles of 60 characters or fewer. The slug is the translated
   final path segment: lower-case, hyphenated, no accents for Latin scripts.
-  Look at the existing `/topics` hub cards: the six root pages are the most
+  Look at the existing `/topics` hub cards: the nine root pages are the most
   visible.
 - **5b (expensive):** `content`. Average about 32k characters of Markdown per
-  page, 3.3M characters in total per locale. Do the six hub pages and their
+  page, 3.3M characters in total per locale. Do the nine hub pages and their
   direct children in the priority locales first. Preserve Markdown structure,
   links, heading anchors and citations.
+
+## Phase 6: studies (`/studies` archive)
+
+121 approved studies (71 added and all 50 existing rewritten in plain
+language on 2026-10-15), so almost every study translation column is empty.
+**Prod owns `studies`**, unlike the tables above: run against local, which
+holds an identical copy right after the 2026-10-15 push, then sync only the
+translation columns plus `study_slugs` to prod (see "Sync to prod"). Check
+first that nobody edited studies on prod in the meantime
+(`select max(updated_at) from studies` on both sides).
+
+- **6a: headline, title, description.** `scripts/generate-study-translations.ts`
+  fills the missing locales of `headline_translation`, `title_translation`
+  and `description_translation`, then calls `syncStudySlugs()` so the
+  per-locale URL slugs follow the translated headline. It is sequential and
+  slow (about 65 strings per study). Add batching or concurrency, `--limit`,
+  `--locales` and `--dry-run`, and switch it from its hard-coded DeepSeek
+  model to the agreed one. Headlines become URL slugs and `<title>`s, so keep
+  them at most 120 characters, accurate and not sensationalised.
+- **6b: hub cards.** `scripts/generate-study-hub-translations.ts --cards-only`
+  fills `card_summary_translation` and `card_key_points_translation` (exactly
+  as many points as the English). The study categories are already
+  translated (`--categories-only`); rerun that only if a category changes.
+- **6c: key points.** `key_points_translation` has **no generator**. Add a
+  mode to 6a's script: a JSON array of the same length, same order.
+- **Not translatable yet:** `summary` and `limitations` have no translation
+  columns, so they render in English in every locale. Adding them needs a
+  migration (`summary_translation`, `limitations_translation`) and reader
+  changes in the study page. Propose this; don't do it unasked.
+- **Tone:** the English copy was just rewritten in plain language for
+  non-researchers (parents, teenagers, journalists). Keep it plain in every
+  locale: no statistical jargon, and every caveat and weakness the English
+  states. Don't soften criticism of weak studies, and don't add any.
+- **Never translate:** author names, journal names, study titles inside
+  quotes, drug names, numbers, and the word "retracted" must stay
+  prominent (study 7 is retracted).
+- **Order:** cards (6b) and headlines (6a) first, since they show on the hub
+  and in search results, then descriptions and key points. Priority locales
+  as in phase 2.
 
 ## Sync to prod
 
@@ -112,7 +151,7 @@ and only after the migrations exist there (0018 adds
    `UPDATE target SET col = tmp.col FROM tmp WHERE target.key = tmp.key`
    in one transaction.
 4. For pages, also sync `page_slugs` (delete and reinsert for the synced page
-   ids).
+   ids). For studies, likewise sync `study_slugs` for the synced study ids.
 5. Restart nothing. Translations are read per request, but `/api/features`
    caches live in Redis, and the spotlight has short HTTP cache headers.
 
@@ -123,6 +162,8 @@ and only after the migrations exist there (0018 adds
 - `/fr/histoires/<slug>`: translated h1, `<title>` and summary, and a
   `hreflang="fr"` alternate.
 - Sitemap: translated stories list their locale variants.
+- `/fr/etudes`: translated card summaries and key findings; a study page
+  has a translated headline and a translated slug in its URL.
 - `/fr/topics` (topics hub): translated card titles and summaries, and
   translated slugs in the links.
 - Spot-check right-to-left locales (`ar`, `he`, `fa`) and CJK
