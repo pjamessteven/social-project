@@ -30,13 +30,13 @@ export function DocsLayout({
   /** Compact sections (e.g. child/related pages) shown under the TOC. */
   sidebarExtras?: ReactNode;
   /**
-   * Content above the title (breadcrumbs, notices). Rendered above the
-   * TOC/article block, like the header.
+   * Content above the title (breadcrumbs, notices). The desktop TOC starts
+   * level with it, at the top of the page.
    */
   preface?: ReactNode;
   /**
-   * Title block, rendered above the TOC/article block so the desktop TOC
-   * lines up with the start of the content (and the jump-to box sits below).
+   * Title block, rendered above the article (the mobile jump-to box sits
+   * below it).
    */
   header?: ReactNode;
   children: ReactNode;
@@ -71,10 +71,9 @@ export function DocsLayout({
     // what sticks while scrolling.
     <div className="flex min-h-full w-full justify-center">
       <div className="w-full max-w-4xl lg:pt-8 2xl:-mx-16 2xl:w-[calc(100%_+_8rem)]">
-        {preface && <div className="max-w-4xl">{preface}</div>}
-        {header && <div className={proseClass}>{header}</div>}
-        {/* The desktop TOC lines up with the start of the content, below the
-            title block; on narrow screens the jump-to box sits there too. */}
+        {/* The desktop TOC starts at the top of the page, level with the
+            preface/title block; on narrow screens the jump-to box sits below
+            the title instead. */}
         <div className="relative">
           {(tocItems.length > 0 || sidebarExtras) && (
             <WikiTocAside
@@ -83,6 +82,8 @@ export function DocsLayout({
               extras={sidebarExtras}
             />
           )}
+          {preface && <div className="max-w-4xl">{preface}</div>}
+          {header && <div className={proseClass}>{header}</div>}
           {prose}
         </div>
       </div>
