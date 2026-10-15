@@ -19,7 +19,7 @@ export function StudyCategoryGrid({
           key={category.id}
           href={getStudyCategoryPath(locale, category.kind, category.slug)}
         >
-          <h2 className="text-lg leading-snug font-semibold decoration-1 underline-offset-4 group-hover:underline">
+          <h2 className="text-lg leading-snug font-semibold">
             {category.name}
           </h2>
           <p className="text-muted-foreground mt-2 text-base leading-relaxed">

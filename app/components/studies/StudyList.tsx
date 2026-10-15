@@ -11,9 +11,12 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 /**
- * Compact study list for the /studies pages: one divided row per study with
- * the headline, meta, summary and tags on the left and the key findings in a
- * side column on wide screens (stacked below on narrow ones).
+ * Compact study list for the /studies pages: one card per study with the
+ * headline, meta, summary and tags on the left and the key findings in a side
+ * column on wide screens (stacked below on narrow ones). The cards match the
+ * /topics index cards (the site's CARD_SURFACE, a little darker in dark mode
+ * for readability); the classes are written out because this is a server
+ * component and CARD_SURFACE lives in a client module.
  */
 export function StudyList({
   studies,
@@ -28,7 +31,7 @@ export function StudyList({
   currentCategoryId?: number;
 }) {
   return (
-    <ul className="divide-y border-y">
+    <ul className="space-y-4 sm:space-y-6">
       {studies.map((study) => (
         <StudyListItem
           key={study.id}
@@ -59,23 +62,28 @@ function StudyListItem({
   const showFindings = study.approved && keyPoints.length > 0;
 
   return (
-    <li className="grid gap-x-10 gap-y-3 py-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+    // The whole card opens the study: the title link's ::after stretches over
+    // the card, and the tag/source links sit above it (relative z-10).
+    <li className="dark:bg-secondary/50 hover:border-foreground/25 relative grid gap-x-10 gap-y-3 rounded-2xl border bg-white p-5 shadow-sm transition-[border-color,box-shadow] hover:shadow-md sm:p-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:p-8">
       <div className="min-w-0">
         <h3 className="text-lg leading-snug font-semibold">
           <Link
             href={detailHref}
-            className="decoration-1 underline-offset-4 hover:underline"
+            className="after:absolute after:inset-0 after:rounded-2xl after:content-['']"
           >
             {study.headline || study.title}
           </Link>
         </h3>
-        {study.title && study.title !== study.headline && (
-          <p className="text-muted-foreground mt-1 line-clamp-1 text-sm italic">
-            {study.title}
-          </p>
-        )}
-        <div className="mt-0.5">
-          <StudyMeta study={study} />
+        {/* The original title and authors, set apart from the headline. */}
+        <div className="mt-2.5">
+          {study.title && study.title !== study.headline && (
+            <p className="text-muted-foreground line-clamp-1 text-sm italic">
+              {study.title}
+            </p>
+          )}
+          <div className="mt-0.5">
+            <StudyMeta study={study} />
+          </div>
         </div>
         {summary && (
           <p
@@ -86,7 +94,7 @@ function StudyListItem({
             {summary}
           </p>
         )}
-        <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
+        <div className="relative z-10 mt-3 flex w-fit flex-wrap items-center gap-x-3 gap-y-2">
           <StudyTags method={method} topics={topics} locale={locale} />
           <StudySourceLink url={study.url} />
         </div>

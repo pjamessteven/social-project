@@ -152,7 +152,14 @@ export function StudiesHub({
       ) : (
         <>
           <StudyCategoryGrid categories={visibleCategories} locale={locale} />
-          <section className="pt-8">
+          {/* Full-bleed band like the topics hub index: a top rule and a
+              muted gradient fading out below it. The page scroller clips
+              its overflow. */}
+          <section className="relative isolate mt-10 pt-12 md:mt-14 md:pt-11">
+            <div
+              aria-hidden
+              className="from-secondary/50 absolute top-0 -left-[5000px] -z-10 h-[32rem] w-[10000px] border-t bg-linear-to-b to-transparent"
+            />
             <h2 className="mb-4 flex items-baseline gap-2 text-xl font-semibold">
               {t("allStudies")}
               <span className="text-muted-foreground text-sm font-normal">

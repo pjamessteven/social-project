@@ -141,7 +141,7 @@ export default async function StudiesPage({
       >
         <div className="text-muted-foreground space-y-3 text-base leading-relaxed">
           <p>{t("description")}</p>
-          <p className="text-foreground">{t("analysis")}</p>
+          <p>{t("analysis")}</p>
         </div>
       </IntroWithSeeAlso>
     </>
@@ -170,7 +170,11 @@ export default async function StudiesPage({
             />
           </section>
         ))}
-        <section className="not-prose mt-12">
+        <section className="not-prose relative isolate mt-12 pt-12 md:mt-16 md:pt-11">
+          <div
+            aria-hidden
+            className="from-secondary/50 absolute top-0 -left-[5000px] -z-10 h-[32rem] w-[10000px] border-t bg-linear-to-b to-transparent"
+          />
           <h2 className="mb-4 text-xl font-semibold">{t("allStudies")}</h2>
           <StudyList studies={approvedStudies} locale={locale} />
         </section>

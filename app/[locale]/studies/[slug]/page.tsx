@@ -1,3 +1,4 @@
+import { DocsLayout } from "@/app/components/content/DocsLayout";
 import { DeleteStudyButton } from "@/app/components/DeleteStudyButton";
 import { StudyApprovalForm } from "@/app/components/StudyApprovalForm";
 import { PAGE_TITLE } from "@/app/components/ui/typography";
@@ -23,6 +24,7 @@ import { db } from "@/db";
 import { studies, studyTagRelations, studyTags } from "@/db/schema";
 import { localesInfo } from "@/i18n/locales";
 import { eq } from "drizzle-orm";
+import { ArrowLeft } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
@@ -125,7 +127,13 @@ export async function generateMetadata({
   };
 }
 
-export default async function StudyPage({ params }: { params: PageParams }) {
+export default async function StudyPage({
+  params,
+  searchParams,
+}: {
+  params: PageParams;
+  searchParams: Promise<{ edit?: string }>;
+}) {
   const { locale, slug } = await params;
   const data = await loadStudy(locale, slug);
 
@@ -179,7 +187,12 @@ export default async function StudyPage({ params }: { params: PageParams }) {
   ]);
   const assignedIds = new Set(categoryIdMap.get(rawStudy.id) ?? []);
   const admin = await isAdmin();
-  const displayLocale = admin ? "en" : locale;
+  // Admins read the public view like everyone else and opt into the form via
+  // ?edit=1; unapproved studies have no public view, so they open straight
+  // into it.
+  const editing =
+    admin && (!rawStudy.approved || (await searchParams).edit === "1");
+  const displayLocale = editing ? "en" : locale;
   const categories = categoryRows
     .filter((row) => assignedIds.has(row.id))
     .sort((a, b) => (a.kind === b.kind ? 0 : a.kind === "method" ? -1 : 1))
@@ -236,179 +249,218 @@ export default async function StudyPage({ params }: { params: PageParams }) {
     },
   };
 
-  return (
-    <div className="pb-16 lg:pt-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
-      />
-      <div className="mb-4">
-        <Link
-          href={getStudiesPath(locale)}
-          className="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-        >
-          ← Back to studies
-        </Link>
-      </div>
+  const jsonLdScript = (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
+    />
+  );
 
-      {admin ? (
-        <>
-          <div className="mb-6 flex items-center justify-between">
-            <h1 className="text-3xl font-bold">
-              {study.approved ? "Edit Study" : "Approve Study"}
-            </h1>
-            <DeleteStudyButton studyId={study.id} locale={locale} />
-          </div>
-          <div className="rounded-lg border bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
-            <StudyApprovalForm
-              study={study}
-              locale={locale}
-              categoryOptions={categoryRows.map((row) =>
-                toCategoryRef(localizeCategory(row, "en")),
-              )}
-            />
-          </div>
-        </>
-      ) : (
-        <div className="space-y-6">
-          {/* Header */}
-          <div className="mb-4">
+  const backLink = (
+    <Link
+      href={getStudiesPath(locale)}
+      className="text-muted-foreground hover:text-foreground mb-8 inline-flex items-center gap-1.5 text-base underline-offset-4 hover:underline"
+    >
+      <ArrowLeft className="h-4 w-4 rtl:rotate-180" aria-hidden />
+      Back to studies
+    </Link>
+  );
+
+  if (editing) {
+    return (
+      <div className="pb-16 lg:pt-8">
+        {jsonLdScript}
+        {backLink}
+        <div className="mb-6 flex items-center justify-between">
+          <h1 className="text-3xl font-bold">
+            {study.approved ? "Edit Study" : "Approve Study"}
+          </h1>
+          <DeleteStudyButton studyId={study.id} locale={locale} />
+        </div>
+        <div className="rounded-lg border bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+          <StudyApprovalForm
+            study={study}
+            locale={locale}
+            categoryOptions={categoryRows.map((row) =>
+              toCategoryRef(localizeCategory(row, "en")),
+            )}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  // Long-form fields are plain text; blank lines separate paragraphs.
+  const paragraphs = (text: string) =>
+    text
+      .split(/\n\s*\n/)
+      .map((p) => p.trim())
+      .filter(Boolean)
+      .map((p, i) => <p key={i}>{p}</p>);
+
+  const sections = [
+    study.keyPoints?.length
+      ? {
+          id: "key-findings",
+          title: "Key findings",
+          body: (
+            <ul>
+              {study.keyPoints.map((point, i) => (
+                <li key={i}>{point}</li>
+              ))}
+            </ul>
+          ),
+        }
+      : null,
+    study.abstract
+      ? { id: "abstract", title: "Abstract", body: paragraphs(study.abstract) }
+      : null,
+    study.summary
+      ? { id: "summary", title: "Summary", body: paragraphs(study.summary) }
+      : null,
+    study.conclusion
+      ? {
+          id: "conclusion",
+          title: "Conclusion",
+          body: paragraphs(study.conclusion),
+        }
+      : null,
+  ].filter((section) => section !== null);
+
+  const hasLimitations = !!study.limitations?.length;
+  const toc = [
+    ...(hasLimitations
+      ? [{ id: "limitations", text: "Limitations", level: 2 }]
+      : []),
+    ...sections.map((s) => ({ id: s.id, text: s.title, level: 2 })),
+  ];
+
+  const metadata = [
+    study.authors && { label: "Authors", value: study.authors, wide: true },
+    study.journal && { label: "Journal", value: study.journal },
+    study.year && { label: "Year", value: String(study.year) },
+    study.url && {
+      label: "Source",
+      wide: true,
+      value: (
+        <a
+          href={study.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="break-all text-blue-600 underline-offset-4 hover:underline dark:text-blue-400"
+        >
+          {study.displayUrl || study.url}
+        </a>
+      ),
+    },
+  ].filter((item) => !!item);
+
+  return (
+    <>
+      {jsonLdScript}
+      <DocsLayout
+        toc={toc}
+        preface={backLink}
+        header={
+          <header className="not-prose mb-8">
+            {admin && (
+              <Link
+                href={`${getStudyPath(locale, data.canonicalSlug)}?edit=1`}
+                className="hover:bg-secondary float-right ml-4 rounded-md border px-3 py-1.5 text-sm font-medium"
+              >
+                Edit
+              </Link>
+            )}
             <h1 className={PAGE_TITLE}>
               {study.headline || study.title || "Untitled Study"}
             </h1>
             {study.headline &&
               study.title &&
               study.headline !== study.title && (
-                <p className="mt-3 text-lg text-gray-600 italic dark:text-gray-400">
+                <p className="text-muted-foreground mt-3 text-lg italic">
                   {study.title}
                 </p>
               )}
-          </div>
 
-          {categories.length > 0 && (
-            <div className="mb-6 flex flex-wrap items-center gap-2">
-              {categories.map((category) => (
-                <Link
-                  key={category.id}
-                  href={getStudyCategoryPath(
-                    locale,
-                    category.kind,
-                    category.slug,
-                  )}
-                  className="inline-flex items-center rounded-full border bg-gray-100 px-3 py-1 text-sm text-gray-700 hover:border-gray-400 dark:bg-gray-800 dark:text-gray-300"
-                >
-                  {category.name}
-                </Link>
-              ))}
-            </div>
-          )}
+            {categories.length > 0 && (
+              <div className="mt-5 flex flex-wrap items-center gap-2">
+                {categories.map((category) => (
+                  <Link
+                    key={category.id}
+                    href={getStudyCategoryPath(
+                      locale,
+                      category.kind,
+                      category.slug,
+                    )}
+                    className="bg-secondary/50 hover:bg-secondary inline-flex items-center rounded-full border px-3 py-1 text-sm transition-colors"
+                  >
+                    {category.name}
+                  </Link>
+                ))}
+              </div>
+            )}
 
-          {/* Metadata */}
-          <div className="border-t border-b py-4 dark:border-gray-700 dark:bg-gray-800/50">
-            <dl className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
-              {study.authors && (
-                <div>
-                  <dt className="font-medium text-gray-500 dark:text-gray-400">
-                    Authors
-                  </dt>
-                  <dd>{study.authors}</dd>
-                </div>
-              )}
-              {study.year && (
-                <div>
-                  <dt className="font-medium text-gray-500 dark:text-gray-400">
-                    Year
-                  </dt>
-                  <dd>{study.year}</dd>
-                </div>
-              )}
-              {study.journal && (
-                <div>
-                  <dt className="font-medium text-gray-500 dark:text-gray-400">
-                    Journal
-                  </dt>
-                  <dd>{study.journal}</dd>
-                </div>
-              )}
-              {study.url && (
-                <div>
-                  <dt className="font-medium text-gray-500 dark:text-gray-400">
-                    Source
-                  </dt>
-                  <dd>
-                    <a
-                      href={study.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-                    >
-                      {study.displayUrl || study.url}
-                    </a>
-                  </dd>
-                </div>
-              )}
-            </dl>
-          </div>
-
-          {/* Limitations */}
-          {study.limitations && study.limitations.length > 0 && (
-            <div className="rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-900/30 dark:bg-red-900/10">
-              <h2 className="mb-2 text-sm font-semibold text-red-800 dark:text-red-200">
-                Methodological Limitations
+            {metadata.length > 0 && (
+              <dl className="bg-muted/50 mt-6 grid grid-cols-1 gap-x-8 gap-y-4 rounded-lg border p-5 text-sm sm:grid-cols-2">
+                {metadata.map((item) => (
+                  <div
+                    key={item.label}
+                    className={item.wide ? "sm:col-span-2" : undefined}
+                  >
+                    <dt className="text-muted-foreground mb-0.5 text-xs font-medium tracking-wide uppercase">
+                      {item.label}
+                    </dt>
+                    <dd className="leading-relaxed">{item.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+          </header>
+        }
+      >
+        <article>
+          {hasLimitations && (
+            <aside
+              id="limitations"
+              className="not-prose mb-10 scroll-mt-24 rounded-lg border border-red-200 bg-red-50 p-5 dark:border-red-900/40 dark:bg-red-950/20"
+            >
+              <h2 className="mb-3 text-base font-semibold text-red-800 dark:text-red-200">
+                Methodological limitations
               </h2>
-              <ul className="list-disc space-y-1 pl-5 text-sm text-red-700 dark:text-red-300">
-                {study.limitations.map((limitation, i) => (
-                  <li key={i}>{limitation}</li>
-                ))}
+              <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-red-900 marker:text-red-400 dark:text-red-200/90">
+                {study.limitations!.map((limitation, i) => {
+                  // Most limitations lead with a short "Label: detail".
+                  const match = limitation.match(/^([^:]{1,60}):\s+(.+)$/s);
+                  return (
+                    <li key={i}>
+                      {match ? (
+                        <>
+                          <span className="font-semibold">{match[1]}:</span>{" "}
+                          {match[2]}
+                        </>
+                      ) : (
+                        limitation
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
-            </div>
+            </aside>
           )}
 
-          {/* Key Points */}
-          {study.keyPoints && study.keyPoints.length > 0 && (
-            <div>
-              <h2 className="mb-2 text-lg font-semibold">Key Findings</h2>
-              <ul className="list-disc space-y-1 pl-5">
-                {study.keyPoints.map((point, i) => (
-                  <li key={i} className="text-gray-800 dark:text-gray-200">
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Abstract */}
-          {study.abstract && (
-            <div>
-              <h2 className="mb-2 text-lg font-semibold">Abstract</h2>
-              <p className="leading-relaxed whitespace-pre-wrap text-gray-700 dark:text-gray-300">
-                {study.abstract}
-              </p>
-            </div>
-          )}
-
-          {/* Summary */}
-          {study.summary && (
-            <div>
-              <h2 className="mb-2 text-lg font-semibold">Summary</h2>
-              <p className="leading-relaxed whitespace-pre-wrap text-gray-700 dark:text-gray-300">
-                {study.summary}
-              </p>
-            </div>
-          )}
-
-          {/* Conclusion */}
-          {study.conclusion && (
-            <div>
-              <h2 className="mb-2 text-lg font-semibold">Conclusion</h2>
-              <p className="leading-relaxed whitespace-pre-wrap text-gray-700 dark:text-gray-300">
-                {study.conclusion}
-              </p>
-            </div>
-          )}
-        </div>
-      )}
-    </div>
+          {sections.map((section, index) => (
+            <section key={section.id}>
+              <h2
+                id={section.id}
+                className={`scroll-mt-24 ${index === 0 ? "mt-0" : ""}`}
+              >
+                {section.title}
+              </h2>
+              {section.body}
+            </section>
+          ))}
+        </article>
+      </DocsLayout>
+    </>
   );
 }
