@@ -1,7 +1,7 @@
 "use server";
+import { buildAlternates, localizedUrl, ogLocale } from "@/app/lib/seo";
 
 import { PAGE_TITLE } from "@/app/components/ui/typography";
-import { localesInfo } from "@/i18n/locales";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
@@ -11,7 +11,10 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations("definitions.metadata");
+  const t = await getTranslations({
+    locale,
+    namespace: "definitions.metadata",
+  });
 
   return {
     title: t("title"),
@@ -19,10 +22,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: t("title"),
       description: t("description"),
-      url: `https://detrans.ai/${locale}/definitions`,
+      url: localizedUrl("/definitions", locale),
       siteName: "detrans.ai",
       images: ["https://detrans.ai/x_card_lg.png"],
-      locale: locale === "es" ? "es_ES" : locale === "fr" ? "fr_FR" : "en_US",
+      locale: ogLocale(locale),
       type: "website",
     },
     twitter: {
@@ -30,25 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: t("title"),
       description: t("description"),
     },
-    alternates: {
-      canonical: `https://detrans.ai/${locale}/definitions`,
-      languages: Object.fromEntries(
-        localesInfo.map((l) => [
-          l.code === "en"
-            ? "en-US"
-            : l.code === "es"
-              ? "es-ES"
-              : l.code === "fr"
-                ? "fr-FR"
-                : l.code === "zh-cn"
-                  ? "zh-CN"
-                  : l.code === "zh-tw"
-                    ? "zh-TW"
-                    : `${l.code}-${l.code.toUpperCase()}`,
-          `https://detrans.ai/${l.code}/definitions`,
-        ]),
-      ),
-    },
+    alternates: buildAlternates("/definitions", locale),
   };
 }
 

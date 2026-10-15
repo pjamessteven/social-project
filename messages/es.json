@@ -2165,5 +2165,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | Estudios de investigación actuales",
+      "description": "Tu voz importa. Investigadores académicos están estudiando activamente las experiencias de detransición para mejorar la atención sanitaria y el apoyo a personas como tú."
+    }
   }
 }

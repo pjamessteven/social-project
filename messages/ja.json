@@ -2174,5 +2174,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | 現在進行中の研究",
+      "description": "あなたの声には意味があります。学術研究者たちは、あなたのような人々への医療と支援を改善するために、デトランジションの経験を積極的に研究しています。"
+    }
   }
 }

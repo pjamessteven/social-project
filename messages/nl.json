@@ -2173,5 +2173,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | Lopende onderzoeken",
+      "description": "Jouw stem telt. Academische onderzoekers bestuderen actief ervaringen met detransitie om de zorg en ondersteuning voor mensen zoals jij te verbeteren."
+    }
   }
 }

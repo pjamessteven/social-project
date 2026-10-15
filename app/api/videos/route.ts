@@ -4,10 +4,13 @@ import { db } from "@/db";
 import { videos } from "@/db/schema";
 import { desc, eq, sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
+import { generateVideoSlug } from "@/app/lib/video-utils";
 
 interface Video {
   id: number;
   title: string;
+  // Canonical URL slug, always built from the English title
+  slug: string;
   author: string;
   sex: "m" | "f";
   url: string;
@@ -38,6 +41,7 @@ export async function GET(request: NextRequest) {
       .select({
         id: videos.id,
         title: sql<string>`COALESCE((${videos.titleTranslation})::jsonb->>${locale}, ${videos.title})`,
+        englishTitle: videos.title,
         author: videos.author,
         sex: videos.sex,
         url: videos.url,
@@ -64,7 +68,10 @@ export async function GET(request: NextRequest) {
       .limit(100);
 
     return NextResponse.json({
-      videos: allVideos as Video[],
+      videos: allVideos.map(({ englishTitle, ...video }) => ({
+        ...video,
+        slug: generateVideoSlug(video.id, englishTitle),
+      })) as Video[],
       count: allVideos.length,
     });
   } catch (error) {

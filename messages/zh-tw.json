@@ -2167,5 +2167,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | 正在進行的研究",
+      "description": "你的聲音很重要。學術研究人員正在積極研究去過渡的經歷，以改善為像你這樣的人提供的醫療與支持。"
+    }
   }
 }

@@ -2166,5 +2166,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | Các nghiên cứu hiện tại",
+      "description": "Tiếng nói của bạn rất quan trọng. Các nhà nghiên cứu học thuật đang tích cực tìm hiểu trải nghiệm chuyển giới trở lại để cải thiện chăm sóc y tế và hỗ trợ cho những người như bạn."
+    }
   }
 }

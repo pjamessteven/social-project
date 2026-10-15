@@ -2165,5 +2165,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | Aktuelle Forschungsstudien",
+      "description": "Deine Stimme zählt. Akademische Forschende untersuchen aktiv Erfahrungen mit Detransition, um die Gesundheitsversorgung und Unterstützung für Menschen wie dich zu verbessern."
+    }
   }
 }

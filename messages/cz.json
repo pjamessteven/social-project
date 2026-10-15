@@ -2166,5 +2166,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | Probíhající výzkumné studie",
+      "description": "Na tvém hlasu záleží. Akademičtí výzkumníci aktivně zkoumají zkušenosti s detranzicí, aby zlepšili zdravotní péči a podporu pro lidi, jako jsi ty."
+    }
   }
 }

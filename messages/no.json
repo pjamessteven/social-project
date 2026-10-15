@@ -2174,5 +2174,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | Pågående forskningsstudier",
+      "description": "Stemmen din betyr noe. Akademiske forskere studerer aktivt erfaringer med detransisjon for å forbedre helsehjelp og støtte til mennesker som deg."
+    }
   }
 }

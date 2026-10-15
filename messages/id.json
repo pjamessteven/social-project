@@ -2174,5 +2174,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | Studi penelitian terkini",
+      "description": "Suaramu penting. Para peneliti akademis sedang aktif mempelajari pengalaman detransisi untuk meningkatkan layanan kesehatan dan dukungan bagi orang-orang sepertimu."
+    }
   }
 }

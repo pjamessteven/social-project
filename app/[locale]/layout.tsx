@@ -13,6 +13,7 @@ import { CustomChatInput } from "../components/ui/custom-chat-input";
 import { Toaster } from "../components/ui/sonner";
 import { isBot } from "../lib/isBot";
 import { hasPublishedTopics } from "../lib/pages";
+import { localizedUrl, ogLocale } from "../lib/seo";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -32,10 +33,10 @@ export async function generateMetadata({
     openGraph: {
       title: (messages.metadata as { title: string }).title,
       description: (messages.metadata as { description: string }).description,
-      url: "https://detrans.ai/",
+      url: localizedUrl("/", locale),
       images: ["https://detrans.ai/x_card_lg.png"],
       siteName: "detrans.ai",
-      locale: locale === "en" ? "en_US" : locale === "es" ? "es_ES" : "fr_FR",
+      locale: ogLocale(locale),
       type: "website",
     },
     twitter: {

@@ -2173,5 +2173,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | Studi di ricerca in corso",
+      "description": "La tua voce conta. Ricercatori accademici stanno studiando attivamente le esperienze di detransizione per migliorare l’assistenza sanitaria e il sostegno alle persone come te."
+    }
   }
 }

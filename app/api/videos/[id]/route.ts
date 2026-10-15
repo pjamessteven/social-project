@@ -1,5 +1,6 @@
 import { VALID_LOCALES } from "@/app/lib/constants";
 import { sanitizeId, sanitizeLocale } from "@/app/lib/sanitization";
+import { generateVideoSlug } from "@/app/lib/video-utils";
 import { db } from "@/db";
 import { videos } from "@/db/schema";
 import { eq } from "drizzle-orm";
@@ -74,6 +75,8 @@ export async function GET(
 
     const localizedVideo = {
       ...video,
+      // Canonical URL slug, always built from the English title
+      slug: generateVideoSlug(video.id, video.title),
       title: getLocalizedField(video.title, video.titleTranslation, locale),
       description: getLocalizedField(
         video.description,

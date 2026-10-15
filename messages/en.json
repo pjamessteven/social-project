@@ -2163,5 +2163,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | Current Research Studies",
+      "description": "Your voice matters. Academic researchers are actively studying detransition experiences to improve healthcare and support for individuals like you."
+    }
   }
 }

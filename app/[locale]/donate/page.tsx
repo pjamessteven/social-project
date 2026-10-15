@@ -1,8 +1,8 @@
 "use server";
+import { buildAlternates, localizedUrl, ogLocale } from "@/app/lib/seo";
 
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { localesInfo } from "@/i18n/locales";
 import DonationBox from "../../components/content/DonationBox";
 
 export async function generateMetadata({
@@ -19,10 +19,10 @@ export async function generateMetadata({
     openGraph: {
       title: `${t("title")} | detrans.ai`,
       description: t("description2"),
-      url: `https://detrans.ai/${locale}/donate`,
+      url: localizedUrl("/donate", locale),
       siteName: "detrans.ai",
       images: ["https://detrans.ai/x_card_lg.png"],
-      locale: locale === "en" ? "en_US" : locale === "fr" ? "fr_FR" : "es_ES",
+      locale: ogLocale(locale),
       type: "website",
     },
     twitter: {
@@ -30,25 +30,7 @@ export async function generateMetadata({
       title: `${t("title")} | detrans.ai`,
       description: t("description2"),
     },
-    alternates: {
-      canonical: `https://detrans.ai/${locale}/donate`,
-      languages: Object.fromEntries(
-        localesInfo.map((l) => [
-          l.code === "en"
-            ? "en-US"
-            : l.code === "es"
-              ? "es-ES"
-              : l.code === "fr"
-                ? "fr-FR"
-                : l.code === "zh-cn"
-                  ? "zh-CN"
-                  : l.code === "zh-tw"
-                    ? "zh-TW"
-                    : `${l.code}-${l.code.toUpperCase()}`,
-          `https://detrans.ai/${l.code}/donate`,
-        ]),
-      ),
-    },
+    alternates: buildAlternates("/donate", locale),
   };
 }
 

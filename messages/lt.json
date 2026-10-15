@@ -2173,5 +2173,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | Vykdomi moksliniai tyrimai",
+      "description": "Tavo balsas svarbus. Akademiniai tyrėjai aktyviai tiria detranzicijos patirtis, kad pagerintų sveikatos priežiūrą ir pagalbą tokiems žmonėms kaip tu."
+    }
   }
 }

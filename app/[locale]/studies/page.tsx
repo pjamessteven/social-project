@@ -2,7 +2,7 @@
 import { PAGE_TITLE } from "@/app/components/ui/typography";
 import { isAdmin } from "@/app/lib/auth/auth";
 import { isBot } from "@/app/lib/isBot";
-import { localeToBcp47, safeJsonLd, SITE_URL } from "@/app/lib/seo";
+import { localeToBcp47, ogLocale, safeJsonLd, SITE_URL } from "@/app/lib/seo";
 import {
   getLocalizedCategories,
   getStudyCategoryPath,
@@ -46,7 +46,7 @@ export async function generateMetadata({
       url: `${SITE_URL}${getStudiesPath(locale)}`,
       siteName: "detrans.ai",
       images: ["https://detrans.ai/x_card_lg.png"],
-      locale: locale === "en" ? "en_US" : locale === "fr" ? "fr_FR" : "es_ES",
+      locale: ogLocale(locale),
       type: "website",
     },
     twitter: {

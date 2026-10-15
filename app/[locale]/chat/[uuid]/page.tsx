@@ -1,5 +1,6 @@
 import { ConversationSummary } from "@/app/components/content/ConversationsPage";
 import { formatCountryDisplay } from "@/app/lib/countries";
+import { buildAlternates, localizedUrl, ogLocale } from "@/app/lib/seo";
 import { Clock } from "lucide-react";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -37,6 +38,25 @@ async function fetchSingleConversation(
   }
 }
 
+type MessagePart = { type?: string; text?: string };
+type ChatMessage = { role?: string; parts?: MessagePart[] };
+
+/** First text part of the first message from `role`. */
+function firstText(messages: unknown, role: string): string {
+  if (typeof messages === "string") {
+    try {
+      messages = JSON.parse(messages);
+    } catch {
+      return "";
+    }
+  }
+  if (!Array.isArray(messages)) return "";
+  const message = (messages as ChatMessage[]).find(
+    (msg) => msg.role === role && msg.parts?.[0]?.type === "text",
+  );
+  return message?.parts?.[0]?.text ?? "";
+}
+
 // Generate metadata for SEO
 export async function generateMetadata({
   params,
@@ -44,79 +64,48 @@ export async function generateMetadata({
   params: Promise<{ uuid: string; locale: string }>;
 }): Promise<Metadata> {
   const { uuid, locale } = await params;
+  const t = await getTranslations({ locale, namespace: "seo.conversations" });
   const conversation = await fetchSingleConversation(uuid, locale);
-  console.log("getmetadata", conversation);
   if (!conversation) {
     return {
-      title: "Chat Conversation",
-      description: "A conversation about gender identity questions",
+      title: `${t("untitled")} | detrans.ai`,
+      robots: { index: false, follow: false },
     };
   }
 
-  // Use conversation summary if available, otherwise extract from messages
-  let description = conversation.conversationSummary || "";
-
-  if (!description) {
-    // Fallback: Parse messages to extract content for metadata
-    try {
-      const messages = conversation.messages;
-      if (Array.isArray(messages)) {
-        // Extract the first user message as the question
-        const firstUserMessage = messages.find(
-          (msg: any) => msg.role === "user" && msg.parts?.[0]?.type === "text",
-        );
-        const question =
-          firstUserMessage?.parts[0]?.text || "Gender identity discussion";
-
-        // Extract the first assistant message as the answer
-        const firstAssistantMessage = messages.find(
-          (msg: any) =>
-            msg.role === "assistant" && msg.parts?.[0]?.type === "text",
-        );
-        const answer = firstAssistantMessage?.parts[0]?.text || "";
-
-        description = answer || `Discussion about ${question}`;
-      }
-    } catch (error) {
-      console.error("Failed to parse messages for metadata:", error);
-      description = `Discussion about gender identity in ${conversation.mode} mode`;
-    }
-  }
-
-  // Create a shortened version for the description
-  const shortDescription = description;
-
-  // Use title if available, otherwise create from first message
-  let title = conversation.title || "";
-  if (!title) {
-    try {
-      const messages = JSON.parse(conversation.messages);
-      if (Array.isArray(messages)) {
-        const firstUserMessage = messages.find(
-          (msg: any) => msg.role === "user" && msg.parts?.[0]?.type === "text",
-        );
-        title = firstUserMessage?.parts[0]?.text || "Chat Conversation";
-      }
-    } catch (error) {
-      title = "Chat Conversation";
-    }
-  }
-
-  const fullTitle = `${title} - anon conversation with detrans.ai`;
+  // Title and summary arrive localized from /api/chat/[uuid]; fall back to
+  // the opening exchange for conversations that were never summarized.
+  const title =
+    conversation.title ||
+    firstText(conversation.messages, "user") ||
+    t("untitled");
+  const description =
+    conversation.conversationSummary ||
+    firstText(conversation.messages, "assistant") ||
+    t("description");
+  const fullTitle = `${title} | detrans.ai`;
+  const href = {
+    pathname: "/chat/[uuid]" as const,
+    params: { uuid },
+  };
 
   return {
     title: fullTitle,
-    description: shortDescription,
+    description,
     openGraph: {
       title: fullTitle,
-      description: shortDescription,
+      description,
+      url: localizedUrl(href, locale),
+      siteName: "detrans.ai",
+      locale: ogLocale(locale),
       type: "article",
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
-      description: shortDescription,
+      description,
     },
+    alternates: buildAlternates(href, locale),
   };
 }
 

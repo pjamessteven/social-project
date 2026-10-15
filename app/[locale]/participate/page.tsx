@@ -1,30 +1,9 @@
+import { buildAlternates, localizedUrl, ogLocale } from "@/app/lib/seo";
 import Studies from "./studies";
 
 import { PAGE_TITLE } from "@/app/components/ui/typography";
-import { localesInfo } from "@/i18n/locales";
 import type { Metadata } from "next";
-
-const metadata: Metadata = {
-  title: "detrans.ai | Current Research Studies",
-  description:
-    "Your voice matters. Academic researchers are actively studying detransition experiences to improve healthcare and support for individuals like you.",
-  openGraph: {
-    title: "detrans.ai | Current Research Studies",
-    description:
-      "Your voice matters. Academic researchers are actively studying detransition experiences to improve healthcare and support for individuals like you.",
-    url: "https://detrans.ai/participate",
-    siteName: "detrans.ai",
-    images: ["https://detrans.ai/x_card_lg.png"],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "detrans.ai | Current Research Studies",
-    description:
-      "Your voice matters. Academic researchers are actively studying detransition experiences to improve healthcare and support for individuals like you.",
-  },
-};
+import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({
   params,
@@ -32,28 +11,29 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({
+    locale,
+    namespace: "participatePage.metadata",
+  });
 
   return {
-    ...metadata,
-    alternates: {
-      canonical: `https://detrans.ai/${locale}/participate`,
-      languages: Object.fromEntries(
-        localesInfo.map((l) => [
-          l.code === "en"
-            ? "en-US"
-            : l.code === "es"
-              ? "es-ES"
-              : l.code === "fr"
-                ? "fr-FR"
-                : l.code === "zh-cn"
-                  ? "zh-CN"
-                  : l.code === "zh-tw"
-                    ? "zh-TW"
-                    : `${l.code}-${l.code.toUpperCase()}`,
-          `https://detrans.ai/${l.code}/participate`,
-        ]),
-      ),
+    title: t("title"),
+    description: t("description"),
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      url: localizedUrl("/participate", locale),
+      siteName: "detrans.ai",
+      images: ["https://detrans.ai/x_card_lg.png"],
+      locale: ogLocale(locale),
+      type: "website",
     },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+    },
+    alternates: buildAlternates("/participate", locale),
   };
 }
 

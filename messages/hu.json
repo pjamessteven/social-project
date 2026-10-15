@@ -2174,5 +2174,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | Jelenlegi kutatások",
+      "description": "A hangod számít. Egyetemi kutatók aktívan vizsgálják a detranzíciós tapasztalatokat, hogy javítsák az egészségügyi ellátást és a támogatást a hozzád hasonló emberek számára."
+    }
   }
 }

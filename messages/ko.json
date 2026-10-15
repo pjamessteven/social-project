@@ -2174,5 +2174,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | 진행 중인 연구",
+      "description": "당신의 목소리는 중요합니다. 학계 연구자들이 당신과 같은 사람들을 위한 의료와 지원을 개선하기 위해 디트랜지션 경험을 활발히 연구하고 있습니다."
+    }
   }
 }

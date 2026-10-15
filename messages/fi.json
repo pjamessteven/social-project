@@ -2166,5 +2166,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | Käynnissä olevat tutkimukset",
+      "description": "Äänelläsi on merkitystä. Akateemiset tutkijat tutkivat aktiivisesti detransitiokokemuksia parantaakseen terveydenhoitoa ja tukea kaltaisillesi ihmisille."
+    }
   }
 }

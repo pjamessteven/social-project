@@ -2174,5 +2174,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | Estudos de investigação atuais",
+      "description": "A tua voz importa. Investigadores académicos estão a estudar ativamente experiências de destransição para melhorar os cuidados de saúde e o apoio a pessoas como tu."
+    }
   }
 }

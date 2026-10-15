@@ -6,11 +6,11 @@ import {
   getYouTubeVideoId,
   parseVideoIdFromSlug,
 } from "@/app/lib/video-utils";
-import { localesInfo } from "@/i18n/locales";
-import { Link } from "@/i18n/routing";
+import { buildAlternates, localizedUrl, ogLocale } from "@/app/lib/seo";
+import { getPathname, Link } from "@/i18n/routing";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 
 interface VideoPageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -19,6 +19,8 @@ interface VideoPageProps {
 interface VideoWithTranslations {
   id: number;
   title: string;
+  // Canonical URL slug, always built from the English title
+  slug: string;
   author: string;
   sex: "m" | "f";
   url: string;
@@ -115,6 +117,10 @@ export async function generateMetadata({
 
   const youtubeVideoId = getYouTubeVideoId(video.url);
   const thumbnailUrl = `https://img.youtube.com/vi/${youtubeVideoId}/maxresdefault.jpg`;
+  const href = {
+    pathname: "/videos/[slug]" as const,
+    params: { slug: video.slug },
+  };
 
   return {
     title: `${localizedTitle} | detrans.ai`,
@@ -134,7 +140,7 @@ export async function generateMetadata({
           author: video.author,
           sex: video.sex === "f" ? t("female") : t("male"),
         }),
-      url: `https://detrans.ai/${locale}/videos/${slug}`,
+      url: localizedUrl(href, locale),
       siteName: "detrans.ai",
       images: [
         {
@@ -144,7 +150,7 @@ export async function generateMetadata({
           alt: t("metadataThumbnailAlt", { title: localizedTitle ?? "" }),
         },
       ],
-      locale: "en_US",
+      locale: ogLocale(locale),
       type: "website",
     },
     twitter: {
@@ -159,25 +165,7 @@ export async function generateMetadata({
         }),
       images: [thumbnailUrl],
     },
-    alternates: {
-      canonical: `https://detrans.ai/${locale}/videos/${slug}`,
-      languages: Object.fromEntries(
-        localesInfo.map((l) => [
-          l.code === "en"
-            ? "en-US"
-            : l.code === "es"
-              ? "es-ES"
-              : l.code === "fr"
-                ? "fr-FR"
-                : l.code === "zh-cn"
-                  ? "zh-CN"
-                  : l.code === "zh-tw"
-                    ? "zh-TW"
-                    : `${l.code}-${l.code.toUpperCase()}`,
-          `https://detrans.ai/${l.code}/videos/${slug}`,
-        ]),
-      ),
-    },
+    alternates: buildAlternates(href, locale),
   };
 }
 
@@ -195,6 +183,17 @@ export default async function VideoPage({ params }: VideoPageProps) {
   if (!video) {
     notFound();
   }
+
+  // Only the English-title slug is canonical; any other slug for this id
+  // (old titles, localized titles, typos) redirects to it.
+  const href = {
+    pathname: "/videos/[slug]" as const,
+    params: { slug: video.slug },
+  };
+  if (slug !== video.slug) {
+    permanentRedirect(getPathname({ href, locale }));
+  }
+  const pageUrl = localizedUrl(href, locale);
 
   const localizedTitle = getLocalizedField(
     video.title,
@@ -239,10 +238,10 @@ export default async function VideoPage({ params }: VideoPageProps) {
       name: "detrans.ai",
       url: "https://detrans.ai",
     },
-    url: `https://detrans.ai/${locale}/videos/${slug}`,
+    url: pageUrl,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://detrans.ai/${locale}/videos/${slug}`,
+      "@id": pageUrl,
     },
     about: {
       "@type": "Thing",

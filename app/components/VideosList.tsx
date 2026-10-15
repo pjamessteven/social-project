@@ -1,6 +1,5 @@
 "use client";
 
-import { generateVideoSlug } from "@/app/lib/video-utils";
 import { Link } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
@@ -11,6 +10,7 @@ import { SlidingNavGroup } from "./ui/sliding-nav-group";
 interface Video {
   id: number;
   title: string;
+  slug: string;
   author: string;
   sex: "m" | "f";
   url: string;
@@ -150,7 +150,7 @@ export default function VideosList() {
         ) : (
           <div className="not-prose grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filteredVideos.map((video) => {
-              const videoSlug = generateVideoSlug(video.id, video.title);
+              const videoSlug = video.slug;
               return (
                 <Link
                   href={`/videos/${videoSlug}` as any}

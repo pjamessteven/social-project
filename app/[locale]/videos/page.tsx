@@ -1,6 +1,6 @@
 "use server";
+import { buildAlternates, localizedUrl, ogLocale } from "@/app/lib/seo";
 import { PAGE_TITLE } from "@/app/components/ui/typography";
-import { localesInfo } from "@/i18n/locales";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { headers } from "next/headers";
@@ -23,10 +23,10 @@ export async function generateMetadata({
     openGraph: {
       title: t("title"),
       description: t("description"),
-      url: `https://detrans.ai/${locale}/videos`,
+      url: localizedUrl("/videos", locale),
       siteName: "detrans.ai",
       images: ["https://detrans.ai/x_card_lg.png"],
-      locale: "en_US",
+      locale: ogLocale(locale),
       type: "website",
     },
     twitter: {
@@ -34,25 +34,7 @@ export async function generateMetadata({
       title: t("title"),
       description: t("description"),
     },
-    alternates: {
-      canonical: `https://detrans.ai/${locale}/videos`,
-      languages: Object.fromEntries(
-        localesInfo.map((l) => [
-          l.code === "en"
-            ? "en-US"
-            : l.code === "es"
-              ? "es-ES"
-              : l.code === "fr"
-                ? "fr-FR"
-                : l.code === "zh-cn"
-                  ? "zh-CN"
-                  : l.code === "zh-tw"
-                    ? "zh-TW"
-                    : `${l.code}-${l.code.toUpperCase()}`,
-          `https://detrans.ai/${l.code}/videos`,
-        ]),
-      ),
-    },
+    alternates: buildAlternates("/videos", locale),
   };
 }
 

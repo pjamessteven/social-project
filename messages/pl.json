@@ -2174,5 +2174,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | Aktualne badania naukowe",
+      "description": "Twój głos ma znaczenie. Naukowcy aktywnie badają doświadczenia detranzycji, aby poprawić opiekę zdrowotną i wsparcie dla osób takich jak ty."
+    }
   }
 }

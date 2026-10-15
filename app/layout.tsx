@@ -8,6 +8,7 @@ import { clsx } from "clsx";
 import { Viewport } from "next";
 import { ThemeProvider } from "next-themes";
 import { headers } from "next/headers";
+import { htmlLang } from "./lib/seo";
 import "./globals.css";
 
 const themeScript = `
@@ -67,7 +68,7 @@ export default async function RootLayout({
   const dir = isRTL(locale) ? "rtl" : "ltr";
 
   return (
-    <html lang={locale} dir={dir} suppressHydrationWarning>
+    <html lang={htmlLang(locale)} dir={dir} suppressHydrationWarning>
       <body
         className={clsx(
           inter.className,

@@ -2165,5 +2165,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | Études de recherche en cours",
+      "description": "Ta voix compte. Des chercheurs universitaires étudient activement les expériences de détransition afin d’améliorer les soins et le soutien apportés aux personnes comme toi."
+    }
   }
 }

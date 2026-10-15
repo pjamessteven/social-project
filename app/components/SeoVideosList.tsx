@@ -36,6 +36,7 @@ export default async function SeoVideosList({ locale }: SeoVideosListProps) {
     .select({
       id: videos.id,
       title: sql<string>`COALESCE((${videos.titleTranslation})::jsonb->>${locale}, ${videos.title})`,
+      englishTitle: videos.title,
       author: videos.author,
       sex: videos.sex,
       url: videos.url,
@@ -76,7 +77,7 @@ export default async function SeoVideosList({ locale }: SeoVideosListProps) {
 
       <div className="not-prose grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {localizedVideos.map((video) => {
-          const videoSlug = generateVideoSlug(video.id, video.title ?? "");
+          const videoSlug = generateVideoSlug(video.id, video.englishTitle);
           return (
             <Link
               href={`/videos/${videoSlug}` as any}

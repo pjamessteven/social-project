@@ -2165,5 +2165,11 @@
         "postTrans": "Post Trans"
       }
     }
+  },
+  "participatePage": {
+    "metadata": {
+      "title": "detrans.ai | Güncel araştırmalar",
+      "description": "Sesin önemli. Akademik araştırmacılar, senin gibi insanlar için sağlık hizmetlerini ve desteği iyileştirmek amacıyla detransisyon deneyimlerini aktif olarak inceliyor."
+    }
   }
 }
