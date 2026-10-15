@@ -13,7 +13,17 @@ import { Textarea } from "./ui/textarea";
 
 const EMPTY_FORM = { topic: "", details: "", email: "", site: "" };
 
-export default function TopicSuggestForm() {
+/**
+ * Suggestion form for the wiki. On the /topics hub it takes new topics,
+ * articles or improvements; on a topic page (`page` set) it is worded for
+ * improvements to that page or related articles, and the email names the page.
+ */
+export default function TopicSuggestForm({
+  page,
+}: {
+  /** The topic page this form sits on: its default-locale path and title. */
+  page?: { path: string; title: string };
+} = {}) {
   const t = useTranslations("topicSuggestForm");
   const [form, setForm] = useState(EMPTY_FORM);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -41,7 +51,9 @@ export default function TopicSuggestForm() {
       const response = await fetch("/api/topics/suggest", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(
+          page ? { ...form, pagePath: page.path, pageTitle: page.title } : form,
+        ),
       });
       const data = await response.json();
 
@@ -81,9 +93,13 @@ export default function TopicSuggestForm() {
   return (
     <div className="text-muted-foreground not-prose mb-10 max-w-3xl">
       <details className="cursor-pointer">
-        <summary className="text-muted-foreground">{t("submitTitle")}</summary>
+        <summary className="text-muted-foreground">
+          {t(page ? "pageSubmitTitle" : "submitTitle")}
+        </summary>
         <div className="space-y-3 pt-1">
-          <p className="mt-3 border-t pt-3">{t("description")}</p>
+          <p className="mt-3 border-t pt-3">
+            {t(page ? "pageDescription" : "description")}
+          </p>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="topic-suggest-topic" className="text-sm">
@@ -93,7 +109,9 @@ export default function TopicSuggestForm() {
                 id="topic-suggest-topic"
                 name="topic"
                 type="text"
-                placeholder={t("topicPlaceholder")}
+                placeholder={t(
+                  page ? "pageTopicPlaceholder" : "topicPlaceholder",
+                )}
                 value={form.topic}
                 onChange={handleChange}
                 maxLength={300}
@@ -103,7 +121,10 @@ export default function TopicSuggestForm() {
 
             <div className="space-y-2">
               <Label htmlFor="topic-suggest-details" className="text-sm">
-                {t("detailsLabel")}
+                {t("detailsLabel")}{" "}
+                <span className="text-muted-foreground font-normal">
+                  ({t("optional")})
+                </span>
               </Label>
               <Textarea
                 id="topic-suggest-details"
@@ -113,12 +134,17 @@ export default function TopicSuggestForm() {
                 onChange={handleChange}
                 maxLength={5000}
                 rows={4}
+                // The base Textarea steps up to text-lg on sm+; match the inputs.
+                className="sm:text-base"
               />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="topic-suggest-email" className="text-sm">
-                {t("emailLabel")}
+                {t("emailLabel")}{" "}
+                <span className="text-muted-foreground font-normal">
+                  ({t("optional")})
+                </span>
               </Label>
               <Input
                 id="topic-suggest-email"

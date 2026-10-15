@@ -10,7 +10,7 @@ import {
   SITE_URL,
 } from "@/app/lib/seo";
 import { getStoriesPath } from "@/app/lib/story-urls";
-import { getPathname } from "@/i18n/routing";
+import { getPathname, Link } from "@/i18n/routing";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
@@ -62,10 +62,6 @@ export default async function StoriesPage({
   // Filters live in the query string; reading it keeps the page dynamic.
   await searchParams;
   const t = await getTranslations({ locale, namespace: "storiesPage" });
-  const tDisclaimer = await getTranslations({
-    locale,
-    namespace: "stories.disclaimer",
-  });
   const storyCount = await countAllStories();
 
   const jsonLd = {
@@ -97,11 +93,6 @@ export default async function StoriesPage({
               href: getPathname({ href: "/videos", locale }),
             },
             {
-              label: t("seeAlso.links.rDetrans"),
-              href: "https://www.reddit.com/r/detrans/",
-              external: true,
-            },
-            {
               label: t("seeAlso.links.peakTrans"),
               href: "https://www.peaktrans.org/detransitioning/",
               external: true,
@@ -113,20 +104,33 @@ export default async function StoriesPage({
             },
           ]}
         >
-          <p className="text-muted-foreground text-base leading-relaxed">
-            {t("description", { count: storyCount })}
-          </p>
-
-          {/* AI disclaimer: collapsible on phones, inline from md up */}
-          <details className="text-muted-foreground mt-4 text-base md:hidden">
-            <summary className="cursor-pointer italic">
-              {tDisclaimer("summary")}
-            </summary>
-            <p className="mt-2">{tDisclaimer("details")}</p>
-          </details>
-          <p className="text-muted-foreground mt-4 hidden text-base leading-relaxed md:block">
-            {tDisclaimer("details")}
-          </p>
+          {/* Same paragraph styling as the topics hub intro. */}
+          <div className="text-muted-foreground space-y-3 text-base leading-relaxed">
+            <p>
+              {t.rich("description", {
+                count: storyCount,
+                reddit: (chunks) => (
+                  <a
+                    href="https://www.reddit.com/r/detrans/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline"
+                  >
+                    {chunks}
+                  </a>
+                ),
+              })}
+            </p>
+            <p>
+              {t.rich("description2", {
+                prompts: (chunks) => (
+                  <Link href="/prompts" className="underline">
+                    {chunks}
+                  </Link>
+                ),
+              })}
+            </p>
+          </div>
         </IntroWithSeeAlso>
 
         <div className="mt-10">

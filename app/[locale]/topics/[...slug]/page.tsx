@@ -2,6 +2,7 @@ import { DocsLayout } from "@/app/components/content/DocsLayout";
 import { WikiAdminActions } from "@/app/components/content/WikiAdminActions";
 import { WikiTocLink } from "@/app/components/content/WikiTocLink";
 import { WikiViewTracker } from "@/app/components/content/WikiViewTracker";
+import TopicSuggestForm from "@/app/components/TopicSuggestForm";
 import { PAGE_TITLE } from "@/app/components/ui/typography";
 import { isAdmin } from "@/app/lib/auth/auth";
 import { renderWikiMarkdown } from "@/app/lib/markdown";
@@ -476,6 +477,13 @@ export default async function WikiTopicPage({
             )}
             {page.isStub && ` · ${t("stubNotice")}`}
           </p>
+
+          {/* Improvements to this page or ideas for related articles. */}
+          {page.published && (
+            <div className="mt-6">
+              <TopicSuggestForm page={{ path: page.path, title }} />
+            </div>
+          )}
 
           {/* Admins previewing/editing shouldn't inflate the count. */}
           {page.published && !includeDrafts && (

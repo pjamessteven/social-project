@@ -11,7 +11,8 @@ export interface SeeAlsoLink {
 
 /**
  * Page intro with a "See also" link column beside it, separated by a hairline
- * divider on large screens (stacked under a horizontal hairline on small ones).
+ * divider on large screens (stacked under a horizontal hairline on tablets).
+ * Phones skip the links entirely to keep the intro short.
  */
 export function IntroWithSeeAlso({
   children,
@@ -35,7 +36,7 @@ export function IntroWithSeeAlso({
       className={`not-prose flex flex-col gap-6 leading-relaxed lg:flex-row lg:gap-10 ${className}`}
     >
       <div className="max-w-3xl lg:flex-1">{children}</div>
-      <aside className="border-t pt-5 lg:w-72 lg:shrink-0 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
+      <aside className="hidden border-t pt-5 md:block lg:w-72 lg:shrink-0 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
         <h2 className="text-muted-foreground mb-3 text-sm font-medium">
           {title}
         </h2>
