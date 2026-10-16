@@ -48,6 +48,19 @@ const loadWikiPage = cache(async (locale: string, slug: string[]) => {
   return { item, byId, includeDrafts };
 });
 
+/**
+ * Redirect target with each slug segment percent-encoded: translated slugs
+ * can hold non-ASCII letters (ă, ț, é…), which are invalid in a raw
+ * Location header and crash the response with ERR_INVALID_CHAR.
+ */
+function topicRedirectPath(locale: string, localizedPath: string): string {
+  const encoded = localizedPath
+    .split("/")
+    .map((segment) => encodeURIComponent(segment))
+    .join("/");
+  return `/${locale}/topics/${encoded}`;
+}
+
 function localizedTitle(
   entry: { page: { title: string; titleTranslation: string | null } },
   locale: string,
@@ -244,7 +257,7 @@ export default async function WikiTopicPage({
       const all = await getAllPagesWithSlugs();
       const byId = new Map(all.map((entry) => [entry.page.id, entry]));
       permanentRedirect(
-        `/${locale}/topics/${buildLocalizedPath(moved, byId, locale)}`,
+        topicRedirectPath(locale, buildLocalizedPath(moved, byId, locale)),
       );
     }
     notFound();
@@ -271,7 +284,7 @@ export default async function WikiTopicPage({
     })
     .join("/");
   if (requestedPath !== localizedPath) {
-    permanentRedirect(`/${locale}/topics/${localizedPath}`);
+    permanentRedirect(topicRedirectPath(locale, localizedPath));
   }
 
   const title = localizedTitle(item, locale);

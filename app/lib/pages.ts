@@ -297,7 +297,7 @@ export async function createPage(
     slugTranslations: parsed.slugTranslations,
   });
 
-  return db.transaction(async (tx) => {
+  const result = await db.transaction(async (tx) => {
     const [created] = await tx
       .insert(pages)
       .values({
@@ -342,6 +342,8 @@ export async function createPage(
 
     return { page: created, slugs: parsed.slugTranslations };
   });
+  invalidatePagesSnapshot();
+  return result;
 }
 
 export async function updatePage(
@@ -415,7 +417,7 @@ export async function updatePage(
     ...parsed.contentTranslations,
   };
 
-  return db.transaction(async (tx) => {
+  const result = await db.transaction(async (tx) => {
     const [updated] = await tx
       .update(pages)
       .set({
@@ -505,6 +507,8 @@ export async function updatePage(
       slugs: Object.fromEntries(slugRows.map((row) => [row.locale, row.slug])),
     };
   });
+  invalidatePagesSnapshot();
+  return result;
 }
 
 export async function deletePage(path: string): Promise<void> {
@@ -520,13 +524,46 @@ export async function deletePage(path: string): Promise<void> {
 
   // page_slugs cascade; children survive with parent_id set to NULL (FK)
   await db.delete(pages).where(eq(pages.id, existing.id));
+  invalidatePagesSnapshot();
 }
 
 // ---------------------------------------------------------------------------
 // Reads
 // ---------------------------------------------------------------------------
 
-export async function getAllPagesWithSlugs(): Promise<PageWithSlugs[]> {
+/**
+ * In-process snapshot of every page + slugs. Routing, the hub tree, the
+ * sitemap and the featured article all need the full set, and loading it per
+ * call (content in every locale, several MB) multiplied by a crawler burst
+ * ran the server out of memory. Concurrent callers share one in-flight load;
+ * writes in this module invalidate it, and the TTL covers out-of-band edits
+ * (scripts, other processes). Callers must treat the result as read-only.
+ */
+const PAGES_SNAPSHOT_TTL_MS = 60_000;
+let pagesSnapshot: {
+  promise: Promise<PageWithSlugs[]>;
+  loadedAt: number;
+} | null = null;
+
+function invalidatePagesSnapshot(): void {
+  pagesSnapshot = null;
+}
+
+export function getAllPagesWithSlugs(): Promise<PageWithSlugs[]> {
+  const now = Date.now();
+  if (pagesSnapshot && now - pagesSnapshot.loadedAt < PAGES_SNAPSHOT_TTL_MS) {
+    return pagesSnapshot.promise;
+  }
+  const snapshot = { promise: loadAllPagesWithSlugs(), loadedAt: now };
+  pagesSnapshot = snapshot;
+  // Don't cache failures
+  snapshot.promise.catch(() => {
+    if (pagesSnapshot === snapshot) pagesSnapshot = null;
+  });
+  return snapshot.promise;
+}
+
+async function loadAllPagesWithSlugs(): Promise<PageWithSlugs[]> {
   const [pageRows, slugRows] = await Promise.all([
     db.select().from(pages).orderBy(asc(pages.path)),
     db.select().from(pageSlugs),
@@ -810,8 +847,8 @@ export async function findPageByFinalSegment(
   const fullMatches = new Set<PageWithSlugs>();
   for (const item of candidates) {
     for (const code of otherLocales) {
-      const localized = getLocalizedSegments(item, byId, code).map(
-        (segment) => normalizeSegment(segment),
+      const localized = getLocalizedSegments(item, byId, code).map((segment) =>
+        normalizeSegment(segment),
       );
       if (
         localized.length === wanted.length &&
@@ -1013,8 +1050,11 @@ async function queryFeaturedTopic(
   return {
     localizedPath: buildLocalizedPath(entry, byId, locale),
     title:
-      getLocalizedValue(entry.page.titleTranslation, locale, entry.page.title) ??
-      entry.page.title,
+      getLocalizedValue(
+        entry.page.titleTranslation,
+        locale,
+        entry.page.title,
+      ) ?? entry.page.title,
     summary: getLocalizedValue(
       entry.page.summaryTranslation,
       locale,
@@ -1030,7 +1070,9 @@ const cachedFeaturedTopic = unstable_cache(
 );
 
 /** Today's featured wiki article (changes daily at UTC midnight). */
-export function getFeaturedTopic(locale: string): Promise<FeaturedTopic | null> {
+export function getFeaturedTopic(
+  locale: string,
+): Promise<FeaturedTopic | null> {
   const day = Math.floor(Date.now() / 86_400_000);
   return cachedFeaturedTopic(locale, day);
 }

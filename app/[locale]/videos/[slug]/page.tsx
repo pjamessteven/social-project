@@ -1,13 +1,17 @@
 "use server";
 
 import { PAGE_TITLE } from "@/app/components/ui/typography";
+import { buildAlternates, localizedUrl, ogLocale } from "@/app/lib/seo";
 import {
+  generateVideoSlug,
   getYouTubeEmbedUrl,
   getYouTubeVideoId,
   parseVideoIdFromSlug,
 } from "@/app/lib/video-utils";
-import { buildAlternates, localizedUrl, ogLocale } from "@/app/lib/seo";
+import { db } from "@/db";
+import { videos } from "@/db/schema";
 import { getPathname, Link } from "@/i18n/routing";
+import { eq } from "drizzle-orm";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound, permanentRedirect } from "next/navigation";
@@ -40,26 +44,40 @@ interface VideoWithTranslations {
   updatedAt: Date;
 }
 
+/**
+ * Load the video straight from the database. Fetching our own
+ * /api/videos/[id] over the public URL hairpinned through the internet and
+ * timed out (ETIMEDOUT) under load, tying up the server.
+ */
 async function fetchVideo(
   videoId: number,
   locale: string,
 ): Promise<VideoWithTranslations | null> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-    const apiUrl = `${baseUrl}/api/videos/${videoId}?locale=${locale}`;
+    const video = (
+      await db.select().from(videos).where(eq(videos.id, videoId)).limit(1)
+    )[0];
+    if (!video) return null;
 
-    const response = await fetch(apiUrl, {
-      cache: "no-store",
-      headers: {
-        Accept: "application/json",
-      },
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      return data.video as VideoWithTranslations;
-    }
-    return null;
+    return {
+      ...video,
+      // Canonical URL slug, always built from the English title
+      slug: generateVideoSlug(video.id, video.title),
+      title:
+        getLocalizedField(video.title, video.titleTranslation, locale) ??
+        video.title,
+      description: getLocalizedField(
+        video.description,
+        video.descriptionTranslation,
+        locale,
+      ),
+      summary: getLocalizedField(
+        video.summary,
+        video.summaryTranslation,
+        locale,
+      ),
+      bite: getLocalizedField(video.bite, video.biteTranslation, locale),
+    } as VideoWithTranslations;
   } catch (error) {
     console.error("Failed to fetch video:", error);
     return null;
