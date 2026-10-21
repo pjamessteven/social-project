@@ -652,12 +652,16 @@ type WikiEventData = EventPartData["data"] & {
     script?: string;
     patch?: string;
     locale?: string;
+    query?: string;
+    section?: string;
   };
 };
 
 // Events saved before `tool` was sent only carry the stream title.
 const WIKI_TOOL_BY_TITLE: Record<string, string> = {
   "Searched wiki pages": "grep",
+  "Searched wiki topics": "searchTopics",
+  "Read wiki topic": "readTopic",
   "Read wiki page": "cat",
   "Edited wiki page": "sed",
   "Patched wiki page": "patch",
@@ -789,6 +793,15 @@ export function WikiPageEventPart() {
     : [];
   const isDeleted = !!parsed?.deleted;
   const pages: WikiTreeNode[] | undefined = parsed?.pages;
+  const topicHits: TopicHit[] | undefined = Array.isArray(parsed?.hits)
+    ? parsed.hits
+    : undefined;
+  const topicSection:
+    | { heading: string; url: string; content: string }
+    | undefined =
+    parsed?.section && typeof parsed.section === "object"
+      ? parsed.section
+      : undefined;
   const localeSuffix =
     args.locale && args.locale !== "en" ? ` [${args.locale}]` : "";
 
@@ -817,6 +830,14 @@ export function WikiPageEventPart() {
         changedLines === 0
           ? " — no changes"
           : ` — ${plural(changedLines, "line")} changed`;
+  } else if (tool === "searchTopics") {
+    headline = args.query ? `"${args.query}"` : data.query || "";
+    if (isSuccess && topicHits)
+      headline += `${headline ? " — " : ""}${plural(topicHits.length, "section")}`;
+  } else if (tool === "readTopic") {
+    headline = pageTitle
+      ? `${pageTitle}${topicSection?.heading ? ` › ${topicSection.heading}` : ""}`
+      : path || "";
   } else if (Array.isArray(pages)) {
     headline =
       pages.length === 0
@@ -828,16 +849,19 @@ export function WikiPageEventPart() {
     headline = pageTitle ? `${pageTitle} (/${path})` : path || data.query;
   }
 
-  const pageLink = path && !isDeleted && tool !== "grep" && (
-    <a
-      href={`/${locale}/topics/${path}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="font-medium text-blue-600 hover:underline dark:text-blue-400"
-    >
-      {pageTitle || `/${path}`}
-    </a>
-  );
+  const pageLink = path &&
+    !isDeleted &&
+    tool !== "grep" &&
+    tool !== "searchTopics" && (
+      <a
+        href={`/${locale}/topics/${path}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-medium text-blue-600 hover:underline dark:text-blue-400"
+      >
+        {pageTitle || `/${path}`}
+      </a>
+    );
 
   return (
     <EventWrapper
@@ -900,9 +924,28 @@ export function WikiPageEventPart() {
             {tool === "patch" && output && (
               <p className="text-muted-foreground">{output.split("\n")[0]}</p>
             )}
+            {tool === "searchTopics" && topicHits && (
+              <TopicHitList hits={topicHits} />
+            )}
+            {tool === "readTopic" && topicSection && (
+              <div className="space-y-1">
+                <a
+                  href={topicSection.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-blue-600 hover:underline dark:text-blue-400"
+                >
+                  {topicSection.heading}
+                </a>
+                <pre className="bg-muted/40 max-h-80 overflow-auto rounded border p-2 text-[11px] whitespace-pre-wrap">
+                  {topicSection.content}
+                </pre>
+              </div>
+            )}
             {tool !== "grep" &&
               tool !== "sed" &&
               tool !== "patch" &&
+              tool !== "searchTopics" &&
               (output || contentPreview) && (
                 <pre className="bg-muted/40 max-h-80 overflow-auto rounded border p-2 text-[11px] whitespace-pre-wrap">
                   {output ?? contentPreview}
@@ -929,6 +972,49 @@ export function WikiPageEventPart() {
         )}
       </div>
     </EventWrapper>
+  );
+}
+
+interface TopicHit {
+  path: string;
+  title: string;
+  heading: string | null;
+  url: string;
+  excerpt: string;
+  stub?: boolean;
+  draft?: boolean;
+}
+
+/** Section hits from the searchTopics tool: deep link + excerpt each. */
+function TopicHitList({ hits }: { hits: TopicHit[] }) {
+  if (hits.length === 0) {
+    return <p className="text-muted-foreground">No matching wiki sections.</p>;
+  }
+  return (
+    <ul className="space-y-1.5">
+      {hits.map((hit, index) => (
+        <li key={`${hit.url}-${index}`} className="space-y-0.5">
+          <div className="flex flex-wrap items-center gap-1.5">
+            <a
+              href={hit.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-blue-600 hover:underline dark:text-blue-400"
+            >
+              {hit.title}
+              {hit.heading ? ` › ${hit.heading}` : ""}
+            </a>
+            {hit.stub && <WikiStubBadge />}
+            {hit.draft && (
+              <span className="text-muted-foreground">(draft)</span>
+            )}
+          </div>
+          {hit.excerpt && (
+            <p className="text-muted-foreground line-clamp-3">{hit.excerpt}</p>
+          )}
+        </li>
+      ))}
+    </ul>
   );
 }
 

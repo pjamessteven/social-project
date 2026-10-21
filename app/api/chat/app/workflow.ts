@@ -13,6 +13,8 @@ import {
   createQueryCommentsTool,
   createQueryTransCommentsTool,
   createQueryVideosTool,
+  createReadTopicTool,
+  createSearchTopicsTool,
   createSedTool,
   createUpdatePageTool,
   createWebSearchTool,
@@ -84,6 +86,13 @@ export const workflowFactory = async (
   // pages only unless the caller is an admin) so the agent can show and link
   // topics for all users.
   tools.push(createListPagesTool({ adminUsername }));
+  // Wiki search/read for everyone: section-level lexical search over the
+  // published pages in the user's locale (admins also see drafts), so the
+  // agent can ground answers in the topic archive and link to it.
+  tools.push(
+    createSearchTopicsTool({ adminUsername, locale }),
+    createReadTopicTool({ adminUsername, locale }),
+  );
 
   // Wiki page WRITE tools: admin-only and only in wiki update mode. Stateful
   // tools — they intentionally bypass the result cache used by query tools.

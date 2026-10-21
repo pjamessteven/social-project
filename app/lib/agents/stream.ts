@@ -9,6 +9,7 @@ import { createUIMessageStream, UIMessage, UIMessageStreamWriter } from "ai";
 import { randomUUID } from "crypto";
 import type { ChatMessage, ChatResponseChunk } from "llamaindex";
 import { humanInputEvent, type HumanResponseEventData } from "./hitl";
+import { QuoteGate } from "./quote-gate";
 
 export interface StreamCallbacks {
   onStart?: (dataStreamWriter: UIMessageStreamWriter) => Promise<void> | void;
@@ -84,6 +85,17 @@ const TOOL_UI_MAP: Record<
     titleStart: "Listing wiki pages...",
     titleEnd: "Listed wiki pages",
     displayQuery: "none",
+  },
+  searchTopics: {
+    type: "data-wiki-page-event",
+    titleStart: "Searching wiki topics...",
+    titleEnd: "Searched wiki topics",
+    displayQuery: "auto",
+  },
+  readTopic: {
+    type: "data-wiki-page-event",
+    titleStart: "Reading wiki topic...",
+    titleEnd: "Read wiki topic",
   },
   createPage: {
     type: "data-wiki-page-event",
@@ -169,6 +181,8 @@ function extractDisplayQuery(
 
 const WIKI_ARG_KEYS = [
   "path",
+  "query",
+  "section",
   "pattern",
   "ignoreCase",
   "range",
@@ -306,7 +320,30 @@ export function toDataStream(
   let textId: string | null = null;
   let streamWriter: UIMessageStreamWriter | null = null;
 
-  const closeTextBlock = (writer: any) => {
+  // Every blockquote the model writes is checked against the comments it
+  // actually retrieved (this turn and earlier turns) before it reaches the
+  // user — see quote-gate.ts. Ordinary text streams through untouched.
+  const quoteGate = new QuoteGate(`quote-check ${conversationId}`);
+  quoteGate.addFromMessages(originalMessages);
+
+  const writeText = async (writer: UIMessageStreamWriter, text: string) => {
+    if (!text) return;
+    if (!textId) {
+      // Skip leading whitespace deltas so an empty or whitespace-only
+      // response (e.g. when the LLM errors before producing content)
+      // never creates an empty text block, which renders as an empty
+      // markdown bubble.
+      if (!text.trim()) return;
+      textId = `text-${randomUUID()}`;
+      writer.write({ type: "text-start", id: textId });
+    }
+    completionText += text;
+    writer.write({ type: "text-delta", id: textId, delta: text });
+    if (callbacks?.onText) await callbacks.onText(text, writer);
+  };
+
+  const closeTextBlock = async (writer: any) => {
+    await writeText(writer, quoteGate.flush());
     if (textId) {
       writer.write({ type: "text-end", id: textId });
       textId = null;
@@ -326,28 +363,12 @@ export function toDataStream(
         for await (const event of stream) {
           // Text streaming
           if (agentStreamEvent.include(event) && event.data.delta) {
-            if (!textId) {
-              // Skip leading whitespace deltas so an empty or whitespace-only
-              // response (e.g. when the LLM errors before producing content)
-              // never creates an empty text block, which renders as an empty
-              // markdown bubble.
-              if (!event.data.delta.trim()) continue;
-              textId = `text-${randomUUID()}`;
-              writer.write({ type: "text-start", id: textId });
-            }
-            completionText += event.data.delta;
-            writer.write({
-              type: "text-delta",
-              id: textId,
-              delta: event.data.delta,
-            });
-            if (callbacks?.onText)
-              await callbacks.onText(event.data.delta, writer);
+            await writeText(writer, quoteGate.push(event.data.delta));
           }
 
           // Human input interrupts
           if (humanInputEvent.include(event)) {
-            closeTextBlock(writer);
+            await closeTextBlock(writer);
             const { response, ...rest } = event.data;
             writer.write({ type: "data-annotation", data: rest });
             if (callbacks?.onPauseForHumanInput) {
@@ -358,7 +379,7 @@ export function toDataStream(
 
           // Tool call start — emit data event for UI
           if (agentToolCallEvent.include(event)) {
-            closeTextBlock(writer);
+            await closeTextBlock(writer);
             const config = TOOL_UI_MAP[event.data.toolName];
             if (config) {
               writer.write({
@@ -382,7 +403,8 @@ export function toDataStream(
 
           // Tool call result — emit data event for UI
           if (agentToolCallResultEvent.include(event)) {
-            closeTextBlock(writer);
+            await closeTextBlock(writer);
+            quoteGate.addSources(event.data.raw);
             checkToolLoop(
               event.data.toolName,
               event.data.toolKwargs,
@@ -457,7 +479,14 @@ export function toDataStream(
         //   }
         // }
 
-        closeTextBlock(writer);
+        await closeTextBlock(writer);
+        if (quoteGate.decisions.length > 0) {
+          console.log(
+            `[quote-check ${conversationId}] ${quoteGate.decisions
+              .map((d) => d.outcome)
+              .join(",")} (sources=${quoteGate.sourceCount})`,
+          );
+        }
       } catch (error) {
         if (
           error instanceof Error &&
@@ -469,7 +498,7 @@ export function toDataStream(
           // Surface the failure as a visible assistant message first — an
           // error the user can actually read beats a silently empty
           // transcript that looks like the run is stuck.
-          closeTextBlock(writer);
+          await closeTextBlock(writer);
           const id = `text-${randomUUID()}`;
           const message =
             error instanceof Error
@@ -481,7 +510,7 @@ export function toDataStream(
           throw error;
         }
       } finally {
-        closeTextBlock(writer);
+        await closeTextBlock(writer);
       }
     },
     onError: (error: unknown) => {

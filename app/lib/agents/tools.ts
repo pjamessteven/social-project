@@ -8,6 +8,7 @@ import {
   listPagesTree,
   updatePage,
 } from "@/app/lib/pages";
+import { readTopic, searchTopicSections } from "@/app/lib/topic-search";
 import {
   applyUnifiedPatch,
   grepContent,
@@ -773,6 +774,151 @@ export function createListPagesTool(config: { adminUsername?: string | null }) {
           .describe(
             "Include unpublished draft pages in the listing (admin only, default false)",
           ),
+      }),
+    },
+  );
+}
+
+// --- Public wiki search/read (every conversation) -------------------------
+
+const TOPIC_EXCERPT_LIMIT = 8;
+
+export function createSearchTopicsTool(config: {
+  adminUsername?: string | null;
+  locale?: string;
+}) {
+  return tool(
+    async ({
+      query,
+      limit,
+      includeDrafts,
+    }: {
+      query: string;
+      limit?: number;
+      includeDrafts?: boolean;
+    }) => {
+      try {
+        const { hits, pagesSearched } = await searchTopicSections({
+          query,
+          locale: config.locale,
+          limit: limit ?? TOPIC_EXCERPT_LIMIT,
+          includeDrafts: includeDrafts === true && !!config.adminUsername,
+        });
+        return JSON.stringify({
+          success: true,
+          query,
+          pagesSearched,
+          total: hits.length,
+          hits: hits.map((hit) => ({
+            path: hit.path,
+            title: hit.title,
+            heading: hit.heading,
+            url: hit.url,
+            cite: `[${hit.title}${hit.heading ? ` — ${hit.heading}` : ""}](${hit.url})`,
+            excerpt: hit.excerpt,
+            ...(hit.isStub && { stub: true }),
+            ...(!hit.published && { draft: true }),
+          })),
+          ...(hits.length === 0 && {
+            note: "No wiki section matched. Try fewer or different keywords, or listPages to browse titles.",
+          }),
+        });
+      } catch (error) {
+        return wikiError("searchTopics", error);
+      }
+    },
+    {
+      name: "searchTopics",
+      description:
+        "Search the site's wiki (in-depth topic pages under /topics) and get the best-matching page sections: title, heading, url (deep link to that section in the user's language), and an excerpt. Use it to find background, mechanisms and evidence the wiki already covers and to link the user to further reading. Keyword search over the English text and the user's language, so query in either. Use readTopic to read a whole section.",
+      parameters: z.object({
+        query: z
+          .string()
+          .describe(
+            "Keywords or a short phrase, e.g. 'testosterone voice changes'",
+          ),
+        limit: z
+          .number()
+          .optional()
+          .describe("Maximum sections to return (default 8, max 20)"),
+        includeDrafts: z
+          .boolean()
+          .optional()
+          .describe(
+            "Also search unpublished drafts (admin only, default false)",
+          ),
+      }),
+    },
+  );
+}
+
+export function createReadTopicTool(config: {
+  adminUsername?: string | null;
+  locale?: string;
+}) {
+  return tool(
+    async ({
+      path,
+      section,
+      maxChars,
+    }: {
+      path: string;
+      section?: string;
+      maxChars?: number;
+    }) => {
+      try {
+        const result = await readTopic({
+          path,
+          section,
+          locale: config.locale,
+          maxChars,
+          includeDrafts: !!config.adminUsername,
+        });
+        if (!result) {
+          return JSON.stringify({
+            success: false,
+            error: `No wiki page at "${path}". Use the path from searchTopics or listPages.`,
+          });
+        }
+        if ("error" in result) {
+          return JSON.stringify({ success: false, ...result });
+        }
+        const { section: picked, content, ...rest } = result;
+        return JSON.stringify({
+          success: true,
+          ...rest,
+          cite: `[${result.title}](${picked?.url ?? result.url})`,
+          ...(picked
+            ? { section: picked }
+            : {
+                output: content,
+                note: result.truncated
+                  ? "Page truncated. Call again with section: <heading> to read a specific section in full."
+                  : undefined,
+              }),
+        });
+      } catch (error) {
+        return wikiError("readTopic", error);
+      }
+    },
+    {
+      name: "readTopic",
+      description:
+        "Read a wiki page in the user's language (falls back to English): its table of contents plus either one section (with its subsections) when `section` is given, or the page from the top. Prefer reading a section — pages are long.",
+      parameters: z.object({
+        path: z
+          .string()
+          .describe(
+            "Page path from searchTopics/listPages, e.g. 'hormones/testosterone'",
+          ),
+        section: z
+          .string()
+          .optional()
+          .describe("Heading text or anchor of the section to read"),
+        maxChars: z
+          .number()
+          .optional()
+          .describe("Cap on returned characters (default 8000)"),
       }),
     },
   );
