@@ -260,6 +260,23 @@ export default async function WikiTopicPage({
         topicRedirectPath(locale, buildLocalizedPath(moved, byId, locale)),
       );
     }
+    // Retired pages (merged into their parent or unpublished): fall back to
+    // the nearest existing ancestor.
+    const segments = slug ?? [];
+    for (let depth = segments.length - 1; depth > 0; depth--) {
+      const ancestor = await resolvePageBySegments(
+        segments.slice(0, depth),
+        locale,
+        { includeDrafts: await isAdmin() },
+      );
+      if (ancestor) {
+        const all = await getAllPagesWithSlugs();
+        const byId = new Map(all.map((entry) => [entry.page.id, entry]));
+        permanentRedirect(
+          topicRedirectPath(locale, buildLocalizedPath(ancestor, byId, locale)),
+        );
+      }
+    }
     notFound();
   }
 
