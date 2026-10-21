@@ -1,5 +1,9 @@
 import { IntroWithSeeAlso } from "@/app/components/content/IntroWithSeeAlso";
 import { TopicHubAccordion } from "@/app/components/content/TopicHubAccordion";
+import {
+  type TopicSearchEntry,
+  TopicsSearch,
+} from "@/app/components/content/TopicsSearch";
 import TopicSuggestForm from "@/app/components/TopicSuggestForm";
 import { LinkCard } from "@/app/components/ui/card";
 import { PAGE_TITLE } from "@/app/components/ui/typography";
@@ -113,6 +117,23 @@ function countDescendants(node: LocalizedTopicNode): number {
     (total, child) => total + 1 + countDescendants(child),
     0,
   );
+}
+
+// Every topic in reading order, with its ancestors' titles, for the search.
+function flattenTree(
+  tree: LocalizedTopicNode[],
+  locale: string,
+  trail: string[] = [],
+): TopicSearchEntry[] {
+  return tree.flatMap((node) => [
+    {
+      href: `/${locale}/topics/${node.localizedPath}`,
+      title: node.title,
+      summary: node.summary ?? null,
+      trail,
+    },
+    ...flattenTree(node.children, locale, [...trail, node.title]),
+  ]);
 }
 
 function HubCards({
@@ -441,9 +462,8 @@ export default async function TopicsHubPage({
           {tree.length === 0 ? (
             <p className="text-muted-foreground">{t("empty")}</p>
           ) : (
-            <>
+            <TopicsSearch entries={flattenTree(tree, locale)}>
               {/* Mobile gets the hubs as the accordion below instead of cards. */}
-
               <HubCards
                 tree={tree}
                 locale={locale}
@@ -471,7 +491,7 @@ export default async function TopicsHubPage({
                   />
                 ))}
               </div>
-            </>
+            </TopicsSearch>
           )}
         </div>
       </div>
