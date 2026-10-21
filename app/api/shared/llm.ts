@@ -24,6 +24,59 @@ const ipv4Agent = new Agent({ connect: { family: 4 } as any });
 export const ipv4Fetch: typeof fetch = ((input: any, init?: any) =>
   undiciFetch(input as any, { ...init, dispatcher: ipv4Agent } as any)) as any;
 
+/** Holder for the AbortController of the request currently in flight. */
+type InflightRef = { current: AbortController | null };
+
+/**
+ * ipv4Fetch with a per-client abort handle: every request gets its own
+ * AbortController (combined with the SDK's timeout signal) and the latest one
+ * is kept in `ref`, so a wedged stream can be torn down from outside the SDK.
+ */
+function abortableFetch(ref: InflightRef): typeof fetch {
+  return ((input: any, init?: any) => {
+    const controller = new AbortController();
+    ref.current = controller;
+    const signal = init?.signal
+      ? AbortSignal.any([controller.signal, init.signal])
+      : controller.signal;
+    return ipv4Fetch(input, { ...init, signal });
+  }) as any;
+}
+
+/**
+ * Providers that recently produced a runaway response, with the time it was
+ * seen. Every call for the next RUNAWAY_MEMORY_MS steers away from them up
+ * front, so one bad upstream doesn't cost every conversation an aborted
+ * attempt (2026-10-21: Relace and Makora ran away repeatedly).
+ */
+const recentRunaways = new Map<string, number>();
+const RUNAWAY_MEMORY_MS =
+  Number(process.env.LLM_RUNAWAY_MEMORY_MS) || 15 * 60 * 1000;
+
+const MAX_TOOL_CALLS_PER_RESPONSE =
+  Number(process.env.LLM_MAX_TOOL_CALLS_PER_RESPONSE) || 16;
+
+/** Tool-call count of a cached response if it exceeds the runaway cap, else 0. */
+function isRunawayResponse(cachedJson: string): number {
+  try {
+    const toolCalls = (
+      (JSON.parse(cachedJson) as ChatResponse)?.message?.options as any
+    )?.toolCall;
+    const count = Array.isArray(toolCalls) ? toolCalls.length : 0;
+    return count > MAX_TOOL_CALLS_PER_RESPONSE ? count : 0;
+  } catch {
+    return 0;
+  }
+}
+
+function providersToAvoid(extra: string[] = []): string[] {
+  const cutoff = Date.now() - RUNAWAY_MEMORY_MS;
+  for (const [provider, seen] of recentRunaways) {
+    if (seen < cutoff) recentRunaways.delete(provider);
+  }
+  return [...new Set([...recentRunaways.keys(), ...extra])];
+}
+
 export class CachedOpenAI extends OpenAI {
   private cache: Cache;
   private mode: "detrans_chat";
@@ -42,6 +95,8 @@ export class CachedOpenAI extends OpenAI {
     "cache" | "mode"
   >;
   private fallbackClient: OpenAI | null = null;
+  private inflight: InflightRef;
+  private fallbackInflight: InflightRef = { current: null };
   constructor(
     init: ConstructorParameters<typeof OpenAI>[0] & {
       cache: Cache;
@@ -61,12 +116,19 @@ export class CachedOpenAI extends OpenAI {
       fallback,
       ...openAIInit
     } = init;
-    // Route LLM connections over IPv4 (or ipv4Fetch above).
+    // Route LLM connections over IPv4 (ipv4Fetch above), with an abort
+    // handle so a silent stream can be cut off (see drainStream).
+    const inflight: InflightRef = { current: null };
     openAIInit.additionalSessionOptions = {
       ...(openAIInit.additionalSessionOptions as any),
-      fetch: ipv4Fetch as any,
+      fetch: abortableFetch(inflight) as any,
     };
+    // The SDK retries connection failures and header timeouts itself; the
+    // library default of 10 attempts (x 60s) would hide a dead provider for
+    // ten minutes. Two attempts, then our own retry/fallback takes over.
+    openAIInit.maxRetries ??= 2;
     super(openAIInit);
+    this.inflight = inflight;
     this.cache = cache;
     this.mode = mode;
     // Include the output budget in the cache identity: admins get a much
@@ -81,11 +143,25 @@ export class CachedOpenAI extends OpenAI {
     if (fallback) {
       this.fallbackInit = {
         ...fallback,
+        maxRetries: fallback.maxRetries ?? 2,
         additionalSessionOptions: {
           ...(fallback.additionalSessionOptions as any),
-          fetch: ipv4Fetch as any,
+          fetch: abortableFetch(this.fallbackInflight) as any,
         },
       };
+    }
+  }
+
+  /**
+   * Tear down the HTTP request currently in flight (primary or fallback).
+   * The SDK stream then throws, which unwinds the library's stream generator
+   * even when it is parked waiting for a provider that will never answer.
+   */
+  private abortInflight(reason: Error) {
+    for (const ref of [this.inflight, this.fallbackInflight]) {
+      const controller = ref.current;
+      ref.current = null;
+      if (controller && !controller.signal.aborted) controller.abort(reason);
     }
   }
 
@@ -169,6 +245,9 @@ export class CachedOpenAI extends OpenAI {
     if (this.cancelledReason === null) {
       this.cancelledReason = reason;
       console.warn(`[CachedOpenAI] LLM cancelled: ${reason}`);
+      // Release the socket now rather than at the next chunk (which, for a
+      // silent provider, never comes).
+      this.abortInflight(new Error(`LLM cancelled: ${reason}`));
     }
   }
 
@@ -216,13 +295,34 @@ export class CachedOpenAI extends OpenAI {
   private async openStreamWithFallback(
     messages: LLMChatParamsStreaming["messages"],
     options: Record<string, unknown>,
+    ignoreProviders: string[] = [],
   ): Promise<AsyncGenerator<ChatResponseChunk> | null> {
+    // A retry after a runaway response steers OpenRouter away from the
+    // provider that produced it (per-call options are merged over the
+    // instance's additionalChatOptions, so only `provider` needs restating).
+    let callOptions = options;
+    const avoid = providersToAvoid(ignoreProviders);
+    if (avoid.length > 0) {
+      const base = ((this.additionalChatOptions as any)?.provider ?? {}) as {
+        ignore?: string[];
+      };
+      callOptions = {
+        ...options,
+        additionalChatOptions: {
+          ...((options.additionalChatOptions as object) ?? {}),
+          provider: {
+            ...base,
+            ignore: [...new Set([...(base.ignore ?? []), ...avoid])],
+          },
+        },
+      };
+    }
     try {
       // Call underlying LLM in streaming mode
       return (await super.chat({
         messages,
         stream: true,
-        ...options,
+        ...callOptions,
       } as LLMChatParamsStreaming)) as AsyncGenerator<ChatResponseChunk>;
     } catch (err) {
       // On transient failure (429/5xx/timeout), retry on the fallback provider.
@@ -232,7 +332,7 @@ export class CachedOpenAI extends OpenAI {
           const stream = (await fallback.chat({
             messages,
             stream: true,
-            ...options,
+            ...callOptions,
           } as any)) as AsyncGenerator<ChatResponseChunk>;
           console.warn(
             "[CachedOpenAI] Primary provider failed, using fallback provider",
@@ -330,8 +430,21 @@ export class CachedOpenAI extends OpenAI {
         return (async function* (): AsyncGenerator<ChatResponseChunk> {})();
       }
 
-      // Check cache first
-      const cached = await this.cache.get(hashedKey);
+      // Check cache first. A cached response carrying a runaway tool-call
+      // list (written before the runaway guard existed) would replay the
+      // runaway on every identical conversation prefix, so such entries are
+      // dropped and regenerated instead.
+      let cached = await this.cache.get(hashedKey);
+      if (cached) {
+        const poisoned = isRunawayResponse(cached);
+        if (poisoned) {
+          console.warn(
+            `[CachedOpenAI] dropping cached response with ${poisoned} tool calls (runaway) for ${hashedKey}`,
+          );
+          await this.cache.delete?.(hashedKey);
+          cached = null;
+        }
+      }
 
       if (cached) {
         logger.info(
@@ -422,6 +535,8 @@ export class CachedOpenAI extends OpenAI {
           usage: any;
           errored: boolean;
           cancelled: boolean;
+          /** Provider that produced a runaway response (to avoid on retry). */
+          badProvider?: string;
         }
       > {
         let fullText = "";
@@ -439,11 +554,31 @@ export class CachedOpenAI extends OpenAI {
         // generous — a too-tight budget kills wiki deep-research runs midway.
         const STREAM_TIMEOUT_MS =
           Number(process.env.LLM_STREAM_TIMEOUT_MS) || 600_000;
+        // Budget for the FIRST chunk, separately and much tighter: a
+        // provider that accepts the request (200, event-stream) and then
+        // never sends a byte is a routing failure, not a thinking pause. The
+        // generous mid-stream budget above let such calls hang the chat for
+        // ten minutes (2026-10-21, OpenRouter upstream for mimo-v2.6-flash).
+        // Timing out here ends the attempt empty, which the caller retries
+        // once on a fresh connection. "First chunk" means the first chunk
+        // with text or a tool call: stalled streams often deliver an empty
+        // role/keepalive chunk first, and that must not switch us over to the
+        // generous mid-stream budget.
+        const FIRST_CHUNK_TIMEOUT_MS =
+          Number(process.env.LLM_FIRST_CHUNK_TIMEOUT_MS) || 45_000;
+        let meaningfulChunks = 0;
+        // Runaway guard: on some OpenRouter upstreams the model never stops
+        // emitting new tool calls (2026-10-21: 1,500+ distinct calls in 40s,
+        // 560 KB of stream, no end). Every chunk counts as progress, so no
+        // inactivity budget catches it; cap the distinct tool calls in one
+        // response instead and retry elsewhere.
         const iterator = (rawStream as AsyncGenerator<ChatResponseChunk>)[
           Symbol.asyncIterator
         ]();
         let lastChunkTime = Date.now();
         let chunkCount = 0;
+        const debugStream = process.env.LLM_DEBUG_STREAM === "1";
+        const streamStart = Date.now();
 
         while (true) {
           // Cancellation (client disconnect, superseded turn, loop guard, time
@@ -459,12 +594,20 @@ export class CachedOpenAI extends OpenAI {
 
           let result: IteratorResult<ChatResponseChunk>;
           let timeoutId: ReturnType<typeof setTimeout> | undefined;
+          if (debugStream) {
+            console.log(
+              `[drain] +${((Date.now() - streamStart) / 1000).toFixed(1)}s next() chunks=${chunkCount} meaningful=${meaningfulChunks} sinceLast=${((Date.now() - lastChunkTime) / 1000).toFixed(1)}s`,
+            );
+          }
           try {
             result = await Promise.race([
               iterator.next(),
               new Promise<never>((_, reject) => {
-                const remaining =
-                  STREAM_TIMEOUT_MS - (Date.now() - lastChunkTime);
+                const budget =
+                  meaningfulChunks === 0
+                    ? FIRST_CHUNK_TIMEOUT_MS
+                    : STREAM_TIMEOUT_MS;
+                const remaining = budget - (Date.now() - lastChunkTime);
                 if (remaining <= 0) {
                   reject(new Error("LLM stream timeout: no chunks received"));
                   return;
@@ -473,7 +616,9 @@ export class CachedOpenAI extends OpenAI {
                   () =>
                     reject(
                       new Error(
-                        `LLM stream timeout: no chunks for ${Math.round(STREAM_TIMEOUT_MS / 1000)}s after ${chunkCount} chunks`,
+                        meaningfulChunks === 0
+                          ? `LLM stream timeout: no content within ${Math.round(budget / 1000)}s (${chunkCount} empty chunks)`
+                          : `LLM stream timeout: no chunks for ${Math.round(budget / 1000)}s after ${chunkCount} chunks`,
                       ),
                     ),
                   remaining,
@@ -481,11 +626,34 @@ export class CachedOpenAI extends OpenAI {
               }),
             ]);
           } catch (err) {
-            // Attempt to clean up the iterator, then capture the error and end
-            // the stream gracefully (the workflow must complete, not hang).
-            try {
-              await iterator.return?.(undefined as any);
-            } catch {}
+            // Tear down the wedged request so the SDK stream and the library
+            // generator unwind, then end this attempt gracefully (the
+            // workflow must complete, not hang). Never await
+            // iterator.return() here: a generator suspended on an internal
+            // await can't honour return() until that await settles, and for
+            // a silent provider it never does (that wait is what turned the
+            // 2026-10-21 stalls into ten-minute hangs).
+            const error = err instanceof Error ? err : new Error(String(err));
+            console.warn(
+              `[CachedOpenAI] ${error.message} — aborting the request (chunks=${chunkCount})`,
+            );
+            this.abortInflight(error);
+            Promise.resolve(iterator.return?.(undefined as any)).catch(
+              () => {},
+            );
+            if (this.cancelledReason !== null) {
+              cancelled = true;
+              return {
+                fullText,
+                toolCalls,
+                generationId,
+                lastChunk,
+                finishReason,
+                usage,
+                errored,
+                cancelled,
+              };
+            }
             this.recordError(err);
             errored = true;
             return {
@@ -505,9 +673,20 @@ export class CachedOpenAI extends OpenAI {
           if (result.done) break;
 
           const chunk = result.value;
-          lastChunkTime = Date.now();
           chunkCount++;
+          if (debugStream) {
+            console.log(
+              `[drain] +${((Date.now() - streamStart) / 1000).toFixed(1)}s chunk #${chunkCount} delta=${JSON.stringify((chunk.delta ?? "").slice(0, 40))} tool=${JSON.stringify((chunk.options as any)?.toolCall ?? null).slice(0, 220)}`,
+            );
+          }
           fullText += chunk.delta;
+          // Only real progress resets the inactivity clock: an empty chunk
+          // (role announcement, keepalive) from a provider that then goes
+          // silent must still hit the first-content budget.
+          if (chunk.delta || (chunk.options as any)?.toolCall) {
+            meaningfulChunks++;
+            lastChunkTime = Date.now();
+          }
 
           // Collect tool calls if present
           const chunkOptions = chunk.options as any;
@@ -536,6 +715,32 @@ export class CachedOpenAI extends OpenAI {
             }
           }
 
+          if (toolCalls.length > MAX_TOOL_CALLS_PER_RESPONSE) {
+            const provider = (chunk.raw as any)?.provider as string | undefined;
+            const error = new Error(
+              `Runaway tool calls: ${toolCalls.length} distinct calls in one response${provider ? ` (provider ${provider})` : ""}`,
+            );
+            console.warn(`[CachedOpenAI] ${error.message} — aborting the request`);
+            if (provider) recentRunaways.set(provider, Date.now());
+            this.abortInflight(error);
+            Promise.resolve(iterator.return?.(undefined as any)).catch(
+              () => {},
+            );
+            this.recordError(error);
+            errored = true;
+            return {
+              fullText: "",
+              toolCalls: [],
+              generationId,
+              lastChunk,
+              finishReason,
+              usage,
+              errored,
+              cancelled,
+              badProvider: provider,
+            };
+          }
+
           // Extract generation ID if available
           if (!generationId && chunk.raw && "id" in chunk.raw) {
             generationId = (chunk.raw as any).id;
@@ -552,7 +757,25 @@ export class CachedOpenAI extends OpenAI {
           }
 
           lastChunk = chunk;
-          yield chunk;
+          // Text streams through live; tool calls are held back and handed
+          // over as one chunk once the response has completed cleanly (the
+          // same shape the cache replay uses). A response that is cut off
+          // (runaway, timeout, cancel) therefore never leaks half a list of
+          // tool calls to the agent.
+          if (chunkOptions?.toolCall) {
+            if (chunk.delta) {
+              yield { ...chunk, options: {} } as ChatResponseChunk;
+            }
+          } else {
+            yield chunk;
+          }
+        }
+        if (toolCalls.length > 0) {
+          yield {
+            delta: "",
+            raw: lastChunk?.raw ?? null,
+            options: { toolCall: toolCalls },
+          } as ChatResponseChunk;
         }
         return {
           fullText,
@@ -576,13 +799,19 @@ export class CachedOpenAI extends OpenAI {
         // write, no recorded error.
         if (result.cancelled) return;
 
-        // Nothing usable came back (no text, no tools) — either a
-        // silent-empty stream or a wedged one (e.g. timed out before the
-        // first chunk). Retry exactly once with a fresh connection before
-        // declaring failure.
-        if (!result.fullText.trim() && result.toolCalls.length === 0) {
+        // Nothing usable came back (no text, no tools) — a silent-empty
+        // stream, one that timed out before any content, or a runaway that
+        // was cut off. Retry with a fresh connection, avoiding any provider
+        // that ran away, before declaring failure.
+        const MAX_STREAM_RETRIES =
+          Number(process.env.LLM_MAX_STREAM_RETRIES) || 2;
+        const avoidProviders: string[] = [];
+        for (let attempt = 1; attempt <= MAX_STREAM_RETRIES; attempt++) {
+          if (result.cancelled) return;
+          if (result.fullText.trim() || result.toolCalls.length > 0) break;
+          if (result.badProvider) avoidProviders.push(result.badProvider);
           console.warn(
-            `[CachedOpenAI] empty stream (errored=${result.errored}, finish_reason=${result.finishReason ?? "unknown"}) — retrying once`,
+            `[CachedOpenAI] empty stream (errored=${result.errored}, finish_reason=${result.finishReason ?? "unknown"}) — retry ${attempt}/${MAX_STREAM_RETRIES}${avoidProviders.length ? ` avoiding ${avoidProviders.join(", ")}` : ""}`,
           );
           // Discard the stale error from the dead attempt so a successful
           // retry is not poisoned by it.
@@ -590,10 +819,10 @@ export class CachedOpenAI extends OpenAI {
           const retryStream = await this.openStreamWithFallback(
             messages,
             options,
+            avoidProviders,
           );
-          if (retryStream) {
-            result = yield* drainStream.call(this, retryStream);
-          }
+          if (!retryStream) break;
+          result = yield* drainStream.call(this, retryStream);
         }
 
         if (result.cancelled) return;
@@ -795,8 +1024,21 @@ export class CachedOpenAI extends OpenAI {
 
     /* --- Streaming mode --- */
     if (stream) {
-      // Check cache first
-      const cached = await this.cache.get(hashedKey);
+      // Check cache first. A cached response carrying a runaway tool-call
+      // list (written before the runaway guard existed) would replay the
+      // runaway on every identical conversation prefix, so such entries are
+      // dropped and regenerated instead.
+      let cached = await this.cache.get(hashedKey);
+      if (cached) {
+        const poisoned = isRunawayResponse(cached);
+        if (poisoned) {
+          console.warn(
+            `[CachedOpenAI] dropping cached response with ${poisoned} tool calls (runaway) for ${hashedKey}`,
+          );
+          await this.cache.delete?.(hashedKey);
+          cached = null;
+        }
+      }
 
       if (cached) {
         logger.info(

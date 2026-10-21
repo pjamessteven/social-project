@@ -183,6 +183,9 @@ export const workflowFactory = async (
       baseURL: "https://openrouter.ai/api/v1",
       model: chatModel,
       additionalChatOptions: {
+        // Same reasoning kill switch as the primary: without it a fallback
+        // call thinks until max_tokens and returns empty content.
+        reasoning: { enabled: false, effort: "none" },
         provider: openRouterProvider,
         thinking: { type: "disabled" },
       } as any,

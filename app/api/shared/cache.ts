@@ -1,6 +1,8 @@
 import { connectRedis } from "@/app/lib/redis";
 export interface Cache {
   get(hashedKey: string): Promise<string | null>;
+  /** Drop a cached response (e.g. one found to be unusable on replay). */
+  delete?(hashedKey: string): Promise<void>;
   set(
     hashedKey: string,
     key: string,
@@ -34,6 +36,16 @@ export class RedisCache implements Cache {
     } catch (error) {
       console.error("Redis cache get error:", error);
       return null;
+    }
+  }
+
+  async delete(hashedKey: string): Promise<void> {
+    try {
+      const redis = await connectRedis();
+      if (!redis) return;
+      await redis.del(`${this.prefix}${hashedKey}`);
+    } catch (error) {
+      console.error("Redis cache delete error:", error);
     }
   }
 
