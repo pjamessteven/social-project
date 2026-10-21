@@ -3,7 +3,7 @@
 /**
  * Maximum length for user input messages in characters
  */
-export const MAX_MESSAGE_LENGTH = 2048;
+export const MAX_MESSAGE_LENGTH = 4096;
 
 /**
  * Character limits for study submissions
