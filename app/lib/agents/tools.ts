@@ -8,6 +8,7 @@ import {
   listPagesTree,
   updatePage,
 } from "@/app/lib/pages";
+import { searchStudyIds } from "@/app/lib/study-embeddings";
 import { readTopic, searchTopicSections } from "@/app/lib/topic-search";
 import {
   applyUnifiedPatch,
@@ -359,8 +360,15 @@ export function createWebSearchTool(config: WebSearchToolConfig) {
 // line of fields per study, ~10k tokens for the whole archive) and a detail
 // mode for at most MAX_DETAIL_IDS studies by id. Results also say what to do
 // next, because the chat model is small and follows hints better than rules.
+//
+// A `search` is semantic: the query is embedded and matched against the
+// study chunks in Qdrant (`detrans_studies`, grouped by study), and the best
+// SEARCH_TOP_STUDIES distinct studies come back in rank order. Keyword
+// matching is only the fallback when the vector search fails.
 
 const MAX_DETAIL_IDS = 8;
+const SEARCH_TOP_STUDIES = 10;
+const SEARCH_MAX_STUDIES = 25;
 const SEARCH_STOPWORDS = new Set(
   "the and for with that this from are was were what how why who about into does did not any all studies study research paper papers evidence".split(
     " ",
@@ -401,6 +409,22 @@ function shortCitation(authors: string | null, year: number | null): string {
 }
 
 export function createGetStudiesTool() {
+  /** Study ids in relevance order for `search`, or null if unavailable. */
+  const semanticSearch = async (
+    search: string,
+    limit: number,
+  ): Promise<number[] | null> => {
+    try {
+      return await searchStudyIds(search, limit);
+    } catch (error) {
+      console.error(
+        "[getStudies] semantic search failed, falling back to keywords:",
+        error,
+      );
+      return null;
+    }
+  };
+
   return tool(
     async ({
       ids,
@@ -525,31 +549,70 @@ export function createGetStudiesTool() {
           }),
       );
 
-      const words = (search ?? "")
-        .toLowerCase()
-        .split(/[^\p{L}\p{N}]+/u)
-        .filter((w) => w.length >= 3 && !SEARCH_STOPWORDS.has(w));
+      const query = search?.trim() ?? "";
+      type Scored = {
+        row: (typeof rows)[number];
+        cats: { topics: string[]; method: string | null } | undefined;
+        score: number;
+      };
+      let scored: Scored[];
+      let searchKind: "semantic" | "keywords" | null = null;
 
-      let scored = rows.map((r) => {
-        const cats = categoriesByStudy.get(r.id);
-        const haystack = [
-          r.title,
-          r.headline,
-          r.authors,
-          r.journal,
-          r.cardSummary,
-          r.description,
-          cats?.method,
-          ...(cats?.topics ?? []),
-        ]
-          .join(" ")
-          .toLowerCase();
-        return {
-          row: r,
-          cats,
-          score: words.filter((w) => haystack.includes(w)).length,
-        };
-      });
+      const searchLimit = Math.min(
+        Math.max(limit ?? SEARCH_TOP_STUDIES, 1),
+        SEARCH_MAX_STUDIES,
+      );
+      // Categories aren't in the vector payload, so over-fetch when they
+      // will filter the ranked list afterwards.
+      const rankedIds = query
+        ? await semanticSearch(
+            query,
+            matchedCategories.length > 0 ? searchLimit * 4 : searchLimit,
+          )
+        : null;
+      if (rankedIds) {
+        // Semantic: relevance order from the vector index, restricted to
+        // approved studies that still exist in the database.
+        searchKind = "semantic";
+        const byId = new Map(rows.map((r) => [r.id, r]));
+        scored = rankedIds.flatMap((id, i) => {
+          const row = byId.get(id);
+          return row
+            ? [{ row, cats: categoriesByStudy.get(id), score: -i }]
+            : [];
+        });
+      } else {
+        const words = query
+          .toLowerCase()
+          .split(/[^\p{L}\p{N}]+/u)
+          .filter((w) => w.length >= 3 && !SEARCH_STOPWORDS.has(w));
+        if (words.length > 0) searchKind = "keywords";
+        scored = rows.map((r) => {
+          const cats = categoriesByStudy.get(r.id);
+          const haystack = [
+            r.title,
+            r.headline,
+            r.authors,
+            r.journal,
+            r.cardSummary,
+            r.description,
+            cats?.method,
+            ...(cats?.topics ?? []),
+          ]
+            .join(" ")
+            .toLowerCase();
+          return {
+            row: r,
+            cats,
+            score: words.filter((w) => haystack.includes(w)).length,
+          };
+        });
+        if (words.length > 0) scored = scored.filter((s) => s.score > 0);
+        scored.sort(
+          (a, b) =>
+            b.score - a.score || (b.row.year ?? 0) - (a.row.year ?? 0),
+        );
+      }
       if (matchedCategories.length > 0) {
         scored = scored.filter(({ cats }) =>
           [cats?.method, ...(cats?.topics ?? [])].some(
@@ -557,28 +620,26 @@ export function createGetStudiesTool() {
           ),
         );
       }
-      if (words.length > 0) scored = scored.filter((s) => s.score > 0);
-      scored.sort(
-        (a, b) => b.score - a.score || (b.row.year ?? 0) - (a.row.year ?? 0),
-      );
 
-      // Keyword search matches any word, so its tail is weak; keep it short.
-      const max = Math.min(
-        Math.max(limit ?? (words.length > 0 ? 25 : 150), 1),
-        150,
-      );
+      // A search shows its ten best matches (the tail is weak); a category
+      // or unfiltered listing shows everything.
+      const max = searchKind
+        ? searchLimit
+        : Math.min(Math.max(limit ?? 150, 1), 150);
       const shown = scored.slice(0, max);
       const notes: string[] = [];
       if (shown.length === 0) {
         notes.push(
-          "No studies matched. Try other keywords, fewer filters, or no filters to see the whole list.",
+          "No studies matched. Try describing what you need differently, fewer filters, or no filters to see the whole list.",
         );
       } else {
         notes.push(
-          `This is a short list. Before you cite a study, call getStudies again with ids: [...] (up to ${MAX_DETAIL_IDS} at once) to read its findings and limitations.`,
+          searchKind === "semantic"
+            ? `The ${shown.length} studies most relevant to your search, best match first. Search again from other angles if you need more. Before you cite a study, call getStudies again with ids: [...] (up to ${MAX_DETAIL_IDS} at once) to read its findings and limitations.`
+            : `This is a short list. Before you cite a study, call getStudies again with ids: [...] (up to ${MAX_DETAIL_IDS} at once) to read its findings and limitations.`,
         );
       }
-      if (scored.length > shown.length) {
+      if (searchKind !== "semantic" && scored.length > shown.length) {
         notes.push(
           `${scored.length - shown.length} more studies matched but are not shown. Use categories or search to narrow the list.`,
         );
@@ -592,9 +653,9 @@ export function createGetStudiesTool() {
       return JSON.stringify({
         success: true,
         // "all" = the unfiltered catalogue; the chat UI shows only its count.
-        mode:
-          matchedCategories.length > 0 || words.length > 0 ? "search" : "all",
-        total: scored.length,
+        mode: matchedCategories.length > 0 || searchKind ? "search" : "all",
+        ...(searchKind && { search: searchKind }),
+        total: searchKind === "semantic" ? shown.length : scored.length,
         note: notes.join(" "),
         studies: shown.map(({ row: r, cats }) => ({
           id: r.id,
@@ -608,7 +669,7 @@ export function createGetStudiesTool() {
     {
       name: "getStudies",
       description:
-        "Look up studies in the site's study archive. Without ids it returns a SHORT list (id, citation, title, study type, one-line summary) of all matching studies. Then call it again with ids: [...] (up to 8 at once) to read the full findings, key points and limitations of the studies you will cite. Link to a study as /studies/{id}.",
+        "Look up studies in the site's study archive. With search it returns the 10 most relevant studies (semantic search over the full text of every study) as a SHORT list: id, citation, title, study type, one-line summary. Without search it lists all studies, optionally filtered by categories. Then call it again with ids: [...] (up to 8 at once) to read the full findings, key points and limitations of the studies you will cite. Link to a study as /studies/{id}.",
       parameters: z.object({
         ids: z
           .array(z.number())
@@ -626,13 +687,13 @@ export function createGetStudiesTool() {
           .string()
           .optional()
           .describe(
-            'A few keywords to find in titles and summaries, e.g. "regret mastectomy". Leave out for all studies.',
+            'What you are looking for, as a short sentence or question, e.g. "regret rates after mastectomy". Semantic search over the full text of every study; returns the most relevant studies first. Leave out for all studies.',
           ),
         limit: z
           .number()
           .optional()
           .describe(
-            "Maximum number of studies in the short list (default: 25 with search, otherwise all).",
+            "Maximum number of studies in the short list (default: 10 with search, up to 25; otherwise all).",
           ),
       }),
     },

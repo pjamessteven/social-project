@@ -5,10 +5,45 @@
  */
 import { initSettings } from "@/app/api/chat/app/settings";
 import { QdrantVectorStore } from "@llamaindex/qdrant";
-import { TextNode, VectorStoreIndex } from "llamaindex";
+import { Settings, TextNode, VectorStoreIndex } from "llamaindex";
 
 export const STUDIES_COLLECTION = "detrans_studies";
 const CHUNK_MAX_CHARS = 2000;
+
+let searchClient: ReturnType<QdrantVectorStore["client"]> | null = null;
+
+/**
+ * Ids of the studies most relevant to `query`, best match first. The query is
+ * embedded with the same model as the chunks and matched with Qdrant's
+ * grouped search (one group per studyId), so a long paper with dozens of
+ * chunks counts once and `limit` is a number of distinct studies. Callers
+ * must have run initSettings() (the agent workflows do).
+ */
+export async function searchStudyIds(
+  query: string,
+  limit: number,
+): Promise<number[]> {
+  const vector = await Settings.embedModel.getQueryEmbedding({
+    type: "text",
+    text: query,
+  });
+  if (!vector) return [];
+  searchClient ??= new QdrantVectorStore({
+    url: process.env.QDRANT_URL || "http://localhost:6333",
+    collectionName: STUDIES_COLLECTION,
+  }).client();
+  const { groups } = await searchClient.queryGroups(STUDIES_COLLECTION, {
+    query: vector,
+    group_by: "studyId",
+    group_size: 1,
+    limit,
+    with_payload: false,
+    with_vector: false,
+  });
+  return groups
+    .map((g) => Number(g.id))
+    .filter((id) => Number.isInteger(id) && id > 0);
+}
 
 function chunkText(text: string): string[] {
   const paragraphs = text.split(/\n\s*\n/).filter((p) => p.trim().length > 0);

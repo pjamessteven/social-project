@@ -249,6 +249,7 @@
     "errorOccurred": "Error occurred, try again... Contact me if this keeps happening.",
     "analysingExperiences": "Analysing Experiences",
     "analysingStudies": "Analysing Studies",
+    "readingStudies": "Reading Studies",
     "analysingWebResults": "Analysing Web Results",
     "analysingResults": "Analysing results...",
     "detransPerspective": "-> What are detrans perspectives on this topic?",
@@ -266,7 +267,8 @@
       "webSearch": "Web Search",
       "queryStudyCatalogue": "Search Studies",
       "studyDetail": "Study Detail",
-      "wikiPage": "Wiki page"
+      "wikiPage": "Wiki page",
+      "readStudies": "Read Studies"
     },
     "eventStatus": {
       "analysingVideos": "Analysing Videos"
@@ -291,7 +293,9 @@
       "result": "result",
       "results": "results",
       "more": "+{count} more",
-      "foundCached": "Found {count} cached {item}:"
+      "foundCached": "Found {count} cached {item}:",
+      "study": "study",
+      "studies": "studies"
     },
     "eventButtons": {
       "applyToEditor": "Apply to editor",

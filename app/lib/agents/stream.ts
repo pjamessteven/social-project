@@ -77,7 +77,8 @@ const TOOL_UI_MAP: Record<
     type: "data-get-studies-event",
     titleStart: "Fetching studies...",
     titleEnd: "Studies loaded",
-    displayQuery: "none",
+    // The search text (ids-only detail reads have no string arg, so none)
+    displayQuery: "auto",
   },
   // Wiki page tools (admin-only, wiki update mode)
   listPages: {
@@ -157,7 +158,15 @@ function extractDisplayQuery(
 
   // Find the primary query string
   let query = "";
-  for (const key of ["query", "pattern", "name", "slug", "title", "path"]) {
+  for (const key of [
+    "query",
+    "search",
+    "pattern",
+    "name",
+    "slug",
+    "title",
+    "path",
+  ]) {
     if (toolKwargs[key] && typeof toolKwargs[key] === "string") {
       query = toolKwargs[key];
       break;

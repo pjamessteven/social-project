@@ -459,16 +459,36 @@ export function GetStudiesEventPart() {
   // The unfiltered catalogue is the whole archive; listing it adds nothing.
   const showList = parsed?.mode !== "all";
 
+  // Three kinds of call: a search ("Search Studies: "query" · 10 results"),
+  // a listing of the archive ("Search Studies: 150 studies") and a full read
+  // of the studies about to be cited ("Read Studies: 8 studies").
+  const isRead = parsed?.mode === "details";
+  const searchText = eventPart.data.query;
+  const countOf = (n: number) =>
+    `${n} ${n === 1 ? t("eventCounts.study") : t("eventCounts.studies")}`;
+  let summary: string | undefined;
+  if (isSuccess && studies.length > 0) {
+    if (isRead) summary = countOf(studies.length);
+    else if (parsed?.mode === "search")
+      summary = [
+        searchText && `“${searchText}”`,
+        `${parsed.total ?? studies.length} ${t("eventCounts.results")}`,
+      ]
+        .filter(Boolean)
+        .join(" · ");
+    else summary = countOf(parsed?.total ?? studies.length);
+  } else if (!isSuccess && searchText) {
+    summary = `“${searchText}”`;
+  }
+
   return (
     <EventWrapper
       eventType="data-get-studies-event"
-      label={t("eventLabels.queryStudyCatalogue")}
-      query={
-        isSuccess &&
-        studies.length &&
-        `${studies.length} ${t("eventCounts.results")}`
-      }
-      analysingText={t("analysingStudies")}
+      label={t(
+        isRead ? "eventLabels.readStudies" : "eventLabels.queryStudyCatalogue",
+      )}
+      query={summary}
+      analysingText={t(isRead ? "readingStudies" : "analysingStudies")}
       disableExpand
     >
       <div className="not-prose my-2 w-full">

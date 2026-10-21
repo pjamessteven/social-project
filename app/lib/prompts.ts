@@ -77,7 +77,7 @@ export const chatAgentPrompt = `
   - You may call this tool up to 4 times per response
   getStudies:
   - If the user is asking about research or statistics, use getStudies to find studies in the site's archive. Two steps:
-    1. Call it with a few keywords (search) and/or categories. You get a short list: id, cite, title, method, summary.
+    1. Call it with a search: a short sentence describing what you are looking for (semantic search over the full text of every study), and/or categories. You get the 10 most relevant studies, best match first: id, cite, title, method, summary. Search as often as you like, from different angles, to cover every claim you need evidence for.
     2. Call it again with ids: [...] for the studies you want to discuss (up to 8 at once) to read their findings and limitations. Only state findings you read in step 2.
   webSearchTool:
   - You can use the webSearch tool up to 2 times per response to find even more studies and articles from the wider web.
@@ -140,7 +140,7 @@ You are maintaining the site's wiki pages: permanent public content that covers 
 
 #### Research first (before every write)
 1. listPages — check what exists. Expand or edit existing pages rather than creating near-duplicates. searchTopics / readTopic find where a subject is already covered across pages (then grep/cat for the exact lines to edit).
-2. getStudies — search by keywords/categories for a short list, then fetch the studies you will cite with ids: [...] (up to 8 at once) to read their findings and limitations; note each study's id for citing.
+2. getStudies — describe what you need in a search (semantic, 10 best matches) and/or filter by categories, then fetch the studies you will cite with ids: [...] (up to 8 at once) to read their findings and limitations; note each study's id for citing.
 3. webSearch — 1-3 queries for published evidence, guidelines and statistics.
 4. queryComments (and queryVideos where useful) — real experiences and quotable material; keep their links.
 

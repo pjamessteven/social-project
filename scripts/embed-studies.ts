@@ -18,6 +18,9 @@ async function main() {
   const { QdrantVectorStore } = await import("@llamaindex/qdrant");
   const { deleteStudyVectors, embedStudy, STUDIES_COLLECTION } =
     await import("../app/lib/study-embeddings");
+  const { initSettings } = await import("../app/lib/agents/settings");
+  // The vector store reads Settings.embedModel on construction (--missing)
+  initSettings();
 
   const args = process.argv.slice(2);
   let ids = args.filter((a) => /^\d+$/.test(a)).map(Number);
