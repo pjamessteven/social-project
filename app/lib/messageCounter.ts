@@ -8,6 +8,8 @@ const CHAT_MESSAGE_COUNT_LIMIT = parseInt(
   process.env.CAPTCHA_CHAT_MESSAGE_LIMIT || "10",
   10,
 );
+/** CAPTCHA gates are skipped entirely on the dev server. */
+const SKIP_CAPTCHA = process.env.NODE_ENV === "development";
 const MESSAGE_COUNT_TTL = 24 * 60 * 60; // 24 hours in seconds
 const CONVERSATIONS_PASS_TTL = 60; // "All conversations" one-time pass (seconds)
 
@@ -68,10 +70,7 @@ export async function initializeMessageCount(ipAddress: string): Promise<void> {
  * Note: CAPTCHA is always disabled in development mode
  */
 export async function isCaptchaRequired(ipAddress: string): Promise<boolean> {
-  // Skip CAPTCHA in development mode
-  if (process.env.NODE_ENV === "development") {
-    //return false;
-  }
+  if (SKIP_CAPTCHA) return false;
 
   const count = await getMessageCount(ipAddress);
 
@@ -172,6 +171,7 @@ export async function initializeConversationCount(
 export async function isConversationCaptchaRequired(
   conversationId: string,
 ): Promise<boolean> {
+  if (SKIP_CAPTCHA) return false;
   const count = await getConversationCount(conversationId);
 
   // If no count exists, this is either a new conversation or one where the
@@ -215,6 +215,7 @@ export async function grantConversationsPass(ipAddress: string): Promise<void> {
 export async function consumeConversationsPass(
   ipAddress: string,
 ): Promise<boolean> {
+  if (SKIP_CAPTCHA) return true;
   const redis = await connectRedis();
   if (!redis) return false;
 
