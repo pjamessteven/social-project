@@ -249,6 +249,7 @@
     "errorOccurred": "Došlo k chybě, zkuste to znovu... Kontaktujte mě, pokud se to bude opakovat.",
     "analysingExperiences": "Analýza zkušeností",
     "analysingStudies": "Analýza studií",
+    "readingStudies": "Čtení studií",
     "analysingWebResults": "Analyzování webových výsledků",
     "analysingResults": "Analyzování výsledků...",
     "detransPerspective": "-> Jaké jsou detranzicionistické perspektivy na toto téma?",
@@ -266,7 +267,8 @@
       "webSearch": "Vyhledávání na webu",
       "queryStudyCatalogue": "Dotaz na katalog studií o detranzici",
       "studyDetail": "Detail studie",
-      "wikiPage": "Wiki stránka"
+      "wikiPage": "Wiki stránka",
+      "readStudies": "Přečíst studie"
     },
     "eventStatus": {
       "analysingVideos": "Analyzování videí"
@@ -291,7 +293,9 @@
       "result": "výsledek",
       "results": "výsledky",
       "more": "+{count} dalších",
-      "foundCached": "Nalezeno {count} uložených {item}:"
+      "foundCached": "Nalezeno {count} uložených {item}:",
+      "study": "studie",
+      "studies": "studií"
     },
     "eventButtons": {
       "applyToEditor": "Použít do editoru",
@@ -689,6 +693,13 @@
         "canSg": "Odborné články CAN-SG",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Vedete online diskuzi?",
+      "description": "Vyvracíte dezinformace online? Vložte sem komentář a vytvořte odpověď s odkazem na relevantní studie.",
+      "placeholder": "Vložte komentář sem…",
+      "button": "Odpovědět",
+      "prompt": "Prosím, použijte archiv studií k vyvrácení tohoto komentáře. Začněte krátkým shrnutím, následovaným seznamem shrnutí a názvů relevantních studií. Pište pouze prostým textem bez jakéhokoli formátování: žádné nadpisy, tučné nebo kurzívou, odrážky, číslované seznamy ani odkazy. Odpověď bude vložena přímo do komentáře na sociálních sítích, proto musí správně vypadat jako neformátovaný text.\n\nKomentář:\n\"{comment}\""
     }
   },
   "contentWarning": {

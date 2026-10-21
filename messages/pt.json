@@ -249,6 +249,7 @@
     "errorOccurred": "Ocorreu um erro, tente novamente... Entre em contato comigo se isso continuar acontecendo.",
     "analysingExperiences": "Analisando Experiências",
     "analysingStudies": "Analisando estudos",
+    "readingStudies": "Lendo Estudos",
     "analysingWebResults": "Analisando resultados da web",
     "analysingResults": "Analisando resultados...",
     "detransPerspective": "-> Quais são as perspectivas detrans sobre este tópico?",
@@ -266,7 +267,8 @@
       "webSearch": "Pesquisa na Web",
       "queryStudyCatalogue": "Pesquisar Catálogo de Estudos de Destransição",
       "studyDetail": "Detalhes do Estudo",
-      "wikiPage": "Página wiki"
+      "wikiPage": "Página wiki",
+      "readStudies": "Ler Estudos"
     },
     "eventStatus": {
       "analysingVideos": "Analisando Vídeos"
@@ -291,7 +293,9 @@
       "result": "resultado",
       "results": "resultados",
       "more": "+{count} mais",
-      "foundCached": "Encontrados {count} {item} em cache:"
+      "foundCached": "Encontrados {count} {item} em cache:",
+      "study": "estudo",
+      "studies": "estudos"
     },
     "eventButtons": {
       "applyToEditor": "Aplicar ao editor",
@@ -691,6 +695,13 @@
         "canSg": "Artigos acadêmicos da CAN-SG",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Participando de algum debate online?",
+      "description": "Combate à desinformação na internet? Cole o comentário aqui para elaborar uma resposta com referências a estudos relevantes.",
+      "placeholder": "Cole o comentário aqui…",
+      "button": "Responder",
+      "prompt": "Por favor, consulte o arquivo de estudos para refutar este comentário. Comece com um resumo breve, seguido de uma lista de resumos e títulos dos estudos relevantes. Escreva apenas em texto simples, sem formatação de qualquer tipo: sem títulos, negrito ou itálico, marcadores, listas numeradas ou links. A resposta será colada diretamente em um comentário de mídia social, portanto, deve ser legível como texto não formatado.\n\nComentário:\n\"{comment}\""
     }
   },
   "contentWarning": {

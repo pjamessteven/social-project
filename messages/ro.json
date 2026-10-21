@@ -249,6 +249,7 @@
     "errorOccurred": "A apărut o eroare, încearcă din nou... Contactează-mă dacă acest lucru continuă să se întâmple.",
     "analysingExperiences": "Se analizează Experiențele",
     "analysingStudies": "Se analizează studiile",
+    "readingStudies": "Citește studii",
     "analysingWebResults": "Se analizează rezultatele web",
     "analysingResults": "Se analizează rezultatele...",
     "detransPerspective": "-> Care sunt perspectivele detrans asupra acestui subiect?",
@@ -266,7 +267,8 @@
       "webSearch": "Căutare pe web",
       "queryStudyCatalogue": "Caută în catalogul de studii despre detransiție",
       "studyDetail": "Detalii studiu",
-      "wikiPage": "Pagină wiki"
+      "wikiPage": "Pagină wiki",
+      "readStudies": "Citește studii"
     },
     "eventStatus": {
       "analysingVideos": "Se analizează videoclipurile"
@@ -291,7 +293,9 @@
       "result": "rezultat",
       "results": "rezultate",
       "more": "+{count} mai multe",
-      "foundCached": "S-au găsit {count} {item} în cache:"
+      "foundCached": "S-au găsit {count} {item} în cache:",
+      "study": "studiu",
+      "studies": "studii"
     },
     "eventButtons": {
       "applyToEditor": "Aplică în editor",
@@ -689,6 +693,13 @@
         "canSg": "Articole academice CAN-SG",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Ești implicat într-o dezbatere online?",
+      "description": "Combăți dezinformarea online? Lipește comentariul aici pentru a construi un răspuns care face referire la studii relevante.",
+      "placeholder": "Lipește comentariul aici…",
+      "button": "Răspunde",
+      "prompt": "Te rog folosește arhiva de studii pentru a demonta acest comentariu. Începe cu un scurt rezumat, urmat de o listă de rezumate și titluri ale studiilor relevante. Scrie doar în text simplu, fără nicio formatare markdown: fără titluri, bold sau italic, puncte de enumerare, liste numerotate sau linkuri. Răspunsul va fi lipit direct într-un comentariu pe rețelele sociale, așa că trebuie să se citească corect ca text neformatat.\n\nComentariu:\n\"{comment}\""
     }
   },
   "contentWarning": {

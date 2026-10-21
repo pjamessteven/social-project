@@ -249,6 +249,7 @@
     "errorOccurred": "Une erreur s'est produite, réessayez... Contactez-moi si cela continue.",
     "analysingExperiences": "Analyse des Expériences",
     "analysingStudies": "Analyse des études",
+    "readingStudies": "Lecture des études",
     "analysingWebResults": "Analyse des résultats web",
     "analysingResults": "Analyse des résultats...",
     "detransPerspective": "-> Quelles sont les perspectives des personnes ayant fait une détransition sur ce sujet ?",
@@ -266,7 +267,8 @@
       "webSearch": "Recherche Web",
       "queryStudyCatalogue": "Interroger le Catalogue d'Études sur la Détransition",
       "studyDetail": "Détail de l'Étude",
-      "wikiPage": "Page wiki"
+      "wikiPage": "Page wiki",
+      "readStudies": "Lire les études"
     },
     "eventStatus": {
       "analysingVideos": "Analyse des Vidéos"
@@ -291,7 +293,9 @@
       "result": "résultat",
       "results": "résultats",
       "more": "+{count} de plus",
-      "foundCached": "{count} {item} trouvé(s) en cache :"
+      "foundCached": "{count} {item} trouvé(s) en cache :",
+      "study": "étude",
+      "studies": "études"
     },
     "eventButtons": {
       "applyToEditor": "Appliquer à l'éditeur",
@@ -689,6 +693,13 @@
         "canSg": "Articles académiques du CAN-SG",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Vous participez à un débat en ligne ?",
+      "description": "Vous souhaitez contrer la désinformation en ligne ? Collez le commentaire ici pour construire une réponse qui cite des études pertinentes.",
+      "placeholder": "Collez le commentaire ici…",
+      "button": "Répondre",
+      "prompt": "Veuillez consulter l'archive d'études pour réfuter ce commentaire. Commencez par un bref résumé, suivi d'une liste de résumés et de titres d'études pertinentes. Écrivez en texte brut uniquement, sans aucune mise en forme : pas de titres, de gras ou d'italique, de puces, de listes numérotées ou de liens. La réponse sera collée directement dans un commentaire sur les réseaux sociaux, elle doit donc être lisible correctement en texte non formaté.\n\nCommentaire :\n\"{comment}\""
     }
   },
   "contentWarning": {

@@ -249,6 +249,7 @@
     "errorOccurred": "Ocurrió un error, inténtalo de nuevo... Contáctame si esto sigue sucediendo.",
     "analysingExperiences": "Analizando Experiencias de Destransición",
     "analysingStudies": "Analizando estudios",
+    "readingStudies": "Leyendo estudios",
     "analysingWebResults": "Analizando resultados web",
     "analysingResults": "Analizando resultados...",
     "detransPerspective": "-> ¿Cuáles son las perspectivas de destransición sobre este tema?",
@@ -266,7 +267,8 @@
       "webSearch": "Búsqueda Web",
       "queryStudyCatalogue": "Consultar Catálogo de Estudios de Destransición",
       "studyDetail": "Detalle del Estudio",
-      "wikiPage": "Página wiki"
+      "wikiPage": "Página wiki",
+      "readStudies": "Leer estudios"
     },
     "eventStatus": {
       "analysingVideos": "Analizando Videos"
@@ -291,7 +293,9 @@
       "result": "resultado",
       "results": "resultados",
       "more": "+{count} más",
-      "foundCached": "Encontrados {count} {item} en caché:"
+      "foundCached": "Encontrados {count} {item} en caché:",
+      "study": "estudio",
+      "studies": "estudios"
     },
     "eventButtons": {
       "applyToEditor": "Aplicar al editor",
@@ -689,6 +693,13 @@
         "canSg": "Artículos académicos de CAN-SG",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "¿Participando en un debate en línea?",
+      "description": "¿Contrarrestando desinformación en línea? Pega el comentario aquí para construir una respuesta que cite estudios relevantes.",
+      "placeholder": "Pega el comentario aquí…",
+      "button": "Responder",
+      "prompt": "Por favor, consulta el archivo de estudios para desmentir este comentario. Comienza con un breve resumen, seguido de una lista de resúmenes y títulos de estudios relevantes. Escribe solo en texto plano, sin ningún tipo de formato de markdown: sin encabezados, negritas o cursivas, viñetas, listas numeradas o enlaces. La respuesta se pegará directamente en un comentario de redes sociales, por lo que debe leerse correctamente como texto sin formato.\n\nComentario:\n\"{comment}\""
     }
   },
   "contentWarning": {

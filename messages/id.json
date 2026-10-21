@@ -249,6 +249,7 @@
     "errorOccurred": "Terjadi kesalahan, coba lagi... Hubungi saya jika ini terus terjadi.",
     "analysingExperiences": "Menganalisis Pengalaman",
     "analysingStudies": "Menganalisis studi",
+    "readingStudies": "Membaca Studi",
     "analysingWebResults": "Menganalisis Hasil Web",
     "analysingResults": "Menganalisis hasil...",
     "detransPerspective": "-> Apa perspektif orang yang berhenti transisi tentang topik ini?",
@@ -266,7 +267,8 @@
       "webSearch": "Pencarian Web",
       "queryStudyCatalogue": "Kueri Katalog Studi Detransisi",
       "studyDetail": "Detail Studi",
-      "wikiPage": "Halaman wiki"
+      "wikiPage": "Halaman wiki",
+      "readStudies": "Baca Studi"
     },
     "eventStatus": {
       "analysingVideos": "Menganalisis Video"
@@ -291,7 +293,9 @@
       "result": "hasil",
       "results": "hasil",
       "more": "+{count} lagi",
-      "foundCached": "Ditemukan {count} {item} di cache:"
+      "foundCached": "Ditemukan {count} {item} di cache:",
+      "study": "studi",
+      "studies": "studi"
     },
     "eventButtons": {
       "applyToEditor": "Terapkan ke editor",
@@ -691,6 +695,13 @@
         "canSg": "Makalah akademik CAN-SG",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Sedang berdebat online?",
+      "description": "Melawan misinformasi online? Tempelkan komentar di sini untuk menyusun tanggapan yang merujuk studi relevan.",
+      "placeholder": "Tempelkan komentar di sini…",
+      "button": "Tanggapi",
+      "prompt": "Harap rujuk arsip studi untuk membantah komentar ini. Mulai dengan ringkasan singkat, diikuti daftar ringkasan dan judul studi yang relevan. Tulis dalam teks biasa saja, tanpa format markdown apa pun: tanpa judul, tebal atau miring, poin-poin, daftar bernomor, atau tautan. Balasan akan langsung ditempel ke komentar media sosial, jadi harus terbaca dengan benar sebagai teks tanpa format.\n\nKomentar:\n\"{comment}\""
     }
   },
   "contentWarning": {

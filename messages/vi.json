@@ -249,6 +249,7 @@
     "errorOccurred": "Đã xảy ra lỗi, hãy thử lại... Liên hệ với tôi nếu điều này tiếp tục xảy ra.",
     "analysingExperiences": "Đang Phân Tích Kinh Nghiệm",
     "analysingStudies": "Đang phân tích nghiên cứu",
+    "readingStudies": "Đang đọc nghiên cứu",
     "analysingWebResults": "Phân tích kết quả web",
     "analysingResults": "Đang phân tích kết quả...",
     "detransPerspective": "-> Quan điểm của ngưởi chuyển giới trở lại về chủ đề này là gì?",
@@ -266,7 +267,8 @@
       "webSearch": "Tìm Kiếm Web",
       "queryStudyCatalogue": "Truy Vấn Danh Mục Nghiên Cứu Chuyển Giới Trở Lại",
       "studyDetail": "Chi Tiết Nghiên Cứu",
-      "wikiPage": "Trang wiki"
+      "wikiPage": "Trang wiki",
+      "readStudies": "Đọc nghiên cứu"
     },
     "eventStatus": {
       "analysingVideos": "Đang Phân Tích Video"
@@ -291,7 +293,9 @@
       "result": "kết quả",
       "results": "kết quả",
       "more": "+{count} nữa",
-      "foundCached": "Tìm thấy {count} {item} đã lưu:"
+      "foundCached": "Tìm thấy {count} {item} đã lưu:",
+      "study": "nghiên cứu",
+      "studies": "nghiên cứu"
     },
     "eventButtons": {
       "applyToEditor": "Áp dụng vào trình soạn thảo",
@@ -689,6 +693,13 @@
         "canSg": "Bài báo học thuật của CAN-SG",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Tham gia tranh luận trực tuyến?",
+      "description": "Đang phản bác thông tin sai lệch? Dán bình luận vào đây để xây dựng phản hồi có tham khảo các nghiên cứu liên quan.",
+      "placeholder": "Dán bình luận vào đây…",
+      "button": "Phản hồi",
+      "prompt": "Hãy tham khảo kho lưu trữ nghiên cứu để bác bỏ bình luận này. Bắt đầu bằng một bản tóm tắt ngắn, sau đó liệt kê các tóm tắt và tiêu đề của nghiên cứu liên quan. Viết bằng văn bản thuần túy, không có định dạng markdown nào: không có tiêu đề, in đậm hoặc in nghiêng, dấu đầu dòng, danh sách đánh số hoặc liên kết. Phản hồi sẽ được dán trực tiếp vào một bình luận mạng xã hội, vì vậy nó phải hiển thị chính xác dưới dạng văn bản không định dạng.\n\nBình luận:\n\"{comment}\""
     }
   },
   "contentWarning": {

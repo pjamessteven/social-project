@@ -249,6 +249,7 @@
     "errorOccurred": "Tapahtui virhe, yritä uudelleen... Ota yhteyttä, jos tämä jatkuu.",
     "analysingExperiences": "Analysoidaan Kokemuksia",
     "analysingStudies": "Analysoidaan tutkimuksia",
+    "readingStudies": "Tutkimusten lukeminen",
     "analysingWebResults": "Analysoitaessa verkkotuloksia",
     "analysingResults": "Analysoidaan tuloksia...",
     "detransPerspective": "-> Mitä ovat detrans-näkökulmat tähän aiheeseen?",
@@ -266,7 +267,8 @@
       "webSearch": "Verkkohaku",
       "queryStudyCatalogue": "Kysy Detransitiotutkimusluetteloa",
       "studyDetail": "Tutkimuksen Yksityiskohdat",
-      "wikiPage": "Wiki-sivu"
+      "wikiPage": "Wiki-sivu",
+      "readStudies": "Lue tutkimuksia"
     },
     "eventStatus": {
       "analysingVideos": "Analysoidaan Videoita"
@@ -291,7 +293,9 @@
       "result": "tulos",
       "results": "tulosta",
       "more": "+{count} lisää",
-      "foundCached": "Löydetty {count} välimuistissa olevaa {item}:"
+      "foundCached": "Löydetty {count} välimuistissa olevaa {item}:",
+      "study": "tutkimus",
+      "studies": "tutkimusta"
     },
     "eventButtons": {
       "applyToEditor": "Soveltaa editoriin",
@@ -689,6 +693,13 @@
         "canSg": "CAN-SG:n tieteelliset artikkelit",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Osallistutko verkkoväittelyyn?",
+      "description": "Kumoatko verkkoväärinkäsityksiä? Liitä kommentti tähän, niin saat vastauksen, joka viittaa asiaan liittyviin tutkimuksiin.",
+      "placeholder": "Liitä kommentti tähän…",
+      "button": "Vastaa",
+      "prompt": "Viittaa tutkimusarkistoon kumotaksesi tämä kommentti. Aloita lyhyellä yhteenvedolla, jonka jälkeen listaa asiaan liittyvien tutkimusten yhteenvedot ja otsikot. Kirjoita pelkkänä tekstinä ilman minkäänlaista muotoilua: ei otsikoita, lihavointia tai kursivointia, luettelomerkkejä, numeroituja listoja tai linkkejä. Vastaus liitetään suoraan some-kommenttiin, joten sen on luettava oikein muotoilemattomana tekstinä.\n\nKommentti:\n\"{comment}\""
     }
   },
   "contentWarning": {

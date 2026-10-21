@@ -249,6 +249,7 @@
     "errorOccurred": "오류가 발생했습니다, 다시 시도하세요... 계속 발생하면 저에게 연락하세요.",
     "analysingExperiences": "경험 분석 중",
     "analysingStudies": "연구 분석 중",
+    "readingStudies": "연구 읽기",
     "analysingWebResults": "웹 검색 결과 분석 중",
     "analysingResults": "결과 분석 중...",
     "detransPerspective": "-> 이 주제에 대한 디트랜스 관점은 무엇인가?",
@@ -266,7 +267,8 @@
       "webSearch": "웹 검색",
       "queryStudyCatalogue": "디트랜지션 연구 카탈로그 검색",
       "studyDetail": "연구 상세",
-      "wikiPage": "위키 페이지"
+      "wikiPage": "위키 페이지",
+      "readStudies": "연구 읽음"
     },
     "eventStatus": {
       "analysingVideos": "비디오 분석 중"
@@ -291,7 +293,9 @@
       "result": "결과",
       "results": "결과",
       "more": "+{count}개 더",
-      "foundCached": "{count}개의 캐시된 {item} 발견:"
+      "foundCached": "{count}개의 캐시된 {item} 발견:",
+      "study": "연구",
+      "studies": "연구"
     },
     "eventButtons": {
       "applyToEditor": "편집기에 적용",
@@ -691,6 +695,13 @@
         "canSg": "CAN-SG 학술 논문",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "온라인 토론 중이신가요?",
+      "description": "온라인에서 잘못된 정보를 반박하시나요? 여기에 댓글을 붙여넣어 관련 연구를 인용한 답변을 구성해보세요.",
+      "placeholder": "여기에 댓글을 붙여넣기…",
+      "button": "답변하기",
+      "prompt": "연구 아카이브를 참고하여 이 댓글의 오류를 반박해 주세요. 간단한 요약으로 시작한 후, 관련 연구의 요약과 제목 목록을 제공해 주세요. 일반 텍스트로만 작성해 주세요: 제목, 굵게나 기울임, 글머리 기호, 번호 목록, 링크 등 모든 마크다운 서식을 사용하지 마세요. 이 답변은 소셜 미디어 댓글에 직접 붙여넣어질 것이므로, 서식 없는 텍스트로도 올바르게 읽혀야 합니다.\n\n댓글:\n\"{comment}\""
     }
   },
   "contentWarning": {

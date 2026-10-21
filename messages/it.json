@@ -249,6 +249,7 @@
     "errorOccurred": "Si è verificato un errore, riprova... Contattami se continua a succedere.",
     "analysingExperiences": "Analisi delle Esperienze",
     "analysingStudies": "Analisi degli studi",
+    "readingStudies": "Lettura Studi",
     "analysingWebResults": "Analisi dei risultati web",
     "analysingResults": "Analisi dei risultati...",
     "detransPerspective": "-> Quali sono le prospettive di chi ha fatto detransition su questo argomento?",
@@ -266,7 +267,8 @@
       "webSearch": "Ricerca Web",
       "queryStudyCatalogue": "Interroga Catalogo Studi sulla Detransition",
       "studyDetail": "Dettaglio Studio",
-      "wikiPage": "Pagina wiki"
+      "wikiPage": "Pagina wiki",
+      "readStudies": "Leggi Studi"
     },
     "eventStatus": {
       "analysingVideos": "Analisi dei Video"
@@ -291,7 +293,9 @@
       "result": "risultato",
       "results": "risultati",
       "more": "+{count} altri",
-      "foundCached": "Trovati {count} {item} in cache:"
+      "foundCached": "Trovati {count} {item} in cache:",
+      "study": "studio",
+      "studies": "studi"
     },
     "eventButtons": {
       "applyToEditor": "Applica all'editor",
@@ -691,6 +695,13 @@
         "canSg": "Articoli accademici del CAN-SG",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Coinvolto in una discussione online?",
+      "description": "Vuoi contrastare la disinformazione online? Incolla qui il commento per costruire una risposta che faccia riferimento a studi pertinenti.",
+      "placeholder": "Incolla il commento qui…",
+      "button": "Rispondi",
+      "prompt": "Per favore, consulta l'archivio degli studi per confutare questo commento. Inizia con un breve riassunto, seguito da un elenco di riassunti e titoli degli studi pertinenti. Scrivi solo in testo semplice, senza alcuna formattazione markdown: niente intestazioni, grassetto o corsivo, punti elenco, liste numerate o link. La risposta verrà incollata direttamente in un commento sui social media, quindi deve leggersi correttamente come testo non formattato.\n\nCommento:\n\"{comment}\""
     }
   },
   "contentWarning": {

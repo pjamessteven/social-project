@@ -249,6 +249,7 @@
     "errorOccurred": "Hiba történt, próbáld újra... Vedd fel velem a kapcsolatot, ha ez továbbra is előfordul.",
     "analysingExperiences": "Tapasztalatok Elemzése",
     "analysingStudies": "Tanulmányok elemzése",
+    "readingStudies": "Tanulmányok olvasása",
     "analysingWebResults": "Webes eredmények elemzése",
     "analysingResults": "Eredmények elemzése...",
     "detransPerspective": "-> Mik a detrans nézőpontok erről a témáról?",
@@ -266,7 +267,8 @@
       "webSearch": "Webes Keresés",
       "queryStudyCatalogue": "Detransition Tanulmányi Katalógus Lekérdezése",
       "studyDetail": "Tanulmány Részletei",
-      "wikiPage": "Wiki oldal"
+      "wikiPage": "Wiki oldal",
+      "readStudies": "Tanulmányok olvasása"
     },
     "eventStatus": {
       "analysingVideos": "Videók Elemzése"
@@ -291,7 +293,9 @@
       "result": "eredmény",
       "results": "eredmény",
       "more": "+{count} további",
-      "foundCached": "{count} gyorsítótárazott {item} találva:"
+      "foundCached": "{count} gyorsítótárazott {item} találva:",
+      "study": "tanulmány",
+      "studies": "tanulmány"
     },
     "eventButtons": {
       "applyToEditor": "Alkalmazás a szerkesztőre",
@@ -691,6 +695,13 @@
         "canSg": "A CAN-SG tudományos cikkei",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Online vitába szállsz?",
+      "description": "Téves információkkal szembesülsz? Illeszd be a hozzászólást ide, hogy releváns tanulmányokra hivatkozva válaszolhass.",
+      "placeholder": "Illeszd be a hozzászólást ide…",
+      "button": "Válaszolás",
+      "prompt": "Kérlek, használd a tanulmányok archívumát, hogy cáfold meg ezt a hozzászólást. Kezdd egy rövid összefoglalóval, majd sorold fel a releváns tanulmányok összefoglalóit és címeit. Írj egyszerű szövegként, semmilyen formázás nélkül: ne használj címsorokat, félkövért, dőlt betűt, felsorolásjeleket, számozott listákat vagy linkeket. A választ közvetlenül egy közösségi média hozzászólásba illesztik, ezért formázatlan szövegként kell olvashatónak lennie.\n\nHozzászólás:\n\"{comment}\""
     }
   },
   "contentWarning": {

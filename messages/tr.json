@@ -249,6 +249,7 @@
     "errorOccurred": "Hata oluştu, tekrar deneyin... Bu sürekli oluyorsa benimle iletişime geçin.",
     "analysingExperiences": "Deneyimler Analiz Ediliyor",
     "analysingStudies": "Çalışmalar analiz ediliyor",
+    "readingStudies": "Çalışmaları Okuyor",
     "analysingWebResults": "Web Sonuçları Analiz Ediliyor",
     "analysingResults": "Sonuçlar analiz ediliyor...",
     "detransPerspective": "-> Bu konuda detrans bakış açıları nedir?",
@@ -266,7 +267,8 @@
       "webSearch": "Web Araması",
       "queryStudyCatalogue": "Detransisyon Çalışma Kataloğunu Sorgula",
       "studyDetail": "Çalışma Detayı",
-      "wikiPage": "Wiki sayfası"
+      "wikiPage": "Wiki sayfası",
+      "readStudies": "Çalışmaları Oku"
     },
     "eventStatus": {
       "analysingVideos": "Videolar Analiz Ediliyor"
@@ -291,7 +293,9 @@
       "result": "sonuç",
       "results": "sonuç",
       "more": "+{count} daha",
-      "foundCached": "{count} önbelleğe alınmış {item} bulundu:"
+      "foundCached": "{count} önbelleğe alınmış {item} bulundu:",
+      "study": "çalışma",
+      "studies": "çalışma"
     },
     "eventButtons": {
       "applyToEditor": "Editöre uygula",
@@ -689,6 +693,13 @@
         "canSg": "CAN-SG akademik makaleleri",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Çevrimiçi bir tartışmaya mı katılıyorsunuz?",
+      "description": "Çevrimiçi yanlış bilgilere mi karşı koyuyorsunuz? İlgili çalışmalara referans veren bir yanıt oluşturmak için yorumu buraya yapıştırın.",
+      "placeholder": "Yorumu buraya yapıştırın…",
+      "button": "Yanıtla",
+      "prompt": "Lütfen bu yorumu çürütmek için çalışma arşivine başvurun. Kısa bir özetle başlayın, ardından ilgili çalışmaların özetlerini ve başlıklarını listeleyin. Yalnızca düz metin olarak yazın, hiçbir markdown biçimlendirmesi kullanmayın: başlık, kalın veya italik yazı, madde işaretleri, numaralı listeler veya bağlantılar olmasın. Yanıt doğrudan bir sosyal medya yorumuna yapıştırılacak, bu nedenle biçimlendirilmemiş metin olarak doğru okunmalıdır.\n\nYorum:\n\"{comment}\""
     }
   },
   "contentWarning": {

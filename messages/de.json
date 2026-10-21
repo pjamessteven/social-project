@@ -249,6 +249,7 @@
     "errorOccurred": "Ein Fehler ist aufgetreten, versuche es erneut... Kontaktiere mich, wenn dies weiterhin passiert.",
     "analysingExperiences": "Analysiere Erfahrungen",
     "analysingStudies": "Studien werden analysiert",
+    "readingStudies": "Studien lesen",
     "analysingWebResults": "Analyse der Websuche-Ergebnisse",
     "analysingResults": "Analysiere Ergebnisse...",
     "detransPerspective": "-> Was sind die Perspektiven von Detransitionierenden zu diesem Thema?",
@@ -266,7 +267,8 @@
       "webSearch": "Websuche",
       "queryStudyCatalogue": "Detransition-Studienkatalog abfragen",
       "studyDetail": "Studiendetails",
-      "wikiPage": "Wiki-Seite"
+      "wikiPage": "Wiki-Seite",
+      "readStudies": "Studien lesen"
     },
     "eventStatus": {
       "analysingVideos": "Analysiere Videos"
@@ -291,7 +293,9 @@
       "result": "Ergebnis",
       "results": "Ergebnisse",
       "more": "+{count} weitere",
-      "foundCached": "{count} gespeicherte {item} gefunden:"
+      "foundCached": "{count} gespeicherte {item} gefunden:",
+      "study": "Studie",
+      "studies": "Studien"
     },
     "eventButtons": {
       "applyToEditor": "Auf Editor anwenden",
@@ -689,6 +693,13 @@
         "canSg": "Fachartikel von CAN-SG",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Bist du in einer Online-Diskussion?",
+      "description": "Möchtest du Fehlinformationen widerlegen? Füge den Kommentar hier ein, um eine Antwort mit Verweis auf relevante Studien zu erstellen.",
+      "placeholder": "Kommentar hier einfügen…",
+      "button": "Antworten",
+      "prompt": "Bitte nutze das Studienarchiv, um diesen Kommentar zu widerlegen. Beginne mit einer kurzen Zusammenfassung, gefolgt von einer Liste mit Zusammenfassungen und Titeln relevanter Studien. Schreibe nur in Klartext ohne jegliche Formatierung: keine Überschriften, Fett- oder Kursivdruck, Aufzählungen, nummerierte Listen oder Links. Die Antwort wird direkt in einen Social-Media-Kommentar eingefügt, daher muss sie als unformatierter Text korrekt lesbar sein.\n\nKommentar:\n\"{comment}\""
     }
   },
   "contentWarning": {

@@ -249,6 +249,7 @@
     "errorOccurred": "Wystąpił błąd, spróbuj ponownie... Skontaktuj się ze mną, jeśli to się powtarza.",
     "analysingExperiences": "Analizowanie doświadczeń",
     "analysingStudies": "Analizowanie badań",
+    "readingStudies": "Czytanie badań",
     "analysingWebResults": "Analizowanie wyników wyszukiwania",
     "analysingResults": "Analizowanie wyników...",
     "detransPerspective": "-> Jakie są perspektywy osób po detransycji na ten temat?",
@@ -266,7 +267,8 @@
       "webSearch": "Wyszukiwanie w sieci",
       "queryStudyCatalogue": "Przeszukaj katalog badań detransycji",
       "studyDetail": "Szczegóły badania",
-      "wikiPage": "Strona wiki"
+      "wikiPage": "Strona wiki",
+      "readStudies": "Przeczytaj badania"
     },
     "eventStatus": {
       "analysingVideos": "Analizowanie filmów"
@@ -291,7 +293,9 @@
       "result": "wynik",
       "results": "wyniki",
       "more": "+{count} więcej",
-      "foundCached": "Znaleziono {count} zbuforowanych {item}:"
+      "foundCached": "Znaleziono {count} zbuforowanych {item}:",
+      "study": "badanie",
+      "studies": "badania"
     },
     "eventButtons": {
       "applyToEditor": "Zastosuj w edytorze",
@@ -691,6 +695,13 @@
         "canSg": "Artykuły naukowe CAN-SG",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Prowadzisz dyskusję online?",
+      "description": "Chcesz przeciwdziałać dezinformacji? Wklej komentarz, aby przygotować odpowiedź opartą na odpowiednich badaniach.",
+      "placeholder": "Wklej komentarz tutaj…",
+      "button": "Odpowiedz",
+      "prompt": "Odnieś się do archiwum badań, aby obalić ten komentarz. Zacznij od krótkiego podsumowania, a następnie podaj listę streszczeń i tytułów odpowiednich badań. Pisz wyłącznie w zwykłym tekście, bez formatowania: bez nagłówków, pogrubień, kursyw, list punktowanych, numerowanych ani linków. Odpowiedź zostanie bezpośrednio wklejona do komentarza w mediach społecznościowych, więc musi być czytelna jako nieformatowany tekst.\n\nKomentarz:\n\"{comment}\""
     }
   },
   "contentWarning": {

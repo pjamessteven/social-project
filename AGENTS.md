@@ -49,6 +49,10 @@ For translations with multiple HTML tags, add each tag to the mapper:
 - **next-intl Support**: Built-in rich text formatting is the idiomatic way to handle HTML in translations
 - **Sanitization Not Needed**: React's component rendering automatically escapes dangerous content
 
+### Adding translation keys
+
+New strings go into `messages/en.json` first (other locales fall back to English for missing keys). Translate them into every locale with `npx tsx scripts/translate-messages.ts <key…>`, where a key is a leaf (`chat.readingStudies`) or an object (`studiesPage.debunk`); it keeps file order and preserves ICU placeholders and rich-text tags.
+
 ## Sitemap Guidelines
 
 ### Excluded Routes
@@ -110,6 +114,7 @@ The codebase has two captcha verification approaches:
 - Requires captcha after 10 requests (count resets after captcha verification)
 - Logged-in users bypass captcha entirely
 - Used by: `/api/chat`, `/api/videos/submit`, `/api/studies`, `/api/contact`
+- Every captcha gate (`app/lib/messageCounter.ts`) and the bot detector (`app/lib/isBot.ts`) are skipped when `NODE_ENV=development`, so the dev server never shows a captcha or the static bot pages
 
 ### Frontend implementation
 

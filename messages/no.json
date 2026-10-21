@@ -249,6 +249,7 @@
     "errorOccurred": "Det oppsto en feil, prøv igjen... Kontakt meg hvis dette fortsetter å skje.",
     "analysingExperiences": "Analyserer erfaringer",
     "analysingStudies": "Analyserer studier",
+    "readingStudies": "Leser studier",
     "analysingWebResults": "Analyserer søkeresultater",
     "analysingResults": "Analyserer resultater...",
     "detransPerspective": "-> Hva er detransisjonerte perspektiver på dette temaet?",
@@ -266,7 +267,8 @@
       "webSearch": "Nettsøk",
       "queryStudyCatalogue": "Søk i detransisjonsstudiekatalogen",
       "studyDetail": "Studiedetaljer",
-      "wikiPage": "Wiki-side"
+      "wikiPage": "Wiki-side",
+      "readStudies": "Les studier"
     },
     "eventStatus": {
       "analysingVideos": "Analyserer videoer"
@@ -291,7 +293,9 @@
       "result": "resultat",
       "results": "resultater",
       "more": "+{count} flere",
-      "foundCached": "Fant {count} bufrede {item}:"
+      "foundCached": "Fant {count} bufrede {item}:",
+      "study": "studie",
+      "studies": "studier"
     },
     "eventButtons": {
       "applyToEditor": "Bruk i editor",
@@ -691,6 +695,13 @@
         "canSg": "CAN-SGs fagartikler",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Driver du med nettdebatt?",
+      "description": "Motbeviser feilinformasjon på nettet? Lim inn kommentaren her for å bygge et svar som henviser til relevante studier.",
+      "placeholder": "Lim inn kommentaren her…",
+      "button": "Svar",
+      "prompt": "Vennligst bruk studieveiviseren for å motbevise denne kommentaren. Start med en kort oppsummering, fulgt av en liste med sammendrag og titler på relevante studier. Skriv i ren tekst uten noen form for formatering: ingen overskrifter, fet eller kursiv tekst, punktlister, nummererte lister eller lenker. Svaret skal limes direkte inn i en sosiale medier-kommentar, så det må leses korrekt som uformatert tekst.\n\nKommentar:\n\"{comment}\""
     }
   },
   "contentWarning": {

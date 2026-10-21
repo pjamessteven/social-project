@@ -249,6 +249,7 @@
     "errorOccurred": "發生錯誤，請重試...如果這種情況持續發生，請聯絡我。",
     "analysingExperiences": "正在分析經歷",
     "analysingStudies": "正在分析研究",
+    "readingStudies": "閱讀研究",
     "analysingWebResults": "正在分析網頁搜尋結果",
     "analysingResults": "正在分析結果...",
     "detransPerspective": "-> 去過渡者對這個話題有什麼看法？",
@@ -266,7 +267,8 @@
       "webSearch": "網路搜尋",
       "queryStudyCatalogue": "查詢去過渡研究目錄",
       "studyDetail": "研究詳情",
-      "wikiPage": "維基頁面"
+      "wikiPage": "維基頁面",
+      "readStudies": "閱讀研究"
     },
     "eventStatus": {
       "analysingVideos": "正在分析影片"
@@ -291,7 +293,9 @@
       "result": "結果",
       "results": "結果",
       "more": "+{count} 更多",
-      "foundCached": "找到 {count} 個快取的 {item}："
+      "foundCached": "找到 {count} 個快取的 {item}：",
+      "study": "研究",
+      "studies": "研究"
     },
     "eventButtons": {
       "applyToEditor": "套用到編輯器",
@@ -689,6 +693,13 @@
         "canSg": "CAN-SG 學術論文",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "正在參與線上辯論嗎？",
+      "description": "需要反駁網路上的錯誤資訊嗎？在此貼上評論，我們將根據相關研究幫您構建回應。",
+      "placeholder": "請在此貼上評論…",
+      "button": "回應",
+      "prompt": "請參考研究資料庫來反駁此評論。先提供簡短摘要，接著列出相關研究的摘要和標題。請使用純文字格式撰寫，不要使用任何標記語言：包括標題、粗體、斜體、項目符號、編號列表或連結。此回應將直接貼到社群媒體評論中，因此必須以未格式化的文字正確顯示。\n\n評論：\n\"{comment}\""
     }
   },
   "contentWarning": {

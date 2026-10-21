@@ -249,6 +249,7 @@
     "errorOccurred": "Er is een fout opgetreden, probeer opnieuw... Neem contact met mij op als dit blijft gebeuren.",
     "analysingExperiences": "Ervaringen Analyseren",
     "analysingStudies": "Onderzoeken analyseren",
+    "readingStudies": "Studies lezen",
     "analysingWebResults": "Zoekresultaten analyseren",
     "analysingResults": "Resultaten analyseren...",
     "detransPerspective": "-> Wat zijn detrans-perspectieven op dit onderwerp?",
@@ -266,7 +267,8 @@
       "webSearch": "Web zoeken",
       "queryStudyCatalogue": "Detransitie Studiecatalogus doorzoeken",
       "studyDetail": "Studiedetails",
-      "wikiPage": "Wikipagina"
+      "wikiPage": "Wikipagina",
+      "readStudies": "Studies lezen"
     },
     "eventStatus": {
       "analysingVideos": "Video's analyseren"
@@ -291,7 +293,9 @@
       "result": "resultaat",
       "results": "resultaten",
       "more": "+{count} meer",
-      "foundCached": "{count} gecachte {item} gevonden:"
+      "foundCached": "{count} gecachte {item} gevonden:",
+      "study": "studie",
+      "studies": "studies"
     },
     "eventButtons": {
       "applyToEditor": "Toepassen op editor",
@@ -691,6 +695,13 @@
         "canSg": "Wetenschappelijke artikelen van CAN-SG",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Doe je mee aan een online debat?",
+      "description": "Misinfo online weerleggen? Plak de reactie hier om een antwoord te maken met verwijzingen naar relevante studies.",
+      "placeholder": "Plak de reactie hier…",
+      "button": "Reageren",
+      "prompt": "Raadpleeg het studiesarchief om deze reactie te weerleggen. Begin met een korte samenvatting, gevolgd door een lijst met samenvattingen en titels van relevante studies. Schrijf alleen in platte tekst, zonder opmaak: geen kopjes, vet of cursief, opsommingstekens, genummerde lijsten of links. Het antwoord wordt direct in een sociale media-reactie geplakt, dus het moet goed leesbaar zijn als onopgemaakte tekst.\n\nReactie:\n\"{comment}\""
     }
   },
   "contentWarning": {

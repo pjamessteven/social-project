@@ -249,6 +249,7 @@
     "errorOccurred": "发生错误，请重试...如果这种情况持续发生，请联系我。",
     "analysingExperiences": "正在分析经历",
     "analysingStudies": "正在分析研究",
+    "readingStudies": "阅读研究",
     "analysingWebResults": "正在分析网页搜索结果",
     "analysingResults": "正在分析结果...",
     "detransPerspective": "-> 去过渡者对这个话题有什么看法？",
@@ -266,7 +267,8 @@
       "webSearch": "网络搜索",
       "queryStudyCatalogue": "查询去过渡研究目录",
       "studyDetail": "研究详情",
-      "wikiPage": "维基页面"
+      "wikiPage": "维基页面",
+      "readStudies": "阅读研究"
     },
     "eventStatus": {
       "analysingVideos": "正在分析视频"
@@ -291,7 +293,9 @@
       "result": "结果",
       "results": "结果",
       "more": "+{count} 更多",
-      "foundCached": "找到 {count} 个缓存的 {item}："
+      "foundCached": "找到 {count} 个缓存的 {item}：",
+      "study": "研究",
+      "studies": "研究"
     },
     "eventButtons": {
       "applyToEditor": "应用到编辑器",
@@ -689,6 +693,13 @@
         "canSg": "CAN-SG 学术论文",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "正在参与在线辩论？",
+      "description": "想要反驳网络上的错误信息？将评论粘贴到这里，构建一个引用相关研究的回应。",
+      "placeholder": "在此粘贴评论…",
+      "button": "回应",
+      "prompt": "请参考研究档案库来反驳此评论。先写一个简短总结，然后列出相关研究的摘要和标题。仅使用纯文本，不要使用任何标记格式：无标题、粗体或斜体、项目符号、编号列表或链接。回复将直接粘贴到社交媒体评论中，因此必须以无格式文本正确显示。\n\n评论：\n\"{comment}\""
     }
   },
   "contentWarning": {

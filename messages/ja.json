@@ -249,6 +249,7 @@
     "errorOccurred": "エラーが発生しました。もう一度お試しください...これが続く場合はお問い合わせください。",
     "analysingExperiences": "経験を分析中",
     "analysingStudies": "研究を分析中",
+    "readingStudies": "研究を読む",
     "analysingWebResults": "Web検索結果を分析中",
     "analysingResults": "結果を分析中...",
     "detransPerspective": "→ デトランスの視点は？",
@@ -266,7 +267,8 @@
       "webSearch": "Web検索",
       "queryStudyCatalogue": "デトランジション研究カタログを検索",
       "studyDetail": "研究詳細",
-      "wikiPage": "Wikiページ"
+      "wikiPage": "Wikiページ",
+      "readStudies": "研究を読む"
     },
     "eventStatus": {
       "analysingVideos": "動画を分析中"
@@ -291,7 +293,9 @@
       "result": "件",
       "results": "件",
       "more": "+{count}件",
-      "foundCached": "{count}件のキャッシュされた{item}が見つかりました："
+      "foundCached": "{count}件のキャッシュされた{item}が見つかりました：",
+      "study": "研究",
+      "studies": "研究"
     },
     "eventButtons": {
       "applyToEditor": "エディターに適用",
@@ -691,6 +695,13 @@
         "canSg": "CAN-SGの学術論文",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "オンラインで議論していますか？",
+      "description": "ネット上の誤情報に対抗しますか？コメントをここに貼り付けて、関連する研究を参照した返信を作成しましょう。",
+      "placeholder": "コメントをここに貼り付けて…",
+      "button": "返信する",
+      "prompt": "研究アーカイブを参照して、このコメントの誤りを指摘してください。まず短い要約から始め、関連する研究の要約とタイトルのリストを続けてください。プレーンテキストのみで記述し、見出し、太字や斜体、箇条書き、番号付きリスト、リンクなどのマークダウン書式は一切使用しないでください。返信はソーシャルメディアのコメントに直接貼り付けられるため、書式なしのテキストとして正しく表示される必要があります。\n\nコメント：\n「{comment}」"
     }
   },
   "contentWarning": {

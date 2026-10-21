@@ -249,6 +249,7 @@
     "errorOccurred": "Ett fel uppstod, försök igen... Kontakta mig om detta fortsätter hända.",
     "analysingExperiences": "Analyserar Erfarenheter",
     "analysingStudies": "Analyserar studier",
+    "readingStudies": "Läser studier",
     "analysingWebResults": "Analyserar webbresultat",
     "analysingResults": "Analyserar resultat...",
     "detransPerspective": "-> Vilka är detrans-perspektiven på detta ämne?",
@@ -266,7 +267,8 @@
       "webSearch": "Webbsökning",
       "queryStudyCatalogue": "Sök Detransitionsstudiekatalogen",
       "studyDetail": "Studiedetalj",
-      "wikiPage": "Wikisida"
+      "wikiPage": "Wikisida",
+      "readStudies": "Läs studier"
     },
     "eventStatus": {
       "analysingVideos": "Analyserar Videor"
@@ -291,7 +293,9 @@
       "result": "resultat",
       "results": "resultat",
       "more": "+{count} fler",
-      "foundCached": "Hittade {count} cachade {item}:"
+      "foundCached": "Hittade {count} cachade {item}:",
+      "study": "studie",
+      "studies": "studier"
     },
     "eventButtons": {
       "applyToEditor": "Tillämpa i redigeraren",
@@ -689,6 +693,13 @@
         "canSg": "CAN-SG:s vetenskapliga artiklar",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Är du i en debatt online?",
+      "description": "Motsäger du desinformation på nätet? Klistra in kommentaren här för att bygga ett svar som refererar till relevanta studier.",
+      "placeholder": "Klistra in kommentaren här…",
+      "button": "Svara",
+      "prompt": "Var vänlig använd studiernas arkiv för att motbevisa denna kommentar. Börja med en kort sammanfattning, följt av en lista med sammanfattningar och titlar på relevanta studier. Skriv i vanlig text utan någon form av markdown-formatering: inga rubriker, fetstil eller kursiv, punktlistor, numrerade listor eller länkar. Svaret ska klistras in direkt i en kommentar på sociala medier, så det måste läsas korrekt som oformaterad text.\n\nKommentar:\n\"{comment}\""
     }
   },
   "contentWarning": {

@@ -249,6 +249,7 @@
     "errorOccurred": "Prišlo je do napake, poskusite znova... Stopite v stik z mano, če se to še naprej dogaja.",
     "analysingExperiences": "Analiziranje izkušenj",
     "analysingStudies": "Analiziranje študij",
+    "readingStudies": "Branje študij",
     "analysingWebResults": "Analiziranje spletnih rezultatov",
     "analysingResults": "Analiziram rezultate...",
     "detransPerspective": "-> Kakšne so detranz perspektive o tej temi?",
@@ -266,7 +267,8 @@
       "webSearch": "Iskanje po spletu",
       "queryStudyCatalogue": "Poizvedba po katalogu študij detranzicije",
       "studyDetail": "Podrobnosti študije",
-      "wikiPage": "Wiki stran"
+      "wikiPage": "Wiki stran",
+      "readStudies": "Preberi študije"
     },
     "eventStatus": {
       "analysingVideos": "Analiziranje videov"
@@ -291,7 +293,9 @@
       "result": "rezultat",
       "results": "rezultati",
       "more": "+{count} več",
-      "foundCached": "Najdeno {count} predpomnjenih {item}:"
+      "foundCached": "Najdeno {count} predpomnjenih {item}:",
+      "study": "študija",
+      "studies": "študije"
     },
     "eventButtons": {
       "applyToEditor": "Uporabi v urejevalniku",
@@ -689,6 +693,13 @@
         "canSg": "Strokovni članki CAN-SG",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Sodeluješ v spletni razpravi?",
+      "description": "Ukrepaš proti dezinformacijam na spletu? Prilepi komentar sem, da sestaviš odgovor s sklicevanjem na ustrezne študije.",
+      "placeholder": "Prilepi komentar sem…",
+      "button": "Odgovori",
+      "prompt": "Prosimo, uporabi arhiv študij, da ovržeš ta komentar. Začni s kratkim povzetkom, ki mu sledi seznam povzetkov in naslovov ustreznih študij. Piši samo v navadnem besedilu, brez kakršne koli oblike označevanja: brez naslovov, krepkega ali ležečega pisava, seznamov s črticami, oštevilčenih seznamov ali povezav. Odgovor bo neposredno prilepljen v komentar na družbenem omrežju, zato mora biti pravilno berljiv kot neoblikovano besedilo.\n\nKomentar:\n\"{comment}\""
     }
   },
   "contentWarning": {

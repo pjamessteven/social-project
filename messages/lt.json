@@ -249,6 +249,7 @@
     "errorOccurred": "Įvyko klaida, bandykite dar kartą... Susisiekite su manimi, jei tai kartojasi.",
     "analysingExperiences": "Analizuojamos patirtys",
     "analysingStudies": "Analizuojami tyrimai",
+    "readingStudies": "Studijų skaitymas",
     "analysingWebResults": "Analizuojami žiniatinklio rezultatai",
     "analysingResults": "Analizuojami rezultatai...",
     "detransPerspective": "-> Kokie detranzicijos požiūriai į šią temą?",
@@ -266,7 +267,8 @@
       "webSearch": "Paieška internete",
       "queryStudyCatalogue": "Detranzicijos tyrimų katalogo užklausa",
       "studyDetail": "Tyrimo detalės",
-      "wikiPage": "Wiki puslapis"
+      "wikiPage": "Wiki puslapis",
+      "readStudies": "Skaityti studijas"
     },
     "eventStatus": {
       "analysingVideos": "Analizuojami vaizdo įrašai"
@@ -291,7 +293,9 @@
       "result": "rezultatas",
       "results": "rezultatai",
       "more": "+{count} daugiau",
-      "foundCached": "Rasta {count} podėlyje saugomų {item}:"
+      "foundCached": "Rasta {count} podėlyje saugomų {item}:",
+      "study": "studija",
+      "studies": "studijos"
     },
     "eventButtons": {
       "applyToEditor": "Taikyti redaktoriui",
@@ -691,6 +695,13 @@
         "canSg": "CAN-SG moksliniai straipsniai",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Dalyvauji internetinėje diskusijoje?",
+      "description": "Kovojama su dezinformacija? Įklijuokite komentarą čia, kad sukurtumėte atsakymą, remiantis atitinkamomis studijomis.",
+      "placeholder": "Įklijuokite komentarą čia…",
+      "button": "Atsakyti",
+      "prompt": "Prašome naudoti studijų archyvą, paneigti šį komentarą. Pradėkite trumpu santrauka, po kurios pateikite atitinkamų studijų santraukų ir pavadinimų sąrašą. Rašykite tik paprastu tekstu, be jokio formatavimo: be antraščių, paryškinimų ar pasvirųjų šriftų, sąrašų su ženkleliais ar numeriais, bei nuorodų. Atsakymas bus tiesiogiai įklijuojamas į socialinės medijos komentarą, todėl jis turi skaitytis teisingai kaip neformatuotas tekstas.\n\nKomentaras:\n\"{comment}\""
     }
   },
   "contentWarning": {
