@@ -16,6 +16,7 @@ import { getTranslations } from "next-intl/server";
 import { headers } from "next/headers";
 import { IntroWithSeeAlso } from "../../components/content/IntroWithSeeAlso";
 import ParticipateCard from "../../components/content/ParticipateCard";
+import DebunkCard from "../../components/studies/DebunkCard";
 import { StudiesHub } from "../../components/studies/StudiesHub";
 import { StudyCategoryGrid } from "../../components/studies/StudyGrid";
 import { StudyList } from "../../components/studies/StudyList";
@@ -199,7 +200,12 @@ export default async function StudiesPage({
           pendingStudies={pendingStudies}
           isAdmin={admin}
           locale={locale}
-          banner={<ParticipateCard />}
+          banner={
+            <>
+              <ParticipateCard />
+              <DebunkCard />
+            </>
+          }
         />
       </div>
     </div>

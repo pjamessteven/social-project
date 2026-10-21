@@ -2,6 +2,7 @@
 
 import { HCaptchaDialog } from "@/app/components/ui/hcaptcha-dialog";
 import { useCaptcha } from "@/app/hooks/useCaptcha";
+import { takePendingMessage } from "@/app/lib/pending-message";
 import { deslugify, uuidv4 } from "@/app/lib/utils";
 import { useChatStore } from "@/stores/chat-store";
 import { useChat } from "@ai-sdk/react";
@@ -384,9 +385,14 @@ export default function ChatSection({
   useEffect(() => {
     if (loading || starterSentRef.current) return;
 
-    // Priority: prop > URL query param
+    // Priority: prop > URL query param > message stashed for this
+    // conversation (exact text handed over by e.g. the studies debunk card)
     const urlStarter = starterQuestion ? null : searchParams.get("starter");
-    const starterMessage = starterQuestion || urlStarter;
+    const pending =
+      !starterQuestion && !urlStarter && conversationId
+        ? takePendingMessage(conversationId)
+        : null;
+    const starterMessage = starterQuestion || urlStarter || pending;
     if (!starterMessage) return;
 
     starterSentRef.current = true;
@@ -412,9 +418,9 @@ export default function ChatSection({
     if (useChatHandler.messages.length > 0) return;
 
     useChatHandler.sendMessage({
-      text: starterQuestion || deslugify(starterMessage),
+      text: starterQuestion || pending || deslugify(starterMessage),
     });
-  }, [loading, searchParams, useChatHandler, starterQuestion]);
+  }, [loading, searchParams, useChatHandler, starterQuestion, conversationId]);
 
   return (
     <>

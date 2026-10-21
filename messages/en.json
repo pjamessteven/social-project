@@ -693,6 +693,13 @@
         "canSg": "CAN-SG academic papers",
         "genderClinicNews": "Gender Clinic News"
       }
+    },
+    "debunk": {
+      "title": "Engaging in some online debate?",
+      "description": "Countering misinformation online? Paste the comment here to construct a response which references relevant studies.",
+      "placeholder": "Paste the comment here…",
+      "button": "Respond",
+      "prompt": "Please reference the studies archive to debunk this comment. Start with a short summary, followed by a list of summaries and titles of relevant studies. Write in plain text only, with no markdown formatting of any kind: no headings, bold or italics, bullet points, numbered lists or links. The reply will be pasted directly into a social media comment, so it must read correctly as unformatted text.\n\nComment:\n\"{comment}\""
     }
   },
   "contentWarning": {

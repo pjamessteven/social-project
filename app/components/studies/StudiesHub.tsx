@@ -113,9 +113,11 @@ export function StudiesHub({
         />
       </div>
 
-      {/* Block wrapper: the banner's root is an inline link, which would
-          ignore the vertical spacing between sections */}
-      {!query && banner && <div>{banner}</div>}
+      {/* Flex column: the participate card's root is an inline link, which
+          ignores vertical margins (space-y) but is blockified as a flex item */}
+      {!query && banner && (
+        <div className="flex flex-col gap-6">{banner}</div>
+      )}
 
       {isAdmin && pendingStudies.length > 0 && (
         <section>
