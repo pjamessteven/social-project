@@ -9,6 +9,7 @@ import {
 import { Study } from "@/app/types/study";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { ClickableCard } from "./ClickableCard";
 
 /**
  * Compact study list for the /studies pages: one card per study with the
@@ -62,17 +63,15 @@ function StudyListItem({
   const showFindings = study.approved && keyPoints.length > 0;
 
   return (
-    // The whole card opens the study: the title link's ::after stretches over
-    // the card, and the tag/source links sit above it (relative z-10).
-    <li className="dark:bg-secondary/50 hover:border-foreground/25 relative grid gap-x-10 gap-y-3 rounded-2xl border bg-white p-5 shadow-sm transition-[border-color,box-shadow] hover:shadow-md sm:p-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:p-8">
+    // The whole card opens the study (ClickableCard), but the text stays
+    // selectable: a stretched link overlay would swallow text selection.
+    <ClickableCard
+      href={detailHref}
+      className="dark:bg-secondary/50 hover:border-foreground/25 grid cursor-pointer gap-x-10 gap-y-3 rounded-2xl border bg-white p-5 shadow-sm transition-[border-color,box-shadow] hover:shadow-md sm:p-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:p-8"
+    >
       <div className="min-w-0">
         <h3 className="text-lg leading-snug font-semibold">
-          <Link
-            href={detailHref}
-            className="after:absolute after:inset-0 after:rounded-2xl after:content-['']"
-          >
-            {study.headline || study.title}
-          </Link>
+          <Link href={detailHref}>{study.headline || study.title}</Link>
         </h3>
         {/* The original title and authors, set apart from the headline. */}
         <div className="mt-2.5">
@@ -94,7 +93,7 @@ function StudyListItem({
             {summary}
           </p>
         )}
-        <div className="relative z-10 mt-3 flex w-fit flex-wrap items-center gap-x-3 gap-y-2">
+        <div className="mt-3 flex w-fit flex-wrap items-center gap-x-3 gap-y-2">
           <StudyTags method={method} topics={topics} locale={locale} />
           <StudySourceLink url={study.url} />
         </div>
@@ -113,6 +112,6 @@ function StudyListItem({
           <StudyKeyPoints points={keyPoints} />
         </div>
       )}
-    </li>
+    </ClickableCard>
   );
 }
