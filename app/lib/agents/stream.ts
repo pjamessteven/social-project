@@ -9,7 +9,6 @@ import { createUIMessageStream, UIMessage, UIMessageStreamWriter } from "ai";
 import { randomUUID } from "crypto";
 import type { ChatMessage, ChatResponseChunk } from "llamaindex";
 import { humanInputEvent, type HumanResponseEventData } from "./hitl";
-import { QuoteGate } from "./quote-gate";
 
 export interface StreamCallbacks {
   onStart?: (dataStreamWriter: UIMessageStreamWriter) => Promise<void> | void;
@@ -329,12 +328,6 @@ export function toDataStream(
   let textId: string | null = null;
   let streamWriter: UIMessageStreamWriter | null = null;
 
-  // Every blockquote the model writes is checked against the comments it
-  // actually retrieved (this turn and earlier turns) before it reaches the
-  // user — see quote-gate.ts. Ordinary text streams through untouched.
-  const quoteGate = new QuoteGate(`quote-check ${conversationId}`);
-  quoteGate.addFromMessages(originalMessages);
-
   const writeText = async (writer: UIMessageStreamWriter, text: string) => {
     if (!text) return;
     if (!textId) {
@@ -351,8 +344,7 @@ export function toDataStream(
     if (callbacks?.onText) await callbacks.onText(text, writer);
   };
 
-  const closeTextBlock = async (writer: any) => {
-    await writeText(writer, quoteGate.flush());
+  const closeTextBlock = (writer: any) => {
     if (textId) {
       writer.write({ type: "text-end", id: textId });
       textId = null;
@@ -372,12 +364,12 @@ export function toDataStream(
         for await (const event of stream) {
           // Text streaming
           if (agentStreamEvent.include(event) && event.data.delta) {
-            await writeText(writer, quoteGate.push(event.data.delta));
+            await writeText(writer, event.data.delta);
           }
 
           // Human input interrupts
           if (humanInputEvent.include(event)) {
-            await closeTextBlock(writer);
+            closeTextBlock(writer);
             const { response, ...rest } = event.data;
             writer.write({ type: "data-annotation", data: rest });
             if (callbacks?.onPauseForHumanInput) {
@@ -388,7 +380,7 @@ export function toDataStream(
 
           // Tool call start — emit data event for UI
           if (agentToolCallEvent.include(event)) {
-            await closeTextBlock(writer);
+            closeTextBlock(writer);
             const config = TOOL_UI_MAP[event.data.toolName];
             if (config) {
               writer.write({
@@ -412,8 +404,7 @@ export function toDataStream(
 
           // Tool call result — emit data event for UI
           if (agentToolCallResultEvent.include(event)) {
-            await closeTextBlock(writer);
-            quoteGate.addSources(event.data.raw);
+            closeTextBlock(writer);
             checkToolLoop(
               event.data.toolName,
               event.data.toolKwargs,
@@ -488,14 +479,7 @@ export function toDataStream(
         //   }
         // }
 
-        await closeTextBlock(writer);
-        if (quoteGate.decisions.length > 0) {
-          console.log(
-            `[quote-check ${conversationId}] ${quoteGate.decisions
-              .map((d) => d.outcome)
-              .join(",")} (sources=${quoteGate.sourceCount})`,
-          );
-        }
+        closeTextBlock(writer);
       } catch (error) {
         if (
           error instanceof Error &&
@@ -507,7 +491,7 @@ export function toDataStream(
           // Surface the failure as a visible assistant message first — an
           // error the user can actually read beats a silently empty
           // transcript that looks like the run is stuck.
-          await closeTextBlock(writer);
+          closeTextBlock(writer);
           const id = `text-${randomUUID()}`;
           const message =
             error instanceof Error
@@ -519,7 +503,7 @@ export function toDataStream(
           throw error;
         }
       } finally {
-        await closeTextBlock(writer);
+        closeTextBlock(writer);
       }
     },
     onError: (error: unknown) => {

@@ -88,7 +88,6 @@ export const chatAgentPrompt = `
   ### Quoting detransitioners
   - A blockquote must be copied word-for-word from the "text" field of a comment returned by queryComments in this conversation. You may shorten it with "..." but never reword it, merge comments or invent a quote. If no retrieved comment says what you need, say it in your own words without a blockquote.
   - Attribute it to that comment's username and link. Never put words under a comment that doesn't contain them.
-  - Every blockquote is checked automatically against the retrieved comments and deleted from your reply if it doesn't match, so a made-up quote only damages your answer.
   - Format (the angle-bracket parts are placeholders, never output them literally):
 
   > *<exact sentences copied from the comment's text>*
