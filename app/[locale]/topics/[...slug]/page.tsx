@@ -10,6 +10,7 @@ import {
   buildLocalizedPath,
   findPageByFinalSegment,
   getAllPagesWithSlugs,
+  getLocalizedContent,
   getContentLocales,
   getLocalizedValue,
   getPageAncestors,
@@ -308,8 +309,9 @@ export default async function WikiTopicPage({
   const summary = localizedSummary(item, locale);
   const contentLocale = canonicalLocaleFor(item, locale);
   const content =
-    getLocalizedValue(page.contentTranslation, locale, page.content) ??
-    page.content;
+    page.contentLocales.includes(locale)
+      ? ((await getLocalizedContent(page.id, locale)) ?? page.content)
+      : page.content;
 
   const rewriteHref = await buildWikiHrefRewriter(content, locale, byId);
   const { html, toc } = renderWikiMarkdown(content, { rewriteHref });

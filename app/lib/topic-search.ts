@@ -16,6 +16,7 @@ import {
   buildLocalizedPath,
   buildPublicPath,
   getAllPagesWithSlugs,
+  getLocalizedContents,
   getLocalizedValue,
   normalizeSegment,
   type PageWithSlugs,
@@ -191,7 +192,7 @@ interface IndexedPage {
 }
 
 const pageIndexCache = new Map<string, IndexedPage>();
-const PAGE_INDEX_CACHE_MAX = 2000;
+const PAGE_INDEX_CACHE_MAX = 500;
 
 function countTokens(tokens: string[]): Map<string, number> {
   const counts = new Map<string, number>();
@@ -199,11 +200,13 @@ function countTokens(tokens: string[]): Map<string, number> {
   return counts;
 }
 
-function localizedContent(page: PageWithSlugs["page"], locale: string) {
+function localizedContent(
+  page: PageWithSlugs["page"],
+  locale: string,
+  bodies?: Map<number, string>,
+) {
   const content =
-    locale === defaultLocale
-      ? page.content
-      : getLocalizedValue(page.contentTranslation, locale, null);
+    locale === defaultLocale ? page.content : (bodies?.get(page.id) ?? null);
   const title =
     locale === defaultLocale
       ? page.title
@@ -216,14 +219,49 @@ function localizedContent(page: PageWithSlugs["page"], locale: string) {
   return { content, title, summary };
 }
 
-/** Indexed sections for one page in one locale; null when untranslated. */
-function indexPage(item: PageWithSlugs, locale: string): IndexedPage | null {
+function indexKey(page: PageWithSlugs["page"], locale: string): string {
+  return `${page.id}:${locale}:${page.updatedAt.getTime()}`;
+}
+
+/**
+ * Translated bodies for the pages whose `locale` index isn't cached yet; the
+ * pages snapshot holds no translations, so they're fetched for one locale.
+ */
+async function loadUncachedBodies(
+  items: PageWithSlugs[],
+  locale: string,
+): Promise<Map<number, string>> {
+  // Make room up front (English + locale per page) so indexPage never clears
+  // the cache mid-search and loses a body this call skipped as cached.
+  if (pageIndexCache.size + items.length * 2 > PAGE_INDEX_CACHE_MAX) {
+    pageIndexCache.clear();
+  }
+  if (locale === defaultLocale) return new Map();
+  const ids = items
+    .filter(
+      (item) =>
+        item.page.contentLocales.includes(locale) &&
+        !pageIndexCache.has(indexKey(item.page, locale)),
+    )
+    .map((item) => item.page.id);
+  return getLocalizedContents(ids, locale);
+}
+
+/**
+ * Indexed sections for one page in one locale; null when untranslated.
+ * Non-default locales need the body in `bodies` unless already cached.
+ */
+function indexPage(
+  item: PageWithSlugs,
+  locale: string,
+  bodies?: Map<number, string>,
+): IndexedPage | null {
   const { page } = item;
-  const key = `${page.id}:${locale}:${page.updatedAt.getTime()}`;
+  const key = indexKey(page, locale);
   const cached = pageIndexCache.get(key);
   if (cached) return cached;
 
-  const { content, title, summary } = localizedContent(page, locale);
+  const { content, title, summary } = localizedContent(page, locale, bodies);
   if (!content) return null;
 
   const indexed: IndexedPage = {
@@ -329,13 +367,14 @@ export async function searchTopicSections(
     ? all
     : all.filter((item) => item.page.published);
   const byId = new Map(items.map((item) => [item.page.id, item]));
+  const bodies = await loadUncachedBodies(items, locale);
 
   const hits: TopicSectionHit[] = [];
   for (const item of items) {
     const english = indexPage(item, defaultLocale);
     if (!english) continue;
     const translated =
-      locale !== defaultLocale ? indexPage(item, locale) : null;
+      locale !== defaultLocale ? indexPage(item, locale, bodies) : null;
     const sameShape =
       !!translated && translated.sections.length === english.sections.length;
     const pageUrl = buildPublicPath(item, byId, locale);
@@ -454,8 +493,9 @@ export async function readTopic(
     );
   if (!item) return null;
 
+  const bodies = await loadUncachedBodies([item], locale);
   const indexed =
-    (locale !== defaultLocale ? indexPage(item, locale) : null) ??
+    (locale !== defaultLocale ? indexPage(item, locale, bodies) : null) ??
     indexPage(item, defaultLocale);
   if (!indexed) return null;
   const display = localizedContent(item.page, locale);

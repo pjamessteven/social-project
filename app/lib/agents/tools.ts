@@ -3,6 +3,7 @@ import {
   createPage,
   deletePage,
   getAllPagesWithSlugs,
+  getLocalizedContents,
   getLocalizedValue,
   getPageByPath,
   listPagesTree,
@@ -1256,24 +1257,16 @@ export function createGrepTool(config: { adminUsername?: string | null }) {
         let matches = 0;
         let truncated = false;
 
-        const searchPage = (
-          item: Awaited<ReturnType<typeof getPageByPath>>,
-        ) => {
-          if (!item || truncated) return;
-          const result = grepContent(
-            readPageContent(item.page, locale),
-            pattern,
-            {
-              ignoreCase,
-            },
-          );
+        const searchPage = (pagePath: string, content: string) => {
+          if (truncated) return;
+          const result = grepContent(content, pattern, { ignoreCase });
           if (result.error) throw new Error(result.error);
           for (const match of result.matches) {
             if (matches >= limit) {
               truncated = true;
               return;
             }
-            out.push(`${item.page.path}:${match.line}:${match.text}`);
+            out.push(`${pagePath}:${match.line}:${match.text}`);
             matches++;
           }
         };
@@ -1286,10 +1279,15 @@ export function createGrepTool(config: { adminUsername?: string | null }) {
               error: `grep: ${path}: No such file or directory`,
             });
           }
-          searchPage(item);
+          searchPage(item.page.path, readPageContent(item.page, locale));
         } else {
-          for (const item of await getAllPagesWithSlugs()) {
-            searchPage(item);
+          const all = await getAllPagesWithSlugs();
+          const bodies = await getLocalizedContents(
+            all.map((item) => item.page.id),
+            locale ?? defaultLocale,
+          );
+          for (const item of all) {
+            searchPage(item.page.path, bodies.get(item.page.id) ?? "");
             if (truncated) break;
           }
         }

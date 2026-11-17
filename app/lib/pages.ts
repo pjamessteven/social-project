@@ -2,7 +2,17 @@ import { db } from "@/db";
 import { pageSlugs, pages, type Page } from "@/db/schema";
 import { locales } from "@/i18n/locales";
 import { defaultLocale, pathnames } from "@/i18n/routing";
-import { and, asc, eq, inArray, isNull, like, notLike, sql } from "drizzle-orm";
+import {
+  and,
+  asc,
+  eq,
+  getTableColumns,
+  inArray,
+  isNull,
+  like,
+  notLike,
+  sql,
+} from "drizzle-orm";
 import { unstable_cache } from "next/cache";
 
 /**
@@ -46,10 +56,24 @@ export interface UpdatePageInput {
   updatedBy?: string | null;
 }
 
+/**
+ * A page row without its translated bodies (`content_translation` is ~95% of
+ * the table, 236 MB in prod), plus the locales that have one. Load a
+ * translated body with `getLocalizedContent(s)`.
+ */
+export type PageMeta = Omit<Page, "contentTranslation"> & {
+  contentLocales: string[];
+};
+
 export interface PageWithSlugs {
-  page: Page;
+  page: PageMeta;
   /** locale -> translated slug segment */
   slugs: Record<string, string>;
+}
+
+/** A single page with every column, from `getPageByPath`. */
+export interface FullPageWithSlugs extends PageWithSlugs {
+  page: Page & { contentLocales: string[] };
 }
 
 export interface PageTreeNode {
@@ -256,7 +280,7 @@ async function assertSiblingSlugsAvailable(args: {
 
 export async function createPage(
   input: CreatePageInput,
-): Promise<PageWithSlugs> {
+): Promise<FullPageWithSlugs> {
   const title = input.title?.trim();
   const content = input.content ?? "";
   if (!title) throw new Error("Page title is required");
@@ -340,7 +364,10 @@ export async function createPage(
         ),
       );
 
-    return { page: created, slugs: parsed.slugTranslations };
+    return {
+      page: withContentLocales(created),
+      slugs: parsed.slugTranslations,
+    };
   });
   invalidatePagesSnapshot();
   return result;
@@ -349,7 +376,7 @@ export async function createPage(
 export async function updatePage(
   path: string,
   input: UpdatePageInput,
-): Promise<PageWithSlugs> {
+): Promise<FullPageWithSlugs> {
   const normalizedPath = normalizePagePath(path);
   const existing = (
     await db.select().from(pages).where(eq(pages.path, normalizedPath)).limit(1)
@@ -503,7 +530,7 @@ export async function updatePage(
       .where(eq(pageSlugs.pageId, existing.id));
 
     return {
-      page: updated,
+      page: withContentLocales(updated),
       slugs: Object.fromEntries(slugRows.map((row) => [row.locale, row.slug])),
     };
   });
@@ -534,12 +561,15 @@ export async function deletePage(path: string): Promise<void> {
 /**
  * In-process snapshot of every page + slugs. Routing, the hub tree, the
  * sitemap and the featured article all need the full set, and loading it per
- * call (content in every locale, several MB) multiplied by a crawler burst
- * ran the server out of memory. Concurrent callers share one in-flight load;
- * writes in this module invalidate it, and the TTL covers out-of-band edits
- * (scripts, other processes). Callers must treat the result as read-only.
+ * call multiplied by a crawler burst ran the server out of memory. Concurrent
+ * callers share one in-flight load; writes in this module invalidate it, and
+ * the TTL covers out-of-band edits (scripts, other processes). Callers must
+ * treat the result as read-only.
+ *
+ * It holds no translated bodies: with them it was ~1 GB of heap and the
+ * container was OOM-killed ~1,900 times (2026-11-17).
  */
-const PAGES_SNAPSHOT_TTL_MS = 60_000;
+const PAGES_SNAPSHOT_TTL_MS = 5 * 60_000;
 let pagesSnapshot: {
   promise: Promise<PageWithSlugs[]>;
   loadedAt: number;
@@ -563,11 +593,30 @@ export function getAllPagesWithSlugs(): Promise<PageWithSlugs[]> {
   return snapshot.promise;
 }
 
+const { contentTranslation: _contentTranslation, ...pageMetaColumns } =
+  getTableColumns(pages);
+
+/** Locales with a translated body, computed in Postgres so the JSON stays there. */
+const contentLocalesSql = sql<string | null>`(
+  select string_agg(k, ',') from json_object_keys(${pages.contentTranslation}::json) k
+)`;
+
+function splitLocales(value: string | null): string[] {
+  return value ? value.split(",") : [];
+}
+
 async function loadAllPagesWithSlugs(): Promise<PageWithSlugs[]> {
-  const [pageRows, slugRows] = await Promise.all([
-    db.select().from(pages).orderBy(asc(pages.path)),
+  const [metaRows, slugRows] = await Promise.all([
+    db
+      .select({ ...pageMetaColumns, contentLocales: contentLocalesSql })
+      .from(pages)
+      .orderBy(asc(pages.path)),
     db.select().from(pageSlugs),
   ]);
+  const pageRows: PageMeta[] = metaRows.map((row) => ({
+    ...row,
+    contentLocales: splitLocales(row.contentLocales),
+  }));
 
   const slugMap = new Map<number, Record<string, string>>();
   for (const row of slugRows) {
@@ -587,9 +636,45 @@ export async function getPublishedPages(): Promise<PageWithSlugs[]> {
   return all.filter((item) => item.page.published);
 }
 
+/**
+ * Body of each page in `locale` (English when untranslated), for pages from
+ * the snapshot. Only that locale's text leaves Postgres.
+ */
+export async function getLocalizedContents(
+  ids: number[],
+  locale: string,
+): Promise<Map<number, string>> {
+  if (!ids.length) return new Map();
+  const rows = await db
+    .select({
+      id: pages.id,
+      content:
+        locale === defaultLocale
+          ? pages.content
+          : sql<string>`coalesce(${pages.contentTranslation}::json ->> ${locale}, ${pages.content})`,
+    })
+    .from(pages)
+    .where(inArray(pages.id, ids));
+  return new Map(rows.map((row) => [row.id, row.content]));
+}
+
+export async function getLocalizedContent(
+  id: number,
+  locale: string,
+): Promise<string | null> {
+  return (await getLocalizedContents([id], locale)).get(id) ?? null;
+}
+
+function withContentLocales(page: Page): FullPageWithSlugs["page"] {
+  return {
+    ...page,
+    contentLocales: Object.keys(parseJsonRecord(page.contentTranslation)),
+  };
+}
+
 export async function getPageByPath(
   path: string,
-): Promise<PageWithSlugs | null> {
+): Promise<FullPageWithSlugs | null> {
   const normalized = normalizePagePath(path);
   const page = (
     await db.select().from(pages).where(eq(pages.path, normalized)).limit(1)
@@ -602,15 +687,17 @@ export async function getPageByPath(
     .where(eq(pageSlugs.pageId, page.id));
 
   return {
-    page,
+    page: withContentLocales(page),
     slugs: Object.fromEntries(slugRows.map((row) => [row.locale, row.slug])),
   };
 }
 
 /** Parent by FK, or by path prefix when the parent was created later. */
+type PageNode = Pick<Page, "id" | "path" | "parentId">;
+
 function resolveLogicalParentId(
-  page: Page,
-  byPath: Map<string, Page>,
+  page: PageNode,
+  byPath: Map<string, PageNode>,
 ): number | null {
   if (page.parentId != null) return page.parentId;
   const idx = page.path.lastIndexOf("/");
@@ -619,12 +706,12 @@ function resolveLogicalParentId(
 }
 
 /** Ancestors root-first (cycle-guarded). */
-function getAncestors(
-  page: Page,
-  byId: Map<number, Page>,
-  byPath: Map<string, Page>,
-): Page[] {
-  const chain: Page[] = [];
+function getAncestors<P extends PageNode>(
+  page: P,
+  byId: Map<number, P>,
+  byPath: Map<string, P>,
+): P[] {
+  const chain: P[] = [];
   const visited = new Set<number>([page.id]);
   let currentId = resolveLogicalParentId(page, byPath);
   while (currentId != null && !visited.has(currentId)) {
@@ -878,9 +965,11 @@ export function getTranslatedLocales(item: PageWithSlugs): string[] {
  * (English) content plus every locale with a content translation. Other
  * locales serve the English body and canonicalize to the English URL.
  */
-export function getContentLocales(page: Page): string[] {
-  const translated = Object.keys(parseJsonRecord(page.contentTranslation));
-  return [defaultLocale, ...translated.filter((l) => l !== defaultLocale)];
+export function getContentLocales(page: PageMeta): string[] {
+  return [
+    defaultLocale,
+    ...page.contentLocales.filter((l) => l !== defaultLocale),
+  ];
 }
 
 /** Ancestor chain (root-first) as full PageWithSlugs entries. */
@@ -888,8 +977,8 @@ export function getPageAncestors(
   item: PageWithSlugs,
   byId: Map<number, PageWithSlugs>,
 ): PageWithSlugs[] {
-  const byPath = new Map<string, Page>();
-  const pageById = new Map<number, Page>();
+  const byPath = new Map<string, PageMeta>();
+  const pageById = new Map<number, PageMeta>();
   for (const entry of byId.values()) {
     byPath.set(entry.page.path, entry.page);
     pageById.set(entry.page.id, entry.page);
