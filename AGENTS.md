@@ -69,7 +69,7 @@ These routes should remain excluded from search engine indexing.
 
 When adding new public routes to the application:
 
-1. Add the route to the `baseRoutes` array in `/app/sitemap.xml/route.ts`
+1. Add the route to the `baseRoutes` array in `/app/sitemap.xml/build.ts` (served as a sitemap index, `/sitemap.xml`, over `/sitemaps/{n}.xml` chunks of 2,000 URLs — Google rejects files over 50 MB)
 2. Determine if the route should be localized (most content routes should be)
 3. If localizing dynamic routes (like `/videos/:id`), update the exclusion logic in `generateLocalizedRoutes`
 4. Test the sitemap output to verify URLs are generated correctly
@@ -78,26 +78,26 @@ When adding new public routes to the application:
 
 - Study detail URLs are `/{locale}/{localized-studies-base}/{headline-slug}` (e.g. `/fr/etudes/…`); slugs are per-locale rows in `study_slugs`, regenerated from the localized headline/title on every study write via `syncStudySlugs` (`app/lib/study-slugs.ts`). URL helpers are client-safe in `app/lib/study-urls.ts`.
 - Do **not** link `/studies/{id}` in site UI or the sitemap — numeric ids are a legacy alias only. They stay functional (chat citations) and 308-redirect to the canonical slug URL.
-- Sitemap study entries are built by the dedicated `studyRoutes` builder in `/app/sitemap.xml/route.ts` (true per-locale variants like `topicRoutes`); do not push them through `generateLocalizedRoutes`.
+- Sitemap study entries are built by the dedicated `studyRoutes` builder in `/app/sitemap.xml/build.ts` (true per-locale variants like `topicRoutes`); do not push them through `generateLocalizedRoutes`.
 
 ### Study Categories (`/studies/topic/[category]`, `/studies/method/[category]`)
 
 - The `/studies` hub is a grid of curated categories (`study_categories`: kind `topic` | `method`, with JSON translations of name/description/slug), toggled by a "By topic / By methodology" tab (`?by=method`). Studies are assigned via `study_category_relations` — one method and usually 1–2 topics per study. Server helpers live in `app/lib/study-categories.ts`; client-safe URL helpers in `app/lib/study-category-urls.ts`.
 - Category URLs are `/{locale}/{studies-base}/{topic|method word}/{localized-category-slug}` (e.g. `/fr/etudes/theme/bloqueurs-de-puberté`); other locales' slugs 308-redirect to the canonical one. Empty categories are noindex.
 - Study cards use the short `card_summary` / `card_key_points` fields (falling back to `description` / `key_points`). Generate them with `scripts/backfill-study-cards.ts` (dry-run JSON, then `--apply`), and translate categories + cards with `scripts/generate-study-hub-translations.ts`.
-- Sitemap entries come from the dedicated `studyCategoryRoutes` builder in `/app/sitemap.xml/route.ts`; do not push them through `generateLocalizedRoutes`.
+- Sitemap entries come from the dedicated `studyCategoryRoutes` builder in `/app/sitemap.xml/build.ts`; do not push them through `generateLocalizedRoutes`.
 
 ### Story Pages (`/stories/[slug]`)
 
 - Story URLs are `/{locale}/{localized-stories-base}/{id}-{title-slug}` (e.g. `/fr/histoires/3f2a9c1e-mastectomy-at-20`). The id is a salted username hash from `storyIdSql()` (`app/lib/story-id.ts`, secret `STORY_ID_SALT` — required in production, and changing it changes every story URL); **never put usernames in URLs, page output or API responses.** Only the id is used for lookup — any other slug 308-redirects to the canonical one. URL helpers are client-safe in `app/lib/story-urls.ts`; server lookups live in `app/lib/stories.ts`.
 - Story text is usually English-only: locale variants without a translated summary canonicalize to the English URL, and only translated locales are listed in hreflang/sitemap.
 - Story translations are JSON `{ locale: text }` columns, read by the story page, the spotlight cards (`/api/stories/spotlight?locale=`) and the reading dialog, each falling back to English: title → `detrans_user_display_names.display_name_translation`, summary/card excerpt → `detrans_users.experience_summary_translation`, full story → `detrans_users.experience_translation`. A locale counts as translated (hreflang/sitemap/self-canonical) once it has a summary translation. The URL slug always comes from the English `display_name`.
-- Only "listed" stories (same rules as the `/stories` spotlight: confirmed detransition/desistance, not suspicious, enough detail) are indexed and emitted by the `storyRoutes` builder in `/app/sitemap.xml/route.ts`. Do not push them through `generateLocalizedRoutes`.
+- Only "listed" stories (same rules as the `/stories` spotlight: confirmed detransition/desistance, not suspicious, enough detail) are indexed and emitted by the `storyRoutes` builder in `/app/sitemap.xml/build.ts`. Do not push them through `generateLocalizedRoutes`.
 
 ### Wiki Pages (`/topics/[...slug]` + `/topics` hub)
 
 - Public wiki pages are **database-driven** (`pages` + `page_slugs` tables) and rendered by `app/[locale]/topics/[...slug]/page.tsx`. The public hub index lives at `app/[locale]/topics/page.tsx`. **Reading is public for all users; editing is admin-only** (agent write tools + `/api/pages`).
-- Sitemap entries for **published** pages (plus the `/topics` hub) are generated by the dedicated `topicRoutes` builder in `/app/sitemap.xml/route.ts` as true per-locale variants (translated slug segments) with `x-default` hreflang; drafts are excluded automatically.
+- Sitemap entries for **published** pages (plus the `/topics` hub) are generated by the dedicated `topicRoutes` builder in `/app/sitemap.xml/build.ts` as true per-locale variants (translated slug segments) with `x-default` hreflang; drafts are excluded automatically.
 - Do **not** add `/topics` to `baseRoutes` — it is handled by the dedicated builder, and `generateLocalizedRoutes` must not double-localize it.
 - Use `app/lib/pages.ts` for all page CRUD (agent tools, admin API `/api/pages`, future admin UI). Page content is sanitized in `app/lib/markdown.ts` before rendering, and JSON-LD must be embedded with `safeJsonLd` (`app/lib/seo.ts`) to escape closing script tags.
 
